@@ -1,0 +1,91 @@
+{
+  "batchNumber": 23,
+  "batchId": "profitable-shelf-2-create-023",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "5ca865f2-7300-4e91-b8f2-7d3e85c07fb8",
+      "sku": "VTK004137",
+      "nome": "Arandela 6\" FRAHM 50W Quadrada 6CX Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 139.9,
+      "estoque": 23,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela 6 Polegadas FRAHM 50W Quadrada 6CX Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 139.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 299.82
+      }
+    },
+    {
+      "produtoId": "476bee08-d8ea-43db-bc1f-b07e4d59756a",
+      "sku": "VTK021063",
+      "nome": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb Preto Sem Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 139.95,
+      "estoque": 27,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 139.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 299.91
+      }
+    },
+    {
+      "produtoId": "8868a5bc-82a8-41eb-af7a-97c835d83ac1",
+      "sku": "VTK025899",
+      "nome": "20 Pilhas Alcalinas D Elgin (10 Cartelas C/2 Un)",
+      "fornecedor": "BKR1",
+      "custo": 149.5,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Alcalinas D Elgin 10 Cartelas C 2 Un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 149.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 317.27
+      }
+    },
+    {
+      "produtoId": "7b940b44-b0c6-4033-a7a8-2366f1efed0d",
+      "sku": "VTK025900",
+      "nome": "20 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (10 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 149.5,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Alcalinas D Lr20 Sm 2 Elgin 10 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 149.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 317.27
+      }
+    }
+  ]
+}

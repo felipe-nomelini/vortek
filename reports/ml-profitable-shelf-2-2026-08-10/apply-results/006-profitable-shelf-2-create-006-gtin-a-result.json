@@ -1,0 +1,148 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/006-profitable-shelf-2-create-006-gtin-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-006",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "6ec281b5-3857-4cf0-9370-8f62d1af46a2",
+      "sku": "VTK017930",
+      "category": {
+        "id": "MLB63526",
+        "nome": "Interruptores de Energia",
+        "dominio": "Interruptores de ignição para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381754112",
+        "title": "Chave Canivete B&s Gm Cruze Cobalt Agile 3 Botoes Sem",
+        "price": 41.43,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754112-chave-canivete-bs-gm-cruze-cobalt-agile-3-botoes-sem-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Não foi possível configurar os preços de atacado neste momento. Motivo: Mercado Livre retornou HTTP 500"
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 41.43
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "sku": "VTK017246",
+      "category": {
+        "id": "MLB2963",
+        "nome": "Veículos de Controle Remoto",
+        "dominio": "Veículos de brinquedo de controle remoto"
+      },
+      "anuncio": {
+        "id": "MLB7381742942",
+        "title": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+        "price": 50,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381742942-controle-remoto-copiar-hombrus-433mhz-code-learn-3-botoes-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Não foi possível configurar os preços de atacado neste momento. Motivo: Mercado Livre retornou HTTP 500"
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 12.35,
+        "shipping_source": "erp",
+        "ml_fee": 0.165,
+        "price": 50
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+      "sku": "VTK018133",
+      "category": {
+        "id": "MLB270208",
+        "nome": "Fontes",
+        "dominio": "Fontes de alimentação para radiofreqüência"
+      },
+      "anuncio": {
+        "id": "MLB7381754448",
+        "title": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a",
+        "price": 41.15,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754448-fonte-adaptadora-carregador-universal-alltech-12v-dc-2a-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 41.15
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381754608",
+        "title": "Reparo Tweeter Shock Completo St 400 Selenium Shock Reparos",
+        "price": 44.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754608-reparo-tweeter-shock-completo-st-400-selenium-shock-reparos-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 44.86
+      }
+    }
+  ],
+  "failed": []
+}

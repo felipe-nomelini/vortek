@@ -1,0 +1,549 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/026-profitable-shelf-2-create-026-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-026",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "26224d62-006e-4db1-b89a-acce2097c03e",
+      "sku": "VTK025683",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 293.25,
+      "familyName": "150 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 204,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 470.91
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "150 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n150 Baterias Litio Cr2032 Elgin (30 Cart)\n\nKit com 30 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 30x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 30 unidades\n\n- Embalagem: Pacote / Caixa\n\n150 Baterias Litio Cr2032 Elgin (30 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025683\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 9 cm\n• Peso bruto informado: 0,62 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "04ee8d46-f737-4c9c-a223-e78e2ef6bcfb",
+      "sku": "VTK000507",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "Caixas de som"
+      },
+      "basePrice": 296.73,
+      "familyName": "Caixa de Som Ambiente Hayonik Ambience Line 4 Polegadas",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 211.58,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 467.68
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HAYONIK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MSB60NC"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899638109154"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Caixa de Som Ambiente Hayonik Ambience Line 4\" MSB60NC Preta - PAR / 2\n\nVISÃO GERAL\nA Caixa Acústica Ambience Line 4\" MSB60NC é um modelo projetado especialmente para sons ambientes, podendo ser utilizadas em residenciais, escritórios e estabelecimentos comerciais. Esta caixa possui um sistema de som de alta qualidade com 30W de potência RMS em cada caixa, em um design leve e compacto. Porém, apesar de suas pequenas dimensões oferece um grande desempenho acústico.\n\nPodem ser facilmente instaladas com paredes e colunas e posicionadas de acordo com as necessidades dos projetos de sonorização. Ideais para atender quem preza por tecnologia, elegância e praticidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HAYONIK\n• Modelo: MSB60NC\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HAYONIK\n• GTIN: 7899638109154\n• NCM: 8518.22.00\n• SKU: VTK000507\n\nEMBALAGEM\n• Dimensões informadas: 30 × 14 × 12.5 cm\n• Peso bruto informado: 2,36 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7d1e1485-0cb9-4db5-add8-4d240f7a721d",
+      "sku": "VTK018895",
+      "category": {
+        "id": "MLB419878",
+        "nome": "Racks de Servidores",
+        "dominio": "Racks para servidores"
+      },
+      "basePrice": 306.99,
+      "familyName": "D.i.o Seccon Para Painel Até 24fo 19 Polegadas Preto",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 218.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 480.53
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FERRAGENS FTTH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WT-3004A"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "D.i.o Seccon Para Painel Até 24fo 19\" Preto\n\nVISÃO GERAL\nInformações do Produto - Distribuidor Interno Optico ( D. I. O.\n\n) para Rack 19 ( 1U ), capacidade para até 24FO (Fibra Óptica), gabinete em aço, pintura em epoxi na cor preta. - Dimensões : altura 1U (44,45 mm), largura de 440 mm e profundidade de 330 mm. - Acompanha 02 Bandejas para 12FO.\n\n- Use os Conectores : WT-3004A - MONO MODO, SIMPLEX, SC/SC. WT-3004C - MULT MODO, SIMPLEX, SC/SC. WT-3005B - MONO MODO, DUPLEX, LC/LC.\n\nWT-3005E - MULT MODO, DUPLEX, LC/LC. Use os Acopladores : SC/SC, Simplex para 24 portas : MC-085. 02.\n\n01S2 - Mono Modo, UPC MC-08. 02. 01S2 - Mono Modo, APC 3D-17021503 - Multi Modo, UPC LC/LC, Duplex para 48 portas : WT-3005B - Mono Modo, UPC WT-3005E - Multi Modo, UPC E2000, Simplex para 24 portas : MC-08.\n\n06. 02 - Mono Modo, APC JJ-BA2D44EP-0000009-0N - Mono Modo, UPC\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FERRAGENS FTTH\n• Modelo: WT-3004A\n• Cor: Preto\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FERRAGENS FTTH\n• NCM: 85177900\n• SKU: VTK018895\n\nEMBALAGEM\n• Dimensões informadas: 5 × 31 × 50 cm\n• Peso bruto informado: 3,384 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7cef02fb-c0a8-46c9-aad7-7f14ee4b6644",
+      "sku": "VTK018600",
+      "category": {
+        "id": "MLB420039",
+        "nome": "Gravadores DVR",
+        "dominio": "Gravadores de vídeo de câmeras de segurança"
+      },
+      "basePrice": 329.54,
+      "familyName": "Kit Placa Dvr Seykon Pci Sk 9808 8 Canais Real Time",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 224.95,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 523.27
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SEYKON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SK-9808"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Placa Dvr Seykon Pci Sk-9808 8 Canais Real Time\n\nVISÃO GERAL\nSK 9808 Real Time Entrada 8 canais Expansível de 8 até 32 canais Sistema de cor: NTSC Taxa de frames: 240 FPS Form. Vídeo: 640 x 480, 352 x 288, 320 x 240 Gravação: Contínuo, movimento, agendado Sist. Op: Win XP sp3 Certificado\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SEYKON\n• Modelo: SK-9808\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SEYKON\n• NCM: 84733049\n• SKU: VTK018600\n\nEMBALAGEM\n• Dimensões informadas: 4 × 18 × 27.5 cm\n• Peso bruto informado: 0,358 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "07311428-25f4-48a5-806c-7b1046412370",
+      "sku": "VTK025574",
+      "nome": "48 Baterias Auditiva 312 Duracell (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3fce93e4-27b1-4794-9885-315235c7dbfc",
+      "sku": "VTK025575",
+      "nome": "48 Baterias Auditivas 10 Duracell (8 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "98250d20-12a4-433c-9fbb-6be3a583d8c4",
+      "sku": "VTK025576",
+      "nome": "48 Baterias Auditivas 13 Duracell (8 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "85dec5dd-a6ef-41cd-8795-77e7bef6cacc",
+      "sku": "VTK025577",
+      "nome": "48 Baterias Auditivas 675 Duracell (8 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e337910c-5d53-4c52-8577-735f6e832419",
+      "sku": "VTK001191",
+      "nome": "Fio PP 2x0,75mm Preto Controller - RL / 100",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455454",
+            "nome": "Cabos Elétricos"
+          },
+          "missing": [
+            "Tipo de cabo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5fb0587d-bb1f-4c4f-b2a3-b3c346b17bb5",
+      "sku": "VTK001336",
+      "nome": "Frigideira Rochedo Robusta Grafite 18cm - CXM / 6",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107482",
+            "nome": "Frigideiras"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a189fa1b-b96c-4a09-88ff-440336df963e",
+      "sku": "VTK018347",
+      "nome": "Web Cam Logitech C270 Hd 720p 3 Megapixels Com Microfone Cor Chumbo E Preto",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73364",
+            "nome": "Webcams"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "92bf4a77-b94a-49df-b11f-bf5bacc229bc",
+      "sku": "VTK016237",
+      "nome": "8 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "47818129-2eb0-4e4b-b23b-d0fff2342ee8",
+      "sku": "VTK025587",
+      "nome": "54 Baterias Auditiva 312 Duracell (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "dea3e168-4690-42d9-97e9-68e740a95ac8",
+      "sku": "VTK025588",
+      "nome": "54 Baterias Auditivas 10 Duracell (9 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b2057708-789c-4999-a782-fbfc769f5be9",
+      "sku": "VTK025589",
+      "nome": "54 Baterias Auditivas 13 Duracell (9 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7e3cd383-ebd6-451a-bcd2-3d4b3abe32d0",
+      "sku": "VTK025590",
+      "nome": "54 Baterias Auditivas 675 Duracell (9 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "34a42f9d-bc9b-436d-aab2-098d44a3a598",
+      "sku": "VTK025953",
+      "nome": "Liquidificador Portátil Arno Lightmix LP00",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73055",
+            "nome": "Liquidificadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5d099971-67ae-4b60-9d2c-9364111c5c10",
+      "sku": "VTK021001",
+      "nome": "Alto Falante Pioneer 6x9\" Ts-6960br 200rms Par",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2dc9047a-b734-40dd-a3e9-2b46a8c03b3e",
+      "sku": "VTK019100",
+      "nome": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+      "error": "Atributos obrigatórios pendentes: Tipo de câmera de vigilância, Localizações da câmera",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7073",
+            "nome": "Câmeras de Segurança"
+          },
+          "missing": [
+            "Tipo de câmera de vigilância",
+            "Localizações da câmera"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c56848d6-3f38-496d-aeec-e4e0cc8f22c9",
+      "sku": "VTK020602",
+      "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,20 Mm 502010",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

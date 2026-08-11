@@ -1,0 +1,427 @@
+{
+  "batchNumber": 28,
+  "batchId": "profitable-shelf-2-create-028",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "56b6a082-1ca3-41a0-8b61-02e5b26722e0",
+      "sku": "VTK017939",
+      "nome": "Caixa Dio 19\" Evus Ev-dio12 12fo Para Rack Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 277.9,
+      "estoque": 19,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Dio 19 Polegadas Evus Ev dio12 12fo Para Rack Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 277.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 605.27
+      }
+    },
+    {
+      "produtoId": "2d39b0f9-ecd8-482c-a2cb-48917df39ab1",
+      "sku": "VTK021164",
+      "nome": "Alto Falante Subwoofer 12\" Pioneer Ts-w3060br 350w Rms 4 Ohms Bobina Simples",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 282.9,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto Falante Subwoofer 12 Polegadas Pioneer Ts w3060br 350w",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 282.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 614.36
+      }
+    },
+    {
+      "produtoId": "ec4001c7-4811-4775-91e9-0971777d6947",
+      "sku": "VTK018176",
+      "nome": "Reparo Jbl Selenium Rpd450ti Trio Para Driver D450ti Trio",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 286.9,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Jbl Selenium Rpd450ti Trio Para Driver D450ti Trio",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 286.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 621.64
+      }
+    },
+    {
+      "produtoId": "a37683da-e766-4669-a8cd-b2ad02dddbd2",
+      "sku": "VTK025399",
+      "nome": "Kit 2 Alto-Falantes  150w 6 Pol 8 Ohms 6WF310B8 ATK",
+      "fornecedor": "BKR1",
+      "custo": 288,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 2 Alto Falantes 150w 6 Pol 8 Ohms 6WF310B8 ATK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 288,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 623.64
+      }
+    },
+    {
+      "produtoId": "805df8f4-d3c5-4bc1-9b5b-58a0282835e1",
+      "sku": "VTK018447",
+      "nome": "Canaleta 40x15x2000 Enerbras Branca Sem Dupla Face Com Divisão - PC / 12",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 292.32,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Canaleta 40x15x2000 Enerbras Branca Sem Dupla Face Com",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 292.32,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 731.49
+      }
+    },
+    {
+      "produtoId": "efa7e871-454f-4225-b2ec-b4590f0e8bec",
+      "sku": "VTK001291",
+      "nome": "Lubrificante e Desengripante Aerosol 100ml Spay WD40 - CX / 12",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 295.88,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lubrificante e Desengripante Aerosol 100ml Spay WD40 CX 12",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 295.88,
+        "shipping": 30,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 581.93
+      }
+    },
+    {
+      "produtoId": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+      "sku": "VTK018639",
+      "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 299.9,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 299.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 645.27
+      }
+    },
+    {
+      "produtoId": "e9f9219e-762c-4719-aaa8-df2d9f065d73",
+      "sku": "VTK018746",
+      "nome": "Sub Conjunto Almapy Up 13+ Traseiro Sensorizado",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 314.6,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sub Conjunto Almapy Up 13+ Traseiro Sensorizado",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 314.6,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 672
+      }
+    },
+    {
+      "produtoId": "5daedd76-1c15-4a23-b0c0-318d437f575b",
+      "sku": "VTK001241",
+      "nome": "Álcool Isopropilíco 99,8% 1000ML Isopropilico Transparente Implastec - CX / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 321.94,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Álcool Isopropilíco 99,8% 1000ML Isopropilico Transparente",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 321.94,
+        "shipping": 26.25,
+        "shippingSource": "erp",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 633.07
+      }
+    },
+    {
+      "produtoId": "f7ee4e5d-fd47-4d93-a169-63cbc4a9f257",
+      "sku": "VTK015972",
+      "nome": "12 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (6 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 327.06,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "12 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic 6 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 327.06,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 694.65
+      }
+    },
+    {
+      "produtoId": "4ebed6af-78a7-42b7-9c3c-e7d6bc0ab4f9",
+      "sku": "VTK018353",
+      "nome": "Cabo Multicabo Santo Angelo Sas 12 Vias Cobre Ofhc Metro - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 329,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Multicabo Santo Angelo Sas 12 Vias Cobre Ofhc Metro PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 329,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 698.18
+      }
+    },
+    {
+      "produtoId": "ce4f6ff7-d00f-4a17-96bd-044d42060414",
+      "sku": "VTK025954",
+      "nome": "Panela de Pressão Rochedo Trendy Fechamento Externo Inox 6L",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 329.28,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Panela de Pressão Rochedo Trendy Fechamento Externo Inox 6L",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 329.28,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 698.69
+      }
+    },
+    {
+      "produtoId": "f1958384-054c-4d39-9d09-62a2b13537ff",
+      "sku": "VTK025736",
+      "nome": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 340,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 340,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 718.18
+      }
+    },
+    {
+      "produtoId": "3976c413-68d3-4285-af05-5343e8998473",
+      "sku": "VTK019016",
+      "nome": "Cabo Coaxial Cabletech Rge-58 75% Preto 100 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 347.5,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Coaxial Cabletech Rge 58 75% Preto 100 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 347.5,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 731.82
+      }
+    },
+    {
+      "produtoId": "7d3cadf6-0d21-4fb1-8167-9f11804ce7d6",
+      "sku": "VTK019090",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba093l Volkswagen Saveiro Sem Grade 1982/1997 Baguete",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 347.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Concórdia Flash Cover Ba093l Volkswagen",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 347.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 832.55
+      }
+    },
+    {
+      "produtoId": "b50a1717-1ca3-4491-b918-d698bbaa22b5",
+      "sku": "VTK017942",
+      "nome": "Fonte Atx 200w C3 Tech Ps-200v4 C3plus Sem Cabo - Caixa Com 10 Unidades",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 349.9,
+      "estoque": 38,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Atx 200w C3 Tech Ps 200v4 C3plus Sem Cabo Caixa Com 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 349.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 736.18
+      }
+    },
+    {
+      "produtoId": "b41881b6-b8ba-4715-9862-dd4e31ac9ae7",
+      "sku": "VTK001371",
+      "nome": "Apoio Braço Esquerdo Core Racer Modern Black ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 351.05,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Apoio Braço Esquerdo Core Racer Modern Black ThunderX3",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 351.05,
+        "shipping": 70.25,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 794.91
+      }
+    },
+    {
+      "produtoId": "d8692ab7-21f8-4b1d-9e8c-87c0883633d9",
+      "sku": "VTK019041",
+      "nome": "Antena Parabólica De Grade Para Internet Aquário Mm-2420 Com 2.4 Ghz E Ganho De 20 Dbi - PC / 6",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 356.7,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Parabólica De Grade Para Internet Aquário Mm 2420 Com",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 356.7,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 848.55
+      }
+    },
+    {
+      "produtoId": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+      "sku": "VTK018924",
+      "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 362.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 362.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 759.82
+      }
+    },
+    {
+      "produtoId": "93869b7d-12a3-4370-95ba-92ec02b61cfc",
+      "sku": "VTK019089",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 364.5,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 364.5,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 862.73
+      }
+    }
+  ]
+}

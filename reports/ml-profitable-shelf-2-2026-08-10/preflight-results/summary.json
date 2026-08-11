@@ -1,0 +1,19 @@
+{
+  "startedAt": "2026-08-11T00:17:04.475Z",
+  "mode": "preflight",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10",
+  "selected": 20,
+  "success": 6,
+  "failed": 14,
+  "skippedNoLongerEligible": 0,
+  "batches": [
+    {
+      "fileName": "002-profitable-shelf-2-create-002.json",
+      "exitCode": 2,
+      "selected": 20,
+      "success": 6,
+      "failed": 14,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/002-profitable-shelf-2-create-002-result.json"
+    }
+  ]
+}

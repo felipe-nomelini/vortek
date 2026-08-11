@@ -1,0 +1,427 @@
+{
+  "batchNumber": 20,
+  "batchId": "profitable-shelf-2-create-020",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "41b3f721-cde7-461d-a8cb-9a88c47e6d34",
+      "sku": "VTK000028",
+      "nome": "Multímetro Analógico Minipa ET-2022B",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 109.16,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Multímetro Analógico Minipa ET 2022B",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 109.16,
+        "shipping": 21.15,
+        "shippingSource": "erp",
+        "mlFee": 0.11,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 220.86
+      }
+    },
+    {
+      "produtoId": "b09cbf1d-c931-47fd-a429-90bb253ed4e7",
+      "sku": "VTK019777",
+      "nome": "Caixa Vazia Para 1 Alto Falante 12\" Invertida Pick-up - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 109.8,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 1 Alto Falante 12 Polegadas Invertida Pick",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 109.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 245.09
+      }
+    },
+    {
+      "produtoId": "f47d255f-b6a1-4dc7-81b1-83de6402e1cc",
+      "sku": "VTK002697",
+      "nome": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X RJ45 Femea ADAP 0055 Branca STORM",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 109.9,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 109.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 245.27
+      }
+    },
+    {
+      "produtoId": "0345558f-6b9e-40c9-ae94-52456ce553c5",
+      "sku": "VTK012912",
+      "nome": "Capa P/ Guitarra Extra Bolso Cargo - Nylon 600 - Preto Bkr 1",
+      "fornecedor": "BKR1",
+      "custo": 110,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capa P Guitarra Extra Bolso Cargo Nylon 600 Preto Bkr 1 Bkr1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 110,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 245.45
+      }
+    },
+    {
+      "produtoId": "a7be177c-7572-4a59-9d34-710667335d1e",
+      "sku": "VTK012911",
+      "nome": "Capa P/ Violão Folk Extra Bolso Cargo - Nylon 600 - Marrom Bkr 1",
+      "fornecedor": "BKR1",
+      "custo": 112,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capa P Violão Folk Extra Bolso Cargo Nylon 600 Marrom Bkr 1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 112,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 249.09
+      }
+    },
+    {
+      "produtoId": "ac47880b-4645-40a4-a415-eb8799e6ebc0",
+      "sku": "VTK025960",
+      "nome": "Frigideira Redonda Rochedo Robusta 20cm Grafite - CXM / 3",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 112.95,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Frigideira Redonda Rochedo Robusta 20cm Grafite CXM 3 ARNO",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 112.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 250.82
+      }
+    },
+    {
+      "produtoId": "c92b422e-2c62-4d08-94a4-d1aaff732ee7",
+      "sku": "VTK017866",
+      "nome": "Alça Pré Formada Para Cabo 9,60/ 10,40 Acpo6104 Preto - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 113.3,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alça Pré Formada Para Cabo 9,60 10,40 Acpo6104 Preto PC 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 113.3,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 251.45
+      }
+    },
+    {
+      "produtoId": "9a2202b5-c2c1-4c31-b9de-924b813fee57",
+      "sku": "VTK022585",
+      "nome": "Caixa R.l.p Vazia Para 4 Cornetas +2 Tweeter Curta - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 113.8,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa R.l.p Vazia Para 4 Cornetas +2 Tweeter Curta PC 2",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 113.8,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 406.91
+      }
+    },
+    {
+      "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+      "sku": "VTK017236",
+      "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 113.9,
+      "estoque": 40,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto Falante 5 Polegadas Pioneer Ts 1360br 100rms Par",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 113.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 252.55
+      }
+    },
+    {
+      "produtoId": "b11d6713-770d-4470-8e70-0b8a58e06436",
+      "sku": "VTK025656",
+      "nome": "100 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 114.4,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "100 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 114.4,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 253.45
+      }
+    },
+    {
+      "produtoId": "de3a29a2-e731-49fc-87ee-53f772908c80",
+      "sku": "VTK017981",
+      "nome": "Combo Teclado E Mouse Logitech Mk200 Usb Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 114.9,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Combo Teclado E Mouse Logitech Mk200 Usb Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 114.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 254.36
+      }
+    },
+    {
+      "produtoId": "4cf8a83f-dee6-4c77-b966-65378d316271",
+      "sku": "VTK000831",
+      "nome": "Kit Prateleiras Decore Multivisão Branco",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 114.98,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Prateleiras Decore Multivisão Branco",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 114.98,
+        "shipping": 49.35,
+        "shippingSource": "erp",
+        "mlFee": 0.135,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 290.85
+      }
+    },
+    {
+      "produtoId": "61892476-b7df-47ab-8caa-57ddc5bc4a80",
+      "sku": "VTK000949",
+      "nome": "Kit Prateleiras Decore Multivisão Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 114.98,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Prateleiras Decore Multivisão Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 114.98,
+        "shipping": 27.75,
+        "shippingSource": "erp",
+        "mlFee": 0.135,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 252.62
+      }
+    },
+    {
+      "produtoId": "866ac21a-4df0-40f8-872b-f39958f19f26",
+      "sku": "VTK019385",
+      "nome": "Caixa Vazia Para 2 Alto Falantes De 12\" E 2 Dutos 3\" Acarpetada",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 115.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 2 Alto Falantes De 12 Polegadas E 2 Dutos 3",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 115.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 256.18
+      }
+    },
+    {
+      "produtoId": "00f7fd6c-3e46-4560-b41c-fea87e4efe6f",
+      "sku": "VTK025955",
+      "nome": "Liquidificador Arno Power Mix LQ11 550W Vermelho 220V",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 117.78,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Liquidificador Arno Power Mix LQ11 550W Vermelho 220V",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 117.78,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 259.6
+      }
+    },
+    {
+      "produtoId": "3f96f704-c8a1-4733-a218-235f12a0fca4",
+      "sku": "VTK025957",
+      "nome": "Liquidificador Arno Power Mix LQ11 550W Vermelho 127V",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 117.78,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Liquidificador Arno Power Mix LQ11 550W Vermelho 127V",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 117.78,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 259.6
+      }
+    },
+    {
+      "produtoId": "a561c1ee-a58b-4038-8f87-933cb47297f4",
+      "sku": "VTK025837",
+      "nome": "60 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit",
+      "fornecedor": "BKR1",
+      "custo": 118,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "60 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 118,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 260
+      }
+    },
+    {
+      "produtoId": "1069c984-2169-40f3-9688-77695e762fe1",
+      "sku": "VTK018462",
+      "nome": "Terminal De Bateria Universal Grande Negativo Sapão Super - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 119,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Terminal De Bateria Universal Grande Negativo Sapão Super PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 119,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 261.82
+      }
+    },
+    {
+      "produtoId": "b92ac291-0d5d-4e08-a7a9-27207279bfbe",
+      "sku": "VTK001075",
+      "nome": "Conector RJ45 Macho CAT5E Sohoplus - PCT / 100",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 119.08,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector RJ45 Macho CAT5E Sohoplus PCT 100 FURUKAWA SOHOPLUS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 119.08,
+        "shipping": 24.65,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 276.4
+      }
+    },
+    {
+      "produtoId": "1cba282f-cb54-4069-9399-dcca8c5e8b7e",
+      "sku": "VTK018849",
+      "nome": "Chave Cs 301-d Liga Desliga Permak Com Haste Metálica 148/a - PC / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 119.5,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chave Cs 301 d Liga Desliga Permak Com Haste Metálica 148 a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 119.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 262.73
+      }
+    }
+  ]
+}

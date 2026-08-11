@@ -1,0 +1,91 @@
+{
+  "batchNumber": 6,
+  "batchId": "profitable-shelf-2-create-006",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "6ec281b5-3857-4cf0-9370-8f62d1af46a2",
+      "sku": "VTK017930",
+      "nome": "Chave Canivete B&s Gm Cruze/ Cobalt/ Agile 3 Botoes Sem Circuito",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 22.5,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chave Canivete B&s Gm Cruze Cobalt Agile 3 Botoes Sem",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 40.28
+      }
+    },
+    {
+      "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "sku": "VTK017246",
+      "nome": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 22.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.9,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50
+      }
+    },
+    {
+      "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+      "sku": "VTK018133",
+      "nome": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 23.95,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 23.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 42.29
+      }
+    },
+    {
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 24.9,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Tweeter Shock Completo St 400 Selenium SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.61
+      }
+    }
+  ]
+}

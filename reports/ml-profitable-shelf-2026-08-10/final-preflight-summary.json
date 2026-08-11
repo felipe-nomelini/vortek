@@ -1,0 +1,98 @@
+{
+  "modo": "validacao",
+  "solicitados": 6,
+  "sucesso": 6,
+  "falhas": 0,
+  "resultados": [
+    {
+      "SKU": "VTK000361",
+      "resultado": "pronto_para_criar",
+      "ItemID": null,
+      "formula": {
+        "custo": 1036.96,
+        "frete_estimado": 110,
+        "taxa_ml": 0.17,
+        "custo_fixo_ml": 0,
+        "das": 0.05,
+        "margem": 0.25,
+        "preco": 2164.08
+      },
+      "fotos": 7
+    },
+    {
+      "SKU": "VTK001959",
+      "resultado": "pronto_para_criar",
+      "ItemID": null,
+      "formula": {
+        "custo": 1249.89,
+        "frete_estimado": 55,
+        "taxa_ml": 0.165,
+        "custo_fixo_ml": 0,
+        "das": 0.05,
+        "margem": 0.25,
+        "preco": 2439.05
+      },
+      "fotos": 3
+    },
+    {
+      "SKU": "VTK000890",
+      "resultado": "pronto_para_criar",
+      "ItemID": null,
+      "formula": {
+        "custo": 1612.84,
+        "frete_estimado": 110,
+        "taxa_ml": 0.165,
+        "custo_fixo_ml": 0,
+        "das": 0.05,
+        "margem": 0.25,
+        "preco": 3220.26
+      },
+      "fotos": 5
+    },
+    {
+      "SKU": "VTK012101",
+      "resultado": "pronto_para_criar",
+      "ItemID": null,
+      "formula": {
+        "custo": 7.5,
+        "frete_estimado": 6.5,
+        "taxa_ml": 0.19,
+        "custo_fixo_ml": 0,
+        "das": 0.05,
+        "margem": 0.08,
+        "preco": 20.59
+      },
+      "fotos": 6
+    },
+    {
+      "SKU": "VTK000464",
+      "resultado": "pronto_para_criar",
+      "ItemID": null,
+      "formula": {
+        "custo": 33,
+        "frete_estimado": 6.5,
+        "taxa_ml": 0.19,
+        "custo_fixo_ml": 0,
+        "das": 0.05,
+        "margem": 0.08,
+        "preco": 58.09
+      },
+      "fotos": 1
+    },
+    {
+      "SKU": "VTK012014",
+      "resultado": "pronto_para_criar",
+      "ItemID": null,
+      "formula": {
+        "custo": 40,
+        "frete_estimado": 6.5,
+        "taxa_ml": 0.18,
+        "custo_fixo_ml": 0,
+        "das": 0.05,
+        "margem": 0.08,
+        "preco": 67.39
+      },
+      "fotos": 2
+    }
+  ]
+}

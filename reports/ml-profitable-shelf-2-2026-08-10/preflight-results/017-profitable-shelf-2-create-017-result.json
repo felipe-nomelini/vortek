@@ -1,0 +1,815 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/017-profitable-shelf-2-create-017-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-017",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "45931e8a-7e98-47f7-858f-bc7f8dbf6659",
+      "sku": "VTK001330",
+      "category": {
+        "id": "MLB192364",
+        "nome": "Apoio de Cabeças",
+        "dominio": "Encosto de cabeças para carros e caminhonetes"
+      },
+      "basePrice": 133,
+      "familyName": "Encosto de Cabeça Ergo One Fortrek",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 77.41,
+        "shipping": 18.85,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.62
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FORTREK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "85653"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Encosto de Cabeça Ergo One Fortrek\n\nVISÃO GERAL\nO Encosto de Cabeça Para Cadeira Ergo One da Fortrek é um produto original e ideal para a reposição das nossas cadeiras, oferecendo conforto e compatibilidade perfeita com o seu equipamento. • Modelos compatíveis: Cadeira Ergo One • Material: Mesh\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FORTREK\n• Número de peça: 85653\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FORTREK\n• GTIN: 7890000856539\n• NCM: 9401.99.00\n• SKU: VTK001330\n\nEMBALAGEM\n• Dimensões informadas: 19 × 38 × 32 cm\n• Peso bruto informado: 0,78 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "12328a6b-47de-4a02-ba87-b1d73b2989e3",
+      "sku": "VTK025667",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 128.95,
+      "familyName": "12 Pilhas Alcalinas C Sm 2 Elgin 6 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 78,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 187.27
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "12 Pilhas Alcalinas C Sm-2 Elgin (6 Cart)\n\nVISÃO GERAL\n12 Pilhas Alcalinas C Sm-2 Elgin (6 Cart)\n\nKit com 6 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 6x Pilha Alcalina Tipo C Elgin Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 6 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo C Elgin\n\n A Pilha Alcalina Tipo C Elgin em embalagem com 2 unidades oferece potência estável e longa duração, ideal para aparelhos como lanternas, rádios, brinquedos e equipamentos que exigem maior energia.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo C\n\n•    Formato: C (LR14)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas\n\n•    Rádios portáteis\n\n•    Brinquedos eletrônicos\n\n•    Aparelhos de som\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável para aparelhos de maior consumo\n\nProteção anti-vazamento para maior segurança\n\nProduto de alta qualidade e confiabilidade Elgin\n\n A Pilha Alcalina Tipo C Elgin Cartela com 2 unidades é ideal para quem busca uma fonte de energia confiável e duradoura para dispositivos que exigem mais potência, garantindo desempenho e segurança.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 6\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.11\n• SKU: VTK025667\n\nEMBALAGEM\n• Dimensões informadas: 6 × 9 × 13 cm\n• Peso bruto informado: 0,78 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0a723083-4377-455f-9da1-ac65d48131ec",
+      "sku": "VTK025806",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 135.26,
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 82.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 196
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1616"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "50 Pilhas Moeda Lítio Elgin CR1616 3V Kit\n\nVISÃO GERAL\n50 Baterias CR1616 Elgin (10 Cart)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x 5 Baterias Cr1616 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nESPECIFICAÇÕES TÉCNICAS\n\n Bateria de Lítio CR1616\n\n Validade: 3 anos\n\n Voltagem: 3V\n\n  \n\n CARACTERÍSTICAS\n\n Econômica\n\n Alta Duração\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1616\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025806\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 8 cm\n• Peso bruto informado: 0,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "09c1be4f-447e-4953-9993-33cb8becd52e",
+      "sku": "VTK025370",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "Encordoamentos para instrumentos de cordas"
+      },
+      "basePrice": 132.87,
+      "familyName": "3 Jogos de Corda P Guitarra Niquel 08 GEEGST.8 Giannini",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 84.3,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.145,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 196.94
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GEEGST8"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "15312680",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "3"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Super Light"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "3 Jogos de Corda P/Guitarra Niquel 08 GEEGST.8 Giannini\n\nVISÃO GERAL\n3 Jogos de Corda P/Guitarra Niquel 08 GEEGST.8 Giannini\n\nKit com 3 unidades originais Giannini.\n\nConteúdo da embalagem:\n\n- 3x Encordoamento Para Guitarra .008 Super Leve Giannini GEEGST8\n\nInformações principais:\n\n- Marca: Giannini\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\nEncordoamento Giannini P/Guitarra Niquel 0.008 GEEGST.8\n\nAs cordas Giannini Nickel proporcionam o timbre e brilho que você procura para a sua guitarra. São perfeitas para o rock e para outros estilos onde a guitarra tem que se destacar. As cordas Giannini trazem a mesma qualidade presente em seus tradicionais instrumentos.\n\nEncordoamento Giannini P/Guitarra Niquel 0. 008 GEEGST. 8\n\nJogo de 6 cordas para Guitarra.\n\nMarca: Giannini\n\nSérie: Eletric\n\nFabricação: Brasil\n\nTensão: Leve\n\n Alma: Aço\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GEEGST8\n• Instrumento recomendado: Guitarra elétrica\n• Unidades por kit: 3\n• Linha: Super Light\n• Formato de venda: Kit\n• Quantidade de cordas: 6\n• Materiais: Metal\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025370\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "14ac74a6-6f78-4a3d-9580-6cb4c7efc075",
+      "sku": "VTK012766",
+      "category": {
+        "id": "MLB11517",
+        "nome": "Cabos",
+        "dominio": "Produtos eletrônicos"
+      },
+      "basePrice": 127.5,
+      "familyName": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 84.55,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 192.19
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca do produto eletrônico",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex\n\nVISÃO GERAL\nCabo para Caixa 4 Polos 5 Metros SPK 4P 05 225 Wireconex Garanta uma conexão segura e eficiente para seus equipamentos de som com o Cabo para Caixa 4 Polos Wireconex 5 metros. Desenvolvido para oferecer alta performance na transmissão de áudio, é ideal para sistemas profissionais, proporcionando estabilidade e qualidade sonora em caixas acústicas e amplificadores. Especificações Técnicas: • Marca: Wireconex • Modelo: SPK 4P 05 225 • Conectores: 4 polos (Speakon) • Comprimento: 5 metros • Material: Cabo reforçado com conectores resistentes • Aplicações: Caixas acústicas, sistemas de som profissional, amplificadores e eventos • Diferencial: Conexão firme com travamento seguro e baixa perda de sinal O cabo 4 polos da Wireconex é a escolha ideal para quem busca desempenho e segurança em sistemas de áudio profissional.\n\nCom excelente durabilidade e transmissão estável, ele garante som de qualidade sem falhas, sendo perfeito para uso em eventos, estúdios e aplicações exigentes.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca do produto eletrônico: Wireconex\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8544.42.00\n• SKU: VTK012766\n\nEMBALAGEM\n• Dimensões informadas: 5 × 22 × 25 cm\n• Peso bruto informado: 0,76 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d755ea01-a0b0-442e-9df0-7e793439848e",
+      "sku": "VTK025794",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 137.63,
+      "familyName": "45 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 84.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 199.27
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "45 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n45 Baterias Litio Cr2016 Elgin (9 Cart)\n\nKit com 9 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 9x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 9 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025794\n\nEMBALAGEM\n• Dimensões informadas: 3.6 × 5 × 19 cm\n• Peso bruto informado: 0,45 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bcc8b96e-6cb4-497b-8ef2-9ac27dd58e56",
+      "sku": "VTK025805",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 138.16,
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 85,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 200
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1220"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "50 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nVISÃO GERAL\n50 Baterias CR1220 Elgin (10 Cart)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x 5 Baterias Cr1220 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR1220 Elgin Energia Duradoura para Seus Dispositivos Eletrônicos\n\n As baterias de lítio CR1220 Elgin garantem alta performance e longa duração para dispositivos que exigem energia estável. Indicadas para relógios, calculadoras, dispositivos médicos e eletrônicos portáteis, são essenciais para manter seu equipamento sempre funcionando.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR1220\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Aplicações indicadas: Relógios digitais, calculadoras, sensores, dispositivos médicos, controles remotos, equipamentos eletrônicos portáteis\n\n•    Recarregável: Não\n\n•    Validade: Longa duração (até 7 anos em armazenamento adequado)\n\n•    Peso unitário: Aproximadamente 1,6 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL1220, ECR1220, BR1220 e outros equivalentes\n\n Com a qualidade da marca Elgin, as baterias CR1220 fornecem energia estável e confiável para seus dispositivos eletrônicos. O pacote com 5 unidades oferece praticidade e economia, ideal para reposição e uso em equipamentos que exigem desempenho constante e duradouro.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1220\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025805\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 8 cm\n• Peso bruto informado: 0,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8e2465a6-d87e-46f7-bfd2-4b923d50ee97",
+      "sku": "VTK018378",
+      "category": {
+        "id": "MLB277592",
+        "nome": "Baús Traseiros",
+        "dominio": "Baús para motos"
+      },
+      "basePrice": 138.33,
+      "familyName": "Caixa Rlp Vazia Para Moto Emborrachada 2 10 Polegadas + 2tw",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 87.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 201.61
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "CAIXARIAS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "2TW"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "326123"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890003261231"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Caixa Rlp Vazia Para Moto Emborrachada 2 10\" + 2tw + 2driver\n\nVISÃO GERAL\nCaixa para Moto Emborrachada 2 10\" + 2 Tw + 2 Driver Dimensões Comprimento: 80cm Largura Frente: 80cm Altura: 36cm Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CAIXARIAS\n• Modelo: 2TW\n• Número de peça: 326123\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CAIXARIAS\n• GTIN: 7890003261231\n• NCM: 92089000\n• SKU: VTK018378\n\nEMBALAGEM\n• Dimensões informadas: 41 × 41 × 56 cm\n• Peso bruto informado: 9,001 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "879a2448-c2e2-4e6f-af70-e20c386e7788",
+      "sku": "VTK025881",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 144.34,
+      "familyName": "12 Pilhas Alcalinas D Lr20 Sm 2 Elgin 6 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 89.7,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 208.55
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "12 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (6 Cart)\n\nVISÃO GERAL\n12 Pilhas Alcalinas D Lr20 Sm-2 Elgin (6 Cart)\n\nKit com 6 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 6x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 6 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 6\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025881\n\nEMBALAGEM\n• Dimensões informadas: 8 × 9 × 15 cm\n• Peso bruto informado: 1,56 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "5facdd0e-698c-4d16-99c4-983fedfaa7b5",
+      "sku": "VTK000039",
+      "nome": "Encordoamento Para Contrabaixo 5 Cordas .040 Extra Leve SG",
+      "error": "Atributos obrigatórios pendentes: Modelo, Instrumento recomendado",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo",
+            "Instrumento recomendado"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d5f035a8-fce1-40eb-9e4c-59c1e8fb335d",
+      "sku": "VTK019282",
+      "nome": "Caixa Vazia Para 2 Cornetas E 1 Tweeter Trapezoidal Acarpetada - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB127436",
+            "nome": "Corneteiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9c6bed40-b6fb-4906-980d-d49ebd3f4958",
+      "sku": "VTK018850",
+      "nome": "Multitoc Mini Camera Dome Ccd P&b",
+      "error": "Atributos obrigatórios pendentes: Tipo de câmera de vigilância, Localizações da câmera",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7073",
+            "nome": "Câmeras de Segurança"
+          },
+          "missing": [
+            "Tipo de câmera de vigilância",
+            "Localizações da câmera"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "373e1dbf-1baf-419f-92c6-54637dabad55",
+      "sku": "VTK019545",
+      "nome": "Caixa Vazia Para 2 Drivers E 1 Tweeter Quadrada Acarpetada - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7327df44-719b-401b-b3af-dac4e8ad51d0",
+      "sku": "VTK017202",
+      "nome": "Tesoura Seccon Corta Kevlar 5,8\" Ct-c151n",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB457025",
+            "nome": "Tesouras para Poda"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6b12df55-e4f7-47c1-a311-65b7a5d13690",
+      "sku": "VTK018995",
+      "nome": "Fusível Permak Mega 250a - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB270084",
+            "nome": "Fusíveis"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+      "sku": "VTK018869",
+      "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "error": "Atributos obrigatórios pendentes: Modelo, Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Modelo",
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "91536edc-4eb5-4975-a3fd-67a172217c97",
+      "sku": "VTK019111",
+      "nome": "Alarme Ipec Porta Aberta",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fd19ab49-e13c-48e6-9177-903d020da248",
+      "sku": "VTK018563",
+      "nome": "Parafuso Permak Com Rosca Roberba 22mm - Cento - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Tipo de parafuso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB376663",
+            "nome": "Parafusos de Boca"
+          },
+          "missing": [
+            "Tipo de parafuso"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fb862204-b392-4184-9eea-3efaeeac110e",
+      "sku": "VTK018548",
+      "nome": "Caixa R.l.p. Residence Vazia 1 A.f. 12 + Dr + Tw + Rádio + Duto",
+      "error": "Atributos obrigatórios pendentes: Fabricante, Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB40336",
+            "nome": "Caixas Acústicas"
+          },
+          "missing": [
+            "Fabricante",
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

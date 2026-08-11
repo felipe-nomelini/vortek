@@ -1,0 +1,21 @@
+{
+  "startedAt": "2026-08-11T00:37:22.631Z",
+  "mode": "apply",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10",
+  "selected": 4,
+  "success": 1,
+  "failed": 3,
+  "skippedNoLongerEligible": 0,
+  "batches": [
+    {
+      "fileName": "023-profitable-shelf-2-create-023.json",
+      "exitCode": 0,
+      "selected": 4,
+      "success": 1,
+      "failed": 3,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/023-profitable-shelf-2-create-023-mass-c-result.json"
+    }
+  ],
+  "stopped": "Falhas demais no lote 023-profitable-shelf-2-create-023.json",
+  "finishedAt": "2026-08-11T00:37:57.703Z"
+}

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 3,
+  "batchId": "profitable-shelf-2-create-003",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+      "sku": "VTK017159",
+      "nome": "Bucha Para Alto Falante Original Permak Palio 237/c",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.29,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bucha Para Alto Falante Original Permak Palio 237 c",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.29,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 28.88
+      }
+    },
+    {
+      "produtoId": "ec81f065-53fd-4abb-a286-3d30f5c31a4b",
+      "sku": "VTK017903",
+      "nome": "Cabo Hdmi X Dvi Nwt Cbhd0001 Macho X Macho Entrada Dvi 18+1 Saída Hdmi 1.4 Com Filtro 2m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.5,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Hdmi X Dvi Nwt Cbhd0001 Macho X Macho Entrada Dvi 18+1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.17
+      }
+    },
+    {
+      "produtoId": "5e983602-2303-4ebb-8e76-4f5b36d81bbf",
+      "sku": "VTK019632",
+      "nome": "Fonte Chaveada Para Cftv 9v 1a",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.5,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Chaveada Para Cftv 9v 1a MXT",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.17
+      }
+    },
+    {
+      "produtoId": "05d26ff9-dde6-4df0-a2d0-325817eeb4e7",
+      "sku": "VTK017189",
+      "nome": "Reparo Para Driver Shock D-250 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Para Driver Shock D 250 Selenium SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.72
+      }
+    },
+    {
+      "produtoId": "c50c8d36-5035-48e2-99e1-86447ebaf2d1",
+      "sku": "VTK017504",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.72
+      }
+    },
+    {
+      "produtoId": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+      "sku": "VTK017505",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Vermelho",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.72
+      }
+    },
+    {
+      "produtoId": "a8d1a439-22ab-4e2b-8e23-e49e1a686d12",
+      "sku": "VTK017789",
+      "nome": "Haste Permak Ray Flex Vw Gol Rosca M5/m6",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.9,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Permak Ray Flex Vw Gol Rosca M5 m6",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.72
+      }
+    },
+    {
+      "produtoId": "61eddeb1-1475-4a17-8344-adbeca5cc8af",
+      "sku": "VTK018714",
+      "nome": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89 z3",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.72
+      }
+    },
+    {
+      "produtoId": "8313ee9b-084c-4193-95ca-4ead684ee5b9",
+      "sku": "VTK018015",
+      "nome": "Kit Adaptador Para Celular Proeletronic Pqkc-0335",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.95,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Adaptador Para Celular Proeletronic Pqkc 0335",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.79
+      }
+    },
+    {
+      "produtoId": "ec92357c-bf98-4e74-9876-6f6d42556024",
+      "sku": "VTK018710",
+      "nome": "Kit Adaptador Aquário Cf-265 Para Nokia 8265",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.95,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Adaptador Aquário Cf 265 Para Nokia 8265",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.79
+      }
+    },
+    {
+      "produtoId": "9097c6f9-c38c-4641-9481-de220f3f0ad6",
+      "sku": "VTK018854",
+      "nome": "Kit Adaptador Para Celular Pqkc-0345",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.95,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Adaptador Para Celular Pqkc 0345 PROELETRONIC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.79
+      }
+    },
+    {
+      "produtoId": "1118946f-9c4e-423e-a4df-0ccf47e2e572",
+      "sku": "VTK017778",
+      "nome": "Sirene Dedicada Positron Para Alarme Si-700",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.99,
+      "estoque": 31,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sirene Dedicada Positron Para Alarme Si 700",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.85
+      }
+    },
+    {
+      "produtoId": "df45f308-ca98-4322-bf72-8ba4132b3d56",
+      "sku": "VTK019629",
+      "nome": "Fonte Chaveada Mxt Para Cftv 12v/1a",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.99,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Chaveada Mxt Para Cftv 12v 1a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.85
+      }
+    },
+    {
+      "produtoId": "a77fbe7f-68b2-48a6-9658-53397fa53f2d",
+      "sku": "VTK025638",
+      "nome": "10 Pilhas Moeda Lítio Elgin CR1620 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 15,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR1620 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 15,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.86
+      }
+    },
+    {
+      "produtoId": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+      "sku": "VTK018422",
+      "nome": "Haste Permak Para Antena De Teto Gti 095",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 15.4,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Permak Para Antena De Teto Gti 095",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 15.4,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 30.42
+      }
+    },
+    {
+      "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+      "sku": "VTK017982",
+      "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 15.5,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Calculadora Pessoal Procalc Pc986 p 8 Dígitos Pink",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 15.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 30.56
+      }
+    },
+    {
+      "produtoId": "af838486-7430-46b5-b452-bfe8d072457b",
+      "sku": "VTK018170",
+      "nome": "Aro Espaçador Permak Bafles 6x9\" Plástico Para Alto Falante Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 15.7,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Aro Espaçador Permak Bafles 6x9 Polegadas Plástico Para Alto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 15.7,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 30.83
+      }
+    },
+    {
+      "produtoId": "b81c89ea-4984-43a8-a3f6-032b019d7744",
+      "sku": "VTK017297",
+      "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 15.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cooler Gamer Evus F 12rgb Fan 12cm Com Led Rgb",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 15.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 31.11
+      }
+    },
+    {
+      "produtoId": "9b0f50fa-8a3d-4926-a677-858efeba8d8b",
+      "sku": "VTK017531",
+      "nome": "Terminal De Fio Aberto Forquilha1/8 Permak Para Módulo - 100un.",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 15.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Terminal De Fio Aberto Forquilha1 8 Permak Para Módulo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 15.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 31.11
+      }
+    },
+    {
+      "produtoId": "fccbe856-e04a-4113-abd9-fdf7437e4e8f",
+      "sku": "VTK017803",
+      "nome": "Extensão Daneva Sort Pl 2x0.75mm² 5 Metros Cores Sortidas Ref1514",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 16,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Extensão Daneva Sort Pl 2x0.75mm² 5 Metros Cores Sortidas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 16,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 31.25
+      }
+    }
+  ]
+}

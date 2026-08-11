@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-08-10T23:40:35.248Z",
+  "apply": true,
+  "selected": 4,
+  "corrected": 0,
+  "alreadyFixed": 4,
+  "validated": 0,
+  "failed": 0,
+  "results": [
+    {
+      "sku": "VTK017608",
+      "itemId": "MLB4981461191",
+      "userProductId": "MLBU4556916998",
+      "comment": "Lâmpada universal H9 24 V. A aplicação depende do encaixe H9 e da tensão 24 V, não de um veículo específico.",
+      "action": "already_fixed",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "incomplete_compatibilities",
+          "good_quality_thumbnail",
+          "user_product_listing",
+          "standard_price_by_quantity",
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "hasException": true,
+        "stock": 40
+      }
+    },
+    {
+      "sku": "VTK019659",
+      "itemId": "MLB4981464537",
+      "userProductId": "MLBU4556925220",
+      "comment": "Palheta universal de 26 polegadas. A aplicação depende da medida e do encaixe, não de um veículo específico.",
+      "action": "already_fixed",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch",
+          "paused_by_seller"
+        ],
+        "tags": [
+          "good_quality_thumbnail",
+          "incomplete_compatibilities",
+          "standard_price_by_quantity",
+          "user_product_listing",
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "hasException": true,
+        "stock": 0
+      }
+    },
+    {
+      "sku": "VTK018513",
+      "itemId": "MLB7285499326",
+      "userProductId": "MLBU4480892699",
+      "comment": "Lâmpada universal HB3/9005 12 V 60 W. A aplicação depende do encaixe HB3/9005, não de um veículo específico.",
+      "action": "already_fixed",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "good_quality_thumbnail",
+          "standard_price_by_quantity",
+          "user_product_listing",
+          "incomplete_compatibilities",
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "hasException": true,
+        "stock": 7
+      }
+    },
+    {
+      "sku": "VTK018224",
+      "itemId": "MLB4981496529",
+      "userProductId": "MLBU4531688891",
+      "comment": "Módulo universal. A aplicação depende do sistema elétrico e dos vidros automatizados de fábrica, não de um veículo único.",
+      "action": "already_fixed",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "standard_price_by_quantity",
+          "incomplete_compatibilities",
+          "user_product_listing",
+          "good_quality_thumbnail",
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "hasException": true,
+        "stock": 14
+      }
+    }
+  ]
+}

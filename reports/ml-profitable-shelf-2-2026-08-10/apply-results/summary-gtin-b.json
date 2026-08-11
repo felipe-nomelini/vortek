@@ -1,0 +1,97 @@
+{
+  "startedAt": "2026-08-11T00:39:36.004Z",
+  "mode": "apply",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10",
+  "selected": 31,
+  "success": 30,
+  "failed": 1,
+  "skippedNoLongerEligible": 54,
+  "batches": [
+    {
+      "fileName": "012-profitable-shelf-2-create-012.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "013-profitable-shelf-2-create-013.json",
+      "exitCode": 0,
+      "selected": 5,
+      "success": 5,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/013-profitable-shelf-2-create-013-gtin-b-result.json"
+    },
+    {
+      "fileName": "014-profitable-shelf-2-create-014.json",
+      "exitCode": 0,
+      "selected": 5,
+      "success": 5,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/014-profitable-shelf-2-create-014-gtin-b-result.json"
+    },
+    {
+      "fileName": "015-profitable-shelf-2-create-015.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/015-profitable-shelf-2-create-015-gtin-b-result.json"
+    },
+    {
+      "fileName": "016-profitable-shelf-2-create-016.json",
+      "exitCode": 0,
+      "selected": 6,
+      "success": 6,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/016-profitable-shelf-2-create-016-gtin-b-result.json"
+    },
+    {
+      "fileName": "017-profitable-shelf-2-create-017.json",
+      "exitCode": 0,
+      "selected": 2,
+      "success": 2,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/017-profitable-shelf-2-create-017-gtin-b-result.json"
+    },
+    {
+      "fileName": "018-profitable-shelf-2-create-018.json",
+      "exitCode": 0,
+      "selected": 2,
+      "success": 2,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/018-profitable-shelf-2-create-018-gtin-b-result.json"
+    },
+    {
+      "fileName": "019-profitable-shelf-2-create-019.json",
+      "exitCode": 0,
+      "selected": 4,
+      "success": 4,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/019-profitable-shelf-2-create-019-gtin-b-result.json"
+    },
+    {
+      "fileName": "020-profitable-shelf-2-create-020.json",
+      "exitCode": 0,
+      "selected": 2,
+      "success": 2,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/020-profitable-shelf-2-create-020-gtin-b-result.json"
+    },
+    {
+      "fileName": "021-profitable-shelf-2-create-021.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/021-profitable-shelf-2-create-021-gtin-b-result.json"
+    },
+    {
+      "fileName": "022-profitable-shelf-2-create-022.json",
+      "exitCode": 0,
+      "selected": 3,
+      "success": 2,
+      "failed": 1,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/022-profitable-shelf-2-create-022-gtin-b-result.json"
+    }
+  ],
+  "finishedAt": "2026-08-11T00:45:44.319Z"
+}

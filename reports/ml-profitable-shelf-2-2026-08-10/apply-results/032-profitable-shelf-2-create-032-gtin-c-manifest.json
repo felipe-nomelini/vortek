@@ -1,0 +1,91 @@
+{
+  "batchNumber": 32,
+  "batchId": "profitable-shelf-2-create-032",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "4687b5e3-c51a-4e90-9878-e5b29d544e29",
+      "sku": "VTK019019",
+      "nome": "Corzus Ftd 80 Hi-tech Conversor Ac/dc 80a 13,8v Fonte Digital",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 846.43,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Corzus Ftd 80 Hi tech Conversor Ac dc 80a 13,8v Fonte",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 846.43,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1738.96
+      }
+    },
+    {
+      "produtoId": "be59c31a-bdd0-487c-bf5d-915282196082",
+      "sku": "VTK001977",
+      "nome": "Trompete Harmonics BB HTR-335L Laqueado",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 931.61,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Trompete Harmonics BB HTR 335L Laqueado",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 931.61,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1893.84
+      }
+    },
+    {
+      "produtoId": "8d572081-0ee0-45aa-832a-e52493d75da4",
+      "sku": "VTK001353",
+      "nome": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron - BOB / 305",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 1199.9,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron BOB",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1199.9,
+        "shipping": 70.25,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2442.6
+      }
+    },
+    {
+      "produtoId": "cd7a7a71-e276-4fbd-a9a5-f9ec6cd67170",
+      "sku": "VTK000779",
+      "nome": "Suporte Bumper Para Monitor de Áudio HH Tessen TNA-BRK1",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 1280.35,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Bumper Para Monitor de Áudio HH Tessen TNA BRK1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1280.35,
+        "shipping": 22.55,
+        "shippingSource": "erp",
+        "mlFee": 0.16,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2412.78
+      }
+    }
+  ]
+}

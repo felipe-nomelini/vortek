@@ -18,6 +18,7 @@ Aplicativo Android interno da Vortek. Projeto isolado do ERP web existente.
 - Compras possui resumo, busca, filtros, ordenação, paginação, detalhe, vínculo com venda, rastreio e confirmação/reenvio de PIX.
 - Ações exigem confirmação, permissão de cargo, idempotência e acompanhamento do job.
 - Próximo passo: validar Vendas e Compras em uso controlado, sem duplicar ações.
+- Build Android possui perfil `preview` para APK interno e `production` para futuro AAB da Play Store.
 
 ## Limites do projeto
 
@@ -50,6 +51,13 @@ Aplicativo Android interno da Vortek. Projeto isolado do ERP web existente.
 1. Copie `.env.example` para `.env` e preencha somente valores públicos.
 2. Execute `npm install` dentro de `mobile/`.
 3. Execute `npm run start`.
+
+## APK interno
+
+1. Entre na conta Expo com `npx eas-cli login`.
+2. Configure as variáveis públicas do ambiente `preview` no EAS.
+3. Execute `npx eas-cli build --platform android --profile preview`.
+4. Abra o link fornecido pelo EAS no celular e instale o APK.
 
 Nunca coloque `service_role`, credenciais do Mercado Livre, DSLite ou Brasil NFe no `.env` móvel.
 

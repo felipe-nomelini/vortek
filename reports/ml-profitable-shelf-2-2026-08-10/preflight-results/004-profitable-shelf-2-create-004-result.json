@@ -1,0 +1,679 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/004-profitable-shelf-2-create-004-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-004",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "763534a9-bab7-45c6-8077-37f2627abc28",
+      "sku": "VTK018965",
+      "category": {
+        "id": "MLB458123",
+        "nome": "Ligações Laterais",
+        "dominio": "Braços de suspensão para carros e caminhonetes"
+      },
+      "basePrice": 47.31,
+      "familyName": "Haste Permak Fiat Toro Argus Cronos Jeep Compas",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 16.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 33.43
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "380912"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Haste Permak Fiat Toro Argus Cronos Jeep Compas\n\nVISÃO GERAL\nHaste Antena de Teto Original (Base Redonda). *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 380912\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253504146\n• NCM: 85291090\n• SKU: VTK018965\n\nEMBALAGEM\n• Dimensões informadas: 2 × 2 × 18.5 cm\n• Peso bruto informado: 0,042 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cb733cdf-c600-4201-851e-1d74b0b2a57d",
+      "sku": "VTK025633",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 45.68,
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 17,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 32.19
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1220"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nVISÃO GERAL\n10 Baterias CR1220 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x 5 Baterias Cr1220 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR1220 Elgin Energia Duradoura para Seus Dispositivos Eletrônicos\n\n As baterias de lítio CR1220 Elgin garantem alta performance e longa duração para dispositivos que exigem energia estável. Indicadas para relógios, calculadoras, dispositivos médicos e eletrônicos portáteis, são essenciais para manter seu equipamento sempre funcionando.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR1220\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Aplicações indicadas: Relógios digitais, calculadoras, sensores, dispositivos médicos, controles remotos, equipamentos eletrônicos portáteis\n\n•    Recarregável: Não\n\n•    Validade: Longa duração (até 7 anos em armazenamento adequado)\n\n•    Peso unitário: Aproximadamente 1,6 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL1220, ECR1220, BR1220 e outros equivalentes\n\n Com a qualidade da marca Elgin, as baterias CR1220 fornecem energia estável e confiável para seus dispositivos eletrônicos. O pacote com 5 unidades oferece praticidade e economia, ideal para reposição e uso em equipamentos que exigem desempenho constante e duradouro.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1220\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025633\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 2 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "35c9adb4-f6e5-4c26-8e2f-d23f8d3a5499",
+      "sku": "VTK025681",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 45.88,
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 17.16,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 32.41
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "15 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n15 Baterias Litio Cr2025 Elgin (3 Cart)\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025681\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6 × 19 cm\n• Peso bruto informado: 0,15 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dc803a1a-6674-4bd4-a183-adae5eaeecf9",
+      "sku": "VTK017899",
+      "category": {
+        "id": "MLB116341",
+        "nome": "Conectores de Scanners",
+        "dominio": "Conectores OBD para veículos"
+      },
+      "basePrice": 48.69,
+      "familyName": "Conector Para Cd Nissan Kicks PERMAK",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 17.98,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 34.97
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "350061"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253504467"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Conector Para Cd Nissan Kicks\n\nVISÃO GERAL\nInformações do Produto Conector para CD Nissan Kicks\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Tipo de veículo: Carro/Caminhonete\n• Número de peça: 350061\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253504467\n• NCM: 85444200\n• SKU: VTK017899\n\nEMBALAGEM\n• Dimensões informadas: 1 × 1 × 20 cm\n• Peso bruto informado: 0,011 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "58098654-e497-46f4-9d5a-78ecba881826",
+      "sku": "VTK025642",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 47.9,
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 18.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 34.66
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n10 Baterias Litio Cr2016 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025642\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6 × 19 cm\n• Peso bruto informado: 0,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7dacfcf1-5f2e-4722-b068-6929c49c070c",
+      "sku": "VTK018074",
+      "category": {
+        "id": "MLB458123",
+        "nome": "Ligações Laterais",
+        "dominio": "Braços de suspensão para carros e caminhonetes"
+      },
+      "basePrice": 49.87,
+      "familyName": "Haste Permak Peugeot Renault Dianteira 70cm",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 18.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.29
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "380918"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "70CM"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Haste Permak Peugeot/ Renault/ Dianteira 70cm\n\nVISÃO GERAL\nHaste para Peugeot/ Renault/ Dianteira 70cm. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 380918\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 70CM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253507062\n• NCM: 85291090\n• SKU: VTK018074\n\nEMBALAGEM\n• Dimensões informadas: 1 × 1 × 72 cm\n• Peso bruto informado: 0,044 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+      "sku": "VTK017212",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "Splitters de fibra óptica"
+      },
+      "basePrice": 50.38,
+      "familyName": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 19.3,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.86
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "INTELBRAS"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896637676717"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013\n\nVISÃO GERAL\nInformações do Produto O splitter óptico PLC - Planar Lightwave Circuit - é um componente passivo utilizado para realizar a divisão do sinal óptico em uma rede de distribuição PON. A tecnologia PLC permite a divisão da potência de entrada igualmente entre todas as saídas. Possui dimensões reduzidas, baixa perda de inserção e alta confiabilidade.\n\nPerfeito para atuar nos comprimentos de onda de 1. 260 a 1. 650 nm, conta com uma fibra óptica de baixa sensibilidade à curvatura (G.\n\n657A). É ideal para sistemas FTTx, redes HFC e comunicação de dados. - Ambiente de instalação interno; - Baixa perda de inserção; - Boa uniformidade canal a canal; - Alta confiabilidade e estabilidade; - Tamanho compacto.\n\nInformações Técnicas Modelo 1 × 2 Perda de inserção 3,7 dB Uniformidade 0,5 dB PDL 0,2 dB Observações sobre o uso: Observe o raio mínimo de curvatura do cabo do splitter. Nunca direcione a extremidade da fibra óptica ou dos conectores ópticos para os olhos. A radiação óptica pode ser prejudicial.\n\n*Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: INTELBRAS\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637676717\n• NCM: 85447090\n• SKU: VTK017212\n\nEMBALAGEM\n• Dimensões informadas: 2 × 9 × 16 cm\n• Peso bruto informado: 0,026 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "68f6d99c-4fb0-45c0-be30-7359b34e7ddc",
+      "sku": "VTK017735",
+      "category": {
+        "id": "MLB5092",
+        "nome": "Outros",
+        "dominio": "Acessórios para celulares"
+      },
+      "basePrice": 48.66,
+      "familyName": "Kit Adaptador Aquário Cf 375 Para Motorola",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 35.68
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca do acessório",
+          "value_id": "",
+          "value_name": "AQUARIO"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127600226"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Adaptador Aquário Cf-375 Para Motorola\n\nVISÃO GERAL\nCabo: Rg 174 KMP Comprimento: 1m Conector: TNC Fêmea Conector: Adaptador Celular\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca do acessório: AQUARIO\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127600226\n• NCM: 85444200\n• SKU: VTK017735\n\nEMBALAGEM\n• Dimensões informadas: 2 × 7.5 × 18.5 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "c522bccc-21ae-475e-a04f-ddf8f70078c6",
+      "sku": "VTK017260",
+      "nome": "Conector Klc Macho Rg/rgc Km-8",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB70452",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ba2f906b-b82c-41c2-93a8-4b85f62a6270",
+      "sku": "VTK017374",
+      "nome": "Cooler Gamer Evus F-12fix Fan 12cm Com Led",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f9027970-79c4-4e3e-9357-f340a1eb8f1a",
+      "sku": "VTK017261",
+      "nome": "Conector Klc N Macho Reto Rg/ Rgc 58 Cm-97",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB70452",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2cc35ecb-e1ab-4d17-afff-ff5a44aeba1c",
+      "sku": "VTK018597",
+      "nome": "Centralina Tech Line Lw-g5",
+      "error": "Sem categoria ML prevista",
+      "status": null,
+      "attempts": null,
+      "data": null
+    },
+    {
+      "produtoId": "9ff924af-b743-4a0e-964d-2496d5c3d148",
+      "sku": "VTK002762",
+      "nome": "Extensão Tripla 3 X 0,75 X 3,0M Preta Megatron",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271531",
+            "nome": "Biqueiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2145db81-8c23-4171-a040-b2f7eef29fbb",
+      "sku": "VTK017210",
+      "nome": "Terminal De Fio Permak Encaixe Macho",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB38172",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+      "sku": "VTK017376",
+      "nome": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+      "error": "Atributos obrigatórios pendentes: Título do curso, Formato do curso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB445795",
+            "nome": "Cursos Completos"
+          },
+          "missing": [
+            "Título do curso",
+            "Formato do curso"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9ae896d2-1dc1-4c1e-8bd5-75c2e60e3bbc",
+      "sku": "VTK017548",
+      "nome": "Conector Klc Com Uhf Macho R Red Rg/rgcc 58 Km-16",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB70452",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b2f4fbdc-0192-465b-85b2-765137a9b556",
+      "sku": "VTK017740",
+      "nome": "Suporte Antena 207-b Tripe Laje Tubo 1\" Prata Cromo",
+      "error": "Atributos obrigatórios pendentes: Modelo, É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "Modelo",
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a2c70862-2f7d-4fee-b14a-d2c26998f00b",
+      "sku": "VTK018201",
+      "nome": "Plug P10 Duplo Z Mono Pedais",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c99b6e3e-e916-4b9e-bc39-9df386bc4b8b",
+      "sku": "VTK019123",
+      "nome": "Plug P10 Duplo Z Mono Pedais",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "70fb5f79-40a8-4eb9-a48c-5e2ddb29c4fa",
+      "sku": "VTK012148",
+      "nome": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

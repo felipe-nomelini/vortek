@@ -1,0 +1,10 @@
+{
+  "event": "delete_unavailable_hayamax_listings_summary",
+  "timestamp_utc": "2026-08-10T05:59:42.899Z",
+  "mode": "dry_run",
+  "targets": 61,
+  "counts": {
+    "planned": 61
+  },
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/hayamax-cash-tourniquet/delete-unavailable-2026-08-10/events-dry-run.ndjson"
+}

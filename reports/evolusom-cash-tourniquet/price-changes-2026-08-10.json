@@ -1,0 +1,1619 @@
+[
+  {
+    "SKU": "VTK000192",
+    "Preco_Antigo": 329,
+    "Novo_Preco": 460.28,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK002333",
+    "Preco_Antigo": 145,
+    "Novo_Preco": 195.67,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018925",
+    "Preco_Antigo": 687.04,
+    "Novo_Preco": 832.5,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000678",
+    "Preco_Antigo": 347.77,
+    "Novo_Preco": 437.31,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018988",
+    "Preco_Antigo": 912.63,
+    "Novo_Preco": 1170.09,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017609",
+    "Preco_Antigo": 599,
+    "Novo_Preco": 600.74,
+    "Tipo_de_Frente": "giro_rapido",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK005420",
+    "Preco_Antigo": 629,
+    "Novo_Preco": 651.17,
+    "Tipo_de_Frente": "giro_rapido",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000616",
+    "Preco_Antigo": 130,
+    "Novo_Preco": 128.12,
+    "Tipo_de_Frente": "giro_rapido",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000456",
+    "Preco_Antigo": 259,
+    "Novo_Preco": 272.61,
+    "Tipo_de_Frente": "giro_rapido",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK006351",
+    "Preco_Antigo": 299.17,
+    "Novo_Preco": 296.97,
+    "Tipo_de_Frente": "giro_rapido",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000045",
+    "Preco_Antigo": 65,
+    "Novo_Preco": 85.67,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000048",
+    "Preco_Antigo": 162.41,
+    "Novo_Preco": 200.08,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000055",
+    "Preco_Antigo": 280.48,
+    "Novo_Preco": 366.39,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000065",
+    "Preco_Antigo": 962.35,
+    "Novo_Preco": 1212.79,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000076",
+    "Preco_Antigo": 839.27,
+    "Novo_Preco": 1058.94,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000118",
+    "Preco_Antigo": 497,
+    "Novo_Preco": 663.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000129",
+    "Preco_Antigo": 1446.08,
+    "Novo_Preco": 1822.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000153",
+    "Preco_Antigo": 344.42,
+    "Novo_Preco": 460.28,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000171",
+    "Preco_Antigo": 362.67,
+    "Novo_Preco": 456.02,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000185",
+    "Preco_Antigo": 178.85,
+    "Novo_Preco": 229.81,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000232",
+    "Preco_Antigo": 165,
+    "Novo_Preco": 216.51,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000244",
+    "Preco_Antigo": 192.18,
+    "Novo_Preco": 249.81,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000278",
+    "Preco_Antigo": 147.16,
+    "Novo_Preco": 193.68,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000310",
+    "Preco_Antigo": 301.29,
+    "Novo_Preco": 404.72,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000475",
+    "Preco_Antigo": 289,
+    "Novo_Preco": 394.35,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000489",
+    "Preco_Antigo": 245.41,
+    "Novo_Preco": 312.87,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000499",
+    "Preco_Antigo": 164.94,
+    "Novo_Preco": 208.94,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000559",
+    "Preco_Antigo": 363.19,
+    "Novo_Preco": 479.9,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000591",
+    "Preco_Antigo": 284.36,
+    "Novo_Preco": 378.24,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000700",
+    "Preco_Antigo": 629,
+    "Novo_Preco": 856.17,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000733",
+    "Preco_Antigo": 503.79,
+    "Novo_Preco": 654.72,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000800",
+    "Preco_Antigo": 207.12,
+    "Novo_Preco": 272.21,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000883",
+    "Preco_Antigo": 366.81,
+    "Novo_Preco": 422.4,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK000945",
+    "Preco_Antigo": 1085.39,
+    "Novo_Preco": 1389.5,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001065",
+    "Preco_Antigo": 1809.9,
+    "Novo_Preco": 2190.87,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001071",
+    "Preco_Antigo": 245.24,
+    "Novo_Preco": 326.06,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001120",
+    "Preco_Antigo": 2254.03,
+    "Novo_Preco": 2681.94,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001131",
+    "Preco_Antigo": 159,
+    "Novo_Preco": 213.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001145",
+    "Preco_Antigo": 1350.66,
+    "Novo_Preco": 1675.09,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001146",
+    "Preco_Antigo": 216.91,
+    "Novo_Preco": 281.33,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001189",
+    "Preco_Antigo": 343.38,
+    "Novo_Preco": 460.27,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001208",
+    "Preco_Antigo": 199,
+    "Novo_Preco": 268.37,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001220",
+    "Preco_Antigo": 272.1,
+    "Novo_Preco": 362.02,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001281",
+    "Preco_Antigo": 2479,
+    "Novo_Preco": 3204.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001348",
+    "Preco_Antigo": 316.51,
+    "Novo_Preco": 378.24,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK001460",
+    "Preco_Antigo": 1832.16,
+    "Novo_Preco": 2181.94,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK002002",
+    "Preco_Antigo": 218.31,
+    "Novo_Preco": 286.39,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK002038",
+    "Preco_Antigo": 218.31,
+    "Novo_Preco": 286.39,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK002203",
+    "Preco_Antigo": 400.04,
+    "Novo_Preco": 527.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK002431",
+    "Preco_Antigo": 178.13,
+    "Novo_Preco": 221.85,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK002677",
+    "Preco_Antigo": 347,
+    "Novo_Preco": 478.8,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK002745",
+    "Preco_Antigo": 289.37,
+    "Novo_Preco": 370.45,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK003936",
+    "Preco_Antigo": 160.69,
+    "Novo_Preco": 201.02,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK004012",
+    "Preco_Antigo": 749,
+    "Novo_Preco": 1009.52,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK004200",
+    "Preco_Antigo": 1012.99,
+    "Novo_Preco": 1285.67,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK004423",
+    "Preco_Antigo": 289,
+    "Novo_Preco": 407.26,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK004526",
+    "Preco_Antigo": 500.67,
+    "Novo_Preco": 663.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK005357",
+    "Preco_Antigo": 326.38,
+    "Novo_Preco": 421.7,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK005794",
+    "Preco_Antigo": 331.13,
+    "Novo_Preco": 452.21,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK005814",
+    "Preco_Antigo": 570.17,
+    "Novo_Preco": 728.8,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK005835",
+    "Preco_Antigo": 390.48,
+    "Novo_Preco": 510.46,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK005880",
+    "Preco_Antigo": 3155.66,
+    "Novo_Preco": 3830.65,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK006293",
+    "Preco_Antigo": 1599,
+    "Novo_Preco": 2162.6,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK006496",
+    "Preco_Antigo": 799,
+    "Novo_Preco": 1063.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK006523",
+    "Preco_Antigo": 139.78,
+    "Novo_Preco": 161.48,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012622",
+    "Preco_Antigo": 390.48,
+    "Novo_Preco": 506.02,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012626",
+    "Preco_Antigo": 159.05,
+    "Novo_Preco": 199.34,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012664",
+    "Preco_Antigo": 216.56,
+    "Novo_Preco": 283.8,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012665",
+    "Preco_Antigo": 216.56,
+    "Novo_Preco": 283.8,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012666",
+    "Preco_Antigo": 172.97,
+    "Novo_Preco": 220.09,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012673",
+    "Preco_Antigo": 180.92,
+    "Novo_Preco": 225.14,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012705",
+    "Preco_Antigo": 556.82,
+    "Novo_Preco": 725.51,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012826",
+    "Preco_Antigo": 480.79,
+    "Novo_Preco": 628.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK012916",
+    "Preco_Antigo": 172.94,
+    "Novo_Preco": 227.3,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017214",
+    "Preco_Antigo": 165.25,
+    "Novo_Preco": 204.55,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017229",
+    "Preco_Antigo": 186.81,
+    "Novo_Preco": 236.93,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017264",
+    "Preco_Antigo": 253.3,
+    "Novo_Preco": 323.93,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017268",
+    "Preco_Antigo": 557.8,
+    "Novo_Preco": 731.83,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017283",
+    "Preco_Antigo": 162.45,
+    "Novo_Preco": 204.34,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017298",
+    "Preco_Antigo": 159.95,
+    "Novo_Preco": 193.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017348",
+    "Preco_Antigo": 162.45,
+    "Novo_Preco": 197.43,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017349",
+    "Preco_Antigo": 159.43,
+    "Novo_Preco": 200.8,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017352",
+    "Preco_Antigo": 88.14,
+    "Novo_Preco": 94.33,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017358",
+    "Preco_Antigo": 198.4,
+    "Novo_Preco": 259.13,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017364",
+    "Preco_Antigo": 215,
+    "Novo_Preco": 288.21,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017367",
+    "Preco_Antigo": 209.56,
+    "Novo_Preco": 274.54,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017475",
+    "Preco_Antigo": 1285,
+    "Novo_Preco": 1807.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017570",
+    "Preco_Antigo": 181.47,
+    "Novo_Preco": 233.75,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017575",
+    "Preco_Antigo": 170.57,
+    "Novo_Preco": 220.09,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017599",
+    "Preco_Antigo": 170.5,
+    "Novo_Preco": 221.78,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017610",
+    "Preco_Antigo": 199.7,
+    "Novo_Preco": 253.48,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017622",
+    "Preco_Antigo": 275.77,
+    "Novo_Preco": 359.73,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017717",
+    "Preco_Antigo": 198.6,
+    "Novo_Preco": 260.27,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017769",
+    "Preco_Antigo": 164.81,
+    "Novo_Preco": 212.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017774",
+    "Preco_Antigo": 420.53,
+    "Novo_Preco": 530.35,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017787",
+    "Preco_Antigo": 448.26,
+    "Novo_Preco": 576.27,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017791",
+    "Preco_Antigo": 363.95,
+    "Novo_Preco": 470.63,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017836",
+    "Preco_Antigo": 439.86,
+    "Novo_Preco": 562.37,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017843",
+    "Preco_Antigo": 413.61,
+    "Novo_Preco": 534.35,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017861",
+    "Preco_Antigo": 194.62,
+    "Novo_Preco": 249.72,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017876",
+    "Preco_Antigo": 464.8,
+    "Novo_Preco": 593.95,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017886",
+    "Preco_Antigo": 333.45,
+    "Novo_Preco": 436.64,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017889",
+    "Preco_Antigo": 480.79,
+    "Novo_Preco": 612.31,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017892",
+    "Preco_Antigo": 270.77,
+    "Novo_Preco": 346.06,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017900",
+    "Preco_Antigo": 267,
+    "Novo_Preco": 284.69,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017908",
+    "Preco_Antigo": 124,
+    "Novo_Preco": 167.6,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017909",
+    "Preco_Antigo": 1292.86,
+    "Novo_Preco": 1622.79,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017910",
+    "Preco_Antigo": 1699,
+    "Novo_Preco": 2209.33,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017940",
+    "Preco_Antigo": 2099,
+    "Novo_Preco": 2711,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017955",
+    "Preco_Antigo": 410.47,
+    "Novo_Preco": 530.35,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017967",
+    "Preco_Antigo": 171.58,
+    "Novo_Preco": 183.48,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017968",
+    "Preco_Antigo": 198.72,
+    "Novo_Preco": 255.27,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017969",
+    "Preco_Antigo": 160.7,
+    "Novo_Preco": 206.13,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017983",
+    "Preco_Antigo": 1262.22,
+    "Novo_Preco": 1588.75,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017986",
+    "Preco_Antigo": 1122.44,
+    "Novo_Preco": 1409.34,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017991",
+    "Preco_Antigo": 711,
+    "Novo_Preco": 947.31,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK017997",
+    "Preco_Antigo": 384.07,
+    "Novo_Preco": 503.83,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018009",
+    "Preco_Antigo": 219.68,
+    "Novo_Preco": 294.62,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018013",
+    "Preco_Antigo": 197.91,
+    "Novo_Preco": 259.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018041",
+    "Preco_Antigo": 289.47,
+    "Novo_Preco": 383.75,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018069",
+    "Preco_Antigo": 235.04,
+    "Novo_Preco": 310.47,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018080",
+    "Preco_Antigo": 435.99,
+    "Novo_Preco": 570.66,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018086",
+    "Preco_Antigo": 504.67,
+    "Novo_Preco": 653.73,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018089",
+    "Preco_Antigo": 155.89,
+    "Novo_Preco": 195.75,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018107",
+    "Preco_Antigo": 375.56,
+    "Novo_Preco": 496.44,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018148",
+    "Preco_Antigo": 252.04,
+    "Novo_Preco": 330.13,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018150",
+    "Preco_Antigo": 312.94,
+    "Novo_Preco": 408.5,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018175",
+    "Preco_Antigo": 249.98,
+    "Novo_Preco": 320.47,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018177",
+    "Preco_Antigo": 764.01,
+    "Novo_Preco": 941.96,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018179",
+    "Preco_Antigo": 159,
+    "Novo_Preco": 211.06,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018198",
+    "Preco_Antigo": 239.54,
+    "Novo_Preco": 304.72,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018210",
+    "Preco_Antigo": 738,
+    "Novo_Preco": 960.87,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018218",
+    "Preco_Antigo": 992.66,
+    "Novo_Preco": 1233.61,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018245",
+    "Preco_Antigo": 262.87,
+    "Novo_Preco": 341.21,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018282",
+    "Preco_Antigo": 293.92,
+    "Novo_Preco": 379.33,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018344",
+    "Preco_Antigo": 175.87,
+    "Novo_Preco": 223.52,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018345",
+    "Preco_Antigo": 170.57,
+    "Novo_Preco": 220.85,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018349",
+    "Preco_Antigo": 332.58,
+    "Novo_Preco": 431.79,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018388",
+    "Preco_Antigo": 161.71,
+    "Novo_Preco": 191.7,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018408",
+    "Preco_Antigo": 1550.58,
+    "Novo_Preco": 1963.85,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018421",
+    "Preco_Antigo": 322.27,
+    "Novo_Preco": 421.89,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018424",
+    "Preco_Antigo": 197.53,
+    "Novo_Preco": 251.6,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018445",
+    "Preco_Antigo": 171.46,
+    "Novo_Preco": 218.96,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018451",
+    "Preco_Antigo": 162.7,
+    "Novo_Preco": 208.13,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018458",
+    "Preco_Antigo": 310.23,
+    "Novo_Preco": 406.64,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018466",
+    "Preco_Antigo": 198.48,
+    "Novo_Preco": 254.42,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018470",
+    "Preco_Antigo": 400.46,
+    "Novo_Preco": 415.18,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018479",
+    "Preco_Antigo": 212.76,
+    "Novo_Preco": 286.25,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018489",
+    "Preco_Antigo": 2299,
+    "Novo_Preco": 2965.18,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018492",
+    "Preco_Antigo": 897.33,
+    "Novo_Preco": 1144.22,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018497",
+    "Preco_Antigo": 1799,
+    "Novo_Preco": 2321.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018499",
+    "Preco_Antigo": 566.09,
+    "Novo_Preco": 755.75,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018500",
+    "Preco_Antigo": 738.93,
+    "Novo_Preco": 914.82,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018501",
+    "Preco_Antigo": 921,
+    "Novo_Preco": 1241.18,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018503",
+    "Preco_Antigo": 307.83,
+    "Novo_Preco": 409.72,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018520",
+    "Preco_Antigo": 175,
+    "Novo_Preco": 228.94,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018524",
+    "Preco_Antigo": 134.74,
+    "Novo_Preco": 195.29,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018549",
+    "Preco_Antigo": 276.39,
+    "Novo_Preco": 337.4,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018555",
+    "Preco_Antigo": 181.17,
+    "Novo_Preco": 227.66,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018559",
+    "Preco_Antigo": 292.99,
+    "Novo_Preco": 385.67,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018565",
+    "Preco_Antigo": 728.76,
+    "Novo_Preco": 920.29,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018568",
+    "Preco_Antigo": 1008.69,
+    "Novo_Preco": 1245.89,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018587",
+    "Preco_Antigo": 598.27,
+    "Novo_Preco": 782.83,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018588",
+    "Preco_Antigo": 483.29,
+    "Novo_Preco": 625.28,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018595",
+    "Preco_Antigo": 699,
+    "Novo_Preco": 899.85,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018637",
+    "Preco_Antigo": 172.34,
+    "Novo_Preco": 219.34,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018645",
+    "Preco_Antigo": 429.53,
+    "Novo_Preco": 566.44,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018652",
+    "Preco_Antigo": 156.6,
+    "Novo_Preco": 201.06,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018659",
+    "Preco_Antigo": 165.4,
+    "Novo_Preco": 209.51,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018668",
+    "Preco_Antigo": 1206.22,
+    "Novo_Preco": 1482.12,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018669",
+    "Preco_Antigo": 257.26,
+    "Novo_Preco": 329.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018674",
+    "Preco_Antigo": 708.84,
+    "Novo_Preco": 887.01,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018703",
+    "Preco_Antigo": 1018,
+    "Novo_Preco": 1346.04,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018709",
+    "Preco_Antigo": 222.64,
+    "Novo_Preco": 297.08,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018758",
+    "Preco_Antigo": 168.54,
+    "Novo_Preco": 205.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018759",
+    "Preco_Antigo": 498.28,
+    "Novo_Preco": 651.5,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018766",
+    "Preco_Antigo": 175.64,
+    "Novo_Preco": 230,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018787",
+    "Preco_Antigo": 457.54,
+    "Novo_Preco": 580.13,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018800",
+    "Preco_Antigo": 762.19,
+    "Novo_Preco": 951.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018829",
+    "Preco_Antigo": 320.17,
+    "Novo_Preco": 419.72,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018851",
+    "Preco_Antigo": 207.28,
+    "Novo_Preco": 278.4,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018865",
+    "Preco_Antigo": 210.19,
+    "Novo_Preco": 289.15,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018866",
+    "Preco_Antigo": 208.92,
+    "Novo_Preco": 278.4,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018874",
+    "Preco_Antigo": 356.51,
+    "Novo_Preco": 461.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018917",
+    "Preco_Antigo": 837,
+    "Novo_Preco": 1125.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018921",
+    "Preco_Antigo": 346,
+    "Novo_Preco": 468.37,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018922",
+    "Preco_Antigo": 507.61,
+    "Novo_Preco": 661.94,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018926",
+    "Preco_Antigo": 295.83,
+    "Novo_Preco": 387.76,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018927",
+    "Preco_Antigo": 272.12,
+    "Novo_Preco": 359.72,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018930",
+    "Preco_Antigo": 370.48,
+    "Novo_Preco": 478.8,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018941",
+    "Preco_Antigo": 2675.67,
+    "Novo_Preco": 3304.9,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018969",
+    "Preco_Antigo": 529,
+    "Novo_Preco": 697.36,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018973",
+    "Preco_Antigo": 359.61,
+    "Novo_Preco": 472.77,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018977",
+    "Preco_Antigo": 3051.82,
+    "Novo_Preco": 3668.83,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018979",
+    "Preco_Antigo": 332.7,
+    "Novo_Preco": 431.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK018980",
+    "Preco_Antigo": 433,
+    "Novo_Preco": 584.02,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019005",
+    "Preco_Antigo": 2039,
+    "Novo_Preco": 2632.45,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019007",
+    "Preco_Antigo": 1329,
+    "Novo_Preco": 1857.64,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019022",
+    "Preco_Antigo": 959.29,
+    "Novo_Preco": 1202.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019026",
+    "Preco_Antigo": 294.15,
+    "Novo_Preco": 396.44,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019031",
+    "Preco_Antigo": 777.73,
+    "Novo_Preco": 1007.6,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019038",
+    "Preco_Antigo": 358.27,
+    "Novo_Preco": 461.7,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019049",
+    "Preco_Antigo": 979,
+    "Novo_Preco": 1343.37,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019052",
+    "Preco_Antigo": 173.86,
+    "Novo_Preco": 224.06,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019098",
+    "Preco_Antigo": 163.23,
+    "Novo_Preco": 200.66,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019101",
+    "Preco_Antigo": 228.11,
+    "Novo_Preco": 307.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019104",
+    "Preco_Antigo": 158.14,
+    "Novo_Preco": 198.75,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019115",
+    "Preco_Antigo": 550.77,
+    "Novo_Preco": 747.45,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019116",
+    "Preco_Antigo": 399,
+    "Novo_Preco": 534.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019132",
+    "Preco_Antigo": 233.31,
+    "Novo_Preco": 304.64,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019147",
+    "Preco_Antigo": 213.73,
+    "Novo_Preco": 281.68,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019158",
+    "Preco_Antigo": 179.94,
+    "Novo_Preco": 231.44,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019180",
+    "Preco_Antigo": 524.7,
+    "Novo_Preco": 679.53,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019204",
+    "Preco_Antigo": 704.41,
+    "Novo_Preco": 876.94,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019205",
+    "Preco_Antigo": 560.52,
+    "Novo_Preco": 742.27,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019387",
+    "Preco_Antigo": 333.88,
+    "Novo_Preco": 428.86,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019484",
+    "Preco_Antigo": 677.6,
+    "Novo_Preco": 847.79,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019485",
+    "Preco_Antigo": 921.06,
+    "Novo_Preco": 1155.48,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019526",
+    "Preco_Antigo": 161.45,
+    "Novo_Preco": 206.82,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019623",
+    "Preco_Antigo": 1059.53,
+    "Novo_Preco": 1347.4,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK019951",
+    "Preco_Antigo": 262.67,
+    "Novo_Preco": 339.91,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK020597",
+    "Preco_Antigo": 741.19,
+    "Novo_Preco": 934.9,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK020780",
+    "Preco_Antigo": 699,
+    "Novo_Preco": 922.52,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK021105",
+    "Preco_Antigo": 163.64,
+    "Novo_Preco": 202.89,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK021272",
+    "Preco_Antigo": 347.16,
+    "Novo_Preco": 460.67,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK021397",
+    "Preco_Antigo": 144,
+    "Novo_Preco": 185.75,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK021398",
+    "Preco_Antigo": 166,
+    "Novo_Preco": 209.82,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK021855",
+    "Preco_Antigo": 370.34,
+    "Novo_Preco": 508.86,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK021889",
+    "Preco_Antigo": 78.9,
+    "Novo_Preco": 98.14,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK022563",
+    "Preco_Antigo": 799.4,
+    "Novo_Preco": 1056.25,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  },
+  {
+    "SKU": "VTK022968",
+    "Preco_Antigo": 322.92,
+    "Novo_Preco": 418.98,
+    "Tipo_de_Frente": "protecao_de_capital",
+    "Resultado": "sucesso"
+  }
+]

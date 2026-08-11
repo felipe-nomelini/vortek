@@ -1,0 +1,146 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/031-profitable-shelf-2-create-031-gtin-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-031",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "72f09887-5656-41d0-ad6b-0ca17983cccf",
+      "sku": "VTK001252",
+      "category": {
+        "id": "MLB3016",
+        "nome": "Acústicas",
+        "dominio": "Violões acústicos"
+      },
+      "anuncio": {
+        "id": "MLB7381743724",
+        "title": "Violão Giannini Gsf3 Ceq Eletroacústico Aço Translucent Dark",
+        "price": 1508.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381743724-violo-giannini-gsf3-ceq-eletroacustico-aco-translucent-dark-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1508.97
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "31e52658-a1fa-443a-bdc3-521f2ddac5a2",
+      "sku": "VTK001416",
+      "category": {
+        "id": "MLB3016",
+        "nome": "Acústicas",
+        "dominio": "Violões acústicos"
+      },
+      "anuncio": {
+        "id": "MLB7381755228",
+        "title": "Violão Giannini Gf1d Ceq Eletroacústico Aço Preto Preto",
+        "price": 1523.07,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381755228-violo-giannini-gf1d-ceq-eletroacustico-aco-preto-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1523.07
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1544174a-fb73-4341-a200-58afd115a08d",
+      "sku": "VTK018920",
+      "category": {
+        "id": "MLB421345",
+        "nome": "Barras Axiais",
+        "dominio": "Terminal ponteira de direção para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381744052",
+        "title": "Power Coaxial Onix Hd 3000 16ch Com Fonte",
+        "price": 1580.75,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381744052-power-coaxial-onix-hd-3000-16ch-com-fonte-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 1580.75
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fcd17d22-a899-4764-b253-12571c37582f",
+      "sku": "VTK001399",
+      "category": {
+        "id": "MLB438516",
+        "nome": "Elétricas",
+        "dominio": "Guitarras elétricas"
+      },
+      "anuncio": {
+        "id": "MLB7381674962",
+        "title": "Guitarra Tagima Tg 500 Candy Apple E Awh",
+        "price": 1644.71,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381674962-guitarra-tagima-tg-500-candy-apple-e-awh-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1644.71
+      }
+    }
+  ],
+  "failed": []
+}

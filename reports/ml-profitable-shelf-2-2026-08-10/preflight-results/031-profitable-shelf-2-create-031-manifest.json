@@ -1,0 +1,427 @@
+{
+  "batchNumber": 31,
+  "batchId": "profitable-shelf-2-create-031",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "5c9a0351-c97e-4b41-ac84-e1dfd40cf544",
+      "sku": "VTK018918",
+      "nome": "Video Porteiro Hikvision Ds-kh8300-t",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 657.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Video Porteiro Hikvision Ds kh8300 t",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 657.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1396.18
+      }
+    },
+    {
+      "produtoId": "4af0d21d-e9f5-468a-999d-c8d6a7bd64c8",
+      "sku": "VTK012865",
+      "nome": "Alto-falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+      "fornecedor": "BKR1",
+      "custo": 665,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 665,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1409.09
+      }
+    },
+    {
+      "produtoId": "32ae1d48-0811-42ef-8520-77c616419c26",
+      "sku": "VTK018830",
+      "nome": "Cabo De Bateria Technoise 70,00mm² Vermelho - Rolo Com 10m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 669.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Bateria Technoise 70,00mm² Vermelho Rolo Com 10m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 669.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1418
+      }
+    },
+    {
+      "produtoId": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+      "sku": "VTK018944",
+      "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 684.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Central Laço Indutivo Citrox 2 Pontos Cx 7602",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 684.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1445.27
+      }
+    },
+    {
+      "produtoId": "72f09887-5656-41d0-ad6b-0ca17983cccf",
+      "sku": "VTK001252",
+      "nome": "Violão Giannini GSF3 CEQ Eletroacústico Aço Translucent Dark Wine Dark Wine",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 697.3,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Violão Giannini GSF3 CEQ Eletroacústico Aço Translucent Dark",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 697.3,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1467.82
+      }
+    },
+    {
+      "produtoId": "fe395999-9d8d-47e5-a23b-8cab098ac922",
+      "sku": "VTK025427",
+      "nome": "Kit 4 Alto-Falantes  150w 10 Pol 8 Ohms 10WF310B8 ATK",
+      "fornecedor": "BKR1",
+      "custo": 700,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 4 Alto Falantes 150w 10 Pol 8 Ohms 10WF310B8 ATK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 700,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1472.73
+      }
+    },
+    {
+      "produtoId": "31e52658-a1fa-443a-bdc3-521f2ddac5a2",
+      "sku": "VTK001416",
+      "nome": "Violão Giannini GF1D CEQ Eletroacústico Aço Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 704.84,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Violão Giannini GF1D CEQ Eletroacústico Aço Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 704.84,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1481.53
+      }
+    },
+    {
+      "produtoId": "92fa2aa7-5d9c-4765-ace4-e5114af5848d",
+      "sku": "VTK018857",
+      "nome": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 719.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto Falante Selenium Jbl Original Pro 2206 h 12 Polegadas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 719.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1508.91
+      }
+    },
+    {
+      "produtoId": "1544174a-fb73-4341-a200-58afd115a08d",
+      "sku": "VTK018920",
+      "nome": "Power Coaxial Onix Hd 3000 16ch Com Fonte",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 727.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Power Coaxial Onix Hd 3000 16ch Com Fonte",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 727.8,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1523.27
+      }
+    },
+    {
+      "produtoId": "e6a41f4c-9651-4fce-a0c8-70f8896bea7a",
+      "sku": "VTK018354",
+      "nome": "Cabo Multicabo Santo Angelo Sas 36 Vias Cobre Ofhc Metro - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 739,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Multicabo Santo Angelo Sas 36 Vias Cobre Ofhc Metro PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 739,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1543.64
+      }
+    },
+    {
+      "produtoId": "28cc9ec1-ec96-469d-a57a-71b9f60361ec",
+      "sku": "VTK000619",
+      "nome": "Mesa Gamer ThunderX3 ED5 2.0 Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 740.64,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Mesa Gamer ThunderX3 ED5 2.0 Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 740.64,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1546.62
+      }
+    },
+    {
+      "produtoId": "fcd17d22-a899-4764-b253-12571c37582f",
+      "sku": "VTK001399",
+      "nome": "Guitarra Tagima TG-500 Candy Apple E/AWH",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 769.92,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Guitarra Tagima TG 500 Candy Apple E AWH",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 769.92,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1599.85
+      }
+    },
+    {
+      "produtoId": "11487f8c-e900-4bfd-910b-56c93433fbde",
+      "sku": "VTK025858",
+      "nome": "Cadeira Gamer Fortrek Vickers Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 787,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Gamer Fortrek Vickers Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 787,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1630.91
+      }
+    },
+    {
+      "produtoId": "db60565c-b045-4d99-acf7-bc7d81b12f95",
+      "sku": "VTK025859",
+      "nome": "Cadeira Gamer Fortrek Vickers Preta/Vermelha",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 787,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Gamer Fortrek Vickers Preta Vermelha",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 787,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1630.91
+      }
+    },
+    {
+      "produtoId": "b4cf0c73-4c79-4172-b2c7-6fadc3d8143d",
+      "sku": "VTK025860",
+      "nome": "Cadeira Gamer Fortrek Vickers Preta/Verde",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 787,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Gamer Fortrek Vickers Preta Verde",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 787,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1630.91
+      }
+    },
+    {
+      "produtoId": "fb955111-ce40-4901-9b5f-32a9bf040152",
+      "sku": "VTK025861",
+      "nome": "Cadeira Gamer Fortrek Vickers Preta/Rosa",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 787,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Gamer Fortrek Vickers Preta Rosa",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 787,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1630.91
+      }
+    },
+    {
+      "produtoId": "3db72eef-2662-4970-a6c1-dafd5e5fa715",
+      "sku": "VTK012869",
+      "nome": "Alto-falante 12 Pol 1000w Rms 4 Ohms Wf3002000b4/a Atk",
+      "fornecedor": "BKR1",
+      "custo": 787.9,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto falante 12 Pol 1000w Rms 4 Ohms Wf3002000b4 a Atk Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 787.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1632.55
+      }
+    },
+    {
+      "produtoId": "4a5919a1-7059-4274-8fd1-3b9c5ce927cf",
+      "sku": "VTK002521",
+      "nome": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Sunburst/Turtle",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 797.23,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contrabaixo Giannini GB 100 Jazz Bass Elétrico Passivo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 797.23,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1649.51
+      }
+    },
+    {
+      "produtoId": "b95ae4aa-a3d0-49ed-8986-907c756947d6",
+      "sku": "VTK018823",
+      "nome": "String Box Core Proauto 3mppt 3e/3s 32a 1040vdc",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 799.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "String Box Core Proauto 3mppt 3e 3s 32a 1040vdc",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 799.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1654.36
+      }
+    },
+    {
+      "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+      "sku": "VTK019126",
+      "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 809.08,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 809.08,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1671.05
+      }
+    }
+  ]
+}

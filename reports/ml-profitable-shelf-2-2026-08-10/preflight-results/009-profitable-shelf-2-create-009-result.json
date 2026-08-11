@@ -1,0 +1,688 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/009-profitable-shelf-2-create-009-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-009",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "06841718-d167-4558-8300-a91b91749347",
+      "sku": "VTK025678",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 65.06,
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 32.7,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 53.7
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2430"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "15 Pilhas Moeda Lítio Elgin CR2430 3V Kit\n\nVISÃO GERAL\n15 Baterias CR2430 Elgin (3 Cart)\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x 5 Baterias Cr2430 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR2430 Elgin Energia de Alta Capacidade para Seus Dispositivos\n\n As baterias de lítio CR2430 Elgin oferecem alta capacidade energética e longa vida útil. São ideais para dispositivos que exigem potência constante, como controles automotivos, balanças digitais, dispositivos médicos e equipamentos eletrônicos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2430\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Capacidade típica: Aproximadamente 300 mAh\n\n•    Aplicações indicadas: Controles automotivos, balanças digitais, dispositivos médicos, relógios, leitores RFID, brinquedos eletrônicos\n\n•    Recarregável: Não\n\n•    Validade: Até 10 anos (armazenamento adequado)\n\n•    Peso unitário: Cerca de 4 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL2430, ECR2430, BR2430, KCR2430, 5029LC, entre outros equivalentes\n\n Com potência elevada e desempenho confiável, as baterias CR2430 Elgin são perfeitas para aplicações que exigem energia constante e duradoura.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2430\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025678\n\nEMBALAGEM\n• Dimensões informadas: 18 × 5 × 3 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "311b25f4-be9d-44e7-9a3d-4c509e796654",
+      "sku": "VTK025703",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 65.58,
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 33.12,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 54.27
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1616"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Moeda Lítio Elgin CR1616 3V Kit\n\nVISÃO GERAL\n20 Baterias CR1616 Elgin (4 Cart)\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x 5 Baterias Cr1616 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\nESPECIFICAÇÕES TÉCNICAS\n\n Bateria de Lítio CR1616\n\n Validade: 3 anos\n\n Voltagem: 3V\n\n  \n\n CARACTERÍSTICAS\n\n Econômica\n\n Alta Duração\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1616\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025703\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 4 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2765ff71-67f9-4f9b-9bbc-9ce94d0005e5",
+      "sku": "VTK025702",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 66.67,
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 34,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 55.48
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1220"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nVISÃO GERAL\n20 Baterias CR1220 Elgin (4 Cart)\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x 5 Baterias Cr1220 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR1220 Elgin Energia Duradoura para Seus Dispositivos Eletrônicos\n\n As baterias de lítio CR1220 Elgin garantem alta performance e longa duração para dispositivos que exigem energia estável. Indicadas para relógios, calculadoras, dispositivos médicos e eletrônicos portáteis, são essenciais para manter seu equipamento sempre funcionando.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR1220\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Aplicações indicadas: Relógios digitais, calculadoras, sensores, dispositivos médicos, controles remotos, equipamentos eletrônicos portáteis\n\n•    Recarregável: Não\n\n•    Validade: Longa duração (até 7 anos em armazenamento adequado)\n\n•    Peso unitário: Aproximadamente 1,6 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL1220, ECR1220, BR1220 e outros equivalentes\n\n Com a qualidade da marca Elgin, as baterias CR1220 fornecem energia estável e confiável para seus dispositivos eletrônicos. O pacote com 5 unidades oferece praticidade e economia, ideal para reposição e uso em equipamentos que exigem desempenho constante e duradouro.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1220\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025702\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 4 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "624c5748-911d-4280-b203-adbb59f00e9e",
+      "sku": "VTK025735",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 66.67,
+      "familyName": "25 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 34,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 55.48
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "25 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n25 Baterias Litio Cr2032 Elgin (5 Cart)\n\nKit com 5 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 5x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 5 unidades\n\n- Embalagem: Pacote / Caixa\n\n25 Baterias Litio Cr2032 Elgin (5 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025735\n\nEMBALAGEM\n• Dimensões informadas: 2 × 5 × 19 cm\n• Peso bruto informado: 0,25 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a53607a5-1161-4421-8f8a-ff6e49b126a6",
+      "sku": "VTK025752",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 67.06,
+      "familyName": "30 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 34.32,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 55.92
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "30 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n30 Baterias Litio Cr2025 Elgin (6 Cart)\n\nKit com 6 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 6x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 6 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025752\n\nEMBALAGEM\n• Dimensões informadas: 2 × 5 × 19 cm\n• Peso bruto informado: 0,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "52ddfb0a-cc84-4a1b-add0-00545e7c886f",
+      "sku": "VTK017716",
+      "category": {
+        "id": "MLB277577",
+        "nome": "Cruzeta Coluna de Direção",
+        "dominio": "Cruzetas de direção para veículos"
+      },
+      "basePrice": 70.87,
+      "familyName": "Cruzeta Metálica Cg3 Reserva De Cabos ópticos",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 35.28,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 59.69
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "CG3"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "327331"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cruzeta Metálica Cg3 Reserva De Cabos ópticos\n\nVISÃO GERAL\nInformações do Produto Cruzeta em Cruz para reserva de Cabo Óptico em poste Aplicação Utilizada para acomodar a reserva técnica de cabo óptico em poste. A Cruzeta tipo cruz deve ser fixada ao poste com suporte e braçadeira de aço ajustável. Material A Cruzeta é fabricada em chapa de aço ABNT 1010/1020 com acabamento galvanizado por imersão a quente.\n\nTipo Reserva em Cruz\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CG3\n• Número de peça: 327331\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CG3\n• NCM: 73269090\n• SKU: VTK017716\n\nEMBALAGEM\n• Dimensões informadas: 12 × 55.6 × 55 cm\n• Peso bruto informado: 1,614 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "efb6e711-24f5-40eb-96d5-11e8399fb49a",
+      "sku": "VTK017208",
+      "category": {
+        "id": "MLB277577",
+        "nome": "Cruzeta Coluna de Direção",
+        "dominio": "Cruzetas de direção para veículos"
+      },
+      "basePrice": 72.03,
+      "familyName": "Cruzeta Metálica Cg3 Para Reserva De Cabos ópticos",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 36.18,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 60.97
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "CG3"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "316063"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cruzeta Metálica Cg3 Para Reserva De Cabos ópticos\n\nVISÃO GERAL\nInformações do Produto Cruzeta em Cruz para reserva de Cabo Óptico em poste Aplicação Utilizada para acomodar a reserva técnica de cabo óptico em poste. A Cruzeta tipo cruz deve ser fixada ao poste com suporte e braçadeira de aço ajustável. Material A Cruzeta é fabricada em chapa de aço ABNT 1010/1020 com acabamento galvanizado por imersão a quente.\n\nTipo Reserva em Cruz *Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CG3\n• Número de peça: 316063\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CG3\n• NCM: 73269090\n• SKU: VTK017208\n\nEMBALAGEM\n• Dimensões informadas: 13 × 56 × 56 cm\n• Peso bruto informado: 1,614 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+      "sku": "VTK017238",
+      "category": {
+        "id": "MLB278141",
+        "nome": "Detectores de Metais",
+        "dominio": "Detectores de metais"
+      },
+      "basePrice": 72.95,
+      "familyName": "Detector De Temperatura 12 24v Segurimax Contato Seco",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 36.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 62
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SEGURIMAX"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "99MM"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597854341"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Detector De Temperatura 12/ 24v Segurimax Contato Seco\n\nVISÃO GERAL\nInformações do Produto Detector de temperatura 12/24V O detector de temperatura Segurimax monitora a temperatura do ar, emitindo um sinal para a central de incêndio e ligando um LED vermelho no corpo do dispositivo, caso a temperatura ultrapasse o limite. Sua operação em 12 ou 24 V possibilita seu uso com diversos modelos de centrais convencionais, tornando-o um dispositivo versátil para diversas aplicações. Indicado para: O detector de temperatura foi desenvolvido para detecção rápida de incêndios nos mais diversos ambientes, como escolas, escritórios, lojas, hotéis, shoppings, restaurantes, etc.\n\n- Funcionamento em 12 e 24V; - Operação por ganho de corrente e por contato seco; - Proteção contra inversão de polaridade da alimentação; - Baixo consumo de corrente; - Versátil para aplicação em diversos ambientes. Informações Técnicas Tensão de operação 12/24V DC Topologia Convencional Corrente em repouso 20 uA Corrente em alarme 25 mA @12V 50 mA @24V Indicação de alarme LED vermelho ligado Indicação de supervisão LED vermelho pisca a cada 12 segundos Saída de alarme Relé NA e ganho de corrente Sensibilidade 57+/-3 ºC - Classe A1S Norma aplicada NBR ISSO 7240-5 Condições de trabalho Temperatura: -10~+50 °C Umidade: 95%RH Material de fabricação ABS Dimensões Ø99mm x 44mm Peso 170g Garantia 1 ano\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SEGURIMAX\n• Modelo: 99MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SEGURIMAX\n• GTIN: 7898597854341\n• NCM: 85319000\n• SKU: VTK017238\n\nEMBALAGEM\n• Dimensões informadas: 5 × 11 × 11 cm\n• Peso bruto informado: 0,154 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "9bba78bf-6c76-45dd-afa1-c460ae550ace",
+      "sku": "VTK012421",
+      "nome": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c5a3ac69-aaa3-408d-ba6a-981ceaa94a52",
+      "sku": "VTK012670",
+      "nome": "Palheta Guitarra Color 1cap7 D Addario 1.25mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3d3e8419-30ba-4171-a441-126deb7ecb98",
+      "sku": "VTK012763",
+      "nome": "Palheta Guitarra Shl Hvy 1csh6 D Addario 1.00mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "83b8f2ec-1894-4f3e-a1f1-01b0a8c62309",
+      "sku": "VTK018562",
+      "nome": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "beb1e6a3-9ff6-44b2-9e87-93213f7cb65b",
+      "sku": "VTK012668",
+      "nome": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "422bcabd-a745-4698-a59a-9b376e947f2c",
+      "sku": "VTK012383",
+      "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6c4f65db-7cd0-448b-90fe-076a6b3ceb7d",
+      "sku": "VTK012384",
+      "nome": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f899d217-66f3-479a-bd1d-5bcaad5e0bad",
+      "sku": "VTK012304",
+      "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+      "sku": "VTK012422",
+      "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5f074728-4dc5-48f5-b9f7-bc62d43f9955",
+      "sku": "VTK018935",
+      "nome": "Antena Permak Shark Preta 100/m",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0e80f90f-6a72-41e4-9d26-2b8277e0b3f6",
+      "sku": "VTK012909",
+      "nome": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto Bkr 1",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278061",
+            "nome": "Capas para Guitarras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f5c8584c-9802-409d-9a4d-51f894cc05d1",
+      "sku": "VTK025365",
+      "nome": "3 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCL Giannini",
+      "error": "Atributos obrigatórios pendentes: Modelo, Instrumento recomendado",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo",
+            "Instrumento recomendado"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

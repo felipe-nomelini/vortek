@@ -1,0 +1,427 @@
+{
+  "batchNumber": 30,
+  "batchId": "profitable-shelf-2-create-030",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "c95e7e90-3c29-4006-96c2-24f3d61e2b16",
+      "sku": "VTK018748",
+      "nome": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem Gancho 2010/2020 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 514.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 514.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1136.18
+      }
+    },
+    {
+      "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+      "sku": "VTK018943",
+      "nome": "Controlador Acesso Ip Wide Cx-7006",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 515.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controlador Acesso Ip Wide Cx 7006 CITROX",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 515.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1138
+      }
+    },
+    {
+      "produtoId": "faa2762b-bc05-4997-8ab9-d82048b6ec49",
+      "sku": "VTK018423",
+      "nome": "Antena Usb Parabólica De Grade Aquário Usb-2510 2.4ghz 25 Dbi E Cabo 10m - PC / 6",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 525,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Usb Parabólica De Grade Aquário Usb 2510 2.4ghz 25",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 525,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1154.55
+      }
+    },
+    {
+      "produtoId": "2c9eb16e-aece-447b-aa78-101378d5d998",
+      "sku": "VTK018351",
+      "nome": "Cabo Para Microfone Santo Angelo Sc-30 Balanceado Azul 100 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 534.9,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Microfone Santo Angelo Sc 30 Balanceado Azul 100",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 534.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1172.55
+      }
+    },
+    {
+      "produtoId": "d31eaadd-2689-44c5-8a49-ec52bd7efdb0",
+      "sku": "VTK020653",
+      "nome": "Capota Marítima Flash Cover Ff155 Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 534.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff155 Volkwagen Saveiro Cabine",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 534.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1172.55
+      }
+    },
+    {
+      "produtoId": "0970adbb-160e-4647-9852-c406fc876c73",
+      "sku": "VTK020654",
+      "nome": "Capota Marítima Flash Cover Ff156 Volkswagen Saveiro Cabine Simples Sem Gancho 2010+ Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 534.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff156 Volkswagen Saveiro Cabine",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 534.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1172.55
+      }
+    },
+    {
+      "produtoId": "e92d8175-c067-44e4-ac0a-6c104db748f2",
+      "sku": "VTK018911",
+      "nome": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 539.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 539.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1181.64
+      }
+    },
+    {
+      "produtoId": "24f67a3a-a737-4058-815e-8dbdf54e5f1a",
+      "sku": "VTK020645",
+      "nome": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton 2009/2017 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 539.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 539.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1181.64
+      }
+    },
+    {
+      "produtoId": "d70cc126-c73f-4c36-bfb6-5fba673a03da",
+      "sku": "VTK018228",
+      "nome": "Cabo Multicabo Santo Angelo Sas 20 Vias Cobre Ofhc Metro - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 549.5,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Multicabo Santo Angelo Sas 20 Vias Cobre Ofhc Metro PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 549.5,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1199.09
+      }
+    },
+    {
+      "produtoId": "5890ee38-8c23-480a-8ea4-3bde52cc8ab8",
+      "sku": "VTK001733",
+      "nome": "Cajón FSA FS2501 Standart Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 552.64,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cajón FSA FS2501 Standart Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 552.64,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1204.8
+      }
+    },
+    {
+      "produtoId": "d20b5f27-f8a0-4c9e-afa8-1791b6f9da0c",
+      "sku": "VTK018477",
+      "nome": "String Box Proauto 4.2e/4.2s 1040vcc",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 555.43,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "String Box Proauto 4.2e 4.2s 1040vcc",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 555.43,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1209.87
+      }
+    },
+    {
+      "produtoId": "b70352f3-1940-4a31-90b8-15dfe7df2f8e",
+      "sku": "VTK025428",
+      "nome": "Kit 4 Alto-Falantes  150w 6 Pol 8 Ohms 6WF310B8 ATK",
+      "fornecedor": "BKR1",
+      "custo": 576,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 4 Alto Falantes 150w 6 Pol 8 Ohms 6WF310B8 ATK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 576,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1247.27
+      }
+    },
+    {
+      "produtoId": "8f8b8004-2749-4790-b626-6bdc31c30dfd",
+      "sku": "VTK018702",
+      "nome": "Alto Falante Hinor Hpl 18\" 1000w Rms 8r Subwoofer",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 581.99,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto Falante Hinor Hpl 18 Polegadas 1000w Rms 8r Subwoofer",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 581.99,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1258.16
+      }
+    },
+    {
+      "produtoId": "2e2cfee5-5f82-46a6-a967-adea0155b425",
+      "sku": "VTK012857",
+      "nome": "Alto-falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk",
+      "fornecedor": "BKR1",
+      "custo": 585,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 585,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1263.64
+      }
+    },
+    {
+      "produtoId": "c9458ce6-3c12-4e88-b0d4-a632fd6a26ae",
+      "sku": "VTK019036",
+      "nome": "Cabo Multicabo Santo Angelo Sas 28 Vias Cobre Ofhc Metro - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 599,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Multicabo Santo Angelo Sas 28 Vias Cobre Ofhc Metro PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 599,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1289.09
+      }
+    },
+    {
+      "produtoId": "f1c7ae2c-2877-4518-987c-94920709e072",
+      "sku": "VTK019108",
+      "nome": "Capota Marítima Flash Cover Ff173 Volkswagen Amarok Cabine Simples 2010+ Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 599.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff173 Volkswagen Amarok Cabine",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 599.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1290.73
+      }
+    },
+    {
+      "produtoId": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+      "sku": "VTK019018",
+      "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 623.99,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto Falante Eros Neo E 515 neo 4 15 Polegadas 4r 500w Rms",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 623.99,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1334.53
+      }
+    },
+    {
+      "produtoId": "bebc3026-4369-4420-9b71-8195f86e3568",
+      "sku": "VTK002571",
+      "nome": "Violão Giannini GSF1D Mini Jumbo Aço Mini Jumbo Natural Glossy",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 624.08,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Violão Giannini GSF1D Mini Jumbo Aço Mini Jumbo Natural",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 624.08,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1334.69
+      }
+    },
+    {
+      "produtoId": "fb948071-e1ce-45bd-9c17-e6922f37ea26",
+      "sku": "VTK001297",
+      "nome": "Guitarra Giannini G100 Sunburst Com Escudo Branco",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 635.73,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Guitarra Giannini G100 Sunburst Com Escudo Branco",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 635.73,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1355.87
+      }
+    },
+    {
+      "produtoId": "01dae389-12cf-488a-a60c-89cd07baa199",
+      "sku": "VTK001303",
+      "nome": "Guitarra Giannini G100 Vermelha Com Escudo Branco",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 637.68,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Guitarra Giannini G100 Vermelha Com Escudo Branco",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 637.68,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1359.42
+      }
+    }
+  ]
+}

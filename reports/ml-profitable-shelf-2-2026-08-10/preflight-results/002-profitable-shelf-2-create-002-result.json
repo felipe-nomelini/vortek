@@ -1,0 +1,617 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/002-profitable-shelf-2-create-002-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-002",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+      "sku": "VTK019103",
+      "category": {
+        "id": "MLB419878",
+        "nome": "Racks de Servidores",
+        "dominio": "Racks para servidores"
+      },
+      "basePrice": 37.74,
+      "familyName": "Frente Falsa Max Eletron 1ux19",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 10.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 23.58
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MAX ELETRON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "1UX19"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7908060203122"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Frente Falsa Max Eletron 1ux19\n\nVISÃO GERAL\nInformações do Produto Frente Falsa 1Us Padrão 19\" Fabricada com material de ótima qualidade e durabilidade, confeccionada em aço estampado, tratado por fosfatização e pintada com tinta hibrida epóxi-pó na cor preta com secagem em forno de alta temperatura, o que garante excelente acabamento e resistência. As Frentes Falsas são utilizadas para preencher espaços vazios e dar acabamento em Equipamentos e Racks padrão 19 polegadas, além de permitir melhor direcionamento no fluxo de ar.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MAX ELETRON\n• Modelo: 1UX19\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MAX ELETRON\n• GTIN: 7908060203122\n• NCM: 94032090\n• SKU: VTK019103\n\nEMBALAGEM\n• Dimensões informadas: 0.1 × 0.1 × 0.6 cm\n• Peso bruto informado: 0,178 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "23e88c00-8ccb-4851-8dee-dd3c39f38903",
+      "sku": "VTK025643",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 38.81,
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 11.44,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.58
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n10 Baterias Litio Cr2025 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025643\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6 × 19 cm\n• Peso bruto informado: 0,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0510aa95-38fb-4f97-a333-40fe318dea16",
+      "sku": "VTK017165",
+      "category": {
+        "id": "MLB436012",
+        "nome": "Outros",
+        "dominio": "Acessórios para celulares"
+      },
+      "basePrice": 38.9,
+      "familyName": "Kit Adaptador Proeletronic Para Celular Pqkc 0160",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 11.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.86
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca do acessório",
+          "value_id": "",
+          "value_name": "PROELETRONIC"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Adaptador Proeletronic Para Celular - Pqkc-0160\n\nVISÃO GERAL\nO Kit Adaptador é utilizado para fazer a ligação entre o cabo de descida da antena com o seu celular, possibilitando uma conexão perfeita e com um ótimo rendimento entre antena e aparelho. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca do acessório: PROELETRONIC\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROELETRONIC\n• NCM: 85444200\n• SKU: VTK017165\n\nEMBALAGEM\n• Dimensões informadas: 1.7 × 11 × 15.5 cm\n• Peso bruto informado: 0,036 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d4f2810e-11b2-4b4c-8ae7-91328bb0cbaa",
+      "sku": "VTK017868",
+      "category": {
+        "id": "MLB435301",
+        "nome": "Espumas Acústicas",
+        "dominio": "Espumas acústicas"
+      },
+      "basePrice": 40.96,
+      "familyName": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 11.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 26.36
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "DANEVA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SUP2"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896586815137"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513\n\nVISÃO GERAL\nEXTENSÃO SORT PL - CORDÃO PARALELO (PL) Este produto está equipado com um cordão paralelo. Permite a conexão de 1 a 3 plugues de 2 polos simultaneamente, sendo ideal para escritórios e ambientes residenciais. Informações Técnicas Fiação 2 x 0,75mm Plug 3 Amperagem 10A Tensão 250V~\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: DANEVA\n• Modelo: SUP2\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: DANEVA\n• GTIN: 7896586815137\n• NCM: 85444900\n• SKU: VTK017868\n\nEMBALAGEM\n• Dimensões informadas: 3 × 9 × 18 cm\n• Peso bruto informado: 0,144 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3e56831a-0b35-4b2e-abf3-82b4f7406d17",
+      "sku": "VTK018222",
+      "category": {
+        "id": "MLB445725",
+        "nome": "Alto-falantes",
+        "dominio": "Acessórios para motos"
+      },
+      "basePrice": 42.18,
+      "familyName": "Bucha Para Kit Do Alto Falante Gol Original Permak 237 a",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 12.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 27.71
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "173351"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bucha Para Kit Do Alto Falante Gol Original Permak 237/a\n\nVISÃO GERAL\nBucha Para Alto Falante Permak Kit Original Gol Cento\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 173351\n• Tipo de veículo: Carro/Caminhonete\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• NCM: 87082999\n• SKU: VTK018222\n\nEMBALAGEM\n• Dimensões informadas: 1 × 10 × 10 cm\n• Peso bruto informado: 0,028 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cf0f9b00-8da7-4d5b-bd0b-be6392474156",
+      "sku": "VTK025644",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 41.48,
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 13.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 27.53
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n10 Baterias Litio Cr2032 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\n10 Baterias Litio Cr2032 Elgin (2 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025644\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6 × 19 cm\n• Peso bruto informado: 0,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "8b244ff4-cd3c-4be7-9e79-07d65a6a4e22",
+      "sku": "VTK012359",
+      "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3d89cea5-4142-4587-9e80-f83fb967c9e6",
+      "sku": "VTK012233",
+      "nome": "Palheta Bori Grl At-r16102 Picker 0,73 Mm (azul) R21003 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "521f017d-10c5-4043-950e-aa4d05920e70",
+      "sku": "VTK012236",
+      "nome": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fbb175b5-eb44-44bb-9633-567f8d679cb7",
+      "sku": "VTK017336",
+      "nome": "Cabo De Microfone P10 Macho X Cannon Femea",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "de50e676-526a-4e09-95f9-9f98b0085d0e",
+      "sku": "VTK017234",
+      "nome": "Suporte Antena Cromo 211-b Emenda Tubo 1\"",
+      "error": "Atributos obrigatórios pendentes: Modelo, É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "Modelo",
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3e8422a9-8386-4549-aa31-1b851fb1e75d",
+      "sku": "VTK017408",
+      "nome": "Bateria Alcalina Elgin A23 Blister Com 5 Unidades.",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9646acd3-c2c3-4e28-97f6-3cf5fa0d55ed",
+      "sku": "VTK017636",
+      "nome": "Divisor Proeletronic Pqdv-2024 1:4 Satélite 5 2400mhz",
+      "error": "Atributos obrigatórios pendentes: É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "11460c2a-409a-43e8-9fe7-becc8ce904b8",
+      "sku": "VTK003511",
+      "nome": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271531",
+            "nome": "Biqueiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "21938c94-7c06-4026-8282-8a9bd40fbfdd",
+      "sku": "VTK017826",
+      "nome": "Rele De Buzina Permak Universal 5 Terminais",
+      "error": "Atributos obrigatórios pendentes: Tipo de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB456688",
+            "nome": "Buzinas"
+          },
+          "missing": [
+            "Tipo de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "31ad1f70-a866-494c-bcd2-fd2dba879f11",
+      "sku": "VTK017252",
+      "nome": "Cabo Otg Evus C-078 Lightning X Usb 2.0 15cm",
+      "error": "Atributos obrigatórios pendentes: Conector de entrada, Conector de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5080",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Conector de entrada",
+            "Conector de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7e90266d-cd51-4d22-9d19-4158db77962a",
+      "sku": "VTK001450",
+      "nome": "Encordoamento Para Cavaco Aço Leve Série Cobra Gescl Giannini",
+      "error": "Atributos obrigatórios pendentes: Modelo, Instrumento recomendado",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo",
+            "Instrumento recomendado"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "47638703-a897-463e-ae17-0d9ad238732d",
+      "sku": "VTK018616",
+      "nome": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89/c2",
+      "error": "Atributos obrigatórios pendentes: Modelo, Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Modelo",
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d5b6ffe5-7ac5-4e02-8b3c-b041da5a9347",
+      "sku": "VTK017259",
+      "nome": "Conector Klc Tnc Tm-1 Macho Rg/rgc 58",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB70452",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d082d8d2-753d-440c-b711-ee81e3f646ea",
+      "sku": "VTK017278",
+      "nome": "Carregador Veicular Usb Evus C-098 Com Led 5v 2a",
+      "error": "Atributos obrigatórios pendentes: Tipos de conectores do cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430121",
+            "nome": "Carregadores"
+          },
+          "missing": [
+            "Tipos de conectores do cabo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

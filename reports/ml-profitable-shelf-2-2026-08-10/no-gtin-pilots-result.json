@@ -1,0 +1,1117 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/no-gtin-pilots.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-no-gtin-pilots",
+  "selected": 32,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "9097c6f9-c38c-4641-9481-de220f3f0ad6",
+      "sku": "VTK018854",
+      "category": {
+        "id": "MLB4187",
+        "nome": "MLB4187",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7381766316",
+        "title": "Kit Adaptador Para Celular Pqkc 0345 Proeletronic",
+        "price": 28.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381766316-kit-adaptador-para-celular-pqkc-0345-proeletronic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 28.99
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1118946f-9c4e-423e-a4df-0ccf47e2e572",
+      "sku": "VTK017778",
+      "category": {
+        "id": "MLB115699",
+        "nome": "MLB115699",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034787225",
+        "title": "Sirene Dedicada Positron Para Alarme Si 700",
+        "price": 30.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034787225-sirene-dedicada-positron-para-alarme-si-700-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 30.7
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a77fbe7f-68b2-48a6-9658-53397fa53f2d",
+      "sku": "VTK025638",
+      "category": {
+        "id": "MLB11615",
+        "nome": "MLB11615",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7381766444",
+        "title": "10 Pilhas Moeda Lítio Elgin Cr1620 3v Kit",
+        "price": 29.05,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381766444-10-pilhas-moeda-litio-elgin-cr1620-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 29.05
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7bfebc32-b761-4e70-8cca-958317adb165",
+      "sku": "VTK017631",
+      "category": {
+        "id": "MLB440306",
+        "nome": "MLB440306",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034787395",
+        "title": "Controle Remoto Fks Cr941 Digital 433mhz",
+        "price": 42,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034787395-controle-remoto-fks-cr941-digital-433mhz-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 42
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "146a4041-4ce4-4c8d-afa6-9d60694822ae",
+      "sku": "VTK017871",
+      "category": {
+        "id": "MLB418301",
+        "nome": "MLB418301",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034769815",
+        "title": "Microfone Ipec Profissional Para Cftv",
+        "price": 42.77,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034769815-microfone-ipec-profissional-para-cftv-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 42.77
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e965914f-f1ad-496d-a062-e356995e054b",
+      "sku": "VTK018310",
+      "category": {
+        "id": "MLB277529",
+        "nome": "MLB277529",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034824745",
+        "title": "Controle Remoto Fks Cr955 G3 Digital 433mhz",
+        "price": 46.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034824745-controle-remoto-fks-cr955-g3-digital-433mhz-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 46.29
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9d3e1af8-3cd3-49aa-a3ff-69759c47f3ad",
+      "sku": "VTK018338",
+      "category": {
+        "id": "MLB63114",
+        "nome": "MLB63114",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034824849",
+        "title": "Cabo Extensão De Antena Permak 1,50 Metros Pc 2",
+        "price": 48.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034824849-cabo-extenso-de-antena-permak-150-metros-pc-2-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 48.65
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0610c199-29fa-421f-bd33-1f2c2c89a175",
+      "sku": "VTK017216",
+      "category": {
+        "id": "MLB407820",
+        "nome": "MLB407820",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034770067",
+        "title": "Big Haste 28x28 1,00m Completa Gancho E Castanha Confiseg",
+        "price": 51.63,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034770067-big-haste-28x28-100m-completa-gancho-e-castanha-confiseg-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 51.63
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "645d1a41-8a43-4fdc-b141-0fc0df0949b9",
+      "sku": "VTK017766",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034825123",
+        "title": "Shock Reparo Driver Parcial D 300 D 305 Selenium S Aneis",
+        "price": 52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034825123-shock-reparo-driver-parcial-d-300-d-305-selenium-s-aneis-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 52
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "52ddfb0a-cc84-4a1b-add0-00545e7c886f",
+      "sku": "VTK017716",
+      "category": {
+        "id": "MLB277577",
+        "nome": "MLB277577",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034788017",
+        "title": "Cruzeta Metálica Cg3 Reserva De Cabos Ópticos",
+        "price": 59.69,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034788017-cruzeta-metalica-cg3-reserva-de-cabos-opticos-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 59.69
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+      "sku": "VTK012414",
+      "category": {
+        "id": "MLB457514",
+        "nome": "MLB457514",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034825565",
+        "title": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06",
+        "price": 150.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034825565-adaptador-35-femea-trs-63mm-macho-wc347-wireconex-06-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "GTIN ausente. Motivo enviado ao ML: O produto não tem código cadastrado.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 150.94
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e266ab06-5d7b-4084-99de-c3fbdca2a35b",
+      "sku": "VTK019017",
+      "category": {
+        "id": "MLB269930",
+        "nome": "MLB269930",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034825645",
+        "title": "Calha Com 2 Tomadas 2p+t 2 Colares Rj 45 Lan Rack 51610 Preto",
+        "price": 158.05,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034825645-calha-com-2-tomadas-2pt-2-colares-rj-45-lan-rack-51610-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 158.05
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a2e5c594-7028-4312-8b89-c896ac9829f7",
+      "sku": "VTK018770",
+      "category": {
+        "id": "MLB45372",
+        "nome": "MLB45372",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034825759",
+        "title": "Parafuso Para Alto Falante Do Gol 4 X 10 Mm 144 Cento Pc 5",
+        "price": 167.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034825759-parafuso-para-alto-falante-do-gol-4-x-10-mm-144-cento-pc-5-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 167.54
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "14ac74a6-6f78-4a3d-9580-6cb4c7efc075",
+      "sku": "VTK012766",
+      "category": {
+        "id": "MLB11517",
+        "nome": "MLB11517",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034788561",
+        "title": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+        "price": 192.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034788561-cabo-para-caixa-4-polos-5-metros-spk-4p-05-225-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 192.19
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "12c9a730-40f0-4609-a207-d65812d7b85c",
+      "sku": "VTK018713",
+      "category": {
+        "id": "MLB1692",
+        "nome": "MLB1692",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034788621",
+        "title": "Kit Placa Dvr Seykon Pci Sk 8416 16 Canais",
+        "price": 394.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034788621-kit-placa-dvr-seykon-pci-sk-8416-16-canais-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 394.65
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "88980f83-3386-4f2d-a2fe-313ff027f6fe",
+      "sku": "VTK018913",
+      "category": {
+        "id": "MLB455981",
+        "nome": "MLB455981",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034825983",
+        "title": "Caixa Rlp Vazia Para Carro Emborrachada 2 12 Polegadas + 2tw",
+        "price": 533.77,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034825983-caixa-rlp-vazia-para-carro-emborrachada-2-12-polegadas-2tw-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 533.77
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "18a9802b-c884-40c0-8244-b2afb4fb68bc",
+      "sku": "VTK018717",
+      "category": {
+        "id": "MLB277565",
+        "nome": "MLB277565",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034826019",
+        "title": "Cabo Auto Plastic Pompéia 1,50 Mm 300v Rolo Com 100 Metros",
+        "price": 435.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034826019-cabo-auto-plastic-pompeia-150-mm-300v-rolo-com-100-metros-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 435.54
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7d1e1485-0cb9-4db5-add8-4d240f7a721d",
+      "sku": "VTK018895",
+      "category": {
+        "id": "MLB419878",
+        "nome": "MLB419878",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034771127",
+        "title": "D.i.o Seccon Para Painel Até 24fo 19 Polegadas Preto Preto",
+        "price": 480.53,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034771127-dio-seccon-para-painel-ate-24fo-19-polegadas-preto-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 480.53
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7cef02fb-c0a8-46c9-aad7-7f14ee4b6644",
+      "sku": "VTK018600",
+      "category": {
+        "id": "MLB420039",
+        "nome": "MLB420039",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034788795",
+        "title": "Kit Placa Dvr Seykon Pci Sk 9808 8 Canais Real Time",
+        "price": 523.27,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034788795-kit-placa-dvr-seykon-pci-sk-9808-8-canais-real-time-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 523.27
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1bdb1500-91d5-4573-909f-e3ca5ff425cd",
+      "sku": "VTK018985",
+      "category": {
+        "id": "MLB30208",
+        "nome": "MLB30208",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034771253",
+        "title": "String Box Proauto 2e 2s 1040vcc",
+        "price": 1050.77,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034771253-string-box-proauto-2e-2s-1040vcc-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1050.77
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "908bfa7e-f3af-4c79-a099-61f10f569465",
+      "sku": "VTK025406",
+      "category": {
+        "id": "MLB129666",
+        "nome": "MLB129666",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034771305",
+        "title": "Kit 2 Alto Falantes 700w 12 Pol 8 Ohms 12lf1410b8 Atk",
+        "price": 2245.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034771305-kit-2-alto-falantes-700w-12-pol-8-ohms-12lf1410b8-atk-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 2245.61
+      }
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "9b0f50fa-8a3d-4926-a677-858efeba8d8b",
+      "sku": "VTK017531",
+      "nome": "Terminal De Fio Aberto Forquilha1/8 Permak Para Módulo - 100un.",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB38172]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB38172]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB38172]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "2f8b64e2-b58e-4add-a49a-2034f688d64c",
+      "sku": "VTK018277",
+      "nome": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-30",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB48611]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB48611]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB48611]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "86d06e3c-d1e8-4110-b213-94479b55b881",
+      "sku": "VTK012522",
+      "nome": "Bateria 2CR5 6V Panasonic - 1 Unidade",
+      "error": "Produto Panasonic de pilha/bateria exige categoria ML \"Pilhas\" (MLB7060).",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "error": "Produto Panasonic de pilha/bateria exige categoria ML \"Pilhas\" (MLB7060)."
+      }
+    },
+    {
+      "produtoId": "0efe9ce3-b3ea-4ff5-8e39-cb82c92e6c5b",
+      "sku": "VTK025367",
+      "nome": "3 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB278076]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB278076]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB278076]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "5d50c257-99c4-4dfa-92d7-536ff82048f4",
+      "sku": "VTK017779",
+      "nome": "Mouse Sem Fio Logitech M185 Cinza",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB1714]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB1714]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB1714]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "b1999a56-8e7b-40dd-8312-5ff1b365838f",
+      "sku": "VTK018761",
+      "nome": "Botoeira Ipec Fonte 1a Na/nf",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB194301]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB194301]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB194301]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "289f321c-9b4d-4fee-bdbf-b5758f88ae17",
+      "sku": "VTK012018",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB420707]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB420707]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB420707]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "42036964-5824-4b6d-9b59-7d8c46f35025",
+      "sku": "VTK018700",
+      "nome": "Arandela Frahm 6\" Coaxial 25 W Rms 8r Metálica 20760",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB11507]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB11507]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB11507]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "277d3d7a-2e08-442d-a630-39a60afd344a",
+      "sku": "VTK017869",
+      "nome": "Lanterna Rayovac Indestrutível",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB434342]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB434342]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB434342]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "203d99f8-bf9a-4438-80a4-4402c0d4dd79",
+      "sku": "VTK019037",
+      "nome": "Headset Logitech H390 Usb",
+      "error": "Validation error | item.attribute.missing_catalog_required: O campo \"Cor\" é obrigatório e não foi adicionado. | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB1664]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_catalog_required: O campo \"Cor\" é obrigatório e não foi adicionado. | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB1664]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_catalog_required: O campo \"Cor\" é obrigatório e não foi adicionado. | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB1664]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "c45495b3-fa5d-4d97-9faa-5f6ab62b1201",
+      "sku": "VTK019185",
+      "nome": "Micro Inversor Solar Deye Sun-m225g4 2,25kw",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB435616]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB435616]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB435616]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    }
+  ]
+}

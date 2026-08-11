@@ -1,0 +1,78 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/017-profitable-shelf-2-create-017-gtin-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-017",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "45931e8a-7e98-47f7-858f-bc7f8dbf6659",
+      "sku": "VTK001330",
+      "category": {
+        "id": "MLB192364",
+        "nome": "Apoio de Cabeças",
+        "dominio": "Encosto de cabeças para carros e caminhonetes"
+      },
+      "anuncio": {
+        "id": "MLB7381754912",
+        "title": "Encosto De Cabeça Ergo One Fortrek",
+        "price": 181.62,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754912-encosto-de-cabeca-ergo-one-fortrek-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 18.85,
+        "shipping_source": "erp",
+        "ml_fee": 0.17,
+        "price": 181.62
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8e2465a6-d87e-46f7-bfd2-4b923d50ee97",
+      "sku": "VTK018378",
+      "category": {
+        "id": "MLB277592",
+        "nome": "Baús Traseiros",
+        "dominio": "Baús para motos"
+      },
+      "anuncio": {
+        "id": "MLB7381674436",
+        "title": "Caixa Rlp Vazia Para Moto Emborrachada 2 10 Polegadas + 2tw",
+        "price": 201.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381674436-caixa-rlp-vazia-para-moto-emborrachada-2-10-polegadas-2tw-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 201.61
+      }
+    }
+  ],
+  "failed": []
+}

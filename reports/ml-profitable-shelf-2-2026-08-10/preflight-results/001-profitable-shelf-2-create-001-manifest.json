@@ -1,0 +1,427 @@
+{
+  "batchNumber": 1,
+  "batchId": "profitable-shelf-2-create-001",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "1c4d893b-8980-44a5-bb9f-62a7c419133d",
+      "sku": "VTK012144",
+      "nome": "Pilha Alcalina Aaa2 Elgin Cartela Com 02 Unidades",
+      "fornecedor": "BKR1",
+      "custo": 4.2,
+      "estoque": 41,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pilha Alcalina Aaa2 Elgin Cartela Com 02 Unidades",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 4.2,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.67
+      }
+    },
+    {
+      "produtoId": "3879e22f-03ce-4a4b-9003-d81c449cf43d",
+      "sku": "VTK012037",
+      "nome": "Pilha Alcalina Premium Panasonic Aa Pequena 02 Unidades Lr6egr/2b96",
+      "fornecedor": "BKR1",
+      "custo": 6.53,
+      "estoque": 100,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pilha Alcalina Premium Panasonic Aa Pequena 02 Unidades",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 6.53,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25.86
+      }
+    },
+    {
+      "produtoId": "8f654494-9099-4c7b-84d7-b82af20168fb",
+      "sku": "VTK012235",
+      "nome": "Lâmpada Led Tkl 80 / 12w 6500k",
+      "fornecedor": "BKR1",
+      "custo": 6.86,
+      "estoque": 31,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lâmpada Led Tkl 80 12w 6500k Taschibra",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 6.86,
+        "shipping": 13.85,
+        "shippingSource": "erp",
+        "mlFee": 0.115,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 27.43
+      }
+    },
+    {
+      "produtoId": "543cd6ae-f86f-473c-8c3c-55cd8e70e50c",
+      "sku": "VTK012248",
+      "nome": "Palheta Bori Grl At-r16103 Picker 0,82 Mm (vermelho) R21004 10un",
+      "fornecedor": "BKR1",
+      "custo": 8,
+      "estoque": 32,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.82mm vermelho Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 20.14
+      }
+    },
+    {
+      "produtoId": "878494a4-238b-4e01-9d02-8b9db1660faa",
+      "sku": "VTK012275",
+      "nome": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+      "fornecedor": "BKR1",
+      "custo": 8,
+      "estoque": 27,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.94mm verde Esc Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 20.14
+      }
+    },
+    {
+      "produtoId": "34ced274-3d7d-41ce-bde4-ede040014072",
+      "sku": "VTK012319",
+      "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+      "fornecedor": "BKR1",
+      "custo": 8,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.96mm Azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 20.14
+      }
+    },
+    {
+      "produtoId": "4b8e4e44-3472-4439-bf59-650b983a24bd",
+      "sku": "VTK012408",
+      "nome": "Palheta Bori Grl At-r16107 S.t.d 0,78 Mm (rosa) R21011 10un",
+      "fornecedor": "BKR1",
+      "custo": 8,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.78mm rosa Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 20.14
+      }
+    },
+    {
+      "produtoId": "140f0532-8d7c-4863-8ccb-559355ed369b",
+      "sku": "VTK012470",
+      "nome": "Palheta Bori Grl At-r16114 Azul Crystal 0,82 Mm R21007 10un",
+      "fornecedor": "BKR1",
+      "custo": 8,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.82mm Azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 20.14
+      }
+    },
+    {
+      "produtoId": "84ebeb50-8e9e-4528-a628-79255507f7b9",
+      "sku": "VTK012543",
+      "nome": "Palheta Bori Grl At-r16109 S.t.d 0,89 Mm (roxo) R21013 10un",
+      "fornecedor": "BKR1",
+      "custo": 8,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.89mm roxo Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 20.14
+      }
+    },
+    {
+      "produtoId": "b4916f7e-70e1-426c-a271-bd7ab2ac90ee",
+      "sku": "VTK012282",
+      "nome": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+      "fornecedor": "BKR1",
+      "custo": 8.87,
+      "estoque": 24,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.80mm azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 8.87,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 21.35
+      }
+    },
+    {
+      "produtoId": "c71efd1f-eea6-43ba-adee-9d6dfb0699e9",
+      "sku": "VTK012335",
+      "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+      "fornecedor": "BKR1",
+      "custo": 9.11,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 1.14mm preto Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 9.11,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 21.68
+      }
+    },
+    {
+      "produtoId": "a2243285-b7ee-4217-9225-22df8cd9d6a5",
+      "sku": "VTK012420",
+      "nome": "Bateria 9v Alcalina Unidade Flex",
+      "fornecedor": "BKR1",
+      "custo": 9.5,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bateria 9v Alcalina Unidade Flex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 9.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.22
+      }
+    },
+    {
+      "produtoId": "1bbbffef-7733-4f79-a62f-5bfccd76e3cc",
+      "sku": "VTK012237",
+      "nome": "Palheta Bori Grl At-r16147 Rio Xxl (preto) R21032 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 37,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori preto Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "87cdd472-e303-43a5-a712-339a38abc358",
+      "sku": "VTK012283",
+      "nome": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori vermelho Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "73012fb6-c36a-42bf-97c5-df0dd984de1d",
+      "sku": "VTK012301",
+      "nome": "Palheta Bori Grl At-r16145 Rio Iii (preto) R21031 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 23,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori preto Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "e9198188-46cf-49eb-b90f-b7b7eaf37b3b",
+      "sku": "VTK012310",
+      "nome": "Palheta Bori Grl At-r16142 Rio Ii (vermelho) R21026 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori vermelho Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "2900f5c0-284c-4f25-afdf-02e041156354",
+      "sku": "VTK012320",
+      "nome": "Palheta Bori Grl At-r16136 Drip Gota 2,50 Mm (azul) R21019 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 2.50mm azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "04e730e5-b9d0-4147-b1c5-4428e8fc4c71",
+      "sku": "VTK012321",
+      "nome": "Palheta Bori Grl At-r16144 Rio Iii (vermelho) R21027 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori vermelho Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "6e303597-dc2a-4632-b320-fd3b92447ee5",
+      "sku": "VTK012336",
+      "nome": "Palheta Bori Grl At-r16132 Drip Gota 1,50 Mm (azul) R21017 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 1.50mm azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "e6b1f9d9-cb95-4695-ad62-b9593259ae60",
+      "sku": "VTK012337",
+      "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 3.00mm azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "batchNumber": 30,
+  "batchId": "profitable-shelf-2-create-030",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "5890ee38-8c23-480a-8ea4-3bde52cc8ab8",
+      "sku": "VTK001733",
+      "nome": "Cajón FSA FS2501 Standart Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 552.64,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cajón FSA FS2501 Standart Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 552.64,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1204.8
+      }
+    },
+    {
+      "produtoId": "2e2cfee5-5f82-46a6-a967-adea0155b425",
+      "sku": "VTK012857",
+      "nome": "Alto-falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk",
+      "fornecedor": "BKR1",
+      "custo": 585,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 585,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1263.64
+      }
+    },
+    {
+      "produtoId": "bebc3026-4369-4420-9b71-8195f86e3568",
+      "sku": "VTK002571",
+      "nome": "Violão Giannini GSF1D Mini Jumbo Aço Mini Jumbo Natural Glossy",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 624.08,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Violão Giannini GSF1D Mini Jumbo Aço Mini Jumbo Natural",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 624.08,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1334.69
+      }
+    }
+  ]
+}

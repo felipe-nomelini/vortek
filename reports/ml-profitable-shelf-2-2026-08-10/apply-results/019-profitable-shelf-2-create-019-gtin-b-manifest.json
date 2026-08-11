@@ -1,0 +1,91 @@
+{
+  "batchNumber": 19,
+  "batchId": "profitable-shelf-2-create-019",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "17271a27-6856-4fe1-bc34-797e7b773583",
+      "sku": "VTK002305",
+      "nome": "Emenda XLR x XLR em Metal EMCN0001 Prata Storm - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 102.48,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Emenda XLR x XLR em Metal EMCN0001 Prata Storm PCT 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 102.48,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 231.78
+      }
+    },
+    {
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 104.9,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela Sem Borda Frahm 6 Polegadas 40w Full Ranger",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 104.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 236.18
+      }
+    },
+    {
+      "produtoId": "71e8cbf9-9eba-45b9-8902-5f177dc768bc",
+      "sku": "VTK018448",
+      "nome": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 104.9,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 104.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 236.18
+      }
+    },
+    {
+      "produtoId": "1135a138-405e-4964-9a12-9044e528901a",
+      "sku": "VTK019124",
+      "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Redonda",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 106.9,
+      "estoque": 24,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela Sem Borda Frahm 6 Polegadas 40w Full Ranger Redonda",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 106.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 239.82
+      }
+    }
+  ]
+}

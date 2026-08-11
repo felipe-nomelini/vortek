@@ -1,0 +1,180 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/024-profitable-shelf-2-create-024-gtin-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-024",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d65fb439-c01c-4078-ac02-56024daec98d",
+      "sku": "VTK017156",
+      "category": {
+        "id": "MLB270590",
+        "nome": "Suportes para Console de Som",
+        "dominio": "Racks para DJ"
+      },
+      "anuncio": {
+        "id": "MLB7381671410",
+        "title": "Suporte Multifuncional Ask Pnt2 Com Bandeja Preto Preto",
+        "price": 381.52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381671410-suporte-multifuncional-ask-pnt2-com-bandeja-preto-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 381.52
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9dd61838-7a13-4344-9aae-bbae51ff98de",
+      "sku": "VTK017904",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": "Sistemas de levantamento de vidro elétricos para carros e caminhonetes"
+      },
+      "anuncio": {
+        "id": "MLB7381671558",
+        "title": "Centralina Soft Aw54 4 Vidros Comum + Ae",
+        "price": 411.13,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381671558-centralina-soft-aw54-4-vidros-comum-ae-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 411.13
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "category": {
+        "id": "MLB260688",
+        "nome": "Busca-Pólos",
+        "dominio": "Detectores de tensão"
+      },
+      "anuncio": {
+        "id": "MLB5034732297",
+        "title": "Testador Smd Com Pinça Hikari Hm 10",
+        "price": 394.46,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034732297-testador-smd-com-pinca-hikari-hm-10-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 394.46
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+      "sku": "VTK018712",
+      "category": {
+        "id": "MLB277681",
+        "nome": "Eletrocardiógrafos",
+        "dominio": "Eletrocardiógrafos"
+      },
+      "anuncio": {
+        "id": "MLB7381741220",
+        "title": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20",
+        "price": 424.34,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381741220-cabo-de-descida-proeletronic-para-celular-fixo-rgc213-20-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 424.34
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "df359f31-4088-47d1-a271-9d69caa9f73e",
+      "sku": "VTK001386",
+      "category": {
+        "id": "MLB278236",
+        "nome": "Suportes para Luzes",
+        "dominio": "Suportes para luzes"
+      },
+      "anuncio": {
+        "id": "MLB7381741334",
+        "title": "Pedestal Canhão De Iluminação Cl34 Ask",
+        "price": 346.07,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381741334-pedestal-canho-de-iluminaco-cl34-ask-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 24.65,
+        "shipping_source": "erp",
+        "ml_fee": 0.13,
+        "price": 346.07
+      }
+    }
+  ],
+  "failed": []
+}

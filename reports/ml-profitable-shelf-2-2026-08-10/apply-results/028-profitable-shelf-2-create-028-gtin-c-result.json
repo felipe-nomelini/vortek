@@ -1,0 +1,78 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/028-profitable-shelf-2-create-028-gtin-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-028",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "5daedd76-1c15-4a23-b0c0-318d437f575b",
+      "sku": "VTK001241",
+      "category": {
+        "id": "MLB99961",
+        "nome": "Limpadores",
+        "dominio": "Panos de limpeza"
+      },
+      "anuncio": {
+        "id": "MLB7381753888",
+        "title": "Álcool Isopropilíco 99,8% 1000ml Isopropilico Transparente",
+        "price": 633.07,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381753888-alcool-isopropilico-998-1000ml-isopropilico-transparente-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 26.25,
+        "shipping_source": "erp",
+        "ml_fee": 0.15,
+        "price": 633.07
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b41881b6-b8ba-4715-9862-dd4e31ac9ae7",
+      "sku": "VTK001371",
+      "category": {
+        "id": "MLB31156",
+        "nome": "Apoios de Braço",
+        "dominio": "Apoios de braço para carros e caminhonetes"
+      },
+      "anuncio": {
+        "id": "MLB7381673396",
+        "title": "Apoio Braço Esquerdo Core Racer Modern Black Thunderx3",
+        "price": 794.91,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381673396-apoio-braco-esquerdo-core-racer-modern-black-thunderx3-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 70.25,
+        "shipping_source": "erp",
+        "ml_fee": 0.17,
+        "price": 794.91
+      }
+    }
+  ],
+  "failed": []
+}

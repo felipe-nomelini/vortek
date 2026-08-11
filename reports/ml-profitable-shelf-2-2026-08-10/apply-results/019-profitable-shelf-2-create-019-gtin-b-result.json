@@ -1,0 +1,146 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/019-profitable-shelf-2-create-019-gtin-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-019",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "17271a27-6856-4fe1-bc34-797e7b773583",
+      "sku": "VTK002305",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB7381755494",
+        "title": "Emenda Xlr X Xlr Em Metal Emcn0001 Prata Storm Pct 10",
+        "price": 223.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381755494-emenda-xlr-x-xlr-em-metal-emcn0001-prata-storm-pct-10-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 223.65
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "category": {
+        "id": "MLB6535",
+        "nome": "Grades para Caixas de Som",
+        "dominio": "Grades para caixas de som"
+      },
+      "anuncio": {
+        "id": "MLB7381744360",
+        "title": "Arandela Sem Borda Frahm 6 Polegadas 40w Full Ranger",
+        "price": 240.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381744360-arandela-sem-borda-frahm-6-polegadas-40w-full-ranger-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.16,
+        "price": 240.56
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "71e8cbf9-9eba-45b9-8902-5f177dc768bc",
+      "sku": "VTK018448",
+      "category": {
+        "id": "MLB419878",
+        "nome": "Racks de Servidores",
+        "dominio": "Racks para servidores"
+      },
+      "anuncio": {
+        "id": "MLB7381675254",
+        "title": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos",
+        "price": 227.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381675254-bandeja-movel-max-eletron-19-1u-x-600mm-ventilada-4-pontos-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 227.89
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1135a138-405e-4964-9a12-9044e528901a",
+      "sku": "VTK019124",
+      "category": {
+        "id": "MLB6535",
+        "nome": "Grades para Caixas de Som",
+        "dominio": "Grades para caixas de som"
+      },
+      "anuncio": {
+        "id": "MLB7381675360",
+        "title": "Arandela Sem Borda Frahm 6 Polegadas 40w Full Ranger Redonda",
+        "price": 244.26,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381675360-arandela-sem-borda-frahm-6-polegadas-40w-full-ranger-redonda-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.16,
+        "price": 244.26
+      }
+    }
+  ],
+  "failed": []
+}

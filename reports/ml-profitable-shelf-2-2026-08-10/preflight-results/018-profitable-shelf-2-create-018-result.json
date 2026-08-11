@@ -1,0 +1,609 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/018-profitable-shelf-2-create-018-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-018",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "e1ebc8f3-13a7-47a4-bac2-394abbf07c36",
+      "sku": "VTK015922",
+      "category": {
+        "id": "MLB7051",
+        "nome": "Baterias",
+        "dominio": "Baterias para câmeras"
+      },
+      "basePrice": 138.78,
+      "familyName": "02 Baterias 2CR5 6v Panasonic",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 93.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 208.42
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Panasonic"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "2CR5"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "02 Baterias 2CR5 6v Panasonic\n\nVISÃO GERAL\n02 Baterias 2CR5 6v Panasonic\n\nEste anúncio corresponde ao kit 02 Baterias 2CR5 6v Panasonic.\n\nConteúdo da embalagem:\n\n- 02 Baterias 2CR5 6v Panasonic\n\nDetalhes do produto:\n\n- Marca: Panasonic\n\n- Embalagem: Pacote / Caixa\n\n- Garantia do fornecedor: 3 meses\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Panasonic\n• Modelo: 2CR5\n• Unidades por kit: 2\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Panasonic\n• NCM: 8506.50.10\n• SKU: VTK015922\n\nEMBALAGEM\n• Dimensões informadas: 10 × 10 × 5 cm\n• Peso bruto informado: 0,08 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1a60c9a6-4afb-43ae-83d9-af2db6c712d4",
+      "sku": "VTK025814",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 150,
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 94,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 216.36
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "50 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n50 Baterias Litio Cr2016 Elgin (10 Cart)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025814\n\nEMBALAGEM\n• Dimensões informadas: 6 × 5 × 19 cm\n• Peso bruto informado: 0,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e369a674-b159-4071-b20d-195dbb3c852d",
+      "sku": "VTK003685",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 139.65,
+      "familyName": "Conector Speakon 90° 4 Polos PGSP0005 Preto Azul Storm PCT",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 94.51,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 209.67
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "STORM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PGSP0005"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566208328"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Conector Speakon 90° 4 Polos PGSP0005 Preto/Azul Storm - PCT / 10\n\nVISÃO GERAL\nO Conector Speakon 90° 4 Polos é um modelo que proporciona excelente qualidade, através de uma estrutura resistente e durável.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: STORM\n• Modelo: PGSP0005\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566208328\n• NCM: 8536.69.90\n• SKU: VTK003685\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 25 × 17 cm\n• Peso bruto informado: 0,49 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "10a2a623-2b58-438c-a0c2-aa46022bb855",
+      "sku": "VTK018325",
+      "category": {
+        "id": "MLB431214",
+        "nome": "Termostatos Digitais",
+        "dominio": "Controladores de temperatura digitais"
+      },
+      "basePrice": 147.31,
+      "familyName": "Controlador De Volume Frahm Cv 10 10w Mono",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 94.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 214.11
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CV-10"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896673815262"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controlador De Volume Frahm Cv-10 10w Mono\n\nVISÃO GERAL\nControlador de Volume Frahm CV10 Atenuador (Ref. : 31580) O Controlador de Volume Frahm CV10 é a solução ideal para sistemas de sonorização que exigem controle de volume independente por ambiente. Compatível com qualquer amplificador do mercado , é especialmente indicado para uso em sistemas de linha de 70V (com transformadores de linha) e suporta até 10W de potência .\n\nProjetado para ambientes como escolas, universidades, clínicas, escritórios e consultórios , permite ajustar facilmente o volume de forma local sem comprometer a qualidade do som. Diferenciais Controle de volume independente por ambiente Conexões por bornes com parafuso (garantem firmeza e segurança) Compatível com qualquer amplificador (linha de 70V com transformador) Encaixe padrão em caixas 4x2 (acabamento limpo e discreto) Fácil instalação e utilização *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FRAHM\n• Modelo: CV-10\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FRAHM\n• GTIN: 7896673815262\n• NCM: 85333910\n• SKU: VTK018325\n\nEMBALAGEM\n• Dimensões informadas: 8 × 7.5 × 12 cm\n• Peso bruto informado: 0,144 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d84b7ace-189f-4ab8-8f7c-9292491e5b9c",
+      "sku": "VTK017668",
+      "category": {
+        "id": "MLB5914",
+        "nome": "Kits de Teclado e Mouse",
+        "dominio": "Kits de teclado e mouse"
+      },
+      "basePrice": 146.22,
+      "familyName": "Combo Teclado E Mouse Logitech Mk120 Usb Preto Com Fio",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 99.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 219.12
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MK120"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor do teclado",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Combo Teclado E Mouse Logitech Mk120 Usb Preto Com Fio\n\nVISÃO GERAL\nDigitação silenciosa e confortável Você desfrutará de uma confortável e silenciosa experiência de digitação graças às teclas de perfil baixo que praticamente não emitem som e ao layout padrão com teclas F em tamanho normal e teclado numérico. Design resistente a derramamentos Líquidos derramados são escoados do teclado, por isso não é preciso se preocupar com arruinar seu investimento com derramamentos acidentais. Rastreamento óptico de alta definição Você desfrutará de um controle sensível e suave do cursor com o rastreamento óptico de alta definição (1000 dpi) Perfil fino O teclado tem um perfil fino que acrescenta um elegante aspecto à escrivaninha e ao mesmo tempo mantém suas mãos em uma posição neutra mais confortável.\n\nTeclas duráveis As teclas podem durar até dez milhões de pressionamentos, de modo que você continuará a digitar muito tempo depois de vários teclados ficarem inutilizáveis. Conexões USB plug-and-play A configuração é simples basta conectar o teclado e o mouse a portas USB no computador de mesa, laptop ou notebook e começar a usá-los. Teclas fáceis de ler Os caracteres brancos brilhantes facilitam a leitura das teclas e são perfeitos para quem tem uma visão menos do que perfeita.\n\nE também são mais resistentes ao desgaste. Suportes inclináveis, robustos e ajustáveis Você pode estender os robustos suportes articuláveis para aumentar a inclinação do teclado em oito graus, conforme suas necessidades ergonômicas. Confiabilidade Logitech Você obtém a alta qualidade e a segurança que tornaram a Logitech a líder mundial em teclados e mouses a preços acessíveis, mais uma garantia de três anos.\n\nBarra de espaço curva Mantém suas mãos em uma posição mais natural, para uma digitação mais confortável. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: MK120\n• Cor do teclado: Preto\n• Cor principal: Preto\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 84716052\n• SKU: VTK017668\n\nEMBALAGEM\n• Dimensões informadas: 5 × 16 × 52 cm\n• Peso bruto informado: 0,808 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "8c65ae6e-e178-45db-9ed3-c40f318b07af",
+      "sku": "VTK001155",
+      "nome": "Cabo Coaxial RG59 67% ROL BR Megatron - RL / 100",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b69df3b1-79a0-460f-ab89-787d39878c9e",
+      "sku": "VTK018387",
+      "nome": "Ultraled Shocklight S11 H13 6000k 12v 35w 4000lm",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+      "sku": "VTK018934",
+      "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+      "error": "Atributos obrigatórios pendentes: Lugar de colocação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB10233",
+            "nome": "Suportes para Caixas de Som"
+          },
+          "missing": [
+            "Lugar de colocação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "182cc6a2-75d1-44bc-a6f8-9dcf290c5cbd",
+      "sku": "VTK019287",
+      "nome": "Caixa Vazia Para 2 Cornetas E 2 Tweeters Retangular Acarpetada - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB127436",
+            "nome": "Corneteiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "nome": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto, Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11290",
+            "nome": "Carregadores de Pilhas"
+          },
+          "missing": [
+            "Tipo de produto",
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5ad33b11-d00d-49fe-9516-4e16e582a398",
+      "sku": "VTK018660",
+      "nome": "Elgin Bateria Alcalina 23a 12v Embalagem 50 Uni",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ea25c332-791f-40bc-b4ea-c33b6bdbd0dc",
+      "sku": "VTK019301",
+      "nome": "Caixa Vazia Para 2 Alto Falantes 6x9\" Retangular Acarpetada - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6c0b74a0-4cb7-418c-bd10-abecf1e93e6f",
+      "sku": "VTK017366",
+      "nome": "Caixa Atendimento óptico 1x16 Cto",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271728",
+            "nome": "Caixas de Distribuição"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7dde8a4f-c47f-4ff5-9863-f3280d96d753",
+      "sku": "VTK018912",
+      "nome": "Haste Curta Olimpus Da Antena Para Onix",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB457887",
+            "nome": "Antenas de Conectividade"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "acf01ab5-3193-47f7-8977-a18198b2f223",
+      "sku": "VTK006567",
+      "nome": "Ferro a Vapor Arno Essentialgliss com Base Antiaderente FMQ 220V",
+      "error": "Atributos obrigatórios pendentes: Tipo de ferro de passar",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB31689",
+            "nome": "Ferro de Passar"
+          },
+          "missing": [
+            "Tipo de ferro de passar"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1711678f-d080-40bc-9ded-0c9e70403ccb",
+      "sku": "VTK019776",
+      "nome": "Caixa Vazia Para 2 Alto Falantes 6x9\" Invertida Pick-up - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+      "sku": "VTK018024",
+      "nome": "Teclado Viaweb 16s",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2f42cd0b-afcc-4ccd-8997-78a141b88325",
+      "sku": "VTK025520",
+      "nome": "24 Baterias Auditiva 312 Duracell (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5aa9d2fd-a9cd-4e8b-9db3-2525ec22ff63",
+      "sku": "VTK025521",
+      "nome": "24 Baterias Auditivas 10 Duracell (4 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "aa90c8fa-bdaa-4975-b261-a7ba9d4c6473",
+      "sku": "VTK025522",
+      "nome": "24 Baterias Auditivas 13 Duracell (4 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

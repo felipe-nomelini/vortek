@@ -1,0 +1,70 @@
+{
+  "batchNumber": 11,
+  "batchId": "profitable-shelf-2-create-011",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "41547a87-fde5-4c45-8286-2831897a0496",
+      "sku": "VTK012200",
+      "nome": "Pilha Recarregável AA 2500mAh Elgin Blister com 4 Unidades",
+      "fornecedor": "BKR1",
+      "custo": 45.9,
+      "estoque": 48,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pilha Recarregável AA 2500mAh Elgin Blister com 4 Unidades",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 45.9,
+        "shipping": 7.75,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.8
+      }
+    },
+    {
+      "produtoId": "b9da6dfa-378f-4668-b43c-3ffeffe92b49",
+      "sku": "VTK017539",
+      "nome": "Sensor Magnético Smart Sulton V3 Smw250",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 45.9,
+      "estoque": 49,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sensor Magnético Smart Sulton V3 Smw250 VIAWEB",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 45.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.27
+      }
+    },
+    {
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 47.5,
+      "estoque": 23,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Jbl Selenium Rpst302 x Para Super Tweeter St302 x",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 47.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 98.18
+      }
+    }
+  ]
+}

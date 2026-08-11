@@ -1,0 +1,515 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/029-profitable-shelf-2-create-029-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-029",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "0d1b79fb-0967-4fda-b0c7-c9de1e1c1f47",
+      "sku": "VTK001308",
+      "category": {
+        "id": "MLB29333",
+        "nome": "Cajones",
+        "dominio": "Cajons de percussão"
+      },
+      "basePrice": 616.84,
+      "familyName": "Cajon FSA Lite LTS 04 Amarelo",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 413.8,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 979.07
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FSA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "LTS-04"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898628766131"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cajon FSA Lite LTS-04 Amarelo\n\nVISÃO GERAL\nO Cajon FSA Lite LTS-04 é um modelo que faz parte da linha Standard Lite foi criada para trazer para o músico muito mais leveza e espaço. Ela conta com uma Captação Dinâmica e saída P10. Tem um Design inovador e Moderno e trás em seus detalhes o minimalismo.\n\nFoi criada também pensando em uma nova tendência de tamanho e forma. Sua sonoridade é equilibrada e sua ressonancia controlada. Conta com Pele em Sumaúma parafusada, para futura troca da pele de resonância.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FSA\n• Modelo: LTS-04\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FSA\n• GTIN: 7898628766131\n• NCM: 9206.00.00\n• SKU: VTK001308\n\nEMBALAGEM\n• Dimensões informadas: 49 × 30 × 39 cm\n• Peso bruto informado: 4,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1bdb1500-91d5-4573-909f-e3ca5ff425cd",
+      "sku": "VTK018985",
+      "category": {
+        "id": "MLB30208",
+        "nome": "Interruptores Automáticos",
+        "dominio": "Disjuntores automáticos e interruptores diferenciais"
+      },
+      "basePrice": 665.76,
+      "familyName": "String Box Proauto 2e 2s 1040vcc",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 452.16,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1050.77
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PROAUTO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MPPT1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "String Box Proauto 2e/2s 1040vcc\n\nVISÃO GERAL\n• 2 MPPT: • 1 Entrada MPPT1; • 1 Entrada MPPT2; • Fabricado com alto padrão de qualidade; • Todos os componentes possuem certificados; • Proteção das caixas: UV (conforme norma IEC 60529); IP65; CARACTERÍSTICAS DA CAIXA Grau de Proteção: IP65 Material: ABS Termoplástico Tipo de montagem: Sobrepor Temperatura de armazenamento: -25°C/+90 Umidade relativa do ar: Até 90% Altitude máxima de operação: 1000 Metros Dimensões: 230 x 322 x 119 Grau de resistência mecânica: IK08 Tipo de fixação: Trilho de Fixação CARACTERÍSTICAS TÉCNICAS: ID Produto: 26027 Quantidades de entrada: 2 Quantidades de saídas: 2 Quantidade de MPPT: 2 Tensão nominal máxima: 1040VDC Corrente nominal máxima: 16A Corrente do fusível: N/D Modelo Seccionadora: PEDSC100R Quantidade de Seccionadora: 1(Dupla) Tipo de conexão de entrada: Direto na Chave Bitola máxima do cabo da entrada: 6 mm² Bitola máxima do cavo de saída: 6 mm² Tipo de conexão de saída: Borne Tensão nominal rede: 1040VDC Tensão máxima de funcionamento: 1040VDC Tipo de proteção: Classe 2 Quantidade de DPS: 2 Corrente de descarga nominal(In): 20kA Corrente de descarga máxima(total): 45kA Nível de proteção(Up): 3,5kV\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PROAUTO\n• Modelo: MPPT1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROAUTO\n• NCM: 85372090\n• SKU: VTK018985\n\nEMBALAGEM\n• Dimensões informadas: 12 × 21 × 37 cm\n• Peso bruto informado: 2,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2e9caef9-8b7c-464e-b057-a85e751c6e89",
+      "sku": "VTK003318",
+      "category": {
+        "id": "MLB72816",
+        "nome": "Pedais",
+        "dominio": "Pedais para teclados e pianos"
+      },
+      "basePrice": 690.69,
+      "familyName": "Pedal Expressão Yamaha para Teclado FC7 Preto",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 463.34,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1071.66
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "YAMAHA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "FC7"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "086792581941"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pedal Expressão Yamaha para Teclado FC7 Preto\n\nVISÃO GERAL\nO Pedal de Expressão para Teclado FC7 Yamaha é um modelo robusto usado para alterar o volume, expressão e outros parâmetros atribuíveis. Com a sua função 'fortíssimo', você pode acentuar determinadas partes de uma performance. O ângulo de pedal ajustável, o ajuste de ponto da mola e uma placa de conexão metálica para a combinação de múltiplos pedais adicionam uma pegada única a este controlador de volume, adaptando o pedal a diversos estilos.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: YAMAHA\n• Modelo: FC7\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: YAMAHA\n• GTIN: 086792581941\n• NCM: 9209.94.00\n• SKU: VTK003318\n\nEMBALAGEM\n• Dimensões informadas: 7 × 13 × 17 cm\n• Peso bruto informado: 1,415 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "065903be-45b2-48b6-9023-7735925177ef",
+      "sku": "VTK018636",
+      "nome": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+      "error": "Atributos obrigatórios pendentes: Tipo de câmera de vigilância, Localizações da câmera",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7073",
+            "nome": "Câmeras de Segurança"
+          },
+          "missing": [
+            "Tipo de câmera de vigilância",
+            "Localizações da câmera"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4ed1ab3f-f23e-4aa7-8880-648d839c887d",
+      "sku": "VTK012699",
+      "nome": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "70bc66e2-e975-4683-b5d5-c483dd16614b",
+      "sku": "VTK015983",
+      "nome": "14 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c33cb2ab-d5b1-4b07-ad47-28dd4b2d4a76",
+      "sku": "VTK018546",
+      "nome": "Módulo Viaweb Gprs 2.4",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "60155eac-28af-4c82-8166-d94b257ad80b",
+      "sku": "VTK017353",
+      "nome": "Fonte Atx Evus Psu-200 Oem 200w 20/24p 2 Sata - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Potência de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6777",
+            "nome": "Fontes"
+          },
+          "missing": [
+            "Potência de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+      "sku": "VTK018292",
+      "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+      "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Modelo",
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "68404b02-4e51-442c-bec6-c9aea166852d",
+      "sku": "VTK016009",
+      "nome": "16 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cc039b1a-fbec-4963-ada3-53f8b52753ce",
+      "sku": "VTK006274",
+      "nome": "Suporte Pedestal Móvel Para TV 32-75\" TVA06V6S ELG",
+      "error": "Atributos obrigatórios pendentes: Lugares de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11529",
+            "nome": "Suportes"
+          },
+          "missing": [
+            "Lugares de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "beb75014-53f4-4191-8f04-9a23233f74b1",
+      "sku": "VTK018908",
+      "nome": "Cabo De Guitarra Tiaflex 100 Metros 0,20 Mm Preto 902010",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7144b025-bbee-4764-b1c7-7bf5380b2ca6",
+      "sku": "VTK019095",
+      "nome": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "40e8aa35-4db9-416c-821b-39b54c3971e8",
+      "sku": "VTK018864",
+      "nome": "Cabo Coaxial Cabletech Std-40+tp3 Branco Bobina 305 Metros 801214000p01cb22",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "46657896-3552-465b-a60f-cc35c3923211",
+      "sku": "VTK020656",
+      "nome": "Capota Marítima Flash Cover Ff176 Ford Ranger Xls Cabine Dupla 2012/2023 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "68880dd5-048c-47b3-985d-ecb732a46b06",
+      "sku": "VTK018106",
+      "nome": "Módulo Viaweb Gprs Ip 2.3",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f14e83a0-cb35-42ff-ac02-1d46f738ba75",
+      "sku": "VTK018449",
+      "nome": "Central Viaweb Vw8z Gprs Ip Caixa Metálica",
+      "error": "Atributos obrigatórios pendentes: Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+      "sku": "VTK018635",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2719221b-385e-433c-8830-d37e95f24d3a",
+      "sku": "VTK016024",
+      "nome": "18 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2feb7e97-6953-4508-8055-755956acb219",
+      "sku": "VTK019099",
+      "nome": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla Sem Gancho Com Step 2010/2013 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

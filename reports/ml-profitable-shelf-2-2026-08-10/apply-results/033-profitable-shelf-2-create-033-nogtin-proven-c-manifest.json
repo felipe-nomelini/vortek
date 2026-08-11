@@ -1,0 +1,28 @@
+{
+  "batchNumber": 33,
+  "batchId": "profitable-shelf-2-create-033",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "57f61483-70d6-4fc2-9446-19ab9f5ca333",
+      "sku": "VTK018667",
+      "nome": "String Box Momberg 6e/3s 600vdc",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 1650,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "String Box Momberg 6e 3s 600vdc",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1650,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 3200
+      }
+    }
+  ]
+}

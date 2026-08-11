@@ -1,0 +1,26 @@
+{
+  "event": "hayamax_cash_tourniquet_local_reconciliation",
+  "timestamp_utc": "2026-08-10T05:27:00.000Z",
+  "reason": "primary_ml_item_changed_during_execution",
+  "result": "reconciled",
+  "rows": [
+    {
+      "sku": "VTK000854",
+      "ml_item_id": "MLB6564912582",
+      "verified_standard_price": 365.42,
+      "custom_price": 365.42
+    },
+    {
+      "sku": "VTK000917",
+      "ml_item_id": "MLB6563508730",
+      "verified_standard_price": 234.87,
+      "custom_price": 234.87
+    },
+    {
+      "sku": "VTK000981",
+      "ml_item_id": "MLB6564912558",
+      "verified_standard_price": 657.35,
+      "custom_price": 657.35
+    }
+  ]
+}

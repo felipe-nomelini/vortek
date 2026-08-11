@@ -1,0 +1,133 @@
+{
+  "batchNumber": 2,
+  "batchId": "profitable-shelf-2-create-002",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+      "sku": "VTK019103",
+      "nome": "Frente Falsa Max Eletron 1ux19",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 10.95,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Frente Falsa Max Eletron 1ux19",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.24
+      }
+    },
+    {
+      "produtoId": "23e88c00-8ccb-4851-8dee-dd3c39f38903",
+      "sku": "VTK025643",
+      "nome": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 11.44,
+      "estoque": 35,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.44,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.92
+      }
+    },
+    {
+      "produtoId": "0510aa95-38fb-4f97-a333-40fe318dea16",
+      "sku": "VTK017165",
+      "nome": "Kit Adaptador Proeletronic Para Celular - Pqkc-0160",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Adaptador Proeletronic Para Celular Pqkc 0160",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25.56
+      }
+    },
+    {
+      "produtoId": "d4f2810e-11b2-4b4c-8ae7-91328bb0cbaa",
+      "sku": "VTK017868",
+      "nome": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.95,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25.63
+      }
+    },
+    {
+      "produtoId": "3e56831a-0b35-4b2e-abf3-82b4f7406d17",
+      "sku": "VTK018222",
+      "nome": "Bucha Para Kit Do Alto Falante Gol Original Permak 237/a",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 12.9,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bucha Para Kit Do Alto Falante Gol Original Permak 237 a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 12.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 26.94
+      }
+    },
+    {
+      "produtoId": "cf0f9b00-8da7-4d5b-bd0b-be6392474156",
+      "sku": "VTK025644",
+      "nome": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 13.6,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 13.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 27.92
+      }
+    }
+  ]
+}

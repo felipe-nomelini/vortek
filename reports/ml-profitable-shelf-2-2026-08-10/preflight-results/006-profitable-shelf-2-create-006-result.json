@@ -1,0 +1,777 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/006-profitable-shelf-2-create-006-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-006",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "6ec281b5-3857-4cf0-9370-8f62d1af46a2",
+      "sku": "VTK017930",
+      "category": {
+        "id": "MLB63526",
+        "nome": "Interruptores de Energia",
+        "dominio": "Interruptores de ignição para veículos"
+      },
+      "basePrice": 54.49,
+      "familyName": "Chave Canivete B&s Gm Cruze Cobalt Agile 3 Botoes Sem",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 22.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 41.43
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "B&S AUTOMOTIVA"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "293122"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Chave Canivete B&s Gm Cruze/ Cobalt/ Agile 3 Botoes Sem Circuito\n\nVISÃO GERAL\nInformações do Produto Chave Canivete B&S GM Cruze/ Cobalt/ Agile 3 botoes sem Circuito\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: B&S AUTOMOTIVA\n• Número de peça: 293122\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: B&S AUTOMOTIVA\n• GTIN: 7895899891081\n• NCM: 83017000\n• SKU: VTK017930\n\nEMBALAGEM\n• Dimensões informadas: 2 × 3.5 × 6.5 cm\n• Peso bruto informado: 0,038 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c4358548-f1af-4ec2-bd6b-2e94976c5c63",
+      "sku": "VTK025714",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 52.94,
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 22.88,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 40.25
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n20 Baterias Litio Cr2025 Elgin (4 Cart)\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025714\n\nEMBALAGEM\n• Dimensões informadas: 2 × 5 × 19 cm\n• Peso bruto informado: 0,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "sku": "VTK017246",
+      "category": {
+        "id": "MLB2963",
+        "nome": "Veículos de Controle Remoto",
+        "dominio": "Veículos de brinquedo de controle remoto"
+      },
+      "basePrice": 69.5,
+      "familyName": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 22.9,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HOMBRUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HT6P20B"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7891097542084"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões\n\nVISÃO GERAL\nInformações do Produto Controle Copiador 3 Botões - Botões emborrachados - Permite gravar e apagar cada botão independente - Executa cópia fiel dos códigos e da taxa de bits - Permite gravar protocolos diferentes em cada botão - Acompanha bateria 12V A23 Informações Técnicas Compatível com os protocolos: Code learn (HT6P20B, HT6P20D) Jumper 9 bits (HT6026, MC145026) Jumper 12 bits (HT12E, M1EN, MM53200) Disponível nas frequências: 433,92 Mhz fixo 280 Mhz ~ 320Mhz Ajustável Frequências pré ajustadas: 292Mhz 299Mhz 315Mhz Dimensão (CxLxA) 49mm x 31mm x 12mm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HOMBRUS\n• Modelo: HT6P20B\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HOMBRUS\n• GTIN: 7891097542084\n• NCM: 85269200\n• SKU: VTK017246\n\nEMBALAGEM\n• Dimensões informadas: 2 × 3.5 × 7.5 cm\n• Peso bruto informado: 0,024 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7bfebc32-b761-4e70-8cca-958317adb165",
+      "sku": "VTK017631",
+      "category": {
+        "id": "MLB440306",
+        "nome": "Controles",
+        "dominio": "Segurança veicular"
+      },
+      "basePrice": 55,
+      "familyName": "Controle Remoto Fks Cr941 Digital 433mhz",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 22.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 42
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FKS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "382718"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Fks Cr941 Digital 433mhz\n\nVISÃO GERAL\nControle remoto autocode frequência 433 Mhz. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FKS\n• Número de peça: 382718\n• Tipo de veículo: Carro/Caminhonete\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FKS\n• NCM: 85269200\n• SKU: VTK017631\n\nEMBALAGEM\n• Dimensões informadas: 1 × 3.5 × 4 cm\n• Peso bruto informado: 0,012 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2f8b64e2-b58e-4add-a49a-2034f688d64c",
+      "sku": "VTK018277",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "Ferros de solda elétricos"
+      },
+      "basePrice": 55.77,
+      "familyName": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc 30",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 23.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 42.86
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HIKARI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SC-30"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-30\n\nVISÃO GERAL\nConteúdo da Embalagem 4 peças\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HIKARI\n• Modelo: SC-30\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKARI\n• NCM: 85159000\n• SKU: VTK018277\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6.5 × 9 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+      "sku": "VTK018133",
+      "category": {
+        "id": "MLB270208",
+        "nome": "Fontes",
+        "dominio": "Fontes de alimentação para radiofreqüência"
+      },
+      "basePrice": 53.6,
+      "familyName": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 23.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 41.15
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ALLTECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "2000MA"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "6906179000022"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva\n\nVISÃO GERAL\nFonte Adaptadora Alltech Automotiva Inteligente adaptador de carro DC/DC Entrada de DC. 12V 8 Saídas Opcionais: 3/4.5/5/6/7.5/8.4/9/12V 2000mA Com exclusivo conector USB Mini Para: IPod / DV / DC / CD... Universal\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ALLTECH\n• Modelo: 2000MA\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ALLTECH\n• GTIN: 6906179000022\n• NCM: 85044029\n• SKU: VTK018133\n\nEMBALAGEM\n• Dimensões informadas: 3 × 10 × 22 cm\n• Peso bruto informado: 0,12 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "01befa13-59be-4517-abfa-acee3be87297",
+      "sku": "VTK025674",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 55.36,
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 24.84,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 42.93
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1616"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "15 Pilhas Moeda Lítio Elgin CR1616 3V Kit\n\nVISÃO GERAL\n15 Baterias CR1616 Elgin (3 Cart)\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x 5 Baterias Cr1616 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\nESPECIFICAÇÕES TÉCNICAS\n\n Bateria de Lítio CR1616\n\n Validade: 3 anos\n\n Voltagem: 3V\n\n  \n\n CARACTERÍSTICAS\n\n Econômica\n\n Alta Duração\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1616\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025674\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 3 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 57.56,
+      "familyName": "Reparo Tweeter Shock Completo St 400 Selenium SHOCK REPAROS",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 24.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 44.86
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "351493"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "ST-400"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Tweeter Shock Completo St-400 Selenium\n\nVISÃO GERAL\nInformações do Produto Reparo Tweeter Completo ST-400 Selenium - Reparo com Diafragma Fenólico - Peça para Reposição de Aparelhos Danificados - Bobina Simples Informações Técnicas Compatível com Super Tweeter JBL ST400 BLK e ST400 Trio Potência RMS 150W Impedância 8 Ohms\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SHOCK REPAROS\n• Número de peça: 351493\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: ST-400\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• GTIN: 7892046021094\n• NCM: 85189010\n• SKU: VTK017970\n\nEMBALAGEM\n• Dimensões informadas: 4 × 12.5 × 12.5 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "146a4041-4ce4-4c8d-afa6-9d60694822ae",
+      "sku": "VTK017871",
+      "category": {
+        "id": "MLB418301",
+        "nome": "Microfones Alto-falantes",
+        "dominio": "Microfones de alto-falantes remotos"
+      },
+      "basePrice": 55.06,
+      "familyName": "Microfone Ipec Profissional Para Cftv",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 25.15,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 42.77
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "IPEC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "600OHMS"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Microfone Ipec Profissional Para Cftv\n\nVISÃO GERAL\nInformações do Produto Microfone Profissional para CFTV Compatível com todas as placas de captura do mercado e todos os sistemas de CFTV. - Tecnologia SMD - Alimentação de 9 à 12(Vcc), Corrente Continua; - Banda de Áudio: 300 a 5000 Hz; - Ganho de amplificação de Audio: até 40 db: Ajuste da sensibilidade através do Trimpot; - Distorção Harmônica: menor que 1%; - Consumo: 10 à 14 mA; - Área de captura do áudio até 150 m2; - Duas configurações de saída: 1 600ohms e 2 300ohms.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: IPEC\n• Modelo: 600OHMS\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IPEC\n• NCM: 85184000\n• SKU: VTK017871\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 5 × 6.5 cm\n• Peso bruto informado: 0,028 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6f27af50-a600-4f38-bbbb-9f5c94969ea5",
+      "sku": "VTK025673",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 56.17,
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 25.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.84
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1220"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "15 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nVISÃO GERAL\n15 Baterias CR1220 Elgin (3 Cart)\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x 5 Baterias Cr1220 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR1220 Elgin Energia Duradoura para Seus Dispositivos Eletrônicos\n\n As baterias de lítio CR1220 Elgin garantem alta performance e longa duração para dispositivos que exigem energia estável. Indicadas para relógios, calculadoras, dispositivos médicos e eletrônicos portáteis, são essenciais para manter seu equipamento sempre funcionando.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR1220\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Aplicações indicadas: Relógios digitais, calculadoras, sensores, dispositivos médicos, controles remotos, equipamentos eletrônicos portáteis\n\n•    Recarregável: Não\n\n•    Validade: Longa duração (até 7 anos em armazenamento adequado)\n\n•    Peso unitário: Aproximadamente 1,6 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL1220, ECR1220, BR1220 e outros equivalentes\n\n Com a qualidade da marca Elgin, as baterias CR1220 fornecem energia estável e confiável para seus dispositivos eletrônicos. O pacote com 5 unidades oferece praticidade e economia, ideal para reposição e uso em equipamentos que exigem desempenho constante e duradouro.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1220\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025673\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 3 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "b24b2c62-e1e9-4db8-a1e7-e091641fc30d",
+      "sku": "VTK018608",
+      "nome": "Chicote Dedicado Positron Pronnect Hyundai Veloster 2013",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431130",
+            "nome": "Instalações Elétricas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ee50626d-b3d0-434a-bb1e-d562643d1448",
+      "sku": "VTK017233",
+      "nome": "Suporte Antena 10-a Telha Brasilit 32mm Tubo 3/ 4 Prata Cromo",
+      "error": "Atributos obrigatórios pendentes: É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d5dadf67-755e-4ddb-8364-3b53e162d62f",
+      "sku": "VTK012590",
+      "nome": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bfe470e7-0175-4a0c-ba65-7aa1adafc9e0",
+      "sku": "VTK018728",
+      "nome": "Resistência Para Ferro De Solda Hikari Power 60 - 220v",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB48611",
+            "nome": "Ferros de Solda"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5a3285c8-cf05-41c4-ba80-dde3d8e8839f",
+      "sku": "VTK018664",
+      "nome": "Antena Permak Am/fm 2 Estágio Preta",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "939e89d2-a6fc-426a-9772-e27cf9f35943",
+      "sku": "VTK025339",
+      "nome": "2 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCL Giannini",
+      "error": "Atributos obrigatórios pendentes: Modelo, Instrumento recomendado",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo",
+            "Instrumento recomendado"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "78771007-6730-4434-ae9f-f8094ad3ac11",
+      "sku": "VTK018517",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2",
+      "error": "Atributos obrigatórios pendentes: Modelo, Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Modelo",
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+      "sku": "VTK018129",
+      "nome": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+      "sku": "VTK018454",
+      "nome": "Conector Para Cd Vw Jetta/passat",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430193",
+            "nome": "Chicotes do Radio"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b02ef015-f182-4d82-9937-73c8fee968c5",
+      "sku": "VTK017378",
+      "nome": "Carregador De Celular Roadstar Rs109-2ubr Com 2 Usb",
+      "error": "Atributos obrigatórios pendentes: Tipos de conectores do cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430121",
+            "nome": "Carregadores"
+          },
+          "missing": [
+            "Tipos de conectores do cabo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

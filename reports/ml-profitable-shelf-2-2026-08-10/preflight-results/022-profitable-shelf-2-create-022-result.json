@@ -1,0 +1,779 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/022-profitable-shelf-2-create-022-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-022",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "74fd7076-5e30-4820-b713-658a1fc66fc9",
+      "sku": "VTK000556",
+      "category": {
+        "id": "MLB264142",
+        "nome": "Outros",
+        "dominio": "Acessórios para celulares"
+      },
+      "basePrice": 217.85,
+      "familyName": "Carregador Universal Sennheiser NT 5 20 UCW",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 128.97,
+        "shipping": 20.95,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 288.31
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca do acessório",
+          "value_id": "",
+          "value_name": "SENNHEISER"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "4044155256697"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Carregador Universal Sennheiser NT 5-20 UCW\n\nVISÃO GERAL\nO Carregador Universal Sennheiser NT 5-20 UCW é uma fonte de alimentação projetada especificamente para o carregador L 70. Com capacidade de carregamento rápido e eficiente, o NT 5-20 UCW é uma escolha confiável para manter seus dispositivos Sennheiser carregados e prontos para uso. Compatível com uma ampla variedade de modelos, o NT 5-20 UCW oferece versatilidade e praticidade em um único dispositivo de carregamento.\n\nHá mais de 75 anos a Sennheiser é uma empresa motivada a oferecer soluções sonoras que impressionam e dão arrepios. A Sennheiser é líder global em tecnologia de áudio profissional, com produtos que giram em torno de um som excelente: no palco, nas salas de reuniões, nas salas de aula e no estúdio. A Sennheiser é uma marca reconhecida mundialmente por sua excelência em áudio e continua a se dedicar a fornecer as melhores soluções sonoras para seus clientes.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca do acessório: SENNHEISER\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SENNHEISER\n• GTIN: 4044155256697\n• NCM: 8504.40.90\n• SKU: VTK000556\n\nEMBALAGEM\n• Dimensões informadas: 19.3 × 39.4 × 24.4 cm\n• Peso bruto informado: 0,362 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ea96a952-b8ab-458a-8984-027807941f97",
+      "sku": "VTK018791",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "Ferros de solda elétricos"
+      },
+      "basePrice": 183.95,
+      "familyName": "Ponta Cônica Hikari 0,4mm Mtlb Para Estação De Solda",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 129,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 275
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HIKARI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "4MM"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Ponta Cônica Hikari 0,4mm Mtlb Para Estação De Solda 933,936, 938 - PC / 10\n\nVISÃO GERAL\nPonta Cônica Hikari 0,4mm *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HIKARI\n• Modelo: 4MM\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKARI\n• NCM: 85159000\n• SKU: VTK018791\n\nEMBALAGEM\n• Dimensões informadas: 3 × 8 × 23 cm\n• Peso bruto informado: 0,084 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dd75d2e4-4280-41b5-93e5-5d719abbb97e",
+      "sku": "VTK012016",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 182.8,
+      "familyName": "Kit Conectores Xlr 1003 1013 20un 10 Machos 10 Femeas",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 129.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 271.75
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WC1003"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex\n\nVISÃO GERAL\n10 unidades do conector Linha XLR Fêmea 3 polos WC1003 10 unidades do Conector Linha XLR Macho 3 polos WC1013 Para utilização profissional. A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Wireconex\n• Modelo: WC1003\n• Unidades por kit: 20\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8536.90.10\n• SKU: VTK012016\n\nEMBALAGEM\n• Dimensões informadas: 8 × 18 × 15 cm\n• Peso bruto informado: 0,67 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2705a1d3-e329-475b-a11c-8153c6385604",
+      "sku": "VTK012040",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 182.8,
+      "familyName": "Kit Conectores Xlr 1003 1013 20un 10 Machos 10 Femeas",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 129.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 271.75
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WC1003"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex\n\nVISÃO GERAL\n10 unidades do conector Linha XLR Fêmea 3 polos WC1003 10 unidades do Conector Linha XLR Macho 3 polos WC1013 Para utilização profissional. A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Wireconex\n• Modelo: WC1003\n• Unidades por kit: 20\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8536.90.10\n• SKU: VTK012040\n\nEMBALAGEM\n• Dimensões informadas: 8 × 18 × 15 cm\n• Peso bruto informado: 0,67 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "33cc5faf-5178-4aea-827e-0d86c55784b7",
+      "sku": "VTK018381",
+      "category": {
+        "id": "MLB277840",
+        "nome": "Detectores de Gases",
+        "dominio": "Detectores de gases"
+      },
+      "basePrice": 196.83,
+      "familyName": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 133.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 299.06
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PYRONIX"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "FP02302"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "5056105612667"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros\n\nVISÃO GERAL\nInformações do Produto Cobertura de 360 graus Elementos em plástico totalmente novos Proteção contra violação frontal e traseira PIR digital de quatro zonas Tecnologia Blue Wave Tecnologia para montagem no teto Instalação otimizada Simples de atualizar Informações Técnicas Cobertura volumétrica: 360°, 156 zonas e 3 planos: Sim PIR adequado para montagem no teto: Sim Sensor piroelétrico com quatro elementos de interbloqueio: Sim Tecnologia de limites variáveis independentes (IFT): Sim Sensibilidade ajustável: Sim Compensação automática de temperatura: Sim Alcance máximo: 12m Resposta de alarme: 2,5 segundos Velocidade de detecção: 0,3 - 3 m/s Configuração geométrica da lente: 3D Altura ideal da instalação: 2,4 - 4 m Fonte de alimentação: 9-16 CC (12 CC nominal) Tipo de relé: Estado sólido Saídas de relé: 60 CC, 50 mA máx. Imunidade a PFI de onda contínua (CW), onda modulada (AM) e de pulsos (PM) 80-2. 700 MHz: 10 V/m Conformidade com normas de eletricidade: CE Classe ambiental: II Garantia: 5 anos Nível de segurança: Nível 2\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PYRONIX\n• Modelo: FP02302\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PYRONIX\n• GTIN: 5056105612667\n• NCM: 85437099\n• SKU: VTK018381\n\nEMBALAGEM\n• Dimensões informadas: 5 × 10 × 10 cm\n• Peso bruto informado: 0,108 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "662e5d6e-58b7-4fbc-a2d3-d05508e66b1d",
+      "sku": "VTK025891",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 193.42,
+      "familyName": "18 Pilhas Alcalinas D Lr20 Sm 2 Elgin 9 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 134.55,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 290.09
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "9"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "18 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (9 Cart)\n\nVISÃO GERAL\n18 Pilhas Alcalinas D Lr20 Sm-2 Elgin (9 Cart)\n\nKit com 9 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 9x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 9 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 9\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025891\n\nEMBALAGEM\n• Dimensões informadas: 14.4 × 9 × 15 cm\n• Peso bruto informado: 2,34 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "category": {
+        "id": "MLB456741",
+        "nome": "Sensores TPS",
+        "dominio": "Sensores TPS para veículos"
+      },
+      "basePrice": 198.89,
+      "familyName": "Quantum Qps Plus4004 Sensor De Estacion. C 4 Sensores",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 134.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 301.7
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "QUANTUM"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "181029"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros\n\nVISÃO GERAL\n4 Sensores Indicação Sonora Indicação visual por display Barcode Meia lua\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: QUANTUM\n• Número de peça: 181029\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: QUANTUM\n• GTIN: 7898382148075\n• NCM: 87089990\n• SKU: VTK017783\n\nEMBALAGEM\n• Peso bruto informado: 1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "277d3d7a-2e08-442d-a630-39a60afd344a",
+      "sku": "VTK017869",
+      "category": {
+        "id": "MLB434342",
+        "nome": "Lanternas",
+        "dominio": "Lanternas"
+      },
+      "basePrice": 198.5,
+      "familyName": "Lanterna Rayovac Indestrutível",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 135.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 300
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "RAYOVAC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "120LM"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "7462936",
+          "value_name": "Bateria/Pilha"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Lanterna Rayovac Indestrutível\n\nVISÃO GERAL\nInformações do Produto Modelo Indestrutível As Lanternas Profissionais Rayovac são resistentes, têm alto desempenho e durabilidade, além de garantia vitalícia contra defeitos de fabricação. Elas podem ser no estilo holofote , com iluminação de facho aberto, ou focal de longo alcance. É ideal entender a disponibilidade de energia elétrica por perto e o tempo de uso para escolher entre um modelo com pilhas ou recarregável.\n\nEncontre abaixo padrões que ajudam o consumidor fazer comparações e a escolha certa entre os modelos. *As lanternas Rayovac são testadas de acordo com os padrões ANSI (American National Standards Institute). Informações Técnicas Lúmens (Quantidade de luz) Normal: 120lm Economico: 19lm Alcance Normal: 160m Economico: 70m Fonte de energia 3 pilhas AAA Resistência à água Sim\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: RAYOVAC\n• Modelo: 120LM\n• Tipo de alimentação: Bateria/Pilha\n• É recarregável: Sim\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: RAYOVAC\n• NCM: 85131010\n• SKU: VTK017869\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 9.5 × 20 cm\n• Peso bruto informado: 0,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d5053271-c0f7-4a41-8554-f103d4e4ae72",
+      "sku": "VTK025657",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 195.5,
+      "familyName": "100 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 136,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 292.73
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "100 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n100 Baterias Litio Cr2032 Elgin (20 Cart)\n\nKit com 20 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 20x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 20 unidades\n\n- Embalagem: Pacote / Caixa\n\n100 Baterias Litio Cr2032 Elgin (20 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025657\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 6 cm\n• Peso bruto informado: 0,41 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de ventilador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1645",
+            "nome": "Ventiladores"
+          },
+          "missing": [
+            "Tipo de ventilador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f33be404-0036-4761-80c6-4dd0219a4208",
+      "sku": "VTK000092",
+      "nome": "Mesa Para Notebook NT-Home Preta Multivisão",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB63262",
+            "nome": "Suportes e Mesas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a6ddb6c2-67fc-4358-9cb9-61976352eff0",
+      "sku": "VTK018749",
+      "nome": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6fd8c5c2-1073-4dc9-9566-97933b90f4ee",
+      "sku": "VTK019096",
+      "nome": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "17cdd64e-25c6-4856-aa0f-621c33184e25",
+      "sku": "VTK011959",
+      "nome": "Apoio de Braço Direito Ergo One Fortrek",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB272114",
+            "nome": "Apoios para Antebraço"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1868c5ab-7c7e-4672-9ec0-1b594a550c90",
+      "sku": "VTK011960",
+      "nome": "Apoio de Braço Esquerdo Ergo One Fortrek",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB272114",
+            "nome": "Apoios para Antebraço"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "62171c6a-fbf1-428a-9c2c-d29f5fb052cb",
+      "sku": "VTK019386",
+      "nome": "Caixa Vazia Para 1 Alto Falante 12\" E 1 Duto 3\" Acarpetada - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "08dd6a6f-3e57-4795-8dd5-cbc5d85b593b",
+      "sku": "VTK017814",
+      "nome": "Espiral Duto Lbrx Laranja 3/4 19x16 Rolo 50 Metros",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271708",
+            "nome": "Organizadores de Cabos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+      "sku": "VTK018435",
+      "nome": "Golden Waffle 2 Britânia 220v",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB120243",
+            "nome": "Máquinas de Waffles"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "996ad7bf-d057-4181-8f25-ee24a1e8d843",
+      "sku": "VTK018139",
+      "nome": "Alça Pré Formada Cabo 9,60/ 10,40 Apco6104 Preto - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de alça",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB269730",
+            "nome": "Alças"
+          },
+          "missing": [
+            "Tipo de alça"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+      "sku": "VTK002550",
+      "nome": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB439386",
+            "nome": "Pés de Microfone"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 22,
+  "batchId": "profitable-shelf-2-create-022",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 126.14,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 126.14,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 274.8
+      }
+    },
+    {
+      "produtoId": "f33be404-0036-4761-80c6-4dd0219a4208",
+      "sku": "VTK000092",
+      "nome": "Mesa Para Notebook NT-Home Preta Multivisão",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 126.21,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Mesa Para Notebook NT Home Preta Multivisão",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 126.21,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 274.93
+      }
+    },
+    {
+      "produtoId": "a6ddb6c2-67fc-4358-9cb9-61976352eff0",
+      "sku": "VTK018749",
+      "nome": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 128.25,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ultraled Headlight Shocklight H3 par 12v 50w 6000k 4000lm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 128.25,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 278.64
+      }
+    },
+    {
+      "produtoId": "6fd8c5c2-1073-4dc9-9566-97933b90f4ee",
+      "sku": "VTK019096",
+      "nome": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 128.25,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ultra Led Shocklight par H27 12v 50w 6000k 4000lm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 128.25,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 278.64
+      }
+    },
+    {
+      "produtoId": "74fd7076-5e30-4820-b713-658a1fc66fc9",
+      "sku": "VTK000556",
+      "nome": "Carregador Universal Sennheiser NT 5-20 UCW",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 128.97,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Carregador Universal Sennheiser NT 5 20 UCW",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 128.97,
+        "shipping": 20.95,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 288.31
+      }
+    },
+    {
+      "produtoId": "ea96a952-b8ab-458a-8984-027807941f97",
+      "sku": "VTK018791",
+      "nome": "Ponta Cônica Hikari 0,4mm Mtlb Para Estação De Solda 933,936, 938 - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 129,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ponta Cônica Hikari 0,4mm Mtlb Para Estação De Solda",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 129,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 280
+      }
+    },
+    {
+      "produtoId": "17cdd64e-25c6-4856-aa0f-621c33184e25",
+      "sku": "VTK011959",
+      "nome": "Apoio de Braço Direito Ergo One Fortrek",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 129.05,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Apoio de Braço Direito Ergo One Fortrek",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 129.05,
+        "shipping": 26.25,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 293.02
+      }
+    },
+    {
+      "produtoId": "1868c5ab-7c7e-4672-9ec0-1b594a550c90",
+      "sku": "VTK011960",
+      "nome": "Apoio de Braço Esquerdo Ergo One Fortrek",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 129.05,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Apoio de Braço Esquerdo Ergo One Fortrek",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 129.05,
+        "shipping": 26.25,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 293.02
+      }
+    },
+    {
+      "produtoId": "62171c6a-fbf1-428a-9c2c-d29f5fb052cb",
+      "sku": "VTK019386",
+      "nome": "Caixa Vazia Para 1 Alto Falante 12\" E 1 Duto 3\" Acarpetada - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 129.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 1 Alto Falante 12 Polegadas E 1 Duto 3",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 129.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 281.45
+      }
+    },
+    {
+      "produtoId": "dd75d2e4-4280-41b5-93e5-5d719abbb97e",
+      "sku": "VTK012016",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 129.9,
+      "estoque": 100,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Conectores Xlr 1003 1013 20un 10 Machos 10 Femeas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 129.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 281.64
+      }
+    },
+    {
+      "produtoId": "2705a1d3-e329-475b-a11c-8153c6385604",
+      "sku": "VTK012040",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 129.9,
+      "estoque": 100,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Conectores Xlr 1003 1013 20un 10 Machos 10 Femeas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 129.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 281.64
+      }
+    },
+    {
+      "produtoId": "33cc5faf-5178-4aea-827e-0d86c55784b7",
+      "sku": "VTK018381",
+      "nome": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 133.5,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 133.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 288.18
+      }
+    },
+    {
+      "produtoId": "662e5d6e-58b7-4fbc-a2d3-d05508e66b1d",
+      "sku": "VTK025891",
+      "nome": "18 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (9 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 134.55,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "18 Pilhas Alcalinas D Lr20 Sm 2 Elgin 9 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 134.55,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 290.09
+      }
+    },
+    {
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 134.9,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Quantum Qps Plus4004 Sensor De Estacion. C 4 Sensores",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 134.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 290.73
+      }
+    },
+    {
+      "produtoId": "08dd6a6f-3e57-4795-8dd5-cbc5d85b593b",
+      "sku": "VTK017814",
+      "nome": "Espiral Duto Lbrx Laranja 3/4 19x16 Rolo 50 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 134.9,
+      "estoque": 24,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Espiral Duto Lbrx Laranja 3 4 19x16 Rolo 50 Metros LBRX",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 134.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 290.73
+      }
+    },
+    {
+      "produtoId": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+      "sku": "VTK018435",
+      "nome": "Golden Waffle 2 Britânia 220v",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 134.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Golden Waffle 2 Britânia 220v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 134.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 290.73
+      }
+    },
+    {
+      "produtoId": "277d3d7a-2e08-442d-a630-39a60afd344a",
+      "sku": "VTK017869",
+      "nome": "Lanterna Rayovac Indestrutível",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 135.5,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lanterna Rayovac Indestrutível",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 135.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 291.82
+      }
+    },
+    {
+      "produtoId": "996ad7bf-d057-4181-8f25-ee24a1e8d843",
+      "sku": "VTK018139",
+      "nome": "Alça Pré Formada Cabo 9,60/ 10,40 Apco6104 Preto - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 135.8,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alça Pré Formada Cabo 9,60 10,40 Apco6104 Preto PC 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 135.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 292.36
+      }
+    },
+    {
+      "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+      "sku": "VTK002550",
+      "nome": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 135.9,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 135.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 447.09
+      }
+    },
+    {
+      "produtoId": "d5053271-c0f7-4a41-8554-f103d4e4ae72",
+      "sku": "VTK025657",
+      "nome": "100 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 136,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "100 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 136,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 292.73
+      }
+    }
+  ]
+}

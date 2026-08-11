@@ -1,0 +1,116 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/022-profitable-shelf-2-create-022-gtin-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-022",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "74fd7076-5e30-4820-b713-658a1fc66fc9",
+      "sku": "VTK000556",
+      "category": {
+        "id": "MLB264142",
+        "nome": "Outros",
+        "dominio": "Acessórios para celulares"
+      },
+      "anuncio": {
+        "id": "MLB7381756406",
+        "title": "Carregador Universal Sennheiser Nt 5 20 Ucw",
+        "price": 288.31,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381756406-carregador-universal-sennheiser-nt-5-20-ucw-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 20.95,
+        "shipping_source": "erp",
+        "ml_fee": 0.18,
+        "price": 288.31
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "33cc5faf-5178-4aea-827e-0d86c55784b7",
+      "sku": "VTK018381",
+      "category": {
+        "id": "MLB277840",
+        "nome": "Detectores de Gases",
+        "dominio": "Detectores de gases"
+      },
+      "anuncio": {
+        "id": "MLB7381756542",
+        "title": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+        "price": 299.06,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381756542-detector-pyronix-fp02302-octopus-dq-360-graus-12-metros-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 299.06
+      }
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+      "error": "Validation error | invalid.item.attribute.values: Attribute [VEHICLE_TYPE] is not valid, item values [(null:Carro/Caminhonete)] | item.attributes.dropped: Value of attribute VEHICLE_TYPE was dropped by category fixed-value (13222040 - Linha Pesada). | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | invalid.item.attribute.values: Attribute [VEHICLE_TYPE] is not valid, item values [(null:Carro/Caminhonete)] | item.attributes.dropped: Value of attribute VEHICLE_TYPE was dropped by category fixed-value (13222040 - Linha Pesada). | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | invalid.item.attribute.values: Attribute [VEHICLE_TYPE] is not valid, item values [(null:Carro/Caminhonete)] | item.attributes.dropped: Value of attribute VEHICLE_TYPE was dropped by category fixed-value (13222040 - Linha Pesada). | code=validation_error | http=400"
+      }
+    }
+  ]
+}

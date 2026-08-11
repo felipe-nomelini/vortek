@@ -1,0 +1,180 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/013-profitable-shelf-2-create-013-gtin-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-013",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "c79ed41e-b97f-4b3a-8808-f220e184c424",
+      "sku": "VTK003177",
+      "category": {
+        "id": "MLB2817",
+        "nome": "Outros",
+        "dominio": "Brinquedos e artigos eróticos"
+      },
+      "anuncio": {
+        "id": "MLB7381740822",
+        "title": "Plug Rca Metal Com Parte Inferior Vermelha Pgrc0022 Storm",
+        "price": 156.98,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381740822-plug-rca-metal-com-parte-inferior-vermelha-pgrc0022-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 30,
+        "shipping_source": "erp",
+        "ml_fee": 0.17,
+        "price": 156.98
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fda6c327-084a-41a6-949d-96dbdf76ee5c",
+      "sku": "VTK018291",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "Amplificadores de som para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381740910",
+        "title": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+        "price": 143.45,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381740910-modulo-para-rebatimento-de-espelho-retrovisor-fks-mce300-re-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.15,
+        "price": 143.45
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a6254578-a015-4765-8ff2-23bd56070d60",
+      "sku": "VTK003259",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "anuncio": {
+        "id": "MLB5034732279",
+        "title": "Pilha Recarregável 1,2v Aaa 950mah Eneloop Pro C 2 Pilhas",
+        "price": 141.98,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034732279-pilha-recarregavel-12v-aaa-950mah-eneloop-pro-c-2-pilhas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 141.98
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "853ee0d7-5ad0-4312-a297-4af55b2194d2",
+      "sku": "VTK018751",
+      "category": {
+        "id": "MLB3932",
+        "nome": "Alarmes para Motos",
+        "dominio": "Alarmes para bicicletas e motos"
+      },
+      "anuncio": {
+        "id": "MLB5034732415",
+        "title": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6 Cg150",
+        "price": 150.92,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034732415-chaveiro-presenca-positron-dpn62-para-duoblock-fx-g6-cg150-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 150.92
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "012712bb-bbe0-4eeb-9695-fd7f03106462",
+      "sku": "VTK018923",
+      "category": {
+        "id": "MLB192355",
+        "nome": "Motor Teto Solar",
+        "dominio": "Motores de tetos solares para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381671920",
+        "title": "Haste New Shark Olimpus Teto Traseira Prata",
+        "price": 152.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381671920-haste-new-shark-olimpus-teto-traseira-prata-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 152.64
+      }
+    }
+  ],
+  "failed": []
+}

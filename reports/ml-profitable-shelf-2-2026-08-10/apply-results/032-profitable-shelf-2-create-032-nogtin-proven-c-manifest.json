@@ -1,0 +1,28 @@
+{
+  "batchNumber": 32,
+  "batchId": "profitable-shelf-2-create-032",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "15a4e111-bcef-4d6b-a0cd-6c2ec40dc2bc",
+      "sku": "VTK025397",
+      "nome": "Kit 04 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk",
+      "fornecedor": "BKR1",
+      "custo": 828,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 04 Drivers 50 Watts 8 Ohms 45mh2510b 8 Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 828,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1705.45
+      }
+    }
+  ]
+}

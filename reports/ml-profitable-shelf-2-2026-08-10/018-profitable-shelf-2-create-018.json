@@ -1,0 +1,427 @@
+{
+  "batchNumber": 18,
+  "batchId": "profitable-shelf-2-create-018",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "8c65ae6e-e178-45db-9ed3-c40f318b07af",
+      "sku": "VTK001155",
+      "nome": "Cabo Coaxial RG59 67% ROL BR Megatron - RL / 100",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 90.07,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Coaxial RG59 67% ROL BR Megatron RL 100",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 90.07,
+        "shipping": 25.55,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 222.35
+      }
+    },
+    {
+      "produtoId": "b69df3b1-79a0-460f-ab89-787d39878c9e",
+      "sku": "VTK018387",
+      "nome": "Ultraled Shocklight S11 H13 6000k 12v 35w 4000lm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 92.2,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ultraled Shocklight S11 H13 6000k 12v 35w 4000lm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 92.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 213.09
+      }
+    },
+    {
+      "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+      "sku": "VTK018934",
+      "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 93.6,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 93.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 215.64
+      }
+    },
+    {
+      "produtoId": "e1ebc8f3-13a7-47a4-bac2-394abbf07c36",
+      "sku": "VTK015922",
+      "nome": "02 Baterias 2CR5 6v Panasonic",
+      "fornecedor": "BKR1",
+      "custo": 93.8,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "02 Baterias 2CR5 6v Panasonic",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 93.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 216
+      }
+    },
+    {
+      "produtoId": "1a60c9a6-4afb-43ae-83d9-af2db6c712d4",
+      "sku": "VTK025814",
+      "nome": "50 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 94,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 94,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 216.36
+      }
+    },
+    {
+      "produtoId": "e369a674-b159-4071-b20d-195dbb3c852d",
+      "sku": "VTK003685",
+      "nome": "Conector Speakon 90° 4 Polos PGSP0005 Preto/Azul Storm - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 94.51,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Speakon 90° 4 Polos PGSP0005 Preto Azul Storm PCT",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 94.51,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 217.29
+      }
+    },
+    {
+      "produtoId": "10a2a623-2b58-438c-a0c2-aa46022bb855",
+      "sku": "VTK018325",
+      "nome": "Controlador De Volume Frahm Cv-10 10w Mono",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 94.9,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controlador De Volume Frahm Cv 10 10w Mono",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 94.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 218
+      }
+    },
+    {
+      "produtoId": "182cc6a2-75d1-44bc-a6f8-9dcf290c5cbd",
+      "sku": "VTK019287",
+      "nome": "Caixa Vazia Para 2 Cornetas E 2 Tweeters Retangular Acarpetada - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 95.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 2 Cornetas E 2 Tweeters Retangular",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 95.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 219.64
+      }
+    },
+    {
+      "produtoId": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "nome": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 96.22,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Carregador de Pilhas TNHC 6GAE4 CB C 4 Pilhas AA 2600mAh",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 96.22,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 220.4
+      }
+    },
+    {
+      "produtoId": "5ad33b11-d00d-49fe-9516-4e16e582a398",
+      "sku": "VTK018660",
+      "nome": "Elgin Bateria Alcalina 23a 12v Embalagem 50 Uni",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 96.9,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Elgin Bateria Alcalina 23a 12v Embalagem 50 Uni",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 96.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 221.64
+      }
+    },
+    {
+      "produtoId": "ea25c332-791f-40bc-b4ea-c33b6bdbd0dc",
+      "sku": "VTK019301",
+      "nome": "Caixa Vazia Para 2 Alto Falantes 6x9\" Retangular Acarpetada - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 97.8,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 2 Alto Falantes 6x9 Polegadas Retangular",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 97.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 223.27
+      }
+    },
+    {
+      "produtoId": "6c0b74a0-4cb7-418c-bd10-abecf1e93e6f",
+      "sku": "VTK017366",
+      "nome": "Caixa Atendimento óptico 1x16 Cto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 97.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Atendimento óptico 1x16 Cto FERRAGENS FTTH",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 97.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 223.45
+      }
+    },
+    {
+      "produtoId": "7dde8a4f-c47f-4ff5-9863-f3280d96d753",
+      "sku": "VTK018912",
+      "nome": "Haste Curta Olimpus Da Antena Para Onix",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 98.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Curta Olimpus Da Antena Para Onix",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 98.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 225.27
+      }
+    },
+    {
+      "produtoId": "acf01ab5-3193-47f7-8977-a18198b2f223",
+      "sku": "VTK006567",
+      "nome": "Ferro a Vapor Arno Essentialgliss com Base Antiaderente FMQ 220V",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 99.21,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ferro a Vapor Arno Essentialgliss com Base Antiaderente FMQ",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 99.21,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 225.84
+      }
+    },
+    {
+      "produtoId": "1711678f-d080-40bc-9ded-0c9e70403ccb",
+      "sku": "VTK019776",
+      "nome": "Caixa Vazia Para 2 Alto Falantes 6x9\" Invertida Pick-up - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 99.8,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 2 Alto Falantes 6x9 Polegadas Invertida",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 99.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 226.91
+      }
+    },
+    {
+      "produtoId": "d84b7ace-189f-4ab8-8f7c-9292491e5b9c",
+      "sku": "VTK017668",
+      "nome": "Combo Teclado E Mouse Logitech Mk120 Usb Preto Com Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 99.9,
+      "estoque": 34,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Combo Teclado E Mouse Logitech Mk120 Usb Preto Com Fio",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 99.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 227.09
+      }
+    },
+    {
+      "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+      "sku": "VTK018024",
+      "nome": "Teclado Viaweb 16s",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 99.9,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Teclado Viaweb 16s",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 99.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 227.09
+      }
+    },
+    {
+      "produtoId": "2f42cd0b-afcc-4ccd-8997-78a141b88325",
+      "sku": "VTK025520",
+      "nome": "24 Baterias Auditiva 312 Duracell (4 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 100,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "24 Baterias Auditiva 312 Duracell 4 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 100,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 227.27
+      }
+    },
+    {
+      "produtoId": "5aa9d2fd-a9cd-4e8b-9db3-2525ec22ff63",
+      "sku": "VTK025521",
+      "nome": "24 Baterias Auditivas 10 Duracell (4 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 100,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "24 Baterias Auditivas 10 Duracell 4 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 100,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 227.27
+      }
+    },
+    {
+      "produtoId": "aa90c8fa-bdaa-4975-b261-a7ba9d4c6473",
+      "sku": "VTK025522",
+      "nome": "24 Baterias Auditivas 13 Duracell (4 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 100,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "24 Baterias Auditivas 13 Duracell 4 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 100,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 227.27
+      }
+    }
+  ]
+}

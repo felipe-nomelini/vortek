@@ -1,0 +1,17 @@
+{
+  "event": "bkr1_battery_dynamic_pricing_summary",
+  "timestamp_utc": "2026-08-10T06:51:14.902Z",
+  "mode": "apply",
+  "profile": "bkr1-batteries",
+  "scope": "all",
+  "output_dir": "/home/felipe/Documentos/Projetos/vortek/reports/bkr1-battery-pricing/primary-status-apply-2026-08-10",
+  "products_scanned": 8,
+  "automated_items_found": 2,
+  "counts": {
+    "skipped": 8,
+    "changed": 9
+  },
+  "safe_products": null,
+  "safe_input_file": null,
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/bkr1-battery-pricing/primary-status-apply-2026-08-10/events.ndjson"
+}

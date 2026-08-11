@@ -1,0 +1,91 @@
+{
+  "batchNumber": 3,
+  "batchId": "profitable-shelf-2-create-003",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+      "sku": "VTK017159",
+      "nome": "Bucha Para Alto Falante Original Permak Palio 237/c",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.29,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bucha Para Alto Falante Original Permak Palio 237 c",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.29,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 28.88
+      }
+    },
+    {
+      "produtoId": "05d26ff9-dde6-4df0-a2d0-325817eeb4e7",
+      "sku": "VTK017189",
+      "nome": "Reparo Para Driver Shock D-250 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Para Driver Shock D 250 Selenium SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.72
+      }
+    },
+    {
+      "produtoId": "ec92357c-bf98-4e74-9876-6f6d42556024",
+      "sku": "VTK018710",
+      "nome": "Kit Adaptador Aquário Cf-265 Para Nokia 8265",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.95,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Adaptador Aquário Cf 265 Para Nokia 8265",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.79
+      }
+    },
+    {
+      "produtoId": "df45f308-ca98-4322-bf72-8ba4132b3d56",
+      "sku": "VTK019629",
+      "nome": "Fonte Chaveada Mxt Para Cftv 12v/1a",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.99,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Chaveada Mxt Para Cftv 12v 1a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.85
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/032-profitable-shelf-2-create-032-nogtin-proven-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-032",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "15a4e111-bcef-4d6b-a0cd-6c2ec40dc2bc",
+      "sku": "VTK025397",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034771739",
+        "title": "Kit 04 Drivers 50 Watts 8 Ohms 45mh2510b 8 Atk",
+        "price": 1769.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034771739-kit-04-drivers-50-watts-8-ohms-45mh2510b-8-atk-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 1769.81
+      }
+    }
+  ],
+  "failed": []
+}

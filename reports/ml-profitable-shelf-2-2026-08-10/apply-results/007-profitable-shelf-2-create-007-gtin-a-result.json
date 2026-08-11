@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/007-profitable-shelf-2-create-007-gtin-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-007",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "category": {
+        "id": "MLB432949",
+        "nome": "Reparos",
+        "dominio": "Produtos eletrônicos"
+      },
+      "anuncio": {
+        "id": "MLB7381754796",
+        "title": "Reparo Tweeter Shock Completo St 450 Trio Shock Reparos",
+        "price": 43.78,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754796-reparo-tweeter-shock-completo-st-450-trio-shock-reparos-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 43.78
+      }
+    }
+  ],
+  "failed": []
+}

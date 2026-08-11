@@ -1,0 +1,91 @@
+{
+  "batchNumber": 31,
+  "batchId": "profitable-shelf-2-create-031",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "72f09887-5656-41d0-ad6b-0ca17983cccf",
+      "sku": "VTK001252",
+      "nome": "Violão Giannini GSF3 CEQ Eletroacústico Aço Translucent Dark Wine Dark Wine",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 697.3,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Violão Giannini GSF3 CEQ Eletroacústico Aço Translucent Dark",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 697.3,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1467.82
+      }
+    },
+    {
+      "produtoId": "31e52658-a1fa-443a-bdc3-521f2ddac5a2",
+      "sku": "VTK001416",
+      "nome": "Violão Giannini GF1D CEQ Eletroacústico Aço Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 704.84,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Violão Giannini GF1D CEQ Eletroacústico Aço Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 704.84,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1481.53
+      }
+    },
+    {
+      "produtoId": "1544174a-fb73-4341-a200-58afd115a08d",
+      "sku": "VTK018920",
+      "nome": "Power Coaxial Onix Hd 3000 16ch Com Fonte",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 727.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Power Coaxial Onix Hd 3000 16ch Com Fonte",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 727.8,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1523.27
+      }
+    },
+    {
+      "produtoId": "fcd17d22-a899-4764-b253-12571c37582f",
+      "sku": "VTK001399",
+      "nome": "Guitarra Tagima TG-500 Candy Apple E/AWH",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 769.92,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Guitarra Tagima TG 500 Candy Apple E AWH",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 769.92,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1599.85
+      }
+    }
+  ]
+}

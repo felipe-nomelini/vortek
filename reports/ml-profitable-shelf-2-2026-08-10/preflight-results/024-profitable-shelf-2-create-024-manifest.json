@@ -1,0 +1,427 @@
+{
+  "batchNumber": 24,
+  "batchId": "profitable-shelf-2-create-024",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "27f8b999-1aab-417a-b133-c3c56e4a161f",
+      "sku": "VTK017567",
+      "nome": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto/cinza",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 157.9,
+      "estoque": 33,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto cinza",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 157.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 387.09
+      }
+    },
+    {
+      "produtoId": "c5a0cce9-836a-495a-b71c-0c72b57f6932",
+      "sku": "VTK018721",
+      "nome": "Caixa Vazia Para 2 Alto Falante 12\" Modelo Turbo, Rasgada, Corvin E Acarpe",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 157.9,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 2 Alto Falante 12 Polegadas Modelo Turbo,",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 157.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 487.09
+      }
+    },
+    {
+      "produtoId": "d65fb439-c01c-4078-ac02-56024daec98d",
+      "sku": "VTK017156",
+      "nome": "Suporte Multifuncional Ask PNT2 Com Bandeja Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 158.65,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Multifuncional Ask PNT2 Com Bandeja Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 158.65,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 388.45
+      }
+    },
+    {
+      "produtoId": "31feeabf-85e7-47ec-8ee9-681d89af6da7",
+      "sku": "VTK018642",
+      "nome": "Caixa R.l.p. Vazia Full Trap 2 A.f. 12\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 159.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa R.l.p. Vazia Full Trap 2 A.f. 12 Polegadas CAIXARIAS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 159.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 490.73
+      }
+    },
+    {
+      "produtoId": "8f79a65e-1e1b-431f-95ce-84e51e93d68e",
+      "sku": "VTK018128",
+      "nome": "Microfone Cardioide Leson Sm-58 P4 Ouro Com Suporte E Cabo 5 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 159.95,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Microfone Cardioide Leson Sm 58 P4 Ouro Com Suporte E Cabo 5",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 159.95,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 390.82
+      }
+    },
+    {
+      "produtoId": "0c39c30b-7720-4868-b5cc-7c9a5fc206ab",
+      "sku": "VTK025874",
+      "nome": "10 Baterias CR123 Elgin",
+      "fornecedor": "BKR1",
+      "custo": 160,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Baterias CR123 Elgin",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 160,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 390.91
+      }
+    },
+    {
+      "produtoId": "d5c8d107-46e4-4b22-b2e8-982fa2b8e23a",
+      "sku": "VTK025958",
+      "nome": "Frigideira Redonda Rochedo Robusta 26cm Grafite - CXM / 3",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 161.11,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Frigideira Redonda Rochedo Robusta 26cm Grafite CXM 3 ARNO",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 161.11,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 392.93
+      }
+    },
+    {
+      "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "sku": "VTK017630",
+      "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 161.9,
+      "estoque": 38,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 161.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 394.36
+      }
+    },
+    {
+      "produtoId": "fc83972a-ead2-4687-b53a-07c3fd56c4a3",
+      "sku": "VTK019044",
+      "nome": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 161.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 161.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 394.36
+      }
+    },
+    {
+      "produtoId": "9dd61838-7a13-4344-9aae-bbae51ff98de",
+      "sku": "VTK017904",
+      "nome": "Centralina Soft Aw54 4 Vidros Comum + Ae",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 162.9,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Centralina Soft Aw54 4 Vidros Comum + Ae",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 162.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 396.18
+      }
+    },
+    {
+      "produtoId": "b21e7488-30a1-4fa4-b49a-72ae78c820b9",
+      "sku": "VTK018467",
+      "nome": "Parafuso 4,2 X 38 Flangeado Cento - CT / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 162.9,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Parafuso 4,2 X 38 Flangeado Cento CT 5 PERMAK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 162.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 396.18
+      }
+    },
+    {
+      "produtoId": "b686c43a-d79c-4ca8-8c33-c99af43ac16f",
+      "sku": "VTK016204",
+      "nome": "6 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (3 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 163.53,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "6 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic 3 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 163.53,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 397.33
+      }
+    },
+    {
+      "produtoId": "06794e08-6c98-4ebd-9930-dead3d6accda",
+      "sku": "VTK018909",
+      "nome": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 164.45,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 164.45,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 399
+      }
+    },
+    {
+      "produtoId": "b220ccb7-0ec1-4976-8cb9-b631697a5aba",
+      "sku": "VTK017944",
+      "nome": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina Central",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 164.9,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 164.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 499.82
+      }
+    },
+    {
+      "produtoId": "c3465729-640a-485e-9ea0-9030b622b642",
+      "sku": "VTK018113",
+      "nome": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina Central",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 164.9,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 164.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 499.82
+      }
+    },
+    {
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "nome": "Testador Smd Com Pinça Hikari Hm-10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 165.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Testador Smd Com Pinça Hikari Hm 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 165.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 401.64
+      }
+    },
+    {
+      "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+      "sku": "VTK018712",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20 Metros Caco0192",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 169.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 169.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 408.91
+      }
+    },
+    {
+      "produtoId": "12c9a730-40f0-4609-a207-d65812d7b85c",
+      "sku": "VTK018713",
+      "nome": "Kit Placa Dvr Seykon Pci Sk-8416 16 Canais",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 169.95,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Placa Dvr Seykon Pci Sk 8416 16 Canais",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 169.95,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 409
+      }
+    },
+    {
+      "produtoId": "df359f31-4088-47d1-a271-9d69caa9f73e",
+      "sku": "VTK001386",
+      "nome": "Pedestal Canhão de Iluminação CL34 ASK",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 172.61,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pedestal Canhão de Iluminação CL34 ASK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 172.61,
+        "shipping": 24.65,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 352.25
+      }
+    },
+    {
+      "produtoId": "88980f83-3386-4f2d-a2fe-313ff027f6fe",
+      "sku": "VTK018913",
+      "nome": "Caixa Rlp Vazia Para Carro Emborrachada 2 12\"+ 2tw + 2dr + 2 Duto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 172.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Rlp Vazia Para Carro Emborrachada 2 12 Polegadas + 2tw",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 172.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 514.36
+      }
+    }
+  ]
+}

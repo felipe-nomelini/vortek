@@ -1,0 +1,16 @@
+{
+  "event": "evolusom_cash_tourniquet_summary",
+  "timestamp_utc": "2026-08-10T19:57:20.484Z",
+  "mode": "dry_run",
+  "profile": "evolusom-cash-tourniquet",
+  "scope": "critical",
+  "output_dir": "/home/felipe/Documentos/Projetos/vortek/reports/evolusom-cash-tourniquet/critical-dry-run-2026-08-10",
+  "products_scanned": 10,
+  "automated_items_found": 2,
+  "counts": {
+    "planned": 19
+  },
+  "safe_products": 10,
+  "safe_input_file": "/home/felipe/Documentos/Projetos/vortek/reports/evolusom-cash-tourniquet/critical-dry-run-2026-08-10/safe-input.ndjson",
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/evolusom-cash-tourniquet/critical-dry-run-2026-08-10/events.ndjson"
+}

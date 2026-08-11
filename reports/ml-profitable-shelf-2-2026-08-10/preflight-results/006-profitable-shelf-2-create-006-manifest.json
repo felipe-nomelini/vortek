@@ -1,0 +1,427 @@
+{
+  "batchNumber": 6,
+  "batchId": "profitable-shelf-2-create-006",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "b24b2c62-e1e9-4db8-a1e7-e091641fc30d",
+      "sku": "VTK018608",
+      "nome": "Chicote Dedicado Positron Pronnect Hyundai Veloster 2013",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 21.99,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chicote Dedicado Positron Pronnect Hyundai Veloster 2013",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 21.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 39.57
+      }
+    },
+    {
+      "produtoId": "6ec281b5-3857-4cf0-9370-8f62d1af46a2",
+      "sku": "VTK017930",
+      "nome": "Chave Canivete B&s Gm Cruze/ Cobalt/ Agile 3 Botoes Sem Circuito",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 22.5,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chave Canivete B&s Gm Cruze Cobalt Agile 3 Botoes Sem",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 40.28
+      }
+    },
+    {
+      "produtoId": "c4358548-f1af-4ec2-bd6b-2e94976c5c63",
+      "sku": "VTK025714",
+      "nome": "20 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 22.88,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.88,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 40.81
+      }
+    },
+    {
+      "produtoId": "ee50626d-b3d0-434a-bb1e-d562643d1448",
+      "sku": "VTK017233",
+      "nome": "Suporte Antena 10-a Telha Brasilit 32mm Tubo 3/ 4 Prata Cromo",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 22.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Antena 10 a Telha Brasilit 32mm Tubo 3 4 Prata Cromo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 40.83
+      }
+    },
+    {
+      "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "sku": "VTK017246",
+      "nome": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 22.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.9,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50
+      }
+    },
+    {
+      "produtoId": "7bfebc32-b761-4e70-8cca-958317adb165",
+      "sku": "VTK017631",
+      "nome": "Controle Remoto Fks Cr941 Digital 433mhz",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 22.9,
+      "estoque": 38,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controle Remoto Fks Cr941 Digital 433mhz",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 40.83
+      }
+    },
+    {
+      "produtoId": "d5dadf67-755e-4ddb-8364-3b53e162d62f",
+      "sku": "VTK012590",
+      "nome": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+      "fornecedor": "BKR1",
+      "custo": 22.92,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Nylon Jazz Iii Preta Pct C 4 Un 47r3s Dunlop 1939",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 22.92,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.115,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 46.72
+      }
+    },
+    {
+      "produtoId": "2f8b64e2-b58e-4add-a49a-2034f688d64c",
+      "sku": "VTK018277",
+      "nome": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-30",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 23.5,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc 30",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 23.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 41.67
+      }
+    },
+    {
+      "produtoId": "bfe470e7-0175-4a0c-ba65-7aa1adafc9e0",
+      "sku": "VTK018728",
+      "nome": "Resistência Para Ferro De Solda Hikari Power 60 - 220v",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 23.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Resistência Para Ferro De Solda Hikari Power 60 220v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 23.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 42.22
+      }
+    },
+    {
+      "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+      "sku": "VTK018133",
+      "nome": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 23.95,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 23.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 42.29
+      }
+    },
+    {
+      "produtoId": "5a3285c8-cf05-41c4-ba80-dde3d8e8839f",
+      "sku": "VTK018664",
+      "nome": "Antena Permak Am/fm 2 Estágio Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 24.5,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Permak Am fm 2 Estágio Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.06
+      }
+    },
+    {
+      "produtoId": "939e89d2-a6fc-426a-9772-e27cf9f35943",
+      "sku": "VTK025339",
+      "nome": "2 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCL Giannini",
+      "fornecedor": "BKR1",
+      "custo": 24.74,
+      "estoque": 22,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "2 Jogos de Corda P Cavaquinho Cobra Niquel GESCL Giannini",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.74,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.39
+      }
+    },
+    {
+      "produtoId": "01befa13-59be-4517-abfa-acee3be87297",
+      "sku": "VTK025674",
+      "nome": "15 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 24.84,
+      "estoque": 33,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.84,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.53
+      }
+    },
+    {
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 24.9,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Tweeter Shock Completo St 400 Selenium SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.61
+      }
+    },
+    {
+      "produtoId": "78771007-6730-4434-ae9f-f8094ad3ac11",
+      "sku": "VTK018517",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 24.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.61
+      }
+    },
+    {
+      "produtoId": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+      "sku": "VTK018129",
+      "nome": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 24.95,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.68
+      }
+    },
+    {
+      "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+      "sku": "VTK018454",
+      "nome": "Conector Para Cd Vw Jetta/passat",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 24.99,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Para Cd Vw Jetta passat PERMAK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 24.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.74
+      }
+    },
+    {
+      "produtoId": "146a4041-4ce4-4c8d-afa6-9d60694822ae",
+      "sku": "VTK017871",
+      "nome": "Microfone Ipec Profissional Para Cftv",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 25.15,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Microfone Ipec Profissional Para Cftv",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 25.15,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.96
+      }
+    },
+    {
+      "produtoId": "6f27af50-a600-4f38-bbbb-9f5c94969ea5",
+      "sku": "VTK025673",
+      "nome": "15 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 25.5,
+      "estoque": 33,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 25.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 44.44
+      }
+    },
+    {
+      "produtoId": "b02ef015-f182-4d82-9937-73c8fee968c5",
+      "sku": "VTK017378",
+      "nome": "Carregador De Celular Roadstar Rs109-2ubr Com 2 Usb",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 25.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Carregador De Celular Roadstar Rs109 2ubr Com 2 Usb ROADSTAR",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 25.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45
+      }
+    }
+  ]
+}

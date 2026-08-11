@@ -1,6 +1,6 @@
 import type { PricingParams, PricingResult } from '@/types/pricing';
 
-const TAX_RATE = 0.04;
+const TAX_RATE = 0.05;
 const DEFAULT_MARGIN = 0.10;
 
 export interface PricingStrategy {
@@ -29,7 +29,7 @@ export function calculateBreakEvenPrice(params: {
 }): number {
   const denominator = 1 - (TAX_RATE + params.mlFee);
   if (denominator <= 0) {
-    throw new Error('A soma de imposto (4%) e taxa ML não pode ser igual ou superior a 100%');
+    throw new Error('A soma de imposto (5%) e taxa ML não pode ser igual ou superior a 100%');
   }
   return round2((params.cost + params.shipping) / denominator);
 }
@@ -43,6 +43,22 @@ export function calculateNetProfitAtPrice(params: {
   const tax = params.price * TAX_RATE;
   const mlFeeAmount = params.price * params.mlFee;
   return round2(params.price - params.cost - params.shipping - tax - mlFeeAmount);
+}
+
+/** Calcula o preço pela margem líquida desejada sobre o preço final. */
+export function calculateExactMarginPrice(params: {
+  cost: number;
+  shipping: number;
+  mlFee: number;
+  margin: number;
+}): number {
+  const denominator = 1 - TAX_RATE - params.mlFee - params.margin;
+  if (denominator <= 0) {
+    throw new Error(
+      'A soma de imposto (5%), taxa ML e margem não pode ser igual ou superior a 100%'
+    );
+  }
+  return round2((params.cost + params.shipping) / denominator);
 }
 
 /**
@@ -64,7 +80,7 @@ export function calculateSuggestedPrice(params: PricingParams): PricingResult {
 
   if (denominator <= 0) {
     throw new Error(
-      'A soma de imposto (4%) e taxa ML não pode ser igual ou superior a 100%'
+      'A soma de imposto (5%) e taxa ML não pode ser igual ou superior a 100%'
     );
   }
 

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 25,
+  "batchId": "profitable-shelf-2-create-025",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "8721aacd-f440-4cfe-83db-307b57495c4b",
+      "sku": "VTK019032",
+      "nome": "Reparo Para Alto Falante Eros E-hammer 12\" 4.7k 8r 980010084",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 173.99,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Para Alto Falante Eros E hammer 12 Polegadas 4.7k 8r",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 173.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 416.35
+      }
+    },
+    {
+      "produtoId": "beeacdcc-aa2d-49a6-9940-2291eee2fa34",
+      "sku": "VTK018450",
+      "nome": "Teclado Via Web 128 Para Central 128 Plus Lcd",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 174.9,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Teclado Via Web 128 Para Central 128 Plus Lcd VIAWEB",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 174.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 418
+      }
+    },
+    {
+      "produtoId": "bec92d5a-a722-44a2-b3c1-0fbbabf728a5",
+      "sku": "VTK025568",
+      "nome": "42 Baterias Auditiva 312 Duracell (7 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 175,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "42 Baterias Auditiva 312 Duracell 7 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 175,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 418.18
+      }
+    },
+    {
+      "produtoId": "f2a44ac6-751f-40cf-ac5e-efe29b493dd5",
+      "sku": "VTK025569",
+      "nome": "42 Baterias Auditivas 10 Duracell (7 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 175,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "42 Baterias Auditivas 10 Duracell 7 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 175,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 418.18
+      }
+    },
+    {
+      "produtoId": "066aa4ea-ded4-44b4-a8fb-5eefe12795a9",
+      "sku": "VTK025570",
+      "nome": "42 Baterias Auditivas 13 Duracell (7 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 175,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "42 Baterias Auditivas 13 Duracell 7 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 175,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 418.18
+      }
+    },
+    {
+      "produtoId": "95008f78-6aaa-46b6-9d89-c6dd96e07d0b",
+      "sku": "VTK025571",
+      "nome": "42 Baterias Auditivas 675 Duracell (7 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 175,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "42 Baterias Auditivas 675 Duracell 7 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 175,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 418.18
+      }
+    },
+    {
+      "produtoId": "c65bc62f-8b77-4096-aead-8f3c4911e14c",
+      "sku": "VTK001978",
+      "nome": "Encordoamento Para Violão .010 Extra Light Phosphor Bronze Nanoweb 16002 Elixir",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 177.36,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Encordoamento Para Violão .010 Extra Light Phosphor Bronze",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 177.36,
+        "shipping": 20.95,
+        "shippingSource": "erp",
+        "mlFee": 0.145,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 357.32
+      }
+    },
+    {
+      "produtoId": "e65d9f54-97f2-4a65-b82d-d7b71f68742b",
+      "sku": "VTK018610",
+      "nome": "Cabo Multicabo Santo Angelo Sas 6 Vias Cobre Ofhc Metro - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 179,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Multicabo Santo Angelo Sas 6 Vias Cobre Ofhc Metro PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 179,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 425.45
+      }
+    },
+    {
+      "produtoId": "ffbc8e0c-baf8-487a-a517-1f2534124b96",
+      "sku": "VTK025655",
+      "nome": "100 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 188,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "100 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 188,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 441.82
+      }
+    },
+    {
+      "produtoId": "18a9802b-c884-40c0-8244-b2afb4fb68bc",
+      "sku": "VTK018717",
+      "nome": "Cabo Auto Plastic Pompéia 1,50 Mm 300v Rolo Com 100 Metros Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 188.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Auto Plastic Pompéia 1,50 Mm 300v Rolo Com 100 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 188.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 443.45
+      }
+    },
+    {
+      "produtoId": "15f03bd3-d145-481d-80bc-9c31908fe35f",
+      "sku": "VTK018111",
+      "nome": "Combo Teclado + Mouse Wireless Logitech Mk295",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 189.9,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Combo Teclado + Mouse Wireless Logitech Mk295",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 189.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 445.27
+      }
+    },
+    {
+      "produtoId": "f644c6c9-e102-42ff-98c6-b9265ac702b3",
+      "sku": "VTK001897",
+      "nome": "Cabo Polarizado Para Áudio Externo 2 x 0,20mm² (24 AWG) Preto Tiaflex - RL / 100",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 191.66,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Polarizado Para Áudio Externo 2 x 0,20mm² 24 AWG Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 191.66,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 448.47
+      }
+    },
+    {
+      "produtoId": "f04a324e-877c-46ff-9570-7faa2896fa74",
+      "sku": "VTK018767",
+      "nome": "Kit Ventilador 2 Coolers Para Rack Padrão 19\" X 1u Bivolt",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 192.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Ventilador 2 Coolers Para Rack Padrão 19 Polegadas X 1u",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 192.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 450.73
+      }
+    },
+    {
+      "produtoId": "a09e2e5d-9958-4bdc-92d8-4d4f070ce0b7",
+      "sku": "VTK012281",
+      "nome": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 194.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Conector Speakon Wc 605 20un Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 194.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 454.36
+      }
+    },
+    {
+      "produtoId": "be4bab51-782b-4663-a044-ce7441a10ebe",
+      "sku": "VTK023357",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 12v 18ah",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 194.9,
+      "estoque": 39,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bateria Selada De Chumbo Elgin Vrla 12v 18ah",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 194.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 454.36
+      }
+    },
+    {
+      "produtoId": "4d9ff774-2ba9-433d-9676-f85d5f4efca7",
+      "sku": "VTK023153",
+      "nome": "Caixa Vazia 02 Alto Falantes 12\" + 04 Cornetas + 02 Tweeters Turbo",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 195,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia 02 Alto Falantes 12 Polegadas + 04 Cornetas + 02",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 195,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 554.55
+      }
+    },
+    {
+      "produtoId": "0dbbc68e-9c9a-4487-81d5-75cace8681a6",
+      "sku": "VTK018883",
+      "nome": "Alça Pré Formada Para Cabo 10,00/ 10,80mm Apco6108 Cinza - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 198.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alça Pré Formada Para Cabo 10,00 10,80mm Apco6108 Cinza PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 198.8,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 461.45
+      }
+    },
+    {
+      "produtoId": "19137cd0-6c42-4475-b9c0-a7c5b2e48a8a",
+      "sku": "VTK018607",
+      "nome": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros Verde",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 198.99,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 198.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 461.8
+      }
+    },
+    {
+      "produtoId": "467761af-f4b6-459c-9e70-b6d58784d6d4",
+      "sku": "VTK017369",
+      "nome": "Cooler Para Rack Evus Ev-fu2 120x120mm 110v",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 199.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cooler Para Rack Evus Ev fu2 120x120mm 110v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 199.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 463.45
+      }
+    },
+    {
+      "produtoId": "203d99f8-bf9a-4438-80a4-4402c0d4dd79",
+      "sku": "VTK019037",
+      "nome": "Headset Logitech H390 Usb",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 199.9,
+      "estoque": 32,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Headset Logitech H390 Usb",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 199.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 463.45
+      }
+    }
+  ]
+}

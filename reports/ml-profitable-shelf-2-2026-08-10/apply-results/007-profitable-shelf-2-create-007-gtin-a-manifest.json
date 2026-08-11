@@ -1,0 +1,28 @@
+{
+  "batchNumber": 7,
+  "batchId": "profitable-shelf-2-create-007",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 25.9,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Tweeter Shock Completo St 450 Trio SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 25.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45
+      }
+    }
+  ]
+}

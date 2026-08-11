@@ -1,0 +1,268 @@
+[
+  {
+    "produtoId": "8b558e96-049d-4a48-8c95-2bf504daa0a2",
+    "sku": "VTK000054",
+    "nome": "Pasta Térmica Thermal Silver Seringa 5g Prata Implastec",
+    "fornecedor": "EVOLUSOM-PR",
+    "reason": "invalid_package"
+  },
+  {
+    "produtoId": "2fcc2093-ddde-4e63-b944-90a4ab2d2454",
+    "sku": "VTK000216",
+    "nome": "Ponteira Cônica Para Ferro de Solda 40W CP40S PLUS Hikari - PCT / 4",
+    "fornecedor": "EVOLUSOM-PR",
+    "reason": "invalid_package"
+  },
+  {
+    "produtoId": "0e89519b-7baa-46d2-918c-876e90ba4953",
+    "sku": "VTK004609",
+    "nome": "77384",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_description"
+  },
+  {
+    "produtoId": "f08c8b3c-96ad-4016-b0cd-5ac4353260fe",
+    "sku": "VTK017435",
+    "nome": "Conector T Deye Para Micro Inversor Sun-m225g4",
+    "fornecedor": "EVOLUSOM-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "acc26487-e38e-4cd5-912a-8a90c735e4d1",
+    "sku": "VTK001875",
+    "nome": "Corda Para Violão 5ª Lá Com Bolinha GENWB Série Canário Giannini - DZ / 12",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "invalid_package"
+  },
+  {
+    "produtoId": "486434ea-76ce-48ab-81e8-5466a7a7c2a4",
+    "sku": "VTK017436",
+    "nome": "(ind) Cabo Tronco Deye P/sun-m225g4",
+    "fornecedor": "EVOLUSOM-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "27f2495d-930e-483d-b2ad-86c5f491fd2f",
+    "sku": "VTK006318",
+    "nome": "CARREGADOR GAN 60W FORTREK CG633",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_description"
+  },
+  {
+    "produtoId": "78b803ed-2e47-448d-a02c-938e19a345dc",
+    "sku": "VTK001254",
+    "nome": "Fio Cabinho Flexível 0,30mm Preto Tiaflex - RL / 100",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "invalid_package"
+  },
+  {
+    "produtoId": "8b14c2ef-7fc5-4dd0-8278-f9fcd77eb276",
+    "sku": "VTK025247",
+    "nome": "ALMOFADA THUNDER TGC12 BR",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "9ac90e1e-88d2-4e43-9dab-4db91c3bc203",
+    "sku": "VTK001165",
+    "nome": "ASSENTO CAD THUNDER TGC12 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "35d0b49b-4e8d-4574-a632-589d4db08e3f",
+    "sku": "VTK001325",
+    "nome": "Fio Cabinho Flexível 0,30mm Vermelho Tiaflex - RL / 100",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "invalid_package"
+  },
+  {
+    "produtoId": "28098ee5-7fbf-4d6c-b634-43e5bad60e7a",
+    "sku": "VTK001119",
+    "nome": "ASSENTO CAD THUNDER EC3 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "f0635871-89a2-4e66-a415-02ac568622b6",
+    "sku": "VTK001195",
+    "nome": "ENCOSTO CAD THUNDER EC3 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "1016b5d8-5964-427a-b5f6-f6d9299f52ae",
+    "sku": "VTK001109",
+    "nome": "ENCOSTO CAD THUNDER TGC12 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "de045a9f-a54e-454d-8c71-6ad50a201b1f",
+    "sku": "VTK001286",
+    "nome": "Assento p/ Cadeira TGC12 Preto/Vermelho ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "6caf1e64-3a88-4430-abb8-5a055f233c32",
+    "sku": "VTK000552",
+    "nome": "Pistão À Gás Guardian Yama1 Core ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "64e57270-4980-4387-9a75-4a265003092b",
+    "sku": "VTK015947",
+    "nome": "10 Pilhas Recarregaveis Eneloop Std Aa Panasonic (5 Cart)",
+    "fornecedor": "BKR1",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "037a0d81-85b9-4458-9b07-148b399bb557",
+    "sku": "VTK000504",
+    "nome": "Mecanismo Sync6 Para Cadeira Core ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "a6d325ba-0786-4395-8fd6-e847d6212ffe",
+    "sku": "VTK000572",
+    "nome": "Encosto Para Cadeira XTC Mesh Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "48b26ccf-bce7-4bef-b447-ae46449f4ff4",
+    "sku": "VTK000533",
+    "nome": "MECANISMO SYNC5 XTC",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "58b46fa0-9db3-4758-98c8-455c3e5ecbbd",
+    "sku": "VTK000540",
+    "nome": "Assento Para Cadeira Core Loft Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "83721b7f-51ea-4795-92bb-610caa79bc10",
+    "sku": "VTK001258",
+    "nome": "Almofada Para Lombar BC3 Preto ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "e528b430-e3e3-4f5a-b60a-53f97b995fd6",
+    "sku": "VTK001390",
+    "nome": "Almofada Para Lombar BC3 Preto ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "5dd76647-9206-47be-b8f8-bd739f3887d2",
+    "sku": "VTK001137",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "69df5c41-2a36-4f2c-bcb1-c563df1d92d8",
+    "sku": "VTK001439",
+    "nome": "Apoio de Braço Esquerdo Core Loft Grey ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "1153e4d4-cede-4d61-a061-f02815226130",
+    "sku": "VTK016207",
+    "nome": "60 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (6 Cart)",
+    "fornecedor": "BKR1",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "05ab405c-21f6-48fe-a95d-c45963af73a8",
+    "sku": "VTK004505",
+    "nome": "ASSENTO CAD THUNDER TGC12 BR",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "e92f6915-7ced-4c5f-95ad-94d4a02a2500",
+    "sku": "VTK016217",
+    "nome": "70 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (7 Cart)",
+    "fornecedor": "BKR1",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "81eb4321-c34a-4746-8acf-7f89446e22ab",
+    "sku": "VTK001057",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "4ab2d60a-a1d1-48fe-a6fc-8e9d557f08e7",
+    "sku": "VTK016240",
+    "nome": "80 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (8 Cart)",
+    "fornecedor": "BKR1",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "0cbaca88-b155-4087-b308-38abe14befb4",
+    "sku": "VTK016246",
+    "nome": "90 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (9 Cart)",
+    "fornecedor": "BKR1",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "ac893d3f-2c0b-4407-b358-d4030fce1181",
+    "sku": "VTK001173",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "5d78c1f7-39c4-43ca-b250-c69bb037d4ce",
+    "sku": "VTK001039",
+    "nome": "Assento Para Cadeira XTC Mesh Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "1be46bf9-1cd1-4665-a868-2ccb25db3529",
+    "sku": "VTK000518",
+    "nome": "Assento Para Cadeira Core Modern Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "91215b9f-aab9-485f-8aa2-b8d400cbd617",
+    "sku": "VTK001063",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "12e4dd09-6ad6-40f5-b870-a012960efabe",
+    "sku": "VTK001207",
+    "nome": "Encosto Para Cadeira Core Loft Grafite ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "d9930b7b-c377-4f02-8e24-9f36c3d78f1e",
+    "sku": "VTK001187",
+    "nome": "ALMOFADA DE CABECA CORE LOFT BLACK",
+    "fornecedor": "HAYAMAX-PR",
+    "reason": "missing_description"
+  },
+  {
+    "produtoId": "17fa3398-d792-4079-93e2-bcafd795813b",
+    "sku": "VTK018581",
+    "nome": "Inversor Solar Saj R5-3k-s1-15 Mono 220v 1mppt",
+    "fornecedor": "EVOLUSOM-PR",
+    "reason": "missing_image"
+  }
+]

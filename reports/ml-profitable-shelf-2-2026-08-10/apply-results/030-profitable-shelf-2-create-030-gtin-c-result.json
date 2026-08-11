@@ -1,0 +1,112 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/030-profitable-shelf-2-create-030-gtin-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-030",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "5890ee38-8c23-480a-8ea4-3bde52cc8ab8",
+      "sku": "VTK001733",
+      "category": {
+        "id": "MLB29333",
+        "nome": "Cajones",
+        "dominio": "Cajons de percussão"
+      },
+      "anuncio": {
+        "id": "MLB7381673914",
+        "title": "Cajón Fsa Fs2501 Standart Preto Preto",
+        "price": 1238.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381673914-cajon-fsa-fs2501-standart-preto-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1238.58
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2e2cfee5-5f82-46a6-a967-adea0155b425",
+      "sku": "VTK012857",
+      "category": {
+        "id": "MLB129666",
+        "nome": "Alto-Falantes",
+        "dominio": "Alto-falantes internos para tablets"
+      },
+      "anuncio": {
+        "id": "MLB7381754732",
+        "title": "Alto Falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk",
+        "price": 1219.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754732-alto-falante-profissional-700w-12-pol-8-ohms-12lf1410b8-atk-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 1219.3
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bebc3026-4369-4420-9b71-8195f86e3568",
+      "sku": "VTK002571",
+      "category": {
+        "id": "MLB3016",
+        "nome": "Acústicas",
+        "dominio": "Violões acústicos"
+      },
+      "anuncio": {
+        "id": "MLB7381743580",
+        "title": "Violão Giannini Gsf1d Mini Jumbo Aço Mini Jumbo Natural",
+        "price": 1372.11,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381743580-violo-giannini-gsf1d-mini-jumbo-aco-mini-jumbo-natural-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1372.11
+      }
+    }
+  ],
+  "failed": []
+}

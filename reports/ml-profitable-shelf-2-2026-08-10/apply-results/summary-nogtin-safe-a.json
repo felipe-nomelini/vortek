@@ -1,0 +1,94 @@
+{
+  "startedAt": "2026-08-11T01:01:46.648Z",
+  "mode": "apply",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10",
+  "selected": 24,
+  "success": 24,
+  "failed": 0,
+  "skippedNoLongerEligible": 3,
+  "batches": [
+    {
+      "fileName": "001-profitable-shelf-2-create-001.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "002-profitable-shelf-2-create-002.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "003-profitable-shelf-2-create-003.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/003-profitable-shelf-2-create-003-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "004-profitable-shelf-2-create-004.json",
+      "exitCode": 0,
+      "selected": 3,
+      "success": 3,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/004-profitable-shelf-2-create-004-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "005-profitable-shelf-2-create-005.json",
+      "exitCode": 0,
+      "selected": 2,
+      "success": 2,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/005-profitable-shelf-2-create-005-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "006-profitable-shelf-2-create-006.json",
+      "exitCode": 0,
+      "selected": 3,
+      "success": 3,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/006-profitable-shelf-2-create-006-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "007-profitable-shelf-2-create-007.json",
+      "exitCode": 0,
+      "selected": 3,
+      "success": 3,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/007-profitable-shelf-2-create-007-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "008-profitable-shelf-2-create-008.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/008-profitable-shelf-2-create-008-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "009-profitable-shelf-2-create-009.json",
+      "exitCode": 0,
+      "selected": 5,
+      "success": 5,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/009-profitable-shelf-2-create-009-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "010-profitable-shelf-2-create-010.json",
+      "exitCode": 0,
+      "selected": 3,
+      "success": 3,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/010-profitable-shelf-2-create-010-nogtin-safe-a-result.json"
+    },
+    {
+      "fileName": "011-profitable-shelf-2-create-011.json",
+      "exitCode": 0,
+      "selected": 3,
+      "success": 3,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/011-profitable-shelf-2-create-011-nogtin-safe-a-result.json"
+    }
+  ],
+  "finishedAt": "2026-08-11T01:06:29.995Z"
+}

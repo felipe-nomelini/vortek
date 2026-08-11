@@ -1,0 +1,427 @@
+{
+  "batchNumber": 16,
+  "batchId": "profitable-shelf-2-create-016",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "d8fc0528-277f-4ea4-8b4b-0212276baff0",
+      "sku": "VTK025816",
+      "nome": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 68,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 68,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 169.09
+      }
+    },
+    {
+      "produtoId": "f17ab6cf-45aa-4659-b818-474e7421e289",
+      "sku": "VTK019063",
+      "nome": "Arandela Redonda Fiamon 6\" Difusor 30rms 8r Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 68.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela Redonda Fiamon 6 Polegadas Difusor 30rms 8r Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 68.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 170.73
+      }
+    },
+    {
+      "produtoId": "e8438ae6-afff-448d-bf51-46bf02e6fb49",
+      "sku": "VTK013009",
+      "nome": "Capa Violao Luxo - Nylon 600",
+      "fornecedor": "BKR1",
+      "custo": 69,
+      "estoque": 40,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capa Violao Luxo Nylon 600 Bkr1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 69,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 325.45
+      }
+    },
+    {
+      "produtoId": "f346711a-31ff-4ac5-b031-46353ff3cbc5",
+      "sku": "VTK017840",
+      "nome": "Lnbf Multiponto Elsys Banda C - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 69,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lnbf Multiponto Elsys Banda C PC 2",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 69,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 170.91
+      }
+    },
+    {
+      "produtoId": "289f321c-9b4d-4fee-bdbf-b5758f88ae17",
+      "sku": "VTK012018",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 69.9,
+      "estoque": 100,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Conector Xlr Macho Wc 1013 10un Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 69.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 172.55
+      }
+    },
+    {
+      "produtoId": "4be0b818-3bb2-41b9-b9a6-d8198fbd2850",
+      "sku": "VTK012039",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 69.9,
+      "estoque": 100,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Conector Xlr Macho Wc 1013 10un Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 69.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 172.55
+      }
+    },
+    {
+      "produtoId": "43ca7193-7d61-4189-b4cf-029de62be4f5",
+      "sku": "VTK017926",
+      "nome": "Lampada Multilaser Super Led H3 6200k Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 69.9,
+      "estoque": 19,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lampada Multilaser Super Led H3 6200k Par",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 69.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 172.55
+      }
+    },
+    {
+      "produtoId": "28b4144f-ed18-4593-a17f-235d34672efa",
+      "sku": "VTK018641",
+      "nome": "Caixa R.l.p. Vazia Para 1 A.f 12 + 2 Dr +2 Tw + Duto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 69.9,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa R.l.p. Vazia Para 1 A.f 12 + 2 Dr +2 Tw + Duto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 69.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 172.55
+      }
+    },
+    {
+      "produtoId": "a2e5c594-7028-4312-8b89-c896ac9829f7",
+      "sku": "VTK018770",
+      "nome": "Parafuso Para Alto Falante Do Gol 4 X 10 Mm - 144 Cento - PC / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 70.5,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Parafuso Para Alto Falante Do Gol 4 X 10 Mm 144 Cento PC 5",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 70.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 173.64
+      }
+    },
+    {
+      "produtoId": "da1f2c58-9700-4cda-b016-8bcdeab574b3",
+      "sku": "VTK000787",
+      "nome": "Multímetro Analógico Hikari HM-202A",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 70.79,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Multímetro Analógico Hikari HM 202A",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 70.79,
+        "shipping": 18.85,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 169.13
+      }
+    },
+    {
+      "produtoId": "10c77f6c-7c78-4bcb-8030-c866c53ddc89",
+      "sku": "VTK000809",
+      "nome": "Omeleteira Agratto Mr. Cheff 800w 220v",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 71.15,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Omeleteira Agratto Mr. Cheff 800w 220v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 71.15,
+        "shipping": 18.45,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 169.06
+      }
+    },
+    {
+      "produtoId": "d76eb95b-14fe-4bca-8c49-85b7c9ffd4c2",
+      "sku": "VTK001186",
+      "nome": "Antena Para Celular Fullband PQAG5015LTE Proeletronic",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 72.45,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Para Celular Fullband PQAG5015LTE Proeletronic",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 72.45,
+        "shipping": 16.45,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 170.96
+      }
+    },
+    {
+      "produtoId": "02f2056d-43f6-4953-beb3-9762f62e305e",
+      "sku": "VTK025875",
+      "nome": "10 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (5 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 74.75,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Pilhas Alcalinas D Lr20 Sm 2 Elgin 5 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 74.75,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.36
+      }
+    },
+    {
+      "produtoId": "a5896f14-568a-4e58-8c5a-b26b4964a92a",
+      "sku": "VTK018752",
+      "nome": "Cabo Prolongador Aquário Ac-13 Marinox 60cm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 74.95,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Prolongador Aquário Ac 13 Marinox 60cm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 74.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.73
+      }
+    },
+    {
+      "produtoId": "bfc623ce-a8b3-4a32-ba71-6a7567b955e4",
+      "sku": "VTK025497",
+      "nome": "18 Baterias Auditiva 312 Duracell (3 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 75,
+      "estoque": 33,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "18 Baterias Auditiva 312 Duracell 3 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 75,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.82
+      }
+    },
+    {
+      "produtoId": "5fcc0144-894b-49c2-af54-49fcba8b23f3",
+      "sku": "VTK025498",
+      "nome": "18 Baterias Auditivas 10 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 75,
+      "estoque": 28,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "18 Baterias Auditivas 10 Duracell 3 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 75,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.82
+      }
+    },
+    {
+      "produtoId": "fdd05020-df62-4887-93cc-cce65e6e4182",
+      "sku": "VTK025499",
+      "nome": "18 Baterias Auditivas 13 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 75,
+      "estoque": 33,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "18 Baterias Auditivas 13 Duracell 3 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 75,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.82
+      }
+    },
+    {
+      "produtoId": "5f7b3831-b8ba-4fe8-801b-61590c5e2d88",
+      "sku": "VTK025500",
+      "nome": "18 Baterias Auditivas 675 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 75,
+      "estoque": 33,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "18 Baterias Auditivas 675 Duracell 3 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 75,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.82
+      }
+    },
+    {
+      "produtoId": "ff598b6b-4576-438e-be18-f2e816ad5544",
+      "sku": "VTK025778",
+      "nome": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 75.2,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 75.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 182.18
+      }
+    },
+    {
+      "produtoId": "14c3eb86-d8c0-4bed-9b19-f0312647efc2",
+      "sku": "VTK013010",
+      "nome": "Capa Contra Baixo Luxo - Nylon 600",
+      "fornecedor": "BKR1",
+      "custo": 76,
+      "estoque": 30,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capa Contra Baixo Luxo Nylon 600 Bkr1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 76,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 338.18
+      }
+    }
+  ]
+}

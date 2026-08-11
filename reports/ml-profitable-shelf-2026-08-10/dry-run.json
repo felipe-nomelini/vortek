@@ -1,0 +1,424 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2026-08-10/manifest.json",
+  "baseUrl": "http://127.0.0.1:3100",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2026-08-10",
+  "selected": 6,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "8d152f45-e286-4b2b-9462-631d251d929d",
+      "sku": "VTK000361",
+      "category": {
+        "id": "MLB447782",
+        "nome": "MLB447782",
+        "dominio": ""
+      },
+      "basePrice": 1640.76,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "THUNDERX3"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Yama1"
+        },
+        {
+          "id": "BACKREST_HEIGHT",
+          "name": "Altura do encosto",
+          "value_id": "7995975",
+          "value_name": "74 cm"
+        },
+        {
+          "id": "SEAT_DEPTH",
+          "name": "Profundidade do assento",
+          "value_id": "9567306",
+          "value_name": "50 cm"
+        },
+        {
+          "id": "OFFICE_CHAIR_WIDTH",
+          "name": "Largura da cadeira",
+          "value_id": "7661942",
+          "value_name": "66 cm"
+        },
+        {
+          "id": "MAX_CHAIR_HEIGHT",
+          "name": "Altura máxima da cadeira",
+          "value_id": "10312765",
+          "value_name": "128 cm"
+        },
+        {
+          "id": "REQUIRES_ASSEMBLY",
+          "name": "Requer montagem",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ERGONOMIC",
+          "name": "É ergonômica",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SWIVEL",
+          "name": "É giratória",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "4718009159143"
+        },
+        {
+          "id": "INCLUDES_ASSEMBLY_MANUAL",
+          "name": "Inclui manual de montagem",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cadeira Ergonômica ThunderX3 Yama1 Preta\n\nVISÃO GERAL\nA Cadeira Ergonômica ThunderX3 Yama1 é especialmente concebida para proporcionar ergonomia de qualidade, oferecendo um amplo apoio para todo o corpo nos lugares certos. Com um design de estofamento semelhante a uma armadura, esta cadeira gamer combina perfeitamente conforto e estilo para melhorar sua experiência de jogo. Construída com material de malha respirável, a cadeira Yama1 mantém você fresco mesmo após longas horas de uso.\n\nO tecido de malha de alta tensão utilizado na sua construção proporciona flexibilidade e durabilidade, garantindo que você possa desfrutar do conforto por muito tempo. O design ergonômico da cadeira oferece um amplo suporte para o seu corpo, garantindo que você possa manter uma postura correta durante as sessões de jogo. Isso ajuda a reduzir a fadiga e o desconforto, permitindo que você se concentre no jogo por períodos prolongados.\n\nAlém disso, a cadeira Yama1 é totalmente ajustável, permitindo que você personalize a posição do assento e dos braços de acordo com suas preferências. O elevador hidráulico a gás de classe 4 possibilita ajustes de altura suaves e estáveis. A cadeira está disponível em três opções de cores, permitindo que você escolha aquela que melhor se adequa ao seu estilo e ambiente de jogo.\n\nCom a Cadeira Ergonômica ThunderX3 Yama1, você pode desfrutar de conforto, estilo e suporte ergonômico durante suas longas sessões de jogo.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: THUNDERX3\n• Modelo: Yama1\n• Altura do encosto: 74 cm\n• Profundidade do assento: 50 cm\n• Largura da cadeira: 66 cm\n• Altura máxima da cadeira: 128 cm\n• Requer montagem: Sim\n• É gamer: Sim\n• É ergonômica: Sim\n• É giratória: Sim\n• Inclui manual de montagem: Sim\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: THUNDERX3\n• GTIN: 4718009159143\n• NCM: 9401.39.00\n• SKU: VTK000361\n\nEMBALAGEM\n• Dimensões informadas: 66 × 36 × 73 cm\n• Peso bruto informado: 19,8 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a5d0514a-87ef-45f7-b811-03b9e5eda284",
+      "sku": "VTK001959",
+      "category": {
+        "id": "MLB29307",
+        "nome": "MLB29307",
+        "dominio": ""
+      },
+      "basePrice": 1965.24,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HARMONICS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HSL-700L"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898554602886"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Trombone de Vara Harmonics Tenor BB HSL-700L Laqueado\n\nVISÃO GERAL\nO Trombone de Vara Harmonics Tenor BB HSL-700L é uma excelente opção para trombonistas que buscam excelente custo/benefício em um instrumento produzido com materiais de qualidade, com resistência e durabilidade. Possuindo ótima tocabilidade! Sua vara leve é bem flexível e permite uma extensa sequência de notas sempre com muita facilidade.\n\nAcompanha ainda um estojo prático, que mantém o instrumento protegido e seguro, aumentando sua durabilidade. Harmonics nasceu com a proposta de aliar alta qualidade, tecnologia e preço competitivo de mercado. Seguindo três frentes, a Harmonics trabalha com instrumentos de cordas, instrumentos de sopro e microfones, atendendo as principais demandas do mercado com extrema qualidade e precisão.\n\nFazendo parte de um grupo empresarial de mais de 50 anos de mercado, a Harmonics tem competência para se manter atualizada, buscando atender as necessidades de músicos que procuram um excelente custo/benefício em instrumentos musicais, som profissional, partes e acessórios.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HARMONICS\n• Modelo: HSL-700L\n• Material: Metal\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HARMONICS\n• GTIN: 7898554602886\n• NCM: 9205.10.00\n• SKU: VTK001959\n\nEMBALAGEM\n• Dimensões informadas: 36 × 32.5 × 97 cm\n• Peso bruto informado: 5,14 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ebf5bf73-1146-42df-b6df-381430b7156f",
+      "sku": "VTK000890",
+      "category": {
+        "id": "MLB45248",
+        "nome": "MLB45248",
+        "dominio": ""
+      },
+      "basePrice": 2399,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LANEY"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AH40"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "name": "Instrumentos recomendados",
+          "value_id": "182360",
+          "value_name": "Multi-propósito"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "5060109453270"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Amplificador Para Instrumentos Laney AH40 Preto 40w\n\nVISÃO GERAL\nApresentação do produto O Amplificador para Instrumentos Laney AH40 Preto 40W é um combo compacto e versátil, desenvolvido para músicos que precisam de praticidade em ensaios, pequenos palcos e diferentes configurações de uso. O modelo AH40 conta com 3 canais, equalizador gráfico master de 5 bandas e delay digital, oferecendo controle de som para diferentes fontes de áudio. Principais características - Marca: Laney - Modelo: AH40 - Tipo: amplificador combo para instrumentos - Cor: preto - Potência informada: 40 Watts RMS - 3 canais para conexão de instrumentos e fontes de áudio - Equalização gráfica master de 5 bandas - Delay digital e efeitos integrados - 1 driver de 8 polegadas e driver de altas frequências - Entradas XLR, jack e mini jack - Entradas e saídas de linha - Pode ser utilizado na posição vertical convencional ou inclinado, conforme a necessidade de direcionamento do som Aplicação e uso Indicado para guitarra e para aplicações musicais em que seja necessário amplificar diferentes instrumentos ou fontes de áudio.\n\nConforme informações do fornecedor, o AH40 pode acomodar teclados, bateria eletrônica, microfones e instrumentos acústicos/elétricos. Também pode ser usado como monitor pessoal em palcos maiores ou como solução compacta para duos e apresentações de pequeno a médio porte. Especificações técnicas - Potência: 40 W RMS - Canais: 3 - Equalização: gráfica master de 5 bandas - Peso informado do amplificador: 9,80 kg - Dimensões informadas: 389 x 363 x 328 mm - Código universal de produto: 5060109453270 - NCM: 8518.\n\n50. 00 Conteúdo/quantidade vendida - 1 Amplificador para Instrumentos Laney AH40 Preto 40W Observações comerciais seguras Antes da compra, verifique se as conexões, dimensões e características atendem à sua necessidade de uso. A voltagem não foi informada nos dados disponíveis do produto, portanto deve ser conferida nas opções do anúncio ou na identificação do equipamento antes da utilização.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LANEY\n• Modelo: AH40\n• Instrumentos recomendados: Multi-propósito\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LANEY\n• GTIN: 5060109453270\n• NCM: 8518.50.00\n• SKU: VTK000890\n\nEMBALAGEM\n• Dimensões informadas: 46 × 38 × 42 cm\n• Peso bruto informado: 12,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6b83343e-4bb3-42f6-801e-f388034a1cf8",
+      "sku": "VTK012101",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 31.75,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Energizer"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-96"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "039800015464"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "6073398",
+          "value_name": "AA"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pilha Alcalina Max Aa Cart 2 Sm-96 Energizer\n\nVISÃO GERAL\nPILHA ALCALINA MAX AA2 ENERGIZER CART 2 SM-96 As pilhas alcalinas Energizer Max AA2 são conhecidas por sua longa duração e confiabilidade, sendo ideais para dispositivos como brinquedos, controles remotos e lanternas. Elas mantêm a energia por até 10 anos quando armazenadas e são projetadas para proteger seus dispositivos contra vazamentos prejudiciais por até dois anos após o uso total. Especificações Técnicas: • Composição: Alcalina • Voltagem Nominal: 1,5V • Capacidade: Não especificada para o modelo AA2; contudo, modelos similares, como o AAA, possuem capacidade de 1200 mAh • Tempo Máximo de Retenção de Carga: Até 10 anos • Conteúdo da Embalagem: 2 pilhas AA • Marca: Energizer • Mercado Livre • Modelo: MAX AA2 • Formato de Venda: Unidade Benefícios e Características: • Tecnologia PowerSeal: Assegura proteção contra vazamentos prejudiciais por até dois anos após o uso total, preservando a integridade dos dispositivos • Aplicações Recomendadas: Adequadas para controles remotos, lanternas, rádios, brinquedos e outros dispositivos de alto consumo energético • Ausência de Mercúrio: Produto ambientalmente amigável, livre de mercúrio em sua composição\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Energizer\n• Modelo: SM-96\n• Unidades por kit: 2\n• É recarregável: Não\n• Tamanho da pilha: AA\n• Formato de venda: Kit\n• Quantidade de kits: 1\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Energizer\n• GTIN: 039800015464\n• NCM: 8506.10.19\n• SKU: VTK012101\n\nEMBALAGEM\n• Dimensões informadas: 9 × 11 × 2 cm\n• Peso bruto informado: 0,07 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a32c06fe-483e-4040-a70b-1de7ad0fe7eb",
+      "sku": "VTK000464",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 68.83,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "DURACELL"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MN21"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "041333038896"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pilha Alcalina 12v MN21/A23 (C/2 Pilhas) Duracell\n\nVISÃO GERAL\nAs pilhas alcalinas especiais MN21 são uma escolha confiável para os seus dispositivos médicos (termômetros, glucosímetro, instrumento de pressão sanguínea), dispositivos de segurança (leitores de cartão de banco, transmissores de alarme), brinquedos, controles de garagem e outros eletrônicos (relógio, calculadora, laser). A tecnologia de Duracell preserva a energia das pilhas que ainda não foram usadas, por até 5 anos.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: DURACELL\n• Modelo: MN21\n• Unidades por kit: 2\n• É recarregável: Não\n• Formato de venda: Kit\n• Quantidade de kits: 1\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: DURACELL\n• GTIN: 041333038896\n• NCM: 8506.10.19\n• SKU: VTK000464\n\nEMBALAGEM\n• Dimensões informadas: 12 × 1 × 8.5 cm\n• Peso bruto informado: 0,026 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+      "sku": "VTK012014",
+      "category": {
+        "id": "MLB38172",
+        "nome": "MLB38172",
+        "dominio": ""
+      },
+      "basePrice": 76.92,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WC 3 FCA"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades\n\nVISÃO GERAL\nKit Conectores P/Cabo Fêmea P/AC - Corpo Azul WC 3 FCA (2UN) Wireconex A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade. Kit com 2 Conectores - Modelo WC 3 FCA - Extremamente robusto e confiável.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Wireconex\n• Modelo: WC 3 FCA\n• Unidades por kit: 2\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8536.90.10\n• SKU: VTK012014\n\nEMBALAGEM\n• Dimensões informadas: 2 × 9 × 11 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

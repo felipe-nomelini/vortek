@@ -1,0 +1,370 @@
+{
+  "generated_at": "2026-08-11T01:27:15.047Z",
+  "results": [
+    {
+      "sku": "VTK017208",
+      "mlb": "MLB5034789119",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK017216",
+      "mlb": "MLB5034770067",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK017217",
+      "mlb": "MLB5034771539",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK017631",
+      "mlb": "MLB5034787395",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK017716",
+      "mlb": "MLB5034788017",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK017766",
+      "mlb": "MLB5034825123",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK017778",
+      "mlb": "MLB5034787225",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK017871",
+      "mlb": "MLB5034769815",
+      "success": true,
+      "pictures": 2,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 2
+    },
+    {
+      "sku": "VTK018176",
+      "mlb": "MLB5034826495",
+      "success": true,
+      "pictures": 3,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 3
+    },
+    {
+      "sku": "VTK018310",
+      "mlb": "MLB5034824745",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018338",
+      "mlb": "MLB5034824849",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018477",
+      "mlb": "MLB5034826531",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "paused",
+      "sub_status_after_put": [
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018600",
+      "mlb": "MLB5034788795",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "paused",
+      "sub_status_after_put": [
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018607",
+      "mlb": "MLB5034826383",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "paused",
+      "sub_status_after_put": [
+        "picture_download_pending",
+        "paused_by_seller"
+      ],
+      "final_status": "paused",
+      "final_sub_status": [
+        "paused_by_seller"
+      ],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018667",
+      "mlb": "MLB5034826679",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "paused",
+      "sub_status_after_put": [
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018704",
+      "mlb": "MLB5034789021",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018713",
+      "mlb": "MLB5034788621",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018717",
+      "mlb": "MLB5034826019",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018770",
+      "mlb": "MLB5034825759",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018823",
+      "mlb": "MLB5034826579",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "paused",
+      "sub_status_after_put": [
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018854",
+      "mlb": "MLB7381766316",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018895",
+      "mlb": "MLB5034771127",
+      "success": true,
+      "pictures": 4,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 4
+    },
+    {
+      "sku": "VTK018913",
+      "mlb": "MLB5034825983",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK018985",
+      "mlb": "MLB5034771253",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK019017",
+      "mlb": "MLB5034825645",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending"
+      ],
+      "final_status": "active",
+      "final_sub_status": [],
+      "final_pictures": 1
+    },
+    {
+      "sku": "VTK019028",
+      "mlb": "MLB5034771531",
+      "success": true,
+      "pictures": 1,
+      "status_after_put": "under_review",
+      "sub_status_after_put": [
+        "waiting_for_patch",
+        "picture_download_pending",
+        "paused_by_seller"
+      ],
+      "final_status": "paused",
+      "final_sub_status": [
+        "paused_by_seller"
+      ],
+      "final_pictures": 1
+    }
+  ]
+}

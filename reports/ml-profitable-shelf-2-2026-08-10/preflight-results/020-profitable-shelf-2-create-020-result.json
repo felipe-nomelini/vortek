@@ -1,0 +1,638 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/020-profitable-shelf-2-create-020-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-020",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "41b3f721-cde7-461d-a8cb-9a88c47e6d34",
+      "sku": "VTK000028",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "Multímetros"
+      },
+      "basePrice": 176.84,
+      "familyName": "Multímetro Analógico Minipa ET 2022B",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 109.16,
+        "shipping": 21.15,
+        "shippingSource": "erp",
+        "mlFee": 0.11,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 220.86
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MINIPA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "ET-2022B"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898112601320"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Multímetro Analógico Minipa ET-2022B\n\nVISÃO GERAL\nApresentação do produto: O Multímetro Analógico Minipa ET-2022B é um instrumento portátil da linha hobby, indicado para medições elétricas básicas e verificações em circuitos, componentes e equipamentos eletrônicos. Por ser analógico, apresenta leitura por ponteiro, sendo uma opção prática para quem prefere acompanhar variações de medição de forma visual e contínua. Principais características: - Marca: Minipa.\n\n- Modelo: ET-2022B. - Instrumento analógico portátil. - Linha de uso hobby.\n\n- Sistema de suspensão do galvanômetro tipo mancal. - Sensibilidade informada de 20 kOhms/V. - Realiza medições de tensão DC e AC.\n\n- Realiza medição de corrente DC. - Realiza medição de resistência. - Possui função para leitura em decibéis.\n\n- Permite testes de ganho e fuga de corrente para transistores. Aplicação e uso: Indicado para bancadas de eletrônica, pequenos reparos, manutenção, testes didáticos e verificações gerais em circuitos elétricos e eletrônicos, respeitando sempre os limites e procedimentos de uso do equipamento. É adequado para usuários que necessitam de um multímetro analógico para medições de rotina e análise de comportamento de sinais por meio da movimentação do ponteiro.\n\nEspecificações técnicas: - Produto: Multímetro analógico. - Marca: Minipa. - Modelo: ET-2022B.\n\n- Tipo de leitura: analógica. - Sensibilidade: 20 kOhms/V. - Grandezas medidas informadas: tensão DC, tensão AC, corrente DC, resistência e decibéis.\n\n- Testes adicionais informados: ganho e fuga de corrente para transistores. - Dimensões aproximadas: 10 cm de largura, 14,8 cm de altura e 3,5 cm de profundidade. - Peso bruto aproximado: 0,361 kg.\n\n- Código GTIN: 7898112601320. - NCM: 9030. 31.\n\n00. Conteúdo/quantidade vendida: - 1 Multímetro Analógico Minipa ET-2022B. Observações comerciais seguras: Antes da compra, confira se as funções informadas atendem à aplicação desejada.\n\nFaixas máximas de medição, tipo de alimentação e acessórios inclusos não foram informados nos dados fornecidos; portanto, utilize apenas as especificações descritas neste anúncio como referência.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MINIPA\n• Modelo: ET-2022B\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MINIPA\n• GTIN: 7898112601320\n• NCM: 9030.31.00\n• SKU: VTK000028\n\nEMBALAGEM\n• Dimensões informadas: 14.8 × 10 × 3.5 cm\n• Peso bruto informado: 0,361 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0345558f-6b9e-40c9-ae94-52456ce553c5",
+      "sku": "VTK012912",
+      "category": {
+        "id": "MLB278061",
+        "nome": "Capas para Guitarras",
+        "dominio": "Capas e estojos para guitarras"
+      },
+      "basePrice": 161.49,
+      "familyName": "Capa P Guitarra Extra Bolso Cargo Nylon 600 Preto Bkr 1 Bkr1",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 110,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.145,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 243.24
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Bkr1"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "BKR1"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898663800197"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Capa P/ Guitarra Extra Bolso Cargo - Nylon 600 - Preto Bkr 1\n\nVISÃO GERAL\nCapa P/Guitarra Extra Bolso Cargo - Nylon 600 - Preto BKR1\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Bkr1\n• Modelo: BKR1\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Bkr1\n• GTIN: 7898663800197\n• NCM: 4202.29.00\n• SKU: VTK012912\n\nEMBALAGEM\n• Dimensões informadas: 20 × 45 × 55 cm\n• Peso bruto informado: 1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b11d6713-770d-4470-8e70-0b8a58e06436",
+      "sku": "VTK025656",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 168,
+      "familyName": "100 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 114.4,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 253.45
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "100 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n100 Baterias CR2025 Elgin (20 Cartelas C/5 Un)\n\nKit com 20 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 20x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 20 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025656\n\nEMBALAGEM\n• Dimensões informadas: 6 × 6 × 20 cm\n• Peso bruto informado: 0,36 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "de3a29a2-e731-49fc-87ee-53f772908c80",
+      "sku": "VTK017981",
+      "category": {
+        "id": "MLB5914",
+        "nome": "Kits de Teclado e Mouse",
+        "dominio": "Kits de teclado e mouse"
+      },
+      "basePrice": 164.51,
+      "familyName": "Combo Teclado E Mouse Logitech Mk200 Usb Preto",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 114.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 245.44
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MK200"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor do teclado",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Combo Teclado E Mouse Logitech Mk200 Usb Preto\n\nVISÃO GERAL\nMK200 Media Corded Keyboard and Mouse Combo Combo USB Plug-and-Play com chaves de mídia Basta conectar este mouse ambidestro com fio e teclado de tamanho normal via USB e começar a trabalhar em segundos. O teclado possui um teclado numérico integrado complementado por oito teclas de mídia de fácil acesso, enquanto o mouse oferece um suporte confortável para a palma da mão e um controle suave para facilitar a navegação diária. DURÁVEL E CONFIÁVEL Basta conectar este mouse ambidestro com fio e teclado de tamanho normal via USB e começar a trabalhar em segundos.\n\nO teclado possui um teclado numérico integrado complementado por oito teclas de mídia de fácil acesso, enquanto o mouse oferece um suporte confortável para a palma da mão e um controle suave para facilitar a navegação diária. CONFORTÁVEL E DE TAMANHO NORMAL Um teclado de tamanho normal com um teclado numérico fornece as teclas de que você precisa para facilitar a entrada de dados. Oito teclas de mídia facilitam o acesso a música, volume, aplicativos, seu navegador de Internet preferido e muito mais com um toque.\n\nDesfrute da digitação confortável graças à barra de espaço curva, layout familiar e teclas fáceis de ler. CONFORTO PARA AMBAS AS MÃOS Um mouse ambidestro de tamanho real oferece rastreamento suave e uma forma curva para apoiar a palma da mão, para navegação fácil e confortável. PLUG & PLAY FÁCIL Tanto o teclado quanto o mouse funcionam imediatamente.\n\nBasta conectar na porta USB e está pronto para uso. Sem downloads, sem configuração, sem complicação. TECLADO RESISTENTE A DERRAMAMENTOS Com teclas duráveis resistentes à derramamentos* e seu suporte ajustável resistente, este teclado foi feito para durar.\n\nDURÁVEL E CONFIÁVEL Com uma garantia de 3 anos incluída, o MK200 é construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: MK200\n• Cor do teclado: Preto\n• Cor principal: Preto\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 84716052\n• SKU: VTK017981\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 22 × 46 cm\n• Peso bruto informado: 0,854 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a561c1ee-a58b-4038-8f87-933cb47297f4",
+      "sku": "VTK025837",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 172.5,
+      "familyName": "60 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 118,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 260
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PR44"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "60 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit\n\nVISÃO GERAL\n60 Baterias Auditivas Ar 675 Elgin (10 Cartelas C/6 Un)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Bateria Para Aparelho Auditivo 675 Pr44 Elgin 06 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria para Aparelho Auditivo 675 PR44 Elgin\n\n A Bateria Elgin 675 PR44 é indicada para aparelhos auditivos de alto consumo, como os retroauriculares potentes e dispositivos com conectividade Bluetooth. Com tecnologia zinco-ar, oferece tensão estável, excelente autonomia e confiabilidade sonora. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: 675 PR44\n\n•    Tipo: Bateria para aparelho auditivo (Zinco-ar)\n\n•    Tecnologia: Zinco-ar (Zinc-Air)\n\n•    Tensão nominal: 1,45V\n\n•    Capacidade típica: ~620 mAh\n\n•    Formato: Botão\n\n•    Referências equivalentes: PR44, ZA675, AC675, DA675, P675, 675A\n\n•    Cor padrão do selo: Azul (identificação visual internacional)\n\n•    Aplicações recomendadas: Aparelhos auditivos retroauriculares potentes, aparelhos com Bluetooth, equipamentos auditivos digitais de alta potência\n\n•    Recarregável: Não\n\n•    Tempo médio de uso: 9 a 20 dias por unidade (dependendo do uso)\n\n•    Vida útil de armazenamento: Até 4 anos\n\n•    Ativação: A bateria é ativada ao remover o selo (tecnologia zinco-ar)\n\n•    Dimensões: 11,6 mm (diâmetro) x 5,4 mm (altura)\n\n•    Peso unitário: Cerca de 1,9 g\n\n  Vantagens\n\nLonga duração e alta capacidade\n\nEnergia estável com resposta sonora eficiente\n\nIdeal para aparelhos auditivos com alto consumo\n\nCodificação azul facilita identificação\n\nElgin: tecnologia e qualidade reconhecidas\n\n A Bateria Elgin 675 PR44 garante excelente autonomia e desempenho em aparelhos auditivos potentes. Sua tecnologia zinco-ar oferece tensão estável, ideal para quem precisa de performance superior no dia a dia. Energia confiável com o selo de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: PR44\n• Unidades por kit: 6\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.60.10\n• SKU: VTK025837\n\nEMBALAGEM\n• Dimensões informadas: 7 × 10 × 6 cm\n• Peso bruto informado: 0,15 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "b09cbf1d-c931-47fd-a429-90bb253ed4e7",
+      "sku": "VTK019777",
+      "nome": "Caixa Vazia Para 1 Alto Falante 12\" Invertida Pick-up - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f47d255f-b6a1-4dc7-81b1-83de6402e1cc",
+      "sku": "VTK002697",
+      "nome": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X RJ45 Femea ADAP 0055 Branca STORM",
+      "error": "Atributos obrigatórios pendentes: Conector de entrada, Conector de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7466",
+            "nome": "USB"
+          },
+          "missing": [
+            "Conector de entrada",
+            "Conector de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a7be177c-7572-4a59-9d34-710667335d1e",
+      "sku": "VTK012911",
+      "nome": "Capa P/ Violão Folk Extra Bolso Cargo - Nylon 600 - Marrom Bkr 1",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278061",
+            "nome": "Capas para Guitarras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ac47880b-4645-40a4-a415-eb8799e6ebc0",
+      "sku": "VTK025960",
+      "nome": "Frigideira Redonda Rochedo Robusta 20cm Grafite - CXM / 3",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107482",
+            "nome": "Frigideiras"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c92b422e-2c62-4d08-94a4-d1aaff732ee7",
+      "sku": "VTK017866",
+      "nome": "Alça Pré Formada Para Cabo 9,60/ 10,40 Acpo6104 Preto - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de alça",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB269730",
+            "nome": "Alças"
+          },
+          "missing": [
+            "Tipo de alça"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9a2202b5-c2c1-4c31-b9de-924b813fee57",
+      "sku": "VTK022585",
+      "nome": "Caixa R.l.p Vazia Para 4 Cornetas +2 Tweeter Curta - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB127436",
+            "nome": "Corneteiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+      "sku": "VTK017236",
+      "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4cf8a83f-dee6-4c77-b966-65378d316271",
+      "sku": "VTK000831",
+      "nome": "Kit Prateleiras Decore Multivisão Branco",
+      "error": "Atributos obrigatórios pendentes: Fabricante, Modelo, Comprimento, Altura, Profundidade, Material, Requer montagem, Inclui manual de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB186662",
+            "nome": "Estantes e Prateleiras"
+          },
+          "missing": [
+            "Fabricante",
+            "Modelo",
+            "Comprimento",
+            "Altura",
+            "Profundidade",
+            "Material",
+            "Requer montagem",
+            "Inclui manual de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "61892476-b7df-47ab-8caa-57ddc5bc4a80",
+      "sku": "VTK000949",
+      "nome": "Kit Prateleiras Decore Multivisão Preto",
+      "error": "Atributos obrigatórios pendentes: Fabricante, Modelo, Comprimento, Altura, Profundidade, Material, Requer montagem, Inclui manual de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB186662",
+            "nome": "Estantes e Prateleiras"
+          },
+          "missing": [
+            "Fabricante",
+            "Modelo",
+            "Comprimento",
+            "Altura",
+            "Profundidade",
+            "Material",
+            "Requer montagem",
+            "Inclui manual de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "866ac21a-4df0-40f8-872b-f39958f19f26",
+      "sku": "VTK019385",
+      "nome": "Caixa Vazia Para 2 Alto Falantes De 12\" E 2 Dutos 3\" Acarpetada",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "00f7fd6c-3e46-4560-b41c-fea87e4efe6f",
+      "sku": "VTK025955",
+      "nome": "Liquidificador Arno Power Mix LQ11 550W Vermelho 220V",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73055",
+            "nome": "Liquidificadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3f96f704-c8a1-4733-a218-235f12a0fca4",
+      "sku": "VTK025957",
+      "nome": "Liquidificador Arno Power Mix LQ11 550W Vermelho 127V",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73055",
+            "nome": "Liquidificadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1069c984-2169-40f3-9688-77695e762fe1",
+      "sku": "VTK018462",
+      "nome": "Terminal De Bateria Universal Grande Negativo Sapão Super - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Modelo, É recarregável",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo",
+            "É recarregável"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b92ac291-0d5d-4e08-a7a9-27207279bfbe",
+      "sku": "VTK001075",
+      "nome": "Conector RJ45 Macho CAT5E Sohoplus - PCT / 100",
+      "error": "Atributos obrigatórios pendentes: Tipo de ficha, Tipo de conexão",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB432918",
+            "nome": "Fichas"
+          },
+          "missing": [
+            "Tipo de ficha",
+            "Tipo de conexão"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1cba282f-cb54-4069-9399-dcca8c5e8b7e",
+      "sku": "VTK018849",
+      "nome": "Chave Cs 301-d Liga Desliga Permak Com Haste Metálica 148/a - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB417161",
+            "nome": "Interruptores Elétricos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

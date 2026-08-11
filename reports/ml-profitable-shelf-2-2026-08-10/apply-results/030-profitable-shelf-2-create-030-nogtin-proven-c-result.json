@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/030-profitable-shelf-2-create-030-nogtin-proven-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-030",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d20b5f27-f8a0-4c9e-afa8-1791b6f9da0c",
+      "sku": "VTK018477",
+      "category": {
+        "id": "MLB30208",
+        "nome": "Interruptores Automáticos",
+        "dominio": "Disjuntores automáticos e interruptores diferenciais"
+      },
+      "anuncio": {
+        "id": "MLB5034826531",
+        "title": "String Box Proauto 4.2e 4.2s 1040vcc",
+        "price": 1243.79,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034826531-string-box-proauto-42e-42s-1040vcc-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1243.79
+      }
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,112 @@
+{
+  "batchNumber": 4,
+  "batchId": "profitable-shelf-2-create-004",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "763534a9-bab7-45c6-8077-37f2627abc28",
+      "sku": "VTK018965",
+      "nome": "Haste Permak Fiat Toro Argus Cronos Jeep Compas",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 16.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Permak Fiat Toro Argus Cronos Jeep Compas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 16.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 32.5
+      }
+    },
+    {
+      "produtoId": "dc803a1a-6674-4bd4-a183-adae5eaeecf9",
+      "sku": "VTK017899",
+      "nome": "Conector Para Cd Nissan Kicks",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 17.98,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Para Cd Nissan Kicks PERMAK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 17.98,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 34
+      }
+    },
+    {
+      "produtoId": "7dacfcf1-5f2e-4722-b068-6929c49c070c",
+      "sku": "VTK018074",
+      "nome": "Haste Permak Peugeot/ Renault/ Dianteira 70cm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 18.9,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Permak Peugeot Renault Dianteira 70cm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 18.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 35.28
+      }
+    },
+    {
+      "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+      "sku": "VTK017212",
+      "nome": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.3,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.3,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 35.83
+      }
+    },
+    {
+      "produtoId": "68f6d99c-4fb0-45c0-be30-7359b34e7ddc",
+      "sku": "VTK017735",
+      "nome": "Kit Adaptador Aquário Cf-375 Para Motorola",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.9,
+      "estoque": 29,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Adaptador Aquário Cf 375 Para Motorola",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.67
+      }
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 10,
+  "batchId": "profitable-shelf-2-create-010",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+      "sku": "VTK019466",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 37.5,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 37.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 61.11
+      }
+    },
+    {
+      "produtoId": "40607671-ead5-45d8-9549-62962063ea13",
+      "sku": "VTK025713",
+      "nome": "20 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 37.6,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 37.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 61.25
+      }
+    },
+    {
+      "produtoId": "3cd63a03-f703-4590-9acc-4a6e017a1d6a",
+      "sku": "VTK004724",
+      "nome": "Cabo Adaptador USB-C Para Mini DisplayPort Flex",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 37.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Adaptador USB C Para Mini DisplayPort Flex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 37.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 61.67
+      }
+    },
+    {
+      "produtoId": "b0da7ce9-8848-4a03-ad41-138294477102",
+      "sku": "VTK018870",
+      "nome": "Contra Frente Plástica Permak Fiat Stilo 2 Din Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 37.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contra Frente Plástica Permak Fiat Stilo 2 Din Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 37.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 61.67
+      }
+    },
+    {
+      "produtoId": "0f063293-5f4c-4f87-8dc4-b219f40ba782",
+      "sku": "VTK012613",
+      "nome": "Palheta Royal Tenor Rkb0125 D Addario",
+      "fornecedor": "BKR1",
+      "custo": 38,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Royal Tenor Rkb0125 D Addario",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 38,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 61.81
+      }
+    },
+    {
+      "produtoId": "991c34af-6677-41a3-bfca-9101ca5acf02",
+      "sku": "VTK017279",
+      "nome": "Conector Rj-45 Macho Evus C-103 Cat6 Blindado 100un.",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 38.66,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Rj 45 Macho Evus C 103 Cat6 Blindado 100un.",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 38.66,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 62.72
+      }
+    },
+    {
+      "produtoId": "44c5b85d-24ca-430c-a90e-b410f92fb149",
+      "sku": "VTK021012",
+      "nome": "Telefone Intelbras Gondola Tc-20 Preto Com Fio 4090401",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 38.9,
+      "estoque": 30,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Telefone Intelbras Gondola Tc 20 Preto Com Fio 4090401",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 38.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 63.06
+      }
+    },
+    {
+      "produtoId": "0947b245-1dc4-464e-9907-916050269660",
+      "sku": "VTK023678",
+      "nome": "Tela Permak 12\" Para Alto Falante Profissional Tipo Pioneer 14/i - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 39,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tela Permak 12 Polegadas Para Alto Falante Profissional Tipo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 39,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 63.19
+      }
+    },
+    {
+      "produtoId": "620b3eaf-7716-4acb-9e78-800017f9ac4e",
+      "sku": "VTK025827",
+      "nome": "6 Pilhas Alcalinas C Sm-2 Elgin (3 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 39,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "6 Pilhas Alcalinas C Sm 2 Elgin 3 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 39,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 63.19
+      }
+    },
+    {
+      "produtoId": "1dd2a3e6-40d8-4f0b-b302-07e176700573",
+      "sku": "VTK017633",
+      "nome": "Kit Carregadores De Parede + Veicular Elgin Com Cabo Micro Usb 1m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 39.6,
+      "estoque": 34,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Carregadores De Parede + Veicular Elgin Com Cabo Micro",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 39.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.03
+      }
+    },
+    {
+      "produtoId": "672469fd-0ee5-4f61-854e-2a25c3f4c2d7",
+      "sku": "VTK017248",
+      "nome": "Trafo De Linha Frahm T10 10w/70v",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 39.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Trafo De Linha Frahm T10 10w 70v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 39.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.44
+      }
+    },
+    {
+      "produtoId": "d8263926-b944-4847-9b7f-ace42c2f5dcf",
+      "sku": "VTK017980",
+      "nome": "Controle Remoto Fks Cr961 02 Botões Fiat",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 39.9,
+      "estoque": 18,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controle Remoto Fks Cr961 02 Botões Fiat",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 39.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.44
+      }
+    },
+    {
+      "produtoId": "4e093141-393f-4066-a00b-6db56844533a",
+      "sku": "VTK018936",
+      "nome": "Antena Permak Shark Prata 100/m2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 39.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Permak Shark Prata 100 m2",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 39.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.44
+      }
+    },
+    {
+      "produtoId": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+      "sku": "VTK012014",
+      "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+      "fornecedor": "BKR1",
+      "custo": 40,
+      "estoque": 100,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Para Cabo Fêmea P ac Corpo Azul Wc 3 Fca Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 40,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.58
+      }
+    },
+    {
+      "produtoId": "a2692d7a-d43c-42d3-b067-c0d44a6465dc",
+      "sku": "VTK025758",
+      "nome": "35 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 40.04,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "35 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 40.04,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.64
+      }
+    },
+    {
+      "produtoId": "dc1632af-808a-4acd-bfb2-ac85add0ea3a",
+      "sku": "VTK018522",
+      "nome": "Minipa Ez Test Ii Testador De Tensao",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 40.2,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Minipa Ez Test Ii Testador De Tensao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 40.2,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.86
+      }
+    },
+    {
+      "produtoId": "e33cf05a-7f06-4601-90c0-69f060f745a1",
+      "sku": "VTK025753",
+      "nome": "30 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 40.8,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "30 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 40.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 65.69
+      }
+    },
+    {
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 41.9,
+      "estoque": 30,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chaveiro Positron Novo Px 32 Cyber 4 Botões Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 41.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 67.22
+      }
+    },
+    {
+      "produtoId": "72c0e2bd-7e63-4970-8ee3-ace0825a18f8",
+      "sku": "VTK018403",
+      "nome": "Antena Permak Shark Branco Perola 100/m7",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 42.9,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Permak Shark Branco Perola 100 m7",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 42.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 68.61
+      }
+    },
+    {
+      "produtoId": "fea99fce-6cc9-4753-aa6a-764037806602",
+      "sku": "VTK012984",
+      "nome": "Palheta Stubby 2mm Pct C/6 474r2.0 Dunlop (1852)",
+      "fornecedor": "BKR1",
+      "custo": 42.96,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Stubby 2mm Pct C 6 474r2.0 Dunlop 1852",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 42.96,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 68.69
+      }
+    }
+  ]
+}

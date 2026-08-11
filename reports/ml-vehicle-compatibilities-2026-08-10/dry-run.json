@@ -1,0 +1,661 @@
+{
+  "generatedAt": "2026-08-10T23:34:10.277Z",
+  "apply": false,
+  "selected": 11,
+  "corrected": 0,
+  "alreadyFixed": 0,
+  "validated": 11,
+  "failed": 0,
+  "activeAfter": 0,
+  "pendingReviewAfter": 0,
+  "notAutomated": [
+    {
+      "sku": "VTK017608",
+      "reason": "lâmpada H9 universal; compatibilidade universal indisponível na API de produção"
+    },
+    {
+      "sku": "VTK019659",
+      "reason": "palheta universal e sem estoque; manter pausado"
+    },
+    {
+      "sku": "VTK018513",
+      "reason": "lâmpada HB3/9005 universal; compatibilidade universal indisponível na API de produção"
+    },
+    {
+      "sku": "VTK018224",
+      "reason": "módulo universal condicionado ao sistema elétrico; não há veículo único seguro"
+    }
+  ],
+  "results": [
+    {
+      "sku": "VTK018706",
+      "itemId": "MLB7311575674",
+      "userProductId": "MLBU4531620991",
+      "evidence": "Descrição do produto no ERP: Fiat Stilo 2003, todos.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "good_quality_thumbnail",
+          "incomplete_compatibilities",
+          "user_product_listing",
+          "standard_price_by_quantity",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        3
+      ],
+      "totalVehicles": 3,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB194788",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Fiat"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Stilo"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2003"
+              }
+            ],
+            "note": "Aplicação informada pelo fabricante: Stilo 2003."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK018518",
+      "itemId": "MLB4981485621",
+      "userProductId": "MLBU4531624693",
+      "evidence": "Descrição do produto no ERP: Ford Ranger 2013, 2 portas.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "standard_price_by_quantity",
+          "good_quality_thumbnail",
+          "user_product_listing",
+          "incomplete_compatibilities",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        15
+      ],
+      "totalVehicles": 15,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Ford"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Ranger"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2013"
+              }
+            ],
+            "note": "Aplicação informada pelo fabricante: Ranger 2013, 2 portas."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK018613",
+      "itemId": "MLB4981463283",
+      "userProductId": "MLBU4531620909",
+      "evidence": "Manual FKS MLV408 CO para Hyundai ix35; anos iniciais confirmados no catálogo do produto.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "user_product_listing",
+          "incomplete_compatibilities",
+          "standard_price_by_quantity",
+          "good_quality_thumbnail",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        2,
+        2
+      ],
+      "totalVehicles": 4,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Hyundai"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "ix35"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2010"
+              }
+            ],
+            "note": "Aplicação do módulo FKS MLV408 CO para Hyundai ix35."
+          },
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Hyundai"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "ix35"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2011"
+              }
+            ],
+            "note": "Aplicação do módulo FKS MLV408 CO para Hyundai ix35."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK019118",
+      "itemId": "MLB7311576392",
+      "userProductId": "MLBU4556924934",
+      "evidence": "Aplicação Tury PRO 4.78 BR: Toyota Hilux e SW4 a partir de 2016.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "incomplete_compatibilities",
+          "good_quality_thumbnail",
+          "user_product_listing",
+          "standard_price_by_quantity",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        6,
+        3
+      ],
+      "totalVehicles": 9,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Toyota"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Hilux"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2016"
+              }
+            ],
+            "note": "Aplicação Tury PRO 4.78 BR a partir de 2016."
+          },
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Toyota"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "SW4"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2016"
+              }
+            ],
+            "note": "Aplicação Tury PRO 4.78 BR a partir de 2016."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK017842",
+      "itemId": "MLB7311574378",
+      "userProductId": "MLBU4531609305",
+      "evidence": "Aplicação Tury PRO 2.10 CR: Renault Duster 2016, vidros dianteiros.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "user_product_listing",
+          "good_quality_thumbnail",
+          "standard_price_by_quantity",
+          "incomplete_compatibilities",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        11
+      ],
+      "totalVehicles": 11,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Renault"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Duster"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2016"
+              }
+            ],
+            "note": "Aplicação Tury PRO 2.10 CR nos vidros dianteiros."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK017888",
+      "itemId": "MLB4981462179",
+      "userProductId": "MLBU4531609407",
+      "evidence": "Aplicação Tury PRO 2.8 CW: Renault Duster 2016, vidros traseiros.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "standard_price_by_quantity",
+          "user_product_listing",
+          "incomplete_compatibilities",
+          "good_quality_thumbnail",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        11
+      ],
+      "totalVehicles": 11,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Renault"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Duster"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2016"
+              }
+            ],
+            "note": "Aplicação Tury PRO 2.8 CW nos vidros traseiros."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK019039",
+      "itemId": "MLB4981463707",
+      "userProductId": "MLBU4556924700",
+      "evidence": "Descrição do produto no ERP: Hyundai Novo i30 2014.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "good_quality_thumbnail",
+          "user_product_listing",
+          "standard_price_by_quantity",
+          "incomplete_compatibilities",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        2
+      ],
+      "totalVehicles": 2,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Hyundai"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "i30"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2014"
+              }
+            ],
+            "note": "Aplicação informada pelo fabricante: Novo i30 2014."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK019114",
+      "itemId": "MLB4981486471",
+      "userProductId": "MLBU4531625277",
+      "evidence": "Descrição do produto no ERP: Toyota Etios 4 portas a partir de 2014.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "user_product_listing",
+          "good_quality_thumbnail",
+          "incomplete_compatibilities",
+          "standard_price_by_quantity",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        7
+      ],
+      "totalVehicles": 7,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Toyota"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Etios"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2014"
+              }
+            ],
+            "note": "Aplicação Soft AW32: Etios 4 portas a partir de 2014."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK019168",
+      "itemId": "MLB4981464231",
+      "userProductId": "MLBU4531625497",
+      "evidence": "Descrição do produto no ERP: Honda City a partir de 2021.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "standard_price_by_quantity",
+          "good_quality_thumbnail",
+          "incomplete_compatibilities",
+          "user_product_listing",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        5
+      ],
+      "totalVehicles": 5,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Honda"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "City"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2021"
+              }
+            ],
+            "note": "Aplicação Tury PRO 3.4 B a partir de 2021."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK018867",
+      "itemId": "MLB4981505671",
+      "userProductId": "MLBU4531691041",
+      "evidence": "Descrição do produto no ERP: Kia Picanto a partir de 2011.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "incomplete_compatibilities",
+          "user_product_listing",
+          "good_quality_thumbnail",
+          "standard_price_by_quantity",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        2
+      ],
+      "totalVehicles": 2,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Kia"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Picanto"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2011"
+              }
+            ],
+            "note": "Aplicação informada pelo fabricante a partir de 2011."
+          }
+        ]
+      }
+    },
+    {
+      "sku": "VTK019046",
+      "itemId": "MLB4981312507",
+      "userProductId": "MLBU4556786374",
+      "evidence": "Manual oficial Tury PRO 4.16 BM.",
+      "action": "would_add",
+      "before": {
+        "status": "under_review",
+        "subStatus": [
+          "waiting_for_patch"
+        ],
+        "tags": [
+          "good_quality_thumbnail",
+          "incomplete_compatibilities",
+          "user_product_listing",
+          "standard_price_by_quantity",
+          "immediate_payment",
+          "cart_eligible"
+        ]
+      },
+      "familyCounts": [
+        4,
+        5,
+        6
+      ],
+      "totalVehicles": 15,
+      "payload": {
+        "domain_id": "MLB-CARS_AND_VANS",
+        "category_id": "MLB191714",
+        "products_families": [
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Peugeot"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "208"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2013"
+              }
+            ],
+            "note": "Aplicação Tury PRO 4.16 BM a partir de 2013."
+          },
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Peugeot"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "2008"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2015"
+              }
+            ],
+            "note": "Aplicação Tury PRO 4.16 BM a partir de 2015."
+          },
+          {
+            "domain_id": "MLB-CARS_AND_VANS",
+            "creation_source": "DEFAULT",
+            "attributes": [
+              {
+                "id": "BRAND",
+                "value_name": "Citroën"
+              },
+              {
+                "id": "MODEL",
+                "value_name": "Aircross"
+              },
+              {
+                "id": "VEHICLE_YEAR",
+                "value_name": "2016"
+              }
+            ],
+            "note": "Aplicação Tury PRO 4.16 BM a partir de 2016."
+          }
+        ]
+      }
+    }
+  ]
+}

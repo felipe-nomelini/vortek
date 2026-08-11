@@ -1,0 +1,444 @@
+{
+  "generated_at": "2026-08-11T01:32:13.792Z",
+  "total": 8,
+  "listings": [
+    {
+      "sku": "VTK003177",
+      "produto_id": "c79ed41e-b97f-4b3a-8808-f220e184c424",
+      "mlb": "MLB7381740822",
+      "title": "Plug Rca Metal Com Parte Inferior Vermelha Pgrc0022 Storm",
+      "price": 156.98,
+      "status": "under_review",
+      "sub_status": [
+        "forbidden"
+      ],
+      "category_id": "MLB2817",
+      "listing_type_id": "gold_pro",
+      "pictures": 1,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7381740822-plug-rca-metal-com-parte-inferior-vermelha-pgrc0022-storm-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5878993501",
+          "date_created": "2026-08-10T20:45:22.904-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB7381740822",
+          "element_id": "MLB7381740822",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DOMAIN",
+          "suggested": {
+            "categories": [
+              {
+                "id": "MLB38172",
+                "name": "Conectores",
+                "path": "Eletrônicos, Áudio e Vídeo > Componentes Eletrônicos > Conectores",
+                "domain": ""
+              },
+              {
+                "id": "MLB420707",
+                "name": "Conectores",
+                "path": "Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores",
+                "domain": ""
+              },
+              {
+                "id": "MLB195961",
+                "name": "Adaptadores",
+                "path": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Adaptadores",
+                "domain": ""
+              }
+            ]
+          },
+          "reason": "Estava em uma categoria incorreta.",
+          "remedy": ""
+        }
+      ]
+    },
+    {
+      "sku": "VTK012414",
+      "produto_id": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+      "mlb": "MLB5034825565",
+      "title": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06",
+      "price": 150.94,
+      "status": "under_review",
+      "sub_status": [
+        "forbidden"
+      ],
+      "category_id": "MLB457514",
+      "listing_type_id": "gold_pro",
+      "pictures": 2,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5034825565-adaptador-35-femea-trs-63mm-macho-wc347-wireconex-06-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5879201857",
+          "date_created": "2026-08-10T21:20:49.68-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB5034825565",
+          "element_id": "MLB5034825565",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DOMAIN",
+          "suggested": {
+            "categories": [
+              {
+                "id": "MLB455641",
+                "name": "Cabos e Adaptadores",
+                "path": "Instrumentos Musicais > Pedais e Acessórios > Cabos e Adaptadores",
+                "domain": ""
+              },
+              {
+                "id": "MLB438556",
+                "name": "Adaptadores",
+                "path": "Informática > Tablets e Acessórios > Acessórios > Adaptadores",
+                "domain": ""
+              },
+              {
+                "id": "MLB57851",
+                "name": "Cabos e Adaptadores",
+                "path": "Informática > Portáteis e Acessórios > Acessórios para Notebook > Cabos e Adaptadores",
+                "domain": ""
+              },
+              {
+                "id": "MLB255051",
+                "name": "Adaptadores de Tomadas",
+                "path": "Construção > Energia > Tomadas e Interruptores > Tomadas Elétricas > Adaptadores de Tomadas",
+                "domain": ""
+              },
+              {
+                "id": "MLB5080",
+                "name": "Cabos",
+                "path": "Celulares e Telefones > Acessórios para Celulares > Cabos",
+                "domain": ""
+              },
+              {
+                "id": "MLB38172",
+                "name": "Conectores",
+                "path": "Eletrônicos, Áudio e Vídeo > Componentes Eletrônicos > Conectores",
+                "domain": ""
+              },
+              {
+                "id": "MLB420707",
+                "name": "Conectores",
+                "path": "Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores",
+                "domain": ""
+              }
+            ]
+          },
+          "reason": "Estava em uma categoria incorreta.",
+          "remedy": ""
+        }
+      ]
+    },
+    {
+      "sku": "VTK017246",
+      "produto_id": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "mlb": "MLB7381742942",
+      "title": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "price": 50,
+      "status": "under_review",
+      "sub_status": [
+        "forbidden"
+      ],
+      "category_id": "MLB2963",
+      "listing_type_id": "gold_pro",
+      "pictures": 1,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7381742942-controle-remoto-copiar-hombrus-433mhz-code-learn-3-botoes-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5941689310",
+          "date_created": "2026-08-10T20:44:54.752-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB7381742942",
+          "element_id": "MLB7381742942",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DECODIFICADORES",
+          "reason": "<p>Não cumpriu nossas políticas.</p>",
+          "remedy": ""
+        }
+      ]
+    },
+    {
+      "sku": "VTK018078",
+      "produto_id": "fa369a69-3db1-4dcd-9395-e6555e4310d7",
+      "mlb": "MLB7381741590",
+      "title": "Cabo Auto Permak 0.75mm Branco 100m",
+      "price": 152.97,
+      "status": "under_review",
+      "sub_status": [
+        "forbidden"
+      ],
+      "category_id": "MLB277720",
+      "listing_type_id": "gold_pro",
+      "pictures": 1,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7381741590-cabo-auto-permak-075mm-branco-100m-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5941694824",
+          "date_created": "2026-08-10T20:46:53.707-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB7381741590",
+          "element_id": "MLB7381741590",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DOMAIN",
+          "suggested": {
+            "categories": [
+              {
+                "id": "MLB120497",
+                "name": "Cabos",
+                "path": "Acessórios para Veículos > Navegadores GPS para Vehículos > Acessórios > Cabos",
+                "domain": ""
+              },
+              {
+                "id": "MLB5080",
+                "name": "Cabos",
+                "path": "Celulares e Telefones > Acessórios para Celulares > Cabos",
+                "domain": ""
+              },
+              {
+                "id": "MLB431814",
+                "name": "Cabos de Dados",
+                "path": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Dados",
+                "domain": ""
+              },
+              {
+                "id": "MLB129663",
+                "name": "Cabos",
+                "path": "Informática > Tablets e Acessórios > Acessórios > Cabos",
+                "domain": ""
+              },
+              {
+                "id": "MLB38188",
+                "name": "USB",
+                "path": "Câmeras e Acessórios > Cabos > USB",
+                "domain": ""
+              },
+              {
+                "id": "MLB421380",
+                "name": "Arames de Solda",
+                "path": "Ferramentas > Acessórios para Ferramentas > Soldado > Arames de Solda",
+                "domain": ""
+              },
+              {
+                "id": "MLB278102",
+                "name": "Arames",
+                "path": "Construção > Materiais de Obra > Arames",
+                "domain": ""
+              },
+              {
+                "id": "MLB446807",
+                "name": "Arames",
+                "path": "Agro > Infra-estrutura Rural > Cercas e Acessórios > Acessórios > Arames",
+                "domain": ""
+              }
+            ]
+          },
+          "reason": "Estava em uma categoria incorreta.",
+          "remedy": ""
+        }
+      ]
+    },
+    {
+      "sku": "VTK018338",
+      "produto_id": "9d3e1af8-3cd3-49aa-a3ff-69759c47f3ad",
+      "mlb": "MLB5034824849",
+      "title": "Cabo Extensão De Antena Permak 1,50 Metros Pc 2",
+      "price": 48.65,
+      "status": "under_review",
+      "sub_status": [
+        "forbidden"
+      ],
+      "category_id": "MLB63114",
+      "listing_type_id": "gold_pro",
+      "pictures": 1,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5034824849-cabo-extenso-de-antena-permak-150-metros-pc-2-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5941963986",
+          "date_created": "2026-08-10T21:29:53.265-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB5034824849",
+          "element_id": "MLB5034824849",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DOMAIN",
+          "suggested": {
+            "categories": [
+              {
+                "id": "MLB271371",
+                "name": "Antenas",
+                "path": "Eletrônicos, Áudio e Vídeo > Drones e Acessórios > Acessórios e Peças > Antenas",
+                "domain": ""
+              },
+              {
+                "id": "MLB48611",
+                "name": "Ferros de Solda",
+                "path": "Ferramentas > Ferramentas Elétricas > Soldagem > Ferros de Solda",
+                "domain": ""
+              },
+              {
+                "id": "MLB459663",
+                "name": "Cables de Extensión",
+                "path": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Interior > Componentes de Carregamento > Cabos de Carregamento > Cables de Extensión",
+                "domain": ""
+              }
+            ]
+          },
+          "reason": "Estava em uma categoria incorreta.",
+          "remedy": ""
+        },
+        {
+          "id": "5879169973",
+          "date_created": "2026-08-10T21:16:02.941-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB5034824849",
+          "element_id": "MLB5034824849",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "FOTOS",
+          "reason": "Analisando se a foto carrega corretamente.",
+          "remedy": "<p>O anúncio foi pausado temporariamente porque estamos verificando se a foto foi enviada corretamente.</p>"
+        }
+      ]
+    },
+    {
+      "sku": "VTK018477",
+      "produto_id": "d20b5f27-f8a0-4c9e-afa8-1791b6f9da0c",
+      "mlb": "MLB5034826531",
+      "title": "String Box Proauto 4.2e 4.2s 1040vcc",
+      "price": 1243.79,
+      "status": "under_review",
+      "sub_status": [
+        "waiting_for_patch"
+      ],
+      "category_id": "MLB30208",
+      "listing_type_id": "gold_pro",
+      "pictures": 1,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5034826531-string-box-proauto-42e-42s-1040vcc-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5941956612",
+          "date_created": "2026-08-10T21:29:31.39-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB5034826531",
+          "element_id": "MLB5034826531",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DOMAIN",
+          "reason": "O título e/ou as fotos não corespondem ao produto.",
+          "remedy": "<div><strong>Pausamos o anúncio porque ele infringe nossas políticas</strong></div><div>Ajuste o título e/ou substitua as fotos, garantindo que correspondam ao produto à venda.</div>"
+        }
+      ]
+    },
+    {
+      "sku": "VTK018823",
+      "produto_id": "b95ae4aa-a3d0-49ed-8986-907c756947d6",
+      "mlb": "MLB5034826579",
+      "title": "String Box Core Proauto 3mppt 3e 3s 32a 1040vdc",
+      "price": 1700.75,
+      "status": "under_review",
+      "sub_status": [
+        "forbidden"
+      ],
+      "category_id": "MLB30208",
+      "listing_type_id": "gold_pro",
+      "pictures": 1,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-5034826579-string-box-core-proauto-3mppt-3e-3s-32a-1040vdc-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5941969578",
+          "date_created": "2026-08-10T21:30:24.443-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB5034826579",
+          "element_id": "MLB5034826579",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DOMAIN",
+          "suggested": {
+            "categories": [
+              {
+                "id": "MLB38249",
+                "name": "Circuitos Integrados",
+                "path": "Eletrônicos, Áudio e Vídeo > Componentes Eletrônicos > Semicondutores > Circuitos Integrados",
+                "domain": ""
+              }
+            ]
+          },
+          "reason": "Estava em uma categoria incorreta.",
+          "remedy": ""
+        }
+      ]
+    },
+    {
+      "sku": "VTK025638",
+      "produto_id": "a77fbe7f-68b2-48a6-9658-53397fa53f2d",
+      "mlb": "MLB7381766444",
+      "title": "10 Pilhas Moeda Lítio Elgin Cr1620 3v Kit",
+      "price": 29.05,
+      "status": "under_review",
+      "sub_status": [
+        "forbidden"
+      ],
+      "category_id": "MLB11615",
+      "listing_type_id": "gold_special",
+      "pictures": 6,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7381766444-10-pilhas-moeda-litio-elgin-cr1620-3v-kit-_JM",
+      "http": 200,
+      "moderations": [
+        {
+          "id": "5941891814",
+          "date_created": "2026-08-10T21:19:47.837-0400",
+          "user_id": "3294514937",
+          "related_item_id": "MLB7381766444",
+          "element_id": "MLB7381766444",
+          "element_type": "ITM",
+          "site_id": "MLB",
+          "filter_subgroup": "DOMAIN",
+          "suggested": {
+            "categories": [
+              {
+                "id": "MLB7060",
+                "name": "Pilhas",
+                "path": "Eletrônicos, Áudio e Vídeo > Pilhas e Carregadores > Pilhas",
+                "domain": ""
+              },
+              {
+                "id": "MLB73433",
+                "name": "Pilhas BIOS e CMOS",
+                "path": "Informática > Portáteis e Acessórios > Peças e Partes para Notebooks > Pilhas BIOS e CMOS",
+                "domain": ""
+              },
+              {
+                "id": "MLB431681",
+                "name": "Pilhas",
+                "path": "Joias e Relógios > Acessórios Para Relógios > Pilhas",
+                "domain": ""
+              },
+              {
+                "id": "MLB118027",
+                "name": "Outros",
+                "path": "Joias e Relógios > Acessórios Para Relógios > Outros",
+                "domain": ""
+              },
+              {
+                "id": "MLB236752",
+                "name": "Suportes",
+                "path": "Joias e Relógios > Acessórios Para Relógios > Suportes",
+                "domain": ""
+              }
+            ]
+          },
+          "reason": "Estava em uma categoria incorreta.",
+          "remedy": ""
+        }
+      ]
+    }
+  ]
+}

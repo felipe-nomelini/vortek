@@ -1,0 +1,40 @@
+{
+  "operation": "hayamax_cash_tourniquet_corrections",
+  "date": "2026-08-10",
+  "requested": {
+    "ml_fee_mismatches": 68,
+    "seller_sku_mismatches": 53
+  },
+  "completed": {
+    "seller_skus_corrected": 53,
+    "requested_ml_fees_corrected": 68,
+    "additional_ml_fees_corrected_after_sku_repair": 2,
+    "total_ml_fees_corrected": 70,
+    "unique_products_repriced": 121,
+    "defensive_products": 113,
+    "offensive_products": 8,
+    "price_increases": 112,
+    "price_decreases": 9
+  },
+  "remaining_from_original_scan": {
+    "total": 68,
+    "listing_not_editable": 61,
+    "outside_pricing_matrix": 7
+  },
+  "validation": {
+    "seller_skus_verified": 53,
+    "products_and_ads_verified_in_erp": 121,
+    "mercado_livre_prices_verified": 121,
+    "failures": 0,
+    "price_tier_guarded_products": [
+      "VTK000212",
+      "VTK006476"
+    ]
+  },
+  "logs": {
+    "seller_sku_changes": "sku-hyx/resultado-2026-08-10T05-38-34-429Z.json",
+    "price_changes": "pricing-apply/events.ndjson",
+    "price_tier_adjustments": "price-tier-apply/events.ndjson",
+    "final_price_tier_verification": "price-tier-verify/events.ndjson"
+  }
+}

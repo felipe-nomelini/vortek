@@ -1,0 +1,112 @@
+{
+  "batchNumber": 24,
+  "batchId": "profitable-shelf-2-create-024",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "d65fb439-c01c-4078-ac02-56024daec98d",
+      "sku": "VTK017156",
+      "nome": "Suporte Multifuncional Ask PNT2 Com Bandeja Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 158.65,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Multifuncional Ask PNT2 Com Bandeja Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 158.65,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 388.45
+      }
+    },
+    {
+      "produtoId": "9dd61838-7a13-4344-9aae-bbae51ff98de",
+      "sku": "VTK017904",
+      "nome": "Centralina Soft Aw54 4 Vidros Comum + Ae",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 162.9,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Centralina Soft Aw54 4 Vidros Comum + Ae",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 162.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 396.18
+      }
+    },
+    {
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "nome": "Testador Smd Com Pinça Hikari Hm-10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 165.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Testador Smd Com Pinça Hikari Hm 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 165.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 401.64
+      }
+    },
+    {
+      "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+      "sku": "VTK018712",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20 Metros Caco0192",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 169.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 169.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 408.91
+      }
+    },
+    {
+      "produtoId": "df359f31-4088-47d1-a271-9d69caa9f73e",
+      "sku": "VTK001386",
+      "nome": "Pedestal Canhão de Iluminação CL34 ASK",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 172.61,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pedestal Canhão de Iluminação CL34 ASK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 172.61,
+        "shipping": 24.65,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 352.25
+      }
+    }
+  ]
+}

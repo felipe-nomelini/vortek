@@ -1,0 +1,427 @@
+{
+  "batchNumber": 23,
+  "batchId": "profitable-shelf-2-create-023",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "b7f31705-bae3-4156-9c45-e3e3f47caba6",
+      "sku": "VTK017400",
+      "nome": "Cabo Solar Cabel 6,0mm² Preto 25m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 137.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Solar Cabel 6,0mm² Preto 25m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 137.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 296.18
+      }
+    },
+    {
+      "produtoId": "4498a03d-7824-4998-bb49-00c3114efd57",
+      "sku": "VTK017401",
+      "nome": "Cabo Solar Cabel 6,0mm² Vermelho 25m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 137.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Solar Cabel 6,0mm² Vermelho 25m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 137.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 296.18
+      }
+    },
+    {
+      "produtoId": "6aadcd86-f85e-4608-9de5-1cb16f6bfacc",
+      "sku": "VTK019952",
+      "nome": "Telefone Sem Fio Intelbras Ts5121 Ramal Digital",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 137.9,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Telefone Sem Fio Intelbras Ts5121 Ramal Digital",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 137.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 296.18
+      }
+    },
+    {
+      "produtoId": "5ca865f2-7300-4e91-b8f2-7d3e85c07fb8",
+      "sku": "VTK004137",
+      "nome": "Arandela 6\" FRAHM 50W Quadrada 6CX Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 139.9,
+      "estoque": 23,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela 6 Polegadas FRAHM 50W Quadrada 6CX Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 139.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 299.82
+      }
+    },
+    {
+      "produtoId": "a2a8c7b8-aae0-4782-8b91-d74299209621",
+      "sku": "VTK018598",
+      "nome": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 139.9,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela Frahm 6 Polegadas Coaxial 30w Rms 8r Redonda 30158",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 139.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 299.82
+      }
+    },
+    {
+      "produtoId": "776f1486-0931-48df-854f-5b658ea87912",
+      "sku": "VTK018762",
+      "nome": "Caixa R.l.p. Vazia 2 A.f 12\" + 2 Dr + 2 Tw + Duto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 139.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa R.l.p. Vazia 2 A.f 12 Polegadas + 2 Dr + 2 Tw + Duto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 139.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 454.36
+      }
+    },
+    {
+      "produtoId": "476bee08-d8ea-43db-bc1f-b07e4d59756a",
+      "sku": "VTK021063",
+      "nome": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb Preto Sem Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 139.95,
+      "estoque": 27,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 139.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 299.91
+      }
+    },
+    {
+      "produtoId": "b58b4871-0a5c-49f0-8070-4491ef73e0cf",
+      "sku": "VTK025959",
+      "nome": "Frigideira Redonda Rochedo Robusta 24cm Grafite - CXM / 3",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 141.04,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Frigideira Redonda Rochedo Robusta 24cm Grafite CXM 3 ARNO",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 141.04,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 301.89
+      }
+    },
+    {
+      "produtoId": "8868a5bc-82a8-41eb-af7a-97c835d83ac1",
+      "sku": "VTK025899",
+      "nome": "20 Pilhas Alcalinas D Elgin (10 Cartelas C/2 Un)",
+      "fornecedor": "BKR1",
+      "custo": 149.5,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Alcalinas D Elgin 10 Cartelas C 2 Un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 149.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 317.27
+      }
+    },
+    {
+      "produtoId": "7b940b44-b0c6-4033-a7a8-2366f1efed0d",
+      "sku": "VTK025900",
+      "nome": "20 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (10 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 149.5,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Alcalinas D Lr20 Sm 2 Elgin 10 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 149.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 317.27
+      }
+    },
+    {
+      "produtoId": "dcb99854-65d0-487e-bde0-29e63e2bc630",
+      "sku": "VTK018428",
+      "nome": "Cabo Coaxial Cabletech Std-40+tp3 Branco 100 Metros 801214000p01cb12",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 149.9,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Coaxial Cabletech Std 40+tp3 Branco 100 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 149.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 318
+      }
+    },
+    {
+      "produtoId": "f0491c9e-8b43-4fe7-8027-eec8e5d62f8a",
+      "sku": "VTK018905",
+      "nome": "Cabinho Auto Tiaflex 0,50 Mm Vermelho 100 Metros 105006",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 149.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabinho Auto Tiaflex 0,50 Mm Vermelho 100 Metros 105006",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 149.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 318
+      }
+    },
+    {
+      "produtoId": "f0a4e378-7462-4642-9d6e-8de79f71c495",
+      "sku": "VTK025547",
+      "nome": "36 Baterias Auditiva 312 Duracell (6 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 150,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "36 Baterias Auditiva 312 Duracell 6 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 150,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 318.18
+      }
+    },
+    {
+      "produtoId": "d4d63d7b-e9a4-4dd7-83ef-1417845b3f54",
+      "sku": "VTK025548",
+      "nome": "36 Baterias Auditivas 10 Duracell (6 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 150,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "36 Baterias Auditivas 10 Duracell 6 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 150,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 318.18
+      }
+    },
+    {
+      "produtoId": "3739630d-1cbe-4198-9fca-924f265c5c4b",
+      "sku": "VTK025549",
+      "nome": "36 Baterias Auditivas 13 Duracell (6 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 150,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "36 Baterias Auditivas 13 Duracell 6 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 150,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 318.18
+      }
+    },
+    {
+      "produtoId": "3f53d0fa-3051-482c-9fa8-e66eb0fe558b",
+      "sku": "VTK025550",
+      "nome": "36 Baterias Auditivas 675 Duracell (6 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 150,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "36 Baterias Auditivas 675 Duracell 6 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 150,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 318.18
+      }
+    },
+    {
+      "produtoId": "36394ab4-0d3d-48ce-9646-e22896315eb3",
+      "sku": "VTK005426",
+      "nome": "Kit Cabo Para Pedal Hayonik Linha Player 15cm Sortido Com 20",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 151.84,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Cabo Para Pedal Hayonik Linha Player 15cm Sortido Com 20",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 151.84,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 376.07
+      }
+    },
+    {
+      "produtoId": "2abc130b-92dd-4b13-8bb5-ec9749f9382f",
+      "sku": "VTK025956",
+      "nome": "Panela de Pressão Rochedo Turbo Fechamento Interno 7 Litros Polida",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 152.56,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Panela de Pressão Rochedo Turbo Fechamento Interno 7 Litros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 152.56,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 377.38
+      }
+    },
+    {
+      "produtoId": "ebb84cd8-c62e-4c91-8f53-85d294b6ce03",
+      "sku": "VTK012632",
+      "nome": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 156.7,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 156.7,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 384.91
+      }
+    },
+    {
+      "produtoId": "e618f510-6298-493d-b36d-b92931079572",
+      "sku": "VTK018306",
+      "nome": "Parafuso P/ Alto Falante 2 \"s Cento - CT / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 156.95,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Parafuso P Alto Falante 2 Polegadas s Cento CT 5 PERMAK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 156.95,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 385.36
+      }
+    }
+  ]
+}

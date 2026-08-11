@@ -21,6 +21,10 @@ const ALLOW_EMPTY_GTIN_FOR_KITS = process.env.BATCH_ALLOW_EMPTY_GTIN_FOR_KITS ==
 const STRICT_EVIDENCE = process.env.BATCH_STRICT_EVIDENCE !== '0';
 const SKIP_SMART_FILL = STRICT_EVIDENCE || process.env.BATCH_SKIP_SMART_FILL === '1';
 const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
+const STOP_AFTER_CONSECUTIVE_FAILURES = Math.max(
+  0,
+  Number(process.env.BATCH_STOP_AFTER_CONSECUTIVE_FAILURES || 0),
+);
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
 const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
 const HOST_HEADER = process.env.BATCH_HOST_HEADER || '';
@@ -44,6 +48,70 @@ function sleep(ms) {
 
 function hasText(value) {
   return String(value || '').trim().length > 0;
+}
+
+function heuristicFreight(product) {
+  const stored = Number(product?.ml_shipping || 0);
+  if (stored > 0) return { value: stored, source: 'erp' };
+  const cost = Number(product?.custo || 0);
+  const dimensions = [product?.altura, product?.largura, product?.profundidade].map(Number);
+  const volume = dimensions.reduce(
+    (total, value) => total * (Number.isFinite(value) && value > 0 ? value : 0),
+    1,
+  );
+  const highVolume = Number(product?.peso_bruto || 0) > 10 ||
+    dimensions.some((value) => value > 100) || volume > 100000;
+  if (cost > 400 || highVolume) return { value: 110, source: 'heuristic' };
+  if (cost < 50) return { value: 6.5, source: 'heuristic' };
+  if (cost <= 150) return { value: 25, source: 'heuristic' };
+  return { value: 55, source: 'heuristic' };
+}
+
+async function profitableShelfPricing(product, categoryId, listingType) {
+  const cost = Number(product?.custo || 0);
+  const shipping = heuristicFreight(product);
+  const margin = cost + shipping.value < 50 ? 0.08 : 0.25;
+  let mlFee = Number(product?.ml_fee || 0.15);
+  const calculate = () => {
+    const denominator = 1 - mlFee - 0.05 - margin;
+    if (denominator <= 0) throw new Error('Taxa ML, DAS e margem invalidam o preço');
+    return Math.round(((cost + shipping.value) / denominator) * 100) / 100;
+  };
+  let price = calculate();
+  const liveFee = await percentageFee(categoryId, listingType, price);
+  if (liveFee) mlFee = liveFee;
+  price = calculate();
+  return {
+    cost,
+    shipping: shipping.value,
+    shippingSource: shipping.source,
+    mlFee,
+    das: 0.05,
+    margin,
+    price,
+  };
+}
+
+async function chooseListingType(product, categoryId, requested) {
+  if (requested && requested !== 'auto') return requested;
+  const expectedFee = Number(product?.ml_fee || 0.15);
+  const shipping = heuristicFreight(product).value;
+  const cost = Number(product?.custo || 0);
+  const margin = cost + shipping < 50 ? 0.08 : 0.25;
+  const denominator = 1 - expectedFee - 0.05 - margin;
+  const probePrice = denominator > 0 ? (cost + shipping) / denominator : cost + shipping;
+  const candidates = [];
+  for (const listingType of ['gold_special', 'gold_pro']) {
+    const fee = await percentageFee(categoryId, listingType, probePrice);
+    if (fee) candidates.push({ listingType, fee });
+  }
+  candidates.sort((a, b) => {
+    const difference = Math.abs(a.fee - expectedFee) - Math.abs(b.fee - expectedFee);
+    if (difference !== 0) return difference;
+    return a.listingType === 'gold_special' ? -1 : 1;
+  });
+  if (!candidates[0]) throw new Error('Nenhum tipo de anúncio disponível para a categoria');
+  return candidates[0].listingType;
 }
 
 function normalizePredictionText(value) {
@@ -89,6 +157,7 @@ function buildPredictionTitles(produto) {
 }
 
 let mlAccessTokenPromise = null;
+const listingFeeCache = new Map();
 
 async function getMlAccessToken() {
   if (!mlAccessTokenPromise) {
@@ -104,6 +173,30 @@ async function getMlAccessToken() {
       });
   }
   return mlAccessTokenPromise;
+}
+
+async function percentageFee(categoryId, listingType, price) {
+  const normalizedPrice = Math.max(1, Math.round(Number(price || 1) * 100) / 100);
+  const key = `${categoryId}|${listingType}|${normalizedPrice}`;
+  if (listingFeeCache.has(key)) return listingFeeCache.get(key);
+  const token = await getMlAccessToken();
+  const params = new URLSearchParams({
+    price: String(normalizedPrice),
+    category_id: String(categoryId),
+    listing_type_id: String(listingType),
+  });
+  const response = await fetch(`https://api.mercadolibre.com/sites/MLB/listing_prices?${params.toString()}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const data = await response.json().catch(() => null);
+  const percentage = Number(
+    data?.sale_fee_details?.percentage_fee ?? data?.sale_fee_details?.meli_percentage_fee,
+  );
+  const value = response.ok && Number.isFinite(percentage) && percentage > 0
+    ? percentage / 100
+    : null;
+  listingFeeCache.set(key, value);
+  return value;
 }
 
 async function getSimpleKitComponentCategory(produtoId) {
@@ -567,19 +660,55 @@ function buildRichBatchDescription(item, prepared) {
     .slice(0, 5000);
 }
 
-async function prepareCategory(produtoId, categoryId, description, productName) {
+function applyLiveEmptyGtinReason(required, optional, product) {
+  if (hasText(product?.gtin)) return { required, optional };
+  const all = [...(required || []), ...(optional || [])];
+  const reasonAttribute = all.find(
+    (attribute) => String(attribute?.id || '').toUpperCase() === 'EMPTY_GTIN_REASON',
+  );
+  if (!reasonAttribute) return { required, optional };
+  const isKit = /\b(?:kit|pack|cartela\s+com|\d+\s*(?:un|unidades?))\b/i.test(
+    String(product?.nome || ''),
+  );
+  const allowed = (reasonAttribute.values || []).find((value) => {
+    const name = String(value?.name || '');
+    return isKit
+      ? /kit|pack/i.test(name)
+      : /n[aã]o (?:tem|possui).*(?:c[oó]digo|gtin)|sem.*(?:c[oó]digo|gtin)/i.test(name);
+  });
+  if (!allowed?.id || !allowed?.name) return { required, optional };
+  const withoutIdentifiers = (rows) => (rows || []).filter(
+    (attribute) => !['GTIN', 'EMPTY_GTIN_REASON'].includes(
+      String(attribute?.id || '').toUpperCase(),
+    ),
+  );
+  return {
+    required: withoutIdentifiers(required),
+    optional: [
+      ...withoutIdentifiers(optional),
+      {
+        ...reasonAttribute,
+        value_id: String(allowed.id),
+        value_name: String(allowed.name),
+      },
+    ],
+  };
+}
+
+async function prepareCategory(produtoId, categoryId, description, product, listingType) {
   const schemaData = await postJson('/api/ml/anuncio/schema', {
     produtoId,
     categoriaId: categoryId,
-    listingType: 'gold_pro',
+    listingType,
     strictEvidence: STRICT_EVIDENCE,
   });
   const schema = schemaData?.schema;
   if (!schema) throw new Error('Schema ML ausente');
 
   if (SKIP_SMART_FILL) {
-    const required = fillKnownBatteryAttributes(schema.required_attributes || [], productName);
-    const optional = schema.optional_attributes || [];
+    let required = fillKnownBatteryAttributes(schema.required_attributes || [], product?.nome || '');
+    let optional = schema.optional_attributes || [];
+    ({ required, optional } = applyLiveEmptyGtinReason(required, optional, product));
     const missing = missingRequired(required, {
       allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
     });
@@ -604,8 +733,9 @@ async function prepareCategory(produtoId, categoryId, description, productName) 
   });
   if (!smartData?.success) throw new Error(smartData?.error || 'Preenchimento inteligente falhou');
 
-  const required = fillKnownBatteryAttributes(smartData.required_attributes || schema.required_attributes || [], productName);
-  const optional = smartData.optional_attributes || schema.optional_attributes || [];
+  let required = fillKnownBatteryAttributes(smartData.required_attributes || schema.required_attributes || [], product?.nome || '');
+  let optional = smartData.optional_attributes || schema.optional_attributes || [];
+  ({ required, optional } = applyLiveEmptyGtinReason(required, optional, product));
   const missing = missingRequired(required, {
     allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
   });
@@ -658,12 +788,26 @@ async function createOne(item) {
   }
 
   if (categories.length === 0) throw new Error('Sem categoria ML prevista');
+  if (item.strictFirstCategory === true && !item.categoryId) categories = categories.slice(0, 1);
+
+  let listingType = null;
 
   const attempts = [];
   let prepared = null;
   for (const category of categories) {
     try {
-      const current = await prepareCategory(item.produtoId, category.id, item.description || '', item.nome || '');
+      const currentListingType = await chooseListingType(
+        item.product || {},
+        category.id,
+        String(item.listingType || 'auto'),
+      );
+      const current = await prepareCategory(
+        item.produtoId,
+        category.id,
+        item.description || '',
+        item.product || {},
+        currentListingType,
+      );
       current.required = applyAttributeOverrides(current.required, item.attributeOverrides);
       // Exact GTIN catalog matches are strong evidence for category and required
       // fields, but optional catalog specs can still contain seller-generated errors.
@@ -688,6 +832,7 @@ async function createOne(item) {
       });
       attempts.push({ category: { id: category.id, nome: category.nome }, missing: current.missing.map((attr) => attr.name || attr.id) });
       if (current.missing.length === 0) {
+        listingType = currentListingType;
         prepared = { category, ...current };
         break;
       }
@@ -702,6 +847,11 @@ async function createOne(item) {
     error.attempts = attempts;
     throw error;
   }
+  if (!listingType) throw new Error('Tipo de anúncio não definido');
+
+  const pricing = item.pricingMode === 'profitable_shelf_2'
+    ? await profitableShelfPricing(item.product || {}, prepared.category.id, listingType)
+    : null;
 
   if (DRY_RUN) {
     return {
@@ -710,6 +860,9 @@ async function createOne(item) {
       sku: item.sku,
       category: { id: prepared.category.id, nome: prepared.category.nome, dominio: prepared.category.dominio },
       basePrice: prepared.schema.prefill?.base_price ?? null,
+      familyName: item.familyName || null,
+      listingType,
+      pricing,
       missing: prepared.missing,
       attributes: [...prepared.required, ...prepared.optional]
         .filter((attribute) => hasText(attribute.value_id) || hasText(attribute.value_name))
@@ -733,8 +886,10 @@ async function createOne(item) {
   const created = await postJson('/api/ml/anuncio/criar', {
     produtoId: item.produtoId,
     categoriaId: prepared.category.id,
-    listingType: 'gold_pro',
-    basePrice: prepared.schema.prefill?.base_price,
+    listingType,
+    basePrice: pricing?.price ?? prepared.schema.prefill?.base_price,
+    pricingMode: item.pricingMode || undefined,
+    familyName: item.familyName || undefined,
     fiscal: prepared.schema.fiscal_fields,
     description: buildRichBatchDescription(item, prepared),
     attributes: [...prepared.required, ...prepared.optional].map((attr) => ({
@@ -764,6 +919,7 @@ async function createOne(item) {
     anuncio: created.anuncio,
     linked_existing: Boolean(created.linked_existing),
     warnings: created.warnings || [],
+    pricing: created.pricing_policy || pricing,
   };
 }
 
@@ -779,6 +935,7 @@ async function createOne(item) {
     created: [],
     failed: [],
   };
+  let consecutiveFailures = 0;
 
   for (const item of items) {
     try {
@@ -791,6 +948,7 @@ async function createOne(item) {
         description: item.description || produto?.descricao || '',
       });
       result.created.push(payload);
+      consecutiveFailures = 0;
       console.log(`[ok] ${item.sku} ${payload.anuncio?.id || payload.category?.id || ''}`);
     } catch (error) {
       result.failed.push({
@@ -802,7 +960,16 @@ async function createOne(item) {
         attempts: error.attempts || null,
         data: error.data || null,
       });
+      consecutiveFailures += 1;
       console.log(`[fail] ${item.sku} ${error.message}`);
+    }
+    if (
+      !DRY_RUN &&
+      STOP_AFTER_CONSECUTIVE_FAILURES > 0 &&
+      consecutiveFailures >= STOP_AFTER_CONSECUTIVE_FAILURES
+    ) {
+      console.log(`[stop] consecutive_failures=${consecutiveFailures}`);
+      break;
     }
     await sleep(DELAY_MS);
   }

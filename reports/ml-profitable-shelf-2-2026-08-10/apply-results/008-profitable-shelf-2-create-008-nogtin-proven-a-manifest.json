@@ -1,0 +1,28 @@
+{
+  "batchNumber": 8,
+  "batchId": "profitable-shelf-2-create-008",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "510237c6-1172-4cbb-8532-92c31a971282",
+      "sku": "VTK017217",
+      "nome": "Big Haste 28x28 1,20m Completa Gancho E Castanha",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Big Haste 28x28 1,20m Completa Gancho E Castanha CONFISEG",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 254.36
+      }
+    }
+  ]
+}

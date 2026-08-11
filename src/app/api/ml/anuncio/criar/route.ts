@@ -11,7 +11,10 @@ import {
   upsertListingDescription,
 } from "@/services/mercadolibre";
 import { fetchML, fetchMLResult } from "@/services/integration";
-import { calculateSuggestedPrice } from "@/services/pricing";
+import {
+  calculateExactMarginPrice,
+  calculateSuggestedPrice,
+} from "@/services/pricing";
 import { createServiceClient } from "@/lib/supabase";
 import {
   fiscalStrictSchema,
@@ -450,10 +453,57 @@ async function calculateSafeListingPrice(params: {
   categoriaId: string;
   listingType: string;
   requestedPrice?: number;
+  pricingMode?: string;
 }) {
   const cost = Number(params.produto.custo || 0);
-  const shipping = Number(params.produto.ml_shipping || 0);
+  const storedShipping = Number(params.produto.ml_shipping || 0);
+  const dimensions = [
+    Number(params.produto.altura || 0),
+    Number(params.produto.largura || 0),
+    Number(params.produto.profundidade || 0),
+  ];
+  const packageVolume = dimensions.reduce(
+    (total, value) => total * (Number.isFinite(value) && value > 0 ? value : 0),
+    1,
+  );
+  const highVolume =
+    Number(params.produto.peso_bruto || 0) > 10 ||
+    dimensions.some((value) => value > 100) ||
+    packageVolume > 100000;
+  const heuristicShipping =
+    cost > 400 || highVolume
+      ? 110
+      : cost < 50
+        ? 6.5
+        : cost <= 150
+          ? 25
+          : 55;
+  const shipping =
+    params.pricingMode === "profitable_shelf_2" && storedShipping <= 0
+      ? heuristicShipping
+      : storedShipping;
   let mlFee = Number(params.produto.ml_fee || 0.15);
+  if (params.pricingMode === "profitable_shelf_2") {
+    const costTotal = cost + shipping;
+    const margin = costTotal < 50 ? 0.08 : 0.25;
+    let price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
+    const listingPrices = await fetchML<any>(
+      `/sites/MLB/listing_prices?price=${price}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
+    );
+    mlFee = extractMlFee(listingPrices) ?? mlFee;
+    price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
+    return {
+      price,
+      mlFee,
+      suggestedPrice: price,
+      adjusted: false,
+      pricingMode: params.pricingMode,
+      shipping,
+      shippingSource: storedShipping > 0 ? "erp" : "heuristic",
+      margin,
+      taxRate: 0.05,
+    };
+  }
   const provisional = calculateSuggestedPrice({ cost, shipping, mlFee });
   const listingPrices = await fetchML<any>(
     `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
@@ -690,6 +740,8 @@ export async function POST(req: Request) {
       attributes: editedAttributes,
       sale_terms: editedSaleTerms,
       allowOutOfStockListing = false,
+      pricingMode,
+      familyName: requestedFamilyName,
     } = await req.json();
 
     if (!produtoId) {
@@ -806,6 +858,7 @@ export async function POST(req: Request) {
       produto,
       categoriaId,
       listingType: listingType || "gold_pro",
+      pricingMode,
       requestedPrice:
         typeof basePrice === "number" &&
         Number.isFinite(basePrice) &&
@@ -820,6 +873,11 @@ export async function POST(req: Request) {
     if (safePrice.adjusted) {
       warnings.push(
         `Preço ajustado automaticamente para R$ ${safePrice.suggestedPrice.toFixed(2)} para evitar frete/taxa desatualizados.`,
+      );
+    }
+    if (pricingMode === "profitable_shelf_2") {
+      warnings.push(
+        `Preço calculado pela Prateleira Lucrativa 2.0: frete ${safePrice.shippingSource}, DAS 5% e margem ${(Number(safePrice.margin || 0) * 100).toFixed(0)}%.`,
       );
     }
 
@@ -1350,6 +1408,15 @@ export async function POST(req: Request) {
       brand: produto.marca,
       attributesMap,
     });
+    const effectiveFamilyName =
+      pricingMode === "profitable_shelf_2" && requestedFamilyName
+        ? truncateListingName(
+            String(requestedFamilyName)
+              .replace(/[-|/]+/g, " ")
+              .replace(/\s+/g, " ")
+              .trim(),
+          )
+        : listingNames.familyName;
 
     let useFamilyName = false;
     try {
@@ -1360,8 +1427,8 @@ export async function POST(req: Request) {
     const listingDescription = buildDescription(produto, description);
 
     let listingPayload: Parameters<typeof createListing>[0] = {
-      title: useFamilyName ? undefined : listingNames.title,
-      familyName: useFamilyName ? listingNames.familyName : undefined,
+      title: useFamilyName ? undefined : effectiveFamilyName,
+      familyName: useFamilyName ? effectiveFamilyName : undefined,
       categoryId: categoriaId,
       price: displayPrice,
       availableQuantity: Number(produto.estoque || 0),
@@ -1448,7 +1515,10 @@ export async function POST(req: Request) {
     addListingStatusWarnings(latestItem, warnings);
 
     let mlFee = safePrice.mlFee || produto.ml_fee || 0.15;
-    let mlShipping = produto.ml_shipping || 0;
+    let mlShipping =
+      pricingMode === "profitable_shelf_2"
+        ? Number(safePrice.shipping || 0)
+        : produto.ml_shipping || 0;
     let finalSuggestedPrice = initialPrice;
     const pricingCorrection: {
       initial_price: number;
@@ -1480,7 +1550,10 @@ export async function POST(req: Request) {
       result.id,
       getItemShippingMode(latestItem),
     );
-    if (shippingResolution.mlShipping > 0) {
+    if (
+      pricingMode !== "profitable_shelf_2" &&
+      shippingResolution.mlShipping > 0
+    ) {
       mlShipping = shippingResolution.mlShipping;
     }
     if (shippingResolution.warning) {
@@ -1513,7 +1586,10 @@ export async function POST(req: Request) {
     pricingCorrection.ml_shipping = roundMoney(Number(mlShipping || 0));
     pricingCorrection.ml_fee = roundMoney(Number(mlFee || 0));
 
-    if (Number.isFinite(Number(mlShipping)) && Number(mlShipping) > 0) {
+    if (pricingMode === "profitable_shelf_2") {
+      finalSuggestedPrice = initialPrice;
+      pricingCorrection.final_price = initialPrice;
+    } else if (Number.isFinite(Number(mlShipping)) && Number(mlShipping) > 0) {
       try {
         const finalPricing = calculateSuggestedPrice({
           cost: Number(produto.custo || 0),
@@ -1716,6 +1792,18 @@ export async function POST(req: Request) {
       },
       quantity_pricing: quantityPricingResult.ok,
       pricing_correction: pricingCorrection,
+      pricing_policy:
+        pricingMode === "profitable_shelf_2"
+          ? {
+              mode: pricingMode,
+              das: 0.05,
+              margin: safePrice.margin,
+              shipping: safePrice.shipping,
+              shipping_source: safePrice.shippingSource,
+              ml_fee: safePrice.mlFee,
+              price: initialPrice,
+            }
+          : null,
       fiscal: fiscalErrors.length === 0 ? "ok" : fiscalErrors,
       fiscal_details: fiscalErrorDetails,
     });

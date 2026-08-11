@@ -1,0 +1,159 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/023-profitable-shelf-2-create-023-mass-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-023",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "5ca865f2-7300-4e91-b8f2-7d3e85c07fb8",
+      "sku": "VTK004137",
+      "category": {
+        "id": "MLB6535",
+        "nome": "Grades para Caixas de Som",
+        "dominio": "Grades para caixas de som"
+      },
+      "anuncio": {
+        "id": "MLB7381670110",
+        "title": "Arandela 6 Polegadas Frahm 50w Quadrada 6cx Preta",
+        "price": 305.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381670110-arandela-6-polegadas-frahm-50w-quadrada-6cx-preta-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.16,
+        "price": 305.37
+      }
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "476bee08-d8ea-43db-bc1f-b07e4d59756a",
+      "sku": "VTK021063",
+      "nome": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb Preto Sem Fio",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB5914]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB5914]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB5914]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "8868a5bc-82a8-41eb-af7a-97c835d83ac1",
+      "sku": "VTK025899",
+      "nome": "20 Pilhas Alcalinas D Elgin (10 Cartelas C/2 Un)",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "7b940b44-b0c6-4033-a7a8-2366f1efed0d",
+      "sku": "VTK025900",
+      "nome": "20 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (10 Cart)",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    }
+  ]
+}

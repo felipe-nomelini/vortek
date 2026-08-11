@@ -1,0 +1,427 @@
+{
+  "batchNumber": 5,
+  "batchId": "profitable-shelf-2-create-005",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "883e250a-078b-4416-9d67-4f2a65f93154",
+      "sku": "VTK017827",
+      "nome": "Protetor Para Interfone Moros - Branco",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.9,
+      "estoque": 23,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Protetor Para Interfone Moros Branco",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.67
+      }
+    },
+    {
+      "produtoId": "3d208134-6605-4c71-914a-b3d6618c3b32",
+      "sku": "VTK018554",
+      "nome": "Protetor Para Interfone Moros - Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Protetor Para Interfone Moros Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.67
+      }
+    },
+    {
+      "produtoId": "a6cc0e72-9a06-454e-afc7-483734544be1",
+      "sku": "VTK018663",
+      "nome": "Haste Permak Fiat Toro/ Jeep Renegade/ Compass Ov",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Permak Fiat Toro Jeep Renegade Compass Ov",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.67
+      }
+    },
+    {
+      "produtoId": "9d9f9acd-f081-4617-9b76-7a108bdd7a72",
+      "sku": "VTK018753",
+      "nome": "Conector Permak Cd Do Nissan March Livina Versa 35-d7",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Permak Cd Do Nissan March Livina Versa 35 d7",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.67
+      }
+    },
+    {
+      "produtoId": "28213cef-8be0-4708-80f2-33c5be2769d7",
+      "sku": "VTK017902",
+      "nome": "Controle Remoto Mxt 01370 Ar Inverter Springer Midea",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.95,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controle Remoto Mxt 01370 Ar Inverter Springer Midea",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.74
+      }
+    },
+    {
+      "produtoId": "df0fe9d6-90ce-49e9-b554-bb3b026a3574",
+      "sku": "VTK012369",
+      "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 20,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Adaptadores Rca Fêmea P xlr 3p Macho Niq. Wc 245 Ad 02",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.81
+      }
+    },
+    {
+      "produtoId": "bace5096-725d-4223-9089-87c59c22c289",
+      "sku": "VTK012687",
+      "nome": "Cabo De Microfone Pro Balanceado Emborrachado Xlr Xlr 0,40 Cm Mpbe-0,40 Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 20,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Microfone Pro Balanceado Emborrachado Xlr Xlr 0,40",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.81
+      }
+    },
+    {
+      "produtoId": "31bfa2c9-7fa7-40c6-bbbc-6b80d4a04259",
+      "sku": "VTK017262",
+      "nome": "Conector Tnc Macho Rt Rg/rgcc 213 Tm-10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 20.2,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Tnc Macho Rt Rg rgcc 213 Tm 10 K.L.C.",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.2,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 37.08
+      }
+    },
+    {
+      "produtoId": "d0176b13-b6b7-44ce-91b4-b3578713e214",
+      "sku": "VTK025682",
+      "nome": "15 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 20.4,
+      "estoque": 33,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.4,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 37.36
+      }
+    },
+    {
+      "produtoId": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+      "sku": "VTK012267",
+      "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 20.68,
+      "estoque": 27,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Adaptador Rca Macho P xlr 3p Fêmea Niq. Wc 242 Ad 02",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.68,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 37.75
+      }
+    },
+    {
+      "produtoId": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+      "sku": "VTK017506",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 20.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.06
+      }
+    },
+    {
+      "produtoId": "1849bcec-0b10-4888-84c4-4d942dd3c8b0",
+      "sku": "VTK017507",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 20.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Vermelho",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.06
+      }
+    },
+    {
+      "produtoId": "b6daed03-8deb-461c-9472-059f25c252ea",
+      "sku": "VTK017545",
+      "nome": "Reparo Para Driver Shock D-250 Trio Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 20.9,
+      "estoque": 45,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Para Driver Shock D 250 Trio Selenium SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.06
+      }
+    },
+    {
+      "produtoId": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+      "sku": "VTK017562",
+      "nome": "Carregador Veicular Elgin Usb 12v - 2 Saídas",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 20.9,
+      "estoque": 39,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Carregador Veicular Elgin Usb 12v 2 Saídas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.06
+      }
+    },
+    {
+      "produtoId": "da6cc1ad-f9dd-42ee-becd-0f6d7f9fdcdd",
+      "sku": "VTK012765",
+      "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 21,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Adaptador Rca Macho P xlr 3p Macho Niq. Wc 243 Ad 02",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 21,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.19
+      }
+    },
+    {
+      "produtoId": "bb82582c-4fa7-4fd0-bdee-6d5fc037345d",
+      "sku": "VTK017698",
+      "nome": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 21.3,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 21.3,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.61
+      }
+    },
+    {
+      "produtoId": "ace7354e-71b5-440b-b076-8b6ea2e495a9",
+      "sku": "VTK025640",
+      "nome": "10 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 21.8,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 21.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 39.31
+      }
+    },
+    {
+      "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+      "sku": "VTK017933",
+      "nome": "Botão De Pânico Ipec Nf",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 21.9,
+      "estoque": 19,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Botão De Pânico Ipec Nf",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 21.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 39.44
+      }
+    },
+    {
+      "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+      "sku": "VTK019030",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 21.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 21.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 39.44
+      }
+    },
+    {
+      "produtoId": "8d7fbad6-a59b-4aaa-a799-abfc41331b28",
+      "sku": "VTK019117",
+      "nome": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 21.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 21.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 39.44
+      }
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 13,
+  "batchId": "profitable-shelf-2-create-013",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "83155aac-2ecf-4544-8c99-47f2720cfc28",
+      "sku": "VTK018064",
+      "nome": "Lâmpada Multilaser Super Led H8 20w 6200k Par Au836",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 51.5,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lâmpada Multilaser Super Led H8 20w 6200k Par Au836",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 51.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 139.09
+      }
+    },
+    {
+      "produtoId": "afb7f9a8-d524-4afa-9009-4a9f66411e15",
+      "sku": "VTK018197",
+      "nome": "Lâmpada Multilaser Super Led Hb4 30w 6200k Au840 Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 51.7,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lâmpada Multilaser Super Led Hb4 30w 6200k Au840 Par",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 51.7,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 139.45
+      }
+    },
+    {
+      "produtoId": "da3d66ab-5aab-4027-abc0-fd2e062bbb71",
+      "sku": "VTK018293",
+      "nome": "Lâmpada Multilaser Super Led Cob H1 Com Potência De 20w E Temperatura 6200k - Au832",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 51.7,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Lâmpada Multilaser Super Led Cob H1 Com Potência De 20w E",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 51.7,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 139.45
+      }
+    },
+    {
+      "produtoId": "a715ff56-191a-487b-8235-b67e1614a4d1",
+      "sku": "VTK025849",
+      "nome": "8 Pilhas Alcalinas C Sm-2 Elgin (4 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 52,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "8 Pilhas Alcalinas C Sm 2 Elgin 4 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 52,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 140
+      }
+    },
+    {
+      "produtoId": "e6b660dd-26a6-4647-8f33-5f7c20989151",
+      "sku": "VTK001093",
+      "nome": "Suporte Para Monitor e Notebook Reliza ERGONEW3",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 52.49,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Para Monitor e Notebook Reliza ERGONEW3",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 52.49,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 140.89
+      }
+    },
+    {
+      "produtoId": "4665e99f-428a-4eaa-bd4d-8bc7dd711eb6",
+      "sku": "VTK022504",
+      "nome": "Caixa Vazia 1 Alto-falante 8\" Dutada",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 52.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia 1 Alto falante 8 Polegadas Dutada CAIXARIAS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 52.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 141.64
+      }
+    },
+    {
+      "produtoId": "c79ed41e-b97f-4b3a-8808-f220e184c424",
+      "sku": "VTK003177",
+      "nome": "Plug RCA Metal Com Parte Inferior Vermelha PGRC0022 Storm - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 53.2,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Plug RCA Metal Com Parte Inferior Vermelha PGRC0022 Storm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 53.2,
+        "shipping": 30,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 156.98
+      }
+    },
+    {
+      "produtoId": "fda6c327-084a-41a6-949d-96dbdf76ee5c",
+      "sku": "VTK018291",
+      "nome": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 53.9,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 53.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 143.45
+      }
+    },
+    {
+      "produtoId": "0efe9ce3-b3ea-4ff5-8e39-cb82c92e6c5b",
+      "sku": "VTK025367",
+      "nome": "3 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini",
+      "fornecedor": "BKR1",
+      "custo": 54.15,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "3 Jogos de Corda P Guitarra Canário Aço 09 GESGT9 Giannini",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.15,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 143.91
+      }
+    },
+    {
+      "produtoId": "e623c24f-a342-40bb-8a90-5e458f774d6f",
+      "sku": "VTK025780",
+      "nome": "40 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 54.4,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "40 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.4,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 144.36
+      }
+    },
+    {
+      "produtoId": "2e0c43fd-a883-4e5d-bda9-366d13a8c45c",
+      "sku": "VTK018460",
+      "nome": "Refil Tinta Epson Amarelo T673420-al",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 54.5,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil Tinta Epson Amarelo T673420 al",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 144.55
+      }
+    },
+    {
+      "produtoId": "e740ef81-07bf-42c1-9d10-06709c4c3466",
+      "sku": "VTK018461",
+      "nome": "Refil Tinta Epson Ciano T673220al",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 54.5,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil Tinta Epson Ciano T673220al",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 144.55
+      }
+    },
+    {
+      "produtoId": "a6254578-a015-4765-8ff2-23bd56070d60",
+      "sku": "VTK003259",
+      "nome": "Pilha Recarregável 1,2V AAA 950mAh Eneloop Pro (C/2 Pilhas) Panasonic - CAR / 2",
+      "fornecedor": "BKR1",
+      "custo": 54.51,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pilha Recarregável 1,2V AAA 950mAh Eneloop Pro C 2 Pilhas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.51,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 144.56
+      }
+    },
+    {
+      "produtoId": "ce5d444a-08a2-43c0-80c1-044a25d139f8",
+      "sku": "VTK005775",
+      "nome": "Cabo Display Port 1.2v Para USB- C Macho Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 54.9,
+      "estoque": 19,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Display Port 1.2v Para USB C Macho Storm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 145.27
+      }
+    },
+    {
+      "produtoId": "853ee0d7-5ad0-4312-a297-4af55b2194d2",
+      "sku": "VTK018751",
+      "nome": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 54.99,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6 Cg150",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.99,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 145.44
+      }
+    },
+    {
+      "produtoId": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+      "sku": "VTK012414",
+      "nome": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06 Unidades",
+      "fornecedor": "BKR1",
+      "custo": 55,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 55,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 145.45
+      }
+    },
+    {
+      "produtoId": "67b24205-6321-479c-8e2c-e4f68c4326f8",
+      "sku": "VTK001246",
+      "nome": "Suporte Para Caixa de Som CP10 ASK",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 55.23,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Para Caixa de Som CP10 ASK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 55.23,
+        "shipping": 19.85,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 141.66
+      }
+    },
+    {
+      "produtoId": "c9711af5-7089-4ad7-9c21-987a25e208e0",
+      "sku": "VTK017625",
+      "nome": "Receptor Sulton Srx 302 3 Rele",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 55.9,
+      "estoque": 39,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Receptor Sulton Srx 302 3 Rele",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 55.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 147.09
+      }
+    },
+    {
+      "produtoId": "012712bb-bbe0-4eeb-9695-fd7f03106462",
+      "sku": "VTK018923",
+      "nome": "Haste New Shark Olimpus Teto Traseira Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 55.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste New Shark Olimpus Teto Traseira Prata",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 55.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 147.09
+      }
+    },
+    {
+      "produtoId": "57cd87d9-9961-405c-a4ed-027495051b55",
+      "sku": "VTK001732",
+      "nome": "Corda Para Violão Nylon 6ª Mi GENW.6 Série Canário Giannini - DZ / 12",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 55.94,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Corda Para Violão Nylon 6ª Mi GENW.6 Série Canário Giannini",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 55.94,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 147.16
+      }
+    }
+  ]
+}

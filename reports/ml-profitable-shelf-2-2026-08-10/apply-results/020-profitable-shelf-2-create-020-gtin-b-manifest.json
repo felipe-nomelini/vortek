@@ -1,0 +1,49 @@
+{
+  "batchNumber": 20,
+  "batchId": "profitable-shelf-2-create-020",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "41b3f721-cde7-461d-a8cb-9a88c47e6d34",
+      "sku": "VTK000028",
+      "nome": "Multímetro Analógico Minipa ET-2022B",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 109.16,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Multímetro Analógico Minipa ET 2022B",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 109.16,
+        "shipping": 21.15,
+        "shippingSource": "erp",
+        "mlFee": 0.11,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 220.86
+      }
+    },
+    {
+      "produtoId": "0345558f-6b9e-40c9-ae94-52456ce553c5",
+      "sku": "VTK012912",
+      "nome": "Capa P/ Guitarra Extra Bolso Cargo - Nylon 600 - Preto Bkr 1",
+      "fornecedor": "BKR1",
+      "custo": 110,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capa P Guitarra Extra Bolso Cargo Nylon 600 Preto Bkr 1 Bkr1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 110,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 245.45
+      }
+    }
+  ]
+}

@@ -1,0 +1,776 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/024-profitable-shelf-2-create-024-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-024",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "27f8b999-1aab-417a-b133-c3c56e4a161f",
+      "sku": "VTK017567",
+      "category": {
+        "id": "MLB5914",
+        "nome": "Kits de Teclado e Mouse",
+        "dominio": "Kits de teclado e mouse"
+      },
+      "basePrice": 221.45,
+      "familyName": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto cinza",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 157.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 373.51
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MK270"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor do teclado",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto/cinza\n\nVISÃO GERAL\nCombo de teclado e mouse sem fio MK270 Combo sem fio confiável O MK270 Wireless Combo combina a conveniência e o conforto de um teclado de tamanho normal com um mouse compacto e esculpido. Com teclas de mídia, um teclado numérico e controle de cursor preciso para tornar seu trabalho muito mais fácil. TECLADO EM TAMANHO NORMAL Confortável, de tamanho normal e eficiente.\n\nCompleto com fácil acesso aos controles de mídia, este teclado permite que você faça mais em menos tempo com oito controles de mídia que permitem o acesso instantâneo a música, mídia, volume e muito mais. MOUSE CONFORTÁVEL E COMPACTO Continue produtivo por mais tempo com o formato confortável e contornado que segue a curva natural de sua mão. Este mouse compacto e sem fio foi projetado para ser igualmente confortável para usuários destros e canhotos.\n\nAlém disso, seu controle suave do cursor permite uma navegação fácil na maioria das superfícies. SIMPLESMENTE SEM FIO Esqueça falhas e atrasos graças a uma conexão sem fio forte e confiável de 2,4 GHz com um alcance de 10 m*. Libere sua mesa com um receptor USB - tão pequeno que pode ficar em seu computador.\n\n* O alcance sem fio pode variar devido às condições ambientais e de computação. DURÁVEL E CONFIÁVEL Aproveite a digitação familiar do MK270, ou combo mais vendido do mundo, construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados. FEITO PARA DURAR O teclado possui design resistente a derramamentos*, teclas duráveis e suportes ajustáveis de alta resistência.\n\nA duração da bateria do teclado de 36 meses e do mouse de 12 meses** - junto com switches liga/desliga - significa que você pode ir por meses sem o incômodo de trocar as pilhas. *Testado em condições limitadas (máximo de derramamento de líquido de 60 ml). Não mergulhe o teclado em líquido.\n\n**A duração da bateria do teclado e do mouse pode variar de acordo com o usuário e as condições de computação. O COMBO SEM FIO PREFERIDO DE TODOS O MK270 Wireless Combo combina a conveniência e o conforto de um teclado de tamanho normal com um mouse compacto e esculpido. Com teclas de mídia, um teclado numérico e controle de cursor preciso para tornar seu trabalho muito mais fácil.\n\nAlém disso, o wireless sem atrasos facilita a configuração e economiza espaço em sua mesa. Não é à toa que este é o combo mais vendido do mundo! *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: MK270\n• Cor do teclado: Preto\n• Cor principal: Preto\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 84716052\n• SKU: VTK017567\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 15.5 × 50.5 cm\n• Peso bruto informado: 0,772 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d65fb439-c01c-4078-ac02-56024daec98d",
+      "sku": "VTK017156",
+      "category": {
+        "id": "MLB270590",
+        "nome": "Suportes para Console de Som",
+        "dominio": "Racks para DJ"
+      },
+      "basePrice": 225.24,
+      "familyName": "Suporte Multifuncional Ask PNT2 Com Bandeja Preto",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 158.65,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 381.52
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PNT2"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898960877922"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Suporte Multifuncional Ask PNT2 Com Bandeja Preto\n\nVISÃO GERAL\nO Suporte Multifuncional PNT2 é um modelo completo. Compatível com tablets, celulares e até banners essa é a solução adaptável para diversas necessidades, além de contar com bandeja para instrumentos de mão ou podendo ser utilizada como apoio. Em suas características, podemos destacar o ajuste para uso tanto em formato retrato quanto paisagem para tablets e smartphones, regulagem de altura para garantir conforto ergonômico, tripé modular para adaptação a diferentes pisos e ajustes de inclinação no apoio superior da bandeja para otimizar a visualização.\n\nPossui ainda uma ponteira dedicada para banners, proporcionando uma solução completa e prática para suas apresentações ou eventos.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ASK\n• Modelo: PNT2\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ASK\n• GTIN: 7898960877922\n• NCM: 9209.99.00\n• SKU: VTK017156\n\nEMBALAGEM\n• Dimensões informadas: 11 × 35 × 70 cm\n• Peso bruto informado: 2,26 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0c39c30b-7720-4868-b5cc-7c9a5fc206ab",
+      "sku": "VTK025874",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 230,
+      "familyName": "10 Baterias CR123 Elgin",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 160,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 390.91
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR123"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "10"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Baterias CR123 Elgin\n\nVISÃO GERAL\n10 Baterias CR123 Elgin\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Bateria Cr123 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR123 Elgin 3V\n\n A Bateria CR123 da Elgin oferece alta voltagem e desempenho duradouro, sendo ideal para equipamentos eletrônicos que exigem potência constante e confiável, como câmeras fotográficas, lanternas táticas, alarmes, sensores e dispositivos de segurança.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR123\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Cilíndrico (equivalente a CR123A / 123 / CR17345 / DL123A / K123LA)\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~1500 mAh\n\n•    Composição química: Lítio / Dióxido de manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Câmeras digitais, lanternas táticas, alarmes, sensores, equipamentos médicos, rastreadores, sistemas de segurança e automação\n\n•    Vida útil (armazenamento): Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 34,5 mm (altura) x 17 mm (diâmetro)\n\n•    Peso unitário: Cerca de 17 g\n\n Vantagens\n\nAlta densidade de energia\n\nExcelente desempenho mesmo em temperaturas extremas\n\nLonga vida útil mesmo em modo standby\n\nIdeal para uso profissional e equipamentos críticos\n\nQualidade e confiabilidade da marca Elgin\n\n A Bateria CR123 Elgin é a escolha certa para quem precisa de energia potente, duradoura e segura em dispositivos de alto desempenho. Com a confiança de uma das marcas líderes do mercado, é perfeita para aplicações em segurança, fotografia, iluminação tática e mais.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR123\n• Unidades por kit: 10\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025874\n\nEMBALAGEM\n• Dimensões informadas: 12 × 9 × 16 cm\n• Peso bruto informado: 0,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9dd61838-7a13-4344-9aae-bbae51ff98de",
+      "sku": "VTK017904",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": "Sistemas de levantamento de vidro elétricos para carros e caminhonetes"
+      },
+      "basePrice": 240.17,
+      "familyName": "Centralina Soft Aw54 4 Vidros Comum + Ae",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 162.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 411.13
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SOFT"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "381159"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AW54"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Centralina Soft Aw54 4 Vidros Comum + Ae\n\nVISÃO GERAL\nMódulo de Vidro Elétrico Soft AW54 Universal 4 Portas Subida Descida Automática Antiesmagamento. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SOFT\n• Número de peça: 381159\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: AW54\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SOFT\n• GTIN: 7898441352979\n• NCM: 85432000\n• SKU: VTK017904\n\nEMBALAGEM\n• Dimensões informadas: 7 × 8 × 12 cm\n• Peso bruto informado: 0,158 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "category": {
+        "id": "MLB260688",
+        "nome": "Busca-Pólos",
+        "dominio": "Detectores de tensão"
+      },
+      "basePrice": 235.54,
+      "familyName": "Testador Smd Com Pinça Hikari Hm 10",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 165.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 394.46
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HIKARI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HM-10"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899810417084"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Testador Smd Com Pinça Hikari Hm-10\n\nVISÃO GERAL\nO Testador SMD Com Pinça HM-10 é a ferramenta perfeita para técnicos e engenheiros de eletrônica que trabalham com placas de circuito e componentes miniaturizados. Com ele, você tem rapidez, precisão e praticidade em formato de pinça, substituindo medições demoradas por um processo simples, direto e eficiente. Por que escolher o HM-10 SMD?\n\nAgilidade e precisão permite testar diretamente componentes SMD - resistores, capacitores e diodos sem precisar retirá-los da placa. Compacto e leve (apenas 52g) ideal para uso em bancada ou em campo. Facilidade de uso seleção automática de faixas, função Hold e desligamento automático.\n\nPrecisão garantida até 40M ohms em resistência e 100mF em capacitância. Praticidade funciona com uma única bateria tipo moeda (CR2032), de fácil reposição. Segurança categoria CAT III 300V, atende às normas de proteção para eletrônica.\n\nHM-10: praticidade e precisão em formato de pinça, ideal para manutenção de eletrônicos e testes rápidos em SMD, o par perfeito para quem trabalha com eletrônica. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HIKARI\n• Modelo: HM-10\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKARI\n• GTIN: 7899810417084\n• NCM: 90308990\n• SKU: VTK019006\n\nEMBALAGEM\n• Dimensões informadas: 3 × 9.5 × 24 cm\n• Peso bruto informado: 0,092 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+      "sku": "VTK018712",
+      "category": {
+        "id": "MLB277681",
+        "nome": "Eletrocardiógrafos",
+        "dominio": "Eletrocardiógrafos"
+      },
+      "basePrice": 250.49,
+      "familyName": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 169.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 424.34
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PROELETRONIC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RGC213"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898419485029"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20 Metros Caco0192\n\nVISÃO GERAL\nCabo de alta qualidade (20 m); Pronto para uso externo e interno; Garantia de boa conectividade; 100% testado; Fabricado com equipamentos precisos e automatizados; Obedece às normas internacionais de montagem; Baixa atenuação; Fácil instalação; Conectores (N e TNC) com qualidade assegurada; Acabamento esmerado; Processo produtivo de acordo com as normas ambientais; Fabricação nacional com garantia de fábrica\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PROELETRONIC\n• Modelo: RGC213\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROELETRONIC\n• GTIN: 7898419485029\n• NCM: 85444200\n• SKU: VTK018712\n\nEMBALAGEM\n• Dimensões informadas: 7 × 40 × 40 cm\n• Peso bruto informado: 2,108 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "12c9a730-40f0-4609-a207-d65812d7b85c",
+      "sku": "VTK018713",
+      "category": {
+        "id": "MLB1692",
+        "nome": "Placas-Mãe",
+        "dominio": "Placas-mãe de computadores"
+      },
+      "basePrice": 238.34,
+      "familyName": "Kit Placa Dvr Seykon Pci Sk 8416 16 Canais",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 169.95,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 394.65
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SEYKON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SK-8416"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Placa Dvr Seykon Pci Sk-8416 16 Canais\n\nVISÃO GERAL\nSK 8416 Entrada 16 canais Expansível de 16 até 32 canais Sistema de cor: NTSC Taxa de frames: 120 FPS Form. Vídeo: 640 x 480, 352 x 288, 320 x 240 Gravação: Contínuo, movimento, agendado Sist. Op: Win XP sp3 Certificado\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SEYKON\n• Modelo: SK-8416\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SEYKON\n• NCM: 84733049\n• SKU: VTK018713\n\nEMBALAGEM\n• Dimensões informadas: 4 × 18 × 28 cm\n• Peso bruto informado: 0,508 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "df359f31-4088-47d1-a271-9d69caa9f73e",
+      "sku": "VTK001386",
+      "category": {
+        "id": "MLB278236",
+        "nome": "Suportes para Luzes",
+        "dominio": "Suportes para luzes"
+      },
+      "basePrice": 272.14,
+      "familyName": "Pedestal Canhão de Iluminação CL34 ASK",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 172.61,
+        "shipping": 24.65,
+        "shippingSource": "erp",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 346.07
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CL34"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898939971347"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pedestal Canhão de Iluminação CL34 ASK\n\nVISÃO GERAL\nO Pedestal Canhão de Iluminação CL34 é um suporte versátil e robusto, projetado para acomodar canhões de iluminação. Com sua capacidade de regulagem de altura e giro, além de um pino com trava confiável, este pedestal oferece flexibilidade e estabilidade para garantir que suas necessidades de iluminação sejam atendidas de maneira eficaz e precisa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ASK\n• Modelo: CL34\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ASK\n• GTIN: 7898939971347\n• NCM: 9209.99.00\n• SKU: VTK001386\n\nEMBALAGEM\n• Dimensões informadas: 14.5 × 11 × 162 cm\n• Peso bruto informado: 5,95 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "88980f83-3386-4f2d-a2fe-313ff027f6fe",
+      "sku": "VTK018913",
+      "category": {
+        "id": "MLB455981",
+        "nome": "Caixas de Bateria",
+        "dominio": "Caixas para baterias náuticas"
+      },
+      "basePrice": 254.92,
+      "familyName": "Caixa Rlp Vazia Para Carro Emborrachada 2 12 Polegadas + 2tw",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 172.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 533.77
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "CAIXARIAS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "2TW"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Caixa Rlp Vazia Para Carro Emborrachada 2 12\"+ 2tw + 2dr + 2 Duto\n\nVISÃO GERAL\nCaixa para Carro Emborrachada 2 12\" + 2 Tw + 2 Driver + 2 Duto Dimensões Largura: 46cm Profundidade: 46,5cm Altura: 62,5cm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CAIXARIAS\n• Modelo: 2TW\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CAIXARIAS\n• NCM: 92089000\n• SKU: VTK018913\n\nEMBALAGEM\n• Dimensões informadas: 81 × 81 × 36 cm\n• Peso bruto informado: 20,101 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "c5a0cce9-836a-495a-b71c-0c72b57f6932",
+      "sku": "VTK018721",
+      "nome": "Caixa Vazia Para 2 Alto Falante 12\" Modelo Turbo, Rasgada, Corvin E Acarpe",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "31feeabf-85e7-47ec-8ee9-681d89af6da7",
+      "sku": "VTK018642",
+      "nome": "Caixa R.l.p. Vazia Full Trap 2 A.f. 12\"",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271327",
+            "nome": "Caixas empilháveis"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8f79a65e-1e1b-431f-95ce-84e51e93d68e",
+      "sku": "VTK018128",
+      "nome": "Microfone Cardioide Leson Sm-58 P4 Ouro Com Suporte E Cabo 5 Metros",
+      "error": "Atributos obrigatórios pendentes: Conectores de saída, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB4469",
+            "nome": "Microfones"
+          },
+          "missing": [
+            "Conectores de saída",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d5c8d107-46e4-4b22-b2e8-982fa2b8e23a",
+      "sku": "VTK025958",
+      "nome": "Frigideira Redonda Rochedo Robusta 26cm Grafite - CXM / 3",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107482",
+            "nome": "Frigideiras"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "sku": "VTK017630",
+      "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "error": "Atributos obrigatórios pendentes: Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fc83972a-ead2-4687-b53a-07c3fd56c4a3",
+      "sku": "VTK019044",
+      "nome": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Comprimento do cabo, Quantidade de pinos",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455454",
+            "nome": "Cabos Elétricos"
+          },
+          "missing": [
+            "Tipo de cabo",
+            "Tamanho da seção",
+            "Comprimento do cabo",
+            "Quantidade de pinos"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b21e7488-30a1-4fa4-b49a-72ae78c820b9",
+      "sku": "VTK018467",
+      "nome": "Parafuso 4,2 X 38 Flangeado Cento - CT / 5",
+      "error": "Atributos obrigatórios pendentes: Tipo de parafuso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB235592",
+            "nome": "Parafusos de Fenda"
+          },
+          "missing": [
+            "Tipo de parafuso"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b686c43a-d79c-4ca8-8c33-c99af43ac16f",
+      "sku": "VTK016204",
+      "nome": "6 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "06794e08-6c98-4ebd-9930-dead3d6accda",
+      "sku": "VTK018909",
+      "nome": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB439324",
+            "nome": "Etiquetas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b220ccb7-0ec1-4976-8cb9-b631697a5aba",
+      "sku": "VTK017944",
+      "nome": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina Central",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271439",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c3465729-640a-485e-9ea0-9030b622b642",
+      "sku": "VTK018113",
+      "nome": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina Central",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271439",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

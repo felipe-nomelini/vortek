@@ -1,0 +1,658 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/025-profitable-shelf-2-create-025-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-025",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "ffbc8e0c-baf8-487a-a517-1f2534124b96",
+      "sku": "VTK025655",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 270.25,
+      "familyName": "100 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 188,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 441.82
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "100 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n100 Baterias CR2016 Elgin (20 Cartelas C/5 Un)\n\nKit com 20 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 20x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 20 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025655\n\nEMBALAGEM\n• Dimensões informadas: 6 × 6 × 20 cm\n• Peso bruto informado: 0,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "18a9802b-c884-40c0-8244-b2afb4fb68bc",
+      "sku": "VTK018717",
+      "category": {
+        "id": "MLB277565",
+        "nome": "Cabos de Vassoura",
+        "dominio": "Cabos de vassouras e rodos"
+      },
+      "basePrice": 268.19,
+      "familyName": "Cabo Auto Plastic Pompéia 1,50 Mm 300v Rolo Com 100 Metros",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 188.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 435.54
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "POMPEIA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "50MM"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Auto Plastic Pompéia 1,50 Mm 300v Rolo Com 100 Metros Vermelho\n\nVISÃO GERAL\nCabo Auto Plastic Pompéia 1,50 Mm 300V Rolo Com 100 Metros Vermelho Cabo Auto Plastic 1,50MM 300V Vermelho\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: POMPEIA\n• Modelo: 50MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: POMPEIA\n• NCM: 85444900\n• SKU: VTK018717\n\nEMBALAGEM\n• Dimensões informadas: 5.5 × 20.5 × 20.5 cm\n• Peso bruto informado: 1,418 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "15f03bd3-d145-481d-80bc-9c31908fe35f",
+      "sku": "VTK018111",
+      "category": {
+        "id": "MLB5914",
+        "nome": "Kits de Teclado e Mouse",
+        "dominio": "Kits de teclado e mouse"
+      },
+      "basePrice": 266.32,
+      "familyName": "Combo Teclado + Mouse Wireless Logitech Mk295",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 189.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 429.65
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MK295"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Combo Teclado + Mouse Wireless Logitech Mk295\n\nVISÃO GERAL\nConheça o Logitech MK295 Silent Wireless Combo com SilentTouch - uma tecnologia exclusiva da Logitech que elimina mais de 90% do ruído do teclado e do mouse. É a mesma sensação de clicar e digitar do combo mais vendido do mundo, sem cliques e sons de digitação perturbadores. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: MK295\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 84716052\n• SKU: VTK018111\n\nEMBALAGEM\n• Dimensões informadas: 4 × 15 × 50 cm\n• Peso bruto informado: 0,726 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a09e2e5d-9958-4bdc-92d8-4d4f070ce0b7",
+      "sku": "VTK012281",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 273.34,
+      "familyName": "Kit Conector Speakon Wc 605 20un Wireconex",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 194.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 438.42
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "20UN"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Conector Speakon Wc 605 (20un) Wireconex\n\nVISÃO GERAL\n20 unidades do conector speakon macho para cabo WC 605 4P WIRECONEX Para utilização profissional. A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Wireconex\n• Modelo: 20UN\n• Unidades por kit: 20\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8536.90.10\n• SKU: VTK012281\n\nEMBALAGEM\n• Dimensões informadas: 20 × 23 × 8 cm\n• Peso bruto informado: 0,85 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "be4bab51-782b-4663-a044-ce7441a10ebe",
+      "sku": "VTK023357",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "Baterias para no break"
+      },
+      "basePrice": 273.34,
+      "familyName": "Bateria Selada De Chumbo Elgin Vrla 12v 18ah",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 194.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 438.42
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ELGIN"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "18AH"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013578502"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bateria Selada De Chumbo Elgin Vrla 12v 18ah\n\nVISÃO GERAL\nBateria Selada de Chumbo Elgin VRLA 12V 18Ah A Bateria Selada de Chumbo Elgin VRLA 12V 18Ah foi desenvolvida para proporcionar desempenho e segurança em aplicações que exigem energia contínua e confiável. Com tecnologia VRLA (regulada por válvula), é livre de manutenção e ideal para ambientes onde estabilidade e durabilidade são essenciais. Indicada para nobreaks, sistemas de alarme, iluminação de emergência, telecomunicações e equipamentos médicos , essa bateria atende com eficiência as mais diversas demandas do mercado.\n\nCom a qualidade e tradição da Elgin, esta bateria oferece excelente custo-benefício e longa vida útil, sendo a escolha certa para manter seus equipamentos funcionando com total segurança. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ELGIN\n• Modelo: 18AH\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ELGIN\n• GTIN: 7897013578502\n• NCM: 85072010\n• SKU: VTK023357\n\nEMBALAGEM\n• Dimensões informadas: 7 × 18 × 17 cm\n• Peso bruto informado: 4,752 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "19137cd0-6c42-4475-b9c0-a7c5b2e48a8a",
+      "sku": "VTK018607",
+      "category": {
+        "id": "MLB277565",
+        "nome": "Cabos de Vassoura",
+        "dominio": "Cabos de vassouras e rodos"
+      },
+      "basePrice": 282.52,
+      "familyName": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 198.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 453.55
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "POMPEIA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "50MM"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros Verde\n\nVISÃO GERAL\nCabo Pompéia Cabo Auto Plastic 2,50MM 300V Verde\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: POMPEIA\n• Modelo: 50MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: POMPEIA\n• NCM: 85444900\n• SKU: VTK018607\n\nEMBALAGEM\n• Dimensões informadas: 5.5 × 22.5 × 22.5 cm\n• Peso bruto informado: 2,508 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "203d99f8-bf9a-4438-80a4-4402c0d4dd79",
+      "sku": "VTK019037",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "Fones de ouvido"
+      },
+      "basePrice": 280.35,
+      "familyName": "Headset Logitech H390 Usb",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 199.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 447.19
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HZ-20"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Headset Logitech H390 Usb\n\nVISÃO GERAL\nFone De Ouvido Logitech Headset Modelo: H390 Requisitos do sistema: PC: Windows 2000, Windows XP, Windows Vista, Windows 7 Porta USB Mac: OS X (10. 2. 8 ou posterior) Porta USB Resposta de freqüência: Headset: 20 Hz-20 kHz Microfone: 100 Hz- 10 kHz Sensibilidade de entrada: -62 dBV/µbar, -42 dBV/Pa +/- 3 dBs Comprimento do cabo: 2,4 m (8 pés) Conexões: compatível com USB (1.\n\n1 e 2. 0)\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: HZ-20\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 85183000\n• SKU: VTK019037\n\nEMBALAGEM\n• Dimensões informadas: 7.5 × 17.5 × 19.5 cm\n• Peso bruto informado: 0,27 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "8721aacd-f440-4cfe-83db-307b57495c4b",
+      "sku": "VTK019032",
+      "nome": "Reparo Para Alto Falante Eros E-hammer 12\" 4.7k 8r 980010084",
+      "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Modelo",
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "beeacdcc-aa2d-49a6-9940-2291eee2fa34",
+      "sku": "VTK018450",
+      "nome": "Teclado Via Web 128 Para Central 128 Plus Lcd",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bec92d5a-a722-44a2-b3c1-0fbbabf728a5",
+      "sku": "VTK025568",
+      "nome": "42 Baterias Auditiva 312 Duracell (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f2a44ac6-751f-40cf-ac5e-efe29b493dd5",
+      "sku": "VTK025569",
+      "nome": "42 Baterias Auditivas 10 Duracell (7 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "066aa4ea-ded4-44b4-a8fb-5eefe12795a9",
+      "sku": "VTK025570",
+      "nome": "42 Baterias Auditivas 13 Duracell (7 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "95008f78-6aaa-46b6-9d89-c6dd96e07d0b",
+      "sku": "VTK025571",
+      "nome": "42 Baterias Auditivas 675 Duracell (7 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c65bc62f-8b77-4096-aead-8f3c4911e14c",
+      "sku": "VTK001978",
+      "nome": "Encordoamento Para Violão .010 Extra Light Phosphor Bronze Nanoweb 16002 Elixir",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e65d9f54-97f2-4a65-b82d-d7b71f68742b",
+      "sku": "VTK018610",
+      "nome": "Cabo Multicabo Santo Angelo Sas 6 Vias Cobre Ofhc Metro - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f644c6c9-e102-42ff-98c6-b9265ac702b3",
+      "sku": "VTK001897",
+      "nome": "Cabo Polarizado Para Áudio Externo 2 x 0,20mm² (24 AWG) Preto Tiaflex - RL / 100",
+      "error": "Atributos obrigatórios pendentes: Conector de entrada, Conector de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455641",
+            "nome": "Cabos e Adaptadores"
+          },
+          "missing": [
+            "Conector de entrada",
+            "Conector de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f04a324e-877c-46ff-9570-7faa2896fa74",
+      "sku": "VTK018767",
+      "nome": "Kit Ventilador 2 Coolers Para Rack Padrão 19\" X 1u Bivolt",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4d9ff774-2ba9-433d-9676-f85d5f4efca7",
+      "sku": "VTK023153",
+      "nome": "Caixa Vazia 02 Alto Falantes 12\" + 04 Cornetas + 02 Tweeters Turbo",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB127436",
+            "nome": "Corneteiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0dbbc68e-9c9a-4487-81d5-75cace8681a6",
+      "sku": "VTK018883",
+      "nome": "Alça Pré Formada Para Cabo 10,00/ 10,80mm Apco6108 Cinza - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de alça",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB269730",
+            "nome": "Alças"
+          },
+          "missing": [
+            "Tipo de alça"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "467761af-f4b6-459c-9e70-b6d58784d6d4",
+      "sku": "VTK017369",
+      "nome": "Cooler Para Rack Evus Ev-fu2 120x120mm 110v",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

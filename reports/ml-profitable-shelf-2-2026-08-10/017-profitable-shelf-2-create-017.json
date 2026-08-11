@@ -1,0 +1,427 @@
+{
+  "batchNumber": 17,
+  "batchId": "profitable-shelf-2-create-017",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "5facdd0e-698c-4d16-99c4-983fedfaa7b5",
+      "sku": "VTK000039",
+      "nome": "Encordoamento Para Contrabaixo 5 Cordas .040 Extra Leve SG",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 76.89,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Encordoamento Para Contrabaixo 5 Cordas .040 Extra Leve SG",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 76.89,
+        "shipping": 17.65,
+        "shippingSource": "erp",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 176.71
+      }
+    },
+    {
+      "produtoId": "45931e8a-7e98-47f7-858f-bc7f8dbf6659",
+      "sku": "VTK001330",
+      "nome": "Encosto de Cabeça Ergo One Fortrek",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 77.41,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Encosto de Cabeça Ergo One Fortrek",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 77.41,
+        "shipping": 18.85,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.62
+      }
+    },
+    {
+      "produtoId": "d5f035a8-fce1-40eb-9e4c-59c1e8fb335d",
+      "sku": "VTK019282",
+      "nome": "Caixa Vazia Para 2 Cornetas E 1 Tweeter Trapezoidal Acarpetada - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 77.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 2 Cornetas E 1 Tweeter Trapezoidal",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 77.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 186.91
+      }
+    },
+    {
+      "produtoId": "12328a6b-47de-4a02-ba87-b1d73b2989e3",
+      "sku": "VTK025667",
+      "nome": "12 Pilhas Alcalinas C Sm-2 Elgin (6 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 78,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "12 Pilhas Alcalinas C Sm 2 Elgin 6 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 78,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 187.27
+      }
+    },
+    {
+      "produtoId": "9c6bed40-b6fb-4906-980d-d49ebd3f4958",
+      "sku": "VTK018850",
+      "nome": "Multitoc Mini Camera Dome Ccd P&b",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 78.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Multitoc Mini Camera Dome Ccd P&b",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 78.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 188.91
+      }
+    },
+    {
+      "produtoId": "373e1dbf-1baf-419f-92c6-54637dabad55",
+      "sku": "VTK019545",
+      "nome": "Caixa Vazia Para 2 Drivers E 1 Tweeter Quadrada Acarpetada - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 79.8,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 2 Drivers E 1 Tweeter Quadrada Acarpetada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 79.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 190.55
+      }
+    },
+    {
+      "produtoId": "7327df44-719b-401b-b3af-dac4e8ad51d0",
+      "sku": "VTK017202",
+      "nome": "Tesoura Seccon Corta Kevlar 5,8\" Ct-c151n",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 79.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tesoura Seccon Corta Kevlar 5,8 Polegadas Ct c151n FERRAGENS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 79.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 190.73
+      }
+    },
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 79.9,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 79.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 190.73
+      }
+    },
+    {
+      "produtoId": "0a723083-4377-455f-9da1-ac65d48131ec",
+      "sku": "VTK025806",
+      "nome": "50 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 82.8,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 82.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 196
+      }
+    },
+    {
+      "produtoId": "09c1be4f-447e-4953-9993-33cb8becd52e",
+      "sku": "VTK025370",
+      "nome": "3 Jogos de Corda P/Guitarra Niquel 08 GEEGST.8 Giannini",
+      "fornecedor": "BKR1",
+      "custo": 84.3,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "3 Jogos de Corda P Guitarra Niquel 08 GEEGST.8 Giannini",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 84.3,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 198.73
+      }
+    },
+    {
+      "produtoId": "6b12df55-e4f7-47c1-a311-65b7a5d13690",
+      "sku": "VTK018995",
+      "nome": "Fusível Permak Mega 250a - PC / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 84.5,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fusível Permak Mega 250a PC 5",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 84.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 199.09
+      }
+    },
+    {
+      "produtoId": "14ac74a6-6f78-4a3d-9580-6cb4c7efc075",
+      "sku": "VTK012766",
+      "nome": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 84.55,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 84.55,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 199.18
+      }
+    },
+    {
+      "produtoId": "d755ea01-a0b0-442e-9df0-7e793439848e",
+      "sku": "VTK025794",
+      "nome": "45 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 84.6,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "45 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 84.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 199.27
+      }
+    },
+    {
+      "produtoId": "bcc8b96e-6cb4-497b-8ef2-9ac27dd58e56",
+      "sku": "VTK025805",
+      "nome": "50 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 85,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 85,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 200
+      }
+    },
+    {
+      "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+      "sku": "VTK018869",
+      "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 85.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 85.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 201.64
+      }
+    },
+    {
+      "produtoId": "91536edc-4eb5-4975-a3fd-67a172217c97",
+      "sku": "VTK019111",
+      "nome": "Alarme Ipec Porta Aberta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 86.7,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alarme Ipec Porta Aberta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 86.7,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 203.09
+      }
+    },
+    {
+      "produtoId": "8e2465a6-d87e-46f7-bfd2-4b923d50ee97",
+      "sku": "VTK018378",
+      "nome": "Caixa Rlp Vazia Para Moto Emborrachada 2 10\" + 2tw + 2driver",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 87.9,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Rlp Vazia Para Moto Emborrachada 2 10 Polegadas + 2tw",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 87.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 205.27
+      }
+    },
+    {
+      "produtoId": "fd19ab49-e13c-48e6-9177-903d020da248",
+      "sku": "VTK018563",
+      "nome": "Parafuso Permak Com Rosca Roberba 22mm - Cento - PC / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 88.25,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Parafuso Permak Com Rosca Roberba 22mm Cento PC 5",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 88.25,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 205.91
+      }
+    },
+    {
+      "produtoId": "879a2448-c2e2-4e6f-af70-e20c386e7788",
+      "sku": "VTK025881",
+      "nome": "12 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (6 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 89.7,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "12 Pilhas Alcalinas D Lr20 Sm 2 Elgin 6 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 89.7,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 208.55
+      }
+    },
+    {
+      "produtoId": "fb862204-b392-4184-9eea-3efaeeac110e",
+      "sku": "VTK018548",
+      "nome": "Caixa R.l.p. Residence Vazia 1 A.f. 12 + Dr + Tw + Rádio + Duto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 89.9,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa R.l.p. Residence Vazia 1 A.f. 12 + Dr + Tw + Rádio +",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 89.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 363.45
+      }
+    }
+  ]
+}

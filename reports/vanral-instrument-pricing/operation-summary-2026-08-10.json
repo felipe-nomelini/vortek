@@ -1,0 +1,88 @@
+{
+  "event": "vanral_instrument_dynamic_pricing_operation_summary",
+  "date": "2026-08-10",
+  "status": "success_with_guarded_skip",
+  "supplier": "VANRAL",
+  "scope": "instrumentos",
+  "das_rate": 0.05,
+  "catalog": {
+    "vanral_products": 275,
+    "active_products": 231,
+    "scannable_products": 106,
+    "active_without_scannable_listing": 125,
+    "inactive_products": 44
+  },
+  "matrix": {
+    "eligible_products": 19,
+    "defensive_products": 12,
+    "offensive_products": 7,
+    "outside_rules": 87
+  },
+  "execution": {
+    "products_processed": 18,
+    "defensive_products_processed": 12,
+    "offensive_products_processed": 6,
+    "products_with_price_change": 18,
+    "listings_changed": 33,
+    "price_increases": 29,
+    "price_decreases": 4,
+    "failures": 0
+  },
+  "not_applied": {
+    "price_automation_active": [
+      {
+        "sku": "VTK009672",
+        "ml_item_id": "MLB4773175289"
+      }
+    ],
+    "unavailable_linked_listings_left_unchanged": 2,
+    "unavailable_linked_listings_product": "VTK009736",
+    "outside_rules": 87,
+    "active_without_scannable_listing": 125
+  },
+  "critical_skus": [
+    { "sku": "VTK009696", "price": 2416.31 },
+    { "sku": "VTK009709", "price": 2190.49 },
+    { "sku": "VTK009708", "price": 2416.52 },
+    { "sku": "VTK009838", "price": 1052.53 },
+    { "sku": "VTK009736", "price": 697.15 },
+    { "sku": "VTK009765", "price": 785.53 },
+    { "sku": "VTK009673", "price": 192.13 }
+  ],
+  "verification": {
+    "erp_products_verified": 18,
+    "erp_product_mismatches": 0,
+    "erp_listing_records_verified": 33,
+    "erp_listing_mismatches": 0,
+    "mercado_livre_price_updates_verified_per_request": true,
+    "failed_updates": 0
+  },
+  "duplicate_cleanup": {
+    "status": "success",
+    "sku": "VTK009736",
+    "deleted_listings": [
+      "MLB5009156527",
+      "MLB5009148991"
+    ],
+    "active_listings_preserved": [
+      "MLB7009016324",
+      "MLB7044005990"
+    ],
+    "erp_rows_remaining_for_deleted_listings": 0
+  },
+  "logs": {
+    "critical_dry_run": "critical-dry-run-2026-08-10/events.ndjson",
+    "critical_apply": "critical-apply-2026-08-10/events.ndjson",
+    "all_dry_run": "all-dry-run-2026-08-10/events.ndjson",
+    "remaining_apply": "remaining-apply-2026-08-10/events.ndjson",
+    "duplicate_deletion": "duplicate-deletion-2026-08-10/events-apply.ndjson"
+  },
+  "payload": {
+    "success": true,
+    "supplier": "VANRAL",
+    "processed_products": 18,
+    "updated_listings": 33,
+    "guarded_skips": 1,
+    "errors": 0
+  }
+}

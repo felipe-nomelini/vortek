@@ -100,11 +100,13 @@ function stripHtmlToText(input: unknown): { text: string; changed: boolean } {
 }
 
 function pickBestDescription(item: any): string {
-  const descricao = stripHtmlToText(item?.descricao).text;
-  if (descricao) return descricao;
-  const caracteristicas = stripHtmlToText(item?.caracteristicas).text;
-  if (caracteristicas) return caracteristicas;
-  return stripHtmlToText(item?.informacoes).text;
+  return Array.from(
+    new Set(
+      [item?.descricao, item?.caracteristicas, item?.informacoes]
+        .map((value) => stripHtmlToText(value).text)
+        .filter(Boolean),
+    ),
+  ).join("\n\n");
 }
 
 function extractImageUrls(item: any): string[] {

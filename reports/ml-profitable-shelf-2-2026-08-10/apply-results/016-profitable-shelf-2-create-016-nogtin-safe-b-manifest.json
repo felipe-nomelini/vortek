@@ -1,0 +1,49 @@
+{
+  "batchNumber": 16,
+  "batchId": "profitable-shelf-2-create-016",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "d8fc0528-277f-4ea4-8b4b-0212276baff0",
+      "sku": "VTK025816",
+      "nome": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 68,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 68,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 169.09
+      }
+    },
+    {
+      "produtoId": "ff598b6b-4576-438e-be18-f2e816ad5544",
+      "sku": "VTK025778",
+      "nome": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 75.2,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 75.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 182.18
+      }
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 8,
+  "batchId": "profitable-shelf-2-create-008",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "3a1d9c06-ddcb-47f0-9f05-3e0f6d5420c9",
+      "sku": "VTK025734",
+      "nome": "25 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 28.6,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "25 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 28.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 48.75
+      }
+    },
+    {
+      "produtoId": "9bcffb2d-3f31-49a8-902b-5c425b2bb3bb",
+      "sku": "VTK017235",
+      "nome": "Suporte Antena 313-af Telha Francesa Tubo 3/ 4 Com Suporte Prata Cromo",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 28.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Antena 313 af Telha Francesa Tubo 3 4 Com Suporte",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 28.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 49.17
+      }
+    },
+    {
+      "produtoId": "5c19de39-4fc3-4fe9-a78c-72eaccee4261",
+      "sku": "VTK017538",
+      "nome": "Trafo Audio Frahm Linha T5i 70/ 210v",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 28.9,
+      "estoque": 48,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Trafo Audio Frahm Linha T5i 70 210v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 28.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 49.17
+      }
+    },
+    {
+      "produtoId": "d324cdae-edbc-4339-993d-5221668cb0dc",
+      "sku": "VTK012362",
+      "nome": "Palheta Tradicional 2,5 P/clarinete Sib Cr102,5 Vandoren Un",
+      "fornecedor": "BKR1",
+      "custo": 28.99,
+      "estoque": 18,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Tradicional 2,5 P clarinete Sib Cr102,5 Vandoren Un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 28.99,
+        "shipping": 13.25,
+        "shippingSource": "erp",
+        "mlFee": 0.115,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 55.95
+      }
+    },
+    {
+      "produtoId": "97dd3f7b-07a8-4252-9a66-c2616ad2f1f0",
+      "sku": "VTK018768",
+      "nome": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4 C/2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.45,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.45,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 49.93
+      }
+    },
+    {
+      "produtoId": "20992744-7828-47a8-aae3-2c4c84420557",
+      "sku": "VTK017263",
+      "nome": "Conector Uhf Fem Rg/rgcc 58(cn-130)kf-11",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.5,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Uhf Fem Rg rgcc 58 cn 130 kf 11 K.L.C.",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50
+      }
+    },
+    {
+      "produtoId": "7b2841e9-6480-4013-8234-529149937c74",
+      "sku": "VTK017629",
+      "nome": "Cabo Extensão De Antena Permak 2,50 Metros - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.8,
+      "estoque": 38,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Extensão De Antena Permak 2,50 Metros PC 2",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.42
+      }
+    },
+    {
+      "produtoId": "5385c6d7-c16c-4bce-9394-adf20c11f3fa",
+      "sku": "VTK017801",
+      "nome": "Resistência Hikari Hplus Sc-40 W 220v Com 2 Peças",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.8,
+      "estoque": 24,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Resistência Hikari Hplus Sc 40 W 220v Com 2 Peças",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.42
+      }
+    },
+    {
+      "produtoId": "0610c199-29fa-421f-bd33-1f2c2c89a175",
+      "sku": "VTK017216",
+      "nome": "Big Haste 28x28 1,00m Completa Gancho E Castanha",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Big Haste 28x28 1,00m Completa Gancho E Castanha CONFISEG",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.56
+      }
+    },
+    {
+      "produtoId": "510237c6-1172-4cbb-8532-92c31a971282",
+      "sku": "VTK017217",
+      "nome": "Big Haste 28x28 1,20m Completa Gancho E Castanha",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Big Haste 28x28 1,20m Completa Gancho E Castanha CONFISEG",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 254.36
+      }
+    },
+    {
+      "produtoId": "1ea7953e-04c7-4345-a104-4b1bcc01f941",
+      "sku": "VTK017508",
+      "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Vermelho",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.56
+      }
+    },
+    {
+      "produtoId": "645d1a41-8a43-4fdc-b141-0fc0df0949b9",
+      "sku": "VTK017766",
+      "nome": "Shock Reparo Driver Parcial D-300/ D-305 Selenium S/ Aneis",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.9,
+      "estoque": 27,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Shock Reparo Driver Parcial D 300 D 305 Selenium S Aneis",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.56
+      }
+    },
+    {
+      "produtoId": "ab3f2ce5-9656-4736-9935-df5b8f893ece",
+      "sku": "VTK025918",
+      "nome": "4 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (2 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 29.9,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "4 Pilhas Alcalinas D Lr20 Sm 2 Elgin 2 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.56
+      }
+    },
+    {
+      "produtoId": "daf3481b-6ac3-47a4-ba9b-83cded3fe87d",
+      "sku": "VTK017524",
+      "nome": "Tela Plástica Permak 6\" Para Alto Falante Tipo Arlem 115 - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.98,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tela Plástica Permak 6 Polegadas Para Alto Falante Tipo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.98,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.67
+      }
+    },
+    {
+      "produtoId": "8df5a908-5df3-4e17-a4ad-ebff58570bde",
+      "sku": "VTK012669",
+      "nome": "Palheta Guitarra Dur Prec 6dbk7 D Addario 1.50mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 30.08,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Dur Prec 6dbk7 D Addario 1.50mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 30.08,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.81
+      }
+    },
+    {
+      "produtoId": "f6ae5113-1265-4894-b074-52fe349867f5",
+      "sku": "VTK017240",
+      "nome": "Cabo Vga Evus C-041 Hd15 Macho X Hd15 Macho Com Filtro 10,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 30.5,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Vga Evus C 041 Hd15 Macho X Hd15 Macho Com Filtro 10,0m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 30.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 51.39
+      }
+    },
+    {
+      "produtoId": "c7807cd8-c83b-446b-984e-da35abeb416c",
+      "sku": "VTK018547",
+      "nome": "Caixa Metálica Universal Para Central Alarme",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 31.02,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Metálica Universal Para Central Alarme MOROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 31.02,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 52.11
+      }
+    },
+    {
+      "produtoId": "b2e270b9-045a-4f9f-a3a9-37c782ee89cc",
+      "sku": "VTK017523",
+      "nome": "Tela Plástica Permak 12\" Para Alto Falante Tipo Arlem 121 - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 31.8,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tela Plástica Permak 12 Polegadas Para Alto Falante Tipo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 31.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 53.19
+      }
+    },
+    {
+      "produtoId": "3bea3def-bee3-4a84-bd5f-0105c81e02c2",
+      "sku": "VTK019015",
+      "nome": "Tela Permak 10\" Para Alto Falante Profissional Tipo Pioneer 114/h - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 31.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tela Permak 10 Polegadas Para Alto Falante Profissional Tipo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 31.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 53.19
+      }
+    },
+    {
+      "produtoId": "98ed508f-7ba5-4a93-8041-44b0b5c4b25d",
+      "sku": "VTK025894",
+      "nome": "2 Baterias CR123 Elgin",
+      "fornecedor": "BKR1",
+      "custo": 32,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "2 Baterias CR123 Elgin",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 32,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 53.47
+      }
+    }
+  ]
+}

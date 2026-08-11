@@ -1,0 +1,150 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/032-profitable-shelf-2-create-032-gtin-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-032",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "4687b5e3-c51a-4e90-9878-e5b29d544e29",
+      "sku": "VTK019019",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "Fontes de alimentação comutadas integradas"
+      },
+      "anuncio": {
+        "id": "MLB7381755654",
+        "title": "Corzus Ftd 80 Hi Tech Conversor Ac Dc 80a 13,8v Fonte",
+        "price": 1677.95,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381755654-corzus-ftd-80-hi-tech-conversor-ac-dc-80a-138v-fonte-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 1677.95
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "be59c31a-bdd0-487c-bf5d-915282196082",
+      "sku": "VTK001977",
+      "category": {
+        "id": "MLB45639",
+        "nome": "Trompetes",
+        "dominio": "Trompetes"
+      },
+      "anuncio": {
+        "id": "MLB7381744504",
+        "title": "Trompete Harmonics Bb Htr 335l Laqueado",
+        "price": 1946.93,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381744504-trompete-harmonics-bb-htr-335l-laqueado-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1946.93
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8d572081-0ee0-45aa-832a-e52493d75da4",
+      "sku": "VTK001353",
+      "category": {
+        "id": "MLB431815",
+        "nome": "Cabos de Rede",
+        "dominio": "Cabos de rede"
+      },
+      "anuncio": {
+        "id": "MLB7381755908",
+        "title": "Cabo De Rede Cat5e 305m Blindagem Capa Dupla Megatron Bob",
+        "price": 2442.6,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381755908-cabo-de-rede-cat5e-305m-blindagem-capa-dupla-megatron-bob-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 70.25,
+        "shipping_source": "erp",
+        "ml_fee": 0.18,
+        "price": 2442.6
+      }
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "cd7a7a71-e276-4fbd-a9a5-f9ec6cd67170",
+      "sku": "VTK000779",
+      "nome": "Suporte Bumper Para Monitor de Áudio HH Tessen TNA-BRK1",
+      "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400"
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/015-profitable-shelf-2-create-015-gtin-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-015",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "b02f56b4-ad44-44b9-b9fa-30ec6224ac65",
+      "sku": "VTK021122",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": "Conversores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB7381742428",
+        "title": "Modulador De Áudio E Vídeo Aquário Mod 001 Canal 3 E 4 De Tv 220v",
+        "price": 154.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381742428-modulador-de-audio-e-video-aquario-mod-001-canal-3-e-4-de-tv-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 154.21
+      }
+    }
+  ],
+  "failed": []
+}

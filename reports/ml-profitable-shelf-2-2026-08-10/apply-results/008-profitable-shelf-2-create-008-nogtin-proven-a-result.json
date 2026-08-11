@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/008-profitable-shelf-2-create-008-nogtin-proven-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-008",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "510237c6-1172-4cbb-8532-92c31a971282",
+      "sku": "VTK017217",
+      "category": {
+        "id": "MLB407820",
+        "nome": "Varetas para Elétricos",
+        "dominio": "Postes para cerca elétrica"
+      },
+      "anuncio": {
+        "id": "MLB5034771539",
+        "title": "Big Haste 28x28 1,20m Completa Gancho E Castanha Confiseg",
+        "price": 247.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034771539-big-haste-28x28-120m-completa-gancho-e-castanha-confiseg-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.135,
+        "price": 247.61
+      }
+    }
+  ],
+  "failed": []
+}

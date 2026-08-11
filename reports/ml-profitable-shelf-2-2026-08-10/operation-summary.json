@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-08-11T01:32:13.792Z",
+  "pdf_skus": 689,
+  "erp_candidates": 689,
+  "ml_preflight": {
+    "checked": 651,
+    "approved": 221,
+    "rejected": 430
+  },
+  "publication": {
+    "created": 167,
+    "active": 159,
+    "under_review_or_blocked": 8,
+    "not_created": 522
+  },
+  "blocked_breakdown": {
+    "before_ml_preflight": 38,
+    "missing_image": 30,
+    "invalid_package": 5,
+    "missing_description": 3,
+    "rejected_by_ml_preflight": 430,
+    "approved_but_not_created_due_to_gtin_or_category": 54
+  }
+}

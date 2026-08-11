@@ -1,0 +1,427 @@
+{
+  "batchNumber": 29,
+  "batchId": "profitable-shelf-2-create-029",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "065903be-45b2-48b6-9023-7735925177ef",
+      "sku": "VTK018636",
+      "nome": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 365.9,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002 SOHOPLUS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 365.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 765.27
+      }
+    },
+    {
+      "produtoId": "4ed1ab3f-f23e-4aa7-8880-648d839c887d",
+      "sku": "VTK012699",
+      "nome": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 366.01,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 366.01,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 765.47
+      }
+    },
+    {
+      "produtoId": "70bc66e2-e975-4683-b5d5-c483dd16614b",
+      "sku": "VTK015983",
+      "nome": "14 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (7 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 381.57,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "14 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic 7 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 381.57,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 793.76
+      }
+    },
+    {
+      "produtoId": "c33cb2ab-d5b1-4b07-ad47-28dd4b2d4a76",
+      "sku": "VTK018546",
+      "nome": "Módulo Viaweb Gprs 2.4",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 384.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Módulo Viaweb Gprs 2.4",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 384.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 799.82
+      }
+    },
+    {
+      "produtoId": "0d1b79fb-0967-4fda-b0c7-c9de1e1c1f47",
+      "sku": "VTK001308",
+      "nome": "Cajon FSA Lite LTS-04 Amarelo",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 413.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cajon FSA Lite LTS 04 Amarelo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 413.8,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 952.36
+      }
+    },
+    {
+      "produtoId": "60155eac-28af-4c82-8166-d94b257ad80b",
+      "sku": "VTK017353",
+      "nome": "Fonte Atx Evus Psu-200 Oem 200w 20/24p 2 Sata - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 419,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fonte Atx Evus Psu 200 Oem 200w 20 24p 2 Sata PC 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 419,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 961.82
+      }
+    },
+    {
+      "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+      "sku": "VTK018292",
+      "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 430.99,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto Falante Subwoofer Pioneer 12 Polegadas Ts w3090br 600w",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 430.99,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 983.62
+      }
+    },
+    {
+      "produtoId": "68404b02-4e51-442c-bec6-c9aea166852d",
+      "sku": "VTK016009",
+      "nome": "16 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (8 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 436.08,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "16 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic 8 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 436.08,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 992.87
+      }
+    },
+    {
+      "produtoId": "cc039b1a-fbec-4963-ada3-53f8b52753ce",
+      "sku": "VTK006274",
+      "nome": "Suporte Pedestal Móvel Para TV 32-75\" TVA06V6S ELG",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 440.8,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Pedestal Móvel Para TV 32 75 Polegadas TVA06V6S ELG",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 440.8,
+        "shipping": 44.05,
+        "shippingSource": "erp",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 881.55
+      }
+    },
+    {
+      "produtoId": "beb75014-53f4-4191-8f04-9a23233f74b1",
+      "sku": "VTK018908",
+      "nome": "Cabo De Guitarra Tiaflex 100 Metros 0,20 Mm Preto 902010",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 449.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Guitarra Tiaflex 100 Metros 0,20 Mm Preto 902010",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 449.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1018
+      }
+    },
+    {
+      "produtoId": "7144b025-bbee-4764-b1c7-7bf5380b2ca6",
+      "sku": "VTK019095",
+      "nome": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 449.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 449.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1018
+      }
+    },
+    {
+      "produtoId": "1bdb1500-91d5-4573-909f-e3ca5ff425cd",
+      "sku": "VTK018985",
+      "nome": "String Box Proauto 2e/2s 1040vcc",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 452.16,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "String Box Proauto 2e 2s 1040vcc",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 452.16,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1022.11
+      }
+    },
+    {
+      "produtoId": "40e8aa35-4db9-416c-821b-39b54c3971e8",
+      "sku": "VTK018864",
+      "nome": "Cabo Coaxial Cabletech Std-40+tp3 Branco Bobina 305 Metros 801214000p01cb22",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 456.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Coaxial Cabletech Std 40+tp3 Branco Bobina 305 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 456.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1030.73
+      }
+    },
+    {
+      "produtoId": "46657896-3552-465b-a60f-cc35c3923211",
+      "sku": "VTK020656",
+      "nome": "Capota Marítima Flash Cover Ff176 Ford Ranger Xls Cabine Dupla 2012/2023 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 459.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff176 Ford Ranger Xls Cabine",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 459.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1036.18
+      }
+    },
+    {
+      "produtoId": "2e9caef9-8b7c-464e-b057-a85e751c6e89",
+      "sku": "VTK003318",
+      "nome": "Pedal Expressão Yamaha para Teclado FC7 Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 463.34,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pedal Expressão Yamaha para Teclado FC7 Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 463.34,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1042.44
+      }
+    },
+    {
+      "produtoId": "68880dd5-048c-47b3-985d-ecb732a46b06",
+      "sku": "VTK018106",
+      "nome": "Módulo Viaweb Gprs Ip 2.3",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 469.9,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Módulo Viaweb Gprs Ip 2.3",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 469.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1054.36
+      }
+    },
+    {
+      "produtoId": "f14e83a0-cb35-42ff-ac02-1d46f738ba75",
+      "sku": "VTK018449",
+      "nome": "Central Viaweb Vw8z Gprs Ip Caixa Metálica",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 469.9,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Central Viaweb Vw8z Gprs Ip Caixa Metálica",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 469.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1054.36
+      }
+    },
+    {
+      "produtoId": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+      "sku": "VTK018635",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 469.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 469.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1054.36
+      }
+    },
+    {
+      "produtoId": "2719221b-385e-433c-8830-d37e95f24d3a",
+      "sku": "VTK016024",
+      "nome": "18 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (9 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 490.59,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "18 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic 9 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 490.59,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1091.98
+      }
+    },
+    {
+      "produtoId": "2feb7e97-6953-4508-8055-755956acb219",
+      "sku": "VTK019099",
+      "nome": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla Sem Gancho Com Step 2010/2013 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 499.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 499.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1108.91
+      }
+    }
+  ]
+}

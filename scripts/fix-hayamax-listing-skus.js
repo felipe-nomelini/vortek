@@ -73,6 +73,37 @@ function loadCandidates(auditDir) {
     .filter((row) => /^HYX/i.test(row.old_seller_sku));
 }
 
+function loadInputCandidates(inputPath) {
+  const raw = fs.readFileSync(inputPath, 'utf8').trim();
+  if (!raw) return [];
+  if (inputPath.endsWith('.ndjson')) {
+    return raw
+      .split('\n')
+      .map((line) => JSON.parse(line))
+      .filter((row) => row.reason === 'live_sku_mismatch')
+      .map((row) => ({
+        sequence: 0,
+        batch: 0,
+        ml_item_id: String(row.ml_item_id || '').trim(),
+        old_seller_sku: String(row.live_sku || '').trim(),
+        old_seller_custom_field: '',
+        target_seller_sku: String(row.sku || '').trim(),
+        ad_sku: String(row.sku || '').trim(),
+        product_id: String(row.produto_id || '').trim(),
+      }));
+  }
+  return (JSON.parse(raw).sku_updates || []).map((row) => ({
+    sequence: Number(row.sequence || 0),
+    batch: Number(row.batch || 0),
+    ml_item_id: String(row.ml_item_id || '').trim(),
+    old_seller_sku: String(row.old_seller_sku || '').trim(),
+    old_seller_custom_field: '',
+    target_seller_sku: String(row.sku || '').trim(),
+    ad_sku: String(row.sku || '').trim(),
+    product_id: String(row.product_id || '').trim(),
+  }));
+}
+
 async function main() {
   const apply = hasFlag('--apply');
   const auditDir = path.resolve(argValue('--audit-dir', DEFAULT_AUDIT_DIR));
@@ -215,18 +246,7 @@ async function main() {
   }
 
   let candidates = inputPath
-    ? (JSON.parse(fs.readFileSync(inputPath, 'utf8')).sku_updates || []).map(
-        (row) => ({
-          sequence: Number(row.sequence || 0),
-          batch: Number(row.batch || 0),
-          ml_item_id: String(row.ml_item_id || '').trim(),
-          old_seller_sku: String(row.old_seller_sku || '').trim(),
-          old_seller_custom_field: '',
-          target_seller_sku: String(row.sku || '').trim(),
-          ad_sku: String(row.sku || '').trim(),
-          product_id: String(row.product_id || '').trim(),
-        }),
-      )
+    ? loadInputCandidates(inputPath)
     : loadCandidates(auditDir);
   const invalid = candidates.filter(
     (row) =>

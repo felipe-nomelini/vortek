@@ -1,0 +1,49 @@
+{
+  "batchNumber": 29,
+  "batchId": "profitable-shelf-2-create-029",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "0d1b79fb-0967-4fda-b0c7-c9de1e1c1f47",
+      "sku": "VTK001308",
+      "nome": "Cajon FSA Lite LTS-04 Amarelo",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 413.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cajon FSA Lite LTS 04 Amarelo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 413.8,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 952.36
+      }
+    },
+    {
+      "produtoId": "2e9caef9-8b7c-464e-b057-a85e751c6e89",
+      "sku": "VTK003318",
+      "nome": "Pedal Expressão Yamaha para Teclado FC7 Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 463.34,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pedal Expressão Yamaha para Teclado FC7 Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 463.34,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1042.44
+      }
+    }
+  ]
+}

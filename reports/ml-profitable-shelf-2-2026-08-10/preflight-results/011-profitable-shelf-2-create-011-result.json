@@ -1,0 +1,757 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/011-profitable-shelf-2-create-011-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-011",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "238ea83d-2998-4380-9c4e-a6db59ed9e1b",
+      "sku": "VTK025711",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 78.52,
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 43.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 89.46
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2430"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Moeda Lítio Elgin CR2430 3V Kit\n\nVISÃO GERAL\n20 Baterias CR2430 Elgin (4 Cart)\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x 5 Baterias Cr2430 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR2430 Elgin Energia de Alta Capacidade para Seus Dispositivos\n\n As baterias de lítio CR2430 Elgin oferecem alta capacidade energética e longa vida útil. São ideais para dispositivos que exigem potência constante, como controles automotivos, balanças digitais, dispositivos médicos e equipamentos eletrônicos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2430\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Capacidade típica: Aproximadamente 300 mAh\n\n•    Aplicações indicadas: Controles automotivos, balanças digitais, dispositivos médicos, relógios, leitores RFID, brinquedos eletrônicos\n\n•    Recarregável: Não\n\n•    Validade: Até 10 anos (armazenamento adequado)\n\n•    Peso unitário: Cerca de 4 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL2430, ECR2430, BR2430, KCR2430, 5029LC, entre outros equivalentes\n\n Com potência elevada e desempenho confiável, as baterias CR2430 Elgin são perfeitas para aplicações que exigem energia constante e duradoura.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2430\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025711\n\nEMBALAGEM\n• Dimensões informadas: 18 × 5 × 4 cm\n• Peso bruto informado: 0,08 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5ef37ef0-f02b-4d7c-8c52-5a72abead051",
+      "sku": "VTK025932",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 80.06,
+      "familyName": "6 Pilhas Alcalinas D Lr20 Sm 2 Elgin 3 Cart",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 44.85,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 91.7
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "3"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "6 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (3 Cart)\n\nVISÃO GERAL\n6 Pilhas Alcalinas D Lr20 Sm-2 Elgin (3 Cart)\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 3\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025932\n\nEMBALAGEM\n• Dimensões informadas: 4 × 9 × 15 cm\n• Peso bruto informado: 0,78 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "502bad99-2974-4af4-b71d-c8760d5c1adf",
+      "sku": "VTK025779",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 81.19,
+      "familyName": "40 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 45.76,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 93.32
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "40 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n40 Baterias Litio Cr2025 Elgin (8 Cart)\n\nKit com 8 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 8x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 8 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025779\n\nEMBALAGEM\n• Dimensões informadas: 3.2 × 5 × 19 cm\n• Peso bruto informado: 0,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "41547a87-fde5-4c45-8286-2831897a0496",
+      "sku": "VTK012200",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 78.9,
+      "familyName": "Pilha Recarregável AA 2500mAh Elgin Blister com 4 Unidades",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 45.9,
+        "shipping": 7.75,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.8
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "2500MAH"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "4"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013536090"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "6073398",
+          "value_name": "AA"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pilha Recarregável AA 2500mAh Elgin Blister com 4 Unidades\n\nVISÃO GERAL\n4 Pilhas Recarregáveis AA 2500mAh Elgin Energia Sustentável com Alto Desempenho As pilhas recarregáveis Elgin AA 2500mAh oferecem alto desempenho, longa durabilidade e são ideais para quem busca economia e sustentabilidade. Perfeitas para câmeras, brinquedos, controles, lanternas e outros dispositivos de alto consumo. Detalhes Técnicos • Marca: Elgin • Modelo: AA 2500mAh • Tipo: Pilha recarregável • Tamanho: AA (pequena) • Capacidade nominal: 2500mAh • Voltagem: 1,2V • Química: Níquel-Hidreto Metálico (Ni-MH) • Recarregável: Sim • Ciclos de recarga: Até 1000 ciclos (dependendo do uso e carregador) • Aplicações indicadas: Câmeras digitais, brinquedos, lanternas, controles, mouses e teclados sem fio, equipamentos eletrônicos portáteis • Peso unitário: Aproximadamente 27 g • Origem: Nacional Vantagens: Economia a longo prazo Menos resíduos no meio ambiente Ideal para alto consumo de energia Alta durabilidade e confiabilidade As pilhas recarregáveis Elgin AA 2500mAh unem potência e sustentabilidade, sendo ideais para quem usa dispositivos com frequência e quer economizar sem abrir mão da qualidade.\n\nO blister com 4 unidades é prático, reutilizável e compatível com diversos carregadores Ni-MH. Uma escolha inteligente para seu dia a dia.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: 2500MAH\n• Unidades por kit: 4\n• É recarregável: Sim\n• Tamanho da pilha: AA\n• Formato de venda: Kit\n• Quantidade de kits: 1\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• GTIN: 7897013536090\n• NCM: 8507.50.10\n• SKU: VTK012200\n\nEMBALAGEM\n• Dimensões informadas: 11 × 0.8 × 3 cm\n• Peso bruto informado: 0,12 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b9da6dfa-378f-4668-b43c-3ffeffe92b49",
+      "sku": "VTK017539",
+      "category": {
+        "id": "MLB270363",
+        "nome": "Sensores Indutivos",
+        "dominio": "Sensores indutivos"
+      },
+      "basePrice": 80.37,
+      "familyName": "Sensor Magnético Smart Sulton V3 Smw250 VIAWEB",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 45.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 91.93
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "VIAWEB"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SMW250"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898691800718"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sensor Magnético Smart Sulton V3 Smw250\n\nVISÃO GERAL\nSensor Magnético Digital. Sinaliza informação de abertura e fechamento*. Sinaliza bateria baixa. Compatível com Centrais de Alarme Code Learning 433.92 *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: VIAWEB\n• Modelo: SMW250\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: VIAWEB\n• GTIN: 7898691800718\n• NCM: 85437099\n• SKU: VTK017539\n\nEMBALAGEM\n• Peso bruto informado: 0,034 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "86d06e3c-d1e8-4110-b213-94479b55b881",
+      "sku": "VTK012522",
+      "category": {
+        "id": "MLB7051",
+        "nome": "Baterias",
+        "dominio": "Baterias para câmeras"
+      },
+      "basePrice": 87.17,
+      "familyName": "Bateria 2CR5 6V Panasonic 1 Unidade",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 46.9,
+        "shipping": 7.99,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 105.56
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Panasonic"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "2CR5"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bateria 2CR5 6V Panasonic - 1 Unidade\n\nVISÃO GERAL\nCódigo do produto: 2CR5 Tensão Nominal (V): 6 Capacidade Nominal (mAh): 1550 Diâmetro (mm) 34,0 Espessura (mm) 17,0 Altura (mm) 45,0 Peso (g): Aproximadamente.38\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Panasonic\n• Modelo: 2CR5\n• Unidades por kit: 1\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Panasonic\n• NCM: 8506.50.10\n• SKU: VTK012522\n\nEMBALAGEM\n• Dimensões informadas: 10 × 10 × 3 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "35b3e9d1-afe4-4c83-8f80-f25297f8c4d1",
+      "sku": "VTK025733",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 82.72,
+      "familyName": "25 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 47,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.54
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "25 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n25 Baterias Litio Cr2016 Elgin (5 Cart)\n\nKit com 5 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 5x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 5 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025733\n\nEMBALAGEM\n• Dimensões informadas: 2 × 5 × 19 cm\n• Peso bruto informado: 0,25 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 86.54,
+      "familyName": "Reparo Jbl Selenium Rpst302 x Para Super Tweeter St302 x",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 47.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 101.89
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "229111"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPST302-X"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x\n\nVISÃO GERAL\nQuando o super tweeter queimar ou apresentar problemas, saiba que não é o fim da linha. Para ter de volta toda a eficiência de seu alto falante automotivo, tenha o Reparo Original JBL Selenium. Compatível com super tweeter ST302X da JBL com 125W RMS de potência, o kit reparo original tem instalação sob medida, trocando a peça com danos, para que você possa continuar usando seu sistema de som automotivo com toda a qualidade.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 229111\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPST302-X\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359530991\n• NCM: 85189010\n• SKU: VTK017821\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 10.5 × 11.5 cm\n• Peso bruto informado: 0,054 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB277515",
+            "nome": "Localizadores de Falhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "590a13b7-bf59-4481-a8b1-f7926134a3d6",
+      "sku": "VTK018552",
+      "nome": "Trafo De Linha Frahm T10",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB30197",
+            "nome": "Transformadores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bb4405ed-880e-4c06-8c90-f0afd1b56abc",
+      "sku": "VTK018480",
+      "nome": "Haste Olimpus Curta New Flex M5/m6",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de alça",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB269730",
+            "nome": "Alças"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de alça"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "31849a0c-4eed-49f0-8709-e4db46d8bf53",
+      "sku": "VTK021013",
+      "nome": "Telefone Intelbras Pleno Preto Sem Chave Com Fio 4080051",
+      "error": "Atributos obrigatórios pendentes: Modelo, É sem fio, Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Modelo",
+            "É sem fio",
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a409dfc4-18c0-431e-876e-b707ab358615",
+      "sku": "VTK017799",
+      "nome": "Mouse Logitech Silent M110 Usb Preto",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1714",
+            "nome": "Mouses"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "27b300ac-6971-45fc-b369-7fe75c6a2c29",
+      "sku": "VTK018675",
+      "nome": "Sensor Pet Infravermelho Sulton Spw 400 - 20kg",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4ca011e6-5e2c-453d-bec1-66b70f85a99f",
+      "sku": "VTK017600",
+      "nome": "Refil De Tinta Epson T544322 Magenta",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3561",
+            "nome": "Tintas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9dc1f7a9-42ba-4d7c-9e4b-878ae65912bc",
+      "sku": "VTK017771",
+      "nome": "Refil De Tinta Epson T544422 Amarelo",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3561",
+            "nome": "Tintas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4f695665-3378-4fed-b754-b9fa42258b64",
+      "sku": "VTK017936",
+      "nome": "Refil Tinta Epson Amarelo T664420-al",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3561",
+            "nome": "Tintas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4cc15031-46f6-4a63-b978-635a0683dcc8",
+      "sku": "VTK017951",
+      "nome": "Refil De Tinta Epson T504222 Ecotank Ciano",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3561",
+            "nome": "Tintas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "67ceb04d-d08a-4cca-9888-10667042ef48",
+      "sku": "VTK017952",
+      "nome": "Refil De Tinta Epson T504322 Ecotank Magenta",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3561",
+            "nome": "Tintas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d4adf4ad-541f-4293-b1b1-a570f8f7a674",
+      "sku": "VTK018382",
+      "nome": "Suporte Fechadura Hikvision Ds-k4h188-u Formato U",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB194301",
+            "nome": "Elétricas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 21,
+  "batchId": "profitable-shelf-2-create-021",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "fe28479d-677c-4b86-9814-1e89382fe1f9",
+      "sku": "VTK025835",
+      "nome": "60 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit",
+      "fornecedor": "BKR1",
+      "custo": 119.5,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "60 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 119.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 262.73
+      }
+    },
+    {
+      "produtoId": "70a724e6-9599-4f0b-8879-5918cc77700c",
+      "sku": "VTK025888",
+      "nome": "16 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (8 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 119.6,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "16 Pilhas Alcalinas D Lr20 Sm 2 Elgin 8 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 119.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 262.91
+      }
+    },
+    {
+      "produtoId": "23bd1503-c29d-4639-a5c3-fa18413c7f58",
+      "sku": "VTK018269",
+      "nome": "Caixa Vazia Para 1 Subwoofer 10\" Invertida Pick-up - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 119.8,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa Vazia Para 1 Subwoofer 10 Polegadas Invertida Pick up",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 119.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 263.27
+      }
+    },
+    {
+      "produtoId": "e9cae74c-a6c4-40f1-9cbe-327af6dff867",
+      "sku": "VTK001288",
+      "nome": "Suporte de Teto Para TV SKY100 19\"-56\" Preto Multivisão",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 119.95,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte de Teto Para TV SKY100 19 Polegadas 56 Polegadas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 119.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 263.55
+      }
+    },
+    {
+      "produtoId": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+      "sku": "VTK021108",
+      "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 121.9,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Telefone Headset Intelbras Hsb 50 Para Telemarketing Com Fio",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 121.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 267.09
+      }
+    },
+    {
+      "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "sku": "VTK017637",
+      "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 122.9,
+      "estoque": 37,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 122.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 268.91
+      }
+    },
+    {
+      "produtoId": "cae67c09-608d-4237-a4ee-6044081f0fad",
+      "sku": "VTK018079",
+      "nome": "Microventilador Nwt 172x150x5mm Tensão 110v/220vac",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 122.9,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Microventilador Nwt 172x150x5mm Tensão 110v 220vac",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 122.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 268.91
+      }
+    },
+    {
+      "produtoId": "e7f7754e-1462-4dda-858a-893478dae2de",
+      "sku": "VTK018968",
+      "nome": "Antena Olimpus New Flex Fiat Traseira 12+",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 122.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Olimpus New Flex Fiat Traseira 12+",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 122.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 268.91
+      }
+    },
+    {
+      "produtoId": "f45d249a-4ad2-43de-894c-dc80c6fe361f",
+      "sku": "VTK018550",
+      "nome": "Interface De Desbloqueio De Central Multimídia Original Bee Link Fiat Argo/cronos 2019",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 123.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Interface De Desbloqueio De Central Multimídia Original Bee",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 123.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 270.73
+      }
+    },
+    {
+      "produtoId": "4d070eba-1f9d-4bee-8fbd-7e1c483a84dc",
+      "sku": "VTK018729",
+      "nome": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 123.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 123.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 270.73
+      }
+    },
+    {
+      "produtoId": "57838b99-de0f-4628-b99a-fe931314611d",
+      "sku": "VTK019080",
+      "nome": "Alca Pre Formada Para Cabo 10,00/ 10,80mm Apco6108 - PC / 10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 124.6,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alca Pre Formada Para Cabo 10,00 10,80mm Apco6108 PC 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 124.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272
+      }
+    },
+    {
+      "produtoId": "b23bfa88-de86-408b-9093-89b2f318a050",
+      "sku": "VTK002371",
+      "nome": "Limpador de Uso Geral Para Eletrônicos 250ml Cleaner Incolor Implastec - CX / 36",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 124.84,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Limpador de Uso Geral Para Eletrônicos 250ml Cleaner Incolor",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 124.84,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.44
+      }
+    },
+    {
+      "produtoId": "42036964-5824-4b6d-9b59-7d8c46f35025",
+      "sku": "VTK018700",
+      "nome": "Arandela Frahm 6\" Coaxial 25 W Rms 8r Metálica 20760",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 124.9,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela Frahm 6 Polegadas Coaxial 25 W Rms 8r Metálica",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 124.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.55
+      }
+    },
+    {
+      "produtoId": "f19c8241-8886-48f5-a842-2ac4093ac43d",
+      "sku": "VTK019033",
+      "nome": "Combo Teclado E Mouse Wireless Logitech Mk220 Usb Preto Sem Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 124.9,
+      "estoque": 34,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Combo Teclado E Mouse Wireless Logitech Mk220 Usb Preto Sem",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 124.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.55
+      }
+    },
+    {
+      "produtoId": "f375ba17-8da9-4335-ba43-de31cf2a441d",
+      "sku": "VTK025536",
+      "nome": "30 Baterias Auditiva 312 Duracell (5 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 125,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "30 Baterias Auditiva 312 Duracell 5 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 125,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.73
+      }
+    },
+    {
+      "produtoId": "1aae6c25-b0b7-4986-af02-6ea9288018c4",
+      "sku": "VTK025537",
+      "nome": "30 Baterias Auditivas 10 Duracell (5 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 125,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "30 Baterias Auditivas 10 Duracell 5 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 125,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.73
+      }
+    },
+    {
+      "produtoId": "aa96c969-947a-4f49-b8fc-161fe5ad03f6",
+      "sku": "VTK025538",
+      "nome": "30 Baterias Auditivas 13 Duracell (5 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 125,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "30 Baterias Auditivas 13 Duracell 5 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 125,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.73
+      }
+    },
+    {
+      "produtoId": "6b195c17-b55a-4904-9e66-e064c46fc1e4",
+      "sku": "VTK025539",
+      "nome": "30 Baterias Auditivas 675 Duracell (5 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 125,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "30 Baterias Auditivas 675 Duracell 5 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 125,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.73
+      }
+    },
+    {
+      "produtoId": "009943c6-e1a6-4f02-94ce-fb23231226ce",
+      "sku": "VTK000301",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Vermelho 220v",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 126.14,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ventilador de Mesa Ventisol Turbo 6 40cm Vermelho 220v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 126.14,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 274.8
+      }
+    },
+    {
+      "produtoId": "7920609e-4e8d-41a3-a2bf-1a2016d0db05",
+      "sku": "VTK000352",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Vermelho 127v",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 126.14,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Ventilador de Mesa Ventisol Turbo 6 40cm Vermelho 127v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 126.14,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 274.8
+      }
+    }
+  ]
+}

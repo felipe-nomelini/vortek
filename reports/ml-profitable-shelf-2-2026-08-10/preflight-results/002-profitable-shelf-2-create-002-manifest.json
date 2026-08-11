@@ -1,0 +1,427 @@
+{
+  "batchNumber": 2,
+  "batchId": "profitable-shelf-2-create-002",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "8b244ff4-cd3c-4be7-9e79-07d65a6a4e22",
+      "sku": "VTK012359",
+      "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+      "fornecedor": "BKR1",
+      "custo": 10,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 2.00mm azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 22.92
+      }
+    },
+    {
+      "produtoId": "3d89cea5-4142-4587-9e80-f83fb967c9e6",
+      "sku": "VTK012233",
+      "nome": "Palheta Bori Grl At-r16102 Picker 0,73 Mm (azul) R21003 10un",
+      "fornecedor": "BKR1",
+      "custo": 10.18,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.73mm azul Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10.18,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 23.17
+      }
+    },
+    {
+      "produtoId": "521f017d-10c5-4043-950e-aa4d05920e70",
+      "sku": "VTK012236",
+      "nome": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+      "fornecedor": "BKR1",
+      "custo": 10.18,
+      "estoque": 37,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 10 Palhetas Bori 0.96mm amarelo Para Guitarra E Violao",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10.18,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 23.17
+      }
+    },
+    {
+      "produtoId": "fbb175b5-eb44-44bb-9633-567f8d679cb7",
+      "sku": "VTK017336",
+      "nome": "Cabo De Microfone P10 Macho X Cannon Femea",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 10.5,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Microfone P10 Macho X Cannon Femea EVUS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 23.61
+      }
+    },
+    {
+      "produtoId": "de50e676-526a-4e09-95f9-9f98b0085d0e",
+      "sku": "VTK017234",
+      "nome": "Suporte Antena Cromo 211-b Emenda Tubo 1\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 10.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Antena Cromo 211 b Emenda Tubo 1 Polegadas DIMATIX",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.17
+      }
+    },
+    {
+      "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+      "sku": "VTK019103",
+      "nome": "Frente Falsa Max Eletron 1ux19",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 10.95,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Frente Falsa Max Eletron 1ux19",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 10.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.24
+      }
+    },
+    {
+      "produtoId": "3e8422a9-8386-4549-aa31-1b851fb1e75d",
+      "sku": "VTK017408",
+      "nome": "Bateria Alcalina Elgin A23 Blister Com 5 Unidades.",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.3,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bateria Alcalina Elgin A23 Blister Com 5 Unidades.",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.3,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.72
+      }
+    },
+    {
+      "produtoId": "23e88c00-8ccb-4851-8dee-dd3c39f38903",
+      "sku": "VTK025643",
+      "nome": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 11.44,
+      "estoque": 35,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.44,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.92
+      }
+    },
+    {
+      "produtoId": "9646acd3-c2c3-4e28-97f6-3cf5fa0d55ed",
+      "sku": "VTK017636",
+      "nome": "Divisor Proeletronic Pqdv-2024 1:4 Satélite 5 2400mhz",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.45,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Divisor Proeletronic Pqdv 2024 1:4 Satélite 5 2400mhz",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.45,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 24.93
+      }
+    },
+    {
+      "produtoId": "11460c2a-409a-43e8-9fe7-becc8ce904b8",
+      "sku": "VTK003511",
+      "nome": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.5,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25
+      }
+    },
+    {
+      "produtoId": "21938c94-7c06-4026-8282-8a9bd40fbfdd",
+      "sku": "VTK017826",
+      "nome": "Rele De Buzina Permak Universal 5 Terminais",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.5,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Rele De Buzina Permak Universal 5 Terminais",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25
+      }
+    },
+    {
+      "produtoId": "31ad1f70-a866-494c-bcd2-fd2dba879f11",
+      "sku": "VTK017252",
+      "nome": "Cabo Otg Evus C-078 Lightning X Usb 2.0 15cm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.7,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Otg Evus C 078 Lightning X Usb 2.0 15cm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.7,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25.28
+      }
+    },
+    {
+      "produtoId": "0510aa95-38fb-4f97-a333-40fe318dea16",
+      "sku": "VTK017165",
+      "nome": "Kit Adaptador Proeletronic Para Celular - Pqkc-0160",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Adaptador Proeletronic Para Celular Pqkc 0160",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25.56
+      }
+    },
+    {
+      "produtoId": "d4f2810e-11b2-4b4c-8ae7-91328bb0cbaa",
+      "sku": "VTK017868",
+      "nome": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 11.95,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 11.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25.63
+      }
+    },
+    {
+      "produtoId": "7e90266d-cd51-4d22-9d19-4158db77962a",
+      "sku": "VTK001450",
+      "nome": "Encordoamento Para Cavaco Aço Leve Série Cobra Gescl Giannini",
+      "fornecedor": "BKR1",
+      "custo": 12.37,
+      "estoque": 44,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Encordoamento Para Cavaco Aço Leve Série Cobra Gescl",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 12.37,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 26.21
+      }
+    },
+    {
+      "produtoId": "47638703-a897-463e-ae17-0d9ad238732d",
+      "sku": "VTK018616",
+      "nome": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89/c2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 12.49,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 12.49,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 26.38
+      }
+    },
+    {
+      "produtoId": "d5b6ffe5-7ac5-4e02-8b3c-b041da5a9347",
+      "sku": "VTK017259",
+      "nome": "Conector Klc Tnc Tm-1 Macho Rg/rgc 58",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 12.6,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Klc Tnc Tm 1 Macho Rg rgc 58 K.L.C.",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 12.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 26.53
+      }
+    },
+    {
+      "produtoId": "3e56831a-0b35-4b2e-abf3-82b4f7406d17",
+      "sku": "VTK018222",
+      "nome": "Bucha Para Kit Do Alto Falante Gol Original Permak 237/a",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 12.9,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bucha Para Kit Do Alto Falante Gol Original Permak 237 a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 12.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 26.94
+      }
+    },
+    {
+      "produtoId": "cf0f9b00-8da7-4d5b-bd0b-be6392474156",
+      "sku": "VTK025644",
+      "nome": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 13.6,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 13.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 27.92
+      }
+    },
+    {
+      "produtoId": "d082d8d2-753d-440c-b711-ee81e3f646ea",
+      "sku": "VTK017278",
+      "nome": "Carregador Veicular Usb Evus C-098 Com Led 5v 2a",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 14.13,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Carregador Veicular Usb Evus C 098 Com Led 5v 2a",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 14.13,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 28.65
+      }
+    }
+  ]
+}

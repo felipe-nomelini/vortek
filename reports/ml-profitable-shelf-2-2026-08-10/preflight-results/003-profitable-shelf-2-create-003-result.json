@@ -1,0 +1,760 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/003-profitable-shelf-2-create-003-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-003",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+      "sku": "VTK017159",
+      "category": {
+        "id": "MLB445725",
+        "nome": "Alto-falantes",
+        "dominio": "Acessórios para motos"
+      },
+      "basePrice": 43.96,
+      "familyName": "Bucha Para Alto Falante Original Permak Palio 237 c",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 14.29,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.7
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "157101"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253490951"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bucha Para Alto Falante Original Permak Palio 237/c\n\nVISÃO GERAL\nBucha Para Alto Falante Permak 237/c Kit Original Palio Cento\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 157101\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253490951\n• NCM: 87082999\n• SKU: VTK017159\n\nEMBALAGEM\n• Dimensões informadas: 3 × 12 × 16 cm\n• Peso bruto informado: 0,078 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "05d26ff9-dde6-4df0-a2d0-325817eeb4e7",
+      "sku": "VTK017189",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 44.74,
+      "familyName": "Reparo Para Driver Shock D 250 Selenium SHOCK REPAROS",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 14.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 30.57
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "269441"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "D-250"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Para Driver Shock D-250 Selenium\n\nVISÃO GERAL\nInformações do Produto Reparo de fácil troca Informações Técnica Impedância: 8 ohms\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SHOCK REPAROS\n• Número de peça: 269441\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: D-250\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• GTIN: 7892046020042\n• NCM: 85189010\n• SKU: VTK017189\n\nEMBALAGEM\n• Dimensões informadas: 3 × 8.5 × 9.5 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8313ee9b-084c-4193-95ca-4ead684ee5b9",
+      "sku": "VTK018015",
+      "category": {
+        "id": "MLB436012",
+        "nome": "Outros",
+        "dominio": "Acessórios para celulares"
+      },
+      "basePrice": 42.62,
+      "familyName": "Kit Adaptador Para Celular Proeletronic Pqkc 0335",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 14.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 28.99
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca do acessório",
+          "value_id": "",
+          "value_name": "PROELETRONIC"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Adaptador Para Celular Proeletronic Pqkc-0335\n\nVISÃO GERAL\nO Kit Adaptador Celular PQKC-0335 possibilita a perfeita conexão do aparelho celular ao cabo de descida da antena externa. Fácil instalação; Conectividade garantida; Flexível e leve; Cabo de alta qualidade; Conectores com qualidade assegurada; *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca do acessório: PROELETRONIC\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROELETRONIC\n• NCM: 85444200\n• SKU: VTK018015\n\nEMBALAGEM\n• Dimensões informadas: 2 × 12.5 × 12.5 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ec92357c-bf98-4e74-9876-6f6d42556024",
+      "sku": "VTK018710",
+      "category": {
+        "id": "MLB277405",
+        "nome": "Redes para aquários",
+        "dominio": "Redes para aquários"
+      },
+      "basePrice": 42.36,
+      "familyName": "Kit Adaptador Aquário Cf 265 Para Nokia 8265",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 14.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.125,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 28.79
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "AQUARIO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CF-265"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127605429"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Adaptador Aquário Cf-265 Para Nokia 8265\n\nVISÃO GERAL\nKit Adaptador CF-265 Cabo: RF 174 Datalink Comprimento: 1 m Conector 01: TNC Femea Conector 02: Adaptador Celular\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: AQUARIO\n• Modelo: CF-265\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127605429\n• NCM: 85444200\n• SKU: VTK018710\n\nEMBALAGEM\n• Dimensões informadas: 2 × 7.5 × 18.5 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9097c6f9-c38c-4641-9481-de220f3f0ad6",
+      "sku": "VTK018854",
+      "category": {
+        "id": "MLB4187",
+        "nome": "Dual Chip",
+        "dominio": "Adaptadores de cartões SIM"
+      },
+      "basePrice": 42.62,
+      "familyName": "Kit Adaptador Para Celular Pqkc 0345 PROELETRONIC",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 14.95,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 28.99
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PROELETRONIC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PQKC-0345"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Adaptador Para Celular Pqkc-0345\n\nVISÃO GERAL\nO Kit Adaptador Celular PQKC-0345 possibilita a perfeita conexão do aparelho celular ao cabo de descida da antena externa. Fácil instalação; Conectividade garantida; Flexível e leve; Cabo de alta qualidade; Conectores com qualidade assegurada; *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PROELETRONIC\n• Modelo: PQKC-0345\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROELETRONIC\n• NCM: 85444200\n• SKU: VTK018854\n\nEMBALAGEM\n• Dimensões informadas: 2 × 12.5 × 12.5 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1118946f-9c4e-423e-a4df-0ccf47e2e572",
+      "sku": "VTK017778",
+      "category": {
+        "id": "MLB115699",
+        "nome": "Sirenes",
+        "dominio": "Segurança veicular"
+      },
+      "basePrice": 44.86,
+      "familyName": "Sirene Dedicada Positron Para Alarme Si 700",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 14.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 30.7
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "POSITRON"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "252528"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sirene Dedicada Positron Para Alarme Si-700\n\nVISÃO GERAL\n- Tamanho reduzido - Alto volume sonoro - Baixo consumo de corrente Sirene Original Positron para todos os alarmes da marca\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: POSITRON\n• Número de peça: 252528\n• Tipo de veículo: Carro/Caminhonete\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: POSITRON\n• NCM: 85319000\n• SKU: VTK017778\n\nEMBALAGEM\n• Dimensões informadas: 5 × 5.5 × 5.5 cm\n• Peso bruto informado: 0,066 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "df45f308-ca98-4322-bf72-8ba4132b3d56",
+      "sku": "VTK019629",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "Fontes de alimentação comutadas integradas"
+      },
+      "basePrice": 42.67,
+      "familyName": "Fonte Chaveada Mxt Para Cftv 12v 1a",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 14.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.04
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "5MM"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899471878958"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Fonte Chaveada Mxt Para Cftv 12v/1a\n\nVISÃO GERAL\nEntrada AC: 100-240 VAC Saída DC: 12V/1A Polaridade: Centro Positivo Potência: 12W Tamanho do cabo: 1.10M Plugue P4: 2.1*5.5mm *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MXT\n• Modelo: 5MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MXT\n• GTIN: 7899471878958\n• NCM: 85044029\n• SKU: VTK019629\n\nEMBALAGEM\n• Dimensões informadas: 3 × 8 × 10 cm\n• Peso bruto informado: 0,086 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a77fbe7f-68b2-48a6-9658-53397fa53f2d",
+      "sku": "VTK025638",
+      "category": {
+        "id": "MLB11615",
+        "nome": "MLB11615",
+        "dominio": ""
+      },
+      "basePrice": 42.68,
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR1620 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 15,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 29.05
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "VTK025638"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "10"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1620"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Moeda Lítio Elgin CR1620 3V Kit\n\nVISÃO GERAL\n10 Baterias CR 1620 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x 5 Cr 1620 Elgin 01 Cartela\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR1620 Elgin Potência Confiável em Cartelas Individuais\n\n As baterias de lítio CR1620 Elgin garantem desempenho estável e duradouro para pequenos dispositivos eletrônicos. Em cartelas individuais, são práticas para revenda ou uso pessoal com organização e segurança.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR1620\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Capacidade típica: Aproximadamente 70 mAh\n\n•    Aplicações indicadas: Relógios digitais, calculadoras, controles automotivos, dispositivos médicos, balanças digitais, leitores RFID\n\n•    Recarregável: Não\n\n•    Validade: Até 10 anos (em armazenamento adequado)\n\n•    Peso unitário: Aproximadamente 1,2 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL1620, ECR1620, BR1620, KCR1620, entre outros equivalentes\n\n As baterias CR1620 Elgin são ideais para equipamentos que exigem energia constante e confiável. Cada unidade vem em cartela individual, oferecendo maior segurança, organização e praticidade seja para uso próprio, revenda ou distribuição.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Número de peça: VTK025638\n• Unidades por kit: 10\n• Modelo: CR1620\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025638\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 2 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9b0f50fa-8a3d-4926-a677-858efeba8d8b",
+      "sku": "VTK017531",
+      "category": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 43.78,
+      "familyName": "Terminal De Fio Aberto Forquilha1 8 Permak Para Módulo",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 15.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 30.27
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "FORQUILHA1"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "100"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Terminal De Fio Aberto Forquilha1/8 Permak Para Módulo - 100un.\n\nVISÃO GERAL\nO terminal forquilha aberto apresenta um comprimento de 2 cm, seu furo possui 1/8 polegadas e é resistente a vibrações. Sua composição é em latão, proporcionando alta condutividade elétrica e ótima resistência à corrosão. O terminal está disponível na cor dourada.\n\nOs terminais forquilha têm a função de proporcionar maior segurança e praticidade quando usados em terminações de fios e cabos de montagens de máquinas, painéis elétricos e automação, permitindo ganho de tempo. Pacote com 100 un. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: FORQUILHA1\n• Unidades por kit: 100\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• NCM: 85369010\n• SKU: VTK017531\n\nEMBALAGEM\n• Dimensões informadas: 0.5 × 6 × 7 cm\n• Peso bruto informado: 0,036 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "ec81f065-53fd-4abb-a286-3d30f5c31a4b",
+      "sku": "VTK017903",
+      "nome": "Cabo Hdmi X Dvi Nwt Cbhd0001 Macho X Macho Entrada Dvi 18+1 Saída Hdmi 1.4 Com Filtro 2m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5e983602-2303-4ebb-8e76-4f5b36d81bbf",
+      "sku": "VTK019632",
+      "nome": "Fonte Chaveada Para Cftv 9v 1a",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420411",
+            "nome": "Fontes Chaveadas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c50c8d36-5035-48e2-99e1-86447ebaf2d1",
+      "sku": "VTK017504",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Preto",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+      "sku": "VTK017505",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Vermelho",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a8d1a439-22ab-4e2b-8e23-e49e1a686d12",
+      "sku": "VTK017789",
+      "nome": "Haste Permak Ray Flex Vw Gol Rosca M5/m6",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430986",
+            "nome": "Cabos Flex"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "61eddeb1-1475-4a17-8344-adbeca5cc8af",
+      "sku": "VTK018714",
+      "nome": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+      "sku": "VTK018422",
+      "nome": "Haste Permak Para Antena De Teto Gti 095",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB457886",
+            "nome": "Antenas de Conectividade"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+      "sku": "VTK017982",
+      "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+      "error": "Atributos obrigatórios pendentes: Tipo de calculadora",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB99957",
+            "nome": "Calculadoras"
+          },
+          "missing": [
+            "Tipo de calculadora"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "af838486-7430-46b5-b452-bfe8d072457b",
+      "sku": "VTK018170",
+      "nome": "Aro Espaçador Permak Bafles 6x9\" Plástico Para Alto Falante Par",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b81c89ea-4984-43a8-a3f6-032b019d7744",
+      "sku": "VTK017297",
+      "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fccbe856-e04a-4113-abd9-fdf7437e4e8f",
+      "sku": "VTK017803",
+      "nome": "Extensão Daneva Sort Pl 2x0.75mm² 5 Metros Cores Sortidas Ref1514",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB63114",
+            "nome": "Filtros de Linha"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

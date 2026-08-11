@@ -1,0 +1,695 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/008-profitable-shelf-2-create-008-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-008",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "3a1d9c06-ddcb-47f0-9f05-3e0f6d5420c9",
+      "sku": "VTK025734",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 60,
+      "familyName": "25 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 28.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 48.08
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "25 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n25 Baterias Litio Cr2025 Elgin (5 Cart)\n\nKit com 5 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 5x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 5 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025734\n\nEMBALAGEM\n• Dimensões informadas: 2 × 5 × 19 cm\n• Peso bruto informado: 0,25 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5385c6d7-c16c-4bce-9394-adf20c11f3fa",
+      "sku": "VTK017801",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "Ferros de solda elétricos"
+      },
+      "basePrice": 63.85,
+      "familyName": "Resistência Hikari Hplus Sc 40 W 220v Com 2 Peças",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 29.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 51.86
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HIKARI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SC-40"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7893007713034"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Resistência Hikari Hplus Sc-40 W 220v Com 2 Peças\n\nVISÃO GERAL\nResistência para Ferro de Soldar Hikari Plus SC-40. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HIKARI\n• Modelo: SC-40\n• Voltagem: 220V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKARI\n• GTIN: 7893007713034\n• NCM: 85159000\n• SKU: VTK017801\n\nEMBALAGEM\n• Dimensões informadas: 3 × 6 × 14 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0610c199-29fa-421f-bd33-1f2c2c89a175",
+      "sku": "VTK017216",
+      "category": {
+        "id": "MLB407820",
+        "nome": "Varetas para Elétricos",
+        "dominio": "Postes para cerca elétrica"
+      },
+      "basePrice": 63.57,
+      "familyName": "Big Haste 28x28 1,00m Completa Gancho E Castanha CONFISEG",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 29.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 51.63
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "CONFISEG"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Big Haste 28x28 1,00m Completa Gancho E Castanha\n\nVISÃO GERAL\nInformações do Produto Isoladores de passagens Castanhas com Gancho Espessura 28X28mm Medida 1m\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CONFISEG\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CONFISEG\n• NCM: 76042920\n• SKU: VTK017216\n\nEMBALAGEM\n• Dimensões informadas: 4 × 7 × 100 cm\n• Peso bruto informado: 0,706 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "510237c6-1172-4cbb-8532-92c31a971282",
+      "sku": "VTK017217",
+      "category": {
+        "id": "MLB407820",
+        "nome": "Varetas para Elétricos",
+        "dominio": "Postes para cerca elétrica"
+      },
+      "basePrice": 63.57,
+      "familyName": "Big Haste 28x28 1,20m Completa Gancho E Castanha CONFISEG",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 29.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 261.5
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "CONFISEG"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Big Haste 28x28 1,20m Completa Gancho E Castanha\n\nVISÃO GERAL\nInformações do Produto Isoladores de passagens Castanhas com Gancho Espessura 28X28mm Medida 1,20m\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CONFISEG\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CONFISEG\n• NCM: 76042920\n• SKU: VTK017217\n\nEMBALAGEM\n• Dimensões informadas: 4 × 7 × 120 cm\n• Peso bruto informado: 0,758 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "645d1a41-8a43-4fdc-b141-0fc0df0949b9",
+      "sku": "VTK017766",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 63.97,
+      "familyName": "Shock Reparo Driver Parcial D 300 D 305 Selenium S Aneis",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 29.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 52
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "379201"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "D-300"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Shock Reparo Driver Parcial D-300/ D-305 Selenium S/ Aneis\n\nVISÃO GERAL\nReparo Driver parcial D-300/ D-305 Selenium s/ Aneis *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SHOCK REPAROS\n• Número de peça: 379201\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: D-300\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• NCM: 85189010\n• SKU: VTK017766\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11.5 × 11.5 cm\n• Peso bruto informado: 0,006 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ab3f2ce5-9656-4736-9935-df5b8f893ece",
+      "sku": "VTK025918",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 61.6,
+      "familyName": "4 Pilhas Alcalinas D Lr20 Sm 2 Elgin 2 Cart",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 29.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 49.86
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "4 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (2 Cart)\n\nVISÃO GERAL\n4 Pilhas Alcalinas D Lr20 Sm-2 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 2\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025918\n\nEMBALAGEM\n• Dimensões informadas: 4 × 9 × 15 cm\n• Peso bruto informado: 0,52 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "98ed508f-7ba5-4a93-8041-44b0b5c4b25d",
+      "sku": "VTK025894",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 64.2,
+      "familyName": "2 Baterias CR123 Elgin",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 32,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 52.74
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR123"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "2 Baterias CR123 Elgin\n\nVISÃO GERAL\n2 Baterias CR123 Elgin\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x Bateria Cr123 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR123 Elgin 3V\n\n A Bateria CR123 da Elgin oferece alta voltagem e desempenho duradouro, sendo ideal para equipamentos eletrônicos que exigem potência constante e confiável, como câmeras fotográficas, lanternas táticas, alarmes, sensores e dispositivos de segurança.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR123\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Cilíndrico (equivalente a CR123A / 123 / CR17345 / DL123A / K123LA)\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~1500 mAh\n\n•    Composição química: Lítio / Dióxido de manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Câmeras digitais, lanternas táticas, alarmes, sensores, equipamentos médicos, rastreadores, sistemas de segurança e automação\n\n•    Vida útil (armazenamento): Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 34,5 mm (altura) x 17 mm (diâmetro)\n\n•    Peso unitário: Cerca de 17 g\n\n Vantagens\n\nAlta densidade de energia\n\nExcelente desempenho mesmo em temperaturas extremas\n\nLonga vida útil mesmo em modo standby\n\nIdeal para uso profissional e equipamentos críticos\n\nQualidade e confiabilidade da marca Elgin\n\n A Bateria CR123 Elgin é a escolha certa para quem precisa de energia potente, duradoura e segura em dispositivos de alto desempenho. Com a confiança de uma das marcas líderes do mercado, é perfeita para aplicações em segurança, fotografia, iluminação tática e mais.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR123\n• Unidades por kit: 2\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025894\n\nEMBALAGEM\n• Dimensões informadas: 12 × 9 × 4 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "9bcffb2d-3f31-49a8-902b-5c425b2bb3bb",
+      "sku": "VTK017235",
+      "nome": "Suporte Antena 313-af Telha Francesa Tubo 3/ 4 Com Suporte Prata Cromo",
+      "error": "Atributos obrigatórios pendentes: Modelo, É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "Modelo",
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5c19de39-4fc3-4fe9-a78c-72eaccee4261",
+      "sku": "VTK017538",
+      "nome": "Trafo Audio Frahm Linha T5i 70/ 210v",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11509",
+            "nome": "Receivers"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d324cdae-edbc-4339-993d-5221668cb0dc",
+      "sku": "VTK012362",
+      "nome": "Palheta Tradicional 2,5 P/clarinete Sib Cr102,5 Vandoren Un",
+      "error": "Atributos obrigatórios pendentes: Tipo de instrumento",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278096",
+            "nome": "Para Saxos e Clarinetes"
+          },
+          "missing": [
+            "Tipo de instrumento"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "97dd3f7b-07a8-4252-9a66-c2616ad2f1f0",
+      "sku": "VTK018768",
+      "nome": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4 C/2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB421298",
+            "nome": "Conversores de Aúdio e Vídeo"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "20992744-7828-47a8-aae3-2c4c84420557",
+      "sku": "VTK017263",
+      "nome": "Conector Uhf Fem Rg/rgcc 58(cn-130)kf-11",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB70452",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7b2841e9-6480-4013-8234-529149937c74",
+      "sku": "VTK017629",
+      "nome": "Cabo Extensão De Antena Permak 2,50 Metros - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB63114",
+            "nome": "Filtros de Linha"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1ea7953e-04c7-4345-a104-4b1bcc01f941",
+      "sku": "VTK017508",
+      "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Vermelho",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "daf3481b-6ac3-47a4-ba9b-83cded3fe87d",
+      "sku": "VTK017524",
+      "nome": "Tela Plástica Permak 6\" Para Alto Falante Tipo Arlem 115 - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8df5a908-5df3-4e17-a4ad-ebff58570bde",
+      "sku": "VTK012669",
+      "nome": "Palheta Guitarra Dur Prec 6dbk7 D Addario 1.50mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f6ae5113-1265-4894-b074-52fe349867f5",
+      "sku": "VTK017240",
+      "nome": "Cabo Vga Evus C-041 Hd15 Macho X Hd15 Macho Com Filtro 10,0m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c7807cd8-c83b-446b-984e-da35abeb416c",
+      "sku": "VTK018547",
+      "nome": "Caixa Metálica Universal Para Central Alarme",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b2e270b9-045a-4f9f-a3a9-37c782ee89cc",
+      "sku": "VTK017523",
+      "nome": "Tela Plástica Permak 12\" Para Alto Falante Tipo Arlem 121 - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3bea3def-bee3-4a84-bd5f-0105c81e02c2",
+      "sku": "VTK019015",
+      "nome": "Tela Permak 10\" Para Alto Falante Profissional Tipo Pioneer 114/h - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

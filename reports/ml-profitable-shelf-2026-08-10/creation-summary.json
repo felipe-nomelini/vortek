@@ -1,0 +1,14 @@
+{
+  "modo": "aplicacao",
+  "solicitados": 1,
+  "sucesso": 0,
+  "falhas": 1,
+  "resultados": [
+    {
+      "SKU": "VTK012014",
+      "ItemID": null,
+      "resultado": "falhou",
+      "erro": "VTK012014: criação recusada: Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB38172]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes."
+    }
+  ]
+}

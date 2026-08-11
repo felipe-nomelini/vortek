@@ -1,0 +1,638 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/021-profitable-shelf-2-create-021-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-021",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "fe28479d-677c-4b86-9814-1e89382fe1f9",
+      "sku": "VTK025835",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 174.38,
+      "familyName": "60 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 119.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 262.73
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PR41"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "60"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "60 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit\n\nVISÃO GERAL\n60 Baterias Auditivas Ar 312 Elgin (10 Cart )\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Bateria Para Aparelho Auditivo Ar 312 - Pr41 Elgin 06 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria para Aparelho Auditivo AR312 / PR41 Elgin \n\n A Bateria Elgin AR312 / PR41 foi projetada especialmente para aparelhos auditivos modernos, oferecendo longa duração, tensão estável e tecnologia zinco-ar. Ideal para uso contínuo, é uma escolha segura para quem busca desempenho e confiabilidade.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: AR312 / PR41\n\n•    Tipo: Bateria para aparelho auditivo (Zinco-ar)\n\n•    Tecnologia: Zinc-Air\n\n•    Tensão nominal: 1,45V\n\n•    Capacidade típica: ~180 mAh\n\n•    Formato: Botão\n\n•    Referências equivalentes: PR41, ZA312, AC312, DA312, P312, 312A\n\n•    Cor padrão do selo: Marrom (padrão internacional)\n\n•    Aplicações recomendadas: Aparelhos auditivos intra-auriculares (ITE) e retroauriculares (BTE)\n\n•    Recarregável: Não\n\n•    Tempo de uso aproximado: 5 a 12 dias por unidade (varia conforme o tipo de aparelho e uso)\n\n•    Vida útil de armazenamento: Até 4 anos\n\n•    Ativação: Remoção do selo inicia a liberação de energia (tecnologia zinco-ar)\n\n•    Dimensões unitárias: 7,9 mm (diâmetro) x 3,6 mm (altura)\n\n•    Peso unitário: Cerca de 0,6 g\n\n Vantagens\n\nTensão constante e durabilidade\n\nAtivação rápida por contato com o ar\n\nCompatível com ampla gama de aparelhos auditivos\n\nCódigo de cor marrom facilita a identificação\n\nElgin tradição e confiança em baterias especiais\n\n A Bateria Elgin AR312 / PR41 é a solução ideal para usuários exigentes de aparelhos auditivos. Com tecnologia de zinco-ar, desempenho prolongado e fácil identificação, ela garante autonomia e segurança no uso diário. Confie na Elgin para ouvir melhor todos os dias.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: PR41\n• Unidades por kit: 60\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.60.10\n• SKU: VTK025835\n\nEMBALAGEM\n• Dimensões informadas: 6 × 6 × 10 cm\n• Peso bruto informado: 0,09 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "70a724e6-9599-4f0b-8879-5918cc77700c",
+      "sku": "VTK025888",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 174.5,
+      "familyName": "16 Pilhas Alcalinas D Lr20 Sm 2 Elgin 8 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 119.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 262.91
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "8"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "16 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (8 Cart)\n\nVISÃO GERAL\n16 Pilhas Alcalinas D Lr20 Sm-2 Elgin (8 Cart)\n\nKit com 8 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 8x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 8 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 8\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025888\n\nEMBALAGEM\n• Dimensões informadas: 12.8 × 9 × 15 cm\n• Peso bruto informado: 2,08 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b23bfa88-de86-408b-9093-89b2f318a050",
+      "sku": "VTK002371",
+      "category": {
+        "id": "MLB99961",
+        "nome": "Limpadores",
+        "dominio": "Panos de limpeza"
+      },
+      "basePrice": 181.05,
+      "familyName": "Limpador de Uso Geral Para Eletrônicos 250ml Cleaner Incolor",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 124.84,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 272.44
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "IMPLASTEC"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "10629430000366"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "250ML"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Limpador de Uso Geral Para Eletrônicos 250ml Cleaner Incolor Implastec - CX / 36\n\nVISÃO GERAL\nO Cleaner, é um limpador de uso geral, promovendo a limpeza de substâncias orgânicas naturais ou sintéticas, tais como: resinas, óleos, gorduras, alcalóides, acetatos de celulose, nitrocelulose e outras resinas utilizadas nas preparações de tintas, vernizes e pasta para solda estanho.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: IMPLASTEC\n• Modelo: 250ML\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IMPLASTEC\n• GTIN: 10629430000366\n• NCM: 2902.90.90\n• SKU: VTK002371\n\nEMBALAGEM\n• Dimensões informadas: 32 × 37 × 19 cm\n• Peso bruto informado: 7,56 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "42036964-5824-4b6d-9b59-7d8c46f35025",
+      "sku": "VTK018700",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "Caixas de som"
+      },
+      "basePrice": 176.71,
+      "familyName": "Arandela Frahm 6 Polegadas Coaxial 25 W Rms 8r Metálica",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 124.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 262.98
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "60HZ"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Arandela Frahm 6\" Coaxial 25 W Rms 8r Metálica 20760\n\nVISÃO GERAL\nAlto-Falantes: Full Range 6\" Coaxial Frequência: 60Hz a 20KHz Impedância: 8 Ohms Material: Coaxial Metálico Potência: 25 Watts RMS Tamanho: 6\"\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FRAHM\n• Modelo: 60HZ\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FRAHM\n• NCM: 85182100\n• SKU: VTK018700\n\nEMBALAGEM\n• Dimensões informadas: 7.5 × 21.5 × 23 cm\n• Peso bruto informado: 0,826 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f19c8241-8886-48f5-a842-2ac4093ac43d",
+      "sku": "VTK019033",
+      "category": {
+        "id": "MLB5914",
+        "nome": "Kits de Teclado e Mouse",
+        "dominio": "Kits de teclado e mouse"
+      },
+      "basePrice": 176.71,
+      "familyName": "Combo Teclado E Mouse Wireless Logitech Mk220 Usb Preto Sem",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 124.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 262.98
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MK220"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor do teclado",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Combo Teclado E Mouse Wireless Logitech Mk220 Usb Preto Sem Fio\n\nVISÃO GERAL\nDesign bem menor, as mesmas teclas O teclado compacto é cerca de 36% menor do que os teclados padrão, mas inclui todas as teclas padrão por isso é mais fácil ainda fazer as coisas de que você gosta Sem fio avançado de 2,4 GHz Agora você pode trabalhar e entreter-se em mais lugares como o confortável sofá porque a conexão sem fio praticamente elimina atrasos, interrupções e interferências, e oferece um alcance de até dez metros Criptografia AES de 128 bits Ajuda a proteger informações ao criptografar a transferência de dados entre o teclado e o receptor, com um dos mais altos níveis de criptografia de dados disponíveis Maior vida útil das pilhas Com vida útil de 24 meses das pilhas do teclado e de cinco meses das pilhas do mouse você não terá de se preocupar com a troca de pilhas, ao longo de vários meses Design minimalista e elegante O design minimalista do teclado não só combina com sua decoração como também serve a um propósito. A ausência de espaço extra entre as teclas torna-o compacto e elegante Simplicidade do plug-and-play A configuração não poderia ser mais simples basta conectar o receptor sem fio a uma porta USB no computador e começar a tuitar, blogar e se envolver no IMing imediatamente, sem software Teclas silenciosas As teclas mal produzem som, por isso você pode ouvir bem a música que está escutando em vez do barulho da digitação *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: MK220\n• Cor do teclado: Preto\n• Cor principal: Preto\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 84716052\n• SKU: VTK019033\n\nEMBALAGEM\n• Dimensões informadas: 5 × 12.5 × 45.5 cm\n• Peso bruto informado: 0,586 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "23bd1503-c29d-4639-a5c3-fa18413c7f58",
+      "sku": "VTK018269",
+      "nome": "Caixa Vazia Para 1 Subwoofer 10\" Invertida Pick-up - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e9cae74c-a6c4-40f1-9cbe-327af6dff867",
+      "sku": "VTK001288",
+      "nome": "Suporte de Teto Para TV SKY100 19\"-56\" Preto Multivisão",
+      "error": "Atributos obrigatórios pendentes: Lugares de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11529",
+            "nome": "Suportes"
+          },
+          "missing": [
+            "Lugares de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+      "sku": "VTK021108",
+      "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3828",
+            "nome": "Telefones Headset"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "sku": "VTK017637",
+      "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cae67c09-608d-4237-a4ee-6044081f0fad",
+      "sku": "VTK018079",
+      "nome": "Microventilador Nwt 172x150x5mm Tensão 110v/220vac",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e7f7754e-1462-4dda-858a-893478dae2de",
+      "sku": "VTK018968",
+      "nome": "Antena Olimpus New Flex Fiat Traseira 12+",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f45d249a-4ad2-43de-894c-dc80c6fe361f",
+      "sku": "VTK018550",
+      "nome": "Interface De Desbloqueio De Central Multimídia Original Bee Link Fiat Argo/cronos 2019",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB416844",
+            "nome": "Interfaces de Áudio"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4d070eba-1f9d-4bee-8fbd-7e1c483a84dc",
+      "sku": "VTK018729",
+      "nome": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+      "error": "Atributos obrigatórios pendentes: É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB440354",
+            "nome": "Kits de Motor"
+          },
+          "missing": [
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "57838b99-de0f-4628-b99a-fe931314611d",
+      "sku": "VTK019080",
+      "nome": "Alca Pre Formada Para Cabo 10,00/ 10,80mm Apco6108 - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de alça",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB269730",
+            "nome": "Alças"
+          },
+          "missing": [
+            "Tipo de alça"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f375ba17-8da9-4335-ba43-de31cf2a441d",
+      "sku": "VTK025536",
+      "nome": "30 Baterias Auditiva 312 Duracell (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1aae6c25-b0b7-4986-af02-6ea9288018c4",
+      "sku": "VTK025537",
+      "nome": "30 Baterias Auditivas 10 Duracell (5 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "aa96c969-947a-4f49-b8fc-161fe5ad03f6",
+      "sku": "VTK025538",
+      "nome": "30 Baterias Auditivas 13 Duracell (5 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6b195c17-b55a-4904-9e66-e064c46fc1e4",
+      "sku": "VTK025539",
+      "nome": "30 Baterias Auditivas 675 Duracell (5 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "009943c6-e1a6-4f02-94ce-fb23231226ce",
+      "sku": "VTK000301",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Vermelho 220v",
+      "error": "Atributos obrigatórios pendentes: Tipo de ventilador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1645",
+            "nome": "Ventiladores"
+          },
+          "missing": [
+            "Tipo de ventilador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7920609e-4e8d-41a3-a2bf-1a2016d0db05",
+      "sku": "VTK000352",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Vermelho 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de ventilador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1645",
+            "nome": "Ventiladores"
+          },
+          "missing": [
+            "Tipo de ventilador"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

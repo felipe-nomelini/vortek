@@ -1,0 +1,214 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/016-profitable-shelf-2-create-016-gtin-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-016",
+  "selected": 6,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e8438ae6-afff-448d-bf51-46bf02e6fb49",
+      "sku": "VTK013009",
+      "category": {
+        "id": "MLB278061",
+        "nome": "Capas para Guitarras",
+        "dominio": "Capas e estojos para guitarras"
+      },
+      "anuncio": {
+        "id": "MLB7381753878",
+        "title": "Capa Violao Luxo Nylon 600 Bkr1 Preto",
+        "price": 322.52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381753878-capa-violao-luxo-nylon-600-bkr1-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.145,
+        "price": 322.52
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "43ca7193-7d61-4189-b4cf-029de62be4f5",
+      "sku": "VTK017926",
+      "category": {
+        "id": "MLB191727",
+        "nome": "Lâmpadas",
+        "dominio": "Lâmpadas para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381673412",
+        "title": "Lampada Multilaser Super Led H3 6200k Par",
+        "price": 179.06,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381673412-lampada-multilaser-super-led-h3-6200k-par-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 179.06
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "da1f2c58-9700-4cda-b016-8bcdeab574b3",
+      "sku": "VTK000787",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "Multímetros"
+      },
+      "anuncio": {
+        "id": "MLB7381673590",
+        "title": "Multímetro Analógico Hikari Hm 202a",
+        "price": 160.07,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381673590-multimetro-analogico-hikari-hm-202a-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 18.85,
+        "shipping_source": "erp",
+        "ml_fee": 0.14,
+        "price": 160.07
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d76eb95b-14fe-4bca-8c49-85b7c9ffd4c2",
+      "sku": "VTK001186",
+      "category": {
+        "id": "MLB277715",
+        "nome": "Antenas",
+        "dominio": "Antenas para amplificadores de sinal para celulares"
+      },
+      "anuncio": {
+        "id": "MLB7381754412",
+        "title": "Antena Para Celular Fullband Pqag5015lte Proeletronic",
+        "price": 170.96,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754412-antena-para-celular-fullband-pqag5015lte-proeletronic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 16.45,
+        "shipping_source": "erp",
+        "ml_fee": 0.18,
+        "price": 170.96
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a5896f14-568a-4e58-8c5a-b26b4964a92a",
+      "sku": "VTK018752",
+      "category": {
+        "id": "MLB431756",
+        "nome": "Tampas para Aquários",
+        "dominio": "Tampas para aquários"
+      },
+      "anuncio": {
+        "id": "MLB7381754568",
+        "title": "Cabo Prolongador Aquário Ac 13 Marinox 60cm",
+        "price": 173.83,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754568-cabo-prolongador-aquario-ac-13-marinox-60cm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.125,
+        "price": 173.83
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "14c3eb86-d8c0-4bed-9b19-f0312647efc2",
+      "sku": "VTK013010",
+      "category": {
+        "id": "MLB278061",
+        "nome": "Capas para Guitarras",
+        "dominio": "Capas e estojos para guitarras"
+      },
+      "anuncio": {
+        "id": "MLB7381743394",
+        "title": "Capa Contra Baixo Luxo Nylon 600 Bkr1",
+        "price": 335.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381743394-capa-contra-baixo-luxo-nylon-600-bkr1-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.145,
+        "price": 335.14
+      }
+    }
+  ],
+  "failed": []
+}

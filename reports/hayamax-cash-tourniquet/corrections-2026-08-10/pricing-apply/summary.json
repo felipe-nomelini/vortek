@@ -1,0 +1,13 @@
+{
+  "event": "hayamax_cash_tourniquet_summary",
+  "timestamp_utc": "2026-08-10T05:42:54.840Z",
+  "mode": "apply",
+  "scope": "all",
+  "output_dir": "/home/felipe/Documentos/Projetos/vortek/reports/hayamax-cash-tourniquet/corrections-2026-08-10/pricing-apply",
+  "products_scanned": 121,
+  "automated_items_found": 2,
+  "counts": {
+    "changed": 121
+  },
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/hayamax-cash-tourniquet/corrections-2026-08-10/pricing-apply/events.ndjson"
+}

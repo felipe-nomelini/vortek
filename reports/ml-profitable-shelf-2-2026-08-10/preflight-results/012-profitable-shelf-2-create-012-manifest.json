@@ -1,0 +1,427 @@
+{
+  "batchNumber": 12,
+  "batchId": "profitable-shelf-2-create-012",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "779e5581-dab2-42fd-8f5c-5082d6ebc676",
+      "sku": "VTK025759",
+      "nome": "35 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 47.6,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "35 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 47.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 98.36
+      }
+    },
+    {
+      "produtoId": "09f0045b-edae-4ec7-884d-932e70d25256",
+      "sku": "VTK019227",
+      "nome": "Tela Plástica Permak 15\" Para Alto Falante Tipo Arlem 121/a - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 47.8,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tela Plástica Permak 15 Polegadas Para Alto Falante Tipo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 47.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 98.73
+      }
+    },
+    {
+      "produtoId": "339aac0e-e31a-45b1-a0ab-60a4fd616807",
+      "sku": "VTK025908",
+      "nome": "3 Baterias CR123 Elgin",
+      "fornecedor": "BKR1",
+      "custo": 48,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "3 Baterias CR123 Elgin",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 48,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 99.09
+      }
+    },
+    {
+      "produtoId": "0e5a284f-4341-4999-ac37-9d7b6664aff7",
+      "sku": "VTK018843",
+      "nome": "Tela Permak 15\" Para Alto Falante Profissional Tipo Pioneer - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 49.8,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tela Permak 15 Polegadas Para Alto Falante Profissional Tipo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 49.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 102.36
+      }
+    },
+    {
+      "produtoId": "c792414f-8be3-44fd-aa54-a661ecf240bb",
+      "sku": "VTK017243",
+      "nome": "Cabo Hdmi Evus C-052 4k Macho X Macho V2.0 10,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 49.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Hdmi Evus C 052 4k Macho X Macho V2.0 10,0m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 49.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 102.55
+      }
+    },
+    {
+      "produtoId": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+      "sku": "VTK017666",
+      "nome": "Multitoc Telefone Gondola C/ Fio Grafite",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 49.9,
+      "estoque": 32,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Multitoc Telefone Gondola C Fio Grafite",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 49.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 102.55
+      }
+    },
+    {
+      "produtoId": "36fe8762-e865-4f95-a4cc-627f17e4b748",
+      "sku": "VTK018772",
+      "nome": "Refil Tinta Epson Magenta T673320-al",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 49.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil Tinta Epson Magenta T673320 al",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 49.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 102.55
+      }
+    },
+    {
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "nome": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 49.99,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 49.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 102.71
+      }
+    },
+    {
+      "produtoId": "e7e76e6e-649f-4e31-9369-6875f254f206",
+      "sku": "VTK018077",
+      "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 50.4,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.4,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 137.09
+      }
+    },
+    {
+      "produtoId": "cf2dcc02-31a2-4264-8472-6f634a5f09e4",
+      "sku": "VTK002577",
+      "nome": "Suporte Para Caixa de Som CH10 Preto ASK",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 50.46,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Para Caixa de Som CH10 Preto ASK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.46,
+        "shipping": 16.45,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 126.25
+      }
+    },
+    {
+      "produtoId": "65140c10-3d26-4f38-a3e4-6e2c588034d1",
+      "sku": "VTK002437",
+      "nome": "Capa Para Violão Folk Harmonics Nylon Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 50.5,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capa Para Violão Folk Harmonics Nylon Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.5,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 291.82
+      }
+    },
+    {
+      "produtoId": "104b4d28-fbc9-4ed7-8bd6-d0c6f0b7729c",
+      "sku": "VTK005411",
+      "nome": "Cabo Para Instrumento Têxtil Hayonik Player P10 7m Preto/Azul",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 50.52,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Instrumento Têxtil Hayonik Player P10 7m Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.52,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 137.31
+      }
+    },
+    {
+      "produtoId": "916962da-a149-46b2-a80a-d8ff3393e3a0",
+      "sku": "VTK006152",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Verde",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 50.52,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Verde",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.52,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 291.85
+      }
+    },
+    {
+      "produtoId": "9c02237e-c475-40f2-b58b-a7c11b75bba0",
+      "sku": "VTK006158",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Amarelo",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 50.52,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Amarelo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.52,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 137.31
+      }
+    },
+    {
+      "produtoId": "eee6afe9-cdbd-412a-9b94-3c0d5d0aa1ad",
+      "sku": "VTK006192",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Vermelho",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 50.52,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Vermelho",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.52,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 137.31
+      }
+    },
+    {
+      "produtoId": "f25daf26-7ac7-4f67-a81d-c36367da57c0",
+      "sku": "VTK006193",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Azul",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 50.52,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Azul",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.52,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 137.31
+      }
+    },
+    {
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "nome": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 50.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Jbl Selenium Rpd250 x Para Driver D250 x",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 50.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 138
+      }
+    },
+    {
+      "produtoId": "682138d1-d35b-4efc-98bc-3ac857b65500",
+      "sku": "VTK002528",
+      "nome": "Antena Digital HDTV AMPHIBIONS PROHD2000A Preto Proeletronic",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 51.05,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Digital HDTV AMPHIBIONS PROHD2000A Preto Proeletronic",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 51.05,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 138.27
+      }
+    },
+    {
+      "produtoId": "b0226edf-3e39-456a-9ca3-88fc8a8b6289",
+      "sku": "VTK003366",
+      "nome": "Encordoamento Para Guitarra 0.10 Niquel Regular Slinky 2221 Ernie Ball",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 51.48,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Encordoamento Para Guitarra 0.10 Niquel Regular Slinky 2221",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 51.48,
+        "shipping": 15.45,
+        "shippingSource": "erp",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 125.1
+      }
+    },
+    {
+      "produtoId": "33439bef-d613-4d6e-a1fe-6d6a24c4cbb0",
+      "sku": "VTK025795",
+      "nome": "45 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 51.48,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "45 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 51.48,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 139.05
+      }
+    }
+  ]
+}

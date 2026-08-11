@@ -1,0 +1,112 @@
+{
+  "batchNumber": 13,
+  "batchId": "profitable-shelf-2-create-013",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "c79ed41e-b97f-4b3a-8808-f220e184c424",
+      "sku": "VTK003177",
+      "nome": "Plug RCA Metal Com Parte Inferior Vermelha PGRC0022 Storm - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 53.2,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Plug RCA Metal Com Parte Inferior Vermelha PGRC0022 Storm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 53.2,
+        "shipping": 30,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 156.98
+      }
+    },
+    {
+      "produtoId": "fda6c327-084a-41a6-949d-96dbdf76ee5c",
+      "sku": "VTK018291",
+      "nome": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 53.9,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 53.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 143.45
+      }
+    },
+    {
+      "produtoId": "a6254578-a015-4765-8ff2-23bd56070d60",
+      "sku": "VTK003259",
+      "nome": "Pilha Recarregável 1,2V AAA 950mAh Eneloop Pro (C/2 Pilhas) Panasonic - CAR / 2",
+      "fornecedor": "BKR1",
+      "custo": 54.51,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pilha Recarregável 1,2V AAA 950mAh Eneloop Pro C 2 Pilhas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.51,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 144.56
+      }
+    },
+    {
+      "produtoId": "853ee0d7-5ad0-4312-a297-4af55b2194d2",
+      "sku": "VTK018751",
+      "nome": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 54.99,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6 Cg150",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 54.99,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 145.44
+      }
+    },
+    {
+      "produtoId": "012712bb-bbe0-4eeb-9695-fd7f03106462",
+      "sku": "VTK018923",
+      "nome": "Haste New Shark Olimpus Teto Traseira Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 55.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste New Shark Olimpus Teto Traseira Prata",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 55.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 147.09
+      }
+    }
+  ]
+}

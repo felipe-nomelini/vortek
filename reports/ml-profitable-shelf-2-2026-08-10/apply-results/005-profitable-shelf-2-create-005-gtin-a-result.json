@@ -1,0 +1,113 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/005-profitable-shelf-2-create-005-gtin-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-005",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "a6cc0e72-9a06-454e-afc7-483734544be1",
+      "sku": "VTK018663",
+      "category": {
+        "id": "MLB430565",
+        "nome": "Ganchos para Reboque",
+        "dominio": "Ganchos de reboque para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381742282",
+        "title": "Haste Permak Fiat Toro Jeep Renegade Compass Ov",
+        "price": 37.71,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381742282-haste-permak-fiat-toro-jeep-renegade-compass-ov-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 37.71
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9d9f9acd-f081-4617-9b76-7a108bdd7a72",
+      "sku": "VTK018753",
+      "category": {
+        "id": "MLB116341",
+        "nome": "Conectores de Scanners",
+        "dominio": "Conectores OBD para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381753726",
+        "title": "Conector Permak Cd Do Nissan March Livina Versa 35 D7",
+        "price": 37.71,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381753726-conector-permak-cd-do-nissan-march-livina-versa-35-d7-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 37.71
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b6daed03-8deb-461c-9472-059f25c252ea",
+      "sku": "VTK017545",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381753908",
+        "title": "Reparo Para Driver Shock D 250 Trio Selenium Shock Reparos",
+        "price": 39.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381753908-reparo-para-driver-shock-d-250-trio-selenium-shock-reparos-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Não foi possível configurar os preços de atacado neste momento. Motivo: Mercado Livre retornou HTTP 500"
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 39.14
+      }
+    }
+  ],
+  "failed": []
+}

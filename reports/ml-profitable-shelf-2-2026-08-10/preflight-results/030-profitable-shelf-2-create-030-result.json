@@ -1,0 +1,573 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/030-profitable-shelf-2-create-030-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-030",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "5890ee38-8c23-480a-8ea4-3bde52cc8ab8",
+      "sku": "VTK001733",
+      "category": {
+        "id": "MLB29333",
+        "nome": "Cajones",
+        "dominio": "Cajons de percussão"
+      },
+      "basePrice": 844.8,
+      "familyName": "Cajón FSA FS2501 Standart Preto",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 552.64,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1238.58
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FSA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "FS2501"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898957355013"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cajón FSA FS2501 Standart Preto\n\nVISÃO GERAL\nO Cajón FSA FS2501 é um modelo versátil, ideal para se adaptar a todos os estilos musicais. Contando com captação dupla (grave e caixa) dinâmica, com sensibilidade de 74db e saída XLR, fixada em uma placa de aço escovado, ele garante som integral do cajon, sem perder a definição. Seu captador de grave externo garante maior fidelidade sonora, proporcionando uma sonoridade equilibrada entre graves e agudos.\n\nA esteira FSA de 24 fios oferece uma resposta precisa e expressiva, tornando-o uma excelente opção para músicos exigentes.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FSA\n• Modelo: FS2501\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FSA\n• GTIN: 7898957355013\n• NCM: 9206.00.00\n• SKU: VTK001733\n\nEMBALAGEM\n• Dimensões informadas: 56 × 38 × 42 cm\n• Peso bruto informado: 5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d20b5f27-f8a0-4c9e-afa8-1791b6f9da0c",
+      "sku": "VTK018477",
+      "category": {
+        "id": "MLB30208",
+        "nome": "Interruptores Automáticos",
+        "dominio": "Disjuntores automáticos e interruptores diferenciais"
+      },
+      "basePrice": 849.06,
+      "familyName": "String Box Proauto 4.2e 4.2s 1040vcc",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 555.43,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1243.79
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PROAUTO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MPPT1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "String Box Proauto 4.2e/4.2s 1040vcc\n\nVISÃO GERAL\n• 2 MPPT: • 2 Entradas MPPT1; • 2 Entradas MPPT2; • Fabricado com alto padrão de qualidade; • Todos os componentes possuem certificados; • Proteção das caixas: UV (conforme norma IEC 60529); IP65; CARACTERÍSTICAS GERAIS: Grau de Proteção: IP65 Material: ABS Termoplástico Tipo de montagem: Sobrepor Temperatura de armazenamento: -25°C/+90 Umidade relativa do ar: Até 90% Altitude máxima de operação: 1000 Metros Dimensões (A x L x P): 200 x 310 x 110 Grau de resistência mecânica: IK08 Tipo de fixação: Trilho de Fixação CARACTERÍSTICAS TÉCNICAS: ID Produto: 26026 Quantidades de entradas: 2/4 Quantidades de saídas: 2/4 Quantidade de MPPT: 2 Tensão nominal máxima: 1040VDC Corrente nominal máxima: 4x20A Corrente do fusível: N/D Modelo seccionadora: ES150 Quantidade de seccionadora: 1(dupla) Topo de Conexão de entrada: Borne Bitola máxima do cabo da entrada: 6 mm² Bitola máxima do cabo de saída: 6 mm² Tipo de conexão de saída: Borne DPS Tensão nominal rede: 1040VDC Tensão máxima de funcionamento: 1040VDC Tipo de proteção: Classe 2 Quantidade de DPS: 2 Corrente de descarga nominal(In): 20kA Corrente de descarga Máxima(Itotal): 45kA Nível de Proteção(Up): 3,5kV\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PROAUTO\n• Modelo: MPPT1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROAUTO\n• NCM: 85372090\n• SKU: VTK018477\n\nEMBALAGEM\n• Dimensões informadas: 12 × 23.5 × 43 cm\n• Peso bruto informado: 2,344 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2e2cfee5-5f82-46a6-a967-adea0155b425",
+      "sku": "VTK012857",
+      "category": {
+        "id": "MLB129666",
+        "nome": "Alto-Falantes",
+        "dominio": "Alto-falantes internos para tablets"
+      },
+      "basePrice": 856.1,
+      "familyName": "Alto falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 585,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1219.3
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "12LF1410B8"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898640360591"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Alto-falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk\n\nVISÃO GERAL\n12LF1410B Descrição: Alto-falante de 12 de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade. Utiliza uma bobina de 75 mm de diâmetro (3 ) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior.\n\nDesign exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica. Projetado com base nos mais avançados softwares F.\n\nE. A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance.\n\nPrincipais Características: 700 W de Potência Nominal 8 Ohms de Impedância Nominal 96 dB SPL de Sensibilidade 40 a 2000Hz Especificações: Potência Nominal Admissível(1): 700 W Potência Máxima do Amplificador(2): 11200 W pico Sensibilidade (1W/1m)(3) : 96 dB SPL Impedância Nominal: 8 Ohms Impedância Mínima: 6. 7 Ohms Diâmetro Nominal: 304. 8 mm (12 pol) Resposta de Frequência: 40 a 2000 Hz Diâmetro da Bobina: 75 mm (3 ) Fio da Bobina: Fio de Cobre Recoberto com Alumínio Seção Retangular (CCAR) Resistência da Bobina (Re): 5.\n\n8 Ohms X. máx(4): 8 mm Volume de Ar ocupado: 2. 30 L Mms: 56.\n\n6g Bl: 12. 5 Tm Le: 0. 84 mH (5) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Modelo: 12LF1410B8\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Atk Eletroacústica\n• GTIN: 7898640360591\n• NCM: 8518.29.90\n• SKU: VTK012857\n\nEMBALAGEM\n• Dimensões informadas: 20 × 33 × 33 cm\n• Peso bruto informado: 7,35 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bebc3026-4369-4420-9b71-8195f86e3568",
+      "sku": "VTK002571",
+      "category": {
+        "id": "MLB3016",
+        "nome": "Acústicas",
+        "dominio": "Violões acústicos"
+      },
+      "basePrice": 954.01,
+      "familyName": "Violão Giannini GSF1D Mini Jumbo Aço Mini Jumbo Natural",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 624.08,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1372.11
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GIANNINI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GSF1D"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890443021730"
+        },
+        {
+          "id": "WITH_CUTAWAY",
+          "name": "Com corte",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Violão Giannini GSF1D Mini Jumbo Aço Mini Jumbo Natural Glossy\n\nVISÃO GERAL\nO Violão Giannini GSF1D é perfeito para quem possui mãos pequenas e deseja praticar o uso de instrumentos musicais. Este modelo possui um braço mais fino, o que proporciona a você mais conforto, além de não perder a sonoridade que só a Giannini traz para você. A marca Giannini faz a fabricação de instrumentos musicais fabricados no Brasil, possuindo em seu design madeiras selecionadas, com a criação de produtos de excelente qualidade, buscando assim satisfazer os clientes.\n\nGiannini está no mercado desde 1900, fundada inicialmente na cidade de São Paulo. Tendo sua história unida a da música brasileira a empresa se tornou uma das mais tradicionais marcas de instrumentos musicais existentes no Brasil.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GIANNINI\n• Modelo: GSF1D\n• Com corte: Não\n• Quantidade de cordas: 6\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GIANNINI\n• GTIN: 7890443021730\n• NCM: 9202.90.00\n• SKU: VTK002571\n\nEMBALAGEM\n• Dimensões informadas: 13 × 46 × 102.5 cm\n• Peso bruto informado: 2,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "c95e7e90-3c29-4006-96c2-24f3d61e2b16",
+      "sku": "VTK018748",
+      "nome": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem Gancho 2010/2020 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+      "sku": "VTK018943",
+      "nome": "Controlador Acesso Ip Wide Cx-7006",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB276631",
+            "nome": "Leitores de Proximidade"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "faa2762b-bc05-4997-8ab9-d82048b6ec49",
+      "sku": "VTK018423",
+      "nome": "Antena Usb Parabólica De Grade Aquário Usb-2510 2.4ghz 25 Dbi E Cabo 10m - PC / 6",
+      "error": "Atributos obrigatórios pendentes: É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2c9eb16e-aece-447b-aa78-101378d5d998",
+      "sku": "VTK018351",
+      "nome": "Cabo Para Microfone Santo Angelo Sc-30 Balanceado Azul 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d31eaadd-2689-44c5-8a49-ec52bd7efdb0",
+      "sku": "VTK020653",
+      "nome": "Capota Marítima Flash Cover Ff155 Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0970adbb-160e-4647-9852-c406fc876c73",
+      "sku": "VTK020654",
+      "nome": "Capota Marítima Flash Cover Ff156 Volkswagen Saveiro Cabine Simples Sem Gancho 2010+ Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e92d8175-c067-44e4-ac0a-6c104db748f2",
+      "sku": "VTK018911",
+      "nome": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "24f67a3a-a737-4058-815e-8dbdf54e5f1a",
+      "sku": "VTK020645",
+      "nome": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton 2009/2017 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d70cc126-c73f-4c36-bfb6-5fba673a03da",
+      "sku": "VTK018228",
+      "nome": "Cabo Multicabo Santo Angelo Sas 20 Vias Cobre Ofhc Metro - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b70352f3-1940-4a31-90b8-15dfe7df2f8e",
+      "sku": "VTK025428",
+      "nome": "Kit 4 Alto-Falantes  150w 6 Pol 8 Ohms 6WF310B8 ATK",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "MLB3905"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8f8b8004-2749-4790-b626-6bdc31c30dfd",
+      "sku": "VTK018702",
+      "nome": "Alto Falante Hinor Hpl 18\" 1000w Rms 8r Subwoofer",
+      "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Modelo",
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c9458ce6-3c12-4e88-b0d4-a632fd6a26ae",
+      "sku": "VTK019036",
+      "nome": "Cabo Multicabo Santo Angelo Sas 28 Vias Cobre Ofhc Metro - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f1c7ae2c-2877-4518-987c-94920709e072",
+      "sku": "VTK019108",
+      "nome": "Capota Marítima Flash Cover Ff173 Volkswagen Amarok Cabine Simples 2010+ Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+      "sku": "VTK019018",
+      "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fb948071-e1ce-45bd-9c17-e6922f37ea26",
+      "sku": "VTK001297",
+      "nome": "Guitarra Giannini G100 Sunburst Com Escudo Branco",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB438516",
+            "nome": "Elétricas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "01dae389-12cf-488a-a60c-89cd07baa199",
+      "sku": "VTK001303",
+      "nome": "Guitarra Giannini G100 Vermelha Com Escudo Branco",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB438516",
+            "nome": "Elétricas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

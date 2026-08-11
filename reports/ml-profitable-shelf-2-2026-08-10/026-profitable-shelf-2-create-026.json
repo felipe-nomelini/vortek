@@ -1,0 +1,427 @@
+{
+  "batchNumber": 26,
+  "batchId": "profitable-shelf-2-create-026",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "07311428-25f4-48a5-806c-7b1046412370",
+      "sku": "VTK025574",
+      "nome": "48 Baterias Auditiva 312 Duracell (8 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 200,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "48 Baterias Auditiva 312 Duracell 8 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 200,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 463.64
+      }
+    },
+    {
+      "produtoId": "3fce93e4-27b1-4794-9885-315235c7dbfc",
+      "sku": "VTK025575",
+      "nome": "48 Baterias Auditivas 10 Duracell (8 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 200,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "48 Baterias Auditivas 10 Duracell 8 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 200,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 463.64
+      }
+    },
+    {
+      "produtoId": "98250d20-12a4-433c-9fbb-6be3a583d8c4",
+      "sku": "VTK025576",
+      "nome": "48 Baterias Auditivas 13 Duracell (8 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 200,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "48 Baterias Auditivas 13 Duracell 8 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 200,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 463.64
+      }
+    },
+    {
+      "produtoId": "85dec5dd-a6ef-41cd-8795-77e7bef6cacc",
+      "sku": "VTK025577",
+      "nome": "48 Baterias Auditivas 675 Duracell (8 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 200,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "48 Baterias Auditivas 675 Duracell 8 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 200,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 463.64
+      }
+    },
+    {
+      "produtoId": "26224d62-006e-4db1-b89a-acce2097c03e",
+      "sku": "VTK025683",
+      "nome": "150 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 204,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "150 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 204,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 470.91
+      }
+    },
+    {
+      "produtoId": "e337910c-5d53-4c52-8577-735f6e832419",
+      "sku": "VTK001191",
+      "nome": "Fio PP 2x0,75mm Preto Controller - RL / 100",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 206.75,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fio PP 2x0,75mm Preto Controller RL 100",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 206.75,
+        "shipping": 30.75,
+        "shippingSource": "erp",
+        "mlFee": 0.135,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 420.35
+      }
+    },
+    {
+      "produtoId": "5fb0587d-bb1f-4c4f-b2a3-b3c346b17bb5",
+      "sku": "VTK001336",
+      "nome": "Frigideira Rochedo Robusta Grafite 18cm - CXM / 6",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 207.66,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Frigideira Rochedo Robusta Grafite 18cm CXM 6",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 207.66,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 477.56
+      }
+    },
+    {
+      "produtoId": "a189fa1b-b96c-4a09-88ff-440336df963e",
+      "sku": "VTK018347",
+      "nome": "Web Cam Logitech C270 Hd 720p 3 Megapixels Com Microfone Cor Chumbo E Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 209.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Web Cam Logitech C270 Hd 720p 3 Megapixels Com Microfone Cor",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 209.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 481.64
+      }
+    },
+    {
+      "produtoId": "04ee8d46-f737-4c9c-a223-e78e2ef6bcfb",
+      "sku": "VTK000507",
+      "nome": "Caixa de Som Ambiente Hayonik Ambience Line 4\" MSB60NC Preta - PAR / 2",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 211.58,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa de Som Ambiente Hayonik Ambience Line 4 Polegadas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 211.58,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 484.69
+      }
+    },
+    {
+      "produtoId": "92bf4a77-b94a-49df-b11f-bf5bacc229bc",
+      "sku": "VTK016237",
+      "nome": "8 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (4 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 218.04,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "8 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic 4 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 218.04,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 496.44
+      }
+    },
+    {
+      "produtoId": "7d1e1485-0cb9-4db5-add8-4d240f7a721d",
+      "sku": "VTK018895",
+      "nome": "D.i.o Seccon Para Painel Até 24fo 19\" Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 218.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "D.i.o Seccon Para Painel Até 24fo 19 Polegadas Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 218.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 498
+      }
+    },
+    {
+      "produtoId": "7cef02fb-c0a8-46c9-aad7-7f14ee4b6644",
+      "sku": "VTK018600",
+      "nome": "Kit Placa Dvr Seykon Pci Sk-9808 8 Canais Real Time",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 224.95,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit Placa Dvr Seykon Pci Sk 9808 8 Canais Real Time",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 224.95,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 509
+      }
+    },
+    {
+      "produtoId": "47818129-2eb0-4e4b-b23b-d0fff2342ee8",
+      "sku": "VTK025587",
+      "nome": "54 Baterias Auditiva 312 Duracell (9 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 225,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "54 Baterias Auditiva 312 Duracell 9 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 225,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 509.09
+      }
+    },
+    {
+      "produtoId": "dea3e168-4690-42d9-97e9-68e740a95ac8",
+      "sku": "VTK025588",
+      "nome": "54 Baterias Auditivas 10 Duracell (9 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 225,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "54 Baterias Auditivas 10 Duracell 9 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 225,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 509.09
+      }
+    },
+    {
+      "produtoId": "b2057708-789c-4999-a782-fbfc769f5be9",
+      "sku": "VTK025589",
+      "nome": "54 Baterias Auditivas 13 Duracell (9 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 225,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "54 Baterias Auditivas 13 Duracell 9 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 225,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 509.09
+      }
+    },
+    {
+      "produtoId": "7e3cd383-ebd6-451a-bcd2-3d4b3abe32d0",
+      "sku": "VTK025590",
+      "nome": "54 Baterias Auditivas 675 Duracell (9 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "custo": 225,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "54 Baterias Auditivas 675 Duracell 9 Cart. c 6 Un. Cada",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 225,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 509.09
+      }
+    },
+    {
+      "produtoId": "34a42f9d-bc9b-436d-aab2-098d44a3a598",
+      "sku": "VTK025953",
+      "nome": "Liquidificador Portátil Arno Lightmix LP00",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 225.56,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Liquidificador Portátil Arno Lightmix LP00",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 225.56,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 510.11
+      }
+    },
+    {
+      "produtoId": "5d099971-67ae-4b60-9d2c-9364111c5c10",
+      "sku": "VTK021001",
+      "nome": "Alto Falante Pioneer 6x9\" Ts-6960br 200rms Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 225.99,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto Falante Pioneer 6x9 Polegadas Ts 6960br 200rms Par",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 225.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 510.89
+      }
+    },
+    {
+      "produtoId": "2dc9047a-b734-40dd-a3e9-2b46a8c03b3e",
+      "sku": "VTK019100",
+      "nome": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 229.5,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Camera Dome Hikvision 3.0 Ds 2ce16c2t vfir 2.8 12mm 960p",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 229.5,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 517.27
+      }
+    },
+    {
+      "produtoId": "c56848d6-3f38-496d-aeec-e4e0cc8f22c9",
+      "sku": "VTK020602",
+      "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,20 Mm 502010",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 237.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 237.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 532.55
+      }
+    }
+  ]
+}

@@ -1,0 +1,896 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/016-profitable-shelf-2-create-016-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-016",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d8fc0528-277f-4ea4-8b4b-0212276baff0",
+      "sku": "VTK025816",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 115.79,
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 68,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 169.09
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n50 Baterias Litio Cr2032 Elgin (10 Cart)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\n50 Baterias Litio Cr2032 Elgin (10 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025816\n\nEMBALAGEM\n• Dimensões informadas: 6 × 5 × 19 cm\n• Peso bruto informado: 0,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e8438ae6-afff-448d-bf51-46bf02e6fb49",
+      "sku": "VTK013009",
+      "category": {
+        "id": "MLB278061",
+        "nome": "Capas para Guitarras",
+        "dominio": "Capas e estojos para guitarras"
+      },
+      "basePrice": 113.38,
+      "familyName": "Capa Violao Luxo Nylon 600 Bkr1",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 69,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.145,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 322.52
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Bkr1"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "3MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "0040141363114"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Capa Violao Luxo - Nylon 600\n\nVISÃO GERAL\nMantenha seu Violão seguro e elegante com a capa Luxo Compacto Bkr. Fabricada com materiais de alta qualidade, oferece proteção superior contra impactos, poeira e arranhões. O interior acolchoado garante total segurança para o seu instrumento, enquanto o exterior resistente adiciona um toque de sofisticação.\n\nCom alças ajustáveis e compartimentos adicionais para acessórios, esta capa combina praticidade e estilo, ideal para músicos exigentes. Cuide do seu Violão com o melhor! Características: Cor: Preto Isotérmica de 1,3mm Forro TNT de 100 gramatura Alças de Mão e Costas 3 Cm de largura Modelo CM Zíper Número 8 Bolso Chapado Modelos Compatíveis: Clássico\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Bkr1\n• Modelo: 3MM\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Bkr1\n• GTIN: 0040141363114\n• NCM: 4202.29.00\n• SKU: VTK013009\n\nEMBALAGEM\n• Dimensões informadas: 17 × 44 × 106 cm\n• Peso bruto informado: 0,74 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "289f321c-9b4d-4fee-bdbf-b5758f88ae17",
+      "sku": "VTK012018",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 109.63,
+      "familyName": "Kit Conector Xlr Macho Wc 1013 10un Wireconex",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 69.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 166.49
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WC1013"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "10"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex\n\nVISÃO GERAL\n10 unidades do Conector Linha XLR Macho 3 polos WC1013 Para utilização profissional. A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Wireconex\n• Modelo: WC1013\n• Unidades por kit: 10\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8536.90.10\n• SKU: VTK012018\n\nEMBALAGEM\n• Dimensões informadas: 3 × 11 × 18 cm\n• Peso bruto informado: 0,32 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4be0b818-3bb2-41b9-b9a6-d8198fbd2850",
+      "sku": "VTK012039",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 109.63,
+      "familyName": "Kit Conector Xlr Macho Wc 1013 10un Wireconex",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 69.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 166.49
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WC1013"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "10"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex\n\nVISÃO GERAL\n10 unidades do Conector Linha XLR Macho 3 polos WC1013 Para utilização profissional. A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Wireconex\n• Modelo: WC1013\n• Unidades por kit: 10\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8536.90.10\n• SKU: VTK012039\n\nEMBALAGEM\n• Dimensões informadas: 3 × 11 × 18 cm\n• Peso bruto informado: 0,32 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "43ca7193-7d61-4189-b4cf-029de62be4f5",
+      "sku": "VTK017926",
+      "category": {
+        "id": "MLB191727",
+        "nome": "Lâmpadas",
+        "dominio": "Lâmpadas para veículos"
+      },
+      "basePrice": 115.26,
+      "familyName": "Lampada Multilaser Super Led H3 6200k Par",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 69.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 179.06
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MULTILASER"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "282307"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Lampada Multilaser Super Led H3 6200k Par\n\nVISÃO GERAL\nInformações do Produto SEGURANÇA E DESIGN Gerada através de um reator compacto e resistente a água, a luminosidade das lâmpadas Super LED Multilaser promove uma experiência única ao dirigir, propiciando excelente visibilidade ao condutor e um visual diferenciado para seu veículo. LONGO ALCANCE Com 2000 lúmens de potência e 6200K de temperatura de cor, as lâmpadas Super LED Multilaser propiciam maior segurança ao dirigir, facilitando a visualização das vias e das sinalizações. INSTALAÇÃO RÁPIDA As lâmpadas automotivas Super LED Multilaser dispensam conectores no conjunto e possuem estrutura ergonômica nos encaixes das lâmpadas, facilitando a instalação e garantindo maior durabilidade do produto\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MULTILASER\n• Número de peça: 282307\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MULTILASER\n• GTIN: 7899838803036\n• NCM: 85437099\n• SKU: VTK017926\n\nEMBALAGEM\n• Dimensões informadas: 19.2 × 5.7 × 13.5 cm\n• Peso bruto informado: 0,338 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a2e5c594-7028-4312-8b89-c896ac9829f7",
+      "sku": "VTK018770",
+      "category": {
+        "id": "MLB45372",
+        "nome": "Outros",
+        "dominio": "Áudio para veículos"
+      },
+      "basePrice": 113.13,
+      "familyName": "Parafuso Para Alto Falante Do Gol 4 X 10 Mm 144 Cento PC 5",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 70.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 167.54
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "363082"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Parafuso Para Alto Falante Do Gol 4 X 10 Mm - 144 Cento - PC / 5\n\nVISÃO GERAL\nTipo: Parafuso Aplicação: para o alto falante original do Gol 4 portas (Traseiro) Medida: 4 x 10 mm Origem: Nacional Garantia do Fornecedor: 12 Meses Itens Inclusos: Parafuso para alto falante original do Gol\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 363082\n• Tipo de veículo: Carro/Caminhonete\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• NCM: 73181400\n• SKU: VTK018770\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 11 cm\n• Peso bruto informado: 0,564 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "da1f2c58-9700-4cda-b016-8bcdeab574b3",
+      "sku": "VTK000787",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "Multímetros"
+      },
+      "basePrice": 138.78,
+      "familyName": "Multímetro Analógico Hikari HM 202A",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 70.79,
+        "shipping": 18.85,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 160.07
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HIKARI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HM-202A"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899810412812"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Multímetro Analógico Hikari HM-202A\n\nVISÃO GERAL\nO Multímetro Analógico Hikari HM-202A é uma ferramenta essencial para qualquer técnico em eletrônica ou eletricista. Com resposta rápida, este modelo se torna ideal para medições em bancadas de circuitos eletrônicos e ambientes monofásicos protegidos, como tomadas e interruptores. Amplamente reconhecido, destaca-se pelo teste de Iceo de Transistores e realiza medições de Tensão DC/AC, Corrente DC, Resistência, além de testes de Continuidade, Diodo, LED e Decibel.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HIKARI\n• Modelo: HM-202A\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKARI\n• GTIN: 7899810412812\n• NCM: 9030.31.00\n• SKU: VTK000787\n\nEMBALAGEM\n• Dimensões informadas: 4 × 13 × 15 cm\n• Peso bruto informado: 0,33 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d76eb95b-14fe-4bca-8c49-85b7c9ffd4c2",
+      "sku": "VTK001186",
+      "category": {
+        "id": "MLB277715",
+        "nome": "Antenas",
+        "dominio": "Antenas para amplificadores de sinal para celulares"
+      },
+      "basePrice": 139.62,
+      "familyName": "Antena Para Celular Fullband PQAG5015LTE Proeletronic",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 72.45,
+        "shipping": 16.45,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 170.96
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PROELETRONIC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PQAG5015LTE"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898419497213"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Antena Para Celular Fullband PQAG5015LTE Proeletronic\n\nVISÃO GERAL\nPronta para as principais frequências de celular. Com a FullBand da Proeletronic não é necessário saber a frequência de transmissão da sua operadora de celular. A antena opera com ótimo ganho em toda a faixa de 700MHz até 2600MHz, com ganho máximo em todo espectro.\n\nAgora ficou muito mais fácil ter sinal. Instale a antena e fale, simples assim! - Primeira Antena FULLBAND do Brasil - Maior ganho da categoria 15dBi - Ótimo desempenho, evitando queda e intermitência de sinais de celulares - Fácil instalação - Proteção contra raios U/V - Homologada pela Anatel - Produto desenvolvido e fabricado no Brasil\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PROELETRONIC\n• Modelo: PQAG5015LTE\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROELETRONIC\n• GTIN: 7898419497213\n• NCM: 8517.71.90\n• SKU: VTK001186\n\nEMBALAGEM\n• Dimensões informadas: 85 × 23 × 65 cm\n• Peso bruto informado: 0,84 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "02f2056d-43f6-4953-beb3-9762f62e305e",
+      "sku": "VTK025875",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 124.67,
+      "familyName": "10 Pilhas Alcalinas D Lr20 Sm 2 Elgin 5 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 74.75,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 181.36
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "5"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (5 Cart)\n\nVISÃO GERAL\n10 Pilhas Alcalinas D Lr20 Sm-2 Elgin (5 Cart)\n\nKit com 5 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 5x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 5 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 5\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025875\n\nEMBALAGEM\n• Dimensões informadas: 8 × 9 × 15 cm\n• Peso bruto informado: 1,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a5896f14-568a-4e58-8c5a-b26b4964a92a",
+      "sku": "VTK018752",
+      "category": {
+        "id": "MLB431756",
+        "nome": "Tampas para Aquários",
+        "dominio": "Tampas para aquários"
+      },
+      "basePrice": 115.09,
+      "familyName": "Cabo Prolongador Aquário Ac 13 Marinox 60cm",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 74.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.125,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 173.83
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "AQUARIO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AC-13"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127603036"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Prolongador Aquário Ac-13 Marinox 60cm\n\nVISÃO GERAL\nInformações do Produto Prolongador Marinox 60CM AC-13 Prolongador Marinox que diminui a freqüência de operação da antena. Material Alumínio Extrudado Peso do Produto 310g Dimensões 65cm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: AQUARIO\n• Modelo: AC-13\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127603036\n• NCM: 85177190\n• SKU: VTK018752\n\nEMBALAGEM\n• Dimensões informadas: 2 × 2 × 65 cm\n• Peso bruto informado: 0,32 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ff598b6b-4576-438e-be18-f2e816ad5544",
+      "sku": "VTK025778",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 125.26,
+      "familyName": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 75.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 182.18
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n40 Baterias Litio Cr2016 Elgin 8 Cart)\n\nKit com 8 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 8x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 8 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025778\n\nEMBALAGEM\n• Dimensões informadas: 3.2 × 5 × 19 cm\n• Peso bruto informado: 0,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "14c3eb86-d8c0-4bed-9b19-f0312647efc2",
+      "sku": "VTK013010",
+      "category": {
+        "id": "MLB278061",
+        "nome": "Capas para Guitarras",
+        "dominio": "Capas e estojos para guitarras"
+      },
+      "basePrice": 122.29,
+      "familyName": "Capa Contra Baixo Luxo Nylon 600 Bkr1",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 76,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.145,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 335.14
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Bkr1"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "3MM"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "0040141363084"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Capa Contra Baixo Luxo - Nylon 600\n\nVISÃO GERAL\nMantenha seu Contrabaixo seguro e elegante com a capa Luxo Bkr. Fabricada com materiais de alta qualidade, oferece proteção superior contra impactos, poeira e arranhões. O interior acolchoado garante total segurança para o seu instrumento, enquanto o exterior resistente adiciona um toque de sofisticação.\n\nCom alças ajustáveis e compartimentos adicionais para acessórios, esta capa combina praticidade e estilo, ideal para músicos exigentes. Cuide do seu Contrabaixo com o melhor! Características: Isotérmica de 1,3mm Forro TNT de 100 gramatura Alças de Mão e Costas 3 Cm de largura Modelo CM Zíper Número 8 Bolso Chapado Modelos Compatíveis: Contrabaixo\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Bkr1\n• Modelo: 3MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Bkr1\n• GTIN: 0040141363084\n• NCM: 4202.29.00\n• SKU: VTK013010\n\nEMBALAGEM\n• Dimensões informadas: 7 × 46 × 130 cm\n• Peso bruto informado: 0,86 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "f17ab6cf-45aa-4659-b818-474e7421e289",
+      "sku": "VTK019063",
+      "nome": "Arandela Redonda Fiamon 6\" Difusor 30rms 8r Preta",
+      "error": "Atributos obrigatórios pendentes: Materiais, Inclui lâmpadas",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB189196",
+            "nome": "Arandelas"
+          },
+          "missing": [
+            "Materiais",
+            "Inclui lâmpadas"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f346711a-31ff-4ac5-b031-46353ff3cbc5",
+      "sku": "VTK017840",
+      "nome": "Lnbf Multiponto Elsys Banda C - PC / 2",
+      "error": "Atributos obrigatórios pendentes: É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "28b4144f-ed18-4593-a17f-235d34672efa",
+      "sku": "VTK018641",
+      "nome": "Caixa R.l.p. Vazia Para 1 A.f 12 + 2 Dr +2 Tw + Duto",
+      "error": "Atributos obrigatórios pendentes: Tipo de objeto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB436797",
+            "nome": "Enfeites e Objetos para Pintar"
+          },
+          "missing": [
+            "Tipo de objeto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "10c77f6c-7c78-4bcb-8030-c866c53ddc89",
+      "sku": "VTK000809",
+      "nome": "Omeleteira Agratto Mr. Cheff 800w 220v",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB4339",
+            "nome": "Batedeiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bfc623ce-a8b3-4a32-ba71-6a7567b955e4",
+      "sku": "VTK025497",
+      "nome": "18 Baterias Auditiva 312 Duracell (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5fcc0144-894b-49c2-af54-49fcba8b23f3",
+      "sku": "VTK025498",
+      "nome": "18 Baterias Auditivas 10 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fdd05020-df62-4887-93cc-cce65e6e4182",
+      "sku": "VTK025499",
+      "nome": "18 Baterias Auditivas 13 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5f7b3831-b8ba-4fe8-801b-61590c5e2d88",
+      "sku": "VTK025500",
+      "nome": "18 Baterias Auditivas 675 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

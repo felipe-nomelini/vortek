@@ -1,0 +1,78 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/016-profitable-shelf-2-create-016-nogtin-safe-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-016",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d8fc0528-277f-4ea4-8b4b-0212276baff0",
+      "sku": "VTK025816",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7381762644",
+        "title": "50 Pilhas Moeda Lítio Elgin Cr2032 3v Kit",
+        "price": 169.09,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381762644-50-pilhas-moeda-litio-elgin-cr2032-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.15,
+        "price": 169.09
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ff598b6b-4576-438e-be18-f2e816ad5544",
+      "sku": "VTK025778",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7381762728",
+        "title": "40 Pilhas Moeda Lítio Elgin Cr2016 3v Kit",
+        "price": 182.18,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381762728-40-pilhas-moeda-litio-elgin-cr2016-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.15,
+        "price": 182.18
+      }
+    }
+  ],
+  "failed": []
+}

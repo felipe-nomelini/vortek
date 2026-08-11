@@ -1,0 +1,223 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/012-profitable-shelf-2-create-012-mass-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-012",
+  "selected": 6,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "779e5581-dab2-42fd-8f5c-5082d6ebc676",
+      "sku": "VTK025759",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7381670118",
+        "title": "35 Pilhas Moeda Lítio Elgin Cr2032 3v Kit",
+        "price": 96.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381670118-35-pilhas-moeda-litio-elgin-cr2032-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 96.61
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "anuncio": {
+        "id": "MLB5034706797",
+        "title": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+        "price": 106.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034706797-reparo-jbl-rpst330-para-super-tweeter-st330-poly-t-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 106.58
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381670494",
+        "title": "Reparo Jbl Selenium Rpd250 X Para Driver D250 X",
+        "price": 143.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381670494-reparo-jbl-selenium-rpd250-x-para-driver-d250-x-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 143.21
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "33439bef-d613-4d6e-a1fe-6d6a24c4cbb0",
+      "sku": "VTK025795",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034731187",
+        "title": "45 Pilhas Moeda Lítio Elgin Cr2025 3v Kit",
+        "price": 136.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034731187-45-pilhas-moeda-litio-elgin-cr2025-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 136.57
+      }
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "339aac0e-e31a-45b1-a0ab-60a4fd616807",
+      "sku": "VTK025908",
+      "nome": "3 Baterias CR123 Elgin",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "36fe8762-e865-4f95-a4cc-627f17e4b748",
+      "sku": "VTK018772",
+      "nome": "Refil Tinta Epson Magenta T673320-al",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB3561]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB3561]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB3561]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    }
+  ]
+}

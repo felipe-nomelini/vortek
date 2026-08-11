@@ -1,0 +1,652 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/012-profitable-shelf-2-create-012-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-012",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "779e5581-dab2-42fd-8f5c-5082d6ebc676",
+      "sku": "VTK025759",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 83.46,
+      "familyName": "35 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 47.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 96.61
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "35 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n35 Baterias Litio Cr2032 Elgin (7 Cart)\n\nKit com 7 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 7x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 7 unidades\n\n- Embalagem: Pacote / Caixa\n\n35 Baterias Litio Cr2032 Elgin (7 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025759\n\nEMBALAGEM\n• Dimensões informadas: 2.8 × 5 × 19 cm\n• Peso bruto informado: 0,35 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "339aac0e-e31a-45b1-a0ab-60a4fd616807",
+      "sku": "VTK025908",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 83.95,
+      "familyName": "3 Baterias CR123 Elgin",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 48,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 97.32
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR123"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "3"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "3 Baterias CR123 Elgin\n\nVISÃO GERAL\n3 Baterias CR123 Elgin\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x Bateria Cr123 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR123 Elgin 3V\n\n A Bateria CR123 da Elgin oferece alta voltagem e desempenho duradouro, sendo ideal para equipamentos eletrônicos que exigem potência constante e confiável, como câmeras fotográficas, lanternas táticas, alarmes, sensores e dispositivos de segurança.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR123\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Cilíndrico (equivalente a CR123A / 123 / CR17345 / DL123A / K123LA)\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~1500 mAh\n\n•    Composição química: Lítio / Dióxido de manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Câmeras digitais, lanternas táticas, alarmes, sensores, equipamentos médicos, rastreadores, sistemas de segurança e automação\n\n•    Vida útil (armazenamento): Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 34,5 mm (altura) x 17 mm (diâmetro)\n\n•    Peso unitário: Cerca de 17 g\n\n Vantagens\n\nAlta densidade de energia\n\nExcelente desempenho mesmo em temperaturas extremas\n\nLonga vida útil mesmo em modo standby\n\nIdeal para uso profissional e equipamentos críticos\n\nQualidade e confiabilidade da marca Elgin\n\n A Bateria CR123 Elgin é a escolha certa para quem precisa de energia potente, duradoura e segura em dispositivos de alto desempenho. Com a confiança de uma das marcas líderes do mercado, é perfeita para aplicações em segurança, fotografia, iluminação tática e mais.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR123\n• Unidades por kit: 3\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025908\n\nEMBALAGEM\n• Dimensões informadas: 12 × 9 × 5 cm\n• Peso bruto informado: 0,09 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "36fe8762-e865-4f95-a4cc-627f17e4b748",
+      "sku": "VTK018772",
+      "category": {
+        "id": "MLB3561",
+        "nome": "Tintas",
+        "dominio": "Tintas para impressoras"
+      },
+      "basePrice": 85.24,
+      "familyName": "Refil Tinta Epson Magenta T673320 al",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 49.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 98.95
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "EPSON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "70ML"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Refil Tinta Epson Magenta T673320-al\n\nVISÃO GERAL\nInformações do Produto Características Refil de Tinta Epson T673320-al Magenta Para L800 Impressões com secagem instantânea para impressora fotográfica Epson L800. Qualidade fotográfica, maior riqueza de detalhes em 6 cores e secagem instantânea. Você poderá imprimir documentos e imagens com ótima qualidade por um baixo custo por página.\n\nObtenha impressões brilhantes em relatórios, gráficos e fotos. Refis Individuais: Economize e troque somente a cor que acabar. Especificações - Marca: Epson - Referência / Modelo: T673320-AL - Volume: 70ml - Cor: Magenta - Compatibilidade: Epson L800 / L805 / L1800 Garantia 3 meses com a Epson.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EPSON\n• Modelo: 70ML\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EPSON\n• NCM: 32151900\n• SKU: VTK018772\n\nEMBALAGEM\n• Dimensões informadas: 14 × 4 × 4 cm\n• Peso bruto informado: 0,108 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 89.73,
+      "familyName": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 49.99,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 106.58
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "347461"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPST330"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T\n\nVISÃO GERAL\nInformações do Produto Reparo JBL RPST330 Polyt Para Super Tweeter ST330 Polyt\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 347461\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPST330\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359538010\n• NCM: 85189010\n• SKU: VTK017872\n\nEMBALAGEM\n• Dimensões informadas: 4.2 × 10.5 × 11.5 cm\n• Peso bruto informado: 0,062 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 90.9,
+      "familyName": "Reparo Jbl Selenium Rpd250 x Para Driver D250 x",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 50.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 143.21
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "74789"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPD250-X"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x\n\nVISÃO GERAL\nPara Driver D250X\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 74789\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPD250-X\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359508631\n• NCM: 85189010\n• SKU: VTK017534\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 10.5 × 11 cm\n• Peso bruto informado: 0,056 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "33439bef-d613-4d6e-a1fe-6d6a24c4cbb0",
+      "sku": "VTK025795",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 88.25,
+      "familyName": "45 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 51.48,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 136.57
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "45 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n45 Baterias Litio Cr2025 Elgin (9 Cart)\n\nKit com 9 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 9x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 9 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025795\n\nEMBALAGEM\n• Dimensões informadas: 3.6 × 5 × 19 cm\n• Peso bruto informado: 0,45 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "09f0045b-edae-4ec7-884d-932e70d25256",
+      "sku": "VTK019227",
+      "nome": "Tela Plástica Permak 15\" Para Alto Falante Tipo Arlem 121/a - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0e5a284f-4341-4999-ac37-9d7b6664aff7",
+      "sku": "VTK018843",
+      "nome": "Tela Permak 15\" Para Alto Falante Profissional Tipo Pioneer - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c792414f-8be3-44fd-aa54-a661ecf240bb",
+      "sku": "VTK017243",
+      "nome": "Cabo Hdmi Evus C-052 4k Macho X Macho V2.0 10,0m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+      "sku": "VTK017666",
+      "nome": "Multitoc Telefone Gondola C/ Fio Grafite",
+      "error": "Atributos obrigatórios pendentes: Modelo, É sem fio, Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Modelo",
+            "É sem fio",
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e7e76e6e-649f-4e31-9369-6875f254f206",
+      "sku": "VTK018077",
+      "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cf2dcc02-31a2-4264-8472-6f634a5f09e4",
+      "sku": "VTK002577",
+      "nome": "Suporte Para Caixa de Som CH10 Preto ASK",
+      "error": "Atributos obrigatórios pendentes: Lugar de colocação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB10233",
+            "nome": "Suportes para Caixas de Som"
+          },
+          "missing": [
+            "Lugar de colocação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "65140c10-3d26-4f38-a3e4-6e2c588034d1",
+      "sku": "VTK002437",
+      "nome": "Capa Para Violão Folk Harmonics Nylon Preta",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278061",
+            "nome": "Capas para Guitarras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "104b4d28-fbc9-4ed7-8bd6-d0c6f0b7729c",
+      "sku": "VTK005411",
+      "nome": "Cabo Para Instrumento Têxtil Hayonik Player P10 7m Preto/Azul",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "916962da-a149-46b2-a80a-d8ff3393e3a0",
+      "sku": "VTK006152",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Verde",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9c02237e-c475-40f2-b58b-a7c11b75bba0",
+      "sku": "VTK006158",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Amarelo",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "eee6afe9-cdbd-412a-9b94-3c0d5d0aa1ad",
+      "sku": "VTK006192",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Vermelho",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f25daf26-7ac7-4f67-a81d-c36367da57c0",
+      "sku": "VTK006193",
+      "nome": "Cabo Para Instrumento Hayonik Player P10 x P10 5m Azul",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "682138d1-d35b-4efc-98bc-3ac857b65500",
+      "sku": "VTK002528",
+      "nome": "Antena Digital HDTV AMPHIBIONS PROHD2000A Preto Proeletronic",
+      "error": "Atributos obrigatórios pendentes: Localização, É TV digital terrestre",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB44572",
+            "nome": "Antenas de TV"
+          },
+          "missing": [
+            "Localização",
+            "É TV digital terrestre"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b0226edf-3e39-456a-9ca3-88fc8a8b6289",
+      "sku": "VTK003366",
+      "nome": "Encordoamento Para Guitarra 0.10 Niquel Regular Slinky 2221 Ernie Ball",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

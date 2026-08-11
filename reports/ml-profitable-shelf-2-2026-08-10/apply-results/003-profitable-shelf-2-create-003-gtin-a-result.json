@@ -1,0 +1,146 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/003-profitable-shelf-2-create-003-gtin-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-003",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+      "sku": "VTK017159",
+      "category": {
+        "id": "MLB445725",
+        "nome": "Alto-falantes",
+        "dominio": "Acessórios para motos"
+      },
+      "anuncio": {
+        "id": "MLB7381671414",
+        "title": "Bucha Para Alto Falante Original Permak Palio 237 C",
+        "price": 29.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381671414-bucha-para-alto-falante-original-permak-palio-237-c-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 29.7
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "05d26ff9-dde6-4df0-a2d0-325817eeb4e7",
+      "sku": "VTK017189",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381740906",
+        "title": "Reparo Para Driver Shock D 250 Selenium Shock Reparos",
+        "price": 30.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381740906-reparo-para-driver-shock-d-250-selenium-shock-reparos-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 30.57
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ec92357c-bf98-4e74-9876-6f6d42556024",
+      "sku": "VTK018710",
+      "category": {
+        "id": "MLB277405",
+        "nome": "Redes para aquários",
+        "dominio": "Redes para aquários"
+      },
+      "anuncio": {
+        "id": "MLB5034732287",
+        "title": "Kit Adaptador Aquário Cf 265 Para Nokia 8265",
+        "price": 28.79,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034732287-kit-adaptador-aquario-cf-265-para-nokia-8265-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.125,
+        "price": 28.79
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "df45f308-ca98-4322-bf72-8ba4132b3d56",
+      "sku": "VTK019629",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "Fontes de alimentação comutadas integradas"
+      },
+      "anuncio": {
+        "id": "MLB7381671776",
+        "title": "Fonte Chaveada Mxt Para Cftv 12v 1a",
+        "price": 29.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381671776-fonte-chaveada-mxt-para-cftv-12v-1a-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 29.04
+      }
+    }
+  ],
+  "failed": []
+}

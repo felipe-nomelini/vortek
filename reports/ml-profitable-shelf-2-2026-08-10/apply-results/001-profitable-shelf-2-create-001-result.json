@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/001-profitable-shelf-2-create-001-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-001",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1c4d893b-8980-44a5-bb9f-62a7c419133d",
+      "sku": "VTK012144",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "anuncio": {
+        "id": "MLB5034704431",
+        "title": "Pilha Alcalina Aaa2 Elgin Cartela Com 02 Unidades",
+        "price": 22.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034704431-pilha-alcalina-aaa2-elgin-cartela-com-02-unidades-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 12.35,
+        "shipping_source": "erp",
+        "ml_fee": 0.14,
+        "price": 22.67
+      }
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,71 @@
+{
+  "event": "bkr1_battery_dynamic_pricing_operation_summary",
+  "date": "2026-08-10",
+  "status": "success",
+  "supplier": "BKR1",
+  "scope": "pilhas_e_baterias",
+  "das_rate": 0.05,
+  "catalog": {
+    "bkr1_products": 2401,
+    "battery_products": 1062,
+    "scannable_products": 775,
+    "without_scannable_listing": 287
+  },
+  "matrix": {
+    "eligible_products": 622,
+    "defensive_products": 561,
+    "offensive_products": 61,
+    "outside_rules": 153
+  },
+  "execution": {
+    "safe_products_processed": 609,
+    "defensive_products_processed": 552,
+    "offensive_products_processed": 57,
+    "products_with_price_change": 608,
+    "products_already_correct": 1,
+    "listings_changed": 706,
+    "price_increases": 596,
+    "price_decreases": 110,
+    "fee_contracts_updated": 79,
+    "failures": 0
+  },
+  "not_applied": {
+    "eligible_products_with_only_closed_listings": 13,
+    "products_with_unavailable_linked_listing_but_active_listing_updated": 141,
+    "unavailable_linked_listings_left_unchanged": 142,
+    "outside_rules": 153,
+    "without_scannable_listing": 287
+  },
+  "critical_skus": [
+    { "sku": "VTK000411", "price": 105.00 },
+    { "sku": "VTK012247", "price": 165.18 },
+    { "sku": "VTK003684", "price": 80.63 },
+    { "sku": "VTK003764", "price": 66.88 },
+    { "sku": "VTK012173", "price": 20.99 },
+    { "sku": "VTK003761", "price": 42.95 },
+    { "sku": "VTK012250", "price": 46.33 },
+    { "sku": "VTK012032", "price": 28.73 }
+  ],
+  "verification": {
+    "erp_products_verified": 609,
+    "erp_product_mismatches": 0,
+    "erp_listing_records_verified": 708,
+    "erp_listing_mismatches": 0,
+    "mercado_livre_price_updates_verified_per_request": true,
+    "failed_updates": 0
+  },
+  "logs": {
+    "critical_apply": "critical-apply-2026-08-10/events.ndjson",
+    "all_dry_run": "all-dry-run-2026-08-10/events.ndjson",
+    "all_apply": "all-apply-2026-08-10/events.ndjson",
+    "linked_status_followup_apply": "linked-status-followup-apply-2026-08-10/events.ndjson",
+    "primary_status_followup_apply": "primary-status-apply-2026-08-10/events.ndjson"
+  },
+  "payload": {
+    "success": true,
+    "supplier": "BKR1",
+    "processed_products": 609,
+    "updated_listings": 706,
+    "errors": 0
+  }
+}

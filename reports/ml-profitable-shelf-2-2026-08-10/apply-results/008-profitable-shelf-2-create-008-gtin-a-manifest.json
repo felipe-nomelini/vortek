@@ -1,0 +1,28 @@
+{
+  "batchNumber": 8,
+  "batchId": "profitable-shelf-2-create-008",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "5385c6d7-c16c-4bce-9394-adf20c11f3fa",
+      "sku": "VTK017801",
+      "nome": "Resistência Hikari Hplus Sc-40 W 220v Com 2 Peças",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 29.8,
+      "estoque": 24,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Resistência Hikari Hplus Sc 40 W 220v Com 2 Peças",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 29.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 50.42
+      }
+    }
+  ]
+}

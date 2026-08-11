@@ -1,0 +1,91 @@
+{
+  "batchNumber": 10,
+  "batchId": "profitable-shelf-2-create-010",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+      "sku": "VTK019466",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 37.5,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 37.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 61.11
+      }
+    },
+    {
+      "produtoId": "d8263926-b944-4847-9b7f-ace42c2f5dcf",
+      "sku": "VTK017980",
+      "nome": "Controle Remoto Fks Cr961 02 Botões Fiat",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 39.9,
+      "estoque": 18,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controle Remoto Fks Cr961 02 Botões Fiat",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 39.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 64.44
+      }
+    },
+    {
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 41.9,
+      "estoque": 30,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chaveiro Positron Novo Px 32 Cyber 4 Botões Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 41.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 67.22
+      }
+    },
+    {
+      "produtoId": "fea99fce-6cc9-4753-aa6a-764037806602",
+      "sku": "VTK012984",
+      "nome": "Palheta Stubby 2mm Pct C/6 474r2.0 Dunlop (1852)",
+      "fornecedor": "BKR1",
+      "custo": 42.96,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Stubby 2mm Pct C 6 474r2.0 Dunlop 1852",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 42.96,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 68.69
+      }
+    }
+  ]
+}

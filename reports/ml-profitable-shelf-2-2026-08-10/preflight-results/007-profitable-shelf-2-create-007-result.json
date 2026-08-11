@@ -1,0 +1,693 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/007-profitable-shelf-2-create-007-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-007",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "e965914f-f1ad-496d-a062-e356995e054b",
+      "sku": "VTK018310",
+      "category": {
+        "id": "MLB277529",
+        "nome": "Controles Remotos",
+        "dominio": "Controles remotos para máquinas industriais"
+      },
+      "basePrice": 58.85,
+      "familyName": "Controle Remoto Fks Cr955 G3 Digital 433mhz",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 25.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 46.29
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FKS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR955"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Fks Cr955 G3 Digital 433mhz\n\nVISÃO GERAL\nControle remoto autocode frequência 433 Mhz. Atua como sensor de presença *Imagem meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FKS\n• Modelo: CR955\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FKS\n• NCM: 85269200\n• SKU: VTK018310\n\nEMBALAGEM\n• Dimensões informadas: 1 × 3 × 4 cm\n• Peso bruto informado: 0,012 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "category": {
+        "id": "MLB432949",
+        "nome": "Reparos",
+        "dominio": "Produtos eletrônicos"
+      },
+      "basePrice": 55.98,
+      "familyName": "Reparo Tweeter Shock Completo St 450 Trio SHOCK REPAROS",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 25.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 43.78
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca do produto eletrônico",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7892046021254"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Tweeter Shock Completo St-450 Trio\n\nVISÃO GERAL\nInformações do Produto Reparo Tweeter Completo ST-450 Trio - Reparo Fenólico - Peça para Reposição de Aparelhos Danificados - Modelo Paralelo Informações Técnicas Compatível com Super Tweeter JBL Selenium ST450 TRIO Potência RMS 300W Potência Musical 600W Resposta de Frequência 4000 a 20000Hz Sensibilidade 1W@1m 110dB Impedância 8 Ohms\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca do produto eletrônico: SHOCK REPAROS\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• GTIN: 7892046021254\n• NCM: 85189010\n• SKU: VTK018455\n\nEMBALAGEM\n• Dimensões informadas: 4 × 12.5 × 12.5 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4893fb39-2110-4f90-a680-d1fd7b2262a1",
+      "sku": "VTK025771",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 56.79,
+      "familyName": "4 Pilhas Alcalinas C Sm 2 Elgin 2 Cart",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 26,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 44.52
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "4 Pilhas Alcalinas C Sm-2 Elgin (2 Cart)\n\nVISÃO GERAL\n4 Pilhas Alcalinas C Sm-2 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x Pilha Alcalina Tipo C Elgin Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo C Elgin\n\n A Pilha Alcalina Tipo C Elgin em embalagem com 2 unidades oferece potência estável e longa duração, ideal para aparelhos como lanternas, rádios, brinquedos e equipamentos que exigem maior energia.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo C\n\n•    Formato: C (LR14)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas\n\n•    Rádios portáteis\n\n•    Brinquedos eletrônicos\n\n•    Aparelhos de som\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável para aparelhos de maior consumo\n\nProteção anti-vazamento para maior segurança\n\nProduto de alta qualidade e confiabilidade Elgin\n\n A Pilha Alcalina Tipo C Elgin Cartela com 2 unidades é ideal para quem busca uma fonte de energia confiável e duradoura para dispositivos que exigem mais potência, garantindo desempenho e segurança.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 2\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.11\n• SKU: VTK025771\n\nEMBALAGEM\n• Dimensões informadas: 3 × 9 × 13 cm\n• Peso bruto informado: 0,26 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "59491d00-93ec-497f-a8a1-756fcaa8cf25",
+      "sku": "VTK012418",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 57.44,
+      "familyName": "Bateria CR123 3V Panasonic 1 Unidade",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 26.53,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45.25
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Panasonic"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR123"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bateria CR123 3V Panasonic - 1 Unidade\n\nVISÃO GERAL\nModelo: CR123 Marca: Panasonic Voltagem: 3V Capacidade: Aproximadamente 1.550 mAh Dimensões: 34,5 mm de altura x 17 mm de diâmetro Peso: Aproximadamente 16 gramas Durabilidade: Longa vida útil com uma taxa de autodescarga muito baixa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Panasonic\n• Modelo: CR123\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Panasonic\n• NCM: 8506.50.10\n• SKU: VTK012418\n\nEMBALAGEM\n• Dimensões informadas: 10 × 10 × 3 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "22c4be87-727e-4aad-95b5-c767068a9034",
+      "sku": "VTK025715",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 58.27,
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 27.2,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 46.16
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n20 Baterias Litio Cr2032 Elgin (4 Cart)\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\n20 Baterias Litio Cr2032 Elgin (4 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025715\n\nEMBALAGEM\n• Dimensões informadas: 2 × 5 × 19 cm\n• Peso bruto informado: 0,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9d3e1af8-3cd3-49aa-a3ff-69759c47f3ad",
+      "sku": "VTK018338",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "Extensões, filtros de linhas e protetores eletrônicos"
+      },
+      "basePrice": 60.89,
+      "familyName": "Cabo Extensão De Antena Permak 1,50 Metros PC 2",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 27.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 48.65
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "50METROS"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Extensão De Antena Permak 1,50 Metros - PC / 2\n\nVISÃO GERAL\nExtensão De Antena Cabo extensão 1,50Metros Múltiplo 2 unidades\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: 50METROS\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• NCM: 85444200\n• SKU: VTK018338\n\nEMBALAGEM\n• Dimensões informadas: 1 × 11 × 12 cm\n• Peso bruto informado: 0,037 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ab6ed7fb-e97f-46f8-9cc0-c7f44b8c2c58",
+      "sku": "VTK018704",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "Extensões, filtros de linhas e protetores eletrônicos"
+      },
+      "basePrice": 60.89,
+      "familyName": "Cabo Extensão De Antena Permak 2,00 Metros PC 2",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 27.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 48.65
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "00METROS"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Extensão De Antena Permak 2,00 Metros - PC / 2\n\nVISÃO GERAL\nExtensão De Antena Cabo extensão 2,00Metros Múltiplo 2 unidades\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: 00METROS\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• NCM: 85444200\n• SKU: VTK018704\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 18 × 18 cm\n• Peso bruto informado: 0,106 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "abc4ad8a-6539-4037-a21d-f233882fc2b6",
+      "sku": "VTK025680",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 59.51,
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 28.2,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.53
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "15 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n15 Baterias Litio Cr2016 Elgin (3 Cart)\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025680\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6 × 19 cm\n• Peso bruto informado: 0,15 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "b0e6b26e-fd4a-4e69-98b4-b257063c109f",
+      "sku": "VTK018434",
+      "nome": "Tela Para Alto Falante Permak 114/o 12\" Plástica - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9ab96d14-0427-4247-9a4f-ec7d087fe5a1",
+      "sku": "VTK012684",
+      "nome": "Palheta Nylon Jazz Iii Vermelha Pct C/4 Un 47r3n Dunlop (1827)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+      "sku": "VTK002772",
+      "nome": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271531",
+            "nome": "Biqueiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "67bc35b4-73bf-484f-8bbb-6d39710108c9",
+      "sku": "VTK012628",
+      "nome": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5b1a9381-ca77-406b-a24e-8b8b5aee9efe",
+      "sku": "VTK012764",
+      "nome": "Palheta Guitarra Dur Prec 6dpr6 D Addario 1.20mm 10un",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45712",
+            "nome": "Palhetas para Guitarras"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "15194621-d655-4bf5-8148-a7be13fa04de",
+      "sku": "VTK017242",
+      "nome": "Cabo Hdmi Evus C-051 4k Macho X Macho V2.0 5,0m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "152238b0-74d4-4e71-b611-3e3950e1ed9c",
+      "sku": "VTK012297",
+      "nome": "Kit 04 Conectores Xlr Macho P/ Pci 3 Polos Wc 4050 Wireconex",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+      "sku": "VTK012327",
+      "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "dc408ec6-8e7c-420d-951c-00c68ca7256d",
+      "sku": "VTK005491",
+      "nome": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e854a49a-deb0-4714-8aed-425c4fdbe378",
+      "sku": "VTK017215",
+      "nome": "Arandela Fiamon Sem Falante Redonda Branca 6\"",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "224a8e84-1f7c-4167-9bc0-7a48b468338e",
+      "sku": "VTK018304",
+      "nome": "Chicote Permak Para Cd Honda Civic 2007 A 2011 - 35/d2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430193",
+            "nome": "Chicotes do Radio"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2e4c3609-efb1-4acb-b708-2634db72ecaa",
+      "sku": "VTK000022",
+      "nome": "Encordoamento Para Guitarra .008 Super Leve Giannini GEEGST8",
+      "error": "Atributos obrigatórios pendentes: Instrumento recomendado",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Instrumento recomendado"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

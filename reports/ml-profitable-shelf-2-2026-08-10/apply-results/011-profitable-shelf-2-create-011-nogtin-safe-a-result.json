@@ -1,0 +1,112 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/011-profitable-shelf-2-create-011-nogtin-safe-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-011",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "238ea83d-2998-4380-9c4e-a6db59ed9e1b",
+      "sku": "VTK025711",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7381752726",
+        "title": "20 Pilhas Moeda Lítio Elgin Cr2430 3v Kit",
+        "price": 89.46,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381752726-20-pilhas-moeda-litio-elgin-cr2430-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 89.46
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "502bad99-2974-4af4-b71d-c8760d5c1adf",
+      "sku": "VTK025779",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034767251",
+        "title": "40 Pilhas Moeda Lítio Elgin Cr2025 3v Kit",
+        "price": 93.32,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034767251-40-pilhas-moeda-litio-elgin-cr2025-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 93.32
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "35b3e9d1-afe4-4c83-8f80-f25297f8c4d1",
+      "sku": "VTK025733",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7381752856",
+        "title": "25 Pilhas Moeda Lítio Elgin Cr2016 3v Kit",
+        "price": 95.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381752856-25-pilhas-moeda-litio-elgin-cr2016-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 95.54
+      }
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,614 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/023-profitable-shelf-2-create-023-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-023",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "5ca865f2-7300-4e91-b8f2-7d3e85c07fb8",
+      "sku": "VTK004137",
+      "category": {
+        "id": "MLB6535",
+        "nome": "Grades para Caixas de Som",
+        "dominio": "Grades para caixas de som"
+      },
+      "basePrice": 203.65,
+      "familyName": "Arandela 6 Polegadas FRAHM 50W Quadrada 6CX Preta",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 139.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.16,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 305.37
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "6CX"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "356443"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896673814623"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Arandela 6\" FRAHM 50W Quadrada 6CX Preta\n\nVISÃO GERAL\nUma linha completa projetada para atender a necessidade de sonorização dos mais variados ambientes. Na residência ou em ambientes comerciais, as novas arandelas Frahm permitem a perfeita integração entre o produto e o ambiente em que são instaladas. As bordas ultra finas garantem a presença discreta do produto e componentes de alta fidelidade produzem um som envolvente.\n\nCaracterísticas: Disponível no formato redondo e quadrado; As molduras foram projetadas com sistema de ampliação do ângulo de dispersão; Possuem pontos exclusivos para a fixação dos mais variados tipos de trafos, não permitindo que sejam colocados em pontos que causam danos a estrutura; No modelo quadrado cada uma das torres é responsável pelo travamento de uma das laterais da arandela o que proporciona fixação de 100% de sua base no teto; O projeto permite flexibilidade na furação do local de instalação (se a a furação não ficar perfeita conforme o gabarito, ainda assim a arandela irá se encaixar sem que o trabalho precise ser refeito). Permite o travamento desde a menor até a maior estrutura de teto (de 1 mm a 30 mm); Terminais de engate rápido; Conjunto móvel otimizado para a reprodução de baixas frequências;\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FRAHM\n• Modelo: 6CX\n• Número de peça: 356443\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FRAHM\n• GTIN: 7896673814623\n• NCM: 8518.21.00\n• SKU: VTK004137\n\nEMBALAGEM\n• Dimensões informadas: 24.5 × 25 × 9.5 cm\n• Peso bruto informado: 1,17 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "476bee08-d8ea-43db-bc1f-b07e4d59756a",
+      "sku": "VTK021063",
+      "category": {
+        "id": "MLB5914",
+        "nome": "Kits de Teclado e Mouse",
+        "dominio": "Kits de teclado e mouse"
+      },
+      "basePrice": 196.27,
+      "familyName": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 139.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 289.39
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MK235"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor do teclado",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb Preto Sem Fio\n\nVISÃO GERAL\nMK235 WIRELESS KEYBOARD AND MOUSE COMBO Durável. Simples. Sem fio Esta dupla oferece todas as funcionalidades de que você precisa em um design confortável e durável que é fácil de usar e mantém seu espaço limpo e agradável.\n\nConstruído com os padrões de qualidade conhecidos da Logitech, o MK235 Wireless Combo está nele para o longo prazo. Teclado de tamanho normal, mouse ambidestro - totalmente sem fio e completo. Esta dupla oferece todas as funcionalidades de que você precisa em um design confortável e durável que é fácil de usar e mantém seu espaço limpo e agradável.\n\nConstruído com os padrões de qualidade conhecidos da Logitech, o MK235 está nele para o longo prazo. FERRAMENTAS PARA O SUCESSO Todas as teclas de que você precisa, com um layout de teclado de tamanho completo, teclado numérico e 15 teclas de atalho de fácil acesso que tornam a navegação e a entrada de dados uma brisa. As teclas curvas e suaves tornam a digitação uma experiência fácil e confortável.\n\nMOUSE COMPACTO AMBIDESTRO O design compacto e portátil oferece um formato confortável para usuários destros e canhotos. É fácil de usar, jogue em uma bolsa e leve com você para qualquer lugar. TOTALMENTE SEM FIO Sem instalação ou aborrecimento.\n\nO MK235 funciona assim que você conecta o receptor a uma porta USB. Uma conexão sem fio forte e confiável significa que você pode esquecer interrupções, com um alcance de 10 m* que lhe dá a liberdade sem fio de que você precisa. *O alcance sem fio pode variar devido às condições ambientais e de computação.\n\nTOTALMENTE A PROVA DE TRABALHO O teclado é construído para suportar o uso no local de trabalho e contratempos, a construção durável inclui pernas de inclinação robustas e design resistente a derramamento*. Tratamento antidesgaste nas teclas para nunca perder o desenho das letras nas teclas. *Testado sob condições limitadas (máximo de derramamento de líquido de 60 ml).\n\nNão mergulhe o teclado em líquido. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: MK235\n• Cor do teclado: Preto\n• Cor principal: Preto\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 84716052\n• SKU: VTK021063\n\nEMBALAGEM\n• Dimensões informadas: 4 × 14 × 50.5 cm\n• Peso bruto informado: 0,694 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8868a5bc-82a8-41eb-af7a-97c835d83ac1",
+      "sku": "VTK025899",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 214.91,
+      "familyName": "20 Pilhas Alcalinas D Elgin 10 Cartelas C 2 Un",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 149.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 317.27
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "LR20"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Alcalinas D Elgin (10 Cartelas C/2 Un)\n\nVISÃO GERAL\n20 Pilhas Alcalinas D Elgin (10 Cartelas C/2 Un)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: LR20\n• Unidades por kit: 2\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025899\n\nEMBALAGEM\n• Dimensões informadas: 18 × 16 × 10 cm\n• Peso bruto informado: 2,95 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7b940b44-b0c6-4033-a7a8-2366f1efed0d",
+      "sku": "VTK025900",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 214.91,
+      "familyName": "20 Pilhas Alcalinas D Lr20 Sm 2 Elgin 10 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 149.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 317.27
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "10"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (10 Cart)\n\nVISÃO GERAL\n20 Pilhas Alcalinas D Lr20 Sm-2 Elgin (10 Cart)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 10\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025900\n\nEMBALAGEM\n• Dimensões informadas: 18 × 9 × 16 cm\n• Peso bruto informado: 2,6 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "b7f31705-bae3-4156-9c45-e3e3f47caba6",
+      "sku": "VTK017400",
+      "nome": "Cabo Solar Cabel 6,0mm² Preto 25m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Quantidade de pinos",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455358",
+            "nome": "Cabos para Painéis Solares"
+          },
+          "missing": [
+            "Tipo de cabo",
+            "Tamanho da seção",
+            "Quantidade de pinos"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4498a03d-7824-4998-bb49-00c3114efd57",
+      "sku": "VTK017401",
+      "nome": "Cabo Solar Cabel 6,0mm² Vermelho 25m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Quantidade de pinos",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455358",
+            "nome": "Cabos para Painéis Solares"
+          },
+          "missing": [
+            "Tipo de cabo",
+            "Tamanho da seção",
+            "Quantidade de pinos"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6aadcd86-f85e-4608-9de5-1cb16f6bfacc",
+      "sku": "VTK019952",
+      "nome": "Telefone Sem Fio Intelbras Ts5121 Ramal Digital",
+      "error": "Atributos obrigatórios pendentes: É sem fio, Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "É sem fio",
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a2a8c7b8-aae0-4782-8b91-d74299209621",
+      "sku": "VTK018598",
+      "nome": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+      "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Modelo",
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "776f1486-0931-48df-854f-5b658ea87912",
+      "sku": "VTK018762",
+      "nome": "Caixa R.l.p. Vazia 2 A.f 12\" + 2 Dr + 2 Tw + Duto",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB277692",
+            "nome": "Caixas de Gordura"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b58b4871-0a5c-49f0-8070-4491ef73e0cf",
+      "sku": "VTK025959",
+      "nome": "Frigideira Redonda Rochedo Robusta 24cm Grafite - CXM / 3",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107482",
+            "nome": "Frigideiras"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "dcb99854-65d0-487e-bde0-29e63e2bc630",
+      "sku": "VTK018428",
+      "nome": "Cabo Coaxial Cabletech Std-40+tp3 Branco 100 Metros 801214000p01cb12",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f0491c9e-8b43-4fe7-8027-eec8e5d62f8a",
+      "sku": "VTK018905",
+      "nome": "Cabinho Auto Tiaflex 0,50 Mm Vermelho 100 Metros 105006",
+      "error": "Atributos obrigatórios pendentes: Material",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB419761",
+            "nome": "Cabinas"
+          },
+          "missing": [
+            "Material"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f0a4e378-7462-4642-9d6e-8de79f71c495",
+      "sku": "VTK025547",
+      "nome": "36 Baterias Auditiva 312 Duracell (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d4d63d7b-e9a4-4dd7-83ef-1417845b3f54",
+      "sku": "VTK025548",
+      "nome": "36 Baterias Auditivas 10 Duracell (6 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3739630d-1cbe-4198-9fca-924f265c5c4b",
+      "sku": "VTK025549",
+      "nome": "36 Baterias Auditivas 13 Duracell (6 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3f53d0fa-3051-482c-9fa8-e66eb0fe558b",
+      "sku": "VTK025550",
+      "nome": "36 Baterias Auditivas 675 Duracell (6 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "36394ab4-0d3d-48ce-9646-e22896315eb3",
+      "sku": "VTK005426",
+      "nome": "Kit Cabo Para Pedal Hayonik Linha Player 15cm Sortido Com 20",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2abc130b-92dd-4b13-8bb5-ec9749f9382f",
+      "sku": "VTK025956",
+      "nome": "Panela de Pressão Rochedo Turbo Fechamento Interno 7 Litros Polida",
+      "error": "Atributos obrigatórios pendentes: Tipo de panela",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107501",
+            "nome": "Caçarolas e Caldeirões"
+          },
+          "missing": [
+            "Tipo de panela"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ebb84cd8-c62e-4c91-8f53-85d294b6ce03",
+      "sku": "VTK012632",
+      "nome": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e618f510-6298-493d-b36d-b92931079572",
+      "sku": "VTK018306",
+      "nome": "Parafuso P/ Alto Falante 2 \"s Cento - CT / 5",
+      "error": "Atributos obrigatórios pendentes: Tipo de parafuso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB235592",
+            "nome": "Parafusos de Fenda"
+          },
+          "missing": [
+            "Tipo de parafuso"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

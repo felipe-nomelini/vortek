@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/001-profitable-shelf-2-create-001-mass-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-001",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "3879e22f-03ce-4a4b-9003-d81c449cf43d",
+      "sku": "VTK012037",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "anuncio": {
+        "id": "MLB5034706529",
+        "title": "Pilha Alcalina Premium Panasonic Aa Pequena 02 Unidades",
+        "price": 25.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034706529-pilha-alcalina-premium-panasonic-aa-pequena-02-unidades-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 12.35,
+        "shipping_source": "erp",
+        "ml_fee": 0.14,
+        "price": 25.86
+      }
+    }
+  ],
+  "failed": []
+}

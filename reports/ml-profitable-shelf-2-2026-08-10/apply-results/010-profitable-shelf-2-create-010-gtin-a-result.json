@@ -1,0 +1,146 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/010-profitable-shelf-2-create-010-gtin-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-010",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+      "sku": "VTK019466",
+      "category": {
+        "id": "MLB439227",
+        "nome": "Antenas",
+        "dominio": "Antenas para amplificadores de sinal para celulares"
+      },
+      "anuncio": {
+        "id": "MLB7381674662",
+        "title": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10",
+        "price": 59.46,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381674662-cabo-de-descida-proeletronic-para-celular-fixo-rgc58-10-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 59.46
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d8263926-b944-4847-9b7f-ace42c2f5dcf",
+      "sku": "VTK017980",
+      "category": {
+        "id": "MLB440306",
+        "nome": "Controles",
+        "dominio": "Segurança veicular"
+      },
+      "anuncio": {
+        "id": "MLB7381674860",
+        "title": "Controle Remoto Fks Cr961 02 Botões Fiat",
+        "price": 66.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381674860-controle-remoto-fks-cr961-02-botoes-fiat-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 66.29
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "category": {
+        "id": "MLB412060",
+        "nome": "Chaveiros",
+        "dominio": "Chaveiros"
+      },
+      "anuncio": {
+        "id": "MLB7381675066",
+        "title": "Chaveiro Positron Novo Px 32 Cyber 4 Botões Preto Preto",
+        "price": 66.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381675066-chaveiro-positron-novo-px-32-cyber-4-botoes-preto-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 66.3
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fea99fce-6cc9-4753-aa6a-764037806602",
+      "sku": "VTK012984",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "anuncio": {
+        "id": "MLB7381744424",
+        "title": "Palheta Stubby 2mm Pct C 6 474r2.0 Dunlop 1852",
+        "price": 70.16,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381744424-palheta-stubby-2mm-pct-c-6-474r20-dunlop-1852-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 70.16
+      }
+    }
+  ],
+  "failed": []
+}

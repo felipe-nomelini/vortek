@@ -1,0 +1,66 @@
+{
+  "batchId": "profitable-shelf-2026-08-10",
+  "items": [
+    {
+      "produtoId": "8d152f45-e286-4b2b-9462-631d251d929d",
+      "sku": "VTK000361",
+      "nome": "Cadeira Ergonômica ThunderX3 Yama1 Preta",
+      "categoryId": "MLB447782",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "Yama1" },
+        { "id": "BACKREST_HEIGHT", "value_id": "7995975", "value_name": "74 cm" },
+        { "id": "SEAT_DEPTH", "value_id": "9567306", "value_name": "50 cm" },
+        { "id": "OFFICE_CHAIR_WIDTH", "value_id": "7661942", "value_name": "66 cm" },
+        { "id": "MAX_CHAIR_HEIGHT", "value_id": "10312765", "value_name": "128 cm" },
+        { "id": "REQUIRES_ASSEMBLY", "value_id": "242085", "value_name": "Sim" },
+        { "id": "IS_GAMER", "value_id": "242085", "value_name": "Sim" },
+        { "id": "IS_ERGONOMIC", "value_id": "242085", "value_name": "Sim" },
+        { "id": "IS_SWIVEL", "value_id": "242085", "value_name": "Sim" },
+        { "id": "INCLUDES_ASSEMBLY_MANUAL", "value_id": "242085", "value_name": "Sim" }
+      ]
+    },
+    {
+      "produtoId": "a5d0514a-87ef-45f7-b811-03b9e5eda284",
+      "sku": "VTK001959",
+      "nome": "Trombone de Vara Harmonics Tenor BB HSL-700L Laqueado",
+      "categoryId": "MLB29307"
+    },
+    {
+      "produtoId": "ebf5bf73-1146-42df-b6df-381430b7156f",
+      "sku": "VTK000890",
+      "nome": "Amplificador Para Instrumentos Laney AH40 Preto 40w",
+      "categoryId": "MLB45248",
+      "attributeOverrides": [
+        { "id": "RECOMMENDED_INSTRUMENTS", "value_id": "182360", "value_name": "Multi-propósito" }
+      ]
+    },
+    {
+      "produtoId": "6b83343e-4bb3-42f6-801e-f388034a1cf8",
+      "sku": "VTK012101",
+      "nome": "Pilha Alcalina Max Aa Cart 2 Sm-96 Energizer",
+      "categoryId": "MLB7060"
+    },
+    {
+      "produtoId": "a32c06fe-483e-4040-a70b-1de7ad0fe7eb",
+      "sku": "VTK000464",
+      "nome": "Pilha Alcalina 12v MN21/A23 (C/2 Pilhas) Duracell",
+      "categoryId": "MLB7060"
+    },
+    {
+      "produtoId": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+      "sku": "VTK012014",
+      "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+      "categoryId": "MLB38172",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "WC 3 FCA" }
+      ],
+      "preflight": {
+        "omitGtin": true,
+        "emptyGtinReason": {
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      }
+    }
+  ]
+}

@@ -1716,11 +1716,18 @@ export default function PedidosPage() {
       render: (v: number) => formatCurrency(v),
     },
     {
-      title: 'Status', dataIndex: ['situacao', 'valor'], key: 'situacao', width: 140,
+      title: 'Status', dataIndex: ['situacao', 'valor'], key: 'situacao', width: 160,
       sorter: true,
       sortOrder: getRemoteSortOrder('situacao', sort),
       render: (status: OrderStatus, record: Order) => {
         const canTrack = Boolean(record.ml_shipment_id);
+        let releaseWindow: { when: string; remaining: string | null } | null = null;
+        if (record.ml_fiscal_release_at && record.situacao.valor !== 'etiqueta_impressa') {
+          const releaseAt = getMlReleaseComparableDate(record.ml_fiscal_release_at);
+          if (releaseAt && releaseAt.getTime() > Date.now()) {
+            releaseWindow = formatReleaseWindow(record.ml_fiscal_release_at);
+          }
+        }
         const statusTag = (
           <Tag
             color={statusColor[status]}
@@ -1736,14 +1743,23 @@ export default function PedidosPage() {
           </Tag>
         );
         return (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            {canTrack ? (
-              <Tooltip title={record.rastreio ? `Rastrear envio ${record.rastreio}` : 'Rastrear envio'}>
-                {statusTag}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              {canTrack ? (
+                <Tooltip title={record.rastreio ? `Rastrear envio ${record.rastreio}` : 'Rastrear envio'}>
+                  {statusTag}
+                </Tooltip>
+              ) : statusTag}
+              {(record as any).ml_claim_id && (
+                <WarningOutlined style={{ color: '#faad14', fontSize: 14 }} title="Reclamação em andamento" />
+              )}
+            </div>
+            {releaseWindow && (
+              <Tooltip title={`Etiqueta aguardando liberação pelo Mercado Livre${releaseWindow.remaining ? ` (${releaseWindow.remaining})` : ''}`}>
+                <Tag color="orange" style={{ marginInlineEnd: 0 }}>
+                  Libera em {releaseWindow.when}
+                </Tag>
               </Tooltip>
-            ) : statusTag}
-            {(record as any).ml_claim_id && (
-              <WarningOutlined style={{ color: '#faad14', fontSize: 14 }} title="Reclamação em andamento" />
             )}
           </div>
         );
@@ -1767,22 +1783,6 @@ export default function PedidosPage() {
               </Space>
             </Tooltip>
           );
-        }
-        if (record.ml_fiscal_release_at && record.situacao.valor !== 'etiqueta_impressa') {
-          const releaseAt = getMlReleaseComparableDate(record.ml_fiscal_release_at);
-          if (releaseAt && releaseAt.getTime() > Date.now()) {
-            const formatted = formatReleaseWindow(record.ml_fiscal_release_at);
-            const content = (
-              <Tag color="orange">
-                Libera em {formatted.when}
-              </Tag>
-            );
-            return (
-              <Tooltip title={`Venda aguardando janela do ML para vínculo fiscal/etiqueta${formatted.remaining ? ` (${formatted.remaining})` : ''}`}>
-                {content}
-              </Tooltip>
-            );
-          }
         }
         if (!nf) {
           const nfeStatus = String(record.nfe_status || '').toLowerCase();

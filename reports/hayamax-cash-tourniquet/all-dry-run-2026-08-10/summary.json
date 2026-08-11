@@ -1,0 +1,15 @@
+{
+  "event": "hayamax_cash_tourniquet_summary",
+  "timestamp_utc": "2026-08-10T05:06:34.385Z",
+  "mode": "dry_run",
+  "scope": "all",
+  "output_dir": "/home/felipe/Documentos/Projetos/vortek/reports/hayamax-cash-tourniquet/all-dry-run-2026-08-10",
+  "products_scanned": 1169,
+  "automated_items_found": 2,
+  "counts": {
+    "unchanged": 5,
+    "planned": 975,
+    "skipped": 189
+  },
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/hayamax-cash-tourniquet/all-dry-run-2026-08-10/events.ndjson"
+}

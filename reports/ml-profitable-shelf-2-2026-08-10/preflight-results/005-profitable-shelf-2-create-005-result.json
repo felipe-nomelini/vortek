@@ -1,0 +1,586 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/005-profitable-shelf-2-create-005-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-005",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "a6cc0e72-9a06-454e-afc7-483734544be1",
+      "sku": "VTK018663",
+      "category": {
+        "id": "MLB430565",
+        "nome": "Ganchos para Reboque",
+        "dominio": "Ganchos de reboque para veículos"
+      },
+      "basePrice": 51.15,
+      "familyName": "Haste Permak Fiat Toro Jeep Renegade Compass Ov",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 37.71
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Haste Permak Fiat Toro/ Jeep Renegade/ Compass Ov\n\nVISÃO GERAL\nHaste Permak Fiat Toro/ Jeep Renegade/ Compass OV. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Tipo de veículo: Carro/Caminhonete\n• Marca: PERMAK\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253507048\n• NCM: 85291090\n• SKU: VTK018663\n\nEMBALAGEM\n• Dimensões informadas: 1.5 × 2 × 21 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9d9f9acd-f081-4617-9b76-7a108bdd7a72",
+      "sku": "VTK018753",
+      "category": {
+        "id": "MLB116341",
+        "nome": "Conectores de Scanners",
+        "dominio": "Conectores OBD para veículos"
+      },
+      "basePrice": 51.15,
+      "familyName": "Conector Permak Cd Do Nissan March Livina Versa 35 d7",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 37.71
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "326211"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253492078"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Conector Permak Cd Do Nissan March Livina Versa 35-d7\n\nVISÃO GERAL\nInformações do Produto Conector para CD Nissan - 35-D7\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Tipo de veículo: Carro/Caminhonete\n• Número de peça: 326211\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253492078\n• NCM: 85444200\n• SKU: VTK018753\n\nEMBALAGEM\n• Dimensões informadas: 2 × 3.5 × 19 cm\n• Peso bruto informado: 0,022 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d0176b13-b6b7-44ce-91b4-b3578713e214",
+      "sku": "VTK025682",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 49.88,
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 20.4,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.85
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "15 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n15 Baterias Litio Cr2032 Elgin (3 Cart)\n\nKit com 3 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 3x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\n15 Baterias Litio Cr2032 Elgin (3 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025682\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6 × 19 cm\n• Peso bruto informado: 0,15 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b6daed03-8deb-461c-9472-059f25c252ea",
+      "sku": "VTK017545",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 52.44,
+      "familyName": "Reparo Para Driver Shock D 250 Trio Selenium SHOCK REPAROS",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 20.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 39.14
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "269461"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "D-250"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Para Driver Shock D-250 Trio Selenium\n\nVISÃO GERAL\nInformações do Produto Reparo de fácil troca Informações Técnica Impedância: 8 ohms\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SHOCK REPAROS\n• Número de peça: 269461\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: D-250\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• GTIN: 7892046020059\n• NCM: 85189010\n• SKU: VTK017545\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 8.5 × 10 cm\n• Peso bruto informado: 0,028 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ace7354e-71b5-440b-b076-8b6ea2e495a9",
+      "sku": "VTK025640",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 51.6,
+      "familyName": "10 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 21.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.77
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2430"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Moeda Lítio Elgin CR2430 3V Kit\n\nVISÃO GERAL\n10 Baterias CR2430 Elgin (2 Cart)\n\nKit com 2 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 2x 5 Baterias Cr2430 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\n5 Baterias de Lítio CR2430 Elgin Energia de Alta Capacidade para Seus Dispositivos\n\n As baterias de lítio CR2430 Elgin oferecem alta capacidade energética e longa vida útil. São ideais para dispositivos que exigem potência constante, como controles automotivos, balanças digitais, dispositivos médicos e equipamentos eletrônicos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2430\n\n•    Formato: Bateria tipo moeda (botão)\n\n•    Composição: Lítio\n\n•    Tensão nominal: 3V\n\n•    Capacidade típica: Aproximadamente 300 mAh\n\n•    Aplicações indicadas: Controles automotivos, balanças digitais, dispositivos médicos, relógios, leitores RFID, brinquedos eletrônicos\n\n•    Recarregável: Não\n\n•    Validade: Até 10 anos (armazenamento adequado)\n\n•    Peso unitário: Cerca de 4 g\n\n•    Origem: Nacional\n\n•    Compatibilidade: Substitui modelos como DL2430, ECR2430, BR2430, KCR2430, 5029LC, entre outros equivalentes\n\n Com potência elevada e desempenho confiável, as baterias CR2430 Elgin são perfeitas para aplicações que exigem energia constante e duradoura.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2430\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025640\n\nEMBALAGEM\n• Dimensões informadas: 18 × 5 × 2 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "883e250a-078b-4416-9d67-4f2a65f93154",
+      "sku": "VTK017827",
+      "nome": "Protetor Para Interfone Moros - Branco",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7075",
+            "nome": "Porteiros Elétricos"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3d208134-6605-4c71-914a-b3d6618c3b32",
+      "sku": "VTK018554",
+      "nome": "Protetor Para Interfone Moros - Preto",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7075",
+            "nome": "Porteiros Elétricos"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "28213cef-8be0-4708-80f2-33c5be2769d7",
+      "sku": "VTK017902",
+      "nome": "Controle Remoto Mxt 01370 Ar Inverter Springer Midea",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB196072",
+            "nome": "Controles Remotos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "df0fe9d6-90ce-49e9-b554-bb3b026a3574",
+      "sku": "VTK012369",
+      "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bace5096-725d-4223-9089-87c59c22c289",
+      "sku": "VTK012687",
+      "nome": "Cabo De Microfone Pro Balanceado Emborrachado Xlr Xlr 0,40 Cm Mpbe-0,40 Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "31bfa2c9-7fa7-40c6-bbbc-6b80d4a04259",
+      "sku": "VTK017262",
+      "nome": "Conector Tnc Macho Rt Rg/rgcc 213 Tm-10",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB70452",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+      "sku": "VTK012267",
+      "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+      "sku": "VTK017506",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1849bcec-0b10-4888-84c4-4d942dd3c8b0",
+      "sku": "VTK017507",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Vermelho",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+      "sku": "VTK017562",
+      "nome": "Carregador Veicular Elgin Usb 12v - 2 Saídas",
+      "error": "Atributos obrigatórios pendentes: Modelo do carregador, Tipos de conectores do cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430121",
+            "nome": "Carregadores"
+          },
+          "missing": [
+            "Modelo do carregador",
+            "Tipos de conectores do cabo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "da6cc1ad-f9dd-42ee-becd-0f6d7f9fdcdd",
+      "sku": "VTK012765",
+      "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bb82582c-4fa7-4fd0-bdee-6d5fc037345d",
+      "sku": "VTK017698",
+      "nome": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420411",
+            "nome": "Fontes Chaveadas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+      "sku": "VTK017933",
+      "nome": "Botão De Pânico Ipec Nf",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB413560",
+            "nome": "Botões Industriais"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+      "sku": "VTK019030",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+      "error": "Atributos obrigatórios pendentes: Modelo, Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Modelo",
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8d7fbad6-a59b-4aaa-a799-abfc41331b28",
+      "sku": "VTK019117",
+      "nome": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46560",
+            "nome": "Cornetas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

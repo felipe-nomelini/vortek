@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-08-11T00:13:08.481Z",
+  "sourcePdf": "/home/felipe/Downloads/produtos-2026-08-10 (5).pdf",
+  "sourcePdfSha256": "0af8847208a1b7179b511888e2c049a7ae4171c2871cefbc58564bc2bf8d7e63",
+  "pdfSkus": 689,
+  "erpCandidates": 689,
+  "readyForMlPreflight": 651,
+  "blockedBeforeMlPreflight": 38,
+  "blockedReasonCounts": {
+    "invalid_package": 5,
+    "missing_description": 3,
+    "missing_image": 30
+  },
+  "batchSize": 20,
+  "batchCount": 33,
+  "priceRule": {
+    "formula": "(custo + frete) / (1 - taxa_ml - 0.05 - margem)",
+    "offensive": "custo + frete < 50 => 8%",
+    "defensive": "custo + frete >= 50 => 25%"
+  }
+}

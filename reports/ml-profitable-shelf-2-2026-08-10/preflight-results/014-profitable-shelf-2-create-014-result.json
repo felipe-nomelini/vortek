@@ -1,0 +1,828 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/014-profitable-shelf-2-create-014-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-014",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "69650a58-ae3c-4ef2-ac06-a752a5f16b1d",
+      "sku": "VTK025344",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "Encordoamentos para instrumentos de cordas"
+      },
+      "basePrice": 97.07,
+      "familyName": "2 Jogos de Corda P Guitarra Niquel 08 GEEGST.8 Giannini",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 56.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 151.78
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GEEGST8"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "15312680",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Super Light"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "2 Jogos de Corda P/Guitarra Niquel 08 GEEGST.8 Giannini\n\nVISÃO GERAL\n2 Jogos de Corda P/Guitarra Niquel 08 GEEGST.8 Giannini\n\nKit com 2 unidades originais Giannini.\n\nConteúdo da embalagem:\n\n- 2x Encordoamento Para Guitarra .008 Super Leve Giannini GEEGST8\n\nInformações principais:\n\n- Marca: Giannini\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\nEncordoamento Giannini P/Guitarra Niquel 0.008 GEEGST.8\n\nAs cordas Giannini Nickel proporcionam o timbre e brilho que você procura para a sua guitarra. São perfeitas para o rock e para outros estilos onde a guitarra tem que se destacar. As cordas Giannini trazem a mesma qualidade presente em seus tradicionais instrumentos.\n\nEncordoamento Giannini P/Guitarra Niquel 0. 008 GEEGST. 8\n\nJogo de 6 cordas para Guitarra.\n\nMarca: Giannini\n\nSérie: Eletric\n\nFabricação: Brasil\n\nTensão: Leve\n\n Alma: Aço\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GEEGST8\n• Instrumento recomendado: Guitarra elétrica\n• Unidades por kit: 2\n• Linha: Super Light\n• Formato de venda: Kit\n• Quantidade de cordas: 6\n• Materiais: Metal\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025344\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3290be1a-25c6-4f5b-b6ba-096efa31c642",
+      "sku": "VTK025751",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 94.32,
+      "familyName": "30 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 56.4,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 145.36
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "30 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n30 Baterias Litio Cr2016 Elgin (6 Cart)\n\nKit com 6 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 6x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 6 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025751\n\nEMBALAGEM\n• Dimensões informadas: 2 × 5 × 19 cm\n• Peso bruto informado: 0,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4106112d-966d-436c-9a6c-b8837572ccee",
+      "sku": "VTK025815",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 95.31,
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 57.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 146.79
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "50 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nVISÃO GERAL\n50 Baterias Litio Cr2025 Elgin (10 Cart)\n\nKit com 10 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 10x Bateria Lítio Cr2025 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 10 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2025 Elgin\n\n A bateria CR2025 Elgin oferece energia confiável e estável para equipamentos que exigem precisão e longa duração. Com tecnologia de lítio e tensão constante de 3V, é ideal para relógios, balanças, controles remotos, chaves automotivas e outros dispositivos eletrônicos. \n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2025\n\n•    Tipo: Bateria de lítio (não recarregável)\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2025, BR2025, ECR2025, KCR2025, L2025\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~150 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Controles remotos, relógios, chaves automotivas, calculadoras, balanças digitais, brinquedos eletrônicos, placas de computador e outros eletrônicos portáteis\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 2,5 mm (altura)\n\n•    Peso unitário: Cerca de 2,5 g\n\n Vantagens\n\nLonga vida útil mesmo em modo standby\n\nTensão estável e confiável\n\nPerfeita para uso doméstico, técnico e profissional\n\nQualidade garantida Elgin\n\n A Bateria CR2025 Elgin garante performance e durabilidade para dispositivos que exigem energia contínua e segura. Compacta e eficiente, é a escolha ideal para quem busca confiabilidade com excelente custo-benefício. Energia inteligente com a confiança da Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2025\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025815\n\nEMBALAGEM\n• Dimensões informadas: 6 × 5 × 19 cm\n• Peso bruto informado: 0,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "category": {
+        "id": "MLB418301",
+        "nome": "Microfones Alto-falantes",
+        "dominio": "Microfones de alto-falantes remotos"
+      },
+      "basePrice": 94.63,
+      "familyName": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 57.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 144.91
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "INTELBRAS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HC20PT"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899298633693"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020\n\nVISÃO GERAL\nO fone de ouvido HC 20 (Tipo C) possui encaixe confortável para uso corporativo, confere discrição e facilidade por permitir o uso das mãos durante a comunicação. Totalmente compatível com as aplicações do seu antecessor, o HC 10, ele permite também usar a função VOX em seus rádios RC 4002/4102* e torna a experiencia com os telefones da família TS 51 melhor. Fone de ouvido de encaixe C Microfone direcionável e maleável Design anatômico e confortável Comprimento de 105 cm Engates resistentes Próprio para rádios RC 4002/4102 Próprio para os telefones da família TS 51 Trabalhe com as mãos livres (Hands-free) *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: INTELBRAS\n• Modelo: HC20PT\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7899298633693\n• NCM: 85183000\n• SKU: VTK017577\n\nEMBALAGEM\n• Dimensões informadas: 1 × 9 × 10 cm\n• Peso bruto informado: 0,024 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f68a8e01-9542-4265-8a7b-e6ab8c6795d9",
+      "sku": "VTK025942",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 105,
+      "familyName": "8 Pilhas Alcalinas D Lr20 Sm 2 Elgin 4 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 59.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.18
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "4"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "8 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (4 Cart)\n\nVISÃO GERAL\n8 Pilhas Alcalinas D Lr20 Sm-2 Elgin (4 Cart)\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 4\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025942\n\nEMBALAGEM\n• Dimensões informadas: 8 × 9 × 15 cm\n• Peso bruto informado: 1,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fa369a69-3db1-4dcd-9395-e6555e4310d7",
+      "sku": "VTK018078",
+      "category": {
+        "id": "MLB277720",
+        "nome": "Cabos",
+        "dominio": "Cabos de freio e câmbio para bicicletas"
+      },
+      "basePrice": 101.78,
+      "familyName": "Cabo Auto Permak 0.75mm Branco 100m",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.145,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 152.97
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "75MM"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253498742"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Auto Permak 0.75mm Branco 100m\n\nVISÃO GERAL\nO nosso cabo flexível possui um condutor com uma seção nominal de 0. 75 mm² e diâmetro nominal de 1 mm. Seu diâmetro nominal externo é de 2,4 mm e possui espessura nominal da isolação de 0,7 mm.\n\nÉ feito de pvc Marfim, o que garante um melhor isolamento. Os Cabos Flexíveis Permak são flexíveis, deslizantes e possuem filamento 100% em cobre. Podem suportar uma temperatura máxima de até 70°, não propagam chamas e apresentam tensão nominal de 300V.\n\nO Cabo Auto 0. 75 mm² é recomendado para transmissão de áudio em sistemas de sonorização para alto-falantes, equipamentos de áudio domésticos e automotivos e ligação de amplificadores e módulos. *Imagem meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: 75MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253498742\n• NCM: 85444900\n• SKU: VTK018078\n\nEMBALAGEM\n• Dimensões informadas: 4 × 20 × 20 cm\n• Peso bruto informado: 1,192 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e80419ea-3228-4e4d-93df-a8931fea6bba",
+      "sku": "VTK018149",
+      "category": {
+        "id": "MLB431675",
+        "nome": "Elétricos",
+        "dominio": "Sinalizadores de segurança eletrônicos"
+      },
+      "basePrice": 102.44,
+      "familyName": "Sinalizador Veicular Gcp Ss 1000",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 160.19
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GCP"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898642390510"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sinalizador Veicular Gcp Ss 1000\n\nVISÃO GERAL\nO Sinalizador de Entrada e Saída de Veículos tem dispositivo visual e sonoro que alerta os pedestres na presença de carro, evitando possíveis acidentes. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GCP\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GCP\n• GTIN: 7898642390510\n• NCM: 85311090\n• SKU: VTK018149\n\nEMBALAGEM\n• Dimensões informadas: 8 × 9 × 32.5 cm\n• Peso bruto informado: 0,392 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9d6b0a25-8deb-4a95-9124-3661034f8503",
+      "sku": "VTK018585",
+      "category": {
+        "id": "MLB191727",
+        "nome": "Lâmpadas",
+        "dominio": "Lâmpadas para veículos"
+      },
+      "basePrice": 102.44,
+      "familyName": "Kit De Lâmpada Tarponn Tp 6108 Ultraled Hb4 12v 40w TARPONN",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 160.19
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "TARPONN LED"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "390315"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "TP-6108"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit De Lâmpada Tarponn Tp-6108 Ultraled Hb4 12v 40w\n\nVISÃO GERAL\nKit de Lâmpada Tarponn TP-6108 Ultraled HB4 12V 40W Kit Lâmpada Tarponn Ultra LED HB4 40w e 4000Lm cada 6000k IP 65. Um produto exclusivo da linha Premium Tarponn, o Kit Lâmpada Ultra LED HB4, possui um acabamento galvanizado, refinado e cromado. Um produto exclusivo da linha Premium Tarponn, o Kit Lâmpada Ultra LED HB4, possui um acabamento galvanizado, refinado e cromado.\n\nA qualidade superior que você tanto deseja, agora vai encontrar neste kit! De ligação luminosa e saída por um fluxo alto, não necessita de cooler, uma vez que possui Corpo de Alumínio. Além disso, é resistente a vibrações e ao calor e ainda dura até 08 vezes mais.\n\nRealmente o Kit Lâmpada Ultra LED HB4 é algo totalmente diferenciado do que você já viu! Experimente agora! *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: TARPONN LED\n• Número de peça: 390315\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: TP-6108\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TARPONN LED\n• GTIN: 7900469461080\n• NCM: 85122011\n• SKU: VTK018585\n\nEMBALAGEM\n• Dimensões informadas: 6 × 15 × 15.5 cm\n• Peso bruto informado: 0,212 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4417d8fd-15c0-4650-b373-1dbed596e9ce",
+      "sku": "VTK025796",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 100.25,
+      "familyName": "45 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 61.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 153.93
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "45 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n45 Baterias Litio Cr2032 Elgin (9 Cart)\n\nKit com 9 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 9x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 9 unidades\n\n- Embalagem: Pacote / Caixa\n\n45 Baterias Litio Cr2032 Elgin (9 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025796\n\nEMBALAGEM\n• Dimensões informadas: 3.6 × 5 × 19 cm\n• Peso bruto informado: 0,45 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "category": {
+        "id": "MLB269928",
+        "nome": "Dimmers",
+        "dominio": "Dimmers"
+      },
+      "basePrice": 104.33,
+      "familyName": "Interruptor Inteligente 1 Tecla Wi Fi SE235 Branco",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 61.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.135,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 153.81
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MULTILASER"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SE235"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899838881218"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER\n\nVISÃO GERAL\nO Interruptor inteligente 1 Tecla Wi-Fi da série Multilaser Liv é o ideal se você deseja transformar sua iluminação convencional em inteligente e conectada. De instalação simples em caixas de luz convencionais 4x2, esse equipamento oferece às suas lâmpadas convencionais a possibilidade de controle remoto e agendamentos via aplicativo gratuito Multilaser Liv, além de botão manual de liga/desliga, transformando qualquer ambiente em um local mais moderno e conectado.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MULTILASER\n• Modelo: SE235\n• Cor: Branco\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MULTILASER\n• GTIN: 7899838881218\n• NCM: 8543.70.99\n• SKU: VTK003270\n\nEMBALAGEM\n• Dimensões informadas: 5 × 9 × 13.5 cm\n• Peso bruto informado: 0,162 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "c34ea5df-41dc-4434-ab2d-8dbe9841f078",
+      "sku": "VTK001280",
+      "nome": "Espremedor de Frutas Agratto 700ml Preto 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB120446",
+            "nome": "Espremedores Elétricos"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4e6f2b8c-85c5-4392-bbe5-7c9ca2482a60",
+      "sku": "VTK018199",
+      "nome": "Sensor Ultrasom Locktronic",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB277968",
+            "nome": "Escaladores Ultrassônicos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9ca0eedc-b0b7-4c5b-9c3e-805f1ad42d74",
+      "sku": "VTK001762",
+      "nome": "Jogo de Chaves de Fenda/Philips Com 6 Peças Brasfort",
+      "error": "Atributos obrigatórios pendentes: Forma da ponta",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB270879",
+            "nome": "Kit de Chaves de Fenda"
+          },
+          "missing": [
+            "Forma da ponta"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a971d0d5-2689-4ca1-a824-9c0a3bf67aaf",
+      "sku": "VTK017651",
+      "nome": "Refil Tinta Epson T504 Preto",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3561",
+            "nome": "Tintas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8e8e0eb5-3444-46b0-a0ef-5a5710893440",
+      "sku": "VTK017384",
+      "nome": "Cabo De Força Tripolar Megacabos 1,2m Tipo Mickey - Preto - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB9600",
+            "nome": "Cabos de Energia"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b3e91716-2b43-4ed1-9219-ca1c702d1c44",
+      "sku": "VTK001277",
+      "nome": "Super Mixer Agratto MXV-01 200W Vermelho 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB263570",
+            "nome": "Mixers"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0d57c2ab-e6cc-4a93-bf80-5ba272763223",
+      "sku": "VTK012729",
+      "nome": "Cabo P10 Prowire Em L Tweed Lilás/prata 6,10m Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "70b95a7a-b176-4ad2-a136-f07d1d9198c7",
+      "sku": "VTK017241",
+      "nome": "Cabo Vga Evus C-044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "599cfd80-f0b5-4c48-bcf6-5fc340dfea9c",
+      "sku": "VTK018221",
+      "nome": "Pino Adaptador Daneva Dn1556 Pote Com 24 Pinos Cores Sortidas",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB255051",
+            "nome": "Adaptadores de Tomadas"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ed0d9b3f-e237-4747-8c47-bd3864dc8df2",
+      "sku": "VTK017934",
+      "nome": "Caixa R.l.p. Vazia Corujinha A.f 6 + Rádio + Duto",
+      "error": "Atributos obrigatórios pendentes: Fabricante, Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB9164",
+            "nome": "Rádios"
+          },
+          "missing": [
+            "Fabricante",
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

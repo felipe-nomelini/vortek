@@ -1,0 +1,17 @@
+{
+  "event": "vanral_instrument_dynamic_pricing_summary",
+  "timestamp_utc": "2026-08-10T19:08:35.100Z",
+  "mode": "dry_run",
+  "profile": "vanral-instruments",
+  "scope": "critical",
+  "output_dir": "/home/felipe/Documentos/Projetos/vortek/reports/vanral-instrument-pricing/critical-dry-run-2026-08-10",
+  "products_scanned": 7,
+  "automated_items_found": 2,
+  "counts": {
+    "planned": 14,
+    "skipped": 2
+  },
+  "safe_products": 7,
+  "safe_input_file": "/home/felipe/Documentos/Projetos/vortek/reports/vanral-instrument-pricing/critical-dry-run-2026-08-10/safe-input.ndjson",
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/vanral-instrument-pricing/critical-dry-run-2026-08-10/events.ndjson"
+}

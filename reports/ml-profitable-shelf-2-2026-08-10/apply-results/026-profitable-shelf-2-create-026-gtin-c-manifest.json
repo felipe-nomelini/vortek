@@ -1,0 +1,28 @@
+{
+  "batchNumber": 26,
+  "batchId": "profitable-shelf-2-create-026",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "04ee8d46-f737-4c9c-a223-e78e2ef6bcfb",
+      "sku": "VTK000507",
+      "nome": "Caixa de Som Ambiente Hayonik Ambience Line 4\" MSB60NC Preta - PAR / 2",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 211.58,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa de Som Ambiente Hayonik Ambience Line 4 Polegadas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 211.58,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 484.69
+      }
+    }
+  ]
+}

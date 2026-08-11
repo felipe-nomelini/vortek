@@ -1,0 +1,427 @@
+{
+  "batchNumber": 32,
+  "batchId": "profitable-shelf-2-create-032",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "7f04ec07-7f1d-4af0-8645-6595ced9c352",
+      "sku": "VTK003043",
+      "nome": "Cadeira Gamer Fortrek Cruiser Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 814.75,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Gamer Fortrek Cruiser Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 814.75,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1681.36
+      }
+    },
+    {
+      "produtoId": "de613369-7204-430c-aa4a-c0ddf6a7a31d",
+      "sku": "VTK001089",
+      "nome": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Preto/Turtle",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 824.14,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Contrabaixo Giannini GB 100 Jazz Bass Elétrico Passivo Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 824.14,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1698.44
+      }
+    },
+    {
+      "produtoId": "15a4e111-bcef-4d6b-a0cd-6c2ec40dc2bc",
+      "sku": "VTK025397",
+      "nome": "Kit 04 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk",
+      "fornecedor": "BKR1",
+      "custo": 828,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 04 Drivers 50 Watts 8 Ohms 45mh2510b 8 Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 828,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1705.45
+      }
+    },
+    {
+      "produtoId": "322aec33-cecf-4ce9-bf3e-472ae46e9f58",
+      "sku": "VTK004022",
+      "nome": "Cápsula de Microfone Sennheiser MMD 845 Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 838.65,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cápsula de Microfone Sennheiser MMD 845 Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 838.65,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1724.82
+      }
+    },
+    {
+      "produtoId": "5f9d6af0-af99-486c-97c1-abcfd8c85b41",
+      "sku": "VTK000223",
+      "nome": "Cadeira Gamer ThunderX3 EC3 Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 846.07,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Gamer ThunderX3 EC3 Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 846.07,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1738.31
+      }
+    },
+    {
+      "produtoId": "4687b5e3-c51a-4e90-9878-e5b29d544e29",
+      "sku": "VTK019019",
+      "nome": "Corzus Ftd 80 Hi-tech Conversor Ac/dc 80a 13,8v Fonte Digital",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 846.43,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Corzus Ftd 80 Hi tech Conversor Ac dc 80a 13,8v Fonte",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 846.43,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1738.96
+      }
+    },
+    {
+      "produtoId": "1b771eab-1ea5-4c26-b40b-7979a1438040",
+      "sku": "VTK001312",
+      "nome": "Guitarra Tagima Jazzmaster Strato DuoSmart Candy Apple",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 861.15,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Guitarra Tagima Jazzmaster Strato DuoSmart Candy Apple",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 861.15,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1765.73
+      }
+    },
+    {
+      "produtoId": "70194821-7380-495a-9040-2ca8ea2e1c53",
+      "sku": "VTK001343",
+      "nome": "Suporte Para Caixa JBL Bumper MAX26 AF-LA Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 896.48,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Para Caixa JBL Bumper MAX26 AF LA Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 896.48,
+        "shipping": 26.25,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1741
+      }
+    },
+    {
+      "produtoId": "be59c31a-bdd0-487c-bf5d-915282196082",
+      "sku": "VTK001977",
+      "nome": "Trompete Harmonics BB HTR-335L Laqueado",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 931.61,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Trompete Harmonics BB HTR 335L Laqueado",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 931.61,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1893.84
+      }
+    },
+    {
+      "produtoId": "fc7e5495-fb06-47ca-8530-97a7187d0167",
+      "sku": "VTK000799",
+      "nome": "Cadeira Gamer ThunderX3 TGC12 Loft Cinza",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 962.89,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Gamer ThunderX3 TGC12 Loft Cinza",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 962.89,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1950.71
+      }
+    },
+    {
+      "produtoId": "9804a031-2e05-4dea-a4ab-1924080ba9b8",
+      "sku": "VTK012772",
+      "nome": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810",
+      "fornecedor": "BKR1",
+      "custo": 1006.98,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa De Som Passiva 8 Polegadas 100 W Rms Attack Vrf810",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1006.98,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2030.87
+      }
+    },
+    {
+      "produtoId": "bd099c71-e960-4e09-ae40-d616ea1968d6",
+      "sku": "VTK000378",
+      "nome": "Cadeira Ergonômica ThunderX3 Yama1 Ciano",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 1036.96,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cadeira Ergonômica ThunderX3 Yama1 Ciano",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1036.96,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2085.38
+      }
+    },
+    {
+      "produtoId": "908bfa7e-f3af-4c79-a099-61f10f569465",
+      "sku": "VTK025406",
+      "nome": "Kit 2 Alto-Falantes  700w 12 Pol 8 Ohms 12LF1410B8 ATK",
+      "fornecedor": "BKR1",
+      "custo": 1170,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 2 Alto Falantes 700w 12 Pol 8 Ohms 12LF1410B8 ATK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1170,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2327.27
+      }
+    },
+    {
+      "produtoId": "fffee6d5-b53a-4b4b-b015-5088a2bd0735",
+      "sku": "VTK012866",
+      "nome": "Alto-falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4/a Atk",
+      "fornecedor": "BKR1",
+      "custo": 1194.9,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4 a Atk Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1194.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2372.55
+      }
+    },
+    {
+      "produtoId": "8d572081-0ee0-45aa-832a-e52493d75da4",
+      "sku": "VTK001353",
+      "nome": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron - BOB / 305",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 1199.9,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron BOB",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1199.9,
+        "shipping": 70.25,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2442.6
+      }
+    },
+    {
+      "produtoId": "97de1044-c000-438c-9b24-acbc1b7ace04",
+      "sku": "VTK012861",
+      "nome": "Alto-falante 18 Pol 800w Rms 8 Ohms 18lf1610b8 Atk",
+      "fornecedor": "BKR1",
+      "custo": 1219.9,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Alto falante 18 Pol 800w Rms 8 Ohms 18lf1610b8 Atk Atk",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1219.9,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2418
+      }
+    },
+    {
+      "produtoId": "451a9307-b2d5-4b11-9036-313c33a92b2a",
+      "sku": "VTK000429",
+      "nome": "Cápsula Para Microfone Sennheiser MME 865 Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 1225.74,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cápsula Para Microfone Sennheiser MME 865 Preta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1225.74,
+        "shipping": 20.95,
+        "shippingSource": "erp",
+        "mlFee": 0.16,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2308.69
+      }
+    },
+    {
+      "produtoId": "cd7a7a71-e276-4fbd-a9a5-f9ec6cd67170",
+      "sku": "VTK000779",
+      "nome": "Suporte Bumper Para Monitor de Áudio HH Tessen TNA-BRK1",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 1280.35,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Bumper Para Monitor de Áudio HH Tessen TNA BRK1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1280.35,
+        "shipping": 22.55,
+        "shippingSource": "erp",
+        "mlFee": 0.16,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2412.78
+      }
+    },
+    {
+      "produtoId": "531c6601-ff5b-4820-a4a7-bb1906fa0166",
+      "sku": "VTK025403",
+      "nome": "Kit 2 Alto-Falantes  400w 18 Pol 8 Ohms 18WF810B8 ATK",
+      "fornecedor": "BKR1",
+      "custo": 1330,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 2 Alto Falantes 400w 18 Pol 8 Ohms 18WF810B8 ATK",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1330,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2618.18
+      }
+    },
+    {
+      "produtoId": "92748703-c816-44b1-a3fd-735be0af6f49",
+      "sku": "VTK001264",
+      "nome": "Antena Omnidirecional Passiva Sennheiser A1031-U",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 1333.27,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Omnidirecional Passiva Sennheiser A1031 U",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 1333.27,
+        "shipping": 24.65,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2611.38
+      }
+    }
+  ]
+}

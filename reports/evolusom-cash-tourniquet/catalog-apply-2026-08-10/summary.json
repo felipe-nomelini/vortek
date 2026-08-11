@@ -1,0 +1,18 @@
+{
+  "event": "evolusom_cash_tourniquet_summary",
+  "timestamp_utc": "2026-08-10T20:09:16.974Z",
+  "mode": "apply",
+  "profile": "evolusom-cash-tourniquet",
+  "scope": "all",
+  "output_dir": "/home/felipe/Documentos/Projetos/vortek/reports/evolusom-cash-tourniquet/catalog-apply-2026-08-10",
+  "products_scanned": 221,
+  "automated_items_found": 2,
+  "counts": {
+    "changed": 344,
+    "skipped": 9,
+    "failed": 3
+  },
+  "safe_products": null,
+  "safe_input_file": null,
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/evolusom-cash-tourniquet/catalog-apply-2026-08-10/events.ndjson"
+}

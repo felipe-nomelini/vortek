@@ -1,0 +1,722 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/032-profitable-shelf-2-create-032-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-032",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "15a4e111-bcef-4d6b-a0cd-6c2ec40dc2bc",
+      "sku": "VTK025397",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "basePrice": 1273.85,
+      "familyName": "Kit 04 Drivers 50 Watts 8 Ohms 45mh2510b 8 Atk",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 828,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1769.81
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ATK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "VTK025397"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "45MH2510B-8"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 04 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk\n\nVISÃO GERAL\nKit 04 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk\n\nKit com 4 unidades originais ATK.\n\nConteúdo da embalagem:\n\n- 4x Driver 25mm 50w Rms 8 Ohms - Atk 45mh2510b-8 - Médios E Agudos\n\nInformações principais:\n\n- Marca: ATK\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\nKit 04 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk\n\n Driver de compressão com diafragma em Poliéster, bobina de 45 mm e garganta de 25 mm (1 ).\n\n Principais Características:\n\n50 W Potência Nominal\n\n8 Ohm de Impedância Nominal\n\n109 dB SPL de Sensibilidade\n\n1500 a 18000 Hz\n\nDiafragma em Poliéster\n\nBobina com 45 mm de diâmetro\n\nGarganta com 25 mm (1 ) de diâmetro\n\n Especificações:\n\nPotência Nominal Admissível(2) : 50 W\n\nPotência Máxima do Amplificador(3) : 800 W pico\n\nSensibilidade (1W/1m)(4) : 109 dB SPL\n\nImpedância Nominal: 8 Ohm\n\nImpedância Mínima: 7.6 Ohm\n\nResposta de Frequência: 1500 a 18000 Hz\n\nCrossover Recomendado(5) : 2000 Hz\n\nMaterial Magnético: Ferrite\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ATK\n• Número de peça: VTK025397\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 45MH2510B-8\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025397\n\nEMBALAGEM\n• Dimensões informadas: 15.6 × 14 × 32 cm\n• Peso bruto informado: 8,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4687b5e3-c51a-4e90-9878-e5b29d544e29",
+      "sku": "VTK019019",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "Fontes de alimentação comutadas integradas"
+      },
+      "basePrice": 1238.68,
+      "familyName": "Corzus Ftd 80 Hi tech Conversor Ac dc 80a 13,8v Fonte",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 846.43,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1677.95
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "CORZUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "220VCA"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897687600080"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Corzus Ftd 80 Hi-tech Conversor Ac/dc 80a 13,8v Fonte Digital\n\nVISÃO GERAL\nTensão de saída 13,8 VDC Corrente de saída contínua 80A (limitada eletronicamente) Corrente de saída de pico 500A Tensão e corrente de saída ajustáveis através do Módulo de Controle C-LINK (vendido separadamente) Tensão de entrada 110 ou 220VCA ? através de chave seletora Retificação síncrona - Aumenta a eficiência da fonte, gerando menos calor Proteção eletrônica de temperatura e possui 1 cooler para garantir um funcionamento perfeito Proteção contra inversão de polaridade de bateria - Protege a fonte e a bateria em caso de conexão errada Proteção de tensão de alimentação incorreta Proteção de sobrecarga (corrente limitada eletronicamente em 80A) Suporta curto-circuito de saída por tempo indeterminado sem danificar o equipamento\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CORZUS\n• Modelo: 220VCA\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CORZUS\n• GTIN: 7897687600080\n• NCM: 85043119\n• SKU: VTK019019\n\nEMBALAGEM\n• Dimensões informadas: 7 × 23.5 × 46 cm\n• Peso bruto informado: 4,37 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "be59c31a-bdd0-487c-bf5d-915282196082",
+      "sku": "VTK001977",
+      "category": {
+        "id": "MLB45639",
+        "nome": "Trompetes",
+        "dominio": "Trompetes"
+      },
+      "basePrice": 1424.12,
+      "familyName": "Trompete Harmonics BB HTR 335L Laqueado",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 931.61,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1946.93
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HARMONICS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HTR-335L"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898554602923"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Trompete Harmonics BB HTR-335L Laqueado\n\nVISÃO GERAL\nO Trompete Harmonics BB HTR-335L é um instrumento de sopro de alta qualidade e desempenho excepcional, projetado para músicos profissionais e estudantes avançados. Com sua construção cuidadosa e acabamento laqueado durável, este trompete combina estética elegante com funcionalidade confiável. O HTR-335L é afinado em Si bemol (Bb), uma afinação comumente usada em diversos estilos musicais, desde música clássica até jazz e música popular.\n\nEssa afinação versátil permite ao músico explorar uma ampla gama de repertório e se adaptar facilmente a diferentes contextos musicais. A Harmonics nasceu com a proposta de aliar alta qualidade, tecnologia e preço competitivo de mercado. Seguindo três frentes, a Harmonics trabalha com instrumentos de cordas, instrumentos de sopro e microfones, atendendo as principais demandas do mercado com extrema qualidade e precisão.\n\nFazendo parte de um grupo empresarial de mais de 50 anos de mercado, a Harmonics tem competência para se manter atualizada com o mercado global e atender as necessidades de músicos que procuram um excelente custo/benefício em instrumentos musicais, som profissional, partes e acessórios.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HARMONICS\n• Modelo: HTR-335L\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HARMONICS\n• GTIN: 7898554602923\n• NCM: 9205.10.00\n• SKU: VTK001977\n\nEMBALAGEM\n• Dimensões informadas: 27 × 55 × 17.5 cm\n• Peso bruto informado: 2,9 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9804a031-2e05-4dea-a4ab-1924080ba9b8",
+      "sku": "VTK012772",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "Caixas de som"
+      },
+      "basePrice": 1535.03,
+      "familyName": "Caixa De Som Passiva 8 Polegadas 100 W Rms Attack Vrf810",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 1006.98,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 1959.61
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Attack"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "VRF810"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810\n\nVISÃO GERAL\nCaixa De Som Passiva 8 polegadas 100 W RMS - Attack VRF810 Características: -Acabamento em resina preta para a caixa e pintura eletrostática preta para a tela de proteção; -Alças plásticas laterais. -Dimensões: 428mm x 328mm x 324mm (AxLxP) -Peso: 10,6 Kg; Especificações do Fabricante: -Caixa processada com duas vias; -Transdutores: LOW - 8\" / HIGH - DRIVER TITANIUM; -Potência RMS - THD 1% : 8 O 100W RMS 200W Musical; -Conector : 2 x Speakon 4P; -Resposta de Frequência de 70Hz a 18KHz (-10dB); -Entrada com conectores Speakon 4P;\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Attack\n• Modelo: VRF810\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Attack\n• NCM: 8518.22.00\n• SKU: VTK012772\n\nEMBALAGEM\n• Dimensões informadas: 40 × 40 × 40 cm\n• Peso bruto informado: 13,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "908bfa7e-f3af-4c79-a099-61f10f569465",
+      "sku": "VTK025406",
+      "category": {
+        "id": "MLB129666",
+        "nome": "Alto-Falantes",
+        "dominio": "Alto-falantes internos para tablets"
+      },
+      "basePrice": 1783.54,
+      "familyName": "Kit 2 Alto Falantes 700w 12 Pol 8 Ohms 12LF1410B8 ATK",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 1170,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2245.61
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ATK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "12LF1410B8"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 2 Alto-Falantes  700w 12 Pol 8 Ohms 12LF1410B8 ATK\n\nVISÃO GERAL\nKit 2 Alto-Falantes 700w 12 Pol 8 Ohms 12LF1410B8 ATK\n\nKit com 2 unidades originais ATK.\n\nConteúdo da embalagem:\n\n- 2x Alto-falante Profissional 700w 12 Pol 8 Ohms 12lf1410b8 Atk\n\nInformações principais:\n\n- Marca: ATK\n\n- Quantidade: 2 unidades\n\n- Embalagem: Pacote / Caixa\n\nKit 2 Alto-Falantes 700w 12 Pol 8 Ohms 12LF1410B8 ATK\n\n Descrição:\n\nAlto-falante de 12 de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade.\n\nUtiliza uma bobina de 75 mm de diâmetro (3 ) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior.\n\nDesign exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica.\n\nProjetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance.\n\n Principais Características:\n\n700 W de Potência Nominal\n\n8 Ohms de Impedância Nominal\n\n96 dB SPL de Sensibilidade\n\n40 a 2000Hz\n\n Especificações:\n\nPotência Nominal Admissível(1): 700 W \n\nPotência Máxima do Amplificador(2): 11200 W pico\n\nSensibilidade (1W/1m)(3) : 96 dB SPL\n\nImpedância Nominal: 8 Ohms\n\nImpedância Mínima: 6.7 Ohms\n\nDiâmetro Nominal: 304.8 mm (12 pol)\n\nResposta de Frequência: 40 a 2000 Hz\n\nDiâmetro da Bobina: 75 mm (3 )\n\nFio da Bobina: Fio de Cobre Recoberto com Alumínio Seção Retangular (CCAR)\n\nResistência da Bobina (Re): 5.8 Ohms\n\nX.máx(4): 8 mm\n\nVolume de Ar ocupado: 2.30 L\n\n Mms: 56.6g\n\n Bl: 12.5 Tm\n\n Le: 0.84 mH\n\n  \n\n (5) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ATK\n• Modelo: 12LF1410B8\n• Unidades por kit: 2\n• Formato de venda: Kit\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025406\n\nEMBALAGEM\n• Dimensões informadas: 40 × 66 × 66 cm\n• Peso bruto informado: 14,7 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8d572081-0ee0-45aa-832a-e52493d75da4",
+      "sku": "VTK001353",
+      "category": {
+        "id": "MLB431815",
+        "nome": "Cabos de Rede",
+        "dominio": "Cabos de rede"
+      },
+      "basePrice": 2012.98,
+      "familyName": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron BOB",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 1199.9,
+        "shipping": 70.25,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2442.6
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MEGATRON"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "name": "Tipo de cabo de rede",
+          "value_id": "2623686",
+          "value_name": "Par trançado UTP"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899278900289"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CAT5E"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron - BOB / 305\n\nVISÃO GERAL\nO Cabo de Rede CAT5E é um modelo de alta qualidade, composto por condutores 100% de cobre com isolação termoplástica. Possuindo blindagem de fita metálica em contato com fio sólido estanhado, este modelo proporcionando excelente proteção contra interferências. Ideal para conexões de rede estáveis e seguras, possui dupla capa externa para maior durabilidade e resistência.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MEGATRON\n• Tipo de cabo de rede: Par trançado UTP\n• Modelo: CAT5E\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MEGATRON\n• GTIN: 7899278900289\n• NCM: 8544.49.00\n• SKU: VTK001353\n\nEMBALAGEM\n• Dimensões informadas: 39 × 30 × 37 cm\n• Peso bruto informado: 16,64 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cd7a7a71-e276-4fbd-a9a5-f9ec6cd67170",
+      "sku": "VTK000779",
+      "category": {
+        "id": "MLB45313",
+        "nome": "Monitores de Áudio",
+        "dominio": "Monitores de áudio"
+      },
+      "basePrice": 1858.73,
+      "familyName": "Suporte Bumper Para Monitor de Áudio HH Tessen TNA BRK1",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 1280.35,
+        "shipping": 22.55,
+        "shippingSource": "erp",
+        "mlFee": 0.16,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2412.78
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "TNS-1200S"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890000836883"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Suporte Bumper Para Monitor de Áudio HH Tessen TNA-BRK1\n\nVISÃO GERAL\nO Suporte Bumper Para Monitor de Áudio HH Tessen TNA-BRK1 é um modelo robusto e seguro projetado para o sistema TNA. Construído em aço sólido, ele se fixa firmemente ao TNS-1200S ou ao TNA-2051, oferecendo uma suspensão confiável para seu sistema de áudio. Com capacidade para até 4 algemas em D de 22mm (não incluídas), e 5 pontos de montagem M8, este modelo proporciona flexibilidade e estabilidade para a configuração ideal do seu equipamento de áudio.\n\nFundada em 1968, a HH é uma marca britânica que desempenhou um papel fundamental na revolução da tecnologia de amplificadores e alto-falantes para áudio profissional. Reconhecida como uma das pioneiras do setor, a HH continua a liderar com sua linha de produtos de instalação de áudio e sistemas para eventos ao vivo, desfrutando de uma reputação globalmente respeitada.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HH\n• Modelo: TNS-1200S\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HH\n• GTIN: 7890000836883\n• NCM: 7326.90.90\n• SKU: VTK000779\n\nEMBALAGEM\n• Dimensões informadas: 14 × 43 × 50 cm\n• Peso bruto informado: 6,7 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "7f04ec07-7f1d-4af0-8645-6595ced9c352",
+      "sku": "VTK003043",
+      "nome": "Cadeira Gamer Fortrek Cruiser Preta",
+      "error": "Atributos obrigatórios pendentes: Altura do encosto, Profundidade do assento, Largura da cadeira, Altura máxima da cadeira, Requer montagem, É gamer, É ergonômica, É giratória, Inclui manual de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB447782",
+            "nome": "Cadeiras Gamer"
+          },
+          "missing": [
+            "Altura do encosto",
+            "Profundidade do assento",
+            "Largura da cadeira",
+            "Altura máxima da cadeira",
+            "Requer montagem",
+            "É gamer",
+            "É ergonômica",
+            "É giratória",
+            "Inclui manual de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "de613369-7204-430c-aa4a-c0ddf6a7a31d",
+      "sku": "VTK001089",
+      "nome": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Preto/Turtle",
+      "error": "Atributos obrigatórios pendentes: Tipo de baixo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3752",
+            "nome": "Baixos"
+          },
+          "missing": [
+            "Tipo de baixo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "322aec33-cecf-4ce9-bf3e-472ae46e9f58",
+      "sku": "VTK004022",
+      "nome": "Cápsula de Microfone Sennheiser MMD 845 Preto",
+      "error": "Atributos obrigatórios pendentes: Conectores de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB4469",
+            "nome": "Microfones"
+          },
+          "missing": [
+            "Conectores de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5f9d6af0-af99-486c-97c1-abcfd8c85b41",
+      "sku": "VTK000223",
+      "nome": "Cadeira Gamer ThunderX3 EC3 Preta",
+      "error": "Atributos obrigatórios pendentes: Altura do encosto, Profundidade do assento, Largura da cadeira, Altura máxima da cadeira, Requer montagem, É gamer, É ergonômica, É giratória, Inclui manual de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB447782",
+            "nome": "Cadeiras Gamer"
+          },
+          "missing": [
+            "Altura do encosto",
+            "Profundidade do assento",
+            "Largura da cadeira",
+            "Altura máxima da cadeira",
+            "Requer montagem",
+            "É gamer",
+            "É ergonômica",
+            "É giratória",
+            "Inclui manual de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1b771eab-1ea5-4c26-b40b-7979a1438040",
+      "sku": "VTK001312",
+      "nome": "Guitarra Tagima Jazzmaster Strato DuoSmart Candy Apple",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB438516",
+            "nome": "Elétricas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "70194821-7380-495a-9040-2ca8ea2e1c53",
+      "sku": "VTK001343",
+      "nome": "Suporte Para Caixa JBL Bumper MAX26 AF-LA Preto",
+      "error": "Atributos obrigatórios pendentes: Lugar de colocação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB10233",
+            "nome": "Suportes para Caixas de Som"
+          },
+          "missing": [
+            "Lugar de colocação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fc7e5495-fb06-47ca-8530-97a7187d0167",
+      "sku": "VTK000799",
+      "nome": "Cadeira Gamer ThunderX3 TGC12 Loft Cinza",
+      "error": "Atributos obrigatórios pendentes: Altura do encosto, Profundidade do assento, Largura da cadeira, Altura máxima da cadeira, Requer montagem, É gamer, É ergonômica, É giratória, Inclui manual de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB447782",
+            "nome": "Cadeiras Gamer"
+          },
+          "missing": [
+            "Altura do encosto",
+            "Profundidade do assento",
+            "Largura da cadeira",
+            "Altura máxima da cadeira",
+            "Requer montagem",
+            "É gamer",
+            "É ergonômica",
+            "É giratória",
+            "Inclui manual de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bd099c71-e960-4e09-ae40-d616ea1968d6",
+      "sku": "VTK000378",
+      "nome": "Cadeira Ergonômica ThunderX3 Yama1 Ciano",
+      "error": "Atributos obrigatórios pendentes: Altura do encosto, Profundidade do assento, Largura da cadeira, Altura máxima da cadeira, Requer montagem, É gamer, É ergonômica, É giratória, Inclui manual de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB193945",
+            "nome": "Cadeiras para Escritório"
+          },
+          "missing": [
+            "Altura do encosto",
+            "Profundidade do assento",
+            "Largura da cadeira",
+            "Altura máxima da cadeira",
+            "Requer montagem",
+            "É gamer",
+            "É ergonômica",
+            "É giratória",
+            "Inclui manual de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fffee6d5-b53a-4b4b-b015-5088a2bd0735",
+      "sku": "VTK012866",
+      "nome": "Alto-falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4/a Atk",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "97de1044-c000-438c-9b24-acbc1b7ace04",
+      "sku": "VTK012861",
+      "nome": "Alto-falante 18 Pol 800w Rms 8 Ohms 18lf1610b8 Atk",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "451a9307-b2d5-4b11-9036-313c33a92b2a",
+      "sku": "VTK000429",
+      "nome": "Cápsula Para Microfone Sennheiser MME 865 Preta",
+      "error": "Atributos obrigatórios pendentes: Modelo, Conectores de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB4469",
+            "nome": "Microfones"
+          },
+          "missing": [
+            "Modelo",
+            "Conectores de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "531c6601-ff5b-4820-a4a7-bb1906fa0166",
+      "sku": "VTK025403",
+      "nome": "Kit 2 Alto-Falantes  400w 18 Pol 8 Ohms 18WF810B8 ATK",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "92748703-c816-44b1-a3fd-735be0af6f49",
+      "sku": "VTK001264",
+      "nome": "Antena Omnidirecional Passiva Sennheiser A1031-U",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB63312",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "batchNumber": 11,
+  "batchId": "profitable-shelf-2-create-011",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "238ea83d-2998-4380-9c4e-a6db59ed9e1b",
+      "sku": "VTK025711",
+      "nome": "20 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 43.6,
+      "estoque": 1,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 43.6,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 91.09
+      }
+    },
+    {
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 43.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Detector Óptico de Fumaça 12V 24V SEGURIMAX",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 43.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 91.64
+      }
+    },
+    {
+      "produtoId": "590a13b7-bf59-4481-a8b1-f7926134a3d6",
+      "sku": "VTK018552",
+      "nome": "Trafo De Linha Frahm T10",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 43.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Trafo De Linha Frahm T10",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 43.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 91.64
+      }
+    },
+    {
+      "produtoId": "5ef37ef0-f02b-4d7c-8c52-5a72abead051",
+      "sku": "VTK025932",
+      "nome": "6 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (3 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 44.85,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "6 Pilhas Alcalinas D Lr20 Sm 2 Elgin 3 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 44.85,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 93.36
+      }
+    },
+    {
+      "produtoId": "bb4405ed-880e-4c06-8c90-f0afd1b56abc",
+      "sku": "VTK018480",
+      "nome": "Haste Olimpus Curta New Flex M5/m6",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 44.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Olimpus Curta New Flex M5 m6",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 44.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 93.45
+      }
+    },
+    {
+      "produtoId": "31849a0c-4eed-49f0-8709-e4db46d8bf53",
+      "sku": "VTK021013",
+      "nome": "Telefone Intelbras Pleno Preto Sem Chave Com Fio 4080051",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 44.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Telefone Intelbras Pleno Preto Sem Chave Com Fio 4080051",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 44.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 93.45
+      }
+    },
+    {
+      "produtoId": "502bad99-2974-4af4-b71d-c8760d5c1adf",
+      "sku": "VTK025779",
+      "nome": "40 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 45.76,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "40 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 45.76,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.02
+      }
+    },
+    {
+      "produtoId": "41547a87-fde5-4c45-8286-2831897a0496",
+      "sku": "VTK012200",
+      "nome": "Pilha Recarregável AA 2500mAh Elgin Blister com 4 Unidades",
+      "fornecedor": "BKR1",
+      "custo": 45.9,
+      "estoque": 48,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pilha Recarregável AA 2500mAh Elgin Blister com 4 Unidades",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 45.9,
+        "shipping": 7.75,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.8
+      }
+    },
+    {
+      "produtoId": "b9da6dfa-378f-4668-b43c-3ffeffe92b49",
+      "sku": "VTK017539",
+      "nome": "Sensor Magnético Smart Sulton V3 Smw250",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 45.9,
+      "estoque": 49,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sensor Magnético Smart Sulton V3 Smw250 VIAWEB",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 45.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.27
+      }
+    },
+    {
+      "produtoId": "a409dfc4-18c0-431e-876e-b707ab358615",
+      "sku": "VTK017799",
+      "nome": "Mouse Logitech Silent M110 Usb Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 45.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Mouse Logitech Silent M110 Usb Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 45.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.27
+      }
+    },
+    {
+      "produtoId": "27b300ac-6971-45fc-b369-7fe75c6a2c29",
+      "sku": "VTK018675",
+      "nome": "Sensor Pet Infravermelho Sulton Spw 400 - 20kg",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 45.9,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sensor Pet Infravermelho Sulton Spw 400 20kg",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 45.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.27
+      }
+    },
+    {
+      "produtoId": "4ca011e6-5e2c-453d-bec1-66b70f85a99f",
+      "sku": "VTK017600",
+      "nome": "Refil De Tinta Epson T544322 Magenta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 46.1,
+      "estoque": 30,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil De Tinta Epson T544322 Magenta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 46.1,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.64
+      }
+    },
+    {
+      "produtoId": "9dc1f7a9-42ba-4d7c-9e4b-878ae65912bc",
+      "sku": "VTK017771",
+      "nome": "Refil De Tinta Epson T544422 Amarelo",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 46.1,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil De Tinta Epson T544422 Amarelo",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 46.1,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.64
+      }
+    },
+    {
+      "produtoId": "4f695665-3378-4fed-b754-b9fa42258b64",
+      "sku": "VTK017936",
+      "nome": "Refil Tinta Epson Amarelo T664420-al",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 46.1,
+      "estoque": 18,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil Tinta Epson Amarelo T664420 al",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 46.1,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.64
+      }
+    },
+    {
+      "produtoId": "4cc15031-46f6-4a63-b978-635a0683dcc8",
+      "sku": "VTK017951",
+      "nome": "Refil De Tinta Epson T504222 Ecotank Ciano",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 46.1,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil De Tinta Epson T504222 Ecotank Ciano",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 46.1,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.64
+      }
+    },
+    {
+      "produtoId": "67ceb04d-d08a-4cca-9888-10667042ef48",
+      "sku": "VTK017952",
+      "nome": "Refil De Tinta Epson T504322 Ecotank Magenta",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 46.1,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil De Tinta Epson T504322 Ecotank Magenta",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 46.1,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 95.64
+      }
+    },
+    {
+      "produtoId": "86d06e3c-d1e8-4110-b213-94479b55b881",
+      "sku": "VTK012522",
+      "nome": "Bateria 2CR5 6V Panasonic - 1 Unidade",
+      "fornecedor": "BKR1",
+      "custo": 46.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bateria 2CR5 6V Panasonic 1 Unidade",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 46.9,
+        "shipping": 7.99,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 105.56
+      }
+    },
+    {
+      "produtoId": "d4adf4ad-541f-4293-b1b1-a570f8f7a674",
+      "sku": "VTK018382",
+      "nome": "Suporte Fechadura Hikvision Ds-k4h188-u Formato U",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 46.93,
+      "estoque": 9,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Suporte Fechadura Hikvision Ds k4h188 u Formato U",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 46.93,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 97.15
+      }
+    },
+    {
+      "produtoId": "35b3e9d1-afe4-4c83-8f80-f25297f8c4d1",
+      "sku": "VTK025733",
+      "nome": "25 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 47,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "25 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 47,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 97.27
+      }
+    },
+    {
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 47.5,
+      "estoque": 23,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Jbl Selenium Rpst302 x Para Super Tweeter St302 x",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 47.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 98.18
+      }
+    }
+  ]
+}

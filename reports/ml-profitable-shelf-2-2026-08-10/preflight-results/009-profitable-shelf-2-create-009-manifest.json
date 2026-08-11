@@ -1,0 +1,427 @@
+{
+  "batchNumber": 9,
+  "batchId": "profitable-shelf-2-create-009",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "9bba78bf-6c76-45dd-afa1-c460ae550ace",
+      "sku": "VTK012421",
+      "nome": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 32.27,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 32.27,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 53.85
+      }
+    },
+    {
+      "produtoId": "c5a3ac69-aaa3-408d-ba6a-981ceaa94a52",
+      "sku": "VTK012670",
+      "nome": "Palheta Guitarra Color 1cap7 D Addario 1.25mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 32.27,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Color 1cap7 D Addario 1.25mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 32.27,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 53.85
+      }
+    },
+    {
+      "produtoId": "3d3e8419-30ba-4171-a441-126deb7ecb98",
+      "sku": "VTK012763",
+      "nome": "Palheta Guitarra Shl Hvy 1csh6 D Addario 1.00mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 32.27,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Shl Hvy 1csh6 D Addario 1.00mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 32.27,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 53.85
+      }
+    },
+    {
+      "produtoId": "06841718-d167-4558-8300-a91b91749347",
+      "sku": "VTK025678",
+      "nome": "15 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 32.7,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 32.7,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 54.44
+      }
+    },
+    {
+      "produtoId": "83b8f2ec-1894-4f3e-a1f1-01b0a8c62309",
+      "sku": "VTK018562",
+      "nome": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 32.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Permak Para Palio Mobi Com Cabo 3 Metros Ref. 100 g",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 32.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 54.72
+      }
+    },
+    {
+      "produtoId": "311b25f4-be9d-44e7-9a3d-4c509e796654",
+      "sku": "VTK025703",
+      "nome": "20 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 33.12,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 33.12,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 55.03
+      }
+    },
+    {
+      "produtoId": "2765ff71-67f9-4f9b-9bbc-9ce94d0005e5",
+      "sku": "VTK025702",
+      "nome": "20 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 34,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 34,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 56.25
+      }
+    },
+    {
+      "produtoId": "624c5748-911d-4280-b203-adbb59f00e9e",
+      "sku": "VTK025735",
+      "nome": "25 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 34,
+      "estoque": 20,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "25 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 34,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 56.25
+      }
+    },
+    {
+      "produtoId": "a53607a5-1161-4421-8f8a-ff6e49b126a6",
+      "sku": "VTK025752",
+      "nome": "30 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 34.32,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "30 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 34.32,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 56.69
+      }
+    },
+    {
+      "produtoId": "beb1e6a3-9ff6-44b2-9e87-93213f7cb65b",
+      "sku": "VTK012668",
+      "nome": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 34.53,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 34.53,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 56.99
+      }
+    },
+    {
+      "produtoId": "52ddfb0a-cc84-4a1b-add0-00545e7c886f",
+      "sku": "VTK017716",
+      "nome": "Cruzeta Metálica Cg3 Reserva De Cabos ópticos",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 35.28,
+      "estoque": 30,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cruzeta Metálica Cg3 Reserva De Cabos ópticos",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 35.28,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 58.03
+      }
+    },
+    {
+      "produtoId": "422bcabd-a745-4698-a59a-9b376e947f2c",
+      "sku": "VTK012383",
+      "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 35.33,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 35.33,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 58.1
+      }
+    },
+    {
+      "produtoId": "6c4f65db-7cd0-448b-90fe-076a6b3ceb7d",
+      "sku": "VTK012384",
+      "nome": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+      "fornecedor": "BKR1",
+      "custo": 35.36,
+      "estoque": 16,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 35.36,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 58.14
+      }
+    },
+    {
+      "produtoId": "f899d217-66f3-479a-bd1d-5bcaad5e0bad",
+      "sku": "VTK012304",
+      "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 35.48,
+      "estoque": 22,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 35.48,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 58.31
+      }
+    },
+    {
+      "produtoId": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+      "sku": "VTK012422",
+      "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 35.48,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 35.48,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 58.31
+      }
+    },
+    {
+      "produtoId": "5f074728-4dc5-48f5-b9f7-bc62d43f9955",
+      "sku": "VTK018935",
+      "nome": "Antena Permak Shark Preta 100/m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 35.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Antena Permak Shark Preta 100 m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 35.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 58.89
+      }
+    },
+    {
+      "produtoId": "efb6e711-24f5-40eb-96d5-11e8399fb49a",
+      "sku": "VTK017208",
+      "nome": "Cruzeta Metálica Cg3 Para Reserva De Cabos ópticos",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 36.18,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cruzeta Metálica Cg3 Para Reserva De Cabos ópticos",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 36.18,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 59.28
+      }
+    },
+    {
+      "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+      "sku": "VTK017238",
+      "nome": "Detector De Temperatura 12/ 24v Segurimax Contato Seco",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 36.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Detector De Temperatura 12 24v Segurimax Contato Seco",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 36.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 60.28
+      }
+    },
+    {
+      "produtoId": "0e80f90f-6a72-41e4-9d26-2b8277e0b3f6",
+      "sku": "VTK012909",
+      "nome": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto Bkr 1",
+      "fornecedor": "BKR1",
+      "custo": 37,
+      "estoque": 40,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Capa P Violão Clássico Simples 2 Alças Nylon 600 Preto Bkr 1",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 37,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 60.42
+      }
+    },
+    {
+      "produtoId": "f5c8584c-9802-409d-9a4d-51f894cc05d1",
+      "sku": "VTK025365",
+      "nome": "3 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCL Giannini",
+      "fornecedor": "BKR1",
+      "custo": 37.11,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "3 Jogos de Corda P Cavaquinho Cobra Niquel GESCL Giannini",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 37.11,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 60.57
+      }
+    }
+  ]
+}

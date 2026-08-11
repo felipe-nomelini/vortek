@@ -1,0 +1,567 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/028-profitable-shelf-2-create-028-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-028",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "ec4001c7-4811-4775-91e9-0971777d6947",
+      "sku": "VTK018176",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "basePrice": 412.42,
+      "familyName": "Reparo Jbl Selenium Rpd450ti Trio Para Driver D450ti Trio",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 286.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 621.64
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "229101"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPD450TI"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Selenium Rpd450ti Trio Para Driver D450ti Trio\n\nVISÃO GERAL\nIndicado para reposição do conjunto móvel com a bobina danificada ou queimada. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 229101\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPD450TI\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• NCM: 85189010\n• SKU: VTK018176\n\nEMBALAGEM\n• Dimensões informadas: 6 × 18 × 17 cm\n• Peso bruto informado: 0,164 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5daedd76-1c15-4a23-b0c0-318d437f575b",
+      "sku": "VTK001241",
+      "category": {
+        "id": "MLB99961",
+        "nome": "Limpadores",
+        "dominio": "Panos de limpeza"
+      },
+      "basePrice": 425.37,
+      "familyName": "Álcool Isopropilíco 99,8% 1000ML Isopropilico Transparente",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 321.94,
+        "shipping": 26.25,
+        "shippingSource": "erp",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 633.07
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "IMPLASTEC"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "10662440000186"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "1000ML"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Álcool Isopropilíco 99,8% 1000ML Isopropilico Transparente Implastec - CX / 10\n\nVISÃO GERAL\nO Isopropanol, ou álcool isopropílico é um solvente da família dos álcoois com uma capacidade de solvência muito grande, principalmente de muitas substâncias orgânicas naturais ou sintéticas, tais como: resinas, óleos, gorduras, alcalóides, acetatos de celulose, nitrocelulose e outras resinas utilizadas nas preparações de tintas e vernizes. Principais Aplicações: O isopropanol é utilizado industrialmente em eletroeletrônicos, tintas e vernizes, thinners e removedores, perfumaria e cosméticos, soluções anti-sépticas, tinta para impressão e produtos farmacêuticos.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: IMPLASTEC\n• Modelo: 1000ML\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IMPLASTEC\n• GTIN: 10662440000186\n• NCM: 2905.12.20\n• SKU: VTK001241\n\nEMBALAGEM\n• Dimensões informadas: 28 × 50 × 26 cm\n• Peso bruto informado: 15,12 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f1958384-054c-4d39-9d09-62a2b13537ff",
+      "sku": "VTK025736",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 471.08,
+      "familyName": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 340,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 705.36
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n250 Baterias Litio Cr2032 Elgin (50 Cart)\n\nKit com 50 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 50x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 50 unidades\n\n- Embalagem: Pacote / Caixa\n\n250 Baterias Litio Cr2032 Elgin (50 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025736\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 15 cm\n• Peso bruto informado: 1,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b41881b6-b8ba-4715-9862-dd4e31ac9ae7",
+      "sku": "VTK001371",
+      "category": {
+        "id": "MLB31156",
+        "nome": "Apoios de Braço",
+        "dominio": "Apoios de braço para carros e caminhonetes"
+      },
+      "basePrice": 599.95,
+      "familyName": "Apoio Braço Esquerdo Core Racer Modern Black ThunderX3",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 351.05,
+        "shipping": 70.25,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 794.91
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "THUNDERX3"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "79588"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890000795883"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Apoio Braço Esquerdo Core Racer Modern Black ThunderX3\n\nVISÃO GERAL\nO Apoio Braço Esquerdo Core Racer Modern Black da ThunderX3 é um produto original e ideal para a reposição das nossas cadeiras, oferecendo conforto e compatibilidade perfeita com o seu equipamento. • Modelos compatíveis: Cadeira Gamer Core Racer modern\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: THUNDERX3\n• Número de peça: 79588\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: THUNDERX3\n• GTIN: 7890000795883\n• NCM: 9401.99.00\n• SKU: VTK001371\n\nEMBALAGEM\n• Dimensões informadas: 14 × 22 × 36 cm\n• Peso bruto informado: 1,6 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "56b6a082-1ca3-41a0-8b61-02e5b26722e0",
+      "sku": "VTK017939",
+      "nome": "Caixa Dio 19\" Evus Ev-dio12 12fo Para Rack Preto",
+      "error": "Atributos obrigatórios pendentes: Quantidade de fibras",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB277385",
+            "nome": "Caixas de Emenda Óptica"
+          },
+          "missing": [
+            "Quantidade de fibras"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2d39b0f9-ecd8-482c-a2cb-48917df39ab1",
+      "sku": "VTK021164",
+      "nome": "Alto Falante Subwoofer 12\" Pioneer Ts-w3060br 350w Rms 4 Ohms Bobina Simples",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a37683da-e766-4669-a8cd-b2ad02dddbd2",
+      "sku": "VTK025399",
+      "nome": "Kit 2 Alto-Falantes  150w 6 Pol 8 Ohms 6WF310B8 ATK",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "MLB3905"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "805df8f4-d3c5-4bc1-9b5b-58a0282835e1",
+      "sku": "VTK018447",
+      "nome": "Canaleta 40x15x2000 Enerbras Branca Sem Dupla Face Com Divisão - PC / 12",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73351",
+            "nome": "Canaletas para Cabos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "efa7e871-454f-4225-b2ec-b4590f0e8bec",
+      "sku": "VTK001291",
+      "nome": "Lubrificante e Desengripante Aerosol 100ml Spay WD40 - CX / 12",
+      "error": "Atributos obrigatórios pendentes: Nome do produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB392346",
+            "nome": "Lubrificantes"
+          },
+          "missing": [
+            "Nome do produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+      "sku": "VTK018639",
+      "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de ventilador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1645",
+            "nome": "Ventiladores"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de ventilador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e9f9219e-762c-4719-aaa8-df2d9f065d73",
+      "sku": "VTK018746",
+      "nome": "Sub Conjunto Almapy Up 13+ Traseiro Sensorizado",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB439318",
+            "nome": "Outros"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f7ee4e5d-fd47-4d93-a169-63cbc4a9f257",
+      "sku": "VTK015972",
+      "nome": "12 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4ebed6af-78a7-42b7-9c3c-e7d6bc0ab4f9",
+      "sku": "VTK018353",
+      "nome": "Cabo Multicabo Santo Angelo Sas 12 Vias Cobre Ofhc Metro - PC / 10",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ce4f6ff7-d00f-4a17-96bd-044d42060414",
+      "sku": "VTK025954",
+      "nome": "Panela de Pressão Rochedo Trendy Fechamento Externo Inox 6L",
+      "error": "Atributos obrigatórios pendentes: Tipo de panela",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107501",
+            "nome": "Caçarolas e Caldeirões"
+          },
+          "missing": [
+            "Tipo de panela"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3976c413-68d3-4285-af05-5343e8998473",
+      "sku": "VTK019016",
+      "nome": "Cabo Coaxial Cabletech Rge-58 75% Preto 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7d3cadf6-0d21-4fb1-8167-9f11804ce7d6",
+      "sku": "VTK019090",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba093l Volkswagen Saveiro Sem Grade 1982/1997 Baguete",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b50a1717-1ca3-4491-b918-d698bbaa22b5",
+      "sku": "VTK017942",
+      "nome": "Fonte Atx 200w C3 Tech Ps-200v4 C3plus Sem Cabo - Caixa Com 10 Unidades",
+      "error": "Atributos obrigatórios pendentes: Potência de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6777",
+            "nome": "Fontes"
+          },
+          "missing": [
+            "Potência de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d8692ab7-21f8-4b1d-9e8c-87c0883633d9",
+      "sku": "VTK019041",
+      "nome": "Antena Parabólica De Grade Para Internet Aquário Mm-2420 Com 2.4 Ghz E Ganho De 20 Dbi - PC / 6",
+      "error": "Atributos obrigatórios pendentes: É kit de fábrica",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB245398",
+            "nome": "Kits de Antenas Parabólicas"
+          },
+          "missing": [
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+      "sku": "VTK018924",
+      "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+      "error": "Atributos obrigatórios pendentes: É sem fio, Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "É sem fio",
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "93869b7d-12a3-4370-95ba-92ec02b61cfc",
+      "sku": "VTK019089",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

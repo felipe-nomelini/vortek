@@ -1,0 +1,427 @@
+{
+  "batchNumber": 7,
+  "batchId": "profitable-shelf-2-create-007",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "e965914f-f1ad-496d-a062-e356995e054b",
+      "sku": "VTK018310",
+      "nome": "Controle Remoto Fks Cr955 G3 Digital 433mhz",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 25.9,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Controle Remoto Fks Cr955 G3 Digital 433mhz",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 25.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45
+      }
+    },
+    {
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 25.9,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Tweeter Shock Completo St 450 Trio SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 25.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45
+      }
+    },
+    {
+      "produtoId": "4893fb39-2110-4f90-a680-d1fd7b2262a1",
+      "sku": "VTK025771",
+      "nome": "4 Pilhas Alcalinas C Sm-2 Elgin (2 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 26,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "4 Pilhas Alcalinas C Sm 2 Elgin 2 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 26,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45.14
+      }
+    },
+    {
+      "produtoId": "b0e6b26e-fd4a-4e69-98b4-b257063c109f",
+      "sku": "VTK018434",
+      "nome": "Tela Para Alto Falante Permak 114/o 12\" Plástica - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 26.08,
+      "estoque": 8,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Tela Para Alto Falante Permak 114 o 12 Polegadas Plástica PC",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 26.08,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45.25
+      }
+    },
+    {
+      "produtoId": "9ab96d14-0427-4247-9a4f-ec7d087fe5a1",
+      "sku": "VTK012684",
+      "nome": "Palheta Nylon Jazz Iii Vermelha Pct C/4 Un 47r3n Dunlop (1827)",
+      "fornecedor": "BKR1",
+      "custo": 26.21,
+      "estoque": 27,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Nylon Jazz Iii Vermelha Pct C 4 Un 47r3n Dunlop 1827",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 26.21,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.115,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 51.07
+      }
+    },
+    {
+      "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+      "sku": "VTK002772",
+      "nome": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 26.5,
+      "estoque": 36,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 26.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45.83
+      }
+    },
+    {
+      "produtoId": "59491d00-93ec-497f-a8a1-756fcaa8cf25",
+      "sku": "VTK012418",
+      "nome": "Bateria CR123 3V Panasonic - 1 Unidade",
+      "fornecedor": "BKR1",
+      "custo": 26.53,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Bateria CR123 3V Panasonic 1 Unidade",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 26.53,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 45.88
+      }
+    },
+    {
+      "produtoId": "67bc35b4-73bf-484f-8bbb-6d39710108c9",
+      "sku": "VTK012628",
+      "nome": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 26.77,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 26.77,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 46.21
+      }
+    },
+    {
+      "produtoId": "5b1a9381-ca77-406b-a24e-8b8b5aee9efe",
+      "sku": "VTK012764",
+      "nome": "Palheta Guitarra Dur Prec 6dpr6 D Addario 1.20mm 10un",
+      "fornecedor": "BKR1",
+      "custo": 26.77,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Palheta Guitarra Dur Prec 6dpr6 D Addario 1.20mm 10un",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 26.77,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 46.21
+      }
+    },
+    {
+      "produtoId": "22c4be87-727e-4aad-95b5-c767068a9034",
+      "sku": "VTK025715",
+      "nome": "20 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 27.2,
+      "estoque": 25,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "20 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.2,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 46.81
+      }
+    },
+    {
+      "produtoId": "15194621-d655-4bf5-8148-a7be13fa04de",
+      "sku": "VTK017242",
+      "nome": "Cabo Hdmi Evus C-051 4k Macho X Macho V2.0 5,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 27.5,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Hdmi Evus C 051 4k Macho X Macho V2.0 5,0m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.5,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.22
+      }
+    },
+    {
+      "produtoId": "9d3e1af8-3cd3-49aa-a3ff-69759c47f3ad",
+      "sku": "VTK018338",
+      "nome": "Cabo Extensão De Antena Permak 1,50 Metros - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 27.8,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Extensão De Antena Permak 1,50 Metros PC 2",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.64
+      }
+    },
+    {
+      "produtoId": "ab6ed7fb-e97f-46f8-9cc0-c7f44b8c2c58",
+      "sku": "VTK018704",
+      "nome": "Cabo Extensão De Antena Permak 2,00 Metros - PC / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 27.8,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Extensão De Antena Permak 2,00 Metros PC 2",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.8,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.64
+      }
+    },
+    {
+      "produtoId": "152238b0-74d4-4e71-b611-3e3950e1ed9c",
+      "sku": "VTK012297",
+      "nome": "Kit 04 Conectores Xlr Macho P/ Pci 3 Polos Wc 4050 Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 27.87,
+      "estoque": 24,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 04 Conectores Xlr Macho P Pci 3 Polos Wc 4050 Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.87,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.74
+      }
+    },
+    {
+      "produtoId": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+      "sku": "VTK012327",
+      "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 27.87,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit 04 Conectores Xlr Femea P Pci 3 Polos Wc 4046 Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.87,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.74
+      }
+    },
+    {
+      "produtoId": "dc408ec6-8e7c-420d-951c-00c68ca7256d",
+      "sku": "VTK005491",
+      "nome": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 27.9,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.78
+      }
+    },
+    {
+      "produtoId": "e854a49a-deb0-4714-8aed-425c4fdbe378",
+      "sku": "VTK017215",
+      "nome": "Arandela Fiamon Sem Falante Redonda Branca 6\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 27.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Arandela Fiamon Sem Falante Redonda Branca 6 Polegadas",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.78
+      }
+    },
+    {
+      "produtoId": "224a8e84-1f7c-4167-9bc0-7a48b468338e",
+      "sku": "VTK018304",
+      "nome": "Chicote Permak Para Cd Honda Civic 2007 A 2011 - 35/d2",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 27.9,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Chicote Permak Para Cd Honda Civic 2007 A 2011 35 d2",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 27.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 47.78
+      }
+    },
+    {
+      "produtoId": "2e4c3609-efb1-4acb-b708-2634db72ecaa",
+      "sku": "VTK000022",
+      "nome": "Encordoamento Para Guitarra .008 Super Leve Giannini GEEGST8",
+      "fornecedor": "BKR1",
+      "custo": 28.1,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Encordoamento Para Guitarra .008 Super Leve Giannini GEEGST8",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 28.1,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 48.06
+      }
+    },
+    {
+      "produtoId": "abc4ad8a-6539-4037-a21d-f233882fc2b6",
+      "sku": "VTK025680",
+      "nome": "15 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 28.2,
+      "estoque": 23,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "15 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 28.2,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 48.19
+      }
+    }
+  ]
+}

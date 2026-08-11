@@ -1,0 +1,28 @@
+{
+  "batchNumber": 1,
+  "batchId": "profitable-shelf-2-create-001",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "3879e22f-03ce-4a4b-9003-d81c449cf43d",
+      "sku": "VTK012037",
+      "nome": "Pilha Alcalina Premium Panasonic Aa Pequena 02 Unidades Lr6egr/2b96",
+      "fornecedor": "BKR1",
+      "custo": 6.53,
+      "estoque": 100,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pilha Alcalina Premium Panasonic Aa Pequena 02 Unidades",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 6.53,
+        "shipping": 12.35,
+        "shippingSource": "erp",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 25.86
+      }
+    }
+  ]
+}

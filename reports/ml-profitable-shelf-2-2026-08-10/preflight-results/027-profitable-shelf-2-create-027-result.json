@@ -1,0 +1,648 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/027-profitable-shelf-2-create-027-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-027",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "880a70e1-bdd1-403c-b372-fa7973ec70bf",
+      "sku": "VTK019181",
+      "category": {
+        "id": "MLB277565",
+        "nome": "Cabos de Vassoura",
+        "dominio": "Cabos de vassouras e rodos"
+      },
+      "basePrice": 344.99,
+      "familyName": "Cabo Automotivo Pompeia 2.50mm Reduzido Preto",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 242.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 532.13
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "POMPEIA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "50MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898161452515"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Automotivo Pompeia 2.50mm Reduzido - Preto\n\nVISÃO GERAL\nInstale os alto falantes, caixas acústicas e demais equipamentos do sistema de som do seu carro com materiais de qualidade, como o Cabo de 2. 50mm da Visioncable. Ele é super resistente, flexível, revestido em PVC e condutor que garante excelente condução e sem interferências.\n\nPerfeito para um som de qualidade profissional! *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: POMPEIA\n• Modelo: 50MM\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: POMPEIA\n• GTIN: 7898161452515\n• NCM: 85444900\n• SKU: VTK019181\n\nEMBALAGEM\n• Dimensões informadas: 5.5 × 21 × 21 cm\n• Peso bruto informado: 2,66 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1ce70fe0-8b4e-4cdc-803a-e0448b64c412",
+      "sku": "VTK019028",
+      "category": {
+        "id": "MLB277565",
+        "nome": "Cabos de Vassoura",
+        "dominio": "Cabos de vassouras e rodos"
+      },
+      "basePrice": 347.83,
+      "familyName": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 244.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 535.7
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "POMPEIA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "50MM"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros Amarelo\n\nVISÃO GERAL\nCabo Pompéia Cabo Auto Plastic 2,50MM 300V Amarelo\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: POMPEIA\n• Modelo: 50MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: POMPEIA\n• NCM: 85444900\n• SKU: VTK019028\n\nEMBALAGEM\n• Dimensões informadas: 5 × 24 × 24 cm\n• Peso bruto informado: 2,456 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3fd1b54e-1469-483f-afe4-47781564640e",
+      "sku": "VTK017724",
+      "category": {
+        "id": "MLB30212",
+        "nome": "Etiquetadoras",
+        "dominio": "Rotuladoras"
+      },
+      "basePrice": 375.81,
+      "familyName": "Rotulador Portátil Eletrônica Brother Ptm95 Preto",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 254.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 584.72
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "BROTHER"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PTM95"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "012502675273"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Rotulador Portátil Eletrônica Brother Ptm95 Preto\n\nVISÃO GERAL\nPT-M95BK Personalize a identificação de seus materiais escolares, cozinha, quartos e muito mais com mais de 1000 combinações diferentes. O PT-M95BK é um rotulador eletrônico portátil elegante e moderno que utiliza fitas \"M\" não laminadas de 9 e 12 mm de largura. Ele imprime em 9 estilos de texto (incluindo impressão vertical), possui impressão em até 2 linhas, função de enquadramento de texto e sublinhado, todos acessíveis a partir do seu teclado QWERTY fácil de usar.\n\nVocê também tem à sua escolha 210 símbolos para realmente mostrar sua criatividade em suas etiquetas. Possui um display LCD de 12 caracteres que facilita na visualização. Vem com uma fita \"M\" inicial de 4 metros e um manual do usuário.\n\nUtiliza 4 pilhas \"AAA\" (não inclusas) ou adaptador AD24A (não incluso). Rotulador eletrônico portátil preto ideal para uso doméstico, com mais de 200 símbolos e 10 molduras. Organize, identifique e simplifique.\n\nUtiliza fitas M. - Personalize sua etiqueta com mais de 1000 combinações - Possui 210 símbolos, 10 estilos de molduras e impressão em até 2 linhas - Utiliza fitas M de 9mm e 12mm de largura (12 variações de cores e tamanhos) - Tela de fácil visualização - Imprima textos de 1 ou 2 linhas em cada etiqueta - Utiliza pilhas alcalinas AAA ou adaptador AD24A (não inclusos) - 10 estilos de molduras - 8 textos decorativos - Mais de 200 símbolos. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: BROTHER\n• Modelo: PTM95\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: BROTHER\n• GTIN: 012502675273\n• NCM: 84729099\n• SKU: VTK017724\n\nEMBALAGEM\n• Dimensões informadas: 8 × 22 × 22 cm\n• Peso bruto informado: 0,334 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f8bfc808-870b-423b-9799-1fbfe82e44f5",
+      "sku": "VTK000096",
+      "category": {
+        "id": "MLB73056",
+        "nome": "Copo para Liquidificador",
+        "dominio": "Copos de liquidificadores"
+      },
+      "basePrice": 425.39,
+      "familyName": "Copo Para Liquidificador Com Alça HR1764 Branco Walita CX 6",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 267.09,
+        "shipping": 24.65,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 561.04
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PHILIPS WALITA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HR1764"
+        },
+        {
+          "id": "COMPATIBLE_BLENDER_BRAND",
+          "name": "Marca compatível",
+          "value_id": "",
+          "value_name": "Philips Walita"
+        },
+        {
+          "id": "COMPATIBLE_BLENDERS_MODELS",
+          "name": "Modelos de liquidificadores compatíveis",
+          "value_id": "",
+          "value_name": "HR1764"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "10508990000101"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Copo Para Liquidificador Com Alça HR1764 Branco Walita - CX / 6\n\nVISÃO GERAL\nO Copo Para Liquidificador HR1764 Walita é um acessório essencial para complementar a sua experiência de liquidificação e preparação de alimentos. Projetado com materiais duráveis e de alta qualidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PHILIPS WALITA\n• Modelo: HR1764\n• Marca compatível: Philips Walita\n• Modelos de liquidificadores compatíveis: HR1764\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PHILIPS WALITA\n• GTIN: 10508990000101\n• NCM: 8509.90.00\n• SKU: VTK000096\n\nEMBALAGEM\n• Dimensões informadas: 27 × 35 × 51 cm\n• Peso bruto informado: 3,592 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b71bd41e-b6a8-464c-a3b1-b8ea3285d3b3",
+      "sku": "VTK025726",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 391,
+      "familyName": "200 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 272,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 594.55
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "200 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n200 Baterias Litio Cr2032 Elgin (40 Cart)\n\nKit com 40 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 40x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 40 unidades\n\n- Embalagem: Pacote / Caixa\n\n200 Baterias Litio Cr2032 Elgin (40 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025726\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 12 cm\n• Peso bruto informado: 0,83 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "66222f04-6280-4eeb-ab09-abf6564d6641",
+      "sku": "VTK002144",
+      "category": {
+        "id": "MLB29333",
+        "nome": "Cajones",
+        "dominio": "Cajons de percussão"
+      },
+      "basePrice": 388.67,
+      "familyName": "Cajon Acústico Strike SK4010 Route 66 F.S.A FSA",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 272.07,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.145,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 589.32
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FSA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SK4010"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898628760061"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cajon Acústico Strike SK4010 Route 66 F.S.A\n\nVISÃO GERAL\nSTRIKE SERIES seu primeiro cajon\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FSA\n• Modelo: SK4010\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FSA\n• GTIN: 7898628760061\n• NCM: 9206.00.00\n• SKU: VTK002144\n\nEMBALAGEM\n• Dimensões informadas: 50 × 38 × 39 cm\n• Peso bruto informado: 5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+      "sku": "VTK017898",
+      "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3828",
+            "nome": "Telefones Headset"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8cb69c5a-3ec9-4b01-8de2-203f6ecca2d4",
+      "sku": "VTK001156",
+      "nome": "Arandela 6\" Frahm HS 200w Quadrada Branca",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "986e32ea-df63-485e-9c25-b153a99af05e",
+      "sku": "VTK017410",
+      "nome": "Canaleta Industrial Fechada Enerbras 5050-eb 50x50x2000mm Branca",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73351",
+            "nome": "Canaletas para Cabos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "86b23aea-1a3c-4c4c-a47a-13d04370c59f",
+      "sku": "VTK006457",
+      "nome": "Grill Arno Dual GNOX Inox Com Abertura de 180° 220v",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB48730",
+            "nome": "Churrasqueiras Elétricas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "91298ae8-5b01-4716-876d-900536b1708e",
+      "sku": "VTK000568",
+      "nome": "Microfone Sem Fio Harmonics HSF-200 Simples",
+      "error": "Atributos obrigatórios pendentes: Conectores de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB4469",
+            "nome": "Microfones"
+          },
+          "missing": [
+            "Conectores de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "886045b6-ea4a-48ab-840a-050f7a522abe",
+      "sku": "VTK025600",
+      "nome": "60 Baterias Auditiva 312 Duracell (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5672f2f1-878f-4098-bb4e-e015608f2a69",
+      "sku": "VTK025601",
+      "nome": "60 Baterias Auditivas 10 Duracell (10 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8887c67e-a4b5-40d8-a89a-e2d38af89b8d",
+      "sku": "VTK025602",
+      "nome": "60 Baterias Auditivas 13 Duracell (10 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "801ac357-d55e-4872-828c-6cf2bbee0d16",
+      "sku": "VTK025603",
+      "nome": "60 Baterias Auditivas 675 Duracell (10 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "09a4e0a6-37b2-4bb3-8f3c-fcadc49c55af",
+      "sku": "VTK001007",
+      "nome": "Copo Para Liquidificador Com Alça RI2101/02/03 Branco Walita - CX / 6",
+      "error": "Atributos obrigatórios pendentes: Modelos de liquidificadores compatíveis",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73056",
+            "nome": "Copo para Liquidificador"
+          },
+          "missing": [
+            "Modelos de liquidificadores compatíveis"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c480d7fd-a6c3-4bd3-83d8-dd9ee60cf619",
+      "sku": "VTK017402",
+      "nome": "Cabo Solar Cabel 6,0mm² Preto 50m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Quantidade de pinos",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455358",
+            "nome": "Cabos para Painéis Solares"
+          },
+          "missing": [
+            "Tipo de cabo",
+            "Tamanho da seção",
+            "Quantidade de pinos"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b77f2516-bcfc-4d31-a653-fe6d894f496e",
+      "sku": "VTK017403",
+      "nome": "Cabo Solar Cabel 6,0mm² Vermelho 50m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Quantidade de pinos",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455358",
+            "nome": "Cabos para Painéis Solares"
+          },
+          "missing": [
+            "Tipo de cabo",
+            "Tamanho da seção",
+            "Quantidade de pinos"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cab6ecdf-8f79-4960-bd59-c83893742a50",
+      "sku": "VTK015946",
+      "nome": "10 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d5f50967-bbfc-475b-a026-2fae44248179",
+      "sku": "VTK001485",
+      "nome": "Fio PP 2x1,00mm Controller Preto - RL / 100",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455454",
+            "nome": "Cabos Elétricos"
+          },
+          "missing": [
+            "Tipo de cabo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

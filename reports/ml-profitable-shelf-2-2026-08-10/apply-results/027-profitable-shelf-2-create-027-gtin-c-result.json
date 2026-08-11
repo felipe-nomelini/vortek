@@ -1,0 +1,146 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/027-profitable-shelf-2-create-027-gtin-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-027",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "880a70e1-bdd1-403c-b372-fa7973ec70bf",
+      "sku": "VTK019181",
+      "category": {
+        "id": "MLB277565",
+        "nome": "Cabos de Vassoura",
+        "dominio": "Cabos de vassouras e rodos"
+      },
+      "anuncio": {
+        "id": "MLB7381672458",
+        "title": "Cabo Automotivo Pompeia 2.50mm Reduzido Preto",
+        "price": 532.13,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381672458-cabo-automotivo-pompeia-250mm-reduzido-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.14,
+        "price": 532.13
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3fd1b54e-1469-483f-afe4-47781564640e",
+      "sku": "VTK017724",
+      "category": {
+        "id": "MLB30212",
+        "nome": "Etiquetadoras",
+        "dominio": "Rotuladoras"
+      },
+      "anuncio": {
+        "id": "MLB7381742094",
+        "title": "Rotulador Portátil Eletrônica Brother Ptm95 Preto Preto",
+        "price": 584.72,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381742094-rotulador-portatil-eletrnica-brother-ptm95-preto-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 584.72
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f8bfc808-870b-423b-9799-1fbfe82e44f5",
+      "sku": "VTK000096",
+      "category": {
+        "id": "MLB73056",
+        "nome": "Copo para Liquidificador",
+        "dominio": "Copos de liquidificadores"
+      },
+      "anuncio": {
+        "id": "MLB7381742270",
+        "title": "Copo Para Liquidificador Com Alça Hr1764 Branco Walita Cx 6",
+        "price": 561.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381742270-copo-para-liquidificador-com-alca-hr1764-branco-walita-cx-6-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 24.65,
+        "shipping_source": "erp",
+        "ml_fee": 0.18,
+        "price": 561.04
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "66222f04-6280-4eeb-ab09-abf6564d6641",
+      "sku": "VTK002144",
+      "category": {
+        "id": "MLB29333",
+        "nome": "Cajones",
+        "dominio": "Cajons de percussão"
+      },
+      "anuncio": {
+        "id": "MLB7381673042",
+        "title": "Cajon Acústico Strike Sk4010 Route 66 F.s.a Fsa",
+        "price": 589.32,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381673042-cajon-acustico-strike-sk4010-route-66-fsa-fsa-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.145,
+        "price": 589.32
+      }
+    }
+  ],
+  "failed": []
+}

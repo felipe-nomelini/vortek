@@ -1,0 +1,112 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/011-profitable-shelf-2-create-011-gtin-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-011",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "41547a87-fde5-4c45-8286-2831897a0496",
+      "sku": "VTK012200",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "anuncio": {
+        "id": "MLB7381755840",
+        "title": "Pilha Recarregável Aa 2500mah Elgin Blister Com 4 Unidades",
+        "price": 95.8,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381755840-pilha-recarregavel-aa-2500mah-elgin-blister-com-4-unidades-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete erp, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 7.75,
+        "shipping_source": "erp",
+        "ml_fee": 0.14,
+        "price": 95.8
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b9da6dfa-378f-4668-b43c-3ffeffe92b49",
+      "sku": "VTK017539",
+      "category": {
+        "id": "MLB270363",
+        "nome": "Sensores Indutivos",
+        "dominio": "Sensores indutivos"
+      },
+      "anuncio": {
+        "id": "MLB7381755980",
+        "title": "Sensor Magnético Smart Sulton V3 Smw250 Viaweb",
+        "price": 91.93,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381755980-sensor-magnetico-smart-sulton-v3-smw250-viaweb-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 91.93
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": "Drivers de compressão para veículos"
+      },
+      "anuncio": {
+        "id": "MLB5034759581",
+        "title": "Reparo Jbl Selenium Rpst302 X Para Super Tweeter St302 X",
+        "price": 101.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034759581-reparo-jbl-selenium-rpst302-x-para-super-tweeter-st302-x-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 101.89
+      }
+    }
+  ],
+  "failed": []
+}

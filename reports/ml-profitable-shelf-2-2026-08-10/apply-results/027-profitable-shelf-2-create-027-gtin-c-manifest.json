@@ -1,0 +1,91 @@
+{
+  "batchNumber": 27,
+  "batchId": "profitable-shelf-2-create-027",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "880a70e1-bdd1-403c-b372-fa7973ec70bf",
+      "sku": "VTK019181",
+      "nome": "Cabo Automotivo Pompeia 2.50mm Reduzido - Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 242.99,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Automotivo Pompeia 2.50mm Reduzido Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 242.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 541.8
+      }
+    },
+    {
+      "produtoId": "3fd1b54e-1469-483f-afe4-47781564640e",
+      "sku": "VTK017724",
+      "nome": "Rotulador Portátil Eletrônica Brother Ptm95 Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 254.9,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Rotulador Portátil Eletrônica Brother Ptm95 Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 254.9,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 563.45
+      }
+    },
+    {
+      "produtoId": "f8bfc808-870b-423b-9799-1fbfe82e44f5",
+      "sku": "VTK000096",
+      "nome": "Copo Para Liquidificador Com Alça HR1764 Branco Walita - CX / 6",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 267.09,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Copo Para Liquidificador Com Alça HR1764 Branco Walita CX 6",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 267.09,
+        "shipping": 24.65,
+        "shippingSource": "erp",
+        "mlFee": 0.18,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 561.04
+      }
+    },
+    {
+      "produtoId": "66222f04-6280-4eeb-ab09-abf6564d6641",
+      "sku": "VTK002144",
+      "nome": "Cajon Acústico Strike SK4010 Route 66 F.S.A",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 272.07,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cajon Acústico Strike SK4010 Route 66 F.S.A FSA",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 272.07,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 594.67
+      }
+    }
+  ]
+}

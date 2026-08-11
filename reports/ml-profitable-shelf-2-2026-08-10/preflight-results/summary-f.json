@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-08-11T00:25:54.153Z",
+  "mode": "preflight",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10",
+  "selected": 60,
+  "success": 26,
+  "failed": 34,
+  "skippedNoLongerEligible": 0,
+  "batches": [
+    {
+      "fileName": "016-profitable-shelf-2-create-016.json",
+      "exitCode": 0,
+      "selected": 20,
+      "success": 12,
+      "failed": 8,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/016-profitable-shelf-2-create-016-result.json"
+    },
+    {
+      "fileName": "017-profitable-shelf-2-create-017.json",
+      "exitCode": 2,
+      "selected": 20,
+      "success": 9,
+      "failed": 11,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/017-profitable-shelf-2-create-017-result.json"
+    },
+    {
+      "fileName": "018-profitable-shelf-2-create-018.json",
+      "exitCode": 2,
+      "selected": 20,
+      "success": 5,
+      "failed": 15,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/018-profitable-shelf-2-create-018-result.json"
+    }
+  ],
+  "finishedAt": "2026-08-11T00:31:02.509Z"
+}

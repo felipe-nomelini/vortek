@@ -1,0 +1,78 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/029-profitable-shelf-2-create-029-gtin-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-029",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "0d1b79fb-0967-4fda-b0c7-c9de1e1c1f47",
+      "sku": "VTK001308",
+      "category": {
+        "id": "MLB29333",
+        "nome": "Cajones",
+        "dominio": "Cajons de percussão"
+      },
+      "anuncio": {
+        "id": "MLB7381673588",
+        "title": "Cajon Fsa Lite Lts 04 Amarelo",
+        "price": 979.07,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381673588-cajon-fsa-lite-lts-04-amarelo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 979.07
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2e9caef9-8b7c-464e-b057-a85e751c6e89",
+      "sku": "VTK003318",
+      "category": {
+        "id": "MLB72816",
+        "nome": "Pedais",
+        "dominio": "Pedais para teclados e pianos"
+      },
+      "anuncio": {
+        "id": "MLB7381754400",
+        "title": "Pedal Expressão Yamaha Para Teclado Fc7 Preto",
+        "price": 1071.66,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381754400-pedal-expresso-yamaha-para-teclado-fc7-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 110,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.165,
+        "price": 1071.66
+      }
+    }
+  ],
+  "failed": []
+}

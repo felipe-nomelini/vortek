@@ -1,0 +1,427 @@
+{
+  "batchNumber": 14,
+  "batchId": "profitable-shelf-2-create-014",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "69650a58-ae3c-4ef2-ac06-a752a5f16b1d",
+      "sku": "VTK025344",
+      "nome": "2 Jogos de Corda P/Guitarra Niquel 08 GEEGST.8 Giannini",
+      "fornecedor": "BKR1",
+      "custo": 56.2,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "2 Jogos de Corda P Guitarra Niquel 08 GEEGST.8 Giannini",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 56.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 147.64
+      }
+    },
+    {
+      "produtoId": "3290be1a-25c6-4f5b-b6ba-096efa31c642",
+      "sku": "VTK025751",
+      "nome": "30 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 56.4,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "30 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 56.4,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 148
+      }
+    },
+    {
+      "produtoId": "4106112d-966d-436c-9a6c-b8837572ccee",
+      "sku": "VTK025815",
+      "nome": "50 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 57.2,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "50 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 57.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 149.45
+      }
+    },
+    {
+      "produtoId": "c34ea5df-41dc-4434-ab2d-8dbe9841f078",
+      "sku": "VTK001280",
+      "nome": "Espremedor de Frutas Agratto 700ml Preto 127v",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 57.46,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Espremedor de Frutas Agratto 700ml Preto 127v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 57.46,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 149.93
+      }
+    },
+    {
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 57.6,
+      "estoque": 44,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 57.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 150.18
+      }
+    },
+    {
+      "produtoId": "4e6f2b8c-85c5-4392-bbe5-7c9ca2482a60",
+      "sku": "VTK018199",
+      "nome": "Sensor Ultrasom Locktronic",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 57.9,
+      "estoque": 12,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sensor Ultrasom Locktronic LOCKTRONIC BY SOFT",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 57.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 150.73
+      }
+    },
+    {
+      "produtoId": "9ca0eedc-b0b7-4c5b-9c3e-805f1ad42d74",
+      "sku": "VTK001762",
+      "nome": "Jogo de Chaves de Fenda/Philips Com 6 Peças Brasfort",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 58.39,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Jogo de Chaves de Fenda Philips Com 6 Peças Brasfort",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 58.39,
+        "shipping": 19.25,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 146.49
+      }
+    },
+    {
+      "produtoId": "a971d0d5-2689-4ca1-a824-9c0a3bf67aaf",
+      "sku": "VTK017651",
+      "nome": "Refil Tinta Epson T504 Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 58.9,
+      "estoque": 21,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Refil Tinta Epson T504 Preto",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 58.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 152.55
+      }
+    },
+    {
+      "produtoId": "8e8e0eb5-3444-46b0-a0ef-5a5710893440",
+      "sku": "VTK017384",
+      "nome": "Cabo De Força Tripolar Megacabos 1,2m Tipo Mickey - Preto - PC / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 59.5,
+      "estoque": 36,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo De Força Tripolar Megacabos 1,2m Tipo Mickey Preto PC 5",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 153.64
+      }
+    },
+    {
+      "produtoId": "f68a8e01-9542-4265-8a7b-e6ab8c6795d9",
+      "sku": "VTK025942",
+      "nome": "8 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (4 Cart)",
+      "fornecedor": "BKR1",
+      "custo": 59.8,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "8 Pilhas Alcalinas D Lr20 Sm 2 Elgin 4 Cart",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.18
+      }
+    },
+    {
+      "produtoId": "fa369a69-3db1-4dcd-9395-e6555e4310d7",
+      "sku": "VTK018078",
+      "nome": "Cabo Auto Permak 0.75mm Branco 100m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 59.9,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Auto Permak 0.75mm Branco 100m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.36
+      }
+    },
+    {
+      "produtoId": "e80419ea-3228-4e4d-93df-a8931fea6bba",
+      "sku": "VTK018149",
+      "nome": "Sinalizador Veicular Gcp Ss 1000",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 59.9,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sinalizador Veicular Gcp Ss 1000",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.36
+      }
+    },
+    {
+      "produtoId": "9d6b0a25-8deb-4a95-9124-3661034f8503",
+      "sku": "VTK018585",
+      "nome": "Kit De Lâmpada Tarponn Tp-6108 Ultraled Hb4 12v 40w",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 59.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit De Lâmpada Tarponn Tp 6108 Ultraled Hb4 12v 40w TARPONN",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.36
+      }
+    },
+    {
+      "produtoId": "b3e91716-2b43-4ed1-9219-ca1c702d1c44",
+      "sku": "VTK001277",
+      "nome": "Super Mixer Agratto MXV-01 200W Vermelho 127v",
+      "fornecedor": "HAYAMAX-PR",
+      "custo": 60.15,
+      "estoque": 10,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Super Mixer Agratto MXV 01 200W Vermelho 127v",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 60.15,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.82
+      }
+    },
+    {
+      "produtoId": "0d57c2ab-e6cc-4a93-bf80-5ba272763223",
+      "sku": "VTK012729",
+      "nome": "Cabo P10 Prowire Em L Tweed Lilás/prata 6,10m Wireconex",
+      "fornecedor": "BKR1",
+      "custo": 60.51,
+      "estoque": 3,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo P10 Prowire Em L Tweed Lilás prata 6,10m Wireconex",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 60.51,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 155.47
+      }
+    },
+    {
+      "produtoId": "70b95a7a-b176-4ad2-a136-f07d1d9198c7",
+      "sku": "VTK017241",
+      "nome": "Cabo Vga Evus C-044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 60.9,
+      "estoque": 50,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Vga Evus C 044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 60.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 156.18
+      }
+    },
+    {
+      "produtoId": "4417d8fd-15c0-4650-b373-1dbed596e9ce",
+      "sku": "VTK025796",
+      "nome": "45 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 61.2,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "45 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 61.2,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 156.73
+      }
+    },
+    {
+      "produtoId": "599cfd80-f0b5-4c48-bcf6-5fc340dfea9c",
+      "sku": "VTK018221",
+      "nome": "Pino Adaptador Daneva Dn1556 Pote Com 24 Pinos Cores Sortidas",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 61.6,
+      "estoque": 11,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Pino Adaptador Daneva Dn1556 Pote Com 24 Pinos Cores",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 61.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 157.45
+      }
+    },
+    {
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "nome": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 61.9,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Interruptor Inteligente 1 Tecla Wi Fi SE235 Branco",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 61.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 158
+      }
+    },
+    {
+      "produtoId": "ed0d9b3f-e237-4747-8c47-bd3864dc8df2",
+      "sku": "VTK017934",
+      "nome": "Caixa R.l.p. Vazia Corujinha A.f 6 + Rádio + Duto",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 62.9,
+      "estoque": 17,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Caixa R.l.p. Vazia Corujinha A.f 6 + Rádio + Duto CAIXARIAS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 62.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 159.82
+      }
+    }
+  ]
+}

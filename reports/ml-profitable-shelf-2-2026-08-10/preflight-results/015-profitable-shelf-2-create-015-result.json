@@ -1,0 +1,732 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/015-profitable-shelf-2-create-015-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-015",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "b02f56b4-ad44-44b9-b9fa-30ec6224ac65",
+      "sku": "VTK021122",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": "Conversores de áudio e vídeo"
+      },
+      "basePrice": 101.1,
+      "familyName": "Modulador De áudio E Vídeo Aquário Mod 001 Canal 3 E 4 De Tv",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 62.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.21
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "AQUARIO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MOD-001"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127604309"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Modulador De áudio E Vídeo Aquário Mod-001 Canal 3 E 4 De Tv\n\nVISÃO GERAL\nInformações do Produto Modulador de áudio e vídeo canal 3 e 4 de TV - MOD-001 Muito mais qualidade de imagem para canais analógicos e digitais. A mais moderna antena para TV A função de um modulador de áudio e vídeo é converter estes sinais e modulá-los em uma frequência de um canal de TV para ser enviado via cabo de antena. Assim podemos, por exemplo, enviar via cabo de antena o sinal de alguns equipamentos que possuam saída de áudio e/ou vídeo como por exemplo: Receptor de antena parabólica, DVD, DVR de um sistema de CFTV, Mídia player, conversor digital etc.\n\nTensão de entrada 110/220V\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: AQUARIO\n• Modelo: MOD-001\n• Voltagem: 220V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127604309\n• NCM: 85437099\n• SKU: VTK021122\n\nEMBALAGEM\n• Dimensões informadas: 5 × 10 × 11.5 cm\n• Peso bruto informado: 0,222 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e266ab06-5d7b-4084-99de-c3fbdca2a35b",
+      "sku": "VTK019017",
+      "category": {
+        "id": "MLB269930",
+        "nome": "Tomadas",
+        "dominio": "Tomadas elétricas"
+      },
+      "basePrice": 107.06,
+      "familyName": "Calha Com 2 Tomadas 2p+t 2 Colares Rj 45 Lan Rack 51610",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 63.51,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 158.05
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LAN RACK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calha Com 2 Tomadas 2p+t / 2 Colares Rj-45 Lan Rack 51610\n\nVISÃO GERAL\n2 tomadas 2p+t 2 colares rj-45 Fabricado em chapa de aço Os encaixes dos colares são compatíveis também com adaptadores ópticos e adap. de audio e video As tomadas 2P+T estão conectados a um cabo de energia de 150 mm com conector SINDAL na extremidade Cor Preto\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LAN RACK\n• Modelo: RJ-45\n• Cor: Preto\n• Cor principal: Preto\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LAN RACK\n• NCM: 85366910\n• SKU: VTK019017\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 6.5 × 25 cm\n• Peso bruto informado: 0,32 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "719203c1-adf6-4655-acd4-ca0eacc49ba2",
+      "sku": "VTK025917",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 110.53,
+      "familyName": "4 Baterias CR123 Elgin",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 64,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 161.82
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR123"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "4"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "4 Baterias CR123 Elgin\n\nVISÃO GERAL\n4 Baterias CR123 Elgin\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x Bateria Cr123 Elgin\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR123 Elgin 3V\n\n A Bateria CR123 da Elgin oferece alta voltagem e desempenho duradouro, sendo ideal para equipamentos eletrônicos que exigem potência constante e confiável, como câmeras fotográficas, lanternas táticas, alarmes, sensores e dispositivos de segurança.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR123\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Cilíndrico (equivalente a CR123A / 123 / CR17345 / DL123A / K123LA)\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~1500 mAh\n\n•    Composição química: Lítio / Dióxido de manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Câmeras digitais, lanternas táticas, alarmes, sensores, equipamentos médicos, rastreadores, sistemas de segurança e automação\n\n•    Vida útil (armazenamento): Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 34,5 mm (altura) x 17 mm (diâmetro)\n\n•    Peso unitário: Cerca de 17 g\n\n Vantagens\n\nAlta densidade de energia\n\nExcelente desempenho mesmo em temperaturas extremas\n\nLonga vida útil mesmo em modo standby\n\nIdeal para uso profissional e equipamentos críticos\n\nQualidade e confiabilidade da marca Elgin\n\n A Bateria CR123 Elgin é a escolha certa para quem precisa de energia potente, duradoura e segura em dispositivos de alto desempenho. Com a confiança de uma das marcas líderes do mercado, é perfeita para aplicações em segurança, fotografia, iluminação tática e mais.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR123\n• Unidades por kit: 4\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025917\n\nEMBALAGEM\n• Dimensões informadas: 12 × 9 × 7 cm\n• Peso bruto informado: 0,12 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "451ad3fd-8613-4e27-8f37-0693d16688da",
+      "sku": "VTK025651",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 111.84,
+      "familyName": "10 Pilhas Alcalinas C Sm 2 Elgin 5 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 65,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 163.64
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "5"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "10 Pilhas Alcalinas C Sm-2 Elgin (5 Cart)\n\nVISÃO GERAL\n10 Pilhas Alcalinas C Sm-2 Elgin (5 Cart)\n\nKit com 5 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 5x Pilha Alcalina Tipo C Elgin Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 5 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo C Elgin\n\n A Pilha Alcalina Tipo C Elgin em embalagem com 2 unidades oferece potência estável e longa duração, ideal para aparelhos como lanternas, rádios, brinquedos e equipamentos que exigem maior energia.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo C\n\n•    Formato: C (LR14)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas\n\n•    Rádios portáteis\n\n•    Brinquedos eletrônicos\n\n•    Aparelhos de som\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável para aparelhos de maior consumo\n\nProteção anti-vazamento para maior segurança\n\nProduto de alta qualidade e confiabilidade Elgin\n\n A Pilha Alcalina Tipo C Elgin Cartela com 2 unidades é ideal para quem busca uma fonte de energia confiável e duradoura para dispositivos que exigem mais potência, garantindo desempenho e segurança.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 5\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.11\n• SKU: VTK025651\n\nEMBALAGEM\n• Dimensões informadas: 6 × 9 × 13 cm\n• Peso bruto informado: 0,65 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "73e5c776-02e9-4907-a66f-da3c18c06956",
+      "sku": "VTK025757",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 112.89,
+      "familyName": "35 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 65.8,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 165.09
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "35 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nVISÃO GERAL\n35 Baterias Litio Cr2016 Elgin (7 Cart)\n\nKit com 7 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 7x Bateria Lítio Cr2016 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 7 unidades\n\n- Embalagem: Pacote / Caixa\n\nBateria de Lítio CR2016 Elgin \n\n A bateria CR2016 Elgin é ideal para dispositivos que exigem uma fonte de energia compacta e duradoura. Com tecnologia de lítio e tensão estável de 3V, ela é perfeita para relógios, calculadoras, controles, balanças digitais e chaves automotivas.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: CR2016\n\n•    Tipo: Bateria de lítio não recarregável\n\n•    Formato: Moeda (botão)\n\n•    Referências equivalentes: DL2016, ECR2016, BR2016, KCR2016, L2016\n\n•    Voltagem nominal: 3V\n\n•    Capacidade média: ~90 mAh\n\n•    Composição química: Lítio / Dióxido de Manganês (Li/MnO )\n\n•    Recarregável: Não\n\n•    Aplicações recomendadas: Relógios, controles remotos, chaves automotivas, calculadoras, balanças digitais, brinquedos, dispositivos eletrônicos diversos\n\n•    Vida útil de armazenamento: Até 10 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias: 20 mm (diâmetro) x 1,6 mm (altura)\n\n•    Peso unitário: Cerca de 1,8 g\n\n Vantagens\n\nTensão constante e confiável\n\nExcelente vida útil em armazenamento\n\nIdeal para uso doméstico, profissional ou técnico\n\nMarca Elgin referência em qualidade no segmento\n\n A Bateria CR2016 Elgin oferece desempenho e confiabilidade para os seus dispositivos mais delicados. Com energia estável e duradoura, é ideal para aplicações de precisão que não podem falhar. Um item essencial com a garantia de qualidade Elgin.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2016\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025757\n\nEMBALAGEM\n• Dimensões informadas: 2.8 × 5 × 19 cm\n• Peso bruto informado: 0,35 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5d50c257-99c4-4dfa-92d7-536ff82048f4",
+      "sku": "VTK017779",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "Mouses para computadores"
+      },
+      "basePrice": 104.82,
+      "familyName": "Mouse Sem Fio Logitech M185 Cinza",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 65.95,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 159.56
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "LOGITECH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "TECLADOS7COM"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Medium"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Mouse Sem Fio Logitech M185 Cinza\n\nVISÃO GERAL\nConfortável, compacto e fácil de usar, o mouse sem fio M185 permite que você trabalhe em qualquer lugar. DESFRUTE DO MUNDO SEM FIO O M185 está pronto quando você estiver. Simplesmente conecte o receptor em uma porta USB em seu dispositivo para começar a funcionar em segundos.\n\nO controle de cursor de tamanho pequeno e suave o torna ótimo para espaços de trabalho apertados e mesas ocupadas. FORMATO CONFORTÁVEL, DESIGN COMPACTO Continue produtivo por mais tempo com o formato confortável e contornado que segue a curva natural de sua mão. Compacto e sem fio, o mouse se adapta facilmente com seu laptop em uma bolsa - de modo que você possa levá-lo para qualquer lugar para trabalhar.\n\nO M185 é projetado para ser igualmente confortável para ambos usuários canhotos e destros. NAVEGAÇÃO FÁCIL E CONTROLE PRECISO O M185 fornece uma experiência de rolagem linha a linha para navegação mais fácil. Sem mais inoportunos cliques perdidos - o sensor óptico lhe permite rastrear com controle de cursor suave e preciso em qualquer superfície.\n\nQUALIDADE EM QUE VOCÊ PODE CONFIAR O mouse é construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados7Com base em dados de vendas independentes (em unidades) agregadas para mouse e teclados da Logitech a partir dos principais mercados globais incluindo Canadá, China, França, Alemanha, Indonésia, República da Coreia, Federação Russa, Suécia, Taiwan, Turquia, Reino Unido, EUA (período de 19 de julho a 20 de julho). Somente varejo.. Durável e confiável, o M185 também funciona até 12 meses8A durabilidade da pilha pode variar dependendo do uso e das condições e da computação.\n\nsem trocar as pilhas graças ao botão ligar/desligar e o modo de economia de energia de hibernação automática. SIMPLICIDADE PLUG & PLAY M185 é compatível com Windows, macOS, Chrome OS e Linux e funciona instantaneamente quando você conecta o receptor USB em seu computador ou laptop. O receptor também fornece uma conexão forte e confiável dentro de até 10 metros.\n\n9O alcance sem fio pode variar dependendo do usuário, condições ambientais e de computação. COMPLETE AS TAREFAS MAIS RAPIDAMENTE Consiga concluir mais coisas adicionando o M185 ao seu laptop. De acordo com um estudo recente, os usuários de laptop que escolheram este mouse em vez de um touchpad foram 50% mais produtivos10Com base na computação de rendimento em bits/segundo combinando velocidade e precisão com média para todos os dispositivos participando no estudo.\n\nEstudo do Laboratório de Ergonomia da Logitech com 23 participantes (out/2019) com dois mouses padrão da Logitech e dois trackpads padrão integrados e trabalharam 30% mais rápido11Com base em bits/segundo para média de tempo de movimento para todos os dispositivos participando no estudo. Um estudo do Laboratório de Ergonomia da Logitech com 23 participantes (out/2019) com dois mouses padrão da Logitech e dois trackpads padrão integrados. DÉCADAS DE EXCELÊNCIA EM DESIGN Trazemos mais de 25 anos de expertise e inovação criando mouses de vários tamanhos e formatos que fornecem um grau extra de conforto.\n\nNossas soluções são fabricadas meticulosamente para se adaptar a usuários destros ou canhotos, tornando mais fácil encontrar o produto certo para você. *Imagens meramente ilustrativos.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: LOGITECH\n• Modelo: TECLADOS7COM\n• Linha: Medium\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• NCM: 84716053\n• SKU: VTK017779\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 9 × 12 cm\n• Peso bruto informado: 0,11 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b1999a56-8e7b-40dd-8312-5ff1b365838f",
+      "sku": "VTK018761",
+      "category": {
+        "id": "MLB194301",
+        "nome": "Elétricas",
+        "dominio": "Fechaduras elétricas"
+      },
+      "basePrice": 109.68,
+      "familyName": "Botoeira Ipec Fonte 1a Na nf",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 66.1,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 170.28
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "IPEC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "900MA"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "7462936",
+          "value_name": "Bateria/Pilha"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Botoeira Ipec Fonte 1a Na/nf\n\nVISÃO GERAL\nInformações do Produto Botoeira Eletrônica 1A Desenvolvido para cionar todos os modelos de fechaduras elétricas e fechaduras de eletromagnética 12v 900mA do mercado. - Tensão de alimentação: 100/240 VAC; - Tensão de Saída: 13,8/1A; - Carregador para bateria de até 12v/7A, (mantém com carga constante); - Saídas de contatos C /NA /NF; - Ideal para uso em fechaduras eletromecânica 12V e fechaduras de eletroíma (ex: M150); - Possui temporizador fixo de 2 segundos a 2 minutos e 40 segundos para perfeito acionamento das fechaduras instaladas. - Tempo de acionamento ajustável.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: IPEC\n• Modelo: 900MA\n• Tipo de alimentação: Bateria/Pilha\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IPEC\n• NCM: 85269200\n• SKU: VTK018761\n\nEMBALAGEM\n• Dimensões informadas: 10 × 6.5 × 4 cm\n• Peso bruto informado: 0,084 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "ad6198cb-5bd4-477c-b5d2-890e97baf0dc",
+      "sku": "VTK021065",
+      "nome": "Caixa Rlp Vazia Para 1 Alto Falante 10\" Dutada Carpet",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c2f077aa-c3b3-4f24-b9cd-4f71e77d002e",
+      "sku": "VTK012502",
+      "nome": "Polidor Spray Shine Pw-pl-03 D Addario",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB188789",
+            "nome": "Politriz Elétricas"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "25ea579a-df21-4e4c-a729-a8b1f351b239",
+      "sku": "VTK012022",
+      "nome": "Conector Combo Xlr Fêmea Painel 3p Wc 330 Wireconex 04 Unidades",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cbb299c3-0b8f-4528-8680-6c83b96312b5",
+      "sku": "VTK001282",
+      "nome": "Pacote de Parafusos Ergo One Fortrek",
+      "error": "Atributos obrigatórios pendentes: Tipo de parafuso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB235592",
+            "nome": "Parafusos de Fenda"
+          },
+          "missing": [
+            "Tipo de parafuso"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e1801539-123a-4da9-8cdd-7cfb524d724d",
+      "sku": "VTK018279",
+      "nome": "Parafuso Fura Lata 3.5x25mm Cento - CT / 5",
+      "error": "Atributos obrigatórios pendentes: Tipo de parafuso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB235592",
+            "nome": "Parafusos de Fenda"
+          },
+          "missing": [
+            "Tipo de parafuso"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fc77c58a-f999-4e01-8901-e28f32eee0f9",
+      "sku": "VTK018397",
+      "nome": "Parafuso Permak Com Rosca Soberba 13mm - Cento - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Tipo de parafuso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB235592",
+            "nome": "Parafusos de Fenda"
+          },
+          "missing": [
+            "Tipo de parafuso"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+      "sku": "VTK018868",
+      "nome": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta",
+      "error": "Atributos obrigatórios pendentes: Modelo, Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Modelo",
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cfb64673-64e9-4601-adce-779a5205a446",
+      "sku": "VTK001379",
+      "nome": "Fio Cabinho Flexível 0,20mm Vermelho Tiaflex - RL / 100",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Quantidade de pinos",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455454",
+            "nome": "Cabos Elétricos"
+          },
+          "missing": [
+            "Tipo de cabo",
+            "Tamanho da seção",
+            "Quantidade de pinos"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e759a24c-52f8-4d87-98d5-4166efd87c42",
+      "sku": "VTK018446",
+      "nome": "Multiplicador Usb Daneva Carregador 2 Usb Saída 5v 1,5a + 2 Tomadas",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11187",
+            "nome": "Hubs USB"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b75e64d1-dfec-412b-843f-e024afec0279",
+      "sku": "VTK017179",
+      "nome": "Teclado Logitech K120 Usb Preto",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB418472",
+            "nome": "Teclados Físicos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0f4f1fc4-e955-4b3c-acb6-7042d533aa3c",
+      "sku": "VTK018472",
+      "nome": "Fusível Mega Permak 150a - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB270084",
+            "nome": "Fusíveis"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8fc85afd-3fbc-4267-a1a3-48fcc62dfe71",
+      "sku": "VTK018473",
+      "nome": "Fusivel Permak Mega 200a - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB270084",
+            "nome": "Fusíveis"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+      "sku": "VTK017211",
+      "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+      "error": "Atributos obrigatórios pendentes: Modelo, Compatibilidade do clamp",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271200",
+            "nome": "Clamps"
+          },
+          "missing": [
+            "Modelo",
+            "Compatibilidade do clamp"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "batchNumber": 5,
+  "batchId": "profitable-shelf-2-create-005",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "a6cc0e72-9a06-454e-afc7-483734544be1",
+      "sku": "VTK018663",
+      "nome": "Haste Permak Fiat Toro/ Jeep Renegade/ Compass Ov",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.9,
+      "estoque": 4,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Haste Permak Fiat Toro Jeep Renegade Compass Ov",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.67
+      }
+    },
+    {
+      "produtoId": "9d9f9acd-f081-4617-9b76-7a108bdd7a72",
+      "sku": "VTK018753",
+      "nome": "Conector Permak Cd Do Nissan March Livina Versa 35-d7",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 19.9,
+      "estoque": 5,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Conector Permak Cd Do Nissan March Livina Versa 35 d7",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 19.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 36.67
+      }
+    },
+    {
+      "produtoId": "b6daed03-8deb-461c-9472-059f25c252ea",
+      "sku": "VTK017545",
+      "nome": "Reparo Para Driver Shock D-250 Trio Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 20.9,
+      "estoque": 45,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Reparo Para Driver Shock D 250 Trio Selenium SHOCK REPAROS",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 20.9,
+        "shipping": 6.5,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.08,
+        "price": 38.06
+      }
+    }
+  ]
+}

@@ -1,0 +1,897 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/013-profitable-shelf-2-create-013-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-013",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "a715ff56-191a-487b-8235-b67e1614a4d1",
+      "sku": "VTK025849",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 88.89,
+      "familyName": "8 Pilhas Alcalinas C Sm 2 Elgin 4 Cart",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 52,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 137.5
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "4"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "8 Pilhas Alcalinas C Sm-2 Elgin (4 Cart)\n\nVISÃO GERAL\n8 Pilhas Alcalinas C Sm-2 Elgin (4 Cart)\n\nKit com 4 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 4x Pilha Alcalina Tipo C Elgin Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 4 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo C Elgin\n\n A Pilha Alcalina Tipo C Elgin em embalagem com 2 unidades oferece potência estável e longa duração, ideal para aparelhos como lanternas, rádios, brinquedos e equipamentos que exigem maior energia.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo C\n\n•    Formato: C (LR14)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas\n\n•    Rádios portáteis\n\n•    Brinquedos eletrônicos\n\n•    Aparelhos de som\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável para aparelhos de maior consumo\n\nProteção anti-vazamento para maior segurança\n\nProduto de alta qualidade e confiabilidade Elgin\n\n A Pilha Alcalina Tipo C Elgin Cartela com 2 unidades é ideal para quem busca uma fonte de energia confiável e duradoura para dispositivos que exigem mais potência, garantindo desempenho e segurança.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 4\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.11\n• SKU: VTK025849\n\nEMBALAGEM\n• Dimensões informadas: 6 × 9 × 13 cm\n• Peso bruto informado: 0,52 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e6b660dd-26a6-4647-8f33-5f7c20989151",
+      "sku": "VTK001093",
+      "category": {
+        "id": "MLB418046",
+        "nome": "Bases Elevatórias",
+        "dominio": "Suportes elevatórios para TV e monitores"
+      },
+      "basePrice": 88.4,
+      "familyName": "Suporte Para Monitor e Notebook Reliza ERGONEW3",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 52.49,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 135.95
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "RELIZA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "ERGONEW3"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Aço niquelado"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898638375224"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Suporte Para Monitor e Notebook Reliza ERGONEW3\n\nVISÃO GERAL\nO Suporte Para Monitor e Notebook Reliza ERGONEW3 é a solução perfeita para quem busca praticidade, organização e eficiência no espaço de trabalho. Com um design inteligente, detalhes na base que eleva o seu notebook, evitando o superaquecimento e garantindo uma melhor ventilação. Ao mesmo tempo, oferece um apoio perfeito para o monitor, o que ajuda a melhorar a postura e reduzir o desconforto durante o uso prolongado.\n\nAlém disso, sua base foi projetada para otimizar o espaço da sua mesa. Ela conta com compartimentos dedicados para organizar itens como canetas, cartões de visita e outros acessórios, mantendo tudo ao seu alcance e de forma organizada. Um detalhe muito útil é a passagem para os fios, que ajuda a evitar a bagunça de cabos e cria um ambiente mais limpo e funcional.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: RELIZA\n• Modelo: ERGONEW3\n• Materiais: Aço niquelado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: RELIZA\n• GTIN: 7898638375224\n• NCM: 3926.90.90\n• SKU: VTK001093\n\nEMBALAGEM\n• Dimensões informadas: 4 × 28 × 38 cm\n• Peso bruto informado: 0,85 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c79ed41e-b97f-4b3a-8808-f220e184c424",
+      "sku": "VTK003177",
+      "category": {
+        "id": "MLB2817",
+        "nome": "Outros",
+        "dominio": "Brinquedos e artigos eróticos"
+      },
+      "basePrice": 130.63,
+      "familyName": "Plug RCA Metal Com Parte Inferior Vermelha PGRC0022 Storm",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 53.2,
+        "shipping": 30,
+        "shippingSource": "erp",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 156.98
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "STORM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PGRC0022"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566207543"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Plug RCA Metal Com Parte Inferior Vermelha PGRC0022 Storm - PCT / 10\n\nVISÃO GERAL\nO Plug RCA é um modelo que proporciona excelente qualidade, através de uma estrutura resistente e durável.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: STORM\n• Modelo: PGRC0022\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566207543\n• NCM: 8536.69.90\n• SKU: VTK003177\n\nEMBALAGEM\n• Dimensões informadas: 11 × 1 × 10 cm\n• Peso bruto informado: 0,12 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fda6c327-084a-41a6-949d-96dbdf76ee5c",
+      "sku": "VTK018291",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "Amplificadores de som para veículos"
+      },
+      "basePrice": 92.38,
+      "familyName": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 53.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 143.45
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FKS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MCE300"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899906802848"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re\n\nVISÃO GERAL\nMódulo universal para rebatimento de espelhos retrovisores. O MCE300 RE foi desenvolvido para controle de espelhos retrovisores (laterais). - Acionado pela chave original do veículo.\n\n- Dois (2) modos de abertura de retrovisores. Para mais informações, por favor acesse o manual do produto. MCE 300 RE (cod.\n\n30801530) *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FKS\n• Modelo: MCE300\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FKS\n• GTIN: 7899906802848\n• NCM: 85437099\n• SKU: VTK018291\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 8 × 9 cm\n• Peso bruto informado: 0,056 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0efe9ce3-b3ea-4ff5-8e39-cb82c92e6c5b",
+      "sku": "VTK025367",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 94.46,
+      "familyName": "3 Jogos de Corda P Guitarra Canário Aço 09 GESGT9 Giannini",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 54.15,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 147.94
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GESGT9"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "15312680",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "3"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Light"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "3 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini\n\nVISÃO GERAL\n3 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini\n\nKit com 3 unidades originais Giannini.\n\nConteúdo da embalagem:\n\n- 3x Encordoamento Para Guitarra .009 Série Canário Giannini GESGT9\n\nInformações principais:\n\n- Marca: Giannini\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\nEncordoamento Giannini P/Guitarra Canário Aço GESGT9\n\n A série Canário é uma das mais tradicionais da Giannini, assim como uma das mais vendidas. O encordoamento para guitarra aço de 06 cordas Giannini Canário GESGT9  é o melhor custo benefício que você encontrará num encordoamento, sem perder a qualidade ou o timbre do seu som.\n\n Jogo de 6 cordas para Guitarra.\n\nMarca: Giannini\n\nSérie: Canário\n\nFabricação: Brasil\n\nTensão: Leve\n\nAlma: Aço\n\nRevestimento: Liga de aço inox\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GESGT9\n• Instrumento recomendado: Guitarra elétrica\n• Unidades por kit: 3\n• Linha: Light\n• Formato de venda: Kit\n• Quantidade de cordas: 6\n• Materiais: Metal\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025367\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e623c24f-a342-40bb-8a90-5e458f774d6f",
+      "sku": "VTK025780",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "basePrice": 91.85,
+      "familyName": "40 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 54.4,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 141.79
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "40 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nVISÃO GERAL\n40 Baterias Litio Cr2032 Elgin (8 Cart)\n\nKit com 8 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 8x Bateria Lítio Cr2032 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 8 unidades\n\n- Embalagem: Pacote / Caixa\n\n40 Baterias Litio Cr2032 Elgin (8 Cart)\n\n Garanta energia de longa duração e alta performance com as baterias de lítio CR2032 da Elgin. Ideais para equipamentos que exigem precisão e confiabilidade, como placas-mãe, balanças digitais, controles remotos, relógios, alarmes, brinquedos, entre outros.\n\n Características do Produto:\n\n•    Modelo: CR2032\n\n•    Marca: Elgin\n\n•    Tipo: Bateria de Lítio 3V\n\n•    Validade longa\n\n•    Alta durabilidade e desempenho estável\n\n•    Produto original e lacrado de fábrica\n\n Aplicações recomendadas:\n\nPerfeita para dispositivos eletrônicos que exigem baixo consumo de energia e funcionamento contínuo.\n\n Destaques:\n\n•    Produto com excelente custo-benefício\n\n•    Pronta entrega\n\n•    Envio rápido e seguro\n\n Adquira agora suas baterias Elgin CR2032 e tenha sempre energia quando precisar!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025780\n\nEMBALAGEM\n• Dimensões informadas: 3.2 × 5 × 19 cm\n• Peso bruto informado: 0,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e740ef81-07bf-42c1-9d10-06709c4c3466",
+      "sku": "VTK018461",
+      "category": {
+        "id": "MLB3561",
+        "nome": "Tintas",
+        "dominio": "Tintas para impressoras"
+      },
+      "basePrice": 90.85,
+      "familyName": "Refil Tinta Epson Ciano T673220al",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 54.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 139.47
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "EPSON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "70ML"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Refil Tinta Epson Ciano T673220al\n\nVISÃO GERAL\nInformações do Produto Características Com foco na alta qualidade de suas impressões e na riqueza dos detalhes, a Epson preparou o Refil de Tinta T673220AL Ciano com a revolucionária tinta MicroPiezo com exclusiva tecnologia que proporciona alta precisão no tamanho da gota, alta resolução e definição nas impressões. Com qualidade fotográfica e maior riqueza de detalhes o Refil de Tinta T673220AL Ciano oferece secagem instantânea permitindo a impressão de documentos e imagens com ótima qualidade e baixo custo por página. Compatível com as impressoras L800, L810, L850, L1800, o Refil de Tinta T673220AL Ciano traz maior durabilidade e impressões brilhantes em relatórios, gráficos e fotos.\n\nESPECIFICAÇÕES TÉCNICAS | DIMENSÕES Marca: Epson Código do Fabricante: T673220AL Tipo: Refil de Tinta Original Epson Equipamentos compatíveis: Impressoras Epson L800 / L810 / L850 / L1800 Volume (ml, Kg): 70ml\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EPSON\n• Modelo: 70ML\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EPSON\n• NCM: 32151900\n• SKU: VTK018461\n\nEMBALAGEM\n• Dimensões informadas: 14 × 4 × 4 cm\n• Peso bruto informado: 0,108 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a6254578-a015-4765-8ff2-23bd56070d60",
+      "sku": "VTK003259",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 91.99,
+      "familyName": "Pilha Recarregável 1,2V AAA 950mAh Eneloop Pro C 2 Pilhas",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 54.51,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.14,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 141.98
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PANASONIC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "950MAH"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896067203668"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pilha Recarregável 1,2V AAA 950mAh Eneloop Pro (C/2 Pilhas) Panasonic - CAR / 2\n\nVISÃO GERAL\nA Pilha Recarregável é um modelo de alto desempenho para aparelhos de alto consumo Vendidas prontas para o uso, as pilhas Eneloop Pro proporcionam mais velocidade para o carregamentos dos flashes e tem performace superior ate em baixa temperaturas. - Flash rápido A Eneloop Pro melhora a velocidade do flash externo em voltagem estável, permitindo mais de 800 disparos respectivamente, porém a velocidade de carregamento do flash não diminui. - Baixo descarregamento autônomo que proporciona tranquilidade em qualquer lugar!\n\nO baixo descarregamento da Eneloop Pro é a característica mais atraente para o fotográfo. Ouvimos relatos de profissionais que levam 20 pilhas Eneloop Pro avulsas quando vão trabalhar. Como essas pilhas sempre têm a mesma capacidade de quando estão totalmente carregadas, são o melhor recurso que um fotográfo pode ter.\n\n- Funciona em temperaturas muito baixas As pilhas alcainas de uso recular não funcionam com temperaturas perto ou abaixo de zero. Já a Eneloop Pro mantém caracteristicas similares de descarga em climas extremos como se o ambiente tivesse em 25°C. Eneloop Pro pode ser usada até quando a temperatura chega a -20°C.\n\n- Recarrega até 500 vezes Pode ser reutizada e recarregada até 500 vezes. - Pronta para o uso Pré recarrecada com energia solar. - Ideal para Teclado/Mouse, Game e Brinquedo.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PANASONIC\n• Modelo: 950MAH\n• Unidades por kit: 2\n• É recarregável: Sim\n• Tamanho da pilha: AAA\n• Formato de venda: Kit\n• Quantidade de kits: 1\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PANASONIC\n• GTIN: 7896067203668\n• NCM: 8507.50.20\n• SKU: VTK003259\n\nEMBALAGEM\n• Dimensões informadas: 12 × 1 × 8.5 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "853ee0d7-5ad0-4312-a297-4af55b2194d2",
+      "sku": "VTK018751",
+      "category": {
+        "id": "MLB3932",
+        "nome": "Alarmes para Motos",
+        "dominio": "Alarmes para bicicletas e motos"
+      },
+      "basePrice": 96.14,
+      "familyName": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6 Cg150",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 54.99,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 150.92
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "POSITRON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "DPN62"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897789642858"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125\n\nVISÃO GERAL\nInformações do Produto Controle DPN62 - Design Exclusivo Pósitron - Compatível com os alarmes EX, FX, PX e TX Linha *300, *330 e 360 e DuoBlock (*G6, *G7 e G8) - Necessário realizar configuração no controle* - Funções convencionais e função presença - Possui LED indicador de ativação e desativação - Modo econômico (desliga o controle automaticamente após 25 minutos de inatividade) - Bateria de longa duração - 1 ano de garantia - Tecnologia Anticlonagem New Flex Code\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: POSITRON\n• Modelo: DPN62\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: POSITRON\n• GTIN: 7897789642858\n• NCM: 85437099\n• SKU: VTK018751\n\nEMBALAGEM\n• Dimensões informadas: 1 × 6.5 × 8.5 cm\n• Peso bruto informado: 0,016 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+      "sku": "VTK012414",
+      "category": {
+        "id": "MLB457514",
+        "nome": "Machos de Roscar e Cossinetes",
+        "dominio": "Jogos de machos de rosquear e cossinetes"
+      },
+      "basePrice": 96.15,
+      "familyName": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 55,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 150.94
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WC347"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06 Unidades\n\nVISÃO GERAL\nAdaptador 3,5mm Fêmea TRS para 6,3mm Macho WC347 Wireconex Kit com 6 Unidades Ideal para quem precisa de versatilidade e conexão segura em equipamentos de áudio, este adaptador permite converter plugues P2 (3,5mm) estéreo para entrada P10 (6,3mm), garantindo compatibilidade entre fones, mesas de som, interfaces, instrumentos e outros dispositivos profissionais. Especificações • Modelo: WC347 • Marca: Wireconex • Tipo de conexão: 3,5mm (P2) Fêmea TRS 6,3mm (P10) Macho • Padrão: TRS (estéreo) • Material: Conectores metálicos de alta durabilidade • Acabamento: Corpo resistente com encaixe firme • Quantidade: 06 unidades • Aplicação: Áudio profissional, instrumentos musicais, mesas de som, amplificadores, fones de ouvido Com excelente custo-benefício, o adaptador WC347 da Wireconex oferece conexão estável, encaixe preciso e ótima durabilidade, sendo ideal tanto para uso profissional quanto doméstico. O kit com 6 unidades é perfeito para estúdios, igrejas, eventos e técnicos que precisam de praticidade no dia a dia.\n\nGaranta mais compatibilidade e eficiência nas suas conexões de áudio com qualidade e segurança.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Wireconex\n• Modelo: WC347\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Wireconex\n• NCM: 8536.90.10\n• SKU: VTK012414\n\nEMBALAGEM\n• Dimensões informadas: 1 × 7 × 6 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "012712bb-bbe0-4eeb-9695-fd7f03106462",
+      "sku": "VTK018923",
+      "category": {
+        "id": "MLB192355",
+        "nome": "Motor Teto Solar",
+        "dominio": "Motores de tetos solares para veículos"
+      },
+      "basePrice": 97.31,
+      "familyName": "Haste New Shark Olimpus Teto Traseira Prata",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 55.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 152.64
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "OLIMPUS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "337666"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Haste New Shark Olimpus Teto Traseira Prata\n\nVISÃO GERAL\nInformações do Produto Antena New Shark 11.03.0825 Prata - Haste tipo shark para antena de teto traseira ou decorativa; - Substitui funcionalmente a haste do tipo vareta adicionando charme e modernidade ao veículo; - Captação AM / FM; - Fácil e rápida instalação. Aplicações Universal\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: OLIMPUS\n• Número de peça: 337666\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: OLIMPUS\n• GTIN: 7898382143568\n• NCM: 85291090\n• SKU: VTK018923\n\nEMBALAGEM\n• Dimensões informadas: 9 × 11.5 × 18.5 cm\n• Peso bruto informado: 0,27 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "83155aac-2ecf-4544-8c99-47f2720cfc28",
+      "sku": "VTK018064",
+      "nome": "Lâmpada Multilaser Super Led H8 20w 6200k Par Au836",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "afb7f9a8-d524-4afa-9009-4a9f66411e15",
+      "sku": "VTK018197",
+      "nome": "Lâmpada Multilaser Super Led Hb4 30w 6200k Au840 Par",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "da3d66ab-5aab-4027-abc0-fd2e062bbb71",
+      "sku": "VTK018293",
+      "nome": "Lâmpada Multilaser Super Led Cob H1 Com Potência De 20w E Temperatura 6200k - Au832",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4665e99f-428a-4eaa-bd4d-8bc7dd711eb6",
+      "sku": "VTK022504",
+      "nome": "Caixa Vazia 1 Alto-falante 8\" Dutada",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3904",
+            "nome": "Caixas Seladas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2e0c43fd-a883-4e5d-bda9-366d13a8c45c",
+      "sku": "VTK018460",
+      "nome": "Refil Tinta Epson Amarelo T673420-al",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3561",
+            "nome": "Tintas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ce5d444a-08a2-43c0-80c1-044a25d139f8",
+      "sku": "VTK005775",
+      "nome": "Cabo Display Port 1.2v Para USB- C Macho Storm",
+      "error": "Atributos obrigatórios pendentes: Conector de entrada, Conector de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB38188",
+            "nome": "USB"
+          },
+          "missing": [
+            "Conector de entrada",
+            "Conector de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "67b24205-6321-479c-8e2c-e4f68c4326f8",
+      "sku": "VTK001246",
+      "nome": "Suporte Para Caixa de Som CP10 ASK",
+      "error": "Atributos obrigatórios pendentes: Lugar de colocação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB10233",
+            "nome": "Suportes para Caixas de Som"
+          },
+          "missing": [
+            "Lugar de colocação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c9711af5-7089-4ad7-9c21-987a25e208e0",
+      "sku": "VTK017625",
+      "nome": "Receptor Sulton Srx 302 3 Rele",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "57cd87d9-9961-405c-a4ed-027495051b55",
+      "sku": "VTK001732",
+      "nome": "Corda Para Violão Nylon 6ª Mi GENW.6 Série Canário Giannini - DZ / 12",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

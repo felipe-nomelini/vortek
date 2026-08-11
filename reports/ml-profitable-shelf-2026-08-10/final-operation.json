@@ -1,0 +1,126 @@
+{
+  "horario": "2026-08-10T20:45:48.989Z",
+  "solicitados": 6,
+  "ativos_e_conferidos": 5,
+  "bloqueados": 1,
+  "divergentes": 0,
+  "resultados": [
+    {
+      "SKU": "VTK000361",
+      "ItemID": "MLB7381262192",
+      "resultado": "ativo_e_conferido",
+      "titulo": "Cadeira Gamer Ergonômica Thunderx3 Yama1 Preta Original",
+      "preco": 2164.08,
+      "estoque": 15,
+      "mercado_envios": "me2",
+      "link": "https://produto.mercadolivre.com.br/MLB-7381262192-cadeira-gamer-ergonmica-thunderx3-yama1-preta-original-_JM",
+      "checks": {
+        "ativo": true,
+        "sku": true,
+        "categoria": true,
+        "preco": true,
+        "estoque": true,
+        "mercado_envios": true,
+        "fotos": true,
+        "descricao": true,
+        "erp_produto": true,
+        "erp_anuncio": true
+      }
+    },
+    {
+      "SKU": "VTK001959",
+      "ItemID": "MLB7381288678",
+      "resultado": "ativo_e_conferido",
+      "titulo": "Trombone De Vara Harmonics Tenor Bb Hsl-700l Laqueado",
+      "preco": 2439.05,
+      "estoque": 15,
+      "mercado_envios": "me2",
+      "link": "https://produto.mercadolivre.com.br/MLB-7381288678-trombone-de-vara-harmonics-tenor-bb-hsl-700l-laqueado-_JM",
+      "checks": {
+        "ativo": true,
+        "sku": true,
+        "categoria": true,
+        "preco": true,
+        "estoque": true,
+        "mercado_envios": true,
+        "fotos": true,
+        "descricao": true,
+        "erp_produto": true,
+        "erp_anuncio": true
+      }
+    },
+    {
+      "SKU": "VTK000890",
+      "ItemID": "MLB7381288752",
+      "resultado": "ativo_e_conferido",
+      "titulo": "Amplificador Para Instrumentos Laney Ah40 Preto 40w Original Preto",
+      "preco": 3220.26,
+      "estoque": 15,
+      "mercado_envios": "me2",
+      "link": "https://produto.mercadolivre.com.br/MLB-7381288752-amplificador-para-instrumentos-laney-ah40-preto-40w-original-preto-_JM",
+      "checks": {
+        "ativo": true,
+        "sku": true,
+        "categoria": true,
+        "preco": true,
+        "estoque": true,
+        "mercado_envios": true,
+        "fotos": true,
+        "descricao": true,
+        "erp_produto": true,
+        "erp_anuncio": true
+      }
+    },
+    {
+      "SKU": "VTK012101",
+      "ItemID": "MLB7381288892",
+      "resultado": "ativo_e_conferido",
+      "titulo": "Pilha Alcalina Energizer Max Aa Pequena Cartela C/ 2",
+      "preco": 20.59,
+      "estoque": 100,
+      "mercado_envios": "me2",
+      "link": "https://produto.mercadolivre.com.br/MLB-7381288892-pilha-alcalina-energizer-max-aa-pequena-cartela-c-2-_JM",
+      "checks": {
+        "ativo": true,
+        "sku": true,
+        "categoria": true,
+        "preco": true,
+        "estoque": true,
+        "mercado_envios": true,
+        "fotos": true,
+        "descricao": true,
+        "erp_produto": true,
+        "erp_anuncio": true
+      }
+    },
+    {
+      "SKU": "VTK000464",
+      "ItemID": "MLB7381276976",
+      "resultado": "ativo_e_conferido",
+      "titulo": "Pilha Alcalina Duracell 12v Mn21 A23 Cartela C/ 2",
+      "preco": 58.09,
+      "estoque": 69,
+      "mercado_envios": "me2",
+      "link": "https://produto.mercadolivre.com.br/MLB-7381276976-pilha-alcalina-duracell-12v-mn21-a23-cartela-c-2-_JM",
+      "checks": {
+        "ativo": true,
+        "sku": true,
+        "categoria": true,
+        "preco": true,
+        "estoque": true,
+        "mercado_envios": true,
+        "fotos": true,
+        "descricao": true,
+        "erp_produto": true,
+        "erp_anuncio": true
+      }
+    },
+    {
+      "SKU": "VTK012014",
+      "ItemID": null,
+      "resultado": "bloqueado",
+      "motivo": "Mercado Livre exige GTIN; fabricante e fornecedor não informam um código válido",
+      "preco_calculado": 67.39
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/014-profitable-shelf-2-create-014-gtin-b-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-014",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "category": {
+        "id": "MLB418301",
+        "nome": "Microfones Alto-falantes",
+        "dominio": "Microfones de alto-falantes remotos"
+      },
+      "anuncio": {
+        "id": "MLB5034732715",
+        "title": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt",
+        "price": 144.91,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034732715-fone-de-ouvido-para-radio-comunicador-intelbras-hc20pt-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 144.91
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fa369a69-3db1-4dcd-9395-e6555e4310d7",
+      "sku": "VTK018078",
+      "category": {
+        "id": "MLB277720",
+        "nome": "Cabos",
+        "dominio": "Cabos de freio e câmbio para bicicletas"
+      },
+      "anuncio": {
+        "id": "MLB7381741590",
+        "title": "Cabo Auto Permak 0.75mm Branco 100m",
+        "price": 152.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381741590-cabo-auto-permak-075mm-branco-100m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.145,
+        "price": 152.97
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e80419ea-3228-4e4d-93df-a8931fea6bba",
+      "sku": "VTK018149",
+      "category": {
+        "id": "MLB431675",
+        "nome": "Elétricos",
+        "dominio": "Sinalizadores de segurança eletrônicos"
+      },
+      "anuncio": {
+        "id": "MLB7381672436",
+        "title": "Sinalizador Veicular Gcp Ss 1000",
+        "price": 160.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381672436-sinalizador-veicular-gcp-ss-1000-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 160.19
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9d6b0a25-8deb-4a95-9124-3661034f8503",
+      "sku": "VTK018585",
+      "category": {
+        "id": "MLB191727",
+        "nome": "Lâmpadas",
+        "dominio": "Lâmpadas para veículos"
+      },
+      "anuncio": {
+        "id": "MLB7381672730",
+        "title": "Kit De Lâmpada Tarponn Tp 6108 Ultraled Hb4 12v 40w Tarponn",
+        "price": 160.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381672730-kit-de-lmpada-tarponn-tp-6108-ultraled-hb4-12v-40w-tarponn-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 160.19
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "category": {
+        "id": "MLB269928",
+        "nome": "Dimmers",
+        "dominio": "Dimmers"
+      },
+      "anuncio": {
+        "id": "MLB7381753534",
+        "title": "Interruptor Inteligente 1 Tecla Wi Fi Se235 Branco Branco",
+        "price": 153.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7381753534-interruptor-inteligente-1-tecla-wi-fi-se235-branco-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 25,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.135,
+        "price": 153.81
+      }
+    }
+  ],
+  "failed": []
+}

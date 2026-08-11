@@ -17,6 +17,12 @@ test("normaliza tensão DC sem convertê-la em tensão de rede", () => {
   assert.equal(normalizeVoltageValue("DC 12 V"), "12 Vdc");
 });
 
+test("normaliza 120V de fornecedor como 127V de catálogo", () => {
+  assert.equal(extractStrictVoltage("Alimentação: 120v"), "127V");
+  assert.equal(extractStrictVoltage("Voltagem 120 V"), "127V");
+  assert.equal(normalizeVoltageValue("120V"), "127V");
+});
+
 test("não deduz tensão DC a partir de uma bateria sem rótulo elétrico", () => {
   assert.equal(
     extractStrictVoltage("Bateria interna 3,7 V; dimensões 80 x 34 mm"),

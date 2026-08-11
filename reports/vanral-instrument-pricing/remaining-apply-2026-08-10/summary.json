@@ -1,0 +1,16 @@
+{
+  "event": "vanral_instrument_dynamic_pricing_summary",
+  "timestamp_utc": "2026-08-10T19:10:38.455Z",
+  "mode": "apply",
+  "profile": "vanral-instruments",
+  "scope": "all",
+  "output_dir": "/home/felipe/Documentos/Projetos/vortek/reports/vanral-instrument-pricing/remaining-apply-2026-08-10",
+  "products_scanned": 11,
+  "automated_items_found": 2,
+  "counts": {
+    "changed": 19
+  },
+  "safe_products": null,
+  "safe_input_file": null,
+  "events_file": "/home/felipe/Documentos/Projetos/vortek/reports/vanral-instrument-pricing/remaining-apply-2026-08-10/events.ndjson"
+}

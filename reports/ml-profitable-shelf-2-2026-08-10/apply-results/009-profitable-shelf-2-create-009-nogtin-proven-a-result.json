@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/009-profitable-shelf-2-create-009-nogtin-proven-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-009",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "efb6e711-24f5-40eb-96d5-11e8399fb49a",
+      "sku": "VTK017208",
+      "category": {
+        "id": "MLB277577",
+        "nome": "Cruzeta Coluna de Direção",
+        "dominio": "Cruzetas de direção para veículos"
+      },
+      "anuncio": {
+        "id": "MLB5034789119",
+        "title": "Cruzeta Metálica Cg3 Para Reserva De Cabos Ópticos",
+        "price": 60.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034789119-cruzeta-metalica-cg3-para-reserva-de-cabos-opticos-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.17,
+        "price": 60.97
+      }
+    }
+  ],
+  "failed": []
+}

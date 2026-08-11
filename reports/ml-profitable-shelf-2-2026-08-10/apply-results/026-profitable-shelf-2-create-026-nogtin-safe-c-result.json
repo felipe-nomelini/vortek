@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/026-profitable-shelf-2-create-026-nogtin-safe-c-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-026",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "26224d62-006e-4db1-b89a-acce2097c03e",
+      "sku": "VTK025683",
+      "category": {
+        "id": "MLB431681",
+        "nome": "MLB431681",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5034765833",
+        "title": "150 Pilhas Moeda Lítio Elgin Cr2032 3v Kit",
+        "price": 470.91,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034765833-150-pilhas-moeda-litio-elgin-cr2032-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 25%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.25,
+        "shipping": 55,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.15,
+        "price": 470.91
+      }
+    }
+  ],
+  "failed": []
+}

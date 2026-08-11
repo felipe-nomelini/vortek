@@ -1,0 +1,14 @@
+{
+  "Operacao": "Torniquete de Caixa EVOLUSOM-PR",
+  "Data": "2026-08-10",
+  "Produtos_Verificados": 606,
+  "Produtos_Atualizados": 231,
+  "Produtos_Protecao_de_Capital": 226,
+  "Produtos_Giro_Rapido": 5,
+  "Anuncios_Confirmados_no_Novo_Preco": 369,
+  "Anuncios_Antigos_Fechados_ou_Em_Analise_Nao_Alterados": 9,
+  "Produtos_Que_Cumpriam_Regra_Mas_Ficaram_Bloqueados": 12,
+  "Produtos_Fora_das_Regras": 363,
+  "Falhas_Pendentes": 0,
+  "Log_de_Precos": "price-changes-2026-08-10.json"
+}

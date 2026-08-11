@@ -1,0 +1,347 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/033-profitable-shelf-2-create-033-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-033",
+  "selected": 11,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "c45495b3-fa5d-4d97-9faa-5f6ab62b1201",
+      "sku": "VTK019185",
+      "category": {
+        "id": "MLB435616",
+        "nome": "Inversores Solares",
+        "dominio": "Inversores de corrente"
+      },
+      "basePrice": 2286.28,
+      "familyName": "Micro Inversor Solar Deye Sun m225g4 2,25kw",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 1426.64,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.17,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 2899.32
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "DEYE"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "IP67"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Micro Inversor Solar Deye Sun-m225g4 2,25kw\n\nVISÃO GERAL\nCom 6 anos de atuação no mercado brasileiro, a Deye é a 2° Marca mais lembrada pelos integradores de todo o Brasil e também esta no TOP 10 marcas de inversores com maior volume de importação, segundo o Estudo Estratégico Greener 2024, o que demonstra a qualidade de seus produtos e sua força no mercado de inversores. O novo modelo de microinversor SUN-M225G4-EU-Q0 pode suportar módulos de até 790W (respeitando as limitações de corrente e tensão). Além disso possui antena de wi-fi externa integrada ao microinversor, conferindo melhor conexão com a rede wi-fi do cliente.\n\nO micro inversor conta também com maiores aletas de dissipação de calor, garantindo melhor eficiência térmica. Outra novidade é novo Conector T para ligação CA de um microinversor com outro, conferindo melhor segurança e maior velocidade na instalação. • Eficiência máxima 96,5% • Quatro MPPTs independentes • Comunicação Wi-Fi (com antena externa) • Monitoramento a nível de módulo • Max.\n\nCorrente de entrada CC de 18A • Capacidade para módulos de até 790W, • Grau de proteção IP67 • Função de Desligamento rápido DADOS DE ENTRADA CC: Faixa de potência de entrada: 210-790W(4 peças) Tensão máxima de entrada: 60V Tensão de partida: 20V Faixa de operação da MPPT: 25-55V Faixa de operação MPPT em carga total: 37. 5-55V Tensão nominal: 42. 5V Máx.\n\ncorrente de curto-circuito: 27Ax4 Máx. corrente de operação: 18Ax4 Quantidade de rastreadores MPPT/ Quantidade de entrada por MPPT: 4/1 DADOS DE SÁIDA CA: Potência nominal de saída: 2250W Potência aparente de saída: 2250W Corrente nominal de saída: 10/9. 6A Corrente máxima de saída: 10/9.\n\n6A Tensão nominal de saída: 220/230V 0. 85Un-1. 1Un Tipo de conexão com a rede: L+N+PE Frequência nominal / Faixa de frequência /Frequência de saída: 50Hz/45Hz-55Hz 60Hz/55Hz-65Hz Unidades máxima por cabo tronco: 3 Fator de potência: 0.\n\n99 Distorção harmônica de corrente total THDi: 99% PROTEÇÃO: Proteção contra polaridade reversa CC: Sim Proteção contra sobrecorrente CA: Sim Proteção contra sobretensão CA: Sim Monitoramento da rede elétrica: Sim Monitoramento da proteção de Anti-Ilhamento: Sim Detecção de falha de aterramento: Sim Proteção contra queda de carga por sobretensão: Sim Grau de proteção contra sobrecarga: TIPO II (CC), TIPO II (CA) INTERFACE: Interface de comunicação: WiFi DADOS GERAIS: Faixa de temperatura operacional: -40ºCa +65ºC, 45ºC de redução Umidade ambiente permitida: 0-100% Altitude permitida: 2000m Ruído: 25 dB(A) Grau de proteção: IP 67 Topologia do inversor: Isolado Categoria de sobretensão: OVC II(CC), OVC III(CA) Tamanho do gabinete (L*A*D): 311×250,5×36,5mm (excluindo conectores e suportes) Peso: 5. 1kg Garantia: Garantia padrão de 15 anos, garantia estendida Regulação da rede: Resfriamento natural Resfriamento: IEC 61727, IEC 62116, CEI 0-21, EN 50549, NRS 097, RD 140, UNE 217002, OVE-Richtlinie R25, G98, VDE-AR-N 4105 Segurança EMC e normas: IEC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: DEYE\n• Modelo: IP67\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: DEYE\n• NCM: 85044090\n• SKU: VTK019185\n\nEMBALAGEM\n• Dimensões informadas: 8.5 × 34.5 × 48 cm\n• Peso bruto informado: 5,72 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "57f61483-70d6-4fc2-9446-19ab9f5ca333",
+      "sku": "VTK018667",
+      "category": {
+        "id": "MLB30208",
+        "nome": "Interruptores Automáticos",
+        "dominio": "Disjuntores automáticos e interruptores diferenciais"
+      },
+      "basePrice": 2627.39,
+      "familyName": "String Box Momberg 6e 3s 600vdc",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 1650,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.165,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 3289.72
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MOMBERG"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "IP65"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "String Box Momberg 6e/3s 600vdc\n\nVISÃO GERAL\n• IP65; • IK08; • Proteção IV; • ABS de Alta Resistência; • Fabricada de acordo com normas internacionais. ENTRADA (DC): Tensão Nominal Max: 600DC Corrente Nominal por entrada: 16A Tipo de fusível: N/A Tipo de conexão: Direta no Interruptor Seccionador Modelo Seccionadora : MDC1A-025-600 Bitola do cabo: De 2,5mm²até 10mm² Tipo de entrada dos cabos: Por prensa cabos SAÍDA (DC): Modelo Dispositivo de proteção de surto: DS50PV 600DC 40KA Classe 2 Tipo de conexão de saída: Direta no DPS pelo conector AS2x25 Bitola do cabo: De 2,5mm² até 10mm² Tipo de saída dos cabos: Por prensa cabos CAIXA/CARACTERÍSTICAS: N° Módulos : 18 DIN Grau de proteção IP IEC 60529: IP 65 Grau de resistência mecânica: IK 08 Material: ABS Resistência a temperatura IEC 60695-2-12: 650°C Tipo de Montagem : Sobrepor Peso: 1,5Kg Temperatura de armazenamento: De -25°C a +40°C Cor: RAL 7035 Dimensões (A x L x P): 286 X 418 X 148 Grau de resistência mecânica: IK08\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MOMBERG\n• Modelo: IP65\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MOMBERG\n• NCM: 85030090\n• SKU: VTK018667\n\nEMBALAGEM\n• Dimensões informadas: 24.5 × 13 × 43 cm\n• Peso bruto informado: 2,966 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1899ae2c-d48e-499e-af6f-fcf259a554e1",
+      "sku": "VTK012896",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "Caixas de som"
+      },
+      "basePrice": 2551.36,
+      "familyName": "Caixa Ativa 12 Polegadas 200w Rms Mk1225a Bt Mark Audio",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 1673.69,
+        "shipping": 110,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 3129.28
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Mark Audio"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MK1225A"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Caixa Ativa 12\" 200w Rms Mk1225a Bt Mark Audio\n\nVISÃO GERAL\nCaixa Ativa 12\" 200W RMS MK1225A BT Mark Audio Descrição: Caixa amplificada de 2 vias que utiliza um alto-falante de 12 na via de graves e um driver de titânio na via de agudos. A construção do gabinete é de plástico injetado, reduzindo o seu peso e suas dimensões, permitindo a montagem em lugares que dispõe de pouco espaço. No circuito de pré-amplificador há dois canais de entradas de MIC, um canal de LINE, controle de volume independente para cada canal, volume MASTER, equalizações de duas bandas (BASS e TREBLE) e um módulo USB/SD/FM capaz de reproduzir músicas em formato MP3, gravadas em dispositivo de armazenamento tipo pen drive, cartão de memória SD e captação de estações de FM.\n\nCom ótima relação custo e benefício, garante excelente desempenho em várias aplicações, seguindo os padrões de controle de qualidade da Mark Audio. Características: • 1 x alto-falante de 12\"; • 1 x driver de titânio; • Potência 200 W; • Folder search (busca de música por pasta); • Controle remoto; • 2 entradas balanceadas para microfone; • 1 entrada de Linha RCA com chave seletora para unidade MP3; • 1 saída de Linha RCA; • Volume individual por canal; • Equalização BASS e TREBLE; • Alças e rodízios para transporte; • Chave seletora de tensão 115 V / 230 V; • Peso: 13,6 Kg • Dimensões: 595mm x 410mm x 350mm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Mark Audio\n• Modelo: MK1225A\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Mark Audio\n• NCM: 8518.50.00\n• SKU: VTK012896\n\nEMBALAGEM\n• Dimensões informadas: 67 × 47 × 40 cm\n• Peso bruto informado: 16,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "27b47229-10ae-4bff-a78b-13e061e90781",
+      "sku": "VTK019003",
+      "nome": "Caixa Amplificada Multiuso Frahm Pw 600 App",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7892",
+            "nome": "Amplificadores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3206afcd-6e43-4e87-8902-cbf1cb7f855d",
+      "sku": "VTK012864",
+      "nome": "Alto-falante 18 Pol 1500w Rms 8 Ohms 18lf3000b8 Atk",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "240fb136-1a33-4308-aecc-8ab0414dbf54",
+      "sku": "VTK018757",
+      "nome": "Vídeo Porteiro Hikvision Ds-kd8102-v",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7075",
+            "nome": "Porteiros Elétricos"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3819cd2f-0f69-46da-ba8e-f32664985cbe",
+      "sku": "VTK025407",
+      "nome": "Kit 2 Alto-Falantes 12 Pol 1000W 4 Ohms WF3002000B4/A ATK",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ba47a1ed-dd68-4fa5-92b1-31a12b4504a7",
+      "sku": "VTK006377",
+      "nome": "Microfone Sennheiser E906 Dinâmico Supercardióide",
+      "error": "Atributos obrigatórios pendentes: Modelo, Conectores de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB4469",
+            "nome": "Microfones"
+          },
+          "missing": [
+            "Modelo",
+            "Conectores de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a13f4732-c68b-4d78-b17b-7b44d7219b22",
+      "sku": "VTK025408",
+      "nome": "Kit 2 Alto-Falantes 12 Pol 1300W 4 Ohms WF3004600B4/A ATK",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fd6cd343-5598-41b5-8006-84d9b691e9a4",
+      "sku": "VTK025420",
+      "nome": "Kit 2 Alto-Falantes 18 Pol 800W RMS 8 Ohms 18LF1610B8 ATK",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4ecd9321-755e-4f1b-a3a7-f591fd143d4d",
+      "sku": "VTK025419",
+      "nome": "Kit 2 Alto-Falantes 18 Pol 1500W RMS 8 Ohms 18LF3000B8 ATK",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

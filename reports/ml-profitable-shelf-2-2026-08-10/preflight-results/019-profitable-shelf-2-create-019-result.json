@@ -1,0 +1,675 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/preflight-results/019-profitable-shelf-2-create-019-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "profitable-shelf-2-create-019",
+  "selected": 20,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "94d74d47-6b15-4306-8e2a-cda23b0f39fe",
+      "sku": "VTK025739",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 151.88,
+      "familyName": "35 Baterias Alcalinas A23 Elgin 7 Cartelas C 5 Un",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 101.5,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 230
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MN21"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "5"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "35 Baterias Alcalinas A23 Elgin (7 Cartelas C/5 Un)\n\nVISÃO GERAL\n35 Baterias Alcalinas A23 Elgin (7 Cartelas C/5 Un)\n\nKit com 7 cartelas originais Elgin, totalizando 35 baterias.\n\nConteúdo da embalagem:\n\n- 7x Bateria Alcalina A23 Elgin Cartela Com 05 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 35 baterias (7 cartelas com 5 unidades)\n\n- Embalagem: Pacote / Caixa\n\nBateria Alcalina A23 Elgin \n\n As baterias alcalinas A23 da Elgin são perfeitas para dispositivos que requerem 12V de potência em tamanho reduzido. São ideais para controles de portão, alarmes, campainhas sem fio e outros aparelhos eletrônicos de baixa corrente.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: A23\n\n•    Formato: Cilíndrico A23 (também conhecido como 23A / 8LR932 / MN21 / LRV08)\n\n•    Tipo: Alcalina\n\n•    Voltagem nominal: 12 V\n\n•    Capacidade típica: ~55 mAh\n\n•    Composição química: Alcalina (Zinco / Dióxido de Manganês)\n\n•    Recarregável: Não\n\n•    Aplicações indicadas: Controles remotos de portão, alarmes, sensores, rastreadores, lanternas pequenas, campainhas sem fio\n\n•    Vida útil (armazenamento): Até 5 anos\n\n•    Livre de metais pesados: Sim (sem mercúrio e cádmio)\n\n•    Dimensões unitárias aproximadas: 28 mm (C) x 10 mm (Ø)\n\n•    Peso unitário: Cerca de 8 g\n\n Vantagens:\n\nAlta voltagem em formato compacto\n\nExcelente durabilidade e desempenho em dispositivos intermitentes\n\nProduto seguro e de qualidade Elgin\n\n A Bateria Alcalina A23 Elgin oferece desempenho confiável e excelente custo-benefício para quem precisa de energia em dispositivos de automação e segurança. Ideal para residências, empresas e profissionais que utilizam esses aparelhos no dia a dia.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: MN21\n• Unidades por kit: 5\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.32\n• SKU: VTK025739\n\nEMBALAGEM\n• Dimensões informadas: 4.2 × 6 × 19 cm\n• Peso bruto informado: 0,63 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "17271a27-6856-4fe1-bc34-797e7b773583",
+      "sku": "VTK002305",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 149.37,
+      "familyName": "Emenda XLR x XLR em Metal EMCN0001 Prata Storm PCT 10",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 102.48,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 223.65
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "STORM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "EMCN0001"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566203064"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Emenda XLR x XLR em Metal EMCN0001 Prata Storm - PCT / 10\n\nVISÃO GERAL\nA Emenda XLR x XLR é um modelo que proporciona excelente qualidade, através de uma estrutura resistente e durável.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: STORM\n• Modelo: EMCN0001\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566203064\n• NCM: 8536.69.90\n• SKU: VTK002305\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 12 × 13 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2b7267f3-7fe5-47ed-8e5a-4a299d2528ea",
+      "sku": "VTK025884",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 155.81,
+      "familyName": "14 Pilhas Alcalinas D Lr20 Sm 2 Elgin 7 Cart",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 104.65,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 235.73
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SM-2"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "7"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055160",
+          "value_name": "O produto não tem código cadastrado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "14 Pilhas Alcalinas D Lr20 Sm-2 Elgin  (7 Cart)\n\nVISÃO GERAL\n14 Pilhas Alcalinas D Lr20 Sm-2 Elgin (7 Cart)\n\nKit com 7 unidades originais Elgin.\n\nConteúdo da embalagem:\n\n- 7x Pilha Alcalina Tipo D Elgin - Cartela Com 02 Unidades\n\nInformações principais:\n\n- Marca: Elgin\n\n- Quantidade: 7 unidades\n\n- Embalagem: Pacote / Caixa\n\nPilha Alcalina Tipo D Elgin Cartela com 2 Unidades\n\n A Pilha Alcalina Tipo D Elgin em embalagem com 2 unidades é ideal para equipamentos que demandam energia constante e prolongada, como lanternas grandes, rádios e aparelhos eletrônicos robustos.\n\n Detalhes Técnicos\n\n•    Marca: Elgin\n\n•    Modelo: Tipo D\n\n•    Formato: D (LR20)\n\n•    Composição química: Alcalina\n\n•    Tensão nominal: 1,5V\n\n•    Recarregável: Não\n\n•    Tipo de embalagem: Cartela blister\n\n•    Tecnologia: Power Plus alta durabilidade e resistência\n\n•    Proteção contra vazamento: Sim\n\n•    Vida útil (armazenada): Até 5 anos\n\n•    Uso recomendado para:\n\n•    Lanternas grandes\n\n•    Rádios portáteis de alta potência\n\n•    Aparelhos eletrônicos industriais\n\n•    Equipamentos robustos que exigem mais energia\n\n•    Ambiental: Livre de mercúrio e cádmio\n\n Vantagens\n\nEnergia estável e duradoura para aparelhos de maior consumo\n\nEmbalagem prática com 2 unidades\n\nProteção anti-vazamento para segurança extra\n\nMarca Elgin, sinônimo de qualidade e confiança\n\n A Pilha Alcalina Tipo D Elgin Cartela com 2 unidades é a escolha ideal para quem precisa de uma fonte confiável de energia para dispositivos que demandam potência constante e alta durabilidade.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: SM-2\n• Unidades por kit: 7\n• É recarregável: Sim\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Motivo de GTIN vazio: O produto não tem código cadastrado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.12\n• SKU: VTK025884\n\nEMBALAGEM\n• Dimensões informadas: 11.2 × 9 × 15 cm\n• Peso bruto informado: 1,82 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "category": {
+        "id": "MLB6535",
+        "nome": "Grades para Caixas de Som",
+        "dominio": "Grades para caixas de som"
+      },
+      "basePrice": 158.1,
+      "familyName": "Arandela Sem Borda Frahm 6 Polegadas 40w Full Ranger",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 104.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.16,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 240.56
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "1MM"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "356385"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896673814074"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada\n\nVISÃO GERAL\nInformações do Produto Caixa de Som Arandela Frahm - Quadrada 6 FR 40W - 31832 Nova linha de arandelas FRAHM : Potência e Eficiência para ambientes sofisticados Uma linha completa projetada para atender a necessidade de sonorização dos mais variados ambientes. Na residência ou em ambientes comerciais, as novas arandelas Frahm permitem a perfeita integração entre o produto e o ambiente em que são instaladas. As bordas ultra finas garantem a presença discreta do produto e componentes de alta fidelidade produzem um som envolvente.\n\nCaracterísticas: - As molduras foram projetadas com sistema de ampliação do ângulo de dispersão; - Possuem pontos exclusivos para a fixação dos mais variados tipos de trafos, não permitindo que sejam colocados em pontos que causam danos a estrutura; - No modelo quadrado cada uma das torres é responsável pelo travamento de uma das laterais da arandela o que proporciona fixação de 100% de sua base no teto; - O projeto permite flexibilidade na furação do local de instalação (se a a furação não ficar perfeita conforme o gabarito, ainda assim a arandela irá se encaixar sem que o trabalho precise ser refeito); - Permite o travamento desde a menor até a maior estrutura de teto (de 1mm a 30mm); - Terminais de engate rápido; - Conjunto móvel otimizado para a reprodução de baixas frequências. Informações Técnicas Tipo Full Range Impedância 8 Ohms Potência Máxima 80 W Potência RMS 40 W Woofer 6\" Cone e borda de celulose, bobina móvel em alumínio Resposta de frequência 100 - 18KHz SPL (dB/W/m) 93 Dimensão em mm (AxLxC) 222 x 222 mm Dimensões do furo para instalação 196 x 196 mm Altura da arandela 65 mm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FRAHM\n• Modelo: 1MM\n• Número de peça: 356385\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FRAHM\n• GTIN: 7896673814074\n• NCM: 85182100\n• SKU: VTK018027\n\nEMBALAGEM\n• Dimensões informadas: 9 × 25 × 25 cm\n• Peso bruto informado: 0,92 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "71e8cbf9-9eba-45b9-8902-5f177dc768bc",
+      "sku": "VTK018448",
+      "category": {
+        "id": "MLB419878",
+        "nome": "Racks de Servidores",
+        "dominio": "Racks para servidores"
+      },
+      "basePrice": 152.32,
+      "familyName": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos",
+      "listingType": "gold_special",
+      "pricing": {
+        "cost": 104.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.13,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 227.89
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MAX ELETRON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "600MM"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7908060203689"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos\n\nVISÃO GERAL\nInformações do Produto Bandeja 19\" Móvel Telescópica para racks 4 Pontos 1U X 600 mm. Ventilada Material de ótima qualidade e durabilidade confeccionado em aço estampado, tratado por fosfatização, pintado em tinta hibrida epóxi-pó na cor preta com secagem em forno de alta temperatura, o que garante excelente acabamento e resistência. A bandeja móvel 4 pontos de fixação 1Ux 600 mm.\n\ncom guias telescópicas ventilada é utilizada para acomodar nobreaks, baterias, estabilizadores, servidores, teclados, monitores, modems, roteadores em racks e equipamentos padrão 19 . A bandeja pode ser removida com praticidade. Capacidade de carga 40 kg distribuídos.\n\nProduto com Garantia de 12 meses contra defeitos de fabricação. Ótimo custo- benefício! Dimensões: Largura 485 mm.\n\nProfundidade 600 mm. Altura 44 mm. *Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MAX ELETRON\n• Modelo: 600MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MAX ELETRON\n• GTIN: 7908060203689\n• NCM: 94032090\n• SKU: VTK018448\n\nEMBALAGEM\n• Dimensões informadas: 5 × 49 × 62 cm\n• Peso bruto informado: 4,812 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1135a138-405e-4964-9a12-9044e528901a",
+      "sku": "VTK019124",
+      "category": {
+        "id": "MLB6535",
+        "nome": "Grades para Caixas de Som",
+        "dominio": "Grades para caixas de som"
+      },
+      "basePrice": 160.63,
+      "familyName": "Arandela Sem Borda Frahm 6 Polegadas 40w Full Ranger Redonda",
+      "listingType": "gold_pro",
+      "pricing": {
+        "cost": 106.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.16,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 244.26
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "1MM"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "356395"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896673814067"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Redonda\n\nVISÃO GERAL\nInformações do Produto Caixa de Som Arandela Frahm - Redonda 6 FR 40W - 31822 Nova linha de arandelas FRAHM : Potência e Eficiência para ambientes sofisticados. Uma linha completa projetada para atender a necessidade de sonorização dos mais variados ambientes. Na residência ou em ambientes comerciais, as novas arandelas Frahm permitem a perfeita integração entre o produto e o ambiente em que são instaladas.\n\nAs bordas ultra finas garantem a presença discreta do produto e componentes de alta fidelidade produzem um som envolvente. Características: - As molduras foram projetadas com sistema de ampliação do ângulo de dispersão; - Possuem pontos exclusivos para a fixação dos mais variados tipos de trafos, não permitindo que sejam colocados em pontos que causam danos a estrutura; - No modelo quadrado cada uma das torres é responsável pelo travamento de uma das laterais da arandela o que proporciona fixação de 100% de sua base no teto; - O projeto permite flexibilidade na furação do local de instalação (se a a furação não ficar perfeita conforme o gabarito, ainda assim a arandela irá se encaixar sem que o trabalho precise ser refeito); - Permite o travamento desde a menor até a maior estrutura de teto (de 1mm a 30mm); - Terminais de engate rápido; - Conjunto móvel otimizado para a reprodução de baixas frequências. Informações Técnicas Tipo Full Range Impedância 8 Ohms Potência Máxima 80W Potência RMS 40W Woofer 6\" Cone e borda de celulose, bobina móvel em alumínio Resposta de frequência 100 - 18KHz SPL (dB/W/m) 93 Diâmetro da Arandela 238 mm Diâmetro do furo para fixá-la 212 mm Altura da arandela 65 mm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FRAHM\n• Modelo: 1MM\n• Número de peça: 356395\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FRAHM\n• GTIN: 7896673814067\n• NCM: 85182100\n• SKU: VTK019124\n\nEMBALAGEM\n• Dimensões informadas: 9 × 25 × 25 cm\n• Peso bruto informado: 0,821 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "b4cbb485-1f92-4828-a37f-0f7bfb4a3047",
+      "sku": "VTK025523",
+      "nome": "24 Baterias Auditivas 675 Duracell (4 Cart. c/ 6 Un. Cada)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "MLB7060"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d2d6e7ab-506e-49a2-b3ec-26944f675dc5",
+      "sku": "VTK017155",
+      "nome": "Suporte Multifuncional Ask PNT1 Simples Preto",
+      "error": "Atributos obrigatórios pendentes: Instrumentos recomendados",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB29341",
+            "nome": "Suportes"
+          },
+          "missing": [
+            "Instrumentos recomendados"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "13f5fcb5-aa53-4c6a-ae92-1bc41e350a48",
+      "sku": "VTK001011",
+      "nome": "Fogão Elétrico de Mesa Agratto FM01 Cinza 127v",
+      "error": "Atributos obrigatórios pendentes: Tipos de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB120316",
+            "nome": "Cooktop"
+          },
+          "missing": [
+            "Tipos de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "35803dad-4127-4945-8abc-f3b26978f7d8",
+      "sku": "VTK018134",
+      "nome": "Cabo Coaxial Cabletech Master 40 40% Rgc 06 Preto 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0cd3928f-2185-4a0d-bac0-05862a066d7d",
+      "sku": "VTK019131",
+      "nome": "Laço Indutivo Citrox 1,90x0,80 Cx-4001",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "83b3b0f6-a434-4493-a180-1444c69381db",
+      "sku": "VTK018297",
+      "nome": "Cabo Alarme Telecam 50 X 10 Vias Cobre 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7f7205fb-4866-4694-a502-3f4f2e18fa2a",
+      "sku": "VTK025961",
+      "nome": "Frigideira Redonda Rochedo Robusta 18m Grafite - CXM / 3",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107482",
+            "nome": "Frigideiras"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "15e8448c-6dc6-48ee-b84d-1b619fdece64",
+      "sku": "VTK021723",
+      "nome": "Parafuso 4,2 X 22 Flangeado Cento - CT / 5",
+      "error": "Atributos obrigatórios pendentes: Tipo de parafuso",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB235592",
+            "nome": "Parafusos de Fenda"
+          },
+          "missing": [
+            "Tipo de parafuso"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6b0e33d9-3f8c-4d20-9ad6-69cec42f0292",
+      "sku": "VTK006444",
+      "nome": "Espremedor de Frutas Arno Express CP32 40W 750ml Vermelho 220V",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB120446",
+            "nome": "Espremedores Elétricos"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2c2705af-8d9d-4155-a010-0213811f3a67",
+      "sku": "VTK004115",
+      "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+      "error": "Atributos obrigatórios pendentes: Tipo de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB58500",
+            "nome": "Suportes Veiculares"
+          },
+          "missing": [
+            "Tipo de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b120e2a3-9262-4aac-bc9b-824d802612ac",
+      "sku": "VTK001572",
+      "nome": "Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278076",
+            "nome": "Cordas para Instrumentos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0e2826ee-5f4c-4a85-8924-031c158fdd33",
+      "sku": "VTK017157",
+      "nome": "Panela de Pressão Rochedo Turbo Fechamento Interno 4,5 Litros Polida",
+      "error": "Atributos obrigatórios pendentes: Tipo de panela",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB107501",
+            "nome": "Caçarolas e Caldeirões"
+          },
+          "missing": [
+            "Tipo de panela"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "254525a8-644d-435d-a823-2595f61f3cb9",
+      "sku": "VTK018102",
+      "nome": "Emenda Mecanica Seccon Para Fibra Optica Universal",
+      "error": "Atributos obrigatórios pendentes: Quantidade de fibras",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB277385",
+            "nome": "Caixas de Emenda Óptica"
+          },
+          "missing": [
+            "Quantidade de fibras"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f6dd53a7-be1d-435b-8a90-5811eaaf959d",
+      "sku": "VTK016141",
+      "nome": "4 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

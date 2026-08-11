@@ -1,0 +1,79 @@
+{
+  "startedAt": "2026-08-11T01:01:46.667Z",
+  "mode": "apply",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10",
+  "selected": 4,
+  "success": 4,
+  "failed": 0,
+  "skippedNoLongerEligible": 0,
+  "batches": [
+    {
+      "fileName": "023-profitable-shelf-2-create-023.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "024-profitable-shelf-2-create-024.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "025-profitable-shelf-2-create-025.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/025-profitable-shelf-2-create-025-nogtin-safe-c-result.json"
+    },
+    {
+      "fileName": "026-profitable-shelf-2-create-026.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/026-profitable-shelf-2-create-026-nogtin-safe-c-result.json"
+    },
+    {
+      "fileName": "027-profitable-shelf-2-create-027.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/027-profitable-shelf-2-create-027-nogtin-safe-c-result.json"
+    },
+    {
+      "fileName": "028-profitable-shelf-2-create-028.json",
+      "exitCode": 0,
+      "selected": 1,
+      "success": 1,
+      "failed": 0,
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/028-profitable-shelf-2-create-028-nogtin-safe-c-result.json"
+    },
+    {
+      "fileName": "029-profitable-shelf-2-create-029.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "030-profitable-shelf-2-create-030.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "031-profitable-shelf-2-create-031.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "032-profitable-shelf-2-create-032.json",
+      "selected": 0,
+      "skipped": true
+    },
+    {
+      "fileName": "033-profitable-shelf-2-create-033.json",
+      "selected": 0,
+      "skipped": true
+    }
+  ],
+  "finishedAt": "2026-08-11T01:02:35.310Z"
+}

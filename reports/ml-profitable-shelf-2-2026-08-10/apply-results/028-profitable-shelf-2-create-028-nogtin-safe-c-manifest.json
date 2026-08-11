@@ -1,0 +1,28 @@
+{
+  "batchNumber": 28,
+  "batchId": "profitable-shelf-2-create-028",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "f1958384-054c-4d39-9d09-62a2b13537ff",
+      "sku": "VTK025736",
+      "nome": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "fornecedor": "BKR1",
+      "custo": 340,
+      "estoque": 2,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 340,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 718.18
+      }
+    }
+  ]
+}

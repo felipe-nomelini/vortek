@@ -1,0 +1,44 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-profitable-shelf-2-2026-08-10/apply-results/003-profitable-shelf-2-create-003-nogtin-safe-a-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "profitable-shelf-2-create-003",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8313ee9b-084c-4193-95ca-4ead684ee5b9",
+      "sku": "VTK018015",
+      "category": {
+        "id": "MLB436012",
+        "nome": "Outros",
+        "dominio": "Acessórios para celulares"
+      },
+      "anuncio": {
+        "id": "MLB5034765767",
+        "title": "Kit Adaptador Para Celular Proeletronic Pqkc 0335",
+        "price": 28.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5034765767-kit-adaptador-para-celular-proeletronic-pqkc-0335-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado pela Prateleira Lucrativa 2.0: frete heuristic, DAS 5% e margem 8%.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "profitable_shelf_2",
+        "das": 0.05,
+        "margin": 0.08,
+        "shipping": 6.5,
+        "shipping_source": "heuristic",
+        "ml_fee": 0.13,
+        "price": 28.99
+      }
+    }
+  ],
+  "failed": []
+}

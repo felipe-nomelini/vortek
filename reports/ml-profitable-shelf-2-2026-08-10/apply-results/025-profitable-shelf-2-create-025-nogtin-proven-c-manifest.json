@@ -1,0 +1,28 @@
+{
+  "batchNumber": 25,
+  "batchId": "profitable-shelf-2-create-025",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "19137cd0-6c42-4475-b9c0-a7c5b2e48a8a",
+      "sku": "VTK018607",
+      "nome": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros Verde",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 198.99,
+      "estoque": 6,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Auto Plastic Pompéia 2,50 Mm 300v Rolo Com 100 Metros",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 198.99,
+        "shipping": 55,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 461.8
+      }
+    }
+  ]
+}

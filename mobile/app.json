@@ -2,12 +2,14 @@
   "expo": {
     "name": "Vortek",
     "slug": "vortek-mobile",
+    "owner": "vortek-tecnologia",
     "scheme": "vortek",
     "version": "0.1.0",
     "orientation": "default",
     "userInterfaceStyle": "dark",
     "android": {
-      "package": "shop.vortek.erp"
+      "package": "shop.vortek.erp",
+      "versionCode": 1
     },
     "plugins": [
       "expo-router",
@@ -21,6 +23,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b6fb15eb-9219-4418-bbc5-3a71e575903b"
+      }
     }
   }
 }

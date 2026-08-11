@@ -1,0 +1,112 @@
+{
+  "batchNumber": 14,
+  "batchId": "profitable-shelf-2-create-014",
+  "strategy": "profitable_shelf_2",
+  "items": [
+    {
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 57.6,
+      "estoque": 44,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 57.6,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 150.18
+      }
+    },
+    {
+      "produtoId": "fa369a69-3db1-4dcd-9395-e6555e4310d7",
+      "sku": "VTK018078",
+      "nome": "Cabo Auto Permak 0.75mm Branco 100m",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 59.9,
+      "estoque": 14,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Cabo Auto Permak 0.75mm Branco 100m",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.36
+      }
+    },
+    {
+      "produtoId": "e80419ea-3228-4e4d-93df-a8931fea6bba",
+      "sku": "VTK018149",
+      "nome": "Sinalizador Veicular Gcp Ss 1000",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 59.9,
+      "estoque": 13,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Sinalizador Veicular Gcp Ss 1000",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.36
+      }
+    },
+    {
+      "produtoId": "9d6b0a25-8deb-4a95-9124-3661034f8503",
+      "sku": "VTK018585",
+      "nome": "Kit De Lâmpada Tarponn Tp-6108 Ultraled Hb4 12v 40w",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 59.9,
+      "estoque": 7,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Kit De Lâmpada Tarponn Tp 6108 Ultraled Hb4 12v 40w TARPONN",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 59.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 154.36
+      }
+    },
+    {
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "nome": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER",
+      "fornecedor": "EVOLUSOM-PR",
+      "custo": 61.9,
+      "estoque": 15,
+      "pricingMode": "profitable_shelf_2",
+      "listingType": "auto",
+      "familyName": "Interruptor Inteligente 1 Tecla Wi Fi SE235 Branco",
+      "strictFirstCategory": true,
+      "formulaPreview": {
+        "cost": 61.9,
+        "shipping": 25,
+        "shippingSource": "heuristic",
+        "mlFee": 0.15,
+        "das": 0.05,
+        "margin": 0.25,
+        "price": 158
+      }
+    }
+  ]
+}
