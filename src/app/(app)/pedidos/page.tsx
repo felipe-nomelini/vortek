@@ -7,7 +7,7 @@ import {
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined, CarOutlined, WarningOutlined, UploadOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined, CarOutlined, WarningOutlined, UploadOutlined, FilePdfOutlined } from '@ant-design/icons';
 import TrackingModal from '@/components/modals/TrackingModal';
 import ProgressModal, { ProgressStep } from '@/components/modals/ProgressModal';
 import { formatCurrency } from '@/lib/format';
@@ -453,6 +453,7 @@ interface DsliteShippingPrompt {
 
 export default function PedidosPage() {
   const [loading, setLoading] = useState(true);
+  const [exportingPdf, setExportingPdf] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [orders, setOrders] = useState<Order[]>([]);
@@ -608,6 +609,39 @@ export default function PedidosPage() {
   useEffect(() => {
     setPage(1);
   }, [operationalView, search, statusFilter, dateRange, priceMin, priceMax]);
+
+  const handleExportPdf = useCallback(async () => {
+    setExportingPdf(true);
+    try {
+      const params = buildFilterParams();
+      params.set('operationalView', operationalView);
+      appendRemoteSortParams(params, sort);
+      const response = await fetch(`/api/pedidos/exportar-pdf?${params.toString()}`, {
+        cache: 'no-store',
+      });
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload?.erro || 'Falha ao gerar PDF das vendas.');
+      }
+
+      const blob = await response.blob();
+      const contentDisposition = response.headers.get('content-disposition') || '';
+      const fileName = contentDisposition.match(/filename="([^"]+)"/i)?.[1] || 'vendas.pdf';
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = fileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      messageApi.success('PDF das vendas exportado.');
+    } catch (error: any) {
+      messageApi.error(error?.message || 'Falha ao exportar PDF das vendas.');
+    } finally {
+      setExportingPdf(false);
+    }
+  }, [buildFilterParams, messageApi, operationalView, sort]);
 
   useEffect(() => () => {
     if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
@@ -2231,6 +2265,15 @@ export default function PedidosPage() {
               <InputNumber placeholder="Valor mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 110 }} />
               <InputNumber placeholder="Valor máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 110 }} />
             </Space.Compact>
+          </Col>
+          <Col>
+            <Button
+              icon={<FilePdfOutlined />}
+              onClick={() => void handleExportPdf()}
+              loading={exportingPdf}
+            >
+              Exportar PDF
+            </Button>
           </Col>
         </Row>
       </div>

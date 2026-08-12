@@ -549,8 +549,11 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
 async function enrichPedidosForOperationalView(
   rows: any[],
   serviceClient: ReturnType<typeof createServiceClient>,
+  persistReconciliation = true,
 ) {
-  const reconciledRows = await persistReconciledPedidos(rows);
+  const reconciledRows = persistReconciliation
+    ? await persistReconciledPedidos(rows)
+    : rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
   const withPurchases = await enrichPedidosWithCompras(reconciledRows, serviceClient);
   return enrichOrdersWithWhatsappStatus(withPurchases, serviceClient);
 }
@@ -648,6 +651,7 @@ export async function GET(request: Request) {
   const auth = await authorizeApiRequest(request, 'sales.read');
   if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
+  const persistReconciliation = request.headers.get('x-vortek-read-only') !== '1';
 
   const { searchParams } = new URL(request.url);
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
@@ -714,7 +718,7 @@ export async function GET(request: Request) {
       searchPage += 1;
     }
 
-    const enrichedRows = await enrichPedidosForOperationalView(allRows, serviceClient);
+    const enrichedRows = await enrichPedidosForOperationalView(allRows, serviceClient, persistReconciliation);
     const filteredRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, operationalView));
 
     return NextResponse.json({
@@ -752,7 +756,7 @@ export async function GET(request: Request) {
 
     const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
     const total = Number(rpcData?.total ?? 0) || 0;
-    const enrichedRows = await enrichPedidosForOperationalView(rows, serviceClient);
+    const enrichedRows = await enrichPedidosForOperationalView(rows, serviceClient, persistReconciliation);
 
     return NextResponse.json({
       data: enrichedRows,
@@ -799,7 +803,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ erro: 'Falha ao carregar pedidos urgentes.' }, { status: 500 });
     }
 
-    const enrichedRows = await enrichPedidosForOperationalView(urgentResult.data, serviceClient);
+    const enrichedRows = await enrichPedidosForOperationalView(urgentResult.data, serviceClient, persistReconciliation);
     const urgentRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, 'urgent'));
     return NextResponse.json({
       data: urgentRows.slice(from, to + 1),
@@ -865,7 +869,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ erro: 'Falha ao carregar pedidos.' }, { status: 500 });
   }
 
-  const enrichedRows = await enrichPedidosForOperationalView(data || [], serviceClient);
+  const enrichedRows = await enrichPedidosForOperationalView(data || [], serviceClient, persistReconciliation);
 
   return NextResponse.json({
     data: enrichedRows,

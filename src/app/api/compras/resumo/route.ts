@@ -69,6 +69,7 @@ export async function GET(request: Request) {
       if (rowStatus === 'Aguardando Informações') aguardandoInformacoes++;
       if (rowStatus === 'Cancelado') cancelado++;
       if (normalizedStatus === 'revisao') revisao++;
+      if (rowStatus === 'Cancelado') continue;
       valorTotal += Number(row.valor_total || 0);
     }
 

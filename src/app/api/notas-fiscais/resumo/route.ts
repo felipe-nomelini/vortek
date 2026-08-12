@@ -120,6 +120,7 @@ export async function GET(request: Request) {
       const mapped = mapStatus(row);
       if (mapped === "autorizada") emitidas++;
       if (mapped === "pendente" || mapped === "processando") pendentes++;
+      if (mapped === "cancelada") continue;
       valorTotal += Number(row.total || 0);
     }
 

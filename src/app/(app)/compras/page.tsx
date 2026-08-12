@@ -6,7 +6,7 @@ import {
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined, UploadOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined, UploadOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
@@ -98,6 +98,7 @@ function formatSupplierWhatsappReason(reason: unknown): string {
 
 export default function ComprasPage() {
   const [loading, setLoading] = useState(true);
+  const [exportingPdf, setExportingPdf] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [compras, setCompras] = useState<Compra[]>([]);
@@ -239,6 +240,39 @@ export default function ComprasPage() {
   useEffect(() => {
     setPage(1);
   }, [search, statusFilter, dateRange]);
+
+  const handleExportPdf = useCallback(async () => {
+    setExportingPdf(true);
+    try {
+      const params = buildParams();
+      params.delete('page');
+      params.delete('limit');
+      const response = await fetch(`/api/compras/exportar-pdf?${params.toString()}`, {
+        cache: 'no-store',
+      });
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload?.erro || 'Falha ao gerar PDF das compras.');
+      }
+
+      const blob = await response.blob();
+      const contentDisposition = response.headers.get('content-disposition') || '';
+      const fileName = contentDisposition.match(/filename="([^"]+)"/i)?.[1] || 'compras.pdf';
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = fileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      messageApi.success('PDF das compras exportado.');
+    } catch (error: any) {
+      messageApi.error(error?.message || 'Falha ao exportar PDF das compras.');
+    } finally {
+      setExportingPdf(false);
+    }
+  }, [buildParams, messageApi]);
 
   const openPaymentModal = (compra: Compra) => {
     setSelectedCompra(compra);
@@ -772,6 +806,15 @@ export default function ComprasPage() {
               format="DD/MM/YYYY"
               style={{ width: 240 }}
             />
+          </Col>
+          <Col>
+            <Button
+              icon={<FilePdfOutlined />}
+              onClick={() => void handleExportPdf()}
+              loading={exportingPdf}
+            >
+              Exportar PDF
+            </Button>
           </Col>
         </Row>
       </div>

@@ -46,8 +46,8 @@ These rules were added after repeated workflow failures. They are mandatory for 
 3. **Always choose the shortest safe path the user would expect.** Normal workflow: edit local project -> validate -> commit if requested/needed -> push to `main` -> deploy webhook only when requested.
 4. **Ask for the smallest missing credential/access/info instead of inventing workaround.** Missing `gh`, token, remote, branch, sudo, SSH, deploy secret, or unclear state = stop and ask or install/configure directly with user approval.
 5. **If a standard tool is missing and installing it is the simplest path, propose/install that tool instead of building workaround machinery.** Example: install GitHub CLI `gh` when GitHub workflow needs it.
-6. **Before every push, include all intentional project modifications in the normal Git workflow.** Do not leave relevant code/config/docs changes stranded only on local filesystem.
-7. **Every push must keep local `main` and GitHub `main` synchronized.** Push all intentional tracked changes together unless user explicitly requests partial changes.
+6. **Before every push or deploy, include every modified project file in the normal Git workflow.** This includes pre-existing changes, code, configuration, documentation, and agent instructions. Never leave any tracked or untracked project modification only on the local filesystem.
+7. **Every push must keep local `main` and GitHub `main` fully synchronized.** Push all project modifications together; partial pushes are forbidden unless the user explicitly overrides this rule for that specific operation.
 8. **After every successful push, verify clean tracked working tree and confirm local `main` matches `origin/main`.** Only ignored env/cache files may remain.
 9. **Never edit project files directly in Easypanel.** Deployment path is GitHub `main` first, then Easypanel webhook.
 10. **Deploy webhook for `vortek-erp`:** `http://192.168.1.160:3000/api/deploy/f2f75bfaa9c228097a40066b2c41e5744a793e80df3d6cb2`.
@@ -72,7 +72,7 @@ These rules were added after repeated workflow failures. They are mandatory for 
 4. If the direct path is blocked by missing credentials, missing access, unknown command, or ambiguous state, stop and ask for the smallest missing piece. Do not invent a workaround.
 5. Before adding process, ask: "Is this the shortest safe path the user would expect?" If not, simplify.
 6. Prefer one clear action over multi-step machinery. No mirabolant solutions.
-7. Before pushing, include all intentional project modifications in the same normal Git workflow so local `main` and GitHub `main` remain synchronized. Do not leave relevant code/config changes stranded only on the local filesystem.
+7. Before pushing or deploying, include every modified project file in the same normal Git workflow so local `main` and GitHub `main` remain fully synchronized. This includes changes that existed before the current task; do not leave tracked or untracked project modifications stranded locally.
 8. After every successful push, verify that the working tree has no unintended tracked changes and that `main` matches `origin/main`; only ignored local environment/cache files may remain.
 9. Report deviations immediately and explicitly if a higher-priority rule or tool limitation prevents the direct path.
 
