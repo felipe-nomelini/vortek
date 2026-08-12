@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { validateMercadoLivreWebhookUser } from '@/lib/ml-account-guard';
 import { fetchMLResult, getMLConnectionStatus } from '@/services/integration';
 
 export const dynamic = 'force-dynamic';
@@ -34,6 +35,23 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
       return NextResponse.json({
         error: current.error?.message || 'Pergunta não encontrada no Mercado Livre',
       }, { status: current.status || 502 });
+    }
+
+    const meResult = await fetchMLResult<{ id: number }>('/users/me?attributes=id');
+    const connectedSeller = meResult.ok && meResult.data?.id
+      ? validateMercadoLivreWebhookUser(meResult.data.id)
+      : null;
+    if (!connectedSeller?.allowed) {
+      return NextResponse.json({
+        error: meResult.ok
+          ? 'Conta Mercado Livre conectada não autorizada para a Vortek'
+          : meResult.error?.message || 'Falha ao identificar vendedor ML',
+      }, { status: meResult.ok ? 403 : (meResult.status || 502) });
+    }
+    if (String(current.data?.seller_id || '') !== connectedSeller.userId) {
+      return NextResponse.json({
+        error: 'Pergunta pertence a outra conta Mercado Livre',
+      }, { status: 403 });
     }
 
     if (current.data?.status === 'ANSWERED') {

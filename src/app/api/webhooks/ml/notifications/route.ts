@@ -24,6 +24,7 @@ import {
   ML_ORDER_HYDRATION_JOB_TYPE,
   normalizeMlOrderHydrationKey,
 } from '@/lib/sync/ml-order-hydration';
+import { validateMercadoLivreWebhookUser } from '@/lib/ml-account-guard';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -366,10 +367,27 @@ export async function POST(request: Request) {
   const startedAtMs = Date.now();
   try {
     const body = await request.json();
-    const { topic, resource } = body;
+    const { topic, resource, user_id: userId } = body;
 
     if (!topic || !resource) {
       return NextResponse.json({ ok: false, erro: 'topic e resource obrigatórios' }, { status: 400 });
+    }
+
+    const webhookUser = validateMercadoLivreWebhookUser(userId);
+    if (!webhookUser.allowed) {
+      console.warn(JSON.stringify({
+        event: 'ml_webhook_user_ignored',
+        timestamp_utc: new Date().toISOString(),
+        topic,
+        resource,
+        user_id: webhookUser.userId,
+        reason: webhookUser.reason,
+      }));
+      return NextResponse.json({
+        ok: true,
+        ignored: true,
+        reason: webhookUser.reason,
+      });
     }
 
     const serviceClient = createServiceClient();

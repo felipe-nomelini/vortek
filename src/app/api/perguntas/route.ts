@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { validateMercadoLivreWebhookUser } from '@/lib/ml-account-guard';
 import { fetchMLResult, getMLConnectionStatus } from '@/services/integration';
 
 export const dynamic = 'force-dynamic';
@@ -73,9 +74,16 @@ export async function GET(req: NextRequest) {
       }, { status: 401 });
     }
 
-    const meResult = await fetchMLResult<{ id: number }>('/users/me?attributes=id');
+    const meResult = await fetchMLResult<{ id: number; nickname?: string }>('/users/me?attributes=id,nickname');
     if (!meResult.ok || !meResult.data?.id) {
       return NextResponse.json({ error: meResult.error?.message || 'Falha ao identificar vendedor ML' }, { status: 502 });
+    }
+    const seller = validateMercadoLivreWebhookUser(meResult.data.id);
+    if (!seller.allowed) {
+      return NextResponse.json({
+        error: 'Conta Mercado Livre conectada não autorizada para a Vortek',
+        precisaReconectar: true,
+      }, { status: 403 });
     }
 
     const search = req.nextUrl.searchParams;
@@ -113,6 +121,11 @@ export async function GET(req: NextRequest) {
       total: questionsResult.data?.total || questions.length,
       limit,
       offset,
+      account: {
+        id: seller.userId,
+        nickname: meResult.data.nickname || 'VORTEKTECNOLOGIA',
+      },
+      updatedAt: new Date().toISOString(),
       items: questions.map((question) => {
         const item = items.get(question.item_id);
         return {

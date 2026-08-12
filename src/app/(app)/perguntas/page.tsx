@@ -37,6 +37,8 @@ interface PerguntasResponse {
   total: number;
   limit: number;
   offset: number;
+  account?: { id: string; nickname: string };
+  updatedAt?: string;
   error?: string;
   precisaReconectar?: boolean;
 }
@@ -83,6 +85,8 @@ export default function PerguntasPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [account, setAccount] = useState<{ id: string; nickname: string } | null>(null);
+  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
   const [answerModalOpen, setAnswerModalOpen] = useState(false);
   const [answering, setAnswering] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState<Pergunta | null>(null);
@@ -102,6 +106,8 @@ export default function PerguntasPage() {
       if (!response.ok) throw new Error(data.error || 'Falha ao carregar perguntas');
       setQuestions(data.items || []);
       setTotal(data.total || data.items?.length || 0);
+      setAccount(data.account || null);
+      setUpdatedAt(data.updatedAt || new Date().toISOString());
       setCurrentPage(page);
     } catch (err: any) {
       setError(err?.message || 'Erro ao carregar perguntas');
@@ -325,7 +331,11 @@ export default function PerguntasPage() {
 
   return (
     <div>
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Perguntas - Mercado Livre</Title>
+      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 4 }}>Perguntas - Mercado Livre</Title>
+      <Text type="secondary" style={{ display: 'block', marginBottom: 16 }}>
+        Conta: {account ? `${account.nickname} (${account.id})` : 'carregando'}
+        {updatedAt ? ` · Atualizado em ${formatDate(updatedAt)}` : ''}
+      </Text>
 
       <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
         <Col xs={24} sm={8}>
