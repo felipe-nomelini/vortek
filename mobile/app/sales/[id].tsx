@@ -305,16 +305,16 @@ export default function SaleDetailScreen() {
     const whatsapp = action === "whatsapp-label";
     const createDslite = action === "create-dslite";
     Alert.alert(
-      whatsapp ? "Reenviar etiqueta real?" : createDslite ? "Criar pedido DSLite?" : "Retomar fluxo DSLite?",
+      whatsapp ? "Reenviar etiqueta real?" : createDslite ? "Enviar pelo fornecedor DSLite?" : "Retomar fluxo DSLite?",
       whatsapp
         ? `A etiqueta real será enviada ao WhatsApp cadastrado de ${sale.supplierName || "fornecedor"}.`
         : createDslite
-          ? "O sistema emitirá a NF-e e criará uma única compra DSLite para esta venda."
+          ? "Esta venda ficará vinculada ao fornecedor. O sistema emitirá a NF-e e criará uma única compra DSLite."
         : "O sistema continuará etiqueta e transportadora no pedido DSLite já pago.",
       [
         { text: "Cancelar", style: "cancel" },
         {
-          text: whatsapp ? "Enviar" : createDslite ? "Criar" : "Retomar",
+          text: whatsapp ? "Enviar" : createDslite ? "Usar fornecedor" : "Retomar",
           onPress: () => void executeAction(action),
         },
       ],
@@ -404,7 +404,7 @@ export default function SaleDetailScreen() {
                 onPress={() => confirmAction("create-dslite")}
                 style={styles.primaryButton}
               >
-                <Text style={styles.primaryButtonText}>Criar pedido DSLite</Text>
+                <Text style={styles.primaryButtonText}>Enviar pelo fornecedor (DSLite)</Text>
               </Pressable>
             ) : null}
             {sale.canProcessInternalShipping ? (
@@ -412,12 +412,12 @@ export default function SaleDetailScreen() {
                 disabled={operation.isPending}
                 onPress={() => confirmOperation(
                   { action: "process_internal_shipping" },
-                  "Processar envio interno?",
-                  "O sistema emitirá/vinculará a NF-e, reservará o estoque interno e preparará a etiqueta.",
+                  "Enviar pelo estoque interno?",
+                  "Esta venda ficará vinculada ao estoque interno. O sistema emitirá/vinculará a NF-e, reservará o saldo e preparará a etiqueta.",
                 )}
                 style={styles.primaryButton}
               >
-                <Text style={styles.primaryButtonText}>Processar envio interno</Text>
+                <Text style={styles.primaryButtonText}>Enviar pelo estoque interno</Text>
               </Pressable>
             ) : null}
             {sale.canCompleteDsliteLabel ? (

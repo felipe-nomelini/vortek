@@ -343,6 +343,8 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     fornecedor_telefone: (item as any).fornecedor_telefone || null,
     internal_stock_available: Boolean((item as any).internal_stock_available),
     envio_interno_at: (item as any).envio_interno_at || null,
+    fulfillment_source: (item as any).fulfillment_source || null,
+    fulfillment_selected_at: (item as any).fulfillment_selected_at || null,
     supplier_payment_mode: (item as any).supplier_payment_mode || null,
     supplier_payment_status: (item as any).supplier_payment_status || null,
     supplier_payment_amount: (item as any).supplier_payment_amount ?? null,
@@ -934,6 +936,7 @@ export default function PedidosPage() {
           pedidoId: order.dbId,
           mlOrderId: order.ml_order_id,
           nfeProvider,
+          fulfillmentMode: 'supplier',
         }),
       });
       const startData = await startRes.json();
@@ -1411,6 +1414,30 @@ export default function PedidosPage() {
     }
   };
 
+  const confirmarCriacaoPedidoDslite = (order: Order) => {
+    if (!order.internal_stock_available) {
+      void criarPedidoDslite(order);
+      return;
+    }
+    Modal.confirm({
+      title: 'Enviar pelo fornecedor DSLite?',
+      content: 'Existe estoque interno disponível. Ao iniciar pela DSLite, esta venda ficará vinculada ao fornecedor e não poderá usar o estoque interno.',
+      okText: 'Usar fornecedor',
+      cancelText: 'Cancelar',
+      onOk: () => criarPedidoDslite(order),
+    });
+  };
+
+  const confirmarEnvioInterno = (order: Order) => {
+    Modal.confirm({
+      title: 'Enviar pelo estoque interno?',
+      content: 'Ao iniciar, esta venda ficará vinculada ao estoque interno e não poderá criar pedido DSLite.',
+      okText: 'Usar estoque interno',
+      cancelText: 'Cancelar',
+      onOk: () => processarEnvioProprio(order),
+    });
+  };
+
   const executarAcaoDuplicidadeEtiqueta = async (action: 'use_existing' | 'reissue') => {
     if (!etiquetaDuplicateDecision) return;
     const order = orders.find((o) => String(o.dbId) === etiquetaDuplicateDecision.pedidoId);
@@ -1489,8 +1516,8 @@ export default function PedidosPage() {
     ].filter(Boolean);
     const canCreateDslite = !isValidDsliteId(order.dslite_id)
       && !hasSplitFulfillment
-      && !order.internal_stock_available
       && !isInternalShipping
+      && order.fulfillment_source !== 'internal'
       && !postDispatch
       && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor);
     const canCompleteLabel = Boolean(
@@ -1512,6 +1539,7 @@ export default function PedidosPage() {
       && !hasSplitFulfillment
       && !postDispatch
       && !isValidDsliteId(order.dslite_id)
+      && order.fulfillment_source !== 'supplier'
       && order.internal_stock_available
       && order.ml_shipment_id
       && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor),
@@ -1651,8 +1679,8 @@ export default function PedidosPage() {
               Rastrear
             </Button>
           )}
-          {canCreateDslite && <Button size="small" type="primary" onClick={() => criarPedidoDslite(order)}>Criar pedido DSLite</Button>}
-          {canProcessDirectShipping && <Button size="small" type="primary" onClick={() => processarEnvioProprio(order)}>{order.internal_stock_available ? 'Processar envio interno' : 'Processar envio próprio'}</Button>}
+          {canCreateDslite && <Button size="small" type="primary" onClick={() => confirmarCriacaoPedidoDslite(order)}>Enviar pelo fornecedor (DSLite)</Button>}
+          {canProcessDirectShipping && <Button size="small" type="primary" onClick={() => confirmarEnvioInterno(order)}>Enviar pelo estoque interno</Button>}
           {canCompleteLabel && <Button size="small" onClick={() => enviarEtiquetaAutomatica(order)}>Completar etiqueta</Button>}
           {order.ml_label_storage_path && order.dslite_next_action === 'internal_shipping' && <Button size="small" type="primary" onClick={() => baixarEtiquetaSalva(order, 'thermal_pdf')}>Baixar térmica PDF</Button>}
           {order.ml_thermal_label_storage_path && <Button size="small" onClick={() => baixarEtiquetaSalva(order, 'zpl2')}>Baixar ZPL</Button>}
@@ -2025,15 +2053,15 @@ export default function PedidosPage() {
           && releaseAt
           && releaseAt.getTime() > Date.now(),
         );
-        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && record.fulfillment_source !== 'internal' && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
-            label: 'Criar Pedido DSLite (Brasil NFe)',
+            label: 'Enviar pelo fornecedor (DSLite)',
             icon: <CarOutlined />,
           });
         }
-        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && !hasDsliteId && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
-          items.push({ key: 'direct_shipping', label: 'Processar envio interno', icon: <UploadOutlined /> });
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && !hasDsliteId && record.fulfillment_source !== 'supplier' && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+          items.push({ key: 'direct_shipping', label: 'Enviar pelo estoque interno', icon: <UploadOutlined /> });
         }
         if (record.ml_label_storage_path && record.dslite_next_action === 'internal_shipping') {
           items.push({ key: 'download_thermal_pdf', label: 'Baixar térmica PDF 100x150', icon: <UploadOutlined /> });
@@ -2086,8 +2114,8 @@ export default function PedidosPage() {
                   setTrackingOrderStatus(record.situacao.valor);
                   setTrackingModalOpen(true);
                 }
-                if (key === 'dslite') criarPedidoDslite(record, 'brasilnfe');
-                if (key === 'direct_shipping') processarEnvioProprio(record);
+                if (key === 'dslite') confirmarCriacaoPedidoDslite(record);
+                if (key === 'direct_shipping') confirmarEnvioInterno(record);
                 if (key === 'download_thermal_pdf') baixarEtiquetaSalva(record, 'thermal_pdf');
                 if (key === 'download_thermal_label') baixarEtiquetaSalva(record, 'zpl2');
                 if (key === 'download_label') baixarEtiquetaSalva(record, 'pdf');

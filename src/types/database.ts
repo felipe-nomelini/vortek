@@ -563,6 +563,8 @@ export type Database = {
           dslite_etiqueta_enviada: boolean
           dslite_label_source: string | null
           envio_interno_at: string | null
+          fulfillment_selected_at: string | null
+          fulfillment_source: string | null
           frete: number
           id: string
           lucro: number
@@ -632,6 +634,8 @@ export type Database = {
           dslite_etiqueta_enviada?: boolean
           dslite_label_source?: string | null
           envio_interno_at?: string | null
+          fulfillment_selected_at?: string | null
+          fulfillment_source?: string | null
           frete?: number
           id?: string
           lucro?: number
@@ -701,6 +705,8 @@ export type Database = {
           dslite_etiqueta_enviada?: boolean
           dslite_label_source?: string | null
           envio_interno_at?: string | null
+          fulfillment_selected_at?: string | null
+          fulfillment_source?: string | null
           frete?: number
           id?: string
           lucro?: number
@@ -1354,6 +1360,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      select_order_fulfillment: {
+        Args: {
+          p_pedido_id: string
+          p_source: string
+        }
+        Returns: {
+          fulfillment_selected_at: string | null
+          fulfillment_source: string
+          selected_now: boolean
+        }[]
+      }
       get_fornecedores: {
         Args: never
         Returns: {

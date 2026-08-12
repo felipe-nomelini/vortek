@@ -58,7 +58,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       body: JSON.stringify({ pedidoId: String(row.id), dsid: dsliteIds[0], nfeDuplicateAction: payload.data.duplicateAction }),
     }));
   } else if (payload.data.action === "process_internal_shipping") {
-    if (baseBlocked || row?.envio_interno_at || dsliteIds.length || !row?.internal_stock_available || !row?.ml_shipment_id) {
+    if (baseBlocked || row?.envio_interno_at || row?.fulfillment_source === "supplier" || dsliteIds.length || !row?.internal_stock_available || !row?.ml_shipment_id) {
       return mobileError(requestId, 409, "ACTION_NOT_ALLOWED", "Venda não está pronta para envio interno");
     }
     response = await completeLabel(new Request(new URL("/api/dslite/etiqueta-auto", request.url), {

@@ -4,6 +4,7 @@ import {
   PREPARATION_ORDER_STATUSES,
   SHIPPING_ORDER_STATUSES,
 } from "@/lib/orders/operational-view";
+import { canSelectOrderFulfillment } from "@/lib/orders/fulfillment-selection";
 
 function numberOrZero(value: unknown): number {
   const parsed = Number(value);
@@ -101,6 +102,7 @@ export function mapMobileSaleDetail(row: any) {
     .includes(sale.status);
   const hasDslite = sale.dsliteIds.length > 0;
   const internalStockAvailable = Boolean(row?.internal_stock_available);
+  const fulfillmentSource = nullableString(row?.fulfillment_source);
   const nextAction = sale.dsliteNextAction;
   const hasInvoice = sale.invoiceNumbers.length > 0;
 
@@ -119,6 +121,7 @@ export function mapMobileSaleDetail(row: any) {
     fiscalReleaseAt: nullableString(row?.ml_fiscal_release_at),
     splitFulfillment: Boolean(row?.has_split_fulfillment),
     internalStockAvailable,
+    fulfillmentSource,
     purchaseId: nullableString(row?.compra_id),
     supplierPixKey: nullableString(row?.supplier_pix_key),
     supplierPaymentReference: nullableString(row?.supplier_payment_reference),
@@ -129,7 +132,7 @@ export function mapMobileSaleDetail(row: any) {
       && !postDispatch
       && !Boolean(row?.has_split_fulfillment)
       && !hasDslite
-      && !internalStockAvailable
+      && canSelectOrderFulfillment(fulfillmentSource, "supplier")
       && !invalidOperationalStatus
     ),
     canProcessInternalShipping: Boolean(
@@ -137,6 +140,7 @@ export function mapMobileSaleDetail(row: any) {
       && !postDispatch
       && !Boolean(row?.has_split_fulfillment)
       && !hasDslite
+      && canSelectOrderFulfillment(fulfillmentSource, "internal")
       && internalStockAvailable
       && row?.ml_shipment_id
       && !invalidOperationalStatus

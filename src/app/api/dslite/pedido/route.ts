@@ -86,6 +86,11 @@ import {
 import { calculateOrderProfit } from "@/services/orders";
 import { canReuseExistingOrderSnapshot } from "@/lib/order-sync-lock-fallback";
 import {
+  fulfillmentSelectionHttpStatus,
+  OrderFulfillmentSelectionError,
+  selectOrderFulfillment,
+} from "@/lib/orders/fulfillment-selection";
+import {
   findReusableJob,
   getLatestJobSnapshot,
   isJobUniqueViolation,
@@ -5405,7 +5410,15 @@ export async function POST(req: Request) {
       nfePayload,
       resumeAfterSupplierPayment,
       idempotencyKey: bodyIdempotencyKey,
+      fulfillmentMode: rawFulfillmentMode,
     } = await req.json();
+    const fulfillmentMode = rawFulfillmentMode === undefined ? "auto" : rawFulfillmentMode;
+    if (!['auto', 'supplier'].includes(String(fulfillmentMode))) {
+      return NextResponse.json(
+        { error: "fulfillmentMode deve ser auto ou supplier", code: "invalid_fulfillment_mode" },
+        { status: 400 },
+      );
+    }
     if (nfeProvider === "mercadolivre") {
       await registrarEventoNfAuditoria({
         pedidoId: pedidoId ? String(pedidoId) : null,
@@ -5442,8 +5455,41 @@ export async function POST(req: Request) {
       );
     }
 
+    const suppliedIdempotencyKey = req.headers.get("idempotency-key") || bodyIdempotencyKey;
+    const idempotencyKey = suppliedIdempotencyKey
+      ? normalizeIdempotencyKey(suppliedIdempotencyKey)
+      : `web-${crypto.randomUUID()}`;
+    if (!idempotencyKey) {
+      return NextResponse.json(
+        { error: "Chave de idempotência inválida" },
+        { status: 400 },
+      );
+    }
+
     const client = createServiceClient();
-    if (!resumeAfterSupplierPayment) {
+    const fulfillmentRead = await (client as any)
+      .from('pedidos')
+      .select('fulfillment_source')
+      .eq('id', String(pedidoId))
+      .maybeSingle();
+    if (fulfillmentRead.error) {
+      const migrationMissing = ['42703', 'PGRST204'].includes(String(fulfillmentRead.error.code || ''));
+      return NextResponse.json(
+        {
+          error: migrationMissing
+            ? 'Migration de seleção da origem do pedido ainda não foi aplicada.'
+            : fulfillmentRead.error.message,
+          code: migrationMissing ? 'fulfillment_migration_missing' : 'fulfillment_read_failed',
+        },
+        { status: migrationMissing ? 503 : 500 },
+      );
+    }
+    if (!fulfillmentRead.data) {
+      return NextResponse.json({ error: 'Pedido não encontrado', code: 'order_not_found' }, { status: 404 });
+    }
+
+    const currentFulfillmentSource = String(fulfillmentRead.data.fulfillment_source || '').trim();
+    if (!resumeAfterSupplierPayment && fulfillmentMode === 'auto' && !currentFulfillmentSource) {
       try {
         await validarEstoqueEnvioInterno(String(pedidoId));
         return NextResponse.json(
@@ -5457,14 +5503,21 @@ export async function POST(req: Request) {
         // Sem saldo interno completo: segue com o fornecedor externo normal.
       }
     }
-    const suppliedIdempotencyKey = req.headers.get("idempotency-key") || bodyIdempotencyKey;
-    const idempotencyKey = suppliedIdempotencyKey
-      ? normalizeIdempotencyKey(suppliedIdempotencyKey)
-      : `web-${crypto.randomUUID()}`;
-    if (!idempotencyKey) {
+    try {
+      await selectOrderFulfillment(client, String(pedidoId), 'supplier');
+    } catch (error) {
+      const selectionError = error instanceof OrderFulfillmentSelectionError ? error : null;
       return NextResponse.json(
-        { error: "Chave de idempotência inválida" },
-        { status: 400 },
+        {
+          error: selectionError?.message || 'Falha ao selecionar envio pelo fornecedor DSLite.',
+          code: selectionError?.code === 'conflict'
+            ? 'fulfillment_source_conflict'
+            : selectionError?.code === 'migration_missing'
+              ? 'fulfillment_migration_missing'
+              : 'fulfillment_selection_failed',
+          selectedSource: selectionError?.selectedSource || null,
+        },
+        { status: fulfillmentSelectionHttpStatus(error) },
       );
     }
     const dedupeKey = `pedido:${String(pedidoId)}`;
@@ -5521,6 +5574,8 @@ export async function POST(req: Request) {
               nfeProvider: provider,
               hasNfePayload: Boolean(nfePayload),
               resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment),
+              fulfillmentMode: String(fulfillmentMode),
+              fulfillmentSource: 'supplier',
               idempotencyKey,
             },
           },

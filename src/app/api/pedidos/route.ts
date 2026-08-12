@@ -361,6 +361,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
   ));
   const itensPorPedidoRaw = new Map<string, any[]>();
   const internalShipmentPedidoIds = new Set<string>();
+  const fulfillmentByPedido = new Map<string, { source: string | null; selectedAt: string | null }>();
   for (let index = 0; index < pedidoIds.length; index += 200) {
     const chunkIds = pedidoIds.slice(index, index + 200);
     const [itemsResult, internalRowsResult] = await Promise.all([
@@ -370,9 +371,8 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
         .in('pedido_id', chunkIds),
       serviceClient
         .from('pedidos')
-        .select('id,envio_interno_at')
-        .in('id', chunkIds)
-        .not('envio_interno_at', 'is', null),
+        .select('id,envio_interno_at,fulfillment_source,fulfillment_selected_at')
+        .in('id', chunkIds),
     ]);
 
     if (itemsResult.error) {
@@ -392,10 +392,34 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       });
     } else {
       for (const internalRow of internalRowsResult.data || []) {
-        internalShipmentPedidoIds.add(String(internalRow.id || ''));
+        const pedidoId = String(internalRow.id || '');
+        if (internalRow.envio_interno_at) internalShipmentPedidoIds.add(pedidoId);
+        fulfillmentByPedido.set(pedidoId, {
+          source: internalRow.fulfillment_source || null,
+          selectedAt: internalRow.fulfillment_selected_at || null,
+        });
       }
     }
   }
+  rows = rows.map((row) => {
+    const operationalIds = Array.isArray(row?.operational_pedido_ids) && row.operational_pedido_ids.length > 0
+      ? row.operational_pedido_ids.map((id: unknown) => String(id || '')).filter(Boolean)
+      : [String(row?.id || '')].filter(Boolean);
+    const sources = Array.from(new Set(
+      operationalIds
+        .map((id: string) => fulfillmentByPedido.get(id)?.source || null)
+        .filter(Boolean),
+    ));
+    const selectedDates = operationalIds
+      .map((id: string) => fulfillmentByPedido.get(id)?.selectedAt || null)
+      .filter((value: string | null): value is string => Boolean(value))
+      .sort();
+    return {
+      ...row,
+      fulfillment_source: sources.length === 1 ? sources[0] : null,
+      fulfillment_selected_at: selectedDates.at(-1) || null,
+    };
+  });
   const itensPorPedido = new Map<string, any[]>();
   for (const row of rows) {
     const rowId = String(row?.id || '');

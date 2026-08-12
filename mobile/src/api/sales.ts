@@ -112,6 +112,7 @@ export const saleDetailSchema = saleSchema.extend({
   fiscalReleaseAt: z.string().nullable(),
   splitFulfillment: z.boolean(),
   internalStockAvailable: z.boolean(),
+  fulfillmentSource: z.enum(["internal", "supplier"]).nullable().optional().default(null),
   purchaseId: z.string().nullable(),
   supplierPixKey: z.string().nullable(),
   supplierPaymentReference: z.string().nullable(),

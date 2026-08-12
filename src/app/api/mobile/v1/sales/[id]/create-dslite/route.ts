@@ -38,7 +38,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     || isPostDispatchOrder(row)
     || row?.has_split_fulfillment
     || hasDslite
-    || row?.internal_stock_available
+    || row?.fulfillment_source === "internal"
     || ["cancelado", "entregue", "devolvido", "recusado"].includes(String(row?.situacao || ""))
   ) {
     return error(requestId, 409, "ACTION_NOT_ALLOWED", "Esta venda não permite criar pedido DSLite");
@@ -56,6 +56,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       pedidoId: String(row.id),
       mlOrderId: String(row.ml_order_id || row.numero || ""),
       nfeProvider: "brasilnfe",
+      fulfillmentMode: "supplier",
       idempotencyKey,
     }),
   }));

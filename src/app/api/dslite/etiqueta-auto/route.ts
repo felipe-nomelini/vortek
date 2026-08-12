@@ -33,6 +33,11 @@ import {
   usesThermalMlLabelSupplier,
 } from '@/lib/supplier-balance';
 import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
+import {
+  fulfillmentSelectionHttpStatus,
+  OrderFulfillmentSelectionError,
+  selectOrderFulfillment,
+} from '@/lib/orders/fulfillment-selection';
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
 import { calculateOrderProfit } from '@/services/orders';
 import { retryMlLabelDownload } from '@/lib/ml/label-download-retry';
@@ -241,6 +246,22 @@ export async function POST(req: Request) {
     }
 
     if (directShipping) {
+      try {
+        await selectOrderFulfillment(client, String(pedidoId), 'internal');
+      } catch (error) {
+        const selectionError = error instanceof OrderFulfillmentSelectionError ? error : null;
+        return stepError(
+          steps,
+          'check_ml_invoice_xml',
+          selectionError?.message || 'Falha ao selecionar envio pelo estoque interno.',
+          {
+            code: selectionError?.code || 'fulfillment_selection_failed',
+            selectedSource: selectionError?.selectedSource || null,
+          },
+          fulfillmentSelectionHttpStatus(error),
+          selectionError?.code === 'migration_missing' ? 'db_schema' : 'business',
+        );
+      }
       try {
         await validarEstoqueEnvioInterno(String(pedidoId));
       } catch (error: any) {
