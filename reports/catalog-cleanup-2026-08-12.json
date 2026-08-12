@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-12T23:13:48.714Z",
+  "mode": "apply",
+  "criteria": {
+    "local_status": "pausado",
+    "profit": "less_than_zero",
+    "tax_rate": 0.04,
+    "applies_to": [
+      "catalog",
+      "standard"
+    ],
+    "healthy_mirror_required": false,
+    "accepted_live_statuses": [
+      "paused",
+      "closed",
+      "under_review/forbidden"
+    ],
+    "permanent_delete": true,
+    "blocklist_scope": "ml_item_id_only"
+  },
+  "summary": {
+    "local_paused_scanned": 820,
+    "preliminary_negative_candidates": 11,
+    "planned": 0,
+    "deleted": 11,
+    "skipped": 0,
+    "errors": 0
+  },
+  "planned": [],
+  "obituary": [
+    {
+      "ml_item_id": "MLB4612540519",
+      "sku": "VTK000889",
+      "title": "Suporte Tv Tri Articulado Com Inclinação 32 A 60 Multivisão Preto",
+      "negative_profit_brl": 32.8,
+      "profit_brl": -32.8,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 32.8,
+      "deleted_at": "2026-08-12T23:13:50.367Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB4620840017",
+      "sku": "VTK000878",
+      "title": "Webcam Fortrek Vision 10 720p Hd Usb 2.0 Plug & Play Microfone Com Cancelamento De Ruído Preto",
+      "negative_profit_brl": 4.45,
+      "profit_brl": -4.45,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 4.45,
+      "deleted_at": "2026-08-12T23:13:51.862Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB4621088419",
+      "sku": "VTK000781",
+      "title": "Suporte Tri Articulado Tv 26 A 55 Full 40 Pro ELG Cor Preto",
+      "negative_profit_brl": 3.59,
+      "profit_brl": -3.59,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 3.59,
+      "deleted_at": "2026-08-12T23:13:54.026Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB4801143531",
+      "sku": "VTK002821",
+      "title": "Sanduicheira Agratto Sid Inox 750w Preto 127v",
+      "negative_profit_brl": 12.19,
+      "profit_brl": -12.19,
+      "live_status": "closed",
+      "live_sub_status": [
+        "paused_by_seller"
+      ],
+      "catalog_listing": true,
+      "loss_stopped_brl": 12.19,
+      "deleted_at": "2026-08-12T23:13:55.306Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted",
+        "paused_by_seller"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB6648864540",
+      "sku": "VTK000932",
+      "title": "Ferro De Solda Maxx 90w X Brasfort - Ref: 9064 220v",
+      "negative_profit_brl": 5.12,
+      "profit_brl": -5.12,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 5.12,
+      "deleted_at": "2026-08-12T23:13:56.449Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB6649110324",
+      "sku": "VTK000853",
+      "title": "Mesa Dobrável De Colo Para Notebook Fortrek Lapdesk Com Suporte Tablet Preto",
+      "negative_profit_brl": 11.54,
+      "profit_brl": -11.54,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 11.54,
+      "deleted_at": "2026-08-12T23:13:57.903Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB6655134248",
+      "sku": "VTK000827",
+      "title": "Painel Metal Organizador Fortrek Grid Space Gamer Preto Com Acessórios",
+      "negative_profit_brl": 7.76,
+      "profit_brl": -7.76,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 7.76,
+      "deleted_at": "2026-08-12T23:13:59.052Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB6655134262",
+      "sku": "VTK000812",
+      "title": "Suporte P/ Tv Triarticulado C/ Inclinação Até 55  Multivisão Mi-1755 Cor Preto",
+      "negative_profit_brl": 6.93,
+      "profit_brl": -6.93,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 6.93,
+      "deleted_at": "2026-08-12T23:14:00.518Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB7087034924",
+      "sku": "VTK000377",
+      "title": "Plug Rca Metal Com Parte Inferior Preto Pgrc0023 Storm",
+      "negative_profit_brl": 14.48,
+      "profit_brl": -14.48,
+      "live_status": "under_review",
+      "live_sub_status": [
+        "forbidden"
+      ],
+      "catalog_listing": false,
+      "loss_stopped_brl": 14.48,
+      "deleted_at": "2026-08-12T23:14:01.760Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "forbidden",
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB7381766444",
+      "sku": "VTK025638",
+      "title": "10 Pilhas Moeda Lítio Elgin Cr1620 3v Kit",
+      "negative_profit_brl": 3.24,
+      "profit_brl": -3.24,
+      "live_status": "under_review",
+      "live_sub_status": [
+        "forbidden"
+      ],
+      "catalog_listing": false,
+      "loss_stopped_brl": 3.24,
+      "deleted_at": "2026-08-12T23:14:02.944Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "forbidden",
+        "deleted"
+      ],
+      "local_detached": true
+    },
+    {
+      "ml_item_id": "MLB7391077458",
+      "sku": "VTK017801",
+      "title": "Ferro De Solda Elétrico De Estanho Tipo Lápis Hikari Plus Prateado 220v",
+      "negative_profit_brl": 1.18,
+      "profit_brl": -1.18,
+      "live_status": "closed",
+      "live_sub_status": [],
+      "catalog_listing": true,
+      "loss_stopped_brl": 1.18,
+      "deleted_at": "2026-08-12T23:14:04.112Z",
+      "already_deleted": false,
+      "blocklist_inserted": true,
+      "verified_sub_status": [
+        "deleted"
+      ],
+      "local_detached": true
+    }
+  ],
+  "skipped": [],
+  "errors": []
+}
