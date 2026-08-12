@@ -2,6 +2,7 @@ import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from 'pdf
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import {
+  includesInternalSupplierFilter,
   listActiveSupplierOptions,
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
@@ -330,6 +331,7 @@ export async function GET(request: Request) {
     const rpcArgs = {
       p_search: search || null,
       p_supplier_dslite_ids: supplierDsliteIds,
+      p_include_internal: includesInternalSupplierFilter(supplierFilterIds),
       p_product_active_status: productActiveStatus,
       p_ml_status: mlStatus || null,
       p_estoque: estoque || null,

@@ -2,6 +2,7 @@ import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from 'pdf
 import { NextResponse } from 'next/server';
 import { GET as getOrders } from '@/app/api/pedidos/route';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
+import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -15,6 +16,7 @@ type ExportRow = {
   nota_fiscal: string;
   fornecedor: string;
   compra_dslite: string;
+  liberacao_etiqueta: string;
   proxima_acao: string;
   lucro: number | null;
 };
@@ -34,16 +36,17 @@ const columns: Array<{
   align?: 'left' | 'right' | 'center';
   format?: (row: ExportRow) => string;
 }> = [
-  { key: 'numero', label: 'Venda', width: 72 },
+  { key: 'numero', label: 'Venda', width: 70 },
   { key: 'data', label: 'Data', width: 70 },
-  { key: 'cliente', label: 'Cliente', width: 105 },
-  { key: 'total', label: 'Total', width: 62, align: 'right', format: (row) => formatCurrency(row.total) },
-  { key: 'status', label: 'Status', width: 65 },
-  { key: 'nota_fiscal', label: 'NF', width: 58 },
-  { key: 'fornecedor', label: 'Fornecedor', width: 92 },
-  { key: 'compra_dslite', label: 'Compra', width: 60 },
-  { key: 'proxima_acao', label: 'Próxima ação', width: 100 },
-  { key: 'lucro', label: 'Lucro', width: 60, align: 'right', format: (row) => row.lucro === null ? '—' : formatCurrency(row.lucro) },
+  { key: 'cliente', label: 'Cliente', width: 103 },
+  { key: 'total', label: 'Total', width: 60, align: 'right', format: (row) => formatCurrency(row.total) },
+  { key: 'status', label: 'Status', width: 64 },
+  { key: 'nota_fiscal', label: 'NF', width: 45 },
+  { key: 'fornecedor', label: 'Fornecedor', width: 91 },
+  { key: 'compra_dslite', label: 'Compra', width: 55 },
+  { key: 'liberacao_etiqueta', label: 'Liberação etiqueta', width: 70 },
+  { key: 'proxima_acao', label: 'Próxima ação', width: 95 },
+  { key: 'lucro', label: 'Lucro', width: 58, align: 'right', format: (row) => row.lucro === null ? '—' : formatCurrency(row.lucro) },
 ];
 
 const statusLabels: Record<string, string> = {
@@ -111,6 +114,16 @@ function sanitizeMlTechnicalSuffix(value: unknown): string {
   const suffix = match[2].trim();
   if (base && (/\d/.test(suffix) || /^[A-Z0-9_.-]+$/i.test(suffix))) return base;
   return raw || '—';
+}
+
+function formatLabelRelease(row: Record<string, any>): string {
+  const rawReleaseAt = String(row.ml_fiscal_release_at || '').trim();
+  if (!rawReleaseAt || String(row.situacao || '') === 'etiqueta_impressa') return '—';
+
+  const releaseAt = getMlReleaseComparableDate(rawReleaseAt);
+  if (!releaseAt || releaseAt.getTime() <= Date.now()) return '—';
+
+  return formatMlReleaseWindow(rawReleaseAt).when;
 }
 
 function sanitizeText(value: unknown, supportedCharacters: Set<number>): string {
@@ -268,6 +281,7 @@ function mapExportRow(row: Record<string, any>): ExportRow {
     nota_fiscal: invoiceNumbers.length > 0 ? invoiceNumbers.join(', ') : '—',
     fornecedor: String(row.fornecedor_nome || (row.envio_interno_at ? 'Estoque Interno' : '—')),
     compra_dslite: dsliteIds.length > 0 ? dsliteIds.map((id: string) => `#${id}`).join(', ') : '—',
+    liberacao_etiqueta: formatLabelRelease(row),
     proxima_acao: String(
       row.dslite_next_action_label
       || nextActionLabels[String(row.dslite_next_action || '')]
@@ -298,6 +312,7 @@ export async function GET(request: Request) {
       'dateTo',
       'priceMin',
       'priceMax',
+      'fornecedores',
       'operationalView',
       'sortBy',
       'sortOrder',
@@ -306,13 +321,14 @@ export async function GET(request: Request) {
       const value = sourceUrl.searchParams.get(key);
       if (value) listUrl.searchParams.set(key, value);
     }
-    listUrl.searchParams.set('pageSize', '100');
+    listUrl.searchParams.set('pageSize', '1000');
 
     const headers = new Headers(request.headers);
     headers.set('x-vortek-read-only', '1');
     const rows: Record<string, any>[] = [];
     let page = 1;
     let total = 0;
+    let supplierOptions: Array<{ id: string; label: string }> = [];
 
     do {
       listUrl.searchParams.set('page', String(page));
@@ -326,6 +342,9 @@ export async function GET(request: Request) {
       }
 
       const pageRows = Array.isArray(payload?.data) ? payload.data : [];
+      if (supplierOptions.length === 0 && Array.isArray(payload?.fornecedores)) {
+        supplierOptions = payload.fornecedores;
+      }
       rows.push(...pageRows);
       total = Number(payload?.total || 0);
       page += 1;
@@ -337,10 +356,15 @@ export async function GET(request: Request) {
     const operationalView = sourceUrl.searchParams.get('operationalView') || 'all';
     const priceMin = parseNumber(sourceUrl.searchParams, 'priceMin');
     const priceMax = parseNumber(sourceUrl.searchParams, 'priceMax');
+    const supplierFilterIds = sourceUrl.searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
+    const selectedSuppliers = supplierOptions
+      .filter((option) => supplierFilterIds.includes(String(option.id)))
+      .map((option) => option.label);
     const activeFilters = [
       `Visão: ${operationalViewLabels[operationalView] || operationalView}`,
       sourceUrl.searchParams.get('search') ? `Busca: ${sourceUrl.searchParams.get('search')}` : null,
       status ? `Status: ${statusLabels[status] || status}` : null,
+      selectedSuppliers.length > 0 ? `Fornecedor: ${selectedSuppliers.join(', ')}` : null,
       sourceUrl.searchParams.get('dateFrom') ? `Data inicial: ${sourceUrl.searchParams.get('dateFrom')}` : null,
       sourceUrl.searchParams.get('dateTo') ? `Data final: ${sourceUrl.searchParams.get('dateTo')}` : null,
       priceMin !== null ? `Valor mínimo: ${formatCurrency(priceMin)}` : null,

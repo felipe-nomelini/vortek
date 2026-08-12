@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { loadProdutoOfertaRows, type ProdutoOfertaListRow } from '@/lib/produto-ofertas';
+import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import {
+  fetchAllRowsPaginated,
+  includesInternalSupplierFilter,
   listActiveSupplierOptions,
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
@@ -29,6 +32,7 @@ export async function GET(request: Request) {
     ? rawSortBy
     : 'sku';
   const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
+  let internalStockProductIds = new Set<string>();
 
   function computeDerived(item: ProdutoOfertaListRow): { displayPrice: number; profit: number | null } {
     try {
@@ -70,8 +74,10 @@ export async function GET(request: Request) {
         .join(' ');
       if (!haystack.includes(term)) return false;
     }
-    if (supplierFilterDsliteIds.length > 0 && !supplierFilterDsliteIds.includes(String(item.dsliteFornecedorId || '').trim())) {
-      return false;
+    if (fornecedorFilterIds.length > 0) {
+      const matchesExternal = supplierFilterDsliteIds.includes(String(item.dsliteFornecedorId || '').trim());
+      const matchesInternal = includeInternal && internalStockProductIds.has(item.productId);
+      if (!matchesExternal && !matchesInternal) return false;
     }
     if (mlStatus && item.product.ml_status !== mlStatus) {
       return false;
@@ -132,6 +138,34 @@ export async function GET(request: Request) {
   }
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
+  const includeInternal = includesInternalSupplierFilter(fornecedorFilterIds);
+  if (includeInternal) {
+    try {
+      const movements = await fetchAllRowsPaginated<any>((from, to) => (
+        (serviceClient as any)
+          .from('estoque_interno_movimentacoes')
+          .select('produto_id,tipo,quantidade,situacao_estoque,estornada_em')
+          .order('produto_id', { ascending: true })
+          .range(from, to)
+      ));
+      const movementsByProduct = new Map<string, any[]>();
+      for (const movement of movements) {
+        const productId = String(movement?.produto_id || '').trim();
+        if (!productId) continue;
+        const list = movementsByProduct.get(productId) || [];
+        list.push(movement);
+        movementsByProduct.set(productId, list);
+      }
+      internalStockProductIds = new Set(
+        Array.from(movementsByProduct.entries())
+          .filter(([, productMovements]) => calcularSaldoEstoqueInterno(productMovements) > 0)
+          .map(([productId]) => productId),
+      );
+    } catch (error: any) {
+      console.error('[api/produtos/ofertas] Falha ao carregar estoque interno:', error?.message || error);
+      return NextResponse.json({ erro: error?.message || 'Falha ao carregar estoque interno' }, { status: 500 });
+    }
+  }
   const filteredRows = rows.filter(matchesFilters);
   sortRows(filteredRows);
 

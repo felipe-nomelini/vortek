@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import {
+  includesInternalSupplierFilter,
   listActiveSupplierOptions,
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
@@ -44,6 +45,7 @@ export async function GET(request: Request) {
   const { data: rpcResult, error: rpcError } = await serviceClient.rpc('search_produtos_resumo', {
     p_search: search || null,
     p_supplier_dslite_ids: supplierFilterDsliteIds,
+    p_include_internal: includesInternalSupplierFilter(fornecedorFilterIds),
     p_product_active_status: productActiveStatus,
     p_ml_status: mlStatus || null,
     p_estoque: estoque || null,

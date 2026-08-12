@@ -1387,6 +1387,7 @@ export type Database = {
         Args: {
           p_search?: string | null
           p_supplier_dslite_ids?: string[] | null
+          p_include_internal?: boolean | null
           p_product_active_status?: string | null
           p_ml_status?: string | null
           p_estoque?: string | null
@@ -1404,6 +1405,7 @@ export type Database = {
         Args: {
           p_search?: string | null
           p_supplier_dslite_ids?: string[] | null
+          p_include_internal?: boolean | null
           p_product_active_status?: string | null
           p_ml_status?: string | null
           p_estoque?: string | null

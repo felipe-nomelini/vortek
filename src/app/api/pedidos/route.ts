@@ -16,6 +16,12 @@ import {
 import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
+import {
+  includesInternalSupplierFilter,
+  listActiveSupplierOptions,
+  mapSupplierFilterIdsToDsliteIds,
+  matchesOrderSupplierFilter,
+} from '@/lib/produto-filtering';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -112,13 +118,21 @@ async function resolveFornecedorPreviewByPedido(
   if (!skuVariants.length && !mlItemIds.length) return previews;
 
   const productSelect = 'id,ml_item_id,sku,nome,fornecedor,dslite_fornecedor_id,oferta_preferencial_id,fornecedor_preferencial_manual';
+  async function loadProductsBy(field: 'sku' | 'ml_item_id', values: string[]) {
+    const data: any[] = [];
+    for (let index = 0; index < values.length; index += 200) {
+      const { data: chunk, error } = await serviceClient
+        .from('produtos')
+        .select(productSelect)
+        .in(field, values.slice(index, index + 200));
+      if (error) return { data, error };
+      data.push(...(chunk || []));
+    }
+    return { data, error: null as any };
+  }
   const [productsBySkuResult, productsByMlItemResult] = await Promise.all([
-    skuVariants.length
-      ? serviceClient.from('produtos').select(productSelect).in('sku', skuVariants)
-      : Promise.resolve({ data: [], error: null as any }),
-    mlItemIds.length
-      ? serviceClient.from('produtos').select(productSelect).in('ml_item_id', mlItemIds)
-      : Promise.resolve({ data: [], error: null as any }),
+    loadProductsBy('sku', skuVariants),
+    loadProductsBy('ml_item_id', mlItemIds),
   ]);
   const productError = productsBySkuResult.error || productsByMlItemResult.error;
   if (productError) {
@@ -140,22 +154,36 @@ async function resolveFornecedorPreviewByPedido(
     productsById.set(String((product as any).id || ''), product);
   }
   const productIds = Array.from(productsById.keys()).filter(Boolean);
-  const { data: offers, error: offerError } = productIds.length
-    ? await serviceClient
+  const offers: any[] = [];
+  let offerError: any = null;
+  for (let index = 0; index < productIds.length; index += 200) {
+    const result = await serviceClient
       .from('produto_fornecedor_ofertas')
       .select('id,produto_id,dslite_fornecedor_id,fornecedor_nome,custo,estoque,ativo,prioridade')
-      .in('produto_id', productIds)
-    : { data: [], error: null as any };
+      .in('produto_id', productIds.slice(index, index + 200));
+    if (result.error) {
+      offerError = result.error;
+      break;
+    }
+    offers.push(...(result.data || []));
+  }
   if (offerError) {
     logDbError('pedidos_supplier_preview_offers_failed', '/api/pedidos', '', offerError);
     return previews;
   }
-  const { data: movimentosInternos, error: movimentosInternosError } = productIds.length
-    ? await (serviceClient as any)
+  const movimentosInternos: any[] = [];
+  let movimentosInternosError: any = null;
+  for (let index = 0; index < productIds.length; index += 200) {
+    const result = await (serviceClient as any)
       .from('estoque_interno_movimentacoes')
       .select('produto_id,tipo,quantidade,situacao_estoque,estornada_em')
-      .in('produto_id', productIds)
-    : { data: [], error: null as any };
+      .in('produto_id', productIds.slice(index, index + 200));
+    if (result.error) {
+      movimentosInternosError = result.error;
+      break;
+    }
+    movimentosInternos.push(...(result.data || []));
+  }
   if (movimentosInternosError) {
     logDbError('pedidos_internal_stock_preview_failed', '/api/pedidos', '', movimentosInternosError);
   }
@@ -255,6 +283,7 @@ async function resolveFornecedorPreviewByPedido(
         supplier_payment_status: null,
         supplier_payment_amount: null,
         internal_stock_available: true,
+        operational_supplier_ids: [],
         compra_produto_descricao: first.produtoDescricao,
         compra_produto_sku: first.produtoSku,
         compra_quantidade: selected.reduce((total, item) => total + item.quantidade, 0),
@@ -275,6 +304,7 @@ async function resolveFornecedorPreviewByPedido(
       supplier_payment_mode: singleSupplier ? paymentMode : null,
       supplier_payment_status: paymentMode === 'prepaid_pix' ? 'pending' : null,
       supplier_payment_amount: selected.reduce((total, item) => total + item.custo * item.quantidade, 0) || null,
+      operational_supplier_ids: Array.from(new Set(selected.map((item) => item.fornecedorId).filter(Boolean))),
       compra_produto_descricao: first.produtoDescricao,
       compra_produto_sku: first.produtoSku,
       compra_quantidade: selected.reduce((total, item) => total + item.quantidade, 0),
@@ -330,21 +360,39 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       .filter(Boolean),
   ));
   const itensPorPedidoRaw = new Map<string, any[]>();
-  if (pedidoIds.length) {
-    const { data, error } = await serviceClient
-      .from('pedido_itens')
-      .select('pedido_id,titulo,quantidade,seller_sku,ml_item_id,valor_unitario,valor_total_liquido')
-      .in('pedido_id', pedidoIds);
+  const internalShipmentPedidoIds = new Set<string>();
+  for (let index = 0; index < pedidoIds.length; index += 200) {
+    const chunkIds = pedidoIds.slice(index, index + 200);
+    const [itemsResult, internalRowsResult] = await Promise.all([
+      serviceClient
+        .from('pedido_itens')
+        .select('pedido_id,titulo,quantidade,seller_sku,ml_item_id,valor_unitario,valor_total_liquido')
+        .in('pedido_id', chunkIds),
+      serviceClient
+        .from('pedidos')
+        .select('id,envio_interno_at')
+        .in('id', chunkIds)
+        .not('envio_interno_at', 'is', null),
+    ]);
 
-    if (error) {
-      logDbError('pedidos_items_enrich_failed', '/api/pedidos', '', error, {
-        pedidos_count: pedidoIds.length,
+    if (itemsResult.error) {
+      logDbError('pedidos_items_enrich_failed', '/api/pedidos', '', itemsResult.error, {
+        pedidos_count: chunkIds.length,
       });
     } else {
-      for (const item of data || []) {
+      for (const item of itemsResult.data || []) {
         const pedidoId = String(item.pedido_id || '');
         if (!itensPorPedidoRaw.has(pedidoId)) itensPorPedidoRaw.set(pedidoId, []);
         itensPorPedidoRaw.get(pedidoId)!.push(item);
+      }
+    }
+    if (internalRowsResult.error) {
+      logDbError('pedidos_internal_shipments_enrich_failed', '/api/pedidos', '', internalRowsResult.error, {
+        pedidos_count: chunkIds.length,
+      });
+    } else {
+      for (const internalRow of internalRowsResult.data || []) {
+        internalShipmentPedidoIds.add(String(internalRow.id || ''));
       }
     }
   }
@@ -360,6 +408,12 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     );
   }
   const fornecedorPreviewByPedido = await resolveFornecedorPreviewByPedido(itensPorPedido, serviceClient);
+  const hasFullInternalShipment = (row: any) => {
+    const operationalIds = Array.isArray(row?.operational_pedido_ids) && row.operational_pedido_ids.length > 0
+      ? row.operational_pedido_ids.map((id: unknown) => String(id || '')).filter(Boolean)
+      : [String(row?.id || '')].filter(Boolean);
+    return operationalIds.length > 0 && operationalIds.every((id: string) => internalShipmentPedidoIds.has(id));
+  };
 
   const clienteIdPorMlId = new Map<string, string>();
   const buyerMlIds = Array.from(new Set(
@@ -367,14 +421,15 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       .map((row) => String(row?.buyer_ml_id || '').trim())
       .filter(Boolean),
   ));
-  if (buyerMlIds.length) {
+  for (let index = 0; index < buyerMlIds.length; index += 200) {
+    const chunkIds = buyerMlIds.slice(index, index + 200);
     const { data, error } = await serviceClient
       .from('clientes')
       .select('id,ml_id')
-      .in('ml_id', buyerMlIds);
+      .in('ml_id', chunkIds);
     if (error) {
       logDbError('pedidos_clients_enrich_failed', '/api/pedidos', '', error, {
-        buyers_count: buyerMlIds.length,
+        buyers_count: chunkIds.length,
       });
     } else {
       for (const cliente of data || []) {
@@ -398,6 +453,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
       cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+      operational_internal_stock: hasFullInternalShipment(row),
       ...(row?.envio_interno_at
         ? { fornecedor_id: null, fornecedor_nome: 'Estoque Interno', supplier_payment_mode: null, supplier_payment_status: null, supplier_payment_amount: null }
         : (fornecedorPreviewByPedido.get(String(row?.id || '')) || {})),
@@ -445,11 +501,20 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
   const fornecedorByDsliteId = new Map(fornecedores.map((fornecedor) => [String(fornecedor.dslite_id), fornecedor]));
 
   return rows.map((row) => {
+    const operationalCompras = (Array.isArray(row?.operational_dslite_ids) ? row.operational_dslite_ids : [row?.dslite_id])
+      .map((dsliteId: unknown) => comprasByDsid.get(String(dsliteId || '')))
+      .filter(Boolean);
+    const operationalSupplierIds = Array.from(new Set(
+      operationalCompras.map((compra: any) => String(compra?.fornecedor_id || '').trim()).filter(Boolean),
+    ));
+    const operationalInternalStock = hasFullInternalShipment(row);
     if (row?.envio_interno_at) {
       return {
         ...row,
         pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
         cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+        operational_supplier_ids: operationalSupplierIds,
+        operational_internal_stock: operationalInternalStock,
         compra_id: null,
         fornecedor_id: null,
         fornecedor_nome: 'Estoque Interno',
@@ -472,6 +537,8 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
         ...row,
         pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
         cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+        operational_supplier_ids: operationalSupplierIds,
+        operational_internal_stock: operationalInternalStock,
         ...(row?.envio_interno_at
           ? { fornecedor_id: null, fornecedor_nome: 'Estoque Interno', supplier_payment_mode: null, supplier_payment_status: null, supplier_payment_amount: null }
           : (fornecedorPreviewByPedido.get(String(row?.id || '')) || {})),
@@ -526,6 +593,8 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
       cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+      operational_supplier_ids: operationalSupplierIds,
+      operational_internal_stock: operationalInternalStock,
       compra_id: compra.id || null,
       compra_produto_descricao: compra.produto_descricao || null,
       compra_produto_sku: compra.produto_sku || null,
@@ -655,13 +724,15 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
-  const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get('pageSize') || '100')));
+  const maxPageSize = request.headers.get('x-vortek-read-only') === '1' ? 1000 : 100;
+  const pageSize = Math.min(maxPageSize, Math.max(1, parseInt(searchParams.get('pageSize') || '100')));
   const search = searchParams.get('search') || '';
   const status = searchParams.get('status') || '';
   const dateFrom = searchParams.get('dateFrom') || '';
   const dateTo = searchParams.get('dateTo') || '';
   const priceMin = searchParams.get('priceMin') ? parseFloat(searchParams.get('priceMin')!) : null;
   const priceMax = searchParams.get('priceMax') ? parseFloat(searchParams.get('priceMax')!) : null;
+  const fornecedorFilterIds = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
   const normalizedSearch = search.trim();
   const rawSortBy = searchParams.get('sortBy') || 'data';
   const rawSortOrder = searchParams.get('sortOrder') || 'desc';
@@ -683,6 +754,95 @@ export async function GET(request: Request) {
   const to = from + pageSize - 1;
   const startDateIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
   const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
+  let supplierOptions;
+  try {
+    supplierOptions = await listActiveSupplierOptions(serviceClient);
+  } catch (error: any) {
+    logDbError('pedidos_suppliers_query_failed', '/api/pedidos', normalizedSearch, error);
+    return NextResponse.json({ erro: 'Falha ao carregar fornecedores.' }, { status: 500 });
+  }
+  const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
+  const includeInternalSupplier = includesInternalSupplierFilter(fornecedorFilterIds);
+  const listResponse = (data: any[], total: number) => NextResponse.json({
+    data,
+    total,
+    page,
+    pageSize,
+    fornecedores: supplierOptions,
+  });
+
+  if (fornecedorFilterIds.length > 0) {
+    async function loadSupplierCandidates(useSaleDate: boolean) {
+      const candidates: any[] = [];
+
+      if (normalizedSearch) {
+        let searchPage = 1;
+        let searchTotal = 0;
+        while (true) {
+          const { data: rpcData, error: rpcError } = await (serviceClient as any).rpc('search_pedidos_paginated', {
+            p_search: normalizedSearch,
+            p_status: status || null,
+            p_date_from: startDateIso,
+            p_date_to: endDateIso,
+            p_price_min: priceMin,
+            p_price_max: priceMax,
+            p_page: searchPage,
+            p_page_size: 100,
+            p_sort_by: sortBy,
+            p_sort_order: sortOrder,
+          });
+          if (rpcError) return { data: candidates, error: rpcError };
+          const chunk = Array.isArray(rpcData?.data) ? rpcData.data : [];
+          searchTotal = Number(rpcData?.total ?? searchTotal ?? 0);
+          candidates.push(...chunk);
+          if (chunk.length < 100 || candidates.length >= searchTotal) break;
+          searchPage += 1;
+        }
+        return { data: candidates, error: null };
+      }
+
+      const chunkSize = 500;
+      while (true) {
+        let query = (serviceClient as any).from('pedidos_operacionais').select('*');
+        query = applyPedidoFilters(query, {
+          status,
+          dateFrom: startDateIso,
+          endDateIso,
+          priceMin,
+          priceMax,
+          useSaleDate,
+        });
+        query = applyOperationalViewFilter(query, operationalView);
+        query = applyPedidoSortWithMode(query, sortBy, sortOrder, useSaleDate);
+        const offset = candidates.length;
+        const { data: chunk, error: chunkError } = await query.range(offset, offset + chunkSize - 1);
+        if (chunkError) return { data: candidates, error: chunkError };
+        candidates.push(...(chunk || []));
+        if ((chunk || []).length < chunkSize) return { data: candidates, error: null };
+      }
+    }
+
+    let candidatesResult = await loadSupplierCandidates(true);
+    if (!normalizedSearch && isMissingSaleDateColumnError(candidatesResult.error)) {
+      candidatesResult = await loadSupplierCandidates(false);
+    }
+    if (candidatesResult.error) {
+      logDbError('pedidos_supplier_filter_query_failed', '/api/pedidos', normalizedSearch, candidatesResult.error, {
+        operationalView,
+      });
+      return NextResponse.json({ erro: 'Falha ao filtrar pedidos por fornecedor.' }, { status: 500 });
+    }
+
+    const enrichedRows = await enrichPedidosForOperationalView(candidatesResult.data, serviceClient, persistReconciliation);
+    const filteredRows = enrichedRows
+      .filter((row) => matchesOrdersOperationalView(row, operationalView))
+      .filter((row) => matchesOrderSupplierFilter({
+        row,
+        supplierDsliteIds: supplierFilterDsliteIds,
+        includeInternal: includeInternalSupplier,
+      }));
+    return listResponse(filteredRows.slice(from, to + 1), filteredRows.length);
+  }
 
   if (normalizedSearch && operationalView !== 'all') {
     const allRows: any[] = [];
@@ -721,12 +881,7 @@ export async function GET(request: Request) {
     const enrichedRows = await enrichPedidosForOperationalView(allRows, serviceClient, persistReconciliation);
     const filteredRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, operationalView));
 
-    return NextResponse.json({
-      data: filteredRows.slice(from, to + 1),
-      total: filteredRows.length,
-      page,
-      pageSize,
-    });
+    return listResponse(filteredRows.slice(from, to + 1), filteredRows.length);
   }
 
   if (normalizedSearch) {
@@ -758,12 +913,7 @@ export async function GET(request: Request) {
     const total = Number(rpcData?.total ?? 0) || 0;
     const enrichedRows = await enrichPedidosForOperationalView(rows, serviceClient, persistReconciliation);
 
-    return NextResponse.json({
-      data: enrichedRows,
-      total,
-      page,
-      pageSize,
-    });
+    return listResponse(enrichedRows, total);
   }
 
   const filterContext = {
@@ -805,12 +955,7 @@ export async function GET(request: Request) {
 
     const enrichedRows = await enrichPedidosForOperationalView(urgentResult.data, serviceClient, persistReconciliation);
     const urgentRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, 'urgent'));
-    return NextResponse.json({
-      data: urgentRows.slice(from, to + 1),
-      total: urgentRows.length,
-      page,
-      pageSize,
-    });
+    return listResponse(urgentRows.slice(from, to + 1), urgentRows.length);
   }
 
   async function runListQueries(useSaleDate: boolean) {
@@ -871,12 +1016,7 @@ export async function GET(request: Request) {
 
   const enrichedRows = await enrichPedidosForOperationalView(data || [], serviceClient, persistReconciliation);
 
-  return NextResponse.json({
-    data: enrichedRows,
-    total: count || 0,
-    page,
-    pageSize,
-  });
+  return listResponse(enrichedRows, count || 0);
 }
 
 export async function POST(request: Request) {

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, message, Spin, Statistic, Tabs } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { MenuProps, TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined, ReloadOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined, ReloadOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressModal';
 
@@ -388,6 +388,7 @@ function buildAnaliseRefreshSteps(payload: RefreshStatusPayload | null, calculat
 
 export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [loading, setLoading] = useState(true);
+  const [exportingPdf, setExportingPdf] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
   const [search, setSearch] = useState('');
@@ -453,6 +454,36 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     if (priceMax !== null) params.set('priceMax', String(priceMax));
     return params.toString();
   }, [buyBoxFilter, mode, page, priceMax, priceMin, search, statusMl]);
+
+  const handleExportPdf = useCallback(async () => {
+    setExportingPdf(true);
+    try {
+      const params = new URLSearchParams(buildParams());
+      params.delete('page');
+      params.delete('pageSize');
+      const response = await fetch(`/api/catalogo/no-catalogo/exportar-pdf?${params.toString()}`, { cache: 'no-store' });
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload?.erro || 'Falha ao gerar PDF do catálogo.');
+      }
+      const blob = await response.blob();
+      const disposition = response.headers.get('content-disposition') || '';
+      const fileName = disposition.match(/filename="([^"]+)"/i)?.[1] || 'catalogo-no-catalogo.pdf';
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = fileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      messageApi.success('PDF do catálogo exportado.');
+    } catch (error: any) {
+      messageApi.error(error?.message || 'Falha ao exportar PDF do catálogo.');
+    } finally {
+      setExportingPdf(false);
+    }
+  }, [buildParams, messageApi]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -1517,6 +1548,15 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
               loading={refreshJobStatus === 'running'}
             >
               Atualizar agora
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              icon={<FilePdfOutlined />}
+              onClick={() => void handleExportPdf()}
+              loading={exportingPdf}
+            >
+              Exportar PDF
             </Button>
           </Col>
         </Row>

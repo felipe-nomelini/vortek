@@ -451,6 +451,11 @@ interface DsliteShippingPrompt {
   options: DsliteShippingOption[];
 }
 
+type SupplierFilterOption = {
+  id: string;
+  label: string;
+};
+
 export default function PedidosPage() {
   const [loading, setLoading] = useState(true);
   const [exportingPdf, setExportingPdf] = useState(false);
@@ -480,6 +485,8 @@ export default function PedidosPage() {
   }, []);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<OrderStatus | ''>('');
+  const [supplierFilterIds, setSupplierFilterIds] = useState<string[]>([]);
+  const [supplierOptions, setSupplierOptions] = useState<SupplierFilterOption[]>([]);
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
@@ -554,12 +561,13 @@ export default function PedidosPage() {
     const params = new URLSearchParams();
     if (search) params.set('search', search);
     if (statusFilter) params.set('status', statusFilter);
+    if (supplierFilterIds.length > 0) params.set('fornecedores', supplierFilterIds.join(','));
     if (dateRange[0]) params.set('dateFrom', dateRange[0]);
     if (dateRange[1]) params.set('dateTo', dateRange[1]);
     if (priceMin !== null) params.set('priceMin', String(priceMin));
     if (priceMax !== null) params.set('priceMax', String(priceMax));
     return params;
-  }, [search, statusFilter, dateRange, priceMin, priceMax]);
+  }, [search, statusFilter, supplierFilterIds, dateRange, priceMin, priceMax]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -578,6 +586,7 @@ export default function PedidosPage() {
         const json = await listRes.json();
         setOrders((json.data || []).map(mapDBtoOrder));
         setTotal(json.total || 0);
+        if (Array.isArray(json.fornecedores)) setSupplierOptions(json.fornecedores);
       }
 
       if (summaryRes.ok) {
@@ -608,7 +617,7 @@ export default function PedidosPage() {
 
   useEffect(() => {
     setPage(1);
-  }, [operationalView, search, statusFilter, dateRange, priceMin, priceMax]);
+  }, [operationalView, search, statusFilter, supplierFilterIds, dateRange, priceMin, priceMax]);
 
   const handleExportPdf = useCallback(async () => {
     setExportingPdf(true);
@@ -2248,6 +2257,19 @@ export default function PedidosPage() {
               style={{ width: 160 }}
               allowClear
               onClear={() => setStatusFilter('')}
+            />
+          </Col>
+          <Col>
+            <Select
+              mode="multiple"
+              placeholder="Fornecedores"
+              value={supplierFilterIds}
+              onChange={setSupplierFilterIds}
+              options={supplierOptions.map((option) => ({ value: option.id, label: option.label }))}
+              optionFilterProp="label"
+              maxTagCount="responsive"
+              style={{ width: 240 }}
+              allowClear
             />
           </Col>
           <Col>

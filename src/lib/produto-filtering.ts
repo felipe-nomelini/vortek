@@ -15,6 +15,15 @@ export type SupplierFilterOption = {
   dsliteId: string;
 };
 
+export const INTERNAL_SUPPLIER_FILTER_ID = '__internal__';
+
+export const INTERNAL_SUPPLIER_FILTER_OPTION: SupplierFilterOption = {
+  id: INTERNAL_SUPPLIER_FILTER_ID,
+  label: 'INTERNO',
+  apelido: 'INTERNO',
+  dsliteId: '',
+};
+
 type OrderOption = {
   column: string;
   ascending?: boolean;
@@ -81,7 +90,14 @@ export async function listActiveSupplierOptions(client: any): Promise<SupplierFi
     })
     .filter((entry: (readonly [string, SupplierFilterOption]) | null): entry is readonly [string, SupplierFilterOption] => entry !== null);
 
-  return Array.from(new Map<string, SupplierFilterOption>(entries).values());
+  return [
+    INTERNAL_SUPPLIER_FILTER_OPTION,
+    ...Array.from(new Map<string, SupplierFilterOption>(entries).values()),
+  ];
+}
+
+export function includesInternalSupplierFilter(supplierFilterIds: string[]) {
+  return supplierFilterIds.includes(INTERNAL_SUPPLIER_FILTER_ID);
 }
 
 export function buildOffersByProductId(offers: ProdutoFilterOfferRow[]) {
@@ -109,6 +125,25 @@ export function mapSupplierFilterIdsToDsliteIds(
     .filter(Boolean);
 
   return Array.from(new Set(dsliteIds));
+}
+
+export function matchesOrderSupplierFilter(params: {
+  row: Record<string, any>;
+  supplierDsliteIds: string[];
+  includeInternal: boolean;
+}) {
+  const { row, supplierDsliteIds, includeInternal } = params;
+  const orderSupplierIds = new Set([
+    ...(Array.isArray(row.operational_supplier_ids) ? row.operational_supplier_ids : []),
+    row.fornecedor_id,
+  ].map((value) => String(value || '').trim()).filter(Boolean));
+  const matchesExternal = supplierDsliteIds.some((supplierId) => orderSupplierIds.has(supplierId));
+  const matchesInternal = includeInternal && Boolean(
+    row.operational_internal_stock
+    || row.internal_stock_available,
+  );
+
+  return matchesExternal || matchesInternal;
 }
 
 export function matchesProductMasterFilters(params: {

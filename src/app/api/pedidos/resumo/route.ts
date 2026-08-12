@@ -7,6 +7,7 @@ import {
 } from "@/lib/orders/operational-view";
 import { enrichOrdersWithWhatsappStatus } from "@/services/order-operational-status";
 import { authorizeApiRequest } from "@/lib/api-request-auth";
+import { GET as getOrders } from "@/app/api/pedidos/route";
 
 function logDbError(
   event: string,
@@ -138,6 +139,63 @@ export async function GET(request: Request) {
     ? saoPauloDateParamToUtcIso(dateFrom, "start")
     : null;
   const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, "end") : null;
+  const fornecedorFilterIds = searchParams.get("fornecedores")
+    ?.split(",")
+    .filter(Boolean) || [];
+
+  if (fornecedorFilterIds.length > 0) {
+    const rows: any[] = [];
+    let page = 1;
+    let total = 0;
+    while (true) {
+      const listUrl = new URL("/api/pedidos", request.url);
+      for (const [key, value] of searchParams.entries()) {
+        if (value) listUrl.searchParams.set(key, value);
+      }
+      listUrl.searchParams.set("operationalView", "all");
+      listUrl.searchParams.set("page", String(page));
+      listUrl.searchParams.set("pageSize", "1000");
+      listUrl.searchParams.set("sortBy", "data");
+      listUrl.searchParams.set("sortOrder", "desc");
+      const headers = new Headers(request.headers);
+      headers.set("x-vortek-read-only", "1");
+      const response = await getOrders(new Request(listUrl, { headers }));
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        return NextResponse.json(
+          { erro: payload?.erro || "Falha ao gerar resumo por fornecedor." },
+          { status: response.status },
+        );
+      }
+      const chunk = Array.isArray(payload?.data) ? payload.data : [];
+      total = Number(payload?.total || 0);
+      rows.push(...chunk);
+      if (chunk.length < 1000 || rows.length >= total) break;
+      page += 1;
+    }
+
+    const statusCounts: Record<string, number> = {};
+    for (const row of rows) {
+      const rowStatus = normalizeStatus(row?.situacao);
+      statusCounts[rowStatus] = (statusCounts[rowStatus] || 0) + 1;
+    }
+    const financial = accumulateFinancialSummary(rows);
+    const ticket = financial.salesCount > 0 ? financial.totalSum / financial.salesCount : 0;
+    const margem = financial.totalSum > 0 ? (financial.lucroSum / financial.totalSum) * 100 : 0;
+
+    return NextResponse.json({
+      count: total,
+      total: financial.totalSum,
+      lucroSum: financial.lucroSum,
+      ticket,
+      margem,
+      statusCounts,
+      mlCompatibleCount: financial.mlCompatibleCount,
+      mlCompatibleTotal: financial.mlCompatibleTotal,
+      mlCompatibleMissingPaymentData: financial.mlCompatibleMissingPaymentData,
+      urgentCount: rows.filter((row) => matchesOrdersOperationalView(row, "urgent")).length,
+    });
+  }
 
   if (normalizedSearch) {
     const pageSize = 100;
