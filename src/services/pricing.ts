@@ -2,6 +2,7 @@ import type { PricingParams, PricingResult } from '@/types/pricing';
 
 const TAX_RATE = 0.05;
 const DEFAULT_MARGIN = 0.10;
+export const TARGET_NET_PROFIT_TAX_RATE = 0.04;
 
 export interface PricingStrategy {
   margin: number;
@@ -59,6 +60,37 @@ export function calculateExactMarginPrice(params: {
     );
   }
   return round2((params.cost + params.shipping) / denominator);
+}
+
+/** Calcula o preço necessário para preservar um lucro líquido nominal. */
+export function calculateTargetNetProfitPrice(params: {
+  cost: number;
+  shipping: number;
+  mlFee: number;
+  targetNetProfit: number;
+  fixedFee?: number;
+  taxRate?: number;
+}): number {
+  const taxRate = params.taxRate ?? TARGET_NET_PROFIT_TAX_RATE;
+  const values = [
+    params.cost,
+    params.shipping,
+    params.mlFee,
+    params.targetNetProfit,
+    params.fixedFee ?? 0,
+    taxRate,
+  ];
+  if (values.some((value) => !Number.isFinite(value) || value < 0)) {
+    throw new Error('Dados inválidos para cálculo de lucro líquido alvo');
+  }
+  const denominator = 1 - taxRate - params.mlFee;
+  if (denominator <= 0) {
+    throw new Error('A soma de imposto e taxa ML deve ser inferior a 100%');
+  }
+  return round2(
+    (params.cost + params.shipping + (params.fixedFee ?? 0) + params.targetNetProfit)
+      / denominator,
+  );
 }
 
 /**

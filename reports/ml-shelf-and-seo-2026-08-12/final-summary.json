@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-08-13T03:11:32.280Z",
+  "listing_creation": {
+    "requested": 9,
+    "created": 9,
+    "active": 9,
+    "failed": 0,
+    "items": [
+      { "sku": "VTK000022", "ml_item_id": "MLB7401385890", "status": "active", "price": 129.03, "target_net_profit": 60.13, "verified_net_profit": 60.13 },
+      { "sku": "VTK000054", "ml_item_id": "MLB5050065065", "status": "active", "price": 77.36, "target_net_profit": 36, "verified_net_profit": 36 },
+      { "sku": "VTK000377", "ml_item_id": "MLB7401437172", "status": "active", "price": 232.68, "target_net_profit": 117.62, "verified_net_profit": 117.62 },
+      { "sku": "VTK001450", "ml_item_id": "MLB7401437226", "status": "active", "price": 81.97, "target_net_profit": 40.45, "verified_net_profit": 40.45 },
+      { "sku": "VTK002550", "ml_item_id": "MLB5050065207", "status": "active", "price": 430.73, "target_net_profit": 195.36, "verified_net_profit": 195.36 },
+      { "sku": "VTK002697", "ml_item_id": "MLB7401386206", "status": "active", "price": 353.29, "target_net_profit": 162.38, "verified_net_profit": 162.38 },
+      { "sku": "VTK002762", "ml_item_id": "MLB7401437446", "status": "active", "price": 101.61, "target_net_profit": 48.13, "verified_net_profit": 48.13 },
+      { "sku": "VTK002772", "ml_item_id": "MLB7401386338", "status": "active", "price": 126.77, "target_net_profit": 58.13, "verified_net_profit": 58.13 },
+      { "sku": "VTK002792", "ml_item_id": "MLB5050065459", "status": "active", "price": 187.84, "target_net_profit": 79.88, "verified_net_profit": 79.88 }
+    ]
+  },
+  "family_name_batch": {
+    "requested": 40,
+    "updated_and_verified": 30,
+    "field_not_updatable": 6,
+    "ineligible": 4,
+    "field_not_updatable_items": [
+      "MLB7149339312",
+      "MLB7317384260",
+      "MLB4898641383",
+      "MLB7381238898",
+      "MLB7210717982",
+      "MLB7330396528"
+    ],
+    "ineligible_items": [
+      { "ml_item_id": "MLB7111657378", "reason": "user_product_has_sales" },
+      { "ml_item_id": "MLB7296124702", "reason": "user_product_has_sales" },
+      { "ml_item_id": "MLB4923465039", "reason": "user_product_has_sales" },
+      { "ml_item_id": "MLB4894821149", "reason": "quality_not_above_60" }
+    ]
+  }
+}

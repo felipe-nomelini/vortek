@@ -30,6 +30,12 @@
     "dedupe:anuncios-ml:apply": "node -r dotenv/config scripts/dedupe-anuncios-ml.js --apply dotenv_config_path=.env.local",
     "cleanup:ml-listings:dry": "node scripts/cleanup-ml-listings.js",
     "cleanup:ml-listings:apply": "node scripts/cleanup-ml-listings.js --apply",
+    "seo-reactivation:dry": "node scripts/seo-reactivation.js",
+    "seo-reactivation:apply": "node scripts/seo-reactivation.js --apply",
+    "ml:family-names:dry": "node scripts/update-ml-family-names-2026-08-12.js",
+    "ml:family-names:apply": "node scripts/update-ml-family-names-2026-08-12.js --apply",
+    "ml:shelf:create:dry": "ML_BATCH_MANIFEST=reports/ml-shelf-and-seo-2026-08-12/create-manifest.json ML_BATCH_RESULT_FILE=reports/ml-shelf-and-seo-2026-08-12/create-dry-run.json DRY_RUN=1 BATCH_STRICT_EVIDENCE=1 node scripts/create-ml-batch-from-manifest.js",
+    "ml:shelf:create:apply": "ML_BATCH_MANIFEST=reports/ml-shelf-and-seo-2026-08-12/create-manifest.json ML_BATCH_RESULT_FILE=reports/ml-shelf-and-seo-2026-08-12/create-apply.json DRY_RUN=0 BATCH_STRICT_EVIDENCE=1 BATCH_STOP_AFTER_CONSECUTIVE_FAILURES=5 node scripts/create-ml-batch-from-manifest.js",
     "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js",
     "test:ml-order-status": "node --test tests/ml-order-shipping-mode.test.js",
     "test:mobile-auth": "node --test tests/mobile-auth-token.test.js tests/mobile-permissions.test.js"

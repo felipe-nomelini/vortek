@@ -851,7 +851,13 @@ async function createOne(item) {
 
   const pricing = item.pricingMode === 'profitable_shelf_2'
     ? await profitableShelfPricing(item.product || {}, prepared.category.id, listingType)
-    : null;
+    : item.pricingMode === 'target_net_profit'
+      ? {
+          mode: 'target_net_profit',
+          targetNetProfit: Number(item.targetNetProfit),
+          price: Number(item.customPrice || 0),
+        }
+      : null;
 
   if (DRY_RUN) {
     return {
@@ -887,8 +893,13 @@ async function createOne(item) {
     produtoId: item.produtoId,
     categoriaId: prepared.category.id,
     listingType,
-    basePrice: pricing?.price ?? prepared.schema.prefill?.base_price,
+    basePrice: Number(item.customPrice || 0) > 0
+      ? Number(item.customPrice)
+      : pricing?.price ?? prepared.schema.prefill?.base_price,
     pricingMode: item.pricingMode || undefined,
+    targetNetProfit: item.pricingMode === 'target_net_profit'
+      ? Number(item.targetNetProfit)
+      : undefined,
     familyName: item.familyName || undefined,
     fiscal: prepared.schema.fiscal_fields,
     description: buildRichBatchDescription(item, prepared),

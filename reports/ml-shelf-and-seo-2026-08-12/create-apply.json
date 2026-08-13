@@ -1,0 +1,325 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-shelf-and-seo-2026-08-12/create-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "ml-shelf-2026-08-12",
+  "selected": 9,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "2e4c3609-efb1-4acb-b708-2634db72ecaa",
+      "sku": "VTK000022",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7401385890",
+        "title": "Encordoamento Guitarra Giannini Geegst8 008 Super Leve",
+        "price": 129.03,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7401385890-encordoamento-guitarra-giannini-geegst8-008-super-leve-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 60.13: imposto 4%, frete heuristic e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 60.13,
+        "shipping": 14.35,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.17,
+        "initial_price": 119.16,
+        "final_price": 129.03
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8b558e96-049d-4a48-8c95-2bf504daa0a2",
+      "sku": "VTK000054",
+      "category": {
+        "id": "MLB63102",
+        "nome": "MLB63102",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5050065065",
+        "title": "Pasta Termica Implastec Thermal Silver 5g Seringa",
+        "price": 77.36,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5050065065-pasta-termica-implastec-thermal-silver-5g-seringa-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 36.00: imposto 4%, frete erp e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 36,
+        "shipping": 12.35,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.18,
+        "initial_price": 77.36,
+        "final_price": 77.36
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bae78c0e-148d-402b-ae64-02d135808494",
+      "sku": "VTK000377",
+      "category": {
+        "id": "MLB420707",
+        "nome": "MLB420707",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7401437172",
+        "title": "Kit 10 Plug Rca Metal Preto Storm Pct10 Preto",
+        "price": 232.68,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7401437172-kit-10-plug-rca-metal-preto-storm-pct10-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 117.62: imposto 4%, frete erp e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 117.62,
+        "shipping": 20.95,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.18,
+        "initial_price": 244.28,
+        "final_price": 232.68
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7e90266d-cd51-4d22-9d19-4158db77962a",
+      "sku": "VTK001450",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7401437226",
+        "title": "Encordoamento Cavaco Giannini Gescl Aco Leve",
+        "price": 81.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7401437226-encordoamento-cavaco-giannini-gescl-aco-leve-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 40.45: imposto 4%, frete heuristic e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 40.45,
+        "shipping": 12.35,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.17,
+        "initial_price": 74.62,
+        "final_price": 81.97
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+      "sku": "VTK002550",
+      "category": {
+        "id": "MLB49413",
+        "nome": "MLB49413",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5050065207",
+        "title": "Pedestal Com Bandeja Multiuso Ask Bmu Preto",
+        "price": 430.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5050065207-pedestal-com-bandeja-multiuso-ask-bmu-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 195.36: imposto 4%, frete heuristic e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 195.36,
+        "shipping": 26.25,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.13,
+        "initial_price": 531.64,
+        "final_price": 430.73
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f47d255f-b6a1-4dc7-81b1-83de6402e1cc",
+      "sku": "VTK002697",
+      "category": {
+        "id": "MLB11187",
+        "nome": "MLB11187",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7401386206",
+        "title": "Hub Adaptador Usb C Para 3 Usb 30 Rj45 Nwt Adap0055",
+        "price": 353.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7401386206-hub-adaptador-usb-c-para-3-usb-30-rj45-nwt-adap0055-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 162.38: imposto 4%, frete heuristic e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 162.38,
+        "shipping": 20.95,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.13,
+        "initial_price": 358.17,
+        "final_price": 353.29
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9ff924af-b743-4a0e-964d-2496d5c3d148",
+      "sku": "VTK002762",
+      "category": {
+        "id": "MLB63114",
+        "nome": "MLB63114",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7401437446",
+        "title": "Extensao Eletrica 3 Metros 3 Tomadas Megatron 220v",
+        "price": 101.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7401437446-extensao-eletrica-3-metros-3-tomadas-megatron-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 48.13: imposto 4%, frete heuristic e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 48.13,
+        "shipping": 14.15,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.17,
+        "initial_price": 91.99,
+        "final_price": 101.61
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+      "sku": "VTK002772",
+      "category": {
+        "id": "MLB63114",
+        "nome": "MLB63114",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7401386338",
+        "title": "Extensao Eletrica 5 Metros 3 Tomadas Megatron 220v",
+        "price": 126.77,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7401386338-extensao-eletrica-5-metros-3-tomadas-megatron-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 58.13: imposto 4%, frete heuristic e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 58.13,
+        "shipping": 16.15,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.17,
+        "initial_price": 114.63,
+        "final_price": 126.77
+      }
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "category": {
+        "id": "MLB7070",
+        "nome": "MLB7070",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB5050065459",
+        "title": "Detector Sensor Fumaca Optico Segurimax 12v 24v",
+        "price": 187.84,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5050065459-detector-sensor-fumaca-optico-segurimax-12v-24v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço calculado para lucro líquido alvo de R$ 79.88: imposto 4%, frete heuristic e tarifa ML vigente.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ],
+      "pricing": {
+        "mode": "target_net_profit",
+        "tax_rate": 0.04,
+        "target_net_profit": 79.88,
+        "shipping": 25.55,
+        "shipping_source": "mercado_livre",
+        "ml_fee": 0.17,
+        "initial_price": 163.87,
+        "final_price": 187.84
+      }
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,129 @@
+{
+  "batchId": "ml-shelf-2026-08-12",
+  "items": [
+    {
+      "produtoId": "2e4c3609-efb1-4acb-b708-2634db72ecaa",
+      "sku": "VTK000022",
+      "categoryId": "MLB278076",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 60.13,
+      "customPrice": 119.16,
+      "familyName": "Encordoamento Guitarra Giannini GEEGST8 008 Super Leve",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "GEEGST8" },
+        { "id": "RECOMMENDED_INSTRUMENT", "value_id": "15312680", "value_name": "Guitarra elétrica" }
+      ]
+    },
+    {
+      "produtoId": "8b558e96-049d-4a48-8c95-2bf504daa0a2",
+      "sku": "VTK000054",
+      "categoryId": "MLB63102",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 36,
+      "customPrice": 77.36,
+      "familyName": "Pasta Termica Implastec Thermal Silver 5g Seringa",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "Thermal Silver" }
+      ]
+    },
+    {
+      "produtoId": "bae78c0e-148d-402b-ae64-02d135808494",
+      "sku": "VTK000377",
+      "categoryId": "MLB420707",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 117.62,
+      "customPrice": 244.29,
+      "familyName": "Kit 10 Plug RCA Metal Preto Storm PCT10"
+    },
+    {
+      "produtoId": "7e90266d-cd51-4d22-9d19-4158db77962a",
+      "sku": "VTK001450",
+      "categoryId": "MLB278076",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 40.45,
+      "customPrice": 74.62,
+      "familyName": "Encordoamento Cavaco Giannini GESCL Aco Leve",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "GESCL" },
+        { "id": "RECOMMENDED_INSTRUMENT", "value_name": "Cavaquinho" }
+      ]
+    },
+    {
+      "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+      "sku": "VTK002550",
+      "categoryId": "MLB49413",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 195.36,
+      "customPrice": 565.72,
+      "familyName": "Pedestal Com Bandeja Multiuso ASK BMU",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "BMU" },
+        { "id": "INSTALLATION_TYPE", "value_id": "7117581", "value_name": "Piso" }
+      ]
+    },
+    {
+      "produtoId": "f47d255f-b6a1-4dc7-81b1-83de6402e1cc",
+      "sku": "VTK002697",
+      "categoryId": "MLB11187",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 162.38,
+      "customPrice": 381.13,
+      "familyName": "Hub Adaptador USB C Para 3 USB 30 RJ45 NWT ADAP0055"
+    },
+    {
+      "produtoId": "9ff924af-b743-4a0e-964d-2496d5c3d148",
+      "sku": "VTK002762",
+      "categoryId": "MLB63114",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 48.13,
+      "customPrice": 91.99,
+      "familyName": "Extensao Eletrica 3 Metros 3 Tomadas Megatron",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "Extensao Eletrica 2P T 3m" }
+      ]
+    },
+    {
+      "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+      "sku": "VTK002772",
+      "categoryId": "MLB63114",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 58.13,
+      "customPrice": 114.63,
+      "familyName": "Extensao Eletrica 5 Metros 3 Tomadas Megatron",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "Extensao Eletrica 2P T 5m" }
+      ]
+    },
+    {
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "categoryId": "MLB7070",
+      "listingType": "auto",
+      "strictFirstCategory": true,
+      "pricingMode": "target_net_profit",
+      "targetNetProfit": 79.88,
+      "customPrice": 163.88,
+      "familyName": "Detector Sensor Fumaca Optico Segurimax 12V 24V",
+      "attributeOverrides": [
+        { "id": "MODEL", "value_name": "26855" },
+        { "id": "DEVICE_TYPE", "value_id": "395195", "value_name": "Sensor" }
+      ]
+    }
+  ]
+}

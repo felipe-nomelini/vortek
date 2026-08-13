@@ -1,0 +1,574 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-shelf-and-seo-2026-08-12/create-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": true,
+  "batchId": "ml-shelf-2026-08-12",
+  "selected": 9,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "2e4c3609-efb1-4acb-b708-2634db72ecaa",
+      "sku": "VTK000022",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 61.27,
+      "familyName": "Encordoamento Guitarra Giannini GEEGST8 008 Super Leve",
+      "listingType": "gold_pro",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 60.13,
+        "price": 119.16
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GIANNINI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GEEGST8"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "15312680",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898159187177"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Super Light"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Encordoamento Para Guitarra .008 Super Leve Giannini GEEGST8\n\nVISÃO GERAL\nA Série Electric traz toda a sonoridade dos encordoamentos Giannini para a sua guitarra e contrabaixo. O encordoamento Giannini para Guitarra GEEGST08 é composto de um núcleo de aço revestido por Níquel, produz um som brilhante e agressivo que atende uma grande variedades de estilos musicais, sendo bem resistente a oxidação e corrosão.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GIANNINI\n• Modelo: GEEGST8\n• Instrumento recomendado: Guitarra elétrica\n• Linha: Super Light\n• Quantidade de cordas: 6\n• Materiais: Metal\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GIANNINI\n• GTIN: 7898159187177\n• NCM: 9209.30.00\n• SKU: VTK000022\n\nEMBALAGEM\n• Dimensões informadas: 1 × 11 × 11.5 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8b558e96-049d-4a48-8c95-2bf504daa0a2",
+      "sku": "VTK000054",
+      "category": {
+        "id": "MLB63102",
+        "nome": "MLB63102",
+        "dominio": ""
+      },
+      "basePrice": 36,
+      "familyName": "Pasta Termica Implastec Thermal Silver 5g Seringa",
+      "listingType": "gold_pro",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 36,
+        "price": 77.36
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "IMPLASTEC"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Thermal Silver"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898446730772"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pasta Térmica Thermal Silver Seringa 5g Prata Implastec\n\nVISÃO GERAL\nA Pasta Térmica THERMAL SILVER é formulada a partir de silicone modificado com materiais especiais, de alta condutividade térmica, conferindo a este produto um desempenho superior em dissipação de calor. Com uma boa condução térmica e sua facilidade de espalhamento, a Pasta Térmica THERMAL SILVER, preenche todas as micro lacunas entre as superfícies, eliminando o ar retido e oferecendo resistência térmica muito baixa. THERMAL SILVER é quimicamente inerte, não corrosiva e atóxica, além de possuir excelente estabilidade térmica, podendo operar, sem perder suas principais propriedades em temperaturas de até 250ºC e, por curtos períodos, temperaturas de até 300ºC.\n\nManuseio e métodos de aplicação: Limpe a superfície com o lenço umedecido TS Cleaner ou Álcool Isopropílico Implastec. Aplique a Thermal Silver sobre o processador ou componente. Com uma espátula, espalhe o produto sobre toda a área formando uma fina camada.\n\nTransporte e armazenagem: Deve ser transportado e armazenado conforme prática comum com produtos químicos. Verifique a classificação deste produto antes de transportá-lo.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: IMPLASTEC\n• Modelo: Thermal Silver\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IMPLASTEC\n• GTIN: 7898446730772\n• NCM: 2931.90.29\n• SKU: VTK000054\n\nEMBALAGEM\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bae78c0e-148d-402b-ae64-02d135808494",
+      "sku": "VTK000377",
+      "category": {
+        "id": "MLB420707",
+        "nome": "MLB420707",
+        "dominio": ""
+      },
+      "basePrice": 117.62,
+      "familyName": "Kit 10 Plug RCA Metal Preto Storm PCT10",
+      "listingType": "gold_pro",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 117.62,
+        "price": 244.29
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "STORM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PGRC0023"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566207208"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Plug RCA Metal Com Parte Inferior Preto PGRC0023 Storm - PCT / 10\n\nVISÃO GERAL\nO Plug RCA é um modelo que proporciona excelente qualidade, através de uma estrutura resistente e durável.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: STORM\n• Modelo: PGRC0023\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566207208\n• NCM: 8536.69.90\n• SKU: VTK000377\n\nEMBALAGEM\n• Dimensões informadas: 14.8 × 1.5 × 12.5 cm\n• Peso bruto informado: 0,13 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7e90266d-cd51-4d22-9d19-4158db77962a",
+      "sku": "VTK001450",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 41.24,
+      "familyName": "Encordoamento Cavaco Giannini GESCL Aco Leve",
+      "listingType": "gold_pro",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 40.45,
+        "price": 74.62
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GIANNINI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GESCL"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Cavaquinho"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890443002388"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Light"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Encordoamento Para Cavaco Aço Leve Série Cobra Gescl Giannini\n\nVISÃO GERAL\nA Série Cobra apresenta toda a versatilidade dos encordoamentos Giannini. O encordoamento para cavaquinho Giannini Cobra GESCL é indicado para músicos que gostam de cordas com uma pegada mais leve.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GIANNINI\n• Modelo: GESCL\n• Instrumento recomendado: Cavaquinho\n• Linha: Light\n• Materiais: Metal\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GIANNINI\n• GTIN: 7890443002388\n• NCM: 9209.30.00\n• SKU: VTK001450\n\nEMBALAGEM\n• Dimensões informadas: 11 × 15 × 22 cm\n• Peso bruto informado: 0,065 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+      "sku": "VTK002550",
+      "category": {
+        "id": "MLB49413",
+        "nome": "MLB49413",
+        "dominio": ""
+      },
+      "basePrice": 190.59,
+      "familyName": "Pedestal Com Bandeja Multiuso ASK BMU",
+      "listingType": "gold_special",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 195.36,
+        "price": 565.72
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "BMU"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "name": "Tipo de instalação",
+          "value_id": "7117581",
+          "value_name": "Piso"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898939971552"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pedestal Com Bandeja Multiuso BMU Preto ASK\n\nVISÃO GERAL\nCompatível para projetor multimídia, notebook, tablet, instrumentos de percussão e também como pequeno púlpito para igrejas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ASK\n• Modelo: BMU\n• Tipo de instalação: Piso\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ASK\n• GTIN: 7898939971552\n• NCM: 9209.99.00\n• SKU: VTK002550\n\nEMBALAGEM\n• Dimensões informadas: 140 × 20 × 5 cm\n• Peso bruto informado: 0,72 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f47d255f-b6a1-4dc7-81b1-83de6402e1cc",
+      "sku": "VTK002697",
+      "category": {
+        "id": "MLB11187",
+        "nome": "MLB11187",
+        "dominio": ""
+      },
+      "basePrice": 158.41,
+      "familyName": "Hub Adaptador USB C Para 3 USB 30 RJ45 NWT ADAP0055",
+      "listingType": "gold_special",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 162.38,
+        "price": 381.13
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "STORM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566206423"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X RJ45 Femea ADAP 0055 Branca STORM\n\nVISÃO GERAL\nProjetado para trabalhar com a mais recente geração de computadores, ultrabooks, macbooks e dispositivos inteligentes que têm portas do Tipo C. Compacto e com design elegante. Conexão à rede/internet através da porta RJ45.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: STORM\n• Modelo: RJ45\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566206423\n• NCM: 8544.42.00\n• SKU: VTK002697\n\nEMBALAGEM\n• Dimensões informadas: 1.5 × 2.3 × 25 cm\n• Peso bruto informado: 0,032 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9ff924af-b743-4a0e-964d-2496d5c3d148",
+      "sku": "VTK002762",
+      "category": {
+        "id": "MLB63114",
+        "nome": "MLB63114",
+        "dominio": ""
+      },
+      "basePrice": 49.04,
+      "familyName": "Extensao Eletrica 3 Metros 3 Tomadas Megatron",
+      "listingType": "gold_pro",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 48.13,
+        "price": 91.99
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MEGATRON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Extensao Eletrica 2P T 3m"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899278900579"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "3.0 m"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Extensão Tripla 3 X 0,75 X 3,0M Preta Megatron\n\nVISÃO GERAL\nApresentamos as extensões elétricas 2P T, produtos de qualidade e que garantem segurança aos usuários, atendendo ao novo padrão brasileiro de plugues e tomadas (NBR 14136). Este produto é produzido com cabo PP, que as torna ainda mais resistentes.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MEGATRON\n• Modelo: Extensao Eletrica 2P T 3m\n• Voltagem: 220V\n• Comprimento do cabo: 3.0 m\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MEGATRON\n• GTIN: 7899278900579\n• NCM: 8544.42.00\n• SKU: VTK002762\n\nEMBALAGEM\n• Dimensões informadas: 5 × 5.5 × 20 cm\n• Peso bruto informado: 0,279 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+      "sku": "VTK002772",
+      "category": {
+        "id": "MLB63114",
+        "nome": "MLB63114",
+        "dominio": ""
+      },
+      "basePrice": 59.24,
+      "familyName": "Extensao Eletrica 5 Metros 3 Tomadas Megatron",
+      "listingType": "gold_pro",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 58.13,
+        "price": 114.63
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MEGATRON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Extensao Eletrica 2P T 5m"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899278900586"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "5.0 m"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron\n\nVISÃO GERAL\nApresentamos as extensões elétricas 2P T, produtos de qualidade e que garantem segurança aos usuários, atendendo ao novo padrão brasileiro de plugues e tomadas (NBR 14136). Este produto é produzido com cabo PP, que as torna ainda mais resistentes.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MEGATRON\n• Modelo: Extensao Eletrica 2P T 5m\n• Voltagem: 220V\n• Comprimento do cabo: 5.0 m\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MEGATRON\n• GTIN: 7899278900586\n• NCM: 8544.42.00\n• SKU: VTK002772\n\nEMBALAGEM\n• Dimensões informadas: 5 × 7 × 20 cm\n• Peso bruto informado: 0,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "category": {
+        "id": "MLB7070",
+        "nome": "MLB7070",
+        "dominio": ""
+      },
+      "basePrice": 81.4,
+      "familyName": "Detector Sensor Fumaca Optico Segurimax 12V 24V",
+      "listingType": "gold_pro",
+      "pricing": {
+        "mode": "target_net_profit",
+        "targetNetProfit": 79.88,
+        "price": 163.88
+      },
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SEGURIMAX"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "26855"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "",
+          "value_name": "24 Vdc"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "name": "Tipo de dispositivo",
+          "value_id": "395195",
+          "value_name": "Sensor"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597854044"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Detector Óptico de Fumaça 12V/24V SEGURIMAX\n\nVISÃO GERAL\nO Detector óptico de Fumaça de Contato Seco Segurimax funciona através de dois diodos infravermelhos que na presença de fumaça, são perturbados e acionam o alarme de incêndio. O produto é indicado para sistemas de topologia convencional e pode operar em sistemas 12V ou 24V. Conta também, com uma grade protetora para impedir a entrada de insetos e sujeira.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SEGURIMAX\n• Modelo: 26855\n• Voltagem: 24 Vdc\n• Tipo de dispositivo: Sensor\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SEGURIMAX\n• GTIN: 7898597854044\n• NCM: 8531.10.90\n• SKU: VTK002792\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 9.9 × 9.9 cm\n• Peso bruto informado: 0,16 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

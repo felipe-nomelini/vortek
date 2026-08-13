@@ -14,6 +14,7 @@ import { fetchML, fetchMLResult } from "@/services/integration";
 import {
   calculateExactMarginPrice,
   calculateSuggestedPrice,
+  calculateTargetNetProfitPrice,
 } from "@/services/pricing";
 import { createServiceClient } from "@/lib/supabase";
 import {
@@ -444,6 +445,14 @@ function extractMlFee(listingPrices: any): number | null {
   return fee / 100;
 }
 
+function extractMlFixedFee(listingPrices: any): number {
+  const fixedFee = Number(
+    listingPrices?.sale_fee_details?.fixed_fee
+      ?? listingPrices?.sale_fee_details?.meli_fixed_fee,
+  );
+  return Number.isFinite(fixedFee) && fixedFee > 0 ? fixedFee : 0;
+}
+
 function roundMoney(value: number) {
   return Math.round(value * 100) / 100;
 }
@@ -454,6 +463,7 @@ async function calculateSafeListingPrice(params: {
   listingType: string;
   requestedPrice?: number;
   pricingMode?: string;
+  targetNetProfit?: number;
 }) {
   const cost = Number(params.produto.custo || 0);
   const storedShipping = Number(params.produto.ml_shipping || 0);
@@ -478,11 +488,54 @@ async function calculateSafeListingPrice(params: {
         : cost <= 150
           ? 25
           : 55;
+  const usesEstimatedShipping = ["profitable_shelf_2", "target_net_profit"].includes(
+    String(params.pricingMode || ""),
+  );
   const shipping =
-    params.pricingMode === "profitable_shelf_2" && storedShipping <= 0
+    usesEstimatedShipping && storedShipping <= 0
       ? heuristicShipping
       : storedShipping;
   let mlFee = Number(params.produto.ml_fee || 0.15);
+  if (params.pricingMode === "target_net_profit") {
+    const targetNetProfit = Number(params.targetNetProfit);
+    if (!Number.isFinite(targetNetProfit) || targetNetProfit < 0) {
+      throw new Error("targetNetProfit inválido");
+    }
+    let fixedFee = 0;
+    let price = calculateTargetNetProfitPrice({
+      cost,
+      shipping,
+      mlFee,
+      targetNetProfit,
+      fixedFee,
+    });
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const listingPrices = await fetchML<any>(
+        `/sites/MLB/listing_prices?price=${price}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
+      );
+      mlFee = extractMlFee(listingPrices) ?? mlFee;
+      fixedFee = extractMlFixedFee(listingPrices);
+      price = calculateTargetNetProfitPrice({
+        cost,
+        shipping,
+        mlFee,
+        targetNetProfit,
+        fixedFee,
+      });
+    }
+    return {
+      price,
+      mlFee,
+      fixedFee,
+      suggestedPrice: price,
+      adjusted: false,
+      pricingMode: params.pricingMode,
+      shipping,
+      shippingSource: storedShipping > 0 ? "erp" : "heuristic",
+      targetNetProfit,
+      taxRate: 0.04,
+    };
+  }
   if (params.pricingMode === "profitable_shelf_2") {
     const costTotal = cost + shipping;
     const margin = costTotal < 50 ? 0.08 : 0.25;
@@ -742,6 +795,7 @@ export async function POST(req: Request) {
       allowOutOfStockListing = false,
       pricingMode,
       familyName: requestedFamilyName,
+      targetNetProfit,
     } = await req.json();
 
     if (!produtoId) {
@@ -859,6 +913,7 @@ export async function POST(req: Request) {
       categoriaId,
       listingType: listingType || "gold_pro",
       pricingMode,
+      targetNetProfit,
       requestedPrice:
         typeof basePrice === "number" &&
         Number.isFinite(basePrice) &&
@@ -878,6 +933,11 @@ export async function POST(req: Request) {
     if (pricingMode === "profitable_shelf_2") {
       warnings.push(
         `Preço calculado pela Prateleira Lucrativa 2.0: frete ${safePrice.shippingSource}, DAS 5% e margem ${(Number(safePrice.margin || 0) * 100).toFixed(0)}%.`,
+      );
+    }
+    if (pricingMode === "target_net_profit") {
+      warnings.push(
+        `Preço calculado para lucro líquido alvo de R$ ${Number(targetNetProfit).toFixed(2)}: imposto 4%, frete ${safePrice.shippingSource} e tarifa ML vigente.`,
       );
     }
 
@@ -1409,7 +1469,8 @@ export async function POST(req: Request) {
       attributesMap,
     });
     const effectiveFamilyName =
-      pricingMode === "profitable_shelf_2" && requestedFamilyName
+      ["profitable_shelf_2", "target_net_profit"].includes(String(pricingMode || ""))
+      && requestedFamilyName
         ? truncateListingName(
             String(requestedFamilyName)
               .replace(/[-|/]+/g, " ")
@@ -1516,7 +1577,7 @@ export async function POST(req: Request) {
 
     let mlFee = safePrice.mlFee || produto.ml_fee || 0.15;
     let mlShipping =
-      pricingMode === "profitable_shelf_2"
+      ["profitable_shelf_2", "target_net_profit"].includes(String(pricingMode || ""))
         ? Number(safePrice.shipping || 0)
         : produto.ml_shipping || 0;
     let finalSuggestedPrice = initialPrice;
@@ -1550,10 +1611,7 @@ export async function POST(req: Request) {
       result.id,
       getItemShippingMode(latestItem),
     );
-    if (
-      pricingMode !== "profitable_shelf_2" &&
-      shippingResolution.mlShipping > 0
-    ) {
+    if (pricingMode !== "profitable_shelf_2" && shippingResolution.mlShipping > 0) {
       mlShipping = shippingResolution.mlShipping;
     }
     if (shippingResolution.warning) {
@@ -1589,6 +1647,45 @@ export async function POST(req: Request) {
     if (pricingMode === "profitable_shelf_2") {
       finalSuggestedPrice = initialPrice;
       pricingCorrection.final_price = initialPrice;
+    } else if (pricingMode === "target_net_profit") {
+      if (shippingResolution.mlShipping <= 0 && shippingResolution.warning) {
+        const pauseResult = await pauseCreatedListing(result.id);
+        if (pauseResult.ok) {
+          latestItem = (await getListingSnapshot(result.id)) || { ...latestItem, status: "paused" };
+          warnings.push("Anúncio pausado: frete real não pôde ser confirmado para validar o lucro alvo.");
+        } else {
+          warnings.push(`Frete não confirmado e pausa falhou: ${pauseResult.error || "erro desconhecido"}`);
+        }
+      } else {
+        try {
+          const livePricing = await fetchML<any>(
+            `/sites/MLB/listing_prices?price=${displayPrice}&category_id=${categoriaId}&listing_type_id=${listingType || "gold_pro"}`,
+          );
+          const liveFee = extractMlFee(livePricing) ?? Number(mlFee || 0.15);
+          const fixedFee = extractMlFixedFee(livePricing);
+          finalSuggestedPrice = calculateTargetNetProfitPrice({
+            cost: Number(produto.custo || 0),
+            shipping: Number(mlShipping || 0),
+            mlFee: liveFee,
+            targetNetProfit: Number(targetNetProfit),
+            fixedFee,
+          });
+          pricingCorrection.final_price = finalSuggestedPrice;
+          pricingCorrection.ml_fee = roundMoney(liveFee);
+          if (Math.abs(finalSuggestedPrice - initialPrice) >= 0.01) {
+            const priceUpdate = await updateCreatedListingPrice(result.id, finalSuggestedPrice);
+            if (!priceUpdate.ok) throw new Error(priceUpdate.error || `HTTP ${priceUpdate.status}`);
+            pricingCorrection.status = "corrected";
+            latestItem = { ...((await getListingSnapshot(result.id)) || latestItem), price: finalSuggestedPrice };
+          }
+        } catch (error: any) {
+          const pauseResult = await pauseCreatedListing(result.id);
+          if (pauseResult.ok) latestItem = (await getListingSnapshot(result.id)) || { ...latestItem, status: "paused" };
+          pricingCorrection.status = "pending";
+          pricingCorrection.error = error?.message || String(error);
+          warnings.push(`Anúncio pausado: preço final do lucro alvo não foi confirmado (${pricingCorrection.error}).`);
+        }
+      }
     } else if (Number.isFinite(Number(mlShipping)) && Number(mlShipping) > 0) {
       try {
         const finalPricing = calculateSuggestedPrice({
@@ -1803,6 +1900,17 @@ export async function POST(req: Request) {
               ml_fee: safePrice.mlFee,
               price: initialPrice,
             }
+          : pricingMode === "target_net_profit"
+            ? {
+                mode: pricingMode,
+                tax_rate: 0.04,
+                target_net_profit: Number(targetNetProfit),
+                shipping: mlShipping,
+                shipping_source: shippingResolution.mlShipping > 0 ? "mercado_livre" : safePrice.shippingSource,
+                ml_fee: pricingCorrection.ml_fee ?? safePrice.mlFee,
+                initial_price: initialPrice,
+                final_price: pricingCorrection.final_price ?? initialPrice,
+              }
           : null,
       fiscal: fiscalErrors.length === 0 ? "ok" : fiscalErrors,
       fiscal_details: fiscalErrorDetails,
