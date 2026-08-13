@@ -4,6 +4,7 @@ import { fetchAllRowsPaginated } from '@/lib/produto-filtering';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
 
 export const maxDuration = 300;
 
@@ -248,6 +249,19 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     const fornecedor = await loadFornecedor(client, params.id);
     if (!fornecedor) {
       return NextResponse.json({ error: 'Fornecedor não encontrado' }, { status: 404 });
+    }
+
+    if (
+      body.ativo &&
+      isBlockedDropshippingDsliteSupplier(fornecedor.dslite_id)
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            'EVOLUSOM-ES não trabalha com dropshipping e não pode ser ativado.',
+        },
+        { status: 422 },
+      );
     }
 
     const { error: updateFornecedorError } = await client

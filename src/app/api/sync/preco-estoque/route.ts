@@ -8,6 +8,7 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
+import { filterAllowedDropshippingDsliteSupplierIds } from '@/lib/dslite/supplier-policy';
 import {
   enqueueAutomaticPricesForCostChanges,
   type CostSnapshot,
@@ -206,7 +207,9 @@ export async function POST(req: Request) {
       : fornecedores
           .filter((f) => String(f.crossdocking || '').toLowerCase() === 'ativo')
           .map((f) => String(f.id));
-    const fornecedorIdsAtivos = fornecedorIds.filter((id) => fornecedoresAtivosLocalIds.has(String(id)));
+    const fornecedorIdsAtivos = filterAllowedDropshippingDsliteSupplierIds(
+      fornecedorIds.filter((id) => fornecedoresAtivosLocalIds.has(String(id))),
+    );
     const fornecedorMap = new Map<number, string>();
     for (const fornecedor of fornecedores) {
       fornecedorMap.set(Number(fornecedor.id), String(fornecedor.apelido || fornecedor.id));

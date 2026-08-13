@@ -9,6 +9,7 @@ import {
 } from "@/lib/produto-fornecedor";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { shouldProductBeInactiveByCost } from "@/lib/product-activity";
+import { filterAllowedDropshippingDsliteSupplierIds } from "@/lib/dslite/supplier-policy";
 
 export const maxDuration = 300;
 
@@ -344,8 +345,10 @@ export async function POST(req: Request) {
               (f) => String(f.crossdocking || "").toLowerCase() === "ativo",
             )
             .map((f) => String(f.id));
-    const fornecedorIdsAtivos = fornecedorIds.filter((id) =>
-      fornecedoresAtivosLocalIds.has(String(id)),
+    const fornecedorIdsAtivos = filterAllowedDropshippingDsliteSupplierIds(
+      fornecedorIds.filter((id) =>
+        fornecedoresAtivosLocalIds.has(String(id)),
+      ),
     );
 
     if (fornecedorIdsAtivos.length === 0) {

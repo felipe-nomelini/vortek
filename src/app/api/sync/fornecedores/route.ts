@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isBlockedDropshippingDsliteSupplier } from "@/lib/dslite/supplier-policy";
 import { createServiceClient } from "@/lib/supabase";
 import {
   listarFornecedores,
@@ -279,7 +280,11 @@ export async function POST(request: Request) {
       const existingEndereco = asText((existing as any)?.endereco);
       return {
         ...row,
-        ativo: existing ? existing.ativo !== false : true,
+        ativo: isBlockedDropshippingDsliteSupplier(row.dslite_id)
+          ? false
+          : existing
+            ? existing.ativo !== false
+            : true,
         telefone: asText(row.telefone) || existingTelefone,
         email: asText(row.email) || existingEmail,
         endereco: asText(row.endereco) || existingEndereco,

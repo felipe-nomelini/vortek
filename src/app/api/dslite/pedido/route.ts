@@ -74,6 +74,10 @@ import {
 } from "@/lib/dslite/placeholder-label";
 import { isDsliteCarrierAlreadyConfigured } from "@/lib/dslite/api-contract";
 import { canFallbackToSupplierlessCreate } from "@/lib/dslite/create-order-verification";
+import {
+  isBlockedDropshippingDsliteSupplier,
+  selectAllowedSupplierProductCandidate,
+} from "@/lib/dslite/supplier-policy";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
@@ -416,32 +420,41 @@ async function resolvePedidoSupplierOffer(params: {
     const [{ data: byOfferSku }, { data: bySupplierSku }] = await Promise.all([
       client
         .from("produto_fornecedor_ofertas")
-        .select("produto_id")
+        .select("produto_id,dslite_fornecedor_id,ativo,estoque")
         .in("sku_oferta", skuVariants.length > 0 ? skuVariants : [sku])
-        .limit(1)
-        .maybeSingle(),
+        .limit(50),
       client
         .from("produto_fornecedor_ofertas")
-        .select("produto_id")
+        .select("produto_id,dslite_fornecedor_id,ativo,estoque")
         .in("sku_fornecedor", skuVariants.length > 0 ? skuVariants : [sku])
-        .limit(1)
-        .maybeSingle(),
+        .limit(50),
     ]);
 
-    const offerProductId = String(
-      (byOfferSku as any)?.produto_id ||
-        (bySupplierSku as any)?.produto_id ||
-        "",
-    ).trim();
-    if (offerProductId) {
-      const { data: productByOffer } = await client
+    const matchingOffers = [
+      ...((byOfferSku || []) as any[]),
+      ...((bySupplierSku || []) as any[]),
+    ].filter(
+      (offer) =>
+        !isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id),
+    );
+    const offerProductIds = Array.from(
+      new Set(
+        matchingOffers
+          .map((offer) => String(offer.produto_id || "").trim())
+          .filter(Boolean),
+      ),
+    );
+    if (offerProductIds.length > 0) {
+      const { data: productsByOffer } = await client
         .from("produtos")
         .select(
           "id,sku,ativo,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id",
         )
-        .eq("id", offerProductId)
-        .maybeSingle();
-      productRow = productByOffer;
+        .in("id", offerProductIds);
+      productRow = selectAllowedSupplierProductCandidate(
+        (productsByOffer || []) as any[],
+        matchingOffers,
+      );
     }
   }
 
@@ -464,9 +477,13 @@ async function resolvePedidoSupplierOffer(params: {
     .from("produto_fornecedor_ofertas")
     .select("*")
     .eq("produto_id", String(productRow.id));
+  const allowedOffers = (offers || []).filter(
+    (offer: any) =>
+      !isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id),
+  );
 
   const preferred = resolvePreferredOfferForProduct(
-    (offers || []) as any[],
+    allowedOffers as any[],
     (productRow as any)?.oferta_preferencial_id,
     (productRow as any)?.fornecedor_preferencial_manual === true,
   );

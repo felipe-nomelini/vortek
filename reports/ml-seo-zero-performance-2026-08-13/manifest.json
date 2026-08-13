@@ -1,0 +1,2446 @@
+{
+  "operation": "ML_SEO_ZERO_PERFORMANCE_2026_08_13",
+  "source": "closed_user_supplied_batch",
+  "input_count": 271,
+  "rows": [
+    {
+      "sku": "VTK012239",
+      "ml_item_id": "MLB7111707618",
+      "original_title": "02 Conectores Ac Out L Gy Pgy Linha Cinza Wc 1813 Wireconex",
+      "reported_price_brl": 65,
+      "reported_profit_brl": 5.2,
+      "reported_quality": 68,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012098",
+      "ml_item_id": "MLB7316881074",
+      "original_title": "02 Pilhas Aa Recarregáveis 2500mah Para Controles E Eletrônicos Pequenos",
+      "reported_price_brl": 67.44,
+      "reported_profit_brl": 20,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025641",
+      "ml_item_id": "MLB4972445433",
+      "original_title": "10 Baterias Cr2450 Elgin (2 Cart)",
+      "reported_price_brl": 84.22,
+      "reported_profit_brl": 21.9,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025645",
+      "ml_item_id": "MLB4972432707",
+      "original_title": "10 Baterias Recarregaveis 9v Elgin",
+      "reported_price_brl": 403.13,
+      "reported_profit_brl": 42.89,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025646",
+      "ml_item_id": "MLB4972432875",
+      "original_title": "10 Baterias Recarregaveis 9v Elgin (10 Cartelas)",
+      "reported_price_brl": 401.88,
+      "reported_profit_brl": 42.87,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025647",
+      "ml_item_id": "MLB4972433077",
+      "original_title": "10 Baterias Zinco 9v Elgin",
+      "reported_price_brl": 112.96,
+      "reported_profit_brl": 21.13,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025644",
+      "ml_item_id": "MLB7381670832",
+      "original_title": "10 Pilhas Moeda Lítio Elgin Cr2032 3v Kit",
+      "reported_price_brl": 50.52,
+      "reported_profit_brl": 15.48,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025640",
+      "ml_item_id": "MLB7381751518",
+      "original_title": "10 Pilhas Moeda Lítio Elgin Cr2430 3v Kit",
+      "reported_price_brl": 67.96,
+      "reported_profit_brl": 20.68,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015949",
+      "ml_item_id": "MLB4903869653",
+      "original_title": "10 Tubos Pilha Comum Aa C/52un Cada Panasonic",
+      "reported_price_brl": 783.54,
+      "reported_profit_brl": 102.98,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015950",
+      "ml_item_id": "MLB4903849371",
+      "original_title": "10 Tubos Pilha Comum Aaa C/40un Cada",
+      "reported_price_brl": 737.31,
+      "reported_profit_brl": 97.67,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015955",
+      "ml_item_id": "MLB7184617362",
+      "original_title": "12 Pilhas Alcalinas Aa Panasonic (3 Cart)",
+      "reported_price_brl": 71.64,
+      "reported_profit_brl": 20.71,
+      "reported_quality": 52,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015956",
+      "ml_item_id": "MLB7184616792",
+      "original_title": "12 Pilhas Alcalinas Aa Panasonic (6 Cart)",
+      "reported_price_brl": 69.23,
+      "reported_profit_brl": 20,
+      "reported_quality": 52,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025664",
+      "ml_item_id": "MLB4972421461",
+      "original_title": "12 Pilhas Alcalinas Aa Sm-2 Elgin (6 Cart)",
+      "reported_price_brl": 75.33,
+      "reported_profit_brl": 20.75,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025665",
+      "ml_item_id": "MLB4972421597",
+      "original_title": "12 Pilhas Alcalinas Aa Sm-4 Elgin (3 Cart)",
+      "reported_price_brl": 72.17,
+      "reported_profit_brl": 20.72,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015975",
+      "ml_item_id": "MLB7184619660",
+      "original_title": "14 Pilhas Alcalinas Aa Panasonic (7 Cart)",
+      "reported_price_brl": 74.09,
+      "reported_profit_brl": 19.26,
+      "reported_quality": 52,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025480",
+      "ml_item_id": "MLB7296002782",
+      "original_title": "14 Pilhas Alcalinas Aaa Palito Duracell (7 Cart. C/ 2 Un.)",
+      "reported_price_brl": 149.93,
+      "reported_profit_brl": 21.5,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015976",
+      "ml_item_id": "MLB4903769547",
+      "original_title": "14 Pilhas Alcalinas Aaa Panasonic (7 Cart)",
+      "reported_price_brl": 99.93,
+      "reported_profit_brl": 25.98,
+      "reported_quality": 52,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025671",
+      "ml_item_id": "MLB4972423021",
+      "original_title": "14 Pilhas Alcalinas Aaa Sm-2 Elgin (7 Cart)",
+      "reported_price_brl": 75.2,
+      "reported_profit_brl": 20.75,
+      "reported_quality": 71,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025680",
+      "ml_item_id": "MLB5034766377",
+      "original_title": "15 Pilhas Moeda Lítio Elgin Cr2016 3v Kit",
+      "reported_price_brl": 74.75,
+      "reported_profit_brl": 20.74,
+      "reported_quality": 57,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025681",
+      "ml_item_id": "MLB7381751356",
+      "original_title": "15 Pilhas Moeda Lítio Elgin Cr2025 3v Kit",
+      "reported_price_brl": 61.12,
+      "reported_profit_brl": 20.61,
+      "reported_quality": 63,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025682",
+      "ml_item_id": "MLB7381762600",
+      "original_title": "15 Pilhas Moeda Lítio Elgin Cr2032 3v Kit",
+      "reported_price_brl": 65.12,
+      "reported_profit_brl": 20.65,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025678",
+      "ml_item_id": "MLB5034766479",
+      "original_title": "15 Pilhas Moeda Lítio Elgin Cr2430 3v Kit",
+      "reported_price_brl": 80.31,
+      "reported_profit_brl": 20.8,
+      "reported_quality": 68,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015996",
+      "ml_item_id": "MLB4903792585",
+      "original_title": "16 Pilhas Alcalinas Aaa Panasonic (8 Cart)",
+      "reported_price_brl": 114.63,
+      "reported_profit_brl": 29.81,
+      "reported_quality": 60,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025687",
+      "ml_item_id": "MLB4972437001",
+      "original_title": "16 Pilhas Alcalinas Aaa Sm-2 Elgin (8 Cart)",
+      "reported_price_brl": 86.78,
+      "reported_profit_brl": 20.87,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025493",
+      "ml_item_id": "MLB4971618579",
+      "original_title": "16 Pilhas Alcalinas C Duracell (8 Cart. C/ 2 Un. Cada)",
+      "reported_price_brl": 371.11,
+      "reported_profit_brl": 39.35,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK015997",
+      "ml_item_id": "MLB4903843455",
+      "original_title": "16 Pilhas Alcalinas C Panasonic (8 Cart)",
+      "reported_price_brl": 244.27,
+      "reported_profit_brl": 24.85,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016017",
+      "ml_item_id": "MLB4903846781",
+      "original_title": "18 Pilhas Alcalinas D Panasonic (9 Cart)",
+      "reported_price_brl": 335.45,
+      "reported_profit_brl": 35.41,
+      "reported_quality": 68,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016018",
+      "ml_item_id": "MLB7184718452",
+      "original_title": "18 Pilhas Alcalinas Premium Aa Panasonic (3 Cart)",
+      "reported_price_brl": 114,
+      "reported_profit_brl": 13.1,
+      "reported_quality": 67,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016020",
+      "ml_item_id": "MLB7339018118",
+      "original_title": "18 Pilhas Alcalinas Premium Aaa Panasonic (3 Cart)",
+      "reported_price_brl": 127,
+      "reported_profit_brl": 17.29,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016022",
+      "ml_item_id": "MLB4903795983",
+      "original_title": "18 Pilhas Comum D Panasonic (9 Cart)",
+      "reported_price_brl": 148.76,
+      "reported_profit_brl": 38.68,
+      "reported_quality": 72,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016033",
+      "ml_item_id": "MLB7339017972",
+      "original_title": "2 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "reported_price_brl": 60.6,
+      "reported_profit_brl": 20,
+      "reported_quality": 53,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016033",
+      "ml_item_id": "MLB7184612784",
+      "original_title": "2 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "reported_price_brl": 60.6,
+      "reported_profit_brl": 20,
+      "reported_quality": 53,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025507",
+      "ml_item_id": "MLB4971628399",
+      "original_title": "2 Baterias Alcalinas 9v Duracell (2 Cart. C/ 1 Un. Cada)",
+      "reported_price_brl": 114.8,
+      "reported_profit_brl": 21.15,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025699",
+      "ml_item_id": "MLB7297396992",
+      "original_title": "2 Baterias Cr2032 Elgin",
+      "reported_price_brl": 51.57,
+      "reported_profit_brl": 20.52,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025363",
+      "ml_item_id": "MLB7294084616",
+      "original_title": "2 Jogos De Corda P/violão Nylon Preto/prata Genwbs Giannini",
+      "reported_price_brl": 95.48,
+      "reported_profit_brl": 20.96,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025364",
+      "ml_item_id": "MLB7294124560",
+      "original_title": "2 Jogos De Corda P/violino Aluminio Médio Geavva Giannini",
+      "reported_price_brl": 129.24,
+      "reported_profit_brl": 21.3,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025285",
+      "ml_item_id": "MLB7287799488",
+      "original_title": "2 Jogos De Corda Violão Aço 010 1ª Corda (mí) Extra N500 Nig",
+      "reported_price_brl": 104.19,
+      "reported_profit_brl": 21.04,
+      "reported_quality": 64,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025509",
+      "ml_item_id": "MLB4971628841",
+      "original_title": "20 Baterias Alcalinas 9v Duracell (20 Cart. C/ 1 Un. Cada)",
+      "reported_price_brl": 850.33,
+      "reported_profit_brl": 112.1,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016040",
+      "ml_item_id": "MLB4903856859",
+      "original_title": "20 Baterias Alcalinas 9v Panasonic",
+      "reported_price_brl": 386.16,
+      "reported_profit_brl": 40.94,
+      "reported_quality": 72,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025704",
+      "ml_item_id": "MLB7297384492",
+      "original_title": "20 Baterias Alcalinas A23 (4 Cart)",
+      "reported_price_brl": 141.86,
+      "reported_profit_brl": 34.78,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025705",
+      "ml_item_id": "MLB7297397610",
+      "original_title": "20 Baterias Alcalinas A23 Elgin (20 Cartelas)",
+      "reported_price_brl": 173.06,
+      "reported_profit_brl": 21.73,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025517",
+      "ml_item_id": "MLB7296138590",
+      "original_title": "20 Pilhas Alcalinas Lr44 A76 Duracell (5 Cart. C/ 4 Un Cada)",
+      "reported_price_brl": 149.93,
+      "reported_profit_brl": 21.5,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016057",
+      "ml_item_id": "MLB7184755192",
+      "original_title": "20 Pilhas Alcalinas Premium Aaa Panasonic (10 Cart)",
+      "reported_price_brl": 162.82,
+      "reported_profit_brl": 40.13,
+      "reported_quality": 67,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016058",
+      "ml_item_id": "MLB7184723034",
+      "original_title": "20 Pilhas Alcalinas Premium Aaa Panasonic (5 Cart)",
+      "reported_price_brl": 148.36,
+      "reported_profit_brl": 21.49,
+      "reported_quality": 67,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025529",
+      "ml_item_id": "MLB7296139916",
+      "original_title": "24 Pilhas Alcalinas Lr44 A76 Duracell (6 Cart. C/ 4 Un Cada)",
+      "reported_price_brl": 164.31,
+      "reported_profit_brl": 21.64,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016071",
+      "ml_item_id": "MLB7184745934",
+      "original_title": "24 Pilhas Alcalinas Premium Aa Panasonic (12 Cartelas C/2",
+      "reported_price_brl": 174.56,
+      "reported_profit_brl": 43.18,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016072",
+      "ml_item_id": "MLB7184745822",
+      "original_title": "24 Pilhas Alcalinas Premium Aa Panasonic (4 Cart)",
+      "reported_price_brl": 152.75,
+      "reported_profit_brl": 21.53,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025736",
+      "ml_item_id": "MLB7381751416",
+      "original_title": "250 Pilhas Moeda Lítio Elgin Cr2032 3v Kit",
+      "reported_price_brl": 502.71,
+      "reported_profit_brl": 56.03,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025532",
+      "ml_item_id": "MLB7296140376",
+      "original_title": "28 Pilhas Alcalinas Aa Duracell (7 Cart. C/ 4 Un. Cada)",
+      "reported_price_brl": 217.44,
+      "reported_profit_brl": 22.18,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016085",
+      "ml_item_id": "MLB7184722082",
+      "original_title": "28 Pilhas Alcalinas Aa Panasonic (7 Cart)",
+      "reported_price_brl": 140.62,
+      "reported_profit_brl": 21.41,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025737",
+      "ml_item_id": "MLB7297400306",
+      "original_title": "28 Pilhas Alcalinas Aa Sm-4 Elgin (7 Cart)",
+      "reported_price_brl": 111.51,
+      "reported_profit_brl": 21.11,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025372",
+      "ml_item_id": "MLB4970630735",
+      "original_title": "3 Jogos De Corda P/viola Cobre Prateado Leve Gesvl Giannini",
+      "reported_price_brl": 143.63,
+      "reported_profit_brl": 21.44,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025373",
+      "ml_item_id": "MLB4970606941",
+      "original_title": "3 Jogos De Corda P/viola Cobre Prateado Media Gesvm Giannini",
+      "reported_price_brl": 152.76,
+      "reported_profit_brl": 21.53,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025374",
+      "ml_item_id": "MLB4970608687",
+      "original_title": "3 Jogos De Corda P/violão Aço Bronze 65/35 0.009 Giannini",
+      "reported_price_brl": 123.76,
+      "reported_profit_brl": 21.24,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025376",
+      "ml_item_id": "MLB4970649165",
+      "original_title": "3 Jogos De Corda P/violão Aço Bronze 65/35 11 Gespw Giannini",
+      "reported_price_brl": 126.05,
+      "reported_profit_brl": 21.26,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025377",
+      "ml_item_id": "MLB4970613593",
+      "original_title": "3 Jogos De Corda P/violão Bronze 85/15 010 Geefle Giannini",
+      "reported_price_brl": 139.3,
+      "reported_profit_brl": 21.39,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025378",
+      "ml_item_id": "MLB4970641373",
+      "original_title": "3 Jogos De Corda P/violão Bronze 85/15 011 Geeflk Giannini",
+      "reported_price_brl": 138.79,
+      "reported_profit_brl": 21.39,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025379",
+      "ml_item_id": "MLB4970643115",
+      "original_title": "3 Jogos De Corda P/violão Bronze 85/15 09 Geewak Giannini",
+      "reported_price_brl": 132.68,
+      "reported_profit_brl": 21.33,
+      "reported_quality": 65,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025380",
+      "ml_item_id": "MLB7294448136",
+      "original_title": "3 Jogos De Corda P/violão Canário Aço C/bolinha Giannini",
+      "reported_price_brl": 107.16,
+      "reported_profit_brl": 21.07,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025290",
+      "ml_item_id": "MLB7287801574",
+      "original_title": "3 Jogos De Cordas Guitarra 009 1ª Mi Extra + Palheta N63 Nig",
+      "reported_price_brl": 146.45,
+      "reported_profit_brl": 21.47,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025291",
+      "ml_item_id": "MLB7287865406",
+      "original_title": "3 Jogos De Cordas Guitarra 010 1ª Mi Extra + Palheta N64 Nig",
+      "reported_price_brl": 155.03,
+      "reported_profit_brl": 21.55,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025292",
+      "ml_item_id": "MLB7287865850",
+      "original_title": "3 Jogos De Cordas Violão Aço 010 1ª Corda Mí Extra N500 Nig",
+      "reported_price_brl": 136.51,
+      "reported_profit_brl": 21.37,
+      "reported_quality": 60,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016108",
+      "ml_item_id": "MLB7184805186",
+      "original_title": "300 Pilhas Baterias Cr2032 3v Panasonic 60 Cartelas",
+      "reported_price_brl": 1495.25,
+      "reported_profit_brl": 200.59,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025542",
+      "ml_item_id": "MLB7296154786",
+      "original_title": "32 Pilhas Alcalinas Aa Duracell (4 Cart. C/ 8 Un. Cada)",
+      "reported_price_brl": 243.24,
+      "reported_profit_brl": 24.87,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025543",
+      "ml_item_id": "MLB7296155048",
+      "original_title": "32 Pilhas Alcalinas Aa Duracell (8 Cart. C/ 4 Un. Cada)",
+      "reported_price_brl": 246.69,
+      "reported_profit_brl": 25.27,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016125",
+      "ml_item_id": "MLB4903840809",
+      "original_title": "36 Pilhas Alcalinas Premium Aa Panasonic (9 Cart)",
+      "reported_price_brl": 206.86,
+      "reported_profit_brl": 22.07,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016126",
+      "ml_item_id": "MLB7184763152",
+      "original_title": "36 Pilhas Alcalinas Premium Aaa Panasonic (6 Cart)",
+      "reported_price_brl": 214.69,
+      "reported_profit_brl": 22.15,
+      "reported_quality": 71,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016126",
+      "ml_item_id": "MLB7210718042",
+      "original_title": "36 Pilhas Alcalinas Premium Aaa Panasonic (6 Cart)",
+      "reported_price_brl": 214.69,
+      "reported_profit_brl": 22.15,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016127",
+      "ml_item_id": "MLB7184763606",
+      "original_title": "36 Pilhas Alcalinas Premium Aaa Panasonic (9 Cart)",
+      "reported_price_brl": 222.51,
+      "reported_profit_brl": 22.5,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025766",
+      "ml_item_id": "MLB7297401940",
+      "original_title": "4 Baterias Cr2032 Elgin",
+      "reported_price_brl": 58.2,
+      "reported_profit_brl": 20.58,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016132",
+      "ml_item_id": "MLB4894829879",
+      "original_title": "4 Baterias Cr2032 Panasonic",
+      "reported_price_brl": 66.33,
+      "reported_profit_brl": 20,
+      "reported_quality": 60,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025767",
+      "ml_item_id": "MLB7297376392",
+      "original_title": "4 Baterias Recarregaveis 9v Elgin",
+      "reported_price_brl": 186.44,
+      "reported_profit_brl": 21.87,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025768",
+      "ml_item_id": "MLB7297376526",
+      "original_title": "4 Baterias Zinco 9v Elgin",
+      "reported_price_brl": 68.72,
+      "reported_profit_brl": 20.68,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016138",
+      "ml_item_id": "MLB7184612180",
+      "original_title": "4 Pilhas Alcalinas Premium Aaa Panasonic (2 Cart)",
+      "reported_price_brl": 36.62,
+      "reported_profit_brl": 3.3,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016139",
+      "ml_item_id": "MLB4903532497",
+      "original_title": "4 Pilhas Comum D Panasonic (2 Cart)",
+      "reported_price_brl": 35.94,
+      "reported_profit_brl": 3.46,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012161",
+      "ml_item_id": "MLB4880526029",
+      "original_title": "4 Pilhas Philips Pequena Aa Comuns Extra Cloreto De Zinco",
+      "reported_price_brl": 22,
+      "reported_profit_brl": 1.98,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012077",
+      "ml_item_id": "MLB7111648906",
+      "original_title": "4 Pilhas Recarregaveis Aaa Philips",
+      "reported_price_brl": 118.88,
+      "reported_profit_brl": 28.91,
+      "reported_quality": 58,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025566",
+      "ml_item_id": "MLB7296158654",
+      "original_title": "40 Pilhas Alcalinas Aaa Palito Duracell (10 Cart. C/ 4 Un.)",
+      "reported_price_brl": 303.94,
+      "reported_profit_brl": 31.54,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016152",
+      "ml_item_id": "MLB7252818098",
+      "original_title": "40 Pilhas Alcalinas Aaa Panasonic (10 Cart)",
+      "reported_price_brl": 182.31,
+      "reported_profit_brl": 21.82,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016154",
+      "ml_item_id": "MLB4903843765",
+      "original_title": "40 Pilhas Alcalinas Premium Aaa Panasonic (10 Cart)",
+      "reported_price_brl": 242.1,
+      "reported_profit_brl": 24.95,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016155",
+      "ml_item_id": "MLB4903793961",
+      "original_title": "40 Pilhas Comum Aa Panasonic (10 Cart)",
+      "reported_price_brl": 100.09,
+      "reported_profit_brl": 23.72,
+      "reported_quality": 52,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016157",
+      "ml_item_id": "MLB7184739728",
+      "original_title": "40 Pilhas Comum Aaa Panasonic (10 Cart)",
+      "reported_price_brl": 130.27,
+      "reported_profit_brl": 31.67,
+      "reported_quality": 60,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016158",
+      "ml_item_id": "MLB7184713212",
+      "original_title": "40 Pilhas Comum Aaa Panasonic (5 Cart)",
+      "reported_price_brl": 102.96,
+      "reported_profit_brl": 21.03,
+      "reported_quality": 60,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025778",
+      "ml_item_id": "MLB7381762728",
+      "original_title": "40 Pilhas Moeda Lítio Elgin Cr2016 3v Kit",
+      "reported_price_brl": 150.59,
+      "reported_profit_brl": 21.5,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025779",
+      "ml_item_id": "MLB5034767251",
+      "original_title": "40 Pilhas Moeda Lítio Elgin Cr2025 3v Kit",
+      "reported_price_brl": 97.54,
+      "reported_profit_brl": 20.97,
+      "reported_quality": 63,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025780",
+      "ml_item_id": "MLB7381751222",
+      "original_title": "40 Pilhas Moeda Lítio Elgin Cr2032 3v Kit",
+      "reported_price_brl": 109.57,
+      "reported_profit_brl": 21.1,
+      "reported_quality": 57,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025572",
+      "ml_item_id": "MLB7296158948",
+      "original_title": "45 Baterias Cr2032 Duracell (9 Cart. C/ 5 Un. Cada)",
+      "reported_price_brl": 519.3,
+      "reported_profit_brl": 55.68,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016166",
+      "ml_item_id": "MLB4903842685",
+      "original_title": "45 Baterias Cr2032 Panasonic (9 Cart)",
+      "reported_price_brl": 232.96,
+      "reported_profit_brl": 23.22,
+      "reported_quality": 64,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025794",
+      "ml_item_id": "MLB7381762804",
+      "original_title": "45 Pilhas Moeda Lítio Elgin Cr2016 3v Kit",
+      "reported_price_brl": 156.69,
+      "reported_profit_brl": 21.57,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025795",
+      "ml_item_id": "MLB5034731187",
+      "original_title": "45 Pilhas Moeda Lítio Elgin Cr2025 3v Kit",
+      "reported_price_brl": 105.96,
+      "reported_profit_brl": 21.06,
+      "reported_quality": 57,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016173",
+      "ml_item_id": "MLB4903786961",
+      "original_title": "5 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "reported_price_brl": 104.8,
+      "reported_profit_brl": 27.25,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012184",
+      "ml_item_id": "MLB7111713598",
+      "original_title": "5 Baterias Alcalinas A27 Elgin",
+      "reported_price_brl": 35,
+      "reported_profit_brl": 3.3,
+      "reported_quality": 62,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012060",
+      "ml_item_id": "MLB4857625799",
+      "original_title": "5 Baterias Cr1220 Elgin",
+      "reported_price_brl": 32,
+      "reported_profit_brl": 3.29,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025802",
+      "ml_item_id": "MLB7297403792",
+      "original_title": "5 Baterias Cr2032 Elgin",
+      "reported_price_brl": 62.11,
+      "reported_profit_brl": 20.62,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012068",
+      "ml_item_id": "MLB4857637203",
+      "original_title": "5 Baterias Cr2430 Elgin",
+      "reported_price_brl": 35,
+      "reported_profit_brl": 3.35,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012061",
+      "ml_item_id": "MLB4857636833",
+      "original_title": "5 Baterias Cr2450 Elgin",
+      "reported_price_brl": 40.75,
+      "reported_profit_brl": 3.66,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025803",
+      "ml_item_id": "MLB7297403882",
+      "original_title": "5 Baterias Recarregaveis 9v Elgin",
+      "reported_price_brl": 217.69,
+      "reported_profit_brl": 22.18,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012419",
+      "ml_item_id": "MLB4880580805",
+      "original_title": "5 Baterias Tipo Botao Cartela Cr2477 Flex Gold",
+      "reported_price_brl": 76.34,
+      "reported_profit_brl": 19.85,
+      "reported_quality": 54,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025804",
+      "ml_item_id": "MLB7297391050",
+      "original_title": "5 Baterias Zinco 9v Elgin",
+      "reported_price_brl": 77.24,
+      "reported_profit_brl": 20.77,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025308",
+      "ml_item_id": "MLB7320340410",
+      "original_title": "5 Encordoamentos P/ Violão Aço 010 Nig Fósforo Bronze Npb560",
+      "reported_price_brl": 261.32,
+      "reported_profit_brl": 26.63,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016185",
+      "ml_item_id": "MLB4903854531",
+      "original_title": "50 Baterias Cr2025 Panasonic (10 Cart)",
+      "reported_price_brl": 275.47,
+      "reported_profit_brl": 28.28,
+      "reported_quality": 64,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025813",
+      "ml_item_id": "MLB7297404292",
+      "original_title": "50 Baterias Cr2450 Elgin (10 Cart)",
+      "reported_price_brl": 316.27,
+      "reported_profit_brl": 82.23,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025805",
+      "ml_item_id": "MLB5034766285",
+      "original_title": "50 Pilhas Moeda Lítio Elgin Cr1220 3v Kit",
+      "reported_price_brl": 160.81,
+      "reported_profit_brl": 21.61,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025806",
+      "ml_item_id": "MLB5034766179",
+      "original_title": "50 Pilhas Moeda Lítio Elgin Cr1616 3v Kit",
+      "reported_price_brl": 151.56,
+      "reported_profit_brl": 21.51,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016194",
+      "ml_item_id": "MLB7317384972",
+      "original_title": "6 Baterias Alcalinas 9v Panasonic",
+      "reported_price_brl": 151.59,
+      "reported_profit_brl": 21.51,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK016194",
+      "ml_item_id": "MLB7184722770",
+      "original_title": "6 Baterias Alcalinas 9v Panasonic",
+      "reported_price_brl": 151.59,
+      "reported_profit_brl": 21.51,
+      "reported_quality": 71,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025594",
+      "ml_item_id": "MLB7296161092",
+      "original_title": "6 Baterias Cr2032 Duracell (3 Cart. C/ 2 Un. Cada)",
+      "reported_price_brl": 130.86,
+      "reported_profit_brl": 21.31,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025822",
+      "ml_item_id": "MLB7297391538",
+      "original_title": "6 Baterias Cr2032 Elgin",
+      "reported_price_brl": 66.01,
+      "reported_profit_brl": 20.66,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016195",
+      "ml_item_id": "MLB4894907999",
+      "original_title": "6 Baterias Cr2032 Panasonic",
+      "reported_price_brl": 72.88,
+      "reported_profit_brl": 18.95,
+      "reported_quality": 54,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025823",
+      "ml_item_id": "MLB7297378922",
+      "original_title": "6 Baterias Recarregaveis 9v Elgin",
+      "reported_price_brl": 254.2,
+      "reported_profit_brl": 25.85,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025824",
+      "ml_item_id": "MLB7297379050",
+      "original_title": "6 Baterias Zinco 9v Elgin",
+      "reported_price_brl": 83.78,
+      "reported_profit_brl": 20.84,
+      "reported_quality": 85,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025313",
+      "ml_item_id": "MLB4967490873",
+      "original_title": "6 Jogos De Cordas Guitarra 009 1ª Mi Extra + Palheta N63 Nig",
+      "reported_price_brl": 253.49,
+      "reported_profit_brl": 25.72,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025311",
+      "ml_item_id": "MLB4967553101",
+      "original_title": "6 Jogos De Cordas Guitarra 010 1ª Mi Extra + Palheta N64 Nig",
+      "reported_price_brl": 264.47,
+      "reported_profit_brl": 26.99,
+      "reported_quality": 65,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025829",
+      "ml_item_id": "MLB7297392242",
+      "original_title": "6 Pilhas Recarregável Aaa 900mah Elgin 2 Unidades (3 Cart)",
+      "reported_price_brl": 93.88,
+      "reported_profit_brl": 20.94,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016210",
+      "ml_item_id": "MLB4903855675",
+      "original_title": "60 Pilhas Alcalinas Premium Aa Panasonic (10 Cart)",
+      "reported_price_brl": 305.21,
+      "reported_profit_brl": 32.17,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016211",
+      "ml_item_id": "MLB4903856059",
+      "original_title": "60 Pilhas Alcalinas Premium Aaa Panasonic (10 Cart)",
+      "reported_price_brl": 335.09,
+      "reported_profit_brl": 35.37,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025318",
+      "ml_item_id": "MLB4967505465",
+      "original_title": "7 Jogos De Cordas Violão Aço 010 1ª Corda Mí Extra N500 Nig",
+      "reported_price_brl": 264.31,
+      "reported_profit_brl": 26.97,
+      "reported_quality": 60,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025322",
+      "ml_item_id": "MLB4967557183",
+      "original_title": "7 Jogos De Cordas Violão Aço Fósforo Bronze 010 Npb560 Nig",
+      "reported_price_brl": 355.42,
+      "reported_profit_brl": 37.18,
+      "reported_quality": 64,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025324",
+      "ml_item_id": "MLB4967507709",
+      "original_title": "7 Jogos De Cordas Violão Nylon-cristal/prateada Média Nig",
+      "reported_price_brl": 299.71,
+      "reported_profit_brl": 31.04,
+      "reported_quality": 65,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016224",
+      "ml_item_id": "MLB7184602414",
+      "original_title": "8 Pilhas Alcalinas Aa Panasonic (4 Cart)",
+      "reported_price_brl": 62.96,
+      "reported_profit_brl": 20,
+      "reported_quality": 79,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025846",
+      "ml_item_id": "MLB7297406140",
+      "original_title": "8 Pilhas Alcalinas Aa Sm-2 Elgin (4 Cart)",
+      "reported_price_brl": 64.8,
+      "reported_profit_brl": 20.65,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025847",
+      "ml_item_id": "MLB7297406256",
+      "original_title": "8 Pilhas Alcalinas Aa Sm-4 Elgin (2 Cart)",
+      "reported_price_brl": 62.7,
+      "reported_profit_brl": 20.63,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025616",
+      "ml_item_id": "MLB4971764579",
+      "original_title": "8 Pilhas Alcalinas Aaa Palito Duracell (2 Cart. C/ 4 Un.)",
+      "reported_price_brl": 93.75,
+      "reported_profit_brl": 20.94,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016234",
+      "ml_item_id": "MLB4903508597",
+      "original_title": "8 Pilhas Comum Aaa Panasonic (2 Cart)",
+      "reported_price_brl": 36.66,
+      "reported_profit_brl": 5.31,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK016235",
+      "ml_item_id": "MLB7184502700",
+      "original_title": "8 Pilhas Comum D Panasonic (4 Cart)",
+      "reported_price_brl": 52.63,
+      "reported_profit_brl": 4.39,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025850",
+      "ml_item_id": "MLB7297393538",
+      "original_title": "8 Pilhas Recarregável Aa 2500 Mah Elgin (4 Cart)",
+      "reported_price_brl": 164.56,
+      "reported_profit_brl": 21.64,
+      "reported_quality": 79,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025851",
+      "ml_item_id": "MLB7297406618",
+      "original_title": "8 Pilhas Recarregável Aa-2500mah Elgin (2 Cart)",
+      "reported_price_brl": 162.82,
+      "reported_profit_brl": 21.63,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025629",
+      "ml_item_id": "MLB4971767375",
+      "original_title": "96 Pilhas Alcalinas Aaa Palito Duracell (48 Cart. C/ 2 Un.)",
+      "reported_price_brl": 855.78,
+      "reported_profit_brl": 113.2,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025630",
+      "ml_item_id": "MLB4971793381",
+      "original_title": "96 Pilhas Alcalinas Aaa Palito Duracell (6 Cart. C/ 16 Un.)",
+      "reported_price_brl": 737.28,
+      "reported_profit_brl": 96.66,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK025631",
+      "ml_item_id": "MLB4971793599",
+      "original_title": "96 Pilhas Alcalinas C Duracell (48 Cart. C/ 2 Un. Cada)",
+      "reported_price_brl": 2379.28,
+      "reported_profit_brl": 380.2,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012396",
+      "ml_item_id": "MLB7111714912",
+      "original_title": "Abracadeira Nylon Pa66 Grd Branc 4.8x300 P10 - 10 Unidades",
+      "reported_price_brl": 25,
+      "reported_profit_brl": 3.25,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012159",
+      "ml_item_id": "MLB4857639883",
+      "original_title": "Abracadeira Nylon Pa66 Med Branco 3.6x150 P20 - 20 Unidades Branco",
+      "reported_price_brl": 22,
+      "reported_profit_brl": 3.49,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012154",
+      "ml_item_id": "MLB4857638585",
+      "original_title": "Abracadeira Nylon Pa66 Media Preta 3.6x200 P20 - 20",
+      "reported_price_brl": 25,
+      "reported_profit_brl": 3.75,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK018069",
+      "ml_item_id": "MLB7332774174",
+      "original_title": "Abracadeira Seccon Bap3 Com Parafuso Galv. Fogo - Pc / 10",
+      "reported_price_brl": 310.47,
+      "reported_profit_brl": 80.72,
+      "reported_quality": 66,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017708",
+      "ml_item_id": "MLB4981311917",
+      "original_title": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "reported_price_brl": 56.64,
+      "reported_profit_brl": 20,
+      "reported_quality": 62,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017708",
+      "ml_item_id": "MLB4986120857",
+      "original_title": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "reported_price_brl": 56.64,
+      "reported_profit_brl": 20,
+      "reported_quality": 62,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012361",
+      "ml_item_id": "MLB4857626055",
+      "original_title": "Adaptador 2 Jack Rca Para Jack Rca Plástico - Niquel Pct",
+      "reported_price_brl": 25,
+      "reported_profit_brl": 2.77,
+      "reported_quality": 68,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK002315",
+      "ml_item_id": "MLB4857636813",
+      "original_title": "Adaptador Display Portátil Para Vga 15cm Adap0044 Branco",
+      "reported_price_brl": 31,
+      "reported_profit_brl": 3.18,
+      "reported_quality": 66,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001685",
+      "ml_item_id": "MLB7238802778",
+      "original_title": "Adaptador Dvi Fêmea X Hdmi Macho Gold St-hdmi-dmf Storm",
+      "reported_price_brl": 36,
+      "reported_profit_brl": 3.13,
+      "reported_quality": 80,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001685",
+      "ml_item_id": "MLB4942183065",
+      "original_title": "Adaptador Dvi Fêmea X Hdmi Macho Gold St-hdmi-dmf Storm",
+      "reported_price_brl": 36,
+      "reported_profit_brl": 3.13,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012271",
+      "ml_item_id": "MLB4857626107",
+      "original_title": "Adaptador Hdmi Macho Para Hdmi Fêmea Gold 90 Graus Storm",
+      "reported_price_brl": 25,
+      "reported_profit_brl": 2.95,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012389",
+      "ml_item_id": "MLB4857625789",
+      "original_title": "Adaptador J2 Rca Estéreo Para P2 Estéreo Plástico Pct C/4un",
+      "reported_price_brl": 30,
+      "reported_profit_brl": 3.67,
+      "reported_quality": 60,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012104",
+      "ml_item_id": "MLB7111716064",
+      "original_title": "Adaptador P2 Trs Fêmea P10 Trs Metal Storm Metal",
+      "reported_price_brl": 22,
+      "reported_profit_brl": 2.44,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK018179",
+      "ml_item_id": "MLB7238802910",
+      "original_title": "Adaptador Rca Stetsom St-6100 Com Saída Remoto/filtro",
+      "reported_price_brl": 211.06,
+      "reported_profit_brl": 52.18,
+      "reported_quality": 80,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012177",
+      "ml_item_id": "MLB4857639801",
+      "original_title": "Adaptador Usb Tipo C Macho Para Usb 3.0 Fêmea Storm",
+      "reported_price_brl": 22.9,
+      "reported_profit_brl": 3.14,
+      "reported_quality": 73,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK002611",
+      "ml_item_id": "MLB7238823266",
+      "original_title": "Adaptador Usb Tipo C Macho Para Vga Femea Adap0057 Storm Branco",
+      "reported_price_brl": 77.24,
+      "reported_profit_brl": 24.6,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001795",
+      "ml_item_id": "MLB7149375942",
+      "original_title": "Akg P3 S Microfone Dinâmico Cardióide Preto",
+      "reported_price_brl": 386.59,
+      "reported_profit_brl": 100.51,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK018503",
+      "ml_item_id": "MLB4942183017",
+      "original_title": "Alarme Automotivo Fks Fk902 Antifurto Com 2 Controles E Sirene",
+      "reported_price_brl": 409.72,
+      "reported_profit_brl": 106.53,
+      "reported_quality": 78,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000042",
+      "ml_item_id": "MLB4841913775",
+      "original_title": "Alicate Amperímetro Minipa Et-3200a 1000a Ca Digital",
+      "reported_price_brl": 570.13,
+      "reported_profit_brl": 148.24,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000042",
+      "ml_item_id": "MLB7097115554",
+      "original_title": "Alicate Amperímetro Minipa Et3200a 1000a Ca 2000a Cc Tela Digital",
+      "reported_price_brl": 570.13,
+      "reported_profit_brl": 148.24,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK023354",
+      "ml_item_id": "MLB5005540513",
+      "original_title": "Alicate Corte Diagonal 6 Hikari Hk-701 Azul, Amarelo",
+      "reported_price_brl": 70.49,
+      "reported_profit_brl": 19.14,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001790",
+      "ml_item_id": "MLB7012823734",
+      "original_title": "Amplificador Yamaha Ga Series Ga-15 Transistor Para Guitarra De 15w Cor Preto...",
+      "reported_price_brl": 1845.27,
+      "reported_profit_brl": 479.77,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK018650",
+      "ml_item_id": "MLB7238896344",
+      "original_title": "Antena Automotiva Permak Shark 100/m1 Branca Branco",
+      "reported_price_brl": 69,
+      "reported_profit_brl": 11.76,
+      "reported_quality": 47,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000585",
+      "ml_item_id": "MLB5048998307",
+      "original_title": "Antena Coletiva Com 30 Elementos E 14dbi Direto Da Fábrica",
+      "reported_price_brl": 110.13,
+      "reported_profit_brl": 20,
+      "reported_quality": 77,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK004716",
+      "ml_item_id": "MLB5048998203",
+      "original_title": "Antena De Tv Coletiva Potente Para Prédios Ou Condominios",
+      "reported_price_brl": 102.44,
+      "reported_profit_brl": 20,
+      "reported_quality": 77,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000244",
+      "ml_item_id": "MLB7400500850",
+      "original_title": "Antena Digital Externa Com Suporte E Cabo 15 Metros Preto",
+      "reported_price_brl": 194.68,
+      "reported_profit_brl": 21.95,
+      "reported_quality": 77,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK020760",
+      "ml_item_id": "MLB7238889666",
+      "original_title": "Antena Digital Externa Proeletronic Prohd-1040db 14db",
+      "reported_price_brl": 103.88,
+      "reported_profit_brl": 31.19,
+      "reported_quality": 68,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000534",
+      "ml_item_id": "MLB7314820764",
+      "original_title": "Antena Digital Interna Com Cabo 2,5 Metros Aquário Preto",
+      "reported_price_brl": 38,
+      "reported_profit_brl": 3.64,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK020760",
+      "ml_item_id": "MLB4942204815",
+      "original_title": "Antena Digital Uhf Log B Black Prohd-1040db Proeletronic",
+      "reported_price_brl": 103.88,
+      "reported_profit_brl": 31.19,
+      "reported_quality": 68,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000585",
+      "ml_item_id": "MLB7238889442",
+      "original_title": "Antena Externa Aquário Lu-30 Uhf 14dbi 30 Elementos",
+      "reported_price_brl": 110.13,
+      "reported_profit_brl": 20,
+      "reported_quality": 74,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001359",
+      "ml_item_id": "MLB7149375248",
+      "original_title": "Antena Externa Hdtv Digit. 38 Elementos Prohd 1300/20 - 20un",
+      "reported_price_brl": 1320.84,
+      "reported_profit_brl": 177.72,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000534",
+      "ml_item_id": "MLB7238909924",
+      "original_title": "Antena Interna Tv Digital Dtv-200 2 5m Aquário Preto",
+      "reported_price_brl": 38,
+      "reported_profit_brl": 3.64,
+      "reported_quality": 80,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK018851",
+      "ml_item_id": "MLB7332793056",
+      "original_title": "Antena Móvel Aquário B-2080 Com Bobina E Mola Na Base",
+      "reported_price_brl": 278.4,
+      "reported_profit_brl": 72.39,
+      "reported_quality": 67,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK018866",
+      "ml_item_id": "MLB7332776980",
+      "original_title": "Antena Móvel Aquário M-400c 5/8 De Onda Para Rádio Vhf",
+      "reported_price_brl": 278.4,
+      "reported_profit_brl": 72.39,
+      "reported_quality": 67,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001186",
+      "ml_item_id": "MLB7390922480",
+      "original_title": "Antena P/ Celular Rural 3g 4g Quad Vivo Tim Claro Oi 15dbi",
+      "reported_price_brl": 170.96,
+      "reported_profit_brl": 39.25,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001186",
+      "ml_item_id": "MLB7381754412",
+      "original_title": "Antena Para Celular Fullband Pqag5015lte Proeletronic",
+      "reported_price_brl": 170.96,
+      "reported_profit_brl": 39.25,
+      "reported_quality": 71,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000275",
+      "ml_item_id": "MLB4942204851",
+      "original_title": "Antena Tv Digital Hdtv Interna 4 Em 1 Aquario Dtv-100",
+      "reported_price_brl": 73.53,
+      "reported_profit_brl": 21.2,
+      "reported_quality": 79,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK018929",
+      "ml_item_id": "MLB4942212513",
+      "original_title": "Anti Chiado De Freio Spray 200ml Orbi",
+      "reported_price_brl": 38,
+      "reported_profit_brl": 3.47,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001371",
+      "ml_item_id": "MLB7381673396",
+      "original_title": "Apoio Braço Esquerdo Core Racer Modern Black Thunderx3",
+      "reported_price_brl": 794.91,
+      "reported_profit_brl": 206.68,
+      "reported_quality": 59,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001065",
+      "ml_item_id": "MLB6646382226",
+      "original_title": "Apoio De Pulso Marshmallow Fini Letron Colorido",
+      "reported_price_brl": 229.94,
+      "reported_profit_brl": 57.18,
+      "reported_quality": 75,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000398",
+      "ml_item_id": "MLB7095328042",
+      "original_title": "Apoio Para Os Pés Abs Preto Regulável Multivisão",
+      "reported_price_brl": 132.58,
+      "reported_profit_brl": 19.65,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001214",
+      "ml_item_id": "MLB4622928103",
+      "original_title": "Apoio Para Pés Ergonômico Slider Emborrachado Nr17 Reliza",
+      "reported_price_brl": 172.82,
+      "reported_profit_brl": 24.73,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK005369",
+      "ml_item_id": "MLB7101696360",
+      "original_title": "Apresentador C3tech Sem Fio Ap-600 Alcance 10m - Preto",
+      "reported_price_brl": 137.63,
+      "reported_profit_brl": 22,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000627",
+      "ml_item_id": "MLB7087121826",
+      "original_title": "Apresentador Sem Fio C3tech Ap-200 Laser Usb 10m",
+      "reported_price_brl": 73.62,
+      "reported_profit_brl": 5.45,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000137",
+      "ml_item_id": "MLB7009916650",
+      "original_title": "Apresentador Sem Fio C3tech Ap-400 Laser 10m Preto Preto",
+      "reported_price_brl": 148.63,
+      "reported_profit_brl": 38.64,
+      "reported_quality": 80,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000137",
+      "ml_item_id": "MLB4801301565",
+      "original_title": "Apresentador Sem Fio C3tech Ap-400 Preto Usb Com Ponteiro Laser 10m",
+      "reported_price_brl": 148.63,
+      "reported_profit_brl": 38.64,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000636",
+      "ml_item_id": "MLB5048998385",
+      "original_title": "Ar Condicionado 12.000 Btus Frio Split Liv Inverter Top Agratto Cor Branca Branc...",
+      "reported_price_brl": 3388.7,
+      "reported_profit_brl": 881.06,
+      "reported_quality": 62,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK019124",
+      "ml_item_id": "MLB7381675360",
+      "original_title": "Arandela Sem Borda Frahm 6 Polegadas 40w Full Ranger Redonda",
+      "reported_price_brl": 244.26,
+      "reported_profit_brl": 64.86,
+      "reported_quality": 71,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012517",
+      "ml_item_id": "MLB4881370433",
+      "original_title": "Arco De Violino 4/4 Octogonal Scarlett Sgb-8na Crina Animal Marrom",
+      "reported_price_brl": 179,
+      "reported_profit_brl": 15.45,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK003763",
+      "ml_item_id": "MLB4880633331",
+      "original_title": "Aspirador De Pó E Agua Gt1500 11l 1400w Pto/am. Preto/amarelo 220v",
+      "reported_price_brl": 767.39,
+      "reported_profit_brl": 199.52,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK003963",
+      "ml_item_id": "MLB7313982730",
+      "original_title": "Aspirador De Pó Vertical Agratto Duo As 2 Em 1 1000w Com Filtro Hepa Reserva...",
+      "reported_price_brl": 214.62,
+      "reported_profit_brl": 22.15,
+      "reported_quality": 71,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012149",
+      "ml_item_id": "MLB7314824182",
+      "original_title": "Baqueta Profire 5b Madeira - 2 Peças Ponta Madeira Natural",
+      "reported_price_brl": 37,
+      "reported_profit_brl": 7.13,
+      "reported_quality": 61,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012198",
+      "ml_item_id": "MLB4881447273",
+      "original_title": "Baqueta Spanking Pro Fire 2b Ponta De Madeira Bege",
+      "reported_price_brl": 37,
+      "reported_profit_brl": 3.67,
+      "reported_quality": 61,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012203",
+      "ml_item_id": "MLB7149406862",
+      "original_title": "Baqueta Spanking Vanguarda Repique Ponta Oliva 40.9cm 14.7mm Percussão ...",
+      "reported_price_brl": 29,
+      "reported_profit_brl": 3.09,
+      "reported_quality": 44,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK003213",
+      "ml_item_id": "MLB7149371848",
+      "original_title": "Bateria Alcalina 9v - 6lf22xab/1b24 Panasonic",
+      "reported_price_brl": 34,
+      "reported_profit_brl": 3.17,
+      "reported_quality": 61,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK003213",
+      "ml_item_id": "MLB4857637215",
+      "original_title": "Bateria Alcalina 9v (c/1 Bateria) Panasonic",
+      "reported_price_brl": 34,
+      "reported_profit_brl": 3.17,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012083",
+      "ml_item_id": "MLB7149338748",
+      "original_title": "Bateria Alcalina 9v 6lr61p1b/59 Philips",
+      "reported_price_brl": 30.07,
+      "reported_profit_brl": 2.71,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK025496",
+      "ml_item_id": "MLB4971632129",
+      "original_title": "Bateria Alcalina 9v Duracell 18 Unidades",
+      "reported_price_brl": 647.76,
+      "reported_profit_brl": 88.74,
+      "reported_quality": 76,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012089",
+      "ml_item_id": "MLB4857625885",
+      "original_title": "Bateria Cr1632 Cartela Com 5 Unidades Flex",
+      "reported_price_brl": 29,
+      "reported_profit_brl": 4.43,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012506",
+      "ml_item_id": "MLB4857636697",
+      "original_title": "Bateria Cr2016 Cart 2 Energizer",
+      "reported_price_brl": 49,
+      "reported_profit_brl": 4.58,
+      "reported_quality": 62,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012506",
+      "ml_item_id": "MLB4880590905",
+      "original_title": "Bateria Cr2016 Cart 2 Energizer",
+      "reported_price_brl": 49,
+      "reported_profit_brl": 4.58,
+      "reported_quality": 62,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012035",
+      "ml_item_id": "MLB7145207436",
+      "original_title": "Bateria Cr2032 Botão Panasonic 10 Cartelas Com 05 Baterias",
+      "reported_price_brl": 324.82,
+      "reported_profit_brl": 84.45,
+      "reported_quality": 65,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017216",
+      "ml_item_id": "MLB5034770067",
+      "original_title": "Big Haste 28x28 1,00m Completa Gancho E Castanha Confiseg",
+      "reported_price_brl": 64.63,
+      "reported_profit_brl": 7.63,
+      "reported_quality": 45,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017217",
+      "ml_item_id": "MLB5034771539",
+      "original_title": "Big Haste 28x28 1,20m Completa Gancho E Castanha Confiseg",
+      "reported_price_brl": 247.61,
+      "reported_profit_brl": 150.73,
+      "reported_quality": 55,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001592",
+      "ml_item_id": "MLB7298176838",
+      "original_title": "Bocal Yamaha P/ Trompete Bb Tr-11c4 Prateado",
+      "reported_price_brl": 948.69,
+      "reported_profit_brl": 246.66,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK018388",
+      "ml_item_id": "MLB4995166689",
+      "original_title": "Botoeira Citrox Inox Cube Na/ Nf Cx-4508",
+      "reported_price_brl": 191.7,
+      "reported_profit_brl": 49.84,
+      "reported_quality": 66,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000634",
+      "ml_item_id": "MLB4801044701",
+      "original_title": "Braço Articulado Streamplify Mount Arm Mesa Até 2,5kg",
+      "reported_price_brl": 468,
+      "reported_profit_brl": 85.15,
+      "reported_quality": 80,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017159",
+      "ml_item_id": "MLB7381671414",
+      "original_title": "Bucha Para Alto Falante Original Permak Palio 237 C",
+      "reported_price_brl": 40.7,
+      "reported_profit_brl": 4.61,
+      "reported_quality": 56,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK018222",
+      "ml_item_id": "MLB5034707131",
+      "original_title": "Bucha Para Kit Do Alto Falante Gol Original Permak 237 A",
+      "reported_price_brl": 39.71,
+      "reported_profit_brl": 4.62,
+      "reported_quality": 56,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012425",
+      "ml_item_id": "MLB7322840598",
+      "original_title": "Cabeçote Autoamplificado Voxstorm Psg 180 - Psg180",
+      "reported_price_brl": 418.62,
+      "reported_profit_brl": 36.77,
+      "reported_quality": 0,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK017787",
+      "ml_item_id": "MLB4971983237",
+      "original_title": "Cabo De Aço Galvanizado Vonder 1.5mm 6x7 Bobina 500m",
+      "reported_price_brl": 576.27,
+      "reported_profit_brl": 149.83,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012009",
+      "ml_item_id": "MLB4882821531",
+      "original_title": "Cabo De Áudio 1,5 Metros Wireconex P2p2",
+      "reported_price_brl": 53,
+      "reported_profit_brl": 5.87,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012151",
+      "ml_item_id": "MLB4880561975",
+      "original_title": "Cabo De Áudio 1,5 Metros Wireconex P2xlr",
+      "reported_price_brl": 56,
+      "reported_profit_brl": 5.63,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012368",
+      "ml_item_id": "MLB4880585645",
+      "original_title": "Cabo De Áudio 3 Metros Wireconex P2xlr",
+      "reported_price_brl": 57,
+      "reported_profit_brl": 5.16,
+      "reported_quality": 54,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001065",
+      "ml_item_id": "MLB7087131276",
+      "original_title": "Cabo De Rede Cat.6 Cmx Cx 305m Furukawa Soho Plus - Cx / 305",
+      "reported_price_brl": 2190.87,
+      "reported_profit_brl": 569.63,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001353",
+      "ml_item_id": "MLB7381755908",
+      "original_title": "Cabo De Rede Cat5e 305m Blindagem Capa Dupla Megatron Bob",
+      "reported_price_brl": 2442.6,
+      "reported_profit_brl": 635.08,
+      "reported_quality": 62,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000648",
+      "ml_item_id": "MLB7313980728",
+      "original_title": "Cabo De Rede Cat5e Fortrek 305m 100% Cobre Ethernet Gigabit",
+      "reported_price_brl": 1483.02,
+      "reported_profit_brl": 385.59,
+      "reported_quality": 78,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000641",
+      "ml_item_id": "MLB7316878842",
+      "original_title": "Cabo De Rede Cat6 Fortrek Fk510c 100% Cobre 305mt Variação Azul",
+      "reported_price_brl": 2035.9,
+      "reported_profit_brl": 529.33,
+      "reported_quality": 78,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001064",
+      "ml_item_id": "MLB7087131166",
+      "original_title": "Cabo De Rede Cinza Cat.6 Cmx Cx 305m Furukawa Soho Plus - Cx",
+      "reported_price_brl": 2470.15,
+      "reported_profit_brl": 642.24,
+      "reported_quality": 78,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000081",
+      "ml_item_id": "MLB4898612533",
+      "original_title": "Cabo De Rede Furukawa Cat 5e Caixa 305m Cmx Soho Plus Azul",
+      "reported_price_brl": 1785.79,
+      "reported_profit_brl": 464.31,
+      "reported_quality": 78,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000386",
+      "ml_item_id": "MLB7095328234",
+      "original_title": "Cabo De Rede Furukawa Cat5e Utp 305m 100% Cobre Branco",
+      "reported_price_brl": 1785.79,
+      "reported_profit_brl": 464.31,
+      "reported_quality": 78,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001415",
+      "ml_item_id": "MLB7095326792",
+      "original_title": "Cabo De Rede Furukawa Soho Plus Cat5e 305 Metros Cmx Cftv 4 Pares 100% ...",
+      "reported_price_brl": 1785.79,
+      "reported_profit_brl": 464.31,
+      "reported_quality": 78,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012708",
+      "ml_item_id": "MLB4857542233",
+      "original_title": "Cabo Hdmi 1.4 Com Filtro 15m Storm",
+      "reported_price_brl": 121,
+      "reported_profit_brl": 11.72,
+      "reported_quality": 65,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012433",
+      "ml_item_id": "MLB4857637065",
+      "original_title": "Cabo Hdmi 1.4 Com Filtro 3m Storm",
+      "reported_price_brl": 36,
+      "reported_profit_brl": 3.94,
+      "reported_quality": 60,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012478",
+      "ml_item_id": "MLB4857623631",
+      "original_title": "Cabo Hdmi 1.4 Com Filtro 5m Storm",
+      "reported_price_brl": 43,
+      "reported_profit_brl": 4.5,
+      "reported_quality": 52,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012451",
+      "ml_item_id": "MLB4880526513",
+      "original_title": "Cabo Hdmi 1.8 Metros Com Filtro Banhado Ouro 24k 3d Hd Storm",
+      "reported_price_brl": 34,
+      "reported_profit_brl": 4.48,
+      "reported_quality": 66,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012411",
+      "ml_item_id": "MLB7149337306",
+      "original_title": "Cabo Impressora Usb 1,8 Metros Epson Hp Brother Canon Zebra Cor Preto",
+      "reported_price_brl": 34.28,
+      "reported_profit_brl": 9.55,
+      "reported_quality": 73,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012053",
+      "ml_item_id": "MLB7317384006",
+      "original_title": "Cabo Instrumentos Emborrachado 10m P10/p10 Wireconex Guiem",
+      "reported_price_brl": 144.42,
+      "reported_profit_brl": 20,
+      "reported_quality": 65,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012318",
+      "ml_item_id": "MLB7149329782",
+      "original_title": "Cabo Instrumentos P10 Tweed 7 Metros Preto Wireconex",
+      "reported_price_brl": 99,
+      "reported_profit_brl": 9.57,
+      "reported_quality": 55,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012531",
+      "ml_item_id": "MLB4857638567",
+      "original_title": "Cabo Otg Usb Tipo C Macho Para Usb Fêmea 15cm Storm",
+      "reported_price_brl": 25,
+      "reported_profit_brl": 4.05,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012367",
+      "ml_item_id": "MLB4880585951",
+      "original_title": "Cabo P/instrumentos P10xp10 Emborrachado Wireconex Guiems 5m Cor Preto",
+      "reported_price_brl": 70.7,
+      "reported_profit_brl": 4.83,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012255",
+      "ml_item_id": "MLB4880586103",
+      "original_title": "Cabo P10 5m Preto Para Instrumentos Wireconex Tweed Prowire",
+      "reported_price_brl": 73.96,
+      "reported_profit_brl": 6.3,
+      "reported_quality": 64,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012741",
+      "ml_item_id": "MLB7111662208",
+      "original_title": "Cabo P10 Prowire Em L Tweed Prata/verde 3,05m Wireconex",
+      "reported_price_brl": 65,
+      "reported_profit_brl": 6.13,
+      "reported_quality": 64,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012720",
+      "ml_item_id": "MLB7111708162",
+      "original_title": "Cabo P10 Prowire Em L Tweed Prata/verde 3,05m Wireconex",
+      "reported_price_brl": 71,
+      "reported_profit_brl": 12.64,
+      "reported_quality": 64,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012722",
+      "ml_item_id": "MLB7111708522",
+      "original_title": "Cabo P10 Prowire Em L Tweed Preto 3,05m Wireconex",
+      "reported_price_brl": 67,
+      "reported_profit_brl": 11.33,
+      "reported_quality": 63,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012724",
+      "ml_item_id": "MLB7111648600",
+      "original_title": "Cabo P10 Prowire Em L Tweed Preto 6,10m Wireconex",
+      "reported_price_brl": 97,
+      "reported_profit_brl": 11.74,
+      "reported_quality": 71,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012745",
+      "ml_item_id": "MLB7111648964",
+      "original_title": "Cabo P10 Prowire Em L Tweed Preto/lilás 4,57m Wireconex",
+      "reported_price_brl": 78.9,
+      "reported_profit_brl": 7.33,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012731",
+      "ml_item_id": "MLB7111649100",
+      "original_title": "Cabo P10 Prowire Em L Tweed Preto/lilás 4,57m Wireconex",
+      "reported_price_brl": 78.9,
+      "reported_profit_brl": 8.86,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012746",
+      "ml_item_id": "MLB7111645178",
+      "original_title": "Cabo P10 Prowire Em L Tweed Preto/lilás 6,10m Wireconex",
+      "reported_price_brl": 109,
+      "reported_profit_brl": 7.53,
+      "reported_quality": 66,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012734",
+      "ml_item_id": "MLB7111649094",
+      "original_title": "Cabo P10 Prowire Em L Tweed Preto/prata 4,57m Wireconex",
+      "reported_price_brl": 78.9,
+      "reported_profit_brl": 8.96,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012008",
+      "ml_item_id": "MLB7149332364",
+      "original_title": "Cabo P2 P10 Wireconex 3m Áudio Vídeo Revestido Níquel 5mm",
+      "reported_price_brl": 62,
+      "reported_profit_brl": 11.61,
+      "reported_quality": 54,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012393",
+      "ml_item_id": "MLB7149327814",
+      "original_title": "Cabo P2 Para P2 Estéreo De Áudio Wireconex De 3 Metros Preto",
+      "reported_price_brl": 66,
+      "reported_profit_brl": 11.14,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012210",
+      "ml_item_id": "MLB4857625149",
+      "original_title": "Cabo P2 Stereo 02 Rca Metal 1,8m Storm",
+      "reported_price_brl": 35.58,
+      "reported_profit_brl": 5.4,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012105",
+      "ml_item_id": "MLB7111716030",
+      "original_title": "Cabo P2 Stereo P10 Mono 1,8m Storm",
+      "reported_price_brl": 25,
+      "reported_profit_brl": 3.89,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK018526",
+      "ml_item_id": "MLB4981290407",
+      "original_title": "Cabo Para Microfone Santo Angelo Ninja Hg P10 X Xlrf 03ft",
+      "reported_price_brl": 86.99,
+      "reported_profit_brl": 19.1,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012353",
+      "ml_item_id": "MLB4877404099",
+      "original_title": "Cabo Para Pedal Emborrachado Cachibmo Pedem 0 25 Wireconex",
+      "reported_price_brl": 36,
+      "reported_profit_brl": 3.27,
+      "reported_quality": 50,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012119",
+      "ml_item_id": "MLB7313979680",
+      "original_title": "Cabo Para Pedal Têxtil Wireconex Pedtx",
+      "reported_price_brl": 46,
+      "reported_profit_brl": 4.22,
+      "reported_quality": 75,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001465",
+      "ml_item_id": "MLB7119494534",
+      "original_title": "Cabo Paralelo Cristal 12 Awg 2,5mm Controller Cobre 100m Pvc",
+      "reported_price_brl": 633,
+      "reported_profit_brl": 104.29,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012345",
+      "ml_item_id": "MLB4886661609",
+      "original_title": "Cabo Usb 2.0 A Macho + A Fêmea 3 Metros Preto Storm",
+      "reported_price_brl": 31,
+      "reported_profit_brl": 3.7,
+      "reported_quality": 73,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK017182",
+      "ml_item_id": "MLB7330399772",
+      "original_title": "Cabo Usb 2.0 Extensão 5 Metros Extensor Macho Femea Preto",
+      "reported_price_brl": 36,
+      "reported_profit_brl": 3.38,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012479",
+      "ml_item_id": "MLB4857637573",
+      "original_title": "Cabo Usb A Macho Para Usb A Fêmea 2.0 5m Storm Preto",
+      "reported_price_brl": 32,
+      "reported_profit_brl": 3.9,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012315",
+      "ml_item_id": "MLB4857638231",
+      "original_title": "Cabo Usb A Macho Para Usb A Macho 2.0 1,8m Storm",
+      "reported_price_brl": 26,
+      "reported_profit_brl": 2.68,
+      "reported_quality": 70,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012411",
+      "ml_item_id": "MLB4857638243",
+      "original_title": "Cabo Usb A Macho Para Usb B Macho 2.0 1,8m Storm",
+      "reported_price_brl": 34.28,
+      "reported_profit_brl": 9.55,
+      "reported_quality": 73,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000364",
+      "ml_item_id": "MLB7111713696",
+      "original_title": "Cabo Usb X Lightning 1m Cbcl0006 Storm",
+      "reported_price_brl": 34,
+      "reported_profit_brl": 3.83,
+      "reported_quality": 67,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012507",
+      "ml_item_id": "MLB7149338770",
+      "original_title": "Cabo Usb X Usb Tipo C, 1m Storm Preto",
+      "reported_price_brl": 34,
+      "reported_profit_brl": 6.12,
+      "reported_quality": 51,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012399",
+      "ml_item_id": "MLB7149371768",
+      "original_title": "Cabo Usb-c Flex Branco Para Carregamento E Dados",
+      "reported_price_brl": 34,
+      "reported_profit_brl": 4.87,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012110",
+      "ml_item_id": "MLB7111651722",
+      "original_title": "Cabos Para Instrumentos P10 P10 5 Metros Gte-05 Kng",
+      "reported_price_brl": 66,
+      "reported_profit_brl": 12.03,
+      "reported_quality": 54,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012438",
+      "ml_item_id": "MLB7111661928",
+      "original_title": "Cabos Para Instrumentos P10 P10 7 Metros Gte-07 Kng",
+      "reported_price_brl": 69,
+      "reported_profit_brl": 5.42,
+      "reported_quality": 69,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK001087",
+      "ml_item_id": "MLB4880633353",
+      "original_title": "Cadeira De Escritório Ergonômica Thunderx3 Tx3 Yama Neue 150kg Preta Preto",
+      "reported_price_brl": 1879,
+      "reported_profit_brl": 488.54,
+      "reported_quality": 80,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000588",
+      "ml_item_id": "MLB5034095623",
+      "original_title": "Cadeira Gamer Thunderx3 Ec1 Rosa Ergonômica Reclinável 150kg Couro Sintéti...",
+      "reported_price_brl": 1459.51,
+      "reported_profit_brl": 379.47,
+      "reported_quality": 75,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000271",
+      "ml_item_id": "MLB7313982752",
+      "original_title": "Cadeira Gamer Thunderx3 Ec3 Ergonomica Preta E Ciano Com Espuma Preto/cí...",
+      "reported_price_brl": 1798.34,
+      "reported_profit_brl": 467.57,
+      "reported_quality": 75,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000128",
+      "ml_item_id": "MLB4847281703",
+      "original_title": "Cadeira Gamer Thunderx3 Tgc12 Azul Reclinável 120kg",
+      "reported_price_brl": 1879,
+      "reported_profit_brl": 488.54,
+      "reported_quality": 75,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017349",
+      "ml_item_id": "MLB7331728896",
+      "original_title": "Caixa De Atendimento Óptico Evus 1x16 Ftth (cto Inteligente)",
+      "reported_price_brl": 200.8,
+      "reported_profit_brl": 49.41,
+      "reported_quality": 78,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017348",
+      "ml_item_id": "MLB7331728880",
+      "original_title": "Caixa De Atendimento Óptico Evus Com Splitter 1x8 Apc",
+      "reported_price_brl": 197.43,
+      "reported_profit_brl": 51.33,
+      "reported_quality": 73,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000337",
+      "ml_item_id": "MLB4942204703",
+      "original_title": "Caixa De Som 2.0 Usb C3tech Sp-301bk Preta Portátil Para Pc E Notebook Preto",
+      "reported_price_brl": 52,
+      "reported_profit_brl": 5.31,
+      "reported_quality": 57,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000507",
+      "ml_item_id": "MLB7381741608",
+      "original_title": "Caixa De Som Ambiente Hayonik Ambience Line 4 Polegadas",
+      "reported_price_brl": 467.68,
+      "reported_profit_brl": 150.34,
+      "reported_quality": 56,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK000800",
+      "ml_item_id": "MLB6646506832",
+      "original_title": "Caixa De Som Arandela Frahm Cs 6 40w Rms Redonda Branca Aluminio Branco",
+      "reported_price_brl": 272.21,
+      "reported_profit_brl": 70.77,
+      "reported_quality": 84,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK018041",
+      "ml_item_id": "MLB7247346484",
+      "original_title": "Caixa De Som Arandela Redonda 50w 8 Ohms Frahm Cs 6 Polegada Cor Branc...",
+      "reported_price_brl": 383.75,
+      "reported_profit_brl": 99.78,
+      "reported_quality": 79,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK017338",
+      "ml_item_id": "MLB7238967728",
+      "original_title": "Caixa De Som Evus As-225d Color Wave",
+      "reported_price_brl": 79,
+      "reported_profit_brl": 7.26,
+      "reported_quality": 60,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK017338",
+      "ml_item_id": "MLB4942182707",
+      "original_title": "Caixa De Som Gamer Evus As225d Color Wave Usb Led Multicolorido Preto",
+      "reported_price_brl": 79,
+      "reported_profit_brl": 7.26,
+      "reported_quality": 60,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK018913",
+      "ml_item_id": "MLB5034825983",
+      "original_title": "Caixa Rlp Vazia Para Carro Emborrachada 2 12 Polegadas + 2tw",
+      "reported_price_brl": 533.77,
+      "reported_profit_brl": 157.63,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK018378",
+      "ml_item_id": "MLB7381674436",
+      "original_title": "Caixa Rlp Vazia Para Moto Emborrachada 2 10 Polegadas + 2tw",
+      "reported_price_brl": 201.61,
+      "reported_profit_brl": 46.67,
+      "reported_quality": 54,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK019387",
+      "ml_item_id": "MLB7332777990",
+      "original_title": "Caixa Vazia Para 1 Alto Falante 12 + 1 Driver + 1 Tweeter",
+      "reported_price_brl": 428.86,
+      "reported_profit_brl": 111.5,
+      "reported_quality": 61,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK003020",
+      "ml_item_id": "MLB7095326162",
+      "original_title": "Cajon Fsa Fgb6501 Gibao Preto",
+      "reported_price_brl": 1538.65,
+      "reported_profit_brl": 400.05,
+      "reported_quality": 62,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK001733",
+      "ml_item_id": "MLB7391077468",
+      "original_title": "Cajon Fsa Fs2501 Standard Eletroacústico Preto",
+      "reported_price_brl": 1238.58,
+      "reported_profit_brl": 340.88,
+      "reported_quality": 66,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012397",
+      "ml_item_id": "MLB7339962000",
+      "original_title": "Calculadora Cientifica 240 Funções Cc240 Elgin Preta Cor Preto",
+      "reported_price_brl": 57,
+      "reported_profit_brl": 8.41,
+      "reported_quality": 69,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000599",
+      "ml_item_id": "MLB7149272886",
+      "original_title": "Calculadora Científica Casio Fx-82la-cw Fx-82lac 2ª Edição, Cor Preta Preto",
+      "reported_price_brl": 200.84,
+      "reported_profit_brl": 49.52,
+      "reported_quality": 70,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK000639",
+      "ml_item_id": "MLB4857485805",
+      "original_title": "Calculadora Científica Casio Fx-991es Plus-2 417 Funções",
+      "reported_price_brl": 301.27,
+      "reported_profit_brl": 78.33,
+      "reported_quality": 60,
+      "reported_catalog": false
+    },
+    {
+      "sku": "VTK012652",
+      "ml_item_id": "MLB7149338374",
+      "original_title": "Calculadora De Mesa Serie Mv412 Elgin Cor Roxa Volta As Aulas",
+      "reported_price_brl": 46,
+      "reported_profit_brl": 4.62,
+      "reported_quality": 60,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012796",
+      "ml_item_id": "MLB4880565805",
+      "original_title": "Calculadora Elgin Compacta Com Bobina 12 Dígitos Ma-5111 Cor Preto",
+      "reported_price_brl": 333.38,
+      "reported_profit_brl": 31.49,
+      "reported_quality": 68,
+      "reported_catalog": true
+    },
+    {
+      "sku": "VTK012608",
+      "ml_item_id": "MLB4880579851",
+      "original_title": "Calculadora Elgin Mv-4131 Mv-4133 De Mesa 8 Dígitos Vermelho",
+      "reported_price_brl": 63,
+      "reported_profit_brl": 12.38,
+      "reported_quality": 69,
+      "reported_catalog": true
+    }
+  ]
+}
