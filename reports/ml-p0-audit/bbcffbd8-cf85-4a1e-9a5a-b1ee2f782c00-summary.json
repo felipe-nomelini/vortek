@@ -1,0 +1,3141 @@
+{
+  "generated_at": "2026-08-15T22:39:29.309Z",
+  "mode": "AUDIT_ONLY",
+  "job_id": "bbcffbd8-cf85-4a1e-9a5a-b1ee2f782c00",
+  "population": {
+    "total": 501,
+    "sha256": "fc73a35ce3482f4f0d7b3dbb12673039b2250d1d5f8c06cb403133d63cb881a5",
+    "by_supplier": {
+      "2": 103,
+      "108": 123,
+      "133": 275
+    },
+    "drifts": 0
+  },
+  "result": {
+    "P0_MANUAL_IDENTITY": 89,
+    "P0_MANUAL_TECH": 3,
+    "P0_API_ERROR": 408,
+    "P0_MANUAL_IMAGE": 1,
+    "P0_READY": 0,
+    "P0_MANUAL_GTIN": 0,
+    "P0_PUBLISHED": 0
+  },
+  "result_by_supplier": {
+    "Hayamax": {
+      "P0_MANUAL_IDENTITY": 23,
+      "P0_MANUAL_TECH": 2,
+      "P0_API_ERROR": 77,
+      "P0_MANUAL_IMAGE": 1
+    },
+    "BKR1": {
+      "P0_API_ERROR": 111,
+      "P0_MANUAL_IDENTITY": 12
+    },
+    "Evolusom": {
+      "P0_MANUAL_IDENTITY": 54,
+      "P0_API_ERROR": 220,
+      "P0_MANUAL_TECH": 1
+    }
+  },
+  "quality": {
+    "score_distribution": {
+      "95-100": 0,
+      "90-94": 1,
+      "85-89": 0,
+      "70-84": 2,
+      "0-69": 498
+    },
+    "gtin_confirmed": 2,
+    "with_gtin": 267,
+    "without_gtin": 234,
+    "baseline_without_image": 27,
+    "baseline_without_description": 2,
+    "images_approved": 75,
+    "image_problems": 1,
+    "dslite_manufacturer_divergences": 0,
+    "official_sources_found": 4,
+    "official_sources_not_found": 497,
+    "remote_listings_found": 0,
+    "api_errors_by_reason": {
+      "firecrawl_search_http_429": 374,
+      "firecrawl_search_http_402": 33,
+      "This operation was aborted": 1
+    }
+  },
+  "potential_revenue": {
+    "ready_skus": 0,
+    "aggregate_stock": 0,
+    "exposure_value": 0
+  },
+  "manual_queue": {
+    "P0_MANUAL_GTIN": [],
+    "P0_MANUAL_IDENTITY": [
+      {
+        "sku": "VTK000039",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK000092",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK000216",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 35
+      },
+      {
+        "sku": "VTK000223",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK000301",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK000378",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK000392",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK000429",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK000504",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK000518",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK001195",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 35
+      },
+      {
+        "sku": "VTK001207",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 35
+      },
+      {
+        "sku": "VTK001246",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK001254",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK001258",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK001264",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK001277",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK001282",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK001288",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK004115",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK004505",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK004609",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 35
+      },
+      {
+        "sku": "VTK004630",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK004693",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK004724",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK005382",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK005397",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK005411",
+        "supplier": "Hayamax",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK012281",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK012282",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK012283",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK012297",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK012301",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK012304",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK012310",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK012319",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK012320",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK012321",
+        "supplier": "BKR1",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK017240",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017241",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017242",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017243",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017248",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017252",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017259",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017260",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017261",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017262",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017263",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017278",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017279",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017297",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017336",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017353",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017366",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017369",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017374",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017376",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017378",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017384",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017400",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017401",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017402",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017403",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017408",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017410",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017435",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017436",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 45
+      },
+      {
+        "sku": "VTK017504",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017505",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017506",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017507",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017508",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017523",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017600",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017625",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017629",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017630",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK017633",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017636",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK017637",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK017651",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017666",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK017668",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017789",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 50
+      },
+      {
+        "sku": "VTK017803",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017814",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 60
+      },
+      {
+        "sku": "VTK017827",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      },
+      {
+        "sku": "VTK017840",
+        "supplier": "Evolusom",
+        "reason": "identidade_oficial_inconclusiva",
+        "score": 40
+      }
+    ],
+    "P0_MANUAL_IMAGE": [
+      {
+        "sku": "VTK001286",
+        "supplier": "Hayamax",
+        "reason": "imagem_ausente_invalida_ou_inconclusiva",
+        "score": 65
+      }
+    ],
+    "P0_MANUAL_TECH": [
+      {
+        "sku": "VTK000486",
+        "supplier": "Hayamax",
+        "reason": "validacao_tecnica_reforcada_incompleta",
+        "score": 70
+      },
+      {
+        "sku": "VTK005426",
+        "supplier": "Hayamax",
+        "reason": "atributos_obrigatorios_incompletos",
+        "score": 80
+      },
+      {
+        "sku": "VTK017799",
+        "supplier": "Evolusom",
+        "reason": "atributos_obrigatorios_incompletos",
+        "score": 90
+      }
+    ],
+    "P0_API_ERROR": [
+      {
+        "sku": "VTK000533",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000540",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000552",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000568",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000572",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000619",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000779",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000799",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000809",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000831",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK000949",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001007",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001011",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001039",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001057",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001063",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001075",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001077",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001089",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001109",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001119",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001137",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001155",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001156",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001165",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001173",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001187",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001291",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001297",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001303",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001325",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001336",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001343",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001379",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001390",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001439",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001485",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001507",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001572",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001643",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001732",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001762",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001834",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001863",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001875",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001897",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK001978",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK002141",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK002437",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK002521",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK002528",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK002577",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK002625",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK003043",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK003134",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK003366",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK003511",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK003779",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK003839",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK004022",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK005491",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK005775",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006152",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006158",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006192",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006193",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006274",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006318",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006377",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006444",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006457",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK006567",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK011959",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK011960",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012014",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012016",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012018",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012022",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012039",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012040",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012148",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012233",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012235",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012236",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012237",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012248",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012267",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012275",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012327",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012335",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012336",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012337",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012359",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012362",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012369",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012383",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012384",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012408",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012420",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012421",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012422",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012470",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012502",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012543",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012590",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012613",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012628",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012632",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012668",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012669",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012670",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012684",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012687",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012699",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012729",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012763",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012764",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012765",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012772",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012839",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012842",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012861",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012864",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012865",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012866",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012869",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012895",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012896",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012909",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK012911",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK013007",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK013008",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK013085",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK013087",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK013088",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017155",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017179",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017202",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017210",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017211",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017215",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017233",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017234",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017235",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017236",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017524",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017531",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017538",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017548",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017562",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017567",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017698",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017740",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017771",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017783",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017826",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017848",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017866",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017869",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017898",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017902",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017903",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017933",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017934",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017936",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017939",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017942",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017944",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017951",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017952",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK017981",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK017982",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018024",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018064",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018077",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018079",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018102",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018106",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018111",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018113",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018128",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018129",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018134",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018139",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018170",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018197",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018199",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018201",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018221",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018228",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018269",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018277",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018279",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018292",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018293",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018297",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018304",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018306",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018338",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018347",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018351",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018353",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018354",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018382",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018387",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018397",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018403",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018422",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018423",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018428",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018434",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018435",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018446",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018447",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018449",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018450",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018454",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018460",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018461",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018462",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018467",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018472",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018473",
+        "supplier": "Evolusom",
+        "reason": "This operation was aborted",
+        "score": 0
+      },
+      {
+        "sku": "VTK018480",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018517",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018522",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018546",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018547",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018548",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018550",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018552",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018554",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018562",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018563",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018581",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018587",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018597",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018598",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018608",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018610",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018616",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018635",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018636",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018639",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018641",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018642",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018660",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018664",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018675",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018700",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018702",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018714",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018721",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018728",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018729",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018746",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018748",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018749",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018757",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018761",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018762",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018767",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018768",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018772",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018791",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018830",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018843",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018849",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018850",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018857",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018862",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018864",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018868",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK018869",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018870",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018883",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018905",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018908",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018909",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018911",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018912",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018918",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018924",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018934",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018935",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018936",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018943",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018944",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018968",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK018995",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019015",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019016",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019018",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019020",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019030",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019032",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019033",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019036",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019037",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019041",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019044",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019063",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019080",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019089",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019090",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019094",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019095",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019096",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019099",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019100",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019108",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019111",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019117",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019123",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019126",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019131",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019185",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019219",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019227",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019282",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019287",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019301",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019385",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019386",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019535",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019545",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019632",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019776",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019777",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK019952",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK020602",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK020645",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK020653",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK020654",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK020656",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK020660",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK020904",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021001",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021012",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021013",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021063",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021065",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021108",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021164",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021438",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021723",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK021891",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK022010",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK022455",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK022504",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK023153",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK023558",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK023678",
+        "supplier": "Evolusom",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025247",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025858",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025859",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025860",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025861",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025953",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025954",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025955",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025957",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025958",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025961",
+        "supplier": "Hayamax",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025996",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025997",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025998",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK025999",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026000",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026001",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026002",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026003",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026004",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026005",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026006",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026007",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026008",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026009",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026010",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026011",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026012",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026013",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026014",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026015",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026016",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026017",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026018",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026019",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026020",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026021",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026022",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026023",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026024",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026025",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026026",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026027",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026028",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026029",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_402",
+        "score": 0
+      },
+      {
+        "sku": "VTK026030",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026031",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026032",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026033",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026034",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026035",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026036",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026037",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026038",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      },
+      {
+        "sku": "VTK026039",
+        "supplier": "BKR1",
+        "reason": "firecrawl_search_http_429",
+        "score": 0
+      }
+    ]
+  },
+  "canary": {
+    "Hayamax": {
+      "go": false,
+      "sku": "VTK005426",
+      "product": "Kit Cabo Para Pedal Hayonik Linha Player 15cm Sortido Com 20",
+      "supplier": "Hayamax",
+      "stock": 8,
+      "gtin": "7899638110396",
+      "official_source": "https://hayonik.com.br/kit-cabo-para-pedal-15cm-hayonik-sortido-com-20",
+      "score": 80,
+      "title": null,
+      "price": 272.49,
+      "listing_type": "gold_pro",
+      "gross_margin": 40.8755,
+      "gross_margin_percent": 15.000733971888877,
+      "status": "P0_MANUAL_TECH",
+      "justification": "NO-GO: melhor candidato disponível não atingiu score >=95 em P0_READY."
+    },
+    "BKR1": {
+      "go": false,
+      "sku": "VTK012281",
+      "product": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+      "supplier": "BKR1",
+      "stock": 3,
+      "gtin": null,
+      "official_source": null,
+      "score": 60,
+      "title": null,
+      "price": 326.21,
+      "listing_type": "gold_special",
+      "gross_margin": 48.93819987737581,
+      "gross_margin_percent": 15.002053854074312,
+      "status": "P0_MANUAL_IDENTITY",
+      "justification": "NO-GO: melhor candidato disponível não atingiu score >=95 em P0_READY."
+    },
+    "Evolusom": {
+      "go": false,
+      "sku": "VTK017799",
+      "product": "Mouse Logitech Silent M110 Usb Preto",
+      "supplier": "Evolusom",
+      "stock": 4,
+      "gtin": "097855181138",
+      "official_source": "https://www.logitechstore.com.br/mouse-com-fio-usb-logitech-m110-preto/?srsltid=AfmBOoqv9POCk7YAvET5MTcvl6qm5_sPO7fs6HNvudx9kSkyynkPJk-o",
+      "score": 90,
+      "title": null,
+      "price": 95.44,
+      "listing_type": "gold_special",
+      "gross_margin": 20.00669957036571,
+      "gross_margin_percent": 20.96259384992216,
+      "status": "P0_MANUAL_TECH",
+      "justification": "NO-GO: melhor candidato disponível não atingiu score >=95 em P0_READY."
+    }
+  }
+}

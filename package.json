@@ -40,6 +40,12 @@
     "ml:seo-zero:apply": "node scripts/process-ml-zero-performance-seo.js --apply",
     "ml:shelf:create:dry": "ML_BATCH_MANIFEST=reports/ml-shelf-and-seo-2026-08-12/create-manifest.json ML_BATCH_RESULT_FILE=reports/ml-shelf-and-seo-2026-08-12/create-dry-run.json DRY_RUN=1 BATCH_STRICT_EVIDENCE=1 node scripts/create-ml-batch-from-manifest.js",
     "ml:shelf:create:apply": "ML_BATCH_MANIFEST=reports/ml-shelf-and-seo-2026-08-12/create-manifest.json ML_BATCH_RESULT_FILE=reports/ml-shelf-and-seo-2026-08-12/create-apply.json DRY_RUN=0 BATCH_STRICT_EVIDENCE=1 BATCH_STOP_AFTER_CONSECUTIVE_FAILURES=5 node scripts/create-ml-batch-from-manifest.js",
+    "ml:p0:audit": "node scripts/run-ml-p0-audit.js",
+    "ml:p0:sanitize": "node scripts/run-ml-p0-sanitize.js",
+    "ml:p0:phase3": "node scripts/run-ml-p0-phase3.js",
+    "test:ml-p0-audit": "node --test tests/ml-p0-audit.test.js",
+    "test:ml-p0-sanitize": "node --test tests/ml-p0-sanitize.test.js",
+    "test:ml-p0-phase3": "node --test tests/ml-p0-phase3.test.js",
     "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js",
     "test:ml-order-status": "node --test tests/ml-order-shipping-mode.test.js",
     "test:mobile-auth": "node --test tests/mobile-auth-token.test.js tests/mobile-permissions.test.js"

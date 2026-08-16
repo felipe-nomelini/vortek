@@ -1,0 +1,5 @@
+"sku_a","produto_id_a","sku_b","produto_id_b","confidence","gtin_match","model_match","supplier_match","image_match","pack_match","recommended_canonical_product","recommended_canonical_sku"
+"VTK017668","d84b7ace-189f-4ab8-8f7c-9292491e5b9c","VTK006550","8858d887-e76c-4618-964f-bd9eb9d0255b","0.98","true","true","false","false","true","8858d887-e76c-4618-964f-bd9eb9d0255b","VTK006550"
+"VTK017799","a409dfc4-18c0-431e-876e-b707ab358615","VTK001041","64cd51a1-c586-46f5-8686-40bfab655853","0.99","true","true","false","false","true","64cd51a1-c586-46f5-8686-40bfab655853","VTK001041"
+"VTK019033","f19c8241-8886-48f5-a842-2ac4093ac43d","VTK000428","412af802-d6eb-4ae6-ae92-61976d0d7198","0.96","true","true","false","false","true","412af802-d6eb-4ae6-ae92-61976d0d7198","VTK000428"
+"VTK021063","476bee08-d8ea-43db-bc1f-b07e4d59756a","VTK000459","95436bbb-f051-4bc1-89de-b0500a4047f1","0.95","true","true","false","false","true","95436bbb-f051-4bc1-89de-b0500a4047f1","VTK000459"

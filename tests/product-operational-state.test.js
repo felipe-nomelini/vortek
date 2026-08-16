@@ -24,11 +24,11 @@ test('nunca considera anúncio closed modificável', () => {
   assert.equal(isModifiableMlListingStatus('paused'), true);
 });
 
-test('lucro inclui imposto de quatro por cento', () => {
+test('lucro inclui imposto operacional de cinco por cento', () => {
   assert.equal(calculateNetProfitAtPrice({
     price: 364.13,
     cost: 215,
     shipping: 44.05,
     mlFee: 0.16,
-  }), 32.25);
+  }), 28.61);
 });

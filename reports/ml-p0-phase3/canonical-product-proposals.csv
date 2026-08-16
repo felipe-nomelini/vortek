@@ -1,0 +1,5 @@
+"sku_a","sku_b","canonical_produto_id","canonical_sku","confidence","reason","execute"
+"VTK017668","VTK006550","8858d887-e76c-4618-964f-bd9eb9d0255b","VTK006550","0.98","same_gtin_same_commercial_unit_then_sales_and_active_link_priority","false"
+"VTK017799","VTK001041","64cd51a1-c586-46f5-8686-40bfab655853","VTK001041","0.99","same_gtin_same_commercial_unit_then_sales_and_active_link_priority","false"
+"VTK019033","VTK000428","412af802-d6eb-4ae6-ae92-61976d0d7198","VTK000428","0.96","same_gtin_same_commercial_unit_then_sales_and_active_link_priority","false"
+"VTK021063","VTK000459","95436bbb-f051-4bc1-89de-b0500a4047f1","VTK000459","0.95","same_gtin_same_commercial_unit_then_sales_and_active_link_priority","false"

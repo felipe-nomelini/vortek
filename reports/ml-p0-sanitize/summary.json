@@ -1,0 +1,459 @@
+{
+  "generated_at": "2026-08-15T23:39:16.603Z",
+  "mode": "AUDIT_ONLY",
+  "source_job_id": "bbcffbd8-cf85-4a1e-9a5a-b1ee2f782c00",
+  "sanitize_run_id": "ff3758b3-7f29-4d30-a25e-e76ff4ed3cd4",
+  "population_reprocessed": {
+    "total": 408,
+    "by_supplier": {
+      "Hayamax": 77,
+      "BKR1": 111,
+      "Evolusom": 220
+    },
+    "by_state": {
+      "SOURCE_LOOKUP_DEFERRED": 251,
+      "P0_MANUAL_IDENTITY": 157
+    }
+  },
+  "infrastructure": {
+    "total_calls": 1850,
+    "cache_hits": 491,
+    "retries": 0,
+    "http_429": 0,
+    "http_402": 1,
+    "timeouts": 0,
+    "successes": 1849,
+    "failures": 1,
+    "by_service": {
+      "ml": {
+        "calls": 1441,
+        "successes": 1441,
+        "failures": 0,
+        "retries": 0,
+        "cache_hits": 491
+      },
+      "dslite": {
+        "calls": 408,
+        "successes": 408,
+        "failures": 0,
+        "retries": 0,
+        "cache_hits": 0
+      },
+      "firecrawl": {
+        "calls": 1,
+        "successes": 0,
+        "failures": 1,
+        "retries": 0,
+        "cache_hits": 0,
+        "http_402": 1
+      }
+    },
+    "calls": 1850,
+    "remote_inventory": {
+      "seller_id": "3294514937",
+      "expected_total": 5798,
+      "captured": 5798,
+      "detailed": 5798,
+      "pages": 115,
+      "statuses": {
+        "closed": 257,
+        "inactive": 5,
+        "paused": 468,
+        "active": 4910,
+        "under_review": 158
+      },
+      "reliable": true,
+      "missing_details": []
+    }
+  },
+  "sources": {
+    "SOURCE_LOOKUP_DEFERRED": 255,
+    "SOURCE_FOUND_SECONDARY": 153
+  },
+  "gtin": {
+    "GTIN_LOOKUP_BLOCKED": 175,
+    "GTIN_IDENTITY_BLOCKED": 46,
+    "GTIN_NOT_FOUND": 12,
+    "GTIN_NOT_REQUIRED": 1
+  },
+  "remote_listings": {
+    "verified": 501,
+    "found": 7,
+    "conflicts": 20,
+    "lookup_reliable": true
+  },
+  "quality": {
+    "structural_average": 90.63106796116504,
+    "documentary_scored": 157,
+    "documentary_deferred": 255,
+    "publication_average": 41.37135922330097,
+    "distributions": {
+      "structural": {
+        "0-69": 0,
+        "70-84": 35,
+        "85-94": 206,
+        "95-100": 171
+      },
+      "documentary": {
+        "deferred": 255,
+        "0-69": 154,
+        "70-84": 0,
+        "85-94": 0,
+        "95-100": 3
+      },
+      "publication": {
+        "0-69": 402,
+        "70-84": 9,
+        "85-94": 1,
+        "95-100": 0
+      }
+    }
+  },
+  "candidates": [
+    {
+      "sku": "VTK017799",
+      "status": "P0_MANUAL_IDENTITY",
+      "block_reason": "remote_listing_exists",
+      "scores": {
+        "structural": 100,
+        "documentary": 100,
+        "publication": 85
+      },
+      "missing_attributes": [],
+      "title": "Mouse com Fio Logitech M110 Silent USB Preto"
+    },
+    {
+      "sku": "VTK005426",
+      "status": "P0_MANUAL_TECH",
+      "block_reason": "publication_requirements_incomplete",
+      "scores": {
+        "structural": 100,
+        "documentary": 100,
+        "publication": 80
+      },
+      "missing_attributes": [
+        "CABLE_AND_ADAPTER_TYPE"
+      ],
+      "title": null
+    },
+    {
+      "sku": "VTK001286",
+      "status": "P0_MANUAL_IDENTITY",
+      "block_reason": "possible_remote_listing_requires_review",
+      "scores": {
+        "structural": 85,
+        "documentary": 0,
+        "publication": 35
+      },
+      "missing_attributes": [
+        "BACKREST_HEIGHT",
+        "SEAT_DEPTH",
+        "OFFICE_CHAIR_WIDTH",
+        "MAX_CHAIR_HEIGHT",
+        "REQUIRES_ASSEMBLY",
+        "IS_GAMER",
+        "IS_ERGONOMIC",
+        "IS_SWIVEL",
+        "INCLUDES_ASSEMBLY_MANUAL"
+      ],
+      "title": null
+    },
+    {
+      "sku": "VTK000486",
+      "status": "P0_MANUAL_TECH",
+      "block_reason": "publication_requirements_incomplete",
+      "scores": {
+        "structural": 100,
+        "documentary": 100,
+        "publication": 80
+      },
+      "missing_attributes": [
+        "PRODUCT_TYPE"
+      ],
+      "title": null
+    }
+  ],
+  "top20": [
+    {
+      "sku": "VTK017799",
+      "supplier": "Evolusom",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 4,
+      "margin": 20.00669957036571,
+      "scores": {
+        "structural": 100,
+        "documentary": 100,
+        "publication": 85
+      },
+      "remote_listing_found": true,
+      "block_reason": "remote_listing_exists"
+    },
+    {
+      "sku": "VTK000486",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_TECH",
+      "stock": 15,
+      "margin": 27.211076799865126,
+      "scores": {
+        "structural": 100,
+        "documentary": 100,
+        "publication": 80
+      },
+      "remote_listing_found": false,
+      "block_reason": "publication_requirements_incomplete"
+    },
+    {
+      "sku": "VTK005426",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_TECH",
+      "stock": 8,
+      "margin": 40.8755,
+      "scores": {
+        "structural": 100,
+        "documentary": 100,
+        "publication": 80
+      },
+      "remote_listing_found": false,
+      "block_reason": "publication_requirements_incomplete"
+    },
+    {
+      "sku": "VTK001075",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 15,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 70
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK001089",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 15,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 70
+      },
+      "remote_listing_found": false,
+      "block_reason": "possible_remote_listing_requires_review"
+    },
+    {
+      "sku": "VTK001762",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 15,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 70
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK002521",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 10,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 70
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK006457",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 7,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 70
+      },
+      "remote_listing_found": false,
+      "block_reason": "possible_remote_listing_requires_review"
+    },
+    {
+      "sku": "VTK001303",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 5,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 70
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK001297",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 4,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 70
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK017783",
+      "supplier": "Evolusom",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 25,
+      "margin": null,
+      "scores": {
+        "structural": 90,
+        "documentary": 60,
+        "publication": 60
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK011959",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 15,
+      "margin": null,
+      "scores": {
+        "structural": 90,
+        "documentary": 60,
+        "publication": 60
+      },
+      "remote_listing_found": false,
+      "block_reason": "possible_remote_listing_requires_review"
+    },
+    {
+      "sku": "VTK000809",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 12,
+      "margin": null,
+      "scores": {
+        "structural": 90,
+        "documentary": 60,
+        "publication": 60
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK001507",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 7,
+      "margin": null,
+      "scores": {
+        "structural": 90,
+        "documentary": 60,
+        "publication": 60
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK022010",
+      "supplier": "Evolusom",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 5,
+      "margin": null,
+      "scores": {
+        "structural": 90,
+        "documentary": 60,
+        "publication": 60
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK001156",
+      "supplier": "Hayamax",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 4,
+      "margin": null,
+      "scores": {
+        "structural": 90,
+        "documentary": 60,
+        "publication": 60
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK013007",
+      "supplier": "BKR1",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 100,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 55
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK013008",
+      "supplier": "BKR1",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 100,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 55
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK026000",
+      "supplier": "BKR1",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 100,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 55
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    },
+    {
+      "sku": "VTK026001",
+      "supplier": "BKR1",
+      "status": "P0_MANUAL_IDENTITY",
+      "stock": 78,
+      "margin": null,
+      "scores": {
+        "structural": 100,
+        "documentary": 60,
+        "publication": 55
+      },
+      "remote_listing_found": false,
+      "block_reason": "official_source_not_confirmed"
+    }
+  ],
+  "published": 0
+}

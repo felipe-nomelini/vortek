@@ -4,6 +4,7 @@ const test = require('node:test');
 const {
   getSyncTaskByKey,
   getScheduledTasksMissingSchedule,
+  evaluateScheduledTaskHealth,
   SYNC_TASKS,
 } = require('../src/lib/sync/registry.ts');
 
@@ -52,4 +53,36 @@ test('toda task do registry declara explicitamente seu dispatchMode', () => {
     .map((task) => task.key);
 
   assert.deepEqual(missing, []);
+});
+
+test('falha ao consultar histórico adia diagnóstico sem acusar task parada', () => {
+  assert.deepEqual(evaluateScheduledTaskHealth({
+    intervalMinutes: 2,
+    lastRunAt: null,
+    lookupFailed: true,
+    nowMs: Date.parse('2026-08-16T01:30:00Z'),
+  }), {
+    state: 'deferred',
+    minutesSinceLastRun: null,
+    staleThresholdMinutes: 30,
+  });
+});
+
+test('consulta válida distingue job recente, ausente e atrasado', () => {
+  const nowMs = Date.parse('2026-08-16T01:30:00Z');
+  assert.equal(evaluateScheduledTaskHealth({
+    intervalMinutes: 2,
+    lastRunAt: '2026-08-16T01:25:00Z',
+    nowMs,
+  }).state, 'healthy');
+  assert.equal(evaluateScheduledTaskHealth({
+    intervalMinutes: 2,
+    lastRunAt: null,
+    nowMs,
+  }).state, 'stale');
+  assert.equal(evaluateScheduledTaskHealth({
+    intervalMinutes: 2,
+    lastRunAt: '2026-08-16T00:59:59Z',
+    nowMs,
+  }).state, 'stale');
 });

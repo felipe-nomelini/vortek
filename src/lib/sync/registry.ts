@@ -256,6 +256,39 @@ export function getScheduledTasksMissingSchedule(): SyncTaskDefinition[] {
   return SYNC_TASKS.filter((task) => task.dispatchMode === 'scheduled' && !task.schedule);
 }
 
+export type ScheduledTaskHealth = {
+  state: 'healthy' | 'stale' | 'deferred';
+  minutesSinceLastRun: number | null;
+  staleThresholdMinutes: number;
+};
+
+export function evaluateScheduledTaskHealth(input: {
+  intervalMinutes: number;
+  lastRunAt: string | null;
+  lookupFailed?: boolean;
+  nowMs?: number;
+}): ScheduledTaskHealth {
+  const staleThresholdMinutes = Math.max(input.intervalMinutes * 6, 30);
+  if (input.lookupFailed) {
+    return { state: 'deferred', minutesSinceLastRun: null, staleThresholdMinutes };
+  }
+  if (!input.lastRunAt) {
+    return { state: 'stale', minutesSinceLastRun: null, staleThresholdMinutes };
+  }
+
+  const lastRunMs = new Date(input.lastRunAt).getTime();
+  if (!Number.isFinite(lastRunMs)) {
+    return { state: 'deferred', minutesSinceLastRun: null, staleThresholdMinutes };
+  }
+
+  const minutesSinceLastRun = ((input.nowMs ?? Date.now()) - lastRunMs) / 60000;
+  return {
+    state: minutesSinceLastRun > staleThresholdMinutes ? 'stale' : 'healthy',
+    minutesSinceLastRun,
+    staleThresholdMinutes,
+  };
+}
+
 export function getSaoPauloHour(): number {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: 'America/Sao_Paulo',

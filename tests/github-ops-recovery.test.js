@@ -60,3 +60,40 @@ test('comenta e fecha somente issues abertas de integração recuperada', async 
     state_reason: 'completed',
   });
 });
+
+test('fecha somente alertas stale das tasks comprovadamente recuperadas', async () => {
+  process.env.GITHUB_OPS_TOKEN = 'test-token';
+  process.env.GITHUB_OWNER = 'owner';
+  process.env.GITHUB_REPO = 'repo';
+
+  const calls = [];
+  global.fetch = async (url, options = {}) => {
+    calls.push({ url: String(url), method: options.method || 'GET', body: options.body });
+    if ((options.method || 'GET') === 'GET') {
+      return {
+        ok: true,
+        text: async () => JSON.stringify([
+          { number: 20, body: 'vortek-fingerprint:critical_error:sync_schedule_stale:sync_dslite_preco_estoque', state: 'open' },
+          { number: 21, body: 'vortek-fingerprint:critical_error:sync_schedule_stale:sync_dslite_catalogo', state: 'open' },
+          { number: 22, body: 'vortek-fingerprint:critical_error:job_error:sync_dslite_preco_estoque', state: 'open' },
+        ]),
+      };
+    }
+    return {
+      ok: true,
+      text: async () => JSON.stringify({ html_url: 'https://example.test/issue/20' }),
+    };
+  };
+
+  const { resolveRecoveredScheduledTaskOpsIssues } = require('../src/services/github-ops.ts');
+  const result = await resolveRecoveredScheduledTaskOpsIssues(
+    ['sync_dslite_preco_estoque'],
+    'Recuperado.',
+  );
+
+  assert.deepEqual(result, { resolved: 1 });
+  assert.equal(calls.length, 3);
+  assert.match(calls[1].url, /issues\/20\/comments$/);
+  assert.match(String(calls[1].body), /sync_dslite_preco_estoque/);
+  assert.match(calls[2].url, /issues\/20$/);
+});

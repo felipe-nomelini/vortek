@@ -1,0 +1,688 @@
+{
+  "generated_at": "2026-08-16T01:24:29.846Z",
+  "mode": "AUDIT_ONLY",
+  "source_sanitize_run_id": "ff3758b3-7f29-4d30-a25e-e76ff4ed3cd4",
+  "phase3_run_id": "ef1e08c5-7b6d-40b7-9814-469410c8e735",
+  "population_hash": "fc73a35ce3482f4f0d7b3dbb12673039b2250d1d5f8c06cb403133d63cb881a5",
+  "targets": {
+    "exact_skus": 7,
+    "possible_skus": 20,
+    "total_unique": 29
+  },
+  "remote_inventory": {
+    "seller_id": "3294514937",
+    "expected_total": 5798,
+    "captured": 5798,
+    "detailed": 5798,
+    "pages": 115,
+    "reliable": true
+  },
+  "remote_match_distribution": {
+    "EXACT_MATCH": 5,
+    "STRONG_MATCH": 0,
+    "CATALOG_MATCH": 0,
+    "VARIATION_MATCH": 0,
+    "DUPLICATE_REMOTE": 4,
+    "WRONG_LOCAL_LINK": 0,
+    "POSSIBLE_MATCH": 0,
+    "NOT_MATCH": 92
+  },
+  "local_duplicates": 4,
+  "canonical_proposals": 4,
+  "recommended_actions": {
+    "LINK_EXISTING": 0,
+    "BLOCK_DUPLICATE": 4,
+    "MANUAL_LINK_REVIEW": 0,
+    "READY_FOR_CREATE": 1,
+    "MANUAL_IDENTITY": 18,
+    "MANUAL_TECH": 1,
+    "MANUAL_IMAGE": 0,
+    "CATEGORY_MISMATCH": 1,
+    "SOURCE_DEFERRED": 4
+  },
+  "priority_cases": {
+    "VTK017799": {
+      "action": "BLOCK_DUPLICATE",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 100,
+        "documentation_score": 100,
+        "publication_readiness": 85,
+        "duplicate_risk": 100
+      },
+      "diagnosis": null
+    },
+    "VTK005426": {
+      "action": "MANUAL_TECH",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 100,
+        "publication_readiness": 80,
+        "duplicate_risk": 0
+      },
+      "diagnosis": {
+        "evidence": {
+          "url": "https://hayonik.com.br/kit-cabo-para-pedal-15cm-hayonik-sortido-com-20",
+          "excerpt": "Especificações: Conector L/L; Embalagem com 20; Comprimento 15cm; EAN 7899638110396.",
+          "conclusion": "L/L confirma formato angular nas duas extremidades, mas não confirma bitola/padrão P10.",
+          "consulted_at": "2026-08-16T01:24:29.141Z",
+          "source_type": "manufacturer_official"
+        },
+        "attribute": "CABLE_AND_ADAPTER_TYPE",
+        "official_value": null,
+        "ml_catalog_value": "P10",
+        "conclusion": "P0_MANUAL_TECH",
+        "reason": "official_source_only_confirms_L_L_not_P10"
+      }
+    },
+    "VTK000486": {
+      "action": "READY_FOR_CREATE",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 100,
+        "publication_readiness": 95,
+        "duplicate_risk": 0
+      },
+      "diagnosis": {
+        "evidence": {
+          "url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+          "excerpt": "Carregador de Pilhas TNHC-6GAE4 CB carrega até quatro pilhas AA/AAA e não carrega baterias 9V.",
+          "conclusion": "PRODUCT_TYPE=Pilha possui suporte oficial; valor Bateria do catálogo ML é divergência semântica do catálogo.",
+          "consulted_at": "2026-08-16T01:24:29.762Z",
+          "source_type": "manufacturer_official"
+        },
+        "category": {
+          "id": "MLB11290",
+          "name": "Carregadores de Pilhas",
+          "picture": null,
+          "permalink": null,
+          "total_items_in_this_category": 9593,
+          "path_from_root": [
+            {
+              "id": "MLB1000",
+              "name": "Eletrônicos, Áudio e Vídeo"
+            },
+            {
+              "id": "MLB4900",
+              "name": "Pilhas e Carregadores"
+            },
+            {
+              "id": "MLB11290",
+              "name": "Carregadores de Pilhas"
+            }
+          ],
+          "children_categories": [],
+          "attribute_types": "variations",
+          "settings": {
+            "adult_content": false,
+            "buying_allowed": true,
+            "buying_modes": [
+              "auction",
+              "buy_it_now"
+            ],
+            "catalog_domain": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS",
+            "coverage_areas": "not_allowed",
+            "currencies": [
+              "BRL"
+            ],
+            "fragile": false,
+            "immediate_payment": "required",
+            "item_conditions": [
+              "not_specified",
+              "used",
+              "new"
+            ],
+            "items_reviews_allowed": false,
+            "listing_allowed": true,
+            "max_description_length": 50000,
+            "max_pictures_per_item": 12,
+            "max_pictures_per_item_var": 10,
+            "max_sub_title_length": 70,
+            "max_title_length": 60,
+            "max_variations_allowed": 100,
+            "maximum_price": null,
+            "maximum_price_currency": "BRL",
+            "minimum_price": 0,
+            "minimum_price_currency": "BRL",
+            "mirror_category": null,
+            "mirror_master_category": null,
+            "mirror_slave_categories": [],
+            "price": "required",
+            "reservation_allowed": "not_allowed",
+            "restrictions": [],
+            "rounded_address": false,
+            "seller_contact": "not_allowed",
+            "shipping_options": [
+              "custom",
+              "carrier"
+            ],
+            "shipping_profile": "optional",
+            "show_contact_information": false,
+            "simple_shipping": "optional",
+            "stock": "required",
+            "sub_vertical": null,
+            "subscribable": false,
+            "tags": [],
+            "vertical": null,
+            "vip_subdomain": "produto",
+            "buyer_protection_programs": [
+              "delivered",
+              "undelivered"
+            ],
+            "status": "enabled"
+          },
+          "channels_settings": [
+            {
+              "channel": "mshops",
+              "settings": {
+                "minimum_price": 0
+              }
+            },
+            {
+              "channel": "proximity",
+              "settings": {
+                "status": "disabled"
+              }
+            },
+            {
+              "channel": "mp-merchants",
+              "settings": {
+                "buying_modes": [
+                  "buy_it_now"
+                ],
+                "immediate_payment": "required",
+                "minimum_price": 0.01,
+                "status": "enabled"
+              }
+            },
+            {
+              "channel": "mp-link",
+              "settings": {
+                "buying_modes": [
+                  "buy_it_now"
+                ],
+                "immediate_payment": "required",
+                "minimum_price": 0.01,
+                "status": "enabled"
+              }
+            }
+          ],
+          "meta_categ_id": null,
+          "attributable": false,
+          "date_created": "2018-04-25T08:12:56.000Z"
+        },
+        "predictions": [
+          {
+            "domain_id": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS",
+            "domain_name": "Carregadores de baterias e pilhas",
+            "category_id": "MLB11290",
+            "category_name": "Carregadores de Pilhas",
+            "attributes": []
+          },
+          {
+            "domain_id": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS",
+            "domain_name": "Carregadores de baterias e pilhas",
+            "category_id": "MLB459613",
+            "category_name": "Carregadores para Bicicletas",
+            "attributes": []
+          }
+        ],
+        "current_domain": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS",
+        "selected_attribute": {
+          "id": "PRODUCT_TYPE",
+          "value_id": "28280064",
+          "value_name": "Pilha",
+          "source": "manufacturer_official"
+        },
+        "ml_catalog_value": "Bateria",
+        "category_mismatch": false,
+        "conclusion": "READY_FOR_CREATE",
+        "alternative_category": null
+      }
+    },
+    "VTK001286": {
+      "action": "CATEGORY_MISMATCH",
+      "scores": {
+        "identity_confidence": 45,
+        "remote_match_confidence": 0,
+        "documentation_score": 100,
+        "publication_readiness": 20,
+        "duplicate_risk": 0
+      },
+      "diagnosis": {
+        "evidence": {
+          "url": "https://loja.thunderx3.com.br/assento-para-cadeira-tgc12-preto-vermelho-thunderx3",
+          "excerpt": "Peça de reposição Assento TGC12 Preto/Vermelho; referência 66215; EAN 7890000662154; modelo TGC12; material courino.",
+          "conclusion": "Produto é peça de reposição. EAN oficial diverge do GTIN local 7890000785495; categoria de cadeira completa é incompatível.",
+          "consulted_at": "2026-08-16T01:24:29.762Z",
+          "source_type": "manufacturer_official"
+        },
+        "local_gtin": "7890000785495",
+        "official_gtin": "7890000662154",
+        "official_reference": "66215",
+        "product_type": "replacement_seat",
+        "category_mismatch": true,
+        "current_category": {
+          "category_id": "MLB193945",
+          "domain_id": "MLB-OFFICE_CHAIRS",
+          "category_name": "Cadeiras para Escritório",
+          "catalog_product_id": null,
+          "catalog_attributes": [],
+          "method": "title_predictor",
+          "validated": true
+        },
+        "remote_candidates": [
+          {
+            "item_id": "MLB4880559807",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7096943296",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB4847281703",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB4847280021",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB4847280759",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7111544660",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7111544644",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB4857481707",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7145211172",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB4880525789",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7298177102",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7298177206",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7316880274",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7316879806",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          },
+          {
+            "item_id": "MLB7330398912",
+            "match_type": "NOT_MATCH",
+            "confidence": 0
+          }
+        ],
+        "conclusion": "CATEGORY_MISMATCH",
+        "quarantine": true
+      }
+    }
+  },
+  "top20": [
+    {
+      "sku": "VTK000486",
+      "produto": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": 27.211076799865126,
+      "recommended_action": "READY_FOR_CREATE",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 100,
+        "publication_readiness": 95,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK019033",
+      "produto": "Combo Teclado E Mouse Wireless Logitech Mk220 Usb Preto Sem Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "estoque": 50,
+      "margem": null,
+      "recommended_action": "BLOCK_DUPLICATE",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 100,
+        "documentation_score": 60,
+        "publication_readiness": 40,
+        "duplicate_risk": 100
+      }
+    },
+    {
+      "sku": "VTK021063",
+      "produto": "Combo Teclado E Mouse Wireless Logitech Mk235 Compact Usb Preto Sem Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "estoque": 20,
+      "margem": null,
+      "recommended_action": "BLOCK_DUPLICATE",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 95,
+        "documentation_score": 60,
+        "publication_readiness": 40,
+        "duplicate_risk": 100
+      }
+    },
+    {
+      "sku": "VTK017668",
+      "produto": "Combo Teclado E Mouse Logitech Mk120 Usb Preto Com Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "estoque": 11,
+      "margem": null,
+      "recommended_action": "BLOCK_DUPLICATE",
+      "scores": {
+        "identity_confidence": 95,
+        "remote_match_confidence": 95,
+        "documentation_score": 0,
+        "publication_readiness": 0,
+        "duplicate_risk": 100
+      }
+    },
+    {
+      "sku": "VTK017799",
+      "produto": "Mouse Logitech Silent M110 Usb Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "estoque": 4,
+      "margem": 20.00669957036571,
+      "recommended_action": "BLOCK_DUPLICATE",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 100,
+        "documentation_score": 100,
+        "publication_readiness": 85,
+        "duplicate_risk": 100
+      }
+    },
+    {
+      "sku": "VTK005426",
+      "produto": "Kit Cabo Para Pedal Hayonik Linha Player 15cm Sortido Com 20",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 8,
+      "margem": 40.8755,
+      "recommended_action": "MANUAL_TECH",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 100,
+        "publication_readiness": 80,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK001286",
+      "produto": "Assento p/ Cadeira TGC12 Preto/Vermelho ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 8,
+      "margem": 50.94189988221436,
+      "recommended_action": "CATEGORY_MISMATCH",
+      "scores": {
+        "identity_confidence": 45,
+        "remote_match_confidence": 0,
+        "documentation_score": 100,
+        "publication_readiness": 20,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK012362",
+      "produto": "Palheta Tradicional 2,5 P/clarinete Sib Cr102,5 Vandoren Un",
+      "fornecedor": "BKR1",
+      "estoque": 18,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 2,
+        "documentation_score": 60,
+        "publication_readiness": 40,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK001572",
+      "produto": "Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 25,
+        "documentation_score": 60,
+        "publication_readiness": 40,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK001978",
+      "produto": "Encordoamento Para Violão .010 Extra Light Phosphor Bronze Nanoweb 16002 Elixir",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 11,
+        "documentation_score": 60,
+        "publication_readiness": 40,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK000799",
+      "produto": "Cadeira Gamer ThunderX3 TGC12 Loft Cinza",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 55,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK001089",
+      "produto": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Preto/Turtle",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 70,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK003043",
+      "produto": "Cadeira Gamer Fortrek Cruiser Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 55,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK006444",
+      "produto": "Espremedor de Frutas Arno Express CP32 40W 750ml Vermelho 220V",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 55,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK011959",
+      "produto": "Apoio de Braço Direito Ergo One Fortrek",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 90,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 60,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK025858",
+      "produto": "Cadeira Gamer Fortrek Vickers Preta",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 55,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK025859",
+      "produto": "Cadeira Gamer Fortrek Vickers Preta/Vermelha",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 55,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK025860",
+      "produto": "Cadeira Gamer Fortrek Vickers Preta/Verde",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 55,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK025861",
+      "produto": "Cadeira Gamer Fortrek Vickers Preta/Rosa",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 100,
+        "remote_match_confidence": 0,
+        "documentation_score": 60,
+        "publication_readiness": 55,
+        "duplicate_risk": 0
+      }
+    },
+    {
+      "sku": "VTK000378",
+      "produto": "Cadeira Ergonômica ThunderX3 Yama1 Ciano",
+      "fornecedor": "HAYAMAX-PR",
+      "estoque": 15,
+      "margem": null,
+      "recommended_action": "MANUAL_IDENTITY",
+      "scores": {
+        "identity_confidence": 0,
+        "remote_match_confidence": 0,
+        "documentation_score": 0,
+        "publication_readiness": 0,
+        "duplicate_risk": 0
+      }
+    }
+  ],
+  "invariants": {
+    "commercial_link_hash_before": "419d23483e5bd7200a131653f588e2feff2d74db6c5f2fc043ff0be94def532d",
+    "commercial_link_hash_after": "419d23483e5bd7200a131653f588e2feff2d74db6c5f2fc043ff0be94def532d",
+    "produtos_ml_item_id_writes": 0,
+    "anuncios_ml_writes": 0,
+    "mercado_livre_writes": 0,
+    "published": 0
+  },
+  "infrastructure": {
+    "calls": 448,
+    "successes": 448,
+    "failures": 0,
+    "cache_hits": 0,
+    "by_service": {
+      "ml": {
+        "calls": 419,
+        "successes": 419,
+        "failures": 0,
+        "cache_hits": 0
+      },
+      "dslite": {
+        "calls": 29,
+        "successes": 29,
+        "failures": 0,
+        "cache_hits": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "Hayamax": {
+    "go": false,
+    "sku": "VTK005426",
+    "product": "Kit Cabo Para Pedal Hayonik Linha Player 15cm Sortido Com 20",
+    "supplier": "Hayamax",
+    "stock": 8,
+    "gtin": "7899638110396",
+    "official_source": "https://hayonik.com.br/kit-cabo-para-pedal-15cm-hayonik-sortido-com-20",
+    "score": 80,
+    "title": null,
+    "price": 272.49,
+    "listing_type": "gold_pro",
+    "gross_margin": 40.8755,
+    "gross_margin_percent": 15.000733971888877,
+    "status": "P0_MANUAL_TECH",
+    "justification": "NO-GO: melhor candidato disponível não atingiu score >=95 em P0_READY."
+  },
+  "BKR1": {
+    "go": false,
+    "sku": "VTK012281",
+    "product": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+    "supplier": "BKR1",
+    "stock": 3,
+    "gtin": null,
+    "official_source": null,
+    "score": 60,
+    "title": null,
+    "price": 326.21,
+    "listing_type": "gold_special",
+    "gross_margin": 48.93819987737581,
+    "gross_margin_percent": 15.002053854074312,
+    "status": "P0_MANUAL_IDENTITY",
+    "justification": "NO-GO: melhor candidato disponível não atingiu score >=95 em P0_READY."
+  },
+  "Evolusom": {
+    "go": false,
+    "sku": "VTK017799",
+    "product": "Mouse Logitech Silent M110 Usb Preto",
+    "supplier": "Evolusom",
+    "stock": 4,
+    "gtin": "097855181138",
+    "official_source": "https://www.logitechstore.com.br/mouse-com-fio-usb-logitech-m110-preto/?srsltid=AfmBOoqv9POCk7YAvET5MTcvl6qm5_sPO7fs6HNvudx9kSkyynkPJk-o",
+    "score": 90,
+    "title": null,
+    "price": 95.44,
+    "listing_type": "gold_special",
+    "gross_margin": 20.00669957036571,
+    "gross_margin_percent": 20.96259384992216,
+    "status": "P0_MANUAL_TECH",
+    "justification": "NO-GO: melhor candidato disponível não atingiu score >=95 em P0_READY."
+  }
+}

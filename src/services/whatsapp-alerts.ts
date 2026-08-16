@@ -19,11 +19,13 @@ import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import {
   createOrUpdateOpsIssue,
   resolveOpenIntegrationOpsIssues,
+  resolveRecoveredScheduledTaskOpsIssues,
 } from "@/services/github-ops";
 import { isMlOrderPaid } from "@/lib/ml/order-sale-alert";
 import { decideCriticalJobAlert } from "@/lib/sync/critical-job-alert";
 import {
   SYNC_TASKS,
+  evaluateScheduledTaskHealth,
   getIntervalMinutesForTask,
   getSaoPauloHour,
 } from "@/lib/sync/registry";
@@ -833,6 +835,8 @@ export async function alertStaleScheduledTasks() {
 
   let checked = 0;
   let alerted = 0;
+  let deferred = 0;
+  const healthyTaskKeys: string[] = [];
 
   for (const task of scheduledTasks) {
     checked += 1;
@@ -858,7 +862,7 @@ export async function alertStaleScheduledTasks() {
     const intervalMinutes = getIntervalMinutesForTask(task, hour);
     if (!intervalMinutes || intervalMinutes <= 0) continue;
 
-    const { data: last } = await client
+    const { data: last, error: lookupError } = await client
       .from("jobs")
       .select("created_at")
       .eq("tipo", task.jobTipo)
@@ -866,14 +870,26 @@ export async function alertStaleScheduledTasks() {
       .limit(1)
       .maybeSingle();
 
-    // Tolerância generosa (6x o intervalo, mínimo 30min) para não alertar por
-    // atrasos normais de fila/lock; o objetivo é pegar "parou de rodar", não
-    // uma execução isolada mais lenta.
-    const staleThresholdMinutes = Math.max(intervalMinutes * 6, 30);
-    const lastRunAt = last?.created_at ? new Date(last.created_at).getTime() : null;
-    const minutesSinceLastRun = lastRunAt ? (Date.now() - lastRunAt) / 60000 : null;
+    const health = evaluateScheduledTaskHealth({
+      intervalMinutes,
+      lastRunAt: last?.created_at || null,
+      lookupFailed: Boolean(lookupError),
+    });
+    if (health.state === "deferred") {
+      deferred += 1;
+      console.error("[stale-scheduled-task] consulta adiada", {
+        task: task.key,
+        code: lookupError?.code || null,
+        message: lookupError?.message || "created_at inválido",
+      });
+      continue;
+    }
+    if (health.state === "healthy") {
+      healthyTaskKeys.push(task.key);
+      continue;
+    }
 
-    if (minutesSinceLastRun === null || minutesSinceLastRun > staleThresholdMinutes) {
+    if (health.state === "stale") {
       const result = await sendWhatsappAlert({
         type: "critical_error",
         severity: "critical",
@@ -883,23 +899,41 @@ export async function alertStaleScheduledTasks() {
         message: [
           `Task: ${task.label} (${task.key})`,
           `Esperado a cada: ${intervalMinutes} min`,
-          minutesSinceLastRun !== null
-            ? `Última execução: há ${Math.round(minutesSinceLastRun)} min`
+          health.minutesSinceLastRun !== null
+            ? `Última execução: há ${Math.round(health.minutesSinceLastRun)} min`
             : "Última execução: nenhum job encontrado para esta task",
           `Link: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/dashboard`,
         ].join("\n"),
         payload: {
           task: task.key,
           interval_minutes: intervalMinutes,
-          stale_threshold_minutes: staleThresholdMinutes,
-          minutes_since_last_run: minutesSinceLastRun,
+          stale_threshold_minutes: health.staleThresholdMinutes,
+          minutes_since_last_run: health.minutesSinceLastRun,
         },
       });
       alerted += result.sent > 0 ? 1 : 0;
     }
   }
 
-  return { checked, alerted };
+  let githubIssuesResolved = 0;
+  if (
+    healthyTaskKeys.length > 0 &&
+    String(process.env.GITHUB_OPS_TOKEN || process.env.GITHUB_TOKEN || "").trim()
+  ) {
+    const recovery = await resolveRecoveredScheduledTaskOpsIssues(
+      healthyTaskKeys,
+      [
+        "Recuperação da task confirmada automaticamente.",
+        `- Verificado em: ${new Date().toISOString()}`,
+      ].join("\n"),
+    ).catch((error: any) => {
+      console.error("[stale-scheduled-task] falha ao resolver issues", error?.message || error);
+      return { resolved: 0 };
+    });
+    githubIssuesResolved = recovery.resolved;
+  }
+
+  return { checked, alerted, deferred, githubIssuesResolved };
 }
 
 export async function sendSalesReport(

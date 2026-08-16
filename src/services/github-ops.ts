@@ -242,3 +242,40 @@ export async function resolveOpenIntegrationOpsIssues(message: string) {
 
   return { resolved };
 }
+
+export async function resolveRecoveredScheduledTaskOpsIssues(
+  taskKeys: string[],
+  message: string,
+) {
+  const cleanTaskKeys = Array.from(new Set(taskKeys.map((key) => String(key).trim()).filter(Boolean)));
+  if (!cleanTaskKeys.length) return { resolved: 0 };
+
+  const { owner, repo } = getGitHubConfig();
+  const labels = encodeURIComponent('ops:error,alert:critical_error');
+  const issues = await githubRequest<GitHubIssue[]>(
+    `/repos/${owner}/${repo}/issues?state=open&labels=${labels}&per_page=100`,
+  );
+  let resolved = 0;
+
+  for (const issue of issues) {
+    if (issue.pull_request) continue;
+    const taskKey = cleanTaskKeys.find((key) =>
+      String(issue.body || '').includes(
+        `vortek-fingerprint:critical_error:sync_schedule_stale:${key}`,
+      ),
+    );
+    if (!taskKey) continue;
+
+    await commentOpsIssue(issue.number, `${message}\n- Task: ${taskKey}`);
+    await githubRequest<GitHubIssue>(
+      `/repos/${owner}/${repo}/issues/${issue.number}`,
+      {
+        method: 'PATCH',
+        body: { state: 'closed', state_reason: 'completed' },
+      },
+    );
+    resolved += 1;
+  }
+
+  return { resolved };
+}
