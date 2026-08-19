@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+    "supplier_category": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+    "supplier_brand": "ALMAPY",
+    "supplier_gtin": "7890000100724",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/315181",
+    "captured_at": "2026-08-17T12:54:41.118Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

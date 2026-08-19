@@ -1,0 +1,23 @@
+{
+  "index": 46,
+  "sku": "VTK006318",
+  "expected_gtin": "7898554609137",
+  "started_at": "2026-08-17T00:44:51.030Z",
+  "local_time": "2026-08-16T21:44:51",
+  "completed_at": "2026-08-17T00:44:51.069Z",
+  "elapsed_ms": 39,
+  "result": "BLOCK_IMAGE",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "local Fortrek CG633 charger has zero images",
+  "sanitation": "IMAGE_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

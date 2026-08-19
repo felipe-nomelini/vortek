@@ -1,0 +1,65 @@
+{
+  "selected": {
+    "category_id": "MLB1053",
+    "domain_id": "MLB-TELEPHONES",
+    "domain_name": "Telefones",
+    "category_name": "Telefones",
+    "category_path": [
+      "Celulares e Telefones",
+      "Telefonia Fixa e Sem Fio",
+      "Telefones"
+    ],
+    "normalized_context": "mlbtelephonestelefonesmlbtelephonescelularesetelefonestelefoniafixaesemfiotelefonestelefones"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB1053",
+        "domain_id": "MLB-TELEPHONES",
+        "domain_name": "Telefones",
+        "category_name": "Telefones",
+        "category_path": [
+          "Celulares e Telefones",
+          "Telefonia Fixa e Sem Fio",
+          "Telefones"
+        ],
+        "normalized_context": "mlbtelephonestelefonesmlbtelephonescelularesetelefonestelefoniafixaesemfiotelefonestelefones"
+      },
+      "score": 100,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB454750",
+        "domain_id": "MLB-TELEPHONES",
+        "domain_name": "Telefones",
+        "category_name": "Telefones Rurais",
+        "category_path": [
+          "Celulares e Telefones",
+          "Telefonia Fixa e Sem Fio",
+          "Telefones Rurais"
+        ],
+        "normalized_context": "mlbtelephonestelefonesmlbtelephonescelularesetelefonestelefoniafixaesemfiotelefonesruraistelefonesrurais"
+      },
+      "score": 100,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB439215",
+        "domain_id": "MLB-TELEPHONES",
+        "domain_name": "Telefones",
+        "category_name": "Telefones e Consoles",
+        "category_path": [
+          "Celulares e Telefones",
+          "Telefonia Fixa e Sem Fio",
+          "Centrais Telefônicas",
+          "Telefones e Consoles"
+        ],
+        "normalized_context": "mlbtelephonestelefonesmlbtelephonescelularesetelefonestelefoniafixaesemfiocentraistelefonicastelefoneseconsolestelefoneseconsoles"
+      },
+      "score": 100,
+      "hard_mismatch": false
+    }
+  ]
+}

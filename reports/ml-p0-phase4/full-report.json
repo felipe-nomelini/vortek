@@ -1,0 +1,4449 @@
+{
+  "generated_at": "2026-08-16T02:59:41.783Z",
+  "phase": "P0_PHASE_4A_PREPUBLISH_HOLD",
+  "mode": "PREPUBLISH_ONLY_NO_COMMERCIAL_WRITES",
+  "result": "PREPUBLISH_READY",
+  "eligible_for_human_authorization": true,
+  "sku": "VTK000486",
+  "produto_id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+  "product": {
+    "internal_name": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+    "brand": "TOSHIBA",
+    "model": "TNHC-6GAE4 CB",
+    "gtin": "4904530109270",
+    "category": {
+      "id": "MLB11290",
+      "name": "Carregadores de Pilhas",
+      "domain": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS"
+    },
+    "listing_type": "gold_pro",
+    "condition": "new",
+    "catalog_listing_desired": false,
+    "seller_custom_field": "VTK000486"
+  },
+  "title": {
+    "value": "Carregador Toshiba TNHC-6GAE4 CB Com 4 Pilhas AA 2600mAh",
+    "characters": 56,
+    "limit": 60,
+    "seo_terms": [
+      "carregador",
+      "Toshiba",
+      "TNHC-6GAE4 CB",
+      "4 pilhas AA",
+      "2600mAh"
+    ],
+    "justification": "type_brand_exact_model_included_quantity_size_capacity"
+  },
+  "description": "CARREGADOR TOSHIBA TNHC-6GAE4 CB COM 4 PILHAS AA\n\nKit para recarga de pilhas AA e AAA recarregáveis. O carregador aceita até quatro pilhas simultaneamente e acompanha quatro pilhas Toshiba AA Ni-MH de 2600 mAh.\n\nCARACTERÍSTICAS\n• Marca: Toshiba\n• Modelo do conjunto: TNHC-6GAE4 CB\n• Alimentação: bivolt automático, entrada AC de 100 a 240 V, 50/60 Hz\n• Potência de entrada indicada no produto: 6 W\n• Formatos compatíveis: pilhas recarregáveis AA e AAA\n• Composição das pilhas inclusas: Ni-MH\n• Capacidade das pilhas inclusas: 2600 mAh\n• Quantidade de posições de carga: 4\n• Indicador por LED para estados de carregamento\n\nTEMPO DE CARGA INFORMADO PELO FABRICANTE\n• AA Ni-MH 2600 mAh: aproximadamente 7 horas\n• AAA Ni-MH 950 mAh: aproximadamente 6,5 horas\n\nCONTEÚDO DA EMBALAGEM\n• 1 carregador AC Toshiba\n• 4 pilhas recarregáveis AA Toshiba 2600 mAh\n• 1 manual\n\nINFORMAÇÕES IMPORTANTES\n• Não carrega baterias de 9 V.\n• Utilize somente pilhas recarregáveis compatíveis com os formatos AA ou AAA.\n• Confira as orientações do manual antes do primeiro uso.\n\nSKU: VTK000486",
+  "inventory": {
+    "supplier_stock": 15,
+    "preferred_offer_stock": 15,
+    "product_projected_stock": 15,
+    "internal_stock": 0,
+    "pending_order_items": 0,
+    "pending_purchase_quantity": 0,
+    "kit_links": 0,
+    "effective_channel_stock": 15,
+    "quantity_to_publish": 15,
+    "calculation_rule": "supplier_live_stock_not_summed_with_internal_stock",
+    "source": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+    "checked_at": "2026-08-16T02:59:41.773Z"
+  },
+  "financial": {
+    "simulated_at": "2026-08-16T02:59:41.588Z",
+    "engine": "scripts/lib/ml-p0-audit.js#calculatePrice",
+    "listing_type_id": "gold_pro",
+    "dimensions": "17x13x12,262",
+    "cost": 96.22,
+    "stock": 15,
+    "price": 187.22,
+    "commission_policy_rate": 0.18,
+    "commission_policy_amount": 33.7,
+    "commission_ml_quote_amount": 33.7,
+    "shipping_cost": 19.85,
+    "tax_rate": 0.05,
+    "tax_amount": 9.361,
+    "other_expenses": 0,
+    "estimated_operational_profit": 28.088999999999988,
+    "estimated_operational_margin_percent": 15.003204785813477,
+    "minimum_profit": 20,
+    "target_margin_percent": 15,
+    "minimum_safety_price": 187.22,
+    "approved": true,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 33.7,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 33.7,
+        "percentage_fee": 18
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 19.85,
+          "currency_id": "BRL",
+          "billable_weight": 442,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 39.7
+          }
+        }
+      }
+    },
+    "phase3_price": 181.37,
+    "difference_vs_phase3": 5.84,
+    "current_local_price": null,
+    "difference_vs_current_local": null,
+    "buy_box_price": null,
+    "buy_box_applicable": false
+  },
+  "images": {
+    "checked_at": "2026-08-16T02:59:39.364Z",
+    "available": 10,
+    "approved": 9,
+    "rejected": 1,
+    "main_approved": true,
+    "order": [
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 26174,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": true,
+        "reason": "charger_and_four_included_aa_cells_white_background"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 20599,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "charger_and_four_included_aa_cells_angle_view"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 16525,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "charger_front_same_model"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 13055,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "integrated_ac_plug_same_charger"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 21093,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "charger_label_and_integrated_ac_plug"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 24154,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "charger_label_confirms_input_and_output"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 9420,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "integrated_ac_plug_detail"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 30752,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "retail_package_back_same_gtin_and_model"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+        "origin": "manufacturer_official_page_and_dslite",
+        "http_status": 200,
+        "final_url": "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "bytes": 37429,
+        "technically_valid": true,
+        "visually_approved": true,
+        "approved": true,
+        "main": false,
+        "reason": "retail_package_matches_gtin_model_and_four_included_cells"
+      }
+    ]
+  },
+  "attributes": {
+    "confirmed": [
+      {
+        "attribute_id": "BRAND",
+        "name": "Marca",
+        "value": "Toshiba",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Marca Toshiba",
+        "required": true,
+        "conditional": false
+      },
+      {
+        "attribute_id": "MODEL",
+        "name": "Modelo",
+        "value": "TNHC-6GAE4 CB",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Modelo TNHC-6GAE4 CB",
+        "required": true,
+        "conditional": false
+      },
+      {
+        "attribute_id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value": "Pilha",
+        "value_id": "28280064",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Produto descrito como carregador de pilhas AA/AAA; PRODUCT_TYPE=Pilha é valor permitido pela categoria ML",
+        "required": true,
+        "conditional": false
+      },
+      {
+        "attribute_id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "value": "Plug",
+        "value_id": "24420060",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Conector AC; imagens oficiais mostram plug integrado. Normalizado para valor ML Plug",
+        "required": true,
+        "conditional": false
+      },
+      {
+        "attribute_id": "GTIN",
+        "name": "Código universal de produto",
+        "value": "4904530109270",
+        "value_id": null,
+        "source": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+        "evidence": "4904530109270",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "INPUT_VOLTAGE",
+        "name": "Voltagem de entrada",
+        "value": "127/220V",
+        "value_id": "39205163",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Página informa Bivolt e etiqueta oficial informa AC 100-240 V; normalizado para valor ML 127/220V",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value": "TNHC-6GAE4 CB",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Modelo TNHC-6GAE4 CB",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "SUPPORTED_BATTERY_SIZE",
+        "name": "Tamanho de bateria suportado",
+        "value": "AA, AAA",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Compatível com pilhas recarregáveis AA/AAA",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "SUPPORTED_BATTERY_COMPOSITION",
+        "name": "Composição da bateria suportada",
+        "value": "Ni-Mh",
+        "value_id": "2516404",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Pilhas recarregáveis Toshiba Ni-MH",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "WITH_CHARGE_INDICATOR",
+        "name": "Com indicador de carga",
+        "value": "Sim",
+        "value_id": "242085",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Estados do LED publicados pelo fabricante",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "INCLUDES_CELL_BATTERIES",
+        "name": "Inclui pilhas",
+        "value": "Sim",
+        "value_id": "242085",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "A embalagem acompanha 4 pilhas recarregáveis AA 2600 mAh",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "CHARGING_PORTS_NUMBER",
+        "name": "Quantidade de portos de carga",
+        "value": "4",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Carrega até quatro pilhas ao mesmo tempo",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "BATTERIES_CHARGE_CAPACITY",
+        "name": "Capacidade de carga das baterias",
+        "value": "2600 mAh",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "4 pilhas recarregáveis AA 2600 mAh",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value": "Toshiba",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Marca Toshiba",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "MPN",
+        "name": "MPN",
+        "value": "TNHC-6GAE4 CB",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Modelo TNHC-6GAE4 CB",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "SELLER_SKU",
+        "name": "SKU",
+        "value": "VTK000486",
+        "value_id": null,
+        "source": "supabase://produtos",
+        "evidence": "VTK000486",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "value": "13 cm",
+        "value_id": null,
+        "source": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+        "evidence": "13 cm",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "value": "12 cm",
+        "value_id": null,
+        "source": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+        "evidence": "12 cm",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "value": "17 cm",
+        "value_id": null,
+        "source": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+        "evidence": "17 cm",
+        "required": false,
+        "conditional": false
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "value": "262 g",
+        "value_id": null,
+        "source": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+        "evidence": "0.262 kg",
+        "required": false,
+        "conditional": false
+      }
+    ],
+    "required": [
+      {
+        "attribute_id": "BRAND",
+        "name": "Marca",
+        "value": "Toshiba",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Marca Toshiba",
+        "required": true,
+        "conditional": false
+      },
+      {
+        "attribute_id": "MODEL",
+        "name": "Modelo",
+        "value": "TNHC-6GAE4 CB",
+        "value_id": null,
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Modelo TNHC-6GAE4 CB",
+        "required": true,
+        "conditional": false
+      },
+      {
+        "attribute_id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value": "Pilha",
+        "value_id": "28280064",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Produto descrito como carregador de pilhas AA/AAA; PRODUCT_TYPE=Pilha é valor permitido pela categoria ML",
+        "required": true,
+        "conditional": false
+      },
+      {
+        "attribute_id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "value": "Plug",
+        "value_id": "24420060",
+        "source": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "evidence": "Conector AC; imagens oficiais mostram plug integrado. Normalizado para valor ML Plug",
+        "required": true,
+        "conditional": false
+      }
+    ],
+    "conditional": [],
+    "not_applicable": [],
+    "not_sent": [
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "reason": "not_confirmed_or_not_required"
+      },
+      {
+        "id": "OUTPUT_VOLTAGE",
+        "name": "Voltagem de saída",
+        "reason": "multiple_size_specific_outputs_make_single_value_ambiguous"
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "reason": "not_confirmed_or_not_required"
+      },
+      {
+        "id": "WITH_USB_CHARGE",
+        "name": "Com carga USB",
+        "reason": "official_source_confirms_ac_connector_but_does_not_explicitly_state_no_usb"
+      },
+      {
+        "id": "OUTPUT_CURRENT",
+        "name": "Corrente de saída",
+        "reason": "multiple_size_specific_outputs_make_single_value_ambiguous"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_LABEL",
+        "name": "Etiqueta de homologação da Anatel",
+        "reason": "not_confirmed_or_not_required"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "name": "Homologação Anatel Nº",
+        "reason": "not_confirmed_or_not_required"
+      },
+      {
+        "id": "IS_KIT",
+        "name": "É kit",
+        "reason": "retail_bundle_semantics_not_safe_for_ml_kit_flag"
+      }
+    ],
+    "direct_missing": [],
+    "conditional_missing": [],
+    "conditional_endpoint_status": 200
+  },
+  "warranty": {
+    "sent": false,
+    "value": null,
+    "reason": "manufacturer_warranty_term_not_published_and_dslite_180_has_no_confirmed_unit"
+  },
+  "logistics": {
+    "mode": "me2",
+    "free_shipping": true,
+    "local_pick_up": false,
+    "source": "current_vortek_ml_creation_policy"
+  },
+  "duplicate_audit": {
+    "checked_at": "2026-08-16T02:59:39.004Z",
+    "direct_lookups": [
+      {
+        "method": "seller_sku",
+        "value": "VTK000486",
+        "status": "success",
+        "total": 0,
+        "item_ids": [],
+        "error": null
+      },
+      {
+        "method": "sku",
+        "value": "VTK000486",
+        "status": "success",
+        "total": 0,
+        "item_ids": [],
+        "error": null
+      },
+      {
+        "method": "q",
+        "value": "TNHC-6GAE4",
+        "status": "success",
+        "total": 0,
+        "item_ids": [],
+        "error": null
+      },
+      {
+        "method": "catalog_product_id",
+        "value": "MLB24107281",
+        "status": "unsupported_or_ignored",
+        "total": null,
+        "item_ids": [],
+        "error": "seller_search_parameter_ignored_by_ml_api",
+        "raw_total": 5798
+      },
+      {
+        "method": "product_identifier",
+        "value": "4904530109270",
+        "status": "unsupported_or_ignored",
+        "total": null,
+        "item_ids": [],
+        "error": "seller_search_parameter_ignored_by_ml_api",
+        "raw_total": 5798
+      }
+    ],
+    "full_inventory": {
+      "seller_id": "3294514937",
+      "expected_total": 5798,
+      "captured": 5798,
+      "detailed": 5798,
+      "pages": 115,
+      "reliable": true
+    },
+    "catalog": {
+      "id": "MLB24107281",
+      "domain_id": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS",
+      "category_id": null,
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2045",
+          "value_name": "Toshiba",
+          "values": [
+            {
+              "id": "2045",
+              "name": "Toshiba"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "20338096",
+          "value_name": "TNHC-6GAE4",
+          "values": [
+            {
+              "id": "20338096",
+              "name": "TNHC-6GAE4"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_VOLTAGE",
+          "name": "Voltagem de entrada",
+          "value_id": "39205163",
+          "value_name": "127/220V",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ]
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "20338098",
+          "value_name": "TNHC-6GAE4",
+          "values": [
+            {
+              "id": "20338098",
+              "name": "TNHC-6GAE4"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "17629167",
+          "value_name": "Bateria",
+          "values": [
+            {
+              "id": "17629167",
+              "name": "Bateria"
+            }
+          ]
+        },
+        {
+          "id": "SUPPORTED_BATTERY_SIZE",
+          "name": "Tamanho de bateria suportado",
+          "value_id": "2516393",
+          "value_name": "AA",
+          "values": [
+            {
+              "id": "2516393",
+              "name": "AA"
+            }
+          ]
+        },
+        {
+          "id": "SUPPORTED_BATTERY_COMPOSITION",
+          "name": "Composição da bateria suportada",
+          "value_id": "2516404",
+          "value_name": "Ni-Mh",
+          "values": [
+            {
+              "id": "2516404",
+              "name": "Ni-Mh"
+            }
+          ]
+        },
+        {
+          "id": "WITH_USB_CHARGE",
+          "name": "Com carga USB",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_CHARGE_INDICATOR",
+          "name": "Com indicador de carga",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "name": "Inclui pilhas",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "CHARGING_PORTS_NUMBER",
+          "name": "Quantidade de portos de carga",
+          "value_id": "4330624",
+          "value_name": "4",
+          "values": [
+            {
+              "id": "4330624",
+              "name": "4"
+            }
+          ]
+        },
+        {
+          "id": "BATTERIES_CHARGE_CAPACITY",
+          "name": "Capacidade de carga das baterias",
+          "value_id": "65964153",
+          "value_name": "2600 mAh",
+          "values": [
+            {
+              "id": "65964153",
+              "name": "2600 mAh"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "20338099",
+          "value_name": "4904530109270",
+          "values": [
+            {
+              "id": "20338099",
+              "name": "4904530109270"
+            }
+          ]
+        }
+      ],
+      "buy_box_winner": null
+    },
+    "matches": [],
+    "blocking_matches": [],
+    "duplicate_risk": 0,
+    "reliable": true
+  },
+  "local_duplicate_audit": {
+    "duplicates": [],
+    "existing_listings": []
+  },
+  "category_validation": {
+    "id": "MLB11290",
+    "name": "Carregadores de Pilhas",
+    "enabled": true,
+    "listing_allowed": true,
+    "path": [
+      {
+        "id": "MLB1000",
+        "name": "Eletrônicos, Áudio e Vídeo"
+      },
+      {
+        "id": "MLB4900",
+        "name": "Pilhas e Carregadores"
+      },
+      {
+        "id": "MLB11290",
+        "name": "Carregadores de Pilhas"
+      }
+    ]
+  },
+  "drift": {
+    "has_drift": false,
+    "checks": [
+      {
+        "field": "produto_id",
+        "live": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+        "expected": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+        "match": true
+      },
+      {
+        "field": "sku",
+        "live": "VTK000486",
+        "expected": "VTK000486",
+        "match": true
+      },
+      {
+        "field": "gtin",
+        "live": "4904530109270",
+        "expected": "4904530109270",
+        "match": true
+      },
+      {
+        "field": "estoque",
+        "live": 15,
+        "expected": 15,
+        "match": true
+      },
+      {
+        "field": "custo",
+        "live": 96.22,
+        "expected": 96.22,
+        "match": true
+      },
+      {
+        "field": "oferta_preferencial_id",
+        "live": "00fb5dbb-587b-44a2-9061-d2e9e527eb35",
+        "expected": "00fb5dbb-587b-44a2-9061-d2e9e527eb35",
+        "match": true
+      },
+      {
+        "field": "ml_item_id",
+        "live": "",
+        "expected": "",
+        "match": true
+      },
+      {
+        "field": "ml_status",
+        "live": "sem_anuncio",
+        "expected": "sem_anuncio",
+        "match": true
+      },
+      {
+        "field": "produto_ativo",
+        "live": true,
+        "expected": true,
+        "match": true
+      },
+      {
+        "field": "oferta_ativa",
+        "live": true,
+        "expected": true,
+        "match": true
+      }
+    ],
+    "live_identity_checks": [
+      {
+        "field": "gtin_product_dslite",
+        "left": "4904530109270",
+        "right": "4904530109270",
+        "match": true
+      },
+      {
+        "field": "model_dslite_official",
+        "left": "TNHC-6GAE4 CB",
+        "right": "TNHC-6GAE4 CB",
+        "match": true
+      },
+      {
+        "field": "stock_product_offer",
+        "left": 15,
+        "right": 15,
+        "match": true
+      },
+      {
+        "field": "stock_offer_dslite",
+        "left": 15,
+        "right": 15,
+        "match": true
+      },
+      {
+        "field": "cost_offer_dslite",
+        "left": 96.22,
+        "right": 96.22,
+        "match": true
+      }
+    ]
+  },
+  "scores": {
+    "identity_confidence": 100,
+    "documentation_score": 100,
+    "publication_readiness": 100,
+    "duplicate_risk": 0
+  },
+  "risks": [],
+  "hold_question": "AUTORIZAR PUBLICAÇÃO DO CANÁRIO VTK000486?",
+  "started_at": "2026-08-16T02:58:10.008Z",
+  "completed_at": "2026-08-16T02:59:41.784Z",
+  "source_runs": {
+    "phase1_job_id": "bbcffbd8-cf85-4a1e-9a5a-b1ee2f782c00",
+    "phase2_run_id": "ff3758b3-7f29-4d30-a25e-e76ff4ed3cd4",
+    "phase3_run_id": "ef1e08c5-7b6d-40b7-9814-469410c8e735",
+    "population_hash": "fc73a35ce3482f4f0d7b3dbb12673039b2250d1d5f8c06cb403133d63cb881a5"
+  },
+  "live_level0": {
+    "product": {
+      "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "nome": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+      "marca": "TOSHIBA",
+      "estoque": 15,
+      "custo": 96.22,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 0.262,
+      "peso_bruto": 0.262,
+      "largura": 13,
+      "altura": 17,
+      "profundidade": 12,
+      "gtin": "4904530109270",
+      "descricao": "O Carregador De Pilhas TNHC-6GAE4 CB carrega até quatro pilhas ao mesmo tempo nos formatos AA/AAA (Não Carrega Baterias 9v). é compatível com qualquer pilha recarregável AA/AAA, e é ideal para brinquedos, mouses, teclados, controles de vídeo games, e muito mais. Além disso, as pilhas recarregáveis TOSHIBA (Ni-Mh) oferecem conforto e desempenho robusto e duradouro. Elas são uma excelente escolha para dispositivos de média a alta capacidade, o que as tornam ideais para dispositivos digitais e de uso diário. Dependendo do uso e da aplicação, o ciclo pode atingir até 1.500 cargas/descargas. Eles são Pré-Carregada e pronta para uso, com baixa taxa de auto descarga.",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/10.jpg"
+      ],
+      "categoria": "Eletronicos / Pilhas, Baterias E Carregadores / Carregadores",
+      "ml_item_id": null,
+      "created_at": "2026-05-11T20:15:20.730635+00:00",
+      "updated_at": "2026-08-15T20:17:29.453777+00:00",
+      "dslite_fornecedor_id": "2",
+      "dslite_produto_id": "74810",
+      "dslite_ultima_sync": "2026-08-15T20:17:28.367+00:00",
+      "fornecedor": "HAYAMAX-PR",
+      "ncm": "8504.40.10",
+      "cest": null,
+      "origem_fiscal": "1",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "00fb5dbb-587b-44a2-9061-d2e9e527eb35",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "preferred_offer": {
+      "id": "00fb5dbb-587b-44a2-9061-d2e9e527eb35",
+      "produto_id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "dslite_fornecedor_id": "2",
+      "fornecedor_nome": "HAYAMAX-PR",
+      "dslite_produto_id": "74810",
+      "sku_fornecedor": "74810",
+      "custo": 96.22,
+      "estoque": 15,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "balance_account",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-08-15T20:17:28.367+00:00",
+      "created_at": "2026-06-08T18:46:40.559351+00:00",
+      "updated_at": "2026-08-15T20:17:28.417+00:00",
+      "sku_oferta": "74810",
+      "nome": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+      "descricao": "O Carregador De Pilhas TNHC-6GAE4 CB carrega até quatro pilhas ao mesmo tempo nos formatos AA/AAA (Não Carrega Baterias 9v). é compatível com qualquer pilha recarregável AA/AAA, e é ideal para brinquedos, mouses, teclados, controles de vídeo games, e muito mais. Além disso, as pilhas recarregáveis TOSHIBA (Ni-Mh) oferecem conforto e desempenho robusto e duradouro. Elas são uma excelente escolha para dispositivos de média a alta capacidade, o que as tornam ideais para dispositivos digitais e de uso diário. Dependendo do uso e da aplicação, o ciclo pode atingir até 1.500 cargas/descargas. Eles são Pré-Carregada e pronta para uso, com baixa taxa de auto descarga.",
+      "marca": "TOSHIBA",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/10.jpg"
+      ],
+      "gtin": "4904530109270",
+      "ncm": "8504.40.10",
+      "cest": null
+    },
+    "integrations": [
+      {
+        "type": "dslite",
+        "connected": true,
+        "token_expires_at": null,
+        "updated_at": "2026-05-11T19:45:48.084538+00:00"
+      },
+      {
+        "type": "mercadolivre",
+        "connected": true,
+        "token_expires_at": "2026-08-16T07:30:38.908+00:00",
+        "updated_at": "2026-08-16T01:30:38.959233+00:00"
+      }
+    ]
+  },
+  "dslite_level1": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+    "consulted_at": "2026-08-16T02:58:11.253Z",
+    "product": {
+      "produtoid": "74810",
+      "produtoid_empresa": "hyx74810",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 96.22,
+      "preco_crossdocking": 96.22,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 96.22,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+      "titulo_curto": "CARREG PILHA AC AA/AAA TOSHIBA C/4AA",
+      "categoriaid": "292350",
+      "categoria_nome": "Pilhas / Carregadores De Pilhas / Carregadores De Pilhas",
+      "abc": "A",
+      "ean11": "4904530109270",
+      "ncm": "8504.40.10",
+      "descricao": "O Carregador De Pilhas TNHC-6GAE4 CB carrega até quatro pilhas ao mesmo tempo nos formatos AA/AAA (Não Carrega Baterias 9v). é compatível com qualquer pilha recarregável AA/AAA, e é ideal para brinquedos, mouses, teclados, controles de vídeo games, e muito mais. <br/> <br/> Além disso, as pilhas recarregáveis TOSHIBA (Ni-Mh) oferecem conforto e desempenho robusto e duradouro. Elas são uma excelente escolha para dispositivos de média a alta capacidade, o que as tornam ideais para dispositivos digitais e de uso diário. Dependendo do uso e da aplicação, o ciclo pode atingir até 1.500 cargas/descargas. Eles são Pré-Carregada e pronta para uso, com baixa taxa de auto descarga.",
+      "caracteristicas": "Cor:Branca<br>Consumo de Energia:DC 2.8V<br>Led:desligado: energia conectada, mas sem bateria <br/> Led pulsante lento: Carregamento em progresso <br/> Led Fixo: totalmente carregado e alterado para carga lenta <br/> Led piscando rápido: bateria ruim<br>Alimentação:Bivolt<br>Conector:AC<br>Pesquisa:carregador|pilha|aa|aaa|toshiba<br>",
+      "informacoes": "<br/> A embalagem acompanha: <br/> • 1 carregador AC; <br/> • 4 pilhas recarregáveis AA 2600 MAh; <br/> • 1 manual. <br/> <br/> Tempo de carga: <br/> • Modelo (Ni-Mh): AA - 2600mAh - 7 horas; <br/> • Modelo (Ni-Mh): AAA - 950mAh - 6.5 horas.",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "TOSHIBA",
+      "modelo": "TNHC-6GAE4 CB",
+      "peso": 0.262,
+      "largura": 13,
+      "altura": 17,
+      "profundidade": 12,
+      "peso_embalagem": 0.262,
+      "largura_embalagem": 13,
+      "altura_embalagem": 17,
+      "profundidade_embalagem": 12,
+      "link": "http://www.hayamax.com.br/carregador-de-pilhas-tnhc-6gae4-cb-c-4-pilhas-aa-2600mah-toshiba",
+      "link_imagem": "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 180,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 5,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 3600,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": "",
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 16:51:08.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 5179,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/7.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "8",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/8.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "9",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/9.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "10",
+          "valor": "https://static.hayapek.com.br/produtos/74810/550/10.jpg"
+        }
+      ]
+    }
+  },
+  "manufacturer_level2": {
+    "url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+    "domain": "www.toshibaenergia.com.br",
+    "source_type": "manufacturer_official_product_page",
+    "consulted_at": "2026-08-16T02:58:11.321Z",
+    "checks": [
+      {
+        "field": "gtin",
+        "confirmed": true,
+        "excerpt": "EAN/GTIN 4904530109270"
+      },
+      {
+        "field": "model",
+        "confirmed": true,
+        "excerpt": "Modelo TNHC-6GAE4 CB"
+      },
+      {
+        "field": "brand",
+        "confirmed": true,
+        "excerpt": "Marca Toshiba"
+      },
+      {
+        "field": "supported_sizes",
+        "confirmed": true,
+        "excerpt": "Carrega pilhas recarregáveis AA/AAA"
+      },
+      {
+        "field": "composition",
+        "confirmed": true,
+        "excerpt": "Pilhas recarregáveis Ni-MH"
+      },
+      {
+        "field": "included_capacity",
+        "confirmed": true,
+        "excerpt": "Quatro pilhas AA de 2600 mAh"
+      },
+      {
+        "field": "included_batteries",
+        "confirmed": true,
+        "excerpt": "Inclui quatro pilhas recarregáveis AA"
+      },
+      {
+        "field": "charging_ports",
+        "confirmed": true,
+        "excerpt": "Carrega até quatro pilhas simultaneamente"
+      },
+      {
+        "field": "charge_indicator",
+        "confirmed": true,
+        "excerpt": "LED informa carregamento, carga completa e bateria inválida"
+      },
+      {
+        "field": "input_voltage",
+        "confirmed": true,
+        "excerpt": "Página informa bivolt; imagem oficial 6 mostra entrada AC 100-240 V, 50-60 Hz, 6 W"
+      },
+      {
+        "field": "connector_type",
+        "confirmed": true,
+        "excerpt": "Conector AC e plug integrado visível nas imagens oficiais"
+      },
+      {
+        "field": "package_contents",
+        "confirmed": true,
+        "excerpt": "1 carregador AC, 4 pilhas AA 2600 mAh e 1 manual"
+      }
+    ],
+    "warranty": {
+      "confirmed": false,
+      "reason": "manufacturer_page_does_not_publish_warranty_term"
+    }
+  },
+  "category_schema": [
+    {
+      "id": "BRAND",
+      "name": "Marca",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "15375",
+          "name": "Energizer"
+        },
+        {
+          "id": "232",
+          "name": "Sanyo"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+    },
+    {
+      "id": "MODEL",
+      "name": "Modelo",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ALPHANUMERIC_MODEL",
+      "name": "Modelo alfanumérico",
+      "tags": {},
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "É um código que combina letras e números. Você pode encontrá-lo na embalagem ou na documentação do produto.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INPUT_VOLTAGE",
+      "name": "Voltagem de entrada",
+      "tags": {},
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "198813",
+          "name": "220V"
+        },
+        {
+          "id": "39205162",
+          "name": "127V"
+        },
+        {
+          "id": "39205163",
+          "name": "127/220V"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "OUTPUT_VOLTAGE",
+      "name": "Voltagem de saída",
+      "tags": {},
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "28208218",
+          "name": "1.2V"
+        },
+        {
+          "id": "13689609",
+          "name": "1.5V"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VOLTAGE",
+      "name": "Voltagem",
+      "tags": {
+        "allow_variations": true
+      },
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "198813",
+          "name": "220V"
+        },
+        {
+          "id": "39205162",
+          "name": "127V"
+        },
+        {
+          "id": "39205163",
+          "name": "127/220V"
+        },
+        {
+          "id": "106543",
+          "name": "380V"
+        },
+        {
+          "id": "24517453",
+          "name": "480V"
+        },
+        {
+          "id": "45522378",
+          "name": "560V"
+        },
+        {
+          "id": "22524318",
+          "name": "600V"
+        },
+        {
+          "id": "14223009",
+          "name": "1.2V"
+        },
+        {
+          "id": "8206319",
+          "name": "1.5V"
+        },
+        {
+          "id": "3625879",
+          "name": "3V"
+        },
+        {
+          "id": "2638487",
+          "name": "4.5V"
+        },
+        {
+          "id": "2499688",
+          "name": "6V"
+        },
+        {
+          "id": "8149915",
+          "name": "9V"
+        },
+        {
+          "id": "909022",
+          "name": "12V"
+        },
+        {
+          "id": "3323363",
+          "name": "24V"
+        },
+        {
+          "id": "14754561",
+          "name": "48V"
+        },
+        {
+          "id": "13244394",
+          "name": "72V"
+        },
+        {
+          "id": "2090739",
+          "name": "18V"
+        },
+        {
+          "id": "3314711",
+          "name": "36V"
+        },
+        {
+          "id": "1263450",
+          "name": "60V"
+        },
+        {
+          "id": "2453518",
+          "name": "5V"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "DETAILED_MODEL",
+      "name": "Modelo detalhado",
+      "tags": {
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_TYPE",
+      "name": "Tipo de produto",
+      "tags": {
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "28280064",
+          "name": "Pilha"
+        },
+        {
+          "id": "17629167",
+          "name": "Bateria"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Indique se o seu produto é compatível com Pilha ou Bateria."
+    },
+    {
+      "id": "ANATEL_HOMOLOGATION_LABEL",
+      "name": "Etiqueta de homologação da Anatel",
+      "tags": {},
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "picture_id",
+      "value_max_length": 255,
+      "tooltip": "Envie uma imagem onde o produto e a etiqueta com o código de homologação da Anatel estejam claramente visíveis.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SUPPORTED_BATTERY_SIZE",
+      "name": "Tamanho de bateria suportado",
+      "tags": {
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "2516393",
+          "name": "AA"
+        },
+        {
+          "id": "2516398",
+          "name": "PP3"
+        },
+        {
+          "id": "2516396",
+          "name": "C"
+        },
+        {
+          "id": "2516401",
+          "name": "18650"
+        },
+        {
+          "id": "2516402",
+          "name": "16340"
+        },
+        {
+          "id": "2516399",
+          "name": "9V"
+        },
+        {
+          "id": "2516403",
+          "name": "14500"
+        },
+        {
+          "id": "2516395",
+          "name": "AAAA"
+        },
+        {
+          "id": "2516400",
+          "name": "26650"
+        },
+        {
+          "id": "2516394",
+          "name": "AAA"
+        },
+        {
+          "id": "2516397",
+          "name": "D"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SUPPORTED_BATTERY_COMPOSITION",
+      "name": "Composição da bateria suportada",
+      "tags": {
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "2516406",
+          "name": "Ni-Cd"
+        },
+        {
+          "id": "2516405",
+          "name": "Li-ion"
+        },
+        {
+          "id": "2516404",
+          "name": "Ni-Mh"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_USB_CHARGE",
+      "name": "Com carga USB",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_CHARGE_INDICATOR",
+      "name": "Com indicador de carga",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INCLUDES_CELL_BATTERIES",
+      "name": "Inclui pilhas",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "CHARGING_PORTS_NUMBER",
+      "name": "Quantidade de portos de carga",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number",
+      "value_max_length": 18,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BATTERIES_CHARGE_CAPACITY",
+      "name": "Capacidade de carga das baterias",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "mAh",
+          "name": "mAh"
+        }
+      ],
+      "default_unit": "mAh",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_HEIGHT",
+      "name": "Altura da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_WIDTH",
+      "name": "Largura da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_WEIGHT",
+      "name": "Peso da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        },
+        {
+          "id": "kg",
+          "name": "kg"
+        },
+        {
+          "id": "lb",
+          "name": "lb"
+        },
+        {
+          "id": "mg",
+          "name": "mg"
+        },
+        {
+          "id": "oz",
+          "name": "oz"
+        }
+      ],
+      "default_unit": "g",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "GTIN",
+      "name": "Código universal de produto",
+      "tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 1,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Pode ser um EAN, UPC ou outro GTIN"
+    },
+    {
+      "id": "EMPTY_GTIN_REASON",
+      "name": "Motivo de GTIN vazio",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true,
+        "conditional_required": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "17055158",
+          "name": "O produto é uma peça artesanal"
+        },
+        {
+          "id": "17055159",
+          "name": "O produto é um kit ou pack"
+        },
+        {
+          "id": "17055160",
+          "name": "O produto não tem código cadastrado"
+        },
+        {
+          "id": "17055161",
+          "name": "Outro motivo"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MANUFACTURER",
+      "name": "Fabricante",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ANATEL_HOMOLOGATION_NUMBER",
+      "name": "Homologação Anatel Nº",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number",
+      "value_max_length": 18,
+      "tooltip": "É o número de certificação ou aprovação da marca e do modelo do seu produto na Anatel. Para evitar sanções, certifique-se de que ele corresponde ao produto que você vai anunciar.",
+      "example": "Começa com 0, 1 ou 2. Limite de 12 dígitos numéricos.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Código numérico de 12 dígitos"
+    },
+    {
+      "id": "CONNECTOR_TYPE",
+      "name": "Tipo de conector",
+      "tags": {
+        "catalog_required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "82230",
+          "name": "USB"
+        },
+        {
+          "id": "8180798",
+          "name": "XLR"
+        },
+        {
+          "id": "48012640",
+          "name": "XT60"
+        },
+        {
+          "id": "24420060",
+          "name": "Plug"
+        }
+      ],
+      "tooltip": "Para completar o campo, identifique os conectores em ambas as extremidades do cabo.",
+      "example": "USB/USB-C",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Use / para separar valores. Carregue primeiro o tipo de conexão de entrada e depois o de saída."
+    },
+    {
+      "id": "OUTPUT_CURRENT",
+      "name": "Corrente de saída",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "A",
+          "name": "A"
+        },
+        {
+          "id": "mA",
+          "name": "mA"
+        }
+      ],
+      "default_unit": "A",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "AGID",
+      "name": "AGID",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 1,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IMPORT_DECLARATION_NUMBER",
+      "name": "Número da DI",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number",
+      "value_max_length": 18,
+      "tooltip": "Número de 16 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INVOICE_PRODUCT_NAME",
+      "name": "Nome do produto na nota fiscal",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SAT_KEY",
+      "name": "Chave do produto",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "82021094",
+          "name": "Não existe no catálogo"
+        }
+      ],
+      "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEASURE_UNIT_KEY",
+      "name": "Chave da unidade de medida",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "82021108",
+          "name": "Não existe no catálogo"
+        }
+      ],
+      "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEASURE_UNIT_DESCRIPTION",
+      "name": "Unidade de medida",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IVA_FOR_RESALE",
+      "name": "IVA para revenda",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "81861612",
+          "name": "Isento"
+        },
+        {
+          "id": "81861613",
+          "name": "0%"
+        },
+        {
+          "id": "81861614",
+          "name": "8%"
+        },
+        {
+          "id": "81861616",
+          "name": "16%"
+        }
+      ],
+      "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IEPS",
+      "name": "IEPS",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "82021095",
+          "name": "0%"
+        },
+        {
+          "id": "82021096",
+          "name": "3%"
+        },
+        {
+          "id": "82021097",
+          "name": "6%"
+        },
+        {
+          "id": "82021098",
+          "name": "7%"
+        },
+        {
+          "id": "82021099",
+          "name": "8%"
+        },
+        {
+          "id": "82021100",
+          "name": "9%"
+        },
+        {
+          "id": "82021101",
+          "name": "25%"
+        },
+        {
+          "id": "82021102",
+          "name": "26.5%"
+        },
+        {
+          "id": "82021103",
+          "name": "30%"
+        },
+        {
+          "id": "82021104",
+          "name": "30.4%"
+        },
+        {
+          "id": "82021105",
+          "name": "50%"
+        },
+        {
+          "id": "82021106",
+          "name": "53%"
+        },
+        {
+          "id": "82021107",
+          "name": "160%"
+        }
+      ],
+      "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MPN",
+      "name": "MPN",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 2,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "name": "Condição do item",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "2230581",
+          "name": "Usado"
+        },
+        {
+          "id": "2230284",
+          "name": "Novo"
+        },
+        {
+          "id": "2230582",
+          "name": "Recondicionado"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VALUE_ADDED_TAX",
+      "name": "Imposto sobre o valor acrescentado",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IMPORT_DUTY",
+      "name": "Imposto de importação",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "49553239",
+          "name": "0 %"
+        },
+        {
+          "id": "49553240",
+          "name": "1 %"
+        },
+        {
+          "id": "49553241",
+          "name": "2.5 %"
+        },
+        {
+          "id": "49553242",
+          "name": "4 %"
+        },
+        {
+          "id": "49553243",
+          "name": "5 %"
+        },
+        {
+          "id": "49553244",
+          "name": "8 %"
+        },
+        {
+          "id": "49553245",
+          "name": "9.5 %"
+        },
+        {
+          "id": "49553246",
+          "name": "10 %"
+        },
+        {
+          "id": "49553247",
+          "name": "14 %"
+        },
+        {
+          "id": "49553248",
+          "name": "15 %"
+        },
+        {
+          "id": "49553249",
+          "name": "18 %"
+        },
+        {
+          "id": "49553250",
+          "name": "19 %"
+        },
+        {
+          "id": "49553251",
+          "name": "20 %"
+        },
+        {
+          "id": "49553252",
+          "name": "23 %"
+        },
+        {
+          "id": "49553253",
+          "name": "25 %"
+        },
+        {
+          "id": "49553254",
+          "name": "26 %"
+        },
+        {
+          "id": "49553255",
+          "name": "70 %"
+        }
+      ],
+      "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_SKU",
+      "name": "SKU",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de envio",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_WIDTH",
+      "name": "Largura da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_HEIGHT",
+      "name": "Altura da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_WEIGHT",
+      "name": "Peso da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        }
+      ],
+      "default_unit": "g",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_FLAMMABLE",
+      "name": "É inflamável",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_POSITIVE_IMPACT",
+      "name": "Com impacto positivo",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de fábrica",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "HAZMAT_TRANSPORTABILITY",
+      "name": "Transportabilidade Hazmat",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "13414677",
+          "name": "Livre"
+        },
+        {
+          "id": "13414678",
+          "name": "Limitado"
+        },
+        {
+          "id": "13414679",
+          "name": "Excedido"
+        },
+        {
+          "id": "13414680",
+          "name": "Indeterminado"
+        },
+        {
+          "id": "75989961",
+          "name": "Notificado"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_KIT",
+      "name": "É kit",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "DESCRIPTIVE_TAGS",
+      "name": "Tags descritivos",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_CHEMICAL_FEATURES",
+      "name": "Características químicas do produto",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7651070",
+          "name": "Inflamável"
+        },
+        {
+          "id": "7651071",
+          "name": "Aerosol"
+        },
+        {
+          "id": "7651072",
+          "name": "Oxidante"
+        },
+        {
+          "id": "7651073",
+          "name": "Corrosivo"
+        },
+        {
+          "id": "7651074",
+          "name": "Explosivo"
+        },
+        {
+          "id": "7651075",
+          "name": "Tóxico ou infeccioso"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "FOODS_AND_DRINKS",
+      "name": "Alimentos e bebidas",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575926",
+          "name": "Para humanos"
+        },
+        {
+          "id": "7575927",
+          "name": "Para animais"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEDICINES",
+      "name": "Medicamentos",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575930",
+          "name": "Para humanos com receita médica"
+        },
+        {
+          "id": "7575931",
+          "name": "Para humanos sem receita médica"
+        },
+        {
+          "id": "7575932",
+          "name": "Para animais com receita médica"
+        },
+        {
+          "id": "7575933",
+          "name": "Para animais sem receita médica"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BATTERIES_FEATURES",
+      "name": "Características das baterias",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575934",
+          "name": "Lítio stand-alone (separadas ou isolado)"
+        },
+        {
+          "id": "7575935",
+          "name": "De lítio instaladas"
+        },
+        {
+          "id": "7575936",
+          "name": "Para carros (ácido-chumbo)"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SHIPMENT_PACKING",
+      "name": "Embalagem do envío",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435891",
+          "name": "Flyer"
+        },
+        {
+          "id": "7435892",
+          "name": "Caixa"
+        },
+        {
+          "id": "7575937",
+          "name": "Envelope"
+        },
+        {
+          "id": "7575939",
+          "name": "Auto-expedível"
+        },
+        {
+          "id": "27037932",
+          "name": "BEX"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ADDITIONAL_INFO_REQUIRED",
+      "name": "Informação adicional requerida",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435893",
+          "name": "Possui código IMEI"
+        },
+        {
+          "id": "7435894",
+          "name": "Possui número de série"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "EXCLUDED_PLATFORMS",
+      "name": "Plataformas excluídas",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "9936777",
+          "name": "Android"
+        },
+        {
+          "id": "9936778",
+          "name": "iOS"
+        },
+        {
+          "id": "9936779",
+          "name": "Desktop"
+        },
+        {
+          "id": "9936780",
+          "name": "Mobile"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_SUITABLE_FOR_SHIPMENT",
+      "name": "É adequado para envío",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_DATA_SOURCE",
+      "name": "Fonte do produto",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Indique o país de origem do produto.",
+      "example": "Brasil",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+      "name": "Razões de visibilidade limitada no Marketplace",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "24219544",
+          "name": "Pharma"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "HAS_COMPATIBILITIES",
+      "name": "Tem compatibilidades",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "CATALOG_TITLE",
+      "name": "Título de catálogo",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SEARCH_ENHANCEMENT_FIELDS",
+      "name": "Campos de aprimoramento de pesquisa",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_FEATURES",
+      "name": "Características do produto",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435885",
+          "name": "Contém líquido"
+        },
+        {
+          "id": "7435883",
+          "name": "Frágil"
+        },
+        {
+          "id": "7435888",
+          "name": "Com validade"
+        },
+        {
+          "id": "8847339",
+          "name": "Sem validade"
+        },
+        {
+          "id": "7575917",
+          "name": "Desinfetante e saneante"
+        },
+        {
+          "id": "7575924",
+          "name": "MAPA"
+        },
+        {
+          "id": "7575923",
+          "name": "Saúde e correlatos"
+        },
+        {
+          "id": "8721108",
+          "name": "Volumoso"
+        },
+        {
+          "id": "10490116",
+          "name": "Não voável"
+        },
+        {
+          "id": "12928414",
+          "name": "Não rotacionável"
+        },
+        {
+          "id": "41722098",
+          "name": "Dobrável"
+        },
+        {
+          "id": "52092586",
+          "name": "Magnético"
+        },
+        {
+          "id": "52233302",
+          "name": "Pode rolar"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_NEW_OFFER",
+      "name": "É nova oferta",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SYI_PYMES_ID",
+      "name": "syi pymes id",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    }
+  ],
+  "conditional_validation": {
+    "request": {
+      "title": "Carregador Toshiba TNHC-6GAE4 CB Com 4 Pilhas AA 2600mAh",
+      "category_id": "MLB11290",
+      "price": 187.21,
+      "currency_id": "BRL",
+      "available_quantity": 15,
+      "buying_mode": "buy_it_now",
+      "condition": "new",
+      "listing_type_id": "gold_pro",
+      "description": {
+        "plain_text": "CARREGADOR TOSHIBA TNHC-6GAE4 CB COM 4 PILHAS AA\n\nKit para recarga de pilhas AA e AAA recarregáveis. O carregador aceita até quatro pilhas simultaneamente e acompanha quatro pilhas Toshiba AA Ni-MH de 2600 mAh.\n\nCARACTERÍSTICAS\n• Marca: Toshiba\n• Modelo do conjunto: TNHC-6GAE4 CB\n• Alimentação: bivolt automático, entrada AC de 100 a 240 V, 50/60 Hz\n• Potência de entrada indicada no produto: 6 W\n• Formatos compatíveis: pilhas recarregáveis AA e AAA\n• Composição das pilhas inclusas: Ni-MH\n• Capacidade das pilhas inclusas: 2600 mAh\n• Quantidade de posições de carga: 4\n• Indicador por LED para estados de carregamento\n\nTEMPO DE CARGA INFORMADO PELO FABRICANTE\n• AA Ni-MH 2600 mAh: aproximadamente 7 horas\n• AAA Ni-MH 950 mAh: aproximadamente 6,5 horas\n\nCONTEÚDO DA EMBALAGEM\n• 1 carregador AC Toshiba\n• 4 pilhas recarregáveis AA Toshiba 2600 mAh\n• 1 manual\n\nINFORMAÇÕES IMPORTANTES\n• Não carrega baterias de 9 V.\n• Utilize somente pilhas recarregáveis compatíveis com os formatos AA ou AAA.\n• Confira as orientações do manual antes do primeiro uso.\n\nSKU: VTK000486"
+      },
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Toshiba"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "TNHC-6GAE4 CB"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "28280064",
+          "value_name": "Pilha"
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "value_id": "24420060",
+          "value_name": "Plug"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "4904530109270"
+        },
+        {
+          "id": "INPUT_VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_name": "TNHC-6GAE4 CB"
+        },
+        {
+          "id": "SUPPORTED_BATTERY_SIZE",
+          "value_name": "AA, AAA"
+        },
+        {
+          "id": "SUPPORTED_BATTERY_COMPOSITION",
+          "value_id": "2516404",
+          "value_name": "Ni-Mh"
+        },
+        {
+          "id": "WITH_CHARGE_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "CHARGING_PORTS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "BATTERIES_CHARGE_CAPACITY",
+          "value_name": "2600 mAh"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_name": "Toshiba"
+        },
+        {
+          "id": "MPN",
+          "value_name": "TNHC-6GAE4 CB"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK000486"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "13 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "12 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "17 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "262 g"
+        }
+      ]
+    },
+    "response": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "status": 200
+  },
+  "evidence_ledger": [
+    {
+      "field": "BRAND",
+      "value": "Toshiba",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Marca Toshiba",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "MODEL",
+      "value": "TNHC-6GAE4 CB",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Modelo TNHC-6GAE4 CB",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "PRODUCT_TYPE",
+      "value": "Pilha",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Produto descrito como carregador de pilhas AA/AAA; PRODUCT_TYPE=Pilha é valor permitido pela categoria ML",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "CONNECTOR_TYPE",
+      "value": "Plug",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Conector AC; imagens oficiais mostram plug integrado. Normalizado para valor ML Plug",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "GTIN",
+      "value": "4904530109270",
+      "source_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+      "evidence": "4904530109270",
+      "source_level": 1,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "INPUT_VOLTAGE",
+      "value": "127/220V",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Página informa Bivolt e etiqueta oficial informa AC 100-240 V; normalizado para valor ML 127/220V",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "DETAILED_MODEL",
+      "value": "TNHC-6GAE4 CB",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Modelo TNHC-6GAE4 CB",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "SUPPORTED_BATTERY_SIZE",
+      "value": "AA, AAA",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Compatível com pilhas recarregáveis AA/AAA",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "SUPPORTED_BATTERY_COMPOSITION",
+      "value": "Ni-Mh",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Pilhas recarregáveis Toshiba Ni-MH",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "WITH_CHARGE_INDICATOR",
+      "value": "Sim",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Estados do LED publicados pelo fabricante",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "INCLUDES_CELL_BATTERIES",
+      "value": "Sim",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "A embalagem acompanha 4 pilhas recarregáveis AA 2600 mAh",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "CHARGING_PORTS_NUMBER",
+      "value": "4",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Carrega até quatro pilhas ao mesmo tempo",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "BATTERIES_CHARGE_CAPACITY",
+      "value": "2600 mAh",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "4 pilhas recarregáveis AA 2600 mAh",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "MANUFACTURER",
+      "value": "Toshiba",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Marca Toshiba",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "MPN",
+      "value": "TNHC-6GAE4 CB",
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "Modelo TNHC-6GAE4 CB",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "SELLER_SKU",
+      "value": "VTK000486",
+      "source_url": "supabase://produtos",
+      "evidence": "VTK000486",
+      "source_level": 0,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "SELLER_PACKAGE_WIDTH",
+      "value": "13 cm",
+      "source_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+      "evidence": "13 cm",
+      "source_level": 1,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "SELLER_PACKAGE_LENGTH",
+      "value": "12 cm",
+      "source_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+      "evidence": "12 cm",
+      "source_level": 1,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "SELLER_PACKAGE_HEIGHT",
+      "value": "17 cm",
+      "source_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+      "evidence": "17 cm",
+      "source_level": 1,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "SELLER_PACKAGE_WEIGHT",
+      "value": "262 g",
+      "source_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+      "evidence": "0.262 kg",
+      "source_level": 1,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "CATEGORY_ID",
+      "value": "MLB11290",
+      "source_url": "https://api.mercadolibre.com/categories/MLB11290",
+      "evidence": "Carregadores de Pilhas",
+      "source_level": "ml_schema",
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "PICTURES",
+      "value": [
+        "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+        "https://static.hayapek.com.br/produtos/74810/550/1.jpg"
+      ],
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "9 official images approved",
+      "source_level": 2,
+      "selected": true,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    },
+    {
+      "field": "WARRANTY",
+      "value": null,
+      "source_url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "evidence": "manufacturer_page_does_not_publish_warranty_term",
+      "source_level": 2,
+      "selected": false,
+      "recorded_at": "2026-08-16T02:59:41.773Z"
+    }
+  ],
+  "payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792",
+  "metrics": {
+    "supabase_reads": 11,
+    "dslite_reads": 1,
+    "ml_gets": 421,
+    "ml_conditional_attribute_checks": 1,
+    "ml_commercial_writes": 0,
+    "local_commercial_writes": 0
+  },
+  "invariants": {
+    "product_ml_item_id_before": null,
+    "product_ml_item_id_after": null,
+    "local_listing_count_before": 0,
+    "local_listing_count_after": 0,
+    "mercado_livre_commercial_writes": 0,
+    "local_commercial_writes": 0,
+    "passed": true
+  },
+  "phase4b": {
+    "result": "CANARY_POST_FAILED",
+    "preflight": {
+      "checked_at": "2026-08-16T06:25:48.432Z",
+      "product": {
+        "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+        "sku": "VTK000486",
+        "active": true,
+        "ml_status": "sem_anuncio",
+        "ml_item_id": null,
+        "gtin": "4904530109270",
+        "stock": 15,
+        "cost": 96.22
+      },
+      "offer": {
+        "id": "00fb5dbb-587b-44a2-9061-d2e9e527eb35",
+        "active": true,
+        "stock": 15,
+        "cost": 96.22,
+        "dslite_supplier_id": "2",
+        "dslite_product_id": "74810"
+      },
+      "dslite": {
+        "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+        "stock": 15,
+        "cost": 96.22,
+        "gtin": "4904530109270",
+        "model": "TNHC-6GAE4 CB"
+      },
+      "official": {
+        "url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+        "consulted_at": "2026-08-16T06:24:19.187Z",
+        "checks": [
+          {
+            "needle": "4904530109270",
+            "found": true
+          },
+          {
+            "needle": "TNHC-6GAE4 CB",
+            "found": true
+          },
+          {
+            "needle": "Bivolt",
+            "found": true
+          },
+          {
+            "needle": "AA/AAA",
+            "found": true
+          },
+          {
+            "needle": "2600mAh",
+            "found": true
+          }
+        ],
+        "official_input_voltage": "AC 100-240V 50/60Hz"
+      },
+      "category": {
+        "id": "MLB11290",
+        "name": "Carregadores de Pilhas",
+        "enabled": true,
+        "listing_allowed": true
+      },
+      "voltage_decision": {
+        "schema_allows_official_exact_value": false,
+        "official_value": "100-240V",
+        "submitted_value": "127/220V",
+        "allowed_values": [
+          {
+            "id": "198813",
+            "name": "220V"
+          },
+          {
+            "id": "39205162",
+            "name": "127V"
+          },
+          {
+            "id": "39205163",
+            "name": "127/220V"
+          }
+        ],
+        "valid": true,
+        "required_diff_status": "NORMALIZED_BY_ML"
+      },
+      "images": {
+        "checked_at": "2026-08-16T06:24:19.351Z",
+        "images": [
+          {
+            "order": 1,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 2,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 3,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 4,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 5,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 6,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 7,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 8,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          },
+          {
+            "order": 9,
+            "url": "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+            "http_status": 200,
+            "content_type": "image/jpg",
+            "width": 550,
+            "height": 550,
+            "valid": true
+          }
+        ],
+        "passed": true
+      },
+      "duplicate": {
+        "checked_at": "2026-08-16T06:25:48.047Z",
+        "seller_id": "3294514937",
+        "methods": [
+          "seller_sku",
+          "sku",
+          "title_model",
+          "gtin_via_full_item_attributes",
+          "catalog_product_id_via_full_item_details",
+          "user_product_id_via_full_item_details",
+          "item_id_full_inventory",
+          "all_statuses_from_seller_scan"
+        ],
+        "direct": [
+          {
+            "method": "seller_sku",
+            "value": "VTK000486",
+            "total": 0,
+            "item_ids": []
+          },
+          {
+            "method": "sku",
+            "value": "VTK000486",
+            "total": 0,
+            "item_ids": []
+          },
+          {
+            "method": "q",
+            "value": "TNHC-6GAE4",
+            "total": 0,
+            "item_ids": []
+          }
+        ],
+        "inventory": {
+          "expected_total": 5798,
+          "captured": 5798,
+          "detailed": 5798,
+          "pages": 115,
+          "reliable": true
+        },
+        "matches": [],
+        "blocking_matches": [],
+        "family_candidates": [],
+        "existing_equivalent_family": false
+      },
+      "family_validation": {
+        "family_name": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+        "characters": 42,
+        "max_characters": 60,
+        "within_limit": true,
+        "seller_user_product_enabled": true,
+        "parent_pk": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "required": true,
+            "supplied": true,
+            "value": "Toshiba"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "required": true,
+            "supplied": true,
+            "value": "TNHC-6GAE4 CB"
+          },
+          {
+            "id": "ALPHANUMERIC_MODEL",
+            "name": "Modelo alfanumérico",
+            "required": false,
+            "supplied": false,
+            "value": null
+          }
+        ],
+        "missing_required_parent_pk": [],
+        "existing_family_candidates": [],
+        "existing_equivalent_family": false,
+        "family_listing_endpoint_available": false,
+        "family_discovery_method": "full_seller_item_inventory_with_family_name_family_id_user_product_id_and_parent_pk"
+      },
+      "local_listings": [],
+      "local_duplicates": [],
+      "inventory_reservations": {
+        "pending_order_items": 0,
+        "kit_links": 0,
+        "pending_purchases": 0,
+        "internal_movements": 0,
+        "effective_channel_stock": 15,
+        "quantity_to_publish": 15
+      },
+      "financial": {
+        "checked_at": "2026-08-16T06:25:48.431Z",
+        "price": 187.22,
+        "listing_type_id": "gold_pro",
+        "cost": 96.22,
+        "commission": 33.7,
+        "commission_rate_percent": 18,
+        "shipping": 19.85,
+        "tax": 9.361,
+        "other_expenses": 0,
+        "profit": 28.088999999999988,
+        "margin_percent": 15.003204785813477,
+        "target_margin_percent": 15,
+        "approved": true,
+        "fee_quote": {
+          "currency_id": "BRL",
+          "free_relist": false,
+          "listing_exposure": "highest",
+          "listing_fee_amount": 0,
+          "listing_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 0
+          },
+          "listing_type_id": "gold_pro",
+          "listing_type_name": "Premium",
+          "requires_picture": true,
+          "sale_fee_amount": 33.7,
+          "sale_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 33.7,
+            "percentage_fee": 18
+          },
+          "stop_time": "2046-08-11T00:00:00.000-04:00"
+        },
+        "shipping_quote": {
+          "coverage": {
+            "all_country": {
+              "list_cost": 19.85,
+              "currency_id": "BRL",
+              "billable_weight": 442,
+              "discount": {
+                "rate": 0.5,
+                "type": "mandatory",
+                "promoted_amount": 39.7
+              }
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "result": "CANARY_POST_FAILED",
+      "attempted_at": "2026-08-16T06:25:48.432Z",
+      "completed_at": "2026-08-16T06:25:49.042Z",
+      "endpoint": "POST https://api.mercadolibre.com/items",
+      "payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792",
+      "family_name_sent": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+      "request_id": "60e5c148-b1f9-479c-8ed9-53a06a52b29a",
+      "http_status": 500,
+      "response_headers": {
+        "content-type": "application/json;charset=UTF-8",
+        "date": "Sun, 16 Aug 2026 06:25:48 GMT",
+        "x-request-id": "60e5c148-b1f9-479c-8ed9-53a06a52b29a"
+      },
+      "response_body": {
+        "cause": [],
+        "message": "Oops! Something went wrong...",
+        "error": "internal_error",
+        "status": 500
+      },
+      "item_id": null,
+      "user_product_id": null,
+      "catalog_product_id": null,
+      "status": 500,
+      "permalink": null,
+      "error_classification": "API_ERROR",
+      "one_post_guard": {
+        "attempts": 1,
+        "successful": 0,
+        "other_writes": 0
+      }
+    },
+    "metrics": {
+      "supabase_reads": 9,
+      "supabase_writes": 0,
+      "dslite_reads": 1,
+      "manufacturer_reads": 1,
+      "ml_gets": 414,
+      "ml_item_post_attempts": 1,
+      "ml_item_posts_successful": 0,
+      "ml_other_writes": 0
+    },
+    "local_persistence": {
+      "performed": false
+    }
+  },
+  "authorized_reprice": {
+    "from": 187.21,
+    "to": 187.22,
+    "all_other_payload_fields_preserved_by_hash": true,
+    "prior_payload_sha256": "7382d51ac0cf6e9ba2bcbf6ea9573487d11ff7ee6a2db2a24cb7dd1ba8310e42",
+    "current_payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792"
+  },
+  "authorized_family_name": {
+    "value": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+    "prior_payload_sha256": "d8c003700d5277c1e7382c2b972a8e918b64bc1a400fbf4cea3176784fad9b07",
+    "current_payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792"
+  },
+  "phase4b_attempt_history": [
+    {
+      "result": "CANARY_POST_FAILED",
+      "preflight": {
+        "checked_at": "2026-08-16T05:01:02.888Z",
+        "product": {
+          "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+          "sku": "VTK000486",
+          "active": true,
+          "ml_status": "sem_anuncio",
+          "ml_item_id": null,
+          "gtin": "4904530109270",
+          "stock": 15,
+          "cost": 96.22
+        },
+        "offer": {
+          "id": "00fb5dbb-587b-44a2-9061-d2e9e527eb35",
+          "active": true,
+          "stock": 15,
+          "cost": 96.22,
+          "dslite_supplier_id": "2",
+          "dslite_product_id": "74810"
+        },
+        "dslite": {
+          "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+          "stock": 15,
+          "cost": 96.22,
+          "gtin": "4904530109270",
+          "model": "TNHC-6GAE4 CB"
+        },
+        "official": {
+          "url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+          "consulted_at": "2026-08-16T04:59:32.813Z",
+          "checks": [
+            {
+              "needle": "4904530109270",
+              "found": true
+            },
+            {
+              "needle": "TNHC-6GAE4 CB",
+              "found": true
+            },
+            {
+              "needle": "Bivolt",
+              "found": true
+            },
+            {
+              "needle": "AA/AAA",
+              "found": true
+            },
+            {
+              "needle": "2600mAh",
+              "found": true
+            }
+          ],
+          "official_input_voltage": "AC 100-240V 50/60Hz"
+        },
+        "category": {
+          "id": "MLB11290",
+          "name": "Carregadores de Pilhas",
+          "enabled": true,
+          "listing_allowed": true
+        },
+        "voltage_decision": {
+          "schema_allows_official_exact_value": false,
+          "official_value": "100-240V",
+          "submitted_value": "127/220V",
+          "allowed_values": [
+            {
+              "id": "198813",
+              "name": "220V"
+            },
+            {
+              "id": "39205162",
+              "name": "127V"
+            },
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ],
+          "valid": true,
+          "required_diff_status": "NORMALIZED_BY_ML"
+        },
+        "images": {
+          "checked_at": "2026-08-16T04:59:32.969Z",
+          "images": [
+            {
+              "order": 1,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 2,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 3,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 4,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 5,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 6,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 7,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 8,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 9,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            }
+          ],
+          "passed": true
+        },
+        "duplicate": {
+          "checked_at": "2026-08-16T05:01:02.448Z",
+          "seller_id": "3294514937",
+          "methods": [
+            "seller_sku",
+            "sku",
+            "title_model",
+            "gtin_via_full_item_attributes",
+            "catalog_product_id_via_full_item_details",
+            "user_product_id_via_full_item_details",
+            "item_id_full_inventory",
+            "all_statuses_from_seller_scan"
+          ],
+          "direct": [
+            {
+              "method": "seller_sku",
+              "value": "VTK000486",
+              "total": 0,
+              "item_ids": []
+            },
+            {
+              "method": "sku",
+              "value": "VTK000486",
+              "total": 0,
+              "item_ids": []
+            },
+            {
+              "method": "q",
+              "value": "TNHC-6GAE4",
+              "total": 0,
+              "item_ids": []
+            }
+          ],
+          "inventory": {
+            "expected_total": 5798,
+            "captured": 5798,
+            "detailed": 5798,
+            "pages": 115,
+            "reliable": true
+          },
+          "matches": [],
+          "blocking_matches": []
+        },
+        "local_listings": [],
+        "local_duplicates": [],
+        "inventory_reservations": {
+          "pending_order_items": 0,
+          "kit_links": 0,
+          "pending_purchases": 0,
+          "internal_movements": 0,
+          "effective_channel_stock": 15,
+          "quantity_to_publish": 15
+        },
+        "financial": {
+          "checked_at": "2026-08-16T05:01:02.887Z",
+          "price": 187.22,
+          "listing_type_id": "gold_pro",
+          "cost": 96.22,
+          "commission": 33.7,
+          "commission_rate_percent": 18,
+          "shipping": 19.85,
+          "tax": 9.361,
+          "other_expenses": 0,
+          "profit": 28.088999999999988,
+          "margin_percent": 15.003204785813477,
+          "target_margin_percent": 15,
+          "approved": true,
+          "fee_quote": {
+            "currency_id": "BRL",
+            "free_relist": false,
+            "listing_exposure": "highest",
+            "listing_fee_amount": 0,
+            "listing_fee_details": {
+              "fixed_fee": 0,
+              "gross_amount": 0
+            },
+            "listing_type_id": "gold_pro",
+            "listing_type_name": "Premium",
+            "requires_picture": true,
+            "sale_fee_amount": 33.7,
+            "sale_fee_details": {
+              "fixed_fee": 0,
+              "gross_amount": 33.7,
+              "percentage_fee": 18
+            },
+            "stop_time": "2046-08-11T00:00:00.000-04:00"
+          },
+          "shipping_quote": {
+            "coverage": {
+              "all_country": {
+                "list_cost": 19.85,
+                "currency_id": "BRL",
+                "billable_weight": 442,
+                "discount": {
+                  "rate": 0.5,
+                  "type": "mandatory",
+                  "promoted_amount": 39.7
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "attempted_at": "2026-08-16T05:01:02.888Z",
+        "completed_at": "2026-08-16T05:01:03.068Z",
+        "endpoint": "POST https://api.mercadolibre.com/items",
+        "payload_sha256": "6ca8c8894aaddfc349af121c7285c3c50b74efed18c740b02a45a56500e3fddb",
+        "request_id": "baa297ae-61f7-4bb2-aa8e-608030c5a7b7",
+        "http_status": 400,
+        "response_headers": {
+          "content-type": "application/json;charset=UTF-8",
+          "date": "Sun, 16 Aug 2026 05:01:02 GMT",
+          "x-request-id": "baa297ae-61f7-4bb2-aa8e-608030c5a7b7"
+        },
+        "response_body": {
+          "cause": [
+            {
+              "department": "items",
+              "cause_id": 369,
+              "type": "error",
+              "code": "body.required_fields",
+              "references": [
+                "body"
+              ],
+              "message": "The body does not contains some or none of the following properties [family_name]"
+            }
+          ],
+          "message": "body.required_fields",
+          "error": "validation_error",
+          "status": 400
+        },
+        "item_id": null,
+        "user_product_id": null,
+        "catalog_product_id": null,
+        "status": 400,
+        "permalink": null,
+        "error_classification": "VALIDATION_ERROR",
+        "one_post_guard": {
+          "attempts": 1,
+          "successful": 0,
+          "other_writes": 0
+        }
+      },
+      "metrics": {
+        "supabase_reads": 9,
+        "supabase_writes": 0,
+        "dslite_reads": 1,
+        "manufacturer_reads": 1,
+        "ml_gets": 413,
+        "ml_item_post_attempts": 1,
+        "ml_item_posts_successful": 0,
+        "ml_other_writes": 0
+      },
+      "local_persistence": {
+        "performed": false
+      }
+    },
+    {
+      "result": "CANARY_POST_FAILED",
+      "preflight": {
+        "checked_at": "2026-08-16T05:09:10.650Z",
+        "product": {
+          "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+          "sku": "VTK000486",
+          "active": true,
+          "ml_status": "sem_anuncio",
+          "ml_item_id": null,
+          "gtin": "4904530109270",
+          "stock": 15,
+          "cost": 96.22
+        },
+        "offer": {
+          "id": "00fb5dbb-587b-44a2-9061-d2e9e527eb35",
+          "active": true,
+          "stock": 15,
+          "cost": 96.22,
+          "dslite_supplier_id": "2",
+          "dslite_product_id": "74810"
+        },
+        "dslite": {
+          "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/74810",
+          "stock": 15,
+          "cost": 96.22,
+          "gtin": "4904530109270",
+          "model": "TNHC-6GAE4 CB"
+        },
+        "official": {
+          "url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+          "consulted_at": "2026-08-16T05:07:39.515Z",
+          "checks": [
+            {
+              "needle": "4904530109270",
+              "found": true
+            },
+            {
+              "needle": "TNHC-6GAE4 CB",
+              "found": true
+            },
+            {
+              "needle": "Bivolt",
+              "found": true
+            },
+            {
+              "needle": "AA/AAA",
+              "found": true
+            },
+            {
+              "needle": "2600mAh",
+              "found": true
+            }
+          ],
+          "official_input_voltage": "AC 100-240V 50/60Hz"
+        },
+        "category": {
+          "id": "MLB11290",
+          "name": "Carregadores de Pilhas",
+          "enabled": true,
+          "listing_allowed": true
+        },
+        "voltage_decision": {
+          "schema_allows_official_exact_value": false,
+          "official_value": "100-240V",
+          "submitted_value": "127/220V",
+          "allowed_values": [
+            {
+              "id": "198813",
+              "name": "220V"
+            },
+            {
+              "id": "39205162",
+              "name": "127V"
+            },
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ],
+          "valid": true,
+          "required_diff_status": "NORMALIZED_BY_ML"
+        },
+        "images": {
+          "checked_at": "2026-08-16T05:07:39.682Z",
+          "images": [
+            {
+              "order": 1,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 2,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 3,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 4,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 5,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 6,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 7,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 8,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            },
+            {
+              "order": 9,
+              "url": "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+              "http_status": 200,
+              "content_type": "image/jpg",
+              "width": 550,
+              "height": 550,
+              "valid": true
+            }
+          ],
+          "passed": true
+        },
+        "duplicate": {
+          "checked_at": "2026-08-16T05:09:10.255Z",
+          "seller_id": "3294514937",
+          "methods": [
+            "seller_sku",
+            "sku",
+            "title_model",
+            "gtin_via_full_item_attributes",
+            "catalog_product_id_via_full_item_details",
+            "user_product_id_via_full_item_details",
+            "item_id_full_inventory",
+            "all_statuses_from_seller_scan"
+          ],
+          "direct": [
+            {
+              "method": "seller_sku",
+              "value": "VTK000486",
+              "total": 0,
+              "item_ids": []
+            },
+            {
+              "method": "sku",
+              "value": "VTK000486",
+              "total": 0,
+              "item_ids": []
+            },
+            {
+              "method": "q",
+              "value": "TNHC-6GAE4",
+              "total": 0,
+              "item_ids": []
+            }
+          ],
+          "inventory": {
+            "expected_total": 5798,
+            "captured": 5798,
+            "detailed": 5798,
+            "pages": 115,
+            "reliable": true
+          },
+          "matches": [],
+          "blocking_matches": [],
+          "family_candidates": [],
+          "existing_equivalent_family": false
+        },
+        "family_validation": {
+          "family_name": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+          "characters": 42,
+          "max_characters": 60,
+          "within_limit": true,
+          "seller_user_product_enabled": true,
+          "parent_pk": [
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "required": true,
+              "supplied": true,
+              "value": "Toshiba"
+            },
+            {
+              "id": "MODEL",
+              "name": "Modelo",
+              "required": true,
+              "supplied": true,
+              "value": "TNHC-6GAE4 CB"
+            },
+            {
+              "id": "ALPHANUMERIC_MODEL",
+              "name": "Modelo alfanumérico",
+              "required": false,
+              "supplied": false,
+              "value": null
+            }
+          ],
+          "missing_required_parent_pk": [],
+          "existing_family_candidates": [],
+          "existing_equivalent_family": false,
+          "family_listing_endpoint_available": false,
+          "family_discovery_method": "full_seller_item_inventory_with_family_name_family_id_user_product_id_and_parent_pk"
+        },
+        "local_listings": [],
+        "local_duplicates": [],
+        "inventory_reservations": {
+          "pending_order_items": 0,
+          "kit_links": 0,
+          "pending_purchases": 0,
+          "internal_movements": 0,
+          "effective_channel_stock": 15,
+          "quantity_to_publish": 15
+        },
+        "financial": {
+          "checked_at": "2026-08-16T05:09:10.649Z",
+          "price": 187.22,
+          "listing_type_id": "gold_pro",
+          "cost": 96.22,
+          "commission": 33.7,
+          "commission_rate_percent": 18,
+          "shipping": 19.85,
+          "tax": 9.361,
+          "other_expenses": 0,
+          "profit": 28.088999999999988,
+          "margin_percent": 15.003204785813477,
+          "target_margin_percent": 15,
+          "approved": true,
+          "fee_quote": {
+            "currency_id": "BRL",
+            "free_relist": false,
+            "listing_exposure": "highest",
+            "listing_fee_amount": 0,
+            "listing_fee_details": {
+              "fixed_fee": 0,
+              "gross_amount": 0
+            },
+            "listing_type_id": "gold_pro",
+            "listing_type_name": "Premium",
+            "requires_picture": true,
+            "sale_fee_amount": 33.7,
+            "sale_fee_details": {
+              "fixed_fee": 0,
+              "gross_amount": 33.7,
+              "percentage_fee": 18
+            },
+            "stop_time": "2046-08-11T00:00:00.000-04:00"
+          },
+          "shipping_quote": {
+            "coverage": {
+              "all_country": {
+                "list_cost": 19.85,
+                "currency_id": "BRL",
+                "billable_weight": 442,
+                "discount": {
+                  "rate": 0.5,
+                  "type": "mandatory",
+                  "promoted_amount": 39.7
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "result": "CANARY_POST_FAILED",
+        "attempted_at": "2026-08-16T05:09:10.650Z",
+        "completed_at": "2026-08-16T05:09:10.824Z",
+        "endpoint": "POST https://api.mercadolibre.com/items",
+        "payload_sha256": "d8c003700d5277c1e7382c2b972a8e918b64bc1a400fbf4cea3176784fad9b07",
+        "family_name_sent": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+        "request_id": "70c961c6-2cc1-4b7c-b34d-f42225d74aef",
+        "http_status": 400,
+        "response_headers": {
+          "content-type": "application/json;charset=UTF-8",
+          "date": "Sun, 16 Aug 2026 05:09:10 GMT",
+          "x-request-id": "70c961c6-2cc1-4b7c-b34d-f42225d74aef"
+        },
+        "response_body": {
+          "cause": [],
+          "message": "body.invalid_fields",
+          "error": "The fields [title] are invalid for requested call.",
+          "status": 400
+        },
+        "item_id": null,
+        "user_product_id": null,
+        "catalog_product_id": null,
+        "status": 400,
+        "permalink": null,
+        "error_classification": "VALIDATION_ERROR",
+        "one_post_guard": {
+          "attempts": 1,
+          "successful": 0,
+          "other_writes": 0
+        }
+      },
+      "metrics": {
+        "supabase_reads": 9,
+        "supabase_writes": 0,
+        "dslite_reads": 1,
+        "manufacturer_reads": 1,
+        "ml_gets": 414,
+        "ml_item_post_attempts": 1,
+        "ml_item_posts_successful": 0,
+        "ml_other_writes": 0
+      },
+      "local_persistence": {
+        "performed": false
+      }
+    }
+  ]
+}

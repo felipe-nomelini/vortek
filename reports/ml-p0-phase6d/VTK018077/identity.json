@@ -1,0 +1,271 @@
+{
+  "checked_at": "2026-08-17T01:14:27.804Z",
+  "product": {
+    "id": "e7e76e6e-649f-4e31-9369-6875f254f206",
+    "sku": "VTK018077",
+    "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+    "marca": "MULTILASER",
+    "gtin": "7899838803159"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381815",
+    "consulted_at": "2026-08-17T01:14:27.611Z",
+    "product": {
+      "produtoid": "381815",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 50.4,
+      "preco_crossdocking": 50.4,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 50.4,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+      "titulo_curto": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+      "categoriaid": "117726",
+      "categoria_nome": "Automotivo/ Acessórios Automotivos/ Lampada Normal Automotiva",
+      "abc": null,
+      "ean11": "7899838803159",
+      "ncm": "85395200",
+      "descricao": "<p><strong>Multilaser - AU836</strong><br /><br /><strong>SEGURANÇA E DESIGN<br /></strong> Com o driver integrado ao próprio corpo. proporcionando excelente visibilidade ao condutor e um visual diferenciado para seu veículo. <br /><br /><strong>LONGO ALCANCE</strong><br />Temperatura de cor de 6200k e 2000 lúmens proporcionam maior segurança ao dirigir. facilitando a visualização das vias e das sinalizações.<br /><br /><strong>INSTALAÇÃO RÁPIDA</strong><br />Soquetes removíveis facilitam a instalação. basta instalar o soquete e depois encaixar a lâmpada. <br /><br /><strong>DURABILIDADE</strong><br />dura até 10x mais que as lâmpadas comuns. <br /><br /><strong>SEGURANÇA E DESIGN </strong><br />reator compacto e resistente a água.</p>\r\n<p> </p>\r\n<p><br />*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p><strong>Temperatura: </strong><br />6200K<br /><strong>Potência: </strong><br />20w<br /><strong>Tamanho:</strong><br />Único</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MULTILASER",
+      "modelo": "",
+      "peso": 0.008,
+      "largura": 1,
+      "altura": 1,
+      "profundidade": 1,
+      "peso_embalagem": 0.008,
+      "largura_embalagem": 1,
+      "altura_embalagem": 1,
+      "profundidade_embalagem": 1,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/381815_67d2cb1091be7.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1353,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.999.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-02-12 15:08:59.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:59:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 15,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381815_67d2cb1091be7.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381815_67d2cb1092cae.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381815_67d2cb10939dc.png"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB45026556 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB45026556",
+      "catalog_product_id": "MLB45026556",
+      "domain_id": "MLB-LIGHT_BULBS",
+      "name": "Lampada Multilaser Super Led H8 20w 6200k Par Au836",
+      "parent_id": "MLB45026555",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "31163",
+          "value_name": "Multilaser",
+          "values": [
+            {
+              "id": "31163",
+              "name": "Multilaser"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "40833980",
+          "value_name": "Modelo Desconhecido",
+          "values": [
+            {
+              "id": "40833980",
+              "name": "Modelo Desconhecido"
+            }
+          ]
+        },
+        {
+          "id": "LIGHTING_TECHNOLOGY",
+          "name": "Tecnologia de iluminação",
+          "value_id": "411127",
+          "value_name": "LED",
+          "values": [
+            {
+              "id": "411127",
+              "name": "LED"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "512837",
+          "value_name": "20 W",
+          "values": [
+            {
+              "id": "512837",
+              "name": "20 W"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "46209452",
+          "value_name": "7899838803159",
+          "values": [
+            {
+              "id": "46209452",
+              "name": "7899838803159"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Lampada Multilaser Super LED H8 20W 6200K PAR AU836 é a escolha perfeita para quem busca segurança e estilo em seu veículo. Com uma potência de 20W e uma impressionante temperatura de cor de 6200K, esta lâmpada oferece uma iluminação clara e eficiente, ideal para longas distâncias. Seu design inovador conta com um driver integrado ao corpo da lâmpada, garantindo não apenas uma instalação prática, mas também uma estética diferenciada. Com 2000 lúmens, proporciona excelente visibilidade ao condutor, aumentando a segurança nas estradas. A tecnologia de iluminação LED garante uma vida útil prolongada e baixo consumo de energia, tornando-a uma opção sustentável. A marca Multilaser é sinônimo de qualidade e confiabilidade, e esta lâmpada nova é perfeita para quem deseja modernizar a iluminação do seu veículo. Não perca a oportunidade de transformar sua experiência de condução com a AU836!"
+      },
+      "pictures": [
+        {
+          "id": "907069-MLA95654895909_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_907069-MLA95654895909_102025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1082"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-12-23T16:56:45Z",
+      "last_updated": "2025-07-01T10:13:04Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

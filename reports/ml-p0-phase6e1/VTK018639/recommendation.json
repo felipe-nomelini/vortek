@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+    "supplier_category": "Redes E Provedores/ Internet E Rede/ Rack",
+    "supplier_brand": "MAX ELETRON",
+    "supplier_gtin": "7908060206284",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/334676",
+    "captured_at": "2026-08-17T12:53:51.124Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

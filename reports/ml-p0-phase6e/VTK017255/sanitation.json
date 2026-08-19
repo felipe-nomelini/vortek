@@ -1,0 +1,10 @@
+{
+  "sku": "VTK017255",
+  "gate": "BLOCK_LOCAL_STATE",
+  "evidence": "local listing/status conflict",
+  "local_value": "",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": null,
+  "timestamp": "2026-08-17T12:56:31.279Z"
+}

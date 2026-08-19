@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-08-17T14:15:47.260Z",
+  "product": {
+    "id": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+    "sku": "VTK018934",
+    "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+    "marca": "ASK",
+    "estoque": 4,
+    "custo": 93.6,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 2.35,
+    "peso_bruto": 2.35,
+    "largura": 10,
+    "altura": 41,
+    "profundidade": 79,
+    "gtin": "7898939971378",
+    "descricao": "Informações do Produto Suporte para Caixa Acústica ASK ou Cubo com Regulagem Inclinação - SI 113 Informações Técnicas Capacidade de Carga 40 Kg Embalagem (C x L x A ) 11,5 x 41,5 x 73cm Altura 60 cm Largura 41,5 cm Comprimento 48cm Material Aço / Plástico Ajustes Abertura Peso (kg) 2,490",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018934/01-02fc72acfc28ed3aaf23.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018934/02-1cb27d6c967c1e7d4be4.jpg"
+    ],
+    "categoria": "Som Profissional/ Acessórios Para Microfones/ Suporte Para Microfone",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:17.035182+00:00",
+    "updated_at": "2026-08-17T11:14:23.079388+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "355581",
+    "dslite_ultima_sync": "2026-08-17T11:14:22.869+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "92099900",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "9bb1761d-4813-4e30-81b3-cbbf62e1faf1",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "microphone_support",
+    "function": "support_microphone",
+    "intended_use": "professional_audio",
+    "physical_form": "microphone_stand",
+    "expected_category_signals": [
+      "suporte",
+      "microfone",
+      "audio"
+    ],
+    "incompatible_category_signals": [
+      "televisao",
+      "celular",
+      "tablet"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "73 cm",
+        "60 cm",
+        "41,5 cm",
+        "48 cm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

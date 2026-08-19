@@ -1,0 +1,130 @@
+{
+  "payload": {
+    "family_name": "Botão de Pânico Ipec NF",
+    "category_id": "MLB33412",
+    "catalog_product_id": "MLB30220377",
+    "catalog_listing": true,
+    "price": 149.9,
+    "currency_id": "BRL",
+    "available_quantity": 19,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017933/01-fc3e249cd7a297d9ea1e.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "5333037",
+        "value_name": "Ipec"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "29339794",
+        "value_name": "A2064"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "1176674",
+        "value_name": "Pilha"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "24556082",
+        "value_name": "433"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7818800",
+        "value_name": "33 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7627437",
+        "value_name": "55 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "8038984",
+        "value_name": "27 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "16045938",
+        "value_name": "19 g"
+      },
+      {
+        "id": "CONTROL_BUTTONS_NUMBER",
+        "value_id": "28101208",
+        "value_name": "1"
+      },
+      {
+        "id": "WITH_ANTENNA",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "RECOMMENDED_USES",
+        "value_id": "17608281",
+        "value_name": "Casa"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "29339796",
+        "value_name": "7898663560183"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "5333037",
+        "value_name": "Ipec"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "74511123",
+        "value_name": "A2064"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017933"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK017933"
+  },
+  "sha256": "a9af99f6647afae4d4c22527eb4805686715bc33b27fb256a2084ee48e2d62a4",
+  "family_name_sha256": "da54c5bc189a6c76c07b772a0ddf4853e11d36ab1a928858478ac56eaed26601",
+  "title_absent": true,
+  "description_absent": true
+}

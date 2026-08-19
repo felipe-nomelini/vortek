@@ -1,0 +1,113 @@
+{
+  "payload": {
+    "family_name": "Encordoamento Baixo SG 5 Cordas .040",
+    "category_id": "MLB278076",
+    "catalog_product_id": "MLB22361716",
+    "catalog_listing": true,
+    "price": 349.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/31908/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/31908/550/2.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "6298396",
+        "value_name": "SG"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "6413118",
+        "value_name": "5029"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_id": "15992504",
+        "value_name": "Contrabaixo"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "330041",
+        "value_name": "5"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15136",
+        "value_name": "5"
+      },
+      {
+        "id": "GAUGES",
+        "value_id": "25799869",
+        "value_name": "40-60-75-95-125"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "18169462",
+        "value_name": "Enrolado em níquel"
+      },
+      {
+        "id": "TENSION",
+        "value_id": "18413402",
+        "value_name": "Extra Light"
+      },
+      {
+        "id": "NOTES",
+        "values": [
+          {
+            "id": "15662353",
+            "name": "La"
+          },
+          {
+            "id": "15312682",
+            "name": "Mi"
+          },
+          {
+            "id": "15662351",
+            "name": "Re"
+          },
+          {
+            "id": "17592778",
+            "name": "Si"
+          },
+          {
+            "id": "15312681",
+            "name": "Sol"
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "value_id": "17663799",
+        "value_name": "7897626850293"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000039"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000039"
+  },
+  "sha256": "10ab732dce95ebbc8efeaaf30410966646cf802512e567b9f939cf8bf530b286",
+  "family_name_sha256": "a1e9acc18d24e776884a34dc86f4c76a23705b7ea4ee53e64adcfd5559569e25",
+  "title_absent": true,
+  "description_absent": true
+}

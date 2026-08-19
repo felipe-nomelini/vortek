@@ -74,6 +74,7 @@ import {
 } from "@/lib/dslite/placeholder-label";
 import { isDsliteCarrierAlreadyConfigured } from "@/lib/dslite/api-contract";
 import { canFallbackToSupplierlessCreate } from "@/lib/dslite/create-order-verification";
+import { resolveSafeReactivatedDsliteOrderReuse } from "@/lib/dslite/purchase-link";
 import {
   isBlockedDropshippingDsliteSupplier,
   selectAllowedSupplierProductCandidate,
@@ -3823,16 +3824,20 @@ async function runDsliteCreateJob(
 
     const chaveAcesso = extrairChaveAcessoDoXml(xml);
     let dsidAtual: number | null = null;
+    let reusedReactivatedDsliteOrder = false;
+    let reactivatedDsliteStatus: string | null = null;
     const existingDsliteId = String((pedidoRow as any)?.dslite_id || "").trim();
-    const { data: existingCompra } = existingDsliteId
-      ? await client
-          .from("compras")
-          .select(
-            "id,dsid,status,status_dslite,fornecedor_id,fornecedor_nome,produto_fornecedor_oferta_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount",
-          )
-          .eq("dsid", existingDsliteId)
-          .maybeSingle()
-      : { data: null as any };
+    let existingCompra: any = null;
+    if (existingDsliteId) {
+      const { data } = await client
+        .from("compras")
+        .select(
+          "id,dsid,status,status_dslite,nf_chave,fornecedor_id,fornecedor_nome,produto_fornecedor_oferta_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount",
+        )
+        .eq("dsid", existingDsliteId)
+        .maybeSingle();
+      existingCompra = data;
+    }
 
     if (
       resumeAfterSupplierPayment &&
@@ -3870,33 +3875,93 @@ async function runDsliteCreateJob(
             statusResultante: "ignored_canceled_duplicate",
           });
         } else {
-          const msg = `Já existe pedido na DSLite para esta mesma nota fiscal (chave ${chaveAcesso}, dsid: ${existente.dsid}). Gere nova NF antes de tentar novamente.`;
-          await registrarEventoNfAuditoria({
-            pedidoId,
-            mlOrderId: mlOrderId ? String(mlOrderId) : null,
-            evento: "dslite_blocked_same_nfe",
-            respostaMl: {
+          const remoteOrder = await consultarPedido(existente.dsid);
+          const [{ data: compraByDsid }, { data: pedidoCandidates }] = await Promise.all([
+            client
+              .from("compras")
+              .select(
+                "id,dsid,status,status_dslite,nf_chave,fornecedor_id,fornecedor_nome,produto_fornecedor_oferta_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount",
+              )
+              .eq("dsid", String(existente.dsid))
+              .maybeSingle(),
+            client
+              .from("pedidos")
+              .select("id,dslite_id,ml_pack_id,ml_bundle_type,ml_bundle_parent_item_id")
+              .eq("nfe_chave", chaveAcesso)
+              .limit(1000),
+          ]);
+          const reuseResolution = resolveSafeReactivatedDsliteOrderReuse({
+            expectedDsliteId: String(existente.dsid),
+            expectedNfeKey: chaveAcesso,
+            expectedItems: extractNfeProductLines(xml),
+            targetPedidoId: pedidoId,
+            pedidoCandidates: (pedidoCandidates || []) as any[],
+            purchase: compraByDsid as any,
+            remoteOrder: remoteOrder as any,
+          });
+
+          if (reuseResolution.safe) {
+            dsidAtual = Number(existente.dsid);
+            existingCompra = compraByDsid;
+            reusedReactivatedDsliteOrder = true;
+            reactivatedDsliteStatus = existente.status || "Aguardando Informações";
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: mlOrderId ? String(mlOrderId) : null,
+              evento: "dslite_reactivated_order_reused",
+              respostaMl: {
+                nfe_chave: chaveAcesso,
+                dsid: existente.dsid,
+                status_dslite: reactivatedDsliteStatus,
+                pedido_ids: reuseResolution.pedidoIds,
+                action: "explicit_reuse_after_reactivation",
+              },
+              statusResultante: "reused_reactivated_order",
+            });
+          } else {
+            const isReactivatedStatus =
+              String(existente.status || "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase() === "aguardando informacoes";
+            const msg = isReactivatedStatus
+              ? `Pedido DSLite reativado encontrado (dsid: ${existente.dsid}), mas o vínculo não pôde ser validado com segurança (${reuseResolution.reason}). Revise o vínculo antes de continuar.`
+              : `Já existe pedido na DSLite para esta mesma nota fiscal (chave ${chaveAcesso}, dsid: ${existente.dsid}). Gere nova NF antes de tentar novamente.`;
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: mlOrderId ? String(mlOrderId) : null,
+              evento: "dslite_blocked_same_nfe",
+              respostaMl: {
+                nfe_chave: chaveAcesso,
+                dsid_encontrado: existente.dsid,
+                status_dslite_encontrado: existente.status || null,
+                cancelado: Boolean(existente.cancelado),
+                reuse_block_reason: reuseResolution.reason,
+              },
+              statusResultante: "blocked_same_nfe",
+            });
+            await setStep("validate_fiscal_prechecks", "error", undefined, msg);
+            state = "error";
+            result = {
+              stage: "pre_validacao_nfe_duplicada_dslite",
               nfe_chave: chaveAcesso,
               dsid_encontrado: existente.dsid,
               status_dslite_encontrado: existente.status || null,
-              cancelado: Boolean(existente.cancelado),
-            },
-            statusResultante: "blocked_same_nfe",
-          });
-          await setStep("validate_fiscal_prechecks", "error", undefined, msg);
-          state = "error";
-          result = {
-            stage: "pre_validacao_nfe_duplicada_dslite",
-            nfe_chave: chaveAcesso,
-            dsid_encontrado: existente.dsid,
-            status_dslite_encontrado: existente.status || null,
-            message: msg,
-          };
-          await syncJob();
-          return;
+              reuse_block_reason: reuseResolution.reason,
+              message: msg,
+            };
+            await syncJob();
+            return;
+          }
         }
       }
     }
+
+    const reusingExistingDsliteOrder = Boolean(
+      dsidAtual &&
+        (reusedReactivatedDsliteOrder ||
+          (resumeAfterSupplierPayment && existingDsliteId)),
+    );
 
     await setStep(
       "validate_fiscal_prechecks",
@@ -3927,8 +3992,8 @@ async function runDsliteCreateJob(
       titulo: produto?.titulo ? String(produto.titulo) : null,
     });
 
-    if (resumeAfterSupplierPayment && existingDsliteId) {
-      dsidAtual = Number(existingDsliteId);
+    if (reusingExistingDsliteOrder) {
+      dsidAtual = dsidAtual || Number(existingDsliteId);
       fornecedorId = String(existingCompra?.fornecedor_id || "").trim();
       usePlaceholderLabel =
         isMlLabelReleasePending &&
@@ -4271,16 +4336,14 @@ async function runDsliteCreateJob(
       );
     }
 
-    let pedidoStatusFinal = "criado";
-    let supplierDefinedAtCreation = Boolean(
-      resumeAfterSupplierPayment && dsidAtual,
-    );
+    let pedidoStatusFinal = reactivatedDsliteStatus || "criado";
+    let supplierDefinedAtCreation = reusingExistingDsliteOrder;
     const createAttempts: any[] = [];
-    if (!resumeAfterSupplierPayment || !dsidAtual) {
+    if (!reusingExistingDsliteOrder) {
       await setStep("create_order_dslite", "loading");
     }
     const createWithSupplierResult =
-      !resumeAfterSupplierPayment || !dsidAtual
+      !reusingExistingDsliteOrder
         ? await criarPedidoDropshippingComFornecedor(xml, fornecedorId)
         : null;
     if (createWithSupplierResult) {
@@ -4537,7 +4600,9 @@ async function runDsliteCreateJob(
             ? existingPaymentAmount
             : null;
       const resolvedDsliteStatus =
-        resumeAfterSupplierPayment && (existingCompra as any)?.status_dslite
+        !reusedReactivatedDsliteOrder &&
+        resumeAfterSupplierPayment &&
+        (existingCompra as any)?.status_dslite
           ? String((existingCompra as any).status_dslite)
           : pedidoStatusFinal;
       const compraPayload = {
@@ -4770,6 +4835,9 @@ async function runDsliteCreateJob(
         fornecedor_nome: fornecedorNomeResolved,
         supplier_payment_amount:
           compraAtual?.supplier_payment_amount ?? supplierPaymentAmount ?? null,
+        reusedDsliteId: reusedReactivatedDsliteOrder
+          ? String(dsidAtual)
+          : null,
         supplier_pix_key: supplierPixKey || null,
         supplier_pix_key_missing: !supplierPixKey,
         supplier_phone_missing: !supplierPhoneDigits,
@@ -5396,7 +5464,9 @@ async function runDsliteCreateJob(
       etiquetaStatus,
       etiquetaError,
       pendencias,
-      reusedDsliteId: null,
+      reusedDsliteId: reusedReactivatedDsliteOrder
+        ? String(dsidAtual)
+        : null,
     };
 
     state = pendencias.length > 0 ? "warning" : "success";

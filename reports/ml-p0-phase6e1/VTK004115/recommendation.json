@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Suporte Magnético Para Antena Movel Aquário M-700k Base Magnética Com Cabo Rg058 De 4 Metros",
+    "supplier_category": "Antenas E Acessórios/ Antenas Para Internet E Acessórios/ Acessórios Para Antena De Internet",
+    "supplier_brand": "AQUARIO",
+    "supplier_gtin": "7898127600530",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/222789",
+    "captured_at": "2026-08-17T12:53:41.732Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

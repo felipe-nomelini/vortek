@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:53.674Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "Bori",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2704",
+    "captured_at": "2026-08-17T12:56:43.906Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "dcefd0b2-55a6-4aea-902d-a65f57e59b57",
+    "produto_id": "b4916f7e-70e1-426c-a271-bd7ab2ac90ee",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2704",
+    "sku_fornecedor": "2704",
+    "custo": 8.87,
+    "estoque": 24,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.019+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.027+00:00",
+    "sku_oferta": "2704",
+    "nome": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+    "descricao": "PALHETA BORI GRL AT-R16108 S.T.D 0,80 MM (AZUL) R21012 10UN A Palheta Bori GRL AT-R16108 S.T.D 0,80 mm (Azul) R21012 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Este modelo destaca-se por suas características técnicas e design funcional. Principais Características: • Modelo: S.T.D (Standard) • Código do Fabricante: R21012 • Espessura: 0,80 mm • Material: Poliamida Nylon (Resina de Engenharia) • Cor: Azul • Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue • Dimensões: • Largura: 25 mm • Altura: 30 mm • Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Standard: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão e guitarra, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori S.T.D de 0,80 mm na cor azul.",
+    "marca": "Bori",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e2b5c83f3818b1199742f30b4cf10c8.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2bdf97802b5df7d52892267f39a98a04.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c2a6fad3deadb15b025777af728e4949.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a3788a82884c89390b90b4ce0b6cdb1c.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.92.00",
+    "cest": null
+  }
+}

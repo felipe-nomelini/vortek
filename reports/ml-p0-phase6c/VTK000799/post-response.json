@@ -1,0 +1,769 @@
+{
+  "attempted_at": "2026-08-17T00:44:12.257Z",
+  "local_time": "2026-08-16T21:44:12",
+  "endpoint": "POST /items",
+  "request_id": "673c04be-f0f7-46c4-977b-f05be0d3cd64",
+  "http_status": 201,
+  "elapsed_ms": 873,
+  "payload_sha256": "7a519f96a94f2607f342800cf6fe6db76cd8af946d4f06e3d1e4c9de21b31470",
+  "body": {
+    "id": "MLB5075741703",
+    "site_id": "MLB",
+    "title": "Cadeira Gamer Thunderx3 Tgc12 Giratória Reclinável Cinza",
+    "seller_id": 3294514937,
+    "category_id": "MLB193945",
+    "user_product_id": "MLBU4772705610",
+    "official_store_id": null,
+    "price": 3829.9,
+    "base_price": 3829.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "ThunderX3 TGC12 82875",
+    "family_id": 6170643608505937,
+    "start_time": "2026-08-17T00:44:11.683Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:44:11.771Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075741703-cadeira-gamer-thunderx3-tgc12-giratoria-reclinavel-cinza-_JM",
+    "pictures": [
+      {
+        "id": "812700-MLA99522482252_122025",
+        "url": "http://mla-s2-p.mlstatic.com/812700-MLA99522482252_122025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/812700-MLA99522482252_122025-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "903080-MLU76976896874_062024",
+        "url": "http://mlu-s1-p.mlstatic.com/903080-MLU76976896874_062024-O.jpg",
+        "secure_url": "https://mlu-s1-p.mlstatic.com/903080-MLU76976896874_062024-O.jpg",
+        "size": "292x500",
+        "max_size": "585x1000",
+        "quality": ""
+      },
+      {
+        "id": "797905-MLU76976653694_062024",
+        "url": "http://mlu-s2-p.mlstatic.com/797905-MLU76976653694_062024-O.jpg",
+        "secure_url": "https://mlu-s2-p.mlstatic.com/797905-MLU76976653694_062024-O.jpg",
+        "size": "268x500",
+        "max_size": "536x1000",
+        "quality": ""
+      },
+      {
+        "id": "642992-MLU76976653700_062024",
+        "url": "http://mlu-s2-p.mlstatic.com/642992-MLU76976653700_062024-O.jpg",
+        "secure_url": "https://mlu-s2-p.mlstatic.com/642992-MLU76976653700_062024-O.jpg",
+        "size": "268x500",
+        "max_size": "536x1000",
+        "quality": ""
+      },
+      {
+        "id": "701348-MLU76976896904_062024",
+        "url": "http://mlu-s1-p.mlstatic.com/701348-MLU76976896904_062024-O.jpg",
+        "secure_url": "https://mlu-s1-p.mlstatic.com/701348-MLU76976896904_062024-O.jpg",
+        "size": "341x500",
+        "max_size": "749x1097",
+        "quality": ""
+      },
+      {
+        "id": "922079-MLU77187100225_062024",
+        "url": "http://mlu-s2-p.mlstatic.com/922079-MLU77187100225_062024-O.jpg",
+        "secure_url": "https://mlu-s2-p.mlstatic.com/922079-MLU77187100225_062024-O.jpg",
+        "size": "282x500",
+        "max_size": "565x1000",
+        "quality": ""
+      },
+      {
+        "id": "766268-MLU76976819504_062024",
+        "url": "http://mlu-s2-p.mlstatic.com/766268-MLU76976819504_062024-O.jpg",
+        "secure_url": "https://mlu-s2-p.mlstatic.com/766268-MLU76976819504_062024-O.jpg",
+        "size": "268x500",
+        "max_size": "536x1000",
+        "quality": ""
+      },
+      {
+        "id": "905523-MLA86371967406_062025",
+        "url": "http://mla-s2-p.mlstatic.com/905523-MLA86371967406_062025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/905523-MLA86371967406_062025-O.jpg",
+        "size": "500x500",
+        "max_size": "1040x1040",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "8848598",
+        "value_name": "ThunderX3",
+        "values": [
+          {
+            "id": "8848598",
+            "name": "ThunderX3",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "38933704",
+        "value_name": "ThunderX3 TGC12",
+        "values": [
+          {
+            "id": "38933704",
+            "name": "ThunderX3 TGC12",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "283165",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "283165",
+            "name": "Cinza",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450294",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "2450294",
+            "name": "Cinza",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "name": "Tipo de cadeira de escritório",
+        "value_id": "13016814",
+        "value_name": "Gamer",
+        "values": [
+          {
+            "id": "13016814",
+            "name": "Gamer",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "name": "Materiais da estrutura",
+        "value_id": null,
+        "value_name": "Plástico, Metal",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico",
+            "struct": null
+          },
+          {
+            "id": "24028945",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "name": "Materiais do enchimento",
+        "value_id": "5897875",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "5897875",
+            "name": "Espuma",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FOOT_RING_MATERIALS",
+        "name": "Materiais do aro para pés",
+        "value_id": "16602172",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "16602172",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "name": "Altura do encosto",
+        "value_id": "7661944",
+        "value_name": "85 cm",
+        "values": [
+          {
+            "id": "7661944",
+            "name": "85 cm",
+            "struct": {
+              "number": 85,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "name": "Profundidade do assento",
+        "value_id": "9567306",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "9567306",
+            "name": "50 cm",
+            "struct": {
+              "number": 50,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "name": "Largura da cadeira",
+        "value_id": "7866161",
+        "value_name": "70 cm",
+        "values": [
+          {
+            "id": "7866161",
+            "name": "70 cm",
+            "struct": {
+              "number": 70,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "name": "Altura máxima da cadeira",
+        "value_id": "50153881",
+        "value_name": "125 cm",
+        "values": [
+          {
+            "id": "50153881",
+            "name": "125 cm",
+            "struct": {
+              "number": 125,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "2218331",
+        "value_name": "120 kg",
+        "values": [
+          {
+            "id": "2218331",
+            "name": "120 kg",
+            "struct": {
+              "number": 120,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "name": "Requer montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_WHEELS",
+        "name": "Com rodas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "name": "Com aro para pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ARMREST",
+        "name": "Com apoio de braços",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "name": "Com encosto reclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "name": "Com apoio de braços ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_HEADREST",
+        "name": "Com apoio de cabeça",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "name": "Com apoio de pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "name": "É ergonômica",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_SWIVEL",
+        "name": "É giratória",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "38933706",
+        "value_name": "4711099476480",
+        "values": [
+          {
+            "id": "38933706",
+            "name": "4711099476480",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "name": "Inclui manual de montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "name": "Tipo de apoio lombar",
+        "value_id": "10201909",
+        "value_name": "Regulável",
+        "values": [
+          {
+            "id": "10201909",
+            "name": "Regulável",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "name": "Tipos de mecanismos de reclinação",
+        "value_id": "10219265",
+        "value_name": "Encosto reclinável",
+        "values": [
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "name": "Peso da cadeira",
+        "value_id": "10263987",
+        "value_name": "21.5 kg",
+        "values": [
+          {
+            "id": "10263987",
+            "name": "21.5 kg",
+            "struct": {
+              "number": 21.5,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "name": "Largura do encosto",
+        "value_id": "9567305",
+        "value_name": "57 cm",
+        "values": [
+          {
+            "id": "9567305",
+            "name": "57 cm",
+            "struct": {
+              "number": 57,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK000799",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK000799",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "38933703",
+        "value_name": "82875",
+        "values": [
+          {
+            "id": "38933703",
+            "name": "82875",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "38933705",
+        "value_name": "ThunderX3 TGC12",
+        "values": [
+          {
+            "id": "38933705",
+            "name": "ThunderX3 TGC12",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "items",
+        "cause_id": 303,
+        "code": "item.attributes.ignored",
+        "message": "Attribute [ALPHANUMERIC_MODEL] ignored because it is not modifiable.",
+        "references": [
+          "item.attributes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 303,
+        "code": "item.attributes.ignored",
+        "message": "Attribute [DETAILED_MODEL] ignored because it is not modifiable.",
+        "references": [
+          "item.attributes"
+        ]
+      },
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "812700-MLA99522482252_122025",
+    "thumbnail": "http://mlb-s2-p.mlstatic.com/812700-MLA99522482252_122025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB37849530",
+    "domain_id": "MLB-OFFICE_CHAIRS",
+    "seller_custom_field": "VTK000799",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:44:11.879Z",
+    "last_updated": "2026-08-17T00:44:11.879Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

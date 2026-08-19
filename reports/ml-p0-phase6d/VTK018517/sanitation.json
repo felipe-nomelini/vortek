@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018517",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": "catalog vehicle application states Corsa/Montana/Vectra and conflicts with local Corsa/Montana/Meriva",
+  "local_value": "7898253497974",
+  "found_value": "Corsa/Montana/Vectra",
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML catalog MLB27488461",
+  "timestamp": "2026-08-17T01:17:51.519Z"
+}

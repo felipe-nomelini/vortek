@@ -1,0 +1,843 @@
+{
+  "checked_at": "2026-08-16T22:31:04.430Z",
+  "payload_hash": {
+    "actual": "17bbed8f4bdae44267e1134be13a1713036e3d6a08d233691b06e6f4d613620d",
+    "expected": "17bbed8f4bdae44267e1134be13a1713036e3d6a08d233691b06e6f4d613620d",
+    "match": true
+  },
+  "local": {
+    "product": {
+      "id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "ml_item_id": null,
+      "ml_status": "sem_anuncio",
+      "estoque": 15,
+      "custo": 132.55,
+      "gtin": "7898461970375",
+      "fornecedor": "HAYAMAX-PR"
+    },
+    "offer": {
+      "id": "9ccf4021-feb0-4653-86f1-59d476521b4c",
+      "estoque": 15,
+      "custo": 132.55,
+      "dslite_fornecedor_id": "2",
+      "dslite_produto_id": "70704"
+    },
+    "stock": {
+      "product": 15,
+      "preferred_offer": 15,
+      "dslite": 15,
+      "supplier_conservative": 15,
+      "reserved": 0,
+      "reservations": [],
+      "publicable": 15
+    },
+    "local_listings": [],
+    "local_duplicates": [],
+    "checks": {
+      "produto_id": true,
+      "sku": true,
+      "ml_item_id_null": true,
+      "ml_status_unlinked": true,
+      "stock_authorized": true,
+      "cost_not_materially_changed": true,
+      "gtin": true,
+      "preferred_offer": true,
+      "no_local_listing": true,
+      "no_local_duplicate": true
+    },
+    "passed": true
+  },
+  "remote_duplicate": {
+    "checked_at": "2026-08-16T22:31:03.670Z",
+    "methods": [
+      "seller_sku",
+      "sku",
+      "title",
+      "catalog_product_id",
+      "full_inventory_all_statuses",
+      "GTIN",
+      "User Product",
+      "Family"
+    ],
+    "direct": [
+      {
+        "method": "seller_sku",
+        "value": "VTK000392",
+        "total": 0,
+        "item_ids": []
+      },
+      {
+        "method": "sku",
+        "value": "VTK000392",
+        "total": 0,
+        "item_ids": []
+      },
+      {
+        "method": "q",
+        "value": "Ventisol Turbo 6 40cm 127V",
+        "total": 6,
+        "item_ids": [
+          "MLB7087033170",
+          "MLB7086990790",
+          "MLB4841991409",
+          "MLB4857541505",
+          "MLB7314823222",
+          "MLB7316881426"
+        ]
+      },
+      {
+        "method": "catalog_product_id",
+        "value": "MLB15284402",
+        "total": 5799,
+        "item_ids": [
+          "MLB4841926293",
+          "MLB4842015137",
+          "MLB4842074083",
+          "MLB4842078621",
+          "MLB7009317108",
+          "MLB7086961682",
+          "MLB7086965348",
+          "MLB7086973848",
+          "MLB7086985002",
+          "MLB7087034738",
+          "MLB7087097404",
+          "MLB7087102446",
+          "MLB7087111460",
+          "MLB7087111946",
+          "MLB7087124278",
+          "MLB7087127962",
+          "MLB7087149956",
+          "MLB7087153230",
+          "MLB4846742891",
+          "MLB7095603012",
+          "MLB6655134320",
+          "MLB6655262916",
+          "MLB4800983765",
+          "MLB4801151247",
+          "MLB4866768041",
+          "MLB4866754909",
+          "MLB4866765509",
+          "MLB7123334124",
+          "MLB7146116856",
+          "MLB4880526723",
+          "MLB4880563183",
+          "MLB7149329558",
+          "MLB7149368050",
+          "MLB7149375192",
+          "MLB4857484891",
+          "MLB4857484899",
+          "MLB4857484915",
+          "MLB4857484921",
+          "MLB4857485077",
+          "MLB4857497417",
+          "MLB4857497437",
+          "MLB4857497451",
+          "MLB4857497633",
+          "MLB7111547830",
+          "MLB7111547856",
+          "MLB7111547870",
+          "MLB7111547914",
+          "MLB7111547956",
+          "MLB4832065123",
+          "MLB7173718908",
+          "MLB7173661978",
+          "MLB4881447147",
+          "MLB7149271704",
+          "MLB4842164031",
+          "MLB4841934813",
+          "MLB4857623611",
+          "MLB4857622855",
+          "MLB4857623033",
+          "MLB4857624411",
+          "MLB4857625945",
+          "MLB4857625023",
+          "MLB4857626089",
+          "MLB4857626293",
+          "MLB4857627461",
+          "MLB4857635245",
+          "MLB4857635479",
+          "MLB4857636853",
+          "MLB4857637279",
+          "MLB4857637107",
+          "MLB4857637271",
+          "MLB4857638323",
+          "MLB4857637179",
+          "MLB4857638555",
+          "MLB4857638135",
+          "MLB4857638269",
+          "MLB6655262764",
+          "MLB7111707198",
+          "MLB7111662028",
+          "MLB7111662476",
+          "MLB7111662322",
+          "MLB7111709944",
+          "MLB7111707384",
+          "MLB7111707632",
+          "MLB7111708406",
+          "MLB7111712996",
+          "MLB7111710200",
+          "MLB7111711826",
+          "MLB7111713108",
+          "MLB7111711762",
+          "MLB7111711662",
+          "MLB7111711716",
+          "MLB7111714236",
+          "MLB7111716072",
+          "MLB7111714528",
+          "MLB7111644648",
+          "MLB7111649566",
+          "MLB7111664322",
+          "MLB7111711612",
+          "MLB7111710268",
+          "MLB7111711872"
+        ]
+      }
+    ],
+    "inventory": {
+      "expected_total": 5799,
+      "captured": 5799,
+      "detailed": 5799,
+      "pages": 115,
+      "reliable": true
+    },
+    "matches": [],
+    "blocking_matches": [],
+    "possible_matches": []
+  },
+  "catalog": {
+    "fields": {
+      "id": true,
+      "active": true,
+      "domain": true,
+      "category_domain": true,
+      "catalog_required": true,
+      "brand": true,
+      "model": true,
+      "gtin": true,
+      "voltage": true,
+      "color": true,
+      "diameter": true,
+      "blades": true
+    },
+    "passed": true,
+    "wrong_voltage_catalog_selected": false,
+    "picker_products": [
+      {
+        "product_id": "MLB70196490",
+        "picker_label": "Azul",
+        "picture_id": "610405-MLA111153238842_052026",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_610405-MLA111153238842_052026-I.jpg",
+        "tags": [
+          "change-multiple-pickers"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Azul"
+          ],
+          [
+            "DIAMETER",
+            "50 cm"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Azul - 127V - Azul - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB10484264",
+        "picker_label": "Branco",
+        "picture_id": "736004-MLA84824506291_052025",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_736004-MLA84824506291_052025-I.jpg",
+        "tags": [
+          "no-bids"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Branco"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Branco - 127V - Branco - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB58830630",
+        "picker_label": "Preto",
+        "picture_id": "705315-MLA93616873948_102025",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_705315-MLA93616873948_102025-I.jpg",
+        "tags": [
+          "change-multiple-pickers",
+          "no-bids"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto"
+          ],
+          [
+            "FREQUENCY",
+            "50Hz"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 50Hz - Preto - 127V - Preto - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB15284402",
+        "picker_label": "Preto | Azul",
+        "picture_id": "702853-MLA99429972606_112025",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_702853-MLA99429972606_112025-I.jpg",
+        "tags": [
+          "selected"
+        ],
+        "changes": [],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB15284398",
+        "picker_label": "Preto | Bronze",
+        "picture_id": "723808-MLA99509708642_112025",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_723808-MLA99509708642_112025-I.jpg",
+        "tags": [],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto | Bronze"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Bronze - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB64277560",
+        "picker_label": "Preto | Cinza",
+        "picture_id": "667896-MLA104248475240_012026",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_667896-MLA104248475240_012026-I.jpg",
+        "tags": [
+          "change-multiple-pickers"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto | Cinza"
+          ],
+          [
+            "DIAMETER",
+            "50 cm"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Preto - 127V - Cinza - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB10484267",
+        "picker_label": "Preto | Prata",
+        "picture_id": "786944-MLA99458004996_112025",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_786944-MLA99458004996_112025-I.jpg",
+        "tags": [
+          "change-multiple-pickers"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto | Prata"
+          ],
+          [
+            "DIAMETER",
+            "50 cm"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Preto - 127V - Prata - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB15284400",
+        "picker_label": "Preto | Vermelho",
+        "picture_id": "849188-MLA109738911786_042026",
+        "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_849188-MLA109738911786_042026-I.jpg",
+        "tags": [],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto | Vermelho"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Vermelho - Plástico - 6",
+        "auto_completed": true
+      },
+      {
+        "product_id": "MLB19046511",
+        "picker_label": "30 cm",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [],
+        "changes": [
+          [
+            "DIAMETER",
+            "30 cm"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 30 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB58838862",
+        "picker_label": "35 cm",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "change-multiple-pickers",
+          "no-bids"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto | Cinza"
+          ],
+          [
+            "DIAMETER",
+            "35 cm"
+          ],
+          [
+            "VOLTAGE",
+            "220V"
+          ],
+          [
+            "FREQUENCY",
+            "50/60Hz"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 35 cm - 50/60Hz - Preto - 220V - Cinza - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB15284402",
+        "picker_label": "40 cm",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "selected"
+        ],
+        "changes": [],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB15284407",
+        "picker_label": "50 cm",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [],
+        "changes": [
+          [
+            "DIAMETER",
+            "50 cm"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB15284402",
+        "picker_label": "127V",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "selected"
+        ],
+        "changes": [],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB15284403",
+        "picker_label": "220V",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [],
+        "changes": [
+          [
+            "VOLTAGE",
+            "220V"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB15284402",
+        "picker_label": "Plástico",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "selected"
+        ],
+        "changes": [],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB10484262",
+        "picker_label": "Polipropileno",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "change-multiple-pickers"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto"
+          ],
+          [
+            "BLADES_MATERIAL",
+            "Polipropileno"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Preto - Polipropileno - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB15284402",
+        "picker_label": "6",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "selected"
+        ],
+        "changes": [],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB58838862",
+        "picker_label": "50/60Hz",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "change-multiple-pickers",
+          "no-bids"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto | Cinza"
+          ],
+          [
+            "DIAMETER",
+            "35 cm"
+          ],
+          [
+            "VOLTAGE",
+            "220V"
+          ],
+          [
+            "FREQUENCY",
+            "50/60Hz"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 35 cm - 50/60Hz - Preto - 220V - Cinza - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB58830630",
+        "picker_label": "50Hz",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "change-multiple-pickers",
+          "no-bids"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto"
+          ],
+          [
+            "FREQUENCY",
+            "50Hz"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 50Hz - Preto - 127V - Preto - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB70199475",
+        "picker_label": "60",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "change-multiple-pickers"
+        ],
+        "changes": [
+          [
+            "STRUCTURE_COLOR-BLADES_COLOR",
+            "Preto | Cinza"
+          ],
+          [
+            "DIAMETER",
+            "30 cm"
+          ],
+          [
+            "VOLTAGE",
+            "220V"
+          ],
+          [
+            "FREQUENCY",
+            "60"
+          ]
+        ],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 30 cm - 60 - Preto - 220V - Cinza - Plástico - 6",
+        "auto_completed": false
+      },
+      {
+        "product_id": "MLB15284402",
+        "picker_label": "60 Hz",
+        "picture_id": "",
+        "thumbnail": "",
+        "tags": [
+          "selected"
+        ],
+        "changes": [],
+        "permalink": "",
+        "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+        "auto_completed": false
+      }
+    ]
+  },
+  "official": {
+    "url": "https://www.ventisol.com.br/ventilador-de-mesa-ventisol-turbo-6p-40cm-azul",
+    "checked_at": "2026-08-16T22:29:33.062Z",
+    "http_status": 200,
+    "checks": {
+      "brand": true,
+      "model": true,
+      "type": true,
+      "color": true,
+      "voltage_127": true,
+      "gtin": true,
+      "blades_6": true
+    },
+    "passed": true
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/70704",
+    "checked_at": "2026-08-16T22:29:31.825Z",
+    "product": {
+      "produtoid": "70704",
+      "produtoid_empresa": "HYX70704",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 132.55,
+      "preco_crossdocking": 132.55,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 132.55,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-12 18:04:55.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "titulo_curto": "VENT MESA 40CM VENTISOL TURBO6 AZ 127V",
+      "categoriaid": "292391",
+      "categoria_nome": "Ar E Ventilação / Ventiladores / Ventiladores De Mesa",
+      "abc": "B",
+      "ean11": "7898461970375",
+      "ncm": "8414.51.10",
+      "descricao": "O Ventilador de Mesa Ventisol Turbo 6 é a escolha ideal para quem busca um ambiente fresco e agradável. Com seu motor turbo de alta performance e sua hélice de 6 pás projetadas com nova aerodinâmica, ele proporciona uma ventilação potente e silenciosa. <br/> <br/> Sua base e acabamento da grade foram redesenhados com um design moderno e arrojado, garantindo maior estabilidade ao ventilador. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui três velocidades ajustáveis através de um prático controle na capa protetora do motor. A tecnologia de grade Wind-line oferece uma melhor vazão e direcionamento de ar, tornando a ventilação ainda mais eficiente. Seu recurso de oscilação automática permite que o ventilador movimente-se horizontalmente, alcançando uma área maior. <br/> <br/> Com a regulagem de inclinação manual, você pode ajustar o ângulo do ventilador de acordo com sua necessidade, direcionando o fluxo de ar para onde desejar. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui certificação Classe A no INMETRO, garantindo a melhor classificação de energia do mercado. <br/> <br/> Possuindo suporte de parede integrado, você tem a opção de utilizar o ventilador no chão, na mesa ou fixá-lo na parede, adaptando-se perfeitamente às suas preferências e necessidades. Desfrute de um ambiente mais fresco e confortável com o Ventilador de Mesa Ventisol Turbo 6.",
+      "caracteristicas": "Peso:2,500Kg<br>Voltagem:127V<br>Cor:Azul<br>Potência:80W<br>Rotação:1500<br>Vazão:0,81M3/S<br>Hélice:380mm<br>Grade:430mm<br>Consumo de Energia:2,03KWH/MES<br>Pesquisa:mesa|40|40-cm|turbo-6|6|127V|127-v|Azul<br>",
+      "informacoes": "<br/> • Dimensões: 440 x 180 x 440mm <br/> <br/> • Nova Base e Acabamento da Grade: Design moderno e arrojado. Maior estabilidade para o ventilador. <br/> • Motor Turbo: Motor turbo com alta performance. Gera menos ruído. <br/> • Hélice 6 Pás: Design e aerodinâmica para alta ventilação <br/> • Três velocidades: Controle de velocidade na capa protetora do motor do ventilador. <br/> • Grade Wind-line: Tecnologia que proporciona melhor vazão e direcionamento de ar. <br/> • Oscilação Automática: Oscilação horizontal pode ser ativada ou desativada. <br/> • Regulagem de inclinação manual: Ajustada de acordo com a necessidade. <br/> • Classe A no INMETRO: Melhor classificação de energia do mercado. <br/> • Suporte de parede integrado: Pode ser usado no chão, na mesa ou na parede em algum ponto de fixação. <br/>",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "VENTISOL",
+      "modelo": "TURBO6",
+      "peso": 2.6,
+      "largura": 44,
+      "altura": 18,
+      "profundidade": 45,
+      "peso_embalagem": 2.6,
+      "largura_embalagem": 44,
+      "altura_embalagem": 18,
+      "profundidade_embalagem": 45,
+      "link": "http://www.hayamax.com.br/ventilador-de-mesa-ventisol-turbo-6-40cm-azul-127v",
+      "link_imagem": "https://static.hayapek.com.br/produtos/70704/550/1.jpg",
+      "link_youtube": "lmr8HHcpbuU",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 7849,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 08:51:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:15:56.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 213,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "voltage": {
+    "local": true,
+    "manufacturer": true,
+    "catalog": true,
+    "payload": true,
+    "passed": true
+  },
+  "image": {
+    "checked_at": "2026-08-16T22:31:04.076Z",
+    "url": "https://static.hayapek.com.br/produtos/70704/550/1.jpg",
+    "http_status": 200,
+    "content_type": "image/jpg",
+    "width": 550,
+    "height": 550,
+    "sha256": "80d010e2feb7fb7cf84187e888d093b075de4ddbe4ce211ff263ab6abc016f46",
+    "prior_visual_identity": "Phase 5B manual inspection: exact Ventisol Turbo 6, blue, six blades, single unit, no voltage contradiction",
+    "passed": true
+  },
+  "financial": {
+    "checked_at": "2026-08-16T22:31:04.430Z",
+    "dimensions": "18x44x45,2600",
+    "item_id": null,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_special",
+      "listing_type_name": "Clássico",
+      "requires_picture": true,
+      "sale_fee_amount": 27.57,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 27.57,
+        "percentage_fee": 11
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 39.75,
+          "currency_id": "BRL",
+          "billable_weight": 5940,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 79.5
+          }
+        }
+      }
+    },
+    "values": {
+      "price": 250.62,
+      "commission": 27.57,
+      "shipping": 39.75,
+      "cost": 132.55,
+      "tax": 12.53,
+      "profit": 38.22,
+      "margin_percent": 15.250179554704332
+    },
+    "target_margin_percent": 15.25,
+    "approved": true
+  },
+  "writes_before_post": {
+    "mercado_livre_item_posts": 0,
+    "supabase": 0
+  }
+}

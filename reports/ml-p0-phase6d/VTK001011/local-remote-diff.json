@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432633498",
+      "local": "MLB7432633498",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001011",
+      "local": "VTK001011",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "13f5fcb5-aa53-4c6a-ae92-1bc41e350a48",
+      "local": "13f5fcb5-aa53-4c6a-ae92-1bc41e350a48",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Fogão Elétrico De Mesa 2 Bocas 2000w Agratto Fm-01 Aço Inoxidável 127v",
+      "local": "Fogão Elétrico De Mesa 2 Bocas 2000w Agratto Fm-01 Aço Inoxidável 127v",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 1079.9,
+      "local": 1079.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432633498-fogo-eletrico-de-mesa-2-bocas-2000w-agratto-fm-01-aco-inoxidavel-127v-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432633498-fogo-eletrico-de-mesa-2-bocas-2000w-agratto-fm-01-aco-inoxidavel-127v-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

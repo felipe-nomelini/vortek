@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:39.729Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+    "supplier_category": "Automotivo/ Acessórios Para Instalacao/ Moldura",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": "7898253497813",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/189698",
+    "captured_at": "2026-08-17T12:54:08.609Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "bbe9ca86-a29e-43bf-89a8-e42b683d747f",
+    "produto_id": "61eddeb1-1475-4a17-8344-adbeca5cc8af",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "189698",
+    "sku_fornecedor": "189698",
+    "custo": 14.9,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:09:27.941+00:00",
+    "created_at": "2026-07-20T18:32:59.010276+00:00",
+    "updated_at": "2026-08-17T11:09:27.95+00:00",
+    "sku_oferta": "189698",
+    "nome": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+    "descricao": "Contra Frente Plástica Toyota Hilux / SW4 2 Din Permak 89/Z3",
+    "marca": "PERMAK",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/1/8/189698_67d2cadb77756.jpg"
+    ],
+    "gtin": "7898253497813",
+    "ncm": "85299090",
+    "cest": "21.112.00"
+  }
+}

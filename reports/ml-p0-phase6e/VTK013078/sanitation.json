@@ -1,0 +1,10 @@
+{
+  "sku": "VTK013078",
+  "gate": "BLOCK_GTIN_MODEL_CONFLICT",
+  "evidence": "exact GTIN catalog identity conflict: MODEL,BATTERY_SIZE,COMPOSITION",
+  "local_value": "8888021206128",
+  "found_value": "MLB21645092",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB21645092 + DSLite supplier",
+  "timestamp": "2026-08-17T12:53:41.475Z"
+}

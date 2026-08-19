@@ -1,0 +1,23 @@
+{
+  "index": 24,
+  "sku": "VTK006274",
+  "expected_gtin": "7898378703493",
+  "started_at": "2026-08-17T01:14:16.989Z",
+  "local_time": "2026-08-16T22:14:16",
+  "completed_at": "2026-08-17T01:14:17.025Z",
+  "elapsed_ms": 36,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "catalog MODEL A06V6_S diverges from local/supplier MODEL TVA06V6S",
+  "sanitation": "CATALOG_REVIEW_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

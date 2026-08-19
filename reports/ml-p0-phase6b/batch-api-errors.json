@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-08-17T00:07:32.377Z",
+  "rows": [
+    {
+      "index": 20,
+      "sku": "VTK017637",
+      "started_at": "2026-08-17T00:07:31.169Z",
+      "local_time": "2026-08-16T21:07:31",
+      "expected_gtin": "7898911419775",
+      "completed_at": "2026-08-17T00:07:32.375Z",
+      "elapsed_ms": 1223,
+      "result": "BLOCK_API_CONTRACT",
+      "item_id": null,
+      "catalog_product_id": "MLB21757400",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "required_attributes_missing:VOLTAGE,DEVICE_TYPE",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false,
+        "optional_catalog_optimization_pending": false
+      }
+    }
+  ]
+}

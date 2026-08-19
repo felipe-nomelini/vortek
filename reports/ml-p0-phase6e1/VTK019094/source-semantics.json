@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-08-17T14:15:50.074Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff194 Toyota Hilux Cabine Dupla 2016+ Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194882",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317486",
+    "captured_at": "2026-08-17T12:55:22.921Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "3afa5eed-c030-4cd7-b66c-127d5345eb74",
+    "produto_id": "4fff33d4-ab0a-43e5-bb40-0aa655154278",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "317486",
+    "sku_fornecedor": "317486",
+    "custo": 549.9,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:19:15.296+00:00",
+    "created_at": "2026-07-20T18:33:35.650576+00:00",
+    "updated_at": "2026-08-17T11:19:15.306+00:00",
+    "sku_oferta": "317486",
+    "nome": "Capota Marítima Flash Cover Ff194 Toyota Hilux Cabine Dupla 2016+ Force",
+    "descricao": "Informações do Produto A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo Hilux CD 16+",
+    "marca": "FLASH COVER",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/317486_68d692ba8b47a.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317486_68d692ba8babd.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317486_68d692ba8bb62.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317486_68d692ba8bbab.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317486_68d692ba8bbef.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317486_68d692ba8bc2e.png"
+    ],
+    "gtin": "7899630194882",
+    "ncm": "87082999",
+    "cest": "01.075.00"
+  }
+}

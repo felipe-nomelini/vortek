@@ -1,0 +1,184 @@
+{
+  "payload": {
+    "family_name": "Nobreak TS Shara UPS Compact 800VA",
+    "category_id": "MLB270504",
+    "catalog_product_id": "MLB24043842",
+    "catalog_listing": true,
+    "price": 2639.9,
+    "currency_id": "BRL",
+    "available_quantity": 11,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/75352/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/75352/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/75352/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/75352/550/4.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "6286105",
+        "value_name": "Ts Shara"
+      },
+      {
+        "id": "LINE",
+        "value_id": "20246030",
+        "value_name": "UPS Compact Xpro"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "17629148",
+        "value_name": "Compact XPro 800VA"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "20246029",
+        "value_name": "4442"
+      },
+      {
+        "id": "PEAK_POWER",
+        "value_id": "1157153",
+        "value_name": "800VA"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "OUTPUT_VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "VOLTAGE_DENOMINATION",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "INPUT_VOLTAGE_RANGE",
+        "value_id": "17629178",
+        "value_name": "99v - 138v (ca)"
+      },
+      {
+        "id": "INPUT_VOLTAGE_RANGE_AC",
+        "value_id": "20246095",
+        "value_name": "189v - 264v (ca)"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "20246092",
+        "value_name": "Ups Compact XPro 800VA Bivolt"
+      },
+      {
+        "id": "PRODUCT_TYPES",
+        "value_id": "8869731",
+        "value_name": "No break"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "20246093",
+        "value_name": "7897103544424"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "6286105",
+        "value_name": "Ts Shara"
+      },
+      {
+        "id": "BIVOLT_INPUT_SELECTION_METHOD",
+        "value_id": "355390",
+        "value_name": "Automático"
+      },
+      {
+        "id": "SOUND_ALARM_TYPES",
+        "value_id": "8869719",
+        "value_name": "Sobrecarga"
+      },
+      {
+        "id": "UPS_TYPE",
+        "value_id": "8869722",
+        "value_name": "Interactiva"
+      },
+      {
+        "id": "SUITABLE_DEVICES",
+        "value_id": "84348",
+        "value_name": "Computadores"
+      },
+      {
+        "id": "OUTLETS_NUMBER",
+        "value_id": "260600",
+        "value_name": "6"
+      },
+      {
+        "id": "WITH_ON_OFF_POWER_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_LED_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "RATED_POWER",
+        "value_id": "9065673",
+        "value_name": "800 VA"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7814219",
+        "value_name": "6.9 kg"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "5795665",
+        "value_name": "16 cm"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "9568135",
+        "value_name": "40.5 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7817387",
+        "value_name": "24 cm"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK003839"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK003839"
+  },
+  "sha256": "202c3a4018b07d33aa210a22f608b64dc647d65f9a8e045ea3c20a4c158d5d46",
+  "family_name_sha256": "493cfbd87a7bacffe594d5daaf9f054616023ab7542057e521139dd47f0d2018",
+  "title_absent": true,
+  "description_absent": true
+}

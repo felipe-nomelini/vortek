@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-08-16T06:42:32.110Z",
+  "phase": "4B.1",
+  "mode": "AUDIT_ONLY",
+  "result": "P0_PHASE_4B1_DIAGNOSTIC_HOLD",
+  "request_id": "60e5c148-b1f9-479c-8ed9-53a06a52b29a",
+  "payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792",
+  "endpoint_confirmed": true,
+  "probable_cause": "MERCADO_LIVRE_INTERNAL_ERROR",
+  "image_total": 9,
+  "image_passed": 9,
+  "fields_with_proven_invalid_contract": 0,
+  "new_posts": 0,
+  "supabase_writes": 0,
+  "hold": "P0 PHASE 4B.1 — DIAGNOSTIC HOLD"
+}

@@ -1,0 +1,30 @@
+{
+  "candidates": [
+    {
+      "category_id": "MLB457887",
+      "path": [
+        "Acessórios para Veículos",
+        "Aces. de Carros e Caminhonetes",
+        "Exterior",
+        "Antenas de Conectividade"
+      ]
+    },
+    {
+      "category_id": "MLB457888",
+      "path": [
+        "Acessórios para Veículos",
+        "Acessórios de Linha Pesada",
+        "Acessórios de Exterior",
+        "Antenas de Conectividade"
+      ]
+    },
+    {
+      "category_id": "MLB63312",
+      "path": [
+        "Informática",
+        "Conectividade e Redes",
+        "Antenas"
+      ]
+    }
+  ]
+}

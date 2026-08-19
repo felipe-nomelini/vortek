@@ -1,0 +1,34 @@
+{
+  "family_name": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+  "category_id": "MLB11290",
+  "price": 187.22,
+  "currency_id": "BRL",
+  "available_quantity": 15,
+  "buying_mode": "buy_it_now",
+  "listing_type_id": "gold_pro",
+  "pictures": [
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/3.jpg"
+    }
+  ],
+  "attributes": [
+    {
+      "id": "BRAND",
+      "value_name": "Toshiba"
+    },
+    {
+      "id": "MODEL",
+      "value_name": "TNHC-6GAE4 CB"
+    },
+    {
+      "id": "PRODUCT_TYPE",
+      "value_id": "28280064",
+      "value_name": "Pilha"
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "value_id": "2230284",
+      "value_name": "Novo"
+    }
+  ]
+}

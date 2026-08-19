@@ -1,0 +1,182 @@
+{
+  "phase": "4C",
+  "mode": "CONTROLLED_EXECUTION",
+  "started_at": "2026-08-16T21:16:31.916Z",
+  "completed_at": "2026-08-16T21:16:32.721Z",
+  "sku": "VTK000486",
+  "item_id": "MLB7432157712",
+  "user_product_id": "MLBU4771606790",
+  "family_id": "4094059417953552",
+  "result": "DESCRIPTION_SUCCESS",
+  "write_result": "DESCRIPTION_POST_SUCCESS",
+  "description_write_attempts": 1,
+  "mercado_livre_commercial_writes": 0,
+  "supabase_writes": 0,
+  "second_sku_actions": 0,
+  "hold": "P0 PHASE 4C — DESCRIPTION HOLD",
+  "local_gate": {
+    "result": "MATCH",
+    "product": {
+      "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "gtin": "4904530109270",
+      "ml_item_id": "MLB7432157712",
+      "ml_status": "ativo"
+    },
+    "listing": {
+      "id": "f8fd742d-1460-4fdd-a09b-0955a6c61c49",
+      "ml_item_id": "MLB7432157712",
+      "produto_id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "titulo": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+      "tipo": "premium",
+      "preco_ml": 187.22,
+      "status": "ativo",
+      "catalogo": false,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM"
+    }
+  },
+  "pre_description_gate": {
+    "identity": {
+      "identity": [
+        {
+          "field": "item_id",
+          "expected": "MLB7432157712",
+          "remote": "MLB7432157712",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "seller_id",
+          "expected": 3294514937,
+          "remote": 3294514937,
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "seller_sku",
+          "expected": "VTK000486",
+          "remote": "VTK000486",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "user_product_id",
+          "expected": "MLBU4771606790",
+          "remote": "MLBU4771606790",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "family_id",
+          "expected": "4094059417953552",
+          "remote": "4094059417953552",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "GTIN",
+          "expected": "4904530109270",
+          "remote": "4904530109270",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "BRAND",
+          "expected": "Toshiba",
+          "remote": "Toshiba",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "MODEL",
+          "expected": "TNHC-6GAE4 CB",
+          "remote": "TNHC-6GAE4 CB",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "category_id",
+          "expected": "MLB11290",
+          "remote": "MLB11290",
+          "status": "MATCH",
+          "material": true
+        }
+      ],
+      "commercial": [
+        {
+          "field": "status",
+          "expected": "active",
+          "remote": "active",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "price",
+          "expected": 187.22,
+          "remote": 187.22,
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "available_quantity",
+          "expected": 15,
+          "remote": 15,
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "listing_type_id",
+          "expected": "gold_pro",
+          "remote": "gold_pro",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "condition",
+          "expected": "new",
+          "remote": "new",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "PRODUCT_TYPE",
+          "expected": "Pilha",
+          "remote": "Pilha",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "INPUT_VOLTAGE",
+          "expected": "127/220V",
+          "remote": "127/220V",
+          "status": "MATCH",
+          "material": true
+        },
+        {
+          "field": "shipping.mode",
+          "expected": "me2",
+          "remote": "me2",
+          "status": "MATCH",
+          "material": true
+        }
+      ],
+      "identityMismatch": false,
+      "commercialDrift": false
+    },
+    "reference_drift": {
+      "fields": [],
+      "drift": false
+    }
+  },
+  "description_before": {
+    "http_status": 404,
+    "body": {
+      "message": "Description of item with id MLB7432157712 not found",
+      "error": "not_found",
+      "status": 404,
+      "cause": []
+    },
+    "absent": true
+  }
+}

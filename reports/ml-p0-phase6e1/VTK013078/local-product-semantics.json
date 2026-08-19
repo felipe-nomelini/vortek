@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-17T14:15:36.063Z",
+  "product": {
+    "id": "859e5bfa-ccd4-41b0-8ec0-e3ccbb00138d",
+    "sku": "VTK013078",
+    "nome": "Pilha Max Aa8+aaa4 Cart 12 Energizer",
+    "marca": "Energizer",
+    "estoque": 100,
+    "custo": 31,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.26,
+    "peso_bruto": 0.26,
+    "largura": 9,
+    "altura": 21,
+    "profundidade": 2,
+    "gtin": "8888021206128",
+    "descricao": "PILHA ENERGIZER MAX AA8+AAA4 CART12 Kit Pilhas Alcalinas Energizer Max AA8 + AAA4 – Energia Confiável para Todos os Seus Dispositivos O Kit Pilhas Alcalinas Energizer Max combina 8 pilhas AA e 4 pilhas AAA, oferecendo uma solução completa para garantir energia de longa duração e alto desempenho em diversos dispositivos do seu dia a dia. Com a tecnologia PowerSeal™, essas pilhas protegem contra vazamentos e podem ser armazenadas por até 10 anos sem perder carga, proporcionando mais segurança e eficiência para seus aparelhos eletrônicos. Especificações do Produto: • Marca: Energizer • Linha: Max • Modelo: AA8 + AAA4 • Tipo: Alcalina • Voltagem: 1,5V • Tecnologia PowerSeal™: Proteção contra vazamentos, prolongando a vida útil dos dispositivos • Vida útil armazenada: Até 10 anos sem perda de energia • Indicação de uso: • Pilhas AA: Controles remotos, brinquedos, teclados e mouses sem fio, lanternas, câmeras digitais e outros dispositivos de médio e alto consumo Pilhas AAA: Relógios, controles de TV, termômetros digitais, brinquedos pequenos e outros eletrônicos compactos • Quantidade na embalagem: 12 unidades (8x AA + 4x AAA) Com o Kit Energizer Max AA8 + AAA4, você garante energia confiável e duradoura para todos os seus dispositivos.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5fdf30e297f375f373f7335fe92c10e9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/934485774464d2e614be8784fa60517f.jpg"
+    ],
+    "categoria": "Eletrônicos, áudio E Vídeo > Pilhas E Carregadores > Pilhas",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.983532+00:00",
+    "updated_at": "2026-08-17T13:49:45.273866+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "3312",
+    "dslite_ultima_sync": "2026-08-17T13:49:45.256+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8506.10.19",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "78b5b0dc-0e6c-4673-8d8f-6f40c77cadba",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "battery_charger",
+    "function": "charge_rechargeable_cells",
+    "intended_use": "battery_accessory",
+    "physical_form": "battery_charger",
+    "expected_category_signals": [
+      "carregador",
+      "pilha",
+      "bateria"
+    ],
+    "incompatible_category_signals": [
+      "celular",
+      "notebook",
+      "veicular"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": [
+        12
+      ]
+    },
+    "audience_use_context": "battery_accessory",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

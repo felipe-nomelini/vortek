@@ -1,0 +1,736 @@
+{
+  "checked_at": "2026-08-17T01:16:43.548Z",
+  "expected_catalog_product_id": "MLB11329647",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "VOLTAGE": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB11329647",
+    "catalog_product_id": "MLB11329647",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-COOKTOPS",
+    "permalink": "",
+    "name": "Fogão Elétrico de mesa 2 Bocas 2000W Agratto FM-01",
+    "family_name": "Agratto FM-01 2 Bocas",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB11329647",
+            "picker_label": "Aço inoxidável",
+            "picture_id": "763809-MLA100852866791_122025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_763809-MLA100852866791_122025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Agratto FM-01 2 Bocas - Aço inoxidável - 127V",
+            "auto_completed": true,
+            "rgb_meta": "CBCFD0"
+          },
+          {
+            "product_id": "MLB69823350",
+            "picker_label": "Cinza",
+            "picture_id": "816780-MLA110858348494_052026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_816780-MLA110858348494_052026-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Cinza"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Agratto FM-01 2 Bocas - Cinza - 127V",
+            "auto_completed": true,
+            "rgb_meta": "E1E1E1"
+          },
+          {
+            "product_id": "MLB20704822",
+            "picker_label": "Inox",
+            "picture_id": "914988-MLA99441269476_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_914988-MLA99441269476_112025-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Inox"
+              ],
+              [
+                "VOLTAGE",
+                "220V"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Agratto FM-01 2 Bocas - Inox - 220V",
+            "auto_completed": true,
+            "rgb_meta": "CBCFD0"
+          },
+          {
+            "product_id": "MLB49083933",
+            "picker_label": "Prateado",
+            "picture_id": "832634-MLA99989458567_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_832634-MLA99989458567_112025-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Prateado"
+              ],
+              [
+                "VOLTAGE",
+                "220V"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Agratto FM-01 2 Bocas - Prateado - 220V",
+            "auto_completed": true,
+            "rgb_meta": "CBCFD0"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB11329647",
+            "picker_label": "127V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Agratto FM-01 2 Bocas - Aço inoxidável - 127V",
+            "auto_completed": false,
+            "rgb_meta": "CBCFD0"
+          },
+          {
+            "product_id": "MLB11295569",
+            "picker_label": "220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [],
+            "changes": [
+              [
+                "VOLTAGE",
+                "220V"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Agratto FM-01 2 Bocas - Aço inoxidável - 220V",
+            "auto_completed": false,
+            "rgb_meta": "CBCFD0"
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "763809-MLA100852866791_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_763809-MLA100852866791_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 907,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "772906-MLA100360586770_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_772906-MLA100360586770_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 868,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "628095-MLA100360140364_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_628095-MLA100360140364_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 868,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "837408-MLA100360547220_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_837408-MLA100360547220_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 909,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "608187-MLA100360457952_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_608187-MLA100360457952_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 886,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "703438-MLA114651790255_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_703438-MLA114651790255_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "938765-MLA113396543012_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_938765-MLA113396543012_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Potência de 2000W. ",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com acendimento automático e 2 queimadores.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "A sua superfície é de aço inoxidável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Controle manípulos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Possui 5 níveis de potência.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Indispensável para a sua cozinha.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "As imagens podem ser ilustrativas.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Dimensões: 27,5cm de largura x 8,0cm de altura x 50,0cm de profundidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Potência de 2 kW.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "97494",
+        "value_name": "Agratto",
+        "values": [
+          {
+            "id": "97494",
+            "name": "Agratto"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "84813619",
+        "value_name": "Agratto FM-01 2 Bocas",
+        "values": [
+          {
+            "id": "84813619",
+            "name": "Agratto FM-01 2 Bocas"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "2414689",
+        "value_name": "Aço inoxidável",
+        "values": [
+          {
+            "id": "2414689",
+            "name": "Aço inoxidável"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205162",
+        "value_name": "127V",
+        "values": [
+          {
+            "id": "39205162",
+            "name": "127V"
+          }
+        ]
+      },
+      {
+        "id": "COOKTOPS_TOTAL_POWER",
+        "name": "Potência total",
+        "value_id": "47079007",
+        "value_name": "2 kW",
+        "values": [
+          {
+            "id": "47079007",
+            "name": "2 kW"
+          }
+        ]
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "7490134",
+        "value_name": "FM-01",
+        "values": [
+          {
+            "id": "7490134",
+            "name": "FM-01"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450303",
+        "value_name": "Prateado",
+        "values": [
+          {
+            "id": "2450303",
+            "name": "Prateado",
+            "meta": {
+              "rgb": "CBCFD0"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "CBCFD0"
+        }
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "10981338",
+        "value_name": "60",
+        "values": [
+          {
+            "id": "10981338",
+            "name": "60"
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPES",
+        "name": "Tipos de alimentação",
+        "value_id": "1033091",
+        "value_name": "Elétrica",
+        "values": [
+          {
+            "id": "1033091",
+            "name": "Elétrica"
+          }
+        ]
+      },
+      {
+        "id": "IGNITION_TYPE",
+        "name": "Tipo de ignição",
+        "value_id": "94845",
+        "value_name": "Automático",
+        "values": [
+          {
+            "id": "94845",
+            "name": "Automático"
+          }
+        ]
+      },
+      {
+        "id": "CONTROL_TYPE",
+        "name": "Tipo de controle",
+        "value_id": "11027425",
+        "value_name": "Manípulos",
+        "values": [
+          {
+            "id": "11027425",
+            "name": "Manípulos"
+          }
+        ]
+      },
+      {
+        "id": "SURFACE_MATERIALS",
+        "name": "Materiais da superfície",
+        "value_id": "5987349",
+        "value_name": "Aço inoxidável",
+        "values": [
+          {
+            "id": "5987349",
+            "name": "Aço inoxidável"
+          }
+        ]
+      },
+      {
+        "id": "IS_NATURAL_GAS_CONVERTIBLE",
+        "name": "É conversível a gás natural",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_BOTTLED_GAS_CONVERTIBLE",
+        "name": "É conversível a gás engarrafado",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_SAFETY_VALVES",
+        "name": "Com válvulas de segurança",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "MOUNTING_TYPE",
+        "name": "Tipo de montagem",
+        "value_id": "4502036",
+        "value_name": "De chão",
+        "values": [
+          {
+            "id": "4502036",
+            "name": "De chão"
+          }
+        ]
+      },
+      {
+        "id": "WITH_SAFETY_LOCK",
+        "name": "Com trava de segurança",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_OVERHEAT_PROTECTION",
+        "name": "Com proteção contra superaquecimento",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_TIMER",
+        "name": "Com temporizador",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_ECOLOGIC",
+        "name": "É ecológico",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "1115141",
+        "value_name": "8 cm",
+        "values": [
+          {
+            "id": "1115141",
+            "name": "8 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "1094978",
+        "value_name": "275 cm",
+        "values": [
+          {
+            "id": "1094978",
+            "name": "275 cm"
+          }
+        ]
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "value_id": "943435",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "943435",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "BURNERS_NUMBER",
+        "name": "Quantidade de bocas",
+        "value_id": "211153",
+        "value_name": "2",
+        "values": [
+          {
+            "id": "211153",
+            "name": "2"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "15996578",
+        "value_name": "2.52 kg",
+        "values": [
+          {
+            "id": "15996578",
+            "name": "2.52 kg"
+          }
+        ]
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "11111581",
+        "value_name": "4917",
+        "values": [
+          {
+            "id": "11111581",
+            "name": "4917"
+          }
+        ]
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "name": "É industrial",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "GRATES_MATERIAL",
+        "name": "Material das trempes",
+        "value_id": "7080774",
+        "value_name": "Ferro",
+        "values": [
+          {
+            "id": "7080774",
+            "name": "Ferro"
+          }
+        ]
+      },
+      {
+        "id": "POWER_LEVELS",
+        "name": "Níveis de potência",
+        "value_id": "996069",
+        "value_name": "5",
+        "values": [
+          {
+            "id": "996069",
+            "name": "5"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "AQUECIMENTO RÁPIDO EM FERRO FUNDIDO, CORPO EM AÇO INOX E PORTABILIDADE TOTAL: PREPARE SUAS RECEITAS FAVORITAS COM PRATICIDADE E DIGA ADEUS AO GÁS DE COZINHA!\n\nCozinhar em espaços reduzidos, varandas gourmet, escritórios ou acampamentos costuma ser um desafio devido à falta de espaço ou à complicação de instalar botijões de gás volumosos e caros. Além disso, ficar sem gás no meio do preparo de uma refeição é um imprevisto que todos querem evitar. O Fogão Elétrico de Mesa 2 Bocas Agratto FM-01 resolve esse problema diretamente. Prático, compacto e totalmente elétrico, basta ligá-lo a uma tomada comum para começar a preparar seus pratos. Seus pratos de aquecimento em ferro fundido retêm o calor por muito mais tempo e distribuem a temperatura de forma uniforme, garantindo agilidade e alta eficiência para o seu dia a dia.\n\nPor que este produto é o diferencial?\nPratos de Aquecimento em Ferro Fundido: Aquecem de maneira rápida e uniforme, mantendo a temperatura por mais tempo mesmo após desligados, o que ajuda a poupar energia.\n\n5 Níveis de Temperatura Independentes: Controle preciso do calor em cada boca por meio de manípulos giratórios, ideal para ferver, fritar, grelhar ou apenas manter a comida aquecida.\n\nCorpo Robusto em Aço Inoxidável: Oferece excelente durabilidade, resistência a riscos e facilidade de limpeza, além de dar um toque moderno e elegante à sua cozinha.\n\nCompatibilidade Universal de Panelas: Funciona perfeitamente com qualquer tipo de panela compatível com fogões convencionais (ferro, alumínio, inox, cerâmica e pressão).\n\nPortabilidade para Viagens e Apoio: Por ser leve e compacto, é fácil de transportar para viagens, chácaras, acampamentos ou para servir como fogão de apoio em festas.\n\nEspecificações Técnicas\nTipo de Produto: Fogão Elétrico de Mesa (Cooktop Portátil)\n\nMarca: Agratto\n\nModelo: FM-01 (Linha FM)\n\nQuantidade de Bocas (Queimadores): 2\n\nPotência Total: 2000W (2 kW)\n\nNíveis de Potência: 5 níveis ajustáveis por boca\n\nMaterial do Corpo: Aço Inoxidável\n\nMaterial dos Pratos de Aquecimento: Ferro Fundido\n\nTipos de Alimentação: Elétrica\n\nTipo de Controle: Manípulos giratórios manuais\n\nDimensões: 27,5 cm (largura) x 50,0 cm (profundidade) x 8,0 cm (altura)\n\nPeso: 2,52 kg\n\nVoltagem: 127V ou 220V (não é bivolt; selecione a voltagem correta antes de comprar)\n\nO que vem na embalagem\n01 Fogão Elétrico de Mesa 2 Bocas Agratto FM-01 Inox\n\n01 Manual de Instruções"
+    },
+    "parent_id": "MLB11295568",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T02:07:56.210260138"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2018-09-20T19:17:51Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-27T19:32:33Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

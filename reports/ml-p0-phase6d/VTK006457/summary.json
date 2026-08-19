@@ -1,0 +1,43 @@
+{
+  "index": 91,
+  "sku": "VTK006457",
+  "expected_gtin": "3016661152948",
+  "started_at": "2026-08-17T01:17:51.587Z",
+  "local_time": "2026-08-16T22:17:51",
+  "completed_at": "2026-08-17T01:17:52.043Z",
+  "elapsed_ms": 456,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": "MLB29477098",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": {
+    "expected": "MLB29477098",
+    "identity": {
+      "fields": {
+        "catalog_id": true,
+        "catalog_required": true,
+        "gtin": true,
+        "brand": true,
+        "model": true,
+        "title": false
+      },
+      "critical": {
+        "VOLTAGE": true
+      },
+      "passed": false
+    },
+    "results": [
+      "MLB29477098",
+      "MLB22296304"
+    ]
+  },
+  "sanitation": "CATALOG_REVIEW_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

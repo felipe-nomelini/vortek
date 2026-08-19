@@ -1,0 +1,492 @@
+{
+  "attempted_at": "2026-08-17T01:17:56.476Z",
+  "local_time": "2026-08-16T22:17:56",
+  "endpoint": "POST /items",
+  "request_id": "03287fdf-488f-41fb-b2a8-7ced0faba414",
+  "http_status": 201,
+  "elapsed_ms": 867,
+  "payload_sha256": "031944cefc60220aacc92f5300aac06def8d62627557c4a7f24d953a373f2cf2",
+  "body": {
+    "id": "MLB5075857471",
+    "site_id": "MLB",
+    "title": "Máquina Golden Waffle 850w Cinza Britânia 220v",
+    "seller_id": 3294514937,
+    "category_id": "MLB31683",
+    "user_product_id": "MLBU4772935424",
+    "official_store_id": null,
+    "price": 559.9,
+    "base_price": 559.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 7,
+    "available_quantity": 7,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Britânia Máquina de Waffle Golden Waffle",
+    "family_id": 6456114522043599,
+    "start_time": "2026-08-17T01:17:55.889Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:17:55.983Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075857471-maquina-golden-waffle-850w-cinza-britnia-220v-_JM",
+    "pictures": [
+      {
+        "id": "763886-MLA99930086901_112025",
+        "url": "http://mla-s1-p.mlstatic.com/763886-MLA99930086901_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/763886-MLA99930086901_112025-O.jpg",
+        "size": "500x481",
+        "max_size": "500x481",
+        "quality": ""
+      },
+      {
+        "id": "603499-MLA99929774205_112025",
+        "url": "http://mla-s2-p.mlstatic.com/603499-MLA99929774205_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/603499-MLA99929774205_112025-O.jpg",
+        "size": "406x500",
+        "max_size": "406x500",
+        "quality": ""
+      },
+      {
+        "id": "863372-MLA99445951036_112025",
+        "url": "http://mla-s2-p.mlstatic.com/863372-MLA99445951036_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/863372-MLA99445951036_112025-O.jpg",
+        "size": "332x500",
+        "max_size": "332x500",
+        "quality": ""
+      },
+      {
+        "id": "839066-MLA99445922084_112025",
+        "url": "http://mla-s1-p.mlstatic.com/839066-MLA99445922084_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/839066-MLA99445922084_112025-O.jpg",
+        "size": "348x500",
+        "max_size": "348x500",
+        "quality": ""
+      },
+      {
+        "id": "817703-MLA93085496168_092025",
+        "url": "http://mla-s1-p.mlstatic.com/817703-MLA93085496168_092025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/817703-MLA93085496168_092025-O.jpg",
+        "size": "375x500",
+        "max_size": "750x1000",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "471",
+        "value_name": "Britânia",
+        "values": [
+          {
+            "id": "471",
+            "name": "Britânia",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "19056829",
+        "value_name": "Máquina de Waffle",
+        "values": [
+          {
+            "id": "19056829",
+            "name": "Máquina de Waffle",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "4311624",
+        "value_name": "Golden Waffle",
+        "values": [
+          {
+            "id": "4311624",
+            "name": "Golden Waffle",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "283165",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "283165",
+            "name": "Cinza",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "198813",
+        "value_name": "220V",
+        "values": [
+          {
+            "id": "198813",
+            "name": "220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450294",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "2450294",
+            "name": "Cinza",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "109595",
+        "value_name": "850 W",
+        "values": [
+          {
+            "id": "109595",
+            "name": "850 W",
+            "struct": {
+              "number": 850,
+              "unit": "W"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "PLATE_TYPES",
+        "name": "Tipos de placas",
+        "value_id": "20109820",
+        "value_name": "Para waffles",
+        "values": [
+          {
+            "id": "20109820",
+            "name": "Para waffles",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "18012072",
+        "value_name": "7891356035111",
+        "values": [
+          {
+            "id": "18012072",
+            "name": "7891356035111",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "6332329",
+        "value_name": "Metal/Plástico",
+        "values": [
+          {
+            "id": "6332329",
+            "name": "Metal/Plástico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_NON_STICK_SURFACE",
+        "name": "Com superfície antiaderente",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_SECURITY_LOCK",
+        "name": "Com trava de segurança",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_CORD_STORAGE",
+        "name": "Com porta fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_POWER_LIGHT",
+        "name": "Com luz indicadora de funcionamento",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_REMOVABLE_PLATES",
+        "name": "Com placas removíveis",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7847908",
+        "value_name": "27 cm",
+        "values": [
+          {
+            "id": "7847908",
+            "name": "27 cm",
+            "struct": {
+              "number": 27,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "7768276",
+        "value_name": "21 cm",
+        "values": [
+          {
+            "id": "7768276",
+            "name": "21 cm",
+            "struct": {
+              "number": 21,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "14373178",
+        "value_name": "13.3 cm",
+        "values": [
+          {
+            "id": "14373178",
+            "name": "13.3 cm",
+            "struct": {
+              "number": 13.3,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "18987964",
+        "value_name": "1.68 kg",
+        "values": [
+          {
+            "id": "18987964",
+            "name": "1.68 kg",
+            "struct": {
+              "number": 1.68,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK018435",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK018435",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "763886-MLA99930086901_112025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/763886-MLA99930086901_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB25801009",
+    "domain_id": "MLB-ELECTRIC_SANDWICH_MAKERS",
+    "seller_custom_field": "VTK018435",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:17:56.081Z",
+    "last_updated": "2026-08-17T01:17:56.081Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-08-17T14:15:53.539Z",
+  "product": {
+    "id": "991c34af-6677-41a3-bfca-9101ca5acf02",
+    "sku": "VTK017279",
+    "nome": "Conector Rj-45 Macho Evus C-103 Cat6 Blindado 100un.",
+    "marca": "EVUS",
+    "estoque": 50,
+    "custo": 38.66,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.224,
+    "peso_bruto": 0.224,
+    "largura": 10,
+    "altura": 2.5,
+    "profundidade": 15,
+    "gtin": "",
+    "descricao": "O Conector RJ-45 Macho Evus C-103 CAT6 Blindado é ideal para cabeamento de redes de alta qualidade e performance. Especialmente desenvolvido para uso com cabos FTP, UTP, STP. *imagem meramente ilustrativa.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/368377_67d2cafdb9858.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/368377_67d2cafdba327.jpg"
+    ],
+    "categoria": "Redes E Provedores/ Internet E Rede/ Plugues E Conectores",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:22.80718+00:00",
+    "updated_at": "2026-08-17T10:24:30.614893+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "368377",
+    "dslite_ultima_sync": "2026-08-17T10:24:30.545+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85177900",
+    "cest": "21.110.00",
+    "origem_fiscal": "1",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "4d1e885c-ce40-460f-a514-380ee13d3ce1",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "audio_connector",
+    "function": "connect_audio_signal",
+    "intended_use": "professional_audio",
+    "physical_form": "audio_connector",
+    "expected_category_signals": [
+      "conector",
+      "audio",
+      "xlr",
+      "speakon",
+      "p10"
+    ],
+    "incompatible_category_signals": [
+      "hidraulica",
+      "redeethernet"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

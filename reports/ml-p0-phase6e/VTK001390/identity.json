@@ -1,0 +1,242 @@
+{
+  "checked_at": "2026-08-17T12:54:23.277Z",
+  "product": {
+    "id": "e528b430-e3e3-4f5a-b60a-53f97b995fd6",
+    "sku": "VTK001390",
+    "nome": "Almofada Para Lombar BC3 Preto ThunderX3",
+    "marca": "THUNDERX3",
+    "gtin": "7890000797696"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/79769",
+    "consulted_at": "2026-08-17T12:54:23.052Z",
+    "product": {
+      "produtoid": "79769",
+      "produtoid_empresa": "HYX79769",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 321.11,
+      "preco_crossdocking": 321.11,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 321.11,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-10 18:04:50.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Apoio de Braço Direito Core Loft Black ThunderX3",
+      "titulo_curto": "APOIO BRACO DIR CORE LOFT BLACK",
+      "categoriaid": "292596",
+      "categoria_nome": "Peças De Reposição Para Informática / Peças De Reposição Para Cadeiras / Apoios De Braço",
+      "abc": "C",
+      "ean11": "7890000797696",
+      "ncm": "9401.99.00",
+      "descricao": "O Apoio de Braço Direito Core Loft Black da TX3 é um produto original e ideal para a reposição das nossas cadeiras, oferecendo conforto e compatibilidade perfeita com o seu equipamento. <br/> <br/> • Modelos compatíveis:Core Loft <br/> • Cor: Preto <br/> • Material: Loft",
+      "caracteristicas": "Pesquisa:apoio de braço|thunder|Core loft<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "THUNDERX3",
+      "modelo": "Core Loft",
+      "peso": 1.62,
+      "largura": 22,
+      "altura": 14,
+      "profundidade": 30,
+      "peso_embalagem": 1.62,
+      "largura_embalagem": 22,
+      "altura_embalagem": 14,
+      "profundidade_embalagem": 30,
+      "link": "http://www.hayamax.com.br/apoio-de-braco-direito-core-loft-black-thunderx3",
+      "link_imagem": "",
+      "link_youtube": "",
+      "tempo_garantia": 180,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 3.25,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 20,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-12 09:36:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-11 01:16:30.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 0,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": null
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_BRAND_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: BRAND,TITLE_IDENTITY",
+    "foundValue": "MLB68303838",
+    "source": "ML catalog MLB68303838 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "BRAND",
+        "TITLE_IDENTITY"
+      ],
+      "catalog_brand": "AJE",
+      "model": null,
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [],
+      "title_similarity": 0
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB68303838",
+      "catalog_product_id": "MLB68303838",
+      "domain_id": "MLB-VEHICLE_DISTRIBUTOR_KITS",
+      "category_id": "MLB270210",
+      "name": "Embreagem Distribuidor 570320 Corsa 94 95 96 97 98 99",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10724451",
+          "value_name": "AJE",
+          "values": [
+            {
+              "id": "10724451",
+              "name": "AJE"
+            }
+          ]
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "76573111",
+          "value_name": "LC570320",
+          "values": [
+            {
+              "id": "76573111",
+              "name": "LC570320"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete",
+          "values": [
+            {
+              "id": "11377043",
+              "name": "Carro/Caminhonete"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "76573110",
+          "value_name": "07890000797696",
+          "values": [
+            {
+              "id": "76573110",
+              "name": "07890000797696"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "inactive",
+      "short_description": {
+        "type": "",
+        "content": ""
+      },
+      "pictures": [
+        {
+          "id": "817118-MLA109708559006_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_817118-MLA109708559006_042026-F.jpg",
+          "max_width": "1005",
+          "max_height": "652"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2026-04-18T17:12:06Z",
+      "last_updated": "2026-04-18T17:16:47Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

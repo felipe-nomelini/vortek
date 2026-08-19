@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018428",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Cabletech STD-40 cable domain discovery is incompatible with the product function",
+  "local_value": "7898414700042",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:16:53.908Z"
+}

@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-08-17T14:15:39.395Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Bateria Telefone Sem Fio Fx50u 3,6v Flex",
+    "supplier_category": "Energia E Eletrônicos > Baterias",
+    "supplier_brand": "Flex",
+    "supplier_gtin": "5379861525010",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3019",
+    "captured_at": "2026-08-17T12:54:01.795Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "9127e88e-2cae-4716-a440-fd31030da256",
+    "produto_id": "8ff23f80-7ea2-49fa-9dd7-a489ae162b9d",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "3019",
+    "sku_fornecedor": "3019",
+    "custo": 12.55,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:02:24.516+00:00",
+    "created_at": "2026-08-14T10:55:23.377797+00:00",
+    "updated_at": "2026-08-17T10:02:24.523+00:00",
+    "sku_oferta": "3019",
+    "nome": "Bateria Telefone Sem Fio Fx50u 3,6v Flex",
+    "descricao": "Bateria Telefone Sem Fio FX50U 3,6V Flex A Bateria para Telefone Sem Fio FX50U é ideal para quem precisa manter a autonomia e o funcionamento do seu aparelho sem fio com energia estável e confiável. Com 3,6V, ela oferece ótima performance para chamadas e demais funções do telefone no uso diário. Características do Produto • Bateria para telefone sem fio modelo FX50U • Tensão: 3,6V • Energia estável e duradoura • Indicada para reposição de baterias antigas • Fácil de instalar e substituir • Compatível com modelos específicos de telefone sem fio • Desempenho confiável no uso contínuo Produto novo, pronto para uso e com excelente custo-benefício. Envio rápido e embalagem segura para que você receba tudo em perfeito estado. Energia eficiente para manter seu telefone sem fio sempre funcionando.",
+    "marca": "Flex",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4648b2ac45f052b761405f13d46d938c.jpeg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6f8dffb41be1e1ddd4cfdbb20b6936a2.jpeg"
+    ],
+    "gtin": "5379861525010",
+    "ncm": "8507.80.00",
+    "cest": null
+  }
+}

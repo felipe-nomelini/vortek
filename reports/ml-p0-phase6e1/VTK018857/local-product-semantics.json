@@ -1,0 +1,84 @@
+{
+  "generated_at": "2026-08-17T14:15:44.977Z",
+  "product": {
+    "id": "92fa2aa7-5d9c-4765-ace4-e5114af5848d",
+    "sku": "VTK018857",
+    "nome": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+    "marca": "SELENIUM",
+    "estoque": 4,
+    "custo": 719.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 9.55,
+    "peso_bruto": 9.55,
+    "largura": 36,
+    "altura": 19,
+    "profundidade": 36,
+    "gtin": "7896359523368",
+    "descricao": "Diâmetro nominal: 12\" Impedância: 8 ohms Potência Musical: 1200W Sensibilidade 1W, 1m (dB SPL): 95 Resposta Frequência (-10dB): 45 Hz - 3,5 kHz Diâmetro Bobina: 100mm Material Bobina: Al, chato",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018857/01-498d34e3d4d1df843ba7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018857/02-7d8cab0387ce67c14aff.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018857/03-40ce1eb8cbe902540a4d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018857/04-be22eef51b9ceec1f785.jpg"
+    ],
+    "categoria": "Automotivo/ Alto Falante/ Alto Falante 12 Polegadas",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:17.035182+00:00",
+    "updated_at": "2026-08-17T11:14:22.991574+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "203599",
+    "dslite_ultima_sync": "2026-08-17T11:14:22.869+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85182100",
+    "cest": "01.057.00",
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "8b0195b8-1195-49b4-be5c-78ca8d6d9d59",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "professional_speaker_driver",
+    "function": "audio_reproduction",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_driver",
+    "expected_category_signals": [
+      "altofalante",
+      "woofer",
+      "subwoofer",
+      "audio",
+      "somprofissional"
+    ],
+    "incompatible_category_signals": [
+      "tablet",
+      "celular",
+      "notebook",
+      "computador",
+      "internal_speaker"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "12 Polegadas",
+        "100 mm"
+      ],
+      "powers": [
+        "600w Rms",
+        "1200W",
+        "1W"
+      ],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

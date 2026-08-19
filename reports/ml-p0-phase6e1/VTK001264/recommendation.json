@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Antena Omnidirecional Passiva Sennheiser A1031-U",
+    "supplier_category": "áudio / Acessórios Para Microfones / Distribuição De Rf",
+    "supplier_brand": "SENNHEISER",
+    "supplier_gtin": "4006087046456",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/83208",
+    "captured_at": "2026-08-17T12:53:55.127Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

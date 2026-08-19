@@ -1,0 +1,7 @@
+{
+  "verdict": "PASS",
+  "supplier_context": "electronic_security",
+  "remote_context": "electronic_security",
+  "independent_function_match": true,
+  "reason": "supplier/local semantics and full category path agree"
+}

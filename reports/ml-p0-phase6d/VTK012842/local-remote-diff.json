@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432766370",
+      "local": "MLB7432766370",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK012842",
+      "local": "VTK012842",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "55539d8d-e930-410e-93cf-1893939125e7",
+      "local": "55539d8d-e930-410e-93cf-1893939125e7",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Painel Para Conector Speakon 8 Polos Wireconex Wp 08 Spk Ep Preto",
+      "local": "Painel Para Conector Speakon 8 Polos Wireconex Wp 08 Spk Ep Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 999.9,
+      "local": 999.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432766370-painel-para-conector-speakon-8-polos-wireconex-wp-08-spk-ep-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432766370-painel-para-conector-speakon-8-polos-wireconex-wp-08-spk-ep-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

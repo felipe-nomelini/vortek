@@ -1,0 +1,132 @@
+{
+  "payload": {
+    "family_name": "Encordoamento Guitarra Elixir Nanoweb 12027",
+    "category_id": "MLB278076",
+    "catalog_product_id": "MLB22319192",
+    "catalog_listing": true,
+    "price": 459.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/20007/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2499062",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "LINE",
+        "value_id": "501847",
+        "value_name": "Custom"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "16040382",
+        "value_name": "NANOWEB"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_id": "16040015",
+        "value_name": "GUITARRA"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15146",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_id": "20234808",
+        "value_name": "009 - 011 - 016 - 026 - 036 - 046"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "3964687",
+        "value_name": "Aço niquelado"
+      },
+      {
+        "id": "TENSION",
+        "value_id": "16040066",
+        "value_name": "Light"
+      },
+      {
+        "id": "NOTES",
+        "values": [
+          {
+            "id": "16068407",
+            "name": "A5"
+          },
+          {
+            "id": "16068404",
+            "name": "B2"
+          },
+          {
+            "id": "16068406",
+            "name": "D4"
+          },
+          {
+            "id": "16068403",
+            "name": "E1"
+          },
+          {
+            "id": "16068408",
+            "name": "E6"
+          },
+          {
+            "id": "16068405",
+            "name": "G3"
+          }
+        ]
+      },
+      {
+        "id": "SCALE",
+        "value_id": "15312683",
+        "value_name": "4:4"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "17599677",
+            "name": "7897626832152"
+          },
+          {
+            "id": "16324500",
+            "name": "733132120277"
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001572"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001572"
+  },
+  "sha256": "7bc632e8f8dc14fcfa04df571ee872e9afa1fffc009dcb208d5b9608dc1c19fa",
+  "family_name_sha256": "d1707a6f8f7f91e27bcd94102af5852a9c87fd5955ff6aac8bdc0c399c765706",
+  "title_absent": true,
+  "description_absent": true
+}

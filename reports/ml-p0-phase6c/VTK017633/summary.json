@@ -1,0 +1,23 @@
+{
+  "index": 8,
+  "sku": "VTK017633",
+  "expected_gtin": "7897013561276",
+  "started_at": "2026-08-17T00:43:32.535Z",
+  "local_time": "2026-08-16T21:43:32",
+  "completed_at": "2026-08-17T00:43:32.581Z",
+  "elapsed_ms": 46,
+  "result": "BLOCK_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Elgin wall-and-vehicle Micro USB kit has supplier evidence only; official kit identity was not located",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

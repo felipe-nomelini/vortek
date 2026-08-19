@@ -1,0 +1,25 @@
+{
+  "executed": false,
+  "transaction": null,
+  "local_readback": {
+    "read_at": "2026-08-16T23:02:37.414484+00:00",
+    "product": {
+      "id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "gtin": "7898461970375",
+      "ml_item_id": null,
+      "ml_status": "sem_anuncio",
+      "estoque": 15,
+      "custo": 132.55,
+      "altura": 18,
+      "largura": 44,
+      "profundidade": 45,
+      "peso_bruto": 2.6,
+      "updated_at": "2026-08-16T17:10:31.390817+00:00"
+    },
+    "item_listings": [],
+    "product_listings": [],
+    "products_pointing_to_item": []
+  }
+}

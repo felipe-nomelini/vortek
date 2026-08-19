@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-08-17T14:15:50.234Z",
+  "product": {
+    "id": "7144b025-bbee-4764-b1c7-7bf5380b2ca6",
+    "sku": "VTK019095",
+    "nome": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+    "marca": "FLASH COVER",
+    "estoque": 3,
+    "custo": 449.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 6.45,
+    "peso_bruto": 6.45,
+    "largura": 21,
+    "altura": 16,
+    "profundidade": 150,
+    "gtin": "7899630194271",
+    "descricao": "A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo Strada C.Estendida C/Gan C/Stp 98/2013",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019095/01-131e916fd677339a03bb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019095/02-dce873e0ce7468762a62.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019095/03-ef37ea4eb75e8a127d59.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019095/04-7ba03485a1245f413ff0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019095/05-ef2a316e9901785ad289.jpg"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:35.398356+00:00",
+    "updated_at": "2026-08-17T11:19:15.508692+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "317544",
+    "dslite_ultima_sync": "2026-08-17T11:19:15.296+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87082999",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "7d79fa0a-b3c4-489e-94ce-7916066e80e2",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

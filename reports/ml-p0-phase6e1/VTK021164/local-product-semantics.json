@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-08-17T14:15:38.030Z",
+  "product": {
+    "id": "2d39b0f9-ecd8-482c-a2cb-48917df39ab1",
+    "sku": "VTK021164",
+    "nome": "Alto Falante Subwoofer 12\" Pioneer Ts-w3060br 350w Rms 4 Ohms Bobina Simples",
+    "marca": "PIONEER",
+    "estoque": 6,
+    "custo": 282.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 4.204,
+    "peso_bruto": 4.204,
+    "largura": 34,
+    "altura": 17,
+    "profundidade": 33,
+    "gtin": "4988028352713",
+    "descricao": "Informações do Produto O TS-W3060BR é um subwoofer se 12 polegadas, ideal para realçar os graves do seu som e curtir músicas com total intensidade. Seu cone reforçado garante ainda maior durabilidade e precisão na reprodução. Projetado para caixa selada ou dutada, ele possui conexões por pressão, facilitando também sua instalação e projetos especiais. Características &bull; Suspensa&#771;o reforc&#807;ada &bull; Woofer com cone de IMPP (Polipropileno moldado por injeção) &bull; Terminais para conexa&#771;o por pressa&#771;o &bull; Bobina simples - 4 ohms Informações Técnicas - Pote&#770;ncia ma&#769;xima - 600 W - Pote&#770;ncia de entrada nominal RMS - 350 W - Resposta em freque&#770;ncia - 30 Hz a 2.000 Hz - Sensibilidade - 87 dB (1 W / 1 m) - Freque&#770;ncia de ressona&#770;ncia - 46 Hz - Impeda&#770;ncia - 4 ohms Dimensões - Profundidade de instalac&#807;a&#771;o - 146 mm - Dimenso&#771;es do alto-falante - Ø306 mm x 157 mm - Dimenso&#771;es para corte - Ø277 mm Recomendações de Caixa - Volume para caixa selada - 35 litros - Volume para caixa com po&#769;rtico (dutada) - 35 ou 50 litros - Dia&#770;metro do po&#769;rtico (duto) - 100 mm - Comprimento do po&#769;rtico (duto) - 180 mm (caixa com 35 litros) ou 110 mm (caixa com 50 litros) Parâmetros THIELE / SMALL - Qts 0,96 - Fs 46Hz - Vas 38,1 litros - Xmax 6 mm Conteúdo da Embalagem - 1 subwoofer - 8 parafusos - Certificado de garantia - Lista de postos de assiste&#770;ncia te&#769;cnica *Instruc&#807;o&#771;es de instalac&#807;a&#771;o na pro&#769;pria embalagem",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/4/347972_67d2caf602922.jpg"
+    ],
+    "categoria": "Automotivo/ Alto Falante/ Subwoofer",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:36:49.124213+00:00",
+    "updated_at": "2026-08-17T11:07:22.501697+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "347972",
+    "dslite_ultima_sync": "2026-08-17T11:07:22.424+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85182990",
+    "cest": "01.057.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "1498d18c-ad1e-4604-ae27-3dffea7d9264",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "professional_speaker_driver",
+    "function": "audio_reproduction",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_driver",
+    "expected_category_signals": [
+      "altofalante",
+      "woofer",
+      "subwoofer",
+      "audio",
+      "somprofissional"
+    ],
+    "incompatible_category_signals": [
+      "tablet",
+      "celular",
+      "notebook",
+      "computador",
+      "internal_speaker"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "12 polegadas",
+        "146 mm",
+        "306 mm",
+        "157 mm",
+        "277 mm",
+        "100 mm",
+        "180 mm",
+        "110 mm",
+        "6 mm"
+      ],
+      "powers": [
+        "350w Rms",
+        "600 W",
+        "350 W",
+        "1 W"
+      ],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

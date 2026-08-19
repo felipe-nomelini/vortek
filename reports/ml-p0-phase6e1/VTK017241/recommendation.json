@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Vga Evus C-044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m",
+    "supplier_category": "Informatica/ Cabos Para Informática/ Cabo Vga",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/353571",
+    "captured_at": "2026-08-17T12:56:30.153Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

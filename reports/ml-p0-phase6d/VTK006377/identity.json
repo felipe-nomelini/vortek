@@ -1,0 +1,532 @@
+{
+  "checked_at": "2026-08-17T01:18:02.874Z",
+  "product": {
+    "id": "ba47a1ed-dd68-4fa5-92b1-31a12b4504a7",
+    "sku": "VTK006377",
+    "nome": "Microfone Sennheiser E906 Dinâmico Supercardióide",
+    "marca": "SENNHEISER",
+    "gtin": "4044155001174"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/85760",
+    "consulted_at": "2026-08-17T01:18:02.677Z",
+    "product": {
+      "produtoid": "85760",
+      "produtoid_empresa": "HYX85760",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 1677.35,
+      "preco_crossdocking": 1677.35,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 1677.35,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Microfone Sennheiser E906 Dinâmico Supercardióide",
+      "titulo_curto": "MIC DIN SUPERCARDIOIDE SENNHEISER E906",
+      "categoriaid": "292433",
+      "categoria_nome": "áudio / Microfones / Microfones Para Instrumentos",
+      "abc": "B",
+      "ean11": "4044155001174",
+      "ncm": "8518.10.90",
+      "descricao": "O Microfone Sennheiser E906 captura o som da guitarra da forma correta: do limpo ao distorcido, do gentil ao agressivo. Capta som em alta resolução, de forma natural sem colorações sonoras indesejadas. A resposta de transientes do E906 convence em todos os estilos: transmitindo até riffs com peso extremo de forma direta e simples. <br/> <br/> O microfone conta com um filtro de presença selecionável com 3 opções de característica sonora: um para aumento de presença, um para presença \"normal\" e um para justamente atenuar presença de modo geral. <br/> <br/> Graças ao formato flat, pode ser posicionado na frente do amplificador sendo seguro pelo próprio cabo – sem necessidade de pedestal. Sem mencionar o design robusto. <br/> <br/> Há mais de 75 anos a Sennheiser é uma empresa motivada a oferecer soluções sonoras que impressionam e dão arrepios. A Sennheiser é líder global em tecnologia de áudio profissional, com produtos que giram em torno de um som excelente: no palco, nas salas de reuniões, nas salas de aula e no estúdio. <br/> <br/> A Sennheiser é uma marca reconhecida mundialmente por sua excelência em áudio e continua a se dedicar a fornecer as melhores soluções sonoras para seus clientes. <br/>",
+      "caracteristicas": "Conector:XLR-3<br>Peso:140 g<br>Dimensões:55 x 34 x 134 mm<br>Cor:Preto<br>Tipo:Dinâmico Supercardióide<br>Impedância:350 Ω<br>Resposta Frequência:40 - 18000 Hz<br>Pesquisa:microfone|dinamico|supercardioide|sennhseiser|e906|e-906|instrumentos|<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "SENNHEISER",
+      "modelo": "E906",
+      "peso": 0.38,
+      "largura": 12,
+      "altura": 8,
+      "profundidade": 26,
+      "peso_embalagem": 0.38,
+      "largura_embalagem": 12,
+      "altura_embalagem": 8,
+      "profundidade_embalagem": 26,
+      "link": "http://www.hayamax.com.br/microfone-sennheiser-e906-dinamico-supercardioide",
+      "link_imagem": "https://static.hayapek.com.br/produtos/85760/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 720,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 9.75,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 30,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-24 10:06:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:17:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/85760/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/85760/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/85760/550/3.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB37761258 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB37761258",
+      "catalog_product_id": "MLB37761258",
+      "domain_id": "MLB-MICROPHONES",
+      "name": "Microfone Sennheiser E906 2 Anos De Cor Cinza-escuro",
+      "parent_id": "MLB34127334",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15371",
+          "value_name": "Sennheiser",
+          "values": [
+            {
+              "id": "15371",
+              "name": "Sennheiser"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "145462",
+          "value_name": "Evolution Series",
+          "values": [
+            {
+              "id": "145462",
+              "name": "Evolution Series"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "2364969",
+          "value_name": "E906",
+          "values": [
+            {
+              "id": "2364969",
+              "name": "E906"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52051",
+          "value_name": "Cinza-escuro",
+          "values": [
+            {
+              "id": "52051",
+              "name": "Cinza-escuro"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_FORMATS",
+          "name": "Formatos de microfone",
+          "value_id": "182429",
+          "value_name": "Estúdio",
+          "values": [
+            {
+              "id": "182429",
+              "name": "Estúdio"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_TYPES",
+          "name": "Tipos de microfone",
+          "value_id": "103745",
+          "value_name": "Dinâmico",
+          "values": [
+            {
+              "id": "103745",
+              "name": "Dinâmico"
+            }
+          ]
+        },
+        {
+          "id": "POLAR_PATTERNS",
+          "name": "Padrões polares",
+          "value_id": "2253807",
+          "value_name": "Cardioide",
+          "values": [
+            {
+              "id": "2253807",
+              "name": "Cardioide"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "name": "Quantidade de microfones",
+          "value_id": "934836",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "934836",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "name": "Tipos de conexões",
+          "value_id": "1210905",
+          "value_name": "Com fio",
+          "values": [
+            {
+              "id": "1210905",
+              "name": "Com fio"
+            }
+          ]
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "7229468",
+          "value_name": "40 Hz",
+          "values": [
+            {
+              "id": "7229468",
+              "name": "40 Hz"
+            }
+          ]
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "7229466",
+          "value_name": "18 kHz",
+          "values": [
+            {
+              "id": "7229466",
+              "name": "18 kHz"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BUILT_IN_SPEAKERS",
+          "name": "Com alto-falantes embutidos",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "15438",
+          "value_name": "Shure",
+          "values": [
+            {
+              "id": "15438",
+              "name": "Shure"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "76666379",
+          "value_name": "e906",
+          "values": [
+            {
+              "id": "76666379",
+              "name": "e906"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "name": "Conectores de saída",
+          "value_id": "2305169",
+          "value_name": "XLR",
+          "values": [
+            {
+              "id": "2305169",
+              "name": "XLR"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "26520286",
+          "value_name": "4044155001174",
+          "values": [
+            {
+              "id": "26520286",
+              "name": "4044155001174"
+            }
+          ]
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "1247746",
+          "value_name": "350 Ω",
+          "values": [
+            {
+              "id": "1247746",
+              "name": "350 Ω"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_OPERATIVE_SYSTEMS",
+          "name": "Sistemas operacionais compatíveis",
+          "value_name": "Windows, iOS, Android",
+          "values": [
+            {
+              "id": "4804541",
+              "name": "Windows"
+            },
+            {
+              "id": "189046",
+              "name": "iOS"
+            },
+            {
+              "id": "168370",
+              "name": "Android"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "name": "Dispositivos compatíveis",
+          "value_name": "Computador, Tablet",
+          "values": [
+            {
+              "id": "8621306",
+              "name": "Computador"
+            },
+            {
+              "id": "11554747",
+              "name": "Tablet"
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "24028945",
+          "value_name": "Metal",
+          "values": [
+            {
+              "id": "24028945",
+              "name": "Metal"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7800081",
+          "value_name": "20 cm",
+          "values": [
+            {
+              "id": "7800081",
+              "name": "20 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "8036741",
+          "value_name": "140 g",
+          "values": [
+            {
+              "id": "8036741",
+              "name": "140 g"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Microfone Dinâmico para Instrumentos Sennheiser e906\n\nMicrofone de Instrumentos | Dinâmico | Super-cardióide | 350 ohms | Guitarras\n\nO e906 captura o som da guitarra: do limpo ao distorcido, do gentil ao agressivo. Capta som em alta resolução, de forma natural sem colorações sonoras indesejadas. A resposta de transientes convence em todos os estilos, transmitindo riffs com peso extremo de forma direta.\n\nO microfone conta com um filtro de presença selecionável com 3 opções de característica sonora: aumento de presença, presença normal e atenuação de presença. Graças ao formato flat, pode ser posicionado na frente do amplificador sendo seguro pelo próprio cabo sem necessidade de pedestal. Possui design robusto.\n\nMicrofone para instrumentos profissional dinâmico e super cardióide. Versátil, indicado para baterias, percussão e amplificadores de guitarra.\n\n- Microfone dinâmico\n- Filtro de presença selecionável com 3 opções: Presença aumentada, normal e atenuada\n- Formato para captação de áudio de amplificadores\n- Cápsula com amortecedor de impacto\n- Bobina de compensação\n- Construção em metal\n\nCaracterísticas\nTransdutor: Dinâmico\nPadrão Polar: Supercardióide\nResposta de Frequência: 40Hz a 18kHz\nImpedância de saída nominal (1 kHz): 350 ohms\nMin. terminação: 1k ohms\nConectores de saída: XLR de 3 pinos macho\nDimensões: 5,5 x 3,4 x 13,4 cm\nPeso: 140 g"
+      },
+      "pictures": [
+        {
+          "id": "908857-MLA99994130675_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_908857-MLA99994130675_112025-F.jpg",
+          "max_width": "523",
+          "max_height": "492"
+        },
+        {
+          "id": "990583-MLA99510127570_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_990583-MLA99510127570_112025-F.jpg",
+          "max_width": "500",
+          "max_height": "733"
+        },
+        {
+          "id": "836156-MLA99510245928_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_836156-MLA99510245928_112025-F.jpg",
+          "max_width": "261",
+          "max_height": "530"
+        },
+        {
+          "id": "978684-MLA99994307129_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_978684-MLA99994307129_112025-F.jpg",
+          "max_width": "388",
+          "max_height": "520"
+        },
+        {
+          "id": "807254-MLA99510364828_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_807254-MLA99510364828_112025-F.jpg",
+          "max_width": "520",
+          "max_height": "290"
+        },
+        {
+          "id": "712521-MLA99994209227_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_712521-MLA99994209227_112025-F.jpg",
+          "max_width": "536",
+          "max_height": "1064"
+        },
+        {
+          "id": "700200-MLA99994130693_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_700200-MLA99994130693_112025-F.jpg",
+          "max_width": "704",
+          "max_height": "491"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-06-16T13:41:26Z",
+      "last_updated": "2026-07-15T02:26:16Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

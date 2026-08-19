@@ -1,0 +1,23 @@
+{
+  "index": 63,
+  "sku": "VTK012632",
+  "expected_gtin": "7898640363523",
+  "started_at": "2026-08-17T12:55:04.826Z",
+  "local_time": "2026-08-17T09:55:04",
+  "completed_at": "2026-08-17T12:55:05.888Z",
+  "elapsed_ms": 1062,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "category confidence is not HIGH for domain MLB-AUDIO_AND_VIDEO_CONNECTORS",
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

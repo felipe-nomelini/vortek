@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.580Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Bateria Alcalina Elgin A23 Blister Com 5 Unidades.",
+    "supplier_category": "Pilhas E Recarregadores/ Baterias/ Baterias Alcalinas",
+    "supplier_brand": "ELGIN",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/386411",
+    "captured_at": "2026-08-17T12:56:36.400Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "c1a7a22b-aa29-4ac3-9c38-02a29385a9a1",
+    "produto_id": "3e8422a9-8386-4549-aa31-1b851fb1e75d",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "386411",
+    "sku_fornecedor": "386411",
+    "custo": 11.3,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:30:21.583+00:00",
+    "created_at": "2026-07-20T18:30:39.682006+00:00",
+    "updated_at": "2026-08-17T10:30:21.591+00:00",
+    "sku_oferta": "386411",
+    "nome": "Bateria Alcalina Elgin A23 Blister Com 5 Unidades.",
+    "descricao": "Assim como as pilhas, as baterias são dispositivos eletroquímicos portáteis capazes de transformar a energia química em energia elétrica por meio de um processo chamado oxirredução. Nele, há uma transferência de elétrons entre os materiais do interior das pilhas e baterias, na qual um perde elétrons e o outro ganha, gerando assim a corrente elétrica necessária para o funcionamento de aparelhos eletrônicos. O funcionamento e a composição de pilhas e baterias são os mesmos, mas a diferença entre as duas é que as baterias são formadas por várias pilhas ligadas entre si. Os fabricantes dos aparelhos e equipamentos eletrônicos indicam o modelo específico de bateria a ser utilizado, cabendo ao consumidor escolher apenas a marca e o tipo. Saiba mais sobre a bateria alcalina A23 12V da Elgin e conheça suas indicações, vantagens e os diferenciais da marca, que atua há mais de 10 anos nesse mercado. O uso da bateria alcalina A23 12V é indicado para esses dispositivos que precisam apresentar um alto desempenho de funcionamento, as baterias alcalinas são a melhor escolha, pois são muito mais duráveis em relação às baterias comuns. * As Pilhas Elgin são testadas periodicamente por laboratórios credenciados pelo INMETRO, para garantir a qualidade e conformidade com a resolução Conama 401. A quantidade que você precisa! A bateria alcalina A23 também tem a opção de 05 unidades. Descargas de energia rápidas e fortes Ideal para brinquedos, controle remotos, lanternas e outros aparelhos que requerem descargas de energia rápidas e fortes. Economia e Qualidade As pilhas Elgin foram aprovadas em todos os quesitos e têm ótima relação custo/benefício. Você economiza e ainda conta com pilhas de alta qualidade. Testadas e Aprovadas Entre 11 marcas de pilhas do mercado avaliadas em testes do INMETRO, as pilhas Elgin apresentaram um resultado excelente na relação custo por hora útil. Ecologicamente Corretas As Pilhas Elgin não agridem o meio ambiente porque têm 0% de metais pesados em sua composição. *Imagem meramente ilustrativa.\n\nNome do produto: Bateria Alcalina A23 12V Modelo: ELE000000082195, ELE000000082317 Voltagem: 12V Peso (Produto) kg: 0,008 kg Dimensão (Produto): 28.3 x 10.15 mm",
+    "marca": "ELGIN",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/386411_67d2cb265016b.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85061032",
+    "cest": null
+  }
+}

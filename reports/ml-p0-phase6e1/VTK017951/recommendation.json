@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Refil De Tinta Epson T504222 Ecotank Ciano",
+    "supplier_category": "Informatica/ Suprimentos/ Cartucho Colorido",
+    "supplier_brand": "EPSON",
+    "supplier_gtin": "010343988507",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/388696",
+    "captured_at": "2026-08-17T12:56:52.054Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

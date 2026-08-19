@@ -1,0 +1,51 @@
+{
+  "selected": {
+    "category_id": "MLB440354",
+    "domain_id": "MLB-VEHICLE_MAINTENANCE_KITS",
+    "domain_name": "Kits de revisão para veículos",
+    "category_name": "Kits de Motor",
+    "category_path": [
+      "Acessórios para Veículos",
+      "Peças de Carros e Caminhonetes",
+      "Motor",
+      "Kits de Motor"
+    ],
+    "normalized_context": "mlbvehiclemaintenancekitskitsderevisaoparaveiculosmlbvehiclemaintenancekitsacessoriosparaveiculospecasdecarrosecaminhonetesmotorkitsdemotorkitsdemotor"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB440354",
+        "domain_id": "MLB-VEHICLE_MAINTENANCE_KITS",
+        "domain_name": "Kits de revisão para veículos",
+        "category_name": "Kits de Motor",
+        "category_path": [
+          "Acessórios para Veículos",
+          "Peças de Carros e Caminhonetes",
+          "Motor",
+          "Kits de Motor"
+        ],
+        "normalized_context": "mlbvehiclemaintenancekitskitsderevisaoparaveiculosmlbvehiclemaintenancekitsacessoriosparaveiculospecasdecarrosecaminhonetesmotorkitsdemotorkitsdemotor"
+      },
+      "score": 56,
+      "hard_mismatch": true
+    },
+    {
+      "semantics": {
+        "category_id": "MLB457627",
+        "domain_id": "MLB-VEHICLE_MAINTENANCE_KITS",
+        "domain_name": "Kits de revisão para veículos",
+        "category_name": "Kits de Motor",
+        "category_path": [
+          "Agro",
+          "Peças Maquinaria Agrícola",
+          "Motor",
+          "Kits de Motor"
+        ],
+        "normalized_context": "mlbvehiclemaintenancekitskitsderevisaoparaveiculosmlbvehiclemaintenancekitsagropecasmaquinariaagricolamotorkitsdemotorkitsdemotor"
+      },
+      "score": 56,
+      "hard_mismatch": true
+    }
+  ]
+}

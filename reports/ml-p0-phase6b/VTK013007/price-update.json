@@ -1,0 +1,422 @@
+{
+  "executed": true,
+  "endpoint": "PUT /items/MLB5075703121",
+  "request_id": "4de9ac74-f51f-44da-8d42-1c08165d9d42",
+  "http_status": 200,
+  "body": {
+    "id": "MLB5075703121",
+    "site_id": "MLB",
+    "title": "Conector Trs P10 Wireconex Wc 244 Kit 10 Unidades Audio Instrumentos Prateado",
+    "seller_id": 3294514937,
+    "category_id": "MLB420707",
+    "user_product_id": "MLBU4743265379",
+    "official_store_id": null,
+    "price": 249.9,
+    "base_price": 249.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 100,
+    "available_quantity": 100,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Wireconex Modelo Desconhecido",
+    "family_id": 7760385113209807,
+    "start_time": "2026-08-17T00:06:41.685Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:06:43.899Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075703121-conector-trs-p10-wireconex-wc-244-kit-10-unidades-audio-instrumentos-prateado-_JM",
+    "pictures": [
+      {
+        "id": "931172-MLA99484852166_112025",
+        "url": "http://mla-s1-p.mlstatic.com/931172-MLA99484852166_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/931172-MLA99484852166_112025-O.jpg",
+        "size": "495x500",
+        "max_size": "1190x1200",
+        "quality": ""
+      },
+      {
+        "id": "933745-MLA91526142774_092025",
+        "url": "http://mla-s2-p.mlstatic.com/933745-MLA91526142774_092025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/933745-MLA91526142774_092025-O.jpg",
+        "size": "500x458",
+        "max_size": "1200x1100",
+        "quality": ""
+      },
+      {
+        "id": "946943-MLA84609842191_052025",
+        "url": "http://mla-s2-p.mlstatic.com/946943-MLA84609842191_052025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/946943-MLA84609842191_052025-O.jpg",
+        "size": "500x368",
+        "max_size": "826x608",
+        "quality": ""
+      },
+      {
+        "id": "792177-MLA84609937599_052025",
+        "url": "http://mla-s1-p.mlstatic.com/792177-MLA84609937599_052025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/792177-MLA84609937599_052025-O.jpg",
+        "size": "500x353",
+        "max_size": "837x591",
+        "quality": ""
+      },
+      {
+        "id": "694692-MLA84312514544_052025",
+        "url": "http://mla-s1-p.mlstatic.com/694692-MLA84312514544_052025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/694692-MLA84312514544_052025-O.jpg",
+        "size": "500x57",
+        "max_size": "830x96",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "75081580",
+        "value_name": "WC244",
+        "values": [
+          {
+            "id": "75081580",
+            "name": "WC244",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "13660752",
+        "value_name": "Wireconex",
+        "values": [
+          {
+            "id": "13660752",
+            "name": "Wireconex",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "name": "Material de revestimento",
+        "value_id": "5520057",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "5520057",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52053",
+        "value_name": "Prateado",
+        "values": [
+          {
+            "id": "52053",
+            "name": "Prateado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "name": "Dispositivos compatíveis",
+        "value_id": null,
+        "value_name": "Microfone,Monitor",
+        "values": [
+          {
+            "id": "15289676",
+            "name": "Microfone",
+            "struct": null
+          },
+          {
+            "id": "24159330",
+            "name": "Monitor",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONNECTOR_GENDER",
+        "name": "Gênero do conector",
+        "value_id": "2210104",
+        "value_name": "Macho",
+        "values": [
+          {
+            "id": "2210104",
+            "name": "Macho",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "value_id": "8180799",
+        "value_name": "RCA",
+        "values": [
+          {
+            "id": "8180799",
+            "name": "RCA",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "53233954",
+        "value_name": "7898640365176",
+        "values": [
+          {
+            "id": "53233954",
+            "name": "7898640365176",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "40833980",
+        "value_name": "Modelo Desconhecido",
+        "values": [
+          {
+            "id": "40833980",
+            "name": "Modelo Desconhecido",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "46885538",
+        "value_name": "Conector",
+        "values": [
+          {
+            "id": "46885538",
+            "name": "Conector",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359392",
+        "value_name": "Kit",
+        "values": [
+          {
+            "id": "1359392",
+            "name": "Kit",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK013007",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK013007",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "150349",
+        "value_name": "10",
+        "values": [
+          {
+            "id": "150349",
+            "name": "10",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "931172-MLA99484852166_112025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/931172-MLA99484852166_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB49706888",
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+    "seller_custom_field": "VTK013007",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:06:41.856Z",
+    "last_updated": "2026-08-17T00:06:43.973Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "target": {
+    "attempts": 2,
+    "price": 249.9,
+    "fee": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_special",
+      "listing_type_name": "Clássico",
+      "requires_picture": true,
+      "sale_fee_amount": 32.49,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 32.49,
+        "percentage_fee": 13
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_data": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 28.35,
+          "currency_id": "BRL",
+          "billable_weight": 3867,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 56.7
+          }
+        }
+      }
+    },
+    "financial": {
+      "price": 249.9,
+      "commission": 32.49,
+      "shipping": 28.35,
+      "cost": 49.5,
+      "tax": 12.5,
+      "profit": 127.06,
+      "margin_percent": 50.844338
+    },
+    "approved": true
+  }
+}

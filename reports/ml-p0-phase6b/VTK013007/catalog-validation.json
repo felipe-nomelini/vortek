@@ -1,0 +1,333 @@
+{
+  "checked_at": "2026-08-17T00:06:37.841Z",
+  "expected_catalog_product_id": "MLB49706888",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "strategy": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true,
+      "UNITS_PER_PACK": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB49706888",
+    "catalog_product_id": "MLB49706888",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+    "permalink": "",
+    "name": "Conector TRS P10 Wireconex WC 244 Kit 10 Unidades Audio Instrumentos",
+    "family_name": "Wireconex Modelo Desconhecido",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB49706888",
+            "picker_label": "Prateado",
+            "picture_id": "931172-MLA99484852166_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_931172-MLA99484852166_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Wireconex Modelo Desconhecido - Prateado - Kit - 10",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por kit",
+        "products": [
+          {
+            "product_id": "MLB49706888",
+            "picker_label": "10",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Wireconex Modelo Desconhecido - Prateado - Kit - 10",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "931172-MLA99484852166_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_931172-MLA99484852166_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1190,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "933745-MLA91526142774_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_933745-MLA91526142774_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1100,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "946943-MLA84609842191_052025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_946943-MLA84609842191_052025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 826,
+        "max_height": 608,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "792177-MLA84609937599_052025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_792177-MLA84609937599_052025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 837,
+        "max_height": 591,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "694692-MLA84312514544_052025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_694692-MLA84312514544_052025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 830,
+        "max_height": 96,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Conector do tipo P10 TRS macho, ideal para instrumentos e equipamentos de áudio.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Material de revestimento em metal para maior durabilidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Compatível com microfones e monitores, assegurando conexões estáveis.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "13660752",
+        "value_name": "Wireconex",
+        "values": [
+          {
+            "id": "13660752",
+            "name": "Wireconex"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "40833980",
+        "value_name": "Modelo Desconhecido",
+        "values": [
+          {
+            "id": "40833980",
+            "name": "Modelo Desconhecido"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52053",
+        "value_name": "Prateado",
+        "values": [
+          {
+            "id": "52053",
+            "name": "Prateado"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359392",
+        "value_name": "Kit",
+        "values": [
+          {
+            "id": "1359392",
+            "name": "Kit"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "150349",
+        "value_name": "10",
+        "values": [
+          {
+            "id": "150349",
+            "name": "10"
+          }
+        ]
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "46885538",
+        "value_name": "Conector",
+        "values": [
+          {
+            "id": "46885538",
+            "name": "Conector"
+          }
+        ]
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "value_id": "8180799",
+        "value_name": "RCA",
+        "values": [
+          {
+            "id": "8180799",
+            "name": "RCA"
+          }
+        ]
+      },
+      {
+        "id": "CONNECTOR_GENDER",
+        "name": "Gênero do conector",
+        "value_id": "2210104",
+        "value_name": "Macho",
+        "values": [
+          {
+            "id": "2210104",
+            "name": "Macho"
+          }
+        ]
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "name": "Material de revestimento",
+        "value_id": "5520057",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "5520057",
+            "name": "Metal"
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "name": "Dispositivos compatíveis",
+        "value_id": null,
+        "value_name": "Microfone, Monitor",
+        "values": [
+          {
+            "id": "15289676",
+            "name": "Microfone"
+          },
+          {
+            "id": "24159330",
+            "name": "Monitor"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "75081580",
+        "value_name": "WC244",
+        "values": [
+          {
+            "id": "75081580",
+            "name": "WC244"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "O conector P10 TRS Wireconex, modelo WC 244, é a escolha perfeita para quem busca qualidade e confiabilidade na interconexão de áudio. Com um total de 10 unidades, você terá o suficiente para atender todas as suas necessidades, seja para instrumentos como violão, guitarra ou baixo, ou para equipamentos de áudio como mesas de som e microfones. Fabricado em metal, seu material de revestimento garante durabilidade e resistência, ideal para o uso em estúdios ou performances ao vivo. Este conector macho do tipo P10 é compatível com diversos dispositivos, oferecendo uma conexão estável e de alta qualidade. O modelo é novo e projetado para atender as exigências dos músicos e profissionais do áudio. Com o conector P10 TRS Wireconex, você terá a certeza de que suas conexões de áudio serão sempre seguras e eficazes, permitindo que você foque na sua música e performances."
+    },
+    "parent_id": "MLB49706882",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T06:36:34.964326467"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2025-05-12T16:22:57Z",
+    "authorized_stores": null,
+    "last_updated": "2026-03-25T04:25:06Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "optional_catalog_optimization_pending": false
+}

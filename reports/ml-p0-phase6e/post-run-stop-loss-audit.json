@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-08-17T13:04:38.342Z",
+  "classification": "STOP_LOSS_IDENTITY_PUBLICATION_DETECTED_POST_RUN",
+  "phase_approved": false,
+  "sku": "VTK012864",
+  "item_id": "MLB7437196478",
+  "ordinal": 85,
+  "evidence": {
+    "local_identity": {
+      "name": "Alto-falante 18 Pol 1500w Rms 8 Ohms 18lf3000b8 Atk",
+      "gtin": "7898640362106",
+      "category": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+      "dimensions_cm": [
+        23,
+        48,
+        47
+      ],
+      "gross_weight_kg": 16.58
+    },
+    "remote": {
+      "category_id": "MLB129666",
+      "domain_id": "MLB-TABLET_INTERNAL_SPEAKERS",
+      "category_path": [
+        {
+          "id": "MLB1648",
+          "name": "Informática"
+        },
+        {
+          "id": "MLB91757",
+          "name": "Tablets e Acessórios"
+        },
+        {
+          "id": "MLB129658",
+          "name": "Peças"
+        },
+        {
+          "id": "MLB129666",
+          "name": "Alto-Falantes"
+        }
+      ],
+      "status": "paused",
+      "sub_status": [
+        "picture_download_pending"
+      ]
+    },
+    "semantic_assessment": {
+      "passed": false,
+      "conflicts": [
+        "LOCAL_VEHICLE_REMOTE_COMPUTING",
+        "PROFESSIONAL_SPEAKER_REMOTE_TABLET_PART"
+      ],
+      "local_category": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+      "remote_domain": "MLB-TABLET_INTERNAL_SPEAKERS",
+      "remote_path": "Informática > Tablets e Acessórios > Peças > Alto-Falantes"
+    }
+  },
+  "impact": {
+    "item_created": true,
+    "local_persistence": false,
+    "price_update": false,
+    "description_write": false,
+    "subsequent_corrective_write": false,
+    "runtime_stop_loss_failed_to_trigger": true,
+    "skus_after_incident_were_read_only_or_blocked": true
+  },
+  "root_cause": "Category confidence relied on internal agreement between a community catalog domain and domain discovery; it did not compare the resulting category path with supplier/local product semantics before POST.",
+  "correction": "The Phase 6E resolver now fetches the selected category contract and blocks strongly incompatible semantic verticals before payload construction.",
+  "next_action": "Operator-controlled containment and reconciliation of MLB7437196478 in a future authorized phase; no automatic write executed."
+}

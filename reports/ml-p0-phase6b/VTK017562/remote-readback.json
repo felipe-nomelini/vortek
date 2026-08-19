@@ -1,0 +1,281 @@
+{
+  "checked_at": "2026-08-17T00:07:29.584Z",
+  "item": {
+    "id": "MLB5075703275",
+    "site_id": "MLB",
+    "title": "Carregador Veicular Usb Elgin 2 Saídas",
+    "family_name": "Carregador Veicular Usb Elgin 2 Saídas",
+    "family_id": 4890350618490383,
+    "seller_id": 3294514937,
+    "category_id": "MLB430121",
+    "user_product_id": "MLBU4772558690",
+    "official_store_id": null,
+    "price": 119.9,
+    "base_price": 119.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 39,
+    "available_quantity": 39,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T00:07:28.360Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:07:28.415Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-5075703275-carregador-veicular-usb-elgin-2-saidas-_JM",
+    "thumbnail_id": "672071-MLB114904098994_082026",
+    "thumbnail": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/I-PT.jpg",
+    "pictures": [
+      {
+        "id": "672071-MLB114904098994_082026",
+        "url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "size": "500x500",
+        "max_size": "500x500",
+        "quality": ""
+      },
+      {
+        "id": "644640-MLB114904098996_082026",
+        "url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "size": "500x500",
+        "max_size": "500x500",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca do carregador",
+        "value_id": null,
+        "value_name": "Elgin",
+        "values": [
+          {
+            "id": null,
+            "name": "Elgin",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CHARGING_PORTS",
+        "name": "Quantidade de portas de carga",
+        "value_id": null,
+        "value_name": "2",
+        "values": [
+          {
+            "id": null,
+            "name": "2",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipos de conectores do cabo",
+        "value_id": "82230",
+        "value_name": "USB",
+        "values": [
+          {
+            "id": "82230",
+            "name": "USB",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "7897013561269",
+        "values": [
+          {
+            "id": null,
+            "name": "7897013561269",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "name": "Voltagem de entrada",
+        "value_id": null,
+        "value_name": "12V",
+        "values": [
+          {
+            "id": null,
+            "name": "12V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo do carregador",
+        "value_id": null,
+        "value_name": "46RCV2USB000",
+        "values": [
+          {
+            "id": null,
+            "name": "46RCV2USB000",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OUTPUT_VOLTAGE",
+        "name": "Voltagem de saída",
+        "value_id": "2453518",
+        "value_name": "5V",
+        "values": [
+          {
+            "id": "2453518",
+            "name": "5V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK017562",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK017562",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "paused",
+    "sub_status": [
+      "picture_download_pending"
+    ],
+    "tags": [
+      "good_quality_thumbnail",
+      "user_product_listing",
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": null,
+    "domain_id": "MLB-MOBILE_DEVICE_CHARGERS",
+    "seller_custom_field": "VTK017562",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:07:28.560Z",
+    "last_updated": "2026-08-17T00:07:28.560Z",
+    "health": null,
+    "catalog_listing": false,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true
+    },
+    "critical": {
+      "CONNECTOR_TYPE": true,
+      "INPUT_VOLTAGE": true,
+      "OUTPUT_VOLTAGE": true
+    },
+    "passed": true
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

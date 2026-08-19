@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018304",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Permak Honda Civic application identity lacks primary documentation",
+  "local_value": "7898253495154",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:15:57.203Z"
+}

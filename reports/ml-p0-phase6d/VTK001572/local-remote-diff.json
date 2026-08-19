@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432766170",
+      "local": "MLB7432766170",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001572",
+      "local": "VTK001572",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "b120e2a3-9262-4aac-bc9b-824d802612ac",
+      "local": "b120e2a3-9262-4aac-bc9b-824d802612ac",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cordas Guitarra 09 Custom Light Revestimento Nanoweb Elixir",
+      "local": "Cordas Guitarra 09 Custom Light Revestimento Nanoweb Elixir",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 459.9,
+      "local": 459.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432766170-cordas-guitarra-09-custom-light-revestimento-nanoweb-elixir-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432766170-cordas-guitarra-09-custom-light-revestimento-nanoweb-elixir-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:49.285Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Antena Olimpus New Flex Fiat Traseira 12+",
+    "supplier_category": "Automotivo/ Antena Automotiva/ Haste De Antena",
+    "supplier_brand": "OLIMPUS",
+    "supplier_gtin": "7898382149959",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/380954",
+    "captured_at": "2026-08-17T12:55:09.514Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "362b0f92-2ad7-419d-a40f-283eb8c23528",
+    "produto_id": "e7f7754e-1462-4dda-858a-893478dae2de",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "380954",
+    "sku_fornecedor": "380954",
+    "custo": 122.9,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:21:19.436+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:21:19.453+00:00",
+    "sku_oferta": "380954",
+    "nome": "Antena Olimpus New Flex Fiat Traseira 12+",
+    "descricao": "Antena de teto traseira para veículos Fiat na cor preto fosco. - Amplificada (Phanton); - Inclinação 60°; - Haste curta removível de 20 cm; - Base quadrada (para furação original; - Conexão Blankon para cabo original (Para rádios convencionais necessita do adaptador Phaton); *Imagem meramente ilustrativa.",
+    "marca": "OLIMPUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/380954_67d2cb0bcc377.jpg"
+    ],
+    "gtin": "7898382149959",
+    "ncm": "85291090",
+    "cest": "01.063.00"
+  }
+}

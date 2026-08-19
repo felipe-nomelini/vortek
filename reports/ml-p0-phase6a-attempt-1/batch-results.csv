@@ -1,0 +1,11 @@
+index,sku,state,item_id,catalog_product_id,protective_price,margin_percent,persisted,observation
+"1","VTK026045","BLOCK_LOCAL_STATE","","MLB54158165","","","false","""local_product_or_preferred_offer_gate_failed"""
+"2","VTK026046","BLOCK_LOCAL_STATE","","MLB62224438","","","false","""local_product_or_preferred_offer_gate_failed"""
+"3","VTK021013","BLOCK_LOCAL_STATE","","MLB7980692","","","false","""local_product_or_preferred_offer_gate_failed"""
+"4","VTK017236","BLOCK_CATALOG_IDENTITY","","MLB22432562","","","false","""gtin_catalog_maps_to_vehicle_stereo_kit_model_6660_not_ts_1360br_speaker_pair"""
+"5","VTK002141","BLOCK_LOCAL_STATE","","MLB26855145","","","false","""local_product_or_preferred_offer_gate_failed"""
+"6","VTK026003","BLOCK_LOCAL_STATE","","MLB29389761","","","false","""local_product_or_preferred_offer_gate_failed"""
+"7","VTK017506","API_TRANSIENT_ERROR","","MLB77404563","119.9","53.177648","false","""immediate_duplicate_gate_unavailable"""
+"8","VTK017211","BLOCK_LOCAL_STATE","","MLB27380888","","","false","""local_product_or_preferred_offer_gate_failed"""
+"9","VTK025999","BLOCK_LOCAL_STATE","","","","","false","""local_product_or_preferred_offer_gate_failed"""
+"10","VTK026000","BLOCK_LOCAL_STATE","","MLB75102536","","","false","""local_product_or_preferred_offer_gate_failed"""

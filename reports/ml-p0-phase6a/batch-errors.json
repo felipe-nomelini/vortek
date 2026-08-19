@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-08-16T23:46:03.048Z",
+  "rows": [
+    {
+      "index": 3,
+      "sku": "VTK021013",
+      "started_at": "2026-08-16T23:45:53.379Z",
+      "local_time": "2026-08-16T20:45:53",
+      "expected_gtin": "7896637609296",
+      "completed_at": "2026-08-16T23:45:54.405Z",
+      "elapsed_ms": 1043,
+      "result": "BLOCK_IDENTITY",
+      "item_id": null,
+      "catalog_product_id": "MLB7980692",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "exact_catalog_contains_technical_identity_conflicts_with_official_wired_unpowered_product",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 4,
+      "sku": "VTK017236",
+      "started_at": "2026-08-16T23:45:54.422Z",
+      "local_time": "2026-08-16T20:45:54",
+      "expected_gtin": "4988028352812",
+      "completed_at": "2026-08-16T23:45:54.856Z",
+      "elapsed_ms": 450,
+      "result": "BLOCK_CATALOG_IDENTITY",
+      "item_id": null,
+      "catalog_product_id": "MLB22432562",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "gtin_catalog_maps_to_vehicle_stereo_kit_model_6660_not_ts_1360br_speaker_pair",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 5,
+      "sku": "VTK002141",
+      "started_at": "2026-08-16T23:45:54.874Z",
+      "local_time": "2026-08-16T20:45:54",
+      "expected_gtin": "7898572866024",
+      "completed_at": "2026-08-16T23:45:55.318Z",
+      "elapsed_ms": 461,
+      "result": "BLOCK_GTIN",
+      "item_id": null,
+      "catalog_product_id": "MLB26855145",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_model_pmg_10_but_exact_gtin_catalog_and_secondary_sources_identify_smg_10",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 6,
+      "sku": "VTK026003",
+      "started_at": "2026-08-16T23:45:55.332Z",
+      "local_time": "2026-08-16T20:45:55",
+      "expected_gtin": "7898572860541",
+      "completed_at": "2026-08-16T23:45:55.767Z",
+      "elapsed_ms": 448,
+      "result": "BLOCK_CATEGORY",
+      "item_id": null,
+      "catalog_product_id": "MLB29389761",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "exact_catalog_domain_is_keyboard_stands_but_official_saty_product_is_slator_wall_string_instrument_support",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 8,
+      "sku": "VTK017211",
+      "started_at": "2026-08-16T23:46:00.170Z",
+      "local_time": "2026-08-16T20:46:00",
+      "expected_gtin": "7898939972504",
+      "completed_at": "2026-08-16T23:46:01.914Z",
+      "elapsed_ms": 1763,
+      "result": "BLOCK_CATALOG_IDENTITY",
+      "item_id": null,
+      "catalog_product_id": "MLB27380888",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "exact_catalog_model_paptb100001_does_not_confirm_local_model_b10",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 9,
+      "sku": "VTK025999",
+      "started_at": "2026-08-16T23:46:01.931Z",
+      "local_time": "2026-08-16T20:46:01",
+      "expected_gtin": "6940651411548",
+      "completed_at": "2026-08-16T23:46:02.469Z",
+      "elapsed_ms": 554,
+      "result": "BLOCK_IDENTITY",
+      "item_id": null,
+      "catalog_product_id": null,
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "no_official_manufacturer_source_and_no_active_ml_catalog_product_confirmed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 10,
+      "sku": "VTK026000",
+      "started_at": "2026-08-16T23:46:02.485Z",
+      "local_time": "2026-08-16T20:46:02",
+      "expected_gtin": "6940651411517",
+      "completed_at": "2026-08-16T23:46:03.047Z",
+      "elapsed_ms": 578,
+      "result": "BLOCK_CATALOG_IDENTITY",
+      "item_id": null,
+      "catalog_product_id": "MLB75102536",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "catalog_identifies_acoustic_set_with_model_szste1sl_which_external_evidence_assigns_to_electric_009_042_set",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "index": 42,
+  "sku": "VTK018562",
+  "expected_gtin": "7898253502104",
+  "started_at": "2026-08-17T12:54:32.511Z",
+  "local_time": "2026-08-17T09:54:32",
+  "completed_at": "2026-08-17T12:54:33.702Z",
+  "elapsed_ms": 1191,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "category confidence is not HIGH for domain MLB-GPS_ANTENNAS",
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

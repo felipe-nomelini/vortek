@@ -1,0 +1,548 @@
+{
+  "checked_at": "2026-08-17T00:06:47.895Z",
+  "expected_catalog_product_id": "MLB76738398",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "strategy": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true,
+      "VOLUME_CAPACITY": true,
+      "UNITS_PER_PACKAGE": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB76738398",
+    "catalog_product_id": "MLB76738398",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-FOOD_STORAGE_CONTAINERS",
+    "permalink": "",
+    "name": "Jogo De Potes 300ml Tramontina Mixcolor Preto C/tampa 3 Un Preto",
+    "family_name": "Tramontina 300 mL",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB35445630",
+            "picker_label": "Branco",
+            "picture_id": "938071-MLU75487205622_042024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_938071-MLU75487205622_042024-I.jpg",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Branco"
+              ],
+              [
+                "UNITS_PER_PACKAGE",
+                "1"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Tramontina - Branco - Unidade - 1 - 1 - 300 mL",
+            "auto_completed": true,
+            "rgb_meta": "FFFFFF"
+          },
+          {
+            "product_id": "MLB76738398",
+            "picker_label": "Preto",
+            "picture_id": "929685-MLA114564634252_082026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_929685-MLA114564634252_082026-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Tramontina 300 mL - Preto - Unidade - 1 - 3",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por pack",
+        "products": [
+          {
+            "product_id": "MLB76738398",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Tramontina 300 mL - Preto - Unidade - 1 - 3",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACKAGE",
+        "picker_name": "Unidades por embalagem",
+        "products": [
+          {
+            "product_id": "MLB35445630",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Branco"
+              ],
+              [
+                "UNITS_PER_PACKAGE",
+                "1"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Tramontina - Branco - Unidade - 1 - 1 - 300 mL",
+            "auto_completed": false,
+            "rgb_meta": "FFFFFF"
+          },
+          {
+            "product_id": "MLB76738398",
+            "picker_label": "3",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Tramontina 300 mL - Preto - Unidade - 1 - 3",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACKAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "929685-MLA114564634252_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_929685-MLA114564634252_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1199,
+        "max_height": 865,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "907226-MLA115924335783_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_907226-MLA115924335783_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 582,
+        "max_height": 934,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "692431-MLA115924566275_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_692431-MLA115924566275_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1124,
+        "max_height": 1124,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "893113-MLA115924742489_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_893113-MLA115924742489_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 800,
+        "max_height": 800,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "640280-MLA115924335801_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_640280-MLA115924335801_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 678,
+        "max_height": 727,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Fabricado em polipropileno.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com tampa.  ",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "É adequado para microondas.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "É apto para lava-louças.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "433",
+        "value_name": "Tramontina",
+        "values": [
+          {
+            "id": "433",
+            "name": "Tramontina"
+          }
+        ]
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "name": "Capacidade em volume",
+        "value_id": "3656932",
+        "value_name": "300 mL",
+        "values": [
+          {
+            "id": "3656932",
+            "name": "300 mL"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "name": "Unidades por embalagem",
+        "value_id": "334424",
+        "value_name": "3",
+        "values": [
+          {
+            "id": "334424",
+            "name": "3"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "000000"
+        }
+      },
+      {
+        "id": "FOOD_STORAGE_CONTAINER_SHAPE",
+        "name": "Forma",
+        "value_id": "21014479",
+        "value_name": "Quadrado",
+        "values": [
+          {
+            "id": "21014479",
+            "name": "Quadrado"
+          }
+        ]
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2482319",
+        "value_name": "Polipropileno",
+        "values": [
+          {
+            "id": "2482319",
+            "name": "Polipropileno"
+          }
+        ]
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "45551",
+        "value_name": "11 cm",
+        "values": [
+          {
+            "id": "45551",
+            "name": "11 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "45551",
+        "value_name": "11 cm",
+        "values": [
+          {
+            "id": "45551",
+            "name": "11 cm"
+          }
+        ]
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "3002",
+        "value_name": "5 cm",
+        "values": [
+          {
+            "id": "3002",
+            "name": "5 cm"
+          }
+        ]
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "value_id": "4117846",
+        "value_name": "11 cm",
+        "values": [
+          {
+            "id": "4117846",
+            "name": "11 cm"
+          }
+        ]
+      },
+      {
+        "id": "IS_AIRTIGHT",
+        "name": "É hermético",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_MICROWAVE_SAFE",
+        "name": "É apto para micro-ondas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "name": "É apto para lava-louças",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_CEREAL_CONTAINER",
+        "name": "É porta-cereais",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_LID",
+        "name": "Com tampa",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "LID_TYPE",
+        "name": "Tipo de tampa",
+        "value_id": "41652862",
+        "value_name": "Tampa Transparente",
+        "values": [
+          {
+            "id": "41652862",
+            "name": "Tampa Transparente"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": ""
+    },
+    "parent_id": "MLB66715009",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T05:46:12.176571999"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2026-08-11T08:26:45Z",
+    "authorized_stores": null,
+    "last_updated": "2026-08-11T08:40:03Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "optional_catalog_optimization_pending": false
+}

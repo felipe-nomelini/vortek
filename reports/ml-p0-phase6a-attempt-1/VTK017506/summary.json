@@ -1,0 +1,16 @@
+{
+  "index": 7,
+  "sku": "VTK017506",
+  "started_at": "2026-08-16T23:39:11.151Z",
+  "local_time": "2026-08-16T20:39:11",
+  "expected_gtin": "7891112359253",
+  "completed_at": "2026-08-16T23:39:13.822Z",
+  "elapsed_ms": 2680,
+  "result": "API_TRANSIENT_ERROR",
+  "item_id": null,
+  "catalog_product_id": "MLB77404563",
+  "protective_price": 119.9,
+  "margin_percent": 53.177648,
+  "persisted": false,
+  "observation": "immediate_duplicate_gate_unavailable"
+}

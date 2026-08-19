@@ -1,0 +1,23 @@
+{
+  "index": 26,
+  "sku": "VTK006444",
+  "expected_gtin": "3016661158094",
+  "started_at": "2026-08-17T01:14:18.246Z",
+  "local_time": "2026-08-16T22:14:18",
+  "completed_at": "2026-08-17T01:14:19.012Z",
+  "elapsed_ms": 766,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE",
+  "item_id": null,
+  "catalog_product_id": "MLB22520390",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "missing category-required attributes: POWER_SUPPLY_TYPE",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

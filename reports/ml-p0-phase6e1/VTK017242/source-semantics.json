@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:53.504Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Hdmi Evus C-051 4k Macho X Macho V2.0 5,0m",
+    "supplier_category": "Informatica/ Cabos Para Informática/ Cabo Hdmi",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/353641",
+    "captured_at": "2026-08-17T12:56:30.412Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "c0f8a9b7-a8fa-48e8-98ab-2f6f0395b4cf",
+    "produto_id": "15194621-d655-4bf5-8148-a7be13fa04de",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "353641",
+    "sku_fornecedor": "353641",
+    "custo": 27.5,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:24:30.545+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:24:30.554+00:00",
+    "sku_oferta": "353641",
+    "nome": "Cabo Hdmi Evus C-051 4k Macho X Macho V2.0 5,0m",
+    "descricao": "Informações do Produto Características O cabo HDMI EVUS entrega a você imagens com alta fidelidade e qualidade quando conectado a um aparelho. Conta com tecnologia 4k e revestimento para maior proteção e controle de temperatura. Além disso, o cabo EVUS tem suas pontas banhadas a ouro, o que significa maior qualidade de transmissão de áudio e vídeo. ESPECIFICAÇÕES TÉCNICAS | DIMENSÕES - Cabo HDMI EVUS - 5,0m comprimento - Pontas banhadas a ouro - 4k - Diamêtro: 6,5mm - Revestimento\n\nCabo HDMI EVUS Comprimento: 5,0m Pontas: banhadas a ouro Diamêtro: 6,5mm 4k",
+    "marca": "EVUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/5/353641_67d2caf7d0933.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/353641_67d2caf7d10bd.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/353641_67d2caf7d20cc.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85444200",
+    "cest": "12.007.00"
+  }
+}

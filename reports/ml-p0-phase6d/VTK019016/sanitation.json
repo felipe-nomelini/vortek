@@ -1,0 +1,10 @@
+{
+  "sku": "VTK019016",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Cabletech RGE-58 100 m has no high-confidence category",
+  "local_value": "7898414700073",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:16:53.746Z"
+}

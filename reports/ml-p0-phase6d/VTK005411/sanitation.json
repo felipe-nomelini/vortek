@@ -1,0 +1,10 @@
+{
+  "sku": "VTK005411",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Hayonik 7 m color/connector identity lacks exact official/catalog evidence",
+  "local_value": "7899638110112",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:16:53.971Z"
+}

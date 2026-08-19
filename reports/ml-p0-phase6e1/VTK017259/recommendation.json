@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conector Klc Tnc Tm-1 Macho Rg/rgc 58",
+    "supplier_category": "Antenas E Acessórios/ Acessórios Para Antenas Tv/ Conectores",
+    "supplier_brand": "K.L.C.",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/360601",
+    "captured_at": "2026-08-17T12:56:31.528Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

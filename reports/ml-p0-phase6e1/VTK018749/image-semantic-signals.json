@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-08-17T14:15:41.069Z",
+  "local_images": [
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018749/01-995299cca5dd3724016b.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018749/02-02f9e138ce17f641ec73.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018749/03-ac968a02c7695fae5cf3.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "703789-MLA100005606815_122025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_703789-MLA100005606815_122025-F.jpg",
+      "max_width": "1134",
+      "max_height": "1200"
+    },
+    {
+      "id": "973781-MLA82923194227_032025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA82923194227_032025-F.jpg",
+      "max_width": "660",
+      "max_height": "1200"
+    },
+    {
+      "id": "694679-MLA91564938622_092025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_694679-MLA91564938622_092025-F.jpg",
+      "max_width": "1027",
+      "max_height": "1200"
+    },
+    {
+      "id": "865125-MLA82923194233_032025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_865125-MLA82923194233_032025-F.jpg",
+      "max_width": "412",
+      "max_height": "902"
+    },
+    {
+      "id": "655742-MLA91565337054_092025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_655742-MLA91565337054_092025-F.jpg",
+      "max_width": "1200",
+      "max_height": "924"
+    },
+    {
+      "id": "760826-MLA91564978534_092025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_760826-MLA91564978534_092025-F.jpg",
+      "max_width": "1200",
+      "max_height": "868"
+    },
+    {
+      "id": "640837-MLA91565356920_092025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_640837-MLA91565356920_092025-F.jpg",
+      "max_width": "956",
+      "max_height": "1200"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

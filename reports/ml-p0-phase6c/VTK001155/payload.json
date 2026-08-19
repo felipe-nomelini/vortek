@@ -1,0 +1,110 @@
+{
+  "payload": {
+    "family_name": "Cabo Coaxial Megatron RG59 100 m",
+    "category_id": "MLB431815",
+    "catalog_product_id": "MLB29649341",
+    "catalog_listing": true,
+    "price": 439.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/59624/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "3695029",
+        "value_name": "Megatron"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "28511639",
+        "value_name": "Coaxial RG59 67% Malha"
+      },
+      {
+        "id": "NETWORK_CABLE_TYPE",
+        "value_id": "17155965",
+        "value_name": "Coaxial"
+      },
+      {
+        "id": "SALES_UNIT",
+        "value_id": "5203052",
+        "value_name": "Bobina"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "2693635",
+        "value_name": "100 m"
+      },
+      {
+        "id": "CABLE_SHAPE",
+        "value_id": "433716",
+        "value_name": "Circular"
+      },
+      {
+        "id": "NETWORK_CABLE_CATEGORY",
+        "value_id": "28511641",
+        "value_name": "RG59"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "value_id": "34488195",
+        "value_name": "Polietileno expandido"
+      },
+      {
+        "id": "CONDUCTOR_MATERIAL",
+        "value_id": "34488196",
+        "value_name": "Aço cobreado"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "24278295",
+        "value_name": "RG59"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "24278296",
+        "value_name": "RG59"
+      },
+      {
+        "id": "AMBIENT",
+        "value_id": "417560",
+        "value_name": "Interior/Exterior"
+      },
+      {
+        "id": "INCLUDES_CONNECTORS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "28511640",
+        "value_name": "7899278914408"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001155"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001155"
+  },
+  "sha256": "a170c10de8f1f1af8365b652c5e2bc3ddea9e4fd6946b0a5d0212c4fba125410",
+  "family_name_sha256": "aa8dca78a9d1c8936db70d69dd869600282eed1c51cc8c73fac70fed7cf569f9",
+  "title_absent": true,
+  "description_absent": true
+}

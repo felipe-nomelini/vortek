@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:40.906Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem Gancho 2010/2020 Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194554",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317406",
+    "captured_at": "2026-08-17T12:54:11.220Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "2593b4d5-a0f5-4ef2-ba1e-fc2d3a2415de",
+    "produto_id": "c95e7e90-3c29-4006-96c2-24f3d61e2b16",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "317406",
+    "sku_fornecedor": "317406",
+    "custo": 514.9,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:09:27.941+00:00",
+    "created_at": "2026-07-20T18:32:59.010276+00:00",
+    "updated_at": "2026-08-17T11:09:27.95+00:00",
+    "sku_oferta": "317406",
+    "nome": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem Gancho 2010/2020 Force",
+    "descricao": "Informações do Produto A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo Saveiro CE S/Gan 10+",
+    "marca": "FLASH COVER",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/317406_68d4068a84604.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317406_68d4068a84ccf.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317406_68d4068a84d59.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317406_68d4068a84da3.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317406_68d4068a84de4.png"
+    ],
+    "gtin": "7899630194554",
+    "ncm": "87082999",
+    "cest": "01.075.00"
+  }
+}

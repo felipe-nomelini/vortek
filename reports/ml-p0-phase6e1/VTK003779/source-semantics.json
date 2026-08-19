@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:43.208Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Suporte Em Z Para Teclado Fixo Sz02 Saty",
+    "supplier_category": "Instrumentos Musicais > Pianos E Teclados > Acessórios > Suportes",
+    "supplier_brand": "Saty",
+    "supplier_gtin": "7898572861081",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4226",
+    "captured_at": "2026-08-17T12:54:31.868Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "bd8be7a0-b071-4ffc-8159-e976261dd98f",
+    "produto_id": "ced59fd1-7861-43f2-a558-23d0cf58099b",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4226",
+    "sku_fornecedor": "4226",
+    "custo": 234.5,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:07:28.852+00:00",
+    "created_at": "2026-08-14T10:55:28.752229+00:00",
+    "updated_at": "2026-08-17T10:07:28.859+00:00",
+    "sku_oferta": "4226",
+    "nome": "Suporte Em Z Para Teclado Fixo Sz02 Saty",
+    "descricao": "SUPORTE EM Z PARA TECLADO FIXO SZ02 SATY O Suporte em Z para Teclado Fixo SZ02 SATY foi desenvolvido para proporcionar máxima estabilidade, conforto e segurança durante apresentações, ensaios e gravações. Seu formato em \"Z\" oferece excelente ergonomia e distribuição de peso, sendo ideal para teclados e pianos digitais. Fabricado em aço de alta resistência, conta com regulagem de altura e ponteiras antiderrapantes, garantindo firmeza e confiabilidade mesmo em uso profissional. Ficha Técnica Modelo: SZ02 Marca: SATY Tipo: Suporte em Z para teclado Estrutura: Tubo metalon 25 x 25 mm Material: Aço de alta resistência Acabamento: Pintura eletrostática na cor preta Formato: Z (fixo) Regulagem de altura: Sim Altura mínima: 60 cm Altura máxima: 91 cm Largura: 70 cm Capacidade de carga: Até 40 kg Ponteiras: Antiderrapantes para maior estabilidade Aplicação: Teclados, controladores MIDI e pianos digitais Indicado para: Palcos, estúdios, igrejas, escolas de música, ensaios e uso profissional O SZ02 SATY é a escolha ideal para músicos que buscam um suporte robusto, estável e confortável para longas sessões de uso. Sua estrutura reforçada e o formato em Z proporcionam excelente estabilidade e ergonomia, oferecendo segurança para o instrumento e praticidade tanto em apresentações quanto no dia a dia.",
+    "marca": "Saty",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/46662bdbb17312041777f35a7d300bf9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/214e4c33470beb3a4f62fc6fe8d2f054.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/032641c9bfbd758c7f13dce0e21dc1d4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcb71972a3ae9261a695f08e9d6aa4a5.jpg"
+    ],
+    "gtin": "7898572861081",
+    "ncm": "9209.94.00",
+    "cest": null
+  }
+}

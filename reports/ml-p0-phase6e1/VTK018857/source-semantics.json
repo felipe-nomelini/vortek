@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:44.977Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+    "supplier_category": "Automotivo/ Alto Falante/ Alto Falante 12 Polegadas",
+    "supplier_brand": "SELENIUM",
+    "supplier_gtin": "7896359523368",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/203599",
+    "captured_at": "2026-08-17T12:54:36.580Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "8b0195b8-1195-49b4-be5c-78ca8d6d9d59",
+    "produto_id": "92fa2aa7-5d9c-4765-ace4-e5114af5848d",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "203599",
+    "sku_fornecedor": "203599",
+    "custo": 719.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "203599",
+    "nome": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+    "descricao": "Diâmetro nominal: 12\" Impedância: 8 ohms Potência Musical: 1200W Sensibilidade 1W, 1m (dB SPL): 95 Resposta Frequência (-10dB): 45 Hz - 3,5 kHz Diâmetro Bobina: 100mm Material Bobina: Al, chato",
+    "marca": "SELENIUM",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/0/203599_67d2cadc4a3a7.jpg",
+      "https://evolusom.com.br/media/catalog/product/2/0/203599_67d2cadc4aaf1.jpg",
+      "https://evolusom.com.br/media/catalog/product/2/0/203599_67d2cadc4b1d3.jpg",
+      "https://evolusom.com.br/media/catalog/product/2/0/203599_67d2cadc4bf0b.jpg"
+    ],
+    "gtin": "7896359523368",
+    "ncm": "85182100",
+    "cest": "01.057.00"
+  }
+}

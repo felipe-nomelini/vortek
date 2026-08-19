@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:53.776Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Hdmi X Dvi Nwt Cbhd0001 Macho X Macho Entrada Dvi 18+1 Saída Hdmi 1.4 Com Filtro 2m",
+    "supplier_category": "Antenas E Acessórios/ Cabo Hdmi/ Cabo Hdmi X Dvi",
+    "supplier_brand": "NWT",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/380321",
+    "captured_at": "2026-08-17T12:56:51.802Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "d0444cd7-5c51-4ce1-bf85-f1f0e219ac90",
+    "produto_id": "ec81f065-53fd-4abb-a286-3d30f5c31a4b",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "380321",
+    "sku_fornecedor": "380321",
+    "custo": 14.5,
+    "estoque": 15,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:00:34.874+00:00",
+    "created_at": "2026-07-20T18:31:31.097875+00:00",
+    "updated_at": "2026-08-17T11:00:34.899+00:00",
+    "sku_oferta": "380321",
+    "nome": "Cabo Hdmi X Dvi Nwt Cbhd0001 Macho X Macho Entrada Dvi 18+1 Saída Hdmi 1.4 Com Filtro 2m",
+    "descricao": "O Cabo DVI ideal para ligar seus aparelhos DVI a seu monitor ou televisor com entrada HDMI, o cabo DVI x HDMI Dual-Link com conectores banhados a ouro foi fabricado com material de altíssima qualidade, e desenvolvido para transmissão de imagem digital entre aparelhos eletrônicos como HDTV, displays, caixa satélite, projetores e outros aparelhos eletrônicos em geral. *imagem meramente ilustrativa.\n\nConector de entrada: HDMI macho Conector de saída: DVI 18+1 macho Comprimento do cabo: 2 metros Resolução: 1080p 60 Hz",
+    "marca": "NWT",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/380321_67d2cb0704122.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/380321_67d2cb0705345.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/380321_67d2cb0706365.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85444200",
+    "cest": "12.007.00"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:47.420Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Controlador Acesso Ip Wide Cx-7006",
+    "supplier_category": "Segurança / Alarme/ Acessórios Alarme",
+    "supplier_brand": "CITROX",
+    "supplier_gtin": "7898954353630",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/366611",
+    "captured_at": "2026-08-17T12:54:52.908Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "41e217f5-b6bb-4d2a-8ed6-ef1b1973ff99",
+    "produto_id": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "366611",
+    "sku_fornecedor": "366611",
+    "custo": 515.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "366611",
+    "nome": "Controlador Acesso Ip Wide Cx-7006",
+    "descricao": "Comunicação Ethernet (TCP/IP); Alimentação 12Vdc (fonte não acompanha); Mantém informações em caso de falta de energia; Gerenciada pelo software Access Control Web (software gratuito); Capacidade de armazenamento ilimitada no modo Online; Armazena 8000 cartões e 10.000 eventos offline; Quatro entradas Wiegand 26 bits; Quatro entradas para botoeiras; Quatro entradas para sensores; Quatro relés independentes para acionamento de pontos; Um relé para alarme/auxiliar. *Imagem meramente ilustrativa.",
+    "marca": "CITROX",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/366611_67d2cafcdff8c.jpg"
+    ],
+    "gtin": "7898954353630",
+    "ncm": "84714100",
+    "cest": "21.029.00"
+  }
+}

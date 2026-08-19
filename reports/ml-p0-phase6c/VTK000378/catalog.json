@@ -1,0 +1,959 @@
+{
+  "checked_at": "2026-08-17T00:43:50.522Z",
+  "expected_catalog_product_id": "MLB16097954",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB16097954",
+    "catalog_product_id": "MLB16097954",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-OFFICE_CHAIRS",
+    "permalink": "",
+    "name": "Cadeira Gamer Ergonômica ThunderX3 Yama1 Preto/Cíano com Encosto Reclinável",
+    "family_name": "ThunderX3 Essential Gaming Chairs YAMA1",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB16097953",
+            "picker_label": "Preto",
+            "picture_id": "972087-MLA43816333656_102020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_972087-MLA43816333656_102020-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Preto"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Essential Gaming Chairs YAMA1 - Preto - Malha - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB16097954",
+            "picker_label": "Preto/Cíano",
+            "picture_id": "721870-MLA43816459338_102020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_721870-MLA43816459338_102020-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 Essential Gaming Chairs YAMA1 - Preto/Cíano - Malha - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB16097955",
+            "picker_label": "Preto/Vermelho",
+            "picture_id": "858228-MLA43816459447_102020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_858228-MLA43816459447_102020-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Vermelho"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Essential Gaming Chairs YAMA1 - Preto/Vermelho - Malha - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UPHOLSTERY_MATERIAL",
+        "picker_name": "Material do estofamento",
+        "products": [
+          {
+            "product_id": "MLB69958835",
+            "picker_label": "Couro sintético",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Preto"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Couro sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Essential Gaming Chairs YAMA1 - Preto - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB16097954",
+            "picker_label": "Malha",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 Essential Gaming Chairs YAMA1 - Preto/Cíano - Malha - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UPHOLSTERY_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por pacote",
+        "products": [
+          {
+            "product_id": "MLB16097954",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 Essential Gaming Chairs YAMA1 - Preto/Cíano - Malha - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "976832-MLA99508595596_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_976832-MLA99508595596_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "721870-MLA43816459338_102020",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_721870-MLA43816459338_102020-F.jpg",
+        "suggested_for_picker": [
+          "COLOR"
+        ],
+        "max_width": 666,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "684574-MLA43816459327_102020",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_684574-MLA43816459327_102020-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 652,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "863222-MLA49542944144_042022",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_863222-MLA49542944144_042022-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 649,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "881933-MLU70023982875_062023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_881933-MLU70023982875_062023-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 722,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "834202-MLU70023982879_062023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_834202-MLU70023982879_062023-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 895,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Altura do encosto de 74 cm para excelente suporte lombar.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Peso máximo suportado de 120 kg para maior durabilidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Estrutura em náilon que garante resistência.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ajuste de altura de 46 cm a 56 cm para conforto personalizável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Encosto reclinável com inclinação de 90° a 135°.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Apoio de braços ajustável para melhor ergonomia.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "8848598",
+        "value_name": "ThunderX3",
+        "values": [
+          {
+            "id": "8848598",
+            "name": "ThunderX3"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "10589946",
+        "value_name": "Essential Gaming Chairs",
+        "values": [
+          {
+            "id": "10589946",
+            "name": "Essential Gaming Chairs"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "8991084",
+        "value_name": "YAMA1",
+        "values": [
+          {
+            "id": "8991084",
+            "name": "YAMA1"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "3304748",
+        "value_name": "Preto/Cíano",
+        "values": [
+          {
+            "id": "3304748",
+            "name": "Preto/Cíano"
+          }
+        ]
+      },
+      {
+        "id": "UPHOLSTERY_MATERIAL",
+        "name": "Material do estofamento",
+        "value_id": "3112424",
+        "value_name": "Malha",
+        "values": [
+          {
+            "id": "3112424",
+            "name": "Malha"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "000000"
+        }
+      },
+      {
+        "id": "FILTRABLE_COLOR",
+        "name": "Cor filtrável",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "values": [
+            {
+              "rgb": "000000"
+            }
+          ]
+        }
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "name": "Tipo de cadeira de escritório",
+        "value_id": "13016814",
+        "value_name": "Gamer",
+        "values": [
+          {
+            "id": "13016814",
+            "name": "Gamer"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "name": "Materiais da estrutura",
+        "value_id": "7980354",
+        "value_name": "Náilon",
+        "values": [
+          {
+            "id": "7980354",
+            "name": "Náilon"
+          }
+        ]
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "name": "Materiais do enchimento",
+        "value_id": "13809804",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "13809804",
+            "name": "Espuma"
+          }
+        ]
+      },
+      {
+        "id": "FOOT_RING_MATERIALS",
+        "name": "Materiais do aro para pés",
+        "value_id": "16602172",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "16602172",
+            "name": "Metal"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "name": "Altura do encosto",
+        "value_id": "7995975",
+        "value_name": "74 cm",
+        "values": [
+          {
+            "id": "7995975",
+            "name": "74 cm"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "name": "Profundidade do assento",
+        "value_id": "9567306",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "9567306",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "name": "Largura da cadeira",
+        "value_id": "7661942",
+        "value_name": "66 cm",
+        "values": [
+          {
+            "id": "7661942",
+            "name": "66 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "name": "Altura máxima da cadeira",
+        "value_id": "10312765",
+        "value_name": "128 cm",
+        "values": [
+          {
+            "id": "10312765",
+            "name": "128 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "2514092",
+        "value_name": "150 kg",
+        "values": [
+          {
+            "id": "2514092",
+            "name": "150 kg"
+          }
+        ]
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "name": "Requer montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_WHEELS",
+        "name": "Com rodas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "name": "Com aro para pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ARMREST",
+        "name": "Com apoio de braços",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "name": "Com encosto reclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "name": "Com luzes",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "name": "Com apoio de braços ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_HEADREST",
+        "name": "Com apoio de cabeça",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "name": "Com apoio de pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "name": "É ergonômica",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_SWIVEL",
+        "name": "É giratória",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "26078166",
+        "value_name": "Yama1",
+        "values": [
+          {
+            "id": "26078166",
+            "name": "Yama1"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "name": "Inclui manual de montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "name": "Tipo de apoio lombar",
+        "value_id": "10201909",
+        "value_name": "Regulável",
+        "values": [
+          {
+            "id": "10201909",
+            "name": "Regulável"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_FINISH",
+        "name": "Acabamento da estrutura",
+        "value_id": "1185554",
+        "value_name": "Cromado",
+        "values": [
+          {
+            "id": "1185554",
+            "name": "Cromado"
+          }
+        ]
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "name": "Tipos de mecanismos de reclinação",
+        "value_id": null,
+        "value_name": "Encosto reclinável, Sincrônico",
+        "values": [
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável"
+          },
+          {
+            "id": "10201910",
+            "name": "Sincrônico"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_TILT_RANGE",
+        "name": "Faixa de inclinação do encosto",
+        "value_id": "10299882",
+        "value_name": "90 ° x 135 °",
+        "values": [
+          {
+            "id": "10299882",
+            "name": "90 ° x 135 °"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_HEIGHT",
+        "name": "Altura da cadeira",
+        "value_id": "53835643",
+        "value_name": "132 cm",
+        "values": [
+          {
+            "id": "53835643",
+            "name": "132 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_DEPTH",
+        "name": "Profundidade da cadeira",
+        "value_id": "7661943",
+        "value_name": "70 cm",
+        "values": [
+          {
+            "id": "7661943",
+            "name": "70 cm"
+          }
+        ]
+      },
+      {
+        "id": "BASE_DIAMETER",
+        "name": "Diâmetro da base",
+        "value_id": "12905531",
+        "value_name": "35 cm",
+        "values": [
+          {
+            "id": "12905531",
+            "name": "35 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "name": "Peso da cadeira",
+        "value_id": "10808289",
+        "value_name": "15.5 kg",
+        "values": [
+          {
+            "id": "10808289",
+            "name": "15.5 kg"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_WIDTH",
+        "name": "Largura do assento",
+        "value_id": "3202979",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "3202979",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "name": "Largura do encosto",
+        "value_id": "9737942",
+        "value_name": "48 cm",
+        "values": [
+          {
+            "id": "9737942",
+            "name": "48 cm"
+          }
+        ]
+      },
+      {
+        "id": "MIN_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "name": "Altura mínima do chão ao assento",
+        "value_id": "9845039",
+        "value_name": "46 cm",
+        "values": [
+          {
+            "id": "9845039",
+            "name": "46 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "name": "Altura máxima do chão ao assento\r",
+        "value_id": "9845040",
+        "value_name": "56 cm",
+        "values": [
+          {
+            "id": "9845040",
+            "name": "56 cm"
+          }
+        ]
+      },
+      {
+        "id": "MIN_CHAIR_HEIGHT",
+        "name": "Altura mínima da cadeira",
+        "value_id": "10312766",
+        "value_name": "118 cm",
+        "values": [
+          {
+            "id": "10312766",
+            "name": "118 cm"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A escolha de uma cadeira adequada é muito importante para evitar lesões. Com esta cadeira da ThunderX3 você terá o conforto e o bem-estar que precisa ao longo do seu dia. Além disso, você pode colocá-la em qualquer lugar da sua casa ou escritório, pois o seu design se adapta a vários ambientes. Dê um toque mais moderno aos seus espaços!\n\nProjetada para aqueles que passam muitas horas em frente ao computador. O assento e o encosto se adaptam às suas diferentes posições. Desfrute sem descuidar as zonas lombar, dorsal e cervical.\n\nEsta cadeira ergonômica é indicada para aqueles que passam muito tempo frente ao computador, seja por trabalho ou estudo, pois o seu design se adapta às formas do corpo e garante uma distribuição de pressões equilibrada. Crie um ambiente de trabalho saudável e produtivo.\n\nO seu encosto reclinável lhe permitirá regular os diferentes pontos de inclinação, bem como deixá-la em posição livre para balançar durante as pausas e descansos.\n\nCom seu ajuste de altura, você poderá fixar a posição de seu torso em relação à mesa de trabalho e assim obterá uma cadeira mais confortável ao nível de suas necessidades.\n\nOs apoios de braços vão favorecer a sua postura ao escrever e o ajudarão a se incorporar com mais facilidade quando quiser.\n\nAs rodas permitirão a você mover e limpar facilmente o seu espaço. Você será capaz de movê-la sem dificuldade quando precisar. Além disso, sendo giratória, permitirá que você gire o assento 360º sem a necessidade de mudar de posição ou se mover de onde você está."
+    },
+    "parent_id": "MLB16097952",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T12:25:59.298892435"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2020-09-17T17:59:44Z",
+    "authorized_stores": null,
+    "last_updated": "2026-05-29T04:05:43Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

@@ -1,0 +1,302 @@
+{
+  "checked_at": "2026-08-17T00:43:34.355Z",
+  "expected_catalog_product_id": "MLB65825760",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB65825760",
+    "catalog_product_id": "MLB65825760",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-HOME_ALARMS_AND_SENSORS",
+    "permalink": "",
+    "name": "Cabo Para Alarme 10 Vias 10x50 100 Metros Tipo Cci Telecam Branco",
+    "family_name": "TELECAM Tipo CCI aluminio cobreado 10x50",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB65825760",
+            "picker_label": "Branco",
+            "picture_id": "738697-MLA107455205945_022026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_738697-MLA107455205945_022026-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "TELECAM Tipo CCI aluminio cobreado 10x50 - Branco",
+            "auto_completed": true,
+            "rgb_meta": "FFFFFF"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "738697-MLA107455205945_022026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_738697-MLA107455205945_022026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "669134-MLA107455648821_022026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_669134-MLA107455648821_022026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "767850-MLA106784599170_022026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_767850-MLA106784599170_022026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "722383-MLA107455470449_022026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_722383-MLA107455470449_022026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "871802-MLA107455470457_022026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_871802-MLA107455470457_022026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "100 metros de comprimento para instalação flexível em qualquer sistema de segurança residencial.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Material CCI garante excelente condutividade e durabilidade, ideal para uso em alarmes modernos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Diâmetro de 3.35 mm e tamanho AWG 26 para assegurar conectividade robusta e confiável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Modelo 10x50 permite uso em diversas configurações, mantendo a eficiência do sistema de alarme.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Peso de 2040 g oferece estabilidade durante instalação, reduzindo riscos de danos acidentais.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "15436071",
+        "value_name": "TELECAM",
+        "values": [
+          {
+            "id": "15436071",
+            "name": "TELECAM"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "73704585",
+        "value_name": "Tipo CCI aluminio cobreado",
+        "values": [
+          {
+            "id": "73704585",
+            "name": "Tipo CCI aluminio cobreado"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "97819",
+        "value_name": "10x50",
+        "values": [
+          {
+            "id": "97819",
+            "name": "10x50"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52055",
+        "value_name": "Branco",
+        "values": [
+          {
+            "id": "52055",
+            "name": "Branco"
+          }
+        ]
+      },
+      {
+        "id": "DEVICE_TYPE",
+        "name": "Tipo de dispositivo",
+        "value_id": "395193",
+        "value_name": "Alarme",
+        "values": [
+          {
+            "id": "395193",
+            "name": "Alarme"
+          }
+        ]
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "73704586",
+        "value_name": "CCI (Cobre Cladado de Alumínio)",
+        "values": [
+          {
+            "id": "73704586",
+            "name": "CCI (Cobre Cladado de Alumínio)"
+          }
+        ]
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "23024505",
+        "value_name": "10000 cm",
+        "values": [
+          {
+            "id": "23024505",
+            "name": "10000 cm"
+          }
+        ]
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "15436071",
+        "value_name": "TELECAM",
+        "values": [
+          {
+            "id": "15436071",
+            "name": "TELECAM"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "73704584",
+        "value_name": "10x50 200103701",
+        "values": [
+          {
+            "id": "73704584",
+            "name": "10x50 200103701"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450308",
+        "value_name": "Branco",
+        "values": [
+          {
+            "id": "2450308",
+            "name": "Branco",
+            "meta": {
+              "rgb": "FFFFFF"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "FFFFFF"
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "El 'Cabo Para Alarme 10 Vias 10x50 100 Metros Tipo Cci Telecam Branco' es un producto diseñado específicamente para sistemas de alarma, garantizando una conexión segura y eficiente. Con un diámetro de 3.35 mm y un tamaño AWG de 26, este cable es ideal para aplicaciones que requieren un rendimiento óptimo. Fabricado con CCI (Cobre Cladado de Alumínio), ofrece una excelente conductividad y durabilidad. Su longitud de 100 metros permite una instalación flexible en diversas configuraciones. Además, el modelo alfanumérico 10x50 200103701 asegura que se trata de un producto de calidad. La presentación incluye una embalaje adicional, lo que facilita su manejo y almacenamiento. Con un peso de 2040 g y dimensiones de 34 cm de altura, 10 cm de longitud y 31 cm de ancho, este cable es una opción práctica y confiable para quienes buscan un producto de alto rendimiento en sistemas de seguridad."
+    },
+    "parent_id": "MLB65825759",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T10:44:14.997936829"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2026-02-20T20:35:44Z",
+    "authorized_stores": null,
+    "last_updated": "2026-02-25T09:27:09Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

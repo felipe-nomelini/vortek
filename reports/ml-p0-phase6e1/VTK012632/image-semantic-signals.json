@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-08-17T14:15:48.078Z",
+  "local_images": [
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012632/1.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012632/2.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012632/3.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "716013-MLA99927756021_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_716013-MLA99927756021_112025-F.jpg",
+      "max_width": "1200",
+      "max_height": "1115"
+    },
+    {
+      "id": "868568-MLU76918811510_062024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_868568-MLU76918811510_062024-F.jpg",
+      "max_width": "574",
+      "max_height": "1001"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

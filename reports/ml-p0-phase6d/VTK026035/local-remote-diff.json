@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432633540",
+      "local": "MLB7432633540",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026035",
+      "local": "VTK026035",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "122c1478-61da-44de-b1f5-106f943f97bd",
+      "local": "122c1478-61da-44de-b1f5-106f943f97bd",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Espaleira Para Violino Scarlett Ajustável Tamanho 3/4 E 4/4 Preta Preto",
+      "local": "Espaleira Para Violino Scarlett Ajustável Tamanho 3/4 E 4/4 Preta Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 189.9,
+      "local": 189.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432633540-espaleira-para-violino-scarlett-ajustavel-tamanho-34-e-44-preta-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432633540-espaleira-para-violino-scarlett-ajustavel-tamanho-34-e-44-preta-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

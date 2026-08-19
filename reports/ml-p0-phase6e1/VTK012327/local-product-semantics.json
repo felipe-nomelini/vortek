@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-08-17T14:15:53.704Z",
+  "product": {
+    "id": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+    "sku": "VTK012327",
+    "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+    "marca": "Wireconex",
+    "estoque": 21,
+    "custo": 27.87,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.03,
+    "peso_bruto": 0.03,
+    "largura": 3,
+    "altura": 7,
+    "profundidade": 8,
+    "gtin": "",
+    "descricao": "Kit 04 Conectores XLR Fêmea para PCI 3 Polos WC 4046 Wireconex O Kit com 04 Conectores XLR Fêmea WC 4046 Wireconex foi desenvolvido para montagem em placa de circuito impresso (PCI), oferecendo uma conexão segura e estável para equipamentos de áudio. Ideal para projetos eletrônicos, manutenção e montagem de aparelhos profissionais, garantindo excelente qualidade na transmissão de sinal. Principais Características: • Conector XLR fêmea para montagem em PCI (placa de circuito impresso) • 3 polos, ideal para sistemas de áudio balanceado • Construção resistente para maior durabilidade • Conexão firme que ajuda a reduzir ruídos e interferências • Indicado para mesas de som, amplificadores, interfaces de áudio e projetos eletrônicos • Produto da marca Wireconex, reconhecida pela qualidade em conectores O Conector XLR Fêmea WC 4046 Wireconex é uma excelente escolha para quem precisa de confiabilidade e qualidade em conexões de áudio. Com padrão profissional e fácil instalação em placas PCI, ele garante desempenho eficiente e maior segurança nas conexões, sendo ideal para técnicos, eletrônicos e profissionais de áudio.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012327/1.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012327/2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012327/3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012327/4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/fornecedores/bkr1/VTK012327/5.jpg"
+    ],
+    "categoria": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.87647+00:00",
+    "updated_at": "2026-08-17T09:52:24.262752+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "3283",
+    "dslite_ultima_sync": "2026-08-17T09:52:24.02+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8536.90.10",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "b9247077-8cfb-41ca-a68f-02aac0779d0e",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "audio_connector",
+    "function": "connect_audio_signal",
+    "intended_use": "professional_audio",
+    "physical_form": "audio_connector",
+    "expected_category_signals": [
+      "conector",
+      "audio",
+      "xlr",
+      "speakon",
+      "p10"
+    ],
+    "incompatible_category_signals": [
+      "hidraulica",
+      "redeethernet"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

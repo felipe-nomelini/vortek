@@ -1,0 +1,142 @@
+{
+  "payload": {
+    "family_name": "Cabo Hayonik Player P10 5 m",
+    "category_id": "MLB72745",
+    "catalog_product_id": "MLB47135497",
+    "catalog_listing": true,
+    "price": 269.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/84835/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/84835/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/84835/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/84835/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/84835/550/5.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "1088020",
+        "value_name": "Hayonik"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "3088206",
+        "value_name": "Player"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "22998232",
+        "value_name": "P10"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "11163179",
+        "value_name": "Azul"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129121",
+        "value_name": "5 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827368",
+        "value_name": "Cabo adaptador"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16625013",
+        "value_name": "0.2 mm"
+      },
+      {
+        "id": "AWG_SIZE",
+        "value_id": "16088654",
+        "value_name": "24"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "16484508",
+        "value_name": "P10 Mono"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "16173852",
+        "value_name": "P10 Mono"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "17663255",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "75049731",
+        "value_name": "Niquelado"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "48705903",
+        "value_name": "7899638111195"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK006193"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK006193"
+  },
+  "sha256": "68d20a6c55ae1dabae3a30a4e36f5031343cf7c46a1fd86e4021dc5d9dc56422",
+  "family_name_sha256": "95d17353a9aff1b2d4f09e270c7e5d4adae8b6ee90b3910272ea2a998e46702e",
+  "title_absent": true,
+  "description_absent": true
+}

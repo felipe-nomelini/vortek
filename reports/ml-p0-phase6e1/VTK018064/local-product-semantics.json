@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-08-17T14:15:53.782Z",
+  "product": {
+    "id": "83155aac-2ecf-4544-8c99-47f2720cfc28",
+    "sku": "VTK018064",
+    "nome": "Lâmpada Multilaser Super Led H8 20w 6200k Par Au836",
+    "marca": "MULTILASER",
+    "estoque": 15,
+    "custo": 51.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.406,
+    "peso_bruto": 0.406,
+    "largura": 5.7,
+    "altura": 19.3,
+    "profundidade": 13.5,
+    "gtin": "",
+    "descricao": "Super Led H8 30w 6200k - Au836 Alimentação: 12V DC Segurança e design com o driver integrado ao próprio corpo, proporcionando excelente visibilidade ao condutor e um visual diferenciado para seu veículo. Longo alcance temperatura de cor de 6200k e 2000 lúmens. Imagem meramente ilustrativa.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/4/349157_67d2caf65ff44.jpg"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Lampada Normal Automotiva",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:48.184396+00:00",
+    "updated_at": "2026-08-17T11:00:34.920692+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "349157",
+    "dslite_ultima_sync": "2026-08-17T11:00:34.874+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85437099",
+    "cest": "01.999.00",
+    "origem_fiscal": "5",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "5a33812e-8806-424a-8227-07335781367a",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [
+        "20w",
+        "30w"
+      ],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "attempted_at": "2026-08-17T12:55:54.346Z",
+  "local_time": "2026-08-17T09:55:54",
+  "endpoint": "POST /items",
+  "request_id": "460e398c-70d8-4569-89d7-b458f409e92d",
+  "http_status": 201,
+  "elapsed_ms": 899,
+  "payload_sha256": "41004422e968214f780b7ec6c0bc0dbf8866ee2dd5d547c60271a8657105e8c6",
+  "body": {
+    "id": "MLB7437196478",
+    "site_id": "MLB",
+    "title": "Alto-falante Profissional Atk Eletroacústica 18lf3000b-8",
+    "seller_id": 3294514937,
+    "category_id": "MLB129666",
+    "user_product_id": "MLBU4753858183",
+    "official_store_id": null,
+    "price": 4919.9,
+    "base_price": 4919.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 2,
+    "available_quantity": 2,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Alto-falante Profissional Atk Eletroacústica 18lf3000b-8",
+    "family_id": 6281290602454799,
+    "start_time": "2026-08-17T12:55:53.720Z",
+    "stop_time": "2046-08-12T04:00:00.000Z",
+    "end_time": "2046-08-12T04:00:00.000Z",
+    "expiration_time": "2026-11-05T12:55:53.793Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7437196478-alto-falante-profissional-atk-eletroacustica-18lf3000b-8-_JM",
+    "pictures": [
+      {
+        "id": "959162-MLB116308968141_082026",
+        "url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "size": "500x500",
+        "max_size": "500x500",
+        "quality": ""
+      },
+      {
+        "id": "818591-MLB116308968143_082026",
+        "url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "size": "500x500",
+        "max_size": "500x500",
+        "quality": ""
+      },
+      {
+        "id": "717896-MLB116308968145_082026",
+        "url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "size": "500x500",
+        "max_size": "500x500",
+        "quality": ""
+      },
+      {
+        "id": "885658-MLB116308968147_082026",
+        "url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "size": "500x500",
+        "max_size": "500x500",
+        "quality": ""
+      },
+      {
+        "id": "881126-MLB116308968149_082026",
+        "url": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "secure_url": "https://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/O-PT.jpg",
+        "size": "500x500",
+        "max_size": "500x500",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "27107924",
+        "value_name": "Atk Eletroacústica",
+        "values": [
+          {
+            "id": "27107924",
+            "name": "Atk Eletroacústica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "32294330",
+        "value_name": "18LF3000B-8",
+        "values": [
+          {
+            "id": "32294330",
+            "name": "18LF3000B-8",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "32294329",
+        "value_name": "7898640362106",
+        "values": [
+          {
+            "id": "32294329",
+            "name": "7898640362106",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK012864",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK012864",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "959162-MLB116308968141_082026",
+    "thumbnail": "http://http2.mlstatic.com/resources/frontend/statics/processing-image/1.0.0/I-PT.jpg",
+    "status": "paused",
+    "sub_status": [
+      "picture_download_pending"
+    ],
+    "tags": [
+      "cart_eligible",
+      "good_quality_thumbnail",
+      "immediate_payment",
+      "user_product_listing"
+    ],
+    "warranty": null,
+    "catalog_product_id": null,
+    "domain_id": "MLB-TABLET_INTERNAL_SPEAKERS",
+    "seller_custom_field": "VTK012864",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T12:55:53.967Z",
+    "last_updated": "2026-08-17T12:55:53.967Z",
+    "health": null,
+    "catalog_listing": false,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

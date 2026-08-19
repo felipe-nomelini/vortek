@@ -1,0 +1,362 @@
+{
+  "checked_at": "2026-08-17T00:44:44.707Z",
+  "product": {
+    "id": "682138d1-d35b-4efc-98bc-3ac857b65500",
+    "sku": "VTK002528",
+    "nome": "Antena Digital HDTV AMPHIBIONS PROHD2000A Preto Proeletronic",
+    "marca": "PROELETRONIC",
+    "gtin": "7898419490665"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/65534",
+    "consulted_at": "2026-08-17T00:44:44.515Z",
+    "product": {
+      "produtoid": "65534",
+      "produtoid_empresa": "HYX65534",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 51.05,
+      "preco_crossdocking": 51.05,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 51.05,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "3",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Antena Digital HDTV AMPHIBIONS PROHD2000A Preto Proeletronic",
+      "titulo_curto": "ANT PROELETRONIC AMPHIBIONS PROHD2000A",
+      "categoriaid": "292426",
+      "categoria_nome": "Tv E Projetores / Antenas Para Tv / Antenas Para Tv",
+      "abc": "A",
+      "ean11": "7898419490665",
+      "ncm": "8529.10.90",
+      "descricao": "- Led indicativo de funcionamento; <br/> - Design exclusivo; <br/> - Vedação para uso externo; <br/> - Suporte para recepção vertical ou horizontal; <br/> - Proteção contra raios solares UV;",
+      "caracteristicas": "Tipo:Alcance para VHF/UHF<br>Impedância:75 Ohms<br>Ganho:• Ganho máximo VHF: 18 dB <br/> • Ganho máximo UHF: 20 dB<br>",
+      "informacoes": "<br/> Acompanha Fonte, Cabo, Base Externa e Interna",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "PROELETRONIC",
+      "modelo": "PROHD2000A",
+      "peso": 0.614,
+      "largura": 7,
+      "altura": 26,
+      "profundidade": 14.5,
+      "peso_embalagem": 0.614,
+      "largura_embalagem": 7,
+      "altura_embalagem": 26,
+      "profundidade_embalagem": 14.5,
+      "link": "http://www.hayamax.com.br/antena-digital-hdtv-amphibions-prohd2000a-preto-proeletronic",
+      "link_imagem": "https://static.hayapek.com.br/produtos/65534/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 180,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 27508,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": "",
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-04 09:06:08.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 50,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/65534/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB65679273",
+      "catalog_product_id": "MLB65679273",
+      "domain_id": "MLB-TV_ANTENNAS",
+      "name": "Antena Amphibious Proeletronic Prohd-2000a",
+      "parent_id": "MLB22543124",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "1175465",
+          "value_name": "Proeletronic",
+          "values": [
+            {
+              "id": "1175465",
+              "name": "Proeletronic"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "18119921",
+          "value_name": "PROHD-2000A",
+          "values": [
+            {
+              "id": "18119921",
+              "name": "PROHD-2000A"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "283165",
+          "value_name": "Cinza",
+          "values": [
+            {
+              "id": "283165",
+              "name": "Cinza"
+            }
+          ]
+        },
+        {
+          "id": "LOCATION",
+          "name": "Localização",
+          "value_id": "2434728",
+          "value_name": "Interno",
+          "values": [
+            {
+              "id": "2434728",
+              "name": "Interno"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "2748302",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "2748302",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "TV_ANTENNA_FREQUENCY_BAND",
+          "name": "Faixa de frequência da antena de TV",
+          "value_id": "4316261",
+          "value_name": "UHF/VHF",
+          "values": [
+            {
+              "id": "4316261",
+              "name": "UHF/VHF"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "17100693",
+          "value_name": "3 m",
+          "values": [
+            {
+              "id": "17100693",
+              "name": "3 m"
+            }
+          ]
+        },
+        {
+          "id": "TV_RECEPTION_RANGE",
+          "name": "Faixa de recepção da antena de TV",
+          "value_id": "20180857",
+          "value_name": "56 km",
+          "values": [
+            {
+              "id": "20180857",
+              "name": "56 km"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "6819",
+          "value_name": "650 g",
+          "values": [
+            {
+              "id": "6819",
+              "name": "650 g"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "3157",
+          "value_name": "10 cm",
+          "values": [
+            {
+              "id": "3157",
+              "name": "10 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "3368",
+          "value_name": "6 cm",
+          "values": [
+            {
+              "id": "3368",
+              "name": "6 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "1018395",
+          "value_name": "20 cm",
+          "values": [
+            {
+              "id": "1018395",
+              "name": "20 cm"
+            }
+          ]
+        },
+        {
+          "id": "IS_DIGITAL_FREEVIEW",
+          "name": "É TV digital terrestre",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "18119920",
+          "value_name": "7898419490665",
+          "values": [
+            {
+              "id": "18119920",
+              "name": "7898419490665"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Antena Digital Amplificada PROHD-2000A - Compacta, Completa e Inovadora\n\nA PROHD-2000A é a solução perfeita para quem busca uma antena digital de alto desempenho para apartamentos e residências. Com um design inovador, compacto e discreto, esta antena pode ser instalada na vertical ou na horizontal, proporcionando flexibilidade e estética ao ambiente.\n\nPrincipais Características:\n• Alto Ganho de 20dB: Amplificação poderosa para uma recepção de sinal superior.\n• Tecnologia LTE: Elimina ruídos do sinal 4G, garantindo uma qualidade de imagem cristalina.\n• Compatibilidade Universal: Funciona com todos os modelos de TV (LED, Plasma, convencional) e conversores digitais.\n• Controle de Ganho: Ajuste a potência de amplificação para obter a melhor qualidade de sinal.\n• Design Versátil: Compacta e discreta, permite instalação vertical ou horizontal.\n\nBenefícios:\n• Recepção de Canais Digitais e Analógicos: Desfrute de uma ampla variedade de canais com excelente qualidade de imagem.\n• Instalação Simples: Acompanha cabo de 3 metros e fonte de alimentação com cabo USB, permitindo conexão direta ao televisor ou à fonte de energia.\n• Ideal para Ambientes Urbanos: Perfeita para apartamentos e áreas com alta densidade de sinais.\n\nAdquira a Antena Digital Amplificada PROHD-2000A e garanta a melhor experiência de TV, com recepção de alta qualidade e instalação prática!"
+      },
+      "pictures": [
+        {
+          "id": "908921-MLA106665695352_022026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_908921-MLA106665695352_022026-F.jpg",
+          "max_width": "1200",
+          "max_height": "914"
+        },
+        {
+          "id": "764239-MLA106665950962_022026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_764239-MLA106665950962_022026-F.jpg",
+          "max_width": "1200",
+          "max_height": "1005"
+        },
+        {
+          "id": "876684-MLA106665837964_022026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_876684-MLA106665837964_022026-F.jpg",
+          "max_width": "577",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2026-02-15T17:22:12Z",
+      "last_updated": "2026-02-15T17:34:04Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

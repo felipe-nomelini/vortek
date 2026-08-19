@@ -1,0 +1,101 @@
+{
+  "payload": {
+    "family_name": "Prolongador para Sub Saty PRS-130",
+    "category_id": "MLB10233",
+    "catalog_product_id": "MLB34133110",
+    "catalog_listing": true,
+    "price": 439.9,
+    "currency_id": "BRL",
+    "available_quantity": 10,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0063e766e1ece87516bd6b54b92f861.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ffb85a0fdb6393268b979bb73810d0f.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/80cb65961f0e6c07ab15e29aea248816.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "5451933",
+        "value_name": "Saty"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "34405546",
+        "value_name": "PRS-130"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2431883",
+        "value_name": "Ferro"
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "value_id": "4502036",
+        "value_name": "De chão"
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "MAX_HEIGHT",
+        "value_id": "73870149",
+        "value_name": "142 cm"
+      },
+      {
+        "id": "MIN_HEIGHT",
+        "value_id": "19927265",
+        "value_name": "80 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "34405547",
+        "value_name": "7898572863467"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026028"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026028"
+  },
+  "sha256": "8645ed5091e39b563ada719254aa6905b69b19eff054cbe14a415792662f1bb9",
+  "family_name_sha256": "572c3da1bea7354d2a384002db4d7842b5a6d3ccd1d7d7d83605c503b78a8f90",
+  "title_absent": true,
+  "description_absent": true
+}

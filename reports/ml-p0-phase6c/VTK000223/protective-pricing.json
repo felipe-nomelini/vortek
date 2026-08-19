@@ -1,0 +1,166 @@
+{
+  "tax_rate": 0.05,
+  "target_final_percent": 50,
+  "target_pre_percent": 55.00000000000001,
+  "cost": 846.07,
+  "pre_item": {
+    "method": "closed_form_then_single_validation",
+    "target_margin_percent": 55.00000000000001,
+    "seed_quote": {
+      "price": 3384.28,
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 406.11,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 406.11,
+          "percentage_fee": 12
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "fee_components": {
+        "rate": 0.12,
+        "fixed": 0,
+        "source": "sale_fee_details"
+      },
+      "shipping_data": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 107.05,
+            "currency_id": "BRL",
+            "billable_weight": 30586,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 214.1
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 3384.28,
+        "commission": 406.11,
+        "shipping": 107.05,
+        "cost": 846.07,
+        "tax": 169.21,
+        "profit": 1855.84,
+        "margin_percent": 54.83707
+      }
+    },
+    "planned_price": 3409.9,
+    "validation": {
+      "price": 3409.9,
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 409.19,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 409.19,
+          "percentage_fee": 12
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "fee_components": {
+        "rate": 0.12,
+        "fixed": 0,
+        "source": "sale_fee_details"
+      },
+      "shipping_data": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 107.05,
+            "currency_id": "BRL",
+            "billable_weight": 30586,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 214.1
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 3409.9,
+        "commission": 409.19,
+        "shipping": 107.05,
+        "cost": 846.07,
+        "tax": 170.5,
+        "profit": 1877.09,
+        "margin_percent": 55.048242
+      }
+    },
+    "approved": true
+  },
+  "post_item": {
+    "price": 3409.9,
+    "fee": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_special",
+      "listing_type_name": "Clássico",
+      "requires_picture": true,
+      "sale_fee_amount": 409.19,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 409.19,
+        "percentage_fee": 12
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "fee_components": {
+      "rate": 0.12,
+      "fixed": 0,
+      "source": "sale_fee_details"
+    },
+    "shipping_data": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 78.65,
+          "currency_id": "BRL",
+          "billable_weight": 15618,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 157.3
+          }
+        }
+      }
+    },
+    "financial": {
+      "price": 3409.9,
+      "commission": 409.19,
+      "shipping": 78.65,
+      "cost": 846.07,
+      "tax": 170.5,
+      "profit": 1905.49,
+      "margin_percent": 55.881111
+    }
+  },
+  "approved": true
+}

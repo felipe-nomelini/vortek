@@ -1,0 +1,111 @@
+{
+  "checked_at": "2026-08-17T00:43:46.159Z",
+  "expected_catalog_product_id": "MLB33224813",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB33224813",
+    "catalog_product_id": "MLB33224813",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-CALCULATORS",
+    "permalink": "",
+    "name": "Calculadora Procalc PC986-P Pessoal c/ 8 Dígitos e Funções Extras Pink",
+    "family_name": "Calculadora Procalc PC986-P Pessoal c/ 8 Dígitos e Funções Extras Pink",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [],
+    "pictures": [
+      {
+        "id": "920768-MLA99474686172_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_920768-MLA99474686172_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 700,
+        "max_height": 1065,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Visor de 8 dígitos para cálculos rápidos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Cor vibrante rosa para um toque pessoal.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2431515",
+        "value_name": "Procalc",
+        "values": [
+          {
+            "id": "2431515",
+            "name": "Procalc"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "33221994",
+        "value_name": "PC986-P",
+        "values": [
+          {
+            "id": "33221994",
+            "name": "PC986-P"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Calculadora Pessoal Procalc PC986-P 8 Dígitos na cor Pink. Equipada com funções extras como Raiz Quadrada e Porcentagem, teclas emborrachadas para maior conforto e precisão ao digitar. Modelo PC986-P com funcionamento a bateria, agregando praticidade ao seu uso cotidiano.\n\nDígitos: 8\nCor: Pink\nFunções extras: Raiz Quadrada, Porcentagem\nTeclas: Emborrachadas\nModelo: PC986-P\nFuncionamento: Bateria\nMarca: Procalc\n\nConteúdo da embalagem: 01 - Calculadora\nDimensões aproximadas do produto: 2 x 7 x 10 cm\nDimensões aproximadas da embalagem: 2 x 12 x 20 cm\nPeso aproximado da embalagem: 0,1 Kg\nInformações Adicionais: Possui Memória."
+    },
+    "parent_id": null,
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T04:31:17.608777149"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-02-15T05:14:24Z",
+    "authorized_stores": null,
+    "last_updated": "2024-04-17T01:23:30Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

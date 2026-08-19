@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432766466",
+      "local": "MLB7432766466",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026018",
+      "local": "VTK026018",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "e23cd673-29f7-4e8b-a6fd-6a51c3edc0b7",
+      "local": "e23cd673-29f7-4e8b-a6fd-6a51c3edc0b7",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Suporte De Parede Regulável Violão Guitarra Baixo Spg20 Saty Cor Preto",
+      "local": "Suporte De Parede Regulável Violão Guitarra Baixo Spg20 Saty Cor Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 179.9,
+      "local": 179.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432766466-suporte-de-parede-regulavel-violo-guitarra-baixo-spg20-saty-cor-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432766466-suporte-de-parede-regulavel-violo-guitarra-baixo-spg20-saty-cor-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

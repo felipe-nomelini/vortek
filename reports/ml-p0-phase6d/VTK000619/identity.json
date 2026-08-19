@@ -1,0 +1,821 @@
+{
+  "checked_at": "2026-08-17T01:14:35.855Z",
+  "product": {
+    "id": "28cc9ec1-ec96-469d-a57a-71b9f60361ec",
+    "sku": "VTK000619",
+    "nome": "Mesa Gamer ThunderX3 ED5 2.0 Preta",
+    "marca": "THUNDERX3",
+    "gtin": "4711099473977"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/80952",
+    "consulted_at": "2026-08-17T01:14:35.633Z",
+    "product": {
+      "produtoid": "80952",
+      "produtoid_empresa": "HYX80952",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 740.64,
+      "preco_crossdocking": 740.64,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 740.64,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:28.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:28.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Mesa Gamer ThunderX3 ED5 2.0 Preta",
+      "titulo_curto": "MESA GAMER THUNDERX3 ED5 V2 PT",
+      "categoriaid": "293320",
+      "categoria_nome": "Móveis / Mesas / Gamer",
+      "abc": "A",
+      "ean11": "4711099473977",
+      "ncm": "9403.10.00",
+      "descricao": "A Mesa Gamer ThunderX3 ED5 2.0 é uma versão renovada da original, com a mesma qualidade já conhecida, em um formato mais retangular. Com seu design moderno e cheio de personalidade, a ED5 adiciona um toque gamer único ao seu ambiente. Esta mesa é a escolha perfeita para transformar seu setup em uma estação de batalha dos sonhos, proporcionando uma experiência imersiva e envolvente para jogadores apaixonados. <br/> <br/> Um dos destaques da ED5 é sua superfície completa de mouse pad de 2mm, que cobre toda a mesa, proporcionando acolchoamento extra para suas mãos e pulsos. Feito de uma trama de microfibra, o mouse pad melhora o controle e a velocidade do desempenho durante os jogos, elevando sua precisão a novos patamares. <br/> <br/> Além disso, a mesa possui gerenciamento de cabos, com uma bandeja especial localizada sob a mesa, permitindo que você mantenha os cabos organizados o tempo todo, mantendo um ambiente clean e organizado. A ED5 ainda conta com um prático suporte para copo localizado no lado direito da mesa. Com fácil acesso às suas bebidas, você pode se manter refrescado sem interromper sua jogabilidade. O suporte para headphones também é uma característica conveniente desta mesa gamer. Com um gancho de fone de ouvido localizado no lado esquerdo, você pode acessar rapidamente seu fone e economizar espaço valioso na sua área de trabalho. <br/> <br/> Com a Mesa Gamer ThunderX3 ED5 V2, você terá um ambiente de jogo completo, combinando estilo, conforto e funcionalidade para proporcionar uma experiência excepcional. <br/>",
+      "caracteristicas": "Dimensões:totais (L x P x A): 140 x 60 x 75cm <br/> Dimensões da área de trabalho (L x P): 140 x 60cm<br>Cor:Preta<br>Material:Aglomerado de 18 mm de espessura, superfície plástica impermeável <br/> Material da estrutura: Aço revestido com tinta em pó<br>",
+      "informacoes": "<br/> • Parte superior da área de trabalho: mouse pad removível com espessura de 2mm em toda superfície da mesa <br/> • Capacidade de peso: <50kg <br/> • Tipo de quadro: Pernas fixas <br/> • Acessórios: Suporte para copo, suporte para fone de ouvido e bandeja para gerenciamento de cabos <br/> • Peso do produto: 16.8kg",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "THUNDERX3",
+      "modelo": "ED5",
+      "peso": 19.94,
+      "largura": 80,
+      "altura": 13.5,
+      "profundidade": 69,
+      "peso_embalagem": 19.94,
+      "largura_embalagem": 80,
+      "altura_embalagem": 13.5,
+      "profundidade_embalagem": 69,
+      "link": "http://www.hayamax.com.br/mesa-gamer-thunderx3-ed5-2-0-preta",
+      "link_imagem": "https://static.hayapek.com.br/produtos/80952/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 180,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 3.25,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 999,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": "",
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 15:36:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 50,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/80952/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/80952/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/80952/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/80952/550/4.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB32168602 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB32168602",
+      "catalog_product_id": "MLB32168602",
+      "domain_id": "MLB-HOME_OFFICE_DESKS",
+      "name": "Mesa Gamer Thunderx3 Ed5 2.0 Preta 140cm",
+      "parent_id": "MLB32168597",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "8848598",
+          "value_name": "ThunderX3",
+          "values": [
+            {
+              "id": "8848598",
+              "name": "ThunderX3"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "48902572",
+          "value_name": "Mesa Gamer ThunderX3 ED5",
+          "values": [
+            {
+              "id": "48902572",
+              "name": "Mesa Gamer ThunderX3 ED5"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "8141217",
+          "value_name": "140 cm",
+          "values": [
+            {
+              "id": "8141217",
+              "name": "140 cm"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "908317",
+          "value_name": "60 cm",
+          "values": [
+            {
+              "id": "908317",
+              "name": "60 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "2593437",
+          "value_name": "140 cm",
+          "values": [
+            {
+              "id": "2593437",
+              "name": "140 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "1018499",
+          "value_name": "75 cm",
+          "values": [
+            {
+              "id": "1018499",
+              "name": "75 cm"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "WEIGHT_CAPACITY",
+          "name": "Capacidade em peso",
+          "value_id": "13218745",
+          "value_name": "50 kg",
+          "values": [
+            {
+              "id": "13218745",
+              "name": "50 kg"
+            }
+          ]
+        },
+        {
+          "id": "DESK_MATERIALS",
+          "name": "Materiais da escrivaninha",
+          "value_name": "Aglomerado de 18 mm de espessura superfície plástica impermeável, Aço com revestimento em pó",
+          "values": [
+            {
+              "id": "34973454",
+              "name": "Aglomerado de 18 mm de espessura superfície plástica impermeável"
+            },
+            {
+              "id": "67450784",
+              "name": "Aço com revestimento em pó"
+            }
+          ]
+        },
+        {
+          "id": "STYLE",
+          "name": "Estilo",
+          "value_id": "432204",
+          "value_name": "Moderno",
+          "values": [
+            {
+              "id": "432204",
+              "name": "Moderno"
+            }
+          ]
+        },
+        {
+          "id": "ASSEMBLY_TIME",
+          "name": "Tempo de montagem",
+          "value_id": "13748510",
+          "value_name": "15 m",
+          "values": [
+            {
+              "id": "13748510",
+              "name": "15 m"
+            }
+          ]
+        },
+        {
+          "id": "REQUIRES_ASSEMBLY",
+          "name": "Requer montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_DRAWERS",
+          "name": "Com gavetas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "DRAWERS_NUMBER",
+          "name": "Quantidade de gavetas",
+          "value_id": "3003376",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "3003376",
+              "name": "0"
+            }
+          ]
+        },
+        {
+          "id": "IS_L_SHAPED",
+          "name": "É em forma de L",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_BOOKCASE",
+          "name": "Inclui estante para livros",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_FLOATING",
+          "name": "É flutuante",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "name": "Com luzes LED",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "7180249",
+          "value_name": "16.8 kg",
+          "values": [
+            {
+              "id": "7180249",
+              "name": "16.8 kg"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "31935986",
+          "value_name": "4711099473977",
+          "values": [
+            {
+              "id": "31935986",
+              "name": "4711099473977"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ASSEMBLY_MANUAL",
+          "name": "Inclui manual de montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_INSTRUCTION_MANUAL",
+          "name": "Inclui manual de instruções",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "name": "Inclui kit de instalação",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "FINISHES",
+          "name": "Acabamentos",
+          "value_id": "37774303",
+          "value_name": "carbono",
+          "values": [
+            {
+              "id": "37774303",
+              "name": "carbono"
+            }
+          ]
+        },
+        {
+          "id": "SLIDES_MATERIAL",
+          "name": "Material das corrediças",
+          "value_id": "14919524",
+          "value_name": "N/A",
+          "values": [
+            {
+              "id": "14919524",
+              "name": "N/A"
+            }
+          ]
+        },
+        {
+          "id": "WITH_DOORS",
+          "name": "Com portas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "DOORS_NUMBER",
+          "name": "Quantidade de portas",
+          "value_id": "12875240",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "12875240",
+              "name": "0"
+            }
+          ]
+        },
+        {
+          "id": "WITH_LOCK",
+          "name": "Com fechadura",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_KEYS",
+          "name": "Inclui chaves",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_SHELVES",
+          "name": "Com prateleiras",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "SHELVES_NUMBER",
+          "name": "Quantidade de prateleiras",
+          "value_id": "12085975",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "12085975",
+              "name": "0"
+            }
+          ]
+        },
+        {
+          "id": "WITH_CPU_SHELF",
+          "name": "Com prateleira para CPU",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_WHEELS",
+          "name": "Com rodas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WHEELS_NUMBER",
+          "name": "Quantidade de rodas",
+          "value_id": "12907879",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "12907879",
+              "name": "0"
+            }
+          ]
+        },
+        {
+          "id": "WITH_MOBILE_MODULE",
+          "name": "Com módulo móvel",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_HEIGHT",
+          "name": "Com altura ajustável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_ANGLE",
+          "name": "Com ângulo ajustável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_FOLDABLE",
+          "name": "É dobrável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_USB_PORTS",
+          "name": "Com portas USB",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_AC_PLUG_INS",
+          "name": "Com tomadas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_GROMMET",
+          "name": "Com passa-cabos",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_SLIDING_TRAY",
+          "name": "Com bandeja móvel",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Mesa Gamer ThunderX3 ED5 2.0 é uma versão renovada do original, com a mesma qualidade já conhecida, em um formato mais retangular. Com seu design moderno e cheio de personalidade, a ED5 adiciona um toque gamer único ao seu ambiente. Esta mesa é a escolha perfeita para transformar seu setup em uma estação de batalha dos sonhos, proporcionando uma experiência imersiva e envolvente para jogadores apaixonados. Um dos destaques da ED5 é sua superfície completa de mouse pad de 2mm, que cobre toda a mesa, proporcionando acolchoamento extra para suas mãos e pulsos. Feito de uma trama de microfibra, o mouse pad melhora o controle e a velocidade do desempenho durante os jogos, elevando sua precisão a novos patamares.\n\nAlém disso, a mesa possui gerenciamento de cabos, com uma bandeja especial localizada sob a mesa, permitindo que você mantenha os cabos organizados o tempo todo, mantendo um ambiente clean e organizado. A ED5 ainda conta com um prático suporte para copo localizado no lado direito da mesa. Com fácil acesso às suas bebidas, você pode se manter refrescado sem interromper sua jogabilidade. O suporte para headphones também é uma característica conveniente desta mesa gamer. Com um gancho de fone de ouvido localizado no lado esquerdo, você pode acessar rapidamente seu fone e economizar espaço valioso na sua área de trabalho.\n\nCom a Mesa Gamer ThunderX3 ED5 V2, você terá um ambiente de jogo completo, combinando estilo, conforto e funcionalidade para proporcionar uma experiência excepcional.\nCARACTERÍSTICAS\nModelo: ED5\n\nCor: Preta\n\nDimensões: totais (L x P x A): 140 x 60 x 75cm\nDimensões da área de trabalho (L x P): 140 x 60cm\n\nMaterial: Aglomerado de 18 mm de espessura, superfície plástica impermeável\nMaterial da estrutura: Aço revestido com tinta em pó\n\nInformação adicional:\n• Parte superior da área de trabalho: mouse pad removível com espessura de 2mm em toda superfície da mesa\n• Capacidade de peso: <50kg\n• Tipo de quadro: Pernas fixas\n• Acessórios: Suporte para copo, suporte para fone de ouvido e bandeja para gerenciamento de cabos\n• Peso do produto: 16.8kg"
+      },
+      "pictures": [
+        {
+          "id": "680308-MLA99521848356_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_680308-MLA99521848356_122025-F.jpg",
+          "max_width": "851",
+          "max_height": "755"
+        },
+        {
+          "id": "654259-MLU74958083725_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_654259-MLU74958083725_032024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "1197",
+          "max_height": "837"
+        },
+        {
+          "id": "797142-MLU75280072135_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_797142-MLU75280072135_032024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "899",
+          "max_height": "697"
+        },
+        {
+          "id": "981949-MLU74958054513_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_981949-MLU74958054513_032024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "964",
+          "max_height": "1056"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-02-05T17:28:47Z",
+      "last_updated": "2026-03-21T23:52:38Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

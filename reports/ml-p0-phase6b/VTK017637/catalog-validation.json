@@ -1,0 +1,142 @@
+{
+  "checked_at": "2026-08-17T00:07:32.367Z",
+  "expected_catalog_product_id": "MLB21757400",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "strategy": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB21757400",
+    "catalog_product_id": "MLB21757400",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-HOME_ALARMS_AND_SENSORS",
+    "permalink": "",
+    "name": "Central De Alarme 10 Setores Cls 1400 Com Discadora",
+    "family_name": "Central De Alarme 10 Setores Cls 1400 Com Discadora",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [],
+    "pictures": [
+      {
+        "id": "850946-MLA99968623149_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_850946-MLA99968623149_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 598,
+        "max_height": 690,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "607168-MLB44529424554_012021",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_607168-MLB44529424554_012021-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 876,
+        "max_height": 492,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Sistema de alarme sem fio para segurança residencial.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ideal para proteger sua casa enquanto dorme ou sai.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Personalizado para diferentes necessidades de segurança.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "3736389",
+        "value_name": "Sulton",
+        "values": [
+          {
+            "id": "3736389",
+            "name": "Sulton"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "16811831",
+        "value_name": "CLS 1400",
+        "values": [
+          {
+            "id": "16811831",
+            "name": "CLS 1400"
+          }
+        ]
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Central de Alarme CLS 1400 10 Setores Sendo 4 Mistos (com e sem fio) e 6 Sem Fio com Discador Integrado Sulton\n\nCaracterísticas\n\n- 4 setores mistos, com fio e sem fio simultaneamente e 6 setores exclusivamente sem fio\n- Discador integrado aplicável com o uso em linhas telefônicas digitais\n- 6 memórias de telefones, com até 16 dígitos cada uma\n- Permite conexão com PABX\n- Setor Imediato e/ou Temporizado\n- Reporta bateria baixa\n- Entrada PAR para armar e desarmar a central por teclado ou chave (pulso negativo)\n- Tempo de disparo de sirene programável\n- Possibilidade de silenciar bip de sirene\n- Função pânico silencioso\n- Memória para 100 códigos de controle remoto, pânico silencioso e sensores sem fio\n- Particionamento de setores por controle remoto e senha no painel\n- Indicador sonoro e visual de bateria baixa e tamper dos sensores sem fio\n- Apagamento de controle remoto e sensores sem fio individualmente por transmissão de código\n- Bloqueio e rearme automático dos setores"
+    },
+    "parent_id": null,
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T15:55:30.779706917"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-02-14T21:25:10Z",
+    "authorized_stores": null,
+    "last_updated": "2024-08-08T23:36:41Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "optional_catalog_optimization_pending": false
+}

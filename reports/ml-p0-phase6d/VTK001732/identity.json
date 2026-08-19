@@ -1,0 +1,296 @@
+{
+  "checked_at": "2026-08-17T01:15:22.146Z",
+  "product": {
+    "id": "57cd87d9-9961-405c-a4ed-027495051b55",
+    "sku": "VTK001732",
+    "nome": "Corda Para Violão Nylon 6ª Mi GENW.6 Série Canário Giannini - DZ / 12",
+    "marca": "GIANNINI",
+    "gtin": "7898159180246"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/4560",
+    "consulted_at": "2026-08-17T01:15:21.956Z",
+    "product": {
+      "produtoid": "4560",
+      "produtoid_empresa": "HYX4560",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 55.94,
+      "preco_crossdocking": 55.94,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 55.94,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:19.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-08 18:08:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Corda Para Violão Nylon 6ª Mi GENW.6 Série Canário Giannini - DZ / 12",
+      "titulo_curto": "6aCORDA NYLON VIOLAO GENW6",
+      "categoriaid": "292229",
+      "categoria_nome": "Instrumentos Musicais / Encordoamentos / Encordoamento Para Violão",
+      "abc": "B",
+      "ean11": "7898159180246",
+      "ncm": "9209.30.00",
+      "descricao": "A série Canário é uma das mais tradicionais da Giannini, assim como uma das mais vendidas. <br/> <br/> O encordoamento para violão nylon Giannini Canário GENW possui um núcleo de nylon revestido de cobre prateado, e é o melhor custo-benefício que você encontrará num encordoamento, sem perder a qualidade ou o timbre do seu som. <br/> <br/> <br/> Sobre a Giannini <br/> <br/> A Giannini nasceu há mais de 120 anos, tendo sua história unida a da música brasileira a empresa se tornou uma das mais tradicionais marcas de instrumentos musicais existentes no Brasil. <br/> <br/> O crescimento da marca a levou a se tornar uma referência, principalmente em instrumentos acústicos. Até hoje sua produção e importação aliam a eficiente técnica artesanal ao que há de mais moderno em tecnologia industrial. <br/> <br/> Seus produtos passam por um rígido controle de qualidade e já saem das fábricas impregnados com a credibilidade e os cuidados que são característicos da marca desde 1900. <br/> <br/> <br/> <br/>",
+      "caracteristicas": "Aplicação:Violão<br>Tensão:.043<br>Material:Nylon<br>Revestimento:Cobre Prateado<br>Acabamento:Color code<br>Pesquisa:corda|nylon|canario|genw6|violao|chenilha|encordoamento|giannini<br>",
+      "informacoes": "<br/> Nylon",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "GIANNINI",
+      "modelo": "GENW.6 Canário",
+      "peso": 1.2,
+      "largura": 12,
+      "altura": 2.5,
+      "profundidade": 13,
+      "peso_embalagem": 1.2,
+      "largura_embalagem": 12,
+      "altura_embalagem": 2.5,
+      "profundidade_embalagem": 13,
+      "link": "http://www.hayamax.com.br/corda-para-violao-nylon-6-a-mi-genw-6-serie-canario-giannini",
+      "link_imagem": "https://static.hayapek.com.br/produtos/4560/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "DZ",
+      "embalagem_quantidade": 12,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 26953,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 16:06:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:59.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 13,
+      "tempo_cross": 0,
+      "estoque_total": 13,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/4560/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/4560/550/2.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB43132601 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB43132601",
+      "catalog_product_id": "MLB43132601",
+      "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+      "name": "Corda Para Violão Nylon 6a (mi) Genw6 Canário Giannini Dz 12",
+      "parent_id": "MLB43132598",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "45321",
+          "value_name": "Giannini",
+          "values": [
+            {
+              "id": "45321",
+              "name": "Giannini"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "2348061",
+          "value_name": "Canário",
+          "values": [
+            {
+              "id": "2348061",
+              "name": "Canário"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "31835318",
+          "value_name": "Desconhecido",
+          "values": [
+            {
+              "id": "31835318",
+              "name": "Desconhecido"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "16040054",
+          "value_name": "Violão de náilon",
+          "values": [
+            {
+              "id": "16040054",
+              "name": "Violão de náilon"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "15146",
+          "value_name": "6",
+          "values": [
+            {
+              "id": "15146",
+              "name": "6"
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal",
+          "values": [
+            {
+              "id": "112648",
+              "name": "Metal"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "44427222",
+          "value_name": "7898159180246",
+          "values": [
+            {
+              "id": "44427222",
+              "name": "7898159180246"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": ""
+      },
+      "pictures": [
+        {
+          "id": "633956-MLA80402254720_112024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_633956-MLA80402254720_112024-F.jpg",
+          "max_width": "550",
+          "max_height": "482"
+        },
+        {
+          "id": "769949-MLA80661413335_112024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_769949-MLA80661413335_112024-F.jpg",
+          "max_width": "518",
+          "max_height": "532"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-11-13T22:49:57Z",
+      "last_updated": "2024-11-13T23:21:29Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

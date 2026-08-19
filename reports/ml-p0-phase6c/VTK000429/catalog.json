@@ -1,0 +1,309 @@
+{
+  "checked_at": "2026-08-17T00:44:30.384Z",
+  "expected_catalog_product_id": "MLB24885316",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB24885316",
+    "catalog_product_id": "MLB24885316",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-MICROPHONES",
+    "permalink": "",
+    "name": "Capsula Para Microfone Mme 865 Preta Sennheiser",
+    "family_name": "Sennheiser MME 865 Preta",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB24885316",
+            "picker_label": "Preto",
+            "picture_id": "805921-MLA100049800901_122025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_805921-MLA100049800901_122025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Sennheiser MME 865 Preta - Preto",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "805921-MLA100049800901_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_805921-MLA100049800901_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 325,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Tipo de microfone: Condensador, ideal para captação de som de alta qualidade.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "15371",
+        "value_name": "Sennheiser",
+        "values": [
+          {
+            "id": "15371",
+            "name": "Sennheiser"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "49220726",
+        "value_name": "MME 865 Preta",
+        "values": [
+          {
+            "id": "49220726",
+            "name": "MME 865 Preta"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "MICROPHONE_FORMATS",
+        "name": "Formatos de microfone",
+        "value_id": "182426",
+        "value_name": "De mão",
+        "values": [
+          {
+            "id": "182426",
+            "name": "De mão"
+          }
+        ]
+      },
+      {
+        "id": "MICROPHONE_TYPES",
+        "name": "Tipos de microfone",
+        "value_id": "103744",
+        "value_name": "Condensador",
+        "values": [
+          {
+            "id": "103744",
+            "name": "Condensador"
+          }
+        ]
+      },
+      {
+        "id": "POLAR_PATTERNS",
+        "name": "Padrões polares",
+        "value_id": "2253807",
+        "value_name": "Cardioide",
+        "values": [
+          {
+            "id": "2253807",
+            "name": "Cardioide"
+          }
+        ]
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "name": "Quantidade de microfones",
+        "value_id": "934836",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "934836",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "MICROPHONE_RECOMMENDED_USES",
+        "name": "Usos recomendados do microfone",
+        "value_id": "20100031",
+        "value_name": "Vivo",
+        "values": [
+          {
+            "id": "20100031",
+            "name": "Vivo"
+          }
+        ]
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_BUILT_IN_SPEAKERS",
+        "name": "Com alto-falantes embutidos",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "84383765",
+        "value_name": "MME 865 Sennheiser",
+        "values": [
+          {
+            "id": "84383765",
+            "name": "MME 865 Sennheiser"
+          }
+        ]
+      },
+      {
+        "id": "WITH_POWER_LIGHT",
+        "name": "Com luz indicadora de funcionamento",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_LED_LIGHT",
+        "name": "Com luz LED",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Com o microfone da Sennheiser você vai descobrir uma nova maneira de capturar e transmitir áudios.\n\nUm formato que combina com você\nSendo condensador, vai permitir um resultado claro e fino. É ideal para percussões, guitarras, pianos, entre outros. Pela sua resposta tão definida à voz, é o mais escolhido pelos profissionais."
+    },
+    "parent_id": "MLB24885295",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-16T23:36:29.757260049"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-07-24T07:32:23Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-07T19:56:58Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

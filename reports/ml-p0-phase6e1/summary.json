@@ -1,0 +1,85 @@
+{
+  "phase": "6E.1",
+  "mode": "AUDIT_ONLY_SEMANTIC_CATEGORY_REVALIDATION",
+  "generated_at": "2026-08-17T14:15:53.819Z",
+  "selection": {
+    "file": "reports/ml-p0-phase6e/selected-200.csv",
+    "sha256": "e6efdcfb027a6eb117472e589ed4683a15b5d5d03019dcc96cf4b024b34558a6",
+    "expected_sha256": "e6efdcfb027a6eb117472e589ed4683a15b5d5d03019dcc96cf4b024b34558a6",
+    "count": 200,
+    "order_preserved": true
+  },
+  "inventory": {
+    "expected": 5858,
+    "captured": 5858,
+    "pages": 117,
+    "reliable": true,
+    "timestamp": "2026-08-17T14:15:35.864Z"
+  },
+  "processed": 200,
+  "counts": {
+    "BLOCK_GTIN_MODEL_CONFLICT": 23,
+    "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND": 7,
+    "SOURCE_DEFERRED": 149,
+    "BLOCK_CATALOG_IDENTITY": 2,
+    "BLOCK_IDENTITY": 3,
+    "BLOCK_GTIN_BRAND_CONFLICT": 10,
+    "BLOCK_GTIN_UNIT_CONFLICT": 2,
+    "BLOCK_SEMANTIC_CATEGORY_MISMATCH": 2,
+    "KNOWN_WRONG_CATEGORY_REMOTE_ITEM": 1,
+    "BLOCK_LOCAL_STATE": 1
+  },
+  "metrics": {
+    "selected": 200,
+    "processed": 200,
+    "semantic_ready": 0,
+    "semantic_mismatches": 3,
+    "alternatives_found": 7,
+    "source_deferred": 149,
+    "category_unresolved": 0,
+    "gtin_conflicts": 35,
+    "second_pass_rejects": 0,
+    "source_recoveries": 0,
+    "category_block_recoveries": 7,
+    "ml_gets": 497,
+    "ml_read_retries": 0,
+    "supabase_reads": 52,
+    "dslite_live_reads": 0,
+    "ml_item_posts": 0,
+    "ml_puts": 0,
+    "local_commercial_writes": 0,
+    "started_at": "2026-08-17T14:14:02.918Z",
+    "completed_at": "2026-08-17T14:15:53.819Z",
+    "elapsed_ms": 110901
+  },
+  "retrospective_stop_loss_audit": {
+    "ready_audited": 0,
+    "hard_mismatch_ready": [],
+    "vtk012864_prevented": true
+  },
+  "incidents": [
+    {
+      "sku": "VTK017508",
+      "state": "EXCLUDED_PENDING_INCIDENT",
+      "item_id": "MLB7432501874",
+      "action_taken": "NONE"
+    },
+    {
+      "sku": "VTK012864",
+      "state": "KNOWN_WRONG_CATEGORY_REMOTE_ITEM",
+      "item_id": "MLB7437196478",
+      "action_taken": "READ_ONLY_CLASSIFICATION"
+    }
+  ],
+  "writes": {
+    "ml_item_posts": 0,
+    "ml_puts": 0,
+    "descriptions": 0,
+    "quality_calls": 0,
+    "supabase_mutations": 0,
+    "commercial_local_persistence": 0
+  },
+  "approved": true,
+  "next_phase_started": false,
+  "hold": "P0 PHASE 6E.1 — SEMANTIC CATEGORY REVALIDATION HOLD"
+}

@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-08-16T21:16:32.343Z",
+  "method": "POST",
+  "endpoint": "https://api.mercadolibre.com/items/MLB7432157712/description",
+  "contract": "create_missing_item_description",
+  "payload": {
+    "plain_text": "CARREGADOR DE PILHAS TOSHIBA TNHC-6GAE4 CB COM 4 PILHAS AA 2600 mAh\n\nO carregador de pilhas Toshiba TNHC-6GAE4 CB recarrega pilhas Ni-MH nos tamanhos AA e AAA. Este carregador bivolt permite carregar até quatro pilhas simultaneamente e acompanha quatro pilhas recarregáveis Toshiba AA de 2600 mAh.\n\nPRINCIPAIS CARACTERÍSTICAS\n\n- Marca: Toshiba\n- Modelo: TNHC-6GAE4 CB\n- Tipo: carregador de pilhas AA e AAA\n- Composição compatível: Ni-MH\n- Capacidade de carga: até 4 pilhas simultaneamente\n- Indicador de carga: sim\n- Entrada: bivolt automática, compatível com a faixa de 100 a 240 V indicada pelo fabricante\n- Pilhas inclusas: 4 unidades AA recarregáveis\n- Capacidade das pilhas inclusas: 2600 mAh\n\nCONTEÚDO DA EMBALAGEM\n\n- 1 carregador Toshiba TNHC-6GAE4 CB\n- 4 pilhas AA recarregáveis Toshiba de 2600 mAh\n- 1 manual\n\nINFORMAÇÕES IMPORTANTES\n\n- Utilize o carregador somente com pilhas recarregáveis Ni-MH nos formatos AA ou AAA.\n- Não carrega baterias de 9 V.\n- Consulte o manual e respeite os tempos e condições de carregamento indicados pelo fabricante.\n- Produto novo.\n\nSKU: VTK000486"
+  },
+  "payload_sha256": "8ccc145cd234a7ccec7dd48bbbc91c8caf6963bb6889375bb155e4aa519a4341",
+  "content_validation": {
+    "valid": true,
+    "failures": [],
+    "characters": 1088,
+    "sha256": "bf67ceee80922d6fa8b81ae52dce70b5c19b27d0547cc4b5132718e8b7614bed"
+  },
+  "write_limit": 1,
+  "fallback": false,
+  "retry": false,
+  "evidence": [
+    {
+      "source": "manufacturer",
+      "url": "https://www.toshibaenergia.com.br/carregador-de-pilha-com-4-pilhas-TNHC-6GAE4-aa-aaa-toshiba",
+      "supports": [
+        "brand",
+        "model",
+        "AA/AAA",
+        "Ni-MH",
+        "four_simultaneous_cells",
+        "four_AA_2600mAh",
+        "not_9V"
+      ]
+    },
+    {
+      "source": "manufacturer_label",
+      "url": "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+      "supports": [
+        "input_100_240V",
+        "50_60Hz",
+        "6W"
+      ]
+    },
+    {
+      "source": "manufacturer_manual",
+      "url": "https://www.toshibaenergia.com.br/uploads/downloads/Manual_Toshiba_Carregador_TNHC-6GAE4_CB.pdf",
+      "supports": [
+        "manual_in_package",
+        "usage_and_charge_safety"
+      ]
+    }
+  ]
+}

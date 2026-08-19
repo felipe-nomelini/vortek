@@ -1,0 +1,10 @@
+{
+  "sku": "VTK019100",
+  "gate": "BLOCK_GTIN_MODEL_CONFLICT",
+  "evidence": "exact GTIN catalog identity conflict: MODEL",
+  "local_value": "7898957865710",
+  "found_value": "MLB14892185",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB14892185 + DSLite supplier",
+  "timestamp": "2026-08-17T12:55:33.365Z"
+}

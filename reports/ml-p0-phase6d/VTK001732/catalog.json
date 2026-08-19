@@ -1,0 +1,224 @@
+{
+  "checked_at": "2026-08-17T01:15:22.448Z",
+  "expected_catalog_product_id": "MLB43132601",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB43132601",
+    "catalog_product_id": "MLB43132601",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+    "permalink": "",
+    "name": "Corda Para Violão Nylon 6a (mi) Genw6 Canário Giannini Dz 12",
+    "family_name": "Giannini Canário Desconhecido VIOLÃO NYLON",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por kit",
+        "products": [
+          {
+            "product_id": "MLB43132601",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Giannini Canário Desconhecido VIOLÃO NYLON - Unidade - 1",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "633956-MLA80402254720_112024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_633956-MLA80402254720_112024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 550,
+        "max_height": 482,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "769949-MLA80661413335_112024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_769949-MLA80661413335_112024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 518,
+        "max_height": 532,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Linha Canário com durabilidade em metal proporcionando sonoridade rica e definida para seu violão de náilon.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Compatível com violões de náilon e cordas metálicas para maximizar ressonância e projeção sonora em performances.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "45321",
+        "value_name": "Giannini",
+        "values": [
+          {
+            "id": "45321",
+            "name": "Giannini"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "2348061",
+        "value_name": "Canário",
+        "values": [
+          {
+            "id": "2348061",
+            "name": "Canário"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "31835318",
+        "value_name": "Desconhecido",
+        "values": [
+          {
+            "id": "31835318",
+            "name": "Desconhecido"
+          }
+        ]
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "name": "Instrumento recomendado",
+        "value_id": "16040054",
+        "value_name": "Violão de náilon",
+        "values": [
+          {
+            "id": "16040054",
+            "name": "Violão de náilon"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "value_id": "15146",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "15146",
+            "name": "6"
+          }
+        ]
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "112648",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "112648",
+            "name": "Metal"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": ""
+    },
+    "parent_id": "MLB43132598",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T07:38:42.344275037"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-11-13T22:49:57Z",
+    "authorized_stores": null,
+    "last_updated": "2024-11-13T23:21:29Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

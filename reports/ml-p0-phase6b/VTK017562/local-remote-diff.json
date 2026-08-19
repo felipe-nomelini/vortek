@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075703275",
+      "local": "MLB5075703275",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK017562",
+      "local": "VTK017562",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+      "local": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Carregador Veicular Usb Elgin 2 Saídas",
+      "local": "Carregador Veicular Usb Elgin 2 Saídas",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 119.9,
+      "local": 119.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "pausado",
+      "local": "pausado",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": false,
+      "local": false,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075703275-carregador-veicular-usb-elgin-2-saidas-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075703275-carregador-veicular-usb-elgin-2-saidas-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

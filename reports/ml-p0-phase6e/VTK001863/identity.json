@@ -1,0 +1,249 @@
+{
+  "checked_at": "2026-08-17T12:54:01.983Z",
+  "product": {
+    "id": "8ff23f80-7ea2-49fa-9dd7-a489ae162b9d",
+    "sku": "VTK001863",
+    "nome": "Bateria Universal Telefone Sem Fio 3,6V AAA 300mAh FX-50U Flex",
+    "marca": "FLEX",
+    "gtin": "5379861525010"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3019",
+    "consulted_at": "2026-08-17T12:54:01.795Z",
+    "product": {
+      "produtoid": "3019",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 12.55,
+      "preco_crossdocking": 12.55,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 12.55,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-28 12:09:58.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-28 12:09:58.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Bateria Telefone Sem Fio Fx50u 3,6v Flex",
+      "titulo_curto": "Bateria Telefone Sem Fio Fx50u 3,6v Flex",
+      "categoriaid": "289679",
+      "categoria_nome": "Energia E Eletrônicos > Baterias",
+      "abc": null,
+      "ean11": "5379861525010",
+      "ncm": "8507.80.00",
+      "descricao": "<p>Bateria Telefone Sem Fio FX50U 3,6V Flex</p> <p>A Bateria para Telefone Sem Fio FX50U é ideal para quem precisa manter a autonomia e o funcionamento do seu aparelho sem fio com energia estável e confiável. Com 3,6V, ela oferece ótima performance para chamadas e demais funções do telefone no uso diário.</p> <p>Características do Produto<br>•    Bateria para telefone sem fio modelo FX50U<br>•    Tensão: 3,6V<br>•    Energia estável e duradoura<br>•    Indicada para reposição de baterias antigas<br>•    Fácil de instalar e substituir<br>•    Compatível com modelos específicos de telefone sem fio<br>•    Desempenho confiável no uso contínuo</p> <p>Produto novo, pronto para uso e com excelente custo-benefício. Envio rápido e embalagem segura para que você receba tudo em perfeito estado. Energia eficiente para manter seu telefone sem fio sempre funcionando.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Flex",
+      "modelo": "",
+      "peso": 0.04,
+      "largura": 10,
+      "altura": 17,
+      "profundidade": 2,
+      "peso_embalagem": 0.04,
+      "largura_embalagem": 10,
+      "altura_embalagem": 17,
+      "profundidade_embalagem": 2,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4648b2ac45f052b761405f13d46d938c.jpeg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 88,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "914052962",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-05-14 20:16:29.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-28 10:56:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 5,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4648b2ac45f052b761405f13d46d938c.jpeg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6f8dffb41be1e1ddd4cfdbb20b6936a2.jpeg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB41718104",
+    "source": "ML catalog MLB41718104 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Flex",
+      "model": "Universal Flex 300m",
+      "local_pack": 3,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [],
+      "catalog_colors": [],
+      "title_similarity": 0.8333333333333334
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB41718104",
+      "catalog_product_id": "MLB41718104",
+      "domain_id": "MLB-CORDLESS_TELEPHONE_BATTERIES",
+      "name": "Bateria Universal Para Telefone Sem Fio 300m Flex",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2138072",
+          "value_name": "Flex",
+          "values": [
+            {
+              "id": "2138072",
+              "name": "Flex"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "49183752",
+          "value_name": "Universal Flex 300m",
+          "values": [
+            {
+              "id": "49183752",
+              "name": "Universal Flex 300m"
+            }
+          ]
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "name": "Capacidade da bateria",
+          "value_id": "7629869",
+          "value_name": "300 mAh",
+          "values": [
+            {
+              "id": "7629869",
+              "name": "300 mAh"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "43388123",
+          "value_name": "5379861525010",
+          "values": [
+            {
+              "id": "43388123",
+              "name": "5379861525010"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Bateria universal para telefone sem fio 300mAh 3,6V FX-50U flex\n\nFX-50U  \nBateria para telefone sem fio  \nTipo 73  \nNi-Mh  \n3.6V  \n300mAh  \n3 células 2/3 AAA  \nPLUG UNIVERSAL  \n\nBaterias de telefone sem fio com PLUG UNIVERSAL, podem ser utilizadas em qualquer aparelho que tenha por padrão baterias com as mesmas características técnicas como voltagem, amperagem e tamanho da bateria, não é necessário se preocupar com o formato do conector.  \n\nFicha técnica  \n- cor: verde claro"
+      },
+      "pictures": [
+        {
+          "id": "787565-MLA100019407241_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_787565-MLA100019407241_122025-F.jpg",
+          "max_width": "696",
+          "max_height": "1082"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-10-10T04:25:52Z",
+      "last_updated": "2025-10-23T20:00:48Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

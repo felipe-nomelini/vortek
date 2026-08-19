@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/1.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/1.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/2.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/2.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/3.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/3.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/4.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/4.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 5,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/5.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/5.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/1.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/1.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/2.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/2.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/3.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/3.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/4.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/4.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 5,
+      "original_url": "https://static.hayapek.com.br/produtos/84837/550/5.jpg",
+      "final_url": "https://static.hayapek.com.br/produtos/84837/550/5.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

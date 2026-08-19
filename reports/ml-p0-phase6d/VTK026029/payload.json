@@ -1,0 +1,95 @@
+{
+  "payload": {
+    "family_name": "Suporte Microfone Saty GM-10",
+    "category_id": "MLB439386",
+    "catalog_product_id": "MLB61498691",
+    "catalog_listing": true,
+    "price": 389.9,
+    "currency_id": "BRL",
+    "available_quantity": 10,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c073e833c49958f99acf0394cc6bfed2.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/804bcf6379337a137262e2585b30c7f3.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ac170d4d90345d0e1cd0173f696b175.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/854f5f87324a0a5fdfed0d80bfdb28de.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4e675657b3d22738cc68729d394f60f1.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3af98c9fbc982a811c4fcca96ca26f0e.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "5451933",
+        "value_name": "Saty"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "39906875",
+        "value_name": "Não identificado"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "STAND_TYPE",
+        "value_id": "5507064",
+        "value_name": "Braço girafa"
+      },
+      {
+        "id": "BASE_TYPE",
+        "value_id": "5507065",
+        "value_name": "Tripé"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2431883",
+        "value_name": "Ferro"
+      },
+      {
+        "id": "IS_TABLE_STAND",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "66065951",
+        "value_name": "7898572889207"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026029"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026029"
+  },
+  "sha256": "2b098a235281c30372ae68111a6abf6e0c8ed3f4d3e93f10a971327b930a692f",
+  "family_name_sha256": "7a8f1b35b6b6b22e67ce9d99de77bcc0033926cd8ade841f2aff16e48f396833",
+  "title_absent": true,
+  "description_absent": true
+}

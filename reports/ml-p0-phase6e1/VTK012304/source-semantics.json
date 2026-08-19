@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.692Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "D Addario",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1199",
+    "captured_at": "2026-08-17T12:56:45.353Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "0386e66c-4455-4cf4-8f19-3891daeca94d",
+    "produto_id": "f899d217-66f3-479a-bd1d-5bcaad5e0bad",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1199",
+    "sku_fornecedor": "1199",
+    "custo": 35.48,
+    "estoque": 22,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.02+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.028+00:00",
+    "sku_oferta": "1199",
+    "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+    "descricao": "PALHETA GUITARRA COLOR 1CAP6 D Addario 1.00mm 10un A Palheta D Addario 1CAP6 é uma escolha popular entre músicos que buscam qualidade e desempenho. Abaixo, apresento suas principais especificações: Características Principais: • Modelo: 1CAP6 • Material: Celuloide perolado • Espessura: 1,00 mm (Pesada) • Cor: Sortida (perolada/multicolorida) • Formato: Padrão Descrição: A celuloide é um dos materiais mais populares para palhetas de guitarra, conhecida por proporcionar uma sensação natural e um tom quente e encorpado. Este material foi introduzido no início do século XX como substituto das palhetas de casco de tartaruga. A espessura pesada de 1,00 mm oferece maior rigidez, sendo ideal para técnicas que exigem precisão e controle. Aplicações Recomendadas: Devido à sua espessura pesada, esta palheta é adequada para músicos que buscam maior controle e precisão, sendo especialmente indicada para solos e técnicas que exigem ataque mais definido. Conteúdo da Embalagem: O pacote contém 10 palhetas D Addario 1CAP6, cada uma com espessura de 1,00 mm e cores sortidas peroladas.",
+    "marca": "D Addario",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e1883f803e85598a4c20cde544b4ae78.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.94.00",
+    "cest": null
+  }
+}

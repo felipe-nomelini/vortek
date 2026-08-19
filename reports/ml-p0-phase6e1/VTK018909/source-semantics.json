@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:45.179Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+    "supplier_category": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+    "supplier_brand": "ALMAPY",
+    "supplier_gtin": "7890000100724",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/315181",
+    "captured_at": "2026-08-17T12:54:41.118Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "3b1137f1-9cb8-4f89-a7d9-074dda7fb62a",
+    "produto_id": "06794e08-6c98-4ebd-9930-dead3d6accda",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "315181",
+    "sku_fornecedor": "315181",
+    "custo": 164.45,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "315181",
+    "nome": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+    "descricao": "Informações do Produto Sub Conjunto Vidro Elétrico Sensorizado - 712.009 Acabamento Cinza Dianteiro Aplicação Palio 12/... Fiat",
+    "marca": "ALMAPY",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/315181_67d2caebde96d.jpg"
+    ],
+    "gtin": "7890000100724",
+    "ncm": "87089990",
+    "cest": "01.075.00"
+  }
+}

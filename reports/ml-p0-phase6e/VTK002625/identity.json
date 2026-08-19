@@ -1,0 +1,307 @@
+{
+  "checked_at": "2026-08-17T12:54:02.486Z",
+  "product": {
+    "id": "39037073-9744-4671-93f4-2954ebd515df",
+    "sku": "VTK002625",
+    "nome": "Garra de Jacaré 13,5 cm 300A Preto Storm - PCT / 10",
+    "marca": "STORM",
+    "gtin": "7898566205846"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3528",
+    "consulted_at": "2026-08-17T12:54:02.247Z",
+    "product": {
+      "produtoid": "3528",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 9.83,
+      "preco_crossdocking": 9.83,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 9.83,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Garra Jacare 13,5cm 300a Preta Storm 02 Unidades",
+      "titulo_curto": "Garra Jacare 13,5cm 300a Preta Storm 02 Unidades",
+      "categoriaid": "289794",
+      "categoria_nome": "Acessórios Para Veículos > Ferramentas Para Veículos > Ferramentas Para Baterias >  carregadores De Baterías",
+      "abc": null,
+      "ean11": "7898566205846",
+      "ncm": "8536.69.90",
+      "descricao": "<p>Garra Jacaré 13,5cm 300A Preta Storm </p> <p>Descrição Breve<br>A Garra Jacaré 13,5cm 300A Preta Storm é robusta e projetada para suportar altas correntes, oferecendo conexão firme e segura em aplicações automotivas e elétricas de maior exigência.</p> <p>Detalhes Técnicos<br>•    Marca: Storm<br>•    Modelo: Garra Jacaré<br>•    Cor: Preta<br>•    Tamanho: 13,5 cm<br>•    Capacidade de Corrente: 300A<br>•    Material: Corpo metálico reforçado com revestimento isolante em PVC<br>•    Uso Indicado:<br>•    Conexões de baterias automotivas<br>•    Carregadores de bateria<br>•    Instalações elétricas de alta corrente<br>•    Uso em oficinas, laboratórios e aplicações profissionais<br>•    Fixação: Mola de pressão resistente que garante excelente contato elétrico</p> <p>Resistente e eficiente, a Garra Jacaré 13,5cm 300A Preta Storm é ideal para quem precisa de conexões seguras em trabalhos com alta corrente.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Storm",
+      "modelo": "",
+      "peso": 0.14,
+      "largura": 9,
+      "altura": 18,
+      "profundidade": 5,
+      "peso_embalagem": 0.14,
+      "largura_embalagem": 9,
+      "altura_embalagem": 18,
+      "profundidade_embalagem": 5,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/97e91b736d2f3cdc051bf88d6b37dfc8.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 19,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "920235018",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 18:41:21.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 18:41:21.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 5,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/97e91b736d2f3cdc051bf88d6b37dfc8.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7a2f24d11c99488494281f912bd226e2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e9b9c4200965b2571a5598a3f41f1a7f.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB64278882",
+    "source": "ML catalog MLB64278882 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Storm",
+      "model": "GRJC0011",
+      "local_pack": 2,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.5555555555555556
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB64278882",
+      "catalog_product_id": "MLB64278882",
+      "domain_id": "MLB-VEHICLE_BATTERY_CHARGERS",
+      "name": "Garra Jacare 13,5cm 300a Preta Storm 02 Unidades",
+      "parent_id": "MLB64278880",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2785980",
+          "value_name": "Storm",
+          "values": [
+            {
+              "id": "2785980",
+              "name": "Storm"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "47399605",
+          "value_name": "Garra Jácare",
+          "values": [
+            {
+              "id": "47399605",
+              "name": "Garra Jácare"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "72503841",
+          "value_name": "GRJC0011",
+          "values": [
+            {
+              "id": "72503841",
+              "name": "GRJC0011"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CURRENT",
+          "name": "Corrente de saída",
+          "value_id": "36722446",
+          "value_name": "300 A",
+          "values": [
+            {
+              "id": "36722446",
+              "name": "300 A"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete",
+          "values": [
+            {
+              "id": "11377043",
+              "name": "Carro/Caminhonete"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "72503843",
+          "value_name": "7898566205846",
+          "values": [
+            {
+              "id": "72503843",
+              "name": "7898566205846"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Garra Jacaré 13,5cm 300A Preta Storm\n\nDescrição Breve  \nA Garra Jacaré 13,5cm 300A Preta Storm é robusta e projetada para suportar altas correntes, oferecendo conexão firme e segura em aplicações automotivas e elétricas de maior exigência.\n\nDetalhes Técnicos  \n•  Marca: Storm  \n•  Modelo: Garra Jacaré  \n•  Cor: Preta  \n•  Tamanho: 13,5 cm  \n•  Capacidade de Corrente: 300A  \n•  Material: Corpo metálico reforçado com revestimento isolante em PVC  \n•  Uso Indicado:  \n•  Conexões de baterias automotivas  \n•  Carregadores de bateria  \n•  Instalações elétricas de alta corrente  \n•  Uso em oficinas, laboratórios e aplicações profissionais  \n•  Fixação: Mola de pressão resistente que garante excelente contato elétrico  \n\nResistente e eficiente, a Garra Jacaré 13,5cm 300A Preta Storm é ideal para quem precisa de conexões seguras em trabalhos com alta corrente."
+      },
+      "pictures": [
+        {
+          "id": "652760-MLA104248924164_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_652760-MLA104248924164_012026-F.jpg",
+          "max_width": "1199",
+          "max_height": "1178"
+        },
+        {
+          "id": "625962-MLA104249448034_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_625962-MLA104249448034_012026-F.jpg",
+          "max_width": "1200",
+          "max_height": "927"
+        },
+        {
+          "id": "635607-MLA104248694302_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_635607-MLA104248694302_012026-F.jpg",
+          "max_width": "1200",
+          "max_height": "935"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2026-01-14T21:03:34Z",
+      "last_updated": "2026-01-14T21:15:32Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

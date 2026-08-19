@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-08-17T14:15:53.732Z",
+  "product": {
+    "id": "f51e7c65-9d69-4f7e-8949-8d64aa7f7543",
+    "sku": "VTK026011",
+    "nome": "Controle Compatível Ford 3 B + P 2002 A 2013",
+    "marca": "R3a Automotive",
+    "estoque": 20,
+    "custo": 25.2,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.02,
+    "peso_bruto": 0.02,
+    "largura": 4,
+    "altura": 5,
+    "profundidade": 1,
+    "gtin": "",
+    "descricao": "CONTROLE COMPATÍVEL FORD 3 BOTÕES + PANIC 2002 A 2013 FD202 (0074468169227) O controle remoto FD202 é uma excelente opção para reposição do controle original do veículo, oferecendo praticidade, durabilidade e compatibilidade com modelos Ford de 2002 a 2013. Ficha técnica: • Modelo: FD202 • Tipo: Controle remoto automotivo • Compatível com veículos Ford de 2002 a 2013 • Quantidade de botões: 3 + botão Panic • Cor: Preta • Design compacto e ergonômico • Material resistente e durável • Excelente acabamento • Produto para reposição automotiva Desenvolvido para proporcionar praticidade e confiabilidade no uso diário, o FD202 possui acabamento de qualidade e construção resistente. É ideal para substituir controles desgastados ou danificados, mantendo a funcionalidade e o conforto no acionamento das funções compatíveis do veículo. Uma solução eficiente para quem busca reposição com ótimo custo-benefício.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1cb61c35abf62950ab01b3245a7093cf.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7a8374b051426464531371072405d5fb.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4ae1046935e82b01617d791be285de5d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/89e6b5c82a3b28954753d7ced6d966cd.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/71e2869a1c912bf3b74ffccb7cb52540.jpg"
+    ],
+    "categoria": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+    "ml_item_id": null,
+    "created_at": "2026-08-13T16:54:17.99195+00:00",
+    "updated_at": "2026-08-17T09:52:24.285834+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4135",
+    "dslite_ultima_sync": "2026-08-17T09:52:24.02+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8529.90.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "8c0f1147-a5ac-433b-a2a2-d82249c2ce90",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

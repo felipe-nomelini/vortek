@@ -1,0 +1,93 @@
+{
+  "payload": {
+    "family_name": "Painel Speakon Wireconex WP08 8 Polos",
+    "category_id": "MLB420707",
+    "catalog_product_id": "MLB73749268",
+    "catalog_listing": true,
+    "price": 999.9,
+    "currency_id": "BRL",
+    "available_quantity": 10,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/86bfe78cf4f448309eabeb222f9fc557.jpg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2190ed3f63d7cc66bd11fd7b9eb54557.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "13660752",
+        "value_name": "Wireconex"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "82846122",
+        "value_name": "WP 08 SPK EP"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "46885538",
+        "value_name": "Conector"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "8180798",
+        "value_name": "XLR"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "value_id": "5520057",
+        "value_name": "Metal"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "value_id": "15289676",
+        "value_name": "Microfone"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "82846124",
+        "value_name": "07898640363790"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK012842"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK012842"
+  },
+  "sha256": "3703aa61700d4200dda3f4183157d2ea83e6af20661b875fe7df0190f9050651",
+  "family_name_sha256": "a04033d800e1b560b0ee964b36ee186a37e29182b46910679b3b170b62e04ccf",
+  "title_absent": true,
+  "description_absent": true
+}

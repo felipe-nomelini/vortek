@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432492844",
+      "local": "MLB7432492844",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK017376",
+      "local": "VTK017376",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+      "local": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Mastro Articulado P/ Instalação De Antenas Proeletronic Suporte Antena Externa Prateado",
+      "local": "Mastro Articulado P/ Instalação De Antenas Proeletronic Suporte Antena Externa Prateado",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 119.9,
+      "local": 119.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432492844-mastro-articulado-p-instalaco-de-antenas-proeletronic-suporte-antena-externa-prateado-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432492844-mastro-articulado-p-instalaco-de-antenas-proeletronic-suporte-antena-externa-prateado-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

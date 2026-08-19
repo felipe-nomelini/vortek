@@ -1,0 +1,410 @@
+{
+  "checked_at": "2026-08-17T00:43:40.795Z",
+  "product": {
+    "id": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+    "sku": "VTK017933",
+    "nome": "Botão De Pânico Ipec Nf",
+    "marca": "IPEC",
+    "gtin": "7898663560183"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/338007",
+    "consulted_at": "2026-08-17T00:43:40.599Z",
+    "product": {
+      "produtoid": "338007",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 21.9,
+      "preco_crossdocking": 21.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 21.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Botão De Pânico Ipec Nf",
+      "titulo_curto": "Botão De Pânico Ipec Nf",
+      "categoriaid": "117440",
+      "categoria_nome": "Segurança / Alarme/ Acessórios Alarme",
+      "abc": null,
+      "ean11": "7898663560183",
+      "ncm": "85269200",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Botão de Pânico </b></p><br />\r\n<p>- Gabinete preto;<br><br />\r\n  - Botão de acionamento NF;<br><br />\r\n  - Fácil fixação; <br><br />\r\n  - Possui proteção contra acionamentos acidentais; <br><br />\r\n  - Design moderno. </p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "IPEC",
+      "modelo": "",
+      "peso": 0.021,
+      "largura": 4,
+      "altura": 3,
+      "profundidade": 6.5,
+      "peso_embalagem": 0.021,
+      "largura_embalagem": 4,
+      "altura_embalagem": 3,
+      "profundidade_embalagem": 6.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/3/338007_67d2caf28c038.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1357,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-08-25 09:37:21.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:57:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 19,
+      "tempo_cross": 0,
+      "estoque_total": 19,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/338007_67d2caf28c038.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB30220377",
+      "catalog_product_id": "MLB30220377",
+      "domain_id": "MLB-ALARM_REMOTE_CONTROLS",
+      "name": "Botão De Panico Para Acionamento De Alarme - Ipec",
+      "parent_id": "MLB30220373",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "5333037",
+          "value_name": "Ipec",
+          "values": [
+            {
+              "id": "5333037",
+              "name": "Ipec"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "29339794",
+          "value_name": "A2064",
+          "values": [
+            {
+              "id": "29339794",
+              "name": "A2064"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "1176674",
+          "value_name": "Pilha",
+          "values": [
+            {
+              "id": "1176674",
+              "name": "Pilha"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "2748302",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "2748302",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY",
+          "name": "Frequência",
+          "value_id": "24556082",
+          "value_name": "433",
+          "values": [
+            {
+              "id": "24556082",
+              "name": "433"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7818800",
+          "value_name": "33 cm",
+          "values": [
+            {
+              "id": "7818800",
+              "name": "33 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "7627437",
+          "value_name": "55 cm",
+          "values": [
+            {
+              "id": "7627437",
+              "name": "55 cm"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "8038984",
+          "value_name": "27 cm",
+          "values": [
+            {
+              "id": "8038984",
+              "name": "27 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "16045938",
+          "value_name": "19 g",
+          "values": [
+            {
+              "id": "16045938",
+              "name": "19 g"
+            }
+          ]
+        },
+        {
+          "id": "CONTROL_BUTTONS_NUMBER",
+          "name": "Quantidade de botões do controle",
+          "value_id": "28101208",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "28101208",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "WITH_ANTENNA",
+          "name": "Com antena",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "name": "É resistente à água",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "name": "Usos recomendados",
+          "value_id": "17608281",
+          "value_name": "Casa",
+          "values": [
+            {
+              "id": "17608281",
+              "name": "Casa"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "29339796",
+          "value_name": "7898663560183",
+          "values": [
+            {
+              "id": "29339796",
+              "name": "7898663560183"
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "5333037",
+          "value_name": "Ipec",
+          "values": [
+            {
+              "id": "5333037",
+              "name": "Ipec"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "74511123",
+          "value_name": "A2064",
+          "values": [
+            {
+              "id": "74511123",
+              "name": "A2064"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Pensando na segurança do usuário, este botão possui proteção contra acionamentos não intencionais, evitando falsos alarmes e garantindo que o sistema seja ativado apenas em situações reais de perigo. O design contemporâneo do modelo A2064 complementa a funcionalidade com uma estética moderna, adequando-se a qualquer projeto de segurança.\n\nNa embalagem, você encontrará 01 unidade do Botão de Pânico, pronta para ser integrada ao seu sistema de alarme, proporcionando tranquilidade e proteção para o seu espaço.\n\nPerguntas e respostas\nPergunta: O que é o Botão de Pânico Ipec?\nResposta: É um dispositivo de segurança utilizado para acionar imediatamente um sistema de alarme em situações de emergência, como assaltos, invasões ou pedidos de socorro.\n\nPergunta: Para que serve o botão de pânico?\nResposta: Serve para enviar um alerta rápido ao sistema de alarme, permitindo uma resposta imediata em situações de risco.\n\nPergunta: O Botão de Pânico Ipec funciona com quais alarmes?\nResposta: É compatível com centrais de alarme que aceitam acionamento por contato seco (NA/NF). Recomenda-se verificar a compatibilidade com sua central antes da instalação.\n\nPergunta: O acionamento é manual?\nResposta: Sim. O botão é acionado manualmente com um simples toque ou pressão.\n\nPergunta: Pode ser instalado em quais locais?\nResposta: Pode ser instalado em residências, comércios, escritórios, escolas, clínicas e outros ambientes que necessitem de segurança rápida e discreta."
+      },
+      "pictures": [
+        {
+          "id": "931689-MLA99017105682_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_931689-MLA99017105682_112025-F.jpg",
+          "max_width": "1178",
+          "max_height": "1199"
+        },
+        {
+          "id": "626682-MLA99016253820_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_626682-MLA99016253820_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-01-26T02:13:47Z",
+      "last_updated": "2026-07-02T03:24:05Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

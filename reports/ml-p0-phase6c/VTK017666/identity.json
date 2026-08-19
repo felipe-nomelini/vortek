@@ -1,0 +1,500 @@
+{
+  "checked_at": "2026-08-17T00:43:19.105Z",
+  "product": {
+    "id": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+    "sku": "VTK017666",
+    "nome": "Multitoc Telefone Gondola C/ Fio Grafite",
+    "marca": "MULTITOC",
+    "gtin": "7898179310913"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/151436",
+    "consulted_at": "2026-08-17T00:43:18.912Z",
+    "product": {
+      "produtoid": "151436",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 49.9,
+      "preco_crossdocking": 49.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 49.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Multitoc Telefone Gondola C/ Fio Grafite",
+      "titulo_curto": "Multitoc Telefone Gondola C/ Fio Grafite",
+      "categoriaid": "117680",
+      "categoria_nome": "Telefonia/ Telefones/ Telefone Com Fio",
+      "abc": null,
+      "ean11": "7898179310913",
+      "ncm": "85171830",
+      "descricao": "Campainha com volume ajustável<br />\r\nCompatível com centrais públicas e PABX<br />\r\nTeclado Pulso e Tom<br />\r\nCircuito totalmente eletrônico<br />\r\nMemória do último número discado<br />\r\nCircuito eletrônico de voz<br />\r\nTeclas de função Flash, PT e Redial<br />\r\n15 teclas",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MULTITOC",
+      "modelo": "",
+      "peso": 0.358,
+      "largura": 9,
+      "altura": 23,
+      "profundidade": 7.5,
+      "peso_embalagem": 0.358,
+      "largura_embalagem": 9,
+      "altura_embalagem": 23,
+      "profundidade_embalagem": 7.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/1/5/151436_67d2cad9df490.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1388,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.055.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-30 12:26:57.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-30 12:26:57.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 32,
+      "tempo_cross": 0,
+      "estoque_total": 32,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/1/5/151436_67d2cad9df490.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB9004870",
+      "catalog_product_id": "MLB9004870",
+      "domain_id": "MLB-TELEPHONES",
+      "name": "Telefone Multitoc Gôndola fixo cor grafite",
+      "parent_id": "MLB9004347",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "79916",
+          "value_name": "Multitoc",
+          "values": [
+            {
+              "id": "79916",
+              "name": "Multitoc"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "2448403",
+          "value_name": "Gôndola",
+          "values": [
+            {
+              "id": "2448403",
+              "name": "Gôndola"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "2324",
+          "value_name": "Grafite",
+          "values": [
+            {
+              "id": "2324",
+              "name": "Grafite"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205163",
+          "value_name": "127/220V",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "name": "Tipo de tela",
+          "value_id": "36718182",
+          "value_name": "Digital",
+          "values": [
+            {
+              "id": "36718182",
+              "name": "Digital"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "name": "Tipos de alimentação",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica",
+          "values": [
+            {
+              "id": "49713698",
+              "name": "Corrente doméstica"
+            }
+          ]
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "name": "Quantidade de fones de ouvido incluídos",
+          "value_id": "7512605",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7512605",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "name": "Com identificação de chamadas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "name": "Com secretária eletrônica",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "name": "É montável na parede",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "9079555",
+          "value_name": "7898179310913",
+          "values": [
+            {
+              "id": "9079555",
+              "name": "7898179310913"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "59382570",
+          "value_name": "0489",
+          "values": [
+            {
+              "id": "59382570",
+              "name": "0489"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BATTERY_CHARGE_INDICATOR",
+          "name": "Com indicador de carga de bateria",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "name": "Com modo mãos livres",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "name": "Com bloqueio de chamadas",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "name": "Com função de relógio despertador",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "name": "Com teclado retroiluminado",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "name": "Com botão flash",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "name": "Com função de rediscagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "name": "Com controle de volume do auscultador ",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Telefone Com Fio Gôndola Grafite da marca Multitoc é a escolha ideal para quem busca praticidade e funcionalidade em um aparelho de telefonia. Compatível com centrais públicas e PABX, ele possui um teclado decádico e multifrequencial, garantindo uma discagem eficiente. Seu design moderno e a cor grafite se adaptam a qualquer ambiente. Com 15 teclas emborrachadas, proporciona conforto ao discar. O circuito totalmente eletrônico assegura maior durabilidade e eficiência. Além disso, conta com memória do último número discado, função de rediscagem e bloqueio de chamadas, oferecendo segurança e conveniência. O telefone também possui dois níveis de campainha e é montável na parede, otimizando o espaço. Embora não seja sem fio, sua robustez e funcionalidades, como o controle de volume do auscultador e a função de relógio despertador, fazem dele uma excelente adição à sua casa ou escritório."
+      },
+      "pictures": [
+        {
+          "id": "776184-MLA99370933620_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_776184-MLA99370933620_112025-F.jpg",
+          "max_width": "728",
+          "max_height": "630"
+        },
+        {
+          "id": "665418-MLA79834072547_102024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_665418-MLA79834072547_102024-F.jpg",
+          "max_width": "1200",
+          "max_height": "893"
+        },
+        {
+          "id": "616588-MLA79834072555_102024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_616588-MLA79834072555_102024-F.jpg",
+          "max_width": "1025",
+          "max_height": "1200"
+        },
+        {
+          "id": "701552-MLU70045206090_062023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_701552-MLU70045206090_062023-F.jpg",
+          "max_width": "1019",
+          "max_height": "662"
+        }
+      ],
+      "authority_types": [
+        "INTERNAL"
+      ],
+      "date_created": "2018-03-15T15:18:59Z",
+      "last_updated": "2025-10-06T17:54:47Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

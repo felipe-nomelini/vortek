@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo De Bateria Technoise 70,00mm² Vermelho - Rolo Com 10m",
+    "supplier_category": "Automotivo/ Cabos Para Som Automotivo/ Cabo De Potência",
+    "supplier_brand": "TECHNOISE",
+    "supplier_gtin": "7899924902421",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/390543",
+    "captured_at": "2026-08-17T12:54:16.744Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

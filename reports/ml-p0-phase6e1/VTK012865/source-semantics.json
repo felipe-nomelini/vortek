@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:53.427Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto-falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+    "supplier_category": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+    "supplier_brand": "Atk Eletroacústica",
+    "supplier_gtin": "7898640362144",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1555",
+    "captured_at": "2026-08-17T12:56:23.894Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "34aa866b-f963-4153-97e3-28baa0f8e47c",
+    "produto_id": "4af0d21d-e9f5-468a-999d-c8d6a7bd64c8",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1555",
+    "sku_fornecedor": "1555",
+    "custo": 665,
+    "estoque": 2,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:10:16.815+00:00",
+    "created_at": "2026-07-06T22:31:08.33707+00:00",
+    "updated_at": "2026-08-17T10:10:16.822+00:00",
+    "sku_oferta": "1555",
+    "nome": "Alto-falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+    "descricao": "18WF810B Descrição: Alto-falante de 18” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade. Utiliza uma bobina de 75 mm de diâmetro (3”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior. Design exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica. Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance. Principais Características: 400 W Potência Nominal 8 Ohms de Impedância Nominal 96 dB SPL de Sensibilidade 30 a 2000Hz Especificações: Potência Nominal Admissível(1): 400 W Potência Máxima do Amplificador(2): 6400 W pico Sensibilidade (1W/1m)(3) : 96 dB SPL Impedância Nominal: 8 Ohms Impedância Mínima: 7.2 Ohms Diâmetro Nominal: 457.2 mm (18 pol) Resposta de Frequência: 30 a 2000 Hz Diâmetro da Bobina: 75 mm (3”) Fio da Bobina: Fio de Cobre Circular Resistência da Bobina (Re): 6.5 Ohms X.máx(4): 7 mm Volume de Ar ocupado: 7.19 L",
+    "marca": "Atk Eletroacústica",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/33fc704690a3c10bee062fda0304067a.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e848bd8bd8ae759506106f7e17380fe0.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c8752aac814f57b4ee7f4ab2ebf28b88.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/b12928a8f94e5dd4fc61e2d8865f0ee0.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2d4e891157fe7ea3d6539621dc183429.jpg"
+    ],
+    "gtin": "7898640362144",
+    "ncm": "8518.29.90",
+    "cest": null
+  }
+}

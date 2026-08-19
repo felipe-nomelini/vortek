@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:49.443Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+    "supplier_category": "Automotivo/ Alto Falante/ Woofer",
+    "supplier_brand": "EROS",
+    "supplier_gtin": "7899021996743",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/147091",
+    "captured_at": "2026-08-17T12:55:12.283Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "bccb9ccc-d661-441a-9f2f-6f13e557d495",
+    "produto_id": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "147091",
+    "sku_fornecedor": "147091",
+    "custo": 623.99,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:16:28.909+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:16:28.918+00:00",
+    "sku_oferta": "147091",
+    "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+    "descricao": "DIÂMETRO NOMINAL 15 Polegadas DIÂMETRO FERRITE 110 X 15 mm MATERIAL DO FERRITE NEODYMIUM DIÂMETRO DA BOBINA 4,5 polegadas FORMA DA BOBINA FIBERGLASS ALTURA DA BOBINA 18 mm ALTURA DO GAP 10 mm MATERIAL DO FIO DA BOBINA ALUMÍNIO SECÇÃO DO FIO DA BOBINA ACHATADA MATERIAL DA CARCAÇA ALUMÍNIO RESPOSTA DE FREQUÊNCIA 50 ~ 3.000 Hz SENSIBILIDADE (@ 1 W, 1 m) &ndash; FREE AIR 97, 70 dB POTÊNCIA MÁXIMA 500 W POTÊNCIA MUSICAL 1.000 W IMPEDÂNCIA NOMINAL 4 Ohms ÁREA DO CONE 0,080 Sq.m FREQUÊNCIA DE RESSONÂNCIA 80,42 Hz VOLUME EQUIVALENTE 176,45 L Q MECÂNICO 6,386 (Qms) Q ELÉTRICO 0,275 (Qes) Q TOTAL 0,264 (Qts) PRODUTO BL 21,48 TM NO (REFERENCIAL DE EFICIÊNCIA) 3,70 % COMPLIÂNCIA (CMS) 192,12 uM/N MASSA TOTAL (MMS) 86,18 g MASSA DIAFRAGMA (MMD) 73,07 g EXCURSÃO DO CONE SEM DISTORÇÃO (X MAX) &plusmn; 4 mm DENSIDADE DO FLUXO NO GAP 13.000 Gauss *Imagens meramente ilustrativas",
+    "marca": "EROS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/1/4/147091_67d2cad9bf376.jpg",
+      "https://evolusom.com.br/media/catalog/product/1/4/147091_67d2cad9bface.jpg",
+      "https://evolusom.com.br/media/catalog/product/1/4/147091_67d2cad9c2ce7.jpg",
+      "https://evolusom.com.br/media/catalog/product/1/4/147091_67d2cad9c3973.jpg"
+    ],
+    "gtin": "7899021996743",
+    "ncm": "85182990",
+    "cest": "01.057.00"
+  }
+}

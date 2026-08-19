@@ -1,0 +1,705 @@
+{
+  "attempted_at": "2026-08-17T00:43:30.823Z",
+  "local_time": "2026-08-16T21:43:30",
+  "endpoint": "POST /items",
+  "request_id": "f237512c-4530-471f-9203-ca8227d19095",
+  "http_status": 201,
+  "elapsed_ms": 843,
+  "payload_sha256": "f93f7694320fa4839845f1d35f16a7d6acc636e74a3060d95b52488795c4979f",
+  "body": {
+    "id": "MLB5075741535",
+    "site_id": "MLB",
+    "title": "Telefone Gôndola Com Fio Tc 20 Preto Intelbras Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB1053",
+    "user_product_id": "MLBU4772705310",
+    "official_store_id": null,
+    "price": 199.9,
+    "base_price": 199.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 30,
+    "available_quantity": 30,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Intelbras Casa TC 20",
+    "family_id": 4393659958319631,
+    "start_time": "2026-08-17T00:43:30.264Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:43:30.341Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075741535-telefone-gndola-com-fio-tc-20-preto-intelbras-preto-_JM",
+    "pictures": [
+      {
+        "id": "780798-MLA96108358537_102025",
+        "url": "http://mla-s1-p.mlstatic.com/780798-MLA96108358537_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/780798-MLA96108358537_102025-O.jpg",
+        "size": "500x265",
+        "max_size": "1200x638",
+        "quality": ""
+      },
+      {
+        "id": "679680-MLA82666014211_022025",
+        "url": "http://mla-s2-p.mlstatic.com/679680-MLA82666014211_022025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/679680-MLA82666014211_022025-O.jpg",
+        "size": "499x260",
+        "max_size": "1062x553",
+        "quality": ""
+      },
+      {
+        "id": "707704-MLA87274258336_072025",
+        "url": "http://mla-s1-p.mlstatic.com/707704-MLA87274258336_072025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/707704-MLA87274258336_072025-O.jpg",
+        "size": "269x500",
+        "max_size": "538x1000",
+        "quality": ""
+      },
+      {
+        "id": "721024-MLA87274436474_072025",
+        "url": "http://mla-s2-p.mlstatic.com/721024-MLA87274436474_072025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/721024-MLA87274436474_072025-O.jpg",
+        "size": "500x239",
+        "max_size": "1083x519",
+        "quality": ""
+      },
+      {
+        "id": "842543-MLA87274258348_072025",
+        "url": "http://mla-s2-p.mlstatic.com/842543-MLA87274258348_072025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/842543-MLA87274258348_072025-O.jpg",
+        "size": "500x281",
+        "max_size": "1085x611",
+        "quality": ""
+      },
+      {
+        "id": "685076-MLA82666099451_022025",
+        "url": "http://mla-s1-p.mlstatic.com/685076-MLA82666099451_022025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/685076-MLA82666099451_022025-O.jpg",
+        "size": "500x247",
+        "max_size": "1073x532",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "10366",
+        "value_name": "Intelbras",
+        "values": [
+          {
+            "id": "10366",
+            "name": "Intelbras",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "274496",
+        "value_name": "Casa",
+        "values": [
+          {
+            "id": "274496",
+            "name": "Casa",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "1220941",
+        "value_name": "TC 20",
+        "values": [
+          {
+            "id": "1220941",
+            "name": "TC 20",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "name": "Tipo de tela",
+        "value_id": "81830",
+        "value_name": "LED",
+        "values": [
+          {
+            "id": "81830",
+            "name": "LED",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "TALK_TIME",
+        "name": "Autonomia de conversação",
+        "value_id": "2087877",
+        "value_name": "20 h",
+        "values": [
+          {
+            "id": "2087877",
+            "name": "20 h",
+            "struct": {
+              "number": 20,
+              "unit": "h"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "8744458",
+        "value_name": "1.9 GHz",
+        "values": [
+          {
+            "id": "8744458",
+            "name": "1.9 GHz",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "name": "Quantidade de fones de ouvido incluídos",
+        "value_id": "7512605",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "7512605",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "name": "Com identificação de chamadas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "name": "Com secretária eletrônica",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "name": "É montável na parede",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_DUAL_SIM",
+        "name": "É Dual SIM",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_RURAL_TELEPHONE",
+        "name": "É telefone rural",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "name": "Homologação Anatel Nº",
+        "value_id": "39974197",
+        "value_name": "7040800160",
+        "values": [
+          {
+            "id": "39974197",
+            "name": "7040800160",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "BATTERY_CAPACITY",
+        "name": "Capacidade da bateria",
+        "value_id": "149366",
+        "value_name": "600 mAh",
+        "values": [
+          {
+            "id": "149366",
+            "name": "600 mAh",
+            "struct": {
+              "number": 600,
+              "unit": "mAh"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "7896637613262,7890203522651,7896637615594,8100000005868",
+        "values": [
+          {
+            "id": "9111595",
+            "name": "7896637613262",
+            "struct": null
+          },
+          {
+            "id": "9111601",
+            "name": "7890203522651",
+            "struct": null
+          },
+          {
+            "id": "9111602",
+            "name": "7896637615594",
+            "struct": null
+          },
+          {
+            "id": "22647216",
+            "name": "8100000005868",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "name": "Tamanho da tela",
+        "value_id": "6397418",
+        "value_name": "1.5 \"",
+        "values": [
+          {
+            "id": "6397418",
+            "name": "1.5 \"",
+            "struct": {
+              "number": 1.5,
+              "unit": "\""
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WITH_BATTERY_CHARGE_INDICATOR",
+        "name": "Com indicador de carga de bateria",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "PHONEBOOK_ENTRIES_CAPACITY",
+        "name": "Capacidade de entradas da agenda telefônica",
+        "value_id": "8801844",
+        "value_name": "70",
+        "values": [
+          {
+            "id": "8801844",
+            "name": "70",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "RINGTONES_NUMBER",
+        "name": "Quantidade de toques de chamada",
+        "value_id": "8801843",
+        "value_name": "7",
+        "values": [
+          {
+            "id": "8801843",
+            "name": "7",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "name": "Com modo mãos livres",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_CALL_BLOCKING",
+        "name": "Com bloqueio de chamadas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ALARM_CLOCK_FUNCTION",
+        "name": "Com função de relógio despertador",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ECO_MODE",
+        "name": "Com modo Eco",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_BACKLIT_KEYPAD",
+        "name": "Com teclado retroiluminado",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_DATE_AND_TIME_INDICATOR",
+        "name": "Com indicador de data e hora",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FLASH_BUTTON",
+        "name": "Com botão flash",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "name": "Com função de rediscagem",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_HANDSET_VOLUME_CONTROL",
+        "name": "Com controle de volume do auscultador",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_SILENCE_MODE",
+        "name": "Com modo silencioso",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK021012",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK021012",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "780798-MLA96108358537_102025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/780798-MLA96108358537_102025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB7991974",
+    "domain_id": "MLB-TELEPHONES",
+    "seller_custom_field": "VTK021012",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:43:30.459Z",
+    "last_updated": "2026-08-17T00:43:30.459Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

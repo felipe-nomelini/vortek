@@ -1,0 +1,23 @@
+{
+  "index": 55,
+  "sku": "VTK001834",
+  "expected_gtin": "7898566201978",
+  "started_at": "2026-08-17T01:15:57.204Z",
+  "local_time": "2026-08-16T22:15:57",
+  "completed_at": "2026-08-17T01:15:57.234Z",
+  "elapsed_ms": 30,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Storm JCPQ0001 ten-unit kit lacks official required connector evidence",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

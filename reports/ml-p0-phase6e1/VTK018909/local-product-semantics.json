@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-17T14:15:45.179Z",
+  "product": {
+    "id": "06794e08-6c98-4ebd-9930-dead3d6accda",
+    "sku": "VTK018909",
+    "nome": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+    "marca": "ALMAPY",
+    "estoque": 4,
+    "custo": 164.45,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.434,
+    "peso_bruto": 0.434,
+    "largura": 17,
+    "altura": 5,
+    "profundidade": 22,
+    "gtin": "7890000100724",
+    "descricao": "Informações do Produto Sub Conjunto Vidro Elétrico Sensorizado - 712.009 Acabamento Cinza Dianteiro Aplicação Palio 12/... Fiat",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018909/01-5b234302d2217d7ae2b7.jpg"
+    ],
+    "categoria": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:17.035182+00:00",
+    "updated_at": "2026-08-17T11:14:23.023555+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "315181",
+    "dslite_ultima_sync": "2026-08-17T11:14:22.869+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87089990",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "3b1137f1-9cb8-4f89-a7d9-074dda7fb62a",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "parking_sensor",
+    "function": "detect_vehicle_obstacle",
+    "intended_use": "automotive",
+    "physical_form": "parking_sensor",
+    "expected_category_signals": [
+      "sensor",
+      "estacionamento",
+      "automotivo",
+      "veiculo"
+    ],
+    "incompatible_category_signals": [
+      "alarmeresidencial",
+      "temperatura",
+      "presenca"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

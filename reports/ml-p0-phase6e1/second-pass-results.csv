@@ -1,0 +1,11 @@
+ordinal,sku,phase6e1_state,semantic_score,second_pass,evidence
+"3","VTK018422","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","93","PASS","supplier/local semantics and full category path agree"
+"15","VTK001303","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","100","PASS","supplier/local semantics and full category path agree"
+"23","VTK018729","BLOCK_SEMANTIC_CATEGORY_MISMATCH","56","REJECT","PRODUCT_FUNCTION_MISMATCH:control_vehicle_windows"
+"36","VTK001297","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","100","PASS","supplier/local semantics and full category path agree"
+"42","VTK018562","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","93","PASS","supplier/local semantics and full category path agree"
+"52","VTK018924","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","100","PASS","supplier/local semantics and full category path agree"
+"63","VTK012632","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","100","PASS","supplier/local semantics and full category path agree"
+"79","VTK019126","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","93","PASS","supplier/local semantics and full category path agree"
+"80","VTK019131","BLOCK_SEMANTIC_CATEGORY_MISMATCH","41","REJECT","INCOMPATIBLE_CONTEXT:equitacao|cavalo|lacos|PRODUCT_FUNCTION_MISMATCH:detect_metal_vehicle_presence"
+"85","VTK012864","KNOWN_WRONG_CATEGORY_REMOTE_ITEM","73","REJECT","MLB7437196478 exists in MLB-TABLET_INTERNAL_SPEAKERS; new gate simulation blocks before payload"

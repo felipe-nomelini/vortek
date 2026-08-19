@@ -1,0 +1,33 @@
+{
+  "score": 93,
+  "parts": {
+    "product_identity": 25,
+    "function_match": 25,
+    "intended_use": 20,
+    "category_path_coherence": 20,
+    "catalog_coherence": 3
+  },
+  "identity_confidence": 100,
+  "classification": "SEMANTIC_PARTIAL",
+  "hard_mismatch": false,
+  "hard_conflicts": [],
+  "function_match": true,
+  "intended_use_match": true,
+  "path_coherent": true,
+  "expected_hits": [
+    "fechadura",
+    "seguranca"
+  ],
+  "functional_hits": [
+    "fechadura"
+  ],
+  "incompatible_hits": [],
+  "catalog_category_correlated_error": false,
+  "independent_source_present": true,
+  "attribute_signals": {
+    "checked": true,
+    "attribute_count": 90,
+    "conflicts": [],
+    "classification": "NO_HARD_ATTRIBUTE_MISMATCH"
+  }
+}

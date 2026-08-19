@@ -1,0 +1,233 @@
+{
+  "payload": {
+    "family_name": "Mouse Logitech M110 Silent Cinza",
+    "category_id": "MLB1714",
+    "catalog_product_id": "MLB24551741",
+    "catalog_listing": true,
+    "price": 199.9,
+    "currency_id": "BRL",
+    "available_quantity": 47,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2ce6.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2f9d.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2fe3.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d3012.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "15788",
+        "value_name": "Logitech"
+      },
+      {
+        "id": "LINE",
+        "value_id": "102421",
+        "value_name": "Silent"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "25761",
+        "value_name": "M110"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "44171882",
+        "value_name": "910-006757"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "283165",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450294",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "13234857",
+        "value_name": "M110"
+      },
+      {
+        "id": "COMPUTER_MOUSE_TYPE",
+        "value_id": "192740",
+        "value_name": "Convencional"
+      },
+      {
+        "id": "SENSOR_TYPE",
+        "value_id": "109003",
+        "value_name": "Óptico"
+      },
+      {
+        "id": "SENSOR_TECHNOLOGY",
+        "value_id": "17871897",
+        "value_name": "Rastreamento óptico"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "value_id": "2862903",
+        "value_name": "Ambidestro"
+      },
+      {
+        "id": "COMPATIBLE_OPERATING_SYSTEMS",
+        "values": [
+          {
+            "id": "9730900",
+            "name": "Linux"
+          },
+          {
+            "id": "3211255",
+            "name": "Windows 7"
+          },
+          {
+            "id": "4198272",
+            "name": "Windows Vista"
+          },
+          {
+            "id": "3211257",
+            "name": "Windows XP"
+          },
+          {
+            "id": "11074778",
+            "name": "macOS X 10.4"
+          }
+        ]
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_WIRE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "SENSOR_RESOLUTION",
+        "value_id": "249299",
+        "value_name": "1000 dpi"
+      },
+      {
+        "id": "MAX_SPEED",
+        "value_id": "11605881",
+        "value_name": "1000 ips"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "1021242",
+        "value_name": "3"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "20912419",
+        "value_name": "97855181145"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "16119337",
+        "value_name": "3.84 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "16119338",
+        "value_name": "6.17 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "48686283",
+        "value_name": "11.296 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "8611986",
+        "value_name": "85 g"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026047"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026047"
+  },
+  "sha256": "703e66d69537c44c8c8a9dc5bcda16f08bc6e46085e401e52605aa649719b1c0",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 27,
+  "pictures_count": 4,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2ce6.png",
+      "status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2f9d.png",
+      "status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "url": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2fe3.png",
+      "status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "url": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d3012.png",
+      "status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ]
+}

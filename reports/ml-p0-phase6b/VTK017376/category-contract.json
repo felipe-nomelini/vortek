@@ -1,0 +1,230 @@
+{
+  "checked_at": "2026-08-17T00:07:18.423Z",
+  "category": {
+    "id": "MLB11529",
+    "name": "Suportes",
+    "picture": null,
+    "permalink": null,
+    "total_items_in_this_category": 40504,
+    "path_from_root": [
+      {
+        "id": "MLB1000",
+        "name": "Eletrônicos, Áudio e Vídeo"
+      },
+      {
+        "id": "MLB1007",
+        "name": "Acessórios para TV"
+      },
+      {
+        "id": "MLB11529",
+        "name": "Suportes"
+      }
+    ],
+    "children_categories": [],
+    "attribute_types": "variations",
+    "settings": {
+      "adult_content": false,
+      "buying_allowed": true,
+      "buying_modes": [
+        "auction",
+        "buy_it_now"
+      ],
+      "catalog_domain": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+      "coverage_areas": "not_allowed",
+      "currencies": [
+        "BRL"
+      ],
+      "fragile": false,
+      "immediate_payment": "required",
+      "item_conditions": [
+        "not_specified",
+        "used",
+        "new"
+      ],
+      "items_reviews_allowed": false,
+      "listing_allowed": true,
+      "max_description_length": 50000,
+      "max_pictures_per_item": 12,
+      "max_pictures_per_item_var": 10,
+      "max_sub_title_length": 70,
+      "max_title_length": 60,
+      "max_variations_allowed": 100,
+      "maximum_price": null,
+      "maximum_price_currency": "BRL",
+      "minimum_price": 0,
+      "minimum_price_currency": "BRL",
+      "mirror_category": null,
+      "mirror_master_category": null,
+      "mirror_slave_categories": [],
+      "price": "required",
+      "reservation_allowed": "not_allowed",
+      "restrictions": [],
+      "rounded_address": false,
+      "seller_contact": "not_allowed",
+      "shipping_options": [
+        "custom",
+        "carrier"
+      ],
+      "shipping_profile": "optional",
+      "show_contact_information": false,
+      "simple_shipping": "optional",
+      "stock": "required",
+      "sub_vertical": null,
+      "subscribable": false,
+      "tags": [],
+      "vertical": null,
+      "vip_subdomain": "produto",
+      "buyer_protection_programs": [
+        "delivered",
+        "undelivered"
+      ],
+      "status": "enabled"
+    },
+    "channels_settings": [
+      {
+        "channel": "mshops",
+        "settings": {
+          "minimum_price": 0
+        }
+      },
+      {
+        "channel": "proximity",
+        "settings": {
+          "status": "disabled"
+        }
+      },
+      {
+        "channel": "mp-merchants",
+        "settings": {
+          "buying_modes": [
+            "buy_it_now"
+          ],
+          "immediate_payment": "required",
+          "minimum_price": 0.01,
+          "status": "enabled"
+        }
+      },
+      {
+        "channel": "mp-link",
+        "settings": {
+          "buying_modes": [
+            "buy_it_now"
+          ],
+          "immediate_payment": "required",
+          "minimum_price": 0.01,
+          "status": "enabled"
+        }
+      }
+    ],
+    "meta_categ_id": null,
+    "attributable": false,
+    "date_created": "2018-04-25T08:12:56.000Z"
+  },
+  "required_ids": [
+    "BRAND",
+    "MODEL",
+    "MOUNTING_PLACES"
+  ],
+  "missing_required": [],
+  "listing_strategy": "catalog_required",
+  "endpoint": "POST /items",
+  "user_products": {
+    "family_name": "required",
+    "title": "prohibited",
+    "description": "not_executed"
+  },
+  "attributes": [
+    {
+      "id": "BRAND",
+      "value_id": "1175465",
+      "value_name": "Proeletronic"
+    },
+    {
+      "id": "MODEL",
+      "value_id": "16289470",
+      "value_name": "Suporte Antena Externa"
+    },
+    {
+      "id": "COLOR",
+      "value_id": "52053",
+      "value_name": "Prateado"
+    },
+    {
+      "id": "MOUNTING_PLACES",
+      "value_id": "7720908",
+      "value_name": "Parede"
+    },
+    {
+      "id": "IS_INCLINABLE",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "IS_ARTICULATED_MOUNT",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "IS_SWIVELLING",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "IS_FIXED_MOUNT",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "IS_GAMER",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "IS_MOTORIZED",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "GTIN",
+      "values": [
+        {
+          "id": "16289516",
+          "name": "7898419499132"
+        },
+        {
+          "id": "40728279",
+          "name": "17898419502389"
+        }
+      ]
+    },
+    {
+      "id": "WIDTH",
+      "value_id": "7877821",
+      "value_name": "40 cm"
+    },
+    {
+      "id": "HEIGHT",
+      "value_id": "7847007",
+      "value_name": "6 cm"
+    },
+    {
+      "id": "INCLUDES_INSTALLATION_KIT",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "INCLUDES_CABLE_ORGANIZER",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "value_id": "2230284",
+      "value_name": "Novo"
+    },
+    {
+      "id": "SELLER_SKU",
+      "value_name": "VTK017376"
+    }
+  ]
+}

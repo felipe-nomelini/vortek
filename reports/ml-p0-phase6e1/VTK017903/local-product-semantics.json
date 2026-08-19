@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-17T14:15:53.776Z",
+  "product": {
+    "id": "ec81f065-53fd-4abb-a286-3d30f5c31a4b",
+    "sku": "VTK017903",
+    "nome": "Cabo Hdmi X Dvi Nwt Cbhd0001 Macho X Macho Entrada Dvi 18+1 Saída Hdmi 1.4 Com Filtro 2m",
+    "marca": "NWT",
+    "estoque": 15,
+    "custo": 14.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.13,
+    "peso_bruto": 0.13,
+    "largura": 13,
+    "altura": 2,
+    "profundidade": 13,
+    "gtin": "",
+    "descricao": "O Cabo DVI ideal para ligar seus aparelhos DVI a seu monitor ou televisor com entrada HDMI, o cabo DVI x HDMI Dual-Link com conectores banhados a ouro foi fabricado com material de altíssima qualidade, e desenvolvido para transmissão de imagem digital entre aparelhos eletrônicos como HDTV, displays, caixa satélite, projetores e outros aparelhos eletrônicos em geral. *imagem meramente ilustrativa.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/380321_67d2cb0704122.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/380321_67d2cb0705345.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/380321_67d2cb0706365.jpg"
+    ],
+    "categoria": "Antenas E Acessórios/ Cabo Hdmi/ Cabo Hdmi X Dvi",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:30.798566+00:00",
+    "updated_at": "2026-08-17T11:00:35.038552+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "380321",
+    "dslite_ultima_sync": "2026-08-17T11:00:34.874+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85444200",
+    "cest": "12.007.00",
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "d0444cd7-5c51-4ce1-bf85-f1f0e219ac90",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "acoustic_speaker",
+    "function": "reproduce_audio",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_enclosure",
+    "expected_category_signals": [
+      "caixaacustica",
+      "audio",
+      "som",
+      "altofalante"
+    ],
+    "incompatible_category_signals": [
+      "organizacao",
+      "armazenamento",
+      "ferramenta"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

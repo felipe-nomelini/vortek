@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018749",
+  "gate": "BLOCK_GTIN_BRAND_CONFLICT",
+  "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL",
+  "local_value": "6949999896024",
+  "found_value": "MLB46847584",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB46847584 + DSLite supplier",
+  "timestamp": "2026-08-17T12:54:13.970Z"
+}

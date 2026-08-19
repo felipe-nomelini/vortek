@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.712Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Lnbf Multiponto Elsys Banda C - PC / 2",
+    "supplier_category": "Antenas E Acessórios/ Acessórios Para Parabolica/ Lnbf Multiponto",
+    "supplier_brand": "ELSYS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/240163",
+    "captured_at": "2026-08-17T12:56:47.000Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "b06dc200-9d3d-414a-9f46-3de504954b70",
+    "produto_id": "f346711a-31ff-4ac5-b031-46353ff3cbc5",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "240163",
+    "sku_fornecedor": "240163",
+    "custo": 69,
+    "estoque": 21,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:44:15.272+00:00",
+    "created_at": "2026-07-20T18:31:31.097875+00:00",
+    "updated_at": "2026-08-17T10:44:15.28+00:00",
+    "sku_oferta": "240163",
+    "nome": "Lnbf Multiponto Elsys Banda C",
+    "descricao": "Frequência de entrada: 3.7 ~ 4.2 GHz Freq. oscilador local: 5.150 GHz; +/-1 MHz 5.750 GHz; +/-1 MHz Estabilidade de freq: +/- 2 MHz (-40º ~ 70ºC) Ruído de fase L.O: -55 dB/ Hz @ 1 KHz -85 dB/ Hz @ 10 KHz -105 dB/ Hz @ 100 KHz Dispersão de sinal local: -45 dBm Frequência de saída: H: 950~1450 MHz V: 1550~2050 MHz Ganho de conversão: 65dB (típico) +/- 3 dB 55dB (Min. in 3.7GHz) Linearidade de ganho: +/- 2dB/ 36MHz, 8dB toda banda Rejeição de polariz. cruzada: 18 dB Min. Rejeição de sinal de interf. 3.5GHz: 30 dB Min. Saída VSWR: 2.5:1 Saída simulada: -60 dBm min.",
+    "marca": "ELSYS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/4/240163_67d2cadfbb1c2.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85437012",
+    "cest": null
+  }
+}

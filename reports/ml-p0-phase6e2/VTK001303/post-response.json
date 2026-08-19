@@ -1,0 +1,727 @@
+{
+  "attempted_at": "2026-08-17T20:01:48.211Z",
+  "local_time": "2026-08-17T17:01:48",
+  "endpoint": "POST /items",
+  "request_id": "e332d4cd-579e-4857-a121-2e442acbb802",
+  "http_status": 201,
+  "elapsed_ms": 865,
+  "payload_sha256": "58d7517ed0458e91bcb42ad3de52cfedf6288783d23021a884f1c7f7623732d9",
+  "body": {
+    "id": "MLB7440213282",
+    "site_id": "MLB",
+    "title": "Guitarra Elétrica Giannini Standard G-100 Choupo Tremolo 3 Captadores Destro Translucent Red/white Shell Madeira Técnica",
+    "seller_id": 3294514937,
+    "category_id": "MLB438516",
+    "user_product_id": "MLBU4761230811",
+    "official_store_id": null,
+    "price": 2379.9,
+    "base_price": 2379.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 5,
+    "available_quantity": 5,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Giannini Standard G-100 China",
+    "family_id": 1466391121741009,
+    "start_time": "2026-08-17T20:01:47.669Z",
+    "stop_time": "2046-08-12T04:00:00.000Z",
+    "end_time": "2046-08-12T04:00:00.000Z",
+    "expiration_time": "2026-11-05T20:01:47.746Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7440213282-guitarra-eletrica-giannini-standard-g-100-choupo-tremolo-3-captadores-destro-translucent-redwhite-shell-madeira-tecnica-_JM",
+    "pictures": [
+      {
+        "id": "774538-MLA96418050918_102025",
+        "url": "http://mla-s1-p.mlstatic.com/774538-MLA96418050918_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/774538-MLA96418050918_102025-O.jpg",
+        "size": "156x500",
+        "max_size": "376x1200",
+        "quality": ""
+      },
+      {
+        "id": "648650-MLA74650238740_022024",
+        "url": "http://mla-s2-p.mlstatic.com/648650-MLA74650238740_022024-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/648650-MLA74650238740_022024-O.jpg",
+        "size": "153x500",
+        "max_size": "365x1190",
+        "quality": ""
+      },
+      {
+        "id": "872970-MLA47620095925_092021",
+        "url": "http://mla-s1-p.mlstatic.com/872970-MLA47620095925_092021-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/872970-MLA47620095925_092021-O.jpg",
+        "size": "445x500",
+        "max_size": "652x731",
+        "quality": ""
+      },
+      {
+        "id": "687625-MLA47620519508_092021",
+        "url": "http://mla-s1-p.mlstatic.com/687625-MLA47620519508_092021-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/687625-MLA47620519508_092021-O.jpg",
+        "size": "422x500",
+        "max_size": "618x731",
+        "quality": ""
+      },
+      {
+        "id": "650200-MLA47620146918_092021",
+        "url": "http://mla-s2-p.mlstatic.com/650200-MLA47620146918_092021-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/650200-MLA47620146918_092021-O.jpg",
+        "size": "500x319",
+        "max_size": "1200x766",
+        "quality": ""
+      },
+      {
+        "id": "683438-MLU72847338499_112023",
+        "url": "http://mlu-s1-p.mlstatic.com/683438-MLU72847338499_112023-O.jpg",
+        "secure_url": "https://mlu-s1-p.mlstatic.com/683438-MLU72847338499_112023-O.jpg",
+        "size": "354x500",
+        "max_size": "708x1000",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "45321",
+        "value_name": "Giannini",
+        "values": [
+          {
+            "id": "45321",
+            "name": "Giannini",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "15207",
+        "value_name": "Standard",
+        "values": [
+          {
+            "id": "15207",
+            "name": "Standard",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "99305",
+        "value_name": "G-100",
+        "values": [
+          {
+            "id": "99305",
+            "name": "G-100",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ORIGIN",
+        "name": "Origem",
+        "value_id": "96381",
+        "value_name": "China",
+        "values": [
+          {
+            "id": "96381",
+            "name": "China",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "name": "Orientação da mão",
+        "value_id": "96533",
+        "value_name": "Destro",
+        "values": [
+          {
+            "id": "96533",
+            "name": "Destro",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "10253626",
+        "value_name": "Translucent red/White shell",
+        "values": [
+          {
+            "id": "10253626",
+            "name": "Translucent red/White shell",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BODY_WOOD_TYPE",
+        "name": "Tipo de madeira do corpo",
+        "value_id": "5810785",
+        "value_name": "Choupo",
+        "values": [
+          {
+            "id": "5810785",
+            "name": "Choupo",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FINGERBOARD_MATERIAL",
+        "name": "Material do diapasão",
+        "value_id": "10215160",
+        "value_name": "Madeira técnica",
+        "values": [
+          {
+            "id": "10215160",
+            "name": "Madeira técnica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BODY_FINISH",
+        "name": "Acabamento do corpo",
+        "value_id": "10450751",
+        "value_name": "Verniz",
+        "values": [
+          {
+            "id": "10450751",
+            "name": "Verniz",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "10484191",
+        "value_name": "G-100 TRD/WH",
+        "values": [
+          {
+            "id": "10484191",
+            "name": "G-100 TRD/WH",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450307",
+        "value_name": "Vermelho",
+        "values": [
+          {
+            "id": "2450307",
+            "name": "Vermelho",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "NECK_WOOD_TYPES",
+        "name": "Tipos de madeira do braço",
+        "value_id": "2792083",
+        "value_name": "Bordo",
+        "values": [
+          {
+            "id": "2792083",
+            "name": "Bordo",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "value_id": "15146",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "15146",
+            "name": "6",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "SCALE_LENGTH",
+        "name": "Comprimento da escala",
+        "value_id": "8621791",
+        "value_name": "647.7 mm",
+        "values": [
+          {
+            "id": "8621791",
+            "name": "647.7 mm",
+            "struct": {
+              "number": 647.7,
+              "unit": "mm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "10253627",
+        "value_name": "7890443014381",
+        "values": [
+          {
+            "id": "10253627",
+            "name": "7890443014381",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_BAR",
+        "name": "Com alavanca",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_DOUBLE_NECK",
+        "name": "Com braço duplo",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_MINI",
+        "name": "É mini",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_INFANT",
+        "name": "É infantil",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_CASE",
+        "name": "Inclui estojo",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "FRETS_NUMBER",
+        "name": "Quantidade de trastes",
+        "value_id": "1090718",
+        "value_name": "22",
+        "values": [
+          {
+            "id": "1090718",
+            "name": "22",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "PICKUPS_NUMBER",
+        "name": "Quantidade de captadores",
+        "value_id": "1090711",
+        "value_name": "3",
+        "values": [
+          {
+            "id": "1090711",
+            "name": "3",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "PICKUP_SWITCH",
+        "name": "Chave seletora de captadores",
+        "value_id": "9841427",
+        "value_name": "5 posições",
+        "values": [
+          {
+            "id": "9841427",
+            "name": "5 posições",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FRET_SIZE",
+        "name": "Tamanho de traste",
+        "value_id": "110293",
+        "value_name": "Medium Jumbo",
+        "values": [
+          {
+            "id": "110293",
+            "name": "Medium Jumbo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "NECK_SHAPE",
+        "name": "Forma do braço",
+        "value_id": "1131585",
+        "value_name": "C",
+        "values": [
+          {
+            "id": "1131585",
+            "name": "C",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NECK_CONSTRUCTION",
+        "name": "Construção do braço",
+        "value_id": "11402932",
+        "value_name": "Bolt-on",
+        "values": [
+          {
+            "id": "11402932",
+            "name": "Bolt-on",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BRIDGE_TYPE_CLASSIFICATION",
+        "name": "Classificação do tipo de ponte",
+        "value_id": "11402941",
+        "value_name": "Synch tremolo",
+        "values": [
+          {
+            "id": "11402941",
+            "name": "Synch tremolo",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BRIDGE_TYPE",
+        "name": "Tipo de ponte",
+        "value_id": "6132622",
+        "value_name": "Tremolo",
+        "values": [
+          {
+            "id": "6132622",
+            "name": "Tremolo",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONTROL_TYPES",
+        "name": "Tipos de controle",
+        "value_id": null,
+        "value_name": "Chave seletora de captadores, Tone, Volumen",
+        "values": [
+          {
+            "id": "10397364",
+            "name": "Chave seletora de captadores",
+            "struct": null
+          },
+          {
+            "id": "9841428",
+            "name": "Tone",
+            "struct": null
+          },
+          {
+            "id": "7335124",
+            "name": "Volumen",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PICKUP_TYPES",
+        "name": "Tipos de captadores",
+        "value_id": "96538",
+        "value_name": "Simples",
+        "values": [
+          {
+            "id": "96538",
+            "name": "Simples",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NECK_PICKUP_TYPE",
+        "name": "Tipo de captador do braço",
+        "value_id": "10484081",
+        "value_name": "Single coil cerâmico",
+        "values": [
+          {
+            "id": "10484081",
+            "name": "Single coil cerâmico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MIDDLE_PICKUP_TYPE",
+        "name": "Tipo de captador do meio",
+        "value_id": "10484079",
+        "value_name": "Single coil cerâmico",
+        "values": [
+          {
+            "id": "10484079",
+            "name": "Single coil cerâmico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BRIDGE_PICKUP_TYPE",
+        "name": "Tipo de captador da ponte",
+        "value_id": "10484187",
+        "value_name": "Bobina simples cerâmica",
+        "values": [
+          {
+            "id": "10484187",
+            "name": "Bobina simples cerâmica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": null,
+        "value_name": "Cabo de conexão, Chave de ajuste",
+        "values": [
+          {
+            "id": "10263358",
+            "name": "Cabo de conexão",
+            "struct": null
+          },
+          {
+            "id": "9807734",
+            "name": "Chave de ajuste",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "11112692",
+        "value_name": "19597",
+        "values": [
+          {
+            "id": "11112692",
+            "name": "19597",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK001303",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK001303",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "774538-MLA96418050918_102025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/774538-MLA96418050918_102025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB17460878",
+    "domain_id": "MLB-ELECTRIC_GUITARS",
+    "seller_custom_field": "VTK001303",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T20:01:47.857Z",
+    "last_updated": "2026-08-17T20:01:47.857Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

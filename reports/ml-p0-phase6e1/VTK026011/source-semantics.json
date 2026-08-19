@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:53.732Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Controle Compatível Ford 3 B + P 2002 A 2013",
+    "supplier_category": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+    "supplier_brand": "R3a Automotive",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4135",
+    "captured_at": "2026-08-17T12:56:48.665Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "8c0f1147-a5ac-433b-a2a2-d82249c2ce90",
+    "produto_id": "f51e7c65-9d69-4f7e-8949-8d64aa7f7543",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4135",
+    "sku_fornecedor": "4135",
+    "custo": 25.2,
+    "estoque": 20,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.02+00:00",
+    "created_at": "2026-08-13T16:54:18.105591+00:00",
+    "updated_at": "2026-08-17T09:52:24.028+00:00",
+    "sku_oferta": "4135",
+    "nome": "Controle Compatível Ford 3 B + P 2002 A 2013",
+    "descricao": "CONTROLE COMPATÍVEL FORD 3 BOTÕES + PANIC 2002 A 2013 FD202 (0074468169227) O controle remoto FD202 é uma excelente opção para reposição do controle original do veículo, oferecendo praticidade, durabilidade e compatibilidade com modelos Ford de 2002 a 2013. Ficha técnica: • Modelo: FD202 • Tipo: Controle remoto automotivo • Compatível com veículos Ford de 2002 a 2013 • Quantidade de botões: 3 + botão Panic • Cor: Preta • Design compacto e ergonômico • Material resistente e durável • Excelente acabamento • Produto para reposição automotiva Desenvolvido para proporcionar praticidade e confiabilidade no uso diário, o FD202 possui acabamento de qualidade e construção resistente. É ideal para substituir controles desgastados ou danificados, mantendo a funcionalidade e o conforto no acionamento das funções compatíveis do veículo. Uma solução eficiente para quem busca reposição com ótimo custo-benefício.",
+    "marca": "R3a Automotive",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1cb61c35abf62950ab01b3245a7093cf.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7a8374b051426464531371072405d5fb.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4ae1046935e82b01617d791be285de5d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/89e6b5c82a3b28954753d7ced6d966cd.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/71e2869a1c912bf3b74ffccb7cb52540.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8529.90.90",
+    "cest": null
+  }
+}

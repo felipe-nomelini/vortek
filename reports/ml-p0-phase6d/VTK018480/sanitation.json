@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018480",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Olimpus antenna mast category is not high-confidence",
+  "local_value": "7898382147320",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:17:51.553Z"
+}

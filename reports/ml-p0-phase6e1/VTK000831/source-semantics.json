@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:41.735Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Kit Prateleiras Decore Multivisão Branco",
+    "supplier_category": "Móveis Para Casa / Estantes E Prateleiras / Estantes E Prateleiras",
+    "supplier_brand": "MULTIVISÃO",
+    "supplier_gtin": "7896643439405",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/85606",
+    "captured_at": "2026-08-17T12:54:26.282Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "08c01179-9fda-41b0-a34a-310b9d98ff4d",
+    "produto_id": "4cf8a83f-dee6-4c77-b966-65378d316271",
+    "dslite_fornecedor_id": "2",
+    "fornecedor_nome": "HAYAMAX-PR",
+    "dslite_produto_id": "85606",
+    "sku_fornecedor": "85606",
+    "custo": 114.98,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "balance_account",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T14:03:23.868+00:00",
+    "created_at": "2026-06-08T18:46:40.559351+00:00",
+    "updated_at": "2026-08-17T14:03:23.877+00:00",
+    "sku_oferta": "85606",
+    "nome": "Kit Prateleiras Decore Multivisão Branco",
+    "descricao": "O Kit Prateleiras Decore é a solução perfeita para organizar e decorar diversos ambientes. Fabricada em MDP com acabamento em pintura UV, oferece durabilidade e um visual moderno. Um dos detalhes desse modelo é a fita de bordo, que garante um acabamento impecável, tornando-a ideal para uso na cozinha, escritório ou qualquer outro espaço que necessite de praticidade e estilo.",
+    "marca": "MULTIVISÃO",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/85606/550/1.jpg",
+      "https://static.hayapek.com.br/produtos/85606/550/2.jpg",
+      "https://static.hayapek.com.br/produtos/85606/550/3.jpg"
+    ],
+    "gtin": "7896643439405",
+    "ncm": "9403.60.00",
+    "cest": null
+  }
+}

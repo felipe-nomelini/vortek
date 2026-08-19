@@ -1,0 +1,1282 @@
+{
+  "rows": [
+    {
+      "sku": "VTK000301",
+      "produto_id": "009943c6-e1a6-4f02-94ce-fb23231226ce",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK000301/summary.json"
+    },
+    {
+      "sku": "VTK025955",
+      "produto_id": "00f7fd6c-3e46-4560-b41c-fea87e4efe6f",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6c/VTK025955/summary.json"
+    },
+    {
+      "sku": "VTK017630",
+      "produto_id": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN:ml-p0-phase6b/VTK017630/summary.json"
+    },
+    {
+      "sku": "VTK025875",
+      "produto_id": "02f2056d-43f6-4953-beb3-9762f62e305e",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK000504",
+      "produto_id": "037a0d81-85b9-4458-9b07-148b399bb557",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6c/VTK000504/summary.json"
+    },
+    {
+      "sku": "VTK004505",
+      "produto_id": "05ab405c-21f6-48fe-a95d-c45963af73a8",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK004505/summary.json"
+    },
+    {
+      "sku": "VTK017637",
+      "produto_id": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_API_CONTRACT:ml-p0-phase6b/VTK017637/summary.json"
+    },
+    {
+      "sku": "VTK025570",
+      "produto_id": "066aa4ea-ded4-44b4-a8fb-5eefe12795a9",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025574",
+      "produto_id": "07311428-25f4-48a5-806c-7b1046412370",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001007",
+      "produto_id": "09a4e0a6-37b2-4bb3-8f3c-fcadc49c55af",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE:ml-p0-phase6d/VTK001007/summary.json"
+    },
+    {
+      "sku": "VTK025370",
+      "produto_id": "09c1be4f-447e-4953-9993-33cb8becd52e",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025874",
+      "produto_id": "0c39c30b-7720-4868-b5cc-7c9a5fc206ab",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK016246",
+      "produto_id": "0cbaca88-b155-4087-b308-38abe14befb4",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK012909",
+      "produto_id": "0e80f90f-6a72-41e4-9d26-2b8277e0b3f6",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN:ml-p0-phase6b/VTK012909/summary.json"
+    },
+    {
+      "sku": "VTK004609",
+      "produto_id": "0e89519b-7baa-46d2-918c-876e90ba4953",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK004609/summary.json"
+    },
+    {
+      "sku": "VTK025367",
+      "produto_id": "0efe9ce3-b3ea-4ff5-8e39-cb82c92e6c5b",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001507",
+      "produto_id": "1014dfbf-fa3b-4a03-8758-5ed7015ce29c",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "MANUAL_IDENTITY:ml-p0-phase5a/summary.json"
+    },
+    {
+      "sku": "VTK001109",
+      "produto_id": "1016b5d8-5964-427a-b5f6-f6d9299f52ae",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001109/summary.json"
+    },
+    {
+      "sku": "VTK005411",
+      "produto_id": "104b4d28-fbc9-4ed7-8bd6-d0c6f0b7729c",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK005411/summary.json"
+    },
+    {
+      "sku": "VTK025858",
+      "produto_id": "11487f8c-e900-4bfd-910b-56c93433fbde",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK025858/summary.json"
+    },
+    {
+      "sku": "VTK016207",
+      "produto_id": "1153e4d4-cede-4d61-a061-f02815226130",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025667",
+      "produto_id": "12328a6b-47de-4a02-ba87-b1d73b2989e3",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001207",
+      "produto_id": "12e4dd09-6ad6-40f5-b870-a012960efabe",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001207/summary.json"
+    },
+    {
+      "sku": "VTK011959",
+      "produto_id": "17cdd64e-25c6-4856-aa0f-621c33184e25",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_BRAND_CONFLICT:ml-p0-phase6c/VTK011959/summary.json"
+    },
+    {
+      "sku": "VTK011960",
+      "produto_id": "1868c5ab-7c7e-4672-9ec0-1b594a550c90",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6c/VTK011960/summary.json"
+    },
+    {
+      "sku": "VTK025537",
+      "produto_id": "1aae6c25-b0b7-4986-af02-6ea9288018c4",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK000518",
+      "produto_id": "1be46bf9-1cd1-4665-a868-2ccb25db3529",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK000518/summary.json"
+    },
+    {
+      "sku": "VTK017633",
+      "produto_id": "1dd2a3e6-40d8-4f0b-b302-07e176700573",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IDENTITY:ml-p0-phase6c/VTK017633/summary.json"
+    },
+    {
+      "sku": "VTK018304",
+      "produto_id": "224a8e84-1f7c-4167-9bc0-7a48b468338e",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK018304/summary.json"
+    },
+    {
+      "sku": "VTK013085",
+      "produto_id": "23d08c09-1a91-4b46-8386-1a84100e7c45",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK013085/summary.json"
+    },
+    {
+      "sku": "VTK026049",
+      "produto_id": "26e1ca23-10e7-4b63-a5b6-45dc054d5eb9",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK026049/summary.json"
+    },
+    {
+      "sku": "VTK016024",
+      "produto_id": "2719221b-385e-433c-8830-d37e95f24d3a",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK006318",
+      "produto_id": "27f2495d-930e-483d-b2ad-86c5f491fd2f",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6c/VTK006318/summary.json"
+    },
+    {
+      "sku": "VTK001119",
+      "produto_id": "28098ee5-7fbf-4d6c-b634-43e5bad60e7a",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001119/summary.json"
+    },
+    {
+      "sku": "VTK026007",
+      "produto_id": "2a9ff74f-8a08-4d8c-9137-49348c92da92",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IDENTITY:ml-p0-phase6b/VTK026007/summary.json"
+    },
+    {
+      "sku": "VTK025884",
+      "produto_id": "2b7267f3-7fe5-47ed-8e5a-4a299d2528ea",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025812",
+      "produto_id": "2e421ac3-0e80-42b6-bd17-2dfacecdf988",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025520",
+      "produto_id": "2f42cd0b-afcc-4ccd-8997-78a141b88325",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK000216",
+      "produto_id": "2fcc2093-ddde-4e63-b944-90a4ab2d2454",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK000216/summary.json"
+    },
+    {
+      "sku": "VTK021013",
+      "produto_id": "31849a0c-4eed-49f0-8709-e4db46d8bf53",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IDENTITY:ml-p0-phase6a/VTK021013/summary.json"
+    },
+    {
+      "sku": "VTK026003",
+      "produto_id": "31d60509-a4dc-42af-a79b-68142502ad44",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6a/VTK026003/summary.json"
+    },
+    {
+      "sku": "VTK025908",
+      "produto_id": "339aac0e-e31a-45b1-a0ab-60a4fd616807",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018134",
+      "produto_id": "35803dad-4127-4945-8abc-f3b26978f7d8",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018134/summary.json"
+    },
+    {
+      "sku": "VTK005426",
+      "produto_id": "36394ab4-0d3d-48ce-9646-e22896315eb3",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "MANUAL_TECH:ml-p0-phase3/full-report.json"
+    },
+    {
+      "sku": "VTK025549",
+      "produto_id": "3739630d-1cbe-4198-9fca-924f265c5c4b",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025407",
+      "produto_id": "3819cd2f-0f69-46da-ba8e-f32664985cbe",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK019016",
+      "produto_id": "3976c413-68d3-4285-af05-5343e8998473",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK019016/summary.json"
+    },
+    {
+      "sku": "VTK004724",
+      "produto_id": "3cd63a03-f703-4590-9acc-4a6e017a1d6a",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK004724/summary.json"
+    },
+    {
+      "sku": "VTK025550",
+      "produto_id": "3f53d0fa-3051-482c-9fa8-e66eb0fe558b",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025957",
+      "produto_id": "3f96f704-c8a1-4733-a218-235f12a0fca4",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase3/full-report.json"
+    },
+    {
+      "sku": "VTK025575",
+      "produto_id": "3fce93e4-27b1-4794-9885-315235c7dbfc",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK012223",
+      "produto_id": "412b5e03-8d41-4a0a-81b7-fd20fa0dd2cd",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6d/VTK012223/summary.json"
+    },
+    {
+      "sku": "VTK021891",
+      "produto_id": "431432a6-be35-4b99-aebf-b4a207037c0b",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK021891/summary.json"
+    },
+    {
+      "sku": "VTK000429",
+      "produto_id": "451a9307-b2d5-4b11-9036-313c33a92b2a",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK000429/summary.json"
+    },
+    {
+      "sku": "VTK025651",
+      "produto_id": "451ad3fd-8613-4e27-8f37-0693d16688da",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK021063",
+      "produto_id": "476bee08-d8ea-43db-bc1f-b07e4d59756a",
+      "reason": "REMOTE_LINK_REVIEW",
+      "evidence": "{\"sku\":\"VTK021063\",\"state\":\"BLOCK_DUPLICATE\",\"source\":\"phase3\",\"item_ids\":[\"MLB6563332484\",\"MLB6646642718\"]}"
+    },
+    {
+      "sku": "VTK025587",
+      "produto_id": "47818129-2eb0-4e4b-b23b-d0fff2342ee8",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025771",
+      "produto_id": "4893fb39-2110-4f90-a680-d1fd7b2262a1",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK000533",
+      "produto_id": "48b26ccf-bce7-4bef-b447-ae46449f4ff4",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK000533/summary.json"
+    },
+    {
+      "sku": "VTK002521",
+      "produto_id": "4a5919a1-7059-4274-8fd1-3b9c5ce927cf",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6d/VTK002521/summary.json"
+    },
+    {
+      "sku": "VTK016240",
+      "produto_id": "4ab2d60a-a1d1-48fe-a6fc-8e9d557f08e7",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018199",
+      "produto_id": "4e6f2b8c-85c5-4392-bbe5-7c9ca2482a60",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018199/summary.json"
+    },
+    {
+      "sku": "VTK025419",
+      "produto_id": "4ecd9321-755e-4f1b-a3a7-f591fd143d4d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001834",
+      "produto_id": "5030549b-3fd3-46bd-9b39-842035e26ad8",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE:ml-p0-phase6d/VTK001834/summary.json"
+    },
+    {
+      "sku": "VTK025403",
+      "produto_id": "531c6601-ff5b-4820-a4a7-bb1906fa0166",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025601",
+      "produto_id": "5672f2f1-878f-4098-bb4e-e015608f2a69",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK000540",
+      "produto_id": "58b46fa0-9db3-4758-98c8-455c3e5ecbbd",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6c/VTK000540/summary.json"
+    },
+    {
+      "sku": "VTK002141",
+      "produto_id": "59dec284-bd0d-4f8c-a419-ce305f589e19",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN:ml-p0-phase6a/VTK002141/summary.json"
+    },
+    {
+      "sku": "VTK017211",
+      "produto_id": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6a/VTK017211/summary.json"
+    },
+    {
+      "sku": "VTK025521",
+      "produto_id": "5aa9d2fd-a9cd-4e8b-9db3-2525ec22ff63",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001039",
+      "produto_id": "5d78c1f7-39c4-43ca-b250-c69bb037d4ce",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001039/summary.json"
+    },
+    {
+      "sku": "VTK001137",
+      "produto_id": "5dd76647-9206-47be-b8f8-bd739f3887d2",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001137/summary.json"
+    },
+    {
+      "sku": "VTK025932",
+      "produto_id": "5ef37ef0-f02b-4d7c-8c52-5a72abead051",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025500",
+      "produto_id": "5f7b3831-b8ba-4fe8-801b-61590c5e2d88",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001336",
+      "produto_id": "5fb0587d-bb1f-4c4f-b2a3-b3c346b17bb5",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6d/VTK001336/summary.json"
+    },
+    {
+      "sku": "VTK025498",
+      "produto_id": "5fcc0144-894b-49c2-af54-49fcba8b23f3",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK013087",
+      "produto_id": "60d97190-d39d-421f-9584-1e9cc6645375",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6b/VTK013087/summary.json"
+    },
+    {
+      "sku": "VTK000949",
+      "produto_id": "61892476-b7df-47ab-8caa-57ddc5bc4a80",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_MODEL_CONFLICT:ml-p0-phase6d/VTK000949/summary.json"
+    },
+    {
+      "sku": "VTK025827",
+      "produto_id": "620b3eaf-7716-4acb-9e78-800017f9ac4e",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK026050",
+      "produto_id": "6354cf87-3ea3-4249-ba88-43c6c56b26f9",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IDENTITY:ml-p0-phase6c/VTK026050/summary.json"
+    },
+    {
+      "sku": "VTK003134",
+      "produto_id": "6468d27d-6eb7-4550-a01b-4a599c16abc9",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE:ml-p0-phase6d/VTK003134/summary.json"
+    },
+    {
+      "sku": "VTK015947",
+      "produto_id": "64e57270-4980-4387-9a75-4a265003092b",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK002437",
+      "produto_id": "65140c10-3d26-4f38-a3e4-6e2c588034d1",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6d/VTK002437/summary.json"
+    },
+    {
+      "sku": "VTK017783",
+      "produto_id": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6c/VTK017783/summary.json"
+    },
+    {
+      "sku": "VTK025891",
+      "produto_id": "662e5d6e-58b7-4fbc-a2d3-d05508e66b1d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK016009",
+      "produto_id": "68404b02-4e51-442c-bec6-c9aea166852d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018106",
+      "produto_id": "68880dd5-048c-47b3-985d-ecb732a46b06",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK018106/summary.json"
+    },
+    {
+      "sku": "VTK025344",
+      "produto_id": "69650a58-ae3c-4ef2-ac06-a752a5f16b1d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK019952",
+      "produto_id": "6aadcd86-f85e-4608-9de5-1cb16f6bfacc",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK019952/summary.json"
+    },
+    {
+      "sku": "VTK006444",
+      "produto_id": "6b0e33d9-3f8c-4d20-9ad6-69cec42f0292",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6d/VTK006444/summary.json"
+    },
+    {
+      "sku": "VTK025539",
+      "produto_id": "6b195c17-b55a-4904-9e66-e064c46fc1e4",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK017236",
+      "produto_id": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6a/VTK017236/summary.json"
+    },
+    {
+      "sku": "VTK000552",
+      "produto_id": "6caf1e64-3a88-4430-abb8-5a055f233c32",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK000552/summary.json"
+    },
+    {
+      "sku": "VTK025888",
+      "produto_id": "70a724e6-9599-4f0b-8879-5918cc77700c",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK015983",
+      "produto_id": "70bc66e2-e975-4683-b5d5-c483dd16614b",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025917",
+      "produto_id": "719203c1-adf6-4655-acd4-ca0eacc49ba2",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018517",
+      "produto_id": "78771007-6730-4434-ae9f-f8094ad3ac11",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK018517/summary.json"
+    },
+    {
+      "sku": "VTK017898",
+      "produto_id": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK017898/summary.json"
+    },
+    {
+      "sku": "VTK025900",
+      "produto_id": "7b940b44-b0c6-4033-a7a8-2366f1efed0d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025590",
+      "produto_id": "7e3cd383-ebd6-451a-bcd2-3d4b3abe32d0",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025603",
+      "produto_id": "801ac357-d55e-4872-828c-6cf2bbee0d16",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001057",
+      "produto_id": "81eb4321-c34a-4746-8acf-7f89446e22ab",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001057/summary.json"
+    },
+    {
+      "sku": "VTK001643",
+      "produto_id": "82934b7c-0811-4afb-a37b-5400d8155b3a",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6d/VTK001643/summary.json"
+    },
+    {
+      "sku": "VTK001258",
+      "produto_id": "83721b7f-51ea-4795-92bb-610caa79bc10",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001258/summary.json"
+    },
+    {
+      "sku": "VTK018297",
+      "produto_id": "83b3b0f6-a434-4493-a180-1444c69381db",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018297/summary.json"
+    },
+    {
+      "sku": "VTK018587",
+      "produto_id": "83b49b10-7148-4d7f-b154-8082f4fae58e",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_MODEL_CONFLICT:ml-p0-phase6d/VTK018587/summary.json"
+    },
+    {
+      "sku": "VTK018024",
+      "produto_id": "85bd6a53-e81c-426c-9450-ae424299e482",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK018024/summary.json"
+    },
+    {
+      "sku": "VTK025577",
+      "produto_id": "85dec5dd-a6ef-41cd-8795-77e7bef6cacc",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK006457",
+      "produto_id": "86b23aea-1a3c-4c4c-a47a-13d04370c59f",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK006457/summary.json"
+    },
+    {
+      "sku": "VTK025881",
+      "produto_id": "879a2448-c2e2-4e6f-af70-e20c386e7788",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025600",
+      "produto_id": "886045b6-ea4a-48ab-840a-050f7a522abe",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025899",
+      "produto_id": "8868a5bc-82a8-41eb-af7a-97c835d83ac1",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025602",
+      "produto_id": "8887c67e-a4b5-40d8-a89a-e2d38af89b8d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025247",
+      "produto_id": "8b14c2ef-7fc5-4dd0-8278-f9fcd77eb276",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK025247/summary.json"
+    },
+    {
+      "sku": "VTK026019",
+      "produto_id": "8e5830d2-0126-400e-83e5-116319748d50",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK026019/summary.json"
+    },
+    {
+      "sku": "VTK017384",
+      "produto_id": "8e8e0eb5-3444-46b0-a0ef-5a5710893440",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE:ml-p0-phase6c/VTK017384/summary.json"
+    },
+    {
+      "sku": "VTK012235",
+      "produto_id": "8f654494-9099-4c7b-84d7-b82af20168fb",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK012235/summary.json"
+    },
+    {
+      "sku": "VTK001063",
+      "produto_id": "91215b9f-aab9-485f-8aa2-b8d400cbd617",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001063/summary.json"
+    },
+    {
+      "sku": "VTK016237",
+      "produto_id": "92bf4a77-b94a-49df-b11f-bf5bacc229bc",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025339",
+      "produto_id": "939e89d2-a6fc-426a-9772-e27cf9f35943",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025739",
+      "produto_id": "94d74d47-6b15-4306-8e2a-cda23b0f39fe",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025571",
+      "produto_id": "95008f78-6aaa-46b6-9d89-c6dd96e07d0b",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK017636",
+      "produto_id": "9646acd3-c2c3-4e28-97f6-3cf5fa0d55ed",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6d/VTK017636/summary.json"
+    },
+    {
+      "sku": "VTK017666",
+      "produto_id": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK017666/summary.json"
+    },
+    {
+      "sku": "VTK025576",
+      "produto_id": "98250d20-12a4-433c-9fbb-6be3a583d8c4",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025894",
+      "produto_id": "98ed508f-7ba5-4a93-8041-44b0b5c4b25d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK012684",
+      "produto_id": "9ab96d14-0427-4247-9a4f-ec7d087fe5a1",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6d/VTK012684/summary.json"
+    },
+    {
+      "sku": "VTK001165",
+      "produto_id": "9ac90e1e-88d2-4e43-9dab-4db91c3bc203",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001165/summary.json"
+    },
+    {
+      "sku": "VTK026044",
+      "produto_id": "9c4837a9-c2e6-434c-a055-1ac89f9bb431",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "MANUAL_GTIN:ml-p0-phase5a/summary.json"
+    },
+    {
+      "sku": "VTK025408",
+      "produto_id": "a13f4732-c68b-4d78-b17b-7b44d7219b22",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025399",
+      "produto_id": "a37683da-e766-4669-a8cd-b2ad02dddbd2",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK017799",
+      "produto_id": "a409dfc4-18c0-431e-876e-b707ab358615",
+      "reason": "REMOTE_LINK_REVIEW",
+      "evidence": "{\"sku\":\"VTK017799\",\"state\":\"BLOCK_DUPLICATE\",\"source\":\"phase3\",\"item_ids\":[\"MLB6655262764\",\"MLB4582557495\",\"MLB7210659020\"]}"
+    },
+    {
+      "sku": "VTK025837",
+      "produto_id": "a561c1ee-a58b-4038-8f87-933cb47297f4",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK000572",
+      "produto_id": "a6d325ba-0786-4395-8fd6-e847d6212ffe",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK000572/summary.json"
+    },
+    {
+      "sku": "VTK025849",
+      "produto_id": "a715ff56-191a-487b-8235-b67e1614a4d1",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK012911",
+      "produto_id": "a7be177c-7572-4a59-9d34-710667335d1e",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_BRAND_CONFLICT:ml-p0-phase6d/VTK012911/summary.json"
+    },
+    {
+      "sku": "VTK017789",
+      "produto_id": "a8d1a439-22ab-4e2b-8e23-e49e1a686d12",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK017789/summary.json"
+    },
+    {
+      "sku": "VTK025522",
+      "produto_id": "aa90c8fa-bdaa-4975-b261-a7ba9d4c6473",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025538",
+      "produto_id": "aa96c969-947a-4f49-b8fc-161fe5ad03f6",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025918",
+      "produto_id": "ab3f2ce5-9656-4736-9935-df5b8f893ece",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK013088",
+      "produto_id": "ac50c870-848c-4bac-ba0c-f7eef568e100",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6b/VTK013088/summary.json"
+    },
+    {
+      "sku": "VTK001173",
+      "produto_id": "ac893d3f-2c0b-4407-b358-d4030fce1181",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001173/summary.json"
+    },
+    {
+      "sku": "VTK001875",
+      "produto_id": "acc26487-e38e-4cd5-912a-8a90c735e4d1",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6d/VTK001875/summary.json"
+    },
+    {
+      "sku": "VTK006567",
+      "produto_id": "acf01ab5-3193-47f7-8977-a18198b2f223",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK006567/summary.json"
+    },
+    {
+      "sku": "VTK025589",
+      "produto_id": "b2057708-789c-4999-a782-fbfc769f5be9",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK017944",
+      "produto_id": "b220ccb7-0ec1-4976-8cb9-b631697a5aba",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK017944/summary.json"
+    },
+    {
+      "sku": "VTK026012",
+      "produto_id": "b2557a56-0d37-48cb-8237-102100c2e5fe",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK026012/summary.json"
+    },
+    {
+      "sku": "VTK001277",
+      "produto_id": "b3e91716-2b43-4ed1-9219-ca1c702d1c44",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REMOTE_DUPLICATE:ml-p0-phase6d/VTK001277/summary.json"
+    },
+    {
+      "sku": "VTK025523",
+      "produto_id": "b4cbb485-1f92-4828-a37f-0f7bfb4a3047",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025860",
+      "produto_id": "b4cf0c73-4c79-4172-b2c7-6fadc3d8143d",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK025860/summary.json"
+    },
+    {
+      "sku": "VTK016204",
+      "produto_id": "b686c43a-d79c-4ca8-8c33-c99af43ac16f",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025428",
+      "produto_id": "b70352f3-1940-4a31-90b8-15dfe7df2f8e",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK001075",
+      "produto_id": "b92ac291-0d5d-4e08-a7a9-27207279bfbe",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6c/VTK001075/summary.json"
+    },
+    {
+      "sku": "VTK018480",
+      "produto_id": "bb4405ed-880e-4c06-8c90-f0afd1b56abc",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018480/summary.json"
+    },
+    {
+      "sku": "VTK017698",
+      "produto_id": "bb82582c-4fa7-4fd0-bdee-6d5fc037345d",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN:ml-p0-phase6b/VTK017698/summary.json"
+    },
+    {
+      "sku": "VTK025568",
+      "produto_id": "bec92d5a-a722-44a2-b3c1-0fbbabf728a5",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK005382",
+      "produto_id": "bfbfb1a3-f588-4989-8d8a-6a52cfe2741d",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK005382/summary.json"
+    },
+    {
+      "sku": "VTK025497",
+      "produto_id": "bfc623ce-a8b3-4a32-ba71-6a7567b955e4",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018546",
+      "produto_id": "c33cb2ab-d5b1-4b07-ad47-28dd4b2d4a76",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_BRAND_CONFLICT:ml-p0-phase6d/VTK018546/summary.json"
+    },
+    {
+      "sku": "VTK018113",
+      "produto_id": "c3465729-640a-485e-9ea0-9030b622b642",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK018113/summary.json"
+    },
+    {
+      "sku": "VTK017625",
+      "produto_id": "c9711af5-7089-4ad7-9c21-987a25e208e0",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6c/VTK017625/summary.json"
+    },
+    {
+      "sku": "VTK015946",
+      "produto_id": "cab6ecdf-8f79-4960-bd59-c83893742a50",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018079",
+      "produto_id": "cae67c09-608d-4237-a4ee-6044081f0fad",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK018079/summary.json"
+    },
+    {
+      "sku": "VTK001282",
+      "produto_id": "cbb299c3-0b8f-4528-8680-6c83b96312b5",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK001282/summary.json"
+    },
+    {
+      "sku": "VTK006274",
+      "produto_id": "cc039b1a-fbec-4963-ada3-53f8b52753ce",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK006274/summary.json"
+    },
+    {
+      "sku": "VTK017982",
+      "produto_id": "cc84bed0-6160-4af3-b00e-148814686007",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK017982/summary.json"
+    },
+    {
+      "sku": "VTK000779",
+      "produto_id": "cd7a7a71-e276-4fbd-a9a5-f9ec6cd67170",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK000779/summary.json"
+    },
+    {
+      "sku": "VTK025954",
+      "produto_id": "ce4f6ff7-d00f-4a17-96bd-044d42060414",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_BRAND_CONFLICT:ml-p0-phase6c/VTK025954/summary.json"
+    },
+    {
+      "sku": "VTK005775",
+      "produto_id": "ce5d444a-08a2-43c0-80c1-044a25d139f8",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IDENTITY:ml-p0-phase6c/VTK005775/summary.json"
+    },
+    {
+      "sku": "VTK026008",
+      "produto_id": "d1b1a836-e25b-4306-8e37-f50777572a40",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6b/VTK026008/summary.json"
+    },
+    {
+      "sku": "VTK017155",
+      "produto_id": "d2d6e7ab-506e-49a2-b3ec-26944f675dc5",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6c/VTK017155/summary.json"
+    },
+    {
+      "sku": "VTK012362",
+      "produto_id": "d324cdae-edbc-4339-993d-5221668cb0dc",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REMOTE_DUPLICATE:ml-p0-phase6d/VTK012362/summary.json"
+    },
+    {
+      "sku": "VTK025548",
+      "produto_id": "d4d63d7b-e9a4-4dd7-83ef-1417845b3f54",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK017668",
+      "produto_id": "d84b7ace-189f-4ab8-8f7c-9292491e5b9c",
+      "reason": "REMOTE_LINK_REVIEW",
+      "evidence": "{\"sku\":\"VTK017668\",\"state\":\"BLOCK_DUPLICATE\",\"source\":\"phase3\",\"item_ids\":[\"MLB7087416462\",\"MLB7137214452\"]}"
+    },
+    {
+      "sku": "VTK001187",
+      "produto_id": "d9930b7b-c377-4f02-8e24-9f36c3d78f1e",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001187/summary.json"
+    },
+    {
+      "sku": "VTK025859",
+      "produto_id": "db60565c-b045-4d99-acf7-bc7d81b12f95",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK025859/summary.json"
+    },
+    {
+      "sku": "VTK018522",
+      "produto_id": "dc1632af-808a-4acd-bfb2-ac85add0ea3a",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_PROTECTIVE_PRICE_ENGINE:ml-p0-phase6d/VTK018522/summary.json"
+    },
+    {
+      "sku": "VTK018428",
+      "produto_id": "dcb99854-65d0-487e-bde0-29e63e2bc630",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018428/summary.json"
+    },
+    {
+      "sku": "VTK001286",
+      "produto_id": "de045a9f-a54e-454d-8c71-6ad50a201b1f",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "CATEGORY_MISMATCH:ml-p0-phase3/full-report.json"
+    },
+    {
+      "sku": "VTK001089",
+      "produto_id": "de613369-7204-430c-aa4a-c0ddf6a7a31d",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK001089/summary.json"
+    },
+    {
+      "sku": "VTK025588",
+      "produto_id": "dea3e168-4690-42d9-97e9-68e740a95ac8",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK015922",
+      "produto_id": "e1ebc8f3-13a7-47a4-bac2-394abbf07c36",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK017848",
+      "produto_id": "e666735c-5699-4787-9273-2e2be34c872a",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK017848/summary.json"
+    },
+    {
+      "sku": "VTK018446",
+      "produto_id": "e759a24c-52f8-4d87-98d5-4166efd87c42",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018446/summary.json"
+    },
+    {
+      "sku": "VTK018077",
+      "produto_id": "e7e76e6e-649f-4e31-9369-6875f254f206",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018077/summary.json"
+    },
+    {
+      "sku": "VTK017215",
+      "produto_id": "e854a49a-deb0-4714-8aed-425c4fdbe378",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK017215/summary.json"
+    },
+    {
+      "sku": "VTK026048",
+      "produto_id": "e87b83ee-c4e4-476a-8e7b-6900c7f86a87",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN:ml-p0-phase6b/VTK026048/summary.json"
+    },
+    {
+      "sku": "VTK016217",
+      "produto_id": "e92f6915-7ced-4c5f-95ad-94d4a02a2500",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025999",
+      "produto_id": "ee3c30fc-cd5c-423c-b32e-caca8ddd0dcc",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IDENTITY:ml-p0-phase6a/VTK025999/summary.json"
+    },
+    {
+      "sku": "VTK001195",
+      "produto_id": "f0635871-89a2-4e66-a415-02ac568622b6",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IMAGE:ml-p0-phase6d/VTK001195/summary.json"
+    },
+    {
+      "sku": "VTK025547",
+      "produto_id": "f0a4e378-7462-4642-9d6e-8de79f71c495",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018449",
+      "produto_id": "f14e83a0-cb35-42ff-ac02-1d46f738ba75",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATEGORY:ml-p0-phase6d/VTK018449/summary.json"
+    },
+    {
+      "sku": "VTK019033",
+      "produto_id": "f19c8241-8886-48f5-a842-2ac4093ac43d",
+      "reason": "REMOTE_LINK_REVIEW",
+      "evidence": "{\"sku\":\"VTK019033\",\"state\":\"BLOCK_DUPLICATE\",\"source\":\"phase3\",\"item_ids\":[\"MLB4837734679\",\"MLB4841872479\"]}"
+    },
+    {
+      "sku": "VTK025569",
+      "produto_id": "f2a44ac6-751f-40cf-ac5e-efe29b493dd5",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK000092",
+      "produto_id": "f33be404-0036-4761-80c6-4dd0219a4208",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK000092/summary.json"
+    },
+    {
+      "sku": "VTK025536",
+      "produto_id": "f375ba17-8da9-4335-ba43-de31cf2a441d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018550",
+      "produto_id": "f45d249a-4ad2-43de-894c-dc80c6fe361f",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK018550/summary.json"
+    },
+    {
+      "sku": "VTK005397",
+      "produto_id": "f583f082-07ed-4a56-a737-1dd5f25c9f8b",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6c/VTK005397/summary.json"
+    },
+    {
+      "sku": "VTK025365",
+      "produto_id": "f5c8584c-9802-409d-9a4d-51f894cc05d1",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK026000",
+      "produto_id": "f5d8608f-1a03-462e-8b6a-118f4a938bb4",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6a/VTK026000/summary.json"
+    },
+    {
+      "sku": "VTK001897",
+      "produto_id": "f644c6c9-e102-42ff-98c6-b9265ac702b3",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "SOURCE_DEFERRED:ml-p0-phase6d/VTK001897/summary.json"
+    },
+    {
+      "sku": "VTK025942",
+      "produto_id": "f68a8e01-9542-4265-8a7b-e6ab8c6795d9",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK016141",
+      "produto_id": "f6dd53a7-be1d-435b-8a90-5811eaaf959d",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018129",
+      "produto_id": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_CATALOG_IDENTITY:ml-p0-phase6d/VTK018129/summary.json"
+    },
+    {
+      "sku": "VTK015972",
+      "produto_id": "f7ee4e5d-fd47-4d93-a169-63cbc4a9f257",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK018292",
+      "produto_id": "f85d881e-1485-487f-aaad-19c03f40c054",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_UNIT_CONFLICT:ml-p0-phase6d/VTK018292/summary.json"
+    },
+    {
+      "sku": "VTK025861",
+      "produto_id": "fb955111-ce40-4901-9b5f-32a9bf040152",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_REQUIRED_ATTRIBUTE:ml-p0-phase6c/VTK025861/summary.json"
+    },
+    {
+      "sku": "VTK017336",
+      "produto_id": "fbb175b5-eb44-44bb-9633-567f8d679cb7",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_IDENTITY:ml-p0-phase6b/VTK017336/summary.json"
+    },
+    {
+      "sku": "VTK025420",
+      "produto_id": "fd6cd343-5598-41b5-8006-84d9b691e9a4",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025499",
+      "produto_id": "fdd05020-df62-4887-93cc-cce65e6e4182",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025835",
+      "produto_id": "fe28479d-677c-4b86-9814-1e89382fe1f9",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK025427",
+      "produto_id": "fe395999-9d8d-47e5-a23b-8cab098ac922",
+      "reason": "EXCLUDED_NO_ACTIVE_PREFERRED_OFFER",
+      "evidence": null
+    },
+    {
+      "sku": "VTK026037",
+      "produto_id": "fef9b31d-51d3-433b-a19c-ec7405ad03c7",
+      "reason": "EXCLUDED_BY_HISTORICAL_LEDGER",
+      "evidence": "BLOCK_GTIN_BRAND_CONFLICT:ml-p0-phase6d/VTK026037/summary.json"
+    }
+  ]
+}

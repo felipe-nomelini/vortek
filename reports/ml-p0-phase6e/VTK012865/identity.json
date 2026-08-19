@@ -1,0 +1,369 @@
+{
+  "checked_at": "2026-08-17T12:56:24.091Z",
+  "product": {
+    "id": "4af0d21d-e9f5-468a-999d-c8d6a7bd64c8",
+    "sku": "VTK012865",
+    "nome": "Alto-falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+    "marca": "Atk Eletroacústica",
+    "gtin": "7898640362144"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1555",
+    "consulted_at": "2026-08-17T12:56:23.894Z",
+    "product": {
+      "produtoid": "1555",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 665,
+      "preco_crossdocking": 665,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 665,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Alto-falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+      "titulo_curto": "Alto-falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+      "categoriaid": "289648",
+      "categoria_nome": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+      "abc": null,
+      "ean11": "7898640362144",
+      "ncm": "8518.29.90",
+      "descricao": "<p>18WF810B</p> <p>Descrição:<br>Alto-falante de 18” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade.<br>Utiliza uma bobina de 75 mm de diâmetro (3”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior.<br>Design exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica.<br>Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance.</p> <p>Principais Características:<br>400 W Potência Nominal<br>8 Ohms de Impedância Nominal<br>96 dB SPL de Sensibilidade<br>30 a 2000Hz</p> <p>Especificações:<br>Potência Nominal Admissível(1): 400 W <br>Potência Máxima do Amplificador(2): 6400 W pico<br>Sensibilidade (1W/1m)(3) : 96 dB SPL<br>Impedância Nominal: 8 Ohms<br>Impedância Mínima: 7.2 Ohms<br>Diâmetro Nominal: 457.2 mm (18 pol)<br>Resposta de Frequência: 30 a 2000 Hz<br>Diâmetro da Bobina: 75 mm (3”)<br>Fio da Bobina: Fio de Cobre Circular<br>Resistência da Bobina (Re): 6.5 Ohms<br>X.máx(4): 7 mm <br>Volume de Ar ocupado: 7.19 L</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Atk Eletroacústica",
+      "modelo": "",
+      "peso": 8.29,
+      "largura": 49,
+      "altura": 23,
+      "profundidade": 49,
+      "peso_embalagem": 8.29,
+      "largura_embalagem": 49,
+      "altura_embalagem": 23,
+      "profundidade_embalagem": 49,
+      "link": null,
+      "link_imagem": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/33fc704690a3c10bee062fda0304067a.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 43,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "683263966",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-06 11:23:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-06 11:23:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 2,
+      "tempo_cross": 0,
+      "estoque_total": 2,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/33fc704690a3c10bee062fda0304067a.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e848bd8bd8ae759506106f7e17380fe0.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c8752aac814f57b4ee7f4ab2ebf28b88.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/b12928a8f94e5dd4fc61e2d8865f0ee0.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2d4e891157fe7ea3d6539621dc183429.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: COLOR,MODEL",
+    "foundValue": "MLB32953866",
+    "source": "ML catalog MLB32953866 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "COLOR",
+        "MODEL"
+      ],
+      "catalog_brand": "Atk Eletroacústica",
+      "model": "Sub Sub Graves 18 Polegadas",
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "ciano"
+      ],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.6666666666666666
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB32953866",
+      "catalog_product_id": "MLB32953866",
+      "domain_id": "MLB-SPEAKERS",
+      "name": "Alto-falante Profissional Atk Eletroacústica 18wf810b-8",
+      "parent_id": "MLB32953865",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "27107924",
+          "value_name": "Atk Eletroacústica",
+          "values": [
+            {
+              "id": "27107924",
+              "name": "Atk Eletroacústica"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "32938138",
+          "value_name": "Alto-falantes Profissionais",
+          "values": [
+            {
+              "id": "32938138",
+              "name": "Alto-falantes Profissionais"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "32938139",
+          "value_name": "Sub Sub Graves 18 Polegadas",
+          "values": [
+            {
+              "id": "32938139",
+              "name": "Sub Sub Graves 18 Polegadas"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "977967",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "977967",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BASE",
+          "name": "Com base",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "32938140",
+          "value_name": "7898640362144",
+          "values": [
+            {
+              "id": "32938140",
+              "name": "7898640362144"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "IS_PROFESSIONAL",
+          "name": "É profissional",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "27501614",
+          "value_name": "19.7 cm",
+          "values": [
+            {
+              "id": "27501614",
+              "name": "19.7 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "7625933",
+          "value_name": "7 kg",
+          "values": [
+            {
+              "id": "7625933",
+              "name": "7 kg"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Alto-Falante Profissional Atk Eletroacústica 18Wf810B-8\nAlto-falante de 18\" de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade.\nUtiliza uma bobina de 75 mm de diâmetro (3\") e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior.\nDesign exclusivo e moderno.\nCarcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica.\nProjetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão.\n\nCaracterísticas:\n400 W Potência Nominal\n8 ohms de Impedância Nominal\n96 dB SPL de Sensibilidade\n30 a 2000Hz\n\nEspecificações do Fabricante:\nPotência Nominal Admissível: 400 W\nPotência Máxima do Amplificador: 6400 W pico\nSensibilidade (1W/1m): 96 dB SPL\nImpedância Nominal: 8 Ohms\nImpedância Mínima: 7.2 ohms\nDiâmetro Nominal: 457.2 mm (18 pol)\nResposta de Frequência: 30 a 2000 Hz\nDiâmetro da Bobina: 75 mm (3\")\nFio da Bobina: Fio de Cobre Circular\nResistência da Bobina (Re): 6.5 ohms\nX.Máx: 7 mm\nVolume de Ar ocupado: 7.19 L"
+      },
+      "pictures": [
+        {
+          "id": "925043-MLU74393617638_022024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_925043-MLU74393617638_022024-F.jpg",
+          "max_width": "1070",
+          "max_height": "541"
+        },
+        {
+          "id": "768539-MLU74393588058_022024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_768539-MLU74393588058_022024-F.jpg",
+          "max_width": "1079",
+          "max_height": "742"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-02-13T05:54:36Z",
+      "last_updated": "2025-09-17T21:41:06Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

@@ -1,0 +1,580 @@
+{
+  "checked_at": "2026-08-17T00:44:24.458Z",
+  "expected_catalog_product_id": "MLB23892377",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB23892377",
+    "catalog_product_id": "MLB23892377",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+    "permalink": "",
+    "name": "Suporte Teto Tv 32-40-42-43-48-49-55-56 Samsung-LG-sony Cor Preto",
+    "family_name": "Multivisão SKY100",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB22963028",
+            "picker_label": "Branco",
+            "picture_id": "760630-MLA95940125519_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_760630-MLA95940125519_102025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Branco"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Multivisão SKY100 - Branco",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB23892377",
+            "picker_label": "Preto",
+            "picture_id": "933006-MLA95958573454_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_933006-MLA95958573454_102025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Multivisão SKY100 - Preto",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "933006-MLA95958573454_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_933006-MLA95958573454_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 647,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "801351-MLA82469776497_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_801351-MLA82469776497_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "994370-MLA96402110649_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_994370-MLA96402110649_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 249,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "717656-MLA109555836242_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_717656-MLA109555836242_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 626,
+        "max_height": 591,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "733587-MLA95958761870_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_733587-MLA95958761870_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 666,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "664463-MLA95958761874_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_664463-MLA95958761874_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 249,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "775955-MLA109556246328_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_775955-MLA109556246328_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 644,
+        "max_height": 515,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "621818-MLA99867377287_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_621818-MLA99867377287_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 978,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "761261-MLA96402050887_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_761261-MLA96402050887_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 250,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "723159-MLA109555806702_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_723159-MLA109555806702_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 640,
+        "max_height": 624,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "628038-MLA95958573490_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_628038-MLA95958573490_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 382,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "809652-MLA96402140559_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_809652-MLA96402140559_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1169,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Cor preto que combina com qualquer decoração.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Suporta telas de 19\" a 56\" com peso máximo de 35 kg.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Inclui kit de instalação e organizador de cabos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Possui ângulo de rotação de 360° para melhor visualização.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Montagem no teto com recursos inclináveis e articulados.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2716081",
+        "value_name": "Multivisão",
+        "values": [
+          {
+            "id": "2716081",
+            "name": "Multivisão"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "10575178",
+        "value_name": "SKY100",
+        "values": [
+          {
+            "id": "10575178",
+            "name": "SKY100"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_SCREEN_TYPES",
+        "name": "Tipos de telas compatíveis",
+        "value_id": "20103107",
+        "value_name": "LCD:LED",
+        "values": [
+          {
+            "id": "20103107",
+            "name": "LCD:LED"
+          }
+        ]
+      },
+      {
+        "id": "MIN_SCREEN_SIZE",
+        "name": "Tamanho mínimo da tela",
+        "value_id": "7674122",
+        "value_name": "19 \"",
+        "values": [
+          {
+            "id": "7674122",
+            "name": "19 \""
+          }
+        ]
+      },
+      {
+        "id": "MAX_SCREEN_SIZE",
+        "name": "Tamanho máximo da tela",
+        "value_id": "7634726",
+        "value_name": "56 \"",
+        "values": [
+          {
+            "id": "7634726",
+            "name": "56 \""
+          }
+        ]
+      },
+      {
+        "id": "STANDARDS_VESA",
+        "name": "Padrões VESA",
+        "value_id": "3568440",
+        "value_name": "400x400",
+        "values": [
+          {
+            "id": "3568440",
+            "name": "400x400"
+          }
+        ]
+      },
+      {
+        "id": "MOUNTING_PLACES",
+        "name": "Lugares de montagem",
+        "value_id": "7720909",
+        "value_name": "Teto",
+        "values": [
+          {
+            "id": "7720909",
+            "name": "Teto"
+          }
+        ]
+      },
+      {
+        "id": "IS_INCLINABLE",
+        "name": "É inclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ARTICULATED_MOUNT",
+        "name": "É articulado",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_SWIVELLING",
+        "name": "É giratório",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_FIXED_MOUNT",
+        "name": "É fixo",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_MOTORIZED",
+        "name": "É motorizada",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "3325160",
+        "value_name": "Aço carbono",
+        "values": [
+          {
+            "id": "3325160",
+            "name": "Aço carbono"
+          }
+        ]
+      },
+      {
+        "id": "SUPPORTED_SCREENS_NUMBER",
+        "name": "Quantidade de telas suportadas",
+        "value_id": "9235769",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "9235769",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "1073144",
+        "value_name": "35 kg",
+        "values": [
+          {
+            "id": "1073144",
+            "name": "35 kg"
+          }
+        ]
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "65454983",
+        "value_name": "115 cm",
+        "values": [
+          {
+            "id": "65454983",
+            "name": "115 cm"
+          }
+        ]
+      },
+      {
+        "id": "ROTATION_ANGLE",
+        "name": "Ângulo de rotação",
+        "value_id": "8671387",
+        "value_name": "360°",
+        "values": [
+          {
+            "id": "8671387",
+            "name": "360°"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_INSTALLATION_KIT",
+        "name": "Inclui kit de instalação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "INCLUDES_CABLE_ORGANIZER",
+        "name": "Inclui organizador de cabos",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "19945472",
+        "value_name": "60006145",
+        "values": [
+          {
+            "id": "19945472",
+            "name": "60006145"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A localização da sua TV ou monitor é de suma importância porque, na sua frente, você compartilhará muitas horas de entretenimento ou trabalho. Em sua casa ou no seu negócio, aproveite ao máximo o espaço com um suporte que lhe dê conforto. Nada melhor do que tê-lo ao seu alcance!\n\nAdaptável aos seus espaços\nObtenha o ângulo perfeito com este suporte inclinável e articulado. Você poderá ajustá-lo à posição mais confortável para visualizar seus conteúdos favoritos e ganhar espaço.\n\nFácil de instalar\nA norma padronizada VESA permite que você saiba a distância entre os orifícios na parte de trás da tela, para que você possa escolher o suporte que melhor se adapte a essa medida. Este produto conta com uma montagem de 400x400 para ser colocado com segurança."
+    },
+    "parent_id": "MLB9547236",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T23:11:17.166964743"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-06-09T23:15:56Z",
+    "authorized_stores": null,
+    "last_updated": "2025-10-22T18:39:49Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

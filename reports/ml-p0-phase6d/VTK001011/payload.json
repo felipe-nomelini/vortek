@@ -1,0 +1,212 @@
+{
+  "payload": {
+    "family_name": "Fogão Elétrico Agratto FM-01",
+    "category_id": "MLB120316",
+    "catalog_product_id": "MLB11329647",
+    "catalog_listing": true,
+    "price": 439.9,
+    "currency_id": "BRL",
+    "available_quantity": 9,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/62538/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/62538/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/62538/550/3.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "97494",
+        "value_name": "Agratto"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "84813619",
+        "value_name": "Agratto FM-01 2 Bocas"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "2414689",
+        "value_name": "Aço inoxidável"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "COOKTOPS_TOTAL_POWER",
+        "value_id": "47079007",
+        "value_name": "2 kW"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "7490134",
+        "value_name": "FM-01"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450303",
+        "value_name": "Prateado"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "10981338",
+        "value_name": "60"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPES",
+        "value_id": "1033091",
+        "value_name": "Elétrica"
+      },
+      {
+        "id": "IGNITION_TYPE",
+        "value_id": "94845",
+        "value_name": "Automático"
+      },
+      {
+        "id": "CONTROL_TYPE",
+        "value_id": "11027425",
+        "value_name": "Manípulos"
+      },
+      {
+        "id": "SURFACE_MATERIALS",
+        "value_id": "5987349",
+        "value_name": "Aço inoxidável"
+      },
+      {
+        "id": "IS_NATURAL_GAS_CONVERTIBLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_BOTTLED_GAS_CONVERTIBLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SAFETY_VALVES",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MOUNTING_TYPE",
+        "value_id": "4502036",
+        "value_name": "De chão"
+      },
+      {
+        "id": "WITH_SAFETY_LOCK",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_OVERHEAT_PROTECTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_TIMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_ECOLOGIC",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "1115141",
+        "value_name": "8 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "1094978",
+        "value_name": "275 cm"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "943435",
+        "value_name": "50 cm"
+      },
+      {
+        "id": "BURNERS_NUMBER",
+        "value_id": "211153",
+        "value_name": "2"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "15996578",
+        "value_name": "2.52 kg"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "8461768",
+            "name": "7898461965838"
+          },
+          {
+            "id": "10914557",
+            "name": "7898461968426"
+          },
+          {
+            "id": "38872346",
+            "name": "7893473126161"
+          },
+          {
+            "id": "52708002",
+            "name": "7892377088780"
+          }
+        ]
+      },
+      {
+        "id": "MPN",
+        "value_id": "11111581",
+        "value_name": "4917"
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GRATES_MATERIAL",
+        "value_id": "7080774",
+        "value_name": "Ferro"
+      },
+      {
+        "id": "POWER_LEVELS",
+        "value_id": "996069",
+        "value_name": "5"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001011"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001011"
+  },
+  "sha256": "b8153553350eedc2d29181c062a16604c0c23f57c66842bcdc5a6077c5652898",
+  "family_name_sha256": "86d0e4a6708d26e05575e8d84a3cac9f3243c8493cc856b7c39eeb5aaa5cb882",
+  "title_absent": true,
+  "description_absent": true
+}

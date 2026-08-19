@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:47.427Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+    "supplier_category": "Segurança / Alarme/ Acessórios Alarme",
+    "supplier_brand": "CITROX",
+    "supplier_gtin": "7898954353074",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/366711",
+    "captured_at": "2026-08-17T12:54:53.354Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "a34dcd0e-5283-4c49-bbc0-c1919309ca19",
+    "produto_id": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "366711",
+    "sku_fornecedor": "366711",
+    "custo": 684.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "366711",
+    "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+    "descricao": "Suporta dois laços Indutivos (somente a central de 2 pontos); Saídas da Central com pulso e retenção (somente a de 1 ponto); Garantia de acesso somente por veículos; Ajuste da frequência de operação; Ajuste de sensibilidade; Monitoramento de falha no laço detector. *Imagens meramente ilustrativas.",
+    "marca": "CITROX",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafceac34.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafceb888.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafcebf0d.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafcec584.jpg"
+    ],
+    "gtin": "7898954353074",
+    "ncm": "85439090",
+    "cest": null
+  }
+}

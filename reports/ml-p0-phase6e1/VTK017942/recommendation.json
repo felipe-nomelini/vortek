@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Fonte Atx 200w C3 Tech Ps-200v4 C3plus Sem Cabo - Caixa Com 10 Unidades",
+    "supplier_category": "Informatica/ Perifericos/ Fonte Atx",
+    "supplier_brand": "C3 TECH",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/382139",
+    "captured_at": "2026-08-17T12:56:42.280Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

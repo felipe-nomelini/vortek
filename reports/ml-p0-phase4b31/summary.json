@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-08-16T20:50:08.104Z",
+  "classification": "REMOTE_NORMALIZATION_ACCEPTABLE",
+  "critical_identity": "MATCH",
+  "image": "IMAGE_NORMALIZED_BY_ML",
+  "dimensions": {
+    "original_supplier_payload": {
+      "height_cm": 17,
+      "length_cm": 12,
+      "width_cm": 13,
+      "weight_g": 262
+    },
+    "current_ml": {
+      "height_cm": 16,
+      "length_cm": 5,
+      "width_cm": 11,
+      "weight_g": 110
+    },
+    "initial_classification": "ML_LOGISTICS_NORMALIZATION_PENDING_VALIDATION",
+    "final_classification": "ML_LOGISTICS_NORMALIZATION_ACCEPTABLE",
+    "overwrite_product_master": false,
+    "source_separation_required": true,
+    "ml_context": {
+      "shipping_mode": "me2",
+      "logistic_type": "xd_drop_off"
+    }
+  },
+  "previous_shipping": 19.85,
+  "current_shipping": 18.45,
+  "previous_margin_percent": 15.003204785813477,
+  "current_margin_percent": 15.750988142292488,
+  "current_profit": 29.488999999999994,
+  "recommendation": "Authorize a new local-persistence phase using current remote commercial fields; keep supplier package data and ML logistics data as separate evidence.",
+  "writes": {
+    "mercado_livre": 0,
+    "supabase": 0,
+    "description": 0
+  },
+  "hold": "P0 PHASE 4B.3.1 — REMOTE NORMALIZATION HOLD"
+}

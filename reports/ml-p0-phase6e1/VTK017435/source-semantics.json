@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-08-17T14:15:53.606Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conector T Deye Para Micro Inversor Sun-m225g4",
+    "supplier_category": "Kit Gerador Fotovoltaico/ Conectores Para Energia Solar/ Conector Solar",
+    "supplier_brand": "DEYE",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/388672",
+    "captured_at": "2026-08-17T12:56:37.974Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "de82f384-aada-4490-bafc-6d6a75f04682",
+    "produto_id": "f08c8b3c-96ad-4016-b0cd-5ac4353260fe",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "388672",
+    "sku_fornecedor": "388672",
+    "custo": 55,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:30:21.584+00:00",
+    "created_at": "2026-07-20T18:30:39.682006+00:00",
+    "updated_at": "2026-08-17T10:30:21.591+00:00",
+    "sku_oferta": "388672",
+    "nome": "Conector T Deye Para Micro Inversor Sun-m225g4",
+    "descricao": "A Deye, fundada em 2007 com capital registrado de 300 milhões de RMB, é uma das empresas de alta tecnologia da China e uma subsidiária do Deye Group. Com uma área de fábrica de mais de 15.000㎡ e equipamentos completos de produção e teste, a Deye tornou-se um importante player no mercado global de inversores solares. A Deye se dedica a fornecer soluções completas para sistemas de energia fotovoltaica, incluindo soluções para usinas de energia residenciais e comerciais. Além disso, a Deye oferece o dispositivo certo para cada aplicação: para todos os tipos de módulos, para conexão à rede e redes independentes, bem como sistema de inversor híbrido, para sistemas domésticos pequenos e sistemas comerciais na faixa de megawatts. Este é o novo Conector “T” para ser utilizado na nova linha G4 de micro inversores da Deye. Garante uma instalação mais segura e rápida, otimizando o tempo de instalação. Este conector é utilizado para realizar extensão do cabo tronco e cabo de decida para conexão do disjuntor. ESQUEMA DE LIGAÇÃO • Para a ligação de apenas 1 micro inversor no mesmo circuito, NÃO É NECESSÁRIO a utilização do conector T. • Para a ligação de 2 micro inversores no mesmo circuito, se faz necessário a utilização de 1 conector T. • Para a ligação de 3 micro inversores no mesmo circuito, se faz necessário a utilização de 2 conectores T. • O corte do cabo tronco do micro inversor acarreta em exclusão da garantia do inversor. • Utilizar cabo PP 3x4,00mm². DADOS TÉCNICOS • Peso bruto: 0,082Kg • Dimensão: 8,5cm x 3,5m (Altura x Largura) • NCM: 85369010 *Imagens meramente ilustrativas.",
+    "marca": "DEYE",
+    "imagens": [
+      "https://solar.evolusom.com.br/storage/produtos/388672_1741889110.jpg",
+      "https://solar.evolusom.com.br/storage/produtos/388672_1741889216.jpg",
+      "https://solar.evolusom.com.br/storage/produtos/388672_1741893139.jpg",
+      "https://solar.evolusom.com.br/storage/produtos/388672_1741893161.jpg",
+      "https://solar.evolusom.com.br/storage/produtos/388672_1741893285.jpg",
+      "https://solar.evolusom.com.br/storage/produtos/388672_1741894447.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85369090",
+    "cest": "12.004.00"
+  }
+}

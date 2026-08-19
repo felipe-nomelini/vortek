@@ -1,0 +1,1112 @@
+{
+  "checked_at": "2026-08-17T00:43:39.107Z",
+  "item": {
+    "id": "MLB7432625460",
+    "site_id": "MLB",
+    "title": "Telefone Headset Hsb50 Preto Intelbras",
+    "family_name": "Intelbras HSB 50",
+    "family_id": 5423315799536083,
+    "seller_id": 3294514937,
+    "category_id": "MLB454750",
+    "user_product_id": "MLBU4772720268",
+    "official_store_id": null,
+    "price": 499.9,
+    "base_price": 499.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 20,
+    "available_quantity": 20,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T00:43:37.875Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:43:37.940Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432625460-telefone-headset-hsb50-preto-intelbras-_JM",
+    "thumbnail_id": "961547-MLA114911999013_072026",
+    "thumbnail": "http://http2.mlstatic.com/D_961547-MLA114911999013_072026-I.jpg",
+    "pictures": [
+      {
+        "id": "961547-MLA114911999013_072026",
+        "url": "http://http2.mlstatic.com/D_961547-MLA114911999013_072026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_961547-MLA114911999013_072026-O.jpg",
+        "size": "495x500",
+        "max_size": "788x795",
+        "quality": ""
+      },
+      {
+        "id": "831477-MLA99850765453_112025",
+        "url": "http://http2.mlstatic.com/D_831477-MLA99850765453_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_831477-MLA99850765453_112025-O.jpg",
+        "size": "500x473",
+        "max_size": "556x527",
+        "quality": ""
+      },
+      {
+        "id": "862482-MLB49004190654_022022",
+        "url": "http://http2.mlstatic.com/D_862482-MLB49004190654_022022-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_862482-MLB49004190654_022022-O.jpg",
+        "size": "500x256",
+        "max_size": "864x444",
+        "quality": ""
+      },
+      {
+        "id": "909842-MLA114911821769_072026",
+        "url": "http://http2.mlstatic.com/D_909842-MLA114911821769_072026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_909842-MLA114911821769_072026-O.jpg",
+        "size": "500x496",
+        "max_size": "788x783",
+        "quality": ""
+      },
+      {
+        "id": "894984-MLA113630893118_072026",
+        "url": "http://http2.mlstatic.com/D_894984-MLA113630893118_072026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_894984-MLA113630893118_072026-O.jpg",
+        "size": "358x500",
+        "max_size": "469x654",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "75658586",
+        "value_name": "HSC",
+        "values": [
+          {
+            "id": "75658586",
+            "name": "HSC",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "name": "Homologação Anatel Nº",
+        "value_id": "40364878",
+        "value_name": "13841200160",
+        "values": [
+          {
+            "id": "40364878",
+            "name": "13841200160",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "10366",
+        "value_name": "Intelbras",
+        "values": [
+          {
+            "id": "10366",
+            "name": "Intelbras",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "name": "Tipo de tela",
+        "value_id": "102258",
+        "value_name": "Digital",
+        "values": [
+          {
+            "id": "102258",
+            "name": "Digital",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "15164709",
+        "value_name": "7896637637961",
+        "values": [
+          {
+            "id": "15164709",
+            "name": "7896637637961",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "name": "Quantidade de fones de ouvido incluídos",
+        "value_id": "7512605",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "7512605",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "IS_RURAL_TELEPHONE",
+        "name": "É telefone rural",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "name": "É montável na parede",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "10366",
+        "value_name": "Intelbras",
+        "values": [
+          {
+            "id": "10366",
+            "name": "Intelbras",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "15164704",
+        "value_name": "HSB 50",
+        "values": [
+          {
+            "id": "15164704",
+            "name": "HSB 50",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPES",
+        "name": "Tipos de alimentação",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica",
+        "values": [
+          {
+            "id": "49713698",
+            "name": "Corrente doméstica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK021108",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK021108",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_ALARM_CLOCK_FUNCTION",
+        "name": "Com função de relógio despertador",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "name": "Com secretária eletrônica",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_BACKLIT_KEYPAD",
+        "name": "Com teclado retroiluminado",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "name": "Com identificação de chamadas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_CALL_BLOCKING",
+        "name": "Com bloqueio de chamadas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_DATE_AND_TIME_INDICATOR",
+        "name": "Com indicador de data e hora",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FLASH_BUTTON",
+        "name": "Com botão flash",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_HANDSET_VOLUME_CONTROL",
+        "name": "Com controle de volume do auscultador ",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "name": "Com modo mãos livres",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "name": "Com função de rediscagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_SILENCE_MODE",
+        "name": "Com modo silencioso",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB20801741",
+    "domain_id": "MLB-TELEPHONES",
+    "seller_custom_field": "VTK021108",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:43:38.059Z",
+    "last_updated": "2026-08-17T00:43:38.059Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "propagation": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 180,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 00:43:38 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 05c123ce9ed88aac1269d5f13441b908.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "JsireT6vP-11jXG1viHWc1_cNt4Ep77g3WNNOp5pJzQc-tfJoh7rFA==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "b915da30-d9b7-4e93-b9e4-856627b55fce",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432625460",
+        "site_id": "MLB",
+        "title": "Telefone Headset Hsb50 Preto Intelbras",
+        "family_name": "Intelbras HSB 50",
+        "family_id": 5423315799536083,
+        "seller_id": 3294514937,
+        "category_id": "MLB454750",
+        "user_product_id": "MLBU4772720268",
+        "official_store_id": null,
+        "price": 499.9,
+        "base_price": 499.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 20,
+        "available_quantity": 20,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T00:43:37.875Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T00:43:37.940Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432625460-telefone-headset-hsb50-preto-intelbras-_JM",
+        "thumbnail_id": "961547-MLA114911999013_072026",
+        "thumbnail": "http://http2.mlstatic.com/D_961547-MLA114911999013_072026-I.jpg",
+        "pictures": [
+          {
+            "id": "961547-MLA114911999013_072026",
+            "url": "http://http2.mlstatic.com/D_961547-MLA114911999013_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_961547-MLA114911999013_072026-O.jpg",
+            "size": "495x500",
+            "max_size": "788x795",
+            "quality": ""
+          },
+          {
+            "id": "831477-MLA99850765453_112025",
+            "url": "http://http2.mlstatic.com/D_831477-MLA99850765453_112025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_831477-MLA99850765453_112025-O.jpg",
+            "size": "500x473",
+            "max_size": "556x527",
+            "quality": ""
+          },
+          {
+            "id": "862482-MLB49004190654_022022",
+            "url": "http://http2.mlstatic.com/D_862482-MLB49004190654_022022-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_862482-MLB49004190654_022022-O.jpg",
+            "size": "500x256",
+            "max_size": "864x444",
+            "quality": ""
+          },
+          {
+            "id": "909842-MLA114911821769_072026",
+            "url": "http://http2.mlstatic.com/D_909842-MLA114911821769_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_909842-MLA114911821769_072026-O.jpg",
+            "size": "500x496",
+            "max_size": "788x783",
+            "quality": ""
+          },
+          {
+            "id": "894984-MLA113630893118_072026",
+            "url": "http://http2.mlstatic.com/D_894984-MLA113630893118_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_894984-MLA113630893118_072026-O.jpg",
+            "size": "358x500",
+            "max_size": "469x654",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "ALPHANUMERIC_MODELS",
+            "name": "Modelo alfanumérico",
+            "value_id": "75658586",
+            "value_name": "HSC",
+            "values": [
+              {
+                "id": "75658586",
+                "name": "HSC",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ANATEL_HOMOLOGATION_NUMBER",
+            "name": "Homologação Anatel Nº",
+            "value_id": "40364878",
+            "value_name": "13841200160",
+            "values": [
+              {
+                "id": "40364878",
+                "name": "13841200160",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "10366",
+            "value_name": "Intelbras",
+            "values": [
+              {
+                "id": "10366",
+                "name": "Intelbras",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DISPLAY_TYPE",
+            "name": "Tipo de tela",
+            "value_id": "102258",
+            "value_name": "Digital",
+            "values": [
+              {
+                "id": "102258",
+                "name": "Digital",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "15164709",
+            "value_name": "7896637637961",
+            "values": [
+              {
+                "id": "15164709",
+                "name": "7896637637961",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEADPHONES_NUMBER_INCLUDED",
+            "name": "Quantidade de fones de ouvido incluídos",
+            "value_id": "7512605",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "7512605",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "IS_RURAL_TELEPHONE",
+            "name": "É telefone rural",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_WALL_MOUNTABLE",
+            "name": "É montável na parede",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_WIRELESS",
+            "name": "É sem fio",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MAIN_COLOR",
+            "name": "Cor principal",
+            "value_id": "2450295",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "2450295",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MANUFACTURER",
+            "name": "Fabricante",
+            "value_id": "10366",
+            "value_name": "Intelbras",
+            "values": [
+              {
+                "id": "10366",
+                "name": "Intelbras",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "15164704",
+            "value_name": "HSB 50",
+            "values": [
+              {
+                "id": "15164704",
+                "name": "HSB 50",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "POWER_SUPPLY_TYPES",
+            "name": "Tipos de alimentação",
+            "value_id": "49713698",
+            "value_name": "Corrente doméstica",
+            "values": [
+              {
+                "id": "49713698",
+                "name": "Corrente doméstica",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK021108",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK021108",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "WITH_ALARM_CLOCK_FUNCTION",
+            "name": "Com função de relógio despertador",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_ANSWERING_MACHINE",
+            "name": "Com secretária eletrônica",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_BACKLIT_KEYPAD",
+            "name": "Com teclado retroiluminado",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_CALLER_IDENTIFICATION",
+            "name": "Com identificação de chamadas",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_CALL_BLOCKING",
+            "name": "Com bloqueio de chamadas",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_DATE_AND_TIME_INDICATOR",
+            "name": "Com indicador de data e hora",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_FLASH_BUTTON",
+            "name": "Com botão flash",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_HANDSET_VOLUME_CONTROL",
+            "name": "Com controle de volume do auscultador ",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_HANDS_FREE_MODE",
+            "name": "Com modo mãos livres",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_REDIAL_FUNCTION",
+            "name": "Com função de rediscagem",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_SILENCE_MODE",
+            "name": "Com modo silencioso",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB20801741",
+        "domain_id": "MLB-TELEPHONES",
+        "seller_custom_field": "VTK021108",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T00:43:38.059Z",
+        "last_updated": "2026-08-17T00:43:38.059Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

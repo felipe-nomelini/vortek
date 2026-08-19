@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194271",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317544",
+    "captured_at": "2026-08-17T12:55:25.453Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

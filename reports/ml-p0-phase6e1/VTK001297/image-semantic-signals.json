@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-08-17T14:15:41.750Z",
+  "local_images": [
+    "https://static.hayapek.com.br/produtos/38402/550/1.jpg",
+    "https://static.hayapek.com.br/produtos/38402/550/2.jpg",
+    "https://static.hayapek.com.br/produtos/38402/550/3.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "667741-MLA95701568836_102025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_667741-MLA95701568836_102025-F.jpg",
+      "max_width": "383",
+      "max_height": "1200"
+    },
+    {
+      "id": "794992-MLA74780591397_022024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_794992-MLA74780591397_022024-F.jpg",
+      "max_width": "347",
+      "max_height": "1102"
+    },
+    {
+      "id": "842479-MLU77830954856_072024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_842479-MLU77830954856_072024-F.jpg",
+      "max_width": "1039",
+      "max_height": "1200"
+    },
+    {
+      "id": "770487-MLU78052216665_072024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_770487-MLU78052216665_072024-F.jpg",
+      "max_width": "1014",
+      "max_height": "1200"
+    },
+    {
+      "id": "977555-MLU75023586474_032024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_977555-MLU75023586474_032024-F.jpg",
+      "max_width": "370",
+      "max_height": "1197"
+    },
+    {
+      "id": "694240-MLU75165828447_032024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_694240-MLU75165828447_032024-F.jpg",
+      "max_width": "370",
+      "max_height": "1196"
+    },
+    {
+      "id": "936146-MLU72847729297_112023",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_936146-MLU72847729297_112023-F.jpg",
+      "max_width": "753",
+      "max_height": "678"
+    },
+    {
+      "id": "917477-MLU78052216671_072024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_917477-MLU78052216671_072024-F.jpg",
+      "max_width": "1118",
+      "max_height": "1200"
+    },
+    {
+      "id": "694112-MLU78052216681_072024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_694112-MLU78052216681_072024-F.jpg",
+      "max_width": "758",
+      "max_height": "1199"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

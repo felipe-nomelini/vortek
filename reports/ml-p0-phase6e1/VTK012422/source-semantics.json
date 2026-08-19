@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.810Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "D Addario",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1188",
+    "captured_at": "2026-08-17T12:56:55.433Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "4612edaa-d4a5-4cce-950e-ee18e4c2e01d",
+    "produto_id": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1188",
+    "sku_fornecedor": "1188",
+    "custo": 35.48,
+    "estoque": 12,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:57:32.629+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:57:32.637+00:00",
+    "sku_oferta": "1188",
+    "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+    "descricao": "PALHETA GUITARRA MUL MED 1CMC4 D Addario .70mm 10un Descrição: As palhetas de celuloide da D Addario oferecem uma sensação tradicional e um timbre quente e equilibrado. A espessura média (0,70 mm) proporciona um ótimo equilíbrio entre flexibilidade e rigidez, tornando-a versátil para diferentes estilos musicais. Seu design multicolorido adiciona um toque estético diferenciado. Características Principais: • Modelo: 1CMC4 • Linha: Celuloide Multicolorida • Material: Celuloide • Espessura: 0,70 mm (Média) • Cor: Multicolorida • Formato: Padrão Aplicações Recomendadas: Indicada para guitarristas que buscam um som equilibrado e versatilidade para tocar acordes e solos. Boa resposta para técnicas híbridas entre strumming e picking. Conteúdo da Embalagem: 10 palhetas D Addario Celuloide Multicolorida 1CMC4 (0,70 mm).",
+    "marca": "D Addario",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b9a8d2f96d2ab488ecb6a659660a398b.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.94.00",
+    "cest": null
+  }
+}

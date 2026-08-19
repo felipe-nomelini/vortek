@@ -1,0 +1,23 @@
+{
+  "index": 39,
+  "sku": "VTK018129",
+  "expected_gtin": "7896637611749",
+  "started_at": "2026-08-17T01:15:05.920Z",
+  "local_time": "2026-08-16T22:15:05",
+  "completed_at": "2026-08-17T01:15:05.950Z",
+  "elapsed_ms": 30,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "catalog MODEL is Intelbras instead of XAT 1018 MT",
+  "sanitation": "CATALOG_REVIEW_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

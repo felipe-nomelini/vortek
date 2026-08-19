@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432625710",
+      "local": "MLB7432625710",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK002528",
+      "local": "VTK002528",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "682138d1-d35b-4efc-98bc-3ac857b65500",
+      "local": "682138d1-d35b-4efc-98bc-3ac857b65500",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Antena Amphibious Proeletronic Prohd-2000a Cinza",
+      "local": "Antena Amphibious Proeletronic Prohd-2000a Cinza",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 279.9,
+      "local": 279.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432625710-antena-amphibious-proeletronic-prohd-2000a-cinza-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432625710-antena-amphibious-proeletronic-prohd-2000a-cinza-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

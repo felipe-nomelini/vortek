@@ -1,0 +1,156 @@
+{
+  "payload": {
+    "family_name": "Conector P10 Stereo Wireconex WC244 Kit 10",
+    "category_id": "MLB420707",
+    "catalog_product_id": "MLB49706888",
+    "catalog_listing": true,
+    "price": 229.9,
+    "currency_id": "BRL",
+    "available_quantity": 100,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1eb165d7177fceee7f132d67f3e1e49b.jpg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/7c2854794c1faac8c4c6244beedb3ed4.jpeg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9aadd9c38d90ad1acea20776bd2ddf72.jpeg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/669efe0aff290d5eaa2017fe7623d95c.jpeg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "13660752",
+        "value_name": "Wireconex"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "40833980",
+        "value_name": "Modelo Desconhecido"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52053",
+        "value_name": "Prateado"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "150349",
+        "value_name": "10"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "46885538",
+        "value_name": "Conector"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "8180799",
+        "value_name": "RCA"
+      },
+      {
+        "id": "CONNECTOR_GENDER",
+        "value_id": "2210104",
+        "value_name": "Macho"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "value_id": "5520057",
+        "value_name": "Metal"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "values": [
+          {
+            "id": "15289676",
+            "name": "Microfone"
+          },
+          {
+            "id": "24159330",
+            "name": "Monitor"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "75081580",
+        "value_name": "WC244"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "53233954",
+        "value_name": "7898640365176"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK013007"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK013007"
+  },
+  "sha256": "0e346ac89dc0aedec73c51533a0a19baa373aa7d00269e668397056be13c2174",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 14,
+  "pictures_count": 4,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1eb165d7177fceee7f132d67f3e1e49b.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/7c2854794c1faac8c4c6244beedb3ed4.jpeg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 800,
+      "height": 800,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9aadd9c38d90ad1acea20776bd2ddf72.jpeg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 800,
+      "height": 800,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/669efe0aff290d5eaa2017fe7623d95c.jpeg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 800,
+      "height": 800,
+      "classification": "APPROVED"
+    }
+  ]
+}

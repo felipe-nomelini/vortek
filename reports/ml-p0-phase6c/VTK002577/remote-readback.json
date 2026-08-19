@@ -1,0 +1,770 @@
+{
+  "checked_at": "2026-08-17T00:44:56.069Z",
+  "item": {
+    "id": "MLB7432502292",
+    "site_id": "MLB",
+    "title": "Suporte Caixa De Som Ask Ch10 Parede Longo 4 Regulagem 45kg Cor Preto",
+    "family_name": "ASK CH10",
+    "family_id": 2636279321686034,
+    "seller_id": 3294514937,
+    "category_id": "MLB10233",
+    "user_product_id": "MLBU4772720772",
+    "official_store_id": null,
+    "price": 279.9,
+    "base_price": 279.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T00:44:54.524Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:44:54.620Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432502292-suporte-caixa-de-som-ask-ch10-parede-longo-4-regulagem-45kg-cor-preto-_JM",
+    "thumbnail_id": "862356-MLA99994003367_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_862356-MLA99994003367_112025-I.jpg",
+    "pictures": [
+      {
+        "id": "862356-MLA99994003367_112025",
+        "url": "http://http2.mlstatic.com/D_862356-MLA99994003367_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_862356-MLA99994003367_112025-O.jpg",
+        "size": "500x247",
+        "max_size": "1200x594",
+        "quality": ""
+      },
+      {
+        "id": "845975-MLA92009899895_092025",
+        "url": "http://http2.mlstatic.com/D_845975-MLA92009899895_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_845975-MLA92009899895_092025-O.jpg",
+        "size": "500x332",
+        "max_size": "1200x797",
+        "quality": ""
+      },
+      {
+        "id": "902301-MLA91610361260_092025",
+        "url": "http://http2.mlstatic.com/D_902301-MLA91610361260_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_902301-MLA91610361260_092025-O.jpg",
+        "size": "500x347",
+        "max_size": "1200x834",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "4238929",
+        "value_name": "ASK",
+        "values": [
+          {
+            "id": "4238929",
+            "name": "ASK",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "25595458",
+        "value_name": "7898939971323",
+        "values": [
+          {
+            "id": "25595458",
+            "name": "7898939971323",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "1115147",
+        "value_name": "21 cm",
+        "values": [
+          {
+            "id": "1115147",
+            "name": "21 cm",
+            "struct": {
+              "number": 21,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "name": "Lugar de colocação",
+        "value_id": "3964545",
+        "value_name": "De parede",
+        "values": [
+          {
+            "id": "3964545",
+            "name": "De parede",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "name": "É ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "112648",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "112648",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "57654",
+        "value_name": "950 g",
+        "values": [
+          {
+            "id": "57654",
+            "name": "950 g",
+            "struct": {
+              "number": 950,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "5114383",
+        "value_name": "CH10",
+        "values": [
+          {
+            "id": "5114383",
+            "name": "CH10",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK002577",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK002577",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "57654",
+        "value_name": "950 g",
+        "values": [
+          {
+            "id": "57654",
+            "name": "950 g",
+            "struct": {
+              "number": 950,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "1115182",
+        "value_name": "7 cm",
+        "values": [
+          {
+            "id": "1115182",
+            "name": "7 cm",
+            "struct": {
+              "number": 7,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB27866916",
+    "domain_id": "MLB-SPEAKERS_STANDS",
+    "seller_custom_field": "VTK002577",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:44:54.723Z",
+    "last_updated": "2026-08-17T00:44:54.723Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "propagation": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 158,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 00:44:55 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 05c123ce9ed88aac1269d5f13441b908.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "H5xb6kG0Hh3yYPGTk2aeqYkaRzUNCcM7vLL9IphuwbvIMlbgyVAN2Q==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "378dead8-3f61-4114-b5ea-6c6f6e9e8dd5",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432502292",
+        "site_id": "MLB",
+        "title": "Suporte Caixa De Som Ask Ch10 Parede Longo 4 Regulagem 45kg Cor Preto",
+        "family_name": "ASK CH10",
+        "family_id": 2636279321686034,
+        "seller_id": 3294514937,
+        "category_id": "MLB10233",
+        "user_product_id": "MLBU4772720772",
+        "official_store_id": null,
+        "price": 279.9,
+        "base_price": 279.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 15,
+        "available_quantity": 15,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T00:44:54.524Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T00:44:54.620Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432502292-suporte-caixa-de-som-ask-ch10-parede-longo-4-regulagem-45kg-cor-preto-_JM",
+        "thumbnail_id": "862356-MLA99994003367_112025",
+        "thumbnail": "http://http2.mlstatic.com/D_862356-MLA99994003367_112025-I.jpg",
+        "pictures": [
+          {
+            "id": "862356-MLA99994003367_112025",
+            "url": "http://http2.mlstatic.com/D_862356-MLA99994003367_112025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_862356-MLA99994003367_112025-O.jpg",
+            "size": "500x247",
+            "max_size": "1200x594",
+            "quality": ""
+          },
+          {
+            "id": "845975-MLA92009899895_092025",
+            "url": "http://http2.mlstatic.com/D_845975-MLA92009899895_092025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_845975-MLA92009899895_092025-O.jpg",
+            "size": "500x332",
+            "max_size": "1200x797",
+            "quality": ""
+          },
+          {
+            "id": "902301-MLA91610361260_092025",
+            "url": "http://http2.mlstatic.com/D_902301-MLA91610361260_092025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_902301-MLA91610361260_092025-O.jpg",
+            "size": "500x347",
+            "max_size": "1200x834",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "4238929",
+            "value_name": "ASK",
+            "values": [
+              {
+                "id": "4238929",
+                "name": "ASK",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "25595458",
+            "value_name": "7898939971323",
+            "values": [
+              {
+                "id": "25595458",
+                "name": "7898939971323",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "1115147",
+            "value_name": "21 cm",
+            "values": [
+              {
+                "id": "1115147",
+                "name": "21 cm",
+                "struct": {
+                  "number": 21,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "INSTALLATION_PLACEMENT",
+            "name": "Lugar de colocação",
+            "value_id": "3964545",
+            "value_name": "De parede",
+            "values": [
+              {
+                "id": "3964545",
+                "name": "De parede",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "IS_ADJUSTABLE",
+            "name": "É ajustável",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MATERIAL",
+            "name": "Material",
+            "value_id": "112648",
+            "value_name": "Metal",
+            "values": [
+              {
+                "id": "112648",
+                "name": "Metal",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MAX_WEIGHT_SUPPORTED",
+            "name": "Peso máximo suportado",
+            "value_id": "57654",
+            "value_name": "950 g",
+            "values": [
+              {
+                "id": "57654",
+                "name": "950 g",
+                "struct": {
+                  "number": 950,
+                  "unit": "g"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "5114383",
+            "value_name": "CH10",
+            "values": [
+              {
+                "id": "5114383",
+                "name": "CH10",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK002577",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK002577",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "57654",
+            "value_name": "950 g",
+            "values": [
+              {
+                "id": "57654",
+                "name": "950 g",
+                "struct": {
+                  "number": 950,
+                  "unit": "g"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "1115182",
+            "value_name": "7 cm",
+            "values": [
+              {
+                "id": "1115182",
+                "name": "7 cm",
+                "struct": {
+                  "number": 7,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB27866916",
+        "domain_id": "MLB-SPEAKERS_STANDS",
+        "seller_custom_field": "VTK002577",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T00:44:54.723Z",
+        "last_updated": "2026-08-17T00:44:54.723Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-08-16T23:01:08.700Z",
+  "mode": "SAFE_PUBLICATION_MODE",
+  "protective_margin_min_percent": 50,
+  "quality_gate_percent": 65,
+  "industrial_flow": [
+    "IDENTITY",
+    "DUPLICITY",
+    "CREATION",
+    "PROTECTIVE_PRICE",
+    "QUALITY",
+    "VALIDATION",
+    "LOCAL_PERSISTENCE"
+  ],
+  "commercial_optimization": "COMMERCIAL_OPTIMIZATION_PENDING"
+}

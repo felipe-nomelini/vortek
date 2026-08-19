@@ -1,0 +1,271 @@
+{
+  "phase": "6A",
+  "mode": "SAFE_PUBLICATION_BATCH_SEQUENTIAL",
+  "generated_at": "2026-08-16T23:39:14.441Z",
+  "authorized_skus": [
+    "VTK026045",
+    "VTK026046",
+    "VTK021013",
+    "VTK017236",
+    "VTK002141",
+    "VTK026003",
+    "VTK017506",
+    "VTK017211",
+    "VTK025999",
+    "VTK026000"
+  ],
+  "processed": 10,
+  "unprocessed": [],
+  "counts": {
+    "BLOCK_LOCAL_STATE": 8,
+    "BLOCK_CATALOG_IDENTITY": 1,
+    "API_TRANSIENT_ERROR": 1
+  },
+  "stop_loss": {
+    "structural400": 0,
+    "consecutivePricingFailures": 0,
+    "consecutivePersistenceFailures": 0,
+    "duplicateCreations": 0,
+    "wrongCatalogs": 0,
+    "triggered": false,
+    "reason": null
+  },
+  "metrics": {
+    "attempted": 10,
+    "created": 0,
+    "persisted": 0,
+    "existing": 0,
+    "blocked_identity": 1,
+    "blocked_gtin": 0,
+    "blocked_duplicate": 0,
+    "blocked_contract": 0,
+    "blocked_financial": 0,
+    "api_errors": 1,
+    "ml_gets": 426,
+    "item_posts": 0,
+    "price_puts": 0,
+    "local_transactions": 0,
+    "rollbacks": 0,
+    "started_at": "2026-08-16T23:37:39.364Z",
+    "completed_at": "2026-08-16T23:39:14.441Z",
+    "elapsed_ms": 95077,
+    "mean_sku_ms": 565
+  },
+  "results": [
+    {
+      "index": 1,
+      "sku": "VTK026045",
+      "started_at": "2026-08-16T23:39:08.784Z",
+      "local_time": "2026-08-16T20:39:08",
+      "expected_gtin": "7908639903217",
+      "completed_at": "2026-08-16T23:39:09.012Z",
+      "elapsed_ms": 242,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": "MLB54158165",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 2,
+      "sku": "VTK026046",
+      "started_at": "2026-08-16T23:39:09.023Z",
+      "local_time": "2026-08-16T20:39:09",
+      "expected_gtin": "7898461978913",
+      "completed_at": "2026-08-16T23:39:09.224Z",
+      "elapsed_ms": 212,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": "MLB62224438",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 3,
+      "sku": "VTK021013",
+      "started_at": "2026-08-16T23:39:09.235Z",
+      "local_time": "2026-08-16T20:39:09",
+      "expected_gtin": "7896637609296",
+      "completed_at": "2026-08-16T23:39:09.430Z",
+      "elapsed_ms": 205,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": "MLB7980692",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 4,
+      "sku": "VTK017236",
+      "started_at": "2026-08-16T23:39:09.441Z",
+      "local_time": "2026-08-16T20:39:09",
+      "expected_gtin": "4988028352812",
+      "completed_at": "2026-08-16T23:39:10.729Z",
+      "elapsed_ms": 1298,
+      "result": "BLOCK_CATALOG_IDENTITY",
+      "item_id": null,
+      "catalog_product_id": "MLB22432562",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "gtin_catalog_maps_to_vehicle_stereo_kit_model_6660_not_ts_1360br_speaker_pair",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 5,
+      "sku": "VTK002141",
+      "started_at": "2026-08-16T23:39:10.739Z",
+      "local_time": "2026-08-16T20:39:10",
+      "expected_gtin": "7898572866024",
+      "completed_at": "2026-08-16T23:39:10.939Z",
+      "elapsed_ms": 209,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": "MLB26855145",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 6,
+      "sku": "VTK026003",
+      "started_at": "2026-08-16T23:39:10.948Z",
+      "local_time": "2026-08-16T20:39:10",
+      "expected_gtin": "7898572860541",
+      "completed_at": "2026-08-16T23:39:11.141Z",
+      "elapsed_ms": 202,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": "MLB29389761",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 7,
+      "sku": "VTK017506",
+      "started_at": "2026-08-16T23:39:11.151Z",
+      "local_time": "2026-08-16T20:39:11",
+      "expected_gtin": "7891112359253",
+      "completed_at": "2026-08-16T23:39:13.822Z",
+      "elapsed_ms": 2680,
+      "result": "API_TRANSIENT_ERROR",
+      "item_id": null,
+      "catalog_product_id": "MLB77404563",
+      "protective_price": 119.9,
+      "margin_percent": 53.177648,
+      "persisted": false,
+      "observation": "immediate_duplicate_gate_unavailable"
+    },
+    {
+      "index": 8,
+      "sku": "VTK017211",
+      "started_at": "2026-08-16T23:39:13.833Z",
+      "local_time": "2026-08-16T20:39:13",
+      "expected_gtin": "7898939972504",
+      "completed_at": "2026-08-16T23:39:14.038Z",
+      "elapsed_ms": 215,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": "MLB27380888",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 9,
+      "sku": "VTK025999",
+      "started_at": "2026-08-16T23:39:14.065Z",
+      "local_time": "2026-08-16T20:39:14",
+      "expected_gtin": "6940651411548",
+      "completed_at": "2026-08-16T23:39:14.225Z",
+      "elapsed_ms": 171,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": null,
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    },
+    {
+      "index": 10,
+      "sku": "VTK026000",
+      "started_at": "2026-08-16T23:39:14.235Z",
+      "local_time": "2026-08-16T20:39:14",
+      "expected_gtin": "6940651411517",
+      "completed_at": "2026-08-16T23:39:14.440Z",
+      "elapsed_ms": 214,
+      "result": "BLOCK_LOCAL_STATE",
+      "item_id": null,
+      "catalog_product_id": "MLB75102536",
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "local_product_or_preferred_offer_gate_failed",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false
+      }
+    }
+  ],
+  "hold": "P0 PHASE 6A — 10 SKU SAFE PUBLICATION BATCH HOLD",
+  "invariants": {
+    "max_ten": true,
+    "sequential": true,
+    "second_batch": false,
+    "no_quality_calls": true,
+    "no_description_calls": true,
+    "tax_rate": 0.05,
+    "protective_margin_min_percent": 50
+  }
+}

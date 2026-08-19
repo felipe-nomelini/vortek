@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-17T14:15:41.550Z",
+  "local_images": [
+    "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad2264b.jpg",
+    "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad2280b.jpg",
+    "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad22850.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "752473-MLU74377119338_022024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_752473-MLU74377119338_022024-F.jpg",
+      "max_width": "744",
+      "max_height": "520"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

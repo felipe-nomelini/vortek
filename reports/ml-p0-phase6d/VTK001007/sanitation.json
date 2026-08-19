@@ -1,0 +1,10 @@
+{
+  "sku": "VTK001007",
+  "gate": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE",
+  "evidence": "GTIN-14 carton of six blender jars lacks official packaging/category evidence",
+  "local_value": "10564050000108",
+  "found_value": null,
+  "suggested_action": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:15:05.920Z"
+}

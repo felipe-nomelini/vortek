@@ -1,0 +1,10 @@
+{
+  "sku": "VTK001875",
+  "gate": "BLOCK_GTIN_UNIT_CONFLICT",
+  "evidence": "exact GTIN catalog is one string while local commercial unit is a dozen",
+  "local_value": "7898159187535",
+  "found_value": "1 unit",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB41180960",
+  "timestamp": "2026-08-17T01:15:30.596Z"
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.486Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Terminal De Fio Permak Encaixe Macho",
+    "supplier_category": "Automotivo/ Acessórios Para Instalacao/ Acessórios",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/324488",
+    "captured_at": "2026-08-17T12:56:28.856Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "3662908b-8e02-4332-8e0d-9c089a1e2007",
+    "produto_id": "2145db81-8c23-4171-a040-b2f7eef29fbb",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "324488",
+    "sku_fornecedor": "324488",
+    "custo": 18.57,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:22:24.939+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:22:24.946+00:00",
+    "sku_oferta": "324488",
+    "nome": "Terminal De Fio Permak Encaixe Macho",
+    "descricao": "Informações do Produto Terminal de encaixe Macho - 136",
+    "marca": "PERMAK",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/2/324488_67d2caee0f802.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85389090",
+    "cest": "12.005.00"
+  }
+}

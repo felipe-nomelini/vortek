@@ -1,0 +1,10 @@
+{
+  "ordinal": 13,
+  "sku": "VTK001264",
+  "phase6e_state": "SOURCE_DEFERRED",
+  "phase6e1_state": "SOURCE_DEFERRED",
+  "category_candidate": null,
+  "semantic_score": null,
+  "second_pass": "NOT_APPLICABLE",
+  "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+}

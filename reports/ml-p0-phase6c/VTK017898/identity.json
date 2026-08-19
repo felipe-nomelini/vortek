@@ -1,0 +1,377 @@
+{
+  "checked_at": "2026-08-17T00:43:33.457Z",
+  "product": {
+    "id": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+    "sku": "VTK017898",
+    "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+    "marca": "INTELBRAS",
+    "gtin": "7896637677035"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/329291",
+    "consulted_at": "2026-08-17T00:43:33.262Z",
+    "product": {
+      "produtoid": "329291",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 239.9,
+      "preco_crossdocking": 239.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 239.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+      "titulo_curto": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+      "categoriaid": "118291",
+      "categoria_nome": "Telefonia/ Aparelho Headset/ Amplificador Para Telefone Com Headset",
+      "abc": null,
+      "ean11": "7896637677035",
+      "ncm": "85183000",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<b>Headset mono USB</b><br><br />\r\nOs headsets Intelbras com terminação USB são ideais para softwares utilizados em contact centers, ligações VoIP (via internet) e conferências. Eles proporcionam mais conforto, liberdade e praticidade para o usuário com seu design leve e ergonômico, além do cordão com controle de volume e tecla Mudo que simplificam as ações dos usuários. O THS 55 também possui tubo de voz removível, que faz com que o headset atenda à NR 17, sem a necessidade de um headset para cada funcionário.<br><br />\r\n<p>- Conector do tipo USB Plug & Play;<br><br />\r\n  - Tiara de aço com revestimento em PVC;<br><br />\r\n  - Headset monoauricular ajustável com protetor removível;<br><br />\r\n  - Microfone em tubo de plástico rígido removível e reversível (300°);<br><br />\r\n  - Apoio de cabeça confortável e resistente;<br><br />\r\n  - Compatível com Windows&reg;, Mac&reg;, Linux&reg; e softwares comumente utilizados em call centers;<br><br />\r\n  - Cordão com controle de volume e tecla Mudo;<br><br />\r\n  - LED bicolor com indicação de ativação/desativação da função Mudo durante uma chamada;<br><br />\r\n  - Compatível com os acessórios AP 3601 (protetor auricular) e AT 3551 (tubo de voz <br />\r\n  removível), que ajudarão a manter os headsets sempre novos, evitando a substituição de <br />\r\n  produtos e gerando mais economia.</p><br />\r\n<p><b>Microfone</b><br><br />\r\n  Tipo<br><br />\r\n  Eletreto</p><br />\r\n<p>Sensibilidade<br><br />\r\n  -38 &plusmn; 3 dB</p><br />\r\n<p>Impedância <br><br />\r\n  2K2</p><br />\r\n<p>Resposta em frequência<br><br />\r\n  100 a 10.000 Hz</p><br />\r\n<p><b>Cápsula receptora</b><br><br />\r\n  Tipo<br><br />\r\n  Dinâmica</p><br />\r\n<p>Sensibilidade<br><br />\r\n  93 &plusmn; 3 dB</p><br />\r\n<p>Impedância<br><br />\r\n  150&#937; &plusmn; 15%</p><br />\r\n<p>Resposta em frequência<br><br />\r\n  300 a 3.400 Hz</p><br />\r\n<p><b>Headset</b><br><br />\r\n  Peso (Incluindo controlador)<br><br />\r\n  100 g</p><br />\r\n<p>Comprimento do cabo<br><br />\r\n  2,4 m</p><br />\r\n<br />\r\n<br />\r\n*Imagem meramente ilustrativa",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "INTELBRAS",
+      "modelo": "",
+      "peso": 0.184,
+      "largura": 18,
+      "altura": 6,
+      "profundidade": 20,
+      "peso_embalagem": 0.184,
+      "largura_embalagem": 18,
+      "altura_embalagem": 6,
+      "profundidade_embalagem": 20,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/2/329291_67d2caef458c0.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1366,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.057.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-01 12:26:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-01 12:26:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 20,
+      "tempo_cross": 0,
+      "estoque_total": 20,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/2/329291_67d2caef458c0.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/2/329291_67d2caef47283.jpg"
+        }
+      ]
+    }
+  },
+  "source": "https://www.intelbras.com/pt-br/headset-mono-usb-ths-55-usb",
+  "source_confidence": "official",
+  "catalog_results": [
+    {
+      "id": "MLB21895542",
+      "catalog_product_id": "MLB21895542",
+      "domain_id": "MLB-HEADPHONES",
+      "name": "Fone Headset USB para Telemarketing Intelbras THS-55 Cor Preto",
+      "parent_id": "MLB21895522",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "17012662",
+          "value_name": "THS 55",
+          "values": [
+            {
+              "id": "17012662",
+              "name": "THS 55"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "HEADPHONE_FORMAT",
+          "name": "Formato do fone de ouvido",
+          "value_id": "182358",
+          "value_name": "Headset",
+          "values": [
+            {
+              "id": "182358",
+              "name": "Headset"
+            }
+          ]
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "name": "Com microfone",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_MONAURAL",
+          "name": "É monaural",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_INFANT",
+          "name": "É infantil",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "name": "Com luz LED",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "17012688",
+          "value_name": "7896637677035",
+          "values": [
+            {
+              "id": "17012688",
+              "name": "7896637677035"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Fone Headset USB para Telemarketing Intelbras THS-55 é a escolha ideal para profissionais que buscam qualidade e conforto durante longas jornadas de trabalho. Com um design monaural, ele permite que você mantenha uma orelha livre para ouvir o ambiente, facilitando a comunicação e a interação com colegas e clientes.\n\nEquipado com um microfone, o THS-55 garante clareza nas chamadas, essencial para um atendimento eficiente. Sua conexão USB proporciona praticidade e compatibilidade com diversos dispositivos, tornando-o perfeito para ambientes de telemarketing e atendimento ao cliente.\n\nAlém disso, o headset é projetado para ser confortável, permitindo que você se concentre em suas tarefas sem distrações. A marca Intelbras é reconhecida pela sua qualidade e durabilidade, assegurando que você tenha um produto confiável para o seu dia a dia profissional."
+      },
+      "pictures": [
+        {
+          "id": "808110-MLA99518451808_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_808110-MLA99518451808_112025-F.jpg",
+          "max_width": "691",
+          "max_height": "1198"
+        },
+        {
+          "id": "726250-MLU77096627591_062024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_726250-MLU77096627591_062024-F.jpg",
+          "max_width": "910",
+          "max_height": "1199"
+        },
+        {
+          "id": "868640-MLU76887853172_062024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_868640-MLU76887853172_062024-F.jpg",
+          "max_width": "980",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-02-27T13:18:10Z",
+      "last_updated": "2024-09-26T18:22:22Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "enhanced_content_template_id": "7c491b67-b33c-42be-a57a-c2f268c3ed84",
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

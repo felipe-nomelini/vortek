@@ -1,0 +1,16 @@
+{
+  "executed": true,
+  "result": "SAFE_PUBLICATION_PERSIST_SUCCESS",
+  "transaction": {
+    "result": "SAFE_PUBLICATION_PERSIST_SUCCESS",
+    "listing_id": "d763d2de-d824-4218-a044-15f83043f9cf",
+    "product_ml_item_id": "MLB7432322488",
+    "transaction_id": 16803336,
+    "committed": true
+  },
+  "quality_storage": {
+    "qualidade": 0,
+    "meaning": "schema_default_sentinel_not_official_score",
+    "qualidade_info": null
+  }
+}

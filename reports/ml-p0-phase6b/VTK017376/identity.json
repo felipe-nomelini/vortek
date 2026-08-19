@@ -1,0 +1,489 @@
+{
+  "index": 14,
+  "sku": "VTK017376",
+  "started_at": "2026-08-17T00:07:17.639Z",
+  "local_time": "2026-08-16T21:07:17",
+  "expected_gtin": "7898419499132",
+  "product": {
+    "id": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+    "sku": "VTK017376",
+    "nome": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+    "marca": "PROELETRONIC",
+    "estoque": 41,
+    "custo": 18.8,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.26,
+    "peso_bruto": 0.26,
+    "largura": 2.5,
+    "altura": 2.5,
+    "profundidade": 43,
+    "gtin": "7898419499132",
+    "descricao": "Mastro para instalação de antenas externas fabricado em material de alta qualidade. Fixação em solo ou parede. Mastro articulado para instalação de antenas externas. Com galvanização de alta qualidade. *Imagem meramente ilustrativa.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017376/01-70b0b20e7e55ce842f91.jpg"
+    ],
+    "categoria": "Antenas E Acessórios/ Antenas Para Tv Externa/ Antena Externa Para Vhf",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:39.338406+00:00",
+    "updated_at": "2026-08-16T20:55:22.436234+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "381681",
+    "dslite_ultima_sync": "2026-08-16T20:55:22.224+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "73269090",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "935770a4-6479-45d0-abc9-c42974ec19c5",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "935770a4-6479-45d0-abc9-c42974ec19c5",
+    "produto_id": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "381681",
+    "sku_fornecedor": "381681",
+    "custo": 18.8,
+    "estoque": 41,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:55:22.224+00:00",
+    "created_at": "2026-07-20T18:30:39.682006+00:00",
+    "updated_at": "2026-08-16T20:55:22.233+00:00",
+    "sku_oferta": "381681",
+    "nome": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+    "descricao": "Mastro para instalação de antenas externas fabricado em material de alta qualidade. Fixação em solo ou parede. Mastro articulado para instalação de antenas externas. Com galvanização de alta qualidade. *Imagem meramente ilustrativa.\n\nPeso: 2.16 kg Dimensões: 0.15 × 0.48 × 0.18cm",
+    "marca": "PROELETRONIC",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/381681_67d2cb0fd76b9.jpg"
+    ],
+    "gtin": "7898419499132",
+    "ncm": "73269090",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381681",
+    "consulted_at": "2026-08-17T00:07:17.865Z",
+    "product": {
+      "produtoid": "381681",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 18.8,
+      "preco_crossdocking": 18.8,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 18.8,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+      "titulo_curto": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+      "categoriaid": "118134",
+      "categoria_nome": "Antenas E Acessórios/ Antenas Para Tv Externa/ Antena Externa Para Vhf",
+      "abc": null,
+      "ean11": "7898419499132",
+      "ncm": "73269090",
+      "descricao": "Mastro para instalação de antenas externas fabricado em material de alta qualidade. Fixação em solo ou parede. Mastro articulado para instalação de antenas externas. Com galvanização de alta qualidade.<br />\r\n<br />\r\n<br />\r\n*Imagem meramente ilustrativa.",
+      "caracteristicas": "Peso: 2.16 kg<br />\r\nDimensões: 0.15 × 0.48 × 0.18cm",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PROELETRONIC",
+      "modelo": "",
+      "peso": 0.26,
+      "largura": 2.5,
+      "altura": 2.5,
+      "profundidade": 43,
+      "peso_embalagem": 0.26,
+      "largura_embalagem": 2.5,
+      "altura_embalagem": 2.5,
+      "profundidade_embalagem": 43,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/381681_67d2cb0fd76b9.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1614,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 15:37:39.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-13 15:37:39.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 41,
+      "tempo_cross": 0,
+      "estoque_total": 41,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381681_67d2cb0fd76b9.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "https://proeletronic.com.br/mastro-ktaa-2000/",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381681",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898419499132"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB21469644",
+      "catalog_product_id": "MLB21469644",
+      "domain_id": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+      "name": "Mastro Articulado P/ Instalação De Antenas Proeletronic Suporte Antena Externa",
+      "parent_id": "MLB21469602",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "1175465",
+          "value_name": "Proeletronic",
+          "values": [
+            {
+              "id": "1175465",
+              "name": "Proeletronic"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16289470",
+          "value_name": "Suporte Antena Externa",
+          "values": [
+            {
+              "id": "16289470",
+              "name": "Suporte Antena Externa"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52053",
+          "value_name": "Prateado",
+          "values": [
+            {
+              "id": "52053",
+              "name": "Prateado"
+            }
+          ]
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "name": "Lugares de montagem",
+          "value_id": "7720908",
+          "value_name": "Parede",
+          "values": [
+            {
+              "id": "7720908",
+              "name": "Parede"
+            }
+          ]
+        },
+        {
+          "id": "IS_INCLINABLE",
+          "name": "É inclinável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_ARTICULATED_MOUNT",
+          "name": "É articulado",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_SWIVELLING",
+          "name": "É giratório",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_FIXED_MOUNT",
+          "name": "É fixo",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "name": "É motorizada",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_name": "7898419499132, 17898419502389",
+          "values": [
+            {
+              "id": "16289516",
+              "name": "7898419499132"
+            },
+            {
+              "id": "40728279",
+              "name": "17898419502389"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "7877821",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "7877821",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7847007",
+          "value_name": "6 cm",
+          "values": [
+            {
+              "id": "7847007",
+              "name": "6 cm"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "name": "Inclui kit de instalação",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_CABLE_ORGANIZER",
+          "name": "Inclui organizador de cabos",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Mastro Articulado para Instalação de Antenas – Proeletronic\n\nMaximize o desempenho da sua antena com mais praticidade e segurança!\n\nO Mastro Articulado de ferro Proeletronic é a solução ideal para instalar antenas externas com ajuste preciso, estabilidade e durabilidade garantida.\n\nMaterial Premium: fabricado em ferro de alta qualidade, é leve, resistente à corrosão e suporta condições climáticas adversas por muito mais tempo.\nDesign Articulado: permite ajuste prático da posição da antena para otimizar o sinal — instalação e manutenção muito mais fáceis!\nVersátil: compatível com antenas externas de diferentes tamanhos e modelos, para uso residencial ou comercial.\n\nBenefícios:\n• Suporte firme e alinhamento perfeito da antena.\n• Ajuste preciso para máximo desempenho de sinal.\n• Instalação descomplicada e manutenção simplificada.\n• Maior resistência ao tempo, sol e chuva.\n\nIdeal para quem busca qualidade, praticidade e confiabilidade na hora de instalar sua antena!\n\nAposte no Mastro Articulado Proeletronic e tenha mais liberdade de ajuste e robustez para sua instalação."
+      },
+      "pictures": [
+        {
+          "id": "757534-MLA99604055092_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_757534-MLA99604055092_122025-F.jpg",
+          "max_width": "513",
+          "max_height": "1182"
+        },
+        {
+          "id": "657470-MLA97527757628_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_657470-MLA97527757628_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1112"
+        },
+        {
+          "id": "810847-MLA97527885726_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_810847-MLA97527885726_112025-F.jpg",
+          "max_width": "975",
+          "max_height": "647"
+        },
+        {
+          "id": "706643-MLA99604045352_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_706643-MLA99604045352_122025-F.jpg",
+          "max_width": "345",
+          "max_height": "512"
+        },
+        {
+          "id": "866756-MLA97991486563_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_866756-MLA97991486563_112025-F.jpg",
+          "max_width": "554",
+          "max_height": "1200"
+        },
+        {
+          "id": "624898-MLA97527885740_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_624898-MLA97527885740_112025-F.jpg",
+          "max_width": "948",
+          "max_height": "1163"
+        },
+        {
+          "id": "697751-MLA97527579938_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_697751-MLA97527579938_112025-F.jpg",
+          "max_width": "1008",
+          "max_height": "1026"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-01-31T11:12:39Z",
+      "last_updated": "2026-03-29T07:22:34Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

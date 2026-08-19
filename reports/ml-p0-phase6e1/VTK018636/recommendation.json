@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_IDENTITY",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+    "supplier_category": "Segurança / Cameras/ Camera Colorida",
+    "supplier_brand": "SOHOPLUS - FURUKAWA",
+    "supplier_gtin": "7893137226954",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/329123",
+    "captured_at": "2026-08-17T12:53:50.658Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

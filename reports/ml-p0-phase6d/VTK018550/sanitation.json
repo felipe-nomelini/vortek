@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018550",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Bee Link Fiat Argo/Cronos application identity lacks primary documentation",
+  "local_value": "7898441352696",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:16:59.811Z"
+}

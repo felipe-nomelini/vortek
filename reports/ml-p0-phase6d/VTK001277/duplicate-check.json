@@ -1,0 +1,38 @@
+{
+  "inventory_snapshot": {
+    "captured": 5829,
+    "expected": 5829,
+    "timestamp": "2026-08-17T01:13:00.441Z"
+  },
+  "local_duplicates": [],
+  "remote_matches": [
+    {
+      "id": "MLB7009336838",
+      "status": "active",
+      "sku": "VTK001238",
+      "gtin": "7898461969133",
+      "catalog_product_id": "MLB15198592"
+    },
+    {
+      "id": "MLB4866744227",
+      "status": "active",
+      "sku": "VTK001238",
+      "gtin": "7898461969133",
+      "catalog_product_id": "MLB15198592"
+    },
+    {
+      "id": "MLB4892650483",
+      "status": "under_review",
+      "sku": "VTK001238",
+      "gtin": "7898461969133",
+      "catalog_product_id": "MLB15198592"
+    },
+    {
+      "id": "MLB4898642931",
+      "status": "active",
+      "sku": "VTK001238",
+      "gtin": "7898461969133",
+      "catalog_product_id": "MLB15198592"
+    }
+  ]
+}

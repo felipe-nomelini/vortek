@@ -1,0 +1,469 @@
+{
+  "checked_at": "2026-08-17T01:17:53.596Z",
+  "expected_catalog_product_id": "MLB25801009",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "VOLTAGE": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB25801009",
+    "catalog_product_id": "MLB25801009",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-ELECTRIC_SANDWICH_MAKERS",
+    "permalink": "",
+    "name": "Máquina Golden Waffle 850w Cinza Britânia",
+    "family_name": "Britânia Máquina de Waffle Golden Waffle",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB25801009",
+            "picker_label": "Cinza",
+            "picture_id": "763886-MLA99930086901_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_763886-MLA99930086901_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Britânia Máquina de Waffle Golden Waffle - Cinza - 220V",
+            "auto_completed": true,
+            "rgb_meta": "E1E1E1"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB25801009",
+            "picker_label": "220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Britânia Máquina de Waffle Golden Waffle - Cinza - 220V",
+            "auto_completed": false,
+            "rgb_meta": "E1E1E1"
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "763886-MLA99930086901_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_763886-MLA99930086901_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 500,
+        "max_height": 481,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "603499-MLA99929774205_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_603499-MLA99929774205_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 406,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "863372-MLA99445951036_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_863372-MLA99445951036_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 332,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "839066-MLA99445922084_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_839066-MLA99445922084_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 348,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "817703-MLA93085496168_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_817703-MLA93085496168_092025-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 750,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Potência de 850 W que possibilita o preparo de 4 waffles simultâneos em poucos minutos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Superfície antiaderente que tosta ambos os lados das massas de maneira uniforme sem deixar resíduos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Controle ajustável de temperatura que permite selecionar o nível de tostagem conforme o tipo de massa.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Base antiderrapante que fixa o equipamento na bancada evitando movimentos indesejados durante o uso.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Estrutura com altura de 27 cm e largura de 21 cm que permite o armazenamento na posição vertical.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Luz indicadora de funcionamento que sinaliza o estado de operação do equipamento durante o preparo.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "471",
+        "value_name": "Britânia",
+        "values": [
+          {
+            "id": "471",
+            "name": "Britânia"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "19056829",
+        "value_name": "Máquina de Waffle",
+        "values": [
+          {
+            "id": "19056829",
+            "name": "Máquina de Waffle"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "4311624",
+        "value_name": "Golden Waffle",
+        "values": [
+          {
+            "id": "4311624",
+            "name": "Golden Waffle"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "283165",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "283165",
+            "name": "Cinza"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "198813",
+        "value_name": "220V",
+        "values": [
+          {
+            "id": "198813",
+            "name": "220V"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450294",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "2450294",
+            "name": "Cinza",
+            "meta": {
+              "rgb": "E1E1E1"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "E1E1E1"
+        }
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "109595",
+        "value_name": "850 W",
+        "values": [
+          {
+            "id": "109595",
+            "name": "850 W"
+          }
+        ]
+      },
+      {
+        "id": "PLATE_TYPES",
+        "name": "Tipos de placas",
+        "value_id": "20109820",
+        "value_name": "Para waffles",
+        "values": [
+          {
+            "id": "20109820",
+            "name": "Para waffles"
+          }
+        ]
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "6332329",
+        "value_name": "Metal/Plástico",
+        "values": [
+          {
+            "id": "6332329",
+            "name": "Metal/Plástico"
+          }
+        ]
+      },
+      {
+        "id": "WITH_NON_STICK_SURFACE",
+        "name": "Com superfície antiaderente",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_SECURITY_LOCK",
+        "name": "Com trava de segurança",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_CORD_STORAGE",
+        "name": "Com porta fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_POWER_LIGHT",
+        "name": "Com luz indicadora de funcionamento",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REMOVABLE_PLATES",
+        "name": "Com placas removíveis",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7847908",
+        "value_name": "27 cm",
+        "values": [
+          {
+            "id": "7847908",
+            "name": "27 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "7768276",
+        "value_name": "21 cm",
+        "values": [
+          {
+            "id": "7768276",
+            "name": "21 cm"
+          }
+        ]
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "14373178",
+        "value_name": "13.3 cm",
+        "values": [
+          {
+            "id": "14373178",
+            "name": "13.3 cm"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "18987964",
+        "value_name": "1.68 kg",
+        "values": [
+          {
+            "id": "18987964",
+            "name": "1.68 kg"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "PRODUTO ORIGINAL!\n\nPRATICIDADE NA SUA COZINHA!\n\nOs melhores waffles serão feitos por você com a sua Máquina Golden Waffle 850w Cinza Britânia. Ela prepara waffles, doces ou salgados, em poucos minutos. Possui placas antiaderentes que tostam os dois lados por igual e base antiderrapante para maior segurança, que evita que o produto se movimente durante o manuseio.\n\nEla pode ser guardada na posição vertical, para ocupar pouco espaço de armazenamento. E seu controle ajustável de temperatura permite regular a temperatura conforme a necessidade, para que você nunca queime os seus waffles.\n\nUma qualidade Britânia você adquirir aqui no Mercado Livre! Peça já!\n------------------------------------------------------------------------------------------\nESPECIFICAÇÕES:\nMarca: Britânia\nLinha: Máquina de Waffle\nModelo: Golden Waffle\nCor: Prata e Preto\nPotência: 850 W\n\nCARACTERÍSTICAS:\nPrepara até 4 waffles, doces ou salgados, por vez em poucos minutos\nPossui placas antiaderentes que tostam os dois lados por igual\nBase antiderrapante para maior segurança, evita que o produto se movimente durante o manuseio\nPode ser guardado na posição vertical\nE seu controle ajustável de temperatura permite regular a temperatura conforme a necessidade\n\nDIMENSÕES E PESO\nAltura: 27 cm\nLargura: 21 cm\nProfundidade: 13,3 cm\nPeso: 1,68 kg\n\nO QUE VEM INCLUSO?\n1 Máquina Golden Waffle\n1 Guia de Usuário"
+    },
+    "parent_id": "MLB25801007",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T14:12:28.733791893"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-08-04T14:47:48Z",
+    "authorized_stores": null,
+    "last_updated": "2026-04-13T08:34:47Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

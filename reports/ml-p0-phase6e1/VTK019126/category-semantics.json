@@ -1,0 +1,54 @@
+{
+  "selected": {
+    "category_id": "MLB194301",
+    "domain_id": "MLB-ELECTRIC_LOCKS",
+    "domain_name": "Fechaduras elétricas",
+    "category_name": "Elétricas",
+    "category_path": [
+      "Casa, Móveis e Decoração",
+      "Segurança para Casa",
+      "Ferragens de Segurança",
+      "Fechaduras",
+      "Elétricas"
+    ],
+    "normalized_context": "mlbelectriclocksfechaduraseletricasmlbelectriclockscasamoveisedecoracaosegurancaparacasaferragensdesegurancafechaduraseletricaseletricas"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB194301",
+        "domain_id": "MLB-ELECTRIC_LOCKS",
+        "domain_name": "Fechaduras elétricas",
+        "category_name": "Elétricas",
+        "category_path": [
+          "Casa, Móveis e Decoração",
+          "Segurança para Casa",
+          "Ferragens de Segurança",
+          "Fechaduras",
+          "Elétricas"
+        ],
+        "normalized_context": "mlbelectriclocksfechaduraseletricasmlbelectriclockscasamoveisedecoracaosegurancaparacasaferragensdesegurancafechaduraseletricaseletricas"
+      },
+      "score": 93,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB455251",
+        "domain_id": "MLB-ELECTRIC_LOCKS",
+        "domain_name": "Fechaduras elétricas",
+        "category_name": "Digitais",
+        "category_path": [
+          "Casa, Móveis e Decoração",
+          "Segurança para Casa",
+          "Ferragens de Segurança",
+          "Fechaduras",
+          "Digitais"
+        ],
+        "normalized_context": "mlbelectriclocksfechaduraseletricasmlbelectriclockscasamoveisedecoracaosegurancaparacasaferragensdesegurancafechadurasdigitaisdigitais"
+      },
+      "score": 93,
+      "hard_mismatch": false
+    }
+  ]
+}

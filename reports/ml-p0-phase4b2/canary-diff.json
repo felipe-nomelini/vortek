@@ -1,0 +1,192 @@
+{
+  "generated_at": "2026-08-16T20:23:14.022Z",
+  "official_input_voltage": "100-240V",
+  "submitted_input_voltage": "127/220V",
+  "normalization_rule": "100-240V -> 127/220V accepted only because live category schema has no 100-240V enum and official range covers both nominal voltages",
+  "fields": [
+    {
+      "field": "SKU",
+      "expected": "VTK000486",
+      "remote": "VTK000486",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "GTIN",
+      "expected": "4904530109270",
+      "remote": "4904530109270",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "title_generated_by_ml",
+      "expected": {
+        "brand": "Toshiba",
+        "model": "TNHC-6GAE4 CB",
+        "product_type": "Carregador de pilhas",
+        "kit_details_if_present": "4 pilhas AA 2600mAh"
+      },
+      "remote": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+      "status": "NORMALIZED_BY_ML",
+      "material": false,
+      "analysis": {
+        "title": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+        "required": {
+          "brand_toshiba": true,
+          "model_tnhc_6gae4_cb": true,
+          "charger": true,
+          "cell_batteries": true
+        },
+        "observed_quantities": [],
+        "observed_capacities_mah": [],
+        "conflicts": {
+          "wrong_quantity": false,
+          "wrong_capacity": false,
+          "wrong_voltage": false,
+          "wrong_product_type": false
+        },
+        "valid": true
+      }
+    },
+    {
+      "field": "family_name",
+      "expected": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+      "remote": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+      "status": "NORMALIZED_BY_ML",
+      "material": false,
+      "reason": "capitalization_normalized_by_ml_without_identity_change"
+    },
+    {
+      "field": "family_id",
+      "expected": "assigned_by_ml",
+      "remote": 4094059417953552,
+      "status": "NORMALIZED_BY_ML",
+      "material": false,
+      "reason": "identifier_assigned_by_ml"
+    },
+    {
+      "field": "user_product_id",
+      "expected": "assigned_by_ml",
+      "remote": "MLBU4771606790",
+      "status": "NORMALIZED_BY_ML",
+      "material": false,
+      "reason": "identifier_assigned_by_ml"
+    },
+    {
+      "field": "price",
+      "expected": 187.22,
+      "remote": 187.22,
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "available_quantity",
+      "expected": 15,
+      "remote": 15,
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "category_id",
+      "expected": "MLB11290",
+      "remote": "MLB11290",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "BRAND",
+      "expected": "Toshiba",
+      "remote": "Toshiba",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "MODEL",
+      "expected": "TNHC-6GAE4 CB",
+      "remote": "TNHC-6GAE4 CB",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "PRODUCT_TYPE",
+      "expected": "Pilha",
+      "remote": "Pilha",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "INPUT_VOLTAGE",
+      "expected": "100-240V",
+      "remote": "127/220V",
+      "status": "NORMALIZED_BY_ML",
+      "material": false,
+      "reason": "official_ac_100_240v_normalized_to_only_compatible_ml_enum_127_220v"
+    },
+    {
+      "field": "pictures_count",
+      "expected": 9,
+      "remote": 9,
+      "status": "NORMALIZED_BY_ML",
+      "material": false,
+      "reason": "source_urls_ingested_and_rehosted_by_ml"
+    },
+    {
+      "field": "listing_type_id",
+      "expected": "gold_pro",
+      "remote": "gold_pro",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "shipping.mode",
+      "expected": "me2",
+      "remote": "me2",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "shipping.free_shipping",
+      "expected": true,
+      "remote": true,
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "condition",
+      "expected": "new",
+      "remote": "new",
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "catalog_listing",
+      "expected": false,
+      "remote": false,
+      "status": "MATCH",
+      "material": false
+    },
+    {
+      "field": "description",
+      "expected": "not_sent_phase_4c_pending",
+      "remote": "",
+      "status": "MATCH",
+      "material": false,
+      "reason": "description_post_not_authorized_in_phase_4b"
+    },
+    {
+      "field": "status",
+      "expected": "active",
+      "remote": "active",
+      "status": "MATCH",
+      "material": false,
+      "reason": "picture_processing_completed"
+    }
+  ],
+  "material_drift": false,
+  "picture_processing": {
+    "pending": 0,
+    "diagnostics_with_errors": 0,
+    "status": "active",
+    "sub_status": []
+  }
+}

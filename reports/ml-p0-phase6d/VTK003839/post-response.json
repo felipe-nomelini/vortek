@@ -1,0 +1,599 @@
+{
+  "attempted_at": "2026-08-17T01:15:48.442Z",
+  "local_time": "2026-08-16T22:15:48",
+  "endpoint": "POST /items",
+  "request_id": "6d3ba836-7b1f-473c-9721-b156c8340cf0",
+  "http_status": 201,
+  "elapsed_ms": 1011,
+  "payload_sha256": "202c3a4018b07d33aa210a22f608b64dc647d65f9a8e045ea3c20a4c158d5d46",
+  "body": {
+    "id": "MLB7432633282",
+    "site_id": "MLB",
+    "title": "Nobreak Semi Senoidal Ts Shara Ups Compact Xpro 800va Bivolt Cor Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB270504",
+    "user_product_id": "MLBU4743614751",
+    "official_store_id": null,
+    "price": 2639.9,
+    "base_price": 2639.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 11,
+    "available_quantity": 11,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Ts Shara UPS Compact Xpro Compact XPro 800VA 4442 800VA",
+    "family_id": 6980931133708497,
+    "start_time": "2026-08-17T01:15:47.720Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:15:47.820Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432633282-nobreak-semi-senoidal-ts-shara-ups-compact-xpro-800va-bivolt-cor-preto-_JM",
+    "pictures": [
+      {
+        "id": "882643-MLA99508565796_112025",
+        "url": "http://mla-s2-p.mlstatic.com/882643-MLA99508565796_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/882643-MLA99508565796_112025-O.jpg",
+        "size": "500x453",
+        "max_size": "500x453",
+        "quality": ""
+      },
+      {
+        "id": "872649-MLA99992589445_112025",
+        "url": "http://mla-s2-p.mlstatic.com/872649-MLA99992589445_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/872649-MLA99992589445_112025-O.jpg",
+        "size": "500x487",
+        "max_size": "1200x1171",
+        "quality": ""
+      },
+      {
+        "id": "825436-MLA99992706073_112025",
+        "url": "http://mla-s2-p.mlstatic.com/825436-MLA99992706073_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/825436-MLA99992706073_112025-O.jpg",
+        "size": "404x500",
+        "max_size": "404x500",
+        "quality": ""
+      },
+      {
+        "id": "892477-MLA99992560593_112025",
+        "url": "http://mla-s1-p.mlstatic.com/892477-MLA99992560593_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/892477-MLA99992560593_112025-O.jpg",
+        "size": "373x500",
+        "max_size": "897x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "6286105",
+        "value_name": "Ts Shara",
+        "values": [
+          {
+            "id": "6286105",
+            "name": "Ts Shara",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "20246030",
+        "value_name": "UPS Compact Xpro",
+        "values": [
+          {
+            "id": "20246030",
+            "name": "UPS Compact Xpro",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "17629148",
+        "value_name": "Compact XPro 800VA",
+        "values": [
+          {
+            "id": "17629148",
+            "name": "Compact XPro 800VA",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "20246029",
+        "value_name": "4442",
+        "values": [
+          {
+            "id": "20246029",
+            "name": "4442",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PEAK_POWER",
+        "name": "Potência pico",
+        "value_id": "1157153",
+        "value_name": "800VA",
+        "values": [
+          {
+            "id": "1157153",
+            "name": "800VA",
+            "struct": {
+              "number": 800,
+              "unit": "VA"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "name": "Voltagem de entrada",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OUTPUT_VOLTAGE",
+        "name": "Voltagem de saída",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VOLTAGE_DENOMINATION",
+        "name": "Denominação de voltagem",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INPUT_VOLTAGE_RANGE",
+        "name": "Faixa de voltagem de entrada",
+        "value_id": "17629178",
+        "value_name": "99v - 138v (ca)",
+        "values": [
+          {
+            "id": "17629178",
+            "name": "99v - 138v (ca)",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INPUT_VOLTAGE_RANGE_AC",
+        "name": "Faixa de voltagem de entrada CA",
+        "value_id": "20246095",
+        "value_name": "189v - 264v (ca)",
+        "values": [
+          {
+            "id": "20246095",
+            "name": "189v - 264v (ca)",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "20246092",
+        "value_name": "Ups Compact XPro 800VA Bivolt",
+        "values": [
+          {
+            "id": "20246092",
+            "name": "Ups Compact XPro 800VA Bivolt",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PRODUCT_TYPES",
+        "name": "Tipos de produto",
+        "value_id": "8869731",
+        "value_name": "No break",
+        "values": [
+          {
+            "id": "8869731",
+            "name": "No break",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "20246093",
+        "value_name": "7897103544424",
+        "values": [
+          {
+            "id": "20246093",
+            "name": "7897103544424",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "6286105",
+        "value_name": "Ts Shara",
+        "values": [
+          {
+            "id": "6286105",
+            "name": "Ts Shara",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BIVOLT_INPUT_SELECTION_METHOD",
+        "name": "Método de seleção de entrada bivolt",
+        "value_id": "355390",
+        "value_name": "Automático",
+        "values": [
+          {
+            "id": "355390",
+            "name": "Automático",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SOUND_ALARM_TYPES",
+        "name": "Tipos de alarma sonora",
+        "value_id": "8869719",
+        "value_name": "Sobrecarga",
+        "values": [
+          {
+            "id": "8869719",
+            "name": "Sobrecarga",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UPS_TYPE",
+        "name": "Tipo de UPS",
+        "value_id": "8869722",
+        "value_name": "Interactiva",
+        "values": [
+          {
+            "id": "8869722",
+            "name": "Interactiva",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SUITABLE_DEVICES",
+        "name": "Dispositivos adequados",
+        "value_id": "84348",
+        "value_name": "Computadores",
+        "values": [
+          {
+            "id": "84348",
+            "name": "Computadores",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OUTLETS_NUMBER",
+        "name": "Quantidade de tomadas",
+        "value_id": "260600",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "260600",
+            "name": "6",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "WITH_ON_OFF_POWER_BUTTON",
+        "name": "Com botão de ligar/desligar",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_LED_INDICATOR",
+        "name": "Com indicador LED",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "RATED_POWER",
+        "name": "Potência nominal",
+        "value_id": "9065673",
+        "value_name": "800 VA",
+        "values": [
+          {
+            "id": "9065673",
+            "name": "800 VA",
+            "struct": {
+              "number": 800,
+              "unit": "VA"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "7814219",
+        "value_name": "6.9 kg",
+        "values": [
+          {
+            "id": "7814219",
+            "name": "6.9 kg",
+            "struct": {
+              "number": 6.9,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "5795665",
+        "value_name": "16 cm",
+        "values": [
+          {
+            "id": "5795665",
+            "name": "16 cm",
+            "struct": {
+              "number": 16,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "value_id": "9568135",
+        "value_name": "40.5 cm",
+        "values": [
+          {
+            "id": "9568135",
+            "name": "40.5 cm",
+            "struct": {
+              "number": 40.5,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7817387",
+        "value_name": "24 cm",
+        "values": [
+          {
+            "id": "7817387",
+            "name": "24 cm",
+            "struct": {
+              "number": 24,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK003839",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK003839",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "882643-MLA99508565796_112025",
+    "thumbnail": "http://mlb-s2-p.mlstatic.com/882643-MLA99508565796_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB24043842",
+    "domain_id": "MLB-STABILIZERS_AND_UPS",
+    "seller_custom_field": "VTK003839",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:15:47.931Z",
+    "last_updated": "2026-08-17T01:15:47.931Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

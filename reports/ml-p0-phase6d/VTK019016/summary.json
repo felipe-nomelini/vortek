@@ -1,0 +1,23 @@
+{
+  "index": 70,
+  "sku": "VTK019016",
+  "expected_gtin": "7898414700073",
+  "started_at": "2026-08-17T01:16:53.712Z",
+  "local_time": "2026-08-16T22:16:53",
+  "completed_at": "2026-08-17T01:16:53.746Z",
+  "elapsed_ms": 34,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Cabletech RGE-58 100 m has no high-confidence category",
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

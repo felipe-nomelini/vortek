@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-17T14:15:53.621Z",
+  "product": {
+    "id": "7c9f0bb3-acd6-4524-b913-ee50a9e6c070",
+    "sku": "VTK023558",
+    "nome": "Mouse Sem Fio Logitech M220 Silent Preto",
+    "marca": "LOGITECH",
+    "estoque": 45,
+    "custo": 61.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.11,
+    "peso_bruto": 0.11,
+    "largura": 9,
+    "altura": 4.5,
+    "profundidade": 12,
+    "gtin": "",
+    "descricao": "M220 Silent Wireless Mouse Mouse sem fio silencioso, confortável e fácil de usar MENOS RUÍDO, MAIS FOCO Mantenha a concentração no trabalho sem ruídos que o distraiam. A tecnologia SilentTouch exclusiva da Logitech reduz mais de 90% 5 Comparação de nível sonoro entre o Logitech M220 e o Logitech M170. Nível sonoro do clique esquerdo em dBA medido por um laboratório independente a 1 metro dos sons de clique, todos assegurando que o mouse desempenhe ao máximo. Isso significa que você pode sentir cada clique, mas sem ouvir praticamente nada. DESIGN DE FORMATO CONFORTÁVEL E COMPACTO Continue produtivo por mais tempo com o formato confortável e contornado que segue a curva natural de sua mão. Compacto e sem fio, o mouse se adapta facilmente com seu laptop em uma bolsa - de modo que você possa levá-lo para qualquer lugar para trabalhar. O M220 é projetado para ser igualmente confortável para usuários canhotos e destros. NAVEGAÇÃO FÁCIL E CONTROLE PRECISO Navegue mais facilmente com uma experiência de rolagem linha por linha controlada. Sem mais inoportunos cliques perdidos - o sensor óptico lhe permite rastrear com controle de cursor suave e preciso em qualquer superfície. QUALIDADE EM QUE VOCÊ PODE CONFIAR O mouse é construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados. SIMPLICIDADE PLUG & PLAY O M220 é compatível com Windows, macOS, ChromeOS e Linux e funciona instantaneamente quando você conecta o receptor USB em seu computador ou laptop. O receptor também fornece uma conexão forte e confiável dentro de até 10 metros. O alcance sem fio pode variar dependendo do usuário, condições ambientais e de computação. MAIOR PRODUTIVIDADE Consiga concluir mais coisas adicionando o M220 em seu laptop. De acordo com um estudo recente, os usuários de laptop que escolheram este mouse em vez de um touchpad foram 50% mais produtivos e trabalharam 30% mais rápido. Décadas de excelência em design Trazemos mais de 25 anos de expertise e inovação criando mouses de vários tamanhos e formatos que fornecem um grau extra de conforto. Nossas soluções são fabricadas meticulosamente para se adaptar a usuários destros ou canhotos, tornando mais fácil encontrar o produto certo para você. SILÊNCIO A CADA CLIQUE Esqueça os sons de clique que distraem. O M220 reduz mais de 90% do ruído, criando um ambiente mais silencioso e produtivo para você e aqueles ao seu redor. O controle de cursor de tamanho pequeno e suave o torna ótimo para espaços de trabalho apertados e mesas ocupadas. *Imagens meramente ilustrativas.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391094_6a05fb9f82e48.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391094_6a05fb9f836bb.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391094_6a05fb9f83731.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391094_6a05fb9f83769.png"
+    ],
+    "categoria": "Informatica/ Perifericos/ Mouse óptico",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:40:26.345497+00:00",
+    "updated_at": "2026-08-17T10:35:30.967421+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "391094",
+    "dslite_ultima_sync": "2026-08-17T10:35:30.801+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "84716053",
+    "cest": "21.031.00",
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "953c8632-59f1-4bac-afae-806a7e7fd30f",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "mouse",
+    "function": "computer_pointing_input",
+    "intended_use": "computing",
+    "physical_form": "computer_mouse",
+    "expected_category_signals": [
+      "mouse",
+      "informatica",
+      "computador"
+    ],
+    "incompatible_category_signals": [
+      "cozinha",
+      "automotivo",
+      "instrumentomusical"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

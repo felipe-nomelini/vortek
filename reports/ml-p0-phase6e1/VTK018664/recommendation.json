@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Antena Permak Am/fm 2 Estágio Preta",
+    "supplier_category": "Automotivo/ Antena Automotiva/ Antena De Teto",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": "7898253494645",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381008",
+    "captured_at": "2026-08-17T12:54:33.955Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

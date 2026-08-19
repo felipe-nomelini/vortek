@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:53.535Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Carregador Veicular Usb Evus C-098 Com Led 5v 2a",
+    "supplier_category": "Informatica/ Acessórios Para Informatica/ Carregadores",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/368367",
+    "captured_at": "2026-08-17T12:56:32.960Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "c3f56cc8-1a0b-40e1-acf8-2784fc74881e",
+    "produto_id": "d082d8d2-753d-440c-b711-ee81e3f646ea",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "368367",
+    "sku_fornecedor": "368367",
+    "custo": 14.13,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:24:30.545+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:24:30.554+00:00",
+    "sku_oferta": "368367",
+    "nome": "Carregador Veicular Usb Evus C-098 Com Led 5v 2a",
+    "descricao": "Não perca nada! Com o carregador USB para carro EVUS, você nunca mais ficará sem bateria em seu celular. Possui indicador LED converte 12 ou 24V para 5V 2A\n\nInformações do Produto Características Não perca nada! Com o carregador USB para carro EVUS, você nunca mais ficará sem bateria em seu celular. Possui indicador LED converte 12 ou 24V para 5V 2A",
+    "marca": "EVUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/368367_67d2cafdb7b2d.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/368367_67d2cafdb869b.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/368367_67d2cafdb8d3b.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85044010",
+    "cest": "21.037.00"
+  }
+}

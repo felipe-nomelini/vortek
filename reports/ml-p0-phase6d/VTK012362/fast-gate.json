@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-08-17T01:13:23.044Z",
+  "product_exists_once": true,
+  "active": true,
+  "stock_positive": true,
+  "cost_positive": true,
+  "ml_item_id_null": true,
+  "ml_status_unlinked": true,
+  "gtin_present": true,
+  "gtin_matches_authorized": true,
+  "identity_text_present": true,
+  "preferred_offer_present": true,
+  "local_listing_absent": true,
+  "local_duplicates": [],
+  "remote_exact": [
+    {
+      "id": "MLB4880561619",
+      "status": "active",
+      "sku": "VTK012334",
+      "gtin": "008576114022",
+      "catalog_product_id": "MLB26802337"
+    },
+    {
+      "id": "MLB7111710806",
+      "status": "active",
+      "sku": "VTK012334",
+      "gtin": "008576114022",
+      "catalog_product_id": "MLB26802337"
+    }
+  ],
+  "historical_decision": "PASS"
+}

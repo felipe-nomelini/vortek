@@ -1,0 +1,288 @@
+{
+  "checked_at": "2026-08-17T12:53:50.860Z",
+  "product": {
+    "id": "065903be-45b2-48b6-9023-7735925177ef",
+    "sku": "VTK018636",
+    "nome": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+    "marca": "SOHOPLUS - FURUKAWA",
+    "gtin": "7893137226954"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/329123",
+    "consulted_at": "2026-08-17T12:53:50.658Z",
+    "product": {
+      "produtoid": "329123",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 365.9,
+      "preco_crossdocking": 365.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 365.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+      "titulo_curto": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+      "categoriaid": "117802",
+      "categoria_nome": "Segurança / Cameras/ Camera Colorida",
+      "abc": null,
+      "ean11": "7893137226954",
+      "ncm": "85258300",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n- Acesso remoto fácil (P2P): Acompanhe as imagens em temo real de maneira muito rápida;<br><br />\r\n- Full HD: Imagem em Full HD em 1080p com alta definição;<br><br />\r\n- POE: Apenas um cabo para imagem e energia, simplifique sua instalação!;<br><br />\r\n- IR: Alcance de Infravermelho 30m para garantir sua segurança também no escuro;<br><br />\r\n- IP66: Proteção IP66 contra água e poeira;<br><br />\r\n- Lente 2.8mm: Melhor campo de visão para pequenas distâncias;<br><br />\r\n- Função WDR e BLC: Melhor qualidade de imagem;<br>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "SOHOPLUS - FURUKAWA",
+      "modelo": "",
+      "peso": 0.42,
+      "largura": 11,
+      "altura": 8,
+      "profundidade": 17.5,
+      "peso_embalagem": 0.42,
+      "largura_embalagem": 11,
+      "altura_embalagem": 8,
+      "profundidade_embalagem": 17.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/2/329123_67d2caef35e9d.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1355,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.065.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-11-17 07:31:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:57:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/2/329123_67d2caef35e9d.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_IDENTITY",
+    "sanitation": "IDENTITY_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: COLOR",
+    "foundValue": "MLB32453654",
+    "source": "ML catalog MLB32453654 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "COLOR"
+      ],
+      "catalog_brand": "Furukawa",
+      "model": "IPC002",
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "vermelho"
+      ],
+      "catalog_colors": [
+        "branco"
+      ],
+      "title_similarity": 0.5
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB32453654",
+      "catalog_product_id": "MLB32453654",
+      "domain_id": "MLB-SECURITY_MONITORS",
+      "name": "Câmera Bullet Furukawa IPC002 Branca Full HD 1080p POE IP66",
+      "parent_id": "MLB32453653",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3646767",
+          "value_name": "Furukawa",
+          "values": [
+            {
+              "id": "3646767",
+              "name": "Furukawa"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "6299705",
+          "value_name": "IPC002",
+          "values": [
+            {
+              "id": "6299705",
+              "name": "IPC002"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "52055",
+              "name": "Branco"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "name": "Conectores de entrada",
+          "value_id": "20190091",
+          "value_name": "POE",
+          "values": [
+            {
+              "id": "20190091",
+              "name": "POE"
+            }
+          ]
+        },
+        {
+          "id": "RESOLUTION",
+          "name": "Resolução",
+          "value_id": "32024833",
+          "value_name": "0.001 Mpx",
+          "values": [
+            {
+              "id": "32024833",
+              "name": "0.001 Mpx"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "32297484",
+          "value_name": "7893137226954",
+          "values": [
+            {
+              "id": "32297484",
+              "name": "7893137226954"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450308",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "2450308",
+              "name": "Branco"
+            }
+          ],
+          "meta": {
+            "rgb": "FFFFFF"
+          }
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Acesso remoto fácil (P2P): Acompanhe as imagens em tempo real de maneira muito rápida;\nImagem em Full HD em 1080p com alta definição;\nPOE: Apenas um cabo para imagem e energia, simplifique sua instalação;\nIR: Alcance de Infravermelho 30m para garantir sua segurança também no escuro;\nProteção IP66 contra água e poeira;\nLente 2.8mm: Melhor campo de visão para pequenas distâncias;\nFunção WDR e BLC: Melhor qualidade de imagem;"
+      },
+      "pictures": [
+        {
+          "id": "706751-MLA99955908631_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_706751-MLA99955908631_112025-F.jpg",
+          "max_width": "1184",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-02-09T00:42:55Z",
+      "last_updated": "2026-07-07T23:32:01Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-17T14:15:41.560Z",
+  "product": {
+    "id": "2f56fe72-888a-4c96-b359-af5841a0dc59",
+    "sku": "VTK022010",
+    "nome": "Haste Permak M5 M6 Etios/ Freemont/ Captiva",
+    "marca": "PERMAK",
+    "estoque": 5,
+    "custo": 14.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.044,
+    "peso_bruto": 0.044,
+    "largura": 1,
+    "altura": 1,
+    "profundidade": 18,
+    "gtin": "7898253501565",
+    "descricao": "Haste Permak M5 M6 Etios/ Freemont/ Captiva *Imagem meramente ilustrativa.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/381009_67d2cb0c38296.jpg"
+    ],
+    "categoria": "Automotivo/ Antena Automotiva/ Haste De Antena",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:38:16.438085+00:00",
+    "updated_at": "2026-08-17T11:11:32.902456+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "381009",
+    "dslite_ultima_sync": "2026-08-17T11:11:32.755+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85291090",
+    "cest": "01.063.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "8366e2d1-a8a0-4ea8-80df-edf770da4a8a",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "vehicle_antenna",
+    "function": "receive_vehicle_radio_signal",
+    "intended_use": "automotive",
+    "physical_form": "vehicle_antenna",
+    "expected_category_signals": [
+      "antena",
+      "automotivo",
+      "veiculo",
+      "carro"
+    ],
+    "incompatible_category_signals": [
+      "gpsportatil",
+      "televisao",
+      "wifi"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

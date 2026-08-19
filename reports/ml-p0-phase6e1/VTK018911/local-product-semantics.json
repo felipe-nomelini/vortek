@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-08-17T14:15:45.335Z",
+  "product": {
+    "id": "e92d8175-c067-44e4-ac0a-6c104db748f2",
+    "sku": "VTK018911",
+    "nome": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+    "marca": "FLASH COVER",
+    "estoque": 4,
+    "custo": 539.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 7.1,
+    "peso_bruto": 7.1,
+    "largura": 21.5,
+    "altura": 17,
+    "profundidade": 170,
+    "gtin": "7899630194240",
+    "descricao": "Informações do Produto A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo Frontier Sel D40 CD 09/15",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018911/01-9947f7afa4d321b8b003.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018911/02-7a1640dc751dc33f535f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018911/03-7165efcde625e56225b3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018911/04-d3385c708a4994cc86e0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018911/05-f0c770eb8b460cd5cc77.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018911/06-fa6b0627ebf3124caf24.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018911/07-e4665102d119218d1baa.jpg"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:17.035182+00:00",
+    "updated_at": "2026-08-17T11:14:23.070408+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "317308",
+    "dslite_ultima_sync": "2026-08-17T11:14:22.869+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87082999",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "44f22c76-a631-4e57-82de-df5a04b530f9",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

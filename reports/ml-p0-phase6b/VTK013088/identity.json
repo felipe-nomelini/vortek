@@ -1,0 +1,385 @@
+{
+  "index": 3,
+  "sku": "VTK013088",
+  "started_at": "2026-08-17T00:06:45.593Z",
+  "local_time": "2026-08-16T21:06:45",
+  "expected_gtin": "7898566200308",
+  "product": {
+    "id": "ac50c870-848c-4bac-ba0c-f7eef568e100",
+    "sku": "VTK013088",
+    "nome": "Divisor De Antena 1x3 5-900mhz Storm 10 Unidades",
+    "marca": "Storm",
+    "estoque": 51,
+    "custo": 30.61,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.23,
+    "peso_bruto": 0.23,
+    "largura": 12,
+    "altura": 15,
+    "profundidade": 3,
+    "gtin": "7898566200308",
+    "descricao": "Divisor de Antena 1x3 5-900MHz Storm Descrição Ideal para dividir o sinal de TV aberta em até três pontos, mantendo qualidade e estabilidade. Compatível com sinais VHF, UHF e CATV na faixa de 5 a 900 MHz. Detalhes Técnicos • Marca: Storm • Modelo: Divisor de Antena 1x3 5-900MHz • Faixa de Frequência: 5 a 900 MHz • Número de Saídas: 3 • Tipo de Conector: Fêmea (padrão coaxial) • Uso: TV aberta, VHF, UHF e CATV • Construção: Corpo metálico resistente para maior durabilidade • Aplicação: Residencial e comercial O Divisor de Antena 1x3 5-900MHz Storm possibilita a distribuição de sinal de TV aberta para até três aparelhos simultaneamente, garantindo excelente desempenho com baixa perda de qualidade.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e5c1a67d705acea8697ca8f735d4a253.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fb916b97b5830a23db19899488a72445.jpg"
+    ],
+    "categoria": "Eletrônicos, áudio E Vídeo > Acessórios Para Tv > antenas De Tv",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.983532+00:00",
+    "updated_at": "2026-08-16T20:07:30.928597+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "3517",
+    "dslite_ultima_sync": "2026-08-16T20:07:30.596+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8529.90.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "49818553-e88c-4dce-a83b-57ef0f8f5196",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "49818553-e88c-4dce-a83b-57ef0f8f5196",
+    "produto_id": "ac50c870-848c-4bac-ba0c-f7eef568e100",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "3517",
+    "sku_fornecedor": "3517",
+    "custo": 30.61,
+    "estoque": 51,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:07:30.596+00:00",
+    "created_at": "2026-07-06T22:31:08.373613+00:00",
+    "updated_at": "2026-08-16T20:07:30.603+00:00",
+    "sku_oferta": "3517",
+    "nome": "Divisor De Antena 1x3 5-900mhz Storm 10 Unidades",
+    "descricao": "Divisor de Antena 1x3 5-900MHz Storm Descrição Ideal para dividir o sinal de TV aberta em até três pontos, mantendo qualidade e estabilidade. Compatível com sinais VHF, UHF e CATV na faixa de 5 a 900 MHz. Detalhes Técnicos • Marca: Storm • Modelo: Divisor de Antena 1x3 5-900MHz • Faixa de Frequência: 5 a 900 MHz • Número de Saídas: 3 • Tipo de Conector: Fêmea (padrão coaxial) • Uso: TV aberta, VHF, UHF e CATV • Construção: Corpo metálico resistente para maior durabilidade • Aplicação: Residencial e comercial O Divisor de Antena 1x3 5-900MHz Storm possibilita a distribuição de sinal de TV aberta para até três aparelhos simultaneamente, garantindo excelente desempenho com baixa perda de qualidade.",
+    "marca": "Storm",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e5c1a67d705acea8697ca8f735d4a253.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fb916b97b5830a23db19899488a72445.jpg"
+    ],
+    "gtin": "7898566200308",
+    "ncm": "8529.90.90",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3517",
+    "consulted_at": "2026-08-17T00:06:46.422Z",
+    "product": {
+      "produtoid": "3517",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 30.61,
+      "preco_crossdocking": 30.61,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 30.61,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Divisor De Antena 1x3 5-900mhz Storm 10 Unidades",
+      "titulo_curto": "Divisor De Antena 1x3 5-900mhz Storm 10 Unidades",
+      "categoriaid": "289788",
+      "categoria_nome": "Eletrônicos, áudio E Vídeo > Acessórios Para Tv >  antenas De Tv",
+      "abc": null,
+      "ean11": "7898566200308",
+      "ncm": "8529.90.90",
+      "descricao": "<p>Divisor de Antena 1x3 5-900MHz Storm</p> <p>Descrição<br>Ideal para dividir o sinal de TV aberta em até três pontos, mantendo qualidade e estabilidade. Compatível com sinais VHF, UHF e CATV na faixa de 5 a 900 MHz.</p> <p>Detalhes Técnicos<br>•    Marca: Storm<br>•    Modelo: Divisor de Antena 1x3 5-900MHz<br>•    Faixa de Frequência: 5 a 900 MHz<br>•    Número de Saídas: 3<br>•    Tipo de Conector: Fêmea (padrão coaxial)<br>•    Uso: TV aberta, VHF, UHF e CATV<br>•    Construção: Corpo metálico resistente para maior durabilidade<br>•    Aplicação: Residencial e comercial</p> <p>O Divisor de Antena 1x3 5-900MHz Storm possibilita a distribuição de sinal de TV aberta para até três aparelhos simultaneamente, garantindo excelente desempenho com baixa perda de qualidade.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Storm",
+      "modelo": "",
+      "peso": 0.23,
+      "largura": 12,
+      "altura": 15,
+      "profundidade": 3,
+      "peso_embalagem": 0.23,
+      "largura_embalagem": 12,
+      "altura_embalagem": 15,
+      "profundidade_embalagem": 3,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e5c1a67d705acea8697ca8f735d4a253.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 319,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "920234974",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 18:41:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 18:41:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 51,
+      "tempo_cross": 0,
+      "estoque_total": 51,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e5c1a67d705acea8697ca8f735d4a253.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fb916b97b5830a23db19899488a72445.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_CATEGORY",
+  "configured_reason": "exact_catalog_has_no_reliable_category_and_domain_discovery_maps_to_incompatible_portable_satellite_kit",
+  "evidence": {
+    "manufacturer_or_official": "DSLITE supplier + ML catalog MLB62704096",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3517",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898566200308"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB62704096",
+      "catalog_product_id": "MLB62704096",
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "name": "Divisor De Antena 1x3 5-900mhz Storm Pt/10",
+      "parent_id": "MLB62704095",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2785980",
+          "value_name": "Storm",
+          "values": [
+            {
+              "id": "2785980",
+              "name": "Storm"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "67469866",
+          "value_name": "DIVS0004",
+          "values": [
+            {
+              "id": "67469866",
+              "name": "DIVS0004"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "67469865",
+          "value_name": "Conectores tipo fêmea",
+          "values": [
+            {
+              "id": "67469865",
+              "name": "Conectores tipo fêmea"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827369",
+          "value_name": "Adaptador",
+          "values": [
+            {
+              "id": "13827369",
+              "name": "Adaptador"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de entrada",
+          "value_id": "15267153",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "15267153",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de saída",
+          "value_id": "15991822",
+          "value_name": "4",
+          "values": [
+            {
+              "id": "15991822",
+              "name": "4"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "name": "Conector de entrada",
+          "value_id": "6759270",
+          "value_name": "Jack",
+          "values": [
+            {
+              "id": "6759270",
+              "name": "Jack"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "name": "Conector de saída",
+          "value_id": "6759271",
+          "value_name": "Jack",
+          "values": [
+            {
+              "id": "6759271",
+              "name": "Jack"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "67469867",
+          "value_name": "7898566200308",
+          "values": [
+            {
+              "id": "67469867",
+              "name": "7898566200308"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Divisor De Antena 1x3 5-900mhz Storm Pt/10  \nTipo Fêmea  \nFrequência 900MHZ  \nQtde-entrada 1  \nQtde-de-saída 3  \n\nDivisor De Antena 1X3 5-900Mhz Storm Pt/10  \nIdeal para dividir sinais de VHF, UHF e CATV de baixa frequência em sistemas residenciais ou coletivos, obtendo-se alto desempenho.  \nConectores tipo fêmea.  \nPossui 1 entrada e 3 saídas.  \nConteúdo da Embalagem: 10 unidades.  \nEAN: 7898566200308  \nSKU: 113040-10  \n\nEste divisor é projetado com conectores tipo jack, garantindo uma conexão segura e eficiente. Com uma quantidade de 1 conector de entrada e 3 conectores de saída, é perfeito para expandir sua rede de antena. A embalagem do vendor possui dimensões de 16 cm de altura, 11 cm de largura e 2 cm de comprimento, pesando 601 g. Este produto vem com embalagem adicional, proporcionando proteção extra durante o transporte. O modelo DIVS0004 é a escolha ideal para quem busca qualidade e confiabilidade em divisores de antena."
+      },
+      "pictures": [
+        {
+          "id": "601797-MLA100025552523_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_601797-MLA100025552523_122025-F.jpg",
+          "max_width": "1200",
+          "max_height": "863"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-12-01T08:16:23Z",
+      "last_updated": "2025-12-01T08:40:59Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

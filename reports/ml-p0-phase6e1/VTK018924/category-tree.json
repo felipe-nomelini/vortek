@@ -1,0 +1,29 @@
+{
+  "candidates": [
+    {
+      "category_id": "MLB1053",
+      "path": [
+        "Celulares e Telefones",
+        "Telefonia Fixa e Sem Fio",
+        "Telefones"
+      ]
+    },
+    {
+      "category_id": "MLB454750",
+      "path": [
+        "Celulares e Telefones",
+        "Telefonia Fixa e Sem Fio",
+        "Telefones Rurais"
+      ]
+    },
+    {
+      "category_id": "MLB439215",
+      "path": [
+        "Celulares e Telefones",
+        "Telefonia Fixa e Sem Fio",
+        "Centrais Telefônicas",
+        "Telefones e Consoles"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "sku": "VTK001297",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category confidence is not HIGH for domain MLB-ELECTRIC_GUITARS",
+  "local_value": "7890443014374",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB17460880 + domain discovery",
+  "timestamp": "2026-08-17T12:54:27.976Z"
+}

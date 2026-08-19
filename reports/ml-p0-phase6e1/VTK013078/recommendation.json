@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Pilha Max Aa8+aaa4 Cart 12 Energizer",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > Pilhas E Carregadores > Pilhas",
+    "supplier_brand": "Energizer",
+    "supplier_gtin": "8888021206128",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3312",
+    "captured_at": "2026-08-17T12:53:41.284Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

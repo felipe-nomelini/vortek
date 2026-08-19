@@ -1,0 +1,10 @@
+{
+  "sku": "VTK012362",
+  "gate": "BLOCK_REMOTE_DUPLICATE",
+  "evidence": "exact remote seller SKU, GTIN, or catalog match already exists",
+  "local_value": "008576114039",
+  "found_value": null,
+  "suggested_action": "REMOTE_LINK_REVIEW",
+  "source": "ML catalog MLB26802337 + DSLite supplier",
+  "timestamp": "2026-08-17T01:13:23.044Z"
+}

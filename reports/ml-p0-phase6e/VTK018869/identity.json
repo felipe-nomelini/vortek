@@ -1,0 +1,312 @@
+{
+  "checked_at": "2026-08-17T12:54:39.842Z",
+  "product": {
+    "id": "f890678d-4601-445e-ae96-e7580dabdd80",
+    "sku": "VTK018869",
+    "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+    "marca": "PERMAK",
+    "gtin": "7898253495581"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/245596",
+    "consulted_at": "2026-08-17T12:54:39.643Z",
+    "product": {
+      "produtoid": "245596",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 85.9,
+      "preco_crossdocking": 85.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 85.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:05.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:05.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "titulo_curto": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "categoriaid": "117480",
+      "categoria_nome": "Automotivo/ Acessórios Para Instalacao/ Moldura",
+      "abc": null,
+      "ean11": "7898253495581",
+      "ncm": "85299090",
+      "descricao": "preto",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PERMAK",
+      "modelo": "",
+      "peso": 0.26,
+      "largura": 5,
+      "altura": 20,
+      "profundidade": 29,
+      "peso_embalagem": 0.26,
+      "largura_embalagem": 5,
+      "altura_embalagem": 20,
+      "profundidade_embalagem": 29,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/2/4/245596_67d2cae04c66f.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1353,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.999.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-02-12 14:23:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:55:49.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/2/4/245596_67d2cae04c66f.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: COLOR,MODEL",
+    "foundValue": "MLB51341037",
+    "source": "ML catalog MLB51341037 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "COLOR",
+        "MODEL"
+      ],
+      "catalog_brand": "Permak",
+      "model": "89-V4",
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [
+        "grafite"
+      ],
+      "title_similarity": 0.5714285714285714
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB51341037",
+      "catalog_product_id": "MLB51341037",
+      "domain_id": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "name": "Moldura 2 Din Honda Civic 2012 2016 Grafite",
+      "parent_id": "MLB51341033",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak",
+          "values": [
+            {
+              "id": "3289477",
+              "name": "Permak"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "55335410",
+          "value_name": "89-V4",
+          "values": [
+            {
+              "id": "55335410",
+              "name": "89-V4"
+            }
+          ]
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN",
+          "values": [
+            {
+              "id": "38480992",
+              "name": "2 DIN"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "18579829",
+          "value_name": "Grafite",
+          "values": [
+            {
+              "id": "18579829",
+              "name": "Grafite"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "2511571",
+          "value_name": "ABS",
+          "values": [
+            {
+              "id": "2511571",
+              "name": "ABS"
+            }
+          ]
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "name": "Tamanho da tela",
+          "value_id": "2399979",
+          "value_name": "7 \"",
+          "values": [
+            {
+              "id": "2399979",
+              "name": "7 \""
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "54799265",
+          "value_name": "7898253495581",
+          "values": [
+            {
+              "id": "54799265",
+              "name": "7898253495581"
+            }
+          ]
+        },
+        {
+          "id": "MPN",
+          "name": "MPN",
+          "value_id": "55335412",
+          "value_name": "89-V4",
+          "values": [
+            {
+              "id": "55335412",
+              "name": "89-V4"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A moldura 2 DIN para Honda Civic 2012 a 2016 foi desenvolvida para quem busca uma instalação de central multimídia com encaixe perfeito e acabamento de alta qualidade. Fabricada em plástico ABS de alta resistência, essa moldura oferece durabilidade, resistência a impactos e variações de temperatura, garantindo um produto confiável e de longa vida útil.\n\nDisponível na cor grafite, essa moldura confere ao painel do seu Honda Civic um visual moderno e elegante, mantendo a originalidade do interior do veículo. A instalação é simples e não exige modificações no painel original, proporcionando uma experiência prática e segura.\n\nCompatível com:\n\nHonda Civic (2012 – 2016)"
+      },
+      "pictures": [
+        {
+          "id": "753482-MLA99322381118_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_753482-MLA99322381118_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "811"
+        },
+        {
+          "id": "777060-MLA86287050955_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_777060-MLA86287050955_062025-F.jpg",
+          "max_width": "1200",
+          "max_height": "811"
+        },
+        {
+          "id": "992466-MLA85972945796_062025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_992466-MLA85972945796_062025-F.jpg",
+          "max_width": "1200",
+          "max_height": "768"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-06-17T20:43:10Z",
+      "last_updated": "2025-06-17T21:05:41Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

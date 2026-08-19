@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+    "supplier_category": "Som Profissional/ Acessórios Para Microfones/ Suporte Para Microfone",
+    "supplier_brand": "ASK",
+    "supplier_gtin": "7898939971378",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/355581",
+    "captured_at": "2026-08-17T12:54:49.845Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

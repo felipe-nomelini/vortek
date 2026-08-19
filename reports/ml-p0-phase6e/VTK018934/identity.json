@@ -1,0 +1,341 @@
+{
+  "checked_at": "2026-08-17T12:54:50.033Z",
+  "product": {
+    "id": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+    "sku": "VTK018934",
+    "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+    "marca": "ASK",
+    "gtin": "7898939971378"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/355581",
+    "consulted_at": "2026-08-17T12:54:49.845Z",
+    "product": {
+      "produtoid": "355581",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 93.6,
+      "preco_crossdocking": 93.6,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 93.6,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+      "titulo_curto": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+      "categoriaid": "118320",
+      "categoria_nome": "Som Profissional/ Acessórios Para Microfones/ Suporte Para Microfone",
+      "abc": null,
+      "ean11": "7898939971378",
+      "ncm": "92099900",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Suporte para Caixa Acústica ASK ou Cubo com Regulagem Inclinação - SI 113 </b></p><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\n<p>Capacidade de Carga <br><br />\r\n  40 Kg</p><br />\r\n<p>Embalagem (C x L x A ) <br><br />\r\n  11,5 x 41,5 x 73cm</p><br />\r\n<p>Altura <br><br />\r\n  60 cm</p><br />\r\n<p>Largura <br><br />\r\n  41,5 cm</p><br />\r\n<p>Comprimento<br><br />\r\n  48cm</p><br />\r\n<p>Material<br><br />\r\n  Aço / Plástico</p><br />\r\n<p>Ajustes<br><br />\r\n  Abertura</p><br />\r\n<p>Peso (kg)<br><br />\r\n  2,490</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "ASK",
+      "modelo": "",
+      "peso": 2.35,
+      "largura": 10,
+      "altura": 41,
+      "profundidade": 79,
+      "peso_embalagem": 2.35,
+      "largura_embalagem": 10,
+      "altura_embalagem": 41,
+      "profundidade_embalagem": 79,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/5/355581_67d2caf8a81b0.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1358,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-06-02 10:11:41.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:58:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/355581_67d2caf8a81b0.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/355581_67d2caf8a8c05.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB35305936",
+    "source": "ML catalog MLB35305936 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "ASK",
+      "model": "Sl113",
+      "local_pack": 5,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [],
+      "catalog_colors": [],
+      "title_similarity": 0.5
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB35305936",
+      "catalog_product_id": "MLB35305936",
+      "domain_id": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+      "name": "Suporte Para Amplificador Cubo E Acordeon Ask Sl113",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4238929",
+          "value_name": "ASK",
+          "values": [
+            {
+              "id": "4238929",
+              "name": "ASK"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "37053837",
+          "value_name": "Sl113",
+          "values": [
+            {
+              "id": "37053837",
+              "name": "Sl113"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "1233289",
+          "value_name": "De piso",
+          "values": [
+            {
+              "id": "1233289",
+              "name": "De piso"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "name": "Instrumentos recomendados",
+          "value_id": "2106570",
+          "value_name": "Guitarra",
+          "values": [
+            {
+              "id": "2106570",
+              "name": "Guitarra"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "4837600",
+          "value_name": "Aço",
+          "values": [
+            {
+              "id": "4837600",
+              "name": "Aço"
+            }
+          ]
+        },
+        {
+          "id": "INSTRUMENT_CAPACITY",
+          "name": "Capacidade de instrumentos",
+          "value_id": "24276403",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "24276403",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "1125579",
+          "value_name": "60 cm",
+          "values": [
+            {
+              "id": "1125579",
+              "name": "60 cm"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "127485",
+          "value_name": "1 m",
+          "values": [
+            {
+              "id": "127485",
+              "name": "1 m"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "1125677",
+          "value_name": "41.5 cm",
+          "values": [
+            {
+              "id": "1125677",
+              "name": "41.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "name": "Peso máximo suportado",
+          "value_id": "2508303",
+          "value_name": "50 kg",
+          "values": [
+            {
+              "id": "2508303",
+              "name": "50 kg"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "35879181",
+          "value_name": "7898939971378",
+          "values": [
+            {
+              "id": "35879181",
+              "name": "7898939971378"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Suporte Para Amplificador Cubo E Acordeon Ask Sl113\n\n \n\nSuporte metálico para caixa amplificada, cubo e Acordeon (Sanfona).\n\n \n\nEspecificações:\n\nMarca: Ask\n\nModelo: Sl113\n\nPeso: 2,490 Kg\n\nCapacidade de Carga: 40 Kg\n\nEmbalagem (C x L x A): 11,5x41,5x73cm\n\nAltura: 60 cm\n\nLargura: 41,5 cm\n\nComprimento: 48 cm\n\nMaterial: Aço / Plastico\n\nAjustes: Abertura\n\n \n\n \n\nImagens Meramente Ilustrativas"
+      },
+      "pictures": [
+        {
+          "id": "816727-MLU76120998793_052024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_816727-MLU76120998793_052024-F.jpg",
+          "max_width": "1185",
+          "max_height": "663"
+        },
+        {
+          "id": "833494-MLU75944207044_052024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_833494-MLU75944207044_052024-F.jpg",
+          "max_width": "883",
+          "max_height": "1124"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-04-03T05:01:32Z",
+      "last_updated": "2026-06-20T23:10:47Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

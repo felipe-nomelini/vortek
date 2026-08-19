@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-08-16T21:00:59.135Z",
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "local": "MLB7432157712",
+      "remote": "MLB7432157712",
+      "status": "MATCH"
+    },
+    {
+      "field": "SKU",
+      "local": "VTK000486",
+      "remote": "VTK000486",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "local": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "remote": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "local": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+      "remote": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "local": 187.22,
+      "remote": 187.22,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "local": "ativo",
+      "remote": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "local": "premium",
+      "remote": "premium",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalogo",
+      "local": false,
+      "remote": false,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "material_drift": false,
+  "supplier_master": [
+    {
+      "field": "altura",
+      "expected": 17,
+      "actual": 17,
+      "status": "MATCH"
+    },
+    {
+      "field": "largura",
+      "expected": 13,
+      "actual": 13,
+      "status": "MATCH"
+    },
+    {
+      "field": "profundidade",
+      "expected": 12,
+      "actual": 12,
+      "status": "MATCH"
+    },
+    {
+      "field": "peso_bruto",
+      "expected": 0.262,
+      "actual": 0.262,
+      "status": "MATCH"
+    }
+  ],
+  "supplier_master_preserved": true,
+  "uniqueness": {
+    "valid": true,
+    "item_listing_count": 1,
+    "product_listing_count": 1,
+    "products_pointing_to_item_count": 1
+  },
+  "remote_commercial_hash_unchanged": true
+}

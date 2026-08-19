@@ -1,0 +1,247 @@
+{
+  "started_at": "2026-08-16T20:39:39.480Z",
+  "completed_at": "2026-08-16T20:39:40.073Z",
+  "sku": "VTK000486",
+  "produto_id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+  "item_id": "MLB7432157712",
+  "user_product_id": "MLBU4771606790",
+  "family_id": "4094059417953552",
+  "result": "LOCAL_PERSIST_ABORT_REMOTE_DRIFT",
+  "ml_writes": 0,
+  "description_writes": 0,
+  "second_sku_actions": 0,
+  "local_writes": [],
+  "rollback": {
+    "required": false,
+    "attempted": false,
+    "succeeded": null
+  },
+  "hold": "P0 PHASE 4B.3 — LOCAL PERSISTENCE HOLD",
+  "remote_pre_validation": {
+    "identity": [
+      {
+        "field": "item_id",
+        "expected": "MLB7432157712",
+        "remote": "MLB7432157712",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "seller_id",
+        "expected": 3294514937,
+        "remote": 3294514937,
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "seller_sku",
+        "expected": "VTK000486",
+        "remote": "VTK000486",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "user_product_id",
+        "expected": "MLBU4771606790",
+        "remote": "MLBU4771606790",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "family_id",
+        "expected": "4094059417953552",
+        "remote": "4094059417953552",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "GTIN",
+        "expected": "4904530109270",
+        "remote": "4904530109270",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "BRAND",
+        "expected": "Toshiba",
+        "remote": "Toshiba",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "MODEL",
+        "expected": "TNHC-6GAE4 CB",
+        "remote": "TNHC-6GAE4 CB",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "category_id",
+        "expected": "MLB11290",
+        "remote": "MLB11290",
+        "status": "MATCH",
+        "material": true
+      }
+    ],
+    "commercial": [
+      {
+        "field": "status",
+        "expected": "active",
+        "remote": "active",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "price",
+        "expected": 187.22,
+        "remote": 187.22,
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "available_quantity",
+        "expected": 15,
+        "remote": 15,
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "listing_type_id",
+        "expected": "gold_pro",
+        "remote": "gold_pro",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "condition",
+        "expected": "new",
+        "remote": "new",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "PRODUCT_TYPE",
+        "expected": "Pilha",
+        "remote": "Pilha",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "INPUT_VOLTAGE",
+        "expected": "127/220V",
+        "remote": "127/220V",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "shipping.mode",
+        "expected": "me2",
+        "remote": "me2",
+        "status": "MATCH",
+        "material": true
+      }
+    ],
+    "identityMismatch": false,
+    "commercialDrift": false
+  },
+  "remote_hash_before": "3813c453df0dbf14ae68892633b99cd6c2afaada067634fb88d3f15d305cf5c4",
+  "remote_hash_phase4b2": "7c1ca5f2b54ff78a8e416f06c6751ef77cf9ffd22a16dced10c780ef0d596de8",
+  "remote_drift": {
+    "fields": [
+      {
+        "field": "pictures[5]",
+        "previous": {
+          "id": "881494-MLA116279066915_082026",
+          "secure_url": "https://http2.mlstatic.com/D_881494-MLA116279066915_082026-O.jpg"
+        },
+        "current": {
+          "id": "842932-MLA116279067739_082026",
+          "secure_url": "https://http2.mlstatic.com/D_842932-MLA116279067739_082026-O.jpg"
+        },
+        "status": "DIVERGENT"
+      },
+      {
+        "field": "attributes.SELLER_PACKAGE_HEIGHT",
+        "previous": {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_id": null,
+          "value_name": "17 cm"
+        },
+        "current": {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_id": null,
+          "value_name": "16 cm"
+        },
+        "status": "DIVERGENT"
+      },
+      {
+        "field": "attributes.SELLER_PACKAGE_LENGTH",
+        "previous": {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_id": null,
+          "value_name": "12 cm"
+        },
+        "current": {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_id": null,
+          "value_name": "5 cm"
+        },
+        "status": "DIVERGENT"
+      },
+      {
+        "field": "attributes.SELLER_PACKAGE_WEIGHT",
+        "previous": {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_id": null,
+          "value_name": "262 g"
+        },
+        "current": {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_id": null,
+          "value_name": "110 g"
+        },
+        "status": "DIVERGENT"
+      },
+      {
+        "field": "attributes.SELLER_PACKAGE_WIDTH",
+        "previous": {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_id": null,
+          "value_name": "13 cm"
+        },
+        "current": {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_id": null,
+          "value_name": "11 cm"
+        },
+        "status": "DIVERGENT"
+      }
+    ],
+    "drift": true
+  },
+  "local_before": {
+    "product": {
+      "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "nome": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+      "gtin": "4904530109270",
+      "ml_item_id": null,
+      "ml_status": "sem_anuncio",
+      "ativo": true,
+      "estoque": 15,
+      "custo": 96.22,
+      "fornecedor": "HAYAMAX-PR",
+      "updated_at": "2026-08-16T17:13:19.009737+00:00"
+    },
+    "listings_for_item": 0,
+    "listings_for_product": 0,
+    "listings_for_sku": 0,
+    "products_pointing_to_item": 0
+  },
+  "prior_remote_abort_preserved": true,
+  "transaction_strategy": {
+    "mechanism": "postgrest_unique_guard_conditional_update_compensating_rollback",
+    "native_multi_table_transaction": false,
+    "reason": "No existing transactional RPC and no direct PostgreSQL connection available; no migration authorized for this phase."
+  }
+}

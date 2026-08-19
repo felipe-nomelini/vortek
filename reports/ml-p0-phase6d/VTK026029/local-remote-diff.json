@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075857033",
+      "local": "MLB5075857033",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026029",
+      "local": "VTK026029",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "d252ec65-c014-41b6-84b4-c45b7b0d0c09",
+      "local": "d252ec65-c014-41b6-84b4-c45b7b0d0c09",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Suporte Pedestal Tripe Microfone Girafa C Cachimbo Gm10 Saty - Preto",
+      "local": "Suporte Pedestal Tripe Microfone Girafa C Cachimbo Gm10 Saty - Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 389.9,
+      "local": 389.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075857033-suporte-pedestal-tripe-microfone-girafa-c-cachimbo-gm10-saty-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075857033-suporte-pedestal-tripe-microfone-girafa-c-cachimbo-gm10-saty-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

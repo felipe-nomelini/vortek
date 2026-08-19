@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-08-17T14:15:53.635Z",
+  "product": {
+    "id": "543cd6ae-f86f-473c-8c3c-55cd8e70e50c",
+    "sku": "VTK012248",
+    "nome": "Palheta Bori Grl At-r16103 Picker 0,82 Mm (vermelho) R21004 10un",
+    "marca": "Bori",
+    "estoque": 32,
+    "custo": 8,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.03,
+    "peso_bruto": 0.03,
+    "largura": 10,
+    "altura": 10,
+    "profundidade": 2,
+    "gtin": "",
+    "descricao": "PALHETA BORI GRL AT-R16103 PICKER 0,82 MM (VERMELHO) R21004 10UN A Palheta Bori GRL AT-R16103 Picker 0,82 mm (Vermelho) R21004 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais especificações: Características Principais: • Modelo: Picker PA • Código do Fabricante: R21004 • Espessura: 0,82 mm • Material: Poliamida Nylon (Resina de Engenharia) • Cor: Vermelho • Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue • Dimensões: • Largura: 25 mm • Altura: 30 mm • Peso: 0,45 g Design e Funcionalidade: Ponta Fina Standard: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão e guitarra, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori Picker PA de 0,82 mm na cor vermelha.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012248/02-1836eb1b26954f0471d8.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.815375+00:00",
+    "updated_at": "2026-08-17T09:49:32.976112+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "2701",
+    "dslite_ultima_sync": "2026-08-17T09:49:32.762+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.92.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "4b1c36cb-a273-4756-bf11-a560df4272b8",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "guitar_strings",
+    "function": "produce_instrument_sound",
+    "intended_use": "musical_instrument",
+    "physical_form": "string_set",
+    "expected_category_signals": [
+      "corda",
+      "guitarra",
+      "instrumentomusical"
+    ],
+    "incompatible_category_signals": [
+      "caboeletrico",
+      "automotivo",
+      "cozinha"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "0,82 Mm",
+        "0,82 MM",
+        "0,82 mm",
+        "25 mm",
+        "30 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "musical_instrument",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

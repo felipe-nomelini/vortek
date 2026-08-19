@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-08-17T14:15:49.123Z",
+  "product": {
+    "id": "51ba6fa6-aba2-4f80-8458-858a68ff5311",
+    "sku": "VTK012895",
+    "nome": "Caixa Retorno Attack Vsm112 - Monitor Palco Passivo 12 Polegadas 300 W Rms",
+    "marca": "Attack",
+    "estoque": 3,
+    "custo": 1850.82,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 15.5,
+    "peso_bruto": 17.39,
+    "largura": 53,
+    "altura": 51,
+    "profundidade": 41,
+    "gtin": "7898640362021",
+    "descricao": "Caixa Retorno Attack VSM112 - Monitor Palco Passivo 12 polegadas 300 W RMS Descrição: Monitor de palco passivo de duas vias composto por um alto-falante coaxial de 12” equipado com corneta de 50° (H) x 60° (V) de cobertura. Projetado para ser utilizado em conjunto com VSM112A ou com outro sistema amplificado. Possui uma chave seletora que permite a utilização tanto no modo BI-AMP (para sistemas bi-amplificados ou VSM112A) ou no modo FULL, onde o sinal de alta frequência passa por um filtro passa-altas com sistema de proteção contra baixas frequências e sobrecarga. Características: -Transdutores - LOW - 1 x 12\" - Coaxial / HIGH - 1 x Driver de Compressão 1\"; -Resposta em Frequência - 70 Hz - 20 kHz -6dB; -Cobertura - Horizontal - 50º / Vertical - 60º; -Conectores de Áudio - 2 x Speakon®; -Potência máxima admissível - Alto-falante: 300W AES @ 8 Ohm / Driver: 50W AES @ 8 Ohm; -Sensibilidade - Modo Full - 95 dB / 1 W @ 1m / Modo BI-AMP - LOW - 95 dB / 1 W @ 1m / Modo BI-AMP - HIGH - 104 dB / 1 W @ 1m; -Corte Recomendado - LOW - HPF 65 Hz / Filtro 12 dB / OCT ou Superior / HIGH - HPF 2 kHz / Filtro 12 dB / OCT ou Superior; -Dimensões : 320 mm x 480 mm x 460 mm (AxLxP); -Peso: 15,5 kg.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6930842c25fe201738a90680f6b4b50.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/534529b52922eea57ac7654e54a4cd13.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d0fc017cfd6c2acc98340729b0f78040.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6b643f2cf13a7d16ba9926ac1319a21c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/49ddad29175561ba892c5450fcacfd7d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/33af02fe13ed96ef360d5c762ebb09cc.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f3e79371c7f77a82edeb61b20b63cce3.jpg"
+    ],
+    "categoria": "Eletrônicos, áudio E Vídeo > áudio > Caixas Acústicas",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.983532+00:00",
+    "updated_at": "2026-08-17T10:07:29.111651+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "1656",
+    "dslite_ultima_sync": "2026-08-17T10:07:28.852+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8518.22.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "0b9c1fba-d301-4a3c-beae-384c1498915a",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "professional_speaker_driver",
+    "function": "audio_reproduction",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_driver",
+    "expected_category_signals": [
+      "altofalante",
+      "woofer",
+      "subwoofer",
+      "audio",
+      "somprofissional"
+    ],
+    "incompatible_category_signals": [
+      "tablet",
+      "celular",
+      "notebook",
+      "computador",
+      "internal_speaker"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "12 Polegadas",
+        "12 polegadas",
+        "320 mm",
+        "480 mm",
+        "460 mm"
+      ],
+      "powers": [
+        "300 W Rms",
+        "300 W RMS",
+        "300W",
+        "50W",
+        "1 W"
+      ],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

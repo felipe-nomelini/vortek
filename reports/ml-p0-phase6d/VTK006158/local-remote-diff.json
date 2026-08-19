@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432766020",
+      "local": "MLB7432766020",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK006158",
+      "local": "VTK006158",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "9c02237e-c475-40f2-b58b-a7c11b75bba0",
+      "local": "9c02237e-c475-40f2-b58b-a7c11b75bba0",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cabo Para Instrumentos Hayonik P10xp10 Amarelo 5 Metros Confiável",
+      "local": "Cabo Para Instrumentos Hayonik P10xp10 Amarelo 5 Metros Confiável",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 269.9,
+      "local": 269.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432766020-cabo-para-instrumentos-hayonik-p10xp10-amarelo-5-metros-confiavel-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432766020-cabo-para-instrumentos-hayonik-p10xp10-amarelo-5-metros-confiavel-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

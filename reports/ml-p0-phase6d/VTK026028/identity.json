@@ -1,0 +1,340 @@
+{
+  "checked_at": "2026-08-17T01:16:28.037Z",
+  "product": {
+    "id": "eeb73035-726c-4038-af05-47ba9b206bde",
+    "sku": "VTK026028",
+    "nome": "Prolongador Para Sub Prs-130 Saty",
+    "marca": "Saty",
+    "gtin": "7898572863467"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4228",
+    "consulted_at": "2026-08-17T01:16:27.848Z",
+    "product": {
+      "produtoid": "4228",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 91.74,
+      "preco_crossdocking": 91.74,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 91.74,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-21 01:04:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-21 10:01:29.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Prolongador Para Sub Prs-130 Saty",
+      "titulo_curto": "Prolongador Para Sub Prs-130 Saty",
+      "categoriaid": "289660",
+      "categoria_nome": "Eletrônicos, áudio E Vídeo > áudio > Suportes Para Caixas De Som",
+      "abc": null,
+      "ean11": "7898572863467",
+      "ncm": "9209.99.00",
+      "descricao": "<p>PROLONGADOR PARA SUB PRS-130 SATY</p> <p>Eleve sua caixa acústica à altura ideal com o Prolongador para Sub PRS-130 SATY, desenvolvido para utilização em subwoofers com encaixe para pedestal. Fabricado em aço de alta resistência, oferece excelente estabilidade, ajuste prático de altura e trava de segurança, sendo ideal para aplicações em sonorização profissional, eventos, igrejas, auditórios, DJs e bandas.</p> <p>Ficha Técnica<br>Modelo: PRS-130<br>Marca: SATY<br>Tipo: Prolongador para subwoofer<br>Material: Aço de alta resistência<br>Acabamento: Pintura eletrostática na cor preta<br>Ajuste de altura: Sim<br>Sistema de trava: Pino de segurança com manípulo de fixação<br>Compatibilidade: Subwoofers com encaixe para pedestal (35 mm)<br>Aplicação: Sustentação de caixas acústicas sobre subwoofers<br>Indicado para: Sonorização profissional, eventos, igrejas, bandas, DJs, auditórios e instalações fixas</p> <p>O PRS-130 SATY é a solução ideal para quem busca praticidade, segurança e um posicionamento mais eficiente das caixas acústicas, garantindo melhor distribuição sonora e um acabamento profissional em qualquer montagem de sistema de áudio.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Saty",
+      "modelo": "",
+      "peso": 1.5,
+      "largura": 7,
+      "altura": 82,
+      "profundidade": 11,
+      "peso_embalagem": 1.5,
+      "largura_embalagem": 7,
+      "altura_embalagem": 82,
+      "profundidade_embalagem": 11,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0063e766e1ece87516bd6b54b92f861.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 6,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "926648122",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-20 23:52:47.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-22 11:22:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 10,
+      "tempo_cross": 0,
+      "estoque_total": 10,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0063e766e1ece87516bd6b54b92f861.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ffb85a0fdb6393268b979bb73810d0f.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/80cb65961f0e6c07ab15e29aea248816.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB34133110 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB34133110",
+      "catalog_product_id": "MLB34133110",
+      "domain_id": "MLB-SPEAKERS_STANDS",
+      "name": "Prolongador Suporte Para Subwoofer Prs-130 Saty",
+      "parent_id": "MLB34133109",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "5451933",
+          "value_name": "Saty",
+          "values": [
+            {
+              "id": "5451933",
+              "name": "Saty"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "34405546",
+          "value_name": "PRS-130",
+          "values": [
+            {
+              "id": "34405546",
+              "name": "PRS-130"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "2431883",
+          "value_name": "Ferro",
+          "values": [
+            {
+              "id": "2431883",
+              "name": "Ferro"
+            }
+          ]
+        },
+        {
+          "id": "INSTALLATION_PLACEMENT",
+          "name": "Lugar de colocação",
+          "value_id": "4502036",
+          "value_name": "De chão",
+          "values": [
+            {
+              "id": "4502036",
+              "name": "De chão"
+            }
+          ]
+        },
+        {
+          "id": "IS_ADJUSTABLE",
+          "name": "É ajustável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "MAX_HEIGHT",
+          "name": "Altura máxima",
+          "value_id": "73870149",
+          "value_name": "142 cm",
+          "values": [
+            {
+              "id": "73870149",
+              "name": "142 cm"
+            }
+          ]
+        },
+        {
+          "id": "MIN_HEIGHT",
+          "name": "Altura mínima",
+          "value_id": "19927265",
+          "value_name": "80 cm",
+          "values": [
+            {
+              "id": "19927265",
+              "name": "80 cm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "34405547",
+          "value_name": "7898572863467",
+          "values": [
+            {
+              "id": "34405547",
+              "name": "7898572863467"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Prolongador Suporte para Subwoofer Saty PRS-130\n\nProlongador para Sub Saty PRS-130\n\nO Prolongador Para Caixa De Som Saty possui uma construção robusta em aço e regulagem de altura por rosca, um modelo que garante estabilidade e segurança, é um acessório essencial para profissionais da música que buscam qualidade.\n\nProjetado para ser compatível com uma ampla variedade de subwoofers e equipamentos de áudio, este prolongador oferece uma conexão estável e confiável, permitindo uma experiência sonora imersiva e de alta qualidade.\n\nCaracterísticas Principais:\n\nExpansão do Alcance: Com o Prolongador para Sub Saty PRS-130, você pode estender o alcance do seu subwoofer, permitindo uma distribuição mais uniforme do som em diferentes espaços e ambientes.\nCompatibilidade Versátil: Este prolongador é compatível com uma variedade de subwoofers e sistemas de áudio, garantindo uma integração perfeita com o seu equipamento existente.\nFácil Instalação: O design prático e intuitivo do prolongador facilita a instalação e a configuração, permitindo que você aproveite rapidamente os benefícios adicionais que ele proporciona ao seu sistema de áudio.\nDurabilidade e Confiabilidade: Fabricado com materiais resistentes e duráveis, o Prolongador para Sub Saty PRS-130 é projetado para suportar o uso contínuo e oferecer desempenho confiável ao longo do tempo.\n\nEspecificações Técnicas:\n\nModelo: PRS-130;\nCor: Preto;\nAltura Máxima: 1,42M;\nAltura Mínima: 80CM.\n\nCOM PINO DE SUSTENTAÇÃO DE FERRO E TRAVA ROSQUEADA\n\nO Prolongador para Sub Saty PRS-130 oferece uma maneira conveniente e eficaz de estender o alcance do seu sistema de áudio, proporcionando maior flexibilidade e liberdade na configuração do seu equipamento."
+      },
+      "pictures": [
+        {
+          "id": "704983-MLA100010262247_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_704983-MLA100010262247_122025-F.jpg",
+          "max_width": "1190",
+          "max_height": "1200"
+        },
+        {
+          "id": "658669-MLA91996314843_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_658669-MLA91996314843_092025-F.jpg",
+          "max_width": "1181",
+          "max_height": "1200"
+        },
+        {
+          "id": "692877-MLA91996235087_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_692877-MLA91996235087_092025-F.jpg",
+          "max_width": "817",
+          "max_height": "1200"
+        },
+        {
+          "id": "876560-MLA91596378032_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_876560-MLA91596378032_092025-F.jpg",
+          "max_width": "1103",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-03-02T02:25:10Z",
+      "last_updated": "2026-02-25T20:45:59Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

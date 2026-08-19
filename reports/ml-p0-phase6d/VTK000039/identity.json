@@ -1,0 +1,337 @@
+{
+  "checked_at": "2026-08-17T01:13:54.673Z",
+  "product": {
+    "id": "5facdd0e-698c-4d16-99c4-983fedfaa7b5",
+    "sku": "VTK000039",
+    "nome": "Encordoamento Para Contrabaixo 5 Cordas .040 Extra Leve SG",
+    "marca": "SG",
+    "gtin": "7897626850293"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/31908",
+    "consulted_at": "2026-08-17T01:13:54.468Z",
+    "product": {
+      "produtoid": "31908",
+      "produtoid_empresa": "HYX31908",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 76.89,
+      "preco_crossdocking": 76.89,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 76.89,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Encordoamento Para Contrabaixo 5 Cordas .040 Extra Leve SG",
+      "titulo_curto": "ENC 040 BAIXO 5C SG NICKEL",
+      "categoriaid": "292242",
+      "categoria_nome": "Instrumentos Musicais / Encordoamentos / Encordoamento Para Baixo",
+      "abc": "A",
+      "ean11": "7897626850293",
+      "ncm": "9209.30.00",
+      "descricao": "O encordoamento para baixo, tensão Extra Light, fornece um timbre brilhante, agradável e nítido. Ideal para músicos que procuram uma sonoridade mais suave, como por exemplo o Soul, o Jazz e o Pop. Grandes baixistas procuram consistência, conforto e durabilidade, e foi pensando nisso que a SG desenvolveu esta linha de níquel.",
+      "caracteristicas": "Aplicação:Contrabaixo<br>Tensão:.040 - .125<br>Pesquisa:contra|baixo|contrabaixo|encordoamento|corda|contra-baixo|0.40|040|0,40|<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "SG",
+      "modelo": "",
+      "peso": 0.015,
+      "largura": 15,
+      "altura": 15,
+      "profundidade": 1.5,
+      "peso_embalagem": 0.015,
+      "largura_embalagem": 15,
+      "altura_embalagem": 15,
+      "profundidade_embalagem": 1.5,
+      "link": "http://www.hayamax.com.br/encordoamento-para-contrabaixo-5-cordas-040-extra-leve-sg",
+      "link_imagem": "https://static.hayapek.com.br/produtos/31908/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 19253,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 16:06:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:05.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 1,
+      "estoque_total": 41,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/31908/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/31908/550/2.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB22361716 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB22361716",
+      "catalog_product_id": "MLB22361716",
+      "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+      "name": "Encordoamento Sg Strings para Baixo 5 Cordas 040 Iz5029 SG",
+      "parent_id": "MLB21272042",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "6298396",
+          "value_name": "SG",
+          "values": [
+            {
+              "id": "6298396",
+              "name": "SG"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "6413118",
+          "value_name": "5029",
+          "values": [
+            {
+              "id": "6413118",
+              "name": "5029"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "15992504",
+          "value_name": "Contrabaixo",
+          "values": [
+            {
+              "id": "15992504",
+              "name": "Contrabaixo"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "330041",
+          "value_name": "5",
+          "values": [
+            {
+              "id": "330041",
+              "name": "5"
+            }
+          ]
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "15136",
+          "value_name": "5",
+          "values": [
+            {
+              "id": "15136",
+              "name": "5"
+            }
+          ]
+        },
+        {
+          "id": "GAUGES",
+          "name": "Calibres",
+          "value_id": "25799869",
+          "value_name": "40-60-75-95-125",
+          "values": [
+            {
+              "id": "25799869",
+              "name": "40-60-75-95-125"
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "18169462",
+          "value_name": "Enrolado em níquel",
+          "values": [
+            {
+              "id": "18169462",
+              "name": "Enrolado em níquel"
+            }
+          ]
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "18413402",
+          "value_name": "Extra Light",
+          "values": [
+            {
+              "id": "18413402",
+              "name": "Extra Light"
+            }
+          ]
+        },
+        {
+          "id": "NOTES",
+          "name": "Notas",
+          "value_name": "La, Mi, Re, Si, Sol",
+          "values": [
+            {
+              "id": "15662353",
+              "name": "La"
+            },
+            {
+              "id": "15312682",
+              "name": "Mi"
+            },
+            {
+              "id": "15662351",
+              "name": "Re"
+            },
+            {
+              "id": "17592778",
+              "name": "Si"
+            },
+            {
+              "id": "15312681",
+              "name": "Sol"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "17663799",
+          "value_name": "7897626850293",
+          "values": [
+            {
+              "id": "17663799",
+              "name": "7897626850293"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "JOGO DE CORDAS PARA BAIXO SG\n\nTENSÃO 0.40 (5 CORDAS)\n\nCOD:5029\n\nEmbalagem com 5 cordas SG Strings, tensão 0.40 para contrabaixo de 5 cordas\n\n* NÍQUEL\n\n* TENSÃO\n\nG - 045\nD - 060\nA - 075\nE - 095\nB - 125\n\nQUALIDADE INTERNACIONAL - FABRICADA NO BRASIL\n\nGRANDES BAIXISTAS BUSCAM CONSISTÊNCIA, CONFORTO E DURABILIDADE. A SG DESENVOLVEU ESTA LINHA DE NÍQUEL VISANDO O MÁXIMO DE CONFORTO COM EQUILÍBRIO SONORO. O ENCORDOAMENTO OFERECE UM LOW-END PROFUNDO, MÉDIOS DINÂMICOS E PERCUSSIVOS, AGUDOS BRILHANTES E LONGA DURABILIDADE. MEDIDAS PARA USO EM ESCALA COM COMPRIMENTO DE 34” / 864MM. REVESTIMENTO DE AÇO NIQUELADO NPS E NÚCLEO HEXAGONAL DE AÇO ESTANHADO."
+      },
+      "pictures": [
+        {
+          "id": "624996-MLA100049723179_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_624996-MLA100049723179_122025-F.jpg",
+          "max_width": "677",
+          "max_height": "671"
+        },
+        {
+          "id": "756735-MLA84176399976_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_756735-MLA84176399976_052025-F.jpg",
+          "max_width": "902",
+          "max_height": "949"
+        },
+        {
+          "id": "829244-MLA84473107263_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_829244-MLA84473107263_052025-F.jpg",
+          "max_width": "500",
+          "max_height": "928"
+        },
+        {
+          "id": "993518-MLU78006519962_082024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_993518-MLU78006519962_082024-F.jpg",
+          "max_width": "1036",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-03-24T18:21:07Z",
+      "last_updated": "2026-07-22T01:12:54Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

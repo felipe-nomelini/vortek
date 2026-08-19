@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-08-17T00:10:05.072Z",
+  "classification": "ACCEPTABLE_REMOTE_NORMALIZATION",
+  "reason": "Mercado Livre finished asynchronous picture download and activated the items",
+  "mercado_livre_writes": 0,
+  "local_transactions": 3,
+  "rows": [
+    {
+      "sku": "VTK017505",
+      "item_id": "MLB5075703147",
+      "remote_before": "paused/picture_download_pending",
+      "remote_after": "active",
+      "local_after": "ativo",
+      "listing_count": 1
+    },
+    {
+      "sku": "VTK017507",
+      "item_id": "MLB7432450504",
+      "remote_before": "paused/picture_download_pending",
+      "remote_after": "active",
+      "local_after": "ativo",
+      "listing_count": 1
+    },
+    {
+      "sku": "VTK017562",
+      "item_id": "MLB5075703275",
+      "remote_before": "paused/picture_download_pending",
+      "remote_after": "active",
+      "local_after": "ativo",
+      "listing_count": 1
+    }
+  ],
+  "result": "LOCAL_REMOTE_RECONCILED"
+}

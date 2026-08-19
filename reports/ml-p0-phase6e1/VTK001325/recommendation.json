@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Fio Cabinho Flexível 0,30mm Vermelho Tiaflex - RL / 100",
+    "supplier_category": "Materiais Elétricos / Fios E Cabos Para Meteriais Elétricos / Fios Em Rolo",
+    "supplier_brand": "TIAFLEX",
+    "supplier_gtin": "7898429980514",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/5106",
+    "captured_at": "2026-08-17T12:54:28.242Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

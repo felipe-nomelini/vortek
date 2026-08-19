@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-17T14:15:53.689Z",
+  "product": {
+    "id": "883e250a-078b-4416-9d67-4f2a65f93154",
+    "sku": "VTK017827",
+    "nome": "Protetor Para Interfone Moros - Branco",
+    "marca": "MOROS",
+    "estoque": 23,
+    "custo": 19.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.87,
+    "peso_bruto": 0.87,
+    "largura": 20,
+    "altura": 20,
+    "profundidade": 20,
+    "gtin": "",
+    "descricao": "O Protetor para Interfone lhe proporciona segurança anti vandalismo, protege e guarda através da sua estrutura de aço. Pintura em Epóxi não enferruja e não desbota. *Imagem meramente ilustrativa.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/361445_67d2cafac48e5.jpg"
+    ],
+    "categoria": "Segurança / Cameras/ Camera Colorida",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:30.798566+00:00",
+    "updated_at": "2026-08-17T10:44:15.371772+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "361445",
+    "dslite_ultima_sync": "2026-08-17T10:44:15.272+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85176256",
+    "cest": "21.111.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "f6df1172-333a-435c-be01-246ba01880ee",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "electronic_security",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "electronic_security",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

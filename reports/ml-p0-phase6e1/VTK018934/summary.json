@@ -1,0 +1,10 @@
+{
+  "ordinal": 53,
+  "sku": "VTK018934",
+  "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+  "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+  "category_candidate": null,
+  "semantic_score": null,
+  "second_pass": "NOT_APPLICABLE",
+  "evidence": "exact GTIN catalog identity conflict: MODEL"
+}

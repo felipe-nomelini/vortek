@@ -1,0 +1,1409 @@
+{
+  "checked_at": "2026-08-17T01:14:13.038Z",
+  "expected_catalog_product_id": "MLB15284403",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "VOLTAGE": true,
+      "DIAMETER": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB15284403",
+    "catalog_product_id": "MLB15284403",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-FANS",
+    "permalink": "",
+    "name": "Ventisol Turbo 6 pás VOM50 De mesa Azul",
+    "family_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "STRUCTURE_COLOR-BLADES_COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB70196490",
+            "picker_label": "Azul",
+            "picture_id": "610405-MLA111153238842_052026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_610405-MLA111153238842_052026-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Azul"
+              ],
+              [
+                "DIAMETER",
+                "50 cm"
+              ],
+              [
+                "VOLTAGE",
+                "127V"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Azul - 127V - Azul - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB10484265",
+            "picker_label": "Branco",
+            "picture_id": "640504-MLU77113036048_062024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_640504-MLU77113036048_062024-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Branco"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Branco - 220V - Branco - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB10484263",
+            "picker_label": "Preto",
+            "picture_id": "989727-MLA99939910695_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_989727-MLA99939910695_112025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Preto - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB15284403",
+            "picker_label": "Preto | Azul",
+            "picture_id": "980910-MLA99434278058_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_980910-MLA99434278058_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB15284399",
+            "picker_label": "Preto | Bronze",
+            "picture_id": "844019-MLA100043100863_122025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_844019-MLA100043100863_122025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Bronze"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Bronze - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB68982128",
+            "picker_label": "Preto | Cinza",
+            "picture_id": "741391-MLA111105184423_052026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_741391-MLA111105184423_052026-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Cinza"
+              ],
+              [
+                "DIAMETER",
+                "50 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Preto - 220V - Cinza - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB10484268",
+            "picker_label": "Preto | Prata",
+            "picture_id": "897589-MLA112983525505_062026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_897589-MLA112983525505_062026-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Prata"
+              ],
+              [
+                "DIAMETER",
+                "50 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Preto - 220V - Prata - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB15284401",
+            "picker_label": "Preto | Vermelho",
+            "picture_id": "701536-MLA99992294731_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_701536-MLA99992294731_112025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Vermelho"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Vermelho - Plástico - 6",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "STRUCTURE_COLOR",
+            "template": "",
+            "position": 1
+          },
+          {
+            "attribute_id": "BLADES_COLOR",
+            "template": "",
+            "position": 2
+          }
+        ],
+        "value_name_delimiter": " | ",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "DIAMETER",
+        "picker_name": "Diâmetro",
+        "products": [
+          {
+            "product_id": "MLB19046512",
+            "picker_label": "30 cm",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [],
+            "changes": [
+              [
+                "DIAMETER",
+                "30 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 30 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB58838862",
+            "picker_label": "35 cm",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Cinza"
+              ],
+              [
+                "DIAMETER",
+                "35 cm"
+              ],
+              [
+                "FREQUENCY",
+                "50/60Hz"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 35 cm - 50/60Hz - Preto - 220V - Cinza - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB15284403",
+            "picker_label": "40 cm",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB15284408",
+            "picker_label": "50 cm",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [],
+            "changes": [
+              [
+                "DIAMETER",
+                "50 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 50 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "DIAMETER",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB15284402",
+            "picker_label": "127V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [],
+            "changes": [
+              [
+                "VOLTAGE",
+                "127V"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB15284403",
+            "picker_label": "220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BLADES_MATERIAL",
+        "picker_name": "Material das pás",
+        "products": [
+          {
+            "product_id": "MLB15284403",
+            "picker_label": "Plástico",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB10484262",
+            "picker_label": "Polipropileno",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto"
+              ],
+              [
+                "VOLTAGE",
+                "127V"
+              ],
+              [
+                "BLADES_MATERIAL",
+                "Polipropileno"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 127V - Preto - Polipropileno - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BLADES_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BLADES_NUMBER",
+        "picker_name": "Quantidade de pás",
+        "products": [
+          {
+            "product_id": "MLB15284403",
+            "picker_label": "6",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BLADES_NUMBER",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "FREQUENCY",
+        "picker_name": "Frequência",
+        "products": [
+          {
+            "product_id": "MLB58838862",
+            "picker_label": "50/60Hz",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Cinza"
+              ],
+              [
+                "DIAMETER",
+                "35 cm"
+              ],
+              [
+                "FREQUENCY",
+                "50/60Hz"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 35 cm - 50/60Hz - Preto - 220V - Cinza - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB58830630",
+            "picker_label": "50Hz",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto"
+              ],
+              [
+                "VOLTAGE",
+                "127V"
+              ],
+              [
+                "FREQUENCY",
+                "50Hz"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 50Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB70199475",
+            "picker_label": "60",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Cinza"
+              ],
+              [
+                "DIAMETER",
+                "30 cm"
+              ],
+              [
+                "FREQUENCY",
+                "60"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 30 cm - 60 - Preto - 220V - Cinza - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB15284403",
+            "picker_label": "60 Hz",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa - 40 cm - 60 Hz - Preto - 220V - Azul - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "FREQUENCY",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "980910-MLA99434278058_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_980910-MLA99434278058_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1090,
+        "max_height": 1080,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "657314-MLA99434278068_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_657314-MLA99434278068_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 403,
+        "max_height": 569,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "953064-MLA99917524375_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_953064-MLA99917524375_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 618,
+        "max_height": 608,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "617521-MLA99917514495_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_617521-MLA99917514495_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 526,
+        "max_height": 521,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Refresca os ambientes sem ruídos irritantes.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ventilador de 3 velocidades.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Atinge até uma velocidade de rotação máxima de 1500 rpm.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Potência de 80 W.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Possui grade removível.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "É Ideal para refrescar.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [
+      {
+        "text": "Certificado pela INMETRO.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "36862317",
+        "value_name": "Turbo 6 pás",
+        "values": [
+          {
+            "id": "36862317",
+            "name": "Turbo 6 pás"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "11860495",
+        "value_name": "Turbo 6",
+        "values": [
+          {
+            "id": "11860495",
+            "name": "Turbo 6"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "60638666",
+        "value_name": "10023",
+        "values": [
+          {
+            "id": "60638666",
+            "name": "10023"
+          }
+        ]
+      },
+      {
+        "id": "FAN_TYPE",
+        "name": "Tipo de ventilador",
+        "value_id": "291722",
+        "value_name": "De mesa",
+        "values": [
+          {
+            "id": "291722",
+            "name": "De mesa"
+          }
+        ]
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "value_id": "135253",
+        "value_name": "40 cm",
+        "values": [
+          {
+            "id": "135253",
+            "name": "40 cm"
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "8219790",
+        "value_name": "60 Hz",
+        "values": [
+          {
+            "id": "8219790",
+            "name": "60 Hz"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_COLOR",
+        "name": "Cor da estrutura",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "198813",
+        "value_name": "220V",
+        "values": [
+          {
+            "id": "198813",
+            "name": "220V"
+          }
+        ]
+      },
+      {
+        "id": "BLADES_COLOR",
+        "name": "Cor das pás",
+        "value_id": "26510686",
+        "value_name": "Azul",
+        "values": [
+          {
+            "id": "26510686",
+            "name": "Azul"
+          }
+        ]
+      },
+      {
+        "id": "BLADES_MATERIAL",
+        "name": "Material das pás",
+        "value_id": "6350782",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "6350782",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "name": "Quantidade de pás",
+        "value_id": "1000324",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "1000324",
+            "name": "6"
+          }
+        ]
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "357784",
+        "value_name": "80 W",
+        "values": [
+          {
+            "id": "357784",
+            "name": "80 W"
+          }
+        ]
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "8078905",
+        "value_name": "68 cm",
+        "values": [
+          {
+            "id": "8078905",
+            "name": "68 cm"
+          }
+        ]
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "value_id": "8998137",
+        "value_name": "44 cm",
+        "values": [
+          {
+            "id": "8998137",
+            "name": "44 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "7622438",
+        "value_name": "52 cm",
+        "values": [
+          {
+            "id": "7622438",
+            "name": "52 cm"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "925895",
+        "value_name": "2.5 kg",
+        "values": [
+          {
+            "id": "925895",
+            "name": "2.5 kg"
+          }
+        ]
+      },
+      {
+        "id": "NOISE_LEVEL",
+        "name": "Nível de ruído",
+        "value_id": "8073070",
+        "value_name": "48 dB",
+        "values": [
+          {
+            "id": "8073070",
+            "name": "48 dB"
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "value_id": "8152567",
+        "value_name": "Corrente elétrica",
+        "values": [
+          {
+            "id": "8152567",
+            "name": "Corrente elétrica"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ARGENTINA",
+        "name": "Eficiência energética Argentina",
+        "value_id": "33344208",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344208",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "name": "Eficiência energética Brasil",
+        "value_id": "33344215",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344215",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_COLOMBIA",
+        "name": "Eficiência energética Colômbia",
+        "value_id": "33344222",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344222",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_CHILE",
+        "name": "Eficiência energética Chile",
+        "value_id": "33344231",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344231",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_URUGUAY",
+        "name": "Eficiência energética Uruguai",
+        "value_id": "33344238",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344238",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ECUADOR",
+        "name": "Eficiência energética Equador",
+        "value_id": "33344245",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344245",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_PERU",
+        "name": "Eficiência energética Peru",
+        "value_id": "33344252",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344252",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "GRID_MATERIAL",
+        "name": "Material da grade",
+        "value_id": "82756",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "82756",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "name": "Quantidade de velocidades",
+        "value_id": "1000288",
+        "value_name": "3",
+        "values": [
+          {
+            "id": "1000288",
+            "name": "3"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_REMOTE_CONTROL",
+        "name": "Inclui controle remoto",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_LIGHT",
+        "name": "Com luz",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "name": "Com função turbo",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REVERSIBLE_BLADES",
+        "name": "Com pás reversíveis",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol"
+          }
+        ]
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "name": "Velocidade máxima de rotação",
+        "value_id": "7947248",
+        "value_name": "1500 rpm",
+        "values": [
+          {
+            "id": "7947248",
+            "name": "1500 rpm"
+          }
+        ]
+      },
+      {
+        "id": "LAMPS_NUMBER",
+        "name": "Quantidade de lâmpadas",
+        "value_id": "13174582",
+        "value_name": "0",
+        "values": [
+          {
+            "id": "13174582",
+            "name": "0"
+          }
+        ]
+      },
+      {
+        "id": "WITH_WI_FI",
+        "name": "Com Wi-Fi",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_PROGRAMMABLE",
+        "name": "É programável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "name": "É industrial",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_SILENT",
+        "name": "É silencioso",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_360_DEGREES_ROTATION",
+        "name": "Com rotação de 360 graus",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_INMETRO_CERTIFICATE",
+        "name": "Com certificado INMETRO",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REPELLENT_FUNCTION",
+        "name": "Com função repelente",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_EXTRACTABLE_GRID",
+        "name": "Com grade removível",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "name": "Com luzes LED",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_TILT",
+        "name": "Com inclinação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_OSCILLATION",
+        "name": "Com oscilação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ROTATING_GRID",
+        "name": "Com grade giratória",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "INCLUDES_LIGHT_SWITCH",
+        "name": "Inclui interruptor de luz",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "10980901",
+        "value_name": "10029",
+        "values": [
+          {
+            "id": "10980901",
+            "name": "10029"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "AR MAIS REFRESCANTE PARA VOCÊ E SUA FAMÍLIA!\n\nPara você que deseja um ambiente mais refrescante e agradável, o ventilador de mesa da Ventisol com 40cm é perfeito. Seu motor turbo, com sua hélice de 6 pás e uma nova aerodinâmica, são silenciosos e geram uma maior ventilação no aparelho.\n\nSua grade Wind-line faz com que haja melhor vazão do ar. Seu motor turbo possui 3 velocidades para você ajustar da melhor forma que quiser. Além disso, possui inclinação regulável para ser ajustada no seu melhor formato e oscilação horizontal automática que pode ser desativada quando preferir. Com sua base estabilizadora, você terá maior segurança no uso. \n----------------------------------------------------\nDIMENSÕES E PESO:\nAltura: 60,0 cm\nLargura: 43 cm\nComprimento: 33 cm\nPeso: 2,500 kg"
+    },
+    "parent_id": "MLB14002770",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T19:17:51.482546788"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": {
+      "template_id": "9cd514bd-b995-4291-a992-af05db16f435",
+      "version": "2.0",
+      "components": [
+        {
+          "type": "FLYER",
+          "ui_config": null,
+          "thumbnail": "",
+          "content": [
+            {
+              "id": "619861-MLA93389520585_092025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_619861-MLA93389520585_092025-F.jpg",
+              "max_width": 1000,
+              "max_height": 438,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "665433-MLA93389560135_092025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_665433-MLA93389560135_092025-F.jpg",
+              "max_width": 999,
+              "max_height": 325,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "839531-MLA93389530843_092025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_839531-MLA93389530843_092025-F.jpg",
+              "max_width": 999,
+              "max_height": 325,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "737154-MLA92975449422_092025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_737154-MLA92975449422_092025-F.jpg",
+              "max_width": 1000,
+              "max_height": 500,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [],
+    "date_created": "2019-12-12T17:58:50Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-30T18:52:09Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

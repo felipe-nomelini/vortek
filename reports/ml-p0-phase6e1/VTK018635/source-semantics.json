@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:39.418Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630182629",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/319957",
+    "captured_at": "2026-08-17T12:54:03.443Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "bed54013-a133-416d-9cb9-d47f95f055a5",
+    "produto_id": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "319957",
+    "sku_fornecedor": "319957",
+    "custo": 469.9,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:09:27.941+00:00",
+    "created_at": "2026-07-20T18:32:41.005073+00:00",
+    "updated_at": "2026-08-17T11:09:27.95+00:00",
+    "sku_oferta": "319957",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+    "descricao": "Capota Concórdia - Flash BA155L Fabricada em alumínio de alta resistência, você tem a tranquilidade de saber que seus pertences estarão mais seguros contra furto ou qualquer outra eventualidade. Além de sua resistência, ainda conta com trava que garante proteção extra para suas bagagens. - Cantoneiras em nylon injetado com Kinop; - Travamento lateral em baguete. Modelo Saveiro CS C/G 10+",
+    "marca": "FLASH COVER",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/319957_68d3ff14506a6.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/319957_68d3ff1450c8f.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/319957_68d3ff1450d58.png"
+    ],
+    "gtin": "7899630182629",
+    "ncm": "87082999",
+    "cest": "01.075.00"
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "attempted_at": "2026-08-17T01:16:12.554Z",
+  "local_time": "2026-08-16T22:16:12",
+  "endpoint": "POST /items",
+  "request_id": "cf0fec9e-2972-488e-a6cb-1a635875cda4",
+  "http_status": 201,
+  "elapsed_ms": 767,
+  "payload_sha256": "2b098a235281c30372ae68111a6abf6e0c8ed3f4d3e93f10a971327b930a692f",
+  "body": {
+    "id": "MLB5075857033",
+    "site_id": "MLB",
+    "title": "Suporte Pedestal Tripe Microfone Girafa C Cachimbo Gm10 Saty - Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB439386",
+    "user_product_id": "MLBU4772936054",
+    "official_store_id": null,
+    "price": 389.9,
+    "base_price": 389.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 10,
+    "available_quantity": 10,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Saty Não identificado",
+    "family_id": 2375190900807952,
+    "start_time": "2026-08-17T01:16:12.065Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:16:12.123Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075857033-suporte-pedestal-tripe-microfone-girafa-c-cachimbo-gm10-saty-preto-_JM",
+    "pictures": [
+      {
+        "id": "844027-MLA96666115264_112025",
+        "url": "http://mla-s1-p.mlstatic.com/844027-MLA96666115264_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/844027-MLA96666115264_112025-O.jpg",
+        "size": "170x500",
+        "max_size": "408x1200",
+        "quality": ""
+      },
+      {
+        "id": "687822-MLA96394174974_102025",
+        "url": "http://mla-s1-p.mlstatic.com/687822-MLA96394174974_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/687822-MLA96394174974_102025-O.jpg",
+        "size": "488x500",
+        "max_size": "1172x1200",
+        "quality": ""
+      },
+      {
+        "id": "749122-MLA96844206543_102025",
+        "url": "http://mla-s1-p.mlstatic.com/749122-MLA96844206543_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/749122-MLA96844206543_102025-O.jpg",
+        "size": "188x500",
+        "max_size": "452x1200",
+        "quality": ""
+      },
+      {
+        "id": "898514-MLA96394184928_102025",
+        "url": "http://mla-s1-p.mlstatic.com/898514-MLA96394184928_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/898514-MLA96394184928_102025-O.jpg",
+        "size": "500x457",
+        "max_size": "1200x1098",
+        "quality": ""
+      },
+      {
+        "id": "791909-MLA96394075738_102025",
+        "url": "http://mla-s1-p.mlstatic.com/791909-MLA96394075738_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/791909-MLA96394075738_102025-O.jpg",
+        "size": "500x499",
+        "max_size": "1200x1199",
+        "quality": ""
+      },
+      {
+        "id": "696093-MLA96393629556_102025",
+        "url": "http://mla-s1-p.mlstatic.com/696093-MLA96393629556_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/696093-MLA96393629556_102025-O.jpg",
+        "size": "140x500",
+        "max_size": "336x1200",
+        "quality": ""
+      },
+      {
+        "id": "614803-MLA96393659424_102025",
+        "url": "http://mla-s2-p.mlstatic.com/614803-MLA96393659424_102025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/614803-MLA96393659424_102025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "825107-MLA96843603717_102025",
+        "url": "http://mla-s2-p.mlstatic.com/825107-MLA96843603717_102025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/825107-MLA96843603717_102025-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "778014-MLA96393609842_102025",
+        "url": "http://mla-s1-p.mlstatic.com/778014-MLA96393609842_102025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/778014-MLA96393609842_102025-O.jpg",
+        "size": "172x500",
+        "max_size": "414x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "5451933",
+        "value_name": "Saty",
+        "values": [
+          {
+            "id": "5451933",
+            "name": "Saty",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "39906875",
+        "value_name": "Não identificado",
+        "values": [
+          {
+            "id": "39906875",
+            "name": "Não identificado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "STAND_TYPE",
+        "name": "Tipo de suporte",
+        "value_id": "5507064",
+        "value_name": "Braço girafa",
+        "values": [
+          {
+            "id": "5507064",
+            "name": "Braço girafa",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BASE_TYPE",
+        "name": "Tipo de base",
+        "value_id": "5507065",
+        "value_name": "Tripé",
+        "values": [
+          {
+            "id": "5507065",
+            "name": "Tripé",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2431883",
+        "value_name": "Ferro",
+        "values": [
+          {
+            "id": "2431883",
+            "name": "Ferro",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "IS_TABLE_STAND",
+        "name": "É suporte de mesa",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "66065951",
+        "value_name": "7898572889207",
+        "values": [
+          {
+            "id": "66065951",
+            "name": "7898572889207",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK026029",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026029",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "844027-MLA96666115264_112025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/844027-MLA96666115264_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB61498691",
+    "domain_id": "MLB-MICROPHONE_STANDS",
+    "seller_custom_field": "VTK026029",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:16:12.215Z",
+    "last_updated": "2026-08-17T01:16:12.215Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

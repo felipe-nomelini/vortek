@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-08-17T14:15:41.232Z",
+  "product": {
+    "id": "32ae1d48-0811-42ef-8520-77c616419c26",
+    "sku": "VTK018830",
+    "nome": "Cabo De Bateria Technoise 70,00mm² Vermelho - Rolo Com 10m",
+    "marca": "TECHNOISE",
+    "estoque": 5,
+    "custo": 669.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 5.322,
+    "peso_bruto": 5.322,
+    "largura": 24,
+    "altura": 7,
+    "profundidade": 24,
+    "gtin": "7899924902421",
+    "descricao": "Cabo de Bateria Technoise 70,00mm² Vermelho - Rolo com 10m Tenha em seu estoque o Cabo de Bateria Technoise de 70,00 mm² (Rolo com 10m ) , um componente vital para sistemas de som automotivo de alta potência , elétricas e projetos que exigem máxima transferência de energia . Este produto é essencial para lojistas focados em acessórios automotivos e powersports , garantindo a performance necessária para baterias e amplificadores. Fabricado no Brasil com o mais puro cobre eletrolítico , o cabo Technoise assegura baixa resistência e máxima condutividade , seguindo os processos de fabricação de cabos homologados pelo INMETRO (embora a certificação não seja explicitamente mencionada, o processo de fabricação é). O revestimento em PVC ultra flexível facilita a instalação em locais de difícil acesso no veículo, um grande benefício para instaladores e clientes finais. Com a bitola robusta de 70,00 mm² e na cor vermelha (indicada para o polo positivo), este rolo de 10 metros oferece o comprimento ideal para projetos completos. Invista na qualidade Technoise e garanta a satisfação do seu cliente com um produto nacional de confiança. CABO DE BATERIA TECHNOISE - NACIONAL CO - 70,00 MM² - VERMELHO (ROLO COM 10 METROS) Com o mais puro cobre eletrolítico do Brasil e produzido em conformidade com as exigências do mercado, a linha segue os mesmos processos de fabricação dos cabos com certificação homologados pelo INMETRO. *Imagens meramente ilustrativas.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018830/01-58687a3216192d9e10c6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018830/02-a8470ce55687c2f9e61c.jpg"
+    ],
+    "categoria": "Automotivo/ Cabos Para Som Automotivo/ Cabo De Potência",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:58.760928+00:00",
+    "updated_at": "2026-08-17T11:11:32.823394+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "390543",
+    "dslite_ultima_sync": "2026-08-17T11:11:32.755+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85444900",
+    "cest": "12.007.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "f085ba70-9907-4c56-a67c-fea1888c8c57",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "audio_cable",
+    "function": "connect_audio_signal",
+    "intended_use": "professional_audio",
+    "physical_form": "audio_cable",
+    "expected_category_signals": [
+      "cabo",
+      "audio",
+      "p10",
+      "xlr",
+      "rca",
+      "instrumentomusical"
+    ],
+    "incompatible_category_signals": [
+      "redeethernet",
+      "alimentacaoeletrica",
+      "usbcelular"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "70,00 mm",
+        "70,00 MM"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

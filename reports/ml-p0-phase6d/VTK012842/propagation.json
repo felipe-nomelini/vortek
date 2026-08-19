@@ -1,0 +1,496 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 157,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-length": "1923",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:16:01 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "vary": "Accept-Encoding",
+        "via": "1.1 81aa5b946f2f955d94231eedc507d3d4.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "0lIEU7FIIIu7PjZIPvjc41xejNvo5VJyJqrQ-fOKKZFI9S9A3MC5Bw==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "c35cf4b1-a98f-4edb-afe4-d61f61caa96f",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432766370",
+        "site_id": "MLB",
+        "title": "Painel Para Conector Speakon 8 Polos Wireconex Wp 08 Spk Ep Preto",
+        "family_name": "Wireconex WP 08 SPK EP",
+        "family_id": 8542685985053648,
+        "seller_id": 3294514937,
+        "category_id": "MLB420707",
+        "user_product_id": "MLBU4743603837",
+        "official_store_id": null,
+        "price": 999.9,
+        "base_price": 999.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 10,
+        "available_quantity": 10,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:16:00.536Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:16:00.603Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432766370-painel-para-conector-speakon-8-polos-wireconex-wp-08-spk-ep-preto-_JM",
+        "thumbnail_id": "912780-MLA112172968956_062026",
+        "thumbnail": "http://http2.mlstatic.com/D_912780-MLA112172968956_062026-I.jpg",
+        "pictures": [
+          {
+            "id": "912780-MLA112172968956_062026",
+            "url": "http://http2.mlstatic.com/D_912780-MLA112172968956_062026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_912780-MLA112172968956_062026-O.jpg",
+            "size": "500x310",
+            "max_size": "1125x699",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "13660752",
+            "value_name": "Wireconex",
+            "values": [
+              {
+                "id": "13660752",
+                "name": "Wireconex",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COATING_MATERIAL",
+            "name": "Material de revestimento",
+            "value_id": "5520057",
+            "value_name": "Metal",
+            "values": [
+              {
+                "id": "5520057",
+                "name": "Metal",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COMPATIBLE_DEVICES",
+            "name": "Dispositivos compatíveis",
+            "value_id": "15289676",
+            "value_name": "Microfone",
+            "values": [
+              {
+                "id": "15289676",
+                "name": "Microfone",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CONNECTOR_TYPE",
+            "name": "Tipo de conector",
+            "value_id": "8180798",
+            "value_name": "XLR",
+            "values": [
+              {
+                "id": "8180798",
+                "name": "XLR",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "82846124",
+            "value_name": "07898640363790",
+            "values": [
+              {
+                "id": "82846124",
+                "name": "07898640363790",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "82846122",
+            "value_name": "WP 08 SPK EP",
+            "values": [
+              {
+                "id": "82846122",
+                "name": "WP 08 SPK EP",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "PRODUCT_TYPE",
+            "name": "Tipo de produto",
+            "value_id": "46885538",
+            "value_name": "Conector",
+            "values": [
+              {
+                "id": "46885538",
+                "name": "Conector",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK012842",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK012842",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB73749268",
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+        "seller_custom_field": "VTK012842",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:16:00.714Z",
+        "last_updated": "2026-08-17T01:16:00.714Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3663,
+    "user_product": {
+      "id": "MLBU4743603837",
+      "name": "Painel Para Conector Speakon 8 Polos Wireconex Wp 08 Spk Ep Preto",
+      "family_name": "Wireconex WP 08 SPK EP",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "13660752",
+              "name": "Wireconex",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "name": "Dispositivos compatíveis",
+          "values": [
+            {
+              "id": "15289676",
+              "name": "Microfone",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "82846124",
+              "name": "07898640363790",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "values": [
+            {
+              "id": "46885538",
+              "name": "Conector",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "name": "Material de revestimento",
+          "values": [
+            {
+              "id": "5520057",
+              "name": "Metal",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK012842",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "82846122",
+              "name": "WP 08 SPK EP",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "name": "Tipo de conector",
+          "values": [
+            {
+              "id": "8180798",
+              "name": "XLR",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "912780-MLA112172968956_062026",
+          "secure_url": "https://http2.mlstatic.com/D_912780-MLA112172968956_062026-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "912780-MLA112172968956_062026",
+        "secure_url": "https://http2.mlstatic.com/D_912780-MLA112172968956_062026-O.jpg"
+      },
+      "catalog_product_id": "MLB73749268",
+      "bundle": null,
+      "family_id": 8542685985053648,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:16:00.815+0000",
+      "last_updated": "2026-08-17T01:16:00.815+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4743603837"
+      ],
+      "family_id": 8542685985053648,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

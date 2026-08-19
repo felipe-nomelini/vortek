@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018297",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Telecam alarm cable catalog/domain category evidence is inconsistent",
+  "local_value": "7898917230725",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB36887558 + DSLite supplier",
+  "timestamp": "2026-08-17T01:16:07.567Z"
+}

@@ -1,0 +1,239 @@
+{
+  "checked_at": "2026-08-17T01:13:12.888Z",
+  "expected_catalog_product_id": "MLB29045908",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB29045908",
+    "catalog_product_id": "MLB29045908",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-MICROPHONE_STANDS",
+    "permalink": "",
+    "name": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+    "family_name": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [],
+    "pictures": [
+      {
+        "id": "767851-MLU74553520059_022024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_767851-MLU74553520059_022024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1013,
+        "max_height": 1046,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "610570-MLU73415696454_122023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_610570-MLU73415696454_122023-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 849,
+        "max_height": 510,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "662324-MLU74553471225_022024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_662324-MLU74553471225_022024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1030,
+        "max_height": 810,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "950668-MLU74553520069_022024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_950668-MLU74553520069_022024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1064,
+        "max_height": 743,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Compatível com diversos dispositivos móveis.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Design discreto e elegante.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "5451933",
+        "value_name": "Saty",
+        "values": [
+          {
+            "id": "5451933",
+            "name": "Saty"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "22973465",
+        "value_name": "SC-01",
+        "values": [
+          {
+            "id": "22973465",
+            "name": "SC-01"
+          }
+        ]
+      },
+      {
+        "id": "STAND_TYPE",
+        "name": "Tipo de suporte",
+        "value_id": "28030143",
+        "value_name": "Celular",
+        "values": [
+          {
+            "id": "28030143",
+            "name": "Celular"
+          }
+        ]
+      },
+      {
+        "id": "BASE_TYPE",
+        "name": "Tipo de base",
+        "value_id": "19830858",
+        "value_name": "Pedestal",
+        "values": [
+          {
+            "id": "19830858",
+            "name": "Pedestal"
+          }
+        ]
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2748302",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "value_id": "15074673",
+        "value_name": "15 cm",
+        "values": [
+          {
+            "id": "15074673",
+            "name": "15 cm"
+          }
+        ]
+      },
+      {
+        "id": "ROTATION_ANGLE",
+        "name": "Ângulo de rotação",
+        "value_id": "8671387",
+        "value_name": "360°",
+        "values": [
+          {
+            "id": "8671387",
+            "name": "360°"
+          }
+        ]
+      },
+      {
+        "id": "IS_TABLE_STAND",
+        "name": "É suporte de mesa",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "INCLUDES_ANTIVIBRATION_STAND",
+        "name": "Inclui suporte antivibração",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Suporte Para Celular SC-01 - Saty \n\nEste suporte para celular SC-01 da Saty é um tripé ajustável para ser colocado em pedestais. \n\nCARACTERÍSTICAS: \n- Modelo: SC01 \n- Ajustável \n- Material: Plástico resistente \n- Dimensões (C x L): 17 x 5 cm \n\nEste é um suporte universal para smartphone, com diversos ajustes para atender às suas necessidades. \n\nEste suporte é feito de plástico resistente, garantindo durabilidade e resistência. Com dimensões de 17 x 5 cm, é compacto e fácil de transportar. \n\nEste suporte é ajustável, permitindo que você o configure de acordo com o tamanho do seu smartphone. \n\nEste é um produto da marca Saty, conhecida pela qualidade e durabilidade de seus produtos."
+    },
+    "parent_id": null,
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T17:49:27.456803829"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-12-18T18:55:09Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-02T16:42:55Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

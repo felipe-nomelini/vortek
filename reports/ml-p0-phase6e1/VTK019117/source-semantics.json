@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:50.870Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+    "supplier_category": "Automotivo/ Acessórios Para Instalacao/ Corneta Plástica Para Som",
+    "supplier_brand": "FIAMON",
+    "supplier_gtin": "7898478324987",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/346255",
+    "captured_at": "2026-08-17T12:55:36.239Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "a4c79e11-9833-449f-a669-6801e42f99c8",
+    "produto_id": "8d7fbad6-a59b-4aaa-a799-abfc41331b28",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "346255",
+    "sku_fornecedor": "346255",
+    "custo": 21.9,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:19:15.296+00:00",
+    "created_at": "2026-07-20T18:33:35.650576+00:00",
+    "updated_at": "2026-08-17T11:19:15.306+00:00",
+    "sku_oferta": "346255",
+    "nome": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+    "descricao": "Informações do Produto Expansor Corneta Bicolor 1450 Red. Curta Cor Amarelo Fluorescente e Preto",
+    "marca": "FIAMON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/4/346255_67d2caf57306b.jpg"
+    ],
+    "gtin": "7898478324987",
+    "ncm": "39269090",
+    "cest": "01.999.00"
+  }
+}

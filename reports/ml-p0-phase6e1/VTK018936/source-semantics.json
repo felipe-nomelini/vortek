@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:47.266Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Antena Permak Shark Prata 100/m2",
+    "supplier_category": "Automotivo/ Antena Automotiva/ Antena De Teto",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": "7898253505686",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/355661",
+    "captured_at": "2026-08-17T12:54:50.284Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "9f55cf89-4077-4dfa-a812-ca47a4e00ec5",
+    "produto_id": "4e093141-393f-4066-a00b-6db56844533a",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "355661",
+    "sku_fornecedor": "355661",
+    "custo": 39.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "355661",
+    "nome": "Antena Permak Shark Prata 100/m2",
+    "descricao": "Antena Shark Permak é o complemento perfeito para enfeitar seu carro. Ele aumenta facilmente a intensidade do sinal e vem com um cabo de conexão FM/AM integrado. A antena de barbatana de tubarão foi projetada para ser durável e clássica, mas elegante e moderna. É fácil de instalar sem a necessidade de furos e seu design aerodinâmico dá aquele toque especial para tornar seu carro único. A antena Shark possui dimensões de 10 cm de altura, 16 cm de comprimento e 9 cm de largura. Sua composição é em plástico ABS (acrilonitrila butadieno estireno), garantindo maior durabilidade e resistência a impactos e a temperaturas extremas. Está disponível nas cores preto fosco, preto black piano, branco, prata, prime, vermelho e cinza Escuro. Por ser universal, essa antena é compatível com carros de diversas marcas, desde que a superfície do teto seja reta. *Imagem meramente ilustrativa.",
+    "marca": "PERMAK",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/5/355661_67d2caf8ab64c.jpg"
+    ],
+    "gtin": "7898253505686",
+    "ncm": "85291090",
+    "cest": "01.063.00"
+  }
+}

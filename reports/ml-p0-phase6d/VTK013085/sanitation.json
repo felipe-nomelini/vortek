@@ -1,0 +1,10 @@
+{
+  "sku": "VTK013085",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Attack VS83/VSC83A side/color application lacks official evidence",
+  "local_value": "7898640363240",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:16:54.002Z"
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.769Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "D Addario",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1189",
+    "captured_at": "2026-08-17T12:56:51.311Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "cbf4ae7f-710f-41ff-9343-263843860427",
+    "produto_id": "422bcabd-a745-4698-a59a-9b376e947f2c",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1189",
+    "sku_fornecedor": "1189",
+    "custo": 35.33,
+    "estoque": 16,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:55:25.413+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:55:25.421+00:00",
+    "sku_oferta": "1189",
+    "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+    "descricao": "PALHETA GUITARRA MUL LGHT 1CMC2 D Addario .50mm 10un A Palheta D Addario Celuloide Multicolorida 1CMC2 é projetada para oferecer aos músicos uma sensação tradicional e um timbre quente. Abaixo estão suas principais especificações: Características Principais: • Modelo: 1CMC2 • Linha: Celuloide Multicolorida • Material: Celuloide • Espessura: 0,50 mm (Leve) • Cor: Multicolorida • Formato: Padrão Descrição: As palhetas de celuloide da D Addario proporcionam uma sensação tradicional e um tom quente e redondo. A espessura leve de 0,50 mm oferece flexibilidade, tornando-a ideal para técnicas de strumming suaves e ritmos mais leves. O design multicolorido adiciona um toque estético diferenciado para os músicos que buscam estilo além de funcionalidade. Aplicações Recomendadas: Devido à sua espessura leve, esta palheta é especialmente adequada para estilos musicais que requerem uma abordagem mais suave e fluida, oferecendo uma resposta rápida e um som brilhante. Conteúdo da Embalagem: O pacote contém 10 palhetas D Addario Celuloide Multicolorida 1CMC2, cada uma com espessura de 0,50 mm e design multicolorido.",
+    "marca": "D Addario",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/392815bed372dafdf53febf5265c477c.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.94.00",
+    "cest": null
+  }
+}

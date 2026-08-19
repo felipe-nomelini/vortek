@@ -1,0 +1,29 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018522/01-001c15f03d151efbaa20.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018522/01-001c15f03d151efbaa20.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018522/01-001c15f03d151efbaa20.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018522/01-001c15f03d151efbaa20.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

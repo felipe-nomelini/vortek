@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-08-17T14:15:53.476Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "supplier_brand": "Wireconex",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1380",
+    "captured_at": "2026-08-17T12:56:28.095Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "4aafa822-5bc6-4a94-ba52-abbb32a92cb8",
+    "produto_id": "70fb5f79-40a8-4eb9-a48c-5e2ddb29c4fa",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1380",
+    "sku_fornecedor": "1380",
+    "custo": 19,
+    "estoque": 65,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:47:25.622+00:00",
+    "created_at": "2026-07-06T22:31:08.096789+00:00",
+    "updated_at": "2026-08-17T09:47:25.63+00:00",
+    "sku_oferta": "1380",
+    "nome": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+    "descricao": "Adaptador RCA Fêmea para XLR 3 Pinos Fêmea Niquelado WC 244 AD – Kit com 2 Unidades Wireconex Perfeito para interligar equipamentos de áudio com diferentes padrões de conexão, este adaptador permite a conversão de RCA para XLR 3 pinos fêmea, oferecendo praticidade e eficiência em instalações de som profissional e doméstico. Especificações • Modelo: WC 244 AD • Marca: Wireconex • Tipo de conexão: RCA Fêmea → XLR 3 Pinos Fêmea • Material: Corpo metálico resistente • Acabamento: Niquelado (Ni) • Padrão XLR: 3 pinos • Quantidade: 02 unidades • Aplicação: Mesas de som, amplificadores, sistemas de áudio, instalações profissionais Fabricado com materiais de alta durabilidade, o adaptador WC 244 AD proporciona encaixe firme e transmissão de sinal com estabilidade. Ideal para técnicos de som, igrejas, estúdios e eventos que exigem conexões seguras e confiáveis no dia a dia. Uma solução prática para ampliar a compatibilidade dos seus equipamentos com qualidade e segurança.",
+    "marca": "Wireconex",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/8c0cb993b0cec74939a668894280ebc8.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/fb64a900dfe321bb002c12810e341e67.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8536.90.10",
+    "cest": "12.004.00"
+  }
+}

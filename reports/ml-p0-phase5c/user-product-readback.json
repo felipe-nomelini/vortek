@@ -1,0 +1,649 @@
+{
+  "checked_at": "2026-08-16T22:31:05.948Z",
+  "user_product": {
+    "id": "MLBU4772165100",
+    "name": "Ventilador De Mesa Turbo 6 Pás 40cm Ventisol 40 Cm 60 Hz Preto 127v Azul Plástico",
+    "family_name": "Ventisol Turbo 6 pás Turbo 6 10023 De mesa",
+    "site_id": "MLB",
+    "user_id": 3294514937,
+    "domain_id": "MLB-FANS",
+    "attributes": [
+      {
+        "id": "STRUCTURE_COLOR",
+        "name": "Cor da estrutura",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "NOISE_LEVEL",
+        "name": "Nível de ruído",
+        "values": [
+          {
+            "id": "8073070",
+            "name": "48 dB",
+            "struct": {
+              "number": 48,
+              "unit": "dB"
+            }
+          }
+        ]
+      },
+      {
+        "id": "WITH_INMETRO_CERTIFICATE",
+        "name": "Com certificado INMETRO",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_PERU",
+        "name": "Eficiência energética Peru",
+        "values": [
+          {
+            "id": "33344252",
+            "name": "A",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_360_DEGREES_ROTATION",
+        "name": "Com rotação de 360 graus",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "values": [
+          {
+            "id": "925895",
+            "name": "2.5 kg",
+            "struct": {
+              "number": 2.5,
+              "unit": "kg"
+            }
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "values": [
+          {
+            "id": null,
+            "name": "7898461970375",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "name": "Quantidade de velocidades",
+        "values": [
+          {
+            "id": "1000288",
+            "name": "3",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_LIGHT_SWITCH",
+        "name": "Inclui interruptor de luz",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "values": [
+          {
+            "id": "8219790",
+            "name": "60 Hz",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_WI_FI",
+        "name": "Com Wi-Fi",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "values": [
+          {
+            "id": "36862317",
+            "name": "Turbo 6 pás",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_REMOTE_CONTROL",
+        "name": "Inclui controle remoto",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "values": [
+          {
+            "id": "7622438",
+            "name": "52 cm",
+            "struct": {
+              "number": 52,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "GRID_MATERIAL",
+        "name": "Material da grade",
+        "values": [
+          {
+            "id": "82756",
+            "name": "Plástico",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_URUGUAY",
+        "name": "Eficiência energética Uruguai",
+        "values": [
+          {
+            "id": "33344238",
+            "name": "A",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "FAN_TYPE",
+        "name": "Tipo de ventilador",
+        "values": [
+          {
+            "id": "291722",
+            "name": "De mesa",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "IS_SILENT",
+        "name": "É silencioso",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BLADES_COLOR",
+        "name": "Cor das pás",
+        "values": [
+          {
+            "id": "26510686",
+            "name": "Azul",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "IS_PROGRAMMABLE",
+        "name": "É programável",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_LIGHT",
+        "name": "Com luz",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ARGENTINA",
+        "name": "Eficiência energética Argentina",
+        "values": [
+          {
+            "id": "33344208",
+            "name": "A",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ECUADOR",
+        "name": "Eficiência energética Equador",
+        "values": [
+          {
+            "id": "33344245",
+            "name": "A",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "name": "Eficiência energética Brasil",
+        "values": [
+          {
+            "id": "33344215",
+            "name": "A",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "values": [
+          {
+            "id": "8152567",
+            "name": "Corrente elétrica",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "values": [
+          {
+            "id": "135253",
+            "name": "40 cm",
+            "struct": {
+              "number": 40,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "values": [
+          {
+            "id": "357784",
+            "name": "80 W",
+            "struct": {
+              "number": 80,
+              "unit": "W"
+            }
+          }
+        ]
+      },
+      {
+        "id": "WITH_ROTATING_GRID",
+        "name": "Com grade giratória",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "values": [
+          {
+            "id": "8078905",
+            "name": "68 cm",
+            "struct": {
+              "number": 68,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK000392",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "name": "É industrial",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_EXTRACTABLE_GRID",
+        "name": "Com grade removível",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_REVERSIBLE_BLADES",
+        "name": "Com pás reversíveis",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_COLOMBIA",
+        "name": "Eficiência energética Colômbia",
+        "values": [
+          {
+            "id": "33344222",
+            "name": "A",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_REPELLENT_FUNCTION",
+        "name": "Com função repelente",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "name": "Velocidade máxima de rotação",
+        "values": [
+          {
+            "id": "7947248",
+            "name": "1500 rpm",
+            "struct": {
+              "number": 1500,
+              "unit": "rpm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "name": "Com luzes LED",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BLADES_MATERIAL",
+        "name": "Material das pás",
+        "values": [
+          {
+            "id": "6350782",
+            "name": "Plástico",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "values": [
+          {
+            "id": "39205162",
+            "name": "127V",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_CHILE",
+        "name": "Eficiência energética Chile",
+        "values": [
+          {
+            "id": "33344231",
+            "name": "A",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "LAMPS_NUMBER",
+        "name": "Quantidade de lâmpadas",
+        "values": [
+          {
+            "id": "13174582",
+            "name": "0",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_OSCILLATION",
+        "name": "Com oscilação",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "values": [
+          {
+            "id": "60638666",
+            "name": "10023",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "values": [
+          {
+            "id": "11860495",
+            "name": "Turbo 6",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "values": [
+          {
+            "id": "8998137",
+            "name": "44 cm",
+            "struct": {
+              "number": 44,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "name": "Com função turbo",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "name": "Quantidade de pás",
+        "values": [
+          {
+            "id": "1000324",
+            "name": "6",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_TILT",
+        "name": "Com inclinação",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      }
+    ],
+    "pictures": [
+      {
+        "id": "702853-MLA99429972606_112025",
+        "secure_url": "https://http2.mlstatic.com/D_702853-MLA99429972606_112025-O.jpg"
+      },
+      {
+        "id": "606330-MLA84550752742_052025",
+        "secure_url": "https://http2.mlstatic.com/D_606330-MLA84550752742_052025-O.jpg"
+      },
+      {
+        "id": "665395-MLA85061029336_052025",
+        "secure_url": "https://http2.mlstatic.com/D_665395-MLA85061029336_052025-O.jpg"
+      },
+      {
+        "id": "676908-MLA85060990100_052025",
+        "secure_url": "https://http2.mlstatic.com/D_676908-MLA85060990100_052025-O.jpg"
+      },
+      {
+        "id": "873398-MLA85061039218_052025",
+        "secure_url": "https://http2.mlstatic.com/D_873398-MLA85061039218_052025-O.jpg"
+      },
+      {
+        "id": "948799-MLA85060990112_052025",
+        "secure_url": "https://http2.mlstatic.com/D_948799-MLA85060990112_052025-O.jpg"
+      }
+    ],
+    "thumbnail": {
+      "id": "702853-MLA99429972606_112025",
+      "secure_url": "https://http2.mlstatic.com/D_702853-MLA99429972606_112025-O.jpg"
+    },
+    "catalog_product_id": "MLB15284402",
+    "bundle": null,
+    "family_id": 5623652722530511,
+    "tags": [
+      "primary"
+    ],
+    "date_created": "2026-08-16T22:31:05.104+0000",
+    "last_updated": "2026-08-16T22:31:05.104+0000",
+    "main_features": [],
+    "commingling": null
+  }
+}

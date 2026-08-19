@@ -1,0 +1,23 @@
+{
+  "index": 38,
+  "sku": "VTK001007",
+  "expected_gtin": "10564050000108",
+  "started_at": "2026-08-17T01:15:05.891Z",
+  "local_time": "2026-08-16T22:15:05",
+  "completed_at": "2026-08-17T01:15:05.920Z",
+  "elapsed_ms": 29,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "GTIN-14 carton of six blender jars lacks official packaging/category evidence",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

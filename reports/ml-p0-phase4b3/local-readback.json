@@ -1,0 +1,63 @@
+{
+  "read_at": "2026-08-16T21:00:58.462382+00:00",
+  "product": {
+    "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+    "sku": "VTK000486",
+    "nome": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+    "gtin": "4904530109270",
+    "ml_item_id": "MLB7432157712",
+    "ml_status": "ativo",
+    "altura": 17,
+    "largura": 13,
+    "profundidade": 12,
+    "peso_bruto": 0.262,
+    "estoque": 15,
+    "custo": 96.22,
+    "fornecedor": "HAYAMAX-PR",
+    "updated_at": "2026-08-16T21:00:58.121317+00:00"
+  },
+  "item_listings": [
+    {
+      "id": "f8fd742d-1460-4fdd-a09b-0955a6c61c49",
+      "ml_item_id": "MLB7432157712",
+      "produto_id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "titulo": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+      "tipo": "premium",
+      "preco_ml": 187.22,
+      "vendidos": 0,
+      "visitas": 0,
+      "qualidade": 0,
+      "qualidade_info": null,
+      "status": "ativo",
+      "catalogo": false,
+      "thumbnail": "https://http2.mlstatic.com/D_603667-MLB116278971945_082026-O.jpg",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM",
+      "created_at": "2026-08-16T21:00:58.121317+00:00",
+      "updated_at": "2026-08-16T21:00:58.121317+00:00"
+    }
+  ],
+  "product_listings": [
+    {
+      "id": "f8fd742d-1460-4fdd-a09b-0955a6c61c49",
+      "ml_item_id": "MLB7432157712",
+      "produto_id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "titulo": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+      "tipo": "premium",
+      "preco_ml": 187.22,
+      "status": "ativo",
+      "catalogo": false,
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM",
+      "created_at": "2026-08-16T21:00:58.121317+00:00"
+    }
+  ],
+  "products_pointing_to_item": [
+    {
+      "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486",
+      "ml_item_id": "MLB7432157712",
+      "ml_status": "ativo"
+    }
+  ]
+}

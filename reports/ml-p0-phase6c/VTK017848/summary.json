@@ -1,0 +1,23 @@
+{
+  "index": 10,
+  "sku": "VTK017848",
+  "expected_gtin": "7898619565781",
+  "started_at": "2026-08-17T00:43:33.460Z",
+  "local_time": "2026-08-16T21:43:33",
+  "completed_at": "2026-08-17T00:43:34.356Z",
+  "elapsed_ms": 896,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE",
+  "item_id": null,
+  "catalog_product_id": "MLB65825760",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "missing category-required attributes: VOLTAGE",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

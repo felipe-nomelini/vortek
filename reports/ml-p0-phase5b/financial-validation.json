@@ -1,0 +1,418 @@
+{
+  "dimensions": "18x44x45,2600",
+  "dimensions_order": "height x width x length, grams",
+  "logistics": {
+    "mode": "me2",
+    "logistic_type": "drop_off",
+    "free_shipping": true
+  },
+  "target_margin_minimum_percent": 15,
+  "target_margin_operational_percent": 15.25,
+  "listing_type_candidates": [
+    {
+      "listing_type_id": "gold_pro",
+      "minimum": {
+        "target_margin_percent": 15,
+        "minimum_profit": 20,
+        "listing_type_id": "gold_pro",
+        "fee": {
+          "currency_id": "BRL",
+          "free_relist": false,
+          "listing_exposure": "highest",
+          "listing_fee_amount": 0,
+          "listing_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 0
+          },
+          "listing_type_id": "gold_pro",
+          "listing_type_name": "Premium",
+          "requires_picture": true,
+          "sale_fee_amount": 43.08,
+          "sale_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 43.08,
+            "percentage_fee": 16
+          },
+          "stop_time": "2046-08-11T00:00:00.000-04:00"
+        },
+        "shipping_response": {
+          "coverage": {
+            "all_country": {
+              "list_cost": 39.75,
+              "currency_id": "BRL",
+              "billable_weight": 5940,
+              "discount": {
+                "rate": 0.5,
+                "type": "mandatory",
+                "promoted_amount": 79.5
+              }
+            }
+          }
+        },
+        "financial": {
+          "price": 269.23,
+          "commission": 43.08,
+          "shipping": 39.75,
+          "cost": 132.55,
+          "tax": 13.46,
+          "profit": 40.39,
+          "margin_percent": 15.002042862979609
+        }
+      },
+      "operational": {
+        "target_margin_percent": 15.25,
+        "minimum_profit": 20,
+        "listing_type_id": "gold_pro",
+        "fee": {
+          "currency_id": "BRL",
+          "free_relist": false,
+          "listing_exposure": "highest",
+          "listing_fee_amount": 0,
+          "listing_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 0
+          },
+          "listing_type_id": "gold_pro",
+          "listing_type_name": "Premium",
+          "requires_picture": true,
+          "sale_fee_amount": 43.24,
+          "sale_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 43.24,
+            "percentage_fee": 16
+          },
+          "stop_time": "2046-08-11T00:00:00.000-04:00"
+        },
+        "shipping_response": {
+          "coverage": {
+            "all_country": {
+              "list_cost": 39.75,
+              "currency_id": "BRL",
+              "billable_weight": 5940,
+              "discount": {
+                "rate": 0.5,
+                "type": "mandatory",
+                "promoted_amount": 79.5
+              }
+            }
+          }
+        },
+        "financial": {
+          "price": 270.28,
+          "commission": 43.24,
+          "shipping": 39.75,
+          "cost": 132.55,
+          "tax": 13.51,
+          "profit": 41.23,
+          "margin_percent": 15.254550836169898
+        }
+      }
+    },
+    {
+      "listing_type_id": "gold_special",
+      "minimum": {
+        "target_margin_percent": 15,
+        "minimum_profit": 20,
+        "listing_type_id": "gold_special",
+        "fee": {
+          "currency_id": "BRL",
+          "free_relist": false,
+          "listing_exposure": "highest",
+          "listing_fee_amount": 0,
+          "listing_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 0
+          },
+          "listing_type_id": "gold_special",
+          "listing_type_name": "Clássico",
+          "requires_picture": true,
+          "sale_fee_amount": 27.47,
+          "sale_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 27.47,
+            "percentage_fee": 11
+          },
+          "stop_time": "2046-08-11T00:00:00.000-04:00"
+        },
+        "shipping_response": {
+          "coverage": {
+            "all_country": {
+              "list_cost": 39.75,
+              "currency_id": "BRL",
+              "billable_weight": 5940,
+              "discount": {
+                "rate": 0.5,
+                "type": "mandatory",
+                "promoted_amount": 79.5
+              }
+            }
+          }
+        },
+        "financial": {
+          "price": 249.72,
+          "commission": 27.47,
+          "shipping": 39.75,
+          "cost": 132.55,
+          "tax": 12.49,
+          "profit": 37.46,
+          "margin_percent": 15.000800897004646
+        }
+      },
+      "operational": {
+        "target_margin_percent": 15.25,
+        "minimum_profit": 20,
+        "listing_type_id": "gold_special",
+        "fee": {
+          "currency_id": "BRL",
+          "free_relist": false,
+          "listing_exposure": "highest",
+          "listing_fee_amount": 0,
+          "listing_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 0
+          },
+          "listing_type_id": "gold_special",
+          "listing_type_name": "Clássico",
+          "requires_picture": true,
+          "sale_fee_amount": 27.57,
+          "sale_fee_details": {
+            "fixed_fee": 0,
+            "gross_amount": 27.57,
+            "percentage_fee": 11
+          },
+          "stop_time": "2046-08-11T00:00:00.000-04:00"
+        },
+        "shipping_response": {
+          "coverage": {
+            "all_country": {
+              "list_cost": 39.75,
+              "currency_id": "BRL",
+              "billable_weight": 5940,
+              "discount": {
+                "rate": 0.5,
+                "type": "mandatory",
+                "promoted_amount": 79.5
+              }
+            }
+          }
+        },
+        "financial": {
+          "price": 250.62,
+          "commission": 27.57,
+          "shipping": 39.75,
+          "cost": 132.55,
+          "tax": 12.53,
+          "profit": 38.22,
+          "margin_percent": 15.250179554704332
+        }
+      }
+    }
+  ],
+  "selected_listing_type": "gold_special",
+  "selected_reason": "lower live fee yields lowest sustainable catalog price; gold_pro remains valid but less competitive",
+  "required_price_tests": [
+    {
+      "listing_type_id": "gold_special",
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 29.62,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 29.62,
+          "percentage_fee": 11
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "shipping_response": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 39.75,
+            "currency_id": "BRL",
+            "billable_weight": 5940,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 79.5
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 269.23,
+        "commission": 29.62,
+        "shipping": 39.75,
+        "cost": 132.55,
+        "tax": 13.46,
+        "profit": 53.85,
+        "margin_percent": 20.001485718530624
+      }
+    },
+    {
+      "listing_type_id": "gold_special",
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 29.69,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 29.69,
+          "percentage_fee": 11
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "shipping_response": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 39.75,
+            "currency_id": "BRL",
+            "billable_weight": 5940,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 79.5
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 269.9,
+        "commission": 29.69,
+        "shipping": 39.75,
+        "cost": 132.55,
+        "tax": 13.5,
+        "profit": 54.41,
+        "margin_percent": 20.159318266024453
+      }
+    },
+    {
+      "listing_type_id": "gold_special",
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 29.7,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 29.7,
+          "percentage_fee": 11
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "shipping_response": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 39.75,
+            "currency_id": "BRL",
+            "billable_weight": 5940,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 79.5
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 270,
+        "commission": 29.7,
+        "shipping": 39.75,
+        "cost": 132.55,
+        "tax": 13.5,
+        "profit": 54.5,
+        "margin_percent": 20.185185185185187
+      }
+    },
+    {
+      "listing_type_id": "gold_special",
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 27.57,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 27.57,
+          "percentage_fee": 11
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "shipping_response": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 39.75,
+            "currency_id": "BRL",
+            "billable_weight": 5940,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 79.5
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 250.62,
+        "commission": 27.57,
+        "shipping": 39.75,
+        "cost": 132.55,
+        "tax": 12.53,
+        "profit": 38.22,
+        "margin_percent": 15.250179554704332
+      }
+    }
+  ],
+  "selected_minimum": {
+    "price": 249.72,
+    "commission": 27.47,
+    "shipping": 39.75,
+    "cost": 132.55,
+    "tax": 12.49,
+    "profit": 37.46,
+    "margin_percent": 15.000800897004646
+  },
+  "selected_operational": {
+    "price": 250.62,
+    "commission": 27.57,
+    "shipping": 39.75,
+    "cost": 132.55,
+    "tax": 12.53,
+    "profit": 38.22,
+    "margin_percent": 15.250179554704332
+  },
+  "approved": true
+}

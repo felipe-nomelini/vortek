@@ -1,0 +1,254 @@
+{
+  "checked_at": "2026-08-17T12:55:50.453Z",
+  "product": {
+    "id": "3206afcd-6e43-4e87-8902-cbf1cb7f855d",
+    "sku": "VTK012864",
+    "nome": "Alto-falante 18 Pol 1500w Rms 8 Ohms 18lf3000b8 Atk",
+    "marca": "Atk Eletroacústica",
+    "gtin": "7898640362106"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1550",
+    "consulted_at": "2026-08-17T12:55:49.591Z",
+    "product": {
+      "produtoid": "1550",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 1396.9,
+      "preco_crossdocking": 1396.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 1396.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Alto-falante 18 Pol 1500w Rms 8 Ohms 18lf3000b8 Atk",
+      "titulo_curto": "Alto-falante 18 Pol 1500w Rms 8 Ohms 18lf3000b8 Atk",
+      "categoriaid": "289648",
+      "categoria_nome": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+      "abc": null,
+      "ean11": "7898640362106",
+      "ncm": "8518.29.90",
+      "descricao": "<p>Descrição:</p> <p>Alto-falante de 18” de alta potência, baixíssima distorção e compressão dinâmica. O alto grau de exigência e controle de qualidade na seleção dos materiais e na montagem proporciona excelente linearidade.</p> <p>Utiliza uma bobina de 100mm de diâmetro (4”) e um cone de alta resistência, montados em um conjunto magnético otimizado para um alto desempenho.</p> <p>Design exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, proporcionando um excelente visual e alta resistência mecânica.</p> <p>Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para proporcionar um alto-falante com alta sensibilidade, dissipação otimizada e uma alta performance.</p> <p> </p> <p>Características:</p> <p>-1500 W Potência Nominal</p> <p>-Frequência Sonora: Sub Graves</p> <p>-8 Ohms de Impedância Nominal</p> <p>-97 dB SPL de Sensibilidade</p> <p>-30 a 1800Hz</p> <p> </p> <p>Informações para transporte:</p> <p>Peso unidade: 15.190 kg</p> <p>Unidade de Transporte: 1 unidade</p> <p>Dimensões da embalagem: (A) 230 mm x (L) 480 mm x (P) 470 mm</p> <p>Volume da embalagem: 51.9 L</p> <p>Peso da unidade embalada: 16.580 kg</p> <p> </p> <p>Especificações do Fabricante:</p> <p>Potência Nominal Admissível(1): 1500 W</p> <p>Potência Máxima do Amplificador(2) : 24000 W pico</p> <p>Sensibilidade (1W/1m)(3) : 97 dB SPL</p> <p>Impedância Nominal: 8 Ohms</p> <p>Impedância Mínima: 7.4 Ohms</p> <p>Diâmetro Nominal: 457.2mm (18 pol)</p> <p>Resposta de Frequência: 30 a 1800 Hz</p> <p>Diâmetro da Bobina: 100 mm (4”)</p> <p>Fio da Bobina: Fio de Cobre Seção Circular</p> <p>Resistência da Bobina (Re): 5.9 Ohms</p> <p>X.máx(4) : 12 mm</p> <p>Volume de Ar ocupado: 5.45 L</p> <p> </p> <p>(1)  2 horas de teste realizado com ruído rosa (fator de crista 12 dB) no range de frequência de Fs a 10xFs. Potência calculada com impedância mínima. Alto-falante ao ar livre.</p> <p>Obs: Para aplicar esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no mínimo 12h com 50% da potência nominal.</p> <p>(2)  Potência de pico exigida do amplificador para alcançar a potência nominal considerando um sinal de teste de ruído rosa com fator de crista de 12dB.</p> <p>(3)  Aplicada tensão de 2.83 V RMS sobre a impedância nominal.</p> <p>(4)  O X.máx é calculado considerando uma queda &gt; que 50 % do campo magnético Bl sobre a bobina.</p> <p> </p> <p>Parâmetros Thiele-Small (5)</p> <p>Fs: 32.7 Hz</p> <p>Re: 5.9 Ohms</p> <p>Qes: 0.42</p> <p>Qms: 4.45</p> <p>Qts: 0.38</p> <p>Vas: 214 l</p> <p>Sd: 1244 cm²</p> <p>n0: 1.71 %</p> <p>Mms: 238 g</p> <p>Bl: 26 Tm</p> <p>Le: 1.79 mH</p> <p> </p> <p> </p> <p>(5) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Atk Eletroacústica",
+      "modelo": "",
+      "peso": 15.19,
+      "largura": 48,
+      "altura": 23,
+      "profundidade": 47,
+      "peso_embalagem": 16.58,
+      "largura_embalagem": 48,
+      "altura_embalagem": 23,
+      "profundidade_embalagem": 47,
+      "link": null,
+      "link_imagem": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 27,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "683263656",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-06 11:23:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-06 11:23:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 2,
+      "tempo_cross": 0,
+      "estoque_total": 2,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML exact GTIN catalog MLB32450801 + DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1550",
+  "source_confidence": "ML_catalog_and_supplier",
+  "identity_assessment": {
+    "passed": true,
+    "conflicts": [],
+    "catalog_brand": "Atk Eletroacústica",
+    "model": "18LF3000B-8",
+    "local_pack": 50,
+    "catalog_pack": null,
+    "local_voltages": [],
+    "catalog_voltages": [],
+    "local_colors": [
+      "rosa",
+      "ciano"
+    ],
+    "catalog_colors": [],
+    "title_similarity": 0.5
+  },
+  "catalog_results": [
+    {
+      "id": "MLB32450801",
+      "catalog_product_id": "MLB32450801",
+      "domain_id": "MLB-TABLET_INTERNAL_SPEAKERS",
+      "name": "Alto-falante Profissional Atk Eletroacústica 18lf3000b-8",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "27107924",
+          "value_name": "Atk Eletroacústica",
+          "values": [
+            {
+              "id": "27107924",
+              "name": "Atk Eletroacústica"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "32294330",
+          "value_name": "18LF3000B-8",
+          "values": [
+            {
+              "id": "32294330",
+              "name": "18LF3000B-8"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "32294329",
+          "value_name": "7898640362106",
+          "values": [
+            {
+              "id": "32294329",
+              "name": "7898640362106"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Alto-Falante Profissional Atk Eletroacústica 18Lf3000B-8\nAlto-falante de 18\" de alta potência, baixíssima distorção e compressão dinâmica. Excelente linearidade devido ao alto grau de exigência e controle de qualidade na seleção dos materiais e na montagem.\n\nUtiliza uma bobina de 100mm de diâmetro (4\") e um cone de alta resistência, montados em um conjunto magnético otimizado para alto desempenho.\nDesign exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, proporcionando excelente visual e alta resistência mecânica.\n\nProjetado com base em softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão, garantindo alta sensibilidade, dissipação otimizada e performance superior.\n\nCaracterísticas:\n- 1500 W Potência Nominal\n- 8 Ohms de Impedância Nominal\n- 97 dB SPL de Sensibilidade\n- Resposta de Frequência: 30 a 1800Hz\n\nEspecificações do Fabricante:\n- Potência Nominal Admissível: 1500 W\n- Potência Máxima do Amplificador: 24000 W pico\n- Sensibilidade (1W/1m): 97 dB SPL\n- Impedância Nominal: 8 Ohms\n- Impedância Mínima: 7.4 ohms\n- Diâmetro Nominal: 457.2mm (18 pol)\n- Diâmetro da Bobina: 100 mm (4\")\n- Fio da Bobina: Fio de Cobre Seção Circular\n- Resistência da Bobina (Re): 5.9 ohms\n- X.Máx: 12 mm\n- Volume de Ar ocupado: 5.45 L"
+      },
+      "pictures": [
+        {
+          "id": "714638-MLU74346658196_022024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_714638-MLU74346658196_022024-F.jpg",
+          "max_width": "1084",
+          "max_height": "558"
+        },
+        {
+          "id": "732733-MLU78907216152_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_732733-MLU78907216152_092024-F.jpg",
+          "max_width": "1200",
+          "max_height": "971"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-02-09T00:02:01Z",
+      "last_updated": "2024-02-14T03:59:23Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

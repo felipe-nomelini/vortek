@@ -1,0 +1,785 @@
+{
+  "checked_at": "2026-08-17T00:44:30.978Z",
+  "product": {
+    "id": "7f04ec07-7f1d-4af0-8645-6595ced9c352",
+    "sku": "VTK003043",
+    "nome": "Cadeira Gamer Fortrek Cruiser Preta",
+    "marca": "FORTREK",
+    "gtin": "7898554606532"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/70514",
+    "consulted_at": "2026-08-17T00:44:30.791Z",
+    "product": {
+      "produtoid": "70514",
+      "produtoid_empresa": "HYX70514",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 814.75,
+      "preco_crossdocking": 814.75,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 814.75,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cadeira Gamer Fortrek Cruiser Preta",
+      "titulo_curto": "CADEIRA FORTREK CRUISER PT",
+      "categoriaid": "293287",
+      "categoria_nome": "Móveis / Cadeiras / Gamer",
+      "abc": "A",
+      "ean11": "7898554606532",
+      "ncm": "9401.39.00",
+      "descricao": "A Cadeira Gamer Fortrek Cruiser possui uma design exclusivo cuja costura remete aos famosos bancos dos carros esportivos enquanto você desfruta do prazer de jogar seus games favoritos. Uma inclinação do encosto de 155º permite que o usuário relaxe após horas de partida ou de trabalho exaustivo, isso unido a um balanço relaxante de 3~18º. <br/> <br/> Um assento firme com um pequeno apoio para cabeça e almofada para as costas oferecem um conforto prolongado. Com roda de 60mm de diâmetro construída em nylon a cadeira Cruiser garante liberdade para movimentar-se para todos os lados. <br/> <br/> <br/> INSTRUÇÕES DE LIMPEZA: <br/> Limpe sua cadeira utilizando um pano de microfibra e um pulverizador com mistura de detergente neutro e água. Para limpeza das rodas, utilize uma escova ou um pincel pequeno. <br/> Remova as almofadas de pescoço e lombar, pulverize uma pequena quantidade de água no pano e limpe-as. Coloque as peças para secar naturalmente e execute o mesmo processo no restante da cadeira ficando atento às áreas com acúmulo de sujeira, como onde encosto e assento se juntam. Limpe a base da cadeira com um pano umedecido e, se for de metal, utilize um pano seco para remover o excesso de umidade. <br/> <br/> INSTRUÇÕES DE CONSERVAÇÃO: <br/> Para um melhor movimento e preservar a durabilidade das rodas é importante que a cadeira esteja em uma superfície plana e nivelada. <br/> Não coloque sua cadeira em locais expostos ao sol, pois a cor pode começar a desbotar, e evite que pets subam nela e danifiquem o tecido. <br/> Não utilize produtos abrasivos ou alvejantes, nem escovas de cerdas duras. Para manter a cadeira segura e funcional, verifique os parafusos a cada seis meses. <br/> As cadeiras com inclinação possuem fixação do pistão a gás recuado para manter o equilíbrio, para evitar quedas não sente na parte da frente do assento. <br/> Respeite o peso máximo estabelecido para o seu conforto e segurança.",
+      "caracteristicas": "Cor:Preta<br>Material:Revestimento sintético, nylon<br>Dimensões:Geral: 66 x 60 x 123-131 cm <br/> Encosto: 55 x 84 cm <br/> Assento: 50 x 60 x 11,5 cm<br>Pesquisa:cadeira|gamer|cruiser|preta|black|fortrek|<br>",
+      "informacoes": "<br/> Espuma: Moldado por injeção <br/> Apoio de Braço: ajustável, 1D <br/> Ajuste de encosto: sim, 90~155º <br/> Mecanismo: Borboleta <br/> Elevação de gás: classe 4 <br/> Base: 350mm em nylon <br/> Peso máximo recomendado: 120Kg <br/> Rodinhas: 60mm em nylon <br/> Peso: 22,6 kg <br/> <br/> Requer montagem. <br/> <br/> O prazo de garantia já inclui a garantia legal, Art. 26. CDC.",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "FORTREK",
+      "modelo": "Cruiser",
+      "peso": 23,
+      "largura": 66,
+      "altura": 33,
+      "profundidade": 85,
+      "peso_embalagem": 23,
+      "largura_embalagem": 66,
+      "altura_embalagem": 33,
+      "profundidade_embalagem": 85,
+      "link": "http://www.hayamax.com.br/cadeira-gamer-fortrek-cruiser-preta",
+      "link_imagem": "https://static.hayapek.com.br/produtos/70514/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 180,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 3.25,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 8510,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": "",
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 15:06:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 71,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/70514/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/70514/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/70514/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/70514/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/70514/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/70514/550/6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://static.hayapek.com.br/produtos/70514/550/7.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB15963092",
+      "catalog_product_id": "MLB15963092",
+      "domain_id": "MLB-OFFICE_CHAIRS",
+      "name": "Cadeira gamer ergonômica Fortrek Cruiser preta com estofado de couro sintético",
+      "parent_id": "MLB15963091",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "46525",
+          "value_name": "Fortrek",
+          "values": [
+            {
+              "id": "46525",
+              "name": "Fortrek"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "977211",
+          "value_name": "Cruiser",
+          "values": [
+            {
+              "id": "977211",
+              "name": "Cruiser"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "UPHOLSTERY_MATERIAL",
+          "name": "Material do estofamento",
+          "value_id": "570721",
+          "value_name": "Couro sintético",
+          "values": [
+            {
+              "id": "570721",
+              "name": "Couro sintético"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "OFFICE_CHAIR_TYPE",
+          "name": "Tipo de cadeira de escritório",
+          "value_id": "13016815",
+          "value_name": "Escritório",
+          "values": [
+            {
+              "id": "13016815",
+              "name": "Escritório"
+            }
+          ]
+        },
+        {
+          "id": "STRUCTURE_MATERIALS",
+          "name": "Materiais da estrutura",
+          "value_id": "7980354",
+          "value_name": "Náilon",
+          "values": [
+            {
+              "id": "7980354",
+              "name": "Náilon"
+            }
+          ]
+        },
+        {
+          "id": "FILLING_MATERIALS",
+          "name": "Materiais do enchimento",
+          "value_id": "5897875",
+          "value_name": "Espuma",
+          "values": [
+            {
+              "id": "5897875",
+              "name": "Espuma"
+            }
+          ]
+        },
+        {
+          "id": "BACKREST_HEIGHT",
+          "name": "Altura do encosto",
+          "value_id": "7571534",
+          "value_name": "84 cm",
+          "values": [
+            {
+              "id": "7571534",
+              "name": "84 cm"
+            }
+          ]
+        },
+        {
+          "id": "SEAT_DEPTH",
+          "name": "Profundidade do assento",
+          "value_id": "9871307",
+          "value_name": "60 cm",
+          "values": [
+            {
+              "id": "9871307",
+              "name": "60 cm"
+            }
+          ]
+        },
+        {
+          "id": "OFFICE_CHAIR_WIDTH",
+          "name": "Largura da cadeira",
+          "value_id": "7661942",
+          "value_name": "66 cm",
+          "values": [
+            {
+              "id": "7661942",
+              "name": "66 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_CHAIR_HEIGHT",
+          "name": "Altura máxima da cadeira",
+          "value_id": "50154411",
+          "value_name": "131 cm",
+          "values": [
+            {
+              "id": "50154411",
+              "name": "131 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "name": "Peso máximo suportado",
+          "value_id": "3183623",
+          "value_name": "135 kg",
+          "values": [
+            {
+              "id": "3183623",
+              "name": "135 kg"
+            }
+          ]
+        },
+        {
+          "id": "REQUIRES_ASSEMBLY",
+          "name": "Requer montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_HEIGHT",
+          "name": "Com altura ajustável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_WHEELS",
+          "name": "Com rodas",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_FOOT_RING",
+          "name": "Com aro para pés",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ARMREST",
+          "name": "Com apoio de braços",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_RECLINING_BACKREST",
+          "name": "Com encosto reclinável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_LIGHTS",
+          "name": "Com luzes",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_ARMREST",
+          "name": "Com apoio de braços ajustável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_HEADREST",
+          "name": "Com apoio de cabeça",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_FOOTREST",
+          "name": "Com apoio de pés",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_ERGONOMIC",
+          "name": "É ergonômica",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_SWIVEL",
+          "name": "É giratória",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "66353431",
+          "value_name": "FORTREK CRUISER PT",
+          "values": [
+            {
+              "id": "66353431",
+              "name": "FORTREK CRUISER PT"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "9095930",
+          "value_name": "7898554606532",
+          "values": [
+            {
+              "id": "9095930",
+              "name": "7898554606532"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ASSEMBLY_MANUAL",
+          "name": "Inclui manual de montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "LUMBAR_SUPPORT_TYPE",
+          "name": "Tipo de apoio lombar",
+          "value_id": "10201909",
+          "value_name": "Regulável",
+          "values": [
+            {
+              "id": "10201909",
+              "name": "Regulável"
+            }
+          ]
+        },
+        {
+          "id": "STRUCTURE_FINISH",
+          "name": "Acabamento da estrutura",
+          "value_id": "1185554",
+          "value_name": "Cromado",
+          "values": [
+            {
+              "id": "1185554",
+              "name": "Cromado"
+            }
+          ]
+        },
+        {
+          "id": "LEAN_BACK_MECHANISM_TYPES",
+          "name": "Tipos de mecanismos de reclinação",
+          "value_name": "Basculante, Encosto reclinável",
+          "values": [
+            {
+              "id": "10204587",
+              "name": "Basculante"
+            },
+            {
+              "id": "10219265",
+              "name": "Encosto reclinável"
+            }
+          ]
+        },
+        {
+          "id": "BACKREST_TILT_RANGE",
+          "name": "Faixa de inclinação do encosto",
+          "value_id": "10340644",
+          "value_name": "90 ° x 155 °",
+          "values": [
+            {
+              "id": "10340644",
+              "name": "90 ° x 155 °"
+            }
+          ]
+        },
+        {
+          "id": "OFFICE_CHAIR_HEIGHT",
+          "name": "Altura da cadeira",
+          "value_id": "53835640",
+          "value_name": "131 cm",
+          "values": [
+            {
+              "id": "53835640",
+              "name": "131 cm"
+            }
+          ]
+        },
+        {
+          "id": "OFFICE_CHAIR_DEPTH",
+          "name": "Profundidade da cadeira",
+          "value_id": "7866305",
+          "value_name": "60 cm",
+          "values": [
+            {
+              "id": "7866305",
+              "name": "60 cm"
+            }
+          ]
+        },
+        {
+          "id": "BASE_DIAMETER",
+          "name": "Diâmetro da base",
+          "value_id": "12905531",
+          "value_name": "35 cm",
+          "values": [
+            {
+              "id": "12905531",
+              "name": "35 cm"
+            }
+          ]
+        },
+        {
+          "id": "OFFICE_CHAIR_WEIGHT",
+          "name": "Peso da cadeira",
+          "value_id": "11518281",
+          "value_name": "22.6 kg",
+          "values": [
+            {
+              "id": "11518281",
+              "name": "22.6 kg"
+            }
+          ]
+        },
+        {
+          "id": "SEAT_WIDTH",
+          "name": "Largura do assento",
+          "value_id": "3202979",
+          "value_name": "50 cm",
+          "values": [
+            {
+              "id": "3202979",
+              "name": "50 cm"
+            }
+          ]
+        },
+        {
+          "id": "BACKREST_WIDTH",
+          "name": "Largura do encosto",
+          "value_id": "9272011",
+          "value_name": "55 cm",
+          "values": [
+            {
+              "id": "9272011",
+              "name": "55 cm"
+            }
+          ]
+        },
+        {
+          "id": "MIN_CHAIR_HEIGHT",
+          "name": "Altura mínima da cadeira",
+          "value_id": "10263986",
+          "value_name": "123 cm",
+          "values": [
+            {
+              "id": "10263986",
+              "name": "123 cm"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Cadeira Gamer Fortrek Cruiser possui um design exclusivo cuja costura remete aos famosos bancos dos carros esportivos, proporcionando conforto durante suas sessões de jogos. \n\nUma inclinação do encosto de 155º permite que o usuário relaxe após horas de partida ou trabalho, unida a um balanço relaxante de 3~18º. \n\nUm assento firme com apoio para cabeça e almofada para as costas oferecem conforto prolongado. Com rodas de 60mm de diâmetro construídas em nylon, a cadeira Cruiser garante liberdade de movimento.\n\nCor: Preta  \nMaterial: Revestimento sintético, nylon  \nDimensões: Geral: 66 x 60 x 123-131 cm  \nEncosto: 55 x 84 cm  \nAssento: 50 x 60 x 11,5 cm  \nEspuma: Moldado por injeção  \nApoio de Braço: ajustável, 1D  \nAjuste de encosto: sim, 90~155º  \nMecanismo: Borboleta  \nElevação de gás: classe 4  \nBase: 350mm em nylon  \nPeso máximo recomendado: 120Kg  \nRodinhas: 60mm em nylon  \nPeso: 22,6 kg  \n\nRequer montagem."
+      },
+      "pictures": [
+        {
+          "id": "882827-MLA99855528043_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_882827-MLA99855528043_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "917745-MLU72643269723_112023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_917745-MLU72643269723_112023-F.jpg",
+          "suggested_for_picker": [
+            "COLOR"
+          ],
+          "max_width": "628",
+          "max_height": "1000"
+        },
+        {
+          "id": "762275-MLU74829557446_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_762275-MLU74829557446_032024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "799",
+          "max_height": "1200"
+        },
+        {
+          "id": "696706-MLU74829428610_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_696706-MLU74829428610_032024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "765",
+          "max_height": "1200"
+        },
+        {
+          "id": "633973-MLU74829557448_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_633973-MLU74829557448_032024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "727",
+          "max_height": "1200"
+        },
+        {
+          "id": "946023-MLU74965209901_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_946023-MLU74965209901_032024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "1200",
+          "max_height": "1124"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY",
+        "INTERNAL"
+      ],
+      "date_created": "2020-07-29T19:56:32Z",
+      "last_updated": "2026-07-19T01:41:58Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

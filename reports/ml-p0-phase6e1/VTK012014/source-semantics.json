@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-08-17T14:15:53.445Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "supplier_brand": "Wireconex",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1377",
+    "captured_at": "2026-08-17T12:56:25.418Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "11deb882-9557-4e3c-a9cb-2d360ae24ea3",
+    "produto_id": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1377",
+    "sku_fornecedor": "1377",
+    "custo": 40,
+    "estoque": 100,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:42:24.995+00:00",
+    "created_at": "2026-07-06T22:31:08.096789+00:00",
+    "updated_at": "2026-08-17T09:42:25.004+00:00",
+    "sku_oferta": "1377",
+    "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+    "descricao": "Kit Conectores P/Cabo Fêmea P/AC - Corpo Azul WC 3 FCA (2UN) Wireconex A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade. Kit com 2 Conectores - Modelo WC 3 FCA - Extremamente robusto e confiável.",
+    "marca": "Wireconex",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/127169a50b6e73f74bafd0dbb6aa774e.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/424d919e7759967e5c303c7d0ff6145c.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8536.90.10",
+    "cest": "12.004.00"
+  }
+}

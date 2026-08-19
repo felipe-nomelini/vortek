@@ -1,0 +1,293 @@
+{
+  "checked_at": "2026-08-17T00:43:48.106Z",
+  "expected_catalog_product_id": "MLB21742933",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB21742933",
+    "catalog_product_id": "MLB21742933",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-HOME_ALARMS_AND_SENSORS",
+    "permalink": "",
+    "name": "Teclado Viaweb 16s",
+    "family_name": "Teclado Viaweb 16s",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [],
+    "pictures": [
+      {
+        "id": "681218-MLA99389876466_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_681218-MLA99389876466_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 870,
+        "max_height": 642,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "655697-MLA92980615137_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_655697-MLA92980615137_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 930,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Distância de cobertura de 100 m para proteção eficiente em áreas amplas.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Capacidade para até 16 sensores, ideal para ambientes maiores.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Alarme discreto que avisa de forma silenciosa a central de segurança.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Estrutura em plástico durável, resistente ao desgaste.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Não possui bateria de backup, reduzindo custos de manutenção.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "16717793",
+        "value_name": "Viaweb",
+        "values": [
+          {
+            "id": "16717793",
+            "name": "Viaweb"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "16718079",
+        "value_name": "TECLADO VIAWEB 16S",
+        "values": [
+          {
+            "id": "16718079",
+            "name": "TECLADO VIAWEB 16S"
+          }
+        ]
+      },
+      {
+        "id": "DEVICE_TYPE",
+        "name": "Tipo de dispositivo",
+        "value_id": "395193",
+        "value_name": "Alarme",
+        "values": [
+          {
+            "id": "395193",
+            "name": "Alarme"
+          }
+        ]
+      },
+      {
+        "id": "SENSOR_TYPES",
+        "name": "Tipos de sensores",
+        "value_id": null,
+        "value_name": "Alarme, Teclado, via web",
+        "values": [
+          {
+            "id": "16716889",
+            "name": "Alarme"
+          },
+          {
+            "id": "16718030",
+            "name": "Teclado"
+          },
+          {
+            "id": "43309486",
+            "name": "via web"
+          }
+        ]
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2748302",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "WITH_BACKUP_BATTERY",
+        "name": "Com bateria de respaldo",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "COVERAGE_DISTANCE",
+        "name": "Distância de cobertura",
+        "value_id": "7555954",
+        "value_name": "100 m",
+        "values": [
+          {
+            "id": "7555954",
+            "name": "100 m"
+          }
+        ]
+      },
+      {
+        "id": "WITH_WIFI",
+        "name": "Com Wi-Fi",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_AUTOMATIC_DIALLING",
+        "name": "Com discado automático",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_SOUND_ALARM",
+        "name": "Com alarme sonoro",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_DISCREET_ALARM",
+        "name": "Com alarme discreto",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "MAX_SENSORS_NUMBER",
+        "name": "Quantidade máxima de sensores",
+        "value_id": "7626115",
+        "value_name": "16",
+        "values": [
+          {
+            "id": "7626115",
+            "name": "16"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Você está olhando para sair de sua casa ou dormir pacificamente sem se preocupar com sua segurança e a daqueles que você mais ama? Cada casa é diferente e requer soluções específicas para evitar roubos e outras ameaças. Escolha um sistema de alarme adequado às suas necessidades.\n\nSegurança no seu espaço\nUm alarme discreto é um dispositivo opcional que pode ser programado por meio dum botão localizado no painel de controle e um botão remoto também conhecido como botão de emergência. Não emite som mas, ao ser pressionado, avisará a central de recebimento da empresa de segurança que você contratar.\n"
+    },
+    "parent_id": null,
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T23:57:12.047054694"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-02-14T00:02:08Z",
+    "authorized_stores": null,
+    "last_updated": "2024-10-06T06:05:01Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

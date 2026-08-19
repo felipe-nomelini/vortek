@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-08-17T14:15:49.768Z",
+  "product": {
+    "id": "93869b7d-12a3-4370-95ba-92ec02b61cfc",
+    "sku": "VTK019089",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+    "marca": "FLASH COVER",
+    "estoque": 3,
+    "custo": 364.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 5.8,
+    "peso_bruto": 5.8,
+    "largura": 21,
+    "altura": 16,
+    "profundidade": 160,
+    "gtin": "7899630182377",
+    "descricao": "Informações do Produto Capota Concórdia Flash BA130L Fabricada em alumínio de alta resistência, você tem a tranquilidade de saber que seus pertences estarão mais seguros contra furto ou qualquer outra eventualidade. Além de sua resistência, ainda conta com trava que garante proteção extra para suas bagagens. - Cantoneiras em nylon injetado com Kinop; - Travamento lateral em baguete. Modelo L200 Triton 09+ BAL",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019089/01-35ed3c9973e6a37ce4fb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019089/02-019834ee98f3b32d3743.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019089/03-944f7e76d1872a4a7285.jpg"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:35.398356+00:00",
+    "updated_at": "2026-08-17T11:19:15.376601+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "314358",
+    "dslite_ultima_sync": "2026-08-17T11:19:15.296+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87082999",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "db279f58-cabe-4fe3-921d-8db9db85279f",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

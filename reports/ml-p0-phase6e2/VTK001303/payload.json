@@ -1,0 +1,244 @@
+{
+  "payload": {
+    "family_name": "Guitarra Elétrica Giannini Standard G-100 Choupo Tremolo 3 C",
+    "category_id": "MLB438516",
+    "catalog_product_id": "MLB17460878",
+    "catalog_listing": true,
+    "price": 2379.9,
+    "currency_id": "BRL",
+    "available_quantity": 5,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/38389/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/38389/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/38389/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/38389/550/4.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "45321",
+        "value_name": "Giannini"
+      },
+      {
+        "id": "LINE",
+        "value_id": "15207",
+        "value_name": "Standard"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "99305",
+        "value_name": "G-100"
+      },
+      {
+        "id": "ORIGIN",
+        "value_id": "96381",
+        "value_name": "China"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "value_id": "96533",
+        "value_name": "Destro"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "10253626",
+        "value_name": "Translucent red/White shell"
+      },
+      {
+        "id": "BODY_WOOD_TYPE",
+        "value_id": "5810785",
+        "value_name": "Choupo"
+      },
+      {
+        "id": "FINGERBOARD_MATERIAL",
+        "value_id": "10215160",
+        "value_name": "Madeira técnica"
+      },
+      {
+        "id": "BODY_FINISH",
+        "value_id": "10450751",
+        "value_name": "Verniz"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "10484191",
+        "value_name": "G-100 TRD/WH"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450307",
+        "value_name": "Vermelho"
+      },
+      {
+        "id": "NECK_WOOD_TYPES",
+        "value_id": "2792083",
+        "value_name": "Bordo"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15146",
+        "value_name": "6"
+      },
+      {
+        "id": "SCALE_LENGTH",
+        "value_id": "8621791",
+        "value_name": "647.7 mm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "10253627",
+        "value_name": "7890443014381"
+      },
+      {
+        "id": "WITH_BAR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DOUBLE_NECK",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_MINI",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_INFANT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_CASE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "FRETS_NUMBER",
+        "value_id": "1090718",
+        "value_name": "22"
+      },
+      {
+        "id": "PICKUPS_NUMBER",
+        "value_id": "1090711",
+        "value_name": "3"
+      },
+      {
+        "id": "PICKUP_SWITCH",
+        "value_id": "9841427",
+        "value_name": "5 posições"
+      },
+      {
+        "id": "FRET_SIZE",
+        "value_id": "110293",
+        "value_name": "Medium Jumbo"
+      },
+      {
+        "id": "NECK_SHAPE",
+        "value_id": "1131585",
+        "value_name": "C"
+      },
+      {
+        "id": "NECK_CONSTRUCTION",
+        "value_id": "11402932",
+        "value_name": "Bolt-on"
+      },
+      {
+        "id": "BRIDGE_TYPE_CLASSIFICATION",
+        "value_id": "11402941",
+        "value_name": "Synch tremolo"
+      },
+      {
+        "id": "BRIDGE_TYPE",
+        "value_id": "6132622",
+        "value_name": "Tremolo"
+      },
+      {
+        "id": "CONTROL_TYPES",
+        "values": [
+          {
+            "id": "10397364",
+            "name": "Chave seletora de captadores"
+          },
+          {
+            "id": "9841428",
+            "name": "Tone"
+          },
+          {
+            "id": "7335124",
+            "name": "Volumen"
+          }
+        ]
+      },
+      {
+        "id": "PICKUP_TYPES",
+        "value_id": "96538",
+        "value_name": "Simples"
+      },
+      {
+        "id": "NECK_PICKUP_TYPE",
+        "value_id": "10484081",
+        "value_name": "Single coil cerâmico"
+      },
+      {
+        "id": "MIDDLE_PICKUP_TYPE",
+        "value_id": "10484079",
+        "value_name": "Single coil cerâmico"
+      },
+      {
+        "id": "BRIDGE_PICKUP_TYPE",
+        "value_id": "10484187",
+        "value_name": "Bobina simples cerâmica"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "values": [
+          {
+            "id": "10263358",
+            "name": "Cabo de conexão"
+          },
+          {
+            "id": "9807734",
+            "name": "Chave de ajuste"
+          }
+        ]
+      },
+      {
+        "id": "MPN",
+        "value_id": "11112692",
+        "value_name": "19597"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001303"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001303"
+  },
+  "sha256": "58d7517ed0458e91bcb42ad3de52cfedf6288783d23021a884f1c7f7623732d9",
+  "family_name_sha256": "def223367190f7a1f4ebb02a4a44355e480675bfc0122ec9bb269d92be99b936",
+  "title_absent": true,
+  "description_absent": true
+}

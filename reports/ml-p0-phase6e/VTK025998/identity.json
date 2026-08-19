@@ -1,0 +1,168 @@
+{
+  "checked_at": "2026-08-17T12:56:27.465Z",
+  "product": {
+    "id": "f7f22110-e208-419a-9942-c509080afe9c",
+    "sku": "VTK025998",
+    "nome": "Capa Chave Canivete Compatível Gm 2 B Cruze 2012 A 2018",
+    "marca": "R3a Automotive",
+    "gtin": ""
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4154",
+    "consulted_at": "2026-08-17T12:56:27.465Z",
+    "product": {
+      "produtoid": "4154",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 19.32,
+      "preco_crossdocking": 19.32,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 19.32,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-21 16:07:58.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-21 16:07:58.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Capa Chave Canivete Compatível Gm 2 B Cruze 2012 A 2018",
+      "titulo_curto": "Capa Chave Canivete Compatível Gm 2 B Cruze 2012 A 2018",
+      "categoriaid": "291505",
+      "categoria_nome": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+      "abc": null,
+      "ean11": "",
+      "ncm": "8529.90.90",
+      "descricao": "<p>CAPA CHAVE CANIVETE COMPATÍVEL GM 2 BOTÕES CRUZE 2012 A 2018 GM302 (0074468168466)</p> <p>A capa para chave canivete GM302 é ideal para substituir carcaças desgastadas ou danificadas, restaurando a aparência e a funcionalidade da chave do seu veículo de forma prática e econômica.</p> <p>Ficha técnica:<br>•    Modelo: GM302<br>•    Tipo: Capa/Carcaça para chave canivete<br>•    Compatível com Chevrolet Cruze 2012 a 2018<br>•    Compatível com chave de 2 botões<br>•    Cor: Preta<br>•    Material resistente e durável<br>•    Sistema canivete retrátil<br>•    Não acompanha placa eletrônica<br>•    Não acompanha bateria nem transponder</p> <p>Desenvolvida para reposição da carcaça original, a GM302 oferece encaixe preciso e excelente acabamento. É a solução ideal para chaves com carcaça quebrada, desgastada ou com botões danificados, permitindo a reutilização dos componentes eletrônicos originais. Prática e econômica, ajuda a renovar a chave do veículo sem a necessidade de substituir todo o conjunto.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "R3a Automotive",
+      "modelo": "",
+      "peso": 0.04,
+      "largura": 3,
+      "altura": 6,
+      "profundidade": 1,
+      "peso_embalagem": 0.04,
+      "largura_embalagem": 3,
+      "altura_embalagem": 6,
+      "profundidade_embalagem": 1,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3f9918b2dfb55fa2b0adaa6d9eebb630.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 5,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "926020253",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-21 15:31:53.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-03 11:17:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 100,
+      "tempo_cross": 0,
+      "estoque_total": 100,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3f9918b2dfb55fa2b0adaa6d9eebb630.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/08cf09a11db0c6cd4a5e03ad3f46bc25.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/63335ad36d91960615366dbe0438126c.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c9878300d7f3b346386bfcf191c2205a.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f44ee84e886b47021aee0811f129a218.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7537e03f3e00adb1c491f85e072a2e.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "SOURCE_DEFERRED",
+    "reason": "GTIN absence is not a product failure; this SKU has no prior official identity proof sufficient for automatic publication",
+    "sanitation": "IDENTITY_FIX_REQUIRED",
+    "source": "local + DSLite supplier; official identity unresolved"
+  },
+  "catalog_results": []
+}

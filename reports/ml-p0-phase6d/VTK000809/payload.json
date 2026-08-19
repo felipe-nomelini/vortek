@@ -1,0 +1,153 @@
+{
+  "payload": {
+    "family_name": "Omeleteira Agratto Mr. Cheff 800W",
+    "category_id": "MLB107482",
+    "catalog_product_id": "MLB41174119",
+    "catalog_listing": true,
+    "price": 339.9,
+    "currency_id": "BRL",
+    "available_quantity": 12,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/85359/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85359/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85359/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85359/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85359/550/5.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85359/550/6.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85359/550/7.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "97494",
+        "value_name": "Agratto"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "42961234",
+        "value_name": "AOIP01I-02 220V"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "6816798",
+        "value_name": "Frigideira"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "BODY_MATERIAL",
+        "value_id": "19412569",
+        "value_name": "Plástico e inox"
+      },
+      {
+        "id": "HANDLE_GRIP_MATERIAL",
+        "value_id": "42961236",
+        "value_name": "-/A"
+      },
+      {
+        "id": "SHAPE",
+        "value_id": "39977660",
+        "value_name": "Redonda"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "4790",
+        "value_name": "9 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "1115167",
+        "value_name": "18.5 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "3038872",
+        "value_name": "22.5 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "1000143",
+        "value_name": "1.2 kg"
+      },
+      {
+        "id": "WITH_NON_STICK_SURFACE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_RIDGED_SURFACE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_LID",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_SPATULA",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "42961235",
+        "value_name": "7898461976650"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000809"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000809"
+  },
+  "sha256": "e19e7a5b023a3badcb6f5d6be6b00c3cde1ad57b48583a33e9b009269cbe7ea7",
+  "family_name_sha256": "c2d0dcbcc495dfd891daa8094ed9d9abfe64867e69a5b47009275a0208f5d6db",
+  "title_absent": true,
+  "description_absent": true
+}

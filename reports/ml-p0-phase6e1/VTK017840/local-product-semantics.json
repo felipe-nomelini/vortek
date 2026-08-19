@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-17T14:15:53.712Z",
+  "product": {
+    "id": "f346711a-31ff-4ac5-b031-46353ff3cbc5",
+    "sku": "VTK017840",
+    "nome": "Lnbf Multiponto Elsys Banda C - PC / 2",
+    "marca": "ELSYS",
+    "estoque": 21,
+    "custo": 69,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.85,
+    "peso_bruto": 0.85,
+    "largura": 16.5,
+    "altura": 19,
+    "profundidade": 19.5,
+    "gtin": "",
+    "descricao": "Frequência de entrada: 3.7 ~ 4.2 GHz Freq. oscilador local: 5.150 GHz; +/-1 MHz 5.750 GHz; +/-1 MHz Estabilidade de freq: +/- 2 MHz (-40º ~ 70ºC) Ruído de fase L.O: -55 dB/ Hz @ 1 KHz -85 dB/ Hz @ 10 KHz -105 dB/ Hz @ 100 KHz Dispersão de sinal local: -45 dBm Frequência de saída: H: 950~1450 MHz V: 1550~2050 MHz Ganho de conversão: 65dB (típico) +/- 3 dB 55dB (Min. in 3.7GHz) Linearidade de ganho: +/- 2dB/ 36MHz, 8dB toda banda Rejeição de polariz. cruzada: 18 dB Min. Rejeição de sinal de interf. 3.5GHz: 30 dB Min. Saída VSWR: 2.5:1 Saída simulada: -60 dBm min.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/4/240163_67d2cadfbb1c2.jpg"
+    ],
+    "categoria": "Antenas E Acessórios/ Acessórios Para Parabolica/ Lnbf Multiponto",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:30.798566+00:00",
+    "updated_at": "2026-08-17T10:44:15.401762+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "240163",
+    "dslite_ultima_sync": "2026-08-17T10:44:15.272+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85437012",
+    "cest": null,
+    "origem_fiscal": "7",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "b06dc200-9d3d-414a-9f46-3de504954b70",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "unresolved",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "unresolved",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "index": 8,
+  "sku": "VTK017211",
+  "started_at": "2026-08-16T23:39:13.833Z",
+  "local_time": "2026-08-16T20:39:13",
+  "expected_gtin": "7898939972504",
+  "product": {
+    "id": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+    "sku": "VTK017211",
+    "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+    "marca": "ASK",
+    "estoque": 50,
+    "custo": 67.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.106,
+    "peso_bruto": 0.106,
+    "largura": 11.5,
+    "altura": 2.5,
+    "profundidade": 10,
+    "gtin": "7898939972504",
+    "descricao": "Informações do Produto Suporte para microfone de bateria e percussão, com ajuste para diversos tambores. Ponta de Metal com alta resistência, compacto, leve prático e com design exclusivo. Dimensões (C x L x A / cm) 11 x 11 x 3 Peso (kg) 0,105 Material Plástico / Aço / Alumínio Características Especiais: - Peso e tamanho reduzido; - Facilidade de armazenamento e transporte; - Não polui visualmente o palco e os instrumentos; - Muitas possibilidades de posicionamento; - Não danifica os aros (pontos de contato de plástico).",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017211/01-5b15a33c410011fe6837.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017211/02-9071fb9af21683e23794.jpg"
+    ],
+    "categoria": "Som Profissional/ Acessórios Para Microfones/ Suporte Para Microfone",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:22.80718+00:00",
+    "updated_at": "2026-08-16T20:42:34.745486+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "326095",
+    "dslite_ultima_sync": "2026-08-16T20:42:34.511+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "92099900",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "b20ae2fc-69be-481b-a89f-65637745bb9e",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": null,
+  "dslite": null,
+  "configured_decision": "BLOCK_CATALOG_IDENTITY",
+  "configured_reason": "exact_catalog_model_paptb100001_does_not_confirm_local_model_b10",
+  "evidence": {
+    "manufacturer_or_official": null,
+    "secondary": null,
+    "supplier": null,
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898939972504"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB27380888",
+      "catalog_product_id": "MLB27380888",
+      "domain_id": "MLB-DRUM_CLAMPS",
+      "name": "Microfone De Bateria E Percussão Clamp Ask B10",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4238929",
+          "value_name": "ASK",
+          "values": [
+            {
+              "id": "4238929",
+              "name": "ASK"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24739271",
+          "value_name": "PAPTB100001",
+          "values": [
+            {
+              "id": "24739271",
+              "name": "PAPTB100001"
+            }
+          ]
+        },
+        {
+          "id": "DRUM_CLAMP_COMPATIBILITY",
+          "name": "Compatibilidade do clamp",
+          "value_id": "4407593",
+          "value_name": "Microfone",
+          "values": [
+            {
+              "id": "4407593",
+              "name": "Microfone"
+            }
+          ]
+        },
+        {
+          "id": "MIN_COMPATIBLE_DIAMETER",
+          "name": "Diâmetro mínimo compatível",
+          "value_id": "48616151",
+          "value_name": "1.1 cm",
+          "values": [
+            {
+              "id": "48616151",
+              "name": "1.1 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_COMPATIBLE_DIAMETER",
+          "name": "Diâmetro máximo compatível",
+          "value_id": "48616152",
+          "value_name": "1.1 cm",
+          "values": [
+            {
+              "id": "48616152",
+              "name": "1.1 cm"
+            }
+          ]
+        },
+        {
+          "id": "IS_MULTI_CLAMP",
+          "name": "É multiclamp",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_ANGLE",
+          "name": "Com ângulo ajustável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "84051293",
+          "value_name": "Plástico, Aço, Alumínio",
+          "values": [
+            {
+              "id": "84051293",
+              "name": "Plástico, Aço, Alumínio"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "24739270",
+          "value_name": "7898939972504",
+          "values": [
+            {
+              "id": "24739270",
+              "name": "7898939972504"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Microfone de Bateria e Percussão Clamp Ask B10\n\nClamp para microfonar bateria e percussão, com ajuste para diversos tambores.\nPonta de Metal com alta resistência, compacto, leve, prático e com design exclusivo.\n\nCaracterísticas:\nPeso e tamanho reduzido\nFacilidade de armazenamento e transporte\nNão polui visualmente o palco e os instrumentos\nMuitas possibilidades de posicionamento\nNão danifica os aros (pontos de contato de plástico).\nMaterial: Plástico/Aço/Alumínio\n\nNÃO ACOMPANHA CACHIMBO DO MICROFONE!\n\nDimensões\nAltura: 3 cm\nLargura: 11 cm\nProfundidade: 11 cm\nPeso: 0.105 Kg"
+      },
+      "pictures": [
+        {
+          "id": "742937-MLA95737093118_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_742937-MLA95737093118_102025-F.jpg",
+          "max_width": "1161",
+          "max_height": "1200"
+        },
+        {
+          "id": "669160-MLA84176495136_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_669160-MLA84176495136_052025-F.jpg",
+          "max_width": "1200",
+          "max_height": "428"
+        },
+        {
+          "id": "919590-MLA84176399678_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_919590-MLA84176399678_052025-F.jpg",
+          "max_width": "1200",
+          "max_height": "558"
+        },
+        {
+          "id": "622639-MLA84176465962_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_622639-MLA84176465962_052025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1185"
+        },
+        {
+          "id": "723667-MLA84176399710_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_723667-MLA84176399710_052025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1126"
+        },
+        {
+          "id": "681849-MLA84176465992_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_681849-MLA84176465992_052025-F.jpg",
+          "max_width": "640",
+          "max_height": "966"
+        },
+        {
+          "id": "944095-MLA84176495218_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_944095-MLA84176495218_052025-F.jpg",
+          "max_width": "640",
+          "max_height": "966"
+        },
+        {
+          "id": "738720-MLU78690992305_082024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_738720-MLU78690992305_082024-F.jpg",
+          "max_width": "905",
+          "max_height": "1199"
+        },
+        {
+          "id": "921630-MLU72644403113_112023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_921630-MLU72644403113_112023-F.jpg",
+          "max_width": "660",
+          "max_height": "1029"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-09-30T00:42:08Z",
+      "last_updated": "2026-07-01T21:32:34Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

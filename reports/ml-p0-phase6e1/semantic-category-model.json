@@ -1,0 +1,20 @@
+{
+  "version": "6E.1",
+  "weights": {
+    "product_identity": 25,
+    "function_match": 25,
+    "intended_use": 20,
+    "category_path_coherence": 20,
+    "catalog_coherence": 10
+  },
+  "automatic_ready_gate": 95,
+  "hard_mismatch_score_cap": 74,
+  "consensus": [
+    "product_semantics",
+    "full_category_path",
+    "supplier_or_official_source"
+  ],
+  "ml_catalog_and_domain_discovery_are_one_evidence_family": true,
+  "community_catalog_downweighted": true,
+  "fast_gate_0_future": "Does this full category path make material sense for what the product actually is?"
+}

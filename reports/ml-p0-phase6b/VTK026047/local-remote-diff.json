@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432492832",
+      "local": "MLB7432492832",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026047",
+      "local": "VTK026047",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "80018d67-8f4b-4080-a635-57163844d40b",
+      "local": "80018d67-8f4b-4080-a635-57163844d40b",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Mouse Logitech M110 Silent Cinza",
+      "local": "Mouse Logitech M110 Silent Cinza",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 199.9,
+      "local": 199.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432492832-mouse-logitech-m110-silent-cinza-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432492832-mouse-logitech-m110-silent-cinza-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

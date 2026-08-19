@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-08-17T12:52:09.971Z",
+  "raw_universe": 534,
+  "historical_ledger_entries": 191,
+  "exclusions": 213,
+  "remaining_candidates": 321,
+  "selected": 200,
+  "target": 200,
+  "eligible_count_below_target": false,
+  "with_gtin": 88,
+  "without_gtin": 112,
+  "sha256": "e6efdcfb027a6eb117472e589ed4683a15b5d5d03019dcc96cf4b024b34558a6",
+  "file": "selected-200.csv"
+}

@@ -1,0 +1,1940 @@
+{
+  "checked_at": "2026-08-17T01:18:07.313Z",
+  "item": {
+    "id": "MLB5075857497",
+    "site_id": "MLB",
+    "title": "Microfone Sennheiser E906 2 Anos De Cor Cinza-escuro",
+    "family_name": "Sennheiser Evolution Series E906",
+    "family_id": 2587819322662547,
+    "seller_id": 3294514937,
+    "category_id": "MLB4469",
+    "user_product_id": "MLBU4772937396",
+    "official_store_id": null,
+    "price": 6299.9,
+    "base_price": 6299.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 6,
+    "available_quantity": 6,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T01:18:05.659Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:18:05.759Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-5075857497-microfone-sennheiser-e906-2-anos-de-cor-cinza-escuro-_JM",
+    "thumbnail_id": "908857-MLA99994130675_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_908857-MLA99994130675_112025-I.jpg",
+    "pictures": [
+      {
+        "id": "908857-MLA99994130675_112025",
+        "url": "http://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg",
+        "size": "500x470",
+        "max_size": "523x492",
+        "quality": ""
+      },
+      {
+        "id": "990583-MLA99510127570_112025",
+        "url": "http://http2.mlstatic.com/D_990583-MLA99510127570_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_990583-MLA99510127570_112025-O.jpg",
+        "size": "341x500",
+        "max_size": "500x733",
+        "quality": ""
+      },
+      {
+        "id": "836156-MLA99510245928_112025",
+        "url": "http://http2.mlstatic.com/D_836156-MLA99510245928_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_836156-MLA99510245928_112025-O.jpg",
+        "size": "246x500",
+        "max_size": "261x530",
+        "quality": ""
+      },
+      {
+        "id": "978684-MLA99994307129_112025",
+        "url": "http://http2.mlstatic.com/D_978684-MLA99994307129_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_978684-MLA99994307129_112025-O.jpg",
+        "size": "373x500",
+        "max_size": "388x520",
+        "quality": ""
+      },
+      {
+        "id": "807254-MLA99510364828_112025",
+        "url": "http://http2.mlstatic.com/D_807254-MLA99510364828_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_807254-MLA99510364828_112025-O.jpg",
+        "size": "500x278",
+        "max_size": "520x290",
+        "quality": ""
+      },
+      {
+        "id": "712521-MLA99994209227_112025",
+        "url": "http://http2.mlstatic.com/D_712521-MLA99994209227_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_712521-MLA99994209227_112025-O.jpg",
+        "size": "251x500",
+        "max_size": "536x1064",
+        "quality": ""
+      },
+      {
+        "id": "700200-MLA99994130693_112025",
+        "url": "http://http2.mlstatic.com/D_700200-MLA99994130693_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_700200-MLA99994130693_112025-O.jpg",
+        "size": "500x348",
+        "max_size": "704x491",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "76666379",
+        "value_name": "e906",
+        "values": [
+          {
+            "id": "76666379",
+            "name": "e906",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "15371",
+        "value_name": "Sennheiser",
+        "values": [
+          {
+            "id": "15371",
+            "name": "Sennheiser",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52051",
+        "value_name": "Cinza-escuro",
+        "values": [
+          {
+            "id": "52051",
+            "name": "Cinza-escuro",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "name": "Dispositivos compatíveis",
+        "value_id": null,
+        "value_name": "Computador,Tablet",
+        "values": [
+          {
+            "id": "8621306",
+            "name": "Computador",
+            "struct": null
+          },
+          {
+            "id": "11554747",
+            "name": "Tablet",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COMPATIBLE_OPERATIVE_SYSTEMS",
+        "name": "Sistemas operacionais compatíveis",
+        "value_id": null,
+        "value_name": "Windows,iOS,Android",
+        "values": [
+          {
+            "id": "4804541",
+            "name": "Windows",
+            "struct": null
+          },
+          {
+            "id": "189046",
+            "name": "iOS",
+            "struct": null
+          },
+          {
+            "id": "168370",
+            "name": "Android",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONNECTION_TYPES",
+        "name": "Tipos de conexões",
+        "value_id": "1210905",
+        "value_name": "Com fio",
+        "values": [
+          {
+            "id": "1210905",
+            "name": "Com fio",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "26520286",
+        "value_name": "4044155001174",
+        "values": [
+          {
+            "id": "26520286",
+            "name": "4044155001174",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7800081",
+        "value_name": "20 cm",
+        "values": [
+          {
+            "id": "7800081",
+            "name": "20 cm",
+            "struct": {
+              "number": 20,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "IMPEDANCE",
+        "name": "Impedância",
+        "value_id": "1247746",
+        "value_name": "350 Ω",
+        "values": [
+          {
+            "id": "1247746",
+            "name": "350 Ω",
+            "struct": {
+              "number": 350,
+              "unit": "Ω"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "145462",
+        "value_name": "Evolution Series",
+        "values": [
+          {
+            "id": "145462",
+            "name": "Evolution Series",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "15438",
+        "value_name": "Shure",
+        "values": [
+          {
+            "id": "15438",
+            "name": "Shure",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "24028945",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "24028945",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_FREQUENCY",
+        "name": "Frequência máxima",
+        "value_id": "7229466",
+        "value_name": "18 kHz",
+        "values": [
+          {
+            "id": "7229466",
+            "name": "18 kHz",
+            "struct": {
+              "number": 18,
+              "unit": "kHz"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "name": "Quantidade de microfones",
+        "value_id": "934836",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "934836",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "MICROPHONE_FORMATS",
+        "name": "Formatos de microfone",
+        "value_id": "182429",
+        "value_name": "Estúdio",
+        "values": [
+          {
+            "id": "182429",
+            "name": "Estúdio",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MICROPHONE_TYPES",
+        "name": "Tipos de microfone",
+        "value_id": "103745",
+        "value_name": "Dinâmico",
+        "values": [
+          {
+            "id": "103745",
+            "name": "Dinâmico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MIN_FREQUENCY",
+        "name": "Frequência mínima",
+        "value_id": "7229468",
+        "value_name": "40 Hz",
+        "values": [
+          {
+            "id": "7229468",
+            "name": "40 Hz",
+            "struct": {
+              "number": 40,
+              "unit": "Hz"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "2364969",
+        "value_name": "E906",
+        "values": [
+          {
+            "id": "2364969",
+            "name": "E906",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS",
+        "name": "Conectores de saída",
+        "value_id": "2305169",
+        "value_name": "XLR",
+        "values": [
+          {
+            "id": "2305169",
+            "name": "XLR",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "POLAR_PATTERNS",
+        "name": "Padrões polares",
+        "value_id": "2253807",
+        "value_name": "Cardioide",
+        "values": [
+          {
+            "id": "2253807",
+            "name": "Cardioide",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK006377",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK006377",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "8036741",
+        "value_name": "140 g",
+        "values": [
+          {
+            "id": "8036741",
+            "name": "140 g",
+            "struct": {
+              "number": 140,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_BUILT_IN_SPEAKERS",
+        "name": "Com alto-falantes embutidos",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB37761258",
+    "domain_id": "MLB-MICROPHONES",
+    "seller_custom_field": "VTK006377",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:18:05.876Z",
+    "last_updated": "2026-08-17T01:18:05.876Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "user_product": {
+    "id": "MLBU4772937396",
+    "name": "Microfone Sennheiser E906 2 Anos De Cor Cinza-escuro",
+    "family_name": "Sennheiser Evolution Series E906",
+    "site_id": "MLB",
+    "user_id": 3294514937,
+    "domain_id": "MLB-MICROPHONES",
+    "attributes": [
+      {
+        "id": "OUTPUT_CONNECTORS",
+        "name": "Conectores de saída",
+        "values": [
+          {
+            "id": "2305169",
+            "name": "XLR",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "values": [
+          {
+            "id": "145462",
+            "name": "Evolution Series",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "values": [
+          {
+            "id": "52051",
+            "name": "Cinza-escuro",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "values": [
+          {
+            "id": "8036741",
+            "name": "140 g",
+            "struct": {
+              "number": 140,
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "id": "MIN_FREQUENCY",
+        "name": "Frequência mínima",
+        "values": [
+          {
+            "id": "7229468",
+            "name": "40 Hz",
+            "struct": {
+              "number": 40,
+              "unit": "Hz"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "values": [
+          {
+            "id": "76666379",
+            "name": "e906",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_OPERATIVE_SYSTEMS",
+        "name": "Sistemas operacionais compatíveis",
+        "values": [
+          {
+            "id": "4804541",
+            "name": "Windows",
+            "struct": null
+          },
+          {
+            "id": "189046",
+            "name": "iOS",
+            "struct": null
+          },
+          {
+            "id": "168370",
+            "name": "Android",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CONNECTION_TYPES",
+        "name": "Tipos de conexões",
+        "values": [
+          {
+            "id": "1210905",
+            "name": "Com fio",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "values": [
+          {
+            "id": "7800081",
+            "name": "20 cm",
+            "struct": {
+              "number": 20,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "values": [
+          {
+            "id": "24028945",
+            "name": "Metal",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MICROPHONE_FORMATS",
+        "name": "Formatos de microfone",
+        "values": [
+          {
+            "id": "182429",
+            "name": "Estúdio",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MICROPHONE_TYPES",
+        "name": "Tipos de microfone",
+        "values": [
+          {
+            "id": "103745",
+            "name": "Dinâmico",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "name": "Dispositivos compatíveis",
+        "values": [
+          {
+            "id": "8621306",
+            "name": "Computador",
+            "struct": null
+          },
+          {
+            "id": "11554747",
+            "name": "Tablet",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "IMPEDANCE",
+        "name": "Impedância",
+        "values": [
+          {
+            "id": "1247746",
+            "name": "350 Ω",
+            "struct": {
+              "number": 350,
+              "unit": "Ω"
+            }
+          }
+        ]
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK006377",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MAX_FREQUENCY",
+        "name": "Frequência máxima",
+        "values": [
+          {
+            "id": "7229466",
+            "name": "18 kHz",
+            "struct": {
+              "number": 18,
+              "unit": "kHz"
+            }
+          }
+        ]
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "values": [
+          {
+            "id": "15371",
+            "name": "Sennheiser",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "POLAR_PATTERNS",
+        "name": "Padrões polares",
+        "values": [
+          {
+            "id": "2253807",
+            "name": "Cardioide",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "values": [
+          {
+            "id": "26520286",
+            "name": "4044155001174",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "values": [
+          {
+            "id": "2364969",
+            "name": "E906",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "name": "Quantidade de microfones",
+        "values": [
+          {
+            "id": "934836",
+            "name": "1",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_BUILT_IN_SPEAKERS",
+        "name": "Com alto-falantes embutidos",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "values": [
+          {
+            "id": "15438",
+            "name": "Shure",
+            "struct": null
+          }
+        ]
+      }
+    ],
+    "pictures": [
+      {
+        "id": "908857-MLA99994130675_112025",
+        "secure_url": "https://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg"
+      },
+      {
+        "id": "990583-MLA99510127570_112025",
+        "secure_url": "https://http2.mlstatic.com/D_990583-MLA99510127570_112025-O.jpg"
+      },
+      {
+        "id": "836156-MLA99510245928_112025",
+        "secure_url": "https://http2.mlstatic.com/D_836156-MLA99510245928_112025-O.jpg"
+      },
+      {
+        "id": "978684-MLA99994307129_112025",
+        "secure_url": "https://http2.mlstatic.com/D_978684-MLA99994307129_112025-O.jpg"
+      },
+      {
+        "id": "807254-MLA99510364828_112025",
+        "secure_url": "https://http2.mlstatic.com/D_807254-MLA99510364828_112025-O.jpg"
+      },
+      {
+        "id": "712521-MLA99994209227_112025",
+        "secure_url": "https://http2.mlstatic.com/D_712521-MLA99994209227_112025-O.jpg"
+      },
+      {
+        "id": "700200-MLA99994130693_112025",
+        "secure_url": "https://http2.mlstatic.com/D_700200-MLA99994130693_112025-O.jpg"
+      }
+    ],
+    "thumbnail": {
+      "id": "908857-MLA99994130675_112025",
+      "secure_url": "https://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg"
+    },
+    "catalog_product_id": "MLB37761258",
+    "bundle": null,
+    "family_id": 2587819322662547,
+    "tags": [
+      "primary"
+    ],
+    "date_created": "2026-08-17T01:18:06.007+0000",
+    "last_updated": "2026-08-17T01:18:06.007+0000",
+    "main_features": [],
+    "commingling": null
+  },
+  "family": {
+    "user_products_ids": [
+      "MLBU4772937396"
+    ],
+    "family_id": 2587819322662547,
+    "site_id": "MLB",
+    "user_id": 3294514937
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "title": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "propagation": {
+    "item": {
+      "settled": true,
+      "attempts": 1,
+      "elapsed_ms": 154,
+      "response": {
+        "ok": true,
+        "status": 200,
+        "headers": {
+          "access-control-allow-headers": "Content-Type",
+          "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+          "access-control-allow-origin": "*",
+          "access-control-max-age": "86400",
+          "connection": "keep-alive",
+          "content-encoding": "gzip",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Mon, 17 Aug 2026 01:18:06 GMT",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "transfer-encoding": "chunked",
+          "vary": "Accept-Encoding",
+          "via": "1.1 7c066e0a11a81c42cc2203e5b598b722.cloudfront.net (CloudFront)",
+          "x-amz-cf-id": "IZUhD0RujJfpfGIwxqCQl1_WymkOnpI3tq-01xdz1hhkjjtsYzgGVw==",
+          "x-amz-cf-pop": "GIG52-P3",
+          "x-api-server-segment": "legacy",
+          "x-cache": "Miss from cloudfront",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-request-id": "37407847-e96f-4d42-b7c3-8a706b4b107d",
+          "x-xss-protection": "1; mode=block"
+        },
+        "data": {
+          "id": "MLB5075857497",
+          "site_id": "MLB",
+          "title": "Microfone Sennheiser E906 2 Anos De Cor Cinza-escuro",
+          "family_name": "Sennheiser Evolution Series E906",
+          "family_id": 2587819322662547,
+          "seller_id": 3294514937,
+          "category_id": "MLB4469",
+          "user_product_id": "MLBU4772937396",
+          "official_store_id": null,
+          "price": 6299.9,
+          "base_price": 6299.9,
+          "original_price": null,
+          "inventory_id": null,
+          "currency_id": "BRL",
+          "initial_quantity": 6,
+          "available_quantity": 6,
+          "sold_quantity": 0,
+          "sale_terms": [],
+          "buying_mode": "buy_it_now",
+          "listing_type_id": "gold_special",
+          "start_time": "2026-08-17T01:18:05.659Z",
+          "stop_time": "2046-08-11T04:00:00.000Z",
+          "end_time": "2046-08-11T04:00:00.000Z",
+          "expiration_time": "2026-11-05T01:18:05.759Z",
+          "condition": "new",
+          "permalink": "https://produto.mercadolivre.com.br/MLB-5075857497-microfone-sennheiser-e906-2-anos-de-cor-cinza-escuro-_JM",
+          "thumbnail_id": "908857-MLA99994130675_112025",
+          "thumbnail": "http://http2.mlstatic.com/D_908857-MLA99994130675_112025-I.jpg",
+          "pictures": [
+            {
+              "id": "908857-MLA99994130675_112025",
+              "url": "http://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg",
+              "size": "500x470",
+              "max_size": "523x492",
+              "quality": ""
+            },
+            {
+              "id": "990583-MLA99510127570_112025",
+              "url": "http://http2.mlstatic.com/D_990583-MLA99510127570_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_990583-MLA99510127570_112025-O.jpg",
+              "size": "341x500",
+              "max_size": "500x733",
+              "quality": ""
+            },
+            {
+              "id": "836156-MLA99510245928_112025",
+              "url": "http://http2.mlstatic.com/D_836156-MLA99510245928_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_836156-MLA99510245928_112025-O.jpg",
+              "size": "246x500",
+              "max_size": "261x530",
+              "quality": ""
+            },
+            {
+              "id": "978684-MLA99994307129_112025",
+              "url": "http://http2.mlstatic.com/D_978684-MLA99994307129_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_978684-MLA99994307129_112025-O.jpg",
+              "size": "373x500",
+              "max_size": "388x520",
+              "quality": ""
+            },
+            {
+              "id": "807254-MLA99510364828_112025",
+              "url": "http://http2.mlstatic.com/D_807254-MLA99510364828_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_807254-MLA99510364828_112025-O.jpg",
+              "size": "500x278",
+              "max_size": "520x290",
+              "quality": ""
+            },
+            {
+              "id": "712521-MLA99994209227_112025",
+              "url": "http://http2.mlstatic.com/D_712521-MLA99994209227_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_712521-MLA99994209227_112025-O.jpg",
+              "size": "251x500",
+              "max_size": "536x1064",
+              "quality": ""
+            },
+            {
+              "id": "700200-MLA99994130693_112025",
+              "url": "http://http2.mlstatic.com/D_700200-MLA99994130693_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_700200-MLA99994130693_112025-O.jpg",
+              "size": "500x348",
+              "max_size": "704x491",
+              "quality": ""
+            }
+          ],
+          "video_id": null,
+          "descriptions": [],
+          "accepts_mercadopago": true,
+          "non_mercado_pago_payment_methods": [],
+          "shipping": {
+            "mode": "me2",
+            "methods": [],
+            "tags": [
+              "mandatory_free_shipping"
+            ],
+            "dimensions": null,
+            "local_pick_up": false,
+            "free_shipping": true,
+            "logistic_type": "xd_drop_off",
+            "store_pick_up": false
+          },
+          "international_delivery_mode": "none",
+          "seller_address": {
+            "address_line": "Rua João Marques de Nóbrega 300",
+            "zip_code": "86206240",
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "BR-PR",
+              "name": "Paraná"
+            },
+            "country": {
+              "id": "BR",
+              "name": "Brasil"
+            },
+            "search_location": {
+              "city": {
+                "id": "TUxCQ0lCSTQ1Y2Fh",
+                "name": "Ibiporã"
+              },
+              "state": {
+                "id": "TUxCUFBBUkExODBlZA",
+                "name": "Paraná"
+              }
+            },
+            "latitude": -23.284674,
+            "longitude": -51.083409,
+            "id": 1586042717
+          },
+          "seller_contact": null,
+          "location": {},
+          "geolocation": {
+            "latitude": -23.284674,
+            "longitude": -51.083409
+          },
+          "coverage_areas": [],
+          "attributes": [
+            {
+              "id": "ALPHANUMERIC_MODELS",
+              "name": "Modelo alfanumérico",
+              "value_id": "76666379",
+              "value_name": "e906",
+              "values": [
+                {
+                  "id": "76666379",
+                  "name": "e906",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "value_id": "15371",
+              "value_name": "Sennheiser",
+              "values": [
+                {
+                  "id": "15371",
+                  "name": "Sennheiser",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "COLOR",
+              "name": "Cor",
+              "value_id": "52051",
+              "value_name": "Cinza-escuro",
+              "values": [
+                {
+                  "id": "52051",
+                  "name": "Cinza-escuro",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "COMPATIBLE_DEVICES",
+              "name": "Dispositivos compatíveis",
+              "value_id": null,
+              "value_name": "Computador,Tablet",
+              "values": [
+                {
+                  "id": "8621306",
+                  "name": "Computador",
+                  "struct": null
+                },
+                {
+                  "id": "11554747",
+                  "name": "Tablet",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "COMPATIBLE_OPERATIVE_SYSTEMS",
+              "name": "Sistemas operacionais compatíveis",
+              "value_id": null,
+              "value_name": "Windows,iOS,Android",
+              "values": [
+                {
+                  "id": "4804541",
+                  "name": "Windows",
+                  "struct": null
+                },
+                {
+                  "id": "189046",
+                  "name": "iOS",
+                  "struct": null
+                },
+                {
+                  "id": "168370",
+                  "name": "Android",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "CONNECTION_TYPES",
+              "name": "Tipos de conexões",
+              "value_id": "1210905",
+              "value_name": "Com fio",
+              "values": [
+                {
+                  "id": "1210905",
+                  "name": "Com fio",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "GTIN",
+              "name": "Código universal de produto",
+              "value_id": "26520286",
+              "value_name": "4044155001174",
+              "values": [
+                {
+                  "id": "26520286",
+                  "name": "4044155001174",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "HEIGHT",
+              "name": "Altura",
+              "value_id": "7800081",
+              "value_name": "20 cm",
+              "values": [
+                {
+                  "id": "7800081",
+                  "name": "20 cm",
+                  "struct": {
+                    "number": 20,
+                    "unit": "cm"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "IMPEDANCE",
+              "name": "Impedância",
+              "value_id": "1247746",
+              "value_name": "350 Ω",
+              "values": [
+                {
+                  "id": "1247746",
+                  "name": "350 Ω",
+                  "struct": {
+                    "number": 350,
+                    "unit": "Ω"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "IS_GAMER",
+              "name": "É gamer",
+              "value_id": "242084",
+              "value_name": "Não",
+              "values": [
+                {
+                  "id": "242084",
+                  "name": "Não",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            },
+            {
+              "id": "ITEM_CONDITION",
+              "name": "Condição do item",
+              "value_id": "2230284",
+              "value_name": "Novo",
+              "values": [
+                {
+                  "id": "2230284",
+                  "name": "Novo",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "LINE",
+              "name": "Linha",
+              "value_id": "145462",
+              "value_name": "Evolution Series",
+              "values": [
+                {
+                  "id": "145462",
+                  "name": "Evolution Series",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "MANUFACTURER",
+              "name": "Fabricante",
+              "value_id": "15438",
+              "value_name": "Shure",
+              "values": [
+                {
+                  "id": "15438",
+                  "name": "Shure",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "MATERIALS",
+              "name": "Materiais",
+              "value_id": "24028945",
+              "value_name": "Metal",
+              "values": [
+                {
+                  "id": "24028945",
+                  "name": "Metal",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "MAX_FREQUENCY",
+              "name": "Frequência máxima",
+              "value_id": "7229466",
+              "value_name": "18 kHz",
+              "values": [
+                {
+                  "id": "7229466",
+                  "name": "18 kHz",
+                  "struct": {
+                    "number": 18,
+                    "unit": "kHz"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "MICROPHONES_NUMBER",
+              "name": "Quantidade de microfones",
+              "value_id": "934836",
+              "value_name": "1",
+              "values": [
+                {
+                  "id": "934836",
+                  "name": "1",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            },
+            {
+              "id": "MICROPHONE_FORMATS",
+              "name": "Formatos de microfone",
+              "value_id": "182429",
+              "value_name": "Estúdio",
+              "values": [
+                {
+                  "id": "182429",
+                  "name": "Estúdio",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "MICROPHONE_TYPES",
+              "name": "Tipos de microfone",
+              "value_id": "103745",
+              "value_name": "Dinâmico",
+              "values": [
+                {
+                  "id": "103745",
+                  "name": "Dinâmico",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "MIN_FREQUENCY",
+              "name": "Frequência mínima",
+              "value_id": "7229468",
+              "value_name": "40 Hz",
+              "values": [
+                {
+                  "id": "7229468",
+                  "name": "40 Hz",
+                  "struct": {
+                    "number": 40,
+                    "unit": "Hz"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "MODEL",
+              "name": "Modelo",
+              "value_id": "2364969",
+              "value_name": "E906",
+              "values": [
+                {
+                  "id": "2364969",
+                  "name": "E906",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "OUTPUT_CONNECTORS",
+              "name": "Conectores de saída",
+              "value_id": "2305169",
+              "value_name": "XLR",
+              "values": [
+                {
+                  "id": "2305169",
+                  "name": "XLR",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "POLAR_PATTERNS",
+              "name": "Padrões polares",
+              "value_id": "2253807",
+              "value_name": "Cardioide",
+              "values": [
+                {
+                  "id": "2253807",
+                  "name": "Cardioide",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "SELLER_SKU",
+              "name": "SKU",
+              "value_id": null,
+              "value_name": "VTK006377",
+              "values": [
+                {
+                  "id": null,
+                  "name": "VTK006377",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "WEIGHT",
+              "name": "Peso",
+              "value_id": "8036741",
+              "value_name": "140 g",
+              "values": [
+                {
+                  "id": "8036741",
+                  "name": "140 g",
+                  "struct": {
+                    "number": 140,
+                    "unit": "g"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "WITH_BLUETOOTH",
+              "name": "Com Bluetooth",
+              "value_id": "242084",
+              "value_name": "Não",
+              "values": [
+                {
+                  "id": "242084",
+                  "name": "Não",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            },
+            {
+              "id": "WITH_BUILT_IN_SPEAKERS",
+              "name": "Com alto-falantes embutidos",
+              "value_id": "242084",
+              "value_name": "Não",
+              "values": [
+                {
+                  "id": "242084",
+                  "name": "Não",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            }
+          ],
+          "warnings": [],
+          "listing_source": "",
+          "variations": [],
+          "status": "active",
+          "sub_status": [],
+          "tags": [
+            "immediate_payment",
+            "cart_eligible"
+          ],
+          "warranty": null,
+          "catalog_product_id": "MLB37761258",
+          "domain_id": "MLB-MICROPHONES",
+          "seller_custom_field": "VTK006377",
+          "parent_item_id": null,
+          "differential_pricing": null,
+          "deal_ids": [],
+          "automatic_relist": false,
+          "date_created": "2026-08-17T01:18:05.876Z",
+          "last_updated": "2026-08-17T01:18:05.876Z",
+          "health": null,
+          "catalog_listing": true,
+          "item_relations": [],
+          "channels": [
+            "marketplace"
+          ]
+        }
+      }
+    },
+    "user_product_family": {
+      "settled": true,
+      "attempts": 1,
+      "elapsed_ms": 339,
+      "user_product": {
+        "id": "MLBU4772937396",
+        "name": "Microfone Sennheiser E906 2 Anos De Cor Cinza-escuro",
+        "family_name": "Sennheiser Evolution Series E906",
+        "site_id": "MLB",
+        "user_id": 3294514937,
+        "domain_id": "MLB-MICROPHONES",
+        "attributes": [
+          {
+            "id": "OUTPUT_CONNECTORS",
+            "name": "Conectores de saída",
+            "values": [
+              {
+                "id": "2305169",
+                "name": "XLR",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "values": [
+              {
+                "id": "145462",
+                "name": "Evolution Series",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "values": [
+              {
+                "id": "52051",
+                "name": "Cinza-escuro",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "values": [
+              {
+                "id": "8036741",
+                "name": "140 g",
+                "struct": {
+                  "number": 140,
+                  "unit": "g"
+                }
+              }
+            ]
+          },
+          {
+            "id": "MIN_FREQUENCY",
+            "name": "Frequência mínima",
+            "values": [
+              {
+                "id": "7229468",
+                "name": "40 Hz",
+                "struct": {
+                  "number": 40,
+                  "unit": "Hz"
+                }
+              }
+            ]
+          },
+          {
+            "id": "ALPHANUMERIC_MODELS",
+            "name": "Modelo alfanumérico",
+            "values": [
+              {
+                "id": "76666379",
+                "name": "e906",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "COMPATIBLE_OPERATIVE_SYSTEMS",
+            "name": "Sistemas operacionais compatíveis",
+            "values": [
+              {
+                "id": "4804541",
+                "name": "Windows",
+                "struct": null
+              },
+              {
+                "id": "189046",
+                "name": "iOS",
+                "struct": null
+              },
+              {
+                "id": "168370",
+                "name": "Android",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "CONNECTION_TYPES",
+            "name": "Tipos de conexões",
+            "values": [
+              {
+                "id": "1210905",
+                "name": "Com fio",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "values": [
+              {
+                "id": "7800081",
+                "name": "20 cm",
+                "struct": {
+                  "number": 20,
+                  "unit": "cm"
+                }
+              }
+            ]
+          },
+          {
+            "id": "MATERIALS",
+            "name": "Materiais",
+            "values": [
+              {
+                "id": "24028945",
+                "name": "Metal",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MICROPHONE_FORMATS",
+            "name": "Formatos de microfone",
+            "values": [
+              {
+                "id": "182429",
+                "name": "Estúdio",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MICROPHONE_TYPES",
+            "name": "Tipos de microfone",
+            "values": [
+              {
+                "id": "103745",
+                "name": "Dinâmico",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "COMPATIBLE_DEVICES",
+            "name": "Dispositivos compatíveis",
+            "values": [
+              {
+                "id": "8621306",
+                "name": "Computador",
+                "struct": null
+              },
+              {
+                "id": "11554747",
+                "name": "Tablet",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "IMPEDANCE",
+            "name": "Impedância",
+            "values": [
+              {
+                "id": "1247746",
+                "name": "350 Ω",
+                "struct": {
+                  "number": 350,
+                  "unit": "Ω"
+                }
+              }
+            ]
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK006377",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MAX_FREQUENCY",
+            "name": "Frequência máxima",
+            "values": [
+              {
+                "id": "7229466",
+                "name": "18 kHz",
+                "struct": {
+                  "number": 18,
+                  "unit": "kHz"
+                }
+              }
+            ]
+          },
+          {
+            "id": "IS_GAMER",
+            "name": "É gamer",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "values": [
+              {
+                "id": "15371",
+                "name": "Sennheiser",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "POLAR_PATTERNS",
+            "name": "Padrões polares",
+            "values": [
+              {
+                "id": "2253807",
+                "name": "Cardioide",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "values": [
+              {
+                "id": "26520286",
+                "name": "4044155001174",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "values": [
+              {
+                "id": "2364969",
+                "name": "E906",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "WITH_BLUETOOTH",
+            "name": "Com Bluetooth",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MICROPHONES_NUMBER",
+            "name": "Quantidade de microfones",
+            "values": [
+              {
+                "id": "934836",
+                "name": "1",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "WITH_BUILT_IN_SPEAKERS",
+            "name": "Com alto-falantes embutidos",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MANUFACTURER",
+            "name": "Fabricante",
+            "values": [
+              {
+                "id": "15438",
+                "name": "Shure",
+                "struct": null
+              }
+            ]
+          }
+        ],
+        "pictures": [
+          {
+            "id": "908857-MLA99994130675_112025",
+            "secure_url": "https://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg"
+          },
+          {
+            "id": "990583-MLA99510127570_112025",
+            "secure_url": "https://http2.mlstatic.com/D_990583-MLA99510127570_112025-O.jpg"
+          },
+          {
+            "id": "836156-MLA99510245928_112025",
+            "secure_url": "https://http2.mlstatic.com/D_836156-MLA99510245928_112025-O.jpg"
+          },
+          {
+            "id": "978684-MLA99994307129_112025",
+            "secure_url": "https://http2.mlstatic.com/D_978684-MLA99994307129_112025-O.jpg"
+          },
+          {
+            "id": "807254-MLA99510364828_112025",
+            "secure_url": "https://http2.mlstatic.com/D_807254-MLA99510364828_112025-O.jpg"
+          },
+          {
+            "id": "712521-MLA99994209227_112025",
+            "secure_url": "https://http2.mlstatic.com/D_712521-MLA99994209227_112025-O.jpg"
+          },
+          {
+            "id": "700200-MLA99994130693_112025",
+            "secure_url": "https://http2.mlstatic.com/D_700200-MLA99994130693_112025-O.jpg"
+          }
+        ],
+        "thumbnail": {
+          "id": "908857-MLA99994130675_112025",
+          "secure_url": "https://http2.mlstatic.com/D_908857-MLA99994130675_112025-O.jpg"
+        },
+        "catalog_product_id": "MLB37761258",
+        "bundle": null,
+        "family_id": 2587819322662547,
+        "tags": [
+          "primary"
+        ],
+        "date_created": "2026-08-17T01:18:06.007+0000",
+        "last_updated": "2026-08-17T01:18:06.007+0000",
+        "main_features": [],
+        "commingling": null
+      },
+      "family": {
+        "user_products_ids": [
+          "MLBU4772937396"
+        ],
+        "family_id": 2587819322662547,
+        "site_id": "MLB",
+        "user_id": 3294514937
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

@@ -1,0 +1,506 @@
+{
+  "checked_at": "2026-08-17T01:15:31.753Z",
+  "product": {
+    "id": "10c77f6c-7c78-4bcb-8030-c866c53ddc89",
+    "sku": "VTK000809",
+    "nome": "Omeleteira Agratto Mr. Cheff 800w 220v",
+    "marca": "AGRATTO",
+    "gtin": "7898461976650"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/85359",
+    "consulted_at": "2026-08-17T01:15:31.550Z",
+    "product": {
+      "produtoid": "85359",
+      "produtoid_empresa": "HYX85359",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 76.5,
+      "preco_crossdocking": 76.5,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 76.5,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:30.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-12 06:04:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Omeleteira Agratto Mr. Cheff 800w 220v",
+      "titulo_curto": "OMELETEIRA 800W AGRATTO MR CHEFF 220V",
+      "categoriaid": "292676",
+      "categoria_nome": "Eletroportáteis / Outros Utensílios Elétricos De Cozinha / Omeleteira",
+      "abc": "B",
+      "ean11": "7898461976650",
+      "ncm": "8516.79.90",
+      "descricao": "A Omeleteira Agratto Mr. Cheff é um modelo que proporciona praticidade e versatilidade, perfeita para quem quer rapidez e economia na cozinha! Com 800W de potência, ela prepara omeletes, waffles, pão de queijo e muito mais, sem a necessidade de óleo graças às chapas antiaderentes. <br/> <br/> Seu prato de 18 cm com linha divisória permite fazer duas omeletes ao mesmo tempo, e o acabamento em inox da tampa adiciona um toque de elegância. Além disso, a luz indicadora avisa quando as chapas estão na temperatura ideal para uso.",
+      "caracteristicas": "Potência:800w<br>Dimensões:(L x A x C) 225 x 90 x 185mm<br>Pesquisa:omeleteira|omeleiteira agratto|agratto|mr cheff|800w|omelete|<br>",
+      "informacoes": "<br/> • Chapas antiaderentes: não gruda e não requer óleo  <br/> • Prato com 18cm de diâmetro: prato com linha divisória, prepara 2 omeletes por vez  <br/> • Porta cabos: porta cabos na parte inferior para manter sua cozinha organizada  <br/> • Acabamento inox: tampa superior com acabamento inox  <br/> • Prepara diversos tipos de alimentos: prepare omeletes, waffle, pão de queijo, tapioca, etc  <br/> • Injetada em baquelite: alças e superfícies externas se mantem em baixa temperatura  <br/> • Luz indicadora de funcionamento: luz indicativa de que as chapas atingiram a temperatura máxima ",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "AGRATTO",
+      "modelo": "AOIP01I-02",
+      "peso": 0.98,
+      "largura": 11,
+      "altura": 25,
+      "profundidade": 21,
+      "peso_embalagem": 0.98,
+      "largura_embalagem": 11,
+      "altura_embalagem": 25,
+      "profundidade_embalagem": 21,
+      "link": "http://www.hayamax.com.br/omeleteira-agratto-mr-cheff-800w-220v",
+      "link_imagem": "https://static.hayapek.com.br/produtos/85359/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 1,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 141,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-28 14:36:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:17:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 12,
+      "tempo_cross": 0,
+      "estoque_total": 12,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/85359/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/85359/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/85359/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/85359/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/85359/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/85359/550/6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://static.hayapek.com.br/produtos/85359/550/7.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB41174119 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB41174119",
+      "catalog_product_id": "MLB41174119",
+      "domain_id": "MLB-FRYING_PANS_WOKS_GRIDDLES_AND_GRILL_PANS",
+      "name": "Omeleteira Antiaderente Elétrica Dupla 800W Mr. Cheff Redonda Preta 220V Agratto Aoip01i-02",
+      "parent_id": "MLB41174117",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "97494",
+          "value_name": "Agratto",
+          "values": [
+            {
+              "id": "97494",
+              "name": "Agratto"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "42961234",
+          "value_name": "AOIP01I-02 220V",
+          "values": [
+            {
+              "id": "42961234",
+              "name": "AOIP01I-02 220V"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "6816798",
+          "value_name": "Frigideira",
+          "values": [
+            {
+              "id": "6816798",
+              "name": "Frigideira"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "BODY_MATERIAL",
+          "name": "Material do corpo",
+          "value_id": "19412569",
+          "value_name": "Plástico e inox",
+          "values": [
+            {
+              "id": "19412569",
+              "name": "Plástico e inox"
+            }
+          ]
+        },
+        {
+          "id": "HANDLE_GRIP_MATERIAL",
+          "name": "Material do cabo",
+          "value_id": "42961236",
+          "value_name": "-/A",
+          "values": [
+            {
+              "id": "42961236",
+              "name": "-/A"
+            }
+          ]
+        },
+        {
+          "id": "SHAPE",
+          "name": "Forma",
+          "value_id": "39977660",
+          "value_name": "Redonda",
+          "values": [
+            {
+              "id": "39977660",
+              "name": "Redonda"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "4790",
+          "value_name": "9 cm",
+          "values": [
+            {
+              "id": "4790",
+              "name": "9 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "1115167",
+          "value_name": "18.5 cm",
+          "values": [
+            {
+              "id": "1115167",
+              "name": "18.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "3038872",
+          "value_name": "22.5 cm",
+          "values": [
+            {
+              "id": "3038872",
+              "name": "22.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "1000143",
+          "value_name": "1.2 kg",
+          "values": [
+            {
+              "id": "1000143",
+              "name": "1.2 kg"
+            }
+          ]
+        },
+        {
+          "id": "WITH_NON_STICK_SURFACE",
+          "name": "Com superfície antiaderente",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_RIDGED_SURFACE",
+          "name": "Com superfície canelada",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_DISHWASHER_SAFE",
+          "name": "É apto para lava-louças",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_LID",
+          "name": "Inclui tampa",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_SPATULA",
+          "name": "Inclui espátula",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "42961235",
+          "value_name": "7898461976650",
+          "values": [
+            {
+              "id": "42961235",
+              "name": "7898461976650"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Prepare omeletes, ovos e receitas rápidas com muito mais praticidade utilizando a Omeleteira Agratto Mr. Cheff. Com potência de 800W, ela aquece rapidamente e permite preparar alimentos de forma simples, sem necessidade de virar durante o preparo.\n\nSeu acabamento em inox proporciona um visual moderno e elegante para a cozinha, enquanto as chapas antiaderentes facilitam o uso e a limpeza após o preparo.\n\nCompacta e fácil de armazenar, é ideal para quem busca refeições rápidas e saborosas no dia a dia.\n\nPRINCIPAIS BENEFÍCIOS\n\n• Potência de 800W\n\n• Preparo rápido e uniforme\n\n• Chapas antiaderentes\n\n• Acabamento em inox\n\n• Fácil de limpar\n\n• Luzes indicadoras de funcionamento\n\n• Design compacto\n\n• Ideal para omeletes, ovos e receitas rápidas\n\n• Trava de fechamento\n\n• Uso prático no dia a dia\n\nCONTEÚDO DA EMBALAGEM\n\n• 01 Omeleteira Agratto Mr. Cheff\n\n• 01 Manual de instruções\n\nFICHA TÉCNICA\nMarca: Agratto\nModelo: AOIP01I-02\nLinha: Mr. Cheff\nEAN: 7898461976650\nTipo: Omeleteira Elétrica\nPotência: 800W\nVoltagem: 220V\nMaterial Externo: Inox\nRevestimento das Chapas: Antiaderente\nLuzes Indicadoras: Sim\nTrava de Fechamento: Sim\nCor: Inox"
+      },
+      "pictures": [
+        {
+          "id": "665189-MLA104458491676_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_665189-MLA104458491676_012026-F.jpg",
+          "max_width": "1198",
+          "max_height": "980"
+        },
+        {
+          "id": "641666-MLA104457868686_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_641666-MLA104457868686_012026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "672140-MLA104457898650_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_672140-MLA104457898650_012026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "828617-MLA79547463353_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_828617-MLA79547463353_092024-F.jpg",
+          "max_width": "831",
+          "max_height": "491"
+        },
+        {
+          "id": "761500-MLA104458462038_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_761500-MLA104458462038_012026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "792448-MLA79547314371_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_792448-MLA79547314371_092024-F.jpg",
+          "max_width": "816",
+          "max_height": "836"
+        },
+        {
+          "id": "855029-MLA79548006253_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_855029-MLA79548006253_092024-F.jpg",
+          "max_width": "640",
+          "max_height": "830"
+        },
+        {
+          "id": "804164-MLA104458581868_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_804164-MLA104458581868_012026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "606123-MLA104458521840_012026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_606123-MLA104458521840_012026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "763538-MLA80088589767_102024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_763538-MLA80088589767_102024-F.jpg",
+          "max_width": "896",
+          "max_height": "985"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-09-25T16:21:32Z",
+      "last_updated": "2026-06-17T18:48:30Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

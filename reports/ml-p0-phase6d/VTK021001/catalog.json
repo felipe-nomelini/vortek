@@ -1,0 +1,576 @@
+{
+  "checked_at": "2026-08-17T01:17:01.347Z",
+  "expected_catalog_product_id": "MLB27957192",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB27957192",
+    "catalog_product_id": "MLB27957192",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-VEHICLE_SPEAKERS",
+    "permalink": "",
+    "name": "Pioneer BR TS-6960BR Preto Par Alto Falantes Quadriaxial 6x9 100w Rms",
+    "family_name": "Pioneer BR TS-6960BR 6 \" 9 \"",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB27957192",
+            "picker_label": "Preto",
+            "picture_id": "951788-MLA99436997646_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_951788-MLA99436997646_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Pioneer BR TS-6960BR 6 \" 9 \" - Preto - 4 Ω - 2",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "SPEAKERS_NUMBER",
+        "picker_name": "Quantidade de caixas de som",
+        "products": [
+          {
+            "product_id": "MLB27957192",
+            "picker_label": "2",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Pioneer BR TS-6960BR 6 \" 9 \" - Preto - 4 Ω - 2",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "SPEAKERS_NUMBER",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "IMPEDANCE",
+        "picker_name": "Impedância",
+        "products": [
+          {
+            "product_id": "MLB27957192",
+            "picker_label": "4 Ω",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Pioneer BR TS-6960BR 6 \" 9 \" - Preto - 4 Ω - 2",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "IMPEDANCE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "951788-MLA99436997646_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_951788-MLA99436997646_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 855,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "712312-MLU75820915993_042024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_712312-MLU75820915993_042024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1186,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "633543-MLU78195822978_082024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_633543-MLU78195822978_082024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 829,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Possui faixa de frequência de 40Hz-20 kHz.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Carcaça de aço para maior proteção.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com profundidade de 8.3 cm.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Potência de 100w RMS em cada falante.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Potência máxima de 200w RMS em cada falante.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "9838",
+        "value_name": "Pioneer",
+        "values": [
+          {
+            "id": "9838",
+            "name": "Pioneer"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "195550",
+        "value_name": "BR",
+        "values": [
+          {
+            "id": "195550",
+            "name": "BR"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "2292869",
+        "value_name": "TS-6960BR",
+        "values": [
+          {
+            "id": "2292869",
+            "name": "TS-6960BR"
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_SPEAKER_WIDTH",
+        "name": "Largura do alto-falante",
+        "value_id": "8737281",
+        "value_name": "6 \"",
+        "values": [
+          {
+            "id": "8737281",
+            "name": "6 \""
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_SPEAKER_LENGTH",
+        "name": "Comprimento do alto-falante",
+        "value_id": "8737282",
+        "value_name": "9 \"",
+        "values": [
+          {
+            "id": "8737282",
+            "name": "9 \""
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "IMPEDANCE",
+        "name": "Impedância",
+        "value_id": "945309",
+        "value_name": "4 Ω",
+        "values": [
+          {
+            "id": "945309",
+            "name": "4 Ω"
+          }
+        ]
+      },
+      {
+        "id": "SPEAKERS_NUMBER",
+        "name": "Quantidade de caixas de som",
+        "value_id": "999572",
+        "value_name": "2",
+        "values": [
+          {
+            "id": "999572",
+            "name": "2"
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_TYPE",
+        "name": "Tipo de veículo",
+        "value_id": "11377043",
+        "value_name": "Carro/Caminhonete",
+        "values": [
+          {
+            "id": "11377043",
+            "name": "Carro/Caminhonete"
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_SPEAKER_TYPE",
+        "name": "Tipo de alto-falante",
+        "value_id": "8704188",
+        "value_name": "Quadraxial",
+        "values": [
+          {
+            "id": "8704188",
+            "name": "Quadraxial"
+          }
+        ]
+      },
+      {
+        "id": "WAYS_NUMBER",
+        "name": "Quantidade de vias",
+        "value_id": "8268966",
+        "value_name": "4",
+        "values": [
+          {
+            "id": "8268966",
+            "name": "4"
+          }
+        ]
+      },
+      {
+        "id": "COILS_NUMBER",
+        "name": "Quantidade de bobinas",
+        "value_id": "8704186",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "8704186",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "RMS_POWER",
+        "name": "Potência RMS",
+        "value_id": "161514",
+        "value_name": "200 W",
+        "values": [
+          {
+            "id": "161514",
+            "name": "200 W"
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY_RANGE",
+        "name": "Faixa de frequência",
+        "value_id": "8722426",
+        "value_name": "40 Hz - 20000 Hz",
+        "values": [
+          {
+            "id": "8722426",
+            "name": "40 Hz - 20000 Hz"
+          }
+        ]
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "value_id": "1160547",
+        "value_name": "8.3 cm",
+        "values": [
+          {
+            "id": "1160547",
+            "name": "8.3 cm"
+          }
+        ]
+      },
+      {
+        "id": "SUSPENSION_MATERIALS",
+        "name": "Materiais da suspensão",
+        "value_id": "160253",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "160253",
+            "name": "Espuma"
+          }
+        ]
+      },
+      {
+        "id": "CASING_MATERIALS",
+        "name": "Materiais da carcaça",
+        "value_id": "945389",
+        "value_name": "Aço",
+        "values": [
+          {
+            "id": "945389",
+            "name": "Aço"
+          }
+        ]
+      },
+      {
+        "id": "COIL_MATERIALS",
+        "name": "Materiais da bobina",
+        "value_id": "160257",
+        "value_name": "Alumínio",
+        "values": [
+          {
+            "id": "160257",
+            "name": "Alumínio"
+          }
+        ]
+      },
+      {
+        "id": "CONE_MATERIALS",
+        "name": "Materiais do cone",
+        "value_id": "160243",
+        "value_name": "Polipropileno",
+        "values": [
+          {
+            "id": "160243",
+            "name": "Polipropileno"
+          }
+        ]
+      },
+      {
+        "id": "INTEGRATED_SPEAKERS_TYPES",
+        "name": "Tipos de alto-falantes integrados",
+        "value_id": null,
+        "value_name": "Woofer, Midrange, Tweeter, Super tweeter",
+        "values": [
+          {
+            "id": "8694535",
+            "name": "Woofer"
+          },
+          {
+            "id": "8704185",
+            "name": "Midrange"
+          },
+          {
+            "id": "8694536",
+            "name": "Tweeter"
+          },
+          {
+            "id": "8694537",
+            "name": "Super tweeter"
+          }
+        ]
+      },
+      {
+        "id": "MAX_POWER_PMPO",
+        "name": "Potência máxima PMPO",
+        "value_id": "8711757",
+        "value_name": "200 W",
+        "values": [
+          {
+            "id": "8711757",
+            "name": "200 W"
+          }
+        ]
+      },
+      {
+        "id": "RESONANCE_FREQUENCY",
+        "name": "Frequência de ressonância",
+        "value_id": "27127460",
+        "value_name": "20 kHz",
+        "values": [
+          {
+            "id": "27127460",
+            "name": "20 kHz"
+          }
+        ]
+      },
+      {
+        "id": "SENSITIVITY",
+        "name": "Sensibilidade",
+        "value_id": "945369",
+        "value_name": "88 dB",
+        "values": [
+          {
+            "id": "945369",
+            "name": "88 dB"
+          }
+        ]
+      },
+      {
+        "id": "WITH_PROTECTIVE_SCREEN",
+        "name": "Com tela de proteção",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_SUBWOOFER_BOX",
+        "name": "Com caixa de subwoofer",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "name": "Com luzes LED",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "name": "É resistente à água",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Par Alto Falantes Quadriaxial Pionner 6X9 100W RMS TS6960BR\n\nCaracterísticas:\n- Produto novo original de ótima qualidade.\n\nEspecificações técnicas:\n- Quadriaxial;\n- Modelo: TS6960BR;\n- Potência nominal RMS: 100W;\n- Impedância nominal: 4 ohms;\n- Sensibilidade (1W / 1m): 88dB;\n- Borda (suspensão) feita com espuma;\n- Resposta em frequência: 40Hz a 20.000Hz;\n- Bobina de voz em alumínio resistente ao calor;\n- Mid-range com cone de filme de 50mm de diâmetro;\n- Tweeter piezoelétrico de 29mm de diâmetro em PET;\n- Supertweeter piezoelétrico de PET com 12mm de diâmetro;\n- Woofer com cone de IMPP (polipropileno moldado por injeção).\n\nConteúdo da embalagem:\n- Kit parafusos;\n- 02 Alto-falantes.\n\nObs: valor anunciado referente ao PAR.\n\nGarantia: 90 dias.\n\nAtenção: conforme lei federal nº 11.291, a exposição prolongada a ruídos superiores a 85db podem causar danos ao sistema auditivo.\n\nDica:\n- Tenha maior comodidade ao desfrutar de seus aparelhos de áudio, aqui você encontra os melhores produtos com os melhores preços!\n\nImportante: \n- Não somos responsáveis pela má instalação ou mal uso do produto, para evitar transtornos procure por um profissional especializado."
+    },
+    "parent_id": "MLB8855406",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T15:28:10.457495425"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-11-02T14:16:51Z",
+    "authorized_stores": null,
+    "last_updated": "2025-10-03T22:11:51Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

@@ -1,0 +1,438 @@
+{
+  "attempted_at": "2026-08-17T00:06:34.456Z",
+  "local_time": "2026-08-16T21:06:34",
+  "endpoint": "POST /items",
+  "request_id": "0a95e365-f5f5-4ba5-af0c-a65a5c613de5",
+  "http_status": 201,
+  "elapsed_ms": 807,
+  "payload_sha256": "b6b1b47e2afbb04ae4d2147a164815f0ac66b05e892eb96a84cbd0f8ee812fdc",
+  "body": {
+    "id": "MLB5075703099",
+    "site_id": "MLB",
+    "title": "Conector Plug P10 Mono Bk Wc 153 Wireconex 10 Unidades Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB420707",
+    "user_product_id": "MLBU4772558400",
+    "official_store_id": null,
+    "price": 219.9,
+    "base_price": 219.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 100,
+    "available_quantity": 100,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Wireconex cabo para guitarra",
+    "family_id": 2445862797395154,
+    "start_time": "2026-08-17T00:06:33.957Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:06:34.016Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075703099-conector-plug-p10-mono-bk-wc-153-wireconex-10-unidades-preto-_JM",
+    "pictures": [
+      {
+        "id": "951854-MLA95395149760_102025",
+        "url": "http://mla-s2-p.mlstatic.com/951854-MLA95395149760_102025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/951854-MLA95395149760_102025-O.jpg",
+        "size": "500x367",
+        "max_size": "1200x882",
+        "quality": ""
+      },
+      {
+        "id": "650267-MLA86754869724_072025",
+        "url": "http://mla-s2-p.mlstatic.com/650267-MLA86754869724_072025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/650267-MLA86754869724_072025-O.jpg",
+        "size": "500x353",
+        "max_size": "753x532",
+        "quality": ""
+      },
+      {
+        "id": "794167-MLA91256159121_082025",
+        "url": "http://mla-s1-p.mlstatic.com/794167-MLA91256159121_082025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/794167-MLA91256159121_082025-O.jpg",
+        "size": "500x277",
+        "max_size": "882x490",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "13660752",
+        "value_name": "Wireconex",
+        "values": [
+          {
+            "id": "13660752",
+            "name": "Wireconex",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "84972506",
+        "value_name": "cabo para guitarra",
+        "values": [
+          {
+            "id": "84972506",
+            "name": "cabo para guitarra",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359392",
+        "value_name": "Kit",
+        "values": [
+          {
+            "id": "1359392",
+            "name": "Kit",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "150349",
+        "value_name": "10",
+        "values": [
+          {
+            "id": "150349",
+            "name": "10",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "46885538",
+        "value_name": "Conector",
+        "values": [
+          {
+            "id": "46885538",
+            "name": "Conector",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "value_id": "24279588",
+        "value_name": "P10 Mono",
+        "values": [
+          {
+            "id": "24279588",
+            "name": "P10 Mono",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONNECTOR_GENDER",
+        "name": "Gênero do conector",
+        "value_id": "2210104",
+        "value_name": "Macho",
+        "values": [
+          {
+            "id": "2210104",
+            "name": "Macho",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "name": "Material de revestimento",
+        "value_id": "5504726",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "5504726",
+            "name": "Plástico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "name": "Dispositivos compatíveis",
+        "value_id": null,
+        "value_name": "Amplificador, Cabo, Controlador, Microfone, Mixer, Som, Violão, baixo, Estudo, fone, Guitarra, mesa, p.a, p10, pa, Áudio",
+        "values": [
+          {
+            "id": "20395414",
+            "name": "Amplificador",
+            "struct": null
+          },
+          {
+            "id": "2311197",
+            "name": "Cabo",
+            "struct": null
+          },
+          {
+            "id": "20163364",
+            "name": "Controlador",
+            "struct": null
+          },
+          {
+            "id": "15289676",
+            "name": "Microfone",
+            "struct": null
+          },
+          {
+            "id": "24621891",
+            "name": "Mixer",
+            "struct": null
+          },
+          {
+            "id": "38801627",
+            "name": "Som",
+            "struct": null
+          },
+          {
+            "id": "36765567",
+            "name": "Violão",
+            "struct": null
+          },
+          {
+            "id": "33103071",
+            "name": "baixo",
+            "struct": null
+          },
+          {
+            "id": "19784633",
+            "name": "Estudo",
+            "struct": null
+          },
+          {
+            "id": "40040115",
+            "name": "fone",
+            "struct": null
+          },
+          {
+            "id": "17642207",
+            "name": "Guitarra",
+            "struct": null
+          },
+          {
+            "id": "31772332",
+            "name": "mesa",
+            "struct": null
+          },
+          {
+            "id": "40040116",
+            "name": "p.a",
+            "struct": null
+          },
+          {
+            "id": "28658160",
+            "name": "p10",
+            "struct": null
+          },
+          {
+            "id": "40040117",
+            "name": "pa",
+            "struct": null
+          },
+          {
+            "id": "26431589",
+            "name": "Áudio",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "46830404",
+        "value_name": "153",
+        "values": [
+          {
+            "id": "46830404",
+            "name": "153",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "43536268",
+        "value_name": "7898640365206",
+        "values": [
+          {
+            "id": "43536268",
+            "name": "7898640365206",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK013008",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK013008",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "951854-MLA95395149760_102025",
+    "thumbnail": "http://mlb-s2-p.mlstatic.com/951854-MLA95395149760_102025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB41877035",
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+    "seller_custom_field": "VTK013008",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:06:34.127Z",
+    "last_updated": "2026-08-17T00:06:34.127Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

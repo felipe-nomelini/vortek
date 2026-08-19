@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-08-17T14:15:53.434Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto-falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4/a Atk",
+    "supplier_category": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+    "supplier_brand": "Atk Eletroacústica",
+    "supplier_gtin": "7898640360676",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1557",
+    "captured_at": "2026-08-17T12:56:24.491Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "a3bdf775-1cae-4ba6-80f8-e22121385d01",
+    "produto_id": "fffee6d5-b53a-4b4b-b015-5088a2bd0735",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1557",
+    "sku_fornecedor": "1557",
+    "custo": 1194.9,
+    "estoque": 2,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:10:16.815+00:00",
+    "created_at": "2026-07-06T22:31:08.33707+00:00",
+    "updated_at": "2026-08-17T10:10:16.822+00:00",
+    "sku_oferta": "1557",
+    "nome": "Alto-falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4/a Atk",
+    "descricao": "Descrição: Alto-falante de 12” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade. Utiliza uma bobina de 100 mm de diâmetro (4”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica. Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance. Características: -4600 W de Programa Contínuo -Frequência Sonora: Graves -4 Ohms de Impedância Nominal -96 dB SPL de Sensibilidade -60 a 2500Hz Informações para transporte: -Peso unidade: 19.75 kg -Unidade de Transporte: 1 unidade -Dimensões da embalagem: (A) 200 mm x (L) 325 mm x (P) 315 mm -Volume da embalagem: 20.5 L -Peso da unidade embalada: 20.5 kg Especificações do Fabricante: -Potência Nominal Admissível(1): 1300 W -Potência Máxima do Amplificador(2) : 20800 W pico -Potência Máxima Dinâmica por períodos <30 segundos(3): 4600 W -Sensibilidade (1W/1m)(4) : 96 dB SPL -Impedância Nominal: 4 Ohms -Impedância Mínima: 3.7 Ohms -Diâmetro Nominal: 304.8mm (12 pol) -Resposta de Frequência: 60 a 2500 Hz -Diâmetro da Bobina: 100 mm (4”) -Fio da Bobina: Fio de Cobre Seção Circular -Resistência da Bobina (Re): 2.2 Ohms -X.máx(5) : 15 mm -Volume de Ar ocupado: 5.4 L (1) 2 horas de teste realizado com ruído rosa (fator de crista 12 dB) no range de frequência de Fs a 10xFs. Potência calculada com impedância mínima. Alto-falante ao ar livre. Obs: Para aplicar esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no mínimo 12h com 50% da potência nominal. (2) Potência de pico exigida do amplificador para alcançar a potência nominal considerando um sinal de teste de ruído rosa com fator de crista de 12dB. (3) Potência máxima com sinal dinâmico por períodos inferiores a 30 segundos. Para aplicar esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no mínimo 24h com 50% da potência nominal. Para cada ciclo de utilização com esta potência, considerar que o conjunto magnético esteja próximo da temperatura ambiente. (4) Aplicada tensão de 2 V RMS sobre a impedância nominal. (5) O X.máx é calculado considerando uma queda > que 50 % do campo magnético Bl sobre a bobina. Parâmetros Thiele-Small (6) Fs: 80.8 Hz Re: 2.2 Ohms Qes: 0.40 Qms: 2.3 Qts: 0.34 Vas: 11 l Sd: 585 cm² n0: 1.4 % Mms: 164 g Bl: 21.1 Tm Le: 0.39 mH (6) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.",
+    "marca": "Atk Eletroacústica",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f23bb7a86abfe426eda281d898d935ce.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e9e3d2bc96c9329fd1b7199cf51a4ff4.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1b8158e35423ce76a941e4b170933b5c.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a5cd9f9c635364ce491300f565c5b570.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d7736c951742c642454dc7f96e10bf53.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/823d027afd45f7e2ebd71c83fabf3814.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/6935cae3b4cf0b2fc572a036486f529e.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2a6c0a94cfc6cbb3637febd7d5209440.jpg"
+    ],
+    "gtin": "7898640360676",
+    "ncm": "8518.29.90",
+    "cest": null
+  }
+}

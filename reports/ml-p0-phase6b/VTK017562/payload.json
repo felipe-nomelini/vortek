@@ -1,0 +1,92 @@
+{
+  "payload": {
+    "family_name": "Carregador Veicular USB Elgin 2 Saídas",
+    "category_id": "MLB430121",
+    "price": 119.9,
+    "currency_id": "BRL",
+    "available_quantity": 39,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017562/01-a0c7e2ac705057e0596e.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017562/02-a111084012e95b31ffdf.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "46RCV2USB000"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7897013561269"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "82230",
+        "value_name": "USB"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "value_name": "12V"
+      },
+      {
+        "id": "OUTPUT_VOLTAGE",
+        "value_id": "2453518",
+        "value_name": "5V"
+      },
+      {
+        "id": "CHARGING_PORTS",
+        "value_name": "2"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017562"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK017562"
+  },
+  "sha256": "c1c123d366f54752c779fc6d72a662aad2f22582f82dca2d256ded9765913a10",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 9,
+  "pictures_count": 2,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017562/01-a0c7e2ac705057e0596e.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017562/02-a111084012e95b31ffdf.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ]
+}

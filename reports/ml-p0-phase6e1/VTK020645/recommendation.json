@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton 2009/2017 Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194318",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317328",
+    "captured_at": "2026-08-17T12:55:41.344Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

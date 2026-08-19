@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-17T14:15:36.081Z",
+  "product": {
+    "id": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+    "sku": "VTK018422",
+    "nome": "Haste Permak Para Antena De Teto Gti 095",
+    "marca": "PERMAK",
+    "estoque": 6,
+    "custo": 15.4,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.038,
+    "peso_bruto": 0.038,
+    "largura": 4.5,
+    "altura": 2,
+    "profundidade": 44,
+    "gtin": "7898253494676",
+    "descricao": "Haste Para Antena De Teto GTI Permak 095",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018422/01-2aa8afa7e74084498df7.jpg"
+    ],
+    "categoria": "Automotivo/ Antena Automotiva/ Haste De Antena",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:23.092114+00:00",
+    "updated_at": "2026-08-17T11:07:22.5464+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "157761",
+    "dslite_ultima_sync": "2026-08-17T11:07:22.424+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85291090",
+    "cest": "01.063.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "37377e30-3a86-4c6c-92b3-83b48508e166",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "vehicle_antenna",
+    "function": "receive_vehicle_radio_signal",
+    "intended_use": "automotive",
+    "physical_form": "vehicle_antenna",
+    "expected_category_signals": [
+      "antena",
+      "automotivo",
+      "veiculo",
+      "carro"
+    ],
+    "incompatible_category_signals": [
+      "gpsportatil",
+      "televisao",
+      "wifi"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

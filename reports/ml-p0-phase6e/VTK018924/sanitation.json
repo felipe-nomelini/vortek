@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018924",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category confidence is not HIGH for domain MLB-TELEPHONES",
+  "local_value": "7896637677004",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB24453976 + domain discovery",
+  "timestamp": "2026-08-17T12:54:49.584Z"
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.585Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Tela Plástica Permak  12\"  Para Alto Falante Tipo Arlem  121 - PC / 2",
+    "supplier_category": "Eletronica/ Adaptadores/plugues/tomadas/ Adaptores",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/43735",
+    "captured_at": "2026-08-17T12:56:36.648Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "f7f5a343-c8d6-41cc-903e-78161c8045c7",
+    "produto_id": "b2e270b9-045a-4f9f-a3a9-37c782ee89cc",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "43735",
+    "sku_fornecedor": "43735",
+    "custo": 31.8,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:33:15.508+00:00",
+    "created_at": "2026-07-20T18:30:57.116305+00:00",
+    "updated_at": "2026-08-17T10:33:15.517+00:00",
+    "sku_oferta": "43735",
+    "nome": "Tela Plástica Permak  12\"  Para Alto Falante Tipo Arlem  121",
+    "descricao": "Tela Plástica 12\" Para Alto Falante Tipo Arlem Permak 121 Cor: Preta 2 Peças",
+    "marca": "PERMAK",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/4/3/43735_67d2cb350c24f.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85189010",
+    "cest": "01.057.00"
+  }
+}

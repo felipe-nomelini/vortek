@@ -1,0 +1,10 @@
+{
+  "sku": "VTK000949",
+  "gate": "BLOCK_GTIN_MODEL_CONFLICT",
+  "evidence": "exact GTIN catalog identifies Multivisão KIT-2Z microwave support, not local Decore shelf kit",
+  "local_value": "7896643439412",
+  "found_value": "KIT-2Z-UV-PR",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB29667907",
+  "timestamp": "2026-08-17T01:16:42.213Z"
+}

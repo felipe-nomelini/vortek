@@ -1,0 +1,23 @@
+{
+  "index": 45,
+  "sku": "VTK025861",
+  "expected_gtin": "7898554606624",
+  "started_at": "2026-08-17T00:44:50.281Z",
+  "local_time": "2026-08-16T21:44:50",
+  "completed_at": "2026-08-17T00:44:51.028Z",
+  "elapsed_ms": 747,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE",
+  "item_id": null,
+  "catalog_product_id": "MLB28408894",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "missing category-required attributes: INCLUDES_ASSEMBLY_MANUAL",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

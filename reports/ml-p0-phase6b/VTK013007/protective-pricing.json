@@ -1,0 +1,101 @@
+{
+  "tax_rate": 0.05,
+  "target_margin_percent": 50,
+  "safety_target_percent": 50.5,
+  "cost": 49.5,
+  "pre_item": {
+    "attempts": 3,
+    "price": 229.9,
+    "fee": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_special",
+      "listing_type_name": "Clássico",
+      "requires_picture": true,
+      "sale_fee_amount": 29.89,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 29.89,
+        "percentage_fee": 13
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_data": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 20.95,
+          "currency_id": "BRL",
+          "billable_weight": 190,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 41.9
+          }
+        }
+      }
+    },
+    "financial": {
+      "price": 229.9,
+      "commission": 29.89,
+      "shipping": 20.95,
+      "cost": 49.5,
+      "tax": 11.5,
+      "profit": 118.06,
+      "margin_percent": 51.352762
+    },
+    "approved": true
+  },
+  "post_item": {
+    "price": 249.9,
+    "fee": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_special",
+      "listing_type_name": "Clássico",
+      "requires_picture": true,
+      "sale_fee_amount": 32.49,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 32.49,
+        "percentage_fee": 13
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_data": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 28.35,
+          "currency_id": "BRL",
+          "billable_weight": 3867,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 56.7
+          }
+        }
+      }
+    },
+    "financial": {
+      "price": 249.9,
+      "commission": 32.49,
+      "shipping": 28.35,
+      "cost": 49.5,
+      "tax": 12.5,
+      "profit": 127.06,
+      "margin_percent": 50.844338
+    }
+  },
+  "approved": true
+}

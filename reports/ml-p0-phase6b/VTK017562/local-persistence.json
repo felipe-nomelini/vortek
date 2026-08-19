@@ -1,0 +1,12 @@
+{
+  "executed": true,
+  "transaction": {
+    "result": "SAFE_PUBLICATION_PERSIST_SUCCESS",
+    "listing_id": "ae14b03d-1942-427a-8ca6-a3204ce770a8",
+    "transaction_id": 16821804
+  },
+  "quality_score_not_evaluated": true,
+  "quality_optimization_pending": true,
+  "description_optimization_pending": true,
+  "commercial_optimization_pending": true
+}

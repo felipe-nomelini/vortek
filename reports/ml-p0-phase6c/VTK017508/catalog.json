@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-08-17T00:42:58.846Z",
+  "expected_catalog_product_id": null,
+  "catalog_search_identity": null,
+  "catalog_detail": null,
+  "strategy": "optional_or_none",
+  "optional_catalog_optimization_pending": true
+}

@@ -1,0 +1,2130 @@
+{
+  "phase": "6E.1",
+  "mode": "AUDIT_ONLY_SEMANTIC_CATEGORY_REVALIDATION",
+  "generated_at": "2026-08-17T14:15:53.819Z",
+  "selection": {
+    "file": "reports/ml-p0-phase6e/selected-200.csv",
+    "sha256": "e6efdcfb027a6eb117472e589ed4683a15b5d5d03019dcc96cf4b024b34558a6",
+    "expected_sha256": "e6efdcfb027a6eb117472e589ed4683a15b5d5d03019dcc96cf4b024b34558a6",
+    "count": 200,
+    "order_preserved": true
+  },
+  "inventory": {
+    "expected": 5858,
+    "captured": 5858,
+    "pages": 117,
+    "reliable": true,
+    "timestamp": "2026-08-17T14:15:35.864Z"
+  },
+  "processed": 200,
+  "counts": {
+    "BLOCK_GTIN_MODEL_CONFLICT": 23,
+    "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND": 7,
+    "SOURCE_DEFERRED": 149,
+    "BLOCK_CATALOG_IDENTITY": 2,
+    "BLOCK_IDENTITY": 3,
+    "BLOCK_GTIN_BRAND_CONFLICT": 10,
+    "BLOCK_GTIN_UNIT_CONFLICT": 2,
+    "BLOCK_SEMANTIC_CATEGORY_MISMATCH": 2,
+    "KNOWN_WRONG_CATEGORY_REMOTE_ITEM": 1,
+    "BLOCK_LOCAL_STATE": 1
+  },
+  "metrics": {
+    "selected": 200,
+    "processed": 200,
+    "semantic_ready": 0,
+    "semantic_mismatches": 3,
+    "alternatives_found": 7,
+    "source_deferred": 149,
+    "category_unresolved": 0,
+    "gtin_conflicts": 35,
+    "second_pass_rejects": 0,
+    "source_recoveries": 0,
+    "category_block_recoveries": 7,
+    "ml_gets": 497,
+    "ml_read_retries": 0,
+    "supabase_reads": 52,
+    "dslite_live_reads": 0,
+    "ml_item_posts": 0,
+    "ml_puts": 0,
+    "local_commercial_writes": 0,
+    "started_at": "2026-08-17T14:14:02.918Z",
+    "completed_at": "2026-08-17T14:15:53.819Z",
+    "elapsed_ms": 110901
+  },
+  "retrospective_stop_loss_audit": {
+    "ready_audited": 0,
+    "hard_mismatch_ready": [],
+    "vtk012864_prevented": true
+  },
+  "incidents": [
+    {
+      "sku": "VTK017508",
+      "state": "EXCLUDED_PENDING_INCIDENT",
+      "item_id": "MLB7432501874",
+      "action_taken": "NONE"
+    },
+    {
+      "sku": "VTK012864",
+      "state": "KNOWN_WRONG_CATEGORY_REMOTE_ITEM",
+      "item_id": "MLB7437196478",
+      "action_taken": "READ_ONLY_CLASSIFICATION"
+    }
+  ],
+  "writes": {
+    "ml_item_posts": 0,
+    "ml_puts": 0,
+    "descriptions": 0,
+    "quality_calls": 0,
+    "supabase_mutations": 0,
+    "commercial_local_persistence": 0
+  },
+  "approved": true,
+  "next_phase_started": false,
+  "hold": "P0 PHASE 6E.1 — SEMANTIC CATEGORY REVALIDATION HOLD",
+  "results": [
+    {
+      "ordinal": 1,
+      "sku": "VTK013078",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL,BATTERY_SIZE,COMPOSITION"
+    },
+    {
+      "ordinal": 2,
+      "sku": "VTK004115",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 3,
+      "sku": "VTK018422",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+      "category_candidate": "Acessórios para Veículos > Som Automotivo > Antenas",
+      "semantic_score": 93,
+      "second_pass": "PASS",
+      "evidence": "supplier/local semantics and full category path agree"
+    },
+    {
+      "ordinal": 4,
+      "sku": "VTK018454",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 5,
+      "sku": "VTK018598",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 6,
+      "sku": "VTK018608",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 7,
+      "sku": "VTK018616",
+      "phase6e_state": "BLOCK_CATALOG_IDENTITY",
+      "phase6e1_state": "BLOCK_CATALOG_IDENTITY",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": {
+        "expected": "MLB49204248",
+        "identity": {
+          "fields": {
+            "catalog_id": true,
+            "catalog_required": true,
+            "gtin": true,
+            "brand": true,
+            "model": true,
+            "title": false
+          },
+          "critical": {},
+          "passed": false
+        },
+        "results": [
+          "MLB49204248"
+        ]
+      }
+    },
+    {
+      "ordinal": 8,
+      "sku": "VTK018636",
+      "phase6e_state": "BLOCK_IDENTITY",
+      "phase6e1_state": "BLOCK_IDENTITY",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: COLOR"
+    },
+    {
+      "ordinal": 9,
+      "sku": "VTK018639",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 10,
+      "sku": "VTK019219",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL"
+    },
+    {
+      "ordinal": 11,
+      "sku": "VTK021164",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL"
+    },
+    {
+      "ordinal": 12,
+      "sku": "VTK001254",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 13,
+      "sku": "VTK001264",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 14,
+      "sku": "VTK001291",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 15,
+      "sku": "VTK001303",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+      "category_candidate": "Instrumentos Musicais > Instrumentos de Corda > Guitarras > Elétricas",
+      "semantic_score": 100,
+      "second_pass": "PASS",
+      "evidence": "supplier/local semantics and full category path agree"
+    },
+    {
+      "ordinal": 16,
+      "sku": "VTK001343",
+      "phase6e_state": "BLOCK_GTIN_UNIT_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_UNIT_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: UNIT"
+    },
+    {
+      "ordinal": 17,
+      "sku": "VTK001863",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 18,
+      "sku": "VTK002625",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 19,
+      "sku": "VTK004022",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: GTIN,MODEL"
+    },
+    {
+      "ordinal": 20,
+      "sku": "VTK018635",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 21,
+      "sku": "VTK018702",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 22,
+      "sku": "VTK018714",
+      "phase6e_state": "BLOCK_CATALOG_IDENTITY",
+      "phase6e1_state": "BLOCK_CATALOG_IDENTITY",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": {
+        "expected": "MLB51341026",
+        "identity": {
+          "fields": {
+            "catalog_id": true,
+            "catalog_required": true,
+            "gtin": true,
+            "brand": true,
+            "model": true,
+            "title": false
+          },
+          "critical": {},
+          "passed": false
+        },
+        "results": [
+          "MLB51341026"
+        ]
+      }
+    },
+    {
+      "ordinal": 23,
+      "sku": "VTK018729",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "BLOCK_SEMANTIC_CATEGORY_MISMATCH",
+      "category_candidate": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Motor > Kits de Motor",
+      "semantic_score": 56,
+      "second_pass": "REJECT",
+      "evidence": "PRODUCT_FUNCTION_MISMATCH:control_vehicle_windows"
+    },
+    {
+      "ordinal": 24,
+      "sku": "VTK018746",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL"
+    },
+    {
+      "ordinal": 25,
+      "sku": "VTK018748",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 26,
+      "sku": "VTK018749",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL"
+    },
+    {
+      "ordinal": 27,
+      "sku": "VTK018768",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 28,
+      "sku": "VTK018830",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 29,
+      "sku": "VTK020602",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 30,
+      "sku": "VTK021438",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND"
+    },
+    {
+      "ordinal": 31,
+      "sku": "VTK022010",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 32,
+      "sku": "VTK001390",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,TITLE_IDENTITY"
+    },
+    {
+      "ordinal": 33,
+      "sku": "VTK001439",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 34,
+      "sku": "VTK000831",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL"
+    },
+    {
+      "ordinal": 35,
+      "sku": "VTK001156",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 36,
+      "sku": "VTK001297",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+      "category_candidate": "Instrumentos Musicais > Instrumentos de Corda > Guitarras > Elétricas",
+      "semantic_score": 100,
+      "second_pass": "PASS",
+      "evidence": "supplier/local semantics and full category path agree"
+    },
+    {
+      "ordinal": 37,
+      "sku": "VTK001325",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 38,
+      "sku": "VTK001379",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 39,
+      "sku": "VTK001485",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 40,
+      "sku": "VTK003779",
+      "phase6e_state": "BLOCK_IDENTITY",
+      "phase6e1_state": "BLOCK_IDENTITY",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: GTIN"
+    },
+    {
+      "ordinal": 41,
+      "sku": "VTK012590",
+      "phase6e_state": "BLOCK_GTIN_UNIT_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_UNIT_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: UNIT"
+    },
+    {
+      "ordinal": 42,
+      "sku": "VTK018562",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+      "category_candidate": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Antenas de Conectividade",
+      "semantic_score": 93,
+      "second_pass": "PASS",
+      "evidence": "supplier/local semantics and full category path agree"
+    },
+    {
+      "ordinal": 43,
+      "sku": "VTK018664",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 44,
+      "sku": "VTK018857",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 45,
+      "sku": "VTK018868",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 46,
+      "sku": "VTK018869",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: COLOR,MODEL"
+    },
+    {
+      "ordinal": 47,
+      "sku": "VTK018870",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 48,
+      "sku": "VTK018908",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,UNIT,MODEL"
+    },
+    {
+      "ordinal": 49,
+      "sku": "VTK018909",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 50,
+      "sku": "VTK018911",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 51,
+      "sku": "VTK018912",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 52,
+      "sku": "VTK018924",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+      "category_candidate": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Telefones",
+      "semantic_score": 100,
+      "second_pass": "PASS",
+      "evidence": "supplier/local semantics and full category path agree"
+    },
+    {
+      "ordinal": 53,
+      "sku": "VTK018934",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 54,
+      "sku": "VTK018936",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 55,
+      "sku": "VTK018943",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 56,
+      "sku": "VTK018944",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 57,
+      "sku": "VTK020653",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 58,
+      "sku": "VTK020904",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL"
+    },
+    {
+      "ordinal": 59,
+      "sku": "VTK025958",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 60,
+      "sku": "VTK025961",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 61,
+      "sku": "VTK003511",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 62,
+      "sku": "VTK005491",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 63,
+      "sku": "VTK012632",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+      "category_candidate": "Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores",
+      "semantic_score": 100,
+      "second_pass": "PASS",
+      "evidence": "supplier/local semantics and full category path agree"
+    },
+    {
+      "ordinal": 64,
+      "sku": "VTK012895",
+      "phase6e_state": "BLOCK_IDENTITY",
+      "phase6e1_state": "BLOCK_IDENTITY",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: COLOR"
+    },
+    {
+      "ordinal": 65,
+      "sku": "VTK018935",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 66,
+      "sku": "VTK018968",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 67,
+      "sku": "VTK019018",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 68,
+      "sku": "VTK019030",
+      "phase6e_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_BRAND_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL"
+    },
+    {
+      "ordinal": 69,
+      "sku": "VTK019044",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 70,
+      "sku": "VTK019089",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 71,
+      "sku": "VTK019090",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 72,
+      "sku": "VTK019094",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 73,
+      "sku": "VTK019095",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 74,
+      "sku": "VTK019096",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 75,
+      "sku": "VTK019099",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 76,
+      "sku": "VTK019100",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: MODEL"
+    },
+    {
+      "ordinal": 77,
+      "sku": "VTK019108",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 78,
+      "sku": "VTK019117",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 79,
+      "sku": "VTK019126",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+      "category_candidate": "Casa, Móveis e Decoração > Segurança para Casa > Ferragens de Segurança > Fechaduras > Elétricas",
+      "semantic_score": 93,
+      "second_pass": "PASS",
+      "evidence": "supplier/local semantics and full category path agree"
+    },
+    {
+      "ordinal": 80,
+      "sku": "VTK019131",
+      "phase6e_state": "BLOCK_CATEGORY",
+      "phase6e1_state": "BLOCK_SEMANTIC_CATEGORY_MISMATCH",
+      "category_candidate": "Esportes e Fitness > Equitação > Equipamento do Cavalo > Laços",
+      "semantic_score": 41,
+      "second_pass": "REJECT",
+      "evidence": "INCOMPATIBLE_CONTEXT:equitacao|cavalo|lacos|PRODUCT_FUNCTION_MISMATCH:detect_metal_vehicle_presence"
+    },
+    {
+      "ordinal": 81,
+      "sku": "VTK020645",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 82,
+      "sku": "VTK020656",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 83,
+      "sku": "VTK020660",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "current exact-GTIN search found no ML catalog and cached supplier evidence is insufficient for category approval"
+    },
+    {
+      "ordinal": 84,
+      "sku": "VTK012861",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: COLOR,MODEL"
+    },
+    {
+      "ordinal": 85,
+      "sku": "VTK012864",
+      "phase6e_state": "REMOTE_PROPAGATION_PENDING",
+      "phase6e1_state": "KNOWN_WRONG_CATEGORY_REMOTE_ITEM",
+      "category_candidate": "Informática > Tablets e Acessórios > Peças > Alto-Falantes",
+      "semantic_score": 73,
+      "second_pass": "REJECT",
+      "evidence": "MLB7437196478 exists in MLB-TABLET_INTERNAL_SPEAKERS; new gate simulation blocks before payload"
+    },
+    {
+      "ordinal": 86,
+      "sku": "VTK012865",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: COLOR,MODEL"
+    },
+    {
+      "ordinal": 87,
+      "sku": "VTK012866",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: COLOR,MODEL"
+    },
+    {
+      "ordinal": 88,
+      "sku": "VTK012869",
+      "phase6e_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "phase6e1_state": "BLOCK_GTIN_MODEL_CONFLICT",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "exact GTIN catalog identity conflict: COLOR,MODEL"
+    },
+    {
+      "ordinal": 89,
+      "sku": "VTK012014",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 90,
+      "sku": "VTK012016",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 91,
+      "sku": "VTK012018",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 92,
+      "sku": "VTK012022",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 93,
+      "sku": "VTK012039",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 94,
+      "sku": "VTK012040",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 95,
+      "sku": "VTK025996",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 96,
+      "sku": "VTK025997",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 97,
+      "sku": "VTK025998",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 98,
+      "sku": "VTK026002",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 99,
+      "sku": "VTK012148",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 100,
+      "sku": "VTK012369",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 101,
+      "sku": "VTK017202",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 102,
+      "sku": "VTK017210",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 103,
+      "sku": "VTK017233",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 104,
+      "sku": "VTK017234",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 105,
+      "sku": "VTK017235",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 106,
+      "sku": "VTK017240",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 107,
+      "sku": "VTK017241",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 108,
+      "sku": "VTK017242",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 109,
+      "sku": "VTK017243",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 110,
+      "sku": "VTK017248",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 111,
+      "sku": "VTK017252",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 112,
+      "sku": "VTK017255",
+      "phase6e_state": "BLOCK_LOCAL_STATE",
+      "phase6e1_state": "BLOCK_LOCAL_STATE",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "frozen local product state no longer satisfies baseline"
+    },
+    {
+      "ordinal": 113,
+      "sku": "VTK017259",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 114,
+      "sku": "VTK017260",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 115,
+      "sku": "VTK017261",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 116,
+      "sku": "VTK017262",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 117,
+      "sku": "VTK017263",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 118,
+      "sku": "VTK017278",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 119,
+      "sku": "VTK017279",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 120,
+      "sku": "VTK017297",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 121,
+      "sku": "VTK017353",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 122,
+      "sku": "VTK017366",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 123,
+      "sku": "VTK017369",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 124,
+      "sku": "VTK017374",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 125,
+      "sku": "VTK017378",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 126,
+      "sku": "VTK017400",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 127,
+      "sku": "VTK017401",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 128,
+      "sku": "VTK017402",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 129,
+      "sku": "VTK017403",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 130,
+      "sku": "VTK017408",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 131,
+      "sku": "VTK017523",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 132,
+      "sku": "VTK017524",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 133,
+      "sku": "VTK017531",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 134,
+      "sku": "VTK026004",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 135,
+      "sku": "VTK026005",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 136,
+      "sku": "VTK017435",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 137,
+      "sku": "VTK017436",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 138,
+      "sku": "VTK026006",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 139,
+      "sku": "VTK017538",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 140,
+      "sku": "VTK017548",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 141,
+      "sku": "VTK023558",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 142,
+      "sku": "VTK026009",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 143,
+      "sku": "VTK017629",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 144,
+      "sku": "VTK012236",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 145,
+      "sku": "VTK012237",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 146,
+      "sku": "VTK012248",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 147,
+      "sku": "VTK019037",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 148,
+      "sku": "VTK017567",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 149,
+      "sku": "VTK026010",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 150,
+      "sku": "VTK017740",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 151,
+      "sku": "VTK017942",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 152,
+      "sku": "VTK017600",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 153,
+      "sku": "VTK017826",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 154,
+      "sku": "VTK012267",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 155,
+      "sku": "VTK012275",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 156,
+      "sku": "VTK012283",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 157,
+      "sku": "VTK012282",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 158,
+      "sku": "VTK012297",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 159,
+      "sku": "VTK017814",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 160,
+      "sku": "VTK012301",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 161,
+      "sku": "VTK017827",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 162,
+      "sku": "VTK012304",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 163,
+      "sku": "VTK012310",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 164,
+      "sku": "VTK012319",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 165,
+      "sku": "VTK012321",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 166,
+      "sku": "VTK012327",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 167,
+      "sku": "VTK017803",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 168,
+      "sku": "VTK017840",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 169,
+      "sku": "VTK017866",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 170,
+      "sku": "VTK017869",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 171,
+      "sku": "VTK012335",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 172,
+      "sku": "VTK012337",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 173,
+      "sku": "VTK017902",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 174,
+      "sku": "VTK026011",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 175,
+      "sku": "VTK017939",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 176,
+      "sku": "VTK026014",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 177,
+      "sku": "VTK026015",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 178,
+      "sku": "VTK017651",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 179,
+      "sku": "VTK017936",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 180,
+      "sku": "VTK017934",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 181,
+      "sku": "VTK018660",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 182,
+      "sku": "VTK026016",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 183,
+      "sku": "VTK026017",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 184,
+      "sku": "VTK012383",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 185,
+      "sku": "VTK012384",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 186,
+      "sku": "VTK017903",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 187,
+      "sku": "VTK017951",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 188,
+      "sku": "VTK018064",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 189,
+      "sku": "VTK012408",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 190,
+      "sku": "VTK018102",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 191,
+      "sku": "VTK023678",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 192,
+      "sku": "VTK012420",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 193,
+      "sku": "VTK018128",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 194,
+      "sku": "VTK018139",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 195,
+      "sku": "VTK019776",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 196,
+      "sku": "VTK012421",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 197,
+      "sku": "VTK012422",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 198,
+      "sku": "VTK018197",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 199,
+      "sku": "VTK018201",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    },
+    {
+      "ordinal": 200,
+      "sku": "VTK018641",
+      "phase6e_state": "SOURCE_DEFERRED",
+      "phase6e1_state": "SOURCE_DEFERRED",
+      "category_candidate": null,
+      "semantic_score": null,
+      "second_pass": "NOT_APPLICABLE",
+      "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+    }
+  ],
+  "official_contracts": {
+    "mercado_livre": "https://developers.mercadolivre.com.br",
+    "dslite": "https://documenter.getpostman.com/view/5316990/RWaRNkaA",
+    "supabase": "https://supabase.com/docs/guides/database/connecting-to-postgres"
+  },
+  "substitutions": {
+    "firecrawl": "local immutable evidence + official ML API reads",
+    "supabase_cloud": "self-hosted Data API reads"
+  }
+}

@@ -1,0 +1,2596 @@
+{
+  "checked_at": "2026-08-17T01:14:19.011Z",
+  "category_attributes": [
+    {
+      "id": "BRAND",
+      "name": "Marca",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "194",
+          "name": "Atma"
+        },
+        {
+          "id": "80738",
+          "name": "BKF"
+        },
+        {
+          "id": "20",
+          "name": "Braun"
+        },
+        {
+          "id": "46067",
+          "name": "Coolbrand"
+        },
+        {
+          "id": "4208",
+          "name": "Daewoo"
+        },
+        {
+          "id": "632",
+          "name": "De'Longhi"
+        },
+        {
+          "id": "234",
+          "name": "Hitachi"
+        },
+        {
+          "id": "449",
+          "name": "Kenwood"
+        },
+        {
+          "id": "840",
+          "name": "Liliana"
+        },
+        {
+          "id": "462",
+          "name": "Moulinex"
+        },
+        {
+          "id": "467",
+          "name": "Oster"
+        },
+        {
+          "id": "19879",
+          "name": "Peabody"
+        },
+        {
+          "id": "3",
+          "name": "Philips"
+        },
+        {
+          "id": "269",
+          "name": "Ranser"
+        },
+        {
+          "id": "8155395",
+          "name": "Smart-Tek"
+        },
+        {
+          "id": "19809",
+          "name": "Stylo"
+        },
+        {
+          "id": "460242",
+          "name": "Top House"
+        },
+        {
+          "id": "258",
+          "name": "Ultracomb"
+        },
+        {
+          "id": "255",
+          "name": "Yelmo"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+    },
+    {
+      "id": "LINE",
+      "name": "Linha",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Indica a série ou grupo do produto de acordo com a classificação da marca ou fabricante, por exemplo: a linha “111” da marca “xxx” agrupa diferentes modelos de produtos.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MODEL",
+      "name": "Modelo",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VOLUME_CAPACITY",
+      "name": "Capacidade em volume",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "L",
+          "name": "L"
+        }
+      ],
+      "default_unit": "L",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "POWER_SUPPLY_TYPE",
+      "name": "Tipo de alimentação",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "4491927",
+          "name": "Bateria"
+        },
+        {
+          "id": "49713698",
+          "name": "Corrente doméstica"
+        },
+        {
+          "id": "54769666",
+          "name": "Energia industrial"
+        },
+        {
+          "id": "53603540",
+          "name": "Bateria/Corrente doméstica"
+        },
+        {
+          "id": "53775076",
+          "name": "Bateria/Energia industrial"
+        },
+        {
+          "id": "54973110",
+          "name": "Corrente doméstica/Energia industrial"
+        },
+        {
+          "id": "53775079",
+          "name": "Bateria/Corrente doméstica/Energia industrial"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "COLOR",
+      "name": "Cor",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "283148",
+          "name": "Coral-claro"
+        },
+        {
+          "id": "283149",
+          "name": "Coral"
+        },
+        {
+          "id": "283150",
+          "name": "Laranja-claro"
+        },
+        {
+          "id": "283151",
+          "name": "Laranja-escuro"
+        },
+        {
+          "id": "283156",
+          "name": "Cáqui"
+        },
+        {
+          "id": "283157",
+          "name": "Verde-limão"
+        },
+        {
+          "id": "283158",
+          "name": "Verde-musgo"
+        },
+        {
+          "id": "283152",
+          "name": "Chocolate"
+        },
+        {
+          "id": "283153",
+          "name": "Palha"
+        },
+        {
+          "id": "283154",
+          "name": "Marrom-claro"
+        },
+        {
+          "id": "283155",
+          "name": "Marrom-escuro"
+        },
+        {
+          "id": "283164",
+          "name": "Dourado"
+        },
+        {
+          "id": "51993",
+          "name": "Vermelho"
+        },
+        {
+          "id": "283165",
+          "name": "Cinza"
+        },
+        {
+          "id": "51994",
+          "name": "Rosa"
+        },
+        {
+          "id": "283160",
+          "name": "Azul-turquesa"
+        },
+        {
+          "id": "51996",
+          "name": "Terracota"
+        },
+        {
+          "id": "283161",
+          "name": "Azul-marinho"
+        },
+        {
+          "id": "283162",
+          "name": "Índigo"
+        },
+        {
+          "id": "51998",
+          "name": "Bordô"
+        },
+        {
+          "id": "283163",
+          "name": "Rosa-chiclete"
+        },
+        {
+          "id": "52000",
+          "name": "Laranja"
+        },
+        {
+          "id": "52001",
+          "name": "Bege"
+        },
+        {
+          "id": "52003",
+          "name": "Nude"
+        },
+        {
+          "id": "52005",
+          "name": "Marrom"
+        },
+        {
+          "id": "52007",
+          "name": "Amarelo"
+        },
+        {
+          "id": "52008",
+          "name": "Creme"
+        },
+        {
+          "id": "52010",
+          "name": "Ocre"
+        },
+        {
+          "id": "52012",
+          "name": "Dourado-escuro"
+        },
+        {
+          "id": "52014",
+          "name": "Verde"
+        },
+        {
+          "id": "52015",
+          "name": "Verde-claro"
+        },
+        {
+          "id": "52019",
+          "name": "Verde-escuro"
+        },
+        {
+          "id": "52021",
+          "name": "Azul-celeste"
+        },
+        {
+          "id": "52022",
+          "name": "Água"
+        },
+        {
+          "id": "52024",
+          "name": "Azul-petróleo"
+        },
+        {
+          "id": "52028",
+          "name": "Azul"
+        },
+        {
+          "id": "52029",
+          "name": "Azul-claro"
+        },
+        {
+          "id": "52031",
+          "name": "Azul-aço"
+        },
+        {
+          "id": "52033",
+          "name": "Azul-escuro"
+        },
+        {
+          "id": "52035",
+          "name": "Violeta"
+        },
+        {
+          "id": "52036",
+          "name": "Lavanda"
+        },
+        {
+          "id": "52038",
+          "name": "Lilás"
+        },
+        {
+          "id": "52042",
+          "name": "Fúcsia"
+        },
+        {
+          "id": "52043",
+          "name": "Rosa-claro"
+        },
+        {
+          "id": "52045",
+          "name": "Rosa-pálido"
+        },
+        {
+          "id": "52047",
+          "name": "Violeta-escuro"
+        },
+        {
+          "id": "52049",
+          "name": "Preto"
+        },
+        {
+          "id": "52051",
+          "name": "Cinza-escuro"
+        },
+        {
+          "id": "52053",
+          "name": "Prateado"
+        },
+        {
+          "id": "52055",
+          "name": "Branco"
+        },
+        {
+          "id": "338779",
+          "name": "Ciano"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VOLTAGE",
+      "name": "Voltagem",
+      "tags": {
+        "allow_variations": true
+      },
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "198813",
+          "name": "220V"
+        },
+        {
+          "id": "39205162",
+          "name": "127V"
+        },
+        {
+          "id": "39205163",
+          "name": "127/220V"
+        },
+        {
+          "id": "106543",
+          "name": "380V"
+        },
+        {
+          "id": "24517453",
+          "name": "480V"
+        },
+        {
+          "id": "45522378",
+          "name": "560V"
+        },
+        {
+          "id": "22524318",
+          "name": "600V"
+        },
+        {
+          "id": "14223009",
+          "name": "1.2V"
+        },
+        {
+          "id": "8206319",
+          "name": "1.5V"
+        },
+        {
+          "id": "3625879",
+          "name": "3V"
+        },
+        {
+          "id": "2638487",
+          "name": "4.5V"
+        },
+        {
+          "id": "2499688",
+          "name": "6V"
+        },
+        {
+          "id": "8149915",
+          "name": "9V"
+        },
+        {
+          "id": "909022",
+          "name": "12V"
+        },
+        {
+          "id": "3323363",
+          "name": "24V"
+        },
+        {
+          "id": "14754561",
+          "name": "48V"
+        },
+        {
+          "id": "13244394",
+          "name": "72V"
+        },
+        {
+          "id": "2090739",
+          "name": "18V"
+        },
+        {
+          "id": "3314711",
+          "name": "36V"
+        },
+        {
+          "id": "1263450",
+          "name": "60V"
+        },
+        {
+          "id": "2453518",
+          "name": "5V"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "FREQUENCY",
+      "name": "Frequência",
+      "tags": {
+        "allow_variations": true
+      },
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "example": "50 Hz/60 Hz",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "POWER",
+      "name": "Potência",
+      "tags": {
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cv",
+          "name": "cv"
+        },
+        {
+          "id": "W",
+          "name": "W"
+        }
+      ],
+      "default_unit": "W",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "DETAILED_MODEL",
+      "name": "Modelo detalhado",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MAIN_COLOR",
+      "name": "Cor principal",
+      "tags": {
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "type": "color",
+      "value_type": "list",
+      "values": [
+        {
+          "id": "2450295",
+          "name": "Preto",
+          "metadata": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "2450293",
+          "name": "Azul",
+          "metadata": {
+            "rgb": "1717FF"
+          }
+        },
+        {
+          "id": "2450307",
+          "name": "Vermelho",
+          "metadata": {
+            "rgb": "FF0000"
+          }
+        },
+        {
+          "id": "2450311",
+          "name": "Violeta",
+          "metadata": {
+            "rgb": "9F00FF"
+          }
+        },
+        {
+          "id": "2450291",
+          "name": "Marrom",
+          "metadata": {
+            "rgb": "A0522D"
+          }
+        },
+        {
+          "id": "2450314",
+          "name": "Verde",
+          "metadata": {
+            "rgb": "0DA600"
+          }
+        },
+        {
+          "id": "2450327",
+          "name": "Laranja",
+          "metadata": {
+            "rgb": "FF8C00"
+          }
+        },
+        {
+          "id": "2450278",
+          "name": "Azul celeste",
+          "metadata": {
+            "rgb": "83DDFF"
+          }
+        },
+        {
+          "id": "2450312",
+          "name": "Rosa",
+          "metadata": {
+            "rgb": "FCB1BE"
+          }
+        },
+        {
+          "id": "2450289",
+          "name": "Dourado",
+          "metadata": {
+            "rgb": "FFD700"
+          }
+        },
+        {
+          "id": "2450303",
+          "name": "Prateado",
+          "metadata": {
+            "rgb": "CBCFD0"
+          }
+        },
+        {
+          "id": "2450296",
+          "name": "Amarelo",
+          "metadata": {
+            "rgb": "FFED00"
+          }
+        },
+        {
+          "id": "2450294",
+          "name": "Cinza",
+          "metadata": {
+            "rgb": "E1E1E1"
+          }
+        },
+        {
+          "id": "2450308",
+          "name": "Branco",
+          "metadata": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "46671867",
+          "name": "Multicolorido",
+          "metadata": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "2450281",
+          "name": "Bege",
+          "metadata": {
+            "rgb": "F5F3DC",
+            "parent_id": "2450291"
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_INDUSTRIAL",
+      "name": "É industrial",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_HEIGHT",
+      "name": "Altura da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_WIDTH",
+      "name": "Largura da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_WEIGHT",
+      "name": "Peso da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        },
+        {
+          "id": "kg",
+          "name": "kg"
+        },
+        {
+          "id": "lb",
+          "name": "lb"
+        },
+        {
+          "id": "mg",
+          "name": "mg"
+        },
+        {
+          "id": "oz",
+          "name": "oz"
+        }
+      ],
+      "default_unit": "g",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "GTIN",
+      "name": "Código universal de produto",
+      "tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 1,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Pode ser um EAN, UPC ou outro GTIN"
+    },
+    {
+      "id": "ELECTRICAL_SAFETY_CERTIFICATE_NUMBER",
+      "name": "Número de certificado de segurança elétrica",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "É o número do certificado que uma entidade certificadora do seu país atribui a produtos elétricos, depois de verificar que é seguro.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "OCP_CERTIFICATION_AGENCY",
+      "name": "Organismo de certificação (OCP)",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "11695662",
+          "name": "Bureau Veritas Argentina S.A."
+        },
+        {
+          "id": "11695663",
+          "name": "Instituto del Gas Argentino S.A."
+        },
+        {
+          "id": "11695664",
+          "name": "Intertek Argentina Certificaciones S.A."
+        },
+        {
+          "id": "11695665",
+          "name": "INTI Instituto Nacional de Tecnología Industrial"
+        },
+        {
+          "id": "11695666",
+          "name": "IQC S.A."
+        },
+        {
+          "id": "11695667",
+          "name": "IRAM Instituto Argentino de Normalización y Certificación"
+        },
+        {
+          "id": "11695668",
+          "name": "Lenor S.R.L."
+        },
+        {
+          "id": "11695669",
+          "name": "Net Connection International S.R.L. (NCC)"
+        },
+        {
+          "id": "11695670",
+          "name": "Qetkra S.R.L."
+        },
+        {
+          "id": "11695671",
+          "name": "TÜV Rheinland Argentina S.A. (TUV)"
+        },
+        {
+          "id": "11695672",
+          "name": "UL de Argentina S.R.L."
+        },
+        {
+          "id": "11695673",
+          "name": "Outro (sem especificar)"
+        }
+      ],
+      "tooltip": "É o organismo de certificação de produtos ou laboratório de testes em seu país que emitiu a certificação de segurança para seu produto.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SEC_STAMP",
+      "name": "Selo SEC",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "picture_id",
+      "value_max_length": 255,
+      "tooltip": "É o selo QR que identifica que o produto está em conformidade com os padrões de segurança elétrica.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_LIFE",
+      "name": "Duração do produto",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "meses",
+          "name": "meses"
+        },
+        {
+          "id": "anos",
+          "name": "anos"
+        }
+      ],
+      "default_unit": "meses",
+      "tooltip": "É a vida útil do produto oferecido pelo vendedor em condições normais de uso.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "TECHNICAL_SERVICE_OR_REPLACEMENT_PARTS_PERIOD",
+      "name": "Período de parte de reposição ou serviço técnico",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "meses",
+          "name": "meses"
+        },
+        {
+          "id": "anos",
+          "name": "anos"
+        }
+      ],
+      "default_unit": "meses",
+      "tooltip": "Se oferecer, indique o prazo.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "EMPTY_GTIN_REASON",
+      "name": "Motivo de GTIN vazio",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true,
+        "conditional_required": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "17055158",
+          "name": "O produto é uma peça artesanal"
+        },
+        {
+          "id": "17055159",
+          "name": "O produto é um kit ou pack"
+        },
+        {
+          "id": "17055160",
+          "name": "O produto não tem código cadastrado"
+        },
+        {
+          "id": "17055161",
+          "name": "Outro motivo"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VERTICAL_TAGS",
+      "name": "Tags vertical",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "53559152",
+          "name": "is_tom_brand"
+        },
+        {
+          "id": "53559153",
+          "name": "is_polos"
+        },
+        {
+          "id": "53559154",
+          "name": "is_social_brands"
+        },
+        {
+          "id": "53559155",
+          "name": "is_beauty_premium"
+        },
+        {
+          "id": "53559156",
+          "name": "has_dimensions_images"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INCLUDES_ACCESSORIES",
+      "name": "Inclui acessórios",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "AGID",
+      "name": "AGID",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 1,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BATTERY_VOLTAGE",
+      "name": "Voltagem da bateria",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IMPORT_DECLARATION_NUMBER",
+      "name": "Número da DI",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number",
+      "value_max_length": 18,
+      "tooltip": "Número de 16 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INVOICE_PRODUCT_NAME",
+      "name": "Nome do produto na nota fiscal",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SAT_KEY",
+      "name": "Chave do produto",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "82021094",
+          "name": "Não existe no catálogo"
+        }
+      ],
+      "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEASURE_UNIT_KEY",
+      "name": "Chave da unidade de medida",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "82021108",
+          "name": "Não existe no catálogo"
+        }
+      ],
+      "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEASURE_UNIT_DESCRIPTION",
+      "name": "Unidade de medida",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IVA_FOR_RESALE",
+      "name": "IVA para revenda",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "81861612",
+          "name": "Isento"
+        },
+        {
+          "id": "81861613",
+          "name": "0%"
+        },
+        {
+          "id": "81861614",
+          "name": "8%"
+        },
+        {
+          "id": "81861616",
+          "name": "16%"
+        }
+      ],
+      "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IEPS",
+      "name": "IEPS",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "82021095",
+          "name": "0%"
+        },
+        {
+          "id": "82021096",
+          "name": "3%"
+        },
+        {
+          "id": "82021097",
+          "name": "6%"
+        },
+        {
+          "id": "82021098",
+          "name": "7%"
+        },
+        {
+          "id": "82021099",
+          "name": "8%"
+        },
+        {
+          "id": "82021100",
+          "name": "9%"
+        },
+        {
+          "id": "82021101",
+          "name": "25%"
+        },
+        {
+          "id": "82021102",
+          "name": "26.5%"
+        },
+        {
+          "id": "82021103",
+          "name": "30%"
+        },
+        {
+          "id": "82021104",
+          "name": "30.4%"
+        },
+        {
+          "id": "82021105",
+          "name": "50%"
+        },
+        {
+          "id": "82021106",
+          "name": "53%"
+        },
+        {
+          "id": "82021107",
+          "name": "160%"
+        }
+      ],
+      "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "DEPTH",
+      "name": "Profundidade",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "HEIGHT",
+      "name": "Altura",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WIDTH",
+      "name": "Largura",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WEIGHT",
+      "name": "Peso",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        },
+        {
+          "id": "kg",
+          "name": "kg"
+        },
+        {
+          "id": "lb",
+          "name": "lb"
+        }
+      ],
+      "default_unit": "kg",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ROTATION_SPEED",
+      "name": "Velocidade de rotação",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "rpm",
+          "name": "rpm"
+        }
+      ],
+      "default_unit": "rpm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_AUTO_REVERSING",
+      "name": "Com reversão automática",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_EASY_ON_OFF_FUNCTION",
+      "name": "Com acionamento automático",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_DISHWASHER_SAFE",
+      "name": "É apto para lava-louças",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_BUILT_IN_JAR",
+      "name": "Com jarra integrada",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BUILT_IN_JAR_MATERIALS",
+      "name": "Materiais da jarra integrada",
+      "tags": {
+        "hidden": true,
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "99394",
+          "name": "Aço inoxidável"
+        },
+        {
+          "id": "99392",
+          "name": "Plástico"
+        },
+        {
+          "id": "99393",
+          "name": "Vidro"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ACCESSORIES_INCLUDED",
+      "name": "Acessórios incluídos",
+      "tags": {
+        "hidden": true,
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "6621919",
+          "name": "Jarra"
+        },
+        {
+          "id": "8057358",
+          "name": "Cone pequeno"
+        },
+        {
+          "id": "8057359",
+          "name": "Cone grande"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MPN",
+      "name": "MPN",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 2,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "name": "Condição do item",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "2230284",
+          "name": "Novo"
+        },
+        {
+          "id": "2230581",
+          "name": "Usado"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VALUE_ADDED_TAX",
+      "name": "Imposto sobre o valor acrescentado",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IMPORT_DUTY",
+      "name": "Imposto de importação",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "49553239",
+          "name": "0 %"
+        },
+        {
+          "id": "49553240",
+          "name": "1 %"
+        },
+        {
+          "id": "49553241",
+          "name": "2.5 %"
+        },
+        {
+          "id": "49553242",
+          "name": "4 %"
+        },
+        {
+          "id": "49553243",
+          "name": "5 %"
+        },
+        {
+          "id": "49553244",
+          "name": "8 %"
+        },
+        {
+          "id": "49553245",
+          "name": "9.5 %"
+        },
+        {
+          "id": "49553246",
+          "name": "10 %"
+        },
+        {
+          "id": "49553247",
+          "name": "14 %"
+        },
+        {
+          "id": "49553248",
+          "name": "15 %"
+        },
+        {
+          "id": "49553249",
+          "name": "18 %"
+        },
+        {
+          "id": "49553250",
+          "name": "19 %"
+        },
+        {
+          "id": "49553251",
+          "name": "20 %"
+        },
+        {
+          "id": "49553252",
+          "name": "23 %"
+        },
+        {
+          "id": "49553253",
+          "name": "25 %"
+        },
+        {
+          "id": "49553254",
+          "name": "26 %"
+        },
+        {
+          "id": "49553255",
+          "name": "70 %"
+        }
+      ],
+      "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_SKU",
+      "name": "SKU",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de envio",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_WIDTH",
+      "name": "Largura da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_HEIGHT",
+      "name": "Altura da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_WEIGHT",
+      "name": "Peso da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        }
+      ],
+      "default_unit": "g",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_FLAMMABLE",
+      "name": "É inflamável",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_POSITIVE_IMPACT",
+      "name": "Com impacto positivo",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de fábrica",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "HAZMAT_TRANSPORTABILITY",
+      "name": "Transportabilidade Hazmat",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "13414677",
+          "name": "Livre"
+        },
+        {
+          "id": "13414678",
+          "name": "Limitado"
+        },
+        {
+          "id": "13414679",
+          "name": "Excedido"
+        },
+        {
+          "id": "13414680",
+          "name": "Indeterminado"
+        },
+        {
+          "id": "75989961",
+          "name": "Notificado"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_KIT",
+      "name": "É kit",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "DESCRIPTIVE_TAGS",
+      "name": "Tags descritivos",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_CHEMICAL_FEATURES",
+      "name": "Características químicas do produto",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7651070",
+          "name": "Inflamável"
+        },
+        {
+          "id": "7651071",
+          "name": "Aerosol"
+        },
+        {
+          "id": "7651072",
+          "name": "Oxidante"
+        },
+        {
+          "id": "7651073",
+          "name": "Corrosivo"
+        },
+        {
+          "id": "7651074",
+          "name": "Explosivo"
+        },
+        {
+          "id": "7651075",
+          "name": "Tóxico ou infeccioso"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "FOODS_AND_DRINKS",
+      "name": "Alimentos e bebidas",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575926",
+          "name": "Para humanos"
+        },
+        {
+          "id": "7575927",
+          "name": "Para animais"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEDICINES",
+      "name": "Medicamentos",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575930",
+          "name": "Para humanos com receita médica"
+        },
+        {
+          "id": "7575931",
+          "name": "Para humanos sem receita médica"
+        },
+        {
+          "id": "7575932",
+          "name": "Para animais com receita médica"
+        },
+        {
+          "id": "7575933",
+          "name": "Para animais sem receita médica"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BATTERIES_FEATURES",
+      "name": "Características das baterias",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575934",
+          "name": "Lítio stand-alone (separadas ou isolado)"
+        },
+        {
+          "id": "7575935",
+          "name": "De lítio instaladas"
+        },
+        {
+          "id": "7575936",
+          "name": "Para carros (ácido-chumbo)"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SHIPMENT_PACKING",
+      "name": "Embalagem do envío",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435891",
+          "name": "Flyer"
+        },
+        {
+          "id": "7435892",
+          "name": "Caixa"
+        },
+        {
+          "id": "7575937",
+          "name": "Envelope"
+        },
+        {
+          "id": "7575939",
+          "name": "Auto-expedível"
+        },
+        {
+          "id": "27037932",
+          "name": "BEX"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ADDITIONAL_INFO_REQUIRED",
+      "name": "Informação adicional requerida",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435893",
+          "name": "Possui código IMEI"
+        },
+        {
+          "id": "7435894",
+          "name": "Possui número de série"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "EXCLUDED_PLATFORMS",
+      "name": "Plataformas excluídas",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "9936777",
+          "name": "Android"
+        },
+        {
+          "id": "9936778",
+          "name": "iOS"
+        },
+        {
+          "id": "9936779",
+          "name": "Desktop"
+        },
+        {
+          "id": "9936780",
+          "name": "Mobile"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_SUITABLE_FOR_SHIPMENT",
+      "name": "É adequado para envío",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_DATA_SOURCE",
+      "name": "Fonte do produto",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Indique o país de origem do produto.",
+      "example": "Brasil",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+      "name": "Razões de visibilidade limitada no Marketplace",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "24219544",
+          "name": "Pharma"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "HAS_COMPATIBILITIES",
+      "name": "Tem compatibilidades",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "CATALOG_TITLE",
+      "name": "Título de catálogo",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SEARCH_ENHANCEMENT_FIELDS",
+      "name": "Campos de aprimoramento de pesquisa",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_FEATURES",
+      "name": "Características do produto",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435885",
+          "name": "Contém líquido"
+        },
+        {
+          "id": "7435883",
+          "name": "Frágil"
+        },
+        {
+          "id": "7435888",
+          "name": "Com validade"
+        },
+        {
+          "id": "8847339",
+          "name": "Sem validade"
+        },
+        {
+          "id": "7575917",
+          "name": "Desinfetante e saneante"
+        },
+        {
+          "id": "7575924",
+          "name": "MAPA"
+        },
+        {
+          "id": "7575923",
+          "name": "Saúde e correlatos"
+        },
+        {
+          "id": "8721108",
+          "name": "Volumoso"
+        },
+        {
+          "id": "10490116",
+          "name": "Não voável"
+        },
+        {
+          "id": "12928414",
+          "name": "Não rotacionável"
+        },
+        {
+          "id": "41722098",
+          "name": "Dobrável"
+        },
+        {
+          "id": "52092586",
+          "name": "Magnético"
+        },
+        {
+          "id": "52233302",
+          "name": "Pode rolar"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_NEW_OFFER",
+      "name": "É nova oferta",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SYI_PYMES_ID",
+      "name": "syi pymes id",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    }
+  ],
+  "sent": [
+    {
+      "id": "BRAND",
+      "value_id": "455",
+      "value_name": "Arno"
+    },
+    {
+      "id": "MODEL",
+      "value_id": "40657",
+      "value_name": "CP32"
+    },
+    {
+      "id": "COLOR",
+      "value_id": "51993",
+      "value_name": "Vermelho"
+    },
+    {
+      "id": "VOLTAGE",
+      "value_id": "198813",
+      "value_name": "220V"
+    },
+    {
+      "id": "FREQUENCY",
+      "value_id": "15151687",
+      "value_name": "220V"
+    },
+    {
+      "id": "POWER",
+      "value_id": "7726407",
+      "value_name": "40 W"
+    },
+    {
+      "id": "DETAILED_MODEL",
+      "value_id": "22113585",
+      "value_name": "cp32"
+    },
+    {
+      "id": "MAIN_COLOR",
+      "value_id": "2450307",
+      "value_name": "Vermelho"
+    },
+    {
+      "id": "IS_INDUSTRIAL",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "GTIN",
+      "value_id": "18081906",
+      "value_name": "3016661158094"
+    },
+    {
+      "id": "HEIGHT",
+      "value_id": "10936975",
+      "value_name": "22.4 cm"
+    },
+    {
+      "id": "WIDTH",
+      "value_id": "8775263",
+      "value_name": "18.5 cm"
+    },
+    {
+      "id": "WEIGHT",
+      "value_id": "12873928",
+      "value_name": "750 g"
+    },
+    {
+      "id": "WITH_AUTO_REVERSING",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_EASY_ON_OFF_FUNCTION",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_BUILT_IN_JAR",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "BUILT_IN_JAR_MATERIALS",
+      "value_id": "99392",
+      "value_name": "Plástico"
+    },
+    {
+      "id": "ACCESSORIES_INCLUDED",
+      "value_id": "6621919",
+      "value_name": "Jarra"
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "value_id": "2230284",
+      "value_name": "Novo"
+    },
+    {
+      "id": "SELLER_SKU",
+      "value_name": "VTK006444"
+    }
+  ],
+  "required": [
+    "BRAND",
+    "MODEL",
+    "POWER_SUPPLY_TYPE"
+  ],
+  "missing": [
+    "POWER_SUPPLY_TYPE"
+  ],
+  "parent_pk": [],
+  "child_pk": [
+    "POWER",
+    "DETAILED_MODEL",
+    "MAIN_COLOR",
+    "PACKAGE_HEIGHT",
+    "PACKAGE_WIDTH",
+    "PACKAGE_LENGTH",
+    "PACKAGE_WEIGHT",
+    "GTIN",
+    "EMPTY_GTIN_REASON",
+    "AGID",
+    "MPN",
+    "SELLER_SKU"
+  ]
+}

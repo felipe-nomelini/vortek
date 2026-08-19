@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-08-17T14:15:41.735Z",
+  "product": {
+    "id": "4cf8a83f-dee6-4c77-b966-65378d316271",
+    "sku": "VTK000831",
+    "nome": "Kit Prateleiras Decore Multivisão Branco",
+    "marca": "MULTIVISÃO",
+    "estoque": 4,
+    "custo": 114.98,
+    "ml_fee": 0.135,
+    "ml_shipping": 49.35,
+    "custom_price": 223.43,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 3.2,
+    "peso_bruto": 3.2,
+    "largura": 40,
+    "altura": 3,
+    "profundidade": 50,
+    "gtin": "7896643439405",
+    "descricao": "O Kit Prateleiras Decore é a solução perfeita para organizar e decorar diversos ambientes. Fabricada em MDP com acabamento em pintura UV, oferece durabilidade e um visual moderno. Um dos detalhes desse modelo é a fita de bordo, que garante um acabamento impecável, tornando-a ideal para uso na cozinha, escritório ou qualquer outro espaço que necessite de praticidade e estilo.",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/85606/550/1.jpg",
+      "https://static.hayapek.com.br/produtos/85606/550/2.jpg",
+      "https://static.hayapek.com.br/produtos/85606/550/3.jpg"
+    ],
+    "categoria": "Informatica / Moveis / Mesas",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:15:29.160185+00:00",
+    "updated_at": "2026-08-17T14:03:24.15749+00:00",
+    "dslite_fornecedor_id": "2",
+    "dslite_produto_id": "85606",
+    "dslite_ultima_sync": "2026-08-17T14:03:23.868+00:00",
+    "fornecedor": "HAYAMAX-PR",
+    "ncm": "9403.60.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "08c01179-9fda-41b0-a34a-310b9d98ff4d",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "computing",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

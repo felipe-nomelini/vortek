@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 5,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 5,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

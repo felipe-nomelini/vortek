@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075703121",
+      "local": "MLB5075703121",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK013007",
+      "local": "VTK013007",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "0e7734e4-586c-4ab5-b65f-a79e96d3f604",
+      "local": "0e7734e4-586c-4ab5-b65f-a79e96d3f604",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Conector Trs P10 Wireconex Wc 244 Kit 10 Unidades Audio Instrumentos Prateado",
+      "local": "Conector Trs P10 Wireconex Wc 244 Kit 10 Unidades Audio Instrumentos Prateado",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 249.9,
+      "local": 249.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075703121-conector-trs-p10-wireconex-wc-244-kit-10-unidades-audio-instrumentos-prateado-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075703121-conector-trs-p10-wireconex-wc-244-kit-10-unidades-audio-instrumentos-prateado-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

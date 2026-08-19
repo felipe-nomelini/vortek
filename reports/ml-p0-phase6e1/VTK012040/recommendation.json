@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+    "supplier_category": null,
+    "supplier_brand": "Wireconex",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2342MF",
+    "captured_at": "2026-08-17T12:56:26.664Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "sku": "VTK026019",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": "catalog MODEL SMD08 diverges from local/supplier SDM-08",
+  "local_value": "7898572866055",
+  "found_value": "SMD08",
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML catalog MLB23922741",
+  "timestamp": "2026-08-17T01:16:07.530Z"
+}

@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-08-17T14:15:49.123Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Caixa Retorno Attack Vsm112 - Monitor Palco Passivo 12 Polegadas 300 W Rms",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > áudio > Caixas Acústicas",
+    "supplier_brand": "Attack",
+    "supplier_gtin": "7898640362021",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1656",
+    "captured_at": "2026-08-17T12:55:06.165Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "0b9c1fba-d301-4a3c-beae-384c1498915a",
+    "produto_id": "51ba6fa6-aba2-4f80-8458-858a68ff5311",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1656",
+    "sku_fornecedor": "1656",
+    "custo": 1850.82,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:07:28.852+00:00",
+    "created_at": "2026-07-06T22:31:08.33707+00:00",
+    "updated_at": "2026-08-17T10:07:28.859+00:00",
+    "sku_oferta": "1656",
+    "nome": "Caixa Retorno Attack Vsm112 - Monitor Palco Passivo 12 Polegadas 300 W Rms",
+    "descricao": "Caixa Retorno Attack VSM112 - Monitor Palco Passivo 12 polegadas 300 W RMS Descrição: Monitor de palco passivo de duas vias composto por um alto-falante coaxial de 12” equipado com corneta de 50° (H) x 60° (V) de cobertura. Projetado para ser utilizado em conjunto com VSM112A ou com outro sistema amplificado. Possui uma chave seletora que permite a utilização tanto no modo BI-AMP (para sistemas bi-amplificados ou VSM112A) ou no modo FULL, onde o sinal de alta frequência passa por um filtro passa-altas com sistema de proteção contra baixas frequências e sobrecarga. Características: -Transdutores - LOW - 1 x 12\" - Coaxial / HIGH - 1 x Driver de Compressão 1\"; -Resposta em Frequência - 70 Hz - 20 kHz -6dB; -Cobertura - Horizontal - 50º / Vertical - 60º; -Conectores de Áudio - 2 x Speakon®; -Potência máxima admissível - Alto-falante: 300W AES @ 8 Ohm / Driver: 50W AES @ 8 Ohm; -Sensibilidade - Modo Full - 95 dB / 1 W @ 1m / Modo BI-AMP - LOW - 95 dB / 1 W @ 1m / Modo BI-AMP - HIGH - 104 dB / 1 W @ 1m; -Corte Recomendado - LOW - HPF 65 Hz / Filtro 12 dB / OCT ou Superior / HIGH - HPF 2 kHz / Filtro 12 dB / OCT ou Superior; -Dimensões : 320 mm x 480 mm x 460 mm (AxLxP); -Peso: 15,5 kg.",
+    "marca": "Attack",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6930842c25fe201738a90680f6b4b50.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/534529b52922eea57ac7654e54a4cd13.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d0fc017cfd6c2acc98340729b0f78040.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6b643f2cf13a7d16ba9926ac1319a21c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/49ddad29175561ba892c5450fcacfd7d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/33af02fe13ed96ef360d5c762ebb09cc.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f3e79371c7f77a82edeb61b20b63cce3.jpg"
+    ],
+    "gtin": "7898640362021",
+    "ncm": "8518.22.00",
+    "cest": null
+  }
+}

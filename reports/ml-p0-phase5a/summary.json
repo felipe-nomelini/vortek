@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-08-16T21:43:03.231Z",
+  "phase": "5A",
+  "mode": "AUDIT_ONLY",
+  "seller_id": 3294514937,
+  "seller_user_product_enabled": true,
+  "remote_inventory": {
+    "expected_total": 5799,
+    "captured": 5799,
+    "detailed": 5799,
+    "pages": 115,
+    "reliable": true,
+    "statuses": {
+      "closed": 258,
+      "inactive": 4,
+      "active": 4910,
+      "paused": 468,
+      "under_review": 159
+    }
+  },
+  "results": [
+    {
+      "sku": "VTK026044",
+      "category_id": "MLB1714",
+      "category": "Mouses",
+      "state": "MANUAL_GTIN",
+      "identity": 55,
+      "documentation": 65,
+      "readiness": 30,
+      "duplicate_risk": 0,
+      "financial": 100,
+      "price": 93.83,
+      "margin_percent": 21.31514441010338,
+      "remote_matches": 0,
+      "blocking_reason": [
+        "gtin_conflict",
+        "identity_not_confirmed",
+        "image_not_approved"
+      ]
+    },
+    {
+      "sku": "VTK000392",
+      "category_id": "MLB1645",
+      "category": "Ventiladores",
+      "state": "MULTI_CANARY_READY",
+      "identity": 100,
+      "documentation": 100,
+      "readiness": 100,
+      "duplicate_risk": 0,
+      "financial": 100,
+      "price": 269.23,
+      "margin_percent": 15.002042862979609,
+      "remote_matches": 0,
+      "blocking_reason": null
+    },
+    {
+      "sku": "VTK001507",
+      "category_id": "MLB432320",
+      "category": "Clássicas",
+      "state": "MANUAL_IDENTITY",
+      "identity": 82,
+      "documentation": 85,
+      "readiness": 55,
+      "duplicate_risk": 0,
+      "financial": 100,
+      "price": 1352.89,
+      "margin_percent": 20.000147831678845,
+      "remote_matches": 0,
+      "blocking_reason": [
+        "identity_not_confirmed",
+        "image_not_approved"
+      ]
+    }
+  ],
+  "ready_count": 1,
+  "future_priority": [
+    {
+      "rank": 1,
+      "sku": "VTK000392",
+      "state": "MULTI_CANARY_READY"
+    }
+  ],
+  "metrics": {
+    "supabase_reads": 59,
+    "dslite_reads": 3,
+    "ml_gets": 459,
+    "ml_diagnostic_posts": 3,
+    "ml_commercial_writes": 0,
+    "local_commercial_writes": 0,
+    "image_requests": 10
+  },
+  "invariants": {
+    "mercado_livre_commercial_writes": 0,
+    "local_commercial_writes": 0,
+    "diagnostic_posts_non_mutating": 3,
+    "sku_count": 3,
+    "passed": true
+  },
+  "hold": "P0 PHASE 5A — MULTI-CANARY PREPUBLISH HOLD"
+}

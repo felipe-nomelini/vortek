@@ -1,0 +1,499 @@
+{
+  "checked_at": "2026-08-17T12:54:13.970Z",
+  "product": {
+    "id": "a6ddb6c2-67fc-4358-9cb9-61976352eff0",
+    "sku": "VTK018749",
+    "nome": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+    "marca": "SHOCKLIGHT",
+    "gtin": "6949999896024"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317622",
+    "consulted_at": "2026-08-17T12:54:13.766Z",
+    "product": {
+      "produtoid": "317622",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 128.25,
+      "preco_crossdocking": 128.25,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 128.25,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+      "titulo_curto": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+      "categoriaid": "117726",
+      "categoria_nome": "Automotivo/ Acessórios Automotivos/ Lampada Normal Automotiva",
+      "abc": null,
+      "ean11": "6949999896024",
+      "ncm": "85122019",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<img src=\" com br/img/Shocklight/ultra-led-folder-1.jpg\" width=\"auto\" alt=\"\"/><br><br />\r\n  <img src=\" com br/img/Shocklight/ultra-led-folder-2.jpg\" width=\"auto\" alt=\"\"/><br><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\nCódigo Shocklight<br><br />\r\nSLL-60003<br><br />\r\n<br><br />\r\nVoltagem<br><br />\r\nDC9-32V<br><br />\r\n<br><br />\r\nPotência<br><br />\r\n50W<br><br />\r\n<br><br />\r\nLumens<br><br />\r\n4000lm<br><br />\r\n<br><br />\r\nIP Rate<br><br />\r\nIP65<br><br />\r\n<br><br />\r\nLED Chip<br><br />\r\nde última Geração Coreano<br><br />\r\n<br><br />\r\nTemperatura de Cor<br><br />\r\n6000K<br><br />\r\n<br><br />\r\nDissipador<br><br />\r\nAlumínio de Aviação 6063<br><br />\r\n<br><br />\r\nVida útil<br><br />\r\n20x lâmpada halógena<br><br />\r\n<br><br />\r\nTemperatura de Operação<br><br />\r\n-40ºC ~ +80ºC<br><br />\r\n<br><br />\r\nAcabamento<br><br />\r\nGalvanizado e Cromado<br><br />\r\n<br><br />\r\nCorpo<br><br />\r\nde Liga de Alumínio<br><br />\r\n<br><br />\r\nDriver<br><br />\r\nIncorporado<br><br />\r\n<br><br />\r\nResistente<br><br />\r\na Vibrações<br><br />\r\n<br><br />\r\nÀ Prova d&rsquo;Água<br><br />\r\n<br><br />\r\n<br><br />\r\nNão Necessita de Cooler<br>",
+      "caracteristicas": "Ultraled Headlight Shocklight H3 (Par) 12V 50W 6000K 4000Lm",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "SHOCKLIGHT",
+      "modelo": "",
+      "peso": 0.228,
+      "largura": 15,
+      "altura": 5.5,
+      "profundidade": 17,
+      "peso_embalagem": 0.228,
+      "largura_embalagem": 15,
+      "altura_embalagem": 5.5,
+      "profundidade_embalagem": 17,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/1/317622_67d2caecc3cea.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1352,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.055.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-02-12 15:05:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-17 09:28:41.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 5,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/1/317622_67d2caecc3cea.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/1/317622_67d2caecc4362.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/1/317622_67d2caecc4f6b.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_BRAND_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: BRAND,MODEL",
+    "foundValue": "MLB46847584",
+    "source": "ML catalog MLB46847584 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "BRAND",
+        "MODEL"
+      ],
+      "catalog_brand": "Century",
+      "model": "MIDIABOX ANDROID",
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [
+        220
+      ],
+      "local_colors": [],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB46847584",
+      "catalog_product_id": "MLB46847584",
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+      "name": "Receptor Digital Century Midiabox B7 Android TV Stick 5G HDTV",
+      "parent_id": "MLB46847580",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "350226",
+          "value_name": "Century",
+          "values": [
+            {
+              "id": "350226",
+              "name": "Century"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "48332129",
+          "value_name": "MIDIABOX ANDROID",
+          "values": [
+            {
+              "id": "48332129",
+              "name": "MIDIABOX ANDROID"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205163",
+          "value_name": "127/220V",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ]
+        },
+        {
+          "id": "PORTS_NUMBER",
+          "name": "Quantidade de portas",
+          "value_id": "1000079",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "1000079",
+              "name": "2"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "name": "Tipos de alimentação",
+          "value_id": "8152567",
+          "value_name": "Corrente elétrica",
+          "values": [
+            {
+              "id": "8152567",
+              "name": "Corrente elétrica"
+            }
+          ]
+        },
+        {
+          "id": "BATTERY_VOLTAGE",
+          "name": "Voltagem da bateria",
+          "value_id": "39205163",
+          "value_name": "127/220V",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_INPUT_FORMATS",
+          "name": "Formatos de entrada compatíveis",
+          "value_id": "34499653",
+          "value_name": "TV",
+          "values": [
+            {
+              "id": "34499653",
+              "name": "TV"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "name": "Conectores de entrada",
+          "value_name": "HDMI, RCA",
+          "values": [
+            {
+              "id": "6739227",
+              "name": "HDMI"
+            },
+            {
+              "id": "6778116",
+              "name": "RCA"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "name": "Conectores de saída",
+          "value_name": "HDMI, RCA",
+          "values": [
+            {
+              "id": "6739227",
+              "name": "HDMI"
+            },
+            {
+              "id": "6778116",
+              "name": "RCA"
+            }
+          ]
+        },
+        {
+          "id": "MAX_OUTPUT_RESOLUTION",
+          "name": "Resolução máxima de saída",
+          "value_id": "2650468",
+          "value_name": "1080p",
+          "values": [
+            {
+              "id": "2650468",
+              "name": "1080p"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7566493",
+          "value_name": "8 cm",
+          "values": [
+            {
+              "id": "7566493",
+              "name": "8 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "5662660",
+          "value_name": "20 cm",
+          "values": [
+            {
+              "id": "5662660",
+              "name": "20 cm"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "8167804",
+          "value_name": "10 cm",
+          "values": [
+            {
+              "id": "8167804",
+              "name": "10 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "13223770",
+          "value_name": "300 g",
+          "values": [
+            {
+              "id": "13223770",
+              "name": "300 g"
+            }
+          ]
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "40365759",
+          "value_name": "207482215339",
+          "values": [
+            {
+              "id": "40365759",
+              "name": "207482215339"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "48332131",
+          "value_name": "6949999896024",
+          "values": [
+            {
+              "id": "48332131",
+              "name": "6949999896024"
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "350226",
+          "value_name": "Century",
+          "values": [
+            {
+              "id": "350226",
+              "name": "Century"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "48332130",
+          "value_name": "MIDIABOX ANDROID",
+          "values": [
+            {
+              "id": "48332130",
+              "name": "MIDIABOX ANDROID"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_name": "Cabo de alimentação, Manual de instruções",
+          "values": [
+            {
+              "id": "7609642",
+              "name": "Cabo de alimentação"
+            },
+            {
+              "id": "9787928",
+              "name": "Manual de instruções"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "================ STICK ANDROID CENTURY ================\n\n\nSemelhante a um compacto MP3 player, mas recarregado com funcionalidades multimídia. O TV stick Century AndroidTV conecta-se a vários dispositivos para desfrutar dos aplicativos disponíveis. Música? Vídeos? Tudo isso e muito mais para passar horas de diversão na frente da tela.\n\nQualidade da imagem\ndisponível em definição de 1080p, com imagens coloridas mais vibrantes e atraentes em comparação com seu antecessor HD.\n\nDiversão assegurada\nCom este mesmo dispositivo você poderá acessar diferentes plataformas musicais e ouvir os últimos lançamentos dos seus artistas favoritos.\n\n================ MIDIABOX B7 ================\n\nCONHEÇA MAIS SOBRE O RECEPTOR DIGITAL CENTURY MIDIABOX B7 SAT HD REGIONAL HDTV!\n\nObs: Exclusivo para Banda KU\n\nSão mais de 60 canais abertos, qualidade de imagem em alta definição, tudo isso sem pagar mensalidade!!!\n\n- Um Receptor Digital que traz um novo design, novo controle e novo menu;\n- Com Compatibilidade aumentada comparado a versão anterior, ele é compatível com o SAT HD Regional;\n- Sintoniza canais HD em alta definição!\n- Possui funções de gravação, vídeo, fotos, músicas e muito mais!\n\nInformações sobre o produto:\n- Marca: Century\n- Cor: Preto\n\nCARACTERÍSTICAS:\n\n- É compatível com o SAT HD Regional;\n- Traz a tecnologia H.265 e DVBS2X;\n- Função Instala Fácil;\n- Bipe de apontamento;\n- Guia de programação de canais;\n- Tem função multimídia via USB;\n- Sintoniza canais abertos de rádio;\n- Tem função sleep e timeshift;\n- Permite o agendamento e a gravação de programas;\n- Atualização automática via satélite;\n- Controle remoto com design moderno e ergonômico;\n- Acompanha 1 cabo HDMI e 1 cabo AV;\n- Fonte externa bivolt 100~240VAC/12V/1.5A;\n- Receptor Certificado pela ANATEL 20748-22-15339;\n- Acompanha 2 pilhas AAA.\n\nESPECIFICAÇÕES TÉCNICAS:\n\n- Frequência de entrada: LNBF: 950 ~ 2150 MHz.\n- Conectores de RF: F - fêmea\n- Tipo de LNBF: Banda Ku\n- Compatibilidade: MPEG-2/MPEG-4 Digital & DVB-S/DVB-S2X. H.265. SAT HD Regional.\n- Resolução de Imagem: 720x576p 720x480N 1920x1080i\n- Relação de aspecto: 4:3 16:9\n- Saída de áudio e vídeo: P2 Digital HDMI\n- Tensão: 100 VAC - 240 VAC\n- Consumo: 14,3W\n- Acesso Condicional: Nagravision\n- Cabo HDMI: Versão 1.4\n\nCONTÉUDO DA EMBALAGEM:\n- 01 Receptor Digital Midiabox b7;\n- 01 Stick Android Century\n- 01 Controle Remoto;\n- 01 Cabo HDMI;\n- 01 Cabo AV;\n- Pilhas;\n- Manual do usuário."
+      },
+      "pictures": [
+        {
+          "id": "703789-MLA100005606815_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_703789-MLA100005606815_122025-F.jpg",
+          "max_width": "1134",
+          "max_height": "1200"
+        },
+        {
+          "id": "973781-MLA82923194227_032025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA82923194227_032025-F.jpg",
+          "max_width": "660",
+          "max_height": "1200"
+        },
+        {
+          "id": "694679-MLA91564938622_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_694679-MLA91564938622_092025-F.jpg",
+          "max_width": "1027",
+          "max_height": "1200"
+        },
+        {
+          "id": "865125-MLA82923194233_032025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_865125-MLA82923194233_032025-F.jpg",
+          "max_width": "412",
+          "max_height": "902"
+        },
+        {
+          "id": "655742-MLA91565337054_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_655742-MLA91565337054_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "924"
+        },
+        {
+          "id": "760826-MLA91564978534_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_760826-MLA91564978534_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "868"
+        },
+        {
+          "id": "640837-MLA91565356920_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_640837-MLA91565356920_092025-F.jpg",
+          "max_width": "956",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-03-06T20:27:05Z",
+      "last_updated": "2025-11-19T20:26:30Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

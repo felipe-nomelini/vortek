@@ -1,0 +1,19 @@
+{
+  "dimensions": "101x44x8,4300",
+  "source": "DSLITE_SUPPLIER_PACKAGE",
+  "target_buffer_percent": 55.00000000000001,
+  "quote": {
+    "coverage": {
+      "all_country": {
+        "list_cost": 39.75,
+        "currency_id": "BRL",
+        "billable_weight": 5926,
+        "discount": {
+          "rate": 0.5,
+          "type": "mandatory",
+          "promoted_amount": 79.5
+        }
+      }
+    }
+  }
+}

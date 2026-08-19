@@ -1,0 +1,822 @@
+{
+  "checked_at": "2026-08-16T23:44:46.495Z",
+  "item": {
+    "id": "MLB5075665407",
+    "site_id": "MLB",
+    "title": "Fone De Ouvido Headset Com Microfone Usb Redução De Ruído C3tech Ph-380bk Preto",
+    "family_name": "Coletek C3Tech PH-380BK PH-380",
+    "family_id": 1580890053842962,
+    "seller_id": 3294514937,
+    "category_id": "MLB196208",
+    "user_product_id": "MLBU4743164619",
+    "official_store_id": null,
+    "price": 289.9,
+    "base_price": 289.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 50,
+    "available_quantity": 50,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-16T23:44:45.377Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-04T23:44:45.472Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-5075665407-fone-de-ouvido-headset-com-microfone-usb-reduco-de-ruido-c3tech-ph-380bk-preto-_JM",
+    "thumbnail_id": "840430-MLA99505523402_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_840430-MLA99505523402_112025-I.webp",
+    "pictures": [
+      {
+        "id": "840430-MLA99505523402_112025",
+        "url": "http://http2.mlstatic.com/D_840430-MLA99505523402_112025-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_840430-MLA99505523402_112025-O.webp",
+        "size": "493x500",
+        "max_size": "1184x1200",
+        "quality": ""
+      },
+      {
+        "id": "951457-MLA91972303385_092025",
+        "url": "http://http2.mlstatic.com/D_951457-MLA91972303385_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_951457-MLA91972303385_092025-O.jpg",
+        "size": "385x500",
+        "max_size": "925x1200",
+        "quality": ""
+      },
+      {
+        "id": "816189-MLA91573279660_092025",
+        "url": "http://http2.mlstatic.com/D_816189-MLA91573279660_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_816189-MLA91573279660_092025-O.jpg",
+        "size": "409x500",
+        "max_size": "982x1200",
+        "quality": ""
+      },
+      {
+        "id": "851156-MLA91972588593_092025",
+        "url": "http://http2.mlstatic.com/D_851156-MLA91972588593_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_851156-MLA91972588593_092025-O.jpg",
+        "size": "81x500",
+        "max_size": "195x1200",
+        "quality": ""
+      },
+      {
+        "id": "887001-MLA91972460989_092025",
+        "url": "http://http2.mlstatic.com/D_887001-MLA91972460989_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_887001-MLA91972460989_092025-O.jpg",
+        "size": "414x500",
+        "max_size": "995x1200",
+        "quality": ""
+      },
+      {
+        "id": "909056-MLA91573279680_092025",
+        "url": "http://http2.mlstatic.com/D_909056-MLA91573279680_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_909056-MLA91573279680_092025-O.jpg",
+        "size": "445x500",
+        "max_size": "1070x1200",
+        "quality": ""
+      },
+      {
+        "id": "971346-MLA91972431135_092025",
+        "url": "http://http2.mlstatic.com/D_971346-MLA91972431135_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_971346-MLA91972431135_092025-O.jpg",
+        "size": "323x500",
+        "max_size": "777x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": "59664129",
+        "value_name": "Headset C3Tech PH-380BK",
+        "values": [
+          {
+            "id": "59664129",
+            "name": "Headset C3Tech PH-380BK",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "59664130",
+        "value_name": "PH-380",
+        "values": [
+          {
+            "id": "59664130",
+            "name": "PH-380",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "8774306",
+        "value_name": "C3Tech",
+        "values": [
+          {
+            "id": "8774306",
+            "name": "C3Tech",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "name": "Comprimento do cabo",
+        "value_id": "129119",
+        "value_name": "1.8 m",
+        "values": [
+          {
+            "id": "129119",
+            "name": "1.8 m",
+            "struct": {
+              "number": 1.8,
+              "unit": "m"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "CHANNEL_SETUP",
+        "name": "Configuração de canais",
+        "value_id": "59664131",
+        "value_name": "Surround",
+        "values": [
+          {
+            "id": "59664131",
+            "name": "Surround",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONNECTOR_TYPES",
+        "name": "Tipos de conectores",
+        "value_id": "82230",
+        "value_name": "USB",
+        "values": [
+          {
+            "id": "82230",
+            "name": "USB",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONTROL_FUNCTIONS",
+        "name": "Funções do controle ",
+        "value_id": null,
+        "value_name": "Controle de volume,Silenciar,Controle de chamadas",
+        "values": [
+          {
+            "id": "11559796",
+            "name": "Controle de volume",
+            "struct": null
+          },
+          {
+            "id": "11655376",
+            "name": "Silenciar",
+            "struct": null
+          },
+          {
+            "id": "11588393",
+            "name": "Controle de chamadas",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "59664133",
+        "value_name": "PH-380BK",
+        "values": [
+          {
+            "id": "59664133",
+            "name": "PH-380BK",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DIAPHRAGM_UNIT",
+        "name": "Unidade de diafragma",
+        "value_id": "10814759",
+        "value_name": "4 cm",
+        "values": [
+          {
+            "id": "10814759",
+            "name": "4 cm",
+            "struct": {
+              "number": 4,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "FREQUENCY_RESPONSE",
+        "name": "Resposta em frequência",
+        "value_id": "925820",
+        "value_name": "20 Hz - 20 kHz",
+        "values": [
+          {
+            "id": "925820",
+            "name": "20 Hz - 20 kHz",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "59664134",
+        "value_name": "7908639903217",
+        "values": [
+          {
+            "id": "59664134",
+            "name": "7908639903217",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEADPHONE_FORMAT",
+        "name": "Formato do fone de ouvido",
+        "value_id": "182354",
+        "value_name": "Over-ear",
+        "values": [
+          {
+            "id": "182354",
+            "name": "Over-ear",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INCLUDES_CHARGING_CASE",
+        "name": "Inclui estojo de carregamento",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_DUST_RESISTANT",
+        "name": "É resistente ao pó",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_INFANT",
+        "name": "É infantil",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_MONAURAL",
+        "name": "É monaural",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WATERPROOF",
+        "name": "É à prova d'água",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "name": "É resistente à água",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "47439",
+        "value_name": "Coletek",
+        "values": [
+          {
+            "id": "47439",
+            "name": "Coletek",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "name": "Quantidade de microfones",
+        "value_id": "934836",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "934836",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "MICROPHONE_ORIENTATIONS",
+        "name": "Orientações do microfone",
+        "value_id": "8847355",
+        "value_name": "Esquerda",
+        "values": [
+          {
+            "id": "8847355",
+            "name": "Esquerda",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "59664132",
+        "value_name": "PH-380BK",
+        "values": [
+          {
+            "id": "59664132",
+            "name": "PH-380BK",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PAIRS_NUMBER",
+        "name": "Quantidade de pares",
+        "value_id": "7386989",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "7386989",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK026045",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026045",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SENSITIVITY",
+        "name": "Sensibilidade",
+        "value_id": "7933719",
+        "value_name": "113 dB",
+        "values": [
+          {
+            "id": "7933719",
+            "name": "113 dB",
+            "struct": {
+              "number": 113,
+              "unit": "dB"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SUITABLE_USES",
+        "name": "Usos adequados",
+        "value_id": null,
+        "value_name": "Profissional,Esporte,Entretenimento",
+        "values": [
+          {
+            "id": "8701147",
+            "name": "Profissional",
+            "struct": null
+          },
+          {
+            "id": "8701148",
+            "name": "Esporte",
+            "struct": null
+          },
+          {
+            "id": "19992751",
+            "name": "Entretenimento",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_DETACHABLE_CABLE",
+        "name": "Com cabo desmontável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_DETACHABLE_MICROPHONE",
+        "name": "Com microfone desmontável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FLEXIBLE_MICROPHONE",
+        "name": "Com microfone flexível",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FM_RADIO",
+        "name": "Com rádio FM",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "name": "Com modo mãos livres",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_INTEGRATED_VOICE_ASSISTANTS",
+        "name": "Com assistentes de voz integrados",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_LED_LIGHT",
+        "name": "Com luz LED",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_MICROPHONE",
+        "name": "Com microfone",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_MP3_PLAYER",
+        "name": "Com leitor de MP3",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_NOISE_CANCELLING",
+        "name": "Com cancelamento de ruído",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_TWS_TECHNOLOGY",
+        "name": "Com tecnologia TWS",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_WIRELESS_CHARGING",
+        "name": "Com carregamento sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB54158165",
+    "domain_id": "MLB-HEADPHONES",
+    "seller_custom_field": "VTK026045",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-16T23:44:45.584Z",
+    "last_updated": "2026-08-16T23:44:45.584Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "catalog": true,
+      "catalog_listing": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

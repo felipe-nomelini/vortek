@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018587",
+  "gate": "BLOCK_GTIN_MODEL_CONFLICT",
+  "evidence": "exact GTIN catalog model is 7500mAh, not local Thork 6310",
+  "local_value": "4895239063102",
+  "found_value": "7500mAh",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB53434515",
+  "timestamp": "2026-08-17T01:18:08.037Z"
+}

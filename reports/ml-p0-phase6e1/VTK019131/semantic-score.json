@@ -1,0 +1,35 @@
+{
+  "score": 41,
+  "parts": {
+    "product_identity": 25,
+    "function_match": 8,
+    "intended_use": 5,
+    "category_path_coherence": 0,
+    "catalog_coherence": 3
+  },
+  "identity_confidence": 100,
+  "classification": "SEMANTIC_MISMATCH",
+  "hard_mismatch": true,
+  "hard_conflicts": [
+    "INCOMPATIBLE_CONTEXT:equitacao|cavalo|lacos",
+    "PRODUCT_FUNCTION_MISMATCH:detect_metal_vehicle_presence"
+  ],
+  "function_match": false,
+  "intended_use_match": false,
+  "path_coherent": false,
+  "expected_hits": [],
+  "functional_hits": [],
+  "incompatible_hits": [
+    "equitacao",
+    "cavalo",
+    "lacos"
+  ],
+  "catalog_category_correlated_error": false,
+  "independent_source_present": true,
+  "attribute_signals": {
+    "checked": true,
+    "attribute_count": 52,
+    "conflicts": [],
+    "classification": "NO_HARD_ATTRIBUTE_MISMATCH"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "captured_at": "2026-08-16T21:00:57.806Z",
+  "product": {
+    "id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+    "sku": "VTK000486",
+    "nome": "Carregador de Pilhas TNHC-6GAE4 CB (C/4 Pilhas AA 2600mAh) Toshiba",
+    "gtin": "4904530109270",
+    "ml_item_id": null,
+    "ml_status": "sem_anuncio",
+    "altura": 17,
+    "largura": 13,
+    "profundidade": 12,
+    "peso_bruto": 0.262,
+    "estoque": 15,
+    "custo": 96.22,
+    "fornecedor": "HAYAMAX-PR",
+    "updated_at": "2026-08-16T17:13:19.009737+00:00"
+  }
+}

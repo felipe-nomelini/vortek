@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_BRAND_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Apoio de Braço Direito Core Loft Black ThunderX3",
+    "supplier_category": "Peças De Reposição Para Informática / Peças De Reposição Para Cadeiras / Apoios De Braço",
+    "supplier_brand": "THUNDERX3",
+    "supplier_gtin": "7890000797696",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/79769",
+    "captured_at": "2026-08-17T12:54:23.052Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

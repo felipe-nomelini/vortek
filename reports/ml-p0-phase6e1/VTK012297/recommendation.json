@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Kit 04 Conectores Xlr Macho P/ Pci 3 Polos Wc 4050 Wireconex",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "supplier_brand": "Wireconex",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3282",
+    "captured_at": "2026-08-17T12:56:44.265Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

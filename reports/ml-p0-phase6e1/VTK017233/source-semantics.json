@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.489Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Suporte Antena 10-a Telha Brasilit 32mm Tubo 3/ 4 Prata Cromo",
+    "supplier_category": "Eletronica/ Antenas/ Antenas Para Tv",
+    "supplier_brand": "DIMATIX",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/348706",
+    "captured_at": "2026-08-17T12:56:29.106Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "e6b97ed8-9f5f-449e-bde5-275e2273c39b",
+    "produto_id": "ee50626d-b3d0-434a-bb1e-d562643d1448",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "348706",
+    "sku_fornecedor": "348706",
+    "custo": 22.9,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:24:30.545+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:24:30.554+00:00",
+    "sku_oferta": "348706",
+    "nome": "Suporte Antena 10-a Telha Brasilit 32mm Tubo 3/ 4 Prata Cromo",
+    "descricao": "Informações do Produto Suporte Para Antena 10-A Para Telha Brasilit 32 MM Para Tubo 3/4\"",
+    "marca": "DIMATIX",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/4/348706_67d2caf636901.jpg"
+    ],
+    "gtin": "",
+    "ncm": "73063090",
+    "cest": null
+  }
+}

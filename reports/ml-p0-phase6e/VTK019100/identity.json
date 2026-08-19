@@ -1,0 +1,325 @@
+{
+  "checked_at": "2026-08-17T12:55:33.364Z",
+  "product": {
+    "id": "2dc9047a-b734-40dd-a3e9-2b46a8c03b3e",
+    "sku": "VTK019100",
+    "nome": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+    "marca": "HIKVISION",
+    "gtin": "7898957865710"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/329702",
+    "consulted_at": "2026-08-17T12:55:33.144Z",
+    "product": {
+      "produtoid": "329702",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 229.5,
+      "preco_crossdocking": 229.5,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 229.5,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+      "titulo_curto": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+      "categoriaid": "117802",
+      "categoria_nome": "Segurança / Cameras/ Camera Colorida",
+      "abc": null,
+      "ean11": "7898957865710",
+      "ncm": "85258300",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n&bull; Câmera 960p - 1.3Mp<br><br />\r\n&bull; IR 40m<br><br />\r\n&bull; Externo<br><br />\r\n&bull; ICR<br><br />\r\n&bull; 0.01 Lux/F1.2<br><br />\r\n&bull; 12 VDC<br><br />\r\n&bull; DNR<br><br />\r\n&bull; IR inteligente<br><br />\r\n&bull; IP66<br><br />\r\n&bull; True Day/Night<br><br />\r\n&bull; Lente varifocal manual<br />\r\nde 2.8 ~ 12mm <br><br />\r\n<br><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\n<p><b>Câmera</b><br><br />\r\n  Sensor de imagem: 1.3MP CMOS Image Sensor<br><br />\r\n  Sistema de sinal: PAL/NTSC<br><br />\r\n  Pixels Efetivos: 1280(H)x960(V)<br><br />\r\n  Min. Illumination: 0.01 Lux @(F1.2,AGC ON), 0 Lux with IR<br><br />\r\n  Tempo do obturador: 1/25(1/30) s to 1/50,000 s<br><br />\r\n  Lente: 2.8-12mm @ F1.4<br><br />\r\n  Angle of view: 97° - 30.4°<br><br />\r\n  Montagem de lente: &#966;14<br><br />\r\n  Faixa de ajuste: Pan: 0 - 360°, Tilt: 0 - 90°, Rotation: 0 - 360°<br><br />\r\n  Dia e Noite : IR cut filter with auto switch<br><br />\r\n  Video Frame Rate: 720p@25fps/720p@30fps<br><br />\r\n  Saída de Vídeo HD: 1 Analog HD output<br><br />\r\n  Sincronização: Internal Synchronization<br><br />\r\nS/N Ratio: More than 62 dB</p><br />\r\n<p><b>Menu</b><br><br />\r\nBalanço de Branco Automático : Auto / Manual</p><br />\r\n<p><b>Configurações Gerais</b><br><br />\r\n  Condições de funcionamento: -40 °C - 60 °C (-40 °F - 140 °F)<br><br />\r\n  Humidity 90% or less (non-condensing)<br><br />\r\n  Fonte de Alimentação: 12 VDC&plusmn;15%<br><br />\r\n  Consumo de Energia: Max. 4W<br><br />\r\n  Weather Proof: IP66<br><br />\r\n  IR Range: Up to 40m<br><br />\r\n  Especificações : Up the coax<br><br />\r\n  Protocol: Pelco-C(CVBS output), HIKVISION-C(TVI output)<br><br />\r\n  Dimensão : 92 × 84.8 × 269.6mm(3.62” × 3.34” × 10.6”)<br><br />\r\nPeso: 1000 g</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "HIKVISION",
+      "modelo": "",
+      "peso": 0.618,
+      "largura": 17,
+      "altura": 15,
+      "profundidade": 17,
+      "peso_embalagem": 0.618,
+      "largura_embalagem": 17,
+      "altura_embalagem": 15,
+      "profundidade_embalagem": 17,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/2/329702_67d2caef61c97.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1353,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.107.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-09-02 09:41:55.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:57:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 3,
+      "tempo_cross": 0,
+      "estoque_total": 3,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/2/329702_67d2caef61c97.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB14892185",
+    "source": "ML catalog MLB14892185 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Hikvision",
+      "model": "DS-2CE56C2T-IR",
+      "local_pack": 92,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "branco"
+      ],
+      "catalog_colors": [],
+      "title_similarity": 0.375
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB14892185",
+      "catalog_product_id": "MLB14892185",
+      "domain_id": "MLB-SURVEILLANCE_CAMERAS",
+      "name": "Câmera de segurança Hikvision DS-2CE56C2T-IR com resolução 1MP",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "195091",
+          "value_name": "Hikvision",
+          "values": [
+            {
+              "id": "195091",
+              "name": "Hikvision"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "7388458",
+          "value_name": "DS-2CE56C2T-IR",
+          "values": [
+            {
+              "id": "7388458",
+              "name": "DS-2CE56C2T-IR"
+            }
+          ]
+        },
+        {
+          "id": "RESOLUTION_QUALITY",
+          "name": "Qualidade de resoluçao",
+          "value_id": "11322741",
+          "value_name": "1MP",
+          "values": [
+            {
+              "id": "11322741",
+              "name": "1MP"
+            }
+          ]
+        },
+        {
+          "id": "RESOLUTION_TYPE",
+          "name": "Tipo de resolução",
+          "value_id": "290771",
+          "value_name": "HD",
+          "values": [
+            {
+              "id": "290771",
+              "name": "HD"
+            }
+          ]
+        },
+        {
+          "id": "SURVEILLANCE_CAMERA_TYPE",
+          "name": "Tipo de câmera de vigilância",
+          "value_id": "347867",
+          "value_name": "Domo",
+          "values": [
+            {
+              "id": "347867",
+              "name": "Domo"
+            }
+          ]
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "name": "Com visão noturna",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "26323375",
+          "value_name": "7898957865710",
+          "values": [
+            {
+              "id": "26323375",
+              "name": "7898957865710"
+            }
+          ]
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "name": "É resistente à água",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WATERPROOF_RATING",
+          "name": "Classificação de resistência à água",
+          "value_id": "11296611",
+          "value_name": "IP66",
+          "values": [
+            {
+              "id": "11296611",
+              "name": "IP66"
+            }
+          ]
+        },
+        {
+          "id": "NIGHT_SCOPE_DISTANCE",
+          "name": "Distância de alcance noturno",
+          "value_id": "11344585",
+          "value_name": "40 m",
+          "values": [
+            {
+              "id": "11344585",
+              "name": "40 m"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "- Sensor de imagem: Sensor de imagem CMOS de 1MP;  \n- Sistema de sinal: PAL / NTSC;  \n- Pixels Efetivos: 1280 (H) x 960 (V);  \n- Tempo do obturador: 1/25 (1/30) a 1/50.000 s;  \n- Montagem da lente: 14;  \n- Faixa de ajuste: Panorâmica: 0 - 360, Inclinação: 0 - 75, Rotação: 0 - 360;  \n- Dia e Noite: Filtro de corte IR com detector magnético;  \n- Taxa de quadros de vídeo: 720p a 25fps / 720p a 30fps;  \n- Saída de Vídeo HD: 1 saída HD analógica;  \n- Sincronização: Sincronização interna;  \n- Relação S/N: Mais de 62 dB.  \n\nConfigurações Gerais:  \n\n- Fonte de Alimentação: 12 VDC 15%;  \n- Prova do tempo: P66;  \n- Faixa de IR: Até 40m;  \n- Dimensão: 5130,54 x 102,4 mm (5,1 x 4,0);  \n- Peso: 600g.  "
+      },
+      "pictures": [
+        {
+          "id": "949976-MLA99938011491_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_949976-MLA99938011491_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1159"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY",
+        "INTERNAL"
+      ],
+      "date_created": "2019-07-02T17:02:28Z",
+      "last_updated": "2026-07-01T14:20:31Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

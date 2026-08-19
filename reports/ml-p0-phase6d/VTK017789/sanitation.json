@@ -1,0 +1,10 @@
+{
+  "sku": "VTK017789",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Permak Ray Flex vehicle application has no high-confidence ML category in the validated source set",
+  "local_value": "7898253503859",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:13:11.469Z"
+}

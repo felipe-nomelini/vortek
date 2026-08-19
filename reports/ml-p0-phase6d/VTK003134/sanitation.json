@@ -1,0 +1,10 @@
+{
+  "sku": "VTK003134",
+  "gate": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE",
+  "evidence": "Storm JCPZ0005 ten-unit kit lacks official evidence for required connector attributes",
+  "local_value": "7898566206898",
+  "found_value": null,
+  "suggested_action": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:13:42.678Z"
+}

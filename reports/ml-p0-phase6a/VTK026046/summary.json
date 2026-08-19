@@ -1,0 +1,24 @@
+{
+  "index": 2,
+  "sku": "VTK026046",
+  "started_at": "2026-08-16T23:44:47.612Z",
+  "local_time": "2026-08-16T20:44:47",
+  "expected_gtin": "7898461978913",
+  "completed_at": "2026-08-16T23:45:53.362Z",
+  "elapsed_ms": 65768,
+  "result": "SAFE_PUBLICATION_PERSIST_SUCCESS",
+  "item_id": "MLB7432445588",
+  "user_product_id": "MLBU4743176655",
+  "family_id": 698657517242641,
+  "catalog_product_id": "MLB62224438",
+  "protective_price": 379.9,
+  "margin_percent": 51.52935,
+  "persisted": true,
+  "observation": null,
+  "backlogs": {
+    "quality_optimization_pending": true,
+    "description_optimization_pending": true,
+    "commercial_optimization_pending": true,
+    "optional_catalog_optimization_pending": false
+  }
+}

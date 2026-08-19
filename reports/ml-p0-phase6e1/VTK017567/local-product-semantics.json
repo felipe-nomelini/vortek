@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-08-17T14:15:53.643Z",
+  "product": {
+    "id": "27f8b999-1aab-417a-b133-c3c56e4a161f",
+    "sku": "VTK017567",
+    "nome": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto/cinza",
+    "marca": "LOGITECH",
+    "estoque": 31,
+    "custo": 157.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.772,
+    "peso_bruto": 0.772,
+    "largura": 15.5,
+    "altura": 4.5,
+    "profundidade": 50.5,
+    "gtin": "",
+    "descricao": "Combo de teclado e mouse sem fio MK270 Combo sem fio confiável O MK270 Wireless Combo combina a conveniência e o conforto de um teclado de tamanho normal com um mouse compacto e esculpido. Com teclas de mídia, um teclado numérico e controle de cursor preciso para tornar seu trabalho muito mais fácil. TECLADO EM TAMANHO NORMAL Confortável, de tamanho normal e eficiente. Completo com fácil acesso aos controles de mídia, este teclado permite que você faça mais em menos tempo com oito controles de mídia que permitem o acesso instantâneo a música, mídia, volume e muito mais. MOUSE CONFORTÁVEL E COMPACTO Continue produtivo por mais tempo com o formato confortável e contornado que segue a curva natural de sua mão. Este mouse compacto e sem fio foi projetado para ser igualmente confortável para usuários destros e canhotos. Além disso, seu controle suave do cursor permite uma navegação fácil na maioria das superfícies. SIMPLESMENTE SEM FIO Esqueça falhas e atrasos graças a uma conexão sem fio forte e confiável de 2,4 GHz com um alcance de 10 m*. Libere sua mesa com um receptor USB - tão pequeno que pode ficar em seu computador. * O alcance sem fio pode variar devido às condições ambientais e de computação. DURÁVEL E CONFIÁVEL Aproveite a digitação familiar do MK270, ou combo mais vendido do mundo, construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados. FEITO PARA DURAR O teclado possui design resistente a derramamentos*, teclas duráveis e suportes ajustáveis de alta resistência. A duração da bateria do teclado de 36 meses e do mouse de 12 meses** - junto com switches liga/desliga - significa que você pode ir por meses sem o incômodo de trocar as pilhas. *Testado em condições limitadas (máximo de derramamento de líquido de 60 ml). Não mergulhe o teclado em líquido. **A duração da bateria do teclado e do mouse pode variar de acordo com o usuário e as condições de computação. O COMBO SEM FIO PREFERIDO DE TODOS O MK270 Wireless Combo combina a conveniência e o conforto de um teclado de tamanho normal com um mouse compacto e esculpido. Com teclas de mídia, um teclado numérico e controle de cursor preciso para tornar seu trabalho muito mais fácil. Além disso, o wireless sem atrasos facilita a configuração e economiza espaço em sua mesa. Não é à toa que este é o combo mais vendido do mundo! *Imagens meramente ilustrativas.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd1ed.png",
+      "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd570.png",
+      "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd5bd.png",
+      "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd5f4.png",
+      "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd626.png",
+      "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd661.png"
+    ],
+    "categoria": "Informatica/ Combo Teclado Mouse/ Combo Teclado Mouse",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:56.790751+00:00",
+    "updated_at": "2026-08-17T10:38:23.016025+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "345205",
+    "dslite_ultima_sync": "2026-08-17T10:38:22.992+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "84716052",
+    "cest": "21.031.00",
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "0743e406-61f1-4000-9431-9bc6dfeda26a",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "mouse",
+    "function": "computer_pointing_input",
+    "intended_use": "computing",
+    "physical_form": "computer_mouse",
+    "expected_category_signals": [
+      "mouse",
+      "informatica",
+      "computador"
+    ],
+    "incompatible_category_signals": [
+      "cozinha",
+      "automotivo",
+      "instrumentomusical"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

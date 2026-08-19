@@ -1,0 +1,183 @@
+{
+  "generated_at": "2026-08-17T00:46:14.996Z",
+  "target_margin_percent": 50,
+  "tax_rate": 0.05,
+  "rows": [
+    {
+      "sku": "VTK012839",
+      "item_id": "MLB7432625408",
+      "cost": 71.94,
+      "protective_price": 359.9,
+      "commission": 46.79,
+      "shipping": 22.55,
+      "tax": 18,
+      "protected_profit": 200.62,
+      "margin_percent": 55.743262
+    },
+    {
+      "sku": "VTK021012",
+      "item_id": "MLB5075741535",
+      "cost": 38.9,
+      "protective_price": 199.9,
+      "commission": 21.99,
+      "shipping": 20.75,
+      "tax": 10,
+      "protected_profit": 108.26,
+      "margin_percent": 54.157079
+    },
+    {
+      "sku": "VTK021108",
+      "item_id": "MLB7432625460",
+      "cost": 121.9,
+      "protective_price": 499.9,
+      "commission": 54.99,
+      "shipping": 23.65,
+      "tax": 25,
+      "protected_profit": 274.36,
+      "margin_percent": 54.882977
+    },
+    {
+      "sku": "VTK017933",
+      "item_id": "MLB7432502048",
+      "cost": 21.9,
+      "protective_price": 149.9,
+      "commission": 17.24,
+      "shipping": 19.25,
+      "tax": 7.5,
+      "protected_profit": 84.01,
+      "margin_percent": 56.044029
+    },
+    {
+      "sku": "VTK000378",
+      "item_id": "MLB7432625530",
+      "cost": 1036.96,
+      "protective_price": 4089.9,
+      "commission": 490.79,
+      "shipping": 106.95,
+      "tax": 204.5,
+      "protected_profit": 2250.7,
+      "margin_percent": 55.030685
+    },
+    {
+      "sku": "VTK000568",
+      "item_id": "MLB7432502124",
+      "cost": 246.08,
+      "protective_price": 1009.9,
+      "commission": 131.29,
+      "shipping": 23.65,
+      "tax": 50.5,
+      "protected_profit": 558.38,
+      "margin_percent": 55.290623
+    },
+    {
+      "sku": "VTK000799",
+      "item_id": "MLB5075741703",
+      "cost": 962.89,
+      "protective_price": 3829.9,
+      "commission": 459.59,
+      "shipping": 78.65,
+      "tax": 191.5,
+      "protected_profit": 2137.27,
+      "margin_percent": 55.804851
+    },
+    {
+      "sku": "VTK000223",
+      "item_id": "MLB5075741727",
+      "cost": 846.07,
+      "protective_price": 3409.9,
+      "commission": 409.19,
+      "shipping": 78.65,
+      "tax": 170.5,
+      "protected_profit": 1905.49,
+      "margin_percent": 55.881111
+    },
+    {
+      "sku": "VTK001288",
+      "item_id": "MLB7432625640",
+      "cost": 119.95,
+      "protective_price": 549.9,
+      "commission": 71.49,
+      "shipping": 44.05,
+      "tax": 27.5,
+      "protected_profit": 286.91,
+      "margin_percent": 52.174941
+    },
+    {
+      "sku": "VTK003043",
+      "item_id": "MLB5075741783",
+      "cost": 814.75,
+      "protective_price": 3299.9,
+      "commission": 395.99,
+      "shipping": 106.95,
+      "tax": 165,
+      "protected_profit": 1817.21,
+      "margin_percent": 55.068638
+    },
+    {
+      "sku": "VTK006193",
+      "item_id": "MLB5075741815",
+      "cost": 50.52,
+      "protective_price": 269.9,
+      "commission": 35.09,
+      "shipping": 22.55,
+      "tax": 13.5,
+      "protected_profit": 148.24,
+      "margin_percent": 54.924046
+    },
+    {
+      "sku": "VTK002528",
+      "item_id": "MLB7432625710",
+      "cost": 51.05,
+      "protective_price": 279.9,
+      "commission": 36.39,
+      "shipping": 24.65,
+      "tax": 14,
+      "protected_profit": 153.81,
+      "margin_percent": 54.951768
+    },
+    {
+      "sku": "VTK002577",
+      "item_id": "MLB7432502292",
+      "cost": 50.46,
+      "protective_price": 279.9,
+      "commission": 36.39,
+      "shipping": 24.65,
+      "tax": 14,
+      "protected_profit": 154.4,
+      "margin_percent": 55.162558
+    },
+    {
+      "sku": "VTK001155",
+      "item_id": "MLB7432502310",
+      "cost": 90.07,
+      "protective_price": 439.9,
+      "commission": 57.19,
+      "shipping": 24.65,
+      "tax": 22,
+      "protected_profit": 245.99,
+      "margin_percent": 55.919527
+    },
+    {
+      "sku": "VTK006152",
+      "item_id": "MLB7432502350",
+      "cost": 50.52,
+      "protective_price": 279.9,
+      "commission": 36.39,
+      "shipping": 22.55,
+      "tax": 14,
+      "protected_profit": 156.44,
+      "margin_percent": 55.89139
+    }
+  ],
+  "summary": {
+    "cost_total": 4573.96,
+    "price_total": 18948.5,
+    "commission_total": 2300.8,
+    "shipping_total": 644.15,
+    "tax_total": 947.5,
+    "protected_profit_total": 10482.09,
+    "min_margin": 52.174941,
+    "max_margin": 56.044029,
+    "mean_margin": 55.13
+  }
+}

@@ -1,0 +1,378 @@
+{
+  "attempted_at": "2026-08-17T01:18:23.367Z",
+  "local_time": "2026-08-16T22:18:23",
+  "endpoint": "POST /items",
+  "request_id": "aec09d01-05bb-4578-8578-e7367e9beb44",
+  "http_status": 201,
+  "elapsed_ms": 1014,
+  "payload_sha256": "5def44f6c79424664aab149f00ab0704a249c449fef0bf8b03cb146efa36cd8a",
+  "body": {
+    "id": "MLB7432766896",
+    "site_id": "MLB",
+    "title": "Violino Scarlett 4/4 Linden Ebanizado Estudante Laminado Cor Natural",
+    "seller_id": 3294514937,
+    "category_id": "MLB72776",
+    "user_product_id": "MLBU4772935746",
+    "official_store_id": null,
+    "price": 1819.9,
+    "base_price": 1819.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 6,
+    "available_quantity": 6,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Scarlett Scv144",
+    "family_id": 7209619683176786,
+    "start_time": "2026-08-17T01:18:22.854Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:18:22.910Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432766896-violino-scarlett-44-linden-ebanizado-estudante-laminado-cor-natural-_JM",
+    "pictures": [
+      {
+        "id": "929685-MLA99925682499_112025",
+        "url": "http://mla-s1-p.mlstatic.com/929685-MLA99925682499_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/929685-MLA99925682499_112025-O.jpg",
+        "size": "276x500",
+        "max_size": "661x1197",
+        "quality": ""
+      },
+      {
+        "id": "833819-MLU74968775609_032024",
+        "url": "http://mlu-s1-p.mlstatic.com/833819-MLU74968775609_032024-O.jpg",
+        "secure_url": "https://mlu-s1-p.mlstatic.com/833819-MLU74968775609_032024-O.jpg",
+        "size": "500x377",
+        "max_size": "556x420",
+        "quality": ""
+      },
+      {
+        "id": "982789-MLU74968756007_032024",
+        "url": "http://mlu-s2-p.mlstatic.com/982789-MLU74968756007_032024-O.jpg",
+        "secure_url": "https://mlu-s2-p.mlstatic.com/982789-MLU74968756007_032024-O.jpg",
+        "size": "500x167",
+        "max_size": "1137x380",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "19707",
+        "value_name": "Scarlett",
+        "values": [
+          {
+            "id": "19707",
+            "name": "Scarlett",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "34493805",
+        "value_name": "Scv144",
+        "values": [
+          {
+            "id": "34493805",
+            "name": "Scv144",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "15988",
+        "value_name": "Natural",
+        "values": [
+          {
+            "id": "15988",
+            "name": "Natural",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VIOLIN_SIZE",
+        "name": "Tamanho do violino",
+        "value_id": "2201515",
+        "value_name": "4/4",
+        "values": [
+          {
+            "id": "2201515",
+            "name": "4/4",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BODY_FINISH",
+        "name": "Acabamento do corpo",
+        "value_id": "2102514",
+        "value_name": "Brilhante",
+        "values": [
+          {
+            "id": "2102514",
+            "name": "Brilhante",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VIOLIN_TYPE",
+        "name": "Tipo de violino",
+        "value_id": "2201516",
+        "value_name": "Acústico",
+        "values": [
+          {
+            "id": "2201516",
+            "name": "Acústico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INCLUDES_ACCESSORIES",
+        "name": "Inclui acessórios",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_BOW",
+        "name": "Inclui arco",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_CASE",
+        "name": "Inclui estojo",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "BODY_MATERIALS",
+        "name": "Materiais do corpo",
+        "value_id": "56361823",
+        "value_name": "Linden Laminado",
+        "values": [
+          {
+            "id": "56361823",
+            "name": "Linden Laminado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": null,
+        "value_name": "Case gota revestido em veludo, Arco de madeira com crina animal, Talão com detalhe em madrepérola, Breu",
+        "values": [
+          {
+            "id": "74162485",
+            "name": "Case gota revestido em veludo",
+            "struct": null
+          },
+          {
+            "id": "74162486",
+            "name": "Arco de madeira com crina animal",
+            "struct": null
+          },
+          {
+            "id": "74162487",
+            "name": "Talão com detalhe em madrepérola",
+            "struct": null
+          },
+          {
+            "id": "25841254",
+            "name": "Breu",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "34493806",
+        "value_name": "7898672372166",
+        "values": [
+          {
+            "id": "34493806",
+            "name": "7898672372166",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK004630",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK004630",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "929685-MLA99925682499_112025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/929685-MLA99925682499_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB34211048",
+    "domain_id": "MLB-VIOLINS",
+    "seller_custom_field": "VTK004630",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:18:23.009Z",
+    "last_updated": "2026-08-17T01:18:23.009Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

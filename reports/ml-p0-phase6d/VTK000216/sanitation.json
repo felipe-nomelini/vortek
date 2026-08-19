@@ -1,0 +1,10 @@
+{
+  "sku": "VTK000216",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": "catalog MODEL 21K203 and title SC40 34W diverge from local CP40S Plus 40W identity",
+  "local_value": "7899810414007",
+  "found_value": "21K203 / SC40 34W",
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML catalog MLB26195450",
+  "timestamp": "2026-08-17T01:15:05.799Z"
+}

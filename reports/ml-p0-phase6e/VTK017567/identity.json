@@ -1,0 +1,168 @@
+{
+  "checked_at": "2026-08-17T12:56:41.347Z",
+  "product": {
+    "id": "27f8b999-1aab-417a-b133-c3c56e4a161f",
+    "sku": "VTK017567",
+    "nome": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto/cinza",
+    "marca": "LOGITECH",
+    "gtin": ""
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/345205",
+    "consulted_at": "2026-08-17T12:56:41.347Z",
+    "product": {
+      "produtoid": "345205",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 157.9,
+      "preco_crossdocking": 157.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 157.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto/cinza",
+      "titulo_curto": "Combo Teclado E Mouse Sem Fio Logitech Mk270 Preto/cinza",
+      "categoriaid": "117963",
+      "categoria_nome": "Informatica/ Combo Teclado Mouse/ Combo Teclado Mouse",
+      "abc": null,
+      "ean11": "097855088864",
+      "ncm": "84716052",
+      "descricao": "<h2 class=\"heading3 brand-title-case mt-1 md:mt-2\"><strong>Combo de teclado e mouse sem fio MK270</strong></h2>\r\n<div class=\"text-gray-200 text-body-16 mt-2\">Combo sem fio confiável</div>\r\n<div class=\"text-gray-200 text-body-16 mt-2\"> </div>\r\n<div class=\"text-gray-200 text-body-16 mt-2\">O MK270 Wireless Combo combina a conveniência e o conforto de um teclado de tamanho normal com um mouse compacto e esculpido. Com teclas de mídia, um teclado numérico e controle de cursor preciso para tornar seu trabalho muito mais fácil.</div>\r\n<div class=\"text-gray-200 text-body-16 mt-2\"> </div>\r\n<div class=\"text-gray-200 text-body-16 mt-2\">\r\n<h3 class=\"heading3 brand-title-case\"><strong>TECLADO EM TAMANHO NORMAL</strong></h3>\r\n<div class=\"text-body-14 sm:text-body-18 mb-4 sm:w-[60%] text-black-930\">Confortável, de tamanho normal e eficiente. Completo com fácil acesso aos controles de mídia, este teclado permite que você faça mais em menos tempo com oito controles de mídia que permitem o acesso instantâneo a música, mídia, volume e muito mais.</div>\r\n<div class=\"text-body-14 sm:text-body-18 mb-4 sm:w-[60%] text-black-930\"> </div>\r\n<div class=\"text-body-14 sm:text-body-18 mb-4 sm:w-[60%] text-black-930\">\r\n<h3 class=\"marquee highlight sm:text-body-20 text-body-18\"><strong>MOUSE CONFORTÁVEL E COMPACTO</strong></h3>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\">Continue produtivo por mais tempo com o formato confortável e contornado que segue a curva natural de sua mão. Este mouse compacto e sem fio foi projetado para ser igualmente confortável para usuários destros e canhotos. Além disso, seu controle suave do cursor permite uma navegação fácil na maioria das superfícies.</div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\"> </div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\">\r\n<h3 class=\"marquee highlight sm:text-body-20 text-body-18\"><strong>SIMPLESMENTE SEM FIO</strong></h3>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\">Esqueça falhas e atrasos graças a uma conexão sem fio forte e confiável de 2,4 GHz com um alcance de 10 m*. Libere sua mesa com um receptor USB - tão pequeno que pode ficar em seu computador. * O alcance sem fio pode variar devido às condições ambientais e de computação.</div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\"> </div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\">\r\n<h3 class=\"marquee highlight sm:text-body-20 text-body-18\"><strong>DURÁVEL E CONFIÁVEL</strong></h3>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\">Aproveite a digitação familiar do MK270, ou combo mais vendido do mundo, construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados.</div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\"> </div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\"><header class=\"svelte-wqhmi1\">\r\n<h3 class=\"heading4 brand-title-case svelte-wqhmi1\"><strong>FEITO PARA DURAR</strong></h3>\r\n</header>\r\n<div class=\"content svelte-wqhmi1\">\r\n<div class=\"rich-text mt-4 md:mt-6 text-body-16 text-360-930\">O teclado possui design resistente a derramamentos*, teclas duráveis e suportes ajustáveis de alta resistência. A duração da bateria do teclado de 36 meses e do mouse de 12 meses** - junto com switches liga/desliga - significa que você pode ir por meses sem o incômodo de trocar as pilhas. <br />*Testado em condições limitadas (máximo de derramamento de líquido de 60 ml). Não mergulhe o teclado em líquido. **A duração da bateria do teclado e do mouse pode variar de acordo com o usuário e as condições de computação.</div>\r\n<div class=\"rich-text mt-4 md:mt-6 text-body-16 text-360-930\"> </div>\r\n<div class=\"rich-text mt-4 md:mt-6 text-body-16 text-360-930\">\r\n<h3 class=\"text-20\"><strong>O COMBO SEM FIO PREFERIDO DE TODOS</strong></h3>\r\n<p class=\"text-body-16 text-gray-360\">O MK270 Wireless Combo combina a conveniência e o conforto de um teclado de tamanho normal com um mouse compacto e esculpido. Com teclas de mídia, um teclado numérico e controle de cursor preciso para tornar seu trabalho muito mais fácil. Além disso, o wireless sem atrasos facilita a configuração e economiza espaço em sua mesa. Não é à toa que este é o combo mais vendido do mundo!</p>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\"> </div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\"> </div>\r\n<div class=\"text-body-14 sm:text-body-16 text-360-930\">*Imagens meramente ilustrativas.</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>",
+      "caracteristicas": "<p><strong>Alcance sem fio: Dez metros</strong></p>\r\n<p><strong>Teclado</strong><br />Design resistente a derramamentos <br />Altura do teclado ajustável<br />Teclado numérico de 10 teclas<br />Tipo de tecla: perfil profundo<br />Luz indicadora da tecla Caps Lock<br />Botão liga/desliga<br />2 pilhas AAA (alcalinas)<br />Durabilidade da pilha: Até 36 meses</p>\r\n<p><strong>Mouse</strong><br />Tecnologia do sensor: Rastreamento óptico suave<br />Número de botões: 3 (clique esquerdo/direito, clique no meio)<br />Rolagem linha a linha<br />Roda de rolagem: Sim, 2D, óptico<br />Conectar/Energia: Botão de ligar/desligar<br />1 pilha AA (alcalina)<br />Duração da pilha: 12 meses</p>\r\n<p><strong>Requisitos do sistema<br /></strong>O que é necessário<br />Porta USB disponível ChromeOS Windows® 10, 11 ou posterior</p>\r\n<p><strong>Dimensões</strong></p>\r\n<p><strong>Teclado</strong><br />Altura: 149 mm<br />Largura: 441 mm<br />Profundidade: 18 mm<br />Peso: 498 g</p>\r\n<p><strong>Mouse</strong><br />Altura: 99 mm<br />Largura: 60 mm<br />Profundidade: 39 mm<br />Peso: 75,2 g</p>\r\n<p><strong>Receptor nano</strong><br />Altura: 18,7 mm<br />Largura: 14,4 mm<br />Profundidade: 6,6 mm<br />Peso: 2.0 g</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "LOGITECH",
+      "modelo": "",
+      "peso": 0.772,
+      "largura": 15.5,
+      "altura": 4.5,
+      "profundidade": 50.5,
+      "peso_embalagem": 0.772,
+      "largura_embalagem": 15.5,
+      "altura_embalagem": 4.5,
+      "profundidade_embalagem": 50.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd1ed.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1489,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.031.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 12:52:16.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-13 12:52:16.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 31,
+      "tempo_cross": 0,
+      "estoque_total": 31,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd1ed.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd570.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd5bd.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd5f4.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd626.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/345205_6a062fa3bd661.png"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "SOURCE_DEFERRED",
+    "reason": "GTIN absence is not a product failure; this SKU has no prior official identity proof sufficient for automatic publication",
+    "sanitation": "IDENTITY_FIX_REQUIRED",
+    "source": "local + DSLite supplier; official identity unresolved"
+  },
+  "catalog_results": []
+}

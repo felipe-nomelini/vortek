@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "required_score": 95,
+  "original_score": 100,
+  "assessment": {
+    "score": 100,
+    "parts": {
+      "product_identity": 25,
+      "function_match": 25,
+      "intended_use": 20,
+      "category_path_coherence": 20,
+      "catalog_coherence": 10
+    },
+    "identity_confidence": 100,
+    "classification": "SEMANTIC_MATCH",
+    "hard_mismatch": false,
+    "hard_conflicts": [],
+    "function_match": true,
+    "intended_use_match": true,
+    "path_coherent": true,
+    "expected_hits": [
+      "corda",
+      "guitarra"
+    ],
+    "functional_hits": [
+      "corda",
+      "guitarra"
+    ],
+    "incompatible_hits": [],
+    "catalog_category_correlated_error": false,
+    "independent_source_present": true,
+    "attribute_signals": {
+      "checked": true,
+      "attribute_count": 83,
+      "conflicts": [],
+      "classification": "NO_HARD_ATTRIBUTE_MISMATCH"
+    }
+  },
+  "second_pass": {
+    "verdict": "PASS",
+    "supplier_context": "musical_instrument",
+    "remote_context": "musical_instrument",
+    "independent_function_match": true,
+    "reason": "supplier/local semantics and full category path agree"
+  },
+  "independent_supplier_gtin_match": true,
+  "category": {
+    "category_id": "MLB438516",
+    "domain_id": "MLB-ELECTRIC_GUITARS",
+    "domain_name": null,
+    "category_name": "Elétricas",
+    "category_path": [
+      "Instrumentos Musicais",
+      "Instrumentos de Corda",
+      "Guitarras",
+      "Elétricas"
+    ],
+    "normalized_context": "mlbelectricguitarsmlbelectricguitarsinstrumentosmusicaisinstrumentosdecordaguitarraseletricaseletricas"
+  },
+  "expected_path": [
+    "Instrumentos Musicais",
+    "Instrumentos de Corda",
+    "Guitarras",
+    "Elétricas"
+  ],
+  "path_match": true,
+  "expected_domain": "MLB-ELECTRIC_GUITARS",
+  "domain_match": true,
+  "anti_frankenstein_answer": "YES"
+}

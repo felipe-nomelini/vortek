@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432502350",
+      "local": "MLB7432502350",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK006152",
+      "local": "VTK006152",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "916962da-a149-46b2-a80a-d8ff3393e3a0",
+      "local": "916962da-a149-46b2-a80a-d8ff3393e3a0",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cabo Para Instrumentos Hayonik P10 Para P10 Verde De 5 Metros",
+      "local": "Cabo Para Instrumentos Hayonik P10 Para P10 Verde De 5 Metros",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 279.9,
+      "local": 279.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432502350-cabo-para-instrumentos-hayonik-p10-para-p10-verde-de-5-metros-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432502350-cabo-para-instrumentos-hayonik-p10-para-p10-verde-de-5-metros-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

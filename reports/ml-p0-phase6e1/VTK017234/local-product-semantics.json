@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-08-17T14:15:53.491Z",
+  "product": {
+    "id": "de50e676-526a-4e09-95f9-9f98b0085d0e",
+    "sku": "VTK017234",
+    "nome": "Suporte Antena Cromo 211-b Emenda Tubo 1\"",
+    "marca": "DIMATIX",
+    "estoque": 50,
+    "custo": 10.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.194,
+    "peso_bruto": 0.194,
+    "largura": 4,
+    "altura": 20,
+    "profundidade": 4,
+    "gtin": "",
+    "descricao": "Informações Técnicas Aplicação Suporte Emenda Para antena 211-B Para tubo 1 polegada",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/4/348844_67d2caf643a77.jpg"
+    ],
+    "categoria": "Eletronica/ Antenas/ Antenas Para Tv",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:22.80718+00:00",
+    "updated_at": "2026-08-17T10:24:30.655698+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "348844",
+    "dslite_ultima_sync": "2026-08-17T10:24:30.545+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "73063090",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "aa4598bf-b8dd-4b86-a485-0650f5d8e06d",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "tv_support",
+    "function": "support_television",
+    "intended_use": "home_electronics",
+    "physical_form": "tv_mount",
+    "expected_category_signals": [
+      "suporte",
+      "televisao",
+      "tv"
+    ],
+    "incompatible_category_signals": [
+      "instrumentomusical",
+      "microfone",
+      "celular"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "1 polegada"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "home_electronics",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "checked_at": "2026-08-17T01:18:19.480Z",
+  "expected_catalog_product_id": "MLB34211048",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB34211048",
+    "catalog_product_id": "MLB34211048",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-VIOLINS",
+    "permalink": "",
+    "name": "Violino Scarlett 4/4 Linden Ebanizado Estudante Laminado Cor Natural",
+    "family_name": "Scarlett Scv144",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB34211048",
+            "picker_label": "Natural",
+            "picture_id": "929685-MLA99925682499_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_929685-MLA99925682499_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Scarlett Scv144 - Natural - 4/4 - Brilhante",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": " | ",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BODY_FINISH",
+        "picker_name": "Acabamento do corpo",
+        "products": [
+          {
+            "product_id": "MLB34211048",
+            "picker_label": "Brilhante",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Scarlett Scv144 - Natural - 4/4 - Brilhante",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BODY_FINISH",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VIOLIN_SIZE",
+        "picker_name": "Tamanho do violino",
+        "products": [
+          {
+            "product_id": "MLB34211048",
+            "picker_label": "4/4",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Scarlett Scv144 - Natural - 4/4 - Brilhante",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "VIOLIN_SIZE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "929685-MLA99925682499_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_929685-MLA99925682499_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 661,
+        "max_height": 1197,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "833819-MLU74968775609_032024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_833819-MLU74968775609_032024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 556,
+        "max_height": 420,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "982789-MLU74968756007_032024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_982789-MLU74968756007_032024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1137,
+        "max_height": 380,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Equipado com micro-afinação nas 4 cordas para ajuste preciso.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Tampo, lateral e fundo em linden laminado e braço em maple para durabilidade e som encorpado.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "19707",
+        "value_name": "Scarlett",
+        "values": [
+          {
+            "id": "19707",
+            "name": "Scarlett"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "34493805",
+        "value_name": "Scv144",
+        "values": [
+          {
+            "id": "34493805",
+            "name": "Scv144"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "15988",
+        "value_name": "Natural",
+        "values": [
+          {
+            "id": "15988",
+            "name": "Natural"
+          }
+        ]
+      },
+      {
+        "id": "VIOLIN_SIZE",
+        "name": "Tamanho do violino",
+        "value_id": "2201515",
+        "value_name": "4/4",
+        "values": [
+          {
+            "id": "2201515",
+            "name": "4/4"
+          }
+        ]
+      },
+      {
+        "id": "BODY_FINISH",
+        "name": "Acabamento do corpo",
+        "value_id": "2102514",
+        "value_name": "Brilhante",
+        "values": [
+          {
+            "id": "2102514",
+            "name": "Brilhante"
+          }
+        ]
+      },
+      {
+        "id": "VIOLIN_TYPE",
+        "name": "Tipo de violino",
+        "value_id": "2201516",
+        "value_name": "Acústico",
+        "values": [
+          {
+            "id": "2201516",
+            "name": "Acústico"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_ACCESSORIES",
+        "name": "Inclui acessórios",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "INCLUDES_BOW",
+        "name": "Inclui arco",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "INCLUDES_CASE",
+        "name": "Inclui estojo",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "BODY_MATERIALS",
+        "name": "Materiais do corpo",
+        "value_id": "56361823",
+        "value_name": "Linden Laminado",
+        "values": [
+          {
+            "id": "56361823",
+            "name": "Linden Laminado"
+          }
+        ]
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": null,
+        "value_name": "Case gota revestido em veludo, Arco de madeira com crina animal, Talão com detalhe em madrepérola, Breu",
+        "values": [
+          {
+            "id": "74162485",
+            "name": "Case gota revestido em veludo"
+          },
+          {
+            "id": "74162486",
+            "name": "Arco de madeira com crina animal"
+          },
+          {
+            "id": "74162487",
+            "name": "Talão com detalhe em madrepérola"
+          },
+          {
+            "id": "25841254",
+            "name": "Breu"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "O Violino Scarlett SCV 144 é a escolha ideal para estudantes que buscam um instrumento de qualidade. Com tampo, lateral e fundo em linden laminado, este violino oferece durabilidade e um som encorpado. O espelho, cravelha, queixeira e estandarte são ebanizados, proporcionando um visual elegante e sofisticado. O braço é feito de maple, garantindo resistência e conforto ao tocar. Equipado com micro-afinação nas 4 cordas, facilita o ajuste preciso do som. Acompanha um case gota revestido em veludo, arco de madeira com crina animal e talão com detalhe em madrepérola, além de breu. Com acabamento em verniz e tamanho 4/4, este violino acústico é novo e vem pronto para uso. Marca: Scarlett, Modelo: SCV144."
+    },
+    "parent_id": "MLB34211047",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T19:39:02.989998145"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-03-07T08:42:35Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-02T04:10:21Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

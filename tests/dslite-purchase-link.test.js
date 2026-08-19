@@ -3,6 +3,7 @@ const test = require('node:test');
 
 const {
   isDsliteRelinkBlockedByManualUnlink,
+  resolveSafeReactivatedDsliteOrderReuse,
   resolveSafeDslitePedidoLinks,
   resolveSafeDslitePedidoMutation,
 } = require('../src/lib/dslite/purchase-link.ts');
@@ -91,4 +92,68 @@ test('bloqueia mutação fiscal em NF-e compartilhada por vendas independentes',
     ),
     { safe: false, ids: [], reason: 'ambiguous_nfe' },
   );
+});
+
+const reactivatedOrderFixture = {
+  expectedDsliteId: '394584',
+  expectedNfeKey: '43260865850289000183550020000008611029758401',
+  expectedItems: [{ sku: 'MUSIC54002', quantity: 1 }],
+  targetPedidoId: 'p1',
+  pedidoCandidates: [{ id: 'p1', dslite_id: null }],
+  purchase: {
+    dsid: '394584',
+    nf_chave: '43260865850289000183550020000008611029758401',
+    fornecedor_id: '97',
+  },
+  remoteOrder: {
+    dsid: 394584,
+    status: 'Aguardando Informações',
+    nf_chave: '43260865850289000183550020000008611029758401',
+    fornecedor: { fornecedorid: 97 },
+    items: [{ nf_produtoid: 'MUSIC54002', quantidade: 1 }],
+  },
+};
+
+test('reutiliza pedido reativado somente com identidade exata', () => {
+  assert.deepEqual(
+    resolveSafeReactivatedDsliteOrderReuse(reactivatedOrderFixture),
+    {
+      safe: true,
+      reason: 'reactivated_order_match',
+      pedidoIds: ['p1'],
+    },
+  );
+});
+
+test('bloqueia reutilização quando item remoto diverge do XML', () => {
+  const result = resolveSafeReactivatedDsliteOrderReuse({
+    ...reactivatedOrderFixture,
+    remoteOrder: {
+      ...reactivatedOrderFixture.remoteOrder,
+      items: [{ nf_produtoid: 'OUTRO', quantidade: 1 }],
+    },
+  });
+  assert.equal(result.safe, false);
+  assert.equal(result.reason, 'items_mismatch');
+});
+
+test('bloqueia reutilização fora de Aguardando Informações', () => {
+  const result = resolveSafeReactivatedDsliteOrderReuse({
+    ...reactivatedOrderFixture,
+    remoteOrder: {
+      ...reactivatedOrderFixture.remoteOrder,
+      status: 'Em separação',
+    },
+  });
+  assert.equal(result.safe, false);
+  assert.equal(result.reason, 'status_not_reusable');
+});
+
+test('bloqueia reutilização quando outro pedido já possui o DSID', () => {
+  const result = resolveSafeReactivatedDsliteOrderReuse({
+    ...reactivatedOrderFixture,
+    pedidoCandidates: [{ id: 'p1', dslite_id: '999999' }],
+  });
+  assert.equal(result.safe, false);
+  assert.equal(result.reason, 'conflicting_dslite_id');
 });

@@ -1,0 +1,32 @@
+{
+  "result": "CANARY_POST_FAILED",
+  "attempted_at": "2026-08-16T05:09:10.650Z",
+  "completed_at": "2026-08-16T05:09:10.824Z",
+  "endpoint": "POST https://api.mercadolibre.com/items",
+  "payload_sha256": "d8c003700d5277c1e7382c2b972a8e918b64bc1a400fbf4cea3176784fad9b07",
+  "family_name_sent": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+  "request_id": "70c961c6-2cc1-4b7c-b34d-f42225d74aef",
+  "http_status": 400,
+  "response_headers": {
+    "content-type": "application/json;charset=UTF-8",
+    "date": "Sun, 16 Aug 2026 05:09:10 GMT",
+    "x-request-id": "70c961c6-2cc1-4b7c-b34d-f42225d74aef"
+  },
+  "response_body": {
+    "cause": [],
+    "message": "body.invalid_fields",
+    "error": "The fields [title] are invalid for requested call.",
+    "status": 400
+  },
+  "item_id": null,
+  "user_product_id": null,
+  "catalog_product_id": null,
+  "status": 400,
+  "permalink": null,
+  "error_classification": "VALIDATION_ERROR",
+  "one_post_guard": {
+    "attempts": 1,
+    "successful": 0,
+    "other_writes": 0
+  }
+}

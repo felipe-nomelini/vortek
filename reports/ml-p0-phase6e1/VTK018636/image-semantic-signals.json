@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-08-17T14:15:37.859Z",
+  "local_images": [
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018636/01-44d69f85899b128d7b64.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "706751-MLA99955908631_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_706751-MLA99955908631_112025-F.jpg",
+      "max_width": "1184",
+      "max_height": "1200"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

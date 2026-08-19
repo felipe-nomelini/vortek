@@ -1,0 +1,418 @@
+{
+  "checked_at": "2026-08-17T12:55:39.963Z",
+  "product": {
+    "id": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+    "sku": "VTK019126",
+    "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+    "marca": "INTELBRAS",
+    "gtin": "7896637671330"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/356681",
+    "consulted_at": "2026-08-17T12:55:39.198Z",
+    "product": {
+      "produtoid": "356681",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 809.08,
+      "preco_crossdocking": 809.08,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 809.08,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 23.15,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+      "titulo_curto": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+      "categoriaid": "117568",
+      "categoria_nome": "Segurança / Fechadura Eletrica/ Fechadura Eletrica/controle De Acesso",
+      "abc": null,
+      "ean11": "7896637671330",
+      "ncm": "83014000",
+      "descricao": "A fechadura solenoide FS 1010 tem acabamento em aço de alta resistência e design supercompacto, é ideal para quem deseja investir em segurança.<br />\r\n<br />\r\nNão importa qual o ambiente, a FS 1010 está preparada para proteger qualquer patrimônio. Com acabamento em aço de alta resistência e design supercompacto, a nova fechadura solenoide é ideal para quem deseja investir em segurança sem abrir mão do bom gosto.<br />\r\n<br />\r\n2 em 1: Fail safe e Fail secure <br />\r\nVocê escolhe o modo de utilização. A FS 1010 funciona tanto no modo Fail safe, que abre a fechadura na falta de energia, como no modo Fail secure, que mantém a fechadura travada na falta de energia.<br />\r\n<br />\r\nSegurança a toda prova<br />\r\nA FS 1010 possui resistência de 1.200 kgf, compatibilidade com controladores de acesso, estrutura em alumínio e acabamento em aço inox, garantindo total resistência a corrosão. Além disso, ela conta também com sensor de fechamento automático configurável (0, 3, 6, 9 segundos) e modo adicional de abertura/travamento por chave.* <br />\r\n* Acompanha o produto (3 unidades)<br />\r\n<br />\r\nInstalação sem complicação<br />\r\nA fechadura solenoide FS 1010 pode ser instalada na vertical ou na horizontal, em portas de madeira com espessuras de 35 a 50 mm e abertura para os dois lados.<br />\r\n<br />\r\nSolução de controle de acesso<br />\r\nPara uma solução completa, utilize sua fechadura solenoide FS 1010 integrada com controladores de acesso, interfones e videoporteiros.<br />\r\n<br />\r\n<br />\r\n<br />\r\n*Imagens meramente ilustrativas.Tensão de Alimentação 12 Vdc<br />\r\nCorrente Máxima 880 mA<br />\r\nCorrente em stand by 170 mA<br />\r\nForça de cisalhamento 1.200 Kgf<br />\r\nDimensões (L × A × P) 25 × 200 × 38 mm<br />\r\nDimensões do espelho (L × A × P) 23 × 90 × 2,5 mm<br />\r\nDimensões do pino (C × Ø) 16 × 12,7 mm<br />\r\nVida útil (mínima) 500.000 ciclos<br />\r\nTemperatura de funcionamento 0 ºC ~ 60 ºC",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "INTELBRAS",
+      "modelo": "",
+      "peso": 1.596,
+      "largura": 8,
+      "altura": 9.5,
+      "profundidade": 22,
+      "peso_embalagem": 1.596,
+      "largura_embalagem": 8,
+      "altura_embalagem": 9.5,
+      "profundidade_embalagem": 22,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/5/356681_67d2caf9152c8.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1358,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "10.075.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-10-02 17:47:39.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-05-14 19:21:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 3,
+      "tempo_cross": 0,
+      "estoque_total": 3,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/356681_67d2caf9152c8.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/356681_67d2caf915d83.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/356681_67d2caf9163bb.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_CATEGORY",
+    "reason": "category confidence is not HIGH for domain MLB-DOOR_AND_WINDOW_LOCKS",
+    "sanitation": "CATEGORY_FIX_REQUIRED",
+    "source": "ML catalog MLB28223714 + domain discovery"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB28223714",
+      "catalog_product_id": "MLB28223714",
+      "domain_id": "MLB-DOOR_AND_WINDOW_LOCKS",
+      "name": "Fechadura Solenoide Fail Secure Safe Com Chave Fs 1010 Cor Prateado",
+      "parent_id": "MLB28223707",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26298890",
+          "value_name": "FS 1010",
+          "values": [
+            {
+              "id": "26298890",
+              "name": "FS 1010"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52053",
+          "value_name": "Prateado",
+          "values": [
+            {
+              "id": "52053",
+              "name": "Prateado"
+            }
+          ]
+        },
+        {
+          "id": "LATCH_BOLT_TYPE",
+          "name": "Tipo de trinco",
+          "value_id": "5431084",
+          "value_name": "Inteiro",
+          "values": [
+            {
+              "id": "5431084",
+              "name": "Inteiro"
+            }
+          ]
+        },
+        {
+          "id": "LOCK_DIRECTION",
+          "name": "Direção da fechadura",
+          "value_id": "14738893",
+          "value_name": "Direita/Esquerda",
+          "values": [
+            {
+              "id": "14738893",
+              "name": "Direita/Esquerda"
+            }
+          ]
+        },
+        {
+          "id": "INSTALLATION_PLACEMENT",
+          "name": "Lugar de colocação",
+          "value_id": "13489493",
+          "value_name": "Porta",
+          "values": [
+            {
+              "id": "13489493",
+              "name": "Porta"
+            }
+          ]
+        },
+        {
+          "id": "LOCK_TYPE",
+          "name": "Tipo de bloqueio",
+          "value_id": "5431100",
+          "value_name": "Unidirecional",
+          "values": [
+            {
+              "id": "5431100",
+              "name": "Unidirecional"
+            }
+          ]
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "name": "Tipo de instalação",
+          "value_id": "312345",
+          "value_name": "De embutir",
+          "values": [
+            {
+              "id": "312345",
+              "name": "De embutir"
+            }
+          ]
+        },
+        {
+          "id": "APERTURE_MATERIALS",
+          "name": "Materiais da abertura",
+          "value_name": "alvenaria, Madeira",
+          "values": [
+            {
+              "id": "26298894",
+              "name": "alvenaria"
+            },
+            {
+              "id": "13489495",
+              "name": "Madeira"
+            }
+          ]
+        },
+        {
+          "id": "LOCK_MATERIALS",
+          "name": "Materiais da fechadura",
+          "value_id": "1119286",
+          "value_name": "Aço",
+          "values": [
+            {
+              "id": "1119286",
+              "name": "Aço"
+            }
+          ]
+        },
+        {
+          "id": "MIN_RECOMMENDED_DOOR_THICKNESS",
+          "name": "Espessura mínima da porta recomendada",
+          "value_id": "16344295",
+          "value_name": "3.5 cm",
+          "values": [
+            {
+              "id": "16344295",
+              "name": "3.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_RECOMMENDED_DOOR_THICKNESS",
+          "name": "Espessura máxima da porta recomendada",
+          "value_id": "16344293",
+          "value_name": "5 cm",
+          "values": [
+            {
+              "id": "16344293",
+              "name": "5 cm"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_DOOR_HANDLE",
+          "name": "Inclui maçaneta",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "26298897",
+          "value_name": "7896637671330",
+          "values": [
+            {
+              "id": "26298897",
+              "name": "7896637671330"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450303",
+          "value_name": "Prateado",
+          "values": [
+            {
+              "id": "2450303",
+              "name": "Prateado"
+            }
+          ],
+          "meta": {
+            "rgb": "CBCFD0"
+          }
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "6025139",
+          "value_name": "845 g",
+          "values": [
+            {
+              "id": "6025139",
+              "name": "845 g"
+            }
+          ]
+        },
+        {
+          "id": "DEAD_BOLT_SHAPE",
+          "name": "Forma da lingueta",
+          "value_id": "5431120",
+          "value_name": "Retangular",
+          "values": [
+            {
+              "id": "5431120",
+              "name": "Retangular"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "13489506",
+          "value_name": "Entrada de chave",
+          "values": [
+            {
+              "id": "13489506",
+              "name": "Entrada de chave"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A fechadura solenoide FS 1010 é resistente, com capacidade de suportar até 1.200 kgf. É compatível com controladores de acesso, interfones e vídeo porteiros, tornando-a versátil e adaptável a várias configurações. A estrutura é feita de alumínio e tem acabamento em aço inox 304, o que garante resistência total à corrosão.\n\nPode ser instalada na vertical ou na horizontal, em portas de madeira com espessuras de 35 a 50 mm e abertura para os dois lados.\n\nCaracterísticas:\n- 2 em 1: Fail safe e Fail secure.\n- Kit completo de instalação.\n- Sensor de fechamento automático configurável: 0, 3, 6, 9 segundos.\n- Resistência de 1.200 kgf.\n- Modo adicional de abertura/travamento por chave (3 unidades).\n- Vida útil de, no mínimo, 500.000 acionamentos.\n\n••••••••••••••••••• Cuidadosamente embalado •••••••••••••••••••\n\n* Imagens meramente ilustrativas *"
+      },
+      "pictures": [
+        {
+          "id": "729204-MLA99985884231_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_729204-MLA99985884231_112025-F.jpg",
+          "max_width": "1151",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-11-19T23:10:19Z",
+      "last_updated": "2026-06-03T04:28:34Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

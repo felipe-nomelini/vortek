@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-08-16T23:02:36.796Z",
+  "endpoint": "/item/MLB7432322488/performance",
+  "http_status": 400,
+  "performance": null,
+  "score": null,
+  "attempts": [
+    {
+      "endpoint": "/user-product/MLBU4772165100/performance",
+      "http_status": 404,
+      "body": {
+        "message": "Not found entity: User Product performance not found",
+        "error": "not_found",
+        "status": 404
+      }
+    },
+    {
+      "endpoint": "/item/MLB7432322488/performance",
+      "http_status": 400,
+      "body": {
+        "message": "Entity not calculated: Product items are not supported",
+        "error": "bad_request",
+        "status": 400
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "index": 10,
+  "sku": "VTK026000",
+  "started_at": "2026-08-16T23:46:02.485Z",
+  "local_time": "2026-08-16T20:46:02",
+  "expected_gtin": "6940651411517",
+  "completed_at": "2026-08-16T23:46:03.047Z",
+  "elapsed_ms": 578,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": "MLB75102536",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "catalog_identifies_acoustic_set_with_model_szste1sl_which_external_evidence_assigns_to_electric_009_042_set",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false
+  }
+}

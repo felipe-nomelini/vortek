@@ -1,0 +1,176 @@
+{
+  "payload": {
+    "family_name": "Potes Tramontina MixColor 300 ml",
+    "category_id": "MLB244658",
+    "catalog_product_id": "MLB76738398",
+    "catalog_listing": true,
+    "price": 99.9,
+    "currency_id": "BRL",
+    "available_quantity": 50,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017504/01-4d33a3a46fb56f81de4b.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017504/02-aa86dcaf6d927756e666.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017504/03-774368065e0be995eb3e.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "433",
+        "value_name": "Tramontina"
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "value_id": "3656932",
+        "value_name": "300 mL"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "value_id": "334424",
+        "value_name": "3"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "FOOD_STORAGE_CONTAINER_SHAPE",
+        "value_id": "21014479",
+        "value_name": "Quadrado"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2482319",
+        "value_name": "Polipropileno"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "45551",
+        "value_name": "11 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "45551",
+        "value_name": "11 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "3002",
+        "value_name": "5 cm"
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "4117846",
+        "value_name": "11 cm"
+      },
+      {
+        "id": "IS_AIRTIGHT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_MICROWAVE_SAFE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_CEREAL_CONTAINER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_LID",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "LID_TYPE",
+        "value_id": "41652862",
+        "value_name": "Tampa Transparente"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "86146470",
+        "value_name": "07891112359222"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017504"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK017504"
+  },
+  "sha256": "2ffd6fb3507e1435bdaf050079351586911fc3eec314e132ae21866d942a9e41",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 22,
+  "pictures_count": 3,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017504/01-4d33a3a46fb56f81de4b.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017504/02-aa86dcaf6d927756e666.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017504/03-774368065e0be995eb3e.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-08-17T14:15:53.421Z",
+  "local_images": [
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "714638-MLU74346658196_022024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_714638-MLU74346658196_022024-F.jpg",
+      "max_width": "1084",
+      "max_height": "558"
+    },
+    {
+      "id": "732733-MLU78907216152_092024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_732733-MLU78907216152_092024-F.jpg",
+      "max_width": "1200",
+      "max_height": "971"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

@@ -1,0 +1,343 @@
+{
+  "checked_at": "2026-08-17T01:14:58.349Z",
+  "product": {
+    "id": "b120e2a3-9262-4aac-bc9b-824d802612ac",
+    "sku": "VTK001572",
+    "nome": "Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir",
+    "marca": "ELIXIR",
+    "gtin": "733132120277"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/20007",
+    "consulted_at": "2026-08-17T01:14:58.152Z",
+    "product": {
+      "produtoid": "20007",
+      "produtoid_empresa": "HYX20007",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 107.78,
+      "preco_crossdocking": 107.78,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 107.78,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-04-20 17:38:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir",
+      "titulo_curto": "ENC 009 GUIT ELIXIR 2027",
+      "categoriaid": "292217",
+      "categoria_nome": "Instrumentos Musicais / Encordoamentos / Encordoamento Para Guitarra",
+      "abc": "B",
+      "ean11": "733132120277",
+      "ncm": "9209.30.00",
+      "descricao": "As cordas Elixir® Strings para Guitarra com Revestimento NANOWEB® possuem timbre brilhante e toque suave, mas com a vida útil do timbre estendida. Além disso, proporcionam desempenho consistente, toque mais natural e menos ruídos indesejáveis",
+      "caracteristicas": "Aplicação:Guitarra<br>Tensão:.009 - .046 - Leve Personalizado<br>Material:Aço<br>Revestimento:Nanoweb<br>Pesquisa:encordoamento|corda|guitarra|nano|guitar|web|custom|light|0,9|elixir|<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "ELIXIR",
+      "modelo": "Nanoweb 12027",
+      "peso": 0.045,
+      "largura": 11,
+      "altura": 2,
+      "profundidade": 12,
+      "peso_embalagem": 0.045,
+      "largura_embalagem": 11,
+      "altura_embalagem": 2,
+      "profundidade_embalagem": 12,
+      "link": "http://www.hayamax.com.br/encordoamento-para-guitarra-009-nanoweb-12027-custom-light-elixir",
+      "link_imagem": "https://static.hayapek.com.br/produtos/20007/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 247,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 16:51:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 55,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/20007/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB22319192 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB22319192",
+      "catalog_product_id": "MLB22319192",
+      "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+      "name": "Cordas Guitarra 09 Custom Light Revestimento Nanoweb Elixir",
+      "parent_id": "MLB22319167",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2499062",
+          "value_name": "Elixir",
+          "values": [
+            {
+              "id": "2499062",
+              "name": "Elixir"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "501847",
+          "value_name": "Custom",
+          "values": [
+            {
+              "id": "501847",
+              "name": "Custom"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16040382",
+          "value_name": "NANOWEB",
+          "values": [
+            {
+              "id": "16040382",
+              "name": "NANOWEB"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "16040015",
+          "value_name": "GUITARRA",
+          "values": [
+            {
+              "id": "16040015",
+              "name": "GUITARRA"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "15146",
+          "value_name": "6",
+          "values": [
+            {
+              "id": "15146",
+              "name": "6"
+            }
+          ]
+        },
+        {
+          "id": "GAUGES",
+          "name": "Calibres",
+          "value_id": "20234808",
+          "value_name": "009 - 011 - 016 - 026 - 036 - 046",
+          "values": [
+            {
+              "id": "20234808",
+              "name": "009 - 011 - 016 - 026 - 036 - 046"
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "3964687",
+          "value_name": "Aço niquelado",
+          "values": [
+            {
+              "id": "3964687",
+              "name": "Aço niquelado"
+            }
+          ]
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "16040066",
+          "value_name": "Light",
+          "values": [
+            {
+              "id": "16040066",
+              "name": "Light"
+            }
+          ]
+        },
+        {
+          "id": "NOTES",
+          "name": "Notas",
+          "value_name": "A5, B2, D4, E1, E6, G3",
+          "values": [
+            {
+              "id": "16068407",
+              "name": "A5"
+            },
+            {
+              "id": "16068404",
+              "name": "B2"
+            },
+            {
+              "id": "16068406",
+              "name": "D4"
+            },
+            {
+              "id": "16068403",
+              "name": "E1"
+            },
+            {
+              "id": "16068408",
+              "name": "E6"
+            },
+            {
+              "id": "16068405",
+              "name": "G3"
+            }
+          ]
+        },
+        {
+          "id": "SCALE",
+          "name": "Escala",
+          "value_id": "15312683",
+          "value_name": "4:4",
+          "values": [
+            {
+              "id": "15312683",
+              "name": "4:4"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_name": "7897626832152, 733132120277",
+          "values": [
+            {
+              "id": "17599677",
+              "name": "7897626832152"
+            },
+            {
+              "id": "16324500",
+              "name": "733132120277"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "ENCORDOAMENTO ELIXIR 12027 Nanoweb Custom Light\n================================================================================\n\nAs cordas Elixir® Strings para Guitarra com Revestimento NANOWEB® possuem timbre brilhante e toque suave, com vida útil do timbre estendida. Proporcionam desempenho consistente, toque mais natural e menos ruídos indesejáveis.\n\nMedidas 009 - 011 - 016 - 026 - 036 - 046\nTensão Custom Light\nQuantidade de cordas 6\nMaterial Aço Niquelado\nTipo Guitarra\nCalibre .009\nRevestimento Nanoweb\nCódigo 12027"
+      },
+      "pictures": [
+        {
+          "id": "703370-MLA101177397441_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_703370-MLA101177397441_122025-F.jpg",
+          "max_width": "569",
+          "max_height": "968"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-03-22T11:07:55Z",
+      "last_updated": "2025-11-05T03:25:34Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

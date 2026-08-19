@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto-falante 18 Pol 800w Rms 8 Ohms 18lf1610b8 Atk",
+    "supplier_category": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+    "supplier_brand": "Atk Eletroacústica",
+    "supplier_gtin": "7898640360638",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1547",
+    "captured_at": "2026-08-17T12:55:49.133Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

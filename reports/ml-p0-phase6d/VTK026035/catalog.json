@@ -1,0 +1,232 @@
+{
+  "checked_at": "2026-08-17T01:16:55.528Z",
+  "expected_catalog_product_id": "MLB27716824",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB27716824",
+    "catalog_product_id": "MLB27716824",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-VIOLIN_AND_VIOLA_SHOULDER_RESTS",
+    "permalink": "",
+    "name": "Espaleira Para Violino Scarlett Ajustável Tamanho 3/4 e 4/4 Preta",
+    "family_name": "Scarlett Espaleira scarlett",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB27716824",
+            "picker_label": "Preto",
+            "picture_id": "803772-MLA95559262163_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_803772-MLA95559262163_102025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Scarlett Espaleira scarlett - Preto",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "803772-MLA95559262163_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_803772-MLA95559262163_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 441,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Cor preta sofisticada e versátil.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Compatível com tamanhos 4/4.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Possui ajuste para melhor adequação ao usuário.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "19707",
+        "value_name": "Scarlett",
+        "values": [
+          {
+            "id": "19707",
+            "name": "Scarlett"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "48866686",
+        "value_name": "Espaleira scarlett",
+        "values": [
+          {
+            "id": "48866686",
+            "name": "Espaleira scarlett"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_INSTRUMENTS",
+        "name": "Instrumentos compatíveis",
+        "value_id": "4574294",
+        "value_name": "Violino",
+        "values": [
+          {
+            "id": "4574294",
+            "name": "Violino"
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_SIZES",
+        "name": "Tamanhos compatíveis",
+        "value_id": "4574304",
+        "value_name": "4/4",
+        "values": [
+          {
+            "id": "4574304",
+            "name": "4/4"
+          }
+        ]
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "2748302",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "name": "É ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_PADDED",
+        "name": "É almofadado",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A Espaleira Scarlett é uma peça essencial para qualquer violinista. Fabricada pela renomada marca Scarlett, é conhecida pela sua qualidade e durabilidade. Esta espaleira é feita de plástico resistente, garantindo uma longa vida útil e resistência a danos. Além disso, seu design é elegante e discreto, com uma cor preta que combina com qualquer violino.\n\nUm dos principais destaques desta espaleira é a sua versatilidade. Ela é compatível com violinos de tamanho 4/4 e 3/4, tornando-a uma opção ideal para uma ampla gama de músicos. Seja você um estudante iniciante ou um profissional experiente, esta espaleira Scarlett irá atender às suas necessidades.\n\nAlém disso, esta espaleira é ajustável, permitindo que você a personalize para se adequar perfeitamente ao seu instrumento e ao seu estilo de tocar. Isso não só melhora o conforto, mas também ajuda a melhorar a qualidade do som, permitindo que você toque no seu melhor.\n\nEm resumo, a Espaleira Scarlett de plástico 4/4 e 3/4 ajustável na cor preta é uma escolha excelente para qualquer violinista. Com sua qualidade, versatilidade e ajustabilidade, ela é uma peça que não pode faltar no seu kit de acessórios para violino."
+    },
+    "parent_id": "MLB27716823",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T03:21:37.857720085"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-10-12T23:55:15Z",
+    "authorized_stores": null,
+    "last_updated": "2026-03-17T18:34:32Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

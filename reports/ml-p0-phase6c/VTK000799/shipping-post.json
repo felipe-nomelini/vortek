@@ -1,0 +1,18 @@
+{
+  "item_id": "MLB5075741703",
+  "source": "POST_ITEM_SHIPPING_REFERENCE",
+  "quote": {
+    "coverage": {
+      "all_country": {
+        "list_cost": 78.65,
+        "currency_id": "BRL",
+        "billable_weight": 15618,
+        "discount": {
+          "rate": 0.5,
+          "type": "mandatory",
+          "promoted_amount": 157.3
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "checked_at": "2026-08-16T22:31:06.229Z",
+  "item_id": "MLB7432322488",
+  "fields": {
+    "catalog_product_id": true,
+    "catalog_listing": true,
+    "category_id": true,
+    "voltage": true,
+    "not_220_catalog": true,
+    "catalog_still_exact": true
+  },
+  "identity_fields": [
+    {
+      "field": "seller_id",
+      "expected": 3294514937,
+      "remote": 3294514937,
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "SKU",
+      "expected": "VTK000392",
+      "remote": "VTK000392",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "GTIN",
+      "expected": "7898461970375",
+      "remote": "7898461970375",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "BRAND",
+      "expected": "Ventisol",
+      "remote": "Ventisol",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "MODEL",
+      "expected": "Turbo 6",
+      "remote": "Turbo 6",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "VOLTAGE",
+      "expected": "127V",
+      "remote": "127V",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "BLADES_COLOR",
+      "expected": "Azul",
+      "remote": "Azul",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "DIAMETER",
+      "expected": "40 cm",
+      "remote": "40 cm",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "category_id",
+      "expected": "MLB1645",
+      "remote": "MLB1645",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "catalog_product_id",
+      "expected": "MLB15284402",
+      "remote": "MLB15284402",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "price",
+      "expected": 250.62,
+      "remote": 250.62,
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "available_quantity",
+      "expected": 15,
+      "remote": 15,
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "listing_type_id",
+      "expected": "gold_special",
+      "remote": "gold_special",
+      "status": "MATCH",
+      "material": true
+    },
+    {
+      "field": "condition",
+      "expected": "new",
+      "remote": "new",
+      "status": "MATCH",
+      "material": true
+    }
+  ],
+  "title": {
+    "status": "GENERATED_TITLE_OK",
+    "required": {
+      "brand": true,
+      "model": true,
+      "diameter": true,
+      "voltage": true,
+      "product_type": true
+    },
+    "wrong_voltage": false
+  },
+  "passed": true
+}

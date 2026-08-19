@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075703147",
+      "local": "MLB5075703147",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK017505",
+      "local": "VTK017505",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+      "local": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Potes Tramontina Mixcolor 300 Ml Vermelho",
+      "local": "Potes Tramontina Mixcolor 300 Ml Vermelho",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 99.9,
+      "local": 99.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "pausado",
+      "local": "pausado",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": false,
+      "local": false,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075703147-potes-tramontina-mixcolor-300-ml-vermelho-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075703147-potes-tramontina-mixcolor-300-ml-vermelho-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

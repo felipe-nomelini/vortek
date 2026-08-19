@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432632852",
+      "local": "MLB7432632852",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK000039",
+      "local": "VTK000039",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "5facdd0e-698c-4d16-99c4-983fedfaa7b5",
+      "local": "5facdd0e-698c-4d16-99c4-983fedfaa7b5",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Encordoamento Sg Strings Para Baixo 5 Cordas 040 Iz5029 Sg",
+      "local": "Encordoamento Sg Strings Para Baixo 5 Cordas 040 Iz5029 Sg",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 349.9,
+      "local": 349.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432632852-encordoamento-sg-strings-para-baixo-5-cordas-040-iz5029-sg-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432632852-encordoamento-sg-strings-para-baixo-5-cordas-040-iz5029-sg-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

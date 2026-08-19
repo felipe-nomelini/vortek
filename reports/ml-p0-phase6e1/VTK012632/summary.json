@@ -1,0 +1,10 @@
+{
+  "ordinal": 63,
+  "sku": "VTK012632",
+  "phase6e_state": "BLOCK_CATEGORY",
+  "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+  "category_candidate": "Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores",
+  "semantic_score": 100,
+  "second_pass": "PASS",
+  "evidence": "supplier/local semantics and full category path agree"
+}

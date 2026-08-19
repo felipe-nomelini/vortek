@@ -1,0 +1,163 @@
+{
+  "checked_at": "2026-08-17T12:56:42.280Z",
+  "product": {
+    "id": "b50a1717-1ca3-4491-b918-d698bbaa22b5",
+    "sku": "VTK017942",
+    "nome": "Fonte Atx 200w C3 Tech Ps-200v4 C3plus Sem Cabo - Caixa Com 10 Unidades",
+    "marca": "C3 TECH",
+    "gtin": ""
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/382139",
+    "consulted_at": "2026-08-17T12:56:42.280Z",
+    "product": {
+      "produtoid": "382139",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 349.9,
+      "preco_crossdocking": 349.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 349.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:19.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:19.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Fonte Atx 200w C3 Tech Ps-200v4 C3plus Sem Cabo - Caixa Com 10 Unidades",
+      "titulo_curto": "Fonte Atx 200w C3 Tech Ps-200v4 C3plus Sem Cabo - Caixa Com 10 Unidades",
+      "categoriaid": "118152",
+      "categoria_nome": "Informatica/ Perifericos/ Fonte Atx",
+      "abc": null,
+      "ean11": "",
+      "ncm": "85044021",
+      "descricao": "<p><strong>Fonte Atx 200W C3 Tech Ps-200V4 C3Plus Sem Cabo - Caixa com 10 unidades</strong></p>\r\n<p>Fonte de energia para computadores Atx 20+4 Pinos 200W Reais. Cooler de Funcionamento Silencioso Embutido Design Para Facilitar a Ventilação Proteção Interna Contra Curto-Circuito, sobre tensão, sob recorrente e sobre potencia Entrada Ac com Chaveamento Manual (115V e 230V).<br /><br /><br /><br />*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p><strong>Caixa com 10 unidades</strong></p>\r\n<p>Watts reais 200W<br />Espessura do chassi 0.4mm<br />Cor SGCC<br />Entrada CA O<br />Sel. Comutador 115V / 230V<br />Fan Fan 8cm<br />Cor do ventilador preto<br />Grelha de ventilador X<br />Cabo DC e conectores Comprimento do cabo (da placa de circuito impresso) 400mm<br />Medidor de cabo 20 #<br />Escudo / Tubo X<br />Conectores 20 + 4P / 4P / (IDE + SATA) * 2<br />Cor dos conectores preto<br />Certificação PCB / Inside CE EMI X<br />Segurança de Certificação CE X<br />Controle de temperatura da velocidade do ventilador X<br />PFC X<br />Conformidade com ROHS X<br />Cabo de alimentação X<br /><br />Tamanho: (A x L x C) 85x150x110mm<br /><br />Altura da embalagem: 16 CM<br />Largura embalagem: 16 CM<br />Comprimento embalagem: 9.5 CM<br />Peso embalagem: 06.4 KG<br />Part Number/SKU: PS-200V4</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "C3 TECH",
+      "modelo": "",
+      "peso": 5.8,
+      "largura": 33,
+      "altura": 17,
+      "profundidade": 46,
+      "peso_embalagem": 5.8,
+      "largura_embalagem": 33,
+      "altura_embalagem": 17,
+      "profundidade_embalagem": 46,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/382139_67d2cb12adc86.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 70,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 10:38:57.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 10:38:57.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 29,
+      "tempo_cross": 0,
+      "estoque_total": 29,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/382139_67d2cb12adc86.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/382139_67d2cb12ae8c6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/382139_67d2cb12af687.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/382139_6a4678fab8d67.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/382139_6a4678fab92d1.png"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "SOURCE_DEFERRED",
+    "reason": "GTIN absence is not a product failure; this SKU has no prior official identity proof sufficient for automatic publication",
+    "sanitation": "IDENTITY_FIX_REQUIRED",
+    "source": "local + DSLite supplier; official identity unresolved"
+  },
+  "catalog_results": []
+}

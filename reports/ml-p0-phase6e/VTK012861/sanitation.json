@@ -1,0 +1,10 @@
+{
+  "sku": "VTK012861",
+  "gate": "BLOCK_GTIN_MODEL_CONFLICT",
+  "evidence": "exact GTIN catalog identity conflict: COLOR,MODEL",
+  "local_value": "7898640360638",
+  "found_value": "MLB38787642",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB38787642 + DSLite supplier",
+  "timestamp": "2026-08-17T12:55:49.330Z"
+}

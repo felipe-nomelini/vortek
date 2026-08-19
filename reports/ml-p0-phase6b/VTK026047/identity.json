@@ -1,0 +1,619 @@
+{
+  "index": 12,
+  "sku": "VTK026047",
+  "started_at": "2026-08-17T00:07:11.758Z",
+  "local_time": "2026-08-16T21:07:11",
+  "expected_gtin": "097855181145",
+  "product": {
+    "id": "80018d67-8f4b-4080-a635-57163844d40b",
+    "sku": "VTK026047",
+    "nome": "Mouse Logitech Silent M110 Usb Cinza",
+    "marca": "LOGITECH",
+    "estoque": 47,
+    "custo": 43.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.11,
+    "peso_bruto": 0.11,
+    "largura": 9,
+    "altura": 4,
+    "profundidade": 13,
+    "gtin": "097855181145",
+    "descricao": "Mouse com fio USB Logitech M110 Cinza O Logitech M110 Silent oferece conforto plug-and-play, confiabilidade e controle silencioso do seu computador. O Logitech M110 Silent oferece conforto plug-and-play, confiabilidade e controle silencioso do seu computador. Com o mesmo clique e 90% de redução de ruído*, aproveite uma experiência silenciosa para você e aqueles que o cercam. O controle de cursor suave e sensível oferece um rastreamento preciso e seleção de texto simplificada, enquanto o design ambidestro de tamanho normal serve perfeitamente à mão direita e esquerda. Este mouse simples de instalar e usar não precisa de instalação de software. Basta conectar o cabo na porta USB e usá-lo imediatamente. CONHEÇA O M110 Com um design ambidestro confortável, os cliques do M110 são extremamente silenciosos, ideais para realizar as tarefas do seu dia a dia com precisão acima da média. Além disso, possui de seleção de texto simplificada. SIMPLES DE INSTALAR E USAR Conforto até mesmo antes de utilizar. Com conexão USB plug-and-play, basta conectar o seu M110 e aproveitar horas de cliques silenciosos. MAIS DE 90% EM REDUÇÃO DE RUÍDOS O M110 é ergonômico e tem a qualidade de um produto bem planejado em cada detalhe. O controle tem sensibilidade apurada e mais de 90% de redução de ruído em relação aos mouses comuns. DESIGN AMBIDESTRO Canhoto ou destro, o M110 Silent proporciona conforto prolongado com esse design ambidestro em tamanho normal. A superfície curvada foi projetada para apoiar seus dedos perfeitamente. *Imagens meramente ilustrativas.\n\nTecnologia de sensor: Rastreamento óptico DPI (mín./máx.): 1.000± Botões Número de botões : 3 (clique esquerdo/direito, clique no botão do meio) Rolagem Rolagem linha a linha Roda de rolagem: Sim, óptica Requisitos do sistema Cabo USB-A Requer: porta USB disponível Windows®︎ 10, 11 ou posterior macOS 10.5 ou posterior Linux® Kernel 2.6+ Dimensões Mouse Altura: 112,96 mm Largura: 61,7 mm Profundidade: 38,4 mm Peso (com baterias): 85 g Cabo Comprimento do cabo: 180 cm",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2ce6.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2f9d.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2fe3.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d3012.png"
+    ],
+    "categoria": "Informatica/ Perifericos/ Mouse óptico",
+    "ml_item_id": null,
+    "created_at": "2026-08-16T11:00:23.694417+00:00",
+    "updated_at": "2026-08-16T20:52:32.121615+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "391319",
+    "dslite_ultima_sync": "2026-08-16T20:52:32.046+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "84716053",
+    "cest": "21.031.00",
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "0d9baa18-dd52-45a3-a3b1-f9752cc153dc",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "0d9baa18-dd52-45a3-a3b1-f9752cc153dc",
+    "produto_id": "80018d67-8f4b-4080-a635-57163844d40b",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "391319",
+    "sku_fornecedor": "391319",
+    "custo": 43.9,
+    "estoque": 47,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:52:32.046+00:00",
+    "created_at": "2026-08-16T11:00:23.70381+00:00",
+    "updated_at": "2026-08-16T20:52:32.063+00:00",
+    "sku_oferta": "391319",
+    "nome": "Mouse Logitech Silent M110 Usb Cinza",
+    "descricao": "Mouse com fio USB Logitech M110 Cinza O Logitech M110 Silent oferece conforto plug-and-play, confiabilidade e controle silencioso do seu computador. O Logitech M110 Silent oferece conforto plug-and-play, confiabilidade e controle silencioso do seu computador. Com o mesmo clique e 90% de redução de ruído*, aproveite uma experiência silenciosa para você e aqueles que o cercam. O controle de cursor suave e sensível oferece um rastreamento preciso e seleção de texto simplificada, enquanto o design ambidestro de tamanho normal serve perfeitamente à mão direita e esquerda. Este mouse simples de instalar e usar não precisa de instalação de software. Basta conectar o cabo na porta USB e usá-lo imediatamente. CONHEÇA O M110 Com um design ambidestro confortável, os cliques do M110 são extremamente silenciosos, ideais para realizar as tarefas do seu dia a dia com precisão acima da média. Além disso, possui de seleção de texto simplificada. SIMPLES DE INSTALAR E USAR Conforto até mesmo antes de utilizar. Com conexão USB plug-and-play, basta conectar o seu M110 e aproveitar horas de cliques silenciosos. MAIS DE 90% EM REDUÇÃO DE RUÍDOS O M110 é ergonômico e tem a qualidade de um produto bem planejado em cada detalhe. O controle tem sensibilidade apurada e mais de 90% de redução de ruído em relação aos mouses comuns. DESIGN AMBIDESTRO Canhoto ou destro, o M110 Silent proporciona conforto prolongado com esse design ambidestro em tamanho normal. A superfície curvada foi projetada para apoiar seus dedos perfeitamente. *Imagens meramente ilustrativas.\n\nTecnologia de sensor: Rastreamento óptico DPI (mín./máx.): 1.000± Botões Número de botões : 3 (clique esquerdo/direito, clique no botão do meio) Rolagem Rolagem linha a linha Roda de rolagem: Sim, óptica Requisitos do sistema Cabo USB-A Requer: porta USB disponível Windows®︎ 10, 11 ou posterior macOS 10.5 ou posterior Linux® Kernel 2.6+ Dimensões Mouse Altura: 112,96 mm Largura: 61,7 mm Profundidade: 38,4 mm Peso (com baterias): 85 g Cabo Comprimento do cabo: 180 cm",
+    "marca": "LOGITECH",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2ce6.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2f9d.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2fe3.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d3012.png"
+    ],
+    "gtin": "097855181145",
+    "ncm": "84716053",
+    "cest": "21.031.00"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391319",
+    "consulted_at": "2026-08-17T00:07:12.424Z",
+    "product": {
+      "produtoid": "391319",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 43.9,
+      "preco_crossdocking": 43.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 43.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-27 16:10:50.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-27 16:10:50.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Mouse Logitech Silent M110 Usb Cinza",
+      "titulo_curto": "Mouse Logitech Silent M110 Usb Cinza",
+      "categoriaid": "118082",
+      "categoria_nome": "Informatica/ Perifericos/ Mouse óptico",
+      "abc": null,
+      "ean11": "097855181145",
+      "ncm": "84716053",
+      "descricao": "<div class=\"page-title-wrapper product\">\r\n<h2 class=\"page-title\"><strong><span class=\"base\" data-ui-id=\"page-title-wrapper\">Mouse com fio USB Logitech M110 Cinza</span></strong></h2>\r\n</div>\r\n<div class=\"product attribute overview\">\r\n<div class=\"value\">O Logitech M110 Silent oferece conforto plug-and-play, confiabilidade e controle silencioso do seu computador.</div>\r\n<div class=\"value\"> </div>\r\n<div class=\"value\"> </div>\r\n<div class=\"value\">O Logitech M110 Silent oferece conforto plug-and-play, confiabilidade e controle silencioso do seu computador. Com o mesmo clique e 90% de redução de ruído*, aproveite uma experiência silenciosa para você e aqueles que o cercam. O controle de cursor suave e sensível oferece um rastreamento preciso e seleção de texto simplificada, enquanto o design ambidestro de tamanho normal serve perfeitamente à mão direita e esquerda. Este mouse simples de instalar e usar não precisa de instalação de software. Basta conectar o cabo na porta USB e usá-lo imediatamente.</div>\r\n<div class=\"value\"> </div>\r\n<div class=\"value\">\r\n<div class=\"flix-std-title\" role=\"heading\" aria-level=\"3\"><strong>CONHEÇA O M110<br /></strong>Com um design ambidestro confortável, os cliques do M110 são extremamente silenciosos, ideais para realizar as tarefas do seu dia a dia com precisão acima da média. Além disso, possui de seleção de texto simplificada.</div>\r\n<div class=\"flix-std-desc\">\r\n<div class=\"flix-std-title\" role=\"heading\" aria-level=\"3\"> </div>\r\n<div class=\"flix-std-title\" role=\"heading\" aria-level=\"3\"><strong>SIMPLES DE INSTALAR E USAR</strong></div>\r\n<div class=\"flix-std-desc\">Conforto até mesmo antes de utilizar. Com conexão USB plug-and-play, basta conectar o seu M110 e aproveitar horas de cliques silenciosos.</div>\r\n<div class=\"flix-std-desc\"> </div>\r\n<div class=\"flix-std-desc\">\r\n<div class=\"flix-std-title\" role=\"heading\" aria-level=\"3\"><strong>MAIS DE 90% EM REDUÇÃO DE RUÍDOS</strong></div>\r\n<div class=\"flix-std-desc\">O M110 é ergonômico e tem a qualidade de um produto bem planejado em cada detalhe. O controle tem sensibilidade apurada e mais de 90% de redução de ruído em relação aos mouses comuns.</div>\r\n<div class=\"flix-std-desc\"> </div>\r\n<div class=\"flix-std-desc\">\r\n<div class=\"flix-std-title\" role=\"heading\" aria-level=\"3\"><strong>DESIGN AMBIDESTRO</strong></div>\r\n<div class=\"flix-std-desc\">Canhoto ou destro, o M110 Silent proporciona conforto prolongado com esse design ambidestro em tamanho normal. A superfície curvada foi projetada para apoiar seus dedos perfeitamente.</div>\r\n<div class=\"flix-std-desc\"> </div>\r\n<div class=\"flix-std-desc\"> </div>\r\n<div class=\"flix-std-desc\"> </div>\r\n<div class=\"flix-std-desc\"> </div>\r\n<div class=\"flix-std-desc\">*Imagens meramente ilustrativas.</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>",
+      "caracteristicas": "<p><strong>Tecnologia de sensor: </strong><br />Rastreamento óptico<br />DPI (mín./máx.): 1.000±</p>\r\n<p><strong>Botões</strong><br />Número de botões : 3 (clique esquerdo/direito, clique no botão do meio)</p>\r\n<p><strong>Rolagem</strong><br />Rolagem linha a linha<br />Roda de rolagem: Sim, óptica</p>\r\n<p><strong>Requisitos do sistema<br /></strong>Cabo USB-A Requer: porta USB disponível Windows®︎ 10, 11 ou posterior macOS 10.5 ou posterior Linux® Kernel 2.6+</p>\r\n<p> </p>\r\n<p><strong>Dimensões</strong></p>\r\n<p>Mouse<br />Altura: 112,96 mm<br />Largura: 61,7 mm<br />Profundidade: 38,4 mm<br />Peso (com baterias): 85 g</p>\r\n<p>Cabo<br />Comprimento do cabo: 180 cm</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "LOGITECH",
+      "modelo": "",
+      "peso": 0.11,
+      "largura": 9,
+      "altura": 4,
+      "profundidade": 13,
+      "peso_embalagem": 0.11,
+      "largura_embalagem": 9,
+      "altura_embalagem": 4,
+      "profundidade_embalagem": 13,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2ce6.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 10,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.031.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 14:41:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 04:25:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 47,
+      "tempo_cross": 0,
+      "estoque_total": 47,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2ce6.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2f9d.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d2fe3.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391319_6a677558d3012.png"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "https://www.logitech.com/pt-br/products/mice/m110-silent-corded-mouse.910-006759.html",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391319",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=097855181145"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB24551741",
+      "catalog_product_id": "MLB24551741",
+      "domain_id": "MLB-COMPUTER_MICE",
+      "name": "Mouse Logitech M110 Silent Cinza",
+      "parent_id": "MLB21723562",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15788",
+          "value_name": "Logitech",
+          "values": [
+            {
+              "id": "15788",
+              "name": "Logitech"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "102421",
+          "value_name": "Silent",
+          "values": [
+            {
+              "id": "102421",
+              "name": "Silent"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "25761",
+          "value_name": "M110",
+          "values": [
+            {
+              "id": "25761",
+              "name": "M110"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "44171882",
+          "value_name": "910-006757",
+          "values": [
+            {
+              "id": "44171882",
+              "name": "910-006757"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "283165",
+          "value_name": "Cinza",
+          "values": [
+            {
+              "id": "283165",
+              "name": "Cinza"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450294",
+          "value_name": "Cinza",
+          "values": [
+            {
+              "id": "2450294",
+              "name": "Cinza"
+            }
+          ],
+          "meta": {
+            "rgb": "E1E1E1"
+          }
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "13234857",
+          "value_name": "M110",
+          "values": [
+            {
+              "id": "13234857",
+              "name": "M110"
+            }
+          ]
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "name": "Tipo de mouse",
+          "value_id": "192740",
+          "value_name": "Convencional",
+          "values": [
+            {
+              "id": "192740",
+              "name": "Convencional"
+            }
+          ]
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "name": "Tipo de sensor",
+          "value_id": "109003",
+          "value_name": "Óptico",
+          "values": [
+            {
+              "id": "109003",
+              "name": "Óptico"
+            }
+          ]
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "name": "Tecnologia do sensor",
+          "value_id": "17871897",
+          "value_name": "Rastreamento óptico",
+          "values": [
+            {
+              "id": "17871897",
+              "name": "Rastreamento óptico"
+            }
+          ]
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "name": "Orientação da mão",
+          "value_id": "2862903",
+          "value_name": "Ambidestro",
+          "values": [
+            {
+              "id": "2862903",
+              "name": "Ambidestro"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "name": "Sistemas operacionais compatíveis",
+          "value_name": "Linux, Windows 7, Windows Vista, Windows XP, macOS X 10.4",
+          "values": [
+            {
+              "id": "9730900",
+              "name": "Linux"
+            },
+            {
+              "id": "3211255",
+              "name": "Windows 7"
+            },
+            {
+              "id": "4198272",
+              "name": "Windows Vista"
+            },
+            {
+              "id": "3211257",
+              "name": "Windows XP"
+            },
+            {
+              "id": "11074778",
+              "name": "macOS X 10.4"
+            }
+          ]
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_WIRE",
+          "name": "Com fio",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "name": "Resolução do sensor",
+          "value_id": "249299",
+          "value_name": "1000 dpi",
+          "values": [
+            {
+              "id": "249299",
+              "name": "1000 dpi"
+            }
+          ]
+        },
+        {
+          "id": "MAX_SPEED",
+          "name": "Velocidade máxima",
+          "value_id": "11605881",
+          "value_name": "1000 ips",
+          "values": [
+            {
+              "id": "11605881",
+              "name": "1000 ips"
+            }
+          ]
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "name": "Quantidade de botões",
+          "value_id": "1021242",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "1021242",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "20912419",
+          "value_name": "97855181145",
+          "values": [
+            {
+              "id": "20912419",
+              "name": "97855181145"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "16119337",
+          "value_name": "3.84 cm",
+          "values": [
+            {
+              "id": "16119337",
+              "name": "3.84 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "16119338",
+          "value_name": "6.17 cm",
+          "values": [
+            {
+              "id": "16119338",
+              "name": "6.17 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "48686283",
+          "value_name": "11.296 cm",
+          "values": [
+            {
+              "id": "48686283",
+              "name": "11.296 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "8611986",
+          "value_name": "85 g",
+          "values": [
+            {
+              "id": "8611986",
+              "name": "85 g"
+            }
+          ]
+        },
+        {
+          "id": "WITH_LIGHTS",
+          "name": "Com luzes",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Logitech projeta produtos e experiências que ocupam um lugar cotidiano na vida das pessoas, com foco em inovação e qualidade. Seu objetivo é criar momentos verdadeiramente únicos e significativos para seus usuários. Os mouses Logitech se adaptam ao formato da sua mão para oferecer horas de conforto. Sem precisar mover o braço para deslizar o cursor, sua mão ficará menos cansada. Eles são ideais para qualquer espaço de trabalho e para quem tem uma mesa cheia de vários objetos. \n \n Adaptado aos seus movimentos \n Seu design eficaz torna esse mouse um elemento confortável, com uma ótima experiência de usuário para quem busca segurança a cada clique. \n \n A funcionalidade na ponta dos dedos \n O sistema óptico de detecção de movimento permitirá que você mova o cursor de uma forma mais precisa e sensível do que nos sistemas tradicionais. \n \n Adequado para facilitar o transporte \n Navegue rapidamente por documentos e páginas da web graças ao seu design ultrafino, ergonômico, leve e conveniente para transportar para onde quiser ou viajar."
+      },
+      "pictures": [
+        {
+          "id": "844339-MLA93501290933_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_844339-MLA93501290933_092025-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "1000",
+          "max_height": "668"
+        },
+        {
+          "id": "897426-MLA99365241954_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_897426-MLA99365241954_112025-F.jpg",
+          "max_width": "259",
+          "max_height": "500"
+        },
+        {
+          "id": "899840-MLA93501418563_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_899840-MLA93501418563_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "401"
+        },
+        {
+          "id": "908663-MLA99848670501_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_908663-MLA99848670501_112025-F.jpg",
+          "max_width": "883",
+          "max_height": "596"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-07-16T16:24:57Z",
+      "last_updated": "2025-03-14T09:59:45Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

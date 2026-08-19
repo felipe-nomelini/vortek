@@ -1,0 +1,114 @@
+{
+  "tax_rate": 0.05,
+  "target_final_percent": 50,
+  "target_pre_percent": 52,
+  "cost": 29.9,
+  "pre_item": {
+    "method": "closed_form_then_single_validation",
+    "target_margin_percent": 52,
+    "seed_quote": {
+      "price": 199.9,
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 20.99,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 20.99,
+          "percentage_fee": 10.5
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "fee_components": {
+        "rate": 0.105,
+        "fixed": 0,
+        "source": "sale_fee_details"
+      },
+      "shipping_data": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 20.75,
+            "currency_id": "BRL",
+            "billable_weight": 867,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 41.5
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 199.9,
+        "commission": 20.99,
+        "shipping": 20.75,
+        "cost": 29.9,
+        "tax": 10,
+        "profit": 118.26,
+        "margin_percent": 59.15958
+      }
+    },
+    "planned_price": 159.9,
+    "validation": {
+      "price": 159.9,
+      "fee": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_special",
+        "listing_type_name": "Clássico",
+        "requires_picture": true,
+        "sale_fee_amount": 16.79,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 16.79,
+          "percentage_fee": 10.5
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "fee_components": {
+        "rate": 0.105,
+        "fixed": 0,
+        "source": "sale_fee_details"
+      },
+      "shipping_data": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 20.75,
+            "currency_id": "BRL",
+            "billable_weight": 867,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 41.5
+            }
+          }
+        }
+      },
+      "financial": {
+        "price": 159.9,
+        "commission": 16.79,
+        "shipping": 20.75,
+        "cost": 29.9,
+        "tax": 8,
+        "profit": 84.46,
+        "margin_percent": 52.820513
+      }
+    },
+    "approved": true
+  }
+}

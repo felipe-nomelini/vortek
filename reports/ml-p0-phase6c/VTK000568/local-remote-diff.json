@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432502124",
+      "local": "MLB7432502124",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK000568",
+      "local": "VTK000568",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "91298ae8-5b01-4716-876d-900536b1708e",
+      "local": "91298ae8-5b01-4716-876d-900536b1708e",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Microfone Sem Fio Uhf Harmonics Hsf200-1 Cor Preto",
+      "local": "Microfone Sem Fio Uhf Harmonics Hsf200-1 Cor Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 1009.9,
+      "local": 1009.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432502124-microfone-sem-fio-uhf-harmonics-hsf200-1-cor-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432502124-microfone-sem-fio-uhf-harmonics-hsf200-1-cor-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

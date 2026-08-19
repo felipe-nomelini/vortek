@@ -1,0 +1,319 @@
+{
+  "checked_at": "2026-08-17T12:54:31.618Z",
+  "product": {
+    "id": "d5f50967-bbfc-475b-a026-2fae44248179",
+    "sku": "VTK001485",
+    "nome": "Fio PP 2x1,00mm Controller Preto - RL / 100",
+    "marca": "CONTROLLER",
+    "gtin": "7898417291479"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/13268",
+    "consulted_at": "2026-08-17T12:54:31.417Z",
+    "product": {
+      "produtoid": "13268",
+      "produtoid_empresa": "HYX13268",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 274.31,
+      "preco_crossdocking": 274.31,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 274.31,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-04-20 17:38:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Fio PP 2x1,00mm Controller Preto - RL / 100",
+      "titulo_curto": "FIO PP 2X1,00MM CONTROLLER PT",
+      "categoriaid": "292221",
+      "categoria_nome": "Materiais Elétricos / Fios E Cabos Para Meteriais Elétricos / Fios Em Rolo",
+      "abc": "B",
+      "ean11": "7898417291479",
+      "ncm": "8544.49.00",
+      "descricao": "Condutor recomendado para ligação de equipamentos elétricos móveis ou fixos, e demais aplicações que exigem boa flexibilidade do cabo e proteção mecânica do material isolante. <br/> <br/> Condutor flexível de cobre nu, têmpera mole, encordoamento classe 5. <br/> Isolação de PVC/D 70°C - composto termoplástico extrudado à base de policloreto de vinila, com características especiais para não propagação e autoextinção do fogo. <br/> Cobertura de PVC/ST5 70°C - composto termoplástico extrudado à base de policloreto de vinila.",
+      "caracteristicas": "Cor:Preto<br>Bitola:2x1,00mm<br>Embalagem:Rolo 100m<br>Pesquisa:fio|cabo|flexivel|controller|pp|<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "CONTROLLER",
+      "modelo": "PP",
+      "peso": 5.6,
+      "largura": 30,
+      "altura": 10,
+      "profundidade": 30,
+      "peso_embalagem": 5.6,
+      "largura_embalagem": 30,
+      "altura_embalagem": 10,
+      "profundidade_embalagem": 30,
+      "link": "http://www.hayamax.com.br/fio-pp-2x1-00mm-controller-preto",
+      "link_imagem": "https://static.hayapek.com.br/produtos/13268/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "RL",
+      "embalagem_quantidade": 100,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 27229,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 15:06:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/13268/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB29974311",
+    "source": "ML catalog MLB29974311 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Controller",
+      "model": "Fio Pp 2X1,00Mm Preto",
+      "local_pack": 2,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [],
+      "title_similarity": 1
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB29974311",
+      "catalog_product_id": "MLB29974311",
+      "domain_id": "MLB-ELECTRICAL_CABLES",
+      "name": "Fio Pp 2x1,00mm Preto - Rl / 100",
+      "parent_id": "MLB29974310",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "17018007",
+          "value_name": "Controller",
+          "values": [
+            {
+              "id": "17018007",
+              "name": "Controller"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "48948711",
+          "value_name": "Fio Pp 2X1,00Mm Preto",
+          "values": [
+            {
+              "id": "48948711",
+              "name": "Fio Pp 2X1,00Mm Preto"
+            }
+          ]
+        },
+        {
+          "id": "ELECTRIC_CABLE_TYPE",
+          "name": "Tipo de cabo",
+          "value_id": "4800756",
+          "value_name": "PP",
+          "values": [
+            {
+              "id": "4800756",
+              "name": "PP"
+            }
+          ]
+        },
+        {
+          "id": "ELECTRICAL_CABLE_SECTION",
+          "name": "Seção",
+          "value_id": "28993844",
+          "value_name": "cabo",
+          "values": [
+            {
+              "id": "28993844",
+              "name": "cabo"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "13183470",
+          "value_name": "100 m",
+          "values": [
+            {
+              "id": "13183470",
+              "name": "100 m"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_JACKET_MATERIAL",
+          "name": "Material da cobertura",
+          "value_id": "24591655",
+          "value_name": "Termoplástico",
+          "values": [
+            {
+              "id": "24591655",
+              "name": "Termoplástico"
+            }
+          ]
+        },
+        {
+          "id": "CONDUCTOR_MATERIALS",
+          "name": "Materiais do condutor",
+          "value_id": "28993843",
+          "value_name": "proteção mecânica do material isolante",
+          "values": [
+            {
+              "id": "28993843",
+              "name": "proteção mecânica do material isolante"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "28993845",
+          "value_name": "7898417291479",
+          "values": [
+            {
+              "id": "28993845",
+              "name": "7898417291479"
+            }
+          ]
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "name": "Temperatura máxima",
+          "value_id": "8174172",
+          "value_name": "70 °C",
+          "values": [
+            {
+              "id": "8174172",
+              "name": "70 °C"
+            }
+          ]
+        },
+        {
+          "id": "INSULATION_MATERIALS",
+          "name": "Materiais da isolação",
+          "value_id": "24701757",
+          "value_name": "Termoplástico",
+          "values": [
+            {
+              "id": "24701757",
+              "name": "Termoplástico"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Condutor recomendado para ligação de equipamentos elétricos móveis ou fixos, e demais aplicações que exigem boa flexibilidade do cabo e proteção mecânica do material isolante.\n\nCondutor flexível de cobre nu, têmpera mole, encordoamento classe 5.\nIsolação de PVC/D 70°C - composto termoplástico extrudado à base de policloreto de vinila, com características especiais para não propagação e autoextinção do fogo.\nCobertura de PVC/ST5 70°C - composto termoplástico extrudado à base de policloreto de vinila. Cor: preto\nBitola: 2x1,00mm\nEmbalagem: rolo 100m."
+      },
+      "pictures": [
+        {
+          "id": "708750-MLA99972707479_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_708750-MLA99972707479_112025-F.jpg",
+          "max_width": "550",
+          "max_height": "437"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-01-25T01:15:09Z",
+      "last_updated": "2026-05-29T03:22:23Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

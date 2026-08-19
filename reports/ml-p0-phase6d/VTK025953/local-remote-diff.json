@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075856443",
+      "local": "MLB5075856443",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK025953",
+      "local": "VTK025953",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "34a42f9d-bc9b-436d-aab2-098d44a3a598",
+      "local": "34a42f9d-bc9b-436d-aab2-098d44a3a598",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Liquidificador Portátil Arno Lightmix Amarelo Lp00 Amarelo 127/220v",
+      "local": "Liquidificador Portátil Arno Lightmix Amarelo Lp00 Amarelo 127/220v",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 859.9,
+      "local": 859.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075856443-liquidificador-portatil-arno-lightmix-amarelo-lp00-amarelo-127220v-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075856443-liquidificador-portatil-arno-lightmix-amarelo-lp00-amarelo-127220v-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

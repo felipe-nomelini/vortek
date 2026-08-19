@@ -1,0 +1,10 @@
+{
+  "sku": "VTK017636",
+  "gate": "BLOCK_GTIN_UNIT_CONFLICT",
+  "evidence": "exact GTIN catalog is a five-unit kit while local commercial unit is one divider",
+  "local_value": "7898419487009",
+  "found_value": "5 units",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB57792827",
+  "timestamp": "2026-08-17T01:15:05.861Z"
+}

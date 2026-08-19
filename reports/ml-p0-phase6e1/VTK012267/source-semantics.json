@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-08-17T14:15:53.660Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "supplier_brand": "Wireconex",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1382",
+    "captured_at": "2026-08-17T12:56:43.143Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "44a0844e-cb01-4736-83b4-8d4ea4cab6ec",
+    "produto_id": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1382",
+    "sku_fornecedor": "1382",
+    "custo": 20.68,
+    "estoque": 27,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.019+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.027+00:00",
+    "sku_oferta": "1382",
+    "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+    "descricao": "Adaptador RCA Macho para XLR 3 Pinos Fêmea Niquelado WC 242 AD – Kit com 2 Unidades Wireconex Ideal para conexões práticas e seguras em sistemas de áudio, este adaptador permite converter RCA macho para XLR 3 pinos fêmea, ampliando a compatibilidade entre equipamentos profissionais e domésticos com eficiência e confiabilidade. Especificações • Modelo: WC 242 AD • Marca: Wireconex • Tipo de conexão: RCA Macho → XLR 3 Pinos Fêmea • Material: Corpo metálico resistente • Acabamento: Niquelado (Ni) • Padrão XLR: 3 pinos • Quantidade: 02 unidades • Aplicação: Mesas de som, amplificadores, sistemas de áudio, estúdios e instalações profissionais Desenvolvido com materiais duráveis e acabamento de qualidade, o adaptador WC 242 AD oferece encaixe firme e transmissão de sinal estável. Ideal para técnicos, igrejas, eventos e estúdios que precisam de soluções rápidas e eficientes para interligar diferentes padrões de conexão. Mais versatilidade e segurança para o seu sistema de áudio.",
+    "marca": "Wireconex",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/4221be424b4122f4e371103dd8503fd9.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c8776592417464010bd8eef945ef8bfd.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8536.90.10",
+    "cest": "12.004.00"
+  }
+}

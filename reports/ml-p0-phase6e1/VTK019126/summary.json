@@ -1,0 +1,10 @@
+{
+  "ordinal": 79,
+  "sku": "VTK019126",
+  "phase6e_state": "BLOCK_CATEGORY",
+  "phase6e1_state": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+  "category_candidate": "Casa, Móveis e Decoração > Segurança para Casa > Ferragens de Segurança > Fechaduras > Elétricas",
+  "semantic_score": 93,
+  "second_pass": "PASS",
+  "evidence": "supplier/local semantics and full category path agree"
+}

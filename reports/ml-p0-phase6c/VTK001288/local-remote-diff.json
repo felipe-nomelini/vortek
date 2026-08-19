@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432625640",
+      "local": "MLB7432625640",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001288",
+      "local": "VTK001288",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "e9cae74c-a6c4-40f1-9cbe-327af6dff867",
+      "local": "e9cae74c-a6c4-40f1-9cbe-327af6dff867",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Suporte Teto Tv 32-40-42-43-48-49-55-56 Samsung-LG-sony Cor Preto",
+      "local": "Suporte Teto Tv 32-40-42-43-48-49-55-56 Samsung-LG-sony Cor Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 549.9,
+      "local": 549.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432625640-suporte-teto-tv-32-40-42-43-48-49-55-56-samsung-lg-sony-cor-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432625640-suporte-teto-tv-32-40-42-43-48-49-55-56-samsung-lg-sony-cor-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

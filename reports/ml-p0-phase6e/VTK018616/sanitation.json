@@ -1,0 +1,27 @@
+{
+  "sku": "VTK018616",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": {
+    "expected": "MLB49204248",
+    "identity": {
+      "fields": {
+        "catalog_id": true,
+        "catalog_required": true,
+        "gtin": true,
+        "brand": true,
+        "model": true,
+        "title": false
+      },
+      "critical": {},
+      "passed": false
+    },
+    "results": [
+      "MLB49204248"
+    ]
+  },
+  "local_value": "7898253498094",
+  "found_value": null,
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML exact GTIN catalog MLB49204248 + DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/261698",
+  "timestamp": "2026-08-17T12:53:50.397Z"
+}

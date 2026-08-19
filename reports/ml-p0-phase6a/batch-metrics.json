@@ -1,0 +1,21 @@
+{
+  "attempted": 10,
+  "created": 3,
+  "persisted": 3,
+  "existing": 0,
+  "blocked_identity": 6,
+  "blocked_gtin": 1,
+  "blocked_duplicate": 0,
+  "blocked_contract": 0,
+  "blocked_financial": 0,
+  "api_errors": 0,
+  "ml_gets": 453,
+  "item_posts": 3,
+  "price_puts": 0,
+  "local_transactions": 3,
+  "rollbacks": 0,
+  "started_at": "2026-08-16T23:41:35.660Z",
+  "completed_at": "2026-08-16T23:46:03.047Z",
+  "elapsed_ms": 267387,
+  "mean_sku_ms": 17486
+}

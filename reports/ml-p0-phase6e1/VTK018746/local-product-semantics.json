@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-17T14:15:40.898Z",
+  "product": {
+    "id": "e9f9219e-762c-4719-aaa8-df2d9f065d73",
+    "sku": "VTK018746",
+    "nome": "Sub Conjunto Almapy Up 13+ Traseiro Sensorizado",
+    "marca": "ALMAPY",
+    "estoque": 5,
+    "custo": 314.6,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.654,
+    "peso_bruto": 0.654,
+    "largura": 19.5,
+    "altura": 6,
+    "profundidade": 24,
+    "gtin": "7890000103213",
+    "descricao": "Informações do Produto Sub Conjunto Vidro Elétrico Sensorizado - 714.024 Traseiro Aplicação Up 13/... Volkswagen",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018746/01-3b5ee37189d53b84d720.jpg"
+    ],
+    "categoria": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:58.760928+00:00",
+    "updated_at": "2026-08-17T11:09:28.09337+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "315308",
+    "dslite_ultima_sync": "2026-08-17T11:09:27.941+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87089990",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "dd717204-f655-4739-ad73-0d1c47ce93a6",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "parking_sensor",
+    "function": "detect_vehicle_obstacle",
+    "intended_use": "automotive",
+    "physical_form": "parking_sensor",
+    "expected_category_signals": [
+      "sensor",
+      "estacionamento",
+      "automotivo",
+      "veiculo"
+    ],
+    "incompatible_category_signals": [
+      "alarmeresidencial",
+      "temperatura",
+      "presenca"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "payload": {
+    "family_name": "Violino Scarlett SCV F44 4/4",
+    "category_id": "MLB72776",
+    "catalog_product_id": "MLB26631710",
+    "catalog_listing": true,
+    "price": 2009.9,
+    "currency_id": "BRL",
+    "available_quantity": 6,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/79362/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79362/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79362/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79362/550/4.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "19707",
+        "value_name": "Scarlett"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "23730803",
+        "value_name": "SCV F44"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "7869826",
+        "value_name": "Natural fosco"
+      },
+      {
+        "id": "VIOLIN_SIZE",
+        "value_id": "2201515",
+        "value_name": "4/4"
+      },
+      {
+        "id": "VIOLIN_TYPE",
+        "value_id": "2201516",
+        "value_name": "Acústico"
+      },
+      {
+        "id": "INCLUDES_ACCESSORIES",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_BOW",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_CASE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "FINGERBOARD_MATERIAL",
+        "value_id": "96561",
+        "value_name": "Ébano"
+      },
+      {
+        "id": "BODY_MATERIALS",
+        "value_id": "2194266",
+        "value_name": "Bordo"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "25841254",
+        "value_name": "Breu"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "23730811",
+        "value_name": "7898672372173"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK004693"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK004693"
+  },
+  "sha256": "da4b3d675acdec77bf26694704149751fbbe50658d6f78470a89cd5cfdf0b1f0",
+  "family_name_sha256": "11efeef5a8469b740e709fc792ad578e3c5a9e98c24564dbc9a0343266f3d86a",
+  "title_absent": true,
+  "description_absent": true
+}

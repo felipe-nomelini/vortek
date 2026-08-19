@@ -1,0 +1,260 @@
+{
+  "checked_at": "2026-08-17T12:53:53.929Z",
+  "product": {
+    "id": "d5887456-14b1-43d1-8f33-27159dc5fe20",
+    "sku": "VTK019219",
+    "nome": "Espaguete Liso Permak 12mm 100m",
+    "marca": "PERMAK",
+    "gtin": "7899079103070"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391225",
+    "consulted_at": "2026-08-17T12:53:53.737Z",
+    "product": {
+      "produtoid": "391225",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 120.9,
+      "preco_crossdocking": 120.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 120.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Espaguete Liso Permak 12mm 100m",
+      "titulo_curto": "Espaguete Liso Permak 12mm 100m",
+      "categoriaid": "117388",
+      "categoria_nome": "Automotivo/ Acessórios Para Instalacao/ Espaguete Liso",
+      "abc": null,
+      "ean11": "7899079103070",
+      "ncm": "39173900",
+      "descricao": "<div class=\"single-product__product-apresentation__product-info__name\">\r\n<h2 class=\"single-product__product-apresentation__product-info__name-product\">Espaguete Liso Permak 12 mm | Preto</h2>\r\n</div>\r\n<div class=\"single-product__product-apresentation__product-info__code\">\r\n<p class=\"single-product__product-apresentation__product-info__code__number\" data-cor=\"4\">SKU: 198</p>\r\n</div>\r\n<div class=\"single-product__product-apresentation__product-info__description\">\r\n<p>O espaguete conta com uma textura lisa, possui um comprimento de 100 m e apresenta 1,2 cm de diâmetro de passagem do condutor. Sua composição é em polipropileno, garantindo boa estabilidade térmica e resistência a impactos.</p>\r\n<p>Esse espaguete está disponível na cor preta.</p>\r\n<p>Os espaguetes têm a função de proteger e organizar fios e cabos.</p>\r\n<p>O espaguete 12 mm foi desenvolvido para utilização em todos os tipos de fios e cabos.</p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>\r\n</div>",
+      "caracteristicas": "<p><strong>– Material:</strong> polipropileno</p>\r\n<p><strong>– Comprimento:</strong> 100m</p>\r\n<p><strong>– Cor:</strong> preto</p>\r\n<p><strong>– Diâmetro:</strong> 1,2 mm</p>\r\n<p><strong>– Temperatura de trabalho: </strong>-55ºC a + 70ºC</p>\r\n<p><strong>OBS: Risco de incêndio se for aquecido acima de 70ºC.</strong></p>\r\n<p> </p>\r\n<p><strong>Conteúdo da embalagem:</strong></p>\r\n<p>– 01 rolo de espaguete 12 mm com 100m de comprimento.</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PERMAK",
+      "modelo": "",
+      "peso": 1.65,
+      "largura": 39,
+      "altura": 10,
+      "profundidade": 67,
+      "peso_embalagem": 1.65,
+      "largura_embalagem": 39,
+      "altura_embalagem": 10,
+      "profundidade_embalagem": 67,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391225_6a57e42c90dc0.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 5,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.002.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 15:37:40.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-13 15:37:40.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391225_6a57e42c90dc0.png"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_BRAND_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: BRAND,MODEL",
+    "foundValue": "MLB44833164",
+    "source": "ML catalog MLB44833164 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "BRAND",
+        "MODEL"
+      ],
+      "catalog_brand": "GNA",
+      "model": "Espaguete Leplast 12mm",
+      "local_pack": null,
+      "catalog_pack": 1,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [],
+      "title_similarity": 0.16666666666666666
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB44833164",
+      "catalog_product_id": "MLB44833164",
+      "domain_id": "MLB-THERMAL_ADHESIVE_TAPES",
+      "name": "Espaguete Leplast 12 Mm 100 Metros",
+      "parent_id": "MLB44833163",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15169328",
+          "value_name": "GNA",
+          "values": [
+            {
+              "id": "15169328",
+              "name": "GNA"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "49421142",
+          "value_name": "Espaguete Leplast 12mm",
+          "values": [
+            {
+              "id": "49421142",
+              "name": "Espaguete Leplast 12mm"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "46012438",
+          "value_name": "7899079103070",
+          "values": [
+            {
+              "id": "46012438",
+              "name": "7899079103070"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Espaguete Leplast 12 Mm 100 Metros é um acessório essencial para a instalação de diversos projetos elétricos e de construção. Fabricado pela renomada marca Leiplast, este produto se destaca pela sua qualidade e durabilidade. Com um diâmetro de 12 mm e um comprimento de 100 metros, ele é ideal para atender às suas necessidades específicas. O espaguete é novo e apresenta um modelo que garante eficiência e segurança na condução de cabos. Com um peso de 1,80 quilogramas e dimensões compactas de 46 x 46 x 13 cm, é fácil de manusear e armazenar. O código de barras 7899079103070 e o código EAN 2437899079103070 asseguram a autenticidade do produto. Escolha o Espaguete Leplast para garantir a qualidade e a confiabilidade em suas instalações."
+      },
+      "pictures": [
+        {
+          "id": "613225-MLA81185121794_122024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_613225-MLA81185121794_122024-F.jpg",
+          "max_width": "712",
+          "max_height": "510"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-12-17T01:40:24Z",
+      "last_updated": "2025-03-18T15:38:32Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

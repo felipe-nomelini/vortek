@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:37.865Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+    "supplier_category": "Redes E Provedores/ Internet E Rede/ Rack",
+    "supplier_brand": "MAX ELETRON",
+    "supplier_gtin": "7908060206284",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/334676",
+    "captured_at": "2026-08-17T12:53:51.124Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "a581da61-0d99-42bd-8a14-38d27ddc9ccb",
+    "produto_id": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "334676",
+    "sku_fornecedor": "334676",
+    "custo": 299.9,
+    "estoque": 6,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:07:22.424+00:00",
+    "created_at": "2026-07-20T18:32:41.005073+00:00",
+    "updated_at": "2026-08-17T11:07:22.434+00:00",
+    "sku_oferta": "334676",
+    "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+    "descricao": "Kit de Ventilador Para Rack Piso - Utilizado para refrigerar os equipamentos. - Proporciona circulação de ar dentro do Rack Piso. - Fixado e adaptado na parte interna do teto nos Racks por meio de parafusos M5. * O Kit para Rack Piso só pode ser utilizado em Rack Piso. *Imagens meramente ilustrativas.",
+    "marca": "MAX ELETRON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/3/334676_67d2caf128fe5.jpg"
+    ],
+    "gtin": "7908060206284",
+    "ncm": "85354090",
+    "cest": "12.003.00"
+  }
+}

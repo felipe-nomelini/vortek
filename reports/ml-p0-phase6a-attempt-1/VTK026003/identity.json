@@ -1,0 +1,194 @@
+{
+  "index": 6,
+  "sku": "VTK026003",
+  "started_at": "2026-08-16T23:39:10.948Z",
+  "local_time": "2026-08-16T20:39:10",
+  "expected_gtin": "7898572860541",
+  "product": {
+    "id": "31d60509-a4dc-42af-a79b-68142502ad44",
+    "sku": "VTK026003",
+    "nome": "Suporte De Instrumentos P/display Spd-01",
+    "marca": "Saty",
+    "estoque": 50,
+    "custo": 23.29,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.18,
+    "peso_bruto": 0.18,
+    "largura": 24,
+    "altura": 10,
+    "profundidade": 10,
+    "gtin": "7898572860541",
+    "descricao": "Suporte de Instrumentos P/Display SPD-01 Suporte p/ Slat wall Para Violão, Guitarra e Baixo Modelo SPD-01",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/17a476802c1778f9670c2c54d97995b6.jpeg"
+    ],
+    "categoria": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Suportes",
+    "ml_item_id": null,
+    "created_at": "2026-08-13T10:53:23.690933+00:00",
+    "updated_at": "2026-08-16T20:07:30.890356+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "2020",
+    "dslite_ultima_sync": "2026-08-16T20:07:30.596+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.92.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "ad24816d-f93e-4fd2-9a48-d5653165cd25",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": null,
+  "dslite": null,
+  "configured_decision": "BLOCK_CATEGORY",
+  "configured_reason": "exact_catalog_domain_is_keyboard_stands_but_official_saty_product_is_slator_wall_string_instrument_support",
+  "evidence": {
+    "manufacturer_or_official": "https://saty.com.br/slatwall/",
+    "secondary": null,
+    "supplier": null,
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898572860541"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB29389761",
+      "catalog_product_id": "MLB29389761",
+      "domain_id": "MLB-KEYBOARD_AND_DIGITAL_PIANO_STANDS",
+      "name": "Suporte Saty P/ Canaletado Cordas Simples Spd01 Cor Preto",
+      "parent_id": "MLB29389760",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "5451933",
+          "value_name": "Saty",
+          "values": [
+            {
+              "id": "5451933",
+              "name": "Saty"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "28088411",
+          "value_name": "Spd01",
+          "values": [
+            {
+              "id": "28088411",
+              "name": "Spd01"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "STAND_TYPE",
+          "name": "Tipo de suporte",
+          "value_id": "28088413",
+          "value_name": "Canaletado",
+          "values": [
+            {
+              "id": "28088413",
+              "name": "Canaletado"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "4837600",
+          "value_name": "Aço",
+          "values": [
+            {
+              "id": "4837600",
+              "name": "Aço"
+            }
+          ]
+        },
+        {
+          "id": "KEYBOARD_STANDS_TIERS_NUMBER",
+          "name": "Quantidade de longarinas",
+          "value_id": "24309569",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "24309569",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "28088412",
+          "value_name": "7898572860541",
+          "values": [
+            {
+              "id": "28088412",
+              "name": "7898572860541"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Suporte Painel Canaletado Slatwall Violão Guitarra Baixo Saty - SPD-01. Este suporte versátil é ideal para ser fixado diretamente no Slatwall (Painel Canaletado). É totalmente fabricado em metal e partes revestidas com borracha espumada tipo E.V.A. Possui encaixe / base para ser fixado diretamente no encaixe no painel canaletado. A base de apoio do headstock tem inclinação e borracha espumada na cor preto, evitando que o instrumento deslize do apoio / riscar ou danificar o headstock do instrumento. Produto fabricado 100% no Brasil.\n\nCaracterísticas:\nSuporte ideal para Violão, Guitarra, Contra Baixo, Cavaquinho (não aconselhável para instrumento orquestral : Violino, Viola de Arco ou Violoncelo);\nPequena inclinação na base do apoio atuando como Trava, deste modo evitando que o instrumento deslize do suporte;\nProduto totalmente em aço, com proteção almofadada e aveludada (excelente qualidade), evitando riscar ou danificar o instrumento;\nProduto sem giro ou regulagem, fixo;\nCapacidade de carga até 5Kg;\nPeso Suporte: 130g;\nAcabamento Cor Preto.\n\nDimensões:\nDistância da base de fixação até o braço instrumento: 20cm;\nBase de fixação: 8 x 5cm\nComprimento Total: 23cm;\nLargura: 8cm;\nAltura: 8cm;\nEncaixe do Braço do Instrumento: 6 x 6cm;\nDiâmetro do tubo de sustentação: Ø1,3cm."
+      },
+      "pictures": [
+        {
+          "id": "896602-MLA99969351927_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_896602-MLA99969351927_112025-F.jpg",
+          "max_width": "1199",
+          "max_height": "1103"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-12-29T21:36:37Z",
+      "last_updated": "2024-01-13T10:14:44Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

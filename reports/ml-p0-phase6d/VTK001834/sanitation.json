@@ -1,0 +1,10 @@
+{
+  "sku": "VTK001834",
+  "gate": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE",
+  "evidence": "Storm JCPQ0001 ten-unit kit lacks official required connector evidence",
+  "local_value": "7898566201978",
+  "found_value": null,
+  "suggested_action": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:15:57.234Z"
+}

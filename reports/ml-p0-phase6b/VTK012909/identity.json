@@ -1,0 +1,269 @@
+{
+  "index": 17,
+  "sku": "VTK012909",
+  "started_at": "2026-08-17T00:07:25.274Z",
+  "local_time": "2026-08-16T21:07:25",
+  "expected_gtin": "7898946772609",
+  "product": {
+    "id": "0e80f90f-6a72-41e4-9d26-2b8277e0b3f6",
+    "sku": "VTK012909",
+    "nome": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto Bkr 1",
+    "marca": "Bkr1",
+    "estoque": 40,
+    "custo": 37,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": 70.37,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.43,
+    "peso_bruto": 0.43,
+    "largura": 25,
+    "altura": 10,
+    "profundidade": 35,
+    "gtin": "7898946772609",
+    "descricao": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto BKR",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c539f59f5618422f5ee5acdebace95b5.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Acessórios > Capas",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.983532+00:00",
+    "updated_at": "2026-08-16T20:10:21.208221+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "1881",
+    "dslite_ultima_sync": "2026-08-16T20:10:21.151+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "4202.29.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "2a11ced2-499f-4188-9ece-4de6f23e638d",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "2a11ced2-499f-4188-9ece-4de6f23e638d",
+    "produto_id": "0e80f90f-6a72-41e4-9d26-2b8277e0b3f6",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1881",
+    "sku_fornecedor": "1881",
+    "custo": 37,
+    "estoque": 40,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:10:21.151+00:00",
+    "created_at": "2026-07-06T22:31:08.33707+00:00",
+    "updated_at": "2026-08-16T20:10:21.158+00:00",
+    "sku_oferta": "1881",
+    "nome": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto Bkr 1",
+    "descricao": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto BKR",
+    "marca": "Bkr1",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c539f59f5618422f5ee5acdebace95b5.jpg"
+    ],
+    "gtin": "7898946772609",
+    "ncm": "4202.29.00",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1881",
+    "consulted_at": "2026-08-17T00:07:25.518Z",
+    "product": {
+      "produtoid": "1881",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 37,
+      "preco_crossdocking": 37,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 37,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto Bkr 1",
+      "titulo_curto": "Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto Bkr 1",
+      "categoriaid": "38173",
+      "categoria_nome": "Instrumentos Musicais > Acessórios > Capas",
+      "abc": null,
+      "ean11": "7898946772609",
+      "ncm": "4202.29.00",
+      "descricao": "<div class=\"panel-head\" style=\"box-sizing: border-box; text-rendering: optimizelegibility; background-color: transparent; margin: 0px auto; max-width: 1060px; padding: 0px; color: #616161; font-family: Soleil, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px;\"> <h2 class=\"main-title\" style=\"box-sizing: border-box; text-rendering: optimizelegibility; color: #000000; font-family: Poppins, 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.2em; margin: 0px; font-size: 1.25rem; padding: 0px;\"><small id=\"msgNomeProduto\" style=\"box-sizing: border-box; text-rendering: optimizelegibility; font-size: 1.125rem; color: #616161; font-weight: 400; line-height: 1; display: block; padding-top: 5px;\"><span style=\"font-size: 10pt; background-color: transparent;\">Capa P/ Violão Clássico Simples 2 Alças - Nylon 600 - Preto BKR </span><br></small></h2> </div>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Bkr1",
+      "modelo": "",
+      "peso": 0.43,
+      "largura": 25,
+      "altura": 10,
+      "profundidade": 35,
+      "peso_embalagem": 0.43,
+      "largura_embalagem": 25,
+      "altura_embalagem": 10,
+      "profundidade_embalagem": 35,
+      "link": null,
+      "link_imagem": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c539f59f5618422f5ee5acdebace95b5.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Pç",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 131,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "694864067",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-06 11:24:33.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-06 11:24:33.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 40,
+      "tempo_cross": 0,
+      "estoque_total": 40,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c539f59f5618422f5ee5acdebace95b5.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_GTIN",
+  "configured_reason": "exact_gtin_catalog_identifies_jpg_folk_guitar_cover_not_bkr1_classical_cover",
+  "evidence": {
+    "manufacturer_or_official": "ML catalog MLB33678717",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1881",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898946772609"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB33678717",
+      "catalog_product_id": "MLB33678717",
+      "domain_id": "MLB-GUITAR_COVERS_AND_BAGS",
+      "name": "Capa Para Violao Folk Simples 2 Alcas",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "21139956",
+          "value_name": "Jpg",
+          "values": [
+            {
+              "id": "21139956",
+              "name": "Jpg"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "33802187",
+          "value_name": "7898946772609",
+          "values": [
+            {
+              "id": "33802187",
+              "name": "7898946772609"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Proteja seu violão folk com estilo e praticidade com a Capa Para Violão Folk Simples da MUSICAL RIFF. Confeccionada em nylon resistente, esta capa é a escolha perfeita para músicos que buscam qualidade e durabilidade. Com duas alças ajustáveis para as costas e uma alça lateral, oferece conforto e diversas opções de transporte. Além disso, conta com um compartimento prático para guardar acessórios, garantindo que você tenha tudo o que precisa sempre à mão. A estampa Musical Riff agrega um toque de personalidade, enquanto a marca JPG assegura a confiança de um produto bem-conceituado no mercado. Inclui 1 capa, ideal para manter seu instrumento protegido contra poeira, arranhões e pequenos impactos."
+      },
+      "pictures": [
+        {
+          "id": "779192-MLU74464776462_022024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_779192-MLU74464776462_022024-F.jpg",
+          "max_width": "1091",
+          "max_height": "1044"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-02-18T20:19:52Z",
+      "last_updated": "2025-02-25T10:20:31Z",
+      "quality_type": "PRIMITIVE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

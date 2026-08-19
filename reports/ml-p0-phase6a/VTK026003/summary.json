@@ -1,0 +1,21 @@
+{
+  "index": 6,
+  "sku": "VTK026003",
+  "started_at": "2026-08-16T23:45:55.332Z",
+  "local_time": "2026-08-16T20:45:55",
+  "expected_gtin": "7898572860541",
+  "completed_at": "2026-08-16T23:45:55.767Z",
+  "elapsed_ms": 448,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": "MLB29389761",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact_catalog_domain_is_keyboard_stands_but_official_saty_product_is_slator_wall_string_instrument_support",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false
+  }
+}

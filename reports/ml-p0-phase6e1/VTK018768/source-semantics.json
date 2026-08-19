@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:41.078Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4 C/2",
+    "supplier_category": "Segurança / Cameras/ Camera Colorida",
+    "supplier_brand": "MAX ELETRON",
+    "supplier_gtin": "1000507800010",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/358237",
+    "captured_at": "2026-08-17T12:54:14.234Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "f18a2cc4-5d40-4000-95cc-bfe5003f90e8",
+    "produto_id": "97dd3f7b-07a8-4252-9a66-c2616ad2f1f0",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "358237",
+    "sku_fornecedor": "358237",
+    "custo": 29.45,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:11:32.755+00:00",
+    "created_at": "2026-07-20T18:32:59.010276+00:00",
+    "updated_at": "2026-08-17T11:11:32.765+00:00",
+    "sku_oferta": "358237",
+    "nome": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4 C/2",
+    "descricao": "O conversor de vídeo Balun HD HÍBRIDO Max Eletron é aplicado em instalações que utilizam cabo (UTP). Este conversor recebe o sinal da câmera em 75 Ohms e transforma esta impedância em 100 Ohms (característica do cabo UTP) com isso a imagem pode ser transmitida com qualidade e cor a longas distâncias. Este modelo possui um par de conversores onde um deles é aplicado diretamente na câmera de segurança simplesmente o ligando ao conector BNC e o outro diretamente no Rack MAX HD HÍBRIDO eliminando assim qualquer tipo de emenda ou adaptação. *Imagens meramente ilustrativas.",
+    "marca": "MAX ELETRON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/5/358237_67d2caf99795f.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/358237_67d2caf998cfa.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/358237_67d2caf999beb.jpg"
+    ],
+    "gtin": "1000507800010",
+    "ncm": "85354090",
+    "cest": "12.003.00"
+  }
+}

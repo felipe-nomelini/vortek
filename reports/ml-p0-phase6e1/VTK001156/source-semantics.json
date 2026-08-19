@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:41.743Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Arandela 6\" Frahm HS 200w Quadrada Branca",
+    "supplier_category": "áudio / Som Ambiente / Arandelas Para Som Ambiente",
+    "supplier_brand": "FRAHM",
+    "supplier_gtin": "7896673814180",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/83837",
+    "captured_at": "2026-08-17T12:54:26.733Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "6f828c0a-a4bb-4fe7-a90d-cea4f841363e",
+    "produto_id": "8cb69c5a-3ec9-4b01-8de2-203f6ecca2d4",
+    "dslite_fornecedor_id": "2",
+    "fornecedor_nome": "HAYAMAX-PR",
+    "dslite_produto_id": "83837",
+    "sku_fornecedor": "83837",
+    "custo": 241.72,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "balance_account",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T14:03:23.868+00:00",
+    "created_at": "2026-06-08T18:46:40.559351+00:00",
+    "updated_at": "2026-08-17T14:03:23.877+00:00",
+    "sku_oferta": "83837",
+    "nome": "Arandela 6\" Frahm HS 200w Quadrada Branca",
+    "descricao": "A Arandela 6\" Frahm Hs é a escolha ideal para quem busca combinar elegância, discrição e praticidade em ambientes residenciais ou comerciais. Desenvolvida por especialistas em áudio e engenharia acústica, esta arandela oferece qualidade sonora em qualquer espaço. Sua construção robusta, com telar em alumínio e carcaça em poliestireno, garantindo durabilidade. Além disso, sua instalação é simples e sem complicações, contribuindo para uma integração perfeita à superfície onde é colocada.",
+    "marca": "FRAHM",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/83837/550/1.jpg",
+      "https://static.hayapek.com.br/produtos/83837/550/2.jpg",
+      "https://static.hayapek.com.br/produtos/83837/550/3.jpg"
+    ],
+    "gtin": "7896673814180",
+    "ncm": "8518.21.00",
+    "cest": null
+  }
+}

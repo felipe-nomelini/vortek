@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018562",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category confidence is not HIGH for domain MLB-GPS_ANTENNAS",
+  "local_value": "7898253502104",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB52591992 + domain discovery",
+  "timestamp": "2026-08-17T12:54:33.702Z"
+}

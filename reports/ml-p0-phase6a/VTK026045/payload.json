@@ -1,0 +1,279 @@
+{
+  "payload": {
+    "family_name": "Headset C3Tech PH-380",
+    "category_id": "MLB196208",
+    "catalog_product_id": "MLB54158165",
+    "catalog_listing": true,
+    "price": 289.9,
+    "currency_id": "BRL",
+    "available_quantity": 50,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414fafcb6.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414faff47.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414faff9b.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414faffd4.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "MANUFACTURER",
+        "value_id": "47439",
+        "value_name": "Coletek"
+      },
+      {
+        "id": "BRAND",
+        "value_id": "8774306",
+        "value_name": "C3Tech"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "59664132",
+        "value_name": "PH-380BK"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "59664130",
+        "value_name": "PH-380"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "PAIRS_NUMBER",
+        "value_id": "7386989",
+        "value_name": "1"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "HEADPHONE_FORMAT",
+        "value_id": "182354",
+        "value_name": "Over-ear"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_MICROPHONE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_MONAURAL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_INFANT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_LED_LIGHT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "59664134",
+        "value_name": "7908639903217"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "59664133",
+        "value_name": "PH-380BK"
+      },
+      {
+        "id": "DIAPHRAGM_UNIT",
+        "value_id": "10814759",
+        "value_name": "4 cm"
+      },
+      {
+        "id": "FREQUENCY_RESPONSE",
+        "value_id": "925820",
+        "value_name": "20 Hz - 20 kHz"
+      },
+      {
+        "id": "SENSITIVITY",
+        "value_id": "7933719",
+        "value_name": "113 dB"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129119",
+        "value_name": "1.8 m"
+      },
+      {
+        "id": "INCLUDES_CHARGING_CASE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_WIRELESS_CHARGING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_TWS_TECHNOLOGY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_MP3_PLAYER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_FM_RADIO",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_NOISE_CANCELLING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WATERPROOF",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_DUST_RESISTANT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DETACHABLE_CABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DETACHABLE_MICROPHONE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_FLEXIBLE_MICROPHONE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_INTEGRATED_VOICE_ASSISTANTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "value_id": "934836",
+        "value_name": "1"
+      },
+      {
+        "id": "CONNECTOR_TYPES",
+        "value_id": "82230",
+        "value_name": "USB"
+      },
+      {
+        "id": "MICROPHONE_ORIENTATIONS",
+        "value_id": "8847355",
+        "value_name": "Esquerda"
+      },
+      {
+        "id": "SUITABLE_USES",
+        "values": [
+          {
+            "id": "8701147",
+            "name": "Profissional"
+          },
+          {
+            "id": "8701148",
+            "name": "Esporte"
+          },
+          {
+            "id": "19992751",
+            "name": "Entretenimento"
+          }
+        ]
+      },
+      {
+        "id": "CONTROL_FUNCTIONS",
+        "values": [
+          {
+            "id": "11559796",
+            "name": "Controle de volume"
+          },
+          {
+            "id": "11655376",
+            "name": "Silenciar"
+          },
+          {
+            "id": "11588393",
+            "name": "Controle de chamadas"
+          }
+        ]
+      },
+      {
+        "id": "CHANNEL_SETUP",
+        "value_id": "59664131",
+        "value_name": "Surround"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "59664129",
+        "value_name": "Headset C3Tech PH-380BK"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026045"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026045"
+  },
+  "sha256": "f8416bba65512376e5f8f0d1db7eb32e5de0a4deea64182bb131376170a40171",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 43,
+  "pictures_count": 4
+}

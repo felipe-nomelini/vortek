@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:53.473Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capa Chave Canivete Compatível Gm 3 B Cruze 2012 A 2018",
+    "supplier_category": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+    "supplier_brand": "R3a Automotive",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4153",
+    "captured_at": "2026-08-17T12:56:27.727Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "ed4aa14b-3919-4228-9fed-8181646b1e36",
+    "produto_id": "9cbc9eb4-811d-4b8f-a45f-85ee0bc60439",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4153",
+    "sku_fornecedor": "4153",
+    "custo": 19.32,
+    "estoque": 69,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:47:25.621+00:00",
+    "created_at": "2026-08-13T10:53:23.777057+00:00",
+    "updated_at": "2026-08-17T09:47:25.63+00:00",
+    "sku_oferta": "4153",
+    "nome": "Capa Chave Canivete Compatível Gm 3 B Cruze 2012 A 2018",
+    "descricao": "CAPA CHAVE CANIVETE COMPATÍVEL GM 3 BOTÕES CRUZE 2012 A 2018 GM301 (0074468168459) A capa para chave canivete GM301 é uma excelente opção para substituir carcaças desgastadas, quebradas ou danificadas, renovando a aparência da chave e preservando seus componentes originais. Ficha técnica: • Modelo: GM301 • Tipo: Capa/Carcaça para chave canivete • Compatível com Chevrolet Cruze 2012 a 2018 • Compatível com chave de 3 botões • Cor: Preta • Material resistente e durável • Sistema canivete retrátil • Não acompanha placa eletrônica • Não acompanha bateria nem transponder Produzida com material de qualidade, a GM301 oferece ótimo acabamento e encaixe preciso para a substituição da carcaça original. Ideal para restaurar chaves com desgaste pelo uso diário, mantendo a eletrônica existente e evitando o custo de uma chave completa nova. Uma solução prática, econômica e eficiente para o seu veículo.",
+    "marca": "R3a Automotive",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c8266598991562f79820e0a4c56a55b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1634bf113565936fcc828878651c92ed.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a7811160af40e459309efb87dc25e215.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7f1d8128dbe41bb4c410741f20412754.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e4b513af5fedcc169d1a337e8ec7a1c4.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8529.90.90",
+    "cest": null
+  }
+}

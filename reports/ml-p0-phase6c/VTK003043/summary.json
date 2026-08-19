@@ -1,0 +1,23 @@
+{
+  "index": 41,
+  "sku": "VTK003043",
+  "expected_gtin": "7898554606532",
+  "started_at": "2026-08-17T00:44:30.430Z",
+  "local_time": "2026-08-16T21:44:30",
+  "completed_at": "2026-08-17T00:44:37.130Z",
+  "elapsed_ms": 6700,
+  "result": "SAFE_PUBLICATION_PERSIST_SUCCESS",
+  "item_id": "MLB5075741783",
+  "catalog_product_id": "MLB15963092",
+  "protective_price": 3299.9,
+  "margin_percent": 55.068638,
+  "persisted": true,
+  "observation": null,
+  "sanitation": null,
+  "backlogs": {
+    "quality_optimization_pending": true,
+    "description_optimization_pending": true,
+    "commercial_optimization_pending": true,
+    "optional_catalog_optimization_pending": false
+  }
+}

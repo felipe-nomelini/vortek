@@ -1,0 +1,208 @@
+{
+  "checked_at": "2026-08-17T01:14:28.122Z",
+  "expected_catalog_product_id": "MLB45026556",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB45026556",
+    "catalog_product_id": "MLB45026556",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-LIGHT_BULBS",
+    "permalink": "",
+    "name": "Lampada Multilaser Super Led H8 20w 6200k Par Au836",
+    "family_name": "Multilaser Modelo Desconhecido LED",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por kit",
+        "products": [
+          {
+            "product_id": "MLB45026556",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Multilaser Modelo Desconhecido LED - 20 W - Unidade - 1",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "POWER",
+        "picker_name": "Potência",
+        "products": [
+          {
+            "product_id": "MLB45026556",
+            "picker_label": "20 W",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Multilaser Modelo Desconhecido LED - 20 W - Unidade - 1",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "POWER",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "907069-MLA95654895909_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_907069-MLA95654895909_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1082,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "31163",
+        "value_name": "Multilaser",
+        "values": [
+          {
+            "id": "31163",
+            "name": "Multilaser"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "40833980",
+        "value_name": "Modelo Desconhecido",
+        "values": [
+          {
+            "id": "40833980",
+            "name": "Modelo Desconhecido"
+          }
+        ]
+      },
+      {
+        "id": "LIGHTING_TECHNOLOGY",
+        "name": "Tecnologia de iluminação",
+        "value_id": "411127",
+        "value_name": "LED",
+        "values": [
+          {
+            "id": "411127",
+            "name": "LED"
+          }
+        ]
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "512837",
+        "value_name": "20 W",
+        "values": [
+          {
+            "id": "512837",
+            "name": "20 W"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A Lampada Multilaser Super LED H8 20W 6200K PAR AU836 é a escolha perfeita para quem busca segurança e estilo em seu veículo. Com uma potência de 20W e uma impressionante temperatura de cor de 6200K, esta lâmpada oferece uma iluminação clara e eficiente, ideal para longas distâncias. Seu design inovador conta com um driver integrado ao corpo da lâmpada, garantindo não apenas uma instalação prática, mas também uma estética diferenciada. Com 2000 lúmens, proporciona excelente visibilidade ao condutor, aumentando a segurança nas estradas. A tecnologia de iluminação LED garante uma vida útil prolongada e baixo consumo de energia, tornando-a uma opção sustentável. A marca Multilaser é sinônimo de qualidade e confiabilidade, e esta lâmpada nova é perfeita para quem deseja modernizar a iluminação do seu veículo. Não perca a oportunidade de transformar sua experiência de condução com a AU836!"
+    },
+    "parent_id": "MLB45026555",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T17:17:12.518767919"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-12-23T16:56:45Z",
+    "authorized_stores": null,
+    "last_updated": "2025-07-01T10:13:04Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

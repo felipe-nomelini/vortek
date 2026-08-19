@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_BRAND_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto Falante Subwoofer 12\" Pioneer Ts-w3060br 350w Rms 4 Ohms Bobina Simples",
+    "supplier_category": "Automotivo/ Alto Falante/ Subwoofer",
+    "supplier_brand": "PIONEER",
+    "supplier_gtin": "4988028352713",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/347972",
+    "captured_at": "2026-08-17T12:53:54.199Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

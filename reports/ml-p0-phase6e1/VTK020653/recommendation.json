@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff155 Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194561",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317416",
+    "captured_at": "2026-08-17T12:54:53.802Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

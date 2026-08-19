@@ -1,0 +1,23 @@
+{
+  "index": 67,
+  "sku": "VTK000949",
+  "expected_gtin": "7896643439412",
+  "started_at": "2026-08-17T01:16:42.179Z",
+  "local_time": "2026-08-16T22:16:42",
+  "completed_at": "2026-08-17T01:16:42.213Z",
+  "elapsed_ms": 34,
+  "result": "BLOCK_GTIN_MODEL_CONFLICT",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact GTIN catalog identifies Multivisão KIT-2Z microwave support, not local Decore shelf kit",
+  "sanitation": "GTIN_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

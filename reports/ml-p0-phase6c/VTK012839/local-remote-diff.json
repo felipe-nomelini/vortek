@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432625408",
+      "local": "MLB7432625408",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK012839",
+      "local": "VTK012839",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "0b780c35-2a4d-499e-af51-927e87ab1d66",
+      "local": "0b780c35-2a4d-499e-af51-927e87ab1d66",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Plug P10 Extensão 5m Preto Wireconex Phbe5 Conecta Áudio Vídeo",
+      "local": "Plug P10 Extensão 5m Preto Wireconex Phbe5 Conecta Áudio Vídeo",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 359.9,
+      "local": 359.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432625408-plug-p10-extenso-5m-preto-wireconex-phbe5-conecta-audio-video-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432625408-plug-p10-extenso-5m-preto-wireconex-phbe5-conecta-audio-video-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

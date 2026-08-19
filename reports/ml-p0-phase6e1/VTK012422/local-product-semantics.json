@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-17T14:15:53.810Z",
+  "product": {
+    "id": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+    "sku": "VTK012422",
+    "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+    "marca": "D Addario",
+    "estoque": 12,
+    "custo": 35.48,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.03,
+    "peso_bruto": 0.03,
+    "largura": 10,
+    "altura": 2,
+    "profundidade": 10,
+    "gtin": "",
+    "descricao": "PALHETA GUITARRA MUL MED 1CMC4 D Addario .70mm 10un Descrição: As palhetas de celuloide da D Addario oferecem uma sensação tradicional e um timbre quente e equilibrado. A espessura média (0,70 mm) proporciona um ótimo equilíbrio entre flexibilidade e rigidez, tornando-a versátil para diferentes estilos musicais. Seu design multicolorido adiciona um toque estético diferenciado. Características Principais: • Modelo: 1CMC4 • Linha: Celuloide Multicolorida • Material: Celuloide • Espessura: 0,70 mm (Média) • Cor: Multicolorida • Formato: Padrão Aplicações Recomendadas: Indicada para guitarristas que buscam um som equilibrado e versatilidade para tocar acordes e solos. Boa resposta para técnicas híbridas entre strumming e picking. Conteúdo da Embalagem: 10 palhetas D Addario Celuloide Multicolorida 1CMC4 (0,70 mm).",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012422/01-aedff546f8145f1b55ed.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.87647+00:00",
+    "updated_at": "2026-08-17T09:57:32.863681+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "1188",
+    "dslite_ultima_sync": "2026-08-17T09:57:32.629+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.94.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "4612edaa-d4a5-4cce-950e-ee18e4c2e01d",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "guitar_strings",
+    "function": "produce_instrument_sound",
+    "intended_use": "musical_instrument",
+    "physical_form": "string_set",
+    "expected_category_signals": [
+      "corda",
+      "guitarra",
+      "instrumentomusical"
+    ],
+    "incompatible_category_signals": [
+      "caboeletrico",
+      "automotivo",
+      "cozinha"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "70 mm",
+        "0,70 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "musical_instrument",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

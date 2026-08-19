@@ -1,0 +1,439 @@
+{
+  "index": 4,
+  "sku": "VTK017236",
+  "started_at": "2026-08-16T23:39:09.441Z",
+  "local_time": "2026-08-16T20:39:09",
+  "expected_gtin": "4988028352812",
+  "product": {
+    "id": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+    "sku": "VTK017236",
+    "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+    "marca": "PIONEER",
+    "estoque": 47,
+    "custo": 113.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.872,
+    "peso_bruto": 0.872,
+    "largura": 13,
+    "altura": 14,
+    "profundidade": 14,
+    "gtin": "4988028352812",
+    "descricao": "Informações do Produto Alto-Falante TS-1360BR O TS-1360BR é o novo alto-falante de 5 polegadas da Pioneer. Seu cone de polipropileno injetado garante durabilidade e performance com baixo nível de distorção, enquanto o tweeter piezoelétrico traz o brilho dos sons agudos com muito mais musicalidade. Aliando qualidade ao design, sua profundidade de instalação reduzida facilita a instalação em uma grande variedade de veículos. - Woofer com cone de IMPP (Polipropileno moldado por injeção) - Bobina de voz resistente ao calor - Tweeter piezoele&#769;trico de Ø11 mm em PET - Suspensa&#771;o boleada - Midrange com cone de filme de Ø30 mm",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017236/01-0a37e2fe4c4ace8322ed.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017236/02-9bf5069236d7b3b284cb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017236/03-c172dbccf0e746f01914.jpg"
+    ],
+    "categoria": "Automotivo/ Alto Falante/ Kits De Auto Falantes",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:22.80718+00:00",
+    "updated_at": "2026-08-16T20:52:32.241751+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "349009",
+    "dslite_ultima_sync": "2026-08-16T20:52:32.046+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85182990",
+    "cest": "01.057.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "83c87ff7-8724-4549-9755-91bb79cfc3b5",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "83c87ff7-8724-4549-9755-91bb79cfc3b5",
+    "produto_id": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "349009",
+    "sku_fornecedor": "349009",
+    "custo": 113.9,
+    "estoque": 47,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:52:32.046+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-16T20:52:32.063+00:00",
+    "sku_oferta": "349009",
+    "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+    "descricao": "Informações do Produto Alto-Falante TS-1360BR O TS-1360BR é o novo alto-falante de 5 polegadas da Pioneer. Seu cone de polipropileno injetado garante durabilidade e performance com baixo nível de distorção, enquanto o tweeter piezoelétrico traz o brilho dos sons agudos com muito mais musicalidade. Aliando qualidade ao design, sua profundidade de instalação reduzida facilita a instalação em uma grande variedade de veículos. - Woofer com cone de IMPP (Polipropileno moldado por injeção) - Bobina de voz resistente ao calor - Tweeter piezoele&#769;trico de Ø11 mm em PET - Suspensa&#771;o boleada - Midrange com cone de filme de Ø30 mm\n\nPotência RMS: 50 W Resposta em freque&#770;ncia: 55 Hz a 20.000 Hz Sensibilidade (1 W / 1 m): 85 dB Impeda&#770;ncia: 4 ohms Dimensões Profundidade de instalac&#807;a&#771;o: 47 mm Dimenso&#771;es do alto-falante: Ø128 mm x 61 mm Dimenso&#771;es para corte: Ø121 mm Conteúdo da Embalagem: 1 Par de Alto-Falantes; - 8 Parafusos; - Certificado de garantia; - Lista de postos de assiste&#770;ncia te&#769;cnica.",
+    "marca": "PIONEER",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/4/349009_67d2caf6555fc.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/4/349009_67d2caf6560fb.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/4/349009_67d2caf656768.jpg"
+    ],
+    "gtin": "4988028352812",
+    "ncm": "85182990",
+    "cest": "01.057.00"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/349009",
+    "consulted_at": "2026-08-16T23:39:10.530Z",
+    "product": {
+      "produtoid": "349009",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 113.9,
+      "preco_crossdocking": 113.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 113.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+      "titulo_curto": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+      "categoriaid": "118288",
+      "categoria_nome": "Automotivo/ Alto Falante/ Kits De Auto Falantes",
+      "abc": null,
+      "ean11": "4988028352812",
+      "ncm": "85182990",
+      "descricao": "Informações do Produto<br />\r\nAlto-Falante TS-1360BR<br />\r\nO TS-1360BR é o novo alto-falante de 5 polegadas da Pioneer. Seu cone de polipropileno injetado garante durabilidade e performance com baixo nível de distorção, enquanto o tweeter piezoelétrico traz o brilho dos sons agudos com muito mais musicalidade.<br />\r\nAliando qualidade ao design, sua profundidade de instalação reduzida facilita a instalação em uma grande variedade de veículos.<br />\r\n- Woofer com cone de IMPP (Polipropileno moldado por injeção)<br />\r\n- Bobina de voz resistente ao calor<br />\r\n- Tweeter piezoele&#769;trico de Ø11 mm em PET<br />\r\n- Suspensa&#771;o boleada<br />\r\n- Midrange com cone de filme de Ø30 mm",
+      "caracteristicas": "Potência RMS: 50 W<br />\r\nResposta em freque&#770;ncia: 55 Hz a 20.000 Hz<br />\r\nSensibilidade (1 W / 1 m): 85 dB<br />\r\nImpeda&#770;ncia: 4 ohms<br />\r\n<br />\r\nDimensões<br />\r\nProfundidade de instalac&#807;a&#771;o: 47 mm<br />\r\nDimenso&#771;es do alto-falante: Ø128 mm x 61 mm<br />\r\nDimenso&#771;es para corte: Ø121 mm<br />\r\nConteúdo da Embalagem: 1 Par de Alto-Falantes;<br />\r\n- 8 Parafusos;<br />\r\n- Certificado de garantia;<br />\r\n- Lista de postos de assiste&#770;ncia te&#769;cnica.",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PIONEER",
+      "modelo": "",
+      "peso": 0.872,
+      "largura": 13,
+      "altura": 14,
+      "profundidade": 14,
+      "peso_embalagem": 0.872,
+      "largura_embalagem": 13,
+      "altura_embalagem": 14,
+      "profundidade_embalagem": 14,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/4/349009_67d2caf6555fc.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1627,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.057.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 09:08:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-13 09:08:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 47,
+      "tempo_cross": 0,
+      "estoque_total": 47,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/349009_67d2caf6555fc.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/349009_67d2caf6560fb.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/349009_67d2caf656768.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_CATALOG_IDENTITY",
+  "configured_reason": "gtin_catalog_maps_to_vehicle_stereo_kit_model_6660_not_ts_1360br_speaker_pair",
+  "evidence": {
+    "manufacturer_or_official": "https://pioneer.com.br/produto/ts-1360br/",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/349009",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=4988028352812"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB22432562",
+      "catalog_product_id": "MLB22432562",
+      "domain_id": "MLB-VEHICLE_STEREOS",
+      "name": "Som Automotivo Mp3 + Falante Pioneer 5 Polegadas",
+      "parent_id": "MLB22432553",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "9838",
+          "value_name": "Pioneer",
+          "values": [
+            {
+              "id": "9838",
+              "name": "Pioneer"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "465063",
+          "value_name": "6660",
+          "values": [
+            {
+              "id": "465063",
+              "name": "6660"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_USB",
+          "name": "Com USB",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "name": "Inclui controle remoto",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_SD_CARD_READER",
+          "name": "Com leitor de cartão SD",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_RCA_OUTPUT",
+          "name": "Com saída RCA",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "17861330",
+          "value_name": "4988028352812",
+          "values": [
+            {
+              "id": "17861330",
+              "name": "4988028352812"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "8148508",
+          "value_name": "5.5 cm",
+          "values": [
+            {
+              "id": "8148508",
+              "name": "5.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "7805450",
+          "value_name": "7 cm",
+          "values": [
+            {
+              "id": "7805450",
+              "name": "7 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7847914",
+          "value_name": "19 cm",
+          "values": [
+            {
+              "id": "7847914",
+              "name": "19 cm"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": ""
+      },
+      "pictures": [
+        {
+          "id": "620812-MLA99850774639_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_620812-MLA99850774639_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1154"
+        },
+        {
+          "id": "766079-MLA79410961610_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_766079-MLA79410961610_092024-F.jpg",
+          "max_width": "1200",
+          "max_height": "978"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-03-30T11:40:15Z",
+      "last_updated": "2024-07-18T14:26:13Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "sku": "VTK025958",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "exact GTIN lookup completed without an ML catalog identity; supplier evidence alone is insufficient for automatic category/model approval",
+  "local_value": "17702073029055",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier + exact ML GTIN lookup",
+  "timestamp": "2026-08-17T12:54:59.099Z"
+}

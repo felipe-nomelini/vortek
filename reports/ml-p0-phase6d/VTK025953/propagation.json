@@ -1,0 +1,1103 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 152,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:13:48 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 dc4ba626a6645ad4a6ad5918e6e30c24.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "_bu23BNDLmkUk3VE6tEZrlcq-RWTNyzpxNrLGbBFtgCEL3nd3LllGQ==",
+        "x-amz-cf-pop": "GIG52-P4",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "0172dd41-f358-4325-80e1-fd3776ef1007",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB5075856443",
+        "site_id": "MLB",
+        "title": "Liquidificador Portátil Arno Lightmix Amarelo Lp00 Amarelo 127/220v",
+        "family_name": "Arno Lighmix LP00 300 mL 1 USB",
+        "family_id": 492076621129938,
+        "seller_id": 3294514937,
+        "category_id": "MLB73055",
+        "user_product_id": "MLBU4743600113",
+        "official_store_id": null,
+        "price": 859.9,
+        "base_price": 859.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 15,
+        "available_quantity": 15,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:13:47.680Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:13:47.758Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5075856443-liquidificador-portatil-arno-lightmix-amarelo-lp00-amarelo-127220v-_JM",
+        "thumbnail_id": "767985-MLA101495382112_122025",
+        "thumbnail": "http://http2.mlstatic.com/D_767985-MLA101495382112_122025-I.jpg",
+        "pictures": [
+          {
+            "id": "767985-MLA101495382112_122025",
+            "url": "http://http2.mlstatic.com/D_767985-MLA101495382112_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_767985-MLA101495382112_122025-O.jpg",
+            "size": "300x500",
+            "max_size": "573x953",
+            "quality": ""
+          },
+          {
+            "id": "698118-MLA114489844205_072026",
+            "url": "http://http2.mlstatic.com/D_698118-MLA114489844205_072026-O.webp",
+            "secure_url": "https://http2.mlstatic.com/D_698118-MLA114489844205_072026-O.webp",
+            "size": "403x500",
+            "max_size": "821x1018",
+            "quality": ""
+          },
+          {
+            "id": "617932-MLA113249733932_072026",
+            "url": "http://http2.mlstatic.com/D_617932-MLA113249733932_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_617932-MLA113249733932_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "729287-MLA114489844217_072026",
+            "url": "http://http2.mlstatic.com/D_729287-MLA114489844217_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_729287-MLA114489844217_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "842603-MLA113249319248_072026",
+            "url": "http://http2.mlstatic.com/D_842603-MLA113249319248_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_842603-MLA113249319248_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "738758-MLA113249555778_072026",
+            "url": "http://http2.mlstatic.com/D_738758-MLA113249555778_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_738758-MLA113249555778_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "826405-MLA113249348374_072026",
+            "url": "http://http2.mlstatic.com/D_826405-MLA113249348374_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_826405-MLA113249348374_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "913158-MLA113249705752_072026",
+            "url": "http://http2.mlstatic.com/D_913158-MLA113249705752_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_913158-MLA113249705752_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "775208-MLA113249991086_072026",
+            "url": "http://http2.mlstatic.com/D_775208-MLA113249991086_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_775208-MLA113249991086_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "738933-MLA114489988829_072026",
+            "url": "http://http2.mlstatic.com/D_738933-MLA114489988829_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_738933-MLA114489988829_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1000x1000",
+            "quality": ""
+          },
+          {
+            "id": "617299-MLA113249991100_072026",
+            "url": "http://http2.mlstatic.com/D_617299-MLA113249991100_072026-O.webp",
+            "secure_url": "https://http2.mlstatic.com/D_617299-MLA113249991100_072026-O.webp",
+            "size": "500x367",
+            "max_size": "1000x735",
+            "quality": ""
+          },
+          {
+            "id": "644546-MLA113249288920_072026",
+            "url": "http://http2.mlstatic.com/D_644546-MLA113249288920_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_644546-MLA113249288920_072026-O.jpg",
+            "size": "385x500",
+            "max_size": "782x1015",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "ACCESSORIES_INCLUDED",
+            "name": "Acessórios incluídos",
+            "value_id": "11120761",
+            "value_name": "Alça de transporte",
+            "values": [
+              {
+                "id": "11120761",
+                "name": "Alça de transporte",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ACCESSORIES_NUMBER",
+            "name": "Quantidade de acessórios",
+            "value_id": "112805",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "112805",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "BLENDER_JAR_MATERIAL",
+            "name": "Material da jarra",
+            "value_id": "2364248",
+            "value_name": "Plástico",
+            "values": [
+              {
+                "id": "2364248",
+                "name": "Plástico",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "455",
+            "value_name": "Arno",
+            "values": [
+              {
+                "id": "455",
+                "name": "Arno",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52007",
+            "value_name": "Amarelo",
+            "values": [
+              {
+                "id": "52007",
+                "name": "Amarelo",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DETAILED_MODEL",
+            "name": "Modelo detalhado",
+            "value_id": "84731044",
+            "value_name": "LP00",
+            "values": [
+              {
+                "id": "84731044",
+                "name": "LP00",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ENERGY_EFFICIENCY",
+            "name": "Eficiência energética",
+            "value_id": "98473",
+            "value_name": "A",
+            "values": [
+              {
+                "id": "98473",
+                "name": "A",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "68452555",
+            "value_name": "3016661179594",
+            "values": [
+              {
+                "id": "68452555",
+                "name": "3016661179594",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "7821193",
+            "value_name": "26 cm",
+            "values": [
+              {
+                "id": "7821193",
+                "name": "26 cm",
+                "struct": {
+                  "number": 26,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "INCLUDES_ACCESSORIES",
+            "name": "Inclui acessórios",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_BPA_FREE",
+            "name": "É livre de BPA",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_DISHWASHER_SAFE",
+            "name": "É apta para lava-louças",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_INDUSTRIAL",
+            "name": "É industrial",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_PORTABLE",
+            "name": "É portátil",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "68452519",
+            "value_name": "Lighmix",
+            "values": [
+              {
+                "id": "68452519",
+                "name": "Lighmix",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MAIN_COLOR",
+            "name": "Cor principal",
+            "value_id": "2450296",
+            "value_name": "Amarelo",
+            "values": [
+              {
+                "id": "2450296",
+                "name": "Amarelo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "83592680",
+            "value_name": "LP00",
+            "values": [
+              {
+                "id": "83592680",
+                "name": "LP00",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "POWER_SUPPLY_TYPE",
+            "name": "Tipo de alimentação",
+            "value_id": "5422206",
+            "value_name": "USB",
+            "values": [
+              {
+                "id": "5422206",
+                "name": "USB",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "RECOMMENDED_USES",
+            "name": "Usos recomendados",
+            "value_id": null,
+            "value_name": "Shakes,Sucos,Vitaminas",
+            "values": [
+              {
+                "id": "20145706",
+                "name": "Shakes",
+                "struct": null
+              },
+              {
+                "id": "17775909",
+                "name": "Sucos",
+                "struct": null
+              },
+              {
+                "id": "19335335",
+                "name": "Vitaminas",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK025953",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK025953",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "TOTAL_CAPACITY",
+            "name": "Capacidade total",
+            "value_id": "3656932",
+            "value_name": "300 mL",
+            "values": [
+              {
+                "id": "3656932",
+                "name": "300 mL",
+                "struct": {
+                  "number": 300,
+                  "unit": "mL"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "USEFUL_CAPACITY",
+            "name": "Capacidade útil",
+            "value_id": "18499465",
+            "value_name": "350 L",
+            "values": [
+              {
+                "id": "18499465",
+                "name": "350 L",
+                "struct": {
+                  "number": 350,
+                  "unit": "L"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem",
+            "value_id": "39205163",
+            "value_name": "127/220V",
+            "values": [
+              {
+                "id": "39205163",
+                "name": "127/220V",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "7674180",
+            "value_name": "1 kg",
+            "values": [
+              {
+                "id": "7674180",
+                "name": "1 kg",
+                "struct": {
+                  "number": 1,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "7778835",
+            "value_name": "14 cm",
+            "values": [
+              {
+                "id": "7778835",
+                "name": "14 cm",
+                "struct": {
+                  "number": 14,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WITH_ON_OFF_POWER_BUTTON",
+            "name": "Com botão de ligar/desligar",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_STAINLESS_STEEL_BLADE",
+            "name": "Com lâmina de aço inoxidável",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_USB_CHARGE",
+            "name": "Com carga USB",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB63370268",
+        "domain_id": "MLB-BLENDERS",
+        "seller_custom_field": "VTK025953",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:13:47.851Z",
+        "last_updated": "2026-08-17T01:13:47.851Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3672,
+    "user_product": {
+      "id": "MLBU4743600113",
+      "name": "Liquidificador Portátil Arno Lightmix Amarelo Lp00 Amarelo 127/220v",
+      "family_name": "Arno Lighmix LP00 300 mL 1 USB",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-BLENDERS",
+      "attributes": [
+        {
+          "id": "WITH_STAINLESS_STEEL_BLADE",
+          "name": "Com lâmina de aço inoxidável",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "83592680",
+              "name": "LP00",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "TOTAL_CAPACITY",
+          "name": "Capacidade total",
+          "values": [
+            {
+              "id": "3656932",
+              "name": "300 mL",
+              "struct": {
+                "number": 300,
+                "unit": "mL"
+              }
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "values": [
+            {
+              "id": "52007",
+              "name": "Amarelo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "values": [
+            {
+              "id": "11120761",
+              "name": "Alça de transporte",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "USEFUL_CAPACITY",
+          "name": "Capacidade útil",
+          "values": [
+            {
+              "id": "18499465",
+              "name": "350 L",
+              "struct": {
+                "number": 350,
+                "unit": "L"
+              }
+            }
+          ]
+        },
+        {
+          "id": "IS_DISHWASHER_SAFE",
+          "name": "É apta para lava-louças",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK025953",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "name": "Usos recomendados",
+          "values": [
+            {
+              "id": "20145706",
+              "name": "Shakes",
+              "struct": null
+            },
+            {
+              "id": "17775909",
+              "name": "Sucos",
+              "struct": null
+            },
+            {
+              "id": "19335335",
+              "name": "Vitaminas",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "values": [
+            {
+              "id": "5422206",
+              "name": "USB",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "values": [
+            {
+              "id": "7778835",
+              "name": "14 cm",
+              "struct": {
+                "number": 14,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "IS_INDUSTRIAL",
+          "name": "É industrial",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "68452555",
+              "name": "3016661179594",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_USB_CHARGE",
+          "name": "Com carga USB",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BLENDER_JAR_MATERIAL",
+          "name": "Material da jarra",
+          "values": [
+            {
+              "id": "2364248",
+              "name": "Plástico",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_ON_OFF_POWER_BUTTON",
+          "name": "Com botão de ligar/desligar",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_NUMBER",
+          "name": "Quantidade de acessórios",
+          "values": [
+            {
+              "id": "112805",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "values": [
+            {
+              "id": "7821193",
+              "name": "26 cm",
+              "struct": {
+                "number": 26,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "name": "Inclui acessórios",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "values": [
+            {
+              "id": "84731044",
+              "name": "LP00",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_BPA_FREE",
+          "name": "É livre de BPA",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "455",
+              "name": "Arno",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "values": [
+            {
+              "id": "68452519",
+              "name": "Lighmix",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_PORTABLE",
+          "name": "É portátil",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "values": [
+            {
+              "id": "2450296",
+              "name": "Amarelo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "values": [
+            {
+              "id": "7674180",
+              "name": "1 kg",
+              "struct": {
+                "number": 1,
+                "unit": "kg"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "name": "Eficiência energética",
+          "values": [
+            {
+              "id": "98473",
+              "name": "A",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "767985-MLA101495382112_122025",
+          "secure_url": "https://http2.mlstatic.com/D_767985-MLA101495382112_122025-O.jpg"
+        },
+        {
+          "id": "698118-MLA114489844205_072026",
+          "secure_url": "https://http2.mlstatic.com/D_698118-MLA114489844205_072026-O.jpg"
+        },
+        {
+          "id": "617932-MLA113249733932_072026",
+          "secure_url": "https://http2.mlstatic.com/D_617932-MLA113249733932_072026-O.jpg"
+        },
+        {
+          "id": "729287-MLA114489844217_072026",
+          "secure_url": "https://http2.mlstatic.com/D_729287-MLA114489844217_072026-O.jpg"
+        },
+        {
+          "id": "842603-MLA113249319248_072026",
+          "secure_url": "https://http2.mlstatic.com/D_842603-MLA113249319248_072026-O.jpg"
+        },
+        {
+          "id": "738758-MLA113249555778_072026",
+          "secure_url": "https://http2.mlstatic.com/D_738758-MLA113249555778_072026-O.jpg"
+        },
+        {
+          "id": "826405-MLA113249348374_072026",
+          "secure_url": "https://http2.mlstatic.com/D_826405-MLA113249348374_072026-O.jpg"
+        },
+        {
+          "id": "913158-MLA113249705752_072026",
+          "secure_url": "https://http2.mlstatic.com/D_913158-MLA113249705752_072026-O.jpg"
+        },
+        {
+          "id": "775208-MLA113249991086_072026",
+          "secure_url": "https://http2.mlstatic.com/D_775208-MLA113249991086_072026-O.jpg"
+        },
+        {
+          "id": "738933-MLA114489988829_072026",
+          "secure_url": "https://http2.mlstatic.com/D_738933-MLA114489988829_072026-O.jpg"
+        },
+        {
+          "id": "617299-MLA113249991100_072026",
+          "secure_url": "https://http2.mlstatic.com/D_617299-MLA113249991100_072026-O.jpg"
+        },
+        {
+          "id": "644546-MLA113249288920_072026",
+          "secure_url": "https://http2.mlstatic.com/D_644546-MLA113249288920_072026-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "767985-MLA101495382112_122025",
+        "secure_url": "https://http2.mlstatic.com/D_767985-MLA101495382112_122025-O.jpg"
+      },
+      "catalog_product_id": "MLB63370268",
+      "bundle": null,
+      "family_id": 492076621129938,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:13:47.979+0000",
+      "last_updated": "2026-08-17T01:13:47.979+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4743600113"
+      ],
+      "family_id": 492076621129938,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

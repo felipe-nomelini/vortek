@@ -1,0 +1,10 @@
+{
+  "sku": "VTK021891",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": "catalog MODEL states 0.5U while local commercial identity is 5U",
+  "local_value": "7908060206222",
+  "found_value": "0.5U",
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML catalog MLB25478980",
+  "timestamp": "2026-08-17T01:16:42.147Z"
+}

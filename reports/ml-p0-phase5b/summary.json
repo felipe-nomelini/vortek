@@ -1,0 +1,147 @@
+{
+  "generated_at": "2026-08-16T22:05:24.449Z",
+  "phase": "5B",
+  "mode": "AUDIT_PREPUBLISH_ONLY",
+  "sku": "VTK000392",
+  "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+  "state": "MARGIN_OK_NOT_COMPETITIVE",
+  "baseline_drift": {
+    "detected": false,
+    "material": false,
+    "checks": [
+      {
+        "field": "produto_id",
+        "expected": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+        "actual": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+        "match": true
+      },
+      {
+        "field": "stock",
+        "expected": 15,
+        "actual": 15,
+        "match": true
+      },
+      {
+        "field": "cost",
+        "expected": 132.55,
+        "actual": 132.55,
+        "match": true
+      },
+      {
+        "field": "supplier",
+        "expected": "HAYAMAX-PR",
+        "actual": "HAYAMAX-PR",
+        "match": true
+      },
+      {
+        "field": "gtin",
+        "expected": "7898461970375",
+        "actual": "7898461970375",
+        "match": true
+      },
+      {
+        "field": "ml_item_id",
+        "expected": null,
+        "actual": null,
+        "match": true
+      },
+      {
+        "field": "ml_status",
+        "expected": "sem_anuncio",
+        "actual": "sem_anuncio",
+        "match": true
+      }
+    ]
+  },
+  "identity": {
+    "brand": "Ventisol",
+    "model": "Turbo 6",
+    "gtin": "7898461970375",
+    "voltage": "127V",
+    "confidence": 100,
+    "manufacturer": "https://www.ventisol.com.br/ventilador-de-mesa-ventisol-turbo-6p-40cm-azul"
+  },
+  "catalog": {
+    "catalog_product_id": "MLB15284402",
+    "gate": "CATALOG_EXACT_MATCH",
+    "confidence": 100,
+    "catalog_required": true,
+    "attributes_inherited_when_adding_condition_to_existing_up": true
+  },
+  "remote": {
+    "exact_matches": 0,
+    "possible_matches": 0,
+    "inventory_reliable": true
+  },
+  "competition": {
+    "price_to_win": null,
+    "leader": null,
+    "sellers": 19,
+    "average": 231.35,
+    "median": 209.9,
+    "classification": "MARGIN_OK_NOT_COMPETITIVE"
+  },
+  "financial": {
+    "selected_listing_type": "gold_special",
+    "minimum_price": 249.72,
+    "operational_price": 250.62,
+    "commission": 27.57,
+    "shipping": 39.75,
+    "tax": 12.53,
+    "profit": 38.22,
+    "margin_percent": 15.250179554704332
+  },
+  "payload": {
+    "family_name": "Ventilador de Mesa Ventisol Turbo 6 40 cm",
+    "family_name_characters": 41,
+    "expected_generated_title": "Ventilador De Mesa Ventisol Turbo 6 40cm 127V Azul",
+    "images": 1,
+    "attributes": 21,
+    "catalog_linkage": true,
+    "full_sha256": "17bbed8f4bdae44267e1134be13a1713036e3d6a08d233691b06e6f4d613620d",
+    "minimal_sha256": "a483f25a9e371a76997f9081c1c6bb1126a37d87b1241b2de500a86b9f76c2f2",
+    "canonicalization": "JSON.stringify insertion order; future executor must load exact report payload bytes before hash comparison",
+    "title_present": false,
+    "description_present": false,
+    "variations_present": false
+  },
+  "scores": {
+    "identity_confidence": 100,
+    "documentation_score": 100,
+    "publication_readiness": 95,
+    "duplicate_risk": 0,
+    "financial_confidence": 100,
+    "catalog_confidence": 100
+  },
+  "gates": {
+    "remote_match": false,
+    "catalog_gate": "CATALOG_EXACT_MATCH",
+    "category_valid": true,
+    "attributes_complete": true,
+    "images_approved": true,
+    "financial_approved": true,
+    "competition": "MARGIN_OK_NOT_COMPETITIVE"
+  },
+  "metrics": {
+    "supabase_reads": 39,
+    "dslite_gets": 1,
+    "ml_gets": 473,
+    "ml_diagnostic_posts": 1,
+    "ml_commercial_writes": 0,
+    "local_commercial_writes": 0,
+    "manufacturer_gets": 1,
+    "image_gets": 7
+  },
+  "invariants": {
+    "sku": "VTK000392",
+    "single_sku_only": true,
+    "mercado_livre_commercial_writes": 0,
+    "local_commercial_writes": 0,
+    "ml_diagnostic_posts_non_commercial": 1,
+    "no_post_items": true,
+    "no_description_write": true,
+    "no_local_persistence": true,
+    "passed": true
+  },
+  "hold": "P0 PHASE 5B — CATALOG CANARY PREPUBLISH HOLD"
+}

@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Solar Cabel 6,0mm² Vermelho 25m",
+    "supplier_category": "Kit Gerador Fotovoltaico/ Cabos Para Energia Solar/ Cabeamento Solar",
+    "supplier_brand": "CABEL",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/386019",
+    "captured_at": "2026-08-17T12:56:35.516Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

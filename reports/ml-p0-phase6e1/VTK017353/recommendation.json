@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Fonte Atx Evus Psu-200 Oem 200w 20/24p 2 Sata - PC / 10",
+    "supplier_category": "Informatica/ Perifericos/ Fonte Atx",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/380874",
+    "captured_at": "2026-08-17T12:56:33.824Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

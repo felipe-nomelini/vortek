@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-08-17T14:15:53.441Z",
+  "product": {
+    "id": "3db72eef-2662-4970-a6c1-dafd5e5fa715",
+    "sku": "VTK012869",
+    "nome": "Alto-falante 12 Pol 1000w Rms 4 Ohms Wf3002000b4/a Atk",
+    "marca": "Atk Eletroacústica",
+    "estoque": 2,
+    "custo": 787.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 14,
+    "peso_bruto": 14.8,
+    "largura": 33,
+    "altura": 18,
+    "profundidade": 32,
+    "gtin": "7898640360706",
+    "descricao": "Descrição: Alto-falante de 12” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade. Utiliza uma bobina de 100 mm de diâmetro (4”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica. Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance. Características: -1000 W de Potência Nominal -Frequência Sonora: Graves -4 Ohms de Impedância Nominal -94 dB SPL de Sensibilidade -60 a 2500 Hz Informações para transporte: -Peso unidade: 14 kg -Unidade de Transporte: 1 unidade -Dimensões da embalagem: (A) 177 mm x (L) 324 mm x (P) 314 mm -Volume da embalagem: 18 L -Peso da unidade embalada: 14.8 kg Especificações do Fabricante: -Potência Nominal Admissível(1): 1000 W -Potência Máxima do Amplificador(2): 16000 W pico -Sensibilidade (1W/1m)(3): 94 dB SPL -Impedância Nominal: 4 Ohms -Impedância Mínima: 3.07 Ohms -Diâmetro Nominal: 304.8 mm (12 pol) -Resposta de Frequência: 60 a 2500 Hz -Diâmetro da Bobina: 100 mm (4”) -Fio da Bobina: Fio de Cobre Recoberto com Alumínio Seção Retangular (CCAR) -Resistência da Bobina (Re): 2.2 Ohms -X.máx(4): 10 mm -Volume de Ar ocupado: 5.71 L (1) 2 horas de teste realizado com ruído rosa (fator de crista 12 dB) no range de frequência de Fs a 10xFs. Potência calculada com impedância mínima. Alto-falante ao ar livre. Obs: Para aplicar esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no mínimo 12h com 50% da potência nominal. (2) Potência de pico exigida do amplificador para alcançar a potência nominal considerando um sinal de teste de ruído rosa com fator de crista de 12 dB. (3) Aplicada tensão de 2 V RMS sobre a impedância nominal. (4) O X.máx é calculado considerando uma queda > que 50 % do campo magnético Bl sobre a bobina. Parâmetros Thiele-Small (5) Fs: 86 Hz Re: 2.2 Ohms Qes: 0.60 Qms: 3.98 Qts: 0.52 Vas: 11 l Sd: 547 cm² n0: 1.15 % Mms: 126 g Bl: 15.8 Tm Le: 0.36 mH (5) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/05aac01365270c395891ad5d2a5c82b6.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/ef330313ef0815510d99ca7a877d369b.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/4c8d04ec1a3ec81d3d1f24e7cdb43470.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c0a273c18214e29e6812cf4e941c6a8c.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/62bbc9e5c3510b441ed90d8bb5aa7426.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/527cefc982318b25323f8d663bfad518.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5031ecf26bf099c898618162f0a3a149.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/cf1c8ec7db615ea0e7d43eff50f27de9.jpg"
+    ],
+    "categoria": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.935097+00:00",
+    "updated_at": "2026-08-17T10:10:17.051094+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "1560",
+    "dslite_ultima_sync": "2026-08-17T10:10:16.815+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8518.29.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "2c9b6812-4ba2-4b47-ba88-1cd5dbeb73e7",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "professional_speaker_driver",
+    "function": "audio_reproduction",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_driver",
+    "expected_category_signals": [
+      "altofalante",
+      "woofer",
+      "subwoofer",
+      "audio",
+      "somprofissional"
+    ],
+    "incompatible_category_signals": [
+      "tablet",
+      "celular",
+      "notebook",
+      "computador",
+      "internal_speaker"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "12 Pol",
+        "100 mm",
+        "177 mm",
+        "324 mm",
+        "314 mm",
+        "304.8 mm",
+        "12 pol",
+        "10 mm",
+        "547 cm"
+      ],
+      "powers": [
+        "1000w Rms",
+        "1000 W",
+        "16000 W",
+        "1W"
+      ],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

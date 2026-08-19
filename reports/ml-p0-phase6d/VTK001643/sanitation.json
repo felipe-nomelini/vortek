@@ -1,0 +1,10 @@
+{
+  "sku": "VTK001643",
+  "gate": "BLOCK_GTIN_UNIT_CONFLICT",
+  "evidence": "exact GTIN catalog represents one connector while local commercial unit is 100 connectors",
+  "local_value": "7898566200414",
+  "found_value": "1 unit",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB28137441",
+  "timestamp": "2026-08-17T01:15:43.121Z"
+}

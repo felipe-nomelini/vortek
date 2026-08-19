@@ -1,0 +1,10 @@
+{
+  "sku": "VTK026049",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Frahm Sensus Lite 150BT lacks an exact official/catalog identity captured for this run",
+  "local_value": "7896673819543",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:13:11.436Z"
+}

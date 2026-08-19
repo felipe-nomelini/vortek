@@ -1,0 +1,10 @@
+{
+  "sku": "VTK000779",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Tessen TNA-BRK1 bumper identity and category lack official evidence in the validated source set",
+  "local_value": "7890000836883",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:13:23.114Z"
+}

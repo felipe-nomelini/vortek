@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-17T14:15:43.224Z",
+  "product": {
+    "id": "83b8f2ec-1894-4f3e-a1f1-01b0a8c62309",
+    "sku": "VTK018562",
+    "nome": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+    "marca": "PERMAK",
+    "estoque": 4,
+    "custo": 32.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.106,
+    "peso_bruto": 0.106,
+    "largura": 3.5,
+    "altura": 4,
+    "profundidade": 40,
+    "gtin": "7898253502104",
+    "descricao": "Antena Permak para Palio/ Mobi com Cabo 3 Metros - REF. 100/G *Imagem meramente ilustrativa",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018562/01-1865039701da2883280d.jpg"
+    ],
+    "categoria": "Automotivo/ Antena Automotiva/ Haste De Antena",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:40.745348+00:00",
+    "updated_at": "2026-08-17T11:16:28.976739+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "380928",
+    "dslite_ultima_sync": "2026-08-17T11:16:28.908+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85291090",
+    "cest": "01.063.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "6e3377b4-99ef-46b8-b319-f84fa2394c30",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "vehicle_antenna",
+    "function": "receive_vehicle_radio_signal",
+    "intended_use": "automotive",
+    "physical_form": "vehicle_antenna",
+    "expected_category_signals": [
+      "antena",
+      "automotivo",
+      "veiculo",
+      "carro"
+    ],
+    "incompatible_category_signals": [
+      "gpsportatil",
+      "televisao",
+      "wifi"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

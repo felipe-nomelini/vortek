@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-08-17T14:15:47.587Z",
+  "local_images": [
+    "https://evolusom.com.br/media/catalog/product/3/3/334283_67d2caf0dd647.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "904676-MLA98817619888_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_904676-MLA98817619888_112025-F.jpg",
+      "max_width": "1177",
+      "max_height": "1184"
+    },
+    {
+      "id": "638988-MLA98817581240_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_638988-MLA98817581240_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    },
+    {
+      "id": "648750-MLA98817668822_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_648750-MLA98817668822_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    },
+    {
+      "id": "781593-MLA99296262749_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_781593-MLA99296262749_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    },
+    {
+      "id": "687503-MLA98817668834_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_687503-MLA98817668834_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    },
+    {
+      "id": "827687-MLA99296252977_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_827687-MLA99296252977_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    },
+    {
+      "id": "620090-MLA99296396959_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_620090-MLA99296396959_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    },
+    {
+      "id": "735409-MLA99296320721_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_735409-MLA99296320721_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1057"
+    },
+    {
+      "id": "877096-MLA98817581288_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_877096-MLA98817581288_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    },
+    {
+      "id": "731892-MLA99296396977_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_731892-MLA99296396977_112025-F.jpg",
+      "max_width": "1024",
+      "max_height": "1024"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

@@ -1,0 +1,475 @@
+{
+  "index": 1,
+  "sku": "VTK013008",
+  "started_at": "2026-08-17T00:06:28.190Z",
+  "local_time": "2026-08-16T21:06:28",
+  "expected_gtin": "7898640365206",
+  "product": {
+    "id": "3a97ee23-23b4-4c5b-a3ab-cbee9d8adb77",
+    "sku": "VTK013008",
+    "nome": "Conector P10 Mono Preto Wc153 10 Un Wireconex",
+    "marca": "Wireconex",
+    "estoque": 100,
+    "custo": 47.34,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.16,
+    "peso_bruto": 0.16,
+    "largura": 10,
+    "altura": 10,
+    "profundidade": 5,
+    "gtin": "7898640365206",
+    "descricao": "Conector P10 Mono BK WC 153 Wireconex Indicado para montagem e manutenção de cabos de áudio mono, o Conector P10 Mono BK WC 153 da Wireconex oferece conexão firme e transmissão de sinal estável. Ideal para instrumentos musicais, interligações entre equipamentos de áudio e aplicações profissionais, garante desempenho confiável e baixa perda de sinal. Com acabamento na cor preta (BK) e construção resistente, proporciona maior durabilidade e excelente fixação do cabo, sendo uma solução prática para técnicos, músicos e instaladores. Especificações • Modelo: WC 153 • Marca: Wireconex • Tipo: Conector P10 TS (mono) • Cor: Preto (BK) • Aplicação: Cabos para instrumentos musicais e interligações de áudio mono • Construção: Corpo resistente com terminais para solda e sistema de fixação segura do cabo Com padrão de qualidade profissional, o WC 153 oferece praticidade na montagem, segurança na conexão e ótimo custo-benefício para diversas aplicações em áudio.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6212d51af12cd0a2aea9266d7ab495a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/04ca795522c3ee43611f45d989e1ce18.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/536dbad55a3ef12dfc78e23742be3775.jpg"
+    ],
+    "categoria": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.983532+00:00",
+    "updated_at": "2026-08-16T20:05:24.910325+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "2816",
+    "dslite_ultima_sync": "2026-08-16T20:05:24.491+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8536.90.10",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "80212463-e090-4643-bf23-4bc16748a5be",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "80212463-e090-4643-bf23-4bc16748a5be",
+    "produto_id": "3a97ee23-23b4-4c5b-a3ab-cbee9d8adb77",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2816",
+    "sku_fornecedor": "2816",
+    "custo": 47.34,
+    "estoque": 100,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:05:24.491+00:00",
+    "created_at": "2026-07-06T22:31:08.33707+00:00",
+    "updated_at": "2026-08-16T20:05:24.498+00:00",
+    "sku_oferta": "2816",
+    "nome": "Conector P10 Mono Preto Wc153 10 Un Wireconex",
+    "descricao": "Conector P10 Mono BK WC 153 Wireconex Indicado para montagem e manutenção de cabos de áudio mono, o Conector P10 Mono BK WC 153 da Wireconex oferece conexão firme e transmissão de sinal estável. Ideal para instrumentos musicais, interligações entre equipamentos de áudio e aplicações profissionais, garante desempenho confiável e baixa perda de sinal. Com acabamento na cor preta (BK) e construção resistente, proporciona maior durabilidade e excelente fixação do cabo, sendo uma solução prática para técnicos, músicos e instaladores. Especificações • Modelo: WC 153 • Marca: Wireconex • Tipo: Conector P10 TS (mono) • Cor: Preto (BK) • Aplicação: Cabos para instrumentos musicais e interligações de áudio mono • Construção: Corpo resistente com terminais para solda e sistema de fixação segura do cabo Com padrão de qualidade profissional, o WC 153 oferece praticidade na montagem, segurança na conexão e ótimo custo-benefício para diversas aplicações em áudio.",
+    "marca": "Wireconex",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6212d51af12cd0a2aea9266d7ab495a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/04ca795522c3ee43611f45d989e1ce18.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/536dbad55a3ef12dfc78e23742be3775.jpg"
+    ],
+    "gtin": "7898640365206",
+    "ncm": "8536.90.10",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2816",
+    "consulted_at": "2026-08-17T00:06:29.613Z",
+    "product": {
+      "produtoid": "2816",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 47.34,
+      "preco_crossdocking": 47.34,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 47.34,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Conector P10 Mono Preto Wc153 10 Un Wireconex",
+      "titulo_curto": "Conector P10 Mono Preto Wc153 10 Un Wireconex",
+      "categoriaid": "289629",
+      "categoria_nome": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+      "abc": null,
+      "ean11": "7898640365206",
+      "ncm": "8536.90.10",
+      "descricao": "<p>Conector P10 Mono BK WC 153 Wireconex</p> <p>Indicado para montagem e manutenção de cabos de áudio mono, o Conector P10 Mono BK WC 153 da Wireconex oferece conexão firme e transmissão de sinal estável. Ideal para instrumentos musicais, interligações entre equipamentos de áudio e aplicações profissionais, garante desempenho confiável e baixa perda de sinal.<br>Com acabamento na cor preta (BK) e construção resistente, proporciona maior durabilidade e excelente fixação do cabo, sendo uma solução prática para técnicos, músicos e instaladores.</p> <p>Especificações<br>• Modelo: WC 153<br>• Marca: Wireconex<br>• Tipo: Conector P10 TS (mono)<br>• Cor: Preto (BK)<br>• Aplicação: Cabos para instrumentos musicais e interligações de áudio mono<br>• Construção: Corpo resistente com terminais para solda e sistema de fixação segura do cabo</p> <p>Com padrão de qualidade profissional, o WC 153 oferece praticidade na montagem, segurança na conexão e ótimo custo-benefício para diversas aplicações em áudio.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Wireconex",
+      "modelo": "",
+      "peso": 0.16,
+      "largura": 10,
+      "altura": 10,
+      "profundidade": 5,
+      "peso_embalagem": 0.16,
+      "largura_embalagem": 10,
+      "altura_embalagem": 10,
+      "profundidade_embalagem": 5,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6212d51af12cd0a2aea9266d7ab495a.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 450,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "897550551",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 18:37:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 18:37:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 100,
+      "tempo_cross": 0,
+      "estoque_total": 198,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6212d51af12cd0a2aea9266d7ab495a.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/04ca795522c3ee43611f45d989e1ce18.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/536dbad55a3ef12dfc78e23742be3775.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "DSLITE supplier SKU + exact ML catalog GTIN",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2816",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898640365206"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB41877035",
+      "catalog_product_id": "MLB41877035",
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "name": "Conector Plug P10 Mono Bk Wc 153 Wireconex 10 Unidades",
+      "parent_id": "MLB38806333",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "13660752",
+          "value_name": "Wireconex",
+          "values": [
+            {
+              "id": "13660752",
+              "name": "Wireconex"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "84972506",
+          "value_name": "cabo para guitarra",
+          "values": [
+            {
+              "id": "84972506",
+              "name": "cabo para guitarra"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit",
+          "values": [
+            {
+              "id": "1359392",
+              "name": "Kit"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "150349",
+          "value_name": "10",
+          "values": [
+            {
+              "id": "150349",
+              "name": "10"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "46885538",
+          "value_name": "Conector",
+          "values": [
+            {
+              "id": "46885538",
+              "name": "Conector"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "name": "Tipo de conector",
+          "value_id": "24279588",
+          "value_name": "P10 Mono",
+          "values": [
+            {
+              "id": "24279588",
+              "name": "P10 Mono"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_GENDER",
+          "name": "Gênero do conector",
+          "value_id": "2210104",
+          "value_name": "Macho",
+          "values": [
+            {
+              "id": "2210104",
+              "name": "Macho"
+            }
+          ]
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "name": "Material de revestimento",
+          "value_id": "5504726",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "5504726",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "name": "Dispositivos compatíveis",
+          "value_name": "Amplificador, Cabo, Controlador, Microfone, Mixer, Som, Violão, baixo, Estudo, fone, Guitarra, mesa, p.a, p10, pa, Áudio",
+          "values": [
+            {
+              "id": "20395414",
+              "name": "Amplificador"
+            },
+            {
+              "id": "2311197",
+              "name": "Cabo"
+            },
+            {
+              "id": "20163364",
+              "name": "Controlador"
+            },
+            {
+              "id": "15289676",
+              "name": "Microfone"
+            },
+            {
+              "id": "24621891",
+              "name": "Mixer"
+            },
+            {
+              "id": "38801627",
+              "name": "Som"
+            },
+            {
+              "id": "36765567",
+              "name": "Violão"
+            },
+            {
+              "id": "33103071",
+              "name": "baixo"
+            },
+            {
+              "id": "19784633",
+              "name": "Estudo"
+            },
+            {
+              "id": "40040115",
+              "name": "fone"
+            },
+            {
+              "id": "17642207",
+              "name": "Guitarra"
+            },
+            {
+              "id": "31772332",
+              "name": "mesa"
+            },
+            {
+              "id": "40040116",
+              "name": "p.a"
+            },
+            {
+              "id": "28658160",
+              "name": "p10"
+            },
+            {
+              "id": "40040117",
+              "name": "pa"
+            },
+            {
+              "id": "26431589",
+              "name": "Áudio"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "46830404",
+          "value_name": "153",
+          "values": [
+            {
+              "id": "46830404",
+              "name": "153"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "43536268",
+          "value_name": "7898640365206",
+          "values": [
+            {
+              "id": "43536268",
+              "name": "7898640365206"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Conector P10 Mono Bk Wireconex 10 Unidades\n\nO Conector P10 Mono da Wireconex é a escolha ideal para quem busca qualidade e desempenho em equipamentos de áudio. Com um design robusto e material de revestimento em plástico, este conector é compatível com uma ampla gama de dispositivos, incluindo amplificadores, cabos, controladores, microfones, mixers e instrumentos como violão, guitarra e baixo. Cada pacote contém 10 unidades, garantindo que você tenha sempre um conector à mão para suas necessidades. Seu gênero macho e tecnologia de ponta asseguram uma conexão segura e um desempenho sonoro excepcional. Este conector é perfeito para estúdios, apresentações ao vivo e uso em sistemas de som, proporcionando a confiabilidade que você espera de um produto novo e homologado. Invista na qualidade sonora do seu equipamento com o Conector P10 Mono Wireconex!"
+      },
+      "pictures": [
+        {
+          "id": "951854-MLA95395149760_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_951854-MLA95395149760_102025-F.jpg",
+          "max_width": "1200",
+          "max_height": "882"
+        },
+        {
+          "id": "650267-MLA86754869724_072025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_650267-MLA86754869724_072025-F.jpg",
+          "max_width": "753",
+          "max_height": "532"
+        },
+        {
+          "id": "794167-MLA91256159121_082025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_794167-MLA91256159121_082025-F.jpg",
+          "max_width": "882",
+          "max_height": "490"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-10-12T13:56:24Z",
+      "last_updated": "2026-07-22T10:35:09Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

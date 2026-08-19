@@ -1,0 +1,383 @@
+{
+  "checked_at": "2026-08-17T12:54:49.584Z",
+  "product": {
+    "id": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+    "sku": "VTK018924",
+    "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+    "marca": "INTELBRAS",
+    "gtin": "7896637677004"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/337921",
+    "consulted_at": "2026-08-17T12:54:48.756Z",
+    "product": {
+      "produtoid": "337921",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 362.9,
+      "preco_crossdocking": 362.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 362.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+      "titulo_curto": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+      "categoriaid": "117680",
+      "categoria_nome": "Telefonia/ Telefones/ Telefone Com Fio",
+      "abc": null,
+      "ean11": "7896637677004",
+      "ncm": "85171439",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Kit telefone celular - Fixo GSM CFA 4211</b></p><br />\r\n<p>O kit telefone celular fixo de longo alcance CFA 4211 foi desenvolvido para uso em locais <br><br />\r\n  onde o sinal de celular é fraco ou não há acesso a linhas telefônicas fixas, como na praia <br><br />\r\n  ou área rural. É uma solução completa, fácil de instalar e funciona com um chip SIM card <br><br />\r\n  (não incluso), ampliando o sinal em até 50 vezes, se comparado a um telefone <br><br />\r\n  celular comum. </p><br />\r\n<p>- Até 50× mais sinal<br><br />\r\n  - Fácil instalação<br><br />\r\n  - Single chip (não incluso)<br><br />\r\n  - Antena externa dual band: opera nas frequências 850 MHz e 900 MHz<br><br />\r\n  - Permite acesso à internet GPRS (verificar plano e disponibilidade da operadora)<br><br />\r\n  - Temperatura de operação: -10 a 55 °<br><br />\r\n  - Desbloqueado para todas as operadoras¹<br><br />\r\n  - Acesso à internet GPRS&sup2;<br><br />\r\n  - Perfeito para uso na praia ou no campo<br><br />\r\n  - Verifica a intensidade do sinal<br><br />\r\n- Possui rádio FM e envia SMS</p><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\n<p><b>Telefone</b><br><br />\r\n  Peso (com bateria, antena e fonte)<br><br />\r\n608 g</p><br />\r\n<p>Dimensões (L × A × P)<br><br />\r\n  230 × 208 × 172 mm</p><br />\r\n<p>Frequência de operação<br><br />\r\n  850/900/1800/1900 MHz</p><br />\r\n<p>Alimentação<br><br />\r\n  5 Vdc (via USB)</p><br />\r\n<p>Ganho da antena<br><br />\r\n  3 dBi</p><br />\r\n<p>Conector da antena<br><br />\r\n  TNC fêmea</p><br />\r\n<p><b>Bateria</b><br><br />\r\n  Tipo de bateria<br><br />\r\n3,7 V Li-ion</p><br />\r\n<p>Capacidade<br><br />\r\n  800 mAh</p><br />\r\n<p>Tempo de conversação<br><br />\r\n  Aprox. 5h</p><br />\r\n<p>Tempo de repouso<br><br />\r\n  Aprox. 200h</p><br />\r\n<p><b>Adaptador AC/DC</b><br><br />\r\n  Entrada<br><br />\r\n100-240 Vac 50/60 Hz</p><br />\r\n<p>Saída<br><br />\r\n  5 Vdc 750 mA</p><br />\r\n<p>Consumo de energia<br><br />\r\n  Aprox. 0,69 Wh em operação<br><br />\r\n  Aprox. 0,11 Wh em repouso</p><br />\r\n<p><b>Antena</b><br><br />\r\n  Frequência<br><br />\r\n824 a 960 MHz</p><br />\r\n<p>Ganho<br><br />\r\n  17 dBi</p><br />\r\n<p>VSWR<br><br />\r\n  &#8804; 2</p><br />\r\n<p>Conector<br><br />\r\n  N fêmea</p><br />\r\n<p>Impedância<br><br />\r\n  50&#937;</p><br />\r\n<p>Diâmetro do mastro<br><br />\r\n  30 a 53 mm</p><br />\r\n<p>Dimensão (L × A × P)<br><br />\r\n  390 × 250 × 1.500 mm</p><br />\r\n<p>Número de elementos<br><br />\r\n  22</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "INTELBRAS",
+      "modelo": "",
+      "peso": 3.5,
+      "largura": 15,
+      "altura": 24,
+      "profundidade": 92,
+      "peso_embalagem": 3.5,
+      "largura_embalagem": 15,
+      "altura_embalagem": 24,
+      "profundidade_embalagem": 92,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf282790.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 3,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.053.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-01-12 19:19:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:57:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf282790.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf282eb1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf283528.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf284048.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_CATEGORY",
+    "reason": "category confidence is not HIGH for domain MLB-TELEPHONES",
+    "sanitation": "CATEGORY_FIX_REQUIRED",
+    "source": "ML catalog MLB24453976 + domain discovery"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB24453976",
+      "catalog_product_id": "MLB24453976",
+      "domain_id": "MLB-TELEPHONES",
+      "name": "Telefone Celular Fixo Gsm Cfa 4211 - Intelbras Cor Preto",
+      "parent_id": "MLB24453973",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "20785763",
+          "value_name": "cFA 4211",
+          "values": [
+            {
+              "id": "20785763",
+              "name": "cFA 4211"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "13062692",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "13062692",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "name": "Tipo de tela",
+          "value_id": "102258",
+          "value_name": "Digital",
+          "values": [
+            {
+              "id": "102258",
+              "name": "Digital"
+            }
+          ]
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "name": "Quantidade de fones de ouvido incluídos",
+          "value_id": "7512605",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7512605",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "name": "Com identificação de chamadas",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "name": "Com secretária eletrônica",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "name": "É montável na parede",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "name": "Capacidade da bateria",
+          "value_id": "160433",
+          "value_name": "800 mAh",
+          "values": [
+            {
+              "id": "160433",
+              "name": "800 mAh"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "20785764",
+          "value_name": "7896637677004",
+          "values": [
+            {
+              "id": "20785764",
+              "name": "7896637677004"
+            }
+          ]
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "name": "Com modo mãos livres",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O telefone celular fixo Intelbras CFA 4211 na cor preta combina a praticidade da tecnologia GSM com a robustez de um aparelho de mesa. Este dispositivo é ideal para ambientes residenciais ou comerciais que necessitam de uma comunicação clara e eficiente através da rede móvel.\n\nA tela digital integrada permite uma visualização nítida de todas as informações necessárias durante o uso diário. O aparelho conta com a função de identificação de chamadas, facilitando o gerenciamento de seus contatos e o controle das ligações recebidas.\n\nCom uma bateria de 800 mAh, o dispositivo oferece uma autonomia de conversação de até 5 horas contínuas. O modelo cFA 4211 possui um design elegante na cor preta que se adapta facilmente a diferentes espaços de trabalho ou residências.\n\nEste telefone é uma solução prática para quem busca mobilidade dentro do plano de telefonia móvel sem abrir mão da ergonomia de um aparelho fixo convencional. A estrutura do produto prioriza a funcionalidade para garantir uma experiência de uso simples e direta no cotidiano."
+      },
+      "pictures": [
+        {
+          "id": "642955-MLU73785448736_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_642955-MLU73785448736_012024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "530",
+          "max_height": "364"
+        },
+        {
+          "id": "886682-MLU75022143470_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_886682-MLU75022143470_032024-F.jpg",
+          "max_width": "1063",
+          "max_height": "1199"
+        },
+        {
+          "id": "940678-MLU75164495561_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_940678-MLU75164495561_032024-F.jpg",
+          "max_width": "1199",
+          "max_height": "1038"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-07-10T19:01:39Z",
+      "last_updated": "2024-09-24T14:37:33Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

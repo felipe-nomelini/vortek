@@ -1,0 +1,627 @@
+{
+  "index": 19,
+  "sku": "VTK017630",
+  "started_at": "2026-08-17T00:07:30.285Z",
+  "local_time": "2026-08-16T21:07:30",
+  "expected_gtin": "7898911419904",
+  "product": {
+    "id": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+    "sku": "VTK017630",
+    "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+    "marca": "SULTON",
+    "estoque": 38,
+    "custo": 161.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.332,
+    "peso_bruto": 0.332,
+    "largura": 9.5,
+    "altura": 19,
+    "profundidade": 9.5,
+    "gtin": "7898911419904",
+    "descricao": "Informações do Produto Sensor Externo Dupla Tecnologia Com Fio - SPW 700 - Pet 30 Kg Dupla tecnologia: infravermelho passivo + micro-ondas. Análise Digital de Movimentos. Ideal para áreas externas. Com exclusivo suporte articulado. - Dupla tecnologia: infravermelho passivo + micro-ondas; - Sensor microprocessado: análise digital de movimentos; - 2 pirossensores posicionados verticalmente; - 1 sensor de micro-ondas (complementar aos pirosensores); - Ajuste automático de temperatura; - Ângulo de detecção de 75°; - Consumo baixo: 5mA; - Ampla faixa de tensão de entrada: 6 a 16Vdc; - Relé de estado sólido; - 2 níveis de sensibilidade (movimento ou caminhada); - Chave tamper; - Gabinete resistente à água; - Lentes com proteção UV; - Distância de detecção: 12m (máximo); - Ideal para área externa. - Acompanha Suporte Articulado Exclusivo. Informações Técnicas Tensão de operação 6 a 15Vdc Corrente repouso 7mA Corrente disparo 28mA Distância de detcção máxima 12m Ângulo de detcção 90º",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017630/01-35474ad110c42c5ca9f6.jpg"
+    ],
+    "categoria": "Segurança / Alarme/ Sensores Alarme",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:56.790751+00:00",
+    "updated_at": "2026-08-16T20:55:22.356335+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "336087",
+    "dslite_ultima_sync": "2026-08-16T20:55:22.225+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85437099",
+    "cest": "01.999.00",
+    "origem_fiscal": "4",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "ec9ec233-f996-4c7b-bcfa-89d7e843fb52",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "ec9ec233-f996-4c7b-bcfa-89d7e843fb52",
+    "produto_id": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "336087",
+    "sku_fornecedor": "336087",
+    "custo": 161.9,
+    "estoque": 38,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:55:22.225+00:00",
+    "created_at": "2026-07-20T18:30:57.116305+00:00",
+    "updated_at": "2026-08-16T20:55:22.233+00:00",
+    "sku_oferta": "336087",
+    "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+    "descricao": "Informações do Produto Sensor Externo Dupla Tecnologia Com Fio - SPW 700 - Pet 30 Kg Dupla tecnologia: infravermelho passivo + micro-ondas. Análise Digital de Movimentos. Ideal para áreas externas. Com exclusivo suporte articulado. - Dupla tecnologia: infravermelho passivo + micro-ondas; - Sensor microprocessado: análise digital de movimentos; - 2 pirossensores posicionados verticalmente; - 1 sensor de micro-ondas (complementar aos pirosensores); - Ajuste automático de temperatura; - Ângulo de detecção de 75°; - Consumo baixo: 5mA; - Ampla faixa de tensão de entrada: 6 a 16Vdc; - Relé de estado sólido; - 2 níveis de sensibilidade (movimento ou caminhada); - Chave tamper; - Gabinete resistente à água; - Lentes com proteção UV; - Distância de detecção: 12m (máximo); - Ideal para área externa. - Acompanha Suporte Articulado Exclusivo. Informações Técnicas Tensão de operação 6 a 15Vdc Corrente repouso 7mA Corrente disparo 28mA Distância de detcção máxima 12m Ângulo de detcção 90º",
+    "marca": "SULTON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/3/336087_67d2caf1dda68.jpg"
+    ],
+    "gtin": "7898911419904",
+    "ncm": "85437099",
+    "cest": "01.999.00"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/336087",
+    "consulted_at": "2026-08-17T00:07:30.917Z",
+    "product": {
+      "produtoid": "336087",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 161.9,
+      "preco_crossdocking": 161.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 161.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "titulo_curto": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "categoriaid": "118372",
+      "categoria_nome": "Segurança / Alarme/ Sensores Alarme",
+      "abc": null,
+      "ean11": "7898911419904",
+      "ncm": "85437099",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Sensor Externo Dupla Tecnologia Com Fio - SPW 700 - Pet 30 Kg</b></p><br />\r\n<p>Dupla tecnologia: infravermelho passivo + micro-ondas.<br><br />\r\n  Análise Digital de Movimentos. <br><br />\r\n  Ideal para áreas externas.<br><br />\r\n  Com exclusivo suporte articulado.</p><br />\r\n<p> - Dupla tecnologia: infravermelho passivo + micro-ondas;<br><br />\r\n  - Sensor microprocessado: análise digital de movimentos;<br><br />\r\n  - 2 pirossensores posicionados verticalmente;<br><br />\r\n  - 1 sensor de micro-ondas (complementar aos pirosensores);<br><br />\r\n  - Ajuste automático de temperatura;<br><br />\r\n  - Ângulo de detecção de 75°;<br><br />\r\n  - Consumo baixo: 5mA;<br><br />\r\n  - Ampla faixa de tensão de entrada: 6 a 16Vdc;<br><br />\r\n  - Relé de estado sólido;<br><br />\r\n  - 2 níveis de sensibilidade (movimento ou caminhada);<br><br />\r\n  - Chave tamper;<br><br />\r\n  - Gabinete resistente à água;<br><br />\r\n  - Lentes com proteção UV;<br><br />\r\n  - Distância de detecção: 12m (máximo);<br><br />\r\n  - Ideal para área externa.<br><br />\r\n  - Acompanha Suporte Articulado Exclusivo.</p><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\n<p>Tensão de operação<br><br />\r\n  6 a 15Vdc</p><br />\r\n<p>Corrente repouso<br><br />\r\n  7mA</p><br />\r\n<p>Corrente disparo<br><br />\r\n  28mA</p><br />\r\n<p>Distância de detcção máxima<br><br />\r\n  12m</p><br />\r\n<p>Ângulo de detcção 90º<br><br />\r\n</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "SULTON",
+      "modelo": "",
+      "peso": 0.332,
+      "largura": 9.5,
+      "altura": 19,
+      "profundidade": 9.5,
+      "peso_embalagem": 0.332,
+      "largura_embalagem": 9.5,
+      "altura_embalagem": 19,
+      "profundidade_embalagem": 9.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/3/336087_67d2caf1dda68.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1519,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.999.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-03-11 10:22:56.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:57:38.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 38,
+      "tempo_cross": 0,
+      "estoque_total": 38,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/336087_67d2caf1dda68.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_GTIN",
+  "configured_reason": "exact_gtin_catalog_identifies_peccinin_gate_motor_not_sulton_spw_700_sensor",
+  "evidence": {
+    "manufacturer_or_official": "https://sulton.com.br/produto/spw-700/",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/336087",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898911419904"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB29005091",
+      "catalog_product_id": "MLB29005091",
+      "domain_id": "MLB-GATE_MOTORS",
+      "name": "Kit Motor Portão Deslizante Peccinin Gatter STD 400 4m Automático",
+      "parent_id": "MLB29005088",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "515755",
+          "value_name": "Peccinin",
+          "values": [
+            {
+              "id": "515755",
+              "name": "Peccinin"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "16958287",
+          "value_name": "Gatter",
+          "values": [
+            {
+              "id": "16958287",
+              "name": "Gatter"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "27350004",
+          "value_name": "STD 400",
+          "values": [
+            {
+              "id": "27350004",
+              "name": "STD 400"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205162",
+          "value_name": "127V",
+          "values": [
+            {
+              "id": "39205162",
+              "name": "127V"
+            }
+          ]
+        },
+        {
+          "id": "GEAR_RACK_MATERIAL",
+          "name": "Material da cremalheira",
+          "value_id": "515822",
+          "value_name": "Aço",
+          "values": [
+            {
+              "id": "515822",
+              "name": "Aço"
+            }
+          ]
+        },
+        {
+          "id": "OPENING_TIME",
+          "name": "Tempo de abertura",
+          "value_id": "3036959",
+          "value_name": "10 s",
+          "values": [
+            {
+              "id": "3036959",
+              "name": "10 s"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "49554410",
+          "value_name": "1.015 hp",
+          "values": [
+            {
+              "id": "49554410",
+              "name": "1.015 hp"
+            }
+          ]
+        },
+        {
+          "id": "MAX_SUPPORTED_WEIGHT",
+          "name": "Peso máximo suportado",
+          "value_id": "3021632",
+          "value_name": "300 kg",
+          "values": [
+            {
+              "id": "3021632",
+              "name": "300 kg"
+            }
+          ]
+        },
+        {
+          "id": "GARAGE_DOOR_TYPES",
+          "name": "Tipos de portão",
+          "value_id": "5022627",
+          "value_name": "Deslizante",
+          "values": [
+            {
+              "id": "5022627",
+              "name": "Deslizante"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_GEAR_RACK",
+          "name": "Inclui cremalheira",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GEAR_RACK_LENGTH",
+          "name": "Comprimento da cremalheira",
+          "value_id": "7537950",
+          "value_name": "4 m",
+          "values": [
+            {
+              "id": "7537950",
+              "name": "4 m"
+            }
+          ]
+        },
+        {
+          "id": "ELECTRICAL_PHASE",
+          "name": "Fase elétrica",
+          "value_id": "2482010",
+          "value_name": "Monofásica",
+          "values": [
+            {
+              "id": "2482010",
+              "name": "Monofásica"
+            }
+          ]
+        },
+        {
+          "id": "OPENING_DISTANCE",
+          "name": "Distância de abertura",
+          "value_id": "9704489",
+          "value_name": "4 m",
+          "values": [
+            {
+              "id": "9704489",
+              "name": "4 m"
+            }
+          ]
+        },
+        {
+          "id": "CYCLES_PER_HOUR",
+          "name": "Ciclos por hora",
+          "value_id": "8854247",
+          "value_name": "20",
+          "values": [
+            {
+              "id": "8854247",
+              "name": "20"
+            }
+          ]
+        },
+        {
+          "id": "USE",
+          "name": "Uso",
+          "value_id": "10162778",
+          "value_name": "Residencial",
+          "values": [
+            {
+              "id": "10162778",
+              "name": "Residencial"
+            }
+          ]
+        },
+        {
+          "id": "OPENING_SPEED",
+          "name": "Velocidade de abertura",
+          "value_id": "15673353",
+          "value_name": "10 m/min",
+          "values": [
+            {
+              "id": "15673353",
+              "name": "10 m/min"
+            }
+          ]
+        },
+        {
+          "id": "LEAFS_NUMBER",
+          "name": "Quantidade de folhas",
+          "value_id": "13157532",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "13157532",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "27486050",
+          "value_name": "7898911419904",
+          "values": [
+            {
+              "id": "27486050",
+              "name": "7898911419904"
+            }
+          ]
+        },
+        {
+          "id": "CONTROLLERS_NUMBER_INCLUDED",
+          "name": "Quantidade de controles incluídos",
+          "value_id": "8833560",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "8833560",
+              "name": "2"
+            }
+          ]
+        },
+        {
+          "id": "GEAR_RACKS_NUMBER",
+          "name": "Quantidade de cremalheiras",
+          "value_id": "8854244",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "8854244",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "WITH_MANUAL_UNLOCKING_SYSTEM",
+          "name": "Com sistema de desbloqueio manual",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_MAGNETIC_LIMIT_SWITCH",
+          "name": "Com corte automático por sensores magnéticos",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_PHOTOCELL_INPUT",
+          "name": "Com entrada para fotocélula",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_COURTESY_LIGHT_OUTPUT",
+          "name": "Com saída para luz de garagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_PUSH_BUTTON_INPUT",
+          "name": "Com entrada para botoeira",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_ASSEMBLY_KIT",
+          "name": "Inclui kit de montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "2296420",
+          "value_name": "Controle remoto",
+          "values": [
+            {
+              "id": "2296420",
+              "name": "Controle remoto"
+            }
+          ]
+        },
+        {
+          "id": "GEAR_MATERIAL",
+          "name": "Material da engrenagem",
+          "value_id": "8843574",
+          "value_name": "Alumínio",
+          "values": [
+            {
+              "id": "8843574",
+              "name": "Alumínio"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Kit Motor para portão Gatter STD 400 com 4 metros de cremalheira\n\nIdeal para aplicações residenciais. O deslizante Fast Gatter conta com a alavanca lateral e também chave yale manual, garantindo a segurança e comodidade para aplicação. \n\nSua engrenagem de alumínio conta com 20 dentes, trazendo mais velocidade para o automatizador e garantindo uma melhor performance. \n\nA central eletrônica S-Board 1000 traz em suas configurações a tecnologia i-Track, que permite o auto aprendizado contínuo do percurso do portão, fazendo com que haja menor índice de manutenção causado pela perda do percurso. \n\nCaracterísticas:\n- Design com linhas modernas;\n- Central com estojo plástico;\n- Coroa externa injetada em alumínio;\n- Tecnologia de fechamento suave soft closing (Rampa de desaceleração ajustável);\n- Destrave manual com chave;\n- Carenagem com proteção UV;\n- Ajuste na embreagem eletronicamente\n- Componentes selecionados e máxima qualidade\n- Entrada para fotocélulas\n- Entrada para Botoeira\n- Entrada para fins de curso\n- Maior robustez e coroa em metal\n- Sistema Rolling Code anti clonagem\n- Temporizador para fechamento automático\n- Configura até 15 controles\n- Distancia de acionamento é de 30 a 40m sem barreira\n\nCaracterísticas Técnicas:\n- Potência do motor (cv) 1/4 \n- Ciclo/ hora 20 \n- Peso do Portão (Kg) 400\n- Tempo de Abertura 10s (Podendo variar de acordo com peso e estado do portão, além do ajuste de desaceleração).\n- Velocidade (m/min) 17\n- Central S BOARD 1000 \n- Corrente: 3A / 1,5A \n- Capacitor: 40µF / 12µF \n- Força de Arraste: 30 kgf \n- Monofásico \n- Tensão: 127V ou 220V \n\nItens Inclusos:\n01 - Motor Gatter STD 400\n01 - Central de Comando Sboard 1000\n02 - Controles remotos 433,92 Mhz (Cor e modelo podem variar de acordo com disponibilidade do fabricante)\n04 - Metros de cremalheiras (Peças cortadas, 50cm)\n02 - Imãs fim de curso\n01 - Manual de fábrica"
+      },
+      "pictures": [
+        {
+          "id": "852972-MLA99404472880_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_852972-MLA99404472880_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1150"
+        },
+        {
+          "id": "602350-MLA79652843823_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_602350-MLA79652843823_092024-F.jpg",
+          "max_width": "1200",
+          "max_height": "861"
+        },
+        {
+          "id": "736737-MLU73439101287_122023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_736737-MLU73439101287_122023-F.jpg",
+          "max_width": "572",
+          "max_height": "441"
+        },
+        {
+          "id": "783384-MLA79408468892_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_783384-MLA79408468892_092024-F.jpg",
+          "max_width": "1011",
+          "max_height": "1200"
+        },
+        {
+          "id": "844059-MLA79652892449_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_844059-MLA79652892449_092024-F.jpg",
+          "max_width": "1200",
+          "max_height": "876"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-12-14T20:15:23Z",
+      "last_updated": "2026-04-04T23:23:24Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

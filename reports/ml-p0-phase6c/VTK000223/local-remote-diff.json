@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075741727",
+      "local": "MLB5075741727",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK000223",
+      "local": "VTK000223",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "5f9d6af0-af99-486c-97c1-abcfd8c85b41",
+      "local": "5f9d6af0-af99-486c-97c1-abcfd8c85b41",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cadeira De Escritório Timberflex Thunderx3 Ec3 Gamer Ergonômica Preta Com Estofado De Couro Sintético Preto",
+      "local": "Cadeira De Escritório Timberflex Thunderx3 Ec3 Gamer Ergonômica Preta Com Estofado De Couro Sintético Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 3409.9,
+      "local": 3409.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075741727-cadeira-de-escritorio-timberflex-thunderx3-ec3-gamer-ergonmica-preta-com-estofado-de-couro-sintetico-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075741727-cadeira-de-escritorio-timberflex-thunderx3-ec3-gamer-ergonmica-preta-com-estofado-de-couro-sintetico-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-08-17T01:13:42.675Z",
+  "product_exists_once": true,
+  "active": true,
+  "stock_positive": true,
+  "cost_positive": true,
+  "ml_item_id_null": true,
+  "ml_status_unlinked": true,
+  "gtin_present": true,
+  "gtin_matches_authorized": true,
+  "identity_text_present": true,
+  "preferred_offer_present": true,
+  "local_listing_absent": true,
+  "local_duplicates": [],
+  "remote_exact": [],
+  "historical_decision": "BLOCK_REQUIRED_ATTRIBUTE_EVIDENCE"
+}

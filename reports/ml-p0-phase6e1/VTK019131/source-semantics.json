@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:52.146Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Laço Indutivo Citrox 1,90x0,80 Cx-4001",
+    "supplier_category": "Segurança / Alarme/ Acessórios Alarme",
+    "supplier_brand": "CITROX",
+    "supplier_gtin": "7898954353265",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/366721",
+    "captured_at": "2026-08-17T12:55:40.216Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "b5eec0cb-3269-4290-b2c2-0329d1b1a316",
+    "produto_id": "0cd3928f-2185-4a0d-bac0-05862a066d7d",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "366721",
+    "sku_fornecedor": "366721",
+    "custo": 102.95,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:21:19.436+00:00",
+    "created_at": "2026-07-20T18:33:35.650576+00:00",
+    "updated_at": "2026-08-17T11:21:19.453+00:00",
+    "sku_oferta": "366721",
+    "nome": "Laço Indutivo Citrox 1,90x0,80 Cx-4001",
+    "descricao": "Seu princípio de funcionamento é de detecção através da massa metálica do veículo; O laço Indutivo funciona como uma antena que detecta a presença de um veículo. Deverá ser embutido no piso (chão) da via em que o acesso é controlado. Possui condutores com alta condutividade, capa isolante resistente, totalmente preparada para a acomodação sob o asfalto ou concreto. Suas conexões são resinadas, e toda a sua superfície é impermeável. *Imagem meramente ilustrativa.",
+    "marca": "CITROX",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/366721_67d2cafcece09.jpg"
+    ],
+    "gtin": "7898954353265",
+    "ncm": "85439090",
+    "cest": null
+  }
+}

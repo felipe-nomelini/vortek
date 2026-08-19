@@ -1,0 +1,23 @@
+{
+  "index": 40,
+  "sku": "VTK003779",
+  "expected_gtin": "7898572861081",
+  "started_at": "2026-08-17T12:54:31.619Z",
+  "local_time": "2026-08-17T09:54:31",
+  "completed_at": "2026-08-17T12:54:32.059Z",
+  "elapsed_ms": 440,
+  "result": "BLOCK_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact GTIN catalog identity conflict: GTIN",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

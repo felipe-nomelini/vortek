@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:53.421Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto-falante 18 Pol 1500w Rms 8 Ohms 18lf3000b8 Atk",
+    "supplier_category": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+    "supplier_brand": "Atk Eletroacústica",
+    "supplier_gtin": "7898640362106",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1550",
+    "captured_at": "2026-08-17T12:55:49.591Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "d878c003-7cd4-4eea-badf-d44e1feee1a1",
+    "produto_id": "3206afcd-6e43-4e87-8902-cbf1cb7f855d",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1550",
+    "sku_fornecedor": "1550",
+    "custo": 1396.9,
+    "estoque": 2,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:10:16.815+00:00",
+    "created_at": "2026-07-06T22:31:08.33707+00:00",
+    "updated_at": "2026-08-17T10:10:16.822+00:00",
+    "sku_oferta": "1550",
+    "nome": "Alto-falante 18 Pol 1500w Rms 8 Ohms 18lf3000b8 Atk",
+    "descricao": "Descrição: Alto-falante de 18” de alta potência, baixíssima distorção e compressão dinâmica. O alto grau de exigência e controle de qualidade na seleção dos materiais e na montagem proporciona excelente linearidade. Utiliza uma bobina de 100mm de diâmetro (4”) e um cone de alta resistência, montados em um conjunto magnético otimizado para um alto desempenho. Design exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, proporcionando um excelente visual e alta resistência mecânica. Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para proporcionar um alto-falante com alta sensibilidade, dissipação otimizada e uma alta performance. Características: -1500 W Potência Nominal -Frequência Sonora: Sub Graves -8 Ohms de Impedância Nominal -97 dB SPL de Sensibilidade -30 a 1800Hz Informações para transporte: Peso unidade: 15.190 kg Unidade de Transporte: 1 unidade Dimensões da embalagem: (A) 230 mm x (L) 480 mm x (P) 470 mm Volume da embalagem: 51.9 L Peso da unidade embalada: 16.580 kg Especificações do Fabricante: Potência Nominal Admissível(1): 1500 W Potência Máxima do Amplificador(2) : 24000 W pico Sensibilidade (1W/1m)(3) : 97 dB SPL Impedância Nominal: 8 Ohms Impedância Mínima: 7.4 Ohms Diâmetro Nominal: 457.2mm (18 pol) Resposta de Frequência: 30 a 1800 Hz Diâmetro da Bobina: 100 mm (4”) Fio da Bobina: Fio de Cobre Seção Circular Resistência da Bobina (Re): 5.9 Ohms X.máx(4) : 12 mm Volume de Ar ocupado: 5.45 L (1) 2 horas de teste realizado com ruído rosa (fator de crista 12 dB) no range de frequência de Fs a 10xFs. Potência calculada com impedância mínima. Alto-falante ao ar livre. Obs: Para aplicar esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no mínimo 12h com 50% da potência nominal. (2) Potência de pico exigida do amplificador para alcançar a potência nominal considerando um sinal de teste de ruído rosa com fator de crista de 12dB. (3) Aplicada tensão de 2.83 V RMS sobre a impedância nominal. (4) O X.máx é calculado considerando uma queda > que 50 % do campo magnético Bl sobre a bobina. Parâmetros Thiele-Small (5) Fs: 32.7 Hz Re: 5.9 Ohms Qes: 0.42 Qms: 4.45 Qts: 0.38 Vas: 214 l Sd: 1244 cm² n0: 1.71 % Mms: 238 g Bl: 26 Tm Le: 1.79 mH (5) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.",
+    "marca": "Atk Eletroacústica",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg"
+    ],
+    "gtin": "7898640362106",
+    "ncm": "8518.29.90",
+    "cest": null
+  }
+}

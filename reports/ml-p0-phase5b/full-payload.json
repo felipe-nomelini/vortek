@@ -1,0 +1,130 @@
+{
+  "payload": {
+    "family_name": "Ventilador de Mesa Ventisol Turbo 6 40 cm",
+    "category_id": "MLB1645",
+    "catalog_product_id": "MLB15284402",
+    "catalog_listing": true,
+    "price": 250.62,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_name": "Ventisol"
+      },
+      {
+        "id": "LINE",
+        "value_name": "Turbo 6 pás"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "Turbo 6"
+      },
+      {
+        "id": "FAN_TYPE",
+        "value_id": "291722",
+        "value_name": "De mesa"
+      },
+      {
+        "id": "DIAMETER",
+        "value_name": "40 cm"
+      },
+      {
+        "id": "STRUCTURE_COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "BLADES_COLOR",
+        "value_name": "Azul"
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "HEIGHT",
+        "value_name": "60 cm"
+      },
+      {
+        "id": "DEPTH",
+        "value_name": "44 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_name": "35 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_name": "2.5 kg"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_name": "Corrente elétrica"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "value_id": "33344215",
+        "value_name": "A"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "value_name": "3"
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7898461970375"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_name": "Ventisol"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000392"
+      }
+    ],
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000392"
+  },
+  "sha256": "17bbed8f4bdae44267e1134be13a1713036e3d6a08d233691b06e6f4d613620d",
+  "publish_authorized": false
+}

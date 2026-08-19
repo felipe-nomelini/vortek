@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-08-17T20:01:48.997Z",
+  "rows": [
+    {
+      "sku": "VTK018422",
+      "source": null,
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T20:01:48.997Z",
+      "supported_fields": [],
+      "decision": "BLOCK_SEMANTIC_CATEGORY_MISMATCH"
+    },
+    {
+      "sku": "VTK001303",
+      "source": "DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/38389 + ML exact GTIN MLB17460878 + semantic alternative Phase 6E.1",
+      "source_type": "supplier_and_ml_catalog",
+      "consulted_at": "2026-08-17T20:01:48.997Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK001297",
+      "source": null,
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T20:01:48.997Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK018562",
+      "source": null,
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T20:01:48.997Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK018924",
+      "source": null,
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T20:01:48.997Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK012632",
+      "source": null,
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T20:01:48.997Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK019126",
+      "source": null,
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T20:01:48.997Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_UNIT_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+    "supplier_category": null,
+    "supplier_brand": "Dunlop",
+    "supplier_gtin": "7897626819399",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2236",
+    "captured_at": "2026-08-17T12:54:32.314Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

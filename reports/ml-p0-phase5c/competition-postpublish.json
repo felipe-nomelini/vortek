@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-08-16T22:31:09.370Z",
+  "price_to_win_http": 200,
+  "price_to_win": {
+    "item_id": "MLB7432322488",
+    "current_price": null,
+    "currency_id": null,
+    "price_to_win": null,
+    "boosts": null,
+    "status": "not_listed",
+    "consistent": false,
+    "visit_share": null,
+    "competitors_sharing_first_place": null,
+    "reason": [
+      "item_not_opted_in"
+    ],
+    "catalog_product_id": null
+  },
+  "buy_box_winner": null,
+  "own_offer": null,
+  "offers_total": 29,
+  "no_price_change_performed": true
+}

@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cápsula de Microfone Sennheiser MMD 845 Preto",
+    "supplier_category": "áudio / Acessórios Para Microfones / Cápsulas Para Microfones",
+    "supplier_brand": "SENNHEISER",
+    "supplier_gtin": "4044155032628",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/76303",
+    "captured_at": "2026-08-17T12:54:02.951Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

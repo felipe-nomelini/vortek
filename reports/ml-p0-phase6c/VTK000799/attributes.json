@@ -1,0 +1,3255 @@
+{
+  "checked_at": "2026-08-17T00:44:11.021Z",
+  "category_attributes": [
+    {
+      "id": "BRAND",
+      "name": "Marca",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "É o nome da empresa que cria o produto.",
+      "example": "Consulogo",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Informe a marca verdadeira do produto ou 'Genérica' se não tiver marca."
+    },
+    {
+      "id": "LINE",
+      "name": "Linha",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "10201879",
+          "name": "Gerencial"
+        },
+        {
+          "id": "10201878",
+          "name": "Presidencial"
+        }
+      ],
+      "tooltip": "Indica a série ou grupo do produto de acordo com a classificação da marca ou fabricante, por exemplo: a linha “111” da marca “xxx” agrupa diferentes modelos de produtos.",
+      "example": "Racing Series",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MODEL",
+      "name": "Modelo",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "É o nome específico do produto.",
+      "example": "GAM720",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ALPHANUMERIC_MODEL",
+      "name": "Modelo alfanumérico",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "PARENT_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "É um código que combina letras e números. Você pode encontrá-lo na embalagem ou na documentação do produto.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "COLOR",
+      "name": "Cor",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "283148",
+          "name": "Coral-claro"
+        },
+        {
+          "id": "283149",
+          "name": "Coral"
+        },
+        {
+          "id": "283150",
+          "name": "Laranja-claro"
+        },
+        {
+          "id": "283151",
+          "name": "Laranja-escuro"
+        },
+        {
+          "id": "283156",
+          "name": "Cáqui"
+        },
+        {
+          "id": "283157",
+          "name": "Verde-limão"
+        },
+        {
+          "id": "283158",
+          "name": "Verde-musgo"
+        },
+        {
+          "id": "283152",
+          "name": "Chocolate"
+        },
+        {
+          "id": "283153",
+          "name": "Palha"
+        },
+        {
+          "id": "283154",
+          "name": "Marrom-claro"
+        },
+        {
+          "id": "283155",
+          "name": "Marrom-escuro"
+        },
+        {
+          "id": "283164",
+          "name": "Dourado"
+        },
+        {
+          "id": "51993",
+          "name": "Vermelho"
+        },
+        {
+          "id": "283165",
+          "name": "Cinza"
+        },
+        {
+          "id": "51994",
+          "name": "Rosa"
+        },
+        {
+          "id": "283160",
+          "name": "Azul-turquesa"
+        },
+        {
+          "id": "51996",
+          "name": "Terracota"
+        },
+        {
+          "id": "283161",
+          "name": "Azul-marinho"
+        },
+        {
+          "id": "283162",
+          "name": "Índigo"
+        },
+        {
+          "id": "51998",
+          "name": "Bordô"
+        },
+        {
+          "id": "283163",
+          "name": "Rosa-chiclete"
+        },
+        {
+          "id": "52000",
+          "name": "Laranja"
+        },
+        {
+          "id": "52001",
+          "name": "Bege"
+        },
+        {
+          "id": "52003",
+          "name": "Nude"
+        },
+        {
+          "id": "52005",
+          "name": "Marrom"
+        },
+        {
+          "id": "52007",
+          "name": "Amarelo"
+        },
+        {
+          "id": "52008",
+          "name": "Creme"
+        },
+        {
+          "id": "52010",
+          "name": "Ocre"
+        },
+        {
+          "id": "52012",
+          "name": "Dourado-escuro"
+        },
+        {
+          "id": "52014",
+          "name": "Verde"
+        },
+        {
+          "id": "52015",
+          "name": "Verde-claro"
+        },
+        {
+          "id": "52019",
+          "name": "Verde-escuro"
+        },
+        {
+          "id": "52021",
+          "name": "Azul-celeste"
+        },
+        {
+          "id": "52022",
+          "name": "Água"
+        },
+        {
+          "id": "52024",
+          "name": "Azul-petróleo"
+        },
+        {
+          "id": "52028",
+          "name": "Azul"
+        },
+        {
+          "id": "52029",
+          "name": "Azul-claro"
+        },
+        {
+          "id": "52031",
+          "name": "Azul-aço"
+        },
+        {
+          "id": "52033",
+          "name": "Azul-escuro"
+        },
+        {
+          "id": "52035",
+          "name": "Violeta"
+        },
+        {
+          "id": "52036",
+          "name": "Lavanda"
+        },
+        {
+          "id": "52038",
+          "name": "Lilás"
+        },
+        {
+          "id": "52042",
+          "name": "Fúcsia"
+        },
+        {
+          "id": "52043",
+          "name": "Rosa-claro"
+        },
+        {
+          "id": "52045",
+          "name": "Rosa-pálido"
+        },
+        {
+          "id": "52047",
+          "name": "Violeta-escuro"
+        },
+        {
+          "id": "52049",
+          "name": "Preto"
+        },
+        {
+          "id": "52051",
+          "name": "Cinza-escuro"
+        },
+        {
+          "id": "52053",
+          "name": "Prateado"
+        },
+        {
+          "id": "52055",
+          "name": "Branco"
+        },
+        {
+          "id": "338779",
+          "name": "Ciano"
+        }
+      ],
+      "tooltip": "Pode ter nome fantasia.",
+      "example": "Preto",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "UPHOLSTERY_MATERIAL",
+      "name": "Material do estofamento",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "2395698",
+          "name": "Borracha"
+        },
+        {
+          "id": "482783",
+          "name": "Couro"
+        },
+        {
+          "id": "570721",
+          "name": "Couro sintético"
+        },
+        {
+          "id": "466793",
+          "name": "Algodão"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SALE_FORMAT",
+      "name": "Formato de venda",
+      "tags": {},
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "1359391",
+          "name": "Unidade"
+        },
+        {
+          "id": "1359392",
+          "name": "Kit"
+        }
+      ],
+      "tooltip": "É o formato em que seu produto será vendido, podendo ser por pack ou unidade. Kit: significa vender várias unidades idênticas, agrupadas em conjunto, por exemplo, 2 cadeiras de escritório. Unidade: significa vender o produto individualmente, por exemplo, 1 cadeira de escritório.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "UNITS_PER_PACK",
+      "name": "Unidades por kit",
+      "tags": {},
+      "hierarchy": "CHILD_PK",
+      "relevance": 1,
+      "value_type": "number",
+      "value_max_length": 18,
+      "tooltip": "É a quantidade de produtos em cada pacote, por exemplo, 3 cadeiras de escritório.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MAIN_COLOR",
+      "name": "Cor principal",
+      "tags": {
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "type": "color",
+      "value_type": "list",
+      "values": [
+        {
+          "id": "2450295",
+          "name": "Preto",
+          "metadata": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "2450293",
+          "name": "Azul",
+          "metadata": {
+            "rgb": "1717FF"
+          }
+        },
+        {
+          "id": "2450307",
+          "name": "Vermelho",
+          "metadata": {
+            "rgb": "FF0000"
+          }
+        },
+        {
+          "id": "2450311",
+          "name": "Violeta",
+          "metadata": {
+            "rgb": "9F00FF"
+          }
+        },
+        {
+          "id": "2450291",
+          "name": "Marrom",
+          "metadata": {
+            "rgb": "A0522D"
+          }
+        },
+        {
+          "id": "2450314",
+          "name": "Verde",
+          "metadata": {
+            "rgb": "0DA600"
+          }
+        },
+        {
+          "id": "2450327",
+          "name": "Laranja",
+          "metadata": {
+            "rgb": "FF8C00"
+          }
+        },
+        {
+          "id": "2450278",
+          "name": "Azul celeste",
+          "metadata": {
+            "rgb": "83DDFF"
+          }
+        },
+        {
+          "id": "2450312",
+          "name": "Rosa",
+          "metadata": {
+            "rgb": "FCB1BE"
+          }
+        },
+        {
+          "id": "2450289",
+          "name": "Dourado",
+          "metadata": {
+            "rgb": "FFD700"
+          }
+        },
+        {
+          "id": "2450303",
+          "name": "Prateado",
+          "metadata": {
+            "rgb": "CBCFD0"
+          }
+        },
+        {
+          "id": "2450296",
+          "name": "Amarelo",
+          "metadata": {
+            "rgb": "FFED00"
+          }
+        },
+        {
+          "id": "2450294",
+          "name": "Cinza",
+          "metadata": {
+            "rgb": "E1E1E1"
+          }
+        },
+        {
+          "id": "2450308",
+          "name": "Branco",
+          "metadata": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "46671867",
+          "name": "Multicolorido",
+          "metadata": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "2450281",
+          "name": "Bege",
+          "metadata": {
+            "rgb": "F5F3DC",
+            "parent_id": "2450291"
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_HEIGHT",
+      "name": "Altura da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_WIDTH",
+      "name": "Largura da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INSTALLATION_SERVICE",
+      "name": "Serviço de instalação",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "ft",
+          "name": "ft"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_WEIGHT",
+      "name": "Peso da embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        },
+        {
+          "id": "kg",
+          "name": "kg"
+        },
+        {
+          "id": "lb",
+          "name": "lb"
+        },
+        {
+          "id": "mg",
+          "name": "mg"
+        },
+        {
+          "id": "oz",
+          "name": "oz"
+        }
+      ],
+      "default_unit": "g",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "FILTRABLE_COLOR",
+      "name": "Cor filtrável",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "type": "color",
+      "value_type": "list",
+      "values": [
+        {
+          "id": "2450295",
+          "name": "Preto",
+          "metadata": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "2450293",
+          "name": "Azul",
+          "metadata": {
+            "rgb": "1717FF"
+          }
+        },
+        {
+          "id": "2450307",
+          "name": "Vermelho",
+          "metadata": {
+            "rgb": "FF0000"
+          }
+        },
+        {
+          "id": "2450311",
+          "name": "Violeta",
+          "metadata": {
+            "rgb": "9F00FF"
+          }
+        },
+        {
+          "id": "2450291",
+          "name": "Marrom",
+          "metadata": {
+            "rgb": "A0522D"
+          }
+        },
+        {
+          "id": "2450314",
+          "name": "Verde",
+          "metadata": {
+            "rgb": "0DA600"
+          }
+        },
+        {
+          "id": "2450327",
+          "name": "Laranja",
+          "metadata": {
+            "rgb": "FF8C00"
+          }
+        },
+        {
+          "id": "2450278",
+          "name": "Azul celeste",
+          "metadata": {
+            "rgb": "83DDFF"
+          }
+        },
+        {
+          "id": "2450312",
+          "name": "Rosa",
+          "metadata": {
+            "rgb": "FCB1BE"
+          }
+        },
+        {
+          "id": "2450289",
+          "name": "Dourado",
+          "metadata": {
+            "rgb": "FFD700"
+          }
+        },
+        {
+          "id": "2450303",
+          "name": "Prateado",
+          "metadata": {
+            "rgb": "CBCFD0"
+          }
+        },
+        {
+          "id": "2450296",
+          "name": "Amarelo",
+          "metadata": {
+            "rgb": "FFED00"
+          }
+        },
+        {
+          "id": "2450294",
+          "name": "Cinza",
+          "metadata": {
+            "rgb": "E1E1E1"
+          }
+        },
+        {
+          "id": "2450308",
+          "name": "Branco",
+          "metadata": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "46671867",
+          "name": "Multicolorido",
+          "metadata": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "2450281",
+          "name": "Bege",
+          "metadata": {
+            "rgb": "F5F3DC",
+            "parent_id": "2450291"
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "OFFICE_CHAIR_TYPE",
+      "name": "Tipo de cadeira de escritório",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "13016812",
+          "name": "Presidente"
+        },
+        {
+          "id": "13016813",
+          "name": "Executiva"
+        },
+        {
+          "id": "13016815",
+          "name": "Escritório"
+        },
+        {
+          "id": "13016816",
+          "name": "Caixa"
+        },
+        {
+          "id": "13016817",
+          "name": "Visita"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "STRUCTURE_MATERIALS",
+      "name": "Materiais da estrutura",
+      "tags": {
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "4086949",
+          "name": "Aço inoxidável"
+        },
+        {
+          "id": "2431883",
+          "name": "Ferro"
+        },
+        {
+          "id": "2431881",
+          "name": "Madeira"
+        },
+        {
+          "id": "2748302",
+          "name": "Plástico"
+        }
+      ],
+      "example": "Polipropileno; Madeira; Aço; Alumínio",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "FILLING_MATERIALS",
+      "name": "Materiais do enchimento",
+      "tags": {
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "5008909",
+          "name": "Borracha"
+        },
+        {
+          "id": "5897875",
+          "name": "Espuma"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "FOOT_RING_MATERIALS",
+      "name": "Materiais do aro para pés",
+      "tags": {
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "16602171",
+          "name": "Náilon"
+        },
+        {
+          "id": "16602172",
+          "name": "Metal"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BACKREST_HEIGHT",
+      "name": "Altura do encosto",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "tooltip": "É a medida sem o apoio de cabeça.",
+      "example": "81 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SEAT_DEPTH",
+      "name": "Profundidade do assento",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "OFFICE_CHAIR_WIDTH",
+      "name": "Largura da cadeira",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "tooltip": "É a largura total, incluindo os apoios de braço.",
+      "example": "60 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MAX_CHAIR_HEIGHT",
+      "name": "Altura máxima da cadeira",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "example": "142 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MAX_WEIGHT_SUPPORTED",
+      "name": "Peso máximo suportado",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "kg",
+          "name": "kg"
+        }
+      ],
+      "default_unit": "kg",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "REQUIRES_ASSEMBLY",
+      "name": "Requer montagem",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_ADJUSTABLE_HEIGHT",
+      "name": "Com altura ajustável",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_WHEELS",
+      "name": "Com rodas",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_FOOT_RING",
+      "name": "Com aro para pés",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_ARMREST",
+      "name": "Com apoio de braços",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_RECLINING_BACKREST",
+      "name": "Com encosto reclinável",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_LIGHTS",
+      "name": "Com luzes",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_ADJUSTABLE_ARMREST",
+      "name": "Com apoio de braços ajustável",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGING_BOXES_NUMBER",
+      "name": "Quantidade de caixas de embalagem",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "number",
+      "value_max_length": 18,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_HEADREST",
+      "name": "Com apoio de cabeça",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_FOOTREST",
+      "name": "Com apoio de pés",
+      "tags": {},
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_GAMER",
+      "name": "É gamer",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "tooltip": "Especificar se é compatível com videogames.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_ERGONOMIC",
+      "name": "É ergonômica",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_SWIVEL",
+      "name": "É giratória",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "DETAILED_MODEL",
+      "name": "Modelo detalhado",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "CHILD_DEPENDENT",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "GTIN",
+      "name": "Código universal de produto",
+      "tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 1,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Como posso encontrar o código?\n\nÉ a sequência numérica que identifica um produto de nível global e tem entre 8 e 14 dígitos. Procure-o na embalagem ou etiqueta, próximo ao código de barras. Adicione um código por variação de produto. Caso não o encontre, você pode solicitá-lo ao fabricante ou usar um buscador de códigos na internet.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros",
+      "hint": "Pode ser um EAN, UPC ou outro GTIN"
+    },
+    {
+      "id": "INMETRO_CERTIFICATION_REGISTRATION_NUMBER",
+      "name": "Número de registro/certificação INMETRO",
+      "tags": {},
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Informe a numeração de máximo 21 dígitos, com ponto, hífen ou barra (/), se houver. É o registro no Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO).",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "EMPTY_GTIN_REASON",
+      "name": "Motivo de GTIN vazio",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true,
+        "conditional_required": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "17055158",
+          "name": "O produto é uma peça artesanal"
+        },
+        {
+          "id": "17055159",
+          "name": "O produto é um kit ou pack"
+        },
+        {
+          "id": "17055160",
+          "name": "O produto não tem código cadastrado"
+        },
+        {
+          "id": "17055161",
+          "name": "Outro motivo"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INCLUDES_ASSEMBLY_MANUAL",
+      "name": "Inclui manual de montagem",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 1,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VERTICAL_TAGS",
+      "name": "Tags vertical",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "53559152",
+          "name": "is_tom_brand"
+        },
+        {
+          "id": "53559153",
+          "name": "is_polos"
+        },
+        {
+          "id": "53559154",
+          "name": "is_social_brands"
+        },
+        {
+          "id": "53559155",
+          "name": "is_beauty_premium"
+        },
+        {
+          "id": "53559156",
+          "name": "has_dimensions_images"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "AGID",
+      "name": "AGID",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 1,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "LUMBAR_SUPPORT_TYPE",
+      "name": "Tipo de apoio lombar",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "10201908",
+          "name": "Fixo"
+        },
+        {
+          "id": "10201909",
+          "name": "Regulável"
+        },
+        {
+          "id": "13035824",
+          "name": "Dinâmico"
+        }
+      ],
+      "tooltip": "É fixa quando faz parte da curvatura da cadeira ou ajustável quando diferentes alturas podem ser adaptadas.",
+      "example": "Regulável",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "STRUCTURE_FINISH",
+      "name": "Acabamento da estrutura",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "1185555",
+          "name": "Galvanizado"
+        },
+        {
+          "id": "1185554",
+          "name": "Cromado"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "LEAN_BACK_MECHANISM_TYPES",
+      "name": "Tipos de mecanismos de reclinação",
+      "tags": {
+        "hidden": true,
+        "multivalued": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "10201910",
+          "name": "Sincrônico"
+        },
+        {
+          "id": "10201911",
+          "name": "Multimodal"
+        },
+        {
+          "id": "10219265",
+          "name": "Encosto reclinável"
+        },
+        {
+          "id": "10204587",
+          "name": "Basculante"
+        }
+      ],
+      "example": "Basculante; Sincrônico; Encosto reclinável; Multimodall",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BACKREST_TILT_RANGE",
+      "name": "Faixa de inclinação do encosto",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "example": "90° x 180°",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "OFFICE_CHAIR_HEIGHT",
+      "name": "Altura da cadeira",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "OFFICE_CHAIR_DEPTH",
+      "name": "Profundidade da cadeira",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BASE_DIAMETER",
+      "name": "Diâmetro da base",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "OFFICE_CHAIR_WEIGHT",
+      "name": "Peso da cadeira",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        },
+        {
+          "id": "kg",
+          "name": "kg"
+        },
+        {
+          "id": "lb",
+          "name": "lb"
+        }
+      ],
+      "default_unit": "kg",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SEAT_WIDTH",
+      "name": "Largura do assento",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "tooltip": "É a largura total, sem incluir os apoios de braço.",
+      "example": "45 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BACKREST_WIDTH",
+      "name": "Largura do encosto",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "tooltip": "É a medida sem os apoios de braço.",
+      "example": "81 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MIN_HEIGHT_FROM_FLOOR_TO_SEAT",
+      "name": "Altura mínima do chão ao assento",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "tooltip": "Faz referência à distância mínima que existe entre o chão e o assento, em uma cadeira regulável.",
+      "example": "43 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MAX_HEIGHT_FROM_FLOOR_TO_SEAT",
+      "name": "Altura máxima do chão ao assento\r",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "tooltip": "Faz referência à distância máxima que existe entre o chão e o assento, em uma cadeira regulável.",
+      "example": "51 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MIN_CHAIR_HEIGHT",
+      "name": "Altura mínima da cadeira",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "\"",
+          "name": "\""
+        },
+        {
+          "id": "cm",
+          "name": "cm"
+        },
+        {
+          "id": "m",
+          "name": "m"
+        },
+        {
+          "id": "mm",
+          "name": "mm"
+        }
+      ],
+      "default_unit": "cm",
+      "example": "132 cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MPN",
+      "name": "MPN",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "relevance": 2,
+      "type": "product_identifier",
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "name": "Condição do item",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "2230581",
+          "name": "Usado"
+        },
+        {
+          "id": "2230284",
+          "name": "Novo"
+        },
+        {
+          "id": "2230582",
+          "name": "Recondicionado"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "VALUE_ADDED_TAX",
+      "name": "Imposto sobre o valor acrescentado",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "O imposto sobre valor agregado é aplicado sobre o preço de venda das compras de bens ou serviços.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IMPORT_DUTY",
+      "name": "Imposto de importação",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "49553239",
+          "name": "0 %"
+        },
+        {
+          "id": "49553240",
+          "name": "1 %"
+        },
+        {
+          "id": "49553241",
+          "name": "2.5 %"
+        },
+        {
+          "id": "49553242",
+          "name": "4 %"
+        },
+        {
+          "id": "49553243",
+          "name": "5 %"
+        },
+        {
+          "id": "49553244",
+          "name": "8 %"
+        },
+        {
+          "id": "49553245",
+          "name": "9.5 %"
+        },
+        {
+          "id": "49553246",
+          "name": "10 %"
+        },
+        {
+          "id": "49553247",
+          "name": "14 %"
+        },
+        {
+          "id": "49553248",
+          "name": "15 %"
+        },
+        {
+          "id": "49553249",
+          "name": "18 %"
+        },
+        {
+          "id": "49553250",
+          "name": "19 %"
+        },
+        {
+          "id": "49553251",
+          "name": "20 %"
+        },
+        {
+          "id": "49553252",
+          "name": "23 %"
+        },
+        {
+          "id": "49553253",
+          "name": "25 %"
+        },
+        {
+          "id": "49553254",
+          "name": "26 %"
+        },
+        {
+          "id": "49553255",
+          "name": "70 %"
+        }
+      ],
+      "tooltip": "O imposto interno é aplicado apenas a produtos específicos considerados supérfluos ou de luxo, como bebidas alcohólicas, fornos de micro-ondas, entre outros.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_SKU",
+      "name": "SKU",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de envio",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_WIDTH",
+      "name": "Largura da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_HEIGHT",
+      "name": "Altura da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "cm",
+          "name": "cm"
+        }
+      ],
+      "default_unit": "cm",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SELLER_PACKAGE_WEIGHT",
+      "name": "Peso da embalagem do vendor",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number_unit",
+      "value_max_length": 255,
+      "allowed_units": [
+        {
+          "id": "g",
+          "name": "g"
+        }
+      ],
+      "default_unit": "g",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "INVOICE_PRODUCT_NAME",
+      "name": "Nome do produto na nota fiscal",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SAT_KEY",
+      "name": "Chave do produto",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "82021094",
+          "name": "Não existe no catálogo"
+        }
+      ],
+      "tooltip": " A chave do produto é um código atribuído pelo SAT para classificar os produtos comercializados no país.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEASURE_UNIT_KEY",
+      "name": "Chave da unidade de medida",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "82021108",
+          "name": "Não existe no catálogo"
+        }
+      ],
+      "tooltip": "A chave da unidade de medida é um código padronizado pelo SAT.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEASURE_UNIT_DESCRIPTION",
+      "name": "Unidade de medida",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "A unidade de medida é a forma como o SAT quantifica um produto. Exemplos: peça, caixa, kit.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IVA_FOR_RESALE",
+      "name": "IVA para revenda",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "81861612",
+          "name": "Isento"
+        },
+        {
+          "id": "81861613",
+          "name": "0%"
+        },
+        {
+          "id": "81861614",
+          "name": "8%"
+        },
+        {
+          "id": "81861616",
+          "name": "16%"
+        }
+      ],
+      "tooltip": "Escolha a alíquota do IVA (Imposto sobre o Valor Agregado) que deve ser paga pelo comprador em cada produto: 0%, 16% ou Isento.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IEPS",
+      "name": "IEPS",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "82021095",
+          "name": "0%"
+        },
+        {
+          "id": "82021096",
+          "name": "3%"
+        },
+        {
+          "id": "82021097",
+          "name": "6%"
+        },
+        {
+          "id": "82021098",
+          "name": "7%"
+        },
+        {
+          "id": "82021099",
+          "name": "8%"
+        },
+        {
+          "id": "82021100",
+          "name": "9%"
+        },
+        {
+          "id": "82021101",
+          "name": "25%"
+        },
+        {
+          "id": "82021102",
+          "name": "26.5%"
+        },
+        {
+          "id": "82021103",
+          "name": "30%"
+        },
+        {
+          "id": "82021104",
+          "name": "30.4%"
+        },
+        {
+          "id": "82021105",
+          "name": "50%"
+        },
+        {
+          "id": "82021106",
+          "name": "53%"
+        },
+        {
+          "id": "82021107",
+          "name": "160%"
+        }
+      ],
+      "tooltip": "scolha a alíquota do IEPS (Imposto Especial sobre Produção e Serviços) que deve ser paga pelo comprador nos produtos das categorias: combustível, bebidas e tabaco.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IMPORT_DECLARATION_NUMBER",
+      "name": "Número da DI",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 1,
+      "value_type": "number",
+      "value_max_length": 18,
+      "tooltip": "Número de 16 dígitos do documento aduaneiro que ampara a importação desta mercadoria somente venda de primeira mão). Este dado será usado para a emissão de notas fiscais vinculadas à venda deste produto.",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_FLAMMABLE",
+      "name": "É inflamável",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "WITH_POSITIVE_IMPACT",
+      "name": "Com impacto positivo",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de fábrica",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "FAMILY",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "HAZMAT_TRANSPORTABILITY",
+      "name": "Transportabilidade Hazmat",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "13414677",
+          "name": "Livre"
+        },
+        {
+          "id": "13414678",
+          "name": "Limitado"
+        },
+        {
+          "id": "13414679",
+          "name": "Excedido"
+        },
+        {
+          "id": "13414680",
+          "name": "Indeterminado"
+        },
+        {
+          "id": "75989961",
+          "name": "Notificado"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_KIT",
+      "name": "É kit",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "DESCRIPTIVE_TAGS",
+      "name": "Tags descritivos",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_CHEMICAL_FEATURES",
+      "name": "Características químicas do produto",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7651070",
+          "name": "Inflamável"
+        },
+        {
+          "id": "7651071",
+          "name": "Aerosol"
+        },
+        {
+          "id": "7651072",
+          "name": "Oxidante"
+        },
+        {
+          "id": "7651073",
+          "name": "Corrosivo"
+        },
+        {
+          "id": "7651074",
+          "name": "Explosivo"
+        },
+        {
+          "id": "7651075",
+          "name": "Tóxico ou infeccioso"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "FOODS_AND_DRINKS",
+      "name": "Alimentos e bebidas",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575926",
+          "name": "Para humanos"
+        },
+        {
+          "id": "7575927",
+          "name": "Para animais"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "MEDICINES",
+      "name": "Medicamentos",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575930",
+          "name": "Para humanos com receita médica"
+        },
+        {
+          "id": "7575931",
+          "name": "Para humanos sem receita médica"
+        },
+        {
+          "id": "7575932",
+          "name": "Para animais com receita médica"
+        },
+        {
+          "id": "7575933",
+          "name": "Para animais sem receita médica"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "BATTERIES_FEATURES",
+      "name": "Características das baterias",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7575934",
+          "name": "Lítio stand-alone (separadas ou isolado)"
+        },
+        {
+          "id": "7575935",
+          "name": "De lítio instaladas"
+        },
+        {
+          "id": "7575936",
+          "name": "Para carros (ácido-chumbo)"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SHIPMENT_PACKING",
+      "name": "Embalagem do envío",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435891",
+          "name": "Flyer"
+        },
+        {
+          "id": "7435892",
+          "name": "Caixa"
+        },
+        {
+          "id": "7575937",
+          "name": "Envelope"
+        },
+        {
+          "id": "7575939",
+          "name": "Auto-expedível"
+        },
+        {
+          "id": "27037932",
+          "name": "BEX"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "ADDITIONAL_INFO_REQUIRED",
+      "name": "Informação adicional requerida",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435893",
+          "name": "Possui código IMEI"
+        },
+        {
+          "id": "7435894",
+          "name": "Possui número de série"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "EXCLUDED_PLATFORMS",
+      "name": "Plataformas excluídas",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "9936777",
+          "name": "Android"
+        },
+        {
+          "id": "9936778",
+          "name": "iOS"
+        },
+        {
+          "id": "9936779",
+          "name": "Desktop"
+        },
+        {
+          "id": "9936780",
+          "name": "Mobile"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_SUITABLE_FOR_SHIPMENT",
+      "name": "É adequado para envío",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_DATA_SOURCE",
+      "name": "Fonte do produto",
+      "tags": {
+        "hidden": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "tooltip": "Indique o país de origem do produto.",
+      "example": "Brasil",
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+      "name": "Razões de visibilidade limitada no Marketplace",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "values": [
+        {
+          "id": "24219544",
+          "name": "Pharma"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "HAS_COMPATIBILITIES",
+      "name": "Tem compatibilidades",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "CATALOG_TITLE",
+      "name": "Título de catálogo",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SEARCH_ENHANCEMENT_FIELDS",
+      "name": "Campos de aprimoramento de pesquisa",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "PRODUCT_FEATURES",
+      "name": "Características do produto",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "list",
+      "values": [
+        {
+          "id": "7435885",
+          "name": "Contém líquido"
+        },
+        {
+          "id": "7435883",
+          "name": "Frágil"
+        },
+        {
+          "id": "7435888",
+          "name": "Com validade"
+        },
+        {
+          "id": "8847339",
+          "name": "Sem validade"
+        },
+        {
+          "id": "7575917",
+          "name": "Desinfetante e saneante"
+        },
+        {
+          "id": "7575924",
+          "name": "MAPA"
+        },
+        {
+          "id": "7575923",
+          "name": "Saúde e correlatos"
+        },
+        {
+          "id": "8721108",
+          "name": "Volumoso"
+        },
+        {
+          "id": "10490116",
+          "name": "Não voável"
+        },
+        {
+          "id": "12928414",
+          "name": "Não rotacionável"
+        },
+        {
+          "id": "41722098",
+          "name": "Dobrável"
+        },
+        {
+          "id": "52092586",
+          "name": "Magnético"
+        },
+        {
+          "id": "52233302",
+          "name": "Pode rolar"
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "IS_NEW_OFFER",
+      "name": "É nova oferta",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "boolean",
+      "values": [
+        {
+          "id": "242084",
+          "name": "Não",
+          "metadata": {
+            "value": false
+          }
+        },
+        {
+          "id": "242085",
+          "name": "Sim",
+          "metadata": {
+            "value": true
+          }
+        }
+      ],
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    },
+    {
+      "id": "SYI_PYMES_ID",
+      "name": "syi pymes id",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "hierarchy": "ITEM",
+      "relevance": 2,
+      "value_type": "string",
+      "value_max_length": 255,
+      "attribute_group_id": "OTHERS",
+      "attribute_group_name": "Outros"
+    }
+  ],
+  "sent": [
+    {
+      "id": "BRAND",
+      "value_id": "8848598",
+      "value_name": "ThunderX3"
+    },
+    {
+      "id": "MODEL",
+      "value_id": "38933704",
+      "value_name": "ThunderX3 TGC12"
+    },
+    {
+      "id": "ALPHANUMERIC_MODEL",
+      "value_id": "38933703",
+      "value_name": "82875"
+    },
+    {
+      "id": "COLOR",
+      "value_id": "283165",
+      "value_name": "Cinza"
+    },
+    {
+      "id": "SALE_FORMAT",
+      "value_id": "1359391",
+      "value_name": "Unidade"
+    },
+    {
+      "id": "UNITS_PER_PACK",
+      "value_id": "2726554",
+      "value_name": "1"
+    },
+    {
+      "id": "MAIN_COLOR",
+      "value_id": "2450294",
+      "value_name": "Cinza"
+    },
+    {
+      "id": "OFFICE_CHAIR_TYPE",
+      "value_id": "13016814",
+      "value_name": "Gamer"
+    },
+    {
+      "id": "STRUCTURE_MATERIALS",
+      "values": [
+        {
+          "id": "2748302",
+          "name": "Plástico"
+        },
+        {
+          "id": "24028945",
+          "name": "Metal"
+        }
+      ]
+    },
+    {
+      "id": "FILLING_MATERIALS",
+      "value_id": "5897875",
+      "value_name": "Espuma"
+    },
+    {
+      "id": "FOOT_RING_MATERIALS",
+      "value_id": "16602172",
+      "value_name": "Metal"
+    },
+    {
+      "id": "BACKREST_HEIGHT",
+      "value_id": "7661944",
+      "value_name": "85 cm"
+    },
+    {
+      "id": "SEAT_DEPTH",
+      "value_id": "9567306",
+      "value_name": "50 cm"
+    },
+    {
+      "id": "OFFICE_CHAIR_WIDTH",
+      "value_id": "7866161",
+      "value_name": "70 cm"
+    },
+    {
+      "id": "MAX_CHAIR_HEIGHT",
+      "value_id": "50153881",
+      "value_name": "125 cm"
+    },
+    {
+      "id": "MAX_WEIGHT_SUPPORTED",
+      "value_id": "2218331",
+      "value_name": "120 kg"
+    },
+    {
+      "id": "REQUIRES_ASSEMBLY",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_ADJUSTABLE_HEIGHT",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_WHEELS",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_FOOT_RING",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "WITH_ARMREST",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_RECLINING_BACKREST",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_ADJUSTABLE_ARMREST",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_HEADREST",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "WITH_FOOTREST",
+      "value_id": "242084",
+      "value_name": "Não"
+    },
+    {
+      "id": "IS_GAMER",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "IS_ERGONOMIC",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "IS_SWIVEL",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "DETAILED_MODEL",
+      "value_id": "38933705",
+      "value_name": "ThunderX3 TGC12"
+    },
+    {
+      "id": "GTIN",
+      "value_id": "38933706",
+      "value_name": "4711099476480"
+    },
+    {
+      "id": "INCLUDES_ASSEMBLY_MANUAL",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "LUMBAR_SUPPORT_TYPE",
+      "value_id": "10201909",
+      "value_name": "Regulável"
+    },
+    {
+      "id": "LEAN_BACK_MECHANISM_TYPES",
+      "value_id": "10219265",
+      "value_name": "Encosto reclinável"
+    },
+    {
+      "id": "OFFICE_CHAIR_WEIGHT",
+      "value_id": "10263987",
+      "value_name": "21.5 kg"
+    },
+    {
+      "id": "BACKREST_WIDTH",
+      "value_id": "9567305",
+      "value_name": "57 cm"
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "value_id": "2230284",
+      "value_name": "Novo"
+    },
+    {
+      "id": "SELLER_SKU",
+      "value_name": "VTK000799"
+    }
+  ],
+  "required": [
+    "BRAND",
+    "MODEL",
+    "BACKREST_HEIGHT",
+    "SEAT_DEPTH",
+    "OFFICE_CHAIR_WIDTH",
+    "MAX_CHAIR_HEIGHT",
+    "REQUIRES_ASSEMBLY",
+    "IS_GAMER",
+    "IS_ERGONOMIC",
+    "IS_SWIVEL",
+    "INCLUDES_ASSEMBLY_MANUAL"
+  ],
+  "missing": [],
+  "conditional": {
+    "http_status": 200,
+    "response": {
+      "required_attributes": [],
+      "callbacks": [],
+      "status": 200
+    },
+    "required": [],
+    "missing": []
+  },
+  "parent_pk": [],
+  "child_pk": [
+    "MAIN_COLOR",
+    "PACKAGE_HEIGHT",
+    "PACKAGE_WIDTH",
+    "PACKAGE_LENGTH",
+    "PACKAGE_WEIGHT",
+    "FILTRABLE_COLOR",
+    "GTIN",
+    "EMPTY_GTIN_REASON",
+    "AGID",
+    "MPN",
+    "SELLER_SKU"
+  ]
+}

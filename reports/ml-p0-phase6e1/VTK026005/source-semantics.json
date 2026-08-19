@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:53.602Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Chip De Vidro Id48 Oe002",
+    "supplier_category": "Acessórios Para Veículos > Peças De Carros E Caminhonetes > Fechaduras E Chaves > Interruptores De Energia",
+    "supplier_brand": "R3a Automotive",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4162",
+    "captured_at": "2026-08-17T12:56:37.723Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "62509303-5bb6-4e7f-ae1b-ee7e5269aa18",
+    "produto_id": "599c0254-c9e6-435f-92ca-699369096497",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4162",
+    "sku_fornecedor": "4162",
+    "custo": 7.2,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:49:32.762+00:00",
+    "created_at": "2026-08-13T10:53:28.2054+00:00",
+    "updated_at": "2026-08-17T09:49:32.769+00:00",
+    "sku_oferta": "4162",
+    "nome": "Chip De Vidro Id48 Oe002",
+    "descricao": "CHIP DE VIDRO ID48 OE002 (0074468171305) O chip de vidro ID48 OE002 é um componente utilizado em sistemas de imobilizador automotivo, responsável pela comunicação entre a chave e o veículo, contribuindo para o funcionamento correto do sistema de partida. Ficha técnica: • Modelo: OE002 • Tipo: Chip transponder de vidro • Tecnologia: ID48 • Aplicação: Sistemas de imobilizador automotivo • Material: Cápsula de vidro resistente • Alta durabilidade • Fácil adaptação em chaves compatíveis • Produto para reposição automotiva Desenvolvido para aplicações automotivas compatíveis com tecnologia ID48, o chip de vidro OE002 oferece desempenho confiável e excelente durabilidade. É indicado para substituição de chips danificados ou para confecção de novas chaves, auxiliando no correto reconhecimento da chave pelo sistema eletrônico do veículo. Ideal para profissionais especializados em chaves automotivas e sistemas de codificação.",
+    "marca": "R3a Automotive",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f0fae07408b82953593c61fc51d0fb70.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/cad505fec23dac934ef46a2e7c80c235.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d467da96b6e854fa3e26135eb859303b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a7c9c2a3ed582710367ff6b7149b84e5.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a8d9c8d3450e728aeb6071e6b595ebb7.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8529.90.90",
+    "cest": null
+  }
+}

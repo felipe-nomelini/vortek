@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:53.698Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "Bori",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2710",
+    "captured_at": "2026-08-17T12:56:45.856Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "d88ea826-003d-4c7e-8797-83b8c5a7b4ed",
+    "produto_id": "34ced274-3d7d-41ce-bde4-ede040014072",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2710",
+    "sku_fornecedor": "2710",
+    "custo": 8,
+    "estoque": 21,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.02+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.028+00:00",
+    "sku_oferta": "2710",
+    "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+    "descricao": "PALHETA BORI GRL AT-R16115 AZUL CRYSTAL 0,96 MM R21008 10UN A Palheta Bori GRL AT-R16115 Azul Crystal 0,96 mm (R21008) é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais especificações: Características Principais: • Modelo: S.T.D (Standard) • Código do Fabricante: R21008 • Espessura: 0,96 mm • Material: Policarbonato Cristal (Resina de Engenharia) • Cor: Azul Crystal • Acabamento: Transparente Fosco Cristal • Dimensões: • Largura: 25 mm • Altura: 30 mm • Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Mediana: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori S.T.D de 0,96 mm na cor Azul Crystal.",
+    "marca": "Bori",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/06b24b2fded083670d8cef7f9eb3798d.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/35f11bc93e412618d181ad99ca957691.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/aa2487a80488d6e5efcb6802306e79bf.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.92.00",
+    "cest": null
+  }
+}

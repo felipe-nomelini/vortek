@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.747Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Refil Tinta Epson T504 Preto",
+    "supplier_category": "Informatica/ Suprimentos/ Cartucho Preto",
+    "supplier_brand": "EPSON",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/389509",
+    "captured_at": "2026-08-17T12:56:49.791Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "a4419577-739a-4ad8-a511-99be0b301557",
+    "produto_id": "a971d0d5-2689-4ca1-a824-9c0a3bf67aaf",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "389509",
+    "sku_fornecedor": "389509",
+    "custo": 58.9,
+    "estoque": 18,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:00:32.914+00:00",
+    "created_at": "2026-07-20T18:31:14.303365+00:00",
+    "updated_at": "2026-08-17T11:00:32.943+00:00",
+    "sku_oferta": "389509",
+    "nome": "Refil Tinta Epson T504 Preto",
+    "descricao": "Muito mais qualidade, muito mais durabilidade As tintas Refil p/Ecotank possuem a tecnologia Epson que proporciona alta precisão no tamanho da gota, alta resolução e definição nas impressões. Você poderá imprimir documentos e imagens com ótima qualidade por um baixo custo por página. Obtenha impressões brilhantes em relatórios, gráficos e fotos. Benefícios das Tintas Originais Confie nas tintas originais Epson para garantir o ótimo funcionamento da sua EcoTank, obter rendimento constante e uma qualidade de impressão excepcional. Fabricadas Seguindo Altos Padrões de Qualidade Proteja seu investimento usando tintas originais Epson. Além de serem produzidas em fábricas Epson de última geração, cada garrafa segue um rigoroso controle de qualidade e padrões ambientais estritos. Embaladas à Vácuo As tintas originais Epson são embaladas à váculo na fábrica, assegurando que seja preservada a qualidade da tinta e evitado o evaporamento até que cheguem em suas mãos. Tintas Originais, Ótima Performance Obtenha a melhor performance da sua EcoTank usando tintas originais Epson. Qualidade Com a Qual Se Pode Contar As tintas originais Epson oferecem resultados consistentes de alta qualidade, evitando o desbotamento ao longo do tempo e garantindo documentos nítidos e fotos impressionantes. Recarga Fácil, Sem Erros ou Sujeira As garrafas Epson EcoFit ™ têm uma chave única para cada cor e param de abastecer o tanque automaticamente quando ele já está cheio, tornando o abastecimento mais prático e sem sujeira. *Imagens meramente ilustrativas.\n\nL4150/ L4160/ L4260/ L6161/ L6171/ L6191/ L6270/ L14150 Especificações de impressão Cor do cartucho: preto Medidas A x L x C: 17 x 6 x 6 cm 127ml Rendimento Aprox: 7.500 páginas Informação importante: O modelo T504122-BR substituiu o modelo T504120-AL, sendo compatível com os mesmos modelos de máquinas.",
+    "marca": "EPSON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/389509_67dc727656cda.jpg"
+    ],
+    "gtin": "",
+    "ncm": "32151100",
+    "cest": null
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:41.550Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Bandeja Fixa Max Eletron 19\" 1u X 350mm Frontal",
+    "supplier_category": "Redes E Provedores/ Internet E Rede/ Rack",
+    "supplier_brand": "MAX ELETRON",
+    "supplier_gtin": "7908060203627",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/364838",
+    "captured_at": "2026-08-17T12:54:21.880Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "0df32a5b-c7d9-44d9-b3aa-912075defb25",
+    "produto_id": "17cea929-81c4-4615-b147-b7be7dc6b84b",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "364838",
+    "sku_fornecedor": "364838",
+    "custo": 57.45,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:11:32.755+00:00",
+    "created_at": "2026-07-20T18:37:24.258188+00:00",
+    "updated_at": "2026-08-17T11:11:32.765+00:00",
+    "sku_oferta": "364838",
+    "nome": "Bandeja Fixa Max Eletron 19\" 1u X 350mm Frontal",
+    "descricao": "Informações do Produto ESPECIFICAÇÕES TÉCNICAS | DIMENSÕES &bull; Bandeja 19” com dois pontos de fixação. &bull; Espessura da chapa 1,5 mm &bull; Com aletas para ventilação utilizada para fechamento das posições não ocupadas dos planos de Racks 19”. &bull; Fabricado em plástico de engenharia ABS &bull; Dispensa o uso de parafusos e porca-gaiolas &bull; Altura disponível: 1U &bull; Cor: preto",
+    "marca": "MAX ELETRON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad2264b.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad2280b.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad22850.jpg"
+    ],
+    "gtin": "7908060203627",
+    "ncm": "94032090",
+    "cest": null
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432633436",
+      "local": "MLB7432633436",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026028",
+      "local": "VTK026028",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "eeb73035-726c-4038-af05-47ba9b206bde",
+      "local": "eeb73035-726c-4038-af05-47ba9b206bde",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Prolongador Suporte Para Subwoofer Prs-130 Saty Preto",
+      "local": "Prolongador Suporte Para Subwoofer Prs-130 Saty Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 509.9,
+      "local": 509.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432633436-prolongador-suporte-para-subwoofer-prs-130-saty-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432633436-prolongador-suporte-para-subwoofer-prs-130-saty-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

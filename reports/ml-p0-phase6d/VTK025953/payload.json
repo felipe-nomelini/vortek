@@ -1,0 +1,220 @@
+{
+  "payload": {
+    "family_name": "Liquidificador Portátil Arno Lightmix LP00",
+    "category_id": "MLB73055",
+    "catalog_product_id": "MLB63370268",
+    "catalog_listing": true,
+    "price": 859.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/5.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/6.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/7.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/8.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/9.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/10.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/11.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/88432/550/12.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "455",
+        "value_name": "Arno"
+      },
+      {
+        "id": "LINE",
+        "value_id": "68452519",
+        "value_name": "Lighmix"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "83592680",
+        "value_name": "LP00"
+      },
+      {
+        "id": "TOTAL_CAPACITY",
+        "value_id": "3656932",
+        "value_name": "300 mL"
+      },
+      {
+        "id": "ACCESSORIES_NUMBER",
+        "value_id": "112805",
+        "value_name": "1"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "5422206",
+        "value_name": "USB"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52007",
+        "value_name": "Amarelo"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "BLENDER_JAR_MATERIAL",
+        "value_id": "2364248",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450296",
+        "value_name": "Amarelo"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "84731044",
+        "value_name": "LP00"
+      },
+      {
+        "id": "RECOMMENDED_USES",
+        "values": [
+          {
+            "id": "20145706",
+            "name": "Shakes"
+          },
+          {
+            "id": "17775909",
+            "name": "Sucos"
+          },
+          {
+            "id": "19335335",
+            "name": "Vitaminas"
+          }
+        ]
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "USEFUL_CAPACITY",
+        "value_id": "18499465",
+        "value_name": "350 L"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY",
+        "value_id": "98473",
+        "value_name": "A"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "68452555",
+        "value_name": "3016661179594"
+      },
+      {
+        "id": "INCLUDES_ACCESSORIES",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "11120761",
+        "value_name": "Alça de transporte"
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_PORTABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ON_OFF_POWER_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_USB_CHARGE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_BPA_FREE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_STAINLESS_STEEL_BLADE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7821193",
+        "value_name": "26 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7778835",
+        "value_name": "14 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7674180",
+        "value_name": "1 kg"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK025953"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK025953"
+  },
+  "sha256": "57c2a6e674d02aaf87c6f05e00f0cc04c299af9081987288a9c33ecb6b805163",
+  "family_name_sha256": "8ce11dc2fa9947b221dd526d8a75c2159d064aa47c090eb3ad64c45e6421917e",
+  "title_absent": true,
+  "description_absent": true
+}

@@ -24,8 +24,56 @@ export type DsliteManualUnlinkEvent = {
   resposta_ml?: unknown;
 };
 
+export type DsliteReactivatedOrderReuseResult = {
+  safe: boolean;
+  reason:
+    | 'reactivated_order_match'
+    | 'status_not_reusable'
+    | 'remote_order_missing'
+    | 'remote_dsid_mismatch'
+    | 'nfe_key_mismatch'
+    | 'purchase_missing'
+    | 'purchase_dsid_mismatch'
+    | 'purchase_nfe_mismatch'
+    | 'supplier_mismatch'
+    | 'items_mismatch'
+    | DslitePedidoLinkResolution['reason'];
+  pedidoIds: string[];
+};
+
+type DsliteReactivatedOrderReuseInput = {
+  expectedDsliteId: string;
+  expectedNfeKey: string;
+  expectedItems: Array<{ sku: string; quantity: number }>;
+  targetPedidoId: string;
+  pedidoCandidates: DslitePedidoLinkCandidate[];
+  purchase?: Record<string, unknown> | null;
+  remoteOrder?: Record<string, unknown> | null;
+};
+
 function normalized(value: unknown): string {
   return String(value || '').trim();
+}
+
+function normalizedStatus(value: unknown): string {
+  return normalized(value)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function normalizedItems(
+  items: Array<{ sku: unknown; quantity: unknown }>,
+): string[] {
+  return items
+    .map((item) => {
+      const sku = normalized(item.sku);
+      const quantity = Number(item.quantity);
+      if (!sku || !Number.isFinite(quantity) || quantity <= 0) return '';
+      return `${sku}::${quantity}`;
+    })
+    .filter(Boolean)
+    .sort();
 }
 
 /**
@@ -118,4 +166,95 @@ export function resolveSafeDslitePedidoMutation(
   }
 
   return resolution;
+}
+
+/**
+ * Permite que uma ação explícita de criação retome um pedido DSLite que foi
+ * reativado como "Aguardando Informações". Exige identidade fiscal, comercial
+ * e local exatas; o sincronizador automático continua respeitando desvínculos
+ * manuais por meio de isDsliteRelinkBlockedByManualUnlink.
+ */
+export function resolveSafeReactivatedDsliteOrderReuse(
+  input: DsliteReactivatedOrderReuseInput,
+): DsliteReactivatedOrderReuseResult {
+  const expectedDsliteId = normalized(input.expectedDsliteId);
+  const expectedNfeKey = normalized(input.expectedNfeKey);
+  const remote = input.remoteOrder;
+  const purchase = input.purchase;
+
+  if (!remote) {
+    return { safe: false, reason: 'remote_order_missing', pedidoIds: [] };
+  }
+  if (normalizedStatus(remote.status) !== 'aguardando informacoes') {
+    return { safe: false, reason: 'status_not_reusable', pedidoIds: [] };
+  }
+  if (normalized(remote.dsid) !== expectedDsliteId) {
+    return { safe: false, reason: 'remote_dsid_mismatch', pedidoIds: [] };
+  }
+
+  const remoteNfeKey = normalized(remote.nf_chave || remote.chave_acesso);
+  if (!expectedNfeKey || remoteNfeKey !== expectedNfeKey) {
+    return { safe: false, reason: 'nfe_key_mismatch', pedidoIds: [] };
+  }
+  if (!purchase) {
+    return { safe: false, reason: 'purchase_missing', pedidoIds: [] };
+  }
+  if (normalized(purchase.dsid) !== expectedDsliteId) {
+    return { safe: false, reason: 'purchase_dsid_mismatch', pedidoIds: [] };
+  }
+  if (normalized(purchase.nf_chave) !== expectedNfeKey) {
+    return { safe: false, reason: 'purchase_nfe_mismatch', pedidoIds: [] };
+  }
+
+  const remoteSupplier = remote.fornecedor;
+  const remoteSupplierId =
+    remoteSupplier && typeof remoteSupplier === 'object' && !Array.isArray(remoteSupplier)
+      ? normalized((remoteSupplier as Record<string, unknown>).fornecedorid)
+      : '';
+  const purchaseSupplierId = normalized(purchase.fornecedor_id);
+  if (!remoteSupplierId || !purchaseSupplierId || remoteSupplierId !== purchaseSupplierId) {
+    return { safe: false, reason: 'supplier_mismatch', pedidoIds: [] };
+  }
+
+  const remoteItemsRaw = Array.isArray(remote.items) ? remote.items : [];
+  const expectedItems = normalizedItems(
+    input.expectedItems.map((item) => ({ sku: item.sku, quantity: item.quantity })),
+  );
+  const remoteItems = normalizedItems(
+    remoteItemsRaw.map((item) => {
+      const row = item && typeof item === 'object' && !Array.isArray(item)
+        ? item as Record<string, unknown>
+        : {};
+      return {
+        sku: row.nf_produtoid,
+        quantity: row.quantidade,
+      };
+    }),
+  );
+  if (
+    expectedItems.length === 0 ||
+    expectedItems.length !== remoteItems.length ||
+    expectedItems.some((item, index) => item !== remoteItems[index])
+  ) {
+    return { safe: false, reason: 'items_mismatch', pedidoIds: [] };
+  }
+
+  const linkResolution = resolveSafeDslitePedidoMutation(
+    input.pedidoCandidates,
+    expectedDsliteId,
+    input.targetPedidoId,
+  );
+  if (!linkResolution.safe) {
+    return {
+      safe: false,
+      reason: linkResolution.reason,
+      pedidoIds: [],
+    };
+  }
+
+  return {
+    safe: true,
+    reason: 'reactivated_order_match',
+    pedidoIds: linkResolution.ids,
+  };
 }

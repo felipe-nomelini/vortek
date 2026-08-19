@@ -1,0 +1,227 @@
+{
+  "payload": {
+    "family_name": "Telefone Intelbras TC 20 Preto",
+    "category_id": "MLB1053",
+    "catalog_product_id": "MLB7991974",
+    "catalog_listing": true,
+    "price": 199.9,
+    "currency_id": "BRL",
+    "available_quantity": 30,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/3/339901_67d2caf3378a3.jpg"
+      },
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/3/339901_67d2caf337f98.jpg"
+      },
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/3/339901_67d2caf338b3e.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "LINE",
+        "value_id": "274496",
+        "value_name": "Casa"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "1220941",
+        "value_name": "TC 20"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "value_id": "81830",
+        "value_name": "LED"
+      },
+      {
+        "id": "TALK_TIME",
+        "value_id": "2087877",
+        "value_name": "20 h"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "8744458",
+        "value_name": "1.9 GHz"
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "value_id": "7512605",
+        "value_name": "1"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_DUAL_SIM",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_RURAL_TELEPHONE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "39974197",
+        "value_name": "7040800160"
+      },
+      {
+        "id": "BATTERY_CAPACITY",
+        "value_id": "149366",
+        "value_name": "600 mAh"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "9111595",
+            "name": "7896637613262"
+          },
+          {
+            "id": "9111601",
+            "name": "7890203522651"
+          },
+          {
+            "id": "9111602",
+            "name": "7896637615594"
+          },
+          {
+            "id": "22647216",
+            "name": "8100000005868"
+          }
+        ]
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "value_id": "6397418",
+        "value_name": "1.5 \""
+      },
+      {
+        "id": "WITH_BATTERY_CHARGE_INDICATOR",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "PHONEBOOK_ENTRIES_CAPACITY",
+        "value_id": "8801844",
+        "value_name": "70"
+      },
+      {
+        "id": "RINGTONES_NUMBER",
+        "value_id": "8801843",
+        "value_name": "7"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CALL_BLOCKING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ALARM_CLOCK_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ECO_MODE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BACKLIT_KEYPAD",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DATE_AND_TIME_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FLASH_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_HANDSET_VOLUME_CONTROL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SILENCE_MODE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK021012"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK021012"
+  },
+  "sha256": "f93f7694320fa4839845f1d35f16a7d6acc636e74a3060d95b52488795c4979f",
+  "family_name_sha256": "03fd71325515231b053effdd8f792990d54b635cfb3b06bca9c641cbb30d580e",
+  "title_absent": true,
+  "description_absent": true
+}

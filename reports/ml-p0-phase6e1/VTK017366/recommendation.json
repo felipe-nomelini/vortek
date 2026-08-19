@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Caixa Atendimento óptico 1x16 Cto",
+    "supplier_category": "Redes E Provedores/ Passivos De Rede/ Caixa De Atendimento",
+    "supplier_brand": "FERRAGENS FTTH",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381232",
+    "captured_at": "2026-08-17T12:56:34.090Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

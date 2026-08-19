@@ -1,0 +1,374 @@
+{
+  "checked_at": "2026-08-17T00:44:57.627Z",
+  "product": {
+    "id": "8c65ae6e-e178-45db-9ed3-c40f318b07af",
+    "sku": "VTK001155",
+    "nome": "Cabo Coaxial RG59 67% ROL BR Megatron - RL / 100",
+    "marca": "MEGATRON",
+    "gtin": "7899278914408"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/59624",
+    "consulted_at": "2026-08-17T00:44:57.433Z",
+    "product": {
+      "produtoid": "59624",
+      "produtoid_empresa": "HYX59624",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 90.07,
+      "preco_crossdocking": 90.07,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 90.07,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:21.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:21.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cabo Coaxial RG59 67% ROL BR Megatron - RL / 100",
+      "titulo_curto": "CABO COAXIAL RG59 67% MEGATRON ROL BR",
+      "categoriaid": "292400",
+      "categoria_nome": "Cabos E Acessórios / Cabos Para Cftv / Coaxial / Cabos Coaxiais",
+      "abc": "A",
+      "ean11": "7899278914408",
+      "ncm": "8544.20.00",
+      "descricao": "O Cabo Coaxial RG59 67% ROL BR MEGATRON é a escolha ideal para quem busca alta qualidade e desempenho em sistemas de CFTV, antenas e conexões de vídeo. Projetado para oferecer blindagem eficaz contra interferências, ele garante uma transmissão estável e segura. Além disso, seu revestimento de PVC durável proporciona maior resistência e vida útil prolongada, tornando-o um componente essencial para instalações confiáveis e de alto desempenho.",
+      "caracteristicas": "Malha:67%<br>Tipo:Coaxial CFTV<br>Aplicação:CFTV, antenas UHF/VHF, ligações de câmeras em elevadores e equipamentos de vídeo<br>Cor:Branco<br>Blindagem:Fios de alumínio trançados<br>Revestimento:PVC<br>Embalagem:Rolo 100 metros<br>Pesquisa:|cabo rf|antena|cabo de vídeo|transmissão de sinal|comunicação blindado|<br>",
+      "informacoes": "<br/> - Condutor: Aço cobreado <br/> - Isolação: Polietileno",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "MEGATRON",
+      "modelo": "RG59 67%",
+      "peso": 3.505,
+      "largura": 32,
+      "altura": 8.5,
+      "profundidade": 32,
+      "peso_embalagem": 3.505,
+      "largura_embalagem": 32,
+      "altura_embalagem": 8.5,
+      "profundidade_embalagem": 32,
+      "link": "http://www.hayamax.com.br/cabo-coaxial-rg59-67-rol-br-megatron",
+      "link_imagem": "https://static.hayapek.com.br/produtos/59624/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "RL",
+      "embalagem_quantidade": 100,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 27419,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-15 11:36:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:08.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 41,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/59624/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB29649341",
+      "catalog_product_id": "MLB29649341",
+      "domain_id": "MLB-NETWORK_CABLES",
+      "name": "Cabo Coaxial Rg59 67% Malha Com 100 Mts Megatron",
+      "parent_id": "MLB29649340",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3695029",
+          "value_name": "Megatron",
+          "values": [
+            {
+              "id": "3695029",
+              "name": "Megatron"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "28511639",
+          "value_name": "Coaxial RG59 67% Malha",
+          "values": [
+            {
+              "id": "28511639",
+              "name": "Coaxial RG59 67% Malha"
+            }
+          ]
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "name": "Tipo de cabo de rede",
+          "value_id": "17155965",
+          "value_name": "Coaxial",
+          "values": [
+            {
+              "id": "17155965",
+              "name": "Coaxial"
+            }
+          ]
+        },
+        {
+          "id": "SALES_UNIT",
+          "name": "Unidade de venda",
+          "value_id": "5203052",
+          "value_name": "Bobina",
+          "values": [
+            {
+              "id": "5203052",
+              "name": "Bobina"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "2693635",
+          "value_name": "100 m",
+          "values": [
+            {
+              "id": "2693635",
+              "name": "100 m"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_SHAPE",
+          "name": "Forma do cabo",
+          "value_id": "433716",
+          "value_name": "Circular",
+          "values": [
+            {
+              "id": "433716",
+              "name": "Circular"
+            }
+          ]
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "name": "Categoria do cabo de rede",
+          "value_id": "28511641",
+          "value_name": "RG59",
+          "values": [
+            {
+              "id": "28511641",
+              "name": "RG59"
+            }
+          ]
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "name": "Material de revestimento",
+          "value_id": "34488195",
+          "value_name": "Polietileno expandido",
+          "values": [
+            {
+              "id": "34488195",
+              "name": "Polietileno expandido"
+            }
+          ]
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "name": "Material condutor",
+          "value_id": "34488196",
+          "value_name": "Aço cobreado",
+          "values": [
+            {
+              "id": "34488196",
+              "name": "Aço cobreado"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "name": "Conector de entrada",
+          "value_id": "24278295",
+          "value_name": "RG59",
+          "values": [
+            {
+              "id": "24278295",
+              "name": "RG59"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "name": "Conector de saída",
+          "value_id": "24278296",
+          "value_name": "RG59",
+          "values": [
+            {
+              "id": "24278296",
+              "name": "RG59"
+            }
+          ]
+        },
+        {
+          "id": "AMBIENT",
+          "name": "Ambiente",
+          "value_id": "417560",
+          "value_name": "Interior/Exterior",
+          "values": [
+            {
+              "id": "417560",
+              "name": "Interior/Exterior"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "name": "Inclui conectores",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "28511640",
+          "value_name": "7899278914408",
+          "values": [
+            {
+              "id": "28511640",
+              "name": "7899278914408"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Cabo Coaxial Rg59 utilizado para instalação de CFTV (circuito fechado de TV), antenas UHF/VHF, CATV (sistema de TV a cabo), ligações de câmeras em elevadores e equipamentos de vídeo.\n\nCondutor: Aço acobreado\nIsolação: Polietileno\nBlindagem: Fios de alumínio trançados\nCapa: Composto de PVC\nMalha: 67%\nCor: Branco\nAcondicionamento: Rolos de 100 m\n\nItem: 01 - Cabo Coaxial Rg59 67% Malha Rolo com 100 metros Tv Digital CFTV Megatron"
+      },
+      "pictures": [
+        {
+          "id": "751009-MLA99983072481_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_751009-MLA99983072481_112025-F.jpg",
+          "max_width": "525",
+          "max_height": "521"
+        },
+        {
+          "id": "741158-MLA99983141721_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_741158-MLA99983141721_112025-F.jpg",
+          "max_width": "1022",
+          "max_height": "551"
+        },
+        {
+          "id": "883166-MLA99499032450_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_883166-MLA99499032450_112025-F.jpg",
+          "max_width": "646",
+          "max_height": "220"
+        },
+        {
+          "id": "706414-MLA99983457843_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_706414-MLA99983457843_112025-F.jpg",
+          "max_width": "1016",
+          "max_height": "635"
+        },
+        {
+          "id": "769793-MLA99498864312_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_769793-MLA99498864312_112025-F.jpg",
+          "max_width": "638",
+          "max_height": "478"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-01-11T21:41:37Z",
+      "last_updated": "2025-07-04T03:33:45Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

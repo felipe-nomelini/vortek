@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Mouse Sem Fio Logitech M220 Silent Preto",
+    "supplier_category": "Informatica/ Perifericos/ Mouse óptico",
+    "supplier_brand": "LOGITECH",
+    "supplier_gtin": "097855201225",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391094",
+    "captured_at": "2026-08-17T12:56:39.353Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

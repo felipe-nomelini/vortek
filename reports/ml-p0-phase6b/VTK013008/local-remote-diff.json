@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075703099",
+      "local": "MLB5075703099",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK013008",
+      "local": "VTK013008",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "3a97ee23-23b4-4c5b-a3ab-cbee9d8adb77",
+      "local": "3a97ee23-23b4-4c5b-a3ab-cbee9d8adb77",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Conector Plug P10 Mono Bk Wc 153 Wireconex 10 Unidades Preto",
+      "local": "Conector Plug P10 Mono Bk Wc 153 Wireconex 10 Unidades Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 219.9,
+      "local": 219.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075703099-conector-plug-p10-mono-bk-wc-153-wireconex-10-unidades-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075703099-conector-plug-p10-mono-bk-wc-153-wireconex-10-unidades-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432633282",
+      "local": "MLB7432633282",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK003839",
+      "local": "VTK003839",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "613b5455-ef7d-42b4-aac4-9a8f8db69220",
+      "local": "613b5455-ef7d-42b4-aac4-9a8f8db69220",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Nobreak Semi Senoidal Ts Shara Ups Compact Xpro 800va Bivolt Cor Preto",
+      "local": "Nobreak Semi Senoidal Ts Shara Ups Compact Xpro 800va Bivolt Cor Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 2639.9,
+      "local": 2639.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432633282-nobreak-semi-senoidal-ts-shara-ups-compact-xpro-800va-bivolt-cor-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432633282-nobreak-semi-senoidal-ts-shara-ups-compact-xpro-800va-bivolt-cor-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

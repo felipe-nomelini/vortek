@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:50.704Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+    "supplier_category": "Segurança / Cameras/ Camera Colorida",
+    "supplier_brand": "HIKVISION",
+    "supplier_gtin": "7898957865710",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/329702",
+    "captured_at": "2026-08-17T12:55:33.144Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "4b76e9ac-f5c3-4b49-a8d5-cac8c93215af",
+    "produto_id": "2dc9047a-b734-40dd-a3e9-2b46a8c03b3e",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "329702",
+    "sku_fornecedor": "329702",
+    "custo": 229.5,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:19:15.296+00:00",
+    "created_at": "2026-07-20T18:33:35.650576+00:00",
+    "updated_at": "2026-08-17T11:19:15.306+00:00",
+    "sku_oferta": "329702",
+    "nome": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+    "descricao": "Informações do Produto &bull; Câmera 960p - 1.3Mp &bull; IR 40m &bull; Externo &bull; ICR &bull; 0.01 Lux/F1.2 &bull; 12 VDC &bull; DNR &bull; IR inteligente &bull; IP66 &bull; True Day/Night &bull; Lente varifocal manual de 2.8 ~ 12mm Informações Técnicas Câmera Sensor de imagem: 1.3MP CMOS Image Sensor Sistema de sinal: PAL/NTSC Pixels Efetivos: 1280(H)x960(V) Min. Illumination: 0.01 Lux @(F1.2,AGC ON), 0 Lux with IR Tempo do obturador: 1/25(1/30) s to 1/50,000 s Lente: 2.8-12mm @ F1.4 Angle of view: 97° - 30.4° Montagem de lente: &#966;14 Faixa de ajuste: Pan: 0 - 360°, Tilt: 0 - 90°, Rotation: 0 - 360° Dia e Noite : IR cut filter with auto switch Video Frame Rate: 720p@25fps/720p@30fps Saída de Vídeo HD: 1 Analog HD output Sincronização: Internal Synchronization S/N Ratio: More than 62 dB Menu Balanço de Branco Automático : Auto / Manual Configurações Gerais Condições de funcionamento: -40 °C - 60 °C (-40 °F - 140 °F) Humidity 90% or less (non-condensing) Fonte de Alimentação: 12 VDC&plusmn;15% Consumo de Energia: Max. 4W Weather Proof: IP66 IR Range: Up to 40m Especificações : Up the coax Protocol: Pelco-C(CVBS output), HIKVISION-C(TVI output) Dimensão : 92 × 84.8 × 269.6mm(3.62” × 3.34” × 10.6”) Peso: 1000 g",
+    "marca": "HIKVISION",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/2/329702_67d2caef61c97.jpg"
+    ],
+    "gtin": "7898957865710",
+    "ncm": "85258300",
+    "cest": "21.107.00"
+  }
+}

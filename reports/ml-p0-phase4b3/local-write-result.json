@@ -1,0 +1,32 @@
+{
+  "started_at": "2026-08-16T21:00:56.288Z",
+  "completed_at": "2026-08-16T21:00:59.132Z",
+  "result": "LOCAL_PERSIST_SUCCESS",
+  "transaction": {
+    "result": "LOCAL_PERSIST_SUCCESS",
+    "listing_id": "f8fd742d-1460-4fdd-a09b-0955a6c61c49",
+    "product_ml_item_id": "MLB7432157712",
+    "transaction_id": 16766382,
+    "committed": true
+  },
+  "writes": [
+    {
+      "table": "anuncios_ml",
+      "operation": "INSERT",
+      "ml_item_id": "MLB7432157712",
+      "produto_id": "e232fe84-9f89-4d22-9737-8d444e5f7db9",
+      "sku": "VTK000486"
+    },
+    {
+      "table": "produtos",
+      "operation": "UPDATE",
+      "fields": {
+        "ml_item_id": "MLB7432157712",
+        "ml_status": "ativo"
+      }
+    }
+  ],
+  "supplier_master_fields_updated": [],
+  "mercado_livre_writes": 0,
+  "description_writes": 0
+}

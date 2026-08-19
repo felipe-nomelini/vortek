@@ -1,0 +1,349 @@
+{
+  "attempted_at": "2026-08-17T01:13:17.596Z",
+  "local_time": "2026-08-16T22:13:17",
+  "endpoint": "POST /items",
+  "request_id": "058d0437-c6e6-481a-ad68-ca5dc1453255",
+  "http_status": 201,
+  "elapsed_ms": 921,
+  "payload_sha256": "39c27e91ab70b0b4b4a22bba51997387dcb44ed8790c93838aac8abbc23d0fcf",
+  "body": {
+    "id": "MLB5075856301",
+    "site_id": "MLB",
+    "title": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB439386",
+    "user_product_id": "MLBU4743590157",
+    "official_store_id": null,
+    "price": 479.9,
+    "base_price": 479.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 20,
+    "available_quantity": 20,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+    "family_id": 1085809202063699,
+    "start_time": "2026-08-17T01:13:16.914Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:13:17.013Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075856301-suporte-de-celular-p-pedestal-musico-palestra-sc01-saty-pro-cor-preto-_JM",
+    "pictures": [
+      {
+        "id": "767851-MLU74553520059_022024",
+        "url": "http://mlu-s1-p.mlstatic.com/767851-MLU74553520059_022024-O.jpg",
+        "secure_url": "https://mlu-s1-p.mlstatic.com/767851-MLU74553520059_022024-O.jpg",
+        "size": "484x500",
+        "max_size": "1013x1046",
+        "quality": ""
+      },
+      {
+        "id": "610570-MLU73415696454_122023",
+        "url": "http://mlu-s2-p.mlstatic.com/610570-MLU73415696454_122023-O.jpg",
+        "secure_url": "https://mlu-s2-p.mlstatic.com/610570-MLU73415696454_122023-O.jpg",
+        "size": "499x300",
+        "max_size": "849x510",
+        "quality": ""
+      },
+      {
+        "id": "662324-MLU74553471225_022024",
+        "url": "http://mlu-s1-p.mlstatic.com/662324-MLU74553471225_022024-O.jpg",
+        "secure_url": "https://mlu-s1-p.mlstatic.com/662324-MLU74553471225_022024-O.jpg",
+        "size": "500x393",
+        "max_size": "1030x810",
+        "quality": ""
+      },
+      {
+        "id": "950668-MLU74553520069_022024",
+        "url": "http://mlu-s2-p.mlstatic.com/950668-MLU74553520069_022024-O.jpg",
+        "secure_url": "https://mlu-s2-p.mlstatic.com/950668-MLU74553520069_022024-O.jpg",
+        "size": "500x349",
+        "max_size": "1064x743",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "5451933",
+        "value_name": "Saty",
+        "values": [
+          {
+            "id": "5451933",
+            "name": "Saty",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "22973465",
+        "value_name": "SC-01",
+        "values": [
+          {
+            "id": "22973465",
+            "name": "SC-01",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "STAND_TYPE",
+        "name": "Tipo de suporte",
+        "value_id": "28030143",
+        "value_name": "Celular",
+        "values": [
+          {
+            "id": "28030143",
+            "name": "Celular",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BASE_TYPE",
+        "name": "Tipo de base",
+        "value_id": "19830858",
+        "value_name": "Pedestal",
+        "values": [
+          {
+            "id": "19830858",
+            "name": "Pedestal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2748302",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "value_id": "15074673",
+        "value_name": "15 cm",
+        "values": [
+          {
+            "id": "15074673",
+            "name": "15 cm",
+            "struct": {
+              "number": 15,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "ROTATION_ANGLE",
+        "name": "Ângulo de rotação",
+        "value_id": "8671387",
+        "value_name": "360°",
+        "values": [
+          {
+            "id": "8671387",
+            "name": "360°",
+            "struct": {
+              "number": 360,
+              "unit": "°"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "IS_TABLE_STAND",
+        "name": "É suporte de mesa",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_ANTIVIBRATION_STAND",
+        "name": "Inclui suporte antivibração",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "27566111",
+        "value_name": "7898572860039",
+        "values": [
+          {
+            "id": "27566111",
+            "name": "7898572860039",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK026013",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026013",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "767851-MLU74553520059_022024",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/767851-MLU74553520059_022024-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB29045908",
+    "domain_id": "MLB-MICROPHONE_STANDS",
+    "seller_custom_field": "VTK026013",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:13:17.151Z",
+    "last_updated": "2026-08-17T01:13:17.151Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

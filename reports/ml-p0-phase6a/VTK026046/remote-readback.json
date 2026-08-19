@@ -1,0 +1,502 @@
+{
+  "checked_at": "2026-08-16T23:45:52.227Z",
+  "item": {
+    "id": "MLB7432445588",
+    "site_id": "MLB",
+    "title": "Umidificador De Ar 4 L Purificador Vaporizador Ultrassônico Branco 127/220v",
+    "family_name": "Ventisol Ultrassônico UV-04 BIVOLT Umidificador",
+    "family_id": 698657517242641,
+    "seller_id": 3294514937,
+    "category_id": "MLB120425",
+    "user_product_id": "MLBU4743176655",
+    "official_store_id": null,
+    "price": 379.9,
+    "base_price": 379.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 50,
+    "available_quantity": 50,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-16T23:45:51.035Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-04T23:45:51.112Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432445588-umidificador-de-ar-4-l-purificador-vaporizador-ultrassnico-branco-127220v-_JM",
+    "thumbnail_id": "685700-MLA98070222972_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_685700-MLA98070222972_112025-I.jpg",
+    "pictures": [
+      {
+        "id": "685700-MLA98070222972_112025",
+        "url": "http://http2.mlstatic.com/D_685700-MLA98070222972_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_685700-MLA98070222972_112025-O.jpg",
+        "size": "281x500",
+        "max_size": "675x1200",
+        "quality": ""
+      },
+      {
+        "id": "863307-MLA98070203182_112025",
+        "url": "http://http2.mlstatic.com/D_863307-MLA98070203182_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_863307-MLA98070203182_112025-O.jpg",
+        "size": "489x500",
+        "max_size": "1175x1200",
+        "quality": ""
+      },
+      {
+        "id": "767641-MLA98070417222_112025",
+        "url": "http://http2.mlstatic.com/D_767641-MLA98070417222_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_767641-MLA98070417222_112025-O.jpg",
+        "size": "475x500",
+        "max_size": "1141x1200",
+        "quality": ""
+      },
+      {
+        "id": "823914-MLA98541529401_112025",
+        "url": "http://http2.mlstatic.com/D_823914-MLA98541529401_112025-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_823914-MLA98541529401_112025-O.webp",
+        "size": "497x500",
+        "max_size": "1195x1200",
+        "quality": ""
+      },
+      {
+        "id": "833338-MLA98070417232_112025",
+        "url": "http://http2.mlstatic.com/D_833338-MLA98070417232_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_833338-MLA98070417232_112025-O.jpg",
+        "size": "500x496",
+        "max_size": "1200x1192",
+        "quality": ""
+      },
+      {
+        "id": "662764-MLA109143633272_042026",
+        "url": "http://http2.mlstatic.com/D_662764-MLA109143633272_042026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_662764-MLA109143633272_042026-O.jpg",
+        "size": "481x500",
+        "max_size": "1155x1200",
+        "quality": ""
+      },
+      {
+        "id": "920364-MLA109143633284_042026",
+        "url": "http://http2.mlstatic.com/D_920364-MLA109143633284_042026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_920364-MLA109143633284_042026-O.jpg",
+        "size": "481x500",
+        "max_size": "1155x1200",
+        "quality": ""
+      },
+      {
+        "id": "941199-MLA109984716511_042026",
+        "url": "http://http2.mlstatic.com/D_941199-MLA109984716511_042026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_941199-MLA109984716511_042026-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "999210-MLA109984543011_042026",
+        "url": "http://http2.mlstatic.com/D_999210-MLA109984543011_042026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_999210-MLA109984543011_042026-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "621155-MLA109984512695_042026",
+        "url": "http://http2.mlstatic.com/D_621155-MLA109984512695_042026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_621155-MLA109984512695_042026-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "729575-MLA109143603208_042026",
+        "url": "http://http2.mlstatic.com/D_729575-MLA109143603208_042026-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_729575-MLA109143603208_042026-O.webp",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "857406-MLA109143370202_042026",
+        "url": "http://http2.mlstatic.com/D_857406-MLA109143370202_042026-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_857406-MLA109143370202_042026-O.webp",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52055",
+        "value_name": "Branco",
+        "values": [
+          {
+            "id": "52055",
+            "name": "Branco",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "67003069",
+        "value_name": "UV-04 BIVOLT",
+        "values": [
+          {
+            "id": "67003069",
+            "name": "UV-04 BIVOLT",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "64958329",
+        "value_name": "7898461978913",
+        "values": [
+          {
+            "id": "64958329",
+            "name": "7898461978913",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "IS_ANTIBACTERIAL",
+        "name": "É antibacteriana",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "24100982",
+        "value_name": "Ultrassônico",
+        "values": [
+          {
+            "id": "24100982",
+            "name": "Ultrassônico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MIST_TEMPERATURE",
+        "name": "Temperatura do vapor",
+        "value_id": "216875",
+        "value_name": "Ambiente",
+        "values": [
+          {
+            "id": "216875",
+            "name": "Ambiente",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "67003067",
+        "value_name": "UV-04 BIVOLT",
+        "values": [
+          {
+            "id": "67003067",
+            "name": "UV-04 BIVOLT",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "13074268",
+        "value_name": "Umidificador",
+        "values": [
+          {
+            "id": "13074268",
+            "name": "Umidificador",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK026046",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026046",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WATER_TANK_CAPACITY",
+        "name": "Capacidade do reservatório de água",
+        "value_id": "3163906",
+        "value_name": "4 L",
+        "values": [
+          {
+            "id": "3163906",
+            "name": "4 L",
+            "struct": {
+              "number": 4,
+              "unit": "L"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WITH_AUTO_SHUT_OFF",
+        "name": "Com desligamento automático",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_LOW_WATER_INDICATOR",
+        "name": "Com indicador de poca água",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_NIGHT_LIGHT_FUNCTION",
+        "name": "Com função de lanterna noturna",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_OIL_DIFFUSER",
+        "name": "Com difusor de aromas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_REMOVABLE_FILTER",
+        "name": "Com filtro removível",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_SILENT_OPERATION",
+        "name": "Com operação silenciosa",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB62224438",
+    "domain_id": "MLB-ELECTRIC_OIL_DIFFUSERS_HUMIDIFIERS_AND_VAPORIZERS",
+    "seller_custom_field": "VTK026046",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-16T23:45:51.217Z",
+    "last_updated": "2026-08-16T23:45:51.217Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "catalog": true,
+      "catalog_listing": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true
+    },
+    "critical": {
+      "VOLTAGE": true,
+      "COLOR": true,
+      "WATER_TANK_CAPACITY": true
+    },
+    "passed": true
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

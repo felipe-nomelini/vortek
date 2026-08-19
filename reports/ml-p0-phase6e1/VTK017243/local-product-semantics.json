@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-08-17T14:15:53.508Z",
+  "product": {
+    "id": "c792414f-8be3-44fd-aa54-a661ecf240bb",
+    "sku": "VTK017243",
+    "nome": "Cabo Hdmi Evus C-052 4k Macho X Macho V2.0 10,0m",
+    "marca": "EVUS",
+    "estoque": 50,
+    "custo": 49.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.76,
+    "peso_bruto": 0.76,
+    "largura": 21,
+    "altura": 7,
+    "profundidade": 21,
+    "gtin": "",
+    "descricao": "Informações do Produto Características O cabo HDMI EVUS entrega a você imagens com alta fidelidade e qualidade quando conectado a um aparelho. Conta com tecnologia 4k e revestimento para maior proteção e controle de temperatura. Além disso, o cabo EVUS tem suas pontas banhadas a ouro, o que significa maior qualidade de transmissão de áudio e vídeo. ESPECIFICAÇÕES TÉCNICAS | DIMENSÕES - Cabo HDMI EVUS - 10m comprimento - Pontas banhadas a ouro - 4k - Diamêtro: 9mm - Revestimento",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/5/353651_67d2caf7d44ae.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/353651_67d2caf7d6e8d.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/353651_67d2caf7d823c.jpg"
+    ],
+    "categoria": "Informatica/ Cabos Para Informática/ Cabo Hdmi",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:22.80718+00:00",
+    "updated_at": "2026-08-17T10:24:30.802242+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "353651",
+    "dslite_ultima_sync": "2026-08-17T10:24:30.545+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85444200",
+    "cest": "12.007.00",
+    "origem_fiscal": "1",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "da705478-fbd2-4b40-b119-435cc149d255",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "computing",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "9 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

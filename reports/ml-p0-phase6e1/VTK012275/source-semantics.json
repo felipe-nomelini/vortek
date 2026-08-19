@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:53.663Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "Bori",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2706",
+    "captured_at": "2026-08-17T12:56:43.406Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "ec52ca0d-bea8-4d87-b97c-1805c2d43e1c",
+    "produto_id": "878494a4-238b-4e01-9d02-8b9db1660faa",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2706",
+    "sku_fornecedor": "2706",
+    "custo": 8,
+    "estoque": 27,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.019+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.027+00:00",
+    "sku_oferta": "2706",
+    "nome": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+    "descricao": "PALHETA BORI GRL AT-R16110 S.T.D 0,94 MM (VERDE ESC) R21014 10UN Características Principais: • Modelo: S.T.D (Standard) • Código do Fabricante: R21014 • Espessura: 0,94 mm • Material: Poliamida Nylon (Resina de Engenharia) • Cor: Verde Escuro • Acabamento: Fosco, reduzindo a retenção de suor e proporcionando melhor aderência • Dimensões e Peso: • Largura: 25 mm • Altura: 30 mm • Peso unitário: 0,45 g Destaques do Design: Ponta em 'V' Standard – Flexibilidade e precisão para diversos estilos musicais Relevo Esférico 'GRIP' – Melhor aderência e controle durante a execução Borda Arredondada – Reduz ruídos indesejados e melhora a resposta da palhetada Formato Ergonômico – Confortável para longas sessões de uso Aplicações Recomendadas: Ideal para instrumentos como guitarra, violão, cavaquinho, bandolim e banjo, oferecendo uma resposta equilibrada entre ataque e suavidade. Conteúdo da Embalagem: 10 palhetas Bori S.T.D 0,94 mm na cor Verde Escuro",
+    "marca": "Bori",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/600f178abd324c63e67ddbf3bf6c932f.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e9193fcd50aaa158c32f91df9ac93007.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f346432a2adfed8cbd4556de3037139c.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1ebb61211fc944fc93786eba3606c021.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.92.00",
+    "cest": null
+  }
+}

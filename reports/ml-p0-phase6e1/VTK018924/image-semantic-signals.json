@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-08-17T14:15:45.658Z",
+  "local_images": [
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018924/01-39a0d6c8fd99417b1694.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018924/02-7ad914d774a320da13ff.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018924/03-058a6a5e355f1b5d64df.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018924/04-aadb44ca54989f52f9fb.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "642955-MLU73785448736_012024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_642955-MLU73785448736_012024-F.jpg",
+      "suggested_for_picker": [],
+      "max_width": "530",
+      "max_height": "364"
+    },
+    {
+      "id": "886682-MLU75022143470_032024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_886682-MLU75022143470_032024-F.jpg",
+      "max_width": "1063",
+      "max_height": "1199"
+    },
+    {
+      "id": "940678-MLU75164495561_032024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_940678-MLU75164495561_032024-F.jpg",
+      "max_width": "1199",
+      "max_height": "1038"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

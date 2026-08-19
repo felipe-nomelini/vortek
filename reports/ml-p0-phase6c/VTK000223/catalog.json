@@ -1,0 +1,1025 @@
+{
+  "checked_at": "2026-08-17T00:44:15.806Z",
+  "expected_catalog_product_id": "MLB15243051",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB15243051",
+    "catalog_product_id": "MLB15243051",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-OFFICE_CHAIRS",
+    "permalink": "",
+    "name": "Cadeira De Escritório Timberflex ThunderX3 EC3 Gamer Ergonômica Preta Com Estofado De Couro Sintético",
+    "family_name": "ThunderX3 Pro Gaming Chairs EC3",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB68937959",
+            "picker_label": "Black/Red",
+            "picture_id": "967593-MLA110167794848_042026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_967593-MLA110167794848_042026-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Black/Red"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Black/Red - Couro sintético - 1",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15243051",
+            "picker_label": "Preto",
+            "picture_id": "656227-MLU77053747032_062024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_656227-MLU77053747032_062024-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Preto - Couro sintético - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15243056",
+            "picker_label": "Preto/Branco",
+            "picture_id": "758861-MLA40341407225_012020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_758861-MLA40341407225_012020-I.jpg",
+            "tags": [
+              "no-winner",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Branco"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Preto/Branco - Couro sintético - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15243052",
+            "picker_label": "Preto/Cíano",
+            "picture_id": "918074-MLA40340416694_012020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_918074-MLA40340416694_012020-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Cíano"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Preto/Cíano - Couro sintético - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15243055",
+            "picker_label": "Preto/Laranja",
+            "picture_id": "940525-MLA40340416863_012020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_940525-MLA40340416863_012020-I.jpg",
+            "tags": [
+              "no-winner",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Laranja"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Preto/Laranja - Couro sintético - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15243054",
+            "picker_label": "Preto/Verde",
+            "picture_id": "913034-MLA40340399856_012020",
+            "thumbnail": "https://mla-s1-p.mlstatic.com/913034-MLA40340399856_012020-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Verde"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Preto/Verde - Couro sintético - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB24231025",
+            "picker_label": "Rosa",
+            "picture_id": "844518-MLA99468744812_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_844518-MLA99468744812_112025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Rosa"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Rosa - Couro sintético - Unidade - 1",
+            "auto_completed": true,
+            "rgb_meta": "FCB1BE"
+          },
+          {
+            "product_id": "MLB55468550",
+            "picker_label": "Vermelho",
+            "picture_id": "866071-MLA100001572267_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_866071-MLA100001572267_112025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Vermelho"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Vermelho - Couro sintético - 1",
+            "auto_completed": true,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UPHOLSTERY_MATERIAL",
+        "picker_name": "Material do estofamento",
+        "products": [
+          {
+            "product_id": "MLB15243051",
+            "picker_label": "Couro sintético",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Preto - Couro sintético - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UPHOLSTERY_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por pacote",
+        "products": [
+          {
+            "product_id": "MLB15243051",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 Pro Gaming Chairs EC3 - Preto - Couro sintético - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "777929-MLA99943629653_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_777929-MLA99943629653_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "656227-MLU77053747032_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_656227-MLU77053747032_062024-F.jpg",
+        "suggested_for_picker": [
+          "COLOR"
+        ],
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "778701-MLU77265309475_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_778701-MLU77265309475_062024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "839165-MLU77265309491_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_839165-MLU77265309491_062024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "817085-MLU77053728636_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_817085-MLU77053728636_062024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "605635-MLU70031864369_062023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_605635-MLU70031864369_062023-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 834,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "949854-MLU77265374915_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_949854-MLU77265374915_062024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "726675-MLU77053728724_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_726675-MLU77053728724_062024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Confortável e durável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Faixa de inclinação do encosto de 90°x180°.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Apoios de braços confortáveis.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Suporte lombar regulável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Tem um apoio para cabeça.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com rodas. ",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Giratória. ",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Material do enchimento: espuma.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Peso máximo suportado:  150kg.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Medidas do assento: 53 cm de largura, 47 cm de altura mínima desde o chão, 57 cm de altura máxima desde o chão e 54 cm de profundidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Medidas do encosto: 56 cm de largura e 81 cm de altura.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "A cadeira atinge uma altura mínima de 121 cm e máxima de 131 cm.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "8848598",
+        "value_name": "ThunderX3",
+        "values": [
+          {
+            "id": "8848598",
+            "name": "ThunderX3"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "10474757",
+        "value_name": "Pro Gaming Chairs",
+        "values": [
+          {
+            "id": "10474757",
+            "name": "Pro Gaming Chairs"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "3368227",
+        "value_name": "EC3",
+        "values": [
+          {
+            "id": "3368227",
+            "name": "EC3"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "UPHOLSTERY_MATERIAL",
+        "name": "Material do estofamento",
+        "value_id": "570721",
+        "value_name": "Couro sintético",
+        "values": [
+          {
+            "id": "570721",
+            "name": "Couro sintético"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "000000"
+        }
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "name": "Tipo de cadeira de escritório",
+        "value_id": "13016815",
+        "value_name": "Escritório",
+        "values": [
+          {
+            "id": "13016815",
+            "name": "Escritório"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "name": "Materiais da estrutura",
+        "value_id": null,
+        "value_name": "Aço, Metal, Náilon",
+        "values": [
+          {
+            "id": "4837600",
+            "name": "Aço"
+          },
+          {
+            "id": "112648",
+            "name": "Metal"
+          },
+          {
+            "id": "7980354",
+            "name": "Náilon"
+          }
+        ]
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "name": "Materiais do enchimento",
+        "value_id": "5897875",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "5897875",
+            "name": "Espuma"
+          }
+        ]
+      },
+      {
+        "id": "FOOT_RING_MATERIALS",
+        "name": "Materiais do aro para pés",
+        "value_id": "16602171",
+        "value_name": "Náilon",
+        "values": [
+          {
+            "id": "16602171",
+            "name": "Náilon"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "name": "Altura do encosto",
+        "value_id": "7866996",
+        "value_name": "81 cm",
+        "values": [
+          {
+            "id": "7866996",
+            "name": "81 cm"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "name": "Profundidade do assento",
+        "value_id": "9272377",
+        "value_name": "54 cm",
+        "values": [
+          {
+            "id": "9272377",
+            "name": "54 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "name": "Largura da cadeira",
+        "value_id": "7866994",
+        "value_name": "69 cm",
+        "values": [
+          {
+            "id": "7866994",
+            "name": "69 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "name": "Altura máxima da cadeira",
+        "value_id": "50154411",
+        "value_name": "131 cm",
+        "values": [
+          {
+            "id": "50154411",
+            "name": "131 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "2514092",
+        "value_name": "150 kg",
+        "values": [
+          {
+            "id": "2514092",
+            "name": "150 kg"
+          }
+        ]
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "name": "Requer montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_WHEELS",
+        "name": "Com rodas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ARMREST",
+        "name": "Com apoio de braços",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "name": "Com encosto reclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "name": "Com luzes",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "name": "Com apoio de braços ajustável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_HEADREST",
+        "name": "Com apoio de cabeça",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "name": "Com apoio de pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "name": "É ergonômica",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_SWIVEL",
+        "name": "É giratória",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "15429539",
+        "value_name": "Cadeira Gamer",
+        "values": [
+          {
+            "id": "15429539",
+            "name": "Cadeira Gamer"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "name": "Inclui manual de montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "name": "Tipo de apoio lombar",
+        "value_id": "10201909",
+        "value_name": "Regulável",
+        "values": [
+          {
+            "id": "10201909",
+            "name": "Regulável"
+          }
+        ]
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "name": "Tipos de mecanismos de reclinação",
+        "value_id": null,
+        "value_name": "Encosto reclinável, Basculante",
+        "values": [
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável"
+          },
+          {
+            "id": "10204587",
+            "name": "Basculante"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_TILT_RANGE",
+        "name": "Faixa de inclinação do encosto",
+        "value_id": "10222172",
+        "value_name": "90 ° x 180 °",
+        "values": [
+          {
+            "id": "10222172",
+            "name": "90 ° x 180 °"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_DEPTH",
+        "name": "Profundidade da cadeira",
+        "value_id": "7661943",
+        "value_name": "70 cm",
+        "values": [
+          {
+            "id": "7661943",
+            "name": "70 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "name": "Peso da cadeira",
+        "value_id": "10365839",
+        "value_name": "17 kg",
+        "values": [
+          {
+            "id": "10365839",
+            "name": "17 kg"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_WIDTH",
+        "name": "Largura do assento",
+        "value_id": "9589000",
+        "value_name": "53 cm",
+        "values": [
+          {
+            "id": "9589000",
+            "name": "53 cm"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "name": "Largura do encosto",
+        "value_id": "9272376",
+        "value_name": "56 cm",
+        "values": [
+          {
+            "id": "9272376",
+            "name": "56 cm"
+          }
+        ]
+      },
+      {
+        "id": "MIN_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "name": "Altura mínima do chão ao assento",
+        "value_id": "9272009",
+        "value_name": "47 cm",
+        "values": [
+          {
+            "id": "9272009",
+            "name": "47 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "name": "Altura máxima do chão ao assento\r",
+        "value_id": "9272010",
+        "value_name": "57 cm",
+        "values": [
+          {
+            "id": "9272010",
+            "name": "57 cm"
+          }
+        ]
+      },
+      {
+        "id": "MIN_CHAIR_HEIGHT",
+        "name": "Altura mínima da cadeira",
+        "value_id": "53835610",
+        "value_name": "121 cm",
+        "values": [
+          {
+            "id": "53835610",
+            "name": "121 cm"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A Cadeira de Escritório Timberflex Thunderx3 EC3 Gamer é a escolha perfeita para quem busca conforto e estilo durante longas horas de uso. Com um design ergonômico, ela proporciona suporte ideal para a coluna, permitindo que você se concentre no que realmente importa. O encosto reclinável, que varia de 90° a 180°, e a altura ajustável garantem que você encontre a posição perfeita para jogar ou trabalhar.\n\nFeita com materiais de alta qualidade, como couro sintético e espuma, a cadeira combina durabilidade e conforto. Seu aro para pés em náilon e estrutura de aço oferecem resistência, suportando até 150 kg. Além disso, a profundidade e largura do assento foram projetadas para proporcionar uma experiência de uso agradável, enquanto o apoio de cabeça ajustável contribui para um suporte adicional.\n\nCom um design moderno na cor preta, a Cadeira EC3 se adapta facilmente a qualquer ambiente, seja no escritório ou na sala de jogos. A montagem é simples e acompanha um manual, facilitando o processo para você. Invista no seu conforto e produtividade com esta cadeira que une funcionalidade e estilo."
+    },
+    "parent_id": "MLB15232283",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T12:00:20.079562963"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2019-11-19T15:36:48Z",
+    "authorized_stores": null,
+    "last_updated": "2025-09-23T10:26:39Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

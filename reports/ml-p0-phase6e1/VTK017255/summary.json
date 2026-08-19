@@ -1,0 +1,10 @@
+{
+  "ordinal": 112,
+  "sku": "VTK017255",
+  "phase6e_state": "BLOCK_LOCAL_STATE",
+  "phase6e1_state": "BLOCK_LOCAL_STATE",
+  "category_candidate": null,
+  "semantic_score": null,
+  "second_pass": "NOT_APPLICABLE",
+  "evidence": "frozen local product state no longer satisfies baseline"
+}

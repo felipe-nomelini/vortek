@@ -1,0 +1,209 @@
+{
+  "payload": {
+    "family_name": "Microfone Sem Fio Harmonics HSF-200",
+    "category_id": "MLB4469",
+    "catalog_product_id": "MLB28659224",
+    "catalog_listing": true,
+    "price": 1009.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/5.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/6.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/7.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/79692/550/8.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "480322",
+        "value_name": "Harmonics"
+      },
+      {
+        "id": "LINE",
+        "value_id": "49053561",
+        "value_name": "Harmonics HSF200-1 UHF"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "49053560",
+        "value_name": "Harmonics HSF200-1 UHF"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MICROPHONE_FORMATS",
+        "value_id": "20190035",
+        "value_name": "Bastão"
+      },
+      {
+        "id": "MICROPHONE_TYPES",
+        "value_id": "24039845",
+        "value_name": "Sem fio"
+      },
+      {
+        "id": "POLAR_PATTERNS",
+        "value_id": "7226710",
+        "value_name": "Hipercardióide"
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "value_id": "934836",
+        "value_name": "1"
+      },
+      {
+        "id": "CONNECTION_TYPES",
+        "value_id": "11296606",
+        "value_name": "Sem fio"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MIN_FREQUENCY",
+        "value_id": "13869241",
+        "value_name": "20 kHz"
+      },
+      {
+        "id": "MAX_FREQUENCY",
+        "value_id": "2261347",
+        "value_name": "20 kHz"
+      },
+      {
+        "id": "MICROPHONE_RECOMMENDED_USES",
+        "values": [
+          {
+            "id": "20102314",
+            "name": "Bandas"
+          },
+          {
+            "id": "13457349",
+            "name": "Igrejas"
+          },
+          {
+            "id": "24039507",
+            "name": "Apresentações"
+          },
+          {
+            "id": "47713045",
+            "name": "comícios"
+          },
+          {
+            "id": "20097905",
+            "name": "show"
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "1176674",
+        "value_name": "Pilha"
+      },
+      {
+        "id": "CELL_BATTERY_TYPE",
+        "value_id": "40962684",
+        "value_name": "Alcalina"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BUILT_IN_SPEAKERS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "480322",
+        "value_name": "Harmonics"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "47713044",
+        "value_name": "HSF 200"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS",
+        "values": [
+          {
+            "id": "7226718",
+            "name": "Jack 6.3 mm"
+          },
+          {
+            "id": "2305169",
+            "name": "XLR"
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "value_id": "26980343",
+        "value_name": "7898554607508"
+      },
+      {
+        "id": "WITH_POWER_LIGHT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "SENSITIVITY",
+        "value_id": "7536721",
+        "value_name": "90 dB"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "8621603",
+        "value_name": "Receptor"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000568"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000568"
+  },
+  "sha256": "de3673c0c35295af0b71bdd2826658a16dfe48c30325caa8830f73c60407abc2",
+  "family_name_sha256": "83240d4c636c62a6ab1cf2c7009dcd9020621e313beccd360ed0e06fe3970d75",
+  "title_absent": true,
+  "description_absent": true
+}

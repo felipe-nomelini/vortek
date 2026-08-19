@@ -1,0 +1,21 @@
+{
+  "index": 4,
+  "sku": "VTK017236",
+  "started_at": "2026-08-16T23:39:09.441Z",
+  "local_time": "2026-08-16T20:39:09",
+  "expected_gtin": "4988028352812",
+  "completed_at": "2026-08-16T23:39:10.729Z",
+  "elapsed_ms": 1298,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": "MLB22432562",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "gtin_catalog_maps_to_vehicle_stereo_kit_model_6660_not_ts_1360br_speaker_pair",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false
+  }
+}

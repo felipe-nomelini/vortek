@@ -1,0 +1,460 @@
+{
+  "index": 15,
+  "sku": "VTK026007",
+  "started_at": "2026-08-17T00:07:23.644Z",
+  "local_time": "2026-08-16T21:07:23",
+  "expected_gtin": "7898572882208",
+  "product": {
+    "id": "2a9ff74f-8a08-4d8c-9137-49348c92da92",
+    "sku": "VTK026007",
+    "nome": "Banqueta Para Teclado Gbt-15 Saty",
+    "marca": "Saty",
+    "estoque": 40,
+    "custo": 86.83,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 3.14,
+    "peso_bruto": 3.14,
+    "largura": 31,
+    "altura": 58,
+    "profundidade": 12,
+    "gtin": "7898572882208",
+    "descricao": "BANQUETA PARA TECLADO GBT-15 SATY A Banqueta para Teclado GBT-15 SATY foi desenvolvida para proporcionar conforto, estabilidade e praticidade durante ensaios, apresentações e estudos. Com estrutura reforçada em aço e assento acolchoado de alta densidade, oferece excelente ergonomia para músicos que buscam segurança e durabilidade, sendo ideal para tecladistas, pianistas e outros instrumentistas. Ficha Técnica Modelo: GBT-15 Marca: SATY Tipo: Banqueta para teclado Estrutura: Aço de alta resistência Acabamento: Pintura eletrostática na cor preta Assento: Estofado com espuma de alta densidade Revestimento: Material sintético de fácil limpeza Sistema de regulagem: Ajuste de altura Estrutura dobrável: Sim Capacidade de carga: Estrutura reforçada para uso profissional Aplicação: Teclados, pianos digitais, controladores e demais instrumentos que utilizam banqueta Indicado para: Ensaios, apresentações, estúdios, igrejas, escolas de música e uso doméstico A GBT-15 SATY combina resistência, conforto e praticidade, oferecendo uma experiência mais confortável durante longos períodos de utilização. Sua estrutura dobrável facilita o transporte e o armazenamento, tornando-a uma excelente escolha tanto para músicos profissionais quanto para iniciantes.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/73d3dccccc3b9f32c3ed691261b55421.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0901515ca4c62569af081f3cd689c299.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b1c04accd4c050049aaa347c27efa6fd.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8ba3aaeb9c46a17c157dd91832bee3f1.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3b77e99292fe9c787cea0f5d1bf99508.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ccb6cd67ef2a6d4a29c2955abdd11b44.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Pianos E Teclados > Acessórios > Bancos",
+    "ml_item_id": null,
+    "created_at": "2026-08-13T10:53:28.116308+00:00",
+    "updated_at": "2026-08-16T20:10:21.583267+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4223",
+    "dslite_ultima_sync": "2026-08-16T20:10:21.151+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.94.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "21dcc1a2-f8ac-4bd5-8133-17b6872c2614",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "21dcc1a2-f8ac-4bd5-8133-17b6872c2614",
+    "produto_id": "2a9ff74f-8a08-4d8c-9137-49348c92da92",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4223",
+    "sku_fornecedor": "4223",
+    "custo": 86.83,
+    "estoque": 40,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:10:21.151+00:00",
+    "created_at": "2026-08-13T10:53:28.2054+00:00",
+    "updated_at": "2026-08-16T20:10:21.158+00:00",
+    "sku_oferta": "4223",
+    "nome": "Banqueta Para Teclado Gbt-15 Saty",
+    "descricao": "BANQUETA PARA TECLADO GBT-15 SATY A Banqueta para Teclado GBT-15 SATY foi desenvolvida para proporcionar conforto, estabilidade e praticidade durante ensaios, apresentações e estudos. Com estrutura reforçada em aço e assento acolchoado de alta densidade, oferece excelente ergonomia para músicos que buscam segurança e durabilidade, sendo ideal para tecladistas, pianistas e outros instrumentistas. Ficha Técnica Modelo: GBT-15 Marca: SATY Tipo: Banqueta para teclado Estrutura: Aço de alta resistência Acabamento: Pintura eletrostática na cor preta Assento: Estofado com espuma de alta densidade Revestimento: Material sintético de fácil limpeza Sistema de regulagem: Ajuste de altura Estrutura dobrável: Sim Capacidade de carga: Estrutura reforçada para uso profissional Aplicação: Teclados, pianos digitais, controladores e demais instrumentos que utilizam banqueta Indicado para: Ensaios, apresentações, estúdios, igrejas, escolas de música e uso doméstico A GBT-15 SATY combina resistência, conforto e praticidade, oferecendo uma experiência mais confortável durante longos períodos de utilização. Sua estrutura dobrável facilita o transporte e o armazenamento, tornando-a uma excelente escolha tanto para músicos profissionais quanto para iniciantes.",
+    "marca": "Saty",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/73d3dccccc3b9f32c3ed691261b55421.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0901515ca4c62569af081f3cd689c299.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b1c04accd4c050049aaa347c27efa6fd.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8ba3aaeb9c46a17c157dd91832bee3f1.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3b77e99292fe9c787cea0f5d1bf99508.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ccb6cd67ef2a6d4a29c2955abdd11b44.jpg"
+    ],
+    "gtin": "7898572882208",
+    "ncm": "9209.94.00",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4223",
+    "consulted_at": "2026-08-17T00:07:24.583Z",
+    "product": {
+      "produtoid": "4223",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 86.83,
+      "preco_crossdocking": 86.83,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 86.83,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-21 01:04:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-21 10:01:29.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Banqueta Para Teclado Gbt-15 Saty",
+      "titulo_curto": "Banqueta Para Teclado Gbt-15 Saty",
+      "categoriaid": "289596",
+      "categoria_nome": "Instrumentos Musicais > Pianos E Teclados > Acessórios > Bancos",
+      "abc": null,
+      "ean11": "7898572882208",
+      "ncm": "9209.94.00",
+      "descricao": "<p>BANQUETA PARA TECLADO GBT-15 SATY</p> <p>A Banqueta para Teclado GBT-15 SATY foi desenvolvida para proporcionar conforto, estabilidade e praticidade durante ensaios, apresentações e estudos. Com estrutura reforçada em aço e assento acolchoado de alta densidade, oferece excelente ergonomia para músicos que buscam segurança e durabilidade, sendo ideal para tecladistas, pianistas e outros instrumentistas.</p> <p>Ficha Técnica<br>Modelo: GBT-15<br>Marca: SATY<br>Tipo: Banqueta para teclado<br>Estrutura: Aço de alta resistência<br>Acabamento: Pintura eletrostática na cor preta<br>Assento: Estofado com espuma de alta densidade<br>Revestimento: Material sintético de fácil limpeza<br>Sistema de regulagem: Ajuste de altura<br>Estrutura dobrável: Sim<br>Capacidade de carga: Estrutura reforçada para uso profissional<br>Aplicação: Teclados, pianos digitais, controladores e demais instrumentos que utilizam banqueta<br>Indicado para: Ensaios, apresentações, estúdios, igrejas, escolas de música e uso doméstico</p> <p>A GBT-15 SATY combina resistência, conforto e praticidade, oferecendo uma experiência mais confortável durante longos períodos de utilização. Sua estrutura dobrável facilita o transporte e o armazenamento, tornando-a uma excelente escolha tanto para músicos profissionais quanto para iniciantes.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Saty",
+      "modelo": "",
+      "peso": 3.14,
+      "largura": 31,
+      "altura": 58,
+      "profundidade": 12,
+      "peso_embalagem": 3.14,
+      "largura_embalagem": 31,
+      "altura_embalagem": 58,
+      "profundidade_embalagem": 12,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/73d3dccccc3b9f32c3ed691261b55421.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 6,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "926648118",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-20 23:52:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-22 11:21:58.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 40,
+      "tempo_cross": 0,
+      "estoque_total": 40,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/73d3dccccc3b9f32c3ed691261b55421.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0901515ca4c62569af081f3cd689c299.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b1c04accd4c050049aaa347c27efa6fd.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8ba3aaeb9c46a17c157dd91832bee3f1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3b77e99292fe9c787cea0f5d1bf99508.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ccb6cd67ef2a6d4a29c2955abdd11b44.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_IDENTITY",
+  "configured_reason": "official_saty_model_bgt_15_conflicts_with_local_and_catalog_gbt_15",
+  "evidence": {
+    "manufacturer_or_official": "https://saty.com.br/gakki/",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4223",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898572882208"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB52055696",
+      "catalog_product_id": "MLB52055696",
+      "domain_id": "MLB-KEYBOARD_AND_PIANO_BENCHES",
+      "name": "Banqueta Banco Em X P/ Teclado Piano Gtb15 - Gakki Saty",
+      "parent_id": "MLB52055694",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "5451933",
+          "value_name": "Saty",
+          "values": [
+            {
+              "id": "5451933",
+              "name": "Saty"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "56476050",
+          "value_name": "Banco GBT-15 GBT 15",
+          "values": [
+            {
+              "id": "56476050",
+              "name": "Banco GBT-15 GBT 15"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "UPHOLSTERY_MATERIAL",
+          "name": "Material do estofamento",
+          "value_id": "482783",
+          "value_name": "Couro",
+          "values": [
+            {
+              "id": "482783",
+              "name": "Couro"
+            }
+          ]
+        },
+        {
+          "id": "STRUCTURE_MATERIAL",
+          "name": "Material da estrutura",
+          "value_id": "4837600",
+          "value_name": "Aço",
+          "values": [
+            {
+              "id": "4837600",
+              "name": "Aço"
+            }
+          ]
+        },
+        {
+          "id": "MIN_HEIGHT",
+          "name": "Altura mínima",
+          "value_id": "26836244",
+          "value_name": "42 cm",
+          "values": [
+            {
+              "id": "26836244",
+              "name": "42 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_HEIGHT",
+          "name": "Altura máxima",
+          "value_id": "3527959",
+          "value_name": "50 cm",
+          "values": [
+            {
+              "id": "3527959",
+              "name": "50 cm"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "570746",
+          "value_name": "30 cm",
+          "values": [
+            {
+              "id": "570746",
+              "name": "30 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "517234",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "517234",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "name": "Peso máximo suportado",
+          "value_id": "2218331",
+          "value_name": "120 kg",
+          "values": [
+            {
+              "id": "2218331",
+              "name": "120 kg"
+            }
+          ]
+        },
+        {
+          "id": "IS_ADJUSTABLE",
+          "name": "É ajustável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "56476052",
+          "value_name": "7898572882208",
+          "values": [
+            {
+              "id": "56476052",
+              "name": "7898572882208"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Banqueta Banco Em X P/ Teclado Piano GTB15 - Gakki Saty é a escolha ideal para músicos que buscam conforto e qualidade em suas práticas. Fabricado pela reconhecida marca Gakki, sob a supervisão da Saty, este produto foi desenvolvido especialmente para instrumentos musicais, garantindo a melhor experiência durante as performances. Seu design ergonômico se adapta perfeitamente ao corpo, proporcionando a sustentação necessária para longas horas de ensaio. Possui um ajuste de altura versátil, permitindo que você encontre a posição ideal para tocar. Além disso, sua estrutura resistente assegura durabilidade e estabilidade. Com cor preta clássica, combina fácil com qualquer ambiente de prática. Aproveite esta oportunidade de elevar seu desempenho musical com a banqueta GBT-15 GBT 15, um item novo que não pode faltar em seu repertório de acessórios musicais!"
+      },
+      "pictures": [
+        {
+          "id": "762653-MLA100053625477_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_762653-MLA100053625477_122025-F.jpg",
+          "max_width": "1077",
+          "max_height": "1200"
+        },
+        {
+          "id": "750128-MLA92637395080_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_750128-MLA92637395080_092025-F.jpg",
+          "max_width": "1117",
+          "max_height": "1200"
+        },
+        {
+          "id": "663997-MLA93048289585_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_663997-MLA93048289585_092025-F.jpg",
+          "max_width": "973",
+          "max_height": "1200"
+        },
+        {
+          "id": "995328-MLA92637336088_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_995328-MLA92637336088_092025-F.jpg",
+          "max_width": "960",
+          "max_height": "1200"
+        },
+        {
+          "id": "887664-MLA92637395140_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_887664-MLA92637395140_092025-F.jpg",
+          "max_width": "1064",
+          "max_height": "1200"
+        },
+        {
+          "id": "746416-MLA92637355882_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_746416-MLA92637355882_092025-F.jpg",
+          "max_width": "898",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-07-04T17:37:08Z",
+      "last_updated": "2026-01-21T02:15:20Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

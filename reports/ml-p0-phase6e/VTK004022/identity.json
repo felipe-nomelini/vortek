@@ -1,0 +1,512 @@
+{
+  "checked_at": "2026-08-17T12:54:03.148Z",
+  "product": {
+    "id": "322aec33-cecf-4ce9-bf3e-472ae46e9f58",
+    "sku": "VTK004022",
+    "nome": "Cápsula de Microfone Sennheiser MMD 845 Preto",
+    "marca": "SENNHEISER",
+    "gtin": "4044155032628"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/76303",
+    "consulted_at": "2026-08-17T12:54:02.951Z",
+    "product": {
+      "produtoid": "76303",
+      "produtoid_empresa": "HYX76303",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 838.65,
+      "preco_crossdocking": 838.65,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 838.65,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cápsula de Microfone Sennheiser MMD 845 Preto",
+      "titulo_curto": "CAPSULA P/MIC SENNHEISER MMD 845 PT",
+      "categoriaid": "292614",
+      "categoria_nome": "áudio / Acessórios Para Microfones / Cápsulas Para Microfones",
+      "abc": "C",
+      "ean11": "4044155032628",
+      "ncm": "8518.90.90",
+      "descricao": "A Cápsula de Microfone Sennheiser MMD 845 possui rejeição de feedback especialmente alta e padrão de captação consistente (supercardióide). Dá aos vocais uma enorme quantidade de espaço e um som volumoso. <br/> <br/> Compatível com todos os transmissores portáteis das séries EWG3, EWG4, D1, AVX, SpeechSeries Digital Wireless e 2000. <br/> <br/> Há mais de 75 anos a Sennheiser é uma empresa motivada a oferecer soluções sonoras que impressionam e dão arrepios. A Sennheiser é líder global em tecnologia de áudio profissional, com produtos que giram em torno de um som excelente: no palco, nas salas de reuniões, nas salas de aula e no estúdio. <br/> <br/> A Sennheiser é uma marca reconhecida mundialmente por sua excelência em áudio e continua a se dedicar a fornecer as melhores soluções sonoras para seus clientes. <br/>",
+      "caracteristicas": "Cor:Preto<br>Pesquisa:capsula|microfone|sennheiser|mmd-845|<br>",
+      "informacoes": "<br/> • Nível de pressão sonora (SPL): 154 dB; <br/> • Princípio transdutor: dynamic; <br/> • Padrão de captação: super cardioid; <br/> • Sensibilidade: 1,6 mV/Pa.",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "SENNHEISER",
+      "modelo": "MMD 845",
+      "peso": 0.17,
+      "largura": 8.2,
+      "altura": 6.5,
+      "profundidade": 10.3,
+      "peso_embalagem": 0.17,
+      "largura_embalagem": 8.2,
+      "altura_embalagem": 6.5,
+      "profundidade_embalagem": 10.3,
+      "link": "http://www.hayamax.com.br/capsula-de-microfone-sennheiser-mmd-845-preto",
+      "link_imagem": "https://static.hayapek.com.br/produtos/76303/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 720,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 44,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-24 10:06:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:01.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 5,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/76303/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/76303/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/76303/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/76303/550/4.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: GTIN,MODEL",
+    "foundValue": "MLB23309215",
+    "source": "ML catalog MLB23309215 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "GTIN",
+        "MODEL"
+      ],
+      "catalog_brand": "Sennheiser",
+      "model": "Mmd845-1 Bk",
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 1
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB23309215",
+      "catalog_product_id": "MLB23309215",
+      "domain_id": "MLB-MICROPHONES",
+      "name": "Cápsula De Microfone Sennheiser Mmd 845 Preto",
+      "parent_id": "MLB23309202",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15371",
+          "value_name": "Sennheiser",
+          "values": [
+            {
+              "id": "15371",
+              "name": "Sennheiser"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "19189592",
+          "value_name": "MMD",
+          "values": [
+            {
+              "id": "19189592",
+              "name": "MMD"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "17041043",
+          "value_name": "Mmd845-1 Bk",
+          "values": [
+            {
+              "id": "17041043",
+              "name": "Mmd845-1 Bk"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_FORMATS",
+          "name": "Formatos de microfone",
+          "value_id": "182426",
+          "value_name": "De mão",
+          "values": [
+            {
+              "id": "182426",
+              "name": "De mão"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_TYPES",
+          "name": "Tipos de microfone",
+          "value_id": "103745",
+          "value_name": "Dinâmico",
+          "values": [
+            {
+              "id": "103745",
+              "name": "Dinâmico"
+            }
+          ]
+        },
+        {
+          "id": "POLAR_PATTERNS",
+          "name": "Padrões polares",
+          "value_id": "2253807",
+          "value_name": "Cardioide",
+          "values": [
+            {
+              "id": "2253807",
+              "name": "Cardioide"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "name": "Quantidade de microfones",
+          "value_id": "934836",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "934836",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "name": "Tipos de conexões",
+          "value_id": "11296606",
+          "value_name": "Sem fio",
+          "values": [
+            {
+              "id": "11296606",
+              "name": "Sem fio"
+            }
+          ]
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "5566996",
+          "value_name": "16 Hz",
+          "values": [
+            {
+              "id": "5566996",
+              "name": "16 Hz"
+            }
+          ]
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "13446160",
+          "value_name": "40 Hz",
+          "values": [
+            {
+              "id": "13446160",
+              "name": "40 Hz"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_RECOMMENDED_USES",
+          "name": "Usos recomendados do microfone",
+          "value_name": "Karaokê, Microfone sem fio, Multimídia, Para instrumentos, Reparo, Vocal",
+          "values": [
+            {
+              "id": "20170689",
+              "name": "Karaokê"
+            },
+            {
+              "id": "15396798",
+              "name": "Microfone sem fio"
+            },
+            {
+              "id": "34736426",
+              "name": "Multimídia"
+            },
+            {
+              "id": "7226715",
+              "name": "Para instrumentos"
+            },
+            {
+              "id": "29099710",
+              "name": "Reparo"
+            },
+            {
+              "id": "17018037",
+              "name": "Vocal"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BUILT_IN_SPEAKERS",
+          "name": "Com alto-falantes embutidos",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "19189601",
+          "value_name": "MMD 845-1 BK",
+          "values": [
+            {
+              "id": "19189601",
+              "name": "MMD 845-1 BK"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_name": "4044155032628, 615104147966",
+          "values": [
+            {
+              "id": "19189602",
+              "name": "4044155032628"
+            },
+            {
+              "id": "14906109",
+              "name": "615104147966"
+            }
+          ]
+        },
+        {
+          "id": "WITH_POWER_LIGHT",
+          "name": "Com luz indicadora de funcionamento",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "name": "Com luz LED",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "8567678",
+          "value_name": "119 g",
+          "values": [
+            {
+              "id": "8567678",
+              "name": "119 g"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Com o microfone da Sennheiser você vai descobrir uma nova maneira de capturar e transmitir áudios.\n\nReflexão fiel da realidade\nProjetado para amortecer os choques e ruídos de manipulação. Totalmente dinâmico, basta conectá-lo e começar a gravar.\n\nUm formato que combina com você\nSeu dinamismo o torna ideal para vocalistas e instrumentos. É leve e se encaixa em todos os tipos de pés ou suportes. Sem necessidade de fonte de alimentação, ele lhe oferecerá um alto grau de autonomia para usos externos e também internos. \n\nDesign eficaz\nSeu padrão polar cardióide oferece uma maior sensibilidade aos sons frontais, o que evita o ruído proveniente da parte posterior."
+      },
+      "pictures": [
+        {
+          "id": "695891-MLA99542129660_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_695891-MLA99542129660_122025-F.jpg",
+          "max_width": "339",
+          "max_height": "500"
+        },
+        {
+          "id": "600921-MLA110394631290_052026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_600921-MLA110394631290_052026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "728988-MLA110394661262_052026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_728988-MLA110394661262_052026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "952363-MLA110394661252_052026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_952363-MLA110394661252_052026-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-05-16T06:18:56Z",
+      "last_updated": "2026-02-24T19:20:34Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

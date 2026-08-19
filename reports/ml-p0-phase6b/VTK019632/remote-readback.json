@@ -1,0 +1,413 @@
+{
+  "checked_at": "2026-08-17T00:07:05.575Z",
+  "item": {
+    "id": "MLB5075703185",
+    "site_id": "MLB",
+    "title": "Fonte Chaveada P/cftv 9v 1a",
+    "family_name": "MXT 9v 1a",
+    "family_id": 1263773673966099,
+    "seller_id": 3294514937,
+    "category_id": "MLB420411",
+    "user_product_id": "MLBU4772558560",
+    "official_store_id": null,
+    "price": 99.9,
+    "base_price": 99.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 50,
+    "available_quantity": 50,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T00:07:04.269Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:07:04.350Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-5075703185-fonte-chaveada-pcftv-9v-1a-_JM",
+    "thumbnail_id": "851386-MLA99389915392_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_851386-MLA99389915392_112025-I.jpg",
+    "pictures": [
+      {
+        "id": "851386-MLA99389915392_112025",
+        "url": "http://http2.mlstatic.com/D_851386-MLA99389915392_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_851386-MLA99389915392_112025-O.jpg",
+        "size": "339x500",
+        "max_size": "691x1018",
+        "quality": ""
+      },
+      {
+        "id": "998249-MLA99389164124_112025",
+        "url": "http://http2.mlstatic.com/D_998249-MLA99389164124_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_998249-MLA99389164124_112025-O.jpg",
+        "size": "494x500",
+        "max_size": "1187x1200",
+        "quality": ""
+      },
+      {
+        "id": "883037-MLA99389677198_112025",
+        "url": "http://http2.mlstatic.com/D_883037-MLA99389677198_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_883037-MLA99389677198_112025-O.jpg",
+        "size": "500x478",
+        "max_size": "500x478",
+        "quality": ""
+      },
+      {
+        "id": "836442-MLA95652673184_102025",
+        "url": "http://http2.mlstatic.com/D_836442-MLA95652673184_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_836442-MLA95652673184_102025-O.jpg",
+        "size": "330x500",
+        "max_size": "793x1200",
+        "quality": ""
+      },
+      {
+        "id": "734163-MLA99389756532_112025",
+        "url": "http://http2.mlstatic.com/D_734163-MLA99389756532_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_734163-MLA99389756532_112025-O.jpg",
+        "size": "500x433",
+        "max_size": "797x691",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2153976",
+        "value_name": "MXT",
+        "values": [
+          {
+            "id": "2153976",
+            "name": "MXT",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "12737658",
+        "value_name": "50 / 60 HZ",
+        "values": [
+          {
+            "id": "12737658",
+            "name": "50 / 60 HZ",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "32954238",
+        "value_name": "7899471878941",
+        "values": [
+          {
+            "id": "32954238",
+            "name": "7899471878941",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "7806877",
+        "value_name": "100 cm",
+        "values": [
+          {
+            "id": "7806877",
+            "name": "100 cm",
+            "struct": {
+              "number": 100,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": null,
+        "value_name": "ABS,Cobre,PCB,SMD",
+        "values": [
+          {
+            "id": "2511571",
+            "name": "ABS",
+            "struct": null
+          },
+          {
+            "id": "2508991",
+            "name": "Cobre",
+            "struct": null
+          },
+          {
+            "id": "18103732",
+            "name": "PCB",
+            "struct": null
+          },
+          {
+            "id": "27575667",
+            "name": "SMD",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_INPUT_VOLTAGE",
+        "name": "Voltagem máxima de entrada",
+        "value_id": "198813",
+        "value_name": "220V",
+        "values": [
+          {
+            "id": "198813",
+            "name": "220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_OUTPUT_VOLTAGE",
+        "name": "Voltagem máxima de saída",
+        "value_id": "8149915",
+        "value_name": "9V",
+        "values": [
+          {
+            "id": "8149915",
+            "name": "9V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MIN_INPUT_VOLTAGE",
+        "name": "Voltagem mínima de entrada",
+        "value_id": "17561522",
+        "value_name": "110V",
+        "values": [
+          {
+            "id": "17561522",
+            "name": "110V",
+            "struct": {
+              "number": 110,
+              "unit": "V"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MIN_OUTPUT_VOLTAGE",
+        "name": "Voltagem mínima de saída",
+        "value_id": "19940978",
+        "value_name": "9V",
+        "values": [
+          {
+            "id": "19940978",
+            "name": "9V",
+            "struct": {
+              "number": 9,
+              "unit": "V"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "32954237",
+        "value_name": "9v 1a",
+        "values": [
+          {
+            "id": "32954237",
+            "name": "9v 1a",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "3716209",
+        "value_name": "9 W",
+        "values": [
+          {
+            "id": "3716209",
+            "name": "9 W",
+            "struct": {
+              "number": 9,
+              "unit": "W"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "POWER_OUTPUT",
+        "name": "Potência de saída",
+        "value_id": "16719811",
+        "value_name": "9 W",
+        "values": [
+          {
+            "id": "16719811",
+            "name": "9 W",
+            "struct": {
+              "number": 9,
+              "unit": "W"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK019632",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK019632",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+        "name": "Com proteção contra curto-circuito",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB32967972",
+    "domain_id": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+    "seller_custom_field": "VTK019632",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:07:04.451Z",
+    "last_updated": "2026-08-17T00:07:04.451Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

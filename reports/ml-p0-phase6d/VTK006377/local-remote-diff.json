@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075857497",
+      "local": "MLB5075857497",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK006377",
+      "local": "VTK006377",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "ba47a1ed-dd68-4fa5-92b1-31a12b4504a7",
+      "local": "ba47a1ed-dd68-4fa5-92b1-31a12b4504a7",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Microfone Sennheiser E906 2 Anos De Cor Cinza-escuro",
+      "local": "Microfone Sennheiser E906 2 Anos De Cor Cinza-escuro",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 6299.9,
+      "local": 6299.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075857497-microfone-sennheiser-e906-2-anos-de-cor-cinza-escuro-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075857497-microfone-sennheiser-e906-2-anos-de-cor-cinza-escuro-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

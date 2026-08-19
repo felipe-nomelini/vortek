@@ -1,0 +1,604 @@
+{
+  "index": 13,
+  "sku": "VTK026048",
+  "started_at": "2026-08-17T00:07:16.726Z",
+  "local_time": "2026-08-16T21:07:16",
+  "expected_gtin": "7897748700032",
+  "product": {
+    "id": "e87b83ee-c4e4-476a-8e7b-6900c7f86a87",
+    "sku": "VTK026048",
+    "nome": "Controle Longa Distância Stetsom Alcance Control Sx Wr Com Infravermelho - Preto",
+    "marca": "STETSOM",
+    "estoque": 42,
+    "custo": 73.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.092,
+    "peso_bruto": 0.092,
+    "largura": 10.5,
+    "altura": 6,
+    "profundidade": 12,
+    "gtin": "7897748700032",
+    "descricao": "ALCANCE CONTROL SX WR Diga adeus ao sensor infravermelho no painel. O novo Alcance WR se conecta diretamente à interface de comando por fio do seu player. Mais tecnologia para o seu sistema de som, eliminando cabos aparentes e sensores externos. Tenhas todos os benefícios do controle longa distancia, agora com instalação ainda mais simplificada. *Imagens meramente ilustrativas.\n\nCENTRAL RX WR Tensão de operação: 5V ~ 16V DC Consumo máximo: 16,5 mA Dimensão: 55,4 x 28 x 12 mm Peso: 21g CONTROLE TX UNIVERSAL Bateria utilizada: CR2032 (3V) Frequência de operação: 433,92 MHz Potência máxima: + 10 dBm Modulação: OOK Consumo máximo: 11,5 mA Dimensão: 79 x 40 x 15 mm Peso: 24g",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6492.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad67bf.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6811.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad684b.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6885.png"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Controle Remoto Sem Fio",
+    "ml_item_id": null,
+    "created_at": "2026-08-16T11:00:27.695493+00:00",
+    "updated_at": "2026-08-16T20:55:22.328996+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "391330",
+    "dslite_ultima_sync": "2026-08-16T20:55:22.224+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85269200",
+    "cest": "01.999.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "f1b75860-4393-4b9c-853f-9283f066d1e3",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "f1b75860-4393-4b9c-853f-9283f066d1e3",
+    "produto_id": "e87b83ee-c4e4-476a-8e7b-6900c7f86a87",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "391330",
+    "sku_fornecedor": "391330",
+    "custo": 73.9,
+    "estoque": 42,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:55:22.224+00:00",
+    "created_at": "2026-08-16T11:00:27.702992+00:00",
+    "updated_at": "2026-08-16T20:55:22.233+00:00",
+    "sku_oferta": "391330",
+    "nome": "Controle Longa Distância Stetsom Alcance Control Sx Wr Com Infravermelho - Preto",
+    "descricao": "ALCANCE CONTROL SX WR Diga adeus ao sensor infravermelho no painel. O novo Alcance WR se conecta diretamente à interface de comando por fio do seu player. Mais tecnologia para o seu sistema de som, eliminando cabos aparentes e sensores externos. Tenhas todos os benefícios do controle longa distancia, agora com instalação ainda mais simplificada. *Imagens meramente ilustrativas.\n\nCENTRAL RX WR Tensão de operação: 5V ~ 16V DC Consumo máximo: 16,5 mA Dimensão: 55,4 x 28 x 12 mm Peso: 21g CONTROLE TX UNIVERSAL Bateria utilizada: CR2032 (3V) Frequência de operação: 433,92 MHz Potência máxima: + 10 dBm Modulação: OOK Consumo máximo: 11,5 mA Dimensão: 79 x 40 x 15 mm Peso: 24g",
+    "marca": "STETSOM",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6492.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad67bf.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6811.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad684b.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6885.png"
+    ],
+    "gtin": "7897748700032",
+    "ncm": "85269200",
+    "cest": "01.999.00"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391330",
+    "consulted_at": "2026-08-17T00:07:17.373Z",
+    "product": {
+      "produtoid": "391330",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 73.9,
+      "preco_crossdocking": 73.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 73.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-08-04 13:43:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-04 13:43:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Controle Longa Distância Stetsom Alcance Control Sx Wr Com Infravermelho - Preto",
+      "titulo_curto": "Controle Longa Distância Stetsom Alcance Control Sx Wr Com Infravermelho - Preto",
+      "categoriaid": "118044",
+      "categoria_nome": "Automotivo/ Acessórios Automotivos/ Controle Remoto Sem Fio",
+      "abc": null,
+      "ean11": "7897748700032",
+      "ncm": "85269200",
+      "descricao": "<h2 class=\"titulo titulo-ms first-word mb-4\"><strong>ALCANCE CONTROL SX WR</strong></h2>\r\n<p>Diga adeus ao sensor infravermelho no painel. O novo Alcance WR se conecta diretamente à interface de comando por fio do seu player. Mais tecnologia para o seu sistema de som, eliminando cabos aparentes e sensores externos. Tenhas todos os benefícios do controle longa distancia, agora com instalação ainda mais simplificada.</p>\r\n<div class=\"row justify-content-center\">\r\n<div class=\"col-12 col-md-6 pe-md-4\">\r\n<div class=\"swiper swiper-fotos-produto swiper-initialized swiper-horizontal swiper-backface-hidden\">\r\n<div id=\"swiper-wrapper-08ea687fbd1b789c\" class=\"swiper-wrapper align-items-center\" aria-live=\"polite\">\r\n<div class=\"swiper-slide swiper-slide-prev\" role=\"group\" aria-label=\"1 / 7\"> </div>\r\n<div class=\"swiper-slide swiper-slide-prev\" role=\"group\" aria-label=\"1 / 7\"> </div>\r\n<div class=\"swiper-slide swiper-slide-prev\" role=\"group\" aria-label=\"1 / 7\"> </div>\r\n<div class=\"swiper-slide swiper-slide-prev\" role=\"group\" aria-label=\"1 / 7\">*Imagens meramente ilustrativas.</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>",
+      "caracteristicas": "<p><strong>CENTRAL RX WR<br /></strong>Tensão de operação: 5V ~ 16V DC<br />Consumo máximo: 16,5 mA<br />Dimensão: 55,4 x 28 x 12 mm<br />Peso: 21g</p>\r\n<p><strong>CONTROLE TX UNIVERSAL </strong><br />Bateria utilizada: CR2032 (3V)<br />Frequência de operação: 433,92 MHz<br />Potência máxima: + 10 dBm<br />Modulação: OOK<br />Consumo máximo: 11,5 mA<br />Dimensão: 79 x 40 x 15 mm<br />Peso: 24g</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "STETSOM",
+      "modelo": "",
+      "peso": 0.092,
+      "largura": 10.5,
+      "altura": 6,
+      "profundidade": 12,
+      "peso_embalagem": 0.092,
+      "largura_embalagem": 10.5,
+      "altura_embalagem": 6,
+      "profundidade_embalagem": 12,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6492.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 10,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.999.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 15:37:34.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 15:37:34.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 42,
+      "tempo_cross": 0,
+      "estoque_total": 42,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6492.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad67bf.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6811.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad684b.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391330_6a71fa9ad6885.png"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_GTIN",
+  "configured_reason": "exact_gtin_catalog_identifies_pioneer_radio_bundle_not_stetsom_control_alone",
+  "evidence": {
+    "manufacturer_or_official": "https://www.stetsom.com.br/produto/sx-wr/",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391330",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7897748700032"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB74320308",
+      "catalog_product_id": "MLB74320308",
+      "domain_id": "MLB-VEHICLE_STEREOS",
+      "name": "Radio Pioneer Bluetooth Usb Mp3 Player Controle Stetsom 500m",
+      "parent_id": "MLB74320303",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "9838",
+          "value_name": "Pioneer",
+          "values": [
+            {
+              "id": "9838",
+              "name": "Pioneer"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "83452608",
+          "value_name": "Player Automotivo Pioneer",
+          "values": [
+            {
+              "id": "83452608",
+              "name": "Player Automotivo Pioneer"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "83452613",
+          "value_name": "Media Receiver Bluetooth USB",
+          "values": [
+            {
+              "id": "83452613",
+              "name": "Media Receiver Bluetooth USB"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726555",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "2726555",
+              "name": "2"
+            }
+          ]
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "6826921",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "6826921",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_USB",
+          "name": "Com USB",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "name": "Inclui controle remoto",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_SD_CARD_READER",
+          "name": "Com leitor de cartão SD",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_RCA_OUTPUT",
+          "name": "Com saída RCA",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "OEM",
+          "name": "Código OEM",
+          "value_id": "14361876",
+          "value_name": "Pioneer",
+          "values": [
+            {
+              "id": "14361876",
+              "name": "Pioneer"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "83452619",
+          "value_name": "07897748700032",
+          "values": [
+            {
+              "id": "83452619",
+              "name": "07897748700032"
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "83452611",
+          "value_name": "Pioneer e Stetsom",
+          "values": [
+            {
+              "id": "83452611",
+              "name": "Pioneer e Stetsom"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_STEREO_RECOMMENDED_USE",
+          "name": "Uso recomendado",
+          "value_id": "8579056",
+          "value_name": "Automotivo",
+          "values": [
+            {
+              "id": "8579056",
+              "name": "Automotivo"
+            }
+          ]
+        },
+        {
+          "id": "RADIO_TUNINGS",
+          "name": "Sintonizações da rádio",
+          "value_name": "AM, FM",
+          "values": [
+            {
+              "id": "7877066",
+              "name": "AM"
+            },
+            {
+              "id": "7877065",
+              "name": "FM"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "name": "Sistemas operacionais compatíveis",
+          "value_name": "Android, iOS",
+          "values": [
+            {
+              "id": "168370",
+              "name": "Android"
+            },
+            {
+              "id": "189046",
+              "name": "iOS"
+            }
+          ]
+        },
+        {
+          "id": "MAX_POWER_OUTPUT",
+          "name": "Potência máxima de saída",
+          "value_id": "14789046",
+          "value_name": "23 W",
+          "values": [
+            {
+              "id": "14789046",
+              "name": "23 W"
+            }
+          ]
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "name": "Potência de saída (RMS)",
+          "value_id": "568018",
+          "value_name": "23 W",
+          "values": [
+            {
+              "id": "568018",
+              "name": "23 W"
+            }
+          ]
+        },
+        {
+          "id": "WITH_AUXILIARY_INPUT_ADAPTER",
+          "name": "Com adaptador de entrada auxiliar",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_CD_PLAYER",
+          "name": "Com reprodutor de CD",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_EQUALIZER",
+          "name": "Com equalizador",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "8053397",
+          "value_name": "5 cm",
+          "values": [
+            {
+              "id": "8053397",
+              "name": "5 cm"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "14228010",
+          "value_name": "9.7 cm",
+          "values": [
+            {
+              "id": "14228010",
+              "name": "9.7 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "9582328",
+          "value_name": "17.8 cm",
+          "values": [
+            {
+              "id": "9582328",
+              "name": "17.8 cm"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": ""
+      },
+      "pictures": [
+        {
+          "id": "722947-MLA112426799752_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_722947-MLA112426799752_062026-F.jpg",
+          "max_width": "1080",
+          "max_height": "1080"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2026-06-21T20:48:03Z",
+      "last_updated": "2026-06-21T21:00:06Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

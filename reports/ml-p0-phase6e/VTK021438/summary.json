@@ -1,0 +1,23 @@
+{
+  "index": 30,
+  "sku": "VTK021438",
+  "expected_gtin": "7908060203627",
+  "started_at": "2026-08-17T12:54:21.628Z",
+  "local_time": "2026-08-17T09:54:21",
+  "completed_at": "2026-08-17T12:54:22.079Z",
+  "elapsed_ms": 451,
+  "result": "BLOCK_GTIN_BRAND_CONFLICT",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact GTIN catalog identity conflict: BRAND",
+  "sanitation": "GTIN_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "index": 1,
+  "sku": "VTK013078",
+  "expected_gtin": "8888021206128",
+  "started_at": "2026-08-17T12:53:40.407Z",
+  "local_time": "2026-08-17T09:53:40",
+  "completed_at": "2026-08-17T12:53:41.475Z",
+  "elapsed_ms": 1069,
+  "result": "BLOCK_GTIN_MODEL_CONFLICT",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact GTIN catalog identity conflict: MODEL,BATTERY_SIZE,COMPOSITION",
+  "sanitation": "GTIN_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

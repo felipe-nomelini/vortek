@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-08-17T14:15:53.434Z",
+  "local_images": [
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f23bb7a86abfe426eda281d898d935ce.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e9e3d2bc96c9329fd1b7199cf51a4ff4.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1b8158e35423ce76a941e4b170933b5c.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a5cd9f9c635364ce491300f565c5b570.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d7736c951742c642454dc7f96e10bf53.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/823d027afd45f7e2ebd71c83fabf3814.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/6935cae3b4cf0b2fc572a036486f529e.jpg",
+    "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2a6c0a94cfc6cbb3637febd7d5209440.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "988792-MLA99935859897_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_988792-MLA99935859897_112025-F.jpg",
+      "max_width": "1078",
+      "max_height": "836"
+    },
+    {
+      "id": "600690-MLU76690367498_062024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_600690-MLU76690367498_062024-F.jpg",
+      "max_width": "1083",
+      "max_height": "987"
+    },
+    {
+      "id": "870465-MLU76690212906_062024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_870465-MLU76690212906_062024-F.jpg",
+      "max_width": "1078",
+      "max_height": "1080"
+    },
+    {
+      "id": "809964-MLU76690338586_062024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_809964-MLU76690338586_062024-F.jpg",
+      "max_width": "710",
+      "max_height": "1067"
+    },
+    {
+      "id": "649960-MLU76690367512_062024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_649960-MLU76690367512_062024-F.jpg",
+      "max_width": "1062",
+      "max_height": "976"
+    },
+    {
+      "id": "769053-MLA84024349992_052025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_769053-MLA84024349992_052025-F.jpg",
+      "max_width": "1038",
+      "max_height": "646"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

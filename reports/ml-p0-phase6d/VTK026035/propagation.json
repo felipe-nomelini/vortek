@@ -1,0 +1,471 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 155,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-length": "1850",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:16:58 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "vary": "Accept-Encoding",
+        "via": "1.1 81aa5b946f2f955d94231eedc507d3d4.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "O-9zm2-NqDoFzDj1FHSvQbLUMDTtwqZJoLGsk-o53EbH3JGw84v-3Q==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "85a27771-38a0-4a51-b05b-34fd74cc8c72",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432633540",
+        "site_id": "MLB",
+        "title": "Espaleira Para Violino Scarlett Ajustável Tamanho 3/4 E 4/4 Preta Preto",
+        "family_name": "Scarlett Espaleira scarlett",
+        "family_id": 3793189906834640,
+        "seller_id": 3294514937,
+        "category_id": "MLB271226",
+        "user_product_id": "MLBU4772934608",
+        "official_store_id": null,
+        "price": 189.9,
+        "base_price": 189.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 7,
+        "available_quantity": 7,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:16:57.435Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:16:57.490Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432633540-espaleira-para-violino-scarlett-ajustavel-tamanho-34-e-44-preta-preto-_JM",
+        "thumbnail_id": "803772-MLA95559262163_102025",
+        "thumbnail": "http://http2.mlstatic.com/D_803772-MLA95559262163_102025-I.jpg",
+        "pictures": [
+          {
+            "id": "803772-MLA95559262163_102025",
+            "url": "http://http2.mlstatic.com/D_803772-MLA95559262163_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_803772-MLA95559262163_102025-O.jpg",
+            "size": "500x183",
+            "max_size": "1200x441",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "19707",
+            "value_name": "Scarlett",
+            "values": [
+              {
+                "id": "19707",
+                "name": "Scarlett",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COMPATIBLE_INSTRUMENTS",
+            "name": "Instrumentos compatíveis",
+            "value_id": "4574294",
+            "value_name": "Violino",
+            "values": [
+              {
+                "id": "4574294",
+                "name": "Violino",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "COMPATIBLE_SIZES",
+            "name": "Tamanhos compatíveis",
+            "value_id": "4574304",
+            "value_name": "4/4",
+            "values": [
+              {
+                "id": "4574304",
+                "name": "4/4",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "25322939",
+            "value_name": "7898672372227",
+            "values": [
+              {
+                "id": "25322939",
+                "name": "7898672372227",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "IS_ADJUSTABLE",
+            "name": "É ajustável",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_PADDED",
+            "name": "É almofadado",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MATERIALS",
+            "name": "Materiais",
+            "value_id": "2748302",
+            "value_name": "Plástico",
+            "values": [
+              {
+                "id": "2748302",
+                "name": "Plástico",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "48866686",
+            "value_name": "Espaleira scarlett",
+            "values": [
+              {
+                "id": "48866686",
+                "name": "Espaleira scarlett",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK026035",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK026035",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB27716824",
+        "domain_id": "MLB-VIOLIN_AND_VIOLA_SHOULDER_RESTS",
+        "seller_custom_field": "VTK026035",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:16:57.599Z",
+        "last_updated": "2026-08-17T01:16:57.599Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 332,
+    "user_product": {
+      "id": "MLBU4772934608",
+      "name": "Espaleira Para Violino Scarlett Ajustável Tamanho 3/4 E 4/4 Preta Preto",
+      "family_name": "Scarlett Espaleira scarlett",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-VIOLIN_AND_VIOLA_SHOULDER_RESTS",
+      "attributes": [
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "25322939",
+              "name": "7898672372227",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "19707",
+              "name": "Scarlett",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_SIZES",
+          "name": "Tamanhos compatíveis",
+          "values": [
+            {
+              "id": "4574304",
+              "name": "4/4",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "values": [
+            {
+              "id": "2748302",
+              "name": "Plástico",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_ADJUSTABLE",
+          "name": "É ajustável",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_INSTRUMENTS",
+          "name": "Instrumentos compatíveis",
+          "values": [
+            {
+              "id": "4574294",
+              "name": "Violino",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_PADDED",
+          "name": "É almofadado",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "48866686",
+              "name": "Espaleira scarlett",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK026035",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "803772-MLA95559262163_102025",
+          "secure_url": "https://http2.mlstatic.com/D_803772-MLA95559262163_102025-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "803772-MLA95559262163_102025",
+        "secure_url": "https://http2.mlstatic.com/D_803772-MLA95559262163_102025-O.jpg"
+      },
+      "catalog_product_id": "MLB27716824",
+      "bundle": null,
+      "family_id": 3793189906834640,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:16:57.694+0000",
+      "last_updated": "2026-08-17T01:16:57.694+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4772934608"
+      ],
+      "family_id": 3793189906834640,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

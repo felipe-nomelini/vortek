@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Refil Tinta Epson T504 Preto",
+    "supplier_category": "Informatica/ Suprimentos/ Cartucho Preto",
+    "supplier_brand": "EPSON",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/389509",
+    "captured_at": "2026-08-17T12:56:49.791Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

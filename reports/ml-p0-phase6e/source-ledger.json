@@ -1,0 +1,1621 @@
+{
+  "generated_at": "2026-08-17T12:56:56.356Z",
+  "rows": [
+    {
+      "sku": "VTK013078",
+      "source": "ML catalog MLB21645092 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK004115",
+      "source": "ML catalog MLB26250590 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018422",
+      "source": "ML catalog MLB52897049 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK018454",
+      "source": "ML catalog MLB21341534 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018598",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018608",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018616",
+      "source": "ML exact GTIN catalog MLB49204248 + DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/261698",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK018636",
+      "source": "ML catalog MLB32453654 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_IDENTITY"
+    },
+    {
+      "sku": "VTK018639",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019219",
+      "source": "ML catalog MLB44833164 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK021164",
+      "source": "ML catalog MLB27415054 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK001254",
+      "source": "ML catalog MLB33960281 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK001264",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK001291",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK001303",
+      "source": "ML catalog MLB17460878 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK001343",
+      "source": "ML catalog MLB63661934 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_UNIT_CONFLICT"
+    },
+    {
+      "sku": "VTK001863",
+      "source": "ML catalog MLB41718104 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK002625",
+      "source": "ML catalog MLB64278882 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK004022",
+      "source": "ML catalog MLB23309215 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018635",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018702",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018714",
+      "source": "ML exact GTIN catalog MLB51341026 + DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/189698",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK018729",
+      "source": "ML catalog MLB41368352 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK018746",
+      "source": "ML catalog MLB51671242 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK018748",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018749",
+      "source": "ML catalog MLB46847584 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK018768",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018830",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK020602",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK021438",
+      "source": "ML catalog MLB32672642 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK022010",
+      "source": "ML catalog MLB52370760 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK001390",
+      "source": "ML catalog MLB68303838 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK001439",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK000831",
+      "source": "ML catalog MLB27987903 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK001156",
+      "source": "ML catalog MLB20223388 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK001297",
+      "source": "ML catalog MLB17460880 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK001325",
+      "source": "ML catalog MLB33936674 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK001379",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK001485",
+      "source": "ML catalog MLB29974311 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK003779",
+      "source": "ML catalog MLB27322428 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_IDENTITY"
+    },
+    {
+      "sku": "VTK012590",
+      "source": "ML catalog MLB24680597 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_UNIT_CONFLICT"
+    },
+    {
+      "sku": "VTK018562",
+      "source": "ML catalog MLB52591992 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK018664",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018857",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018868",
+      "source": "ML catalog MLB52194075 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018869",
+      "source": "ML catalog MLB51341037 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018870",
+      "source": "ML catalog MLB50657370 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018908",
+      "source": "ML catalog MLB34809272 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK018909",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018911",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018912",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018924",
+      "source": "ML catalog MLB24453976 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK018934",
+      "source": "ML catalog MLB35305936 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018936",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018943",
+      "source": "ML catalog MLB29031503 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK018944",
+      "source": "ML catalog MLB30417363 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK020653",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK020904",
+      "source": "ML catalog MLB62474756 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK025958",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK025961",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK003511",
+      "source": "ML catalog MLB27282165 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK005491",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012632",
+      "source": "ML catalog MLB37812904 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK012895",
+      "source": "ML catalog MLB23545878 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_IDENTITY"
+    },
+    {
+      "sku": "VTK018935",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018968",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019018",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019030",
+      "source": "ML catalog MLB28674283 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_BRAND_CONFLICT"
+    },
+    {
+      "sku": "VTK019044",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019089",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019090",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019094",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019095",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019096",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019099",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019100",
+      "source": "ML catalog MLB14892185 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK019108",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019117",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019126",
+      "source": "ML catalog MLB28223714 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK019131",
+      "source": "ML catalog MLB28393443 + domain discovery",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_CATEGORY"
+    },
+    {
+      "sku": "VTK020645",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK020656",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK020660",
+      "source": "DSLite supplier + exact ML GTIN lookup",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012861",
+      "source": "ML catalog MLB38787642 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK012864",
+      "source": "ML exact GTIN catalog MLB32450801 + DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1550",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK012865",
+      "source": "ML catalog MLB32953866 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK012866",
+      "source": "ML catalog MLB37585574 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK012869",
+      "source": "ML catalog MLB39982020 + DSLite supplier",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "BLOCK_GTIN_MODEL_CONFLICT"
+    },
+    {
+      "sku": "VTK012014",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012016",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012018",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012022",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012039",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012040",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK025996",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK025997",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK025998",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026002",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012148",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012369",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017202",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017210",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017233",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017234",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017235",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017240",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017241",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017242",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017243",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017248",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017252",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017255",
+      "source": null,
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ],
+      "decision": "PASS"
+    },
+    {
+      "sku": "VTK017259",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017260",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017261",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017262",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017263",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017278",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017279",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017297",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017353",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017366",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017369",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017374",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017378",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017400",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017401",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017402",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017403",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017408",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017523",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017524",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017531",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026004",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026005",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017435",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017436",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026006",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017538",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017548",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK023558",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026009",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017629",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012236",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012237",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012248",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019037",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017567",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026010",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017740",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017942",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017600",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017826",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012267",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012275",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012283",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012282",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012297",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017814",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012301",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017827",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012304",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012310",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012319",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012321",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012327",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017803",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017840",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017866",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017869",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012335",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012337",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017902",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026011",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017939",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026014",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026015",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017651",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017936",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017934",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018660",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026016",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK026017",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012383",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012384",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017903",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK017951",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018064",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012408",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018102",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK023678",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012420",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018128",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018139",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK019776",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012421",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK012422",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018197",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018201",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    },
+    {
+      "sku": "VTK018641",
+      "source": "local + DSLite supplier; official identity unresolved",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T12:56:56.356Z",
+      "supported_fields": [],
+      "decision": "SOURCE_DEFERRED"
+    }
+  ]
+}

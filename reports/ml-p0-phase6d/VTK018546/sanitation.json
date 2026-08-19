@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018546",
+  "gate": "BLOCK_GTIN_BRAND_CONFLICT",
+  "evidence": "exact GTIN catalog brand is GNA, not local Viaweb",
+  "local_value": "7898936319234",
+  "found_value": "GNA",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB64192526",
+  "timestamp": "2026-08-17T01:16:59.842Z"
+}

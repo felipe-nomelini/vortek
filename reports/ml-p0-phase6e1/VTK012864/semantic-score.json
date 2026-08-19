@@ -1,0 +1,38 @@
+{
+  "score": 73,
+  "parts": {
+    "product_identity": 25,
+    "function_match": 25,
+    "intended_use": 20,
+    "category_path_coherence": 0,
+    "catalog_coherence": 3
+  },
+  "identity_confidence": 100,
+  "classification": "SEMANTIC_MISMATCH",
+  "hard_mismatch": true,
+  "hard_conflicts": [
+    "INCOMPATIBLE_CONTEXT:tablet|internal_speaker",
+    "PROFESSIONAL_SPEAKER_IN_TABLET_TREE"
+  ],
+  "function_match": true,
+  "intended_use_match": true,
+  "path_coherent": false,
+  "expected_hits": [
+    "altofalante"
+  ],
+  "functional_hits": [
+    "altofalante"
+  ],
+  "incompatible_hits": [
+    "tablet",
+    "internal_speaker"
+  ],
+  "catalog_category_correlated_error": true,
+  "independent_source_present": true,
+  "attribute_signals": {
+    "checked": true,
+    "attribute_count": 54,
+    "conflicts": [],
+    "classification": "NO_HARD_ATTRIBUTE_MISMATCH"
+  }
+}

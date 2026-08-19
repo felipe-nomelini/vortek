@@ -1,0 +1,1128 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 155,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:16:46 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 81aa5b946f2f955d94231eedc507d3d4.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "3ElCF5XN11xtyvp1dJrB_Ly2p_mYuTqRMcvWYUYfOBdxZiD2TLFJGw==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "e1f52022-4439-4160-9779-687c7f3d7f45",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432633498",
+        "site_id": "MLB",
+        "title": "Fogão Elétrico De Mesa 2 Bocas 2000w Agratto Fm-01 Aço Inoxidável 127v",
+        "family_name": "Agratto FM-01 2 Bocas",
+        "family_id": 1628321797764048,
+        "seller_id": 3294514937,
+        "category_id": "MLB120316",
+        "user_product_id": "MLBU4772934452",
+        "official_store_id": null,
+        "price": 439.9,
+        "base_price": 439.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 9,
+        "available_quantity": 9,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:16:46.249Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:16:46.349Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432633498-fogo-eletrico-de-mesa-2-bocas-2000w-agratto-fm-01-aco-inoxidavel-127v-_JM",
+        "thumbnail_id": "763809-MLA100852866791_122025",
+        "thumbnail": "http://http2.mlstatic.com/D_763809-MLA100852866791_122025-I.jpg",
+        "pictures": [
+          {
+            "id": "763809-MLA100852866791_122025",
+            "url": "http://http2.mlstatic.com/D_763809-MLA100852866791_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_763809-MLA100852866791_122025-O.jpg",
+            "size": "500x377",
+            "max_size": "1200x907",
+            "quality": ""
+          },
+          {
+            "id": "772906-MLA100360586770_122025",
+            "url": "http://http2.mlstatic.com/D_772906-MLA100360586770_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_772906-MLA100360586770_122025-O.jpg",
+            "size": "500x361",
+            "max_size": "1200x868",
+            "quality": ""
+          },
+          {
+            "id": "628095-MLA100360140364_122025",
+            "url": "http://http2.mlstatic.com/D_628095-MLA100360140364_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_628095-MLA100360140364_122025-O.jpg",
+            "size": "500x361",
+            "max_size": "1200x868",
+            "quality": ""
+          },
+          {
+            "id": "837408-MLA100360547220_122025",
+            "url": "http://http2.mlstatic.com/D_837408-MLA100360547220_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_837408-MLA100360547220_122025-O.jpg",
+            "size": "500x378",
+            "max_size": "1200x909",
+            "quality": ""
+          },
+          {
+            "id": "608187-MLA100360457952_122025",
+            "url": "http://http2.mlstatic.com/D_608187-MLA100360457952_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_608187-MLA100360457952_122025-O.jpg",
+            "size": "500x369",
+            "max_size": "1200x886",
+            "quality": ""
+          },
+          {
+            "id": "703438-MLA114651790255_072026",
+            "url": "http://http2.mlstatic.com/D_703438-MLA114651790255_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_703438-MLA114651790255_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1024x1024",
+            "quality": ""
+          },
+          {
+            "id": "938765-MLA113396543012_072026",
+            "url": "http://http2.mlstatic.com/D_938765-MLA113396543012_072026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_938765-MLA113396543012_072026-O.jpg",
+            "size": "500x500",
+            "max_size": "1024x1024",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "97494",
+            "value_name": "Agratto",
+            "values": [
+              {
+                "id": "97494",
+                "name": "Agratto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "BURNERS_NUMBER",
+            "name": "Quantidade de bocas",
+            "value_id": "211153",
+            "value_name": "2",
+            "values": [
+              {
+                "id": "211153",
+                "name": "2",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "2414689",
+            "value_name": "Aço inoxidável",
+            "values": [
+              {
+                "id": "2414689",
+                "name": "Aço inoxidável",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CONTROL_TYPE",
+            "name": "Tipo de controle",
+            "value_id": "11027425",
+            "value_name": "Manípulos",
+            "values": [
+              {
+                "id": "11027425",
+                "name": "Manípulos",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COOKTOPS_TOTAL_POWER",
+            "name": "Potência total",
+            "value_id": "47079007",
+            "value_name": "2 kW",
+            "values": [
+              {
+                "id": "47079007",
+                "name": "2 kW",
+                "struct": {
+                  "number": 2,
+                  "unit": "kW"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "DEPTH",
+            "name": "Profundidade",
+            "value_id": "943435",
+            "value_name": "50 cm",
+            "values": [
+              {
+                "id": "943435",
+                "name": "50 cm",
+                "struct": {
+                  "number": 50,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "DETAILED_MODEL",
+            "name": "Modelo detalhado",
+            "value_id": "7490134",
+            "value_name": "FM-01",
+            "values": [
+              {
+                "id": "7490134",
+                "name": "FM-01",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "FREQUENCY",
+            "name": "Frequência",
+            "value_id": "10981338",
+            "value_name": "60",
+            "values": [
+              {
+                "id": "10981338",
+                "name": "60",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GRATES_MATERIAL",
+            "name": "Material das trempes",
+            "value_id": "7080774",
+            "value_name": "Ferro",
+            "values": [
+              {
+                "id": "7080774",
+                "name": "Ferro",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": null,
+            "value_name": "7898461965838,7898461968426,7893473126161,7892377088780",
+            "values": [
+              {
+                "id": "8461768",
+                "name": "7898461965838",
+                "struct": null
+              },
+              {
+                "id": "10914557",
+                "name": "7898461968426",
+                "struct": null
+              },
+              {
+                "id": "38872346",
+                "name": "7893473126161",
+                "struct": null
+              },
+              {
+                "id": "52708002",
+                "name": "7892377088780",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "1115141",
+            "value_name": "8 cm",
+            "values": [
+              {
+                "id": "1115141",
+                "name": "8 cm",
+                "struct": {
+                  "number": 8,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "IGNITION_TYPE",
+            "name": "Tipo de ignição",
+            "value_id": "94845",
+            "value_name": "Automático",
+            "values": [
+              {
+                "id": "94845",
+                "name": "Automático",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "IS_BOTTLED_GAS_CONVERTIBLE",
+            "name": "É conversível a gás engarrafado",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_ECOLOGIC",
+            "name": "É ecológico",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_INDUSTRIAL",
+            "name": "É industrial",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_NATURAL_GAS_CONVERTIBLE",
+            "name": "É conversível a gás natural",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MAIN_COLOR",
+            "name": "Cor principal",
+            "value_id": "2450303",
+            "value_name": "Prateado",
+            "values": [
+              {
+                "id": "2450303",
+                "name": "Prateado",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "84813619",
+            "value_name": "Agratto FM-01 2 Bocas",
+            "values": [
+              {
+                "id": "84813619",
+                "name": "Agratto FM-01 2 Bocas",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MOUNTING_TYPE",
+            "name": "Tipo de montagem",
+            "value_id": "4502036",
+            "value_name": "De chão",
+            "values": [
+              {
+                "id": "4502036",
+                "name": "De chão",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MPN",
+            "name": "MPN",
+            "value_id": "11111581",
+            "value_name": "4917",
+            "values": [
+              {
+                "id": "11111581",
+                "name": "4917",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "POWER_LEVELS",
+            "name": "Níveis de potência",
+            "value_id": "996069",
+            "value_name": "5",
+            "values": [
+              {
+                "id": "996069",
+                "name": "5",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "POWER_SUPPLY_TYPES",
+            "name": "Tipos de alimentação",
+            "value_id": "1033091",
+            "value_name": "Elétrica",
+            "values": [
+              {
+                "id": "1033091",
+                "name": "Elétrica",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK001011",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK001011",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SURFACE_MATERIALS",
+            "name": "Materiais da superfície",
+            "value_id": "5987349",
+            "value_name": "Aço inoxidável",
+            "values": [
+              {
+                "id": "5987349",
+                "name": "Aço inoxidável",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem",
+            "value_id": "39205162",
+            "value_name": "127V",
+            "values": [
+              {
+                "id": "39205162",
+                "name": "127V",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "15996578",
+            "value_name": "2.52 kg",
+            "values": [
+              {
+                "id": "15996578",
+                "name": "2.52 kg",
+                "struct": {
+                  "number": 2.52,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "1094978",
+            "value_name": "275 cm",
+            "values": [
+              {
+                "id": "1094978",
+                "name": "275 cm",
+                "struct": {
+                  "number": 275,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WITH_OVERHEAT_PROTECTION",
+            "name": "Com proteção contra superaquecimento",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_SAFETY_LOCK",
+            "name": "Com trava de segurança",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_SAFETY_VALVES",
+            "name": "Com válvulas de segurança",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_TIMER",
+            "name": "Com temporizador",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB11329647",
+        "domain_id": "MLB-COOKTOPS",
+        "seller_custom_field": "VTK001011",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:16:46.437Z",
+        "last_updated": "2026-08-17T01:16:46.437Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3672,
+    "user_product": {
+      "id": "MLBU4772934452",
+      "name": "Fogão Elétrico De Mesa 2 Bocas 2000w Agratto Fm-01 Aço Inoxidável 127v",
+      "family_name": "Agratto FM-01 2 Bocas",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-COOKTOPS",
+      "attributes": [
+        {
+          "id": "IGNITION_TYPE",
+          "name": "Tipo de ignição",
+          "values": [
+            {
+              "id": "94845",
+              "name": "Automático",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GRATES_MATERIAL",
+          "name": "Material das trempes",
+          "values": [
+            {
+              "id": "7080774",
+              "name": "Ferro",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BURNERS_NUMBER",
+          "name": "Quantidade de bocas",
+          "values": [
+            {
+              "id": "211153",
+              "name": "2",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "values": [
+            {
+              "id": "2450303",
+              "name": "Prateado",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "values": [
+            {
+              "id": "15996578",
+              "name": "2.52 kg",
+              "struct": {
+                "number": 2.52,
+                "unit": "kg"
+              }
+            }
+          ]
+        },
+        {
+          "id": "POWER_LEVELS",
+          "name": "Níveis de potência",
+          "values": [
+            {
+              "id": "996069",
+              "name": "5",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_SAFETY_VALVES",
+          "name": "Com válvulas de segurança",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK001011",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "CONTROL_TYPE",
+          "name": "Tipo de controle",
+          "values": [
+            {
+              "id": "11027425",
+              "name": "Manípulos",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SURFACE_MATERIALS",
+          "name": "Materiais da superfície",
+          "values": [
+            {
+              "id": "5987349",
+              "name": "Aço inoxidável",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "values": [
+            {
+              "id": "943435",
+              "name": "50 cm",
+              "struct": {
+                "number": 50,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "COOKTOPS_TOTAL_POWER",
+          "name": "Potência total",
+          "values": [
+            {
+              "id": "47079007",
+              "name": "2 kW",
+              "struct": {
+                "number": 2,
+                "unit": "kW"
+              }
+            }
+          ]
+        },
+        {
+          "id": "IS_NATURAL_GAS_CONVERTIBLE",
+          "name": "É conversível a gás natural",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_BOTTLED_GAS_CONVERTIBLE",
+          "name": "É conversível a gás engarrafado",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_INDUSTRIAL",
+          "name": "É industrial",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "84813619",
+              "name": "Agratto FM-01 2 Bocas",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "8461768",
+              "name": "7898461965838",
+              "struct": null
+            },
+            {
+              "id": "10914557",
+              "name": "7898461968426",
+              "struct": null
+            },
+            {
+              "id": "38872346",
+              "name": "7893473126161",
+              "struct": null
+            },
+            {
+              "id": "52708002",
+              "name": "7892377088780",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MPN",
+          "name": "MPN",
+          "values": [
+            {
+              "id": "11111581",
+              "name": "4917",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_SAFETY_LOCK",
+          "name": "Com trava de segurança",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "name": "Tipos de alimentação",
+          "values": [
+            {
+              "id": "1033091",
+              "name": "Elétrica",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "values": [
+            {
+              "id": "1115141",
+              "name": "8 cm",
+              "struct": {
+                "number": 8,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY",
+          "name": "Frequência",
+          "values": [
+            {
+              "id": "10981338",
+              "name": "60",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MOUNTING_TYPE",
+          "name": "Tipo de montagem",
+          "values": [
+            {
+              "id": "4502036",
+              "name": "De chão",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_TIMER",
+          "name": "Com temporizador",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "values": [
+            {
+              "id": "39205162",
+              "name": "127V",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_ECOLOGIC",
+          "name": "É ecológico",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "values": [
+            {
+              "id": "2414689",
+              "name": "Aço inoxidável",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "values": [
+            {
+              "id": "7490134",
+              "name": "FM-01",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_OVERHEAT_PROTECTION",
+          "name": "Com proteção contra superaquecimento",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "97494",
+              "name": "Agratto",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "values": [
+            {
+              "id": "1094978",
+              "name": "275 cm",
+              "struct": {
+                "number": 275,
+                "unit": "cm"
+              }
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "763809-MLA100852866791_122025",
+          "secure_url": "https://http2.mlstatic.com/D_763809-MLA100852866791_122025-O.jpg"
+        },
+        {
+          "id": "772906-MLA100360586770_122025",
+          "secure_url": "https://http2.mlstatic.com/D_772906-MLA100360586770_122025-O.jpg"
+        },
+        {
+          "id": "628095-MLA100360140364_122025",
+          "secure_url": "https://http2.mlstatic.com/D_628095-MLA100360140364_122025-O.jpg"
+        },
+        {
+          "id": "837408-MLA100360547220_122025",
+          "secure_url": "https://http2.mlstatic.com/D_837408-MLA100360547220_122025-O.jpg"
+        },
+        {
+          "id": "608187-MLA100360457952_122025",
+          "secure_url": "https://http2.mlstatic.com/D_608187-MLA100360457952_122025-O.jpg"
+        },
+        {
+          "id": "703438-MLA114651790255_072026",
+          "secure_url": "https://http2.mlstatic.com/D_703438-MLA114651790255_072026-O.jpg"
+        },
+        {
+          "id": "938765-MLA113396543012_072026",
+          "secure_url": "https://http2.mlstatic.com/D_938765-MLA113396543012_072026-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "763809-MLA100852866791_122025",
+        "secure_url": "https://http2.mlstatic.com/D_763809-MLA100852866791_122025-O.jpg"
+      },
+      "catalog_product_id": "MLB11329647",
+      "bundle": null,
+      "family_id": 1628321797764048,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:16:46.575+0000",
+      "last_updated": "2026-08-17T01:16:46.575+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4772934452"
+      ],
+      "family_id": 1628321797764048,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

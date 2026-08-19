@@ -1,0 +1,7 @@
+{
+  "verdict": "PASS",
+  "supplier_context": "musical_instrument",
+  "remote_context": "musical_instrument",
+  "independent_function_match": true,
+  "reason": "supplier/local semantics and full category path agree"
+}

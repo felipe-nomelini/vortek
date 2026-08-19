@@ -38,6 +38,7 @@ type AuditEvent =
   | 'dslite_desvinculo_manual'
   | 'dslite_purchase_created_with_brasilnfe_xml'
   | 'dslite_blocked_same_nfe'
+  | 'dslite_reactivated_order_reused'
   | 'dslite_product_lookup_result'
   | 'dslite_create_order_failed'
   | 'dslite_create_with_supplier_success'

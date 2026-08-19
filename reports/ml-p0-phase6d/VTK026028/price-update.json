@@ -1,0 +1,354 @@
+{
+  "executed": true,
+  "endpoint": "PUT /items/MLB7432633436",
+  "request_id": "dbf0ffcf-0c9c-453b-91f5-59c68b477065",
+  "http_status": 200,
+  "target": 509.9,
+  "body": {
+    "id": "MLB7432633436",
+    "site_id": "MLB",
+    "title": "Prolongador Suporte Para Subwoofer Prs-130 Saty Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB10233",
+    "user_product_id": "MLBU4772936270",
+    "official_store_id": null,
+    "price": 509.9,
+    "base_price": 509.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 10,
+    "available_quantity": 10,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Saty PRS-130",
+    "family_id": 7485571339935695,
+    "start_time": "2026-08-17T01:16:31.200Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:16:40.501Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432633436-prolongador-suporte-para-subwoofer-prs-130-saty-preto-_JM",
+    "pictures": [
+      {
+        "id": "704983-MLA100010262247_122025",
+        "url": "http://mla-s1-p.mlstatic.com/704983-MLA100010262247_122025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/704983-MLA100010262247_122025-O.jpg",
+        "size": "495x500",
+        "max_size": "1190x1200",
+        "quality": ""
+      },
+      {
+        "id": "658669-MLA91996314843_092025",
+        "url": "http://mla-s1-p.mlstatic.com/658669-MLA91996314843_092025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/658669-MLA91996314843_092025-O.jpg",
+        "size": "492x500",
+        "max_size": "1181x1200",
+        "quality": ""
+      },
+      {
+        "id": "692877-MLA91996235087_092025",
+        "url": "http://mla-s1-p.mlstatic.com/692877-MLA91996235087_092025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/692877-MLA91996235087_092025-O.jpg",
+        "size": "340x500",
+        "max_size": "817x1200",
+        "quality": ""
+      },
+      {
+        "id": "876560-MLA91596378032_092025",
+        "url": "http://mla-s1-p.mlstatic.com/876560-MLA91596378032_092025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/876560-MLA91596378032_092025-O.jpg",
+        "size": "459x500",
+        "max_size": "1103x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "5451933",
+        "value_name": "Saty",
+        "values": [
+          {
+            "id": "5451933",
+            "name": "Saty",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "34405547",
+        "value_name": "7898572863467",
+        "values": [
+          {
+            "id": "34405547",
+            "name": "7898572863467",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "name": "Lugar de colocação",
+        "value_id": "4502036",
+        "value_name": "De chão",
+        "values": [
+          {
+            "id": "4502036",
+            "name": "De chão",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "name": "É ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2431883",
+        "value_name": "Ferro",
+        "values": [
+          {
+            "id": "2431883",
+            "name": "Ferro",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_HEIGHT",
+        "name": "Altura máxima",
+        "value_id": "73870149",
+        "value_name": "142 cm",
+        "values": [
+          {
+            "id": "73870149",
+            "name": "142 cm",
+            "struct": {
+              "number": 142,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MIN_HEIGHT",
+        "name": "Altura mínima",
+        "value_id": "19927265",
+        "value_name": "80 cm",
+        "values": [
+          {
+            "id": "19927265",
+            "name": "80 cm",
+            "struct": {
+              "number": 80,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "34405546",
+        "value_name": "PRS-130",
+        "values": [
+          {
+            "id": "34405546",
+            "name": "PRS-130",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK026028",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026028",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "704983-MLA100010262247_122025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/704983-MLA100010262247_122025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB34133110",
+    "domain_id": "MLB-SPEAKERS_STANDS",
+    "seller_custom_field": "VTK026028",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:16:31.410Z",
+    "last_updated": "2026-08-17T01:16:40.571Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

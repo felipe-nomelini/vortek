@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018199",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Locktronic ultrasonic sensor category resolution is not high-confidence",
+  "local_value": "7898441353204",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB47241839 + DSLite supplier",
+  "timestamp": "2026-08-17T01:15:43.029Z"
+}

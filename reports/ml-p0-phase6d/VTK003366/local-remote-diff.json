@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075856591",
+      "local": "MLB5075856591",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK003366",
+      "local": "VTK003366",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "b0226edf-3e39-456a-9ca3-88fc8a8b6289",
+      "local": "b0226edf-3e39-456a-9ca3-88fc8a8b6289",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Encordoamento 010-046 P/ Guitarra Regular Slink Niquel P02221 Ernie Ball",
+      "local": "Encordoamento 010-046 P/ Guitarra Regular Slink Niquel P02221 Ernie Ball",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 259.9,
+      "local": 259.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075856591-encordoamento-010-046-p-guitarra-regular-slink-niquel-p02221-ernie-ball-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075856591-encordoamento-010-046-p-guitarra-regular-slink-niquel-p02221-ernie-ball-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

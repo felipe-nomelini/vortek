@@ -1,0 +1,34 @@
+{
+  "selected": {
+    "category_id": "MLB429116",
+    "domain_id": "MLB-EQUINE_ROPES",
+    "domain_name": "Laços para equinos",
+    "category_name": "Laços",
+    "category_path": [
+      "Esportes e Fitness",
+      "Equitação",
+      "Equipamento do Cavalo",
+      "Laços"
+    ],
+    "normalized_context": "mlbequineropeslacosparaequinosmlbequineropesesportesefitnessequitacaoequipamentodocavalolacoslacos"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB429116",
+        "domain_id": "MLB-EQUINE_ROPES",
+        "domain_name": "Laços para equinos",
+        "category_name": "Laços",
+        "category_path": [
+          "Esportes e Fitness",
+          "Equitação",
+          "Equipamento do Cavalo",
+          "Laços"
+        ],
+        "normalized_context": "mlbequineropeslacosparaequinosmlbequineropesesportesefitnessequitacaoequipamentodocavalolacoslacos"
+      },
+      "score": 41,
+      "hard_mismatch": true
+    }
+  ]
+}

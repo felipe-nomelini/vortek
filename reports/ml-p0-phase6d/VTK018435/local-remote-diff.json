@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075857471",
+      "local": "MLB5075857471",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK018435",
+      "local": "VTK018435",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+      "local": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Máquina Golden Waffle 850w Cinza Britânia 220v",
+      "local": "Máquina Golden Waffle 850w Cinza Britânia 220v",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 559.9,
+      "local": 559.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075857471-maquina-golden-waffle-850w-cinza-britnia-220v-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075857471-maquina-golden-waffle-850w-cinza-britnia-220v-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

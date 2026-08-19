@@ -1,0 +1,161 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd9ab7931cba037fb7019cb73ac7a17.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd9ab7931cba037fb7019cb73ac7a17.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d43a55d6695a009df02debf9d976e137.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d43a55d6695a009df02debf9d976e137.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0969fe99de2a41fd574e0010e625a969.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0969fe99de2a41fd574e0010e625a969.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1306c6aeb6cca811b2941d4f41c3d720.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1306c6aeb6cca811b2941d4f41c3d720.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 5,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/28a215493f60123db3a21e5ef77b9025.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/28a215493f60123db3a21e5ef77b9025.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 6,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/53495f8b7d9c3908bbb4957bd95c2bd8.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/53495f8b7d9c3908bbb4957bd95c2bd8.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 7,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f50ed2daeffc004f96b3926de6009e41.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f50ed2daeffc004f96b3926de6009e41.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd9ab7931cba037fb7019cb73ac7a17.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd9ab7931cba037fb7019cb73ac7a17.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d43a55d6695a009df02debf9d976e137.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d43a55d6695a009df02debf9d976e137.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0969fe99de2a41fd574e0010e625a969.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0969fe99de2a41fd574e0010e625a969.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 4,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1306c6aeb6cca811b2941d4f41c3d720.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1306c6aeb6cca811b2941d4f41c3d720.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 5,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/28a215493f60123db3a21e5ef77b9025.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/28a215493f60123db3a21e5ef77b9025.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 6,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/53495f8b7d9c3908bbb4957bd95c2bd8.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/53495f8b7d9c3908bbb4957bd95c2bd8.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 7,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f50ed2daeffc004f96b3926de6009e41.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f50ed2daeffc004f96b3926de6009e41.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-17T14:15:52.146Z",
+  "product": {
+    "id": "0cd3928f-2185-4a0d-bac0-05862a066d7d",
+    "sku": "VTK019131",
+    "nome": "Laço Indutivo Citrox 1,90x0,80 Cx-4001",
+    "marca": "CITROX",
+    "estoque": 3,
+    "custo": 102.95,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.882,
+    "peso_bruto": 0.882,
+    "largura": 24,
+    "altura": 5.5,
+    "profundidade": 25,
+    "gtin": "7898954353265",
+    "descricao": "Seu princípio de funcionamento é de detecção através da massa metálica do veículo; O laço Indutivo funciona como uma antena que detecta a presença de um veículo. Deverá ser embutido no piso (chão) da via em que o acesso é controlado. Possui condutores com alta condutividade, capa isolante resistente, totalmente preparada para a acomodação sob o asfalto ou concreto. Suas conexões são resinadas, e toda a sua superfície é impermeável. *Imagem meramente ilustrativa.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019131/01-11d69c7d1c471790e924.jpg"
+    ],
+    "categoria": "Segurança / Alarme/ Acessórios Alarme",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:35.398356+00:00",
+    "updated_at": "2026-08-17T11:21:19.596872+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "366721",
+    "dslite_ultima_sync": "2026-08-17T11:21:19.436+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85439090",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "b5eec0cb-3269-4290-b2c2-0329d1b1a316",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "inductive_security_loop",
+    "function": "detect_metal_vehicle_presence",
+    "intended_use": "electronic_security",
+    "physical_form": "inductive_loop",
+    "expected_category_signals": [
+      "lacoindutivo",
+      "detector",
+      "seguranca",
+      "controledeacesso",
+      "alarme"
+    ],
+    "incompatible_category_signals": [
+      "equitacao",
+      "cavalo",
+      "corda",
+      "lacos"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "electronic_security",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:39.736Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+    "supplier_category": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+    "supplier_brand": "TURY",
+    "supplier_gtin": "7898096330209",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/264746",
+    "captured_at": "2026-08-17T12:54:09.811Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "4b74578f-0c5d-4400-ba3f-80c64dbab6c1",
+    "produto_id": "4d070eba-1f9d-4bee-8fbd-7e1c483a84dc",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "264746",
+    "sku_fornecedor": "264746",
+    "custo": 123.9,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:09:27.941+00:00",
+    "created_at": "2026-07-20T18:32:59.010276+00:00",
+    "updated_at": "2026-08-17T11:09:27.95+00:00",
+    "sku_oferta": "264746",
+    "nome": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+    "descricao": "Proteção anti esmagamento Subida e Descida expressa dos vidros Subida e descida dos vidros via alarme Temporização dos botões de comando Modo Fail Disparo do Alarme Modo Econômico Batery Saver",
+    "marca": "TURY",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/6/264746_67d2cae28e99f.jpg"
+    ],
+    "gtin": "7898096330209",
+    "ncm": "85437099",
+    "cest": "01.999.00"
+  }
+}

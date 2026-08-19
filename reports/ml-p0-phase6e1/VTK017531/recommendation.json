@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Terminal De Fio Aberto Forquilha1/8 Permak Para Módulo - 100un.",
+    "supplier_category": "Eletronica/ Adaptadores/plugues/tomadas/ Adaptores",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/64951",
+    "captured_at": "2026-08-17T12:56:37.212Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

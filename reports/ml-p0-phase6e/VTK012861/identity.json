@@ -1,0 +1,469 @@
+{
+  "checked_at": "2026-08-17T12:55:49.329Z",
+  "product": {
+    "id": "97de1044-c000-438c-9b24-acbc1b7ace04",
+    "sku": "VTK012861",
+    "nome": "Alto-falante 18 Pol 800w Rms 8 Ohms 18lf1610b8 Atk",
+    "marca": "Atk Eletroacústica",
+    "gtin": "7898640360638"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1547",
+    "consulted_at": "2026-08-17T12:55:49.133Z",
+    "product": {
+      "produtoid": "1547",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 1219.9,
+      "preco_crossdocking": 1219.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 1219.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Alto-falante 18 Pol 800w Rms 8 Ohms 18lf1610b8 Atk",
+      "titulo_curto": "Alto-falante 18 Pol 800w Rms 8 Ohms 18lf1610b8 Atk",
+      "categoriaid": "289648",
+      "categoria_nome": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+      "abc": null,
+      "ean11": "7898640360638",
+      "ncm": "8518.29.90",
+      "descricao": "<p>Descrição:</p> <p>Alto-falante de 18” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade.</p> <p>Utiliza uma bobina de 100 mm de diâmetro (4”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior.</p> <p>Design exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica.</p> <p>Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance.</p> <p> </p> <p>Características:</p> <p>-800 W Potência Nominal</p> <p>-Frequência Sonora: Sub Graves</p> <p>-8 Ohms de Impedância Nominal</p> <p>-97 dB SPL de Sensibilidade</p> <p>-30 a 1800Hz</p> <p>Informações para transporte:</p> <p>-Peso unidade: 10.100 kg</p> <p>-Unidade de Transporte: 1 unidade</p> <p>-Dimensões da embalagem: (A) 220 mm x (L) 485 mm x (P) 475 mm</p> <p>-Volume da embalagem: 50.7 L</p> <p>-Peso da unidade embalada: 11.440 kg</p> <p> </p> <p>Especificações do Fabricante:</p> <p>-Potência Nominal Admissível(1): 800 W </p> <p>-Potência Máxima do Amplificador(2): 12800 W pico</p> <p>-Sensibilidade (1W/1m)(3) : 97 dB SPL</p> <p>-Impedância Nominal: 8 Ohms</p> <p>-Impedância Mínima: 6.9 Ohms</p> <p>-Diâmetro Nominal: 457.2 mm (18 pol)</p> <p>-Resposta de Frequência: 30 a 1800 Hz</p> <p>-Diâmetro da Bobina: 100 mm (4”)</p> <p>-Fio da Bobina: Fio de Cobre Seção Retangular</p> <p>-Resistência da Bobina (Re): 5.6 Ohms</p> <p>-X.máx(4): 11 mm </p> <p>-Volume de Ar ocupado: 5.10 L</p> <p> </p> <p>(1)  2 horas de teste realizado com ruído rosa (fator de crista 12 dB) no range de frequência de Fs a 10xFs. Potência calculada com impedância mínima. Alto-falante ao ar livre.</p> <p>Obs: Para aplicar esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no mínimo 12h com 50% da potência nominal.</p> <p>(2)  Potência de pico exigida do amplificador para alcançar a potência nominal considerando um sinal de teste de ruído rosa com fator de crista de 12dB.</p> <p>(3)  Aplicada tensão de 2.83 V RMS sobre a impedância nominal.</p> <p>(4)  O X.máx é calculado considerando uma queda &gt; que 50 % do campo magnético Bl sobre a bobina.</p> <p> </p> <p>Parâmetros Thiele-Small (5)</p> <p>Fs: 38.6 Hz</p> <p>Re: 5.6 Ohms</p> <p>Qes: 0.65</p> <p>Qms: 2.63</p> <p>Qts: 0.46</p> <p>Vas: 206 l</p> <p>Sd: 1288 cm²</p> <p>n0: 2.1 %</p> <p>Mms: 190 g</p> <p>Bl: 21.3 Tm</p> <p>Le: 1.8 mH</p> <p> </p> <p>(5) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Atk Eletroacústica",
+      "modelo": "",
+      "peso": 10.1,
+      "largura": 49,
+      "altura": 22,
+      "profundidade": 48,
+      "peso_embalagem": 11.44,
+      "largura_embalagem": 49,
+      "altura_embalagem": 22,
+      "profundidade_embalagem": 48,
+      "link": null,
+      "link_imagem": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a7bbddef0373a0ccf6e093aff15a5dce.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 27,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "683264350",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-06 11:23:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-06 11:23:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 2,
+      "tempo_cross": 0,
+      "estoque_total": 2,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a7bbddef0373a0ccf6e093aff15a5dce.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9048870c87786337b7fef35f7b7d306d.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/0434fcf26787f9fc1d8e5e2a6b4d6f1c.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/96ee0089df834325180c58cb29efad33.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d59e7a6c4e65258d9f80fe37708ae5c3.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: COLOR,MODEL",
+    "foundValue": "MLB38787642",
+    "source": "ML catalog MLB38787642 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "COLOR",
+        "MODEL"
+      ],
+      "catalog_brand": "Atk Eletroacústica",
+      "model": "Sub Sub Graves 18 Polegadas",
+      "local_pack": 50,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "rosa",
+        "ciano"
+      ],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.5
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB38787642",
+      "catalog_product_id": "MLB38787642",
+      "domain_id": "MLB-VEHICLE_SPEAKERS",
+      "name": "Subwoofer Atk 18 Polegadas 800W RMS 8 Ohms Sub Graves Profundos",
+      "parent_id": "MLB38787640",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "27107924",
+          "value_name": "Atk Eletroacústica",
+          "values": [
+            {
+              "id": "27107924",
+              "name": "Atk Eletroacústica"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "32938138",
+          "value_name": "Alto-falantes Profissionais",
+          "values": [
+            {
+              "id": "32938138",
+              "name": "Alto-falantes Profissionais"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "32938139",
+          "value_name": "Sub Sub Graves 18 Polegadas",
+          "values": [
+            {
+              "id": "32938139",
+              "name": "Sub Sub Graves 18 Polegadas"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "name": "Largura do alto-falante",
+          "value_id": "48677017",
+          "value_name": "18.15 \"",
+          "values": [
+            {
+              "id": "48677017",
+              "name": "18.15 \""
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "name": "Comprimento do alto-falante",
+          "value_id": "48681258",
+          "value_name": "7.677 \"",
+          "values": [
+            {
+              "id": "48681258",
+              "name": "7.677 \""
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "name": "Diâmetro do alto-falante",
+          "value_id": "8737310",
+          "value_name": "18 \"",
+          "values": [
+            {
+              "id": "8737310",
+              "name": "18 \""
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "7452068",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7452068",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete",
+          "values": [
+            {
+              "id": "11377043",
+              "name": "Carro/Caminhonete"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "name": "Tipo de alto-falante",
+          "value_id": "24752232",
+          "value_name": "Sub",
+          "values": [
+            {
+              "id": "24752232",
+              "name": "Sub"
+            }
+          ]
+        },
+        {
+          "id": "COILS_NUMBER",
+          "name": "Quantidade de bobinas",
+          "value_id": "8704186",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "8704186",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "RMS_POWER",
+          "name": "Potência RMS",
+          "value_id": "2378577",
+          "value_name": "800 W",
+          "values": [
+            {
+              "id": "2378577",
+              "name": "800 W"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "name": "Faixa de frequência",
+          "value_id": "40015586",
+          "value_name": "30 a 1800 Hz",
+          "values": [
+            {
+              "id": "40015586",
+              "name": "30 a 1800 Hz"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "2189599",
+          "value_name": "19.5 cm",
+          "values": [
+            {
+              "id": "2189599",
+              "name": "19.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "40015587",
+          "value_name": "7898640360638",
+          "values": [
+            {
+              "id": "40015587",
+              "name": "7898640360638"
+            }
+          ]
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "name": "Materiais da carcaça",
+          "value_id": "8743608",
+          "value_name": "Alumínio injetado",
+          "values": [
+            {
+              "id": "8743608",
+              "name": "Alumínio injetado"
+            }
+          ]
+        },
+        {
+          "id": "COIL_MATERIALS",
+          "name": "Materiais da bobina",
+          "value_id": "74931418",
+          "value_name": "Fio de cobre seção retangular",
+          "values": [
+            {
+              "id": "74931418",
+              "name": "Fio de cobre seção retangular"
+            }
+          ]
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "name": "Materiais do cone",
+          "value_id": "74819920",
+          "value_name": "Impermeabilizado e resistente",
+          "values": [
+            {
+              "id": "74819920",
+              "name": "Impermeabilizado e resistente"
+            }
+          ]
+        },
+        {
+          "id": "RESONANCE_FREQUENCY",
+          "name": "Frequência de ressonância",
+          "value_id": "74931419",
+          "value_name": "38.6 Hz",
+          "values": [
+            {
+              "id": "74931419",
+              "name": "38.6 Hz"
+            }
+          ]
+        },
+        {
+          "id": "SENSITIVITY",
+          "name": "Sensibilidade",
+          "value_id": "2120630",
+          "value_name": "97 dB",
+          "values": [
+            {
+              "id": "2120630",
+              "name": "97 dB"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Alto-falante de 18” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade.  \nUtiliza uma bobina de 100 mm de diâmetro (4”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior.  \nDesign exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica.  \nProjetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance.  \n\n____________________________________________________________  \n\nCaracterísticas:  \n- Faixa de frequência: Sub Graves  \n- 800 W Potência nominal  \n- 8 Ohms de Impedância nominal  \n- 97 dB SPL de Sensibilidade  \n- 30 a 1800Hz  \n\n____________________________________________________________  \n\nInformações para transporte:  \n- Peso unidade: 10.100 kg  \n- Unidade de Transporte: 1 unidade  \n- Dimensões da embalagem: (A) 220 mm x (L) 485 mm x (P) 475 mm  \n- Volume da embalagem: 50.7 L  \n- Peso da unidade embalada: 11.440 kg  \n\n____________________________________________________________  \n\nEspecificações do Fabricante:  \n- Potência nominal Admissível: 800 W  \n- Potência Máxima do Amplificador: 12800 W pico  \n- Sensibilidade (1W/1m): 97 dB SPL  \n- Impedância nominal: 8 Ohms  \n- Impedância Mínima: 6.9 Ohms  \n- Diâmetro nominal: 457.2 mm (18 pol)  \n- Resposta de Frequência: 30 a 1800 Hz  \n- Diâmetro da Bobina: 100 mm (4”)  \n- Fio da Bobina: Fio de Cobre Seção Retangular  \n- Resistência da Bobina (Re): 5.6 Ohms  \n- X.máx: 11 mm  \n- Volume de Ar ocupado: 5.10 L  \n\n____________________________________________________________  \n\nParâmetros Thiele-Small:  \nFs: 38.6 Hz  \nRe: 5.6 Ohms  \nQes: 0.65  \nQms: 2.63  \nQts: 0.46  \nVas: 206 l  \nSd: 1288 cm²  \nn0: 2.1 %  \nMms: 190 g  \nBl: 21.3 Tm  \nLe: 1.8 mH"
+      },
+      "pictures": [
+        {
+          "id": "703686-MLA99419832068_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_703686-MLA99419832068_112025-F.jpg",
+          "max_width": "1090",
+          "max_height": "564"
+        },
+        {
+          "id": "834760-MLU77874064738_072024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_834760-MLU77874064738_072024-F.jpg",
+          "max_width": "1086",
+          "max_height": "700"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-07-31T22:28:58Z",
+      "last_updated": "2026-03-19T01:30:02Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

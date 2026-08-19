@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-08-17T14:15:50.074Z",
+  "product": {
+    "id": "4fff33d4-ab0a-43e5-bb40-0aa655154278",
+    "sku": "VTK019094",
+    "nome": "Capota Marítima Flash Cover Ff194 Toyota Hilux Cabine Dupla 2016+ Force",
+    "marca": "FLASH COVER",
+    "estoque": 3,
+    "custo": 549.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 7.3,
+    "peso_bruto": 7.3,
+    "largura": 21.5,
+    "altura": 17,
+    "profundidade": 170,
+    "gtin": "7899630194882",
+    "descricao": "Informações do Produto A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo Hilux CD 16+",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019094/01-7fc3ffbecdf7f1385335.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019094/02-7e15722c90d921b0f17a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019094/03-9fa820fc9a753f8d89bd.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019094/04-1409878b59e75fa30ad4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019094/05-72e7e1b3c9b0075ad9ce.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019094/06-0580187bf759b6caa73c.jpg"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:35.398356+00:00",
+    "updated_at": "2026-08-17T11:19:15.443442+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "317486",
+    "dslite_ultima_sync": "2026-08-17T11:19:15.296+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87082999",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "3afa5eed-c030-4cd7-b66c-127d5345eb74",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

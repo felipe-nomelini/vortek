@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:53.630Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "Bori",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2702",
+    "captured_at": "2026-08-17T12:56:40.186Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "6bb59fba-1e69-4d96-aef9-def37a1b4b7b",
+    "produto_id": "521f017d-10c5-4043-950e-aa4d05920e70",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2702",
+    "sku_fornecedor": "2702",
+    "custo": 10.18,
+    "estoque": 37,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:49:32.762+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:49:32.769+00:00",
+    "sku_oferta": "2702",
+    "nome": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+    "descricao": "PALHETA BORI GRL AT-R16104 PICKER 0,96 MM (AMARELO) R21005 10UN A Palheta Bori GRL AT-R16104 Picker 0,96 mm (Amarelo) R21005 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Este modelo destaca-se por suas características técnicas e design funcional. Principais Características: • Modelo: Picker PA • Código do Fabricante: R21005 • Espessura: 0,96 mm • Material: Poliamida Nylon (Resina de Engenharia) • Cor: Amarelo • Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue • Dimensões: • Largura: 25 mm • Altura: 30 mm • Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Standard: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como baixo, guitarra, ukulele, violino e violão, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori Picker PA de 0,96 mm na cor amarela.",
+    "marca": "Bori",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/fc0bfcaa9e2d919c625153743ca6bb85.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/7c58acc4557c5b72939e1c5283fccd08.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/963ffd50978fd12d45208876749e5ec7.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f50516f737b0e318b1badc6b2e12a7e4.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.92.00",
+    "cest": null
+  }
+}

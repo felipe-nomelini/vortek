@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_BRAND_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Sub Conjunto Almapy Up 13+ Traseiro Sensorizado",
+    "supplier_category": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+    "supplier_brand": "ALMAPY",
+    "supplier_gtin": "7890000103213",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/315308",
+    "captured_at": "2026-08-17T12:54:10.760Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

@@ -1,0 +1,167 @@
+[
+  {
+    "sku": "VTK026044",
+    "simulated_at": "2026-08-16T21:42:55.088Z",
+    "engine": "scripts/lib/ml-p0-audit.js#pricingStrategy + live rounded ML fee",
+    "listing_type_id": "gold_pro",
+    "dimensions": "12x7x4,104",
+    "weight_unit": "grams",
+    "cost": 39.9,
+    "stock": 50,
+    "commission": 16.89,
+    "shipping_cost": 12.35,
+    "tax_rate": 0.05,
+    "tax_amount": 4.69,
+    "price_recommended": 93.83,
+    "minimum_safety_price": 93.83,
+    "estimated_operational_profit": 20,
+    "estimated_operational_margin_percent": 21.31514441010338,
+    "target_margin_percent": 15,
+    "minimum_profit": 20,
+    "approved": true,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 16.89,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 16.89,
+        "percentage_fee": 18
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 12.35,
+          "currency_id": "BRL",
+          "billable_weight": 104,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 24.7
+          }
+        }
+      }
+    }
+  },
+  {
+    "sku": "VTK000392",
+    "simulated_at": "2026-08-16T21:42:59.540Z",
+    "engine": "scripts/lib/ml-p0-audit.js#pricingStrategy + live rounded ML fee",
+    "listing_type_id": "gold_pro",
+    "dimensions": "18x44x45,2600",
+    "weight_unit": "grams",
+    "cost": 132.55,
+    "stock": 15,
+    "commission": 43.08,
+    "shipping_cost": 39.75,
+    "tax_rate": 0.05,
+    "tax_amount": 13.46,
+    "price_recommended": 269.23,
+    "minimum_safety_price": 269.23,
+    "estimated_operational_profit": 40.39,
+    "estimated_operational_margin_percent": 15.002042862979609,
+    "target_margin_percent": 15,
+    "minimum_profit": 20,
+    "approved": true,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 43.08,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 43.08,
+        "percentage_fee": 16
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 39.75,
+          "currency_id": "BRL",
+          "billable_weight": 5940,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 79.5
+          }
+        }
+      }
+    }
+  },
+  {
+    "sku": "VTK001507",
+    "simulated_at": "2026-08-16T21:43:03.230Z",
+    "engine": "scripts/lib/ml-p0-audit.js#pricingStrategy + live rounded ML fee",
+    "listing_type_id": "gold_pro",
+    "dimensions": "112x20x51,2166",
+    "weight_unit": "grams",
+    "cost": 700.29,
+    "stock": 7,
+    "commission": 223.23,
+    "shipping_cost": 91.15,
+    "tax_rate": 0.05,
+    "tax_amount": 67.64,
+    "price_recommended": 1352.89,
+    "minimum_safety_price": 1352.89,
+    "estimated_operational_profit": 270.58,
+    "estimated_operational_margin_percent": 20.000147831678845,
+    "target_margin_percent": 20,
+    "minimum_profit": 60,
+    "approved": true,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 223.23,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 223.23,
+        "percentage_fee": 16.5
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 91.15,
+          "currency_id": "BRL",
+          "billable_weight": 19040,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 182.3
+          }
+        }
+      }
+    }
+  }
+]

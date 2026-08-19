@@ -1,0 +1,27 @@
+{
+  "dimensions": "18x44x45,2600",
+  "local_supplier_dimensions": {
+    "height_cm": 18,
+    "width_cm": 44,
+    "length_cm": 45,
+    "weight_g": 2600
+  },
+  "selected_listing_type": "gold_special",
+  "selected_price": 250.62,
+  "quote": {
+    "coverage": {
+      "all_country": {
+        "list_cost": 39.75,
+        "currency_id": "BRL",
+        "billable_weight": 5940,
+        "discount": {
+          "rate": 0.5,
+          "type": "mandatory",
+          "promoted_amount": 79.5
+        }
+      }
+    }
+  },
+  "seller_cost": 39.75,
+  "normalizations": "future ML logistics dimensions may differ; must revalidate finance after creation before accepting normalization"
+}

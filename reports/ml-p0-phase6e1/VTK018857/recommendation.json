@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+    "supplier_category": "Automotivo/ Alto Falante/ Alto Falante 12 Polegadas",
+    "supplier_brand": "SELENIUM",
+    "supplier_gtin": "7896359523368",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/203599",
+    "captured_at": "2026-08-17T12:54:36.580Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

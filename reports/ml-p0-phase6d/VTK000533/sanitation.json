@@ -1,0 +1,10 @@
+{
+  "sku": "VTK000533",
+  "gate": "BLOCK_IMAGE",
+  "evidence": "local product has zero images",
+  "local_value": "7890000795821",
+  "found_value": null,
+  "suggested_action": "IMAGE_FIX_REQUIRED",
+  "source": "local baseline",
+  "timestamp": "2026-08-17T01:13:42.713Z"
+}

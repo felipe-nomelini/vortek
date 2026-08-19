@@ -1,0 +1,356 @@
+{
+  "index": 16,
+  "sku": "VTK026008",
+  "started_at": "2026-08-17T00:07:24.808Z",
+  "local_time": "2026-08-16T21:07:24",
+  "expected_gtin": "7898572863009",
+  "product": {
+    "id": "d1b1a836-e25b-4306-8e37-f50777572a40",
+    "sku": "VTK026008",
+    "nome": "Suporte De Parede Para Caixa Acústica Spc25 Saty",
+    "marca": "Saty",
+    "estoque": 40,
+    "custo": 52.63,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.9,
+    "peso_bruto": 0.9,
+    "largura": 30,
+    "altura": 26,
+    "profundidade": 10,
+    "gtin": "7898572863009",
+    "descricao": "SUPORTE DE PAREDE PARA CAIXA ACÚSTICA SPC25 SATY O Suporte de Parede para Caixa Acústica SPC25 SATY foi projetado para oferecer uma instalação segura, prática e eficiente de caixas acústicas em diversos ambientes. Fabricado em metal de alta resistência, conta com regulagem de ângulo em múltiplos estágios, permitindo melhor direcionamento do som e aproveitamento do espaço. É a escolha ideal para igrejas, auditórios, estúdios, escolas, bares, restaurantes e instalações de sonorização profissional. Ficha Técnica Modelo: SPC25 Marca: SATY Tipo: Suporte de parede para caixa acústica Material: Metal de alta resistência Acabamento: Pintura na cor preta Capacidade máxima de carga: Até 30 kg Regulagem: 4 estágios de ajuste de ângulo vertical Sistema de fixação: Trava por parafuso e porca trava reforçada Instalação: Fixação em parede Compatibilidade: Caixas acústicas ativas e passivas compatíveis Aplicação: Igrejas, auditórios, estúdios, escolas, bares, restaurantes, salas de eventos e projetos de sonorização profissional O SPC25 SATY combina robustez, praticidade e segurança para garantir uma instalação confiável das caixas acústicas. Seu sistema de regulagem facilita o direcionamento do áudio, proporcionando melhor cobertura sonora e um acabamento profissional em qualquer ambiente.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/372be8a785c13da16d0ac97a1f78f102.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/bc4b827f6ca862fd74d222d14b10eda0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b3095b3f53ddc219f0c160eb1518199b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a7393d16939f3f8aaa28dd107308eb21.jpg"
+    ],
+    "categoria": "Eletrônicos, áudio E Vídeo > áudio > Suportes Para Caixas De Som",
+    "ml_item_id": null,
+    "created_at": "2026-08-13T10:53:28.116308+00:00",
+    "updated_at": "2026-08-16T20:10:21.198647+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4231",
+    "dslite_ultima_sync": "2026-08-16T20:10:21.151+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8518.29.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "fe43c430-7cb8-44f4-afc5-dc07d8ed8aa5",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "fe43c430-7cb8-44f4-afc5-dc07d8ed8aa5",
+    "produto_id": "d1b1a836-e25b-4306-8e37-f50777572a40",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4231",
+    "sku_fornecedor": "4231",
+    "custo": 52.63,
+    "estoque": 40,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:10:21.151+00:00",
+    "created_at": "2026-08-13T10:53:28.2054+00:00",
+    "updated_at": "2026-08-16T20:10:21.158+00:00",
+    "sku_oferta": "4231",
+    "nome": "Suporte De Parede Para Caixa Acústica Spc25 Saty",
+    "descricao": "SUPORTE DE PAREDE PARA CAIXA ACÚSTICA SPC25 SATY O Suporte de Parede para Caixa Acústica SPC25 SATY foi projetado para oferecer uma instalação segura, prática e eficiente de caixas acústicas em diversos ambientes. Fabricado em metal de alta resistência, conta com regulagem de ângulo em múltiplos estágios, permitindo melhor direcionamento do som e aproveitamento do espaço. É a escolha ideal para igrejas, auditórios, estúdios, escolas, bares, restaurantes e instalações de sonorização profissional. Ficha Técnica Modelo: SPC25 Marca: SATY Tipo: Suporte de parede para caixa acústica Material: Metal de alta resistência Acabamento: Pintura na cor preta Capacidade máxima de carga: Até 30 kg Regulagem: 4 estágios de ajuste de ângulo vertical Sistema de fixação: Trava por parafuso e porca trava reforçada Instalação: Fixação em parede Compatibilidade: Caixas acústicas ativas e passivas compatíveis Aplicação: Igrejas, auditórios, estúdios, escolas, bares, restaurantes, salas de eventos e projetos de sonorização profissional O SPC25 SATY combina robustez, praticidade e segurança para garantir uma instalação confiável das caixas acústicas. Seu sistema de regulagem facilita o direcionamento do áudio, proporcionando melhor cobertura sonora e um acabamento profissional em qualquer ambiente.",
+    "marca": "Saty",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/372be8a785c13da16d0ac97a1f78f102.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/bc4b827f6ca862fd74d222d14b10eda0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b3095b3f53ddc219f0c160eb1518199b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a7393d16939f3f8aaa28dd107308eb21.jpg"
+    ],
+    "gtin": "7898572863009",
+    "ncm": "8518.29.90",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4231",
+    "consulted_at": "2026-08-17T00:07:25.044Z",
+    "product": {
+      "produtoid": "4231",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 52.63,
+      "preco_crossdocking": 52.63,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 52.63,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-21 01:04:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-21 10:01:29.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Suporte De Parede Para Caixa Acústica Spc25 Saty",
+      "titulo_curto": "Suporte De Parede Para Caixa Acústica Spc25 Saty",
+      "categoriaid": "289660",
+      "categoria_nome": "Eletrônicos, áudio E Vídeo > áudio > Suportes Para Caixas De Som",
+      "abc": null,
+      "ean11": "7898572863009",
+      "ncm": "8518.29.90",
+      "descricao": "<p>SUPORTE DE PAREDE PARA CAIXA ACÚSTICA SPC25 SATY</p> <p>O Suporte de Parede para Caixa Acústica SPC25 SATY foi projetado para oferecer uma instalação segura, prática e eficiente de caixas acústicas em diversos ambientes. Fabricado em metal de alta resistência, conta com regulagem de ângulo em múltiplos estágios, permitindo melhor direcionamento do som e aproveitamento do espaço. É a escolha ideal para igrejas, auditórios, estúdios, escolas, bares, restaurantes e instalações de sonorização profissional.</p> <p>Ficha Técnica<br>Modelo: SPC25<br>Marca: SATY<br>Tipo: Suporte de parede para caixa acústica<br>Material: Metal de alta resistência<br>Acabamento: Pintura na cor preta<br>Capacidade máxima de carga: Até 30 kg<br>Regulagem: 4 estágios de ajuste de ângulo vertical<br>Sistema de fixação: Trava por parafuso e porca trava reforçada<br>Instalação: Fixação em parede<br>Compatibilidade: Caixas acústicas ativas e passivas compatíveis<br>Aplicação: Igrejas, auditórios, estúdios, escolas, bares, restaurantes, salas de eventos e projetos de sonorização profissional</p> <p>O SPC25 SATY combina robustez, praticidade e segurança para garantir uma instalação confiável das caixas acústicas. Seu sistema de regulagem facilita o direcionamento do áudio, proporcionando melhor cobertura sonora e um acabamento profissional em qualquer ambiente.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Saty",
+      "modelo": "",
+      "peso": 0.9,
+      "largura": 30,
+      "altura": 26,
+      "profundidade": 10,
+      "peso_embalagem": 0.9,
+      "largura_embalagem": 30,
+      "altura_embalagem": 26,
+      "profundidade_embalagem": 10,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/372be8a785c13da16d0ac97a1f78f102.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 6,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "926648130",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-20 23:52:53.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-22 11:22:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 40,
+      "tempo_cross": 0,
+      "estoque_total": 40,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/372be8a785c13da16d0ac97a1f78f102.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/bc4b827f6ca862fd74d222d14b10eda0.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b3095b3f53ddc219f0c160eb1518199b.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a7393d16939f3f8aaa28dd107308eb21.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_CATEGORY",
+  "configured_reason": "exact_catalog_domain_and_category_are_microphone_stands_but_product_is_wall_speaker_support",
+  "evidence": {
+    "manufacturer_or_official": "ML catalog MLB26686272",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4231",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898572863009"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB26686272",
+      "catalog_product_id": "MLB26686272",
+      "domain_id": "MLB-MICROPHONE_STANDS",
+      "name": "Suporte Parede Caixa Som Saty SPC25 Preto Compatível Diversos Modelos",
+      "parent_id": "MLB26686262",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "5451933",
+          "value_name": "Saty",
+          "values": [
+            {
+              "id": "5451933",
+              "name": "Saty"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "23811231",
+          "value_name": "SPC25",
+          "values": [
+            {
+              "id": "23811231",
+              "name": "SPC25"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "17539641",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "17539641",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "STAND_TYPE",
+          "name": "Tipo de suporte",
+          "value_id": "5507063",
+          "value_name": "Reto",
+          "values": [
+            {
+              "id": "5507063",
+              "name": "Reto"
+            }
+          ]
+        },
+        {
+          "id": "IS_TABLE_STAND",
+          "name": "É suporte de mesa",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "23811247",
+          "value_name": "7898572863009",
+          "values": [
+            {
+              "id": "23811247",
+              "name": "7898572863009"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Suporte Para Caixa De Parede Saty Spc25 é a escolha perfeita para quem busca praticidade e organização. Com design moderno e elegante, ele é fabricado pela renomada marca Saty, garantindo qualidade e durabilidade. Sua cor preta combina com qualquer ambiente, seja em casa, no escritório ou em estabelecimentos comerciais. \n\nEsse suporte é novo e está em perfeitas condições, pronto para ser utilizado. Seu modelo SPC25 foi desenvolvido pensando na facilidade de instalação e na segurança da caixa de parede. Com ele, você poderá fixar sua caixa de maneira firme e segura, evitando quedas e danos ao equipamento. \n\nAlém disso, o Suporte Para Caixa De Parede Saty Spc25 é versátil e compatível com diversos modelos de caixas, proporcionando maior flexibilidade na hora de escolher o equipamento ideal para suas necessidades. Com ele, você terá mais espaço e organização, deixando o ambiente mais clean e funcional. \n\nNão perca tempo e adquira agora mesmo o Suporte Para Caixa De Parede Saty Spc25. Garanta mais praticidade e segurança para suas caixas de parede. Aproveite essa oportunidade e melhore sua experiência de uso."
+      },
+      "pictures": [
+        {
+          "id": "964758-MLA99985077487_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_964758-MLA99985077487_112025-F.jpg",
+          "max_width": "500",
+          "max_height": "434"
+        },
+        {
+          "id": "975259-MLA99984684363_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_975259-MLA99984684363_112025-F.jpg",
+          "max_width": "418",
+          "max_height": "500"
+        },
+        {
+          "id": "696688-MLA99501006834_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_696688-MLA99501006834_112025-F.jpg",
+          "max_width": "382",
+          "max_height": "500"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-08-30T20:26:50Z",
+      "last_updated": "2025-11-20T22:55:07Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

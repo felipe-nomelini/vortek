@@ -1,0 +1,2 @@
+sku,item_id,state,problem,safe,next_action
+"VTK012864","MLB7437196478","REMOTE_PROPAGATION_PENDING","""picture propagation did not settle within bounded read-only polling""","true","REMOTE_LINK_REVIEW"

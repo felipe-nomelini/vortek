@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-08-17T14:15:53.427Z",
+  "product": {
+    "id": "4af0d21d-e9f5-468a-999d-c8d6a7bd64c8",
+    "sku": "VTK012865",
+    "nome": "Alto-falante Profissional 400w 18 Pol 8 Ohms 18wf810b8 Atk",
+    "marca": "Atk Eletroacústica",
+    "estoque": 2,
+    "custo": 665,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 8.29,
+    "peso_bruto": 8.29,
+    "largura": 49,
+    "altura": 23,
+    "profundidade": 49,
+    "gtin": "7898640362144",
+    "descricao": "18WF810B Descrição: Alto-falante de 18” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade. Utiliza uma bobina de 75 mm de diâmetro (3”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior. Design exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica. Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance. Principais Características: 400 W Potência Nominal 8 Ohms de Impedância Nominal 96 dB SPL de Sensibilidade 30 a 2000Hz Especificações: Potência Nominal Admissível(1): 400 W Potência Máxima do Amplificador(2): 6400 W pico Sensibilidade (1W/1m)(3) : 96 dB SPL Impedância Nominal: 8 Ohms Impedância Mínima: 7.2 Ohms Diâmetro Nominal: 457.2 mm (18 pol) Resposta de Frequência: 30 a 2000 Hz Diâmetro da Bobina: 75 mm (3”) Fio da Bobina: Fio de Cobre Circular Resistência da Bobina (Re): 6.5 Ohms X.máx(4): 7 mm Volume de Ar ocupado: 7.19 L",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/33fc704690a3c10bee062fda0304067a.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e848bd8bd8ae759506106f7e17380fe0.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c8752aac814f57b4ee7f4ab2ebf28b88.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/b12928a8f94e5dd4fc61e2d8865f0ee0.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2d4e891157fe7ea3d6539621dc183429.jpg"
+    ],
+    "categoria": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.935097+00:00",
+    "updated_at": "2026-08-17T10:10:16.992858+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "1555",
+    "dslite_ultima_sync": "2026-08-17T10:10:16.815+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8518.29.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "34aa866b-f963-4153-97e3-28baa0f8e47c",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "professional_speaker_driver",
+    "function": "audio_reproduction",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_driver",
+    "expected_category_signals": [
+      "altofalante",
+      "woofer",
+      "subwoofer",
+      "audio",
+      "somprofissional"
+    ],
+    "incompatible_category_signals": [
+      "tablet",
+      "celular",
+      "notebook",
+      "computador",
+      "internal_speaker"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "18 Pol",
+        "75 mm",
+        "457.2 mm",
+        "18 pol",
+        "7 mm"
+      ],
+      "powers": [
+        "400w",
+        "400 W",
+        "6400 W",
+        "1W"
+      ],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

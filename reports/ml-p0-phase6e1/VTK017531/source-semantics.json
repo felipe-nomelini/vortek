@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.596Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Terminal De Fio Aberto Forquilha1/8 Permak Para Módulo - 100un.",
+    "supplier_category": "Eletronica/ Adaptadores/plugues/tomadas/ Adaptores",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/64951",
+    "captured_at": "2026-08-17T12:56:37.212Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "0289c767-24c7-48f8-923a-4f95ea17d3bb",
+    "produto_id": "9b0f50fa-8a3d-4926-a677-858efeba8d8b",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "64951",
+    "sku_fornecedor": "64951",
+    "custo": 15.9,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:33:15.508+00:00",
+    "created_at": "2026-07-20T18:30:57.116305+00:00",
+    "updated_at": "2026-08-17T10:33:15.517+00:00",
+    "sku_oferta": "64951",
+    "nome": "Terminal De Fio Aberto Forquilha1/8 Permak Para Módulo - 100un.",
+    "descricao": "O terminal forquilha aberto apresenta um comprimento de 2 cm, seu furo possui 1/8 polegadas e é resistente a vibrações. Sua composição é em latão, proporcionando alta condutividade elétrica e ótima resistência à corrosão. O terminal está disponível na cor dourada. Os terminais forquilha têm a função de proporcionar maior segurança e praticidade quando usados em terminações de fios e cabos de montagens de máquinas, painéis elétricos e automação, permitindo ganho de tempo. Pacote com 100 un. *Imagens meramente ilustrativas.\n\n– Comprimento: 2 cm; – Polegada do furo: 1/8 – Material: latão; – Cor: dourado; – Pacote com 100 un.",
+    "marca": "PERMAK",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/6/4/64951_67d2cb35732da.png"
+    ],
+    "gtin": "",
+    "ncm": "85369010",
+    "cest": "01.999.00"
+  }
+}

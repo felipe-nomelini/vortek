@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432625530",
+      "local": "MLB7432625530",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK000378",
+      "local": "VTK000378",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "bd099c71-e960-4e09-ae40-d616ea1968d6",
+      "local": "bd099c71-e960-4e09-ae40-d616ea1968d6",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cadeira Gamer Ergonômica Thunderx3 Yama1 Preto/cíano Com Encosto Reclinável Malha",
+      "local": "Cadeira Gamer Ergonômica Thunderx3 Yama1 Preto/cíano Com Encosto Reclinável Malha",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 4089.9,
+      "local": 4089.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432625530-cadeira-gamer-ergonmica-thunderx3-yama1-pretociano-com-encosto-reclinavel-malha-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432625530-cadeira-gamer-ergonmica-thunderx3-yama1-pretociano-com-encosto-reclinavel-malha-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

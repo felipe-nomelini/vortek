@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+    "supplier_category": "Automotivo/ Cabos Para Som Automotivo/ Cabos",
+    "supplier_brand": "TECHNOISE",
+    "supplier_gtin": "7898530518873",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/247448",
+    "captured_at": "2026-08-17T12:55:15.264Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

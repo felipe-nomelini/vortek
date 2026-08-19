@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Contra Frente Plástica Permak Fiat Stilo 2 Din Preta",
+    "supplier_category": "Automotivo/ Acessórios Para Instalacao/ Moldura",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": "7898253497981",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/245604",
+    "captured_at": "2026-08-17T12:54:40.101Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

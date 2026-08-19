@@ -1,0 +1,56 @@
+{
+  "index": 2,
+  "sku": "VTK001303",
+  "expected_gtin": "7890443014381",
+  "started_at": "2026-08-17T20:01:43.129Z",
+  "local_time": "2026-08-17T17:01:43",
+  "completed_at": "2026-08-17T20:01:48.994Z",
+  "elapsed_ms": 5865,
+  "result": "REMOTE_WRONG_CATEGORY_CREATED",
+  "item_id": "MLB7440213282",
+  "catalog_product_id": "MLB17460878",
+  "protective_price": 2379.9,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": {
+    "passed": false,
+    "result": "POST_SEMANTIC_CATEGORY_MATCH",
+    "expected_category_id": "MLB438516",
+    "remote_category_id": "MLB438516",
+    "expected_category_path": [
+      "Instrumentos Musicais",
+      "Instrumentos de Corda",
+      "Guitarras",
+      "Elétricas"
+    ],
+    "remote_category_path": [
+      "Instrumentos Musicais",
+      "Instrumentos de Corda",
+      "Guitarras",
+      "Elétricas"
+    ],
+    "path_match": true,
+    "expected_domain_id": "MLB-ELECTRIC_GUITARS",
+    "remote_domain_id": "MLB-ELECTRIC_GUITARS",
+    "domain_match": true,
+    "expected_catalog_product_id": "MLB17460878",
+    "remote_catalog_product_id": "MLB17460878",
+    "catalog_match": true,
+    "semantic_score": 93,
+    "hard_mismatch": false,
+    "second_pass": {
+      "verdict": "PASS",
+      "supplier_context": "musical_instrument",
+      "remote_context": "musical_instrument",
+      "independent_function_match": true,
+      "reason": "supplier/local semantics and full category path agree"
+    }
+  },
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

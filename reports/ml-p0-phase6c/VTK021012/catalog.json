@@ -1,0 +1,820 @@
+{
+  "checked_at": "2026-08-17T00:43:27.605Z",
+  "expected_catalog_product_id": "MLB7991974",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB7991974",
+    "catalog_product_id": "MLB7991974",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-TELEPHONES",
+    "permalink": "",
+    "name": "Telefone Gôndola Com Fio Tc 20 Preto Intelbras Preto",
+    "family_name": "Intelbras Casa TC 20",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB8019656",
+            "picker_label": "Azul",
+            "picture_id": "995809-MLA74651548392_022024",
+            "thumbnail": "http://http2.mlstatic.com/D_NQ_NP_995809-MLA74651548392_022024-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Azul"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Azul",
+            "auto_completed": false,
+            "rgb_meta": "1717FF"
+          },
+          {
+            "product_id": "MLB37885841",
+            "picker_label": "Branco",
+            "picture_id": "652586-MLA96120289307_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_652586-MLA96120289307_102025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Branco"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Branco",
+            "auto_completed": true,
+            "rgb_meta": "FFFFFF"
+          },
+          {
+            "product_id": "MLB75443298",
+            "picker_label": "Cinza",
+            "picture_id": "751859-MLA114498626685_072026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_751859-MLA114498626685_072026-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Cinza"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Cinza",
+            "auto_completed": true,
+            "rgb_meta": "E1E1E1"
+          },
+          {
+            "product_id": "MLB57325719",
+            "picker_label": "Cinza e Azul",
+            "picture_id": "682045-MLA92619657654_092025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_682045-MLA92619657654_092025-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Cinza e Azul"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Cinza e Azul",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB8019654",
+            "picker_label": "Cinza-ártico",
+            "picture_id": "957796-MLA97091440491_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_957796-MLA97091440491_112025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Cinza-ártico"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Cinza-ártico",
+            "auto_completed": true,
+            "rgb_meta": "E1E1E1"
+          },
+          {
+            "product_id": "MLB7991974",
+            "picker_label": "Preto",
+            "picture_id": "780798-MLA96108358537_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_780798-MLA96108358537_102025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Preto",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB8019653",
+            "picker_label": "Rosa",
+            "picture_id": "627950-MLA74782722229_022024",
+            "thumbnail": "http://http2.mlstatic.com/D_NQ_NP_627950-MLA74782722229_022024-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Rosa"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Rosa",
+            "auto_completed": true,
+            "rgb_meta": "FCB1BE"
+          },
+          {
+            "product_id": "MLB8019655",
+            "picker_label": "Verde",
+            "picture_id": "813768-MLA74781182927_022024",
+            "thumbnail": "http://http2.mlstatic.com/D_NQ_NP_813768-MLA74781182927_022024-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Verde"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Intelbras Casa TC 20 - Verde",
+            "auto_completed": false,
+            "rgb_meta": "0DA600"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "780798-MLA96108358537_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_780798-MLA96108358537_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 638,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "679680-MLA82666014211_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_679680-MLA82666014211_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1062,
+        "max_height": 553,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "707704-MLA87274258336_072025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_707704-MLA87274258336_072025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 538,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "721024-MLA87274436474_072025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_721024-MLA87274436474_072025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1083,
+        "max_height": 519,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "842543-MLA87274258348_072025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_842543-MLA87274258348_072025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1085,
+        "max_height": 611,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "685076-MLA82666099451_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_685076-MLA82666099451_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1073,
+        "max_height": 532,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Possui 1 fone de ouvido.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Agenda para 70 contatos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Até 20 horas de conversa.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com 7 toques personalizados para chamadas.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "É Dual SIM.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Frequência: 1.9GHz.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "10366",
+        "value_name": "Intelbras",
+        "values": [
+          {
+            "id": "10366",
+            "name": "Intelbras"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "274496",
+        "value_name": "Casa",
+        "values": [
+          {
+            "id": "274496",
+            "name": "Casa"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "1220941",
+        "value_name": "TC 20",
+        "values": [
+          {
+            "id": "1220941",
+            "name": "TC 20"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "000000"
+        }
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "name": "Tipo de tela",
+        "value_id": "81830",
+        "value_name": "LED",
+        "values": [
+          {
+            "id": "81830",
+            "name": "LED"
+          }
+        ]
+      },
+      {
+        "id": "TALK_TIME",
+        "name": "Autonomia de conversação",
+        "value_id": "2087877",
+        "value_name": "20 h",
+        "values": [
+          {
+            "id": "2087877",
+            "name": "20 h"
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "8744458",
+        "value_name": "1.9 GHz",
+        "values": [
+          {
+            "id": "8744458",
+            "name": "1.9 GHz"
+          }
+        ]
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "name": "Quantidade de fones de ouvido incluídos",
+        "value_id": "7512605",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "7512605",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "name": "Com identificação de chamadas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "name": "Com secretária eletrônica",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "name": "É montável na parede",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_DUAL_SIM",
+        "name": "É Dual SIM",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_RURAL_TELEPHONE",
+        "name": "É telefone rural",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "name": "Homologação Anatel Nº",
+        "value_id": "39974197",
+        "value_name": "7040800160",
+        "values": [
+          {
+            "id": "39974197",
+            "name": "7040800160"
+          }
+        ]
+      },
+      {
+        "id": "BATTERY_CAPACITY",
+        "name": "Capacidade da bateria",
+        "value_id": "149366",
+        "value_name": "600 mAh",
+        "values": [
+          {
+            "id": "149366",
+            "name": "600 mAh"
+          }
+        ]
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "name": "Tamanho da tela",
+        "value_id": "6397418",
+        "value_name": "1.5 \"",
+        "values": [
+          {
+            "id": "6397418",
+            "name": "1.5 \""
+          }
+        ]
+      },
+      {
+        "id": "WITH_BATTERY_CHARGE_INDICATOR",
+        "name": "Com indicador de carga de bateria",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "PHONEBOOK_ENTRIES_CAPACITY",
+        "name": "Capacidade de entradas da agenda telefônica",
+        "value_id": "8801844",
+        "value_name": "70",
+        "values": [
+          {
+            "id": "8801844",
+            "name": "70"
+          }
+        ]
+      },
+      {
+        "id": "RINGTONES_NUMBER",
+        "name": "Quantidade de toques de chamada",
+        "value_id": "8801843",
+        "value_name": "7",
+        "values": [
+          {
+            "id": "8801843",
+            "name": "7"
+          }
+        ]
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "name": "Com modo mãos livres",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_CALL_BLOCKING",
+        "name": "Com bloqueio de chamadas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ALARM_CLOCK_FUNCTION",
+        "name": "Com função de relógio despertador",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ECO_MODE",
+        "name": "Com modo Eco",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_BACKLIT_KEYPAD",
+        "name": "Com teclado retroiluminado",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_DATE_AND_TIME_INDICATOR",
+        "name": "Com indicador de data e hora",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FLASH_BUTTON",
+        "name": "Com botão flash",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "name": "Com função de rediscagem",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_HANDSET_VOLUME_CONTROL",
+        "name": "Com controle de volume do auscultador ",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_SILENCE_MODE",
+        "name": "Com modo silencioso",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "name": "Com Bluetooth",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Telefone Gôndola Com Fio TC 20 Intelbras.\n\nEste modelo oferece mobilidade, conforto e versatilidade, permitindo a instalação em mesa ou parede, adaptando-se a diversos ambientes. Possui cabo telefônico de longo alcance e sistema de descanso para o fone, facilitando o uso quando fixado na parede.\n\nO teclado luminoso permite a utilização em ambientes com baixa luminosidade. Conta com a opção de desativar os timbres de chamada para momentos de silêncio.\n\nESPECIFICAÇÕES:\nMarca: Intelbras\nModelo: TC 20\nTipo de Produto: Telefone Fixo\nCor: Preto\n\nRECURSOS:\nTeclado Iluminado\nAcionador no Fone (tecla liga/desliga)\nCabo telefônico ligado diretamente ao fone\nFunções: Mudo, Rediscar e Flash\n2 níveis de volume de campainha\nCabo telefônico de longo alcance\n\nDIMENSÕES E PESO:\nAltura: 5,4 cm\nLargura: 7 cm\nComprimento: 21,5 cm\nPeso: 240 g\n\nITENS INCLUSOS:\n1 Telefone com fio\n1 Suporte para uso em mesa ou parede\n1 Manual do usuário"
+    },
+    "parent_id": "MLB7991973",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T04:40:40.596565357"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2017-09-22T18:40:46Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-24T19:57:41Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

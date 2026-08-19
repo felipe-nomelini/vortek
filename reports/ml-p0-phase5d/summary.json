@@ -1,0 +1,57 @@
+{
+  "phase": "5D",
+  "generated_at": "2026-08-16T23:02:37.436Z",
+  "result": "QUALITY_REMEDIATION_REQUIRED",
+  "sku": "VTK000392",
+  "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+  "item_id": "MLB7432322488",
+  "user_product_id": "MLBU4772165100",
+  "family_id": "5623652722530511",
+  "protection": {
+    "previous_price": 250.62,
+    "protective_price": 599.9,
+    "shipping_used": 68.65,
+    "price": 599.9,
+    "commission": 65.99,
+    "shipping": 68.65,
+    "cost": 132.55,
+    "tax": 30,
+    "profit": 302.71,
+    "margin_percent": 50.46007667944657,
+    "status": "PROTECTIVE_PRICE_OK"
+  },
+  "quality": {
+    "before": null,
+    "after": null,
+    "gate": 65,
+    "status": "QUALITY_REMEDIATION_REQUIRED",
+    "endpoint": "/item/MLB7432322488/performance"
+  },
+  "identity": {
+    "sku": "VTK000392",
+    "gtin": "7898461970375",
+    "catalog": "MLB15284402",
+    "model": "Turbo 6",
+    "voltage": "127V",
+    "color": "Azul",
+    "diameter": "40 cm",
+    "passed": true
+  },
+  "persistence": {
+    "executed": false,
+    "transaction": null,
+    "unique": false,
+    "material_drift": null
+  },
+  "commercial": "COMMERCIAL_OPTIMIZATION_PENDING",
+  "metrics": {
+    "ml_gets": 414,
+    "ml_price_puts": 1,
+    "ml_description_writes": 0,
+    "ml_other_writes": 0,
+    "supabase_reads": 4,
+    "postgres_transactions": 0,
+    "second_sku_actions": 0
+  },
+  "hold": "P0 PHASE 5D — SAFE PUBLICATION HOLD"
+}

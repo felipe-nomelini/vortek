@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-08-17T14:15:53.698Z",
+  "product": {
+    "id": "34ced274-3d7d-41ce-bde4-ede040014072",
+    "sku": "VTK012319",
+    "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+    "marca": "Bori",
+    "estoque": 21,
+    "custo": 8,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.03,
+    "peso_bruto": 0.03,
+    "largura": 10,
+    "altura": 10,
+    "profundidade": 2,
+    "gtin": "",
+    "descricao": "PALHETA BORI GRL AT-R16115 AZUL CRYSTAL 0,96 MM R21008 10UN A Palheta Bori GRL AT-R16115 Azul Crystal 0,96 mm (R21008) é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais especificações: Características Principais: • Modelo: S.T.D (Standard) • Código do Fabricante: R21008 • Espessura: 0,96 mm • Material: Policarbonato Cristal (Resina de Engenharia) • Cor: Azul Crystal • Acabamento: Transparente Fosco Cristal • Dimensões: • Largura: 25 mm • Altura: 30 mm • Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Mediana: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori S.T.D de 0,96 mm na cor Azul Crystal.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012319/01-9be6f183926acf97bc13.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012319/02-6efe81d042bc52386744.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012319/03-f7cd4fe0df3e73f2f21e.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.87647+00:00",
+    "updated_at": "2026-08-17T09:52:24.450203+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "2710",
+    "dslite_ultima_sync": "2026-08-17T09:52:24.02+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.92.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "d88ea826-003d-4c7e-8797-83b8c5a7b4ed",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "guitar_strings",
+    "function": "produce_instrument_sound",
+    "intended_use": "musical_instrument",
+    "physical_form": "string_set",
+    "expected_category_signals": [
+      "corda",
+      "guitarra",
+      "instrumentomusical"
+    ],
+    "incompatible_category_signals": [
+      "caboeletrico",
+      "automotivo",
+      "cozinha"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "0,96 Mm",
+        "0,96 MM",
+        "0,96 mm",
+        "25 mm",
+        "30 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "musical_instrument",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

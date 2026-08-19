@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:37.859Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+    "supplier_category": "Segurança / Cameras/ Camera Colorida",
+    "supplier_brand": "SOHOPLUS - FURUKAWA",
+    "supplier_gtin": "7893137226954",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/329123",
+    "captured_at": "2026-08-17T12:53:50.658Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "610670e2-a2ae-4642-ba02-08e29819bccc",
+    "produto_id": "065903be-45b2-48b6-9023-7735925177ef",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "329123",
+    "sku_fornecedor": "329123",
+    "custo": 365.9,
+    "estoque": 6,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:07:22.424+00:00",
+    "created_at": "2026-07-20T18:32:41.005073+00:00",
+    "updated_at": "2026-08-17T11:07:22.434+00:00",
+    "sku_oferta": "329123",
+    "nome": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+    "descricao": "Informações do Produto - Acesso remoto fácil (P2P): Acompanhe as imagens em temo real de maneira muito rápida; - Full HD: Imagem em Full HD em 1080p com alta definição; - POE: Apenas um cabo para imagem e energia, simplifique sua instalação!; - IR: Alcance de Infravermelho 30m para garantir sua segurança também no escuro; - IP66: Proteção IP66 contra água e poeira; - Lente 2.8mm: Melhor campo de visão para pequenas distâncias; - Função WDR e BLC: Melhor qualidade de imagem;",
+    "marca": "SOHOPLUS - FURUKAWA",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/2/329123_67d2caef35e9d.jpg"
+    ],
+    "gtin": "7893137226954",
+    "ncm": "85258300",
+    "cest": "21.065.00"
+  }
+}

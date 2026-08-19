@@ -1,0 +1,112 @@
+{
+  "phase": "5D.1",
+  "generated_at": "2026-08-16T23:13:36.371Z",
+  "result": "SAFE_PUBLICATION_PERSIST_SUCCESS",
+  "identity": {
+    "sku": "VTK000392",
+    "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+    "item_id": "MLB7432322488",
+    "user_product_id": "MLBU4772165100",
+    "catalog_product_id": "MLB15284402",
+    "valid": true
+  },
+  "protection": {
+    "price_mode": "PROTECTIVE_PRICE",
+    "price": 599.9,
+    "commission": 65.99,
+    "shipping": 68.65,
+    "cost": 132.55,
+    "tax": 30,
+    "profit": 302.71,
+    "margin_percent": 50.46007667944657,
+    "shipping_used": 68.65,
+    "status": "PROTECTIVE_PRICE_OK"
+  },
+  "persistence": {
+    "transaction_id": 16803336,
+    "listing_id": "d763d2de-d824-4218-a044-15f83043f9cf",
+    "product_ml_item_id": "MLB7432322488",
+    "unique": true,
+    "idempotency": "SAFE_PUBLICATION_PERSIST_SUCCESS"
+  },
+  "reconciliation": {
+    "fields": [
+      {
+        "field": "ml_item_id",
+        "local": "MLB7432322488",
+        "remote": "MLB7432322488",
+        "status": "MATCH"
+      },
+      {
+        "field": "SKU",
+        "local": "VTK000392",
+        "remote": "VTK000392",
+        "status": "MATCH"
+      },
+      {
+        "field": "produto_id",
+        "local": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+        "remote": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+        "status": "MATCH"
+      },
+      {
+        "field": "title",
+        "local": "Ventisol Turbo 6 Pás Turbo 6 10023 De Mesa 40 Cm 60 Hz Preto 127v Azul Plástico 6",
+        "remote": "Ventisol Turbo 6 Pás Turbo 6 10023 De Mesa 40 Cm 60 Hz Preto 127v Azul Plástico 6",
+        "status": "MATCH"
+      },
+      {
+        "field": "price",
+        "local": 599.9,
+        "remote": 599.9,
+        "status": "MATCH"
+      },
+      {
+        "field": "status",
+        "local": "ativo",
+        "remote": "ativo",
+        "status": "MATCH"
+      },
+      {
+        "field": "listing_type",
+        "local": "classico",
+        "remote": "classico",
+        "status": "MATCH"
+      },
+      {
+        "field": "catalogo",
+        "local": true,
+        "remote": true,
+        "status": "MATCH"
+      },
+      {
+        "field": "permalink",
+        "local": "https://produto.mercadolivre.com.br/MLB-7432322488-ventisol-turbo-6-pas-turbo-6-10023-de-mesa-40-cm-60-hz-preto-127v-azul-plastico-6-_JM",
+        "remote": "https://produto.mercadolivre.com.br/MLB-7432322488-ventisol-turbo-6-pas-turbo-6-10023-de-mesa-40-cm-60-hz-preto-127v-azul-plastico-6-_JM",
+        "status": "MATCH"
+      }
+    ],
+    "uniqueness": {
+      "product_links": 1,
+      "item_listings": 1,
+      "product_listings": 1
+    },
+    "unique": true,
+    "material_drift": false
+  },
+  "quality_optimization_pending": true,
+  "commercial_optimization_pending": true,
+  "metrics": {
+    "ml_gets": 409,
+    "ml_writes": 0,
+    "supabase_reads": 3,
+    "postgres_transactions": 1,
+    "second_sku_actions": 0
+  },
+  "invariants": {
+    "mercado_livre_writes": 0,
+    "no_second_sku": true,
+    "no_master_data_update": true
+  },
+  "hold": "P0 PHASE 5D.1 — SAFE PUBLICATION PERSISTENCE HOLD"
+}

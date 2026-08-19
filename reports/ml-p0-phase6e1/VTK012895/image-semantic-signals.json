@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-08-17T14:15:49.123Z",
+  "local_images": [
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6930842c25fe201738a90680f6b4b50.jpg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/534529b52922eea57ac7654e54a4cd13.jpg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d0fc017cfd6c2acc98340729b0f78040.jpg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6b643f2cf13a7d16ba9926ac1319a21c.jpg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/49ddad29175561ba892c5450fcacfd7d.jpg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/33af02fe13ed96ef360d5c762ebb09cc.jpg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f3e79371c7f77a82edeb61b20b63cce3.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "831540-MLA99513673134_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_831540-MLA99513673134_112025-F.jpg",
+      "max_width": "500",
+      "max_height": "342"
+    },
+    {
+      "id": "700530-MLA99998010391_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_700530-MLA99998010391_112025-F.jpg",
+      "max_width": "500",
+      "max_height": "333"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

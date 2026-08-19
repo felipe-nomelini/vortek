@@ -1,0 +1,745 @@
+{
+  "checked_at": "2026-08-17T00:44:07.224Z",
+  "expected_catalog_product_id": "MLB37849530",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB37849530",
+    "catalog_product_id": "MLB37849530",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-OFFICE_CHAIRS",
+    "permalink": "",
+    "name": "Cadeira Gamer ThunderX3 TGC12 Giratória Reclinável Cinza",
+    "family_name": "ThunderX3 TGC12 82875",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB37849530",
+            "picker_label": "Cinza",
+            "picture_id": "903080-MLU76976896874_062024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_903080-MLU76976896874_062024-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 TGC12 82875 - Cinza - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "E1E1E1"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por pacote",
+        "products": [
+          {
+            "product_id": "MLB37849530",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ThunderX3 TGC12 82875 - Cinza - Unidade - 1",
+            "auto_completed": false,
+            "rgb_meta": "E1E1E1"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "812700-MLA99522482252_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_812700-MLA99522482252_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "903080-MLU76976896874_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_903080-MLU76976896874_062024-F.jpg",
+        "suggested_for_picker": [
+          "COLOR"
+        ],
+        "max_width": 585,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "797905-MLU76976653694_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_797905-MLU76976653694_062024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 536,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "642992-MLU76976653700_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_642992-MLU76976653700_062024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 536,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "701348-MLU76976896904_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_701348-MLU76976896904_062024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 749,
+        "max_height": 1097,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "922079-MLU77187100225_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_922079-MLU77187100225_062024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 565,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "766268-MLU76976819504_062024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_766268-MLU76976819504_062024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 536,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "905523-MLA86371967406_062025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_905523-MLA86371967406_062025-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 1040,
+        "max_height": 1040,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Altura do encosto de 85 cm para suporte ideal.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Profundidade do assento de 50 cm para conforto máximo.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Altura máxima da cadeira de 125 cm ajustável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Capacidade de peso suportada até 120 kg.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com encosto reclinável para personalizar a posição.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com apoio de braços ajustável para maior ergonomia.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "8848598",
+        "value_name": "ThunderX3",
+        "values": [
+          {
+            "id": "8848598",
+            "name": "ThunderX3"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "38933704",
+        "value_name": "ThunderX3 TGC12",
+        "values": [
+          {
+            "id": "38933704",
+            "name": "ThunderX3 TGC12"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "38933703",
+        "value_name": "82875",
+        "values": [
+          {
+            "id": "38933703",
+            "name": "82875"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "283165",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "283165",
+            "name": "Cinza"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450294",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "2450294",
+            "name": "Cinza",
+            "meta": {
+              "rgb": "E1E1E1"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "E1E1E1"
+        }
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "name": "Tipo de cadeira de escritório",
+        "value_id": "13016814",
+        "value_name": "Gamer",
+        "values": [
+          {
+            "id": "13016814",
+            "name": "Gamer"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "name": "Materiais da estrutura",
+        "value_id": null,
+        "value_name": "Plástico, Metal",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico"
+          },
+          {
+            "id": "24028945",
+            "name": "Metal"
+          }
+        ]
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "name": "Materiais do enchimento",
+        "value_id": "5897875",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "5897875",
+            "name": "Espuma"
+          }
+        ]
+      },
+      {
+        "id": "FOOT_RING_MATERIALS",
+        "name": "Materiais do aro para pés",
+        "value_id": "16602172",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "16602172",
+            "name": "Metal"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "name": "Altura do encosto",
+        "value_id": "7661944",
+        "value_name": "85 cm",
+        "values": [
+          {
+            "id": "7661944",
+            "name": "85 cm"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "name": "Profundidade do assento",
+        "value_id": "9567306",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "9567306",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "name": "Largura da cadeira",
+        "value_id": "7866161",
+        "value_name": "70 cm",
+        "values": [
+          {
+            "id": "7866161",
+            "name": "70 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "name": "Altura máxima da cadeira",
+        "value_id": "50153881",
+        "value_name": "125 cm",
+        "values": [
+          {
+            "id": "50153881",
+            "name": "125 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "2218331",
+        "value_name": "120 kg",
+        "values": [
+          {
+            "id": "2218331",
+            "name": "120 kg"
+          }
+        ]
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "name": "Requer montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_WHEELS",
+        "name": "Com rodas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "name": "Com aro para pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ARMREST",
+        "name": "Com apoio de braços",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "name": "Com encosto reclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "name": "Com apoio de braços ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_HEADREST",
+        "name": "Com apoio de cabeça",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "name": "Com apoio de pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "name": "É ergonômica",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_SWIVEL",
+        "name": "É giratória",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "38933705",
+        "value_name": "ThunderX3 TGC12",
+        "values": [
+          {
+            "id": "38933705",
+            "name": "ThunderX3 TGC12"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "name": "Inclui manual de montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "name": "Tipo de apoio lombar",
+        "value_id": "10201909",
+        "value_name": "Regulável",
+        "values": [
+          {
+            "id": "10201909",
+            "name": "Regulável"
+          }
+        ]
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "name": "Tipos de mecanismos de reclinação",
+        "value_id": "10219265",
+        "value_name": "Encosto reclinável",
+        "values": [
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "name": "Peso da cadeira",
+        "value_id": "10263987",
+        "value_name": "21.5 kg",
+        "values": [
+          {
+            "id": "10263987",
+            "name": "21.5 kg"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "name": "Largura do encosto",
+        "value_id": "9567305",
+        "value_name": "57 cm",
+        "values": [
+          {
+            "id": "9567305",
+            "name": "57 cm"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Cadeira Gamer ThunderX3 TGC12 Loft Cinza\n\nA Cadeira Gamer ThunderX3 TGC12 Loft é um modelo com revestimento em tecido, ideal para quem busca conforto durante todo o dia. Com seu tecido premium e espuma de alta densidade, este modelo proporciona um suporte perfeito para longas sessões de trabalho ou jogos.\n\nA TGC12 Loft oferece total ajustabilidade para atender às preferências individuais. Seus apoios de braços podem ser ajustados em duas direções, enquanto a função de balanço de 3° a 18° permite que você relaxe durante o dia. O encosto reclinável e a regulagem de altura do assento possibilitam personalizar a posição para um conforto ergonômico.\n\nConstruída para durar, a TGC12 Loft apresenta um mecanismo borboleta robusto, uma base de aço de 350 mm e rodinhas de nylon resistente de 65 mm, garantindo uma estrutura sólida e durável.\n\nModelo: TGC12 Loft  \nCor: Cinza  \n\nDimensões:  \nAltura da cadeira: 124 - 134cm  \nLargura do encosto: 57cm  \nComprimento do encosto: 82cm  \nLargura do assento: 54cm  \nProfundidade do assento: 50cm  \nEspessura do assento: 13cm  \nAltura do assento até o chão: 48 - 58cm  \nLargura dos apoios de braço: 68cm  \nAltura dos apoios de braço até o chão: 61 - 78cm  \nLargura da base: 70cm  \n\nMaterial:  \nEstrutura (moldura): Aço  \nRevestimento principal: tecido  \nApoio de braço: almofadado, ajuste 2D | Altura e angulação para dentro/fora  \nApoio de cabeça: Sim  \nInclinação do encosto: até 135°  \nMecanismo: Borboleta, controle de inclinação com trava única  \nBalanço: sim, de 3° a 18°  \nCilindro de Gás: classe 4  \nPeso máximo recomendado: 125kg  \nBase: aço de 350mm  \nRodas: nylon de 65mm  \nItens inclusos: kit de parafusos e chave  \nPeso: 21.5kg  \nEAN: 4711099476480  \nPeso: 23,000g  \n\nAcompanha o produto:  \n1 X Cadeira Gamer ThunderX3 TGC12 Loft Cinza"
+    },
+    "parent_id": "MLB37849529",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T11:11:38.157669019"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-06-22T17:36:07Z",
+    "authorized_stores": null,
+    "last_updated": "2026-03-21T02:19:15Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

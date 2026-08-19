@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-08-17T14:15:36.073Z",
+  "local_images": [
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK004115/01-b036e28c4058950019fa.jpg",
+    "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK004115/02-d8f2f4a63967f90e5a54.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "625817-MLA99870080149_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_625817-MLA99870080149_112025-F.jpg",
+      "max_width": "1200",
+      "max_height": "690"
+    },
+    {
+      "id": "978976-MLA109739189124_042026",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_978976-MLA109739189124_042026-F.jpg",
+      "max_width": "981",
+      "max_height": "946"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

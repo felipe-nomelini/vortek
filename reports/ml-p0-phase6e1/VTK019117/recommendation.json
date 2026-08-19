@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+    "supplier_category": "Automotivo/ Acessórios Para Instalacao/ Corneta Plástica Para Som",
+    "supplier_brand": "FIAMON",
+    "supplier_gtin": "7898478324987",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/346255",
+    "captured_at": "2026-08-17T12:55:36.239Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

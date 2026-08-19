@@ -1,0 +1,355 @@
+{
+  "checked_at": "2026-08-17T00:44:51.810Z",
+  "expected_catalog_product_id": "MLB27866916",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB27866916",
+    "catalog_product_id": "MLB27866916",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-SPEAKERS_STANDS",
+    "permalink": "",
+    "name": "Suporte Caixa De Som Ask Ch10 Parede Longo 4 Regulagem 45kg Cor Preto",
+    "family_name": "ASK CH10",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB27866916",
+            "picker_label": "Preto",
+            "picture_id": "862356-MLA99994003367_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_862356-MLA99994003367_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ASK CH10 - Preto - Unidade - 1",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "SALE_FORMAT",
+        "picker_name": "Formato de venda",
+        "products": [
+          {
+            "product_id": "MLB27866916",
+            "picker_label": "Unidade",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ASK CH10 - Preto - Unidade - 1",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "SALE_FORMAT",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por kit",
+        "products": [
+          {
+            "product_id": "MLB27866916",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ASK CH10 - Preto - Unidade - 1",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "862356-MLA99994003367_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_862356-MLA99994003367_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 594,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "845975-MLA92009899895_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_845975-MLA92009899895_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 797,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "902301-MLA91610361260_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_902301-MLA91610361260_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 834,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Suporta até 45 kg a 90° e até 25 kg a 60°.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Material robusto em aço para maior durabilidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ajuste de inclinação vertical em 4 posições.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "4238929",
+        "value_name": "ASK",
+        "values": [
+          {
+            "id": "4238929",
+            "name": "ASK"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "5114383",
+        "value_name": "CH10",
+        "values": [
+          {
+            "id": "5114383",
+            "name": "CH10"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "112648",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "112648",
+            "name": "Metal"
+          }
+        ]
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "name": "Lugar de colocação",
+        "value_id": "3964545",
+        "value_name": "De parede",
+        "values": [
+          {
+            "id": "3964545",
+            "name": "De parede"
+          }
+        ]
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "name": "É ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "1115147",
+        "value_name": "21 cm",
+        "values": [
+          {
+            "id": "1115147",
+            "name": "21 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "1115182",
+        "value_name": "7 cm",
+        "values": [
+          {
+            "id": "1115182",
+            "name": "7 cm"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "57654",
+        "value_name": "950 g",
+        "values": [
+          {
+            "id": "57654",
+            "name": "950 g"
+          }
+        ]
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "57654",
+        "value_name": "950 g",
+        "values": [
+          {
+            "id": "57654",
+            "name": "950 g"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "DESCRIÇÃO\n\nO Suporte para caixa de som CH10 da ASK possui 4 regulagens de inclinação vertical (0°, 10°, 20° e 30°), além de permitir a rotação da caixa. Feito em aço resistente com exclusivo sistema de regulagem de inclinação, o CH10 é compatível com qualquer caixa de som que possua entrada para o suporte com limite de até 45 kg de acordo com o ângulo descrito nas Especificações Técnicas.\n\nMARCA\n• ASK\n\nMODELO\n• Suporte Para Caixa de Som CH10\n\nOBSERVAÇÃO\n• Preto\n\nESPECIFICAÇÕES TÉCNICAS\n\n- Marca: ASK\n- Modelo: CH10\n- Material: Aço\n- Suporte universal para caixa de som que possua entrada para o suporte\n- Ajustes: Inclinação\n- Não acompanha chapéu.\n- Distancia até o Apoio: 36,5 cm\n- Embalagem (C x A x L): 43 cm x 21,3 cm x 7,1 cm\n- Peso: 0,950 kg\n\nSuporta até:\n\n- 45 Kg a 90º\n- 35 Kg a 80º\n- 30 Kg a 70º\n- 25 Kg a 60º"
+    },
+    "parent_id": "MLB27866915",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T07:45:23.217577003"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-10-25T00:23:20Z",
+    "authorized_stores": null,
+    "last_updated": "2025-03-20T23:10:45Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

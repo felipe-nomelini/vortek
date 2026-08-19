@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018134",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Cabletech Master 40 RGC06 has no high-confidence category in the validated source set",
+  "local_value": "7898414700059",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:15:21.207Z"
+}

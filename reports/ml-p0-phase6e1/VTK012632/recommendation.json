@@ -1,0 +1,18 @@
+{
+  "action": "SEMANTIC_CATEGORY_ALTERNATIVE_FOUND",
+  "future_write_authorized": false,
+  "alternative": {
+    "category_id": "MLB420707",
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+    "domain_name": "Conectores de áudio e vídeo",
+    "category_name": "Conectores",
+    "category_path": [
+      "Eletrônicos, Áudio e Vídeo",
+      "Áudio",
+      "Equipamento para DJs",
+      "Acessórios",
+      "Conectores"
+    ],
+    "normalized_context": "mlbaudioandvideoconnectorsconectoresdeaudioevideomlbaudioandvideoconnectorseletronicosaudioevideoaudioequipamentoparadjsacessoriosconectoresconectores"
+  }
+}

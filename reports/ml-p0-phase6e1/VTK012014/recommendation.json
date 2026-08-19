@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "supplier_brand": "Wireconex",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1377",
+    "captured_at": "2026-08-17T12:56:25.418Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

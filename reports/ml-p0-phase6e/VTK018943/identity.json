@@ -1,0 +1,343 @@
+{
+  "checked_at": "2026-08-17T12:54:53.098Z",
+  "product": {
+    "id": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+    "sku": "VTK018943",
+    "nome": "Controlador Acesso Ip Wide Cx-7006",
+    "marca": "CITROX",
+    "gtin": "7898954353630"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/366611",
+    "consulted_at": "2026-08-17T12:54:52.908Z",
+    "product": {
+      "produtoid": "366611",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 515.9,
+      "preco_crossdocking": 515.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 515.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Controlador Acesso Ip Wide Cx-7006",
+      "titulo_curto": "Controlador Acesso Ip Wide Cx-7006",
+      "categoriaid": "117440",
+      "categoria_nome": "Segurança / Alarme/ Acessórios Alarme",
+      "abc": null,
+      "ean11": "7898954353630",
+      "ncm": "84714100",
+      "descricao": "<p>Comunicação Ethernet (TCP/IP);<br />Alimentação 12Vdc (fonte não acompanha);<br />Mantém informações em caso de falta de energia;<br />Gerenciada pelo software Access Control Web (software gratuito);<br />Capacidade de armazenamento ilimitada no modo Online;<br />Armazena 8000 cartões e 10.000 eventos offline;<br />Quatro entradas Wiegand 26 bits;<br />Quatro entradas para botoeiras;<br />Quatro entradas para sensores;<br />Quatro relés independentes para acionamento de pontos;<br />Um relé para alarme/auxiliar.</p>\r\n<p> </p>\r\n<p>*Imagem meramente ilustrativa.</p>",
+      "caracteristicas": "<p>Peso: 185g<br />Dimensões: 13C x 8L x 2A Cm</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "CITROX",
+      "modelo": "",
+      "peso": 0.18,
+      "largura": 12,
+      "altura": 5,
+      "profundidade": 16,
+      "peso_embalagem": 0.18,
+      "largura_embalagem": 12,
+      "altura_embalagem": 5,
+      "profundidade_embalagem": 16,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/6/366611_67d2cafcdff8c.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1356,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.029.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-02-12 15:06:54.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:58:28.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/6/366611_67d2cafcdff8c.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB29031503",
+    "source": "ML catalog MLB29031503 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Citrox",
+      "model": "RFID 900MHZ - CX 7404",
+      "local_pack": null,
+      "catalog_pack": 50,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [],
+      "catalog_colors": [],
+      "title_similarity": 0.09090909090909091
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB29031503",
+      "catalog_product_id": "MLB29031503",
+      "domain_id": "MLB-RFID_TAGS",
+      "name": "Etiqueta Veícular Tag Rfid 900 Mhz Citrox Cx-7404 50 Peças",
+      "parent_id": "MLB29031501",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "open",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3249259",
+          "value_name": "Citrox",
+          "values": [
+            {
+              "id": "3249259",
+              "name": "Citrox"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "27538208",
+          "value_name": "RFID 900MHZ - CX 7404",
+          "values": [
+            {
+              "id": "27538208",
+              "name": "RFID 900MHZ - CX 7404"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "name": "Unidades por embalagem",
+          "value_id": "133896",
+          "value_name": "50",
+          "values": [
+            {
+              "id": "133896",
+              "name": "50"
+            }
+          ]
+        },
+        {
+          "id": "SHAPE",
+          "name": "Forma",
+          "value_id": "1163800",
+          "value_name": "Retangular",
+          "values": [
+            {
+              "id": "1163800",
+              "name": "Retangular"
+            }
+          ]
+        },
+        {
+          "id": "DATA_STORAGE_CAPACITY",
+          "name": "Capacidade de armazenamento de dados",
+          "value_id": "65958723",
+          "value_name": "0 TB",
+          "values": [
+            {
+              "id": "65958723",
+              "name": "0 TB"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "3157",
+          "value_name": "10 cm",
+          "values": [
+            {
+              "id": "3157",
+              "name": "10 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "31966",
+          "value_name": "3 cm",
+          "values": [
+            {
+              "id": "31966",
+              "name": "3 cm"
+            }
+          ]
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "24738557",
+          "value_name": "0.01 mm",
+          "values": [
+            {
+              "id": "24738557",
+              "name": "0.01 mm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_READ_DISTANCE",
+          "name": "Distância máxima de leitura",
+          "value_id": "66039724",
+          "value_name": "400 cm",
+          "values": [
+            {
+              "id": "66039724",
+              "name": "400 cm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "27538211",
+          "value_name": "7898954353630",
+          "values": [
+            {
+              "id": "27538211",
+              "name": "7898954353630"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O produto 'Tag Veícular Etiqueta Rfid 900 Mhz 50 Pçs - Citrox Cx-7404' é um dispositivo de alta frequência, operando a 900Mhz. Possui uma memória de 512 bits, permitindo armazenar uma quantidade significativa de informações. A distância de leitura pode chegar até 4 metros, variando de acordo com o leitor e as condições do ambiente. \n\nUma das principais características deste produto é a possibilidade de personalização. Você pode adicionar o nome, o logotipo da empresa ou qualquer outra informação relevante na etiqueta. Além disso, cada etiqueta possui um código interno exclusivo, garantindo alta confiabilidade e segurança para o usuário. \n\nAs dimensões do produto são de 10 cm de comprimento, 3 cm de largura e 0,01 cm de altura, tornando-o compacto e fácil de manusear. O pacote inclui 50 etiquetas modelo CX7404 da marca Citrox, conhecida por sua qualidade e durabilidade. \n\nEste produto tem formato retangular, o que facilita a sua aplicação em diferentes superfícies. A capacidade de armazenamento de dados é de 0 B e o diâmetro é de 0,01 mm. A distância máxima de leitura é de 400 cm, tornando-o ideal para uso em diversas situações."
+      },
+      "pictures": [
+        {
+          "id": "956873-MLA99573121064_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_956873-MLA99573121064_122025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1033"
+        },
+        {
+          "id": "860115-MLA84764397597_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_860115-MLA84764397597_052025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1024"
+        },
+        {
+          "id": "869268-MLA84466476138_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_869268-MLA84466476138_052025-F.jpg",
+          "max_width": "1200",
+          "max_height": "683"
+        },
+        {
+          "id": "775868-MLA84176202970_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_775868-MLA84176202970_052025-F.jpg",
+          "max_width": "1166",
+          "max_height": "641"
+        },
+        {
+          "id": "970614-MLA80626027789_112024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_970614-MLA80626027789_112024-F.jpg",
+          "max_width": "1200",
+          "max_height": "1004"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-12-16T00:42:46Z",
+      "last_updated": "2025-10-30T21:29:48Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

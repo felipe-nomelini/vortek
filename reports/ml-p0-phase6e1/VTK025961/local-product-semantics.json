@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-08-17T14:15:47.751Z",
+  "product": {
+    "id": "7f7205fb-4866-4694-a502-3f4f2e18fa2a",
+    "sku": "VTK025961",
+    "nome": "Frigideira Redonda Rochedo Robusta 18m Grafite - CXM / 3",
+    "marca": "ARNO",
+    "estoque": 4,
+    "custo": 104.74,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.26,
+    "peso_bruto": 1.26,
+    "largura": 22,
+    "altura": 15,
+    "profundidade": 33,
+    "gtin": "17702073029024",
+    "descricao": "A Frigideira Redonda Rochedo Robusta Grafite 18 cm foi desenvolvida com estrutura reforçada e acabamento moderno na cor grafite, ela oferece maior durabilidade para o preparo das mais diversas receitas, garantindo resultados saborosos e mais eficiência no dia a dia. • Antiaderente Resist 3X: reforçado com partículas minerais, proporciona mais robustez, maior resistência e durabilidade prolongada, além de evitar que os alimentos grudem. • Alta espessura: estrutura mais resistente que contribui para uma longa vida útil e melhor desempenho durante o preparo dos alimentos. • Tecnologia Thermo-Sinal: indica o momento ideal para selar os alimentos, mudando de cor quando a frigideira atinge a temperatura adequada. • Base Limpa Fácil: não mancha, não gruda e facilita a limpeza após o uso, tornando a rotina mais prática. • Uso versátil e seguro: livre de PFOA, pode ser utilizada em fogões a gás, elétricos e vitrocerâmicos, além de ser compatível com máquina de lavar louças. Com a tradição e qualidade da Rochedo, presente nos lares brasileiros há mais de um século, a Frigideira Robusta Grafite 26cm é a escolha certa para quem valoriza resistência, praticidade e confiança na hora de cozinhar, oferecendo mais durabilidade e excelentes resultados em todas as refeições. A Rochedo é uma marca reconhecida e consolidada no mercado brasileiro há décadas, sendo sinônimo de tradição, qualidade e confiança. Presente nos lares de milhões de famílias, a marca se destaca principalmente na produção de utensílios domésticos como panelas, frigideiras, assadeiras e acessórios que unem praticidade, resistência e inovação. Com uma atuação voltada para facilitar a rotina dos consumidores, a Rochedo investe constantemente em tecnologia e design funcional, trazendo soluções que aliam modernidade e eficiência.",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/88870/550/1.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/2.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/3.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/4.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/5.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/6.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/7.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/8.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/9.jpg",
+      "https://static.hayapek.com.br/produtos/88870/550/10.jpg"
+    ],
+    "categoria": "Eletrodomesticos E Eletroportateis / Cozinha / Panelas E Cozinha",
+    "ml_item_id": null,
+    "created_at": "2026-08-03T10:29:27.461293+00:00",
+    "updated_at": "2026-08-17T14:03:23.966754+00:00",
+    "dslite_fornecedor_id": "2",
+    "dslite_produto_id": "88870",
+    "dslite_ultima_sync": "2026-08-17T14:03:23.868+00:00",
+    "fornecedor": "HAYAMAX-PR",
+    "ncm": "7615.10.00",
+    "cest": null,
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "65704f04-87d5-4d98-9acd-bb28e87f283f",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "kitchen_appliance",
+    "function": "prepare_food",
+    "intended_use": "kitchen",
+    "physical_form": "kitchen_appliance",
+    "expected_category_signals": [
+      "cozinha",
+      "eletrodomestico",
+      "liquidificador",
+      "panela",
+      "grill",
+      "fogao"
+    ],
+    "incompatible_category_signals": [
+      "informatica",
+      "automotivo",
+      "instrumentomusical"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "18 cm",
+        "26 cm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "kitchen",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

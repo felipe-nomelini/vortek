@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075741535",
+      "local": "MLB5075741535",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK021012",
+      "local": "VTK021012",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "44c5b85d-24ca-430c-a90e-b410f92fb149",
+      "local": "44c5b85d-24ca-430c-a90e-b410f92fb149",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Telefone Gôndola Com Fio Tc 20 Preto Intelbras Preto",
+      "local": "Telefone Gôndola Com Fio Tc 20 Preto Intelbras Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 199.9,
+      "local": 199.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075741535-telefone-gndola-com-fio-tc-20-preto-intelbras-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075741535-telefone-gndola-com-fio-tc-20-preto-intelbras-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

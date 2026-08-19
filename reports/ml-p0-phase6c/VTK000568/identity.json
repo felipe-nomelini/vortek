@@ -1,0 +1,556 @@
+{
+  "checked_at": "2026-08-17T00:43:58.559Z",
+  "product": {
+    "id": "91298ae8-5b01-4716-876d-900536b1708e",
+    "sku": "VTK000568",
+    "nome": "Microfone Sem Fio Harmonics HSF-200 Simples",
+    "marca": "HARMONICS",
+    "gtin": "7898554607508"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/79692",
+    "consulted_at": "2026-08-17T00:43:58.358Z",
+    "product": {
+      "produtoid": "79692",
+      "produtoid_empresa": "HYX79692",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 246.08,
+      "preco_crossdocking": 246.08,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 246.08,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-06-15 18:05:56.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Microfone Sem Fio Harmonics HSF-200 Simples",
+      "titulo_curto": "MIC S/FIO MAO HARMONICS HSF200",
+      "categoriaid": "292260",
+      "categoria_nome": "áudio / Microfones / Microfones De Mão",
+      "abc": "A",
+      "ean11": "7898554607508",
+      "ncm": "8518.10.90",
+      "descricao": "O microfone Sem Fio UHF multi-frequência com Display Digital e função Auto Scan Harmonics HSF200 Simples é um sistema que acompanha um microfone sem fio com capsula padrão polar cardioide e um receptor, projetado para uso profissional em performances ao vivo, apresentações, conferências e outros eventos onde é necessário um sistema de áudio portátil e de alta qualidade. <br/> <br/> O microfone de mão é alimentado por pilha, além disso, o design sem fio permite que os usuários se movam livremente pelo palco ou espaço de apresentação sem se preocupar com a restrição de fios. O receptor possui tecnologia de sincronização automática para facilitar a configuração e operação, além de uma tela LCD clara para facilitar a visualização do status do microfone e outras informações importantes. <br/> <br/> A Harmonics nasceu com a proposta de aliar alta qualidade, tecnologia e preço competitivo de mercado. Seguindo três frentes, a Harmonics trabalha com instrumentos de cordas, instrumentos de sopro e microfones, atendendo as principais demandas do mercado com extrema qualidade e precisão. <br/> <br/> Fazendo parte de um grupo empresarial de mais de 50 anos de mercado, a Harmonics tem competência para se manter atualizada, buscando atender as necessidades de músicos que procuram um excelente custo/benefício em instrumentos musicais, som profissional, partes e acessórios.",
+      "caracteristicas": "Resposta Frequência:30 – 20 Khz<br>Frequência:100 de Frequências UHF<br>Sensibilidade:<-94dBm<br>Pesquisa:microfone|harmonics|microfone harmonics|microfone de mão|microfone duplo|hsf200-1 <br/><br>",
+      "informacoes": "<br/> • Método de modulação: π/4 - DQPSK; <br/> • Taxa de amostragem: 48KHz; <br/> • Taxa de transmissão: 204.8Kbps; <br/> • Faixa dinâmica: > 90dB; <br/> • Distorção total de harmonia: <0.1%; <br/> • Tempo de atraso da transmissão do áudio: <3ms; <br/> • Relação S/N: >96 dB; <br/> • Endereço de identificação único: SIM; <br/> • Faixa de frequência Tx (MHz): 640-665 ~ 665-690; <br/> • Potência de saída (mW): 16.59 ~ 16.56; <br/> • Designação de emissões: 95K4F3E ~ 82K2F3E; <br/> • Tipo de modulação: FM ~ FM; <br/> • Auto Scan; <br/> • Display LCD Bastão e Receptor; <br/> • Antenas RF do receptor Fixa; <br/> • Base e bastao em ABS; <br/> • Compartilhamento de pilhas: 2x AA 1,5V (Pilhas não inclusas). <br/> <br/> Homologação Anatel: 07134-23-10454 <br/>",
+      "informacoes_tec": "",
+      "itens_inclusos": "Acessórios:Acompanha um receptor e um transmissor<br>",
+      "marca": "HARMONICS",
+      "modelo": "HSF-200 Simples",
+      "peso": 2.254,
+      "largura": 43,
+      "altura": 10,
+      "profundidade": 32.5,
+      "peso_embalagem": 2.254,
+      "largura_embalagem": 43,
+      "altura_embalagem": 10,
+      "profundidade_embalagem": 32.5,
+      "link": "http://www.hayamax.com.br/microfone-sem-fio-harmonics-hsf-200-simples",
+      "link_imagem": "https://static.hayapek.com.br/produtos/79692/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 180,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 9.75,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1280,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 16:06:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:37.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 306,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/7.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "8",
+          "valor": "https://static.hayapek.com.br/produtos/79692/550/8.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB28659224",
+      "catalog_product_id": "MLB28659224",
+      "domain_id": "MLB-MICROPHONES",
+      "name": "Microfone Sem Fio Uhf Harmonics Hsf200-1 Cor Preto",
+      "parent_id": "MLB28659221",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "480322",
+          "value_name": "Harmonics",
+          "values": [
+            {
+              "id": "480322",
+              "name": "Harmonics"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "49053561",
+          "value_name": "Harmonics HSF200-1 UHF",
+          "values": [
+            {
+              "id": "49053561",
+              "name": "Harmonics HSF200-1 UHF"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "49053560",
+          "value_name": "Harmonics HSF200-1 UHF",
+          "values": [
+            {
+              "id": "49053560",
+              "name": "Harmonics HSF200-1 UHF"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_FORMATS",
+          "name": "Formatos de microfone",
+          "value_id": "20190035",
+          "value_name": "Bastão",
+          "values": [
+            {
+              "id": "20190035",
+              "name": "Bastão"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_TYPES",
+          "name": "Tipos de microfone",
+          "value_id": "24039845",
+          "value_name": "Sem fio",
+          "values": [
+            {
+              "id": "24039845",
+              "name": "Sem fio"
+            }
+          ]
+        },
+        {
+          "id": "POLAR_PATTERNS",
+          "name": "Padrões polares",
+          "value_id": "7226710",
+          "value_name": "Hipercardióide",
+          "values": [
+            {
+              "id": "7226710",
+              "name": "Hipercardióide"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "name": "Quantidade de microfones",
+          "value_id": "934836",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "934836",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "name": "Tipos de conexões",
+          "value_id": "11296606",
+          "value_name": "Sem fio",
+          "values": [
+            {
+              "id": "11296606",
+              "name": "Sem fio"
+            }
+          ]
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "13869241",
+          "value_name": "20 kHz",
+          "values": [
+            {
+              "id": "13869241",
+              "name": "20 kHz"
+            }
+          ]
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "2261347",
+          "value_name": "20 kHz",
+          "values": [
+            {
+              "id": "2261347",
+              "name": "20 kHz"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_RECOMMENDED_USES",
+          "name": "Usos recomendados do microfone",
+          "value_name": "Bandas, Igrejas, Apresentações, comícios, show",
+          "values": [
+            {
+              "id": "20102314",
+              "name": "Bandas"
+            },
+            {
+              "id": "13457349",
+              "name": "Igrejas"
+            },
+            {
+              "id": "24039507",
+              "name": "Apresentações"
+            },
+            {
+              "id": "47713045",
+              "name": "comícios"
+            },
+            {
+              "id": "20097905",
+              "name": "show"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "1176674",
+          "value_name": "Pilha",
+          "values": [
+            {
+              "id": "1176674",
+              "name": "Pilha"
+            }
+          ]
+        },
+        {
+          "id": "CELL_BATTERY_TYPE",
+          "name": "Tipo de pilha",
+          "value_id": "40962684",
+          "value_name": "Alcalina",
+          "values": [
+            {
+              "id": "40962684",
+              "name": "Alcalina"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BUILT_IN_SPEAKERS",
+          "name": "Com alto-falantes embutidos",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "480322",
+          "value_name": "Harmonics",
+          "values": [
+            {
+              "id": "480322",
+              "name": "Harmonics"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "47713044",
+          "value_name": "HSF 200",
+          "values": [
+            {
+              "id": "47713044",
+              "name": "HSF 200"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "name": "Conectores de saída",
+          "value_name": "Jack 6.3 mm, XLR",
+          "values": [
+            {
+              "id": "7226718",
+              "name": "Jack 6.3 mm"
+            },
+            {
+              "id": "2305169",
+              "name": "XLR"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "26980343",
+          "value_name": "7898554607508",
+          "values": [
+            {
+              "id": "26980343",
+              "name": "7898554607508"
+            }
+          ]
+        },
+        {
+          "id": "WITH_POWER_LIGHT",
+          "name": "Com luz indicadora de funcionamento",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "SENSITIVITY",
+          "name": "Sensibilidade",
+          "value_id": "7536721",
+          "value_name": "90 dB",
+          "values": [
+            {
+              "id": "7536721",
+              "name": "90 dB"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "8621603",
+          "value_name": "Receptor",
+          "values": [
+            {
+              "id": "8621603",
+              "name": "Receptor"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Microfone Sem Fio UHF Harmonics HSF200-1 é ideal para quem busca alta qualidade de áudio e praticidade em performances ao vivo, apresentações e conferências. Graças à sua tecnologia UHF multi-frequência, display digital e função Auto Scan, este sistema oferece um desempenho excepcional em qualquer ambiente.\n\nO microfone de mão tem uma cápsula padrão polar cardioide, que garante uma captação precisa e clara do som. Além disso, sua alimentação por pilha permite uma grande mobilidade, sem a preocupação com fios que possam restringir seus movimentos no palco.\n\nO receptor do microfone tem tecnologia de sincronização automática, que facilita sua configuração e operação. Sua tela LCD clara oferece uma visualização fácil do status do microfone e outras informações importantes.\n\nA Harmonics é uma marca reconhecida por sua alta qualidade, tecnologia avançada. Com mais de 50 anos de experiência no ramo musical, a marca se destaca no desenvolvimento de instrumentos de cordas, instrumentos de sopro e microfones.\n\nCom resposta de frequência de 30 - 20 Khz e sensibilidade de 90dB, o Microfone Sem Fio UHF Harmonics HSF200-1 proporciona um som nítido e de alta fidelidade. Sua distorção total de harmonia é mínima, garantindo uma reprodução fiel do áudio.\n\nO microfone funciona com pilhas, garantindo uma grande mobilidade durante suas performances. O microfone possui uma cápsula padrão polar cardioide, que oferece uma captação precisa do som. O receptor do microfone conta com tecnologia de sincronização automática, o que facilita sua configuração e operação. A resposta de frequência do Microfone Sem Fio UHF Harmonics HSF200-1 vai de 30 a 20 Khz, garantindo um som nítido e de alta fidelidade. O microfone possui uma sensibilidade de 90dB, o que garante uma captação clara e precisa do som."
+      },
+      "pictures": [
+        {
+          "id": "735351-MLA99498066750_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_735351-MLA99498066750_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "528"
+        },
+        {
+          "id": "783884-MLU73267261703_122023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_783884-MLU73267261703_122023-F.jpg",
+          "max_width": "550",
+          "max_height": "500"
+        },
+        {
+          "id": "916151-MLU74724627642_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_916151-MLU74724627642_032024-F.jpg",
+          "max_width": "252",
+          "max_height": "1200"
+        },
+        {
+          "id": "834250-MLU73267340883_122023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_834250-MLU73267340883_122023-F.jpg",
+          "max_width": "550",
+          "max_height": "577"
+        },
+        {
+          "id": "730767-MLU73267261723_122023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_730767-MLU73267261723_122023-F.jpg",
+          "max_width": "550",
+          "max_height": "500"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-12-06T03:28:38Z",
+      "last_updated": "2026-05-01T03:13:33Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

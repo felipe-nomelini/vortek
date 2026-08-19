@@ -1,0 +1,133 @@
+{
+  "family_name": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+  "category_id": "MLB11290",
+  "price": 187.22,
+  "currency_id": "BRL",
+  "available_quantity": 15,
+  "buying_mode": "buy_it_now",
+  "listing_type_id": "gold_pro",
+  "condition": "new",
+  "pictures": [
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/3.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/4.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/2.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/7.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/8.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/6.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/9.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/5.jpg"
+    },
+    {
+      "source": "https://static.hayapek.com.br/produtos/74810/550/1.jpg"
+    }
+  ],
+  "attributes": [
+    {
+      "id": "BRAND",
+      "value_name": "Toshiba"
+    },
+    {
+      "id": "MODEL",
+      "value_name": "TNHC-6GAE4 CB"
+    },
+    {
+      "id": "PRODUCT_TYPE",
+      "value_id": "28280064",
+      "value_name": "Pilha"
+    },
+    {
+      "id": "CONNECTOR_TYPE",
+      "value_id": "24420060",
+      "value_name": "Plug"
+    },
+    {
+      "id": "GTIN",
+      "value_name": "4904530109270"
+    },
+    {
+      "id": "INPUT_VOLTAGE",
+      "value_id": "39205163",
+      "value_name": "127/220V"
+    },
+    {
+      "id": "DETAILED_MODEL",
+      "value_name": "TNHC-6GAE4 CB"
+    },
+    {
+      "id": "SUPPORTED_BATTERY_SIZE",
+      "value_name": "AA, AAA"
+    },
+    {
+      "id": "SUPPORTED_BATTERY_COMPOSITION",
+      "value_id": "2516404",
+      "value_name": "Ni-Mh"
+    },
+    {
+      "id": "WITH_CHARGE_INDICATOR",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "INCLUDES_CELL_BATTERIES",
+      "value_id": "242085",
+      "value_name": "Sim"
+    },
+    {
+      "id": "CHARGING_PORTS_NUMBER",
+      "value_name": "4"
+    },
+    {
+      "id": "BATTERIES_CHARGE_CAPACITY",
+      "value_name": "2600 mAh"
+    },
+    {
+      "id": "MANUFACTURER",
+      "value_name": "Toshiba"
+    },
+    {
+      "id": "MPN",
+      "value_name": "TNHC-6GAE4 CB"
+    },
+    {
+      "id": "SELLER_SKU",
+      "value_name": "VTK000486"
+    },
+    {
+      "id": "SELLER_PACKAGE_WIDTH",
+      "value_name": "13 cm"
+    },
+    {
+      "id": "SELLER_PACKAGE_LENGTH",
+      "value_name": "12 cm"
+    },
+    {
+      "id": "SELLER_PACKAGE_HEIGHT",
+      "value_name": "17 cm"
+    },
+    {
+      "id": "SELLER_PACKAGE_WEIGHT",
+      "value_name": "262 g"
+    }
+  ],
+  "seller_custom_field": "VTK000486",
+  "shipping": {
+    "mode": "me2",
+    "local_pick_up": false,
+    "free_shipping": true
+  }
+}

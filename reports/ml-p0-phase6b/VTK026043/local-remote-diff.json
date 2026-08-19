@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432450528",
+      "local": "MLB7432450528",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026043",
+      "local": "VTK026043",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "4546e46e-4916-4ebb-b2a2-0d70648c6c59",
+      "local": "4546e46e-4916-4ebb-b2a2-0d70648c6c59",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cinta Plástica Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto",
+      "local": "Cinta Plástica Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 99.9,
+      "local": 99.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432450528-cinta-plastica-fita-bracadeira-nylon-enforca-gato-40cm-100un-cor-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432450528-cinta-plastica-fita-bracadeira-nylon-enforca-gato-40cm-100un-cor-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

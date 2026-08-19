@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_BRAND_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Bandeja Fixa Max Eletron 19\" 1u X 350mm Frontal",
+    "supplier_category": "Redes E Provedores/ Internet E Rede/ Rack",
+    "supplier_brand": "MAX ELETRON",
+    "supplier_gtin": "7908060203627",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/364838",
+    "captured_at": "2026-08-17T12:54:21.880Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

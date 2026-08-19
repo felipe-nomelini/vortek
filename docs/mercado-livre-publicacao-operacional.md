@@ -145,9 +145,24 @@ Não tratar criação como concluída enquanto imagem e ficha não forem verific
 7. Diagnóstico de imagem sem erro.
 8. Status/substatus ML compatíveis com processamento ou publicação ativa.
 
+## Safe Publication Mode
+
+O ciclo industrial e a otimização comercial são independentes.
+
+1. Validar identidade, duplicidade, categoria/catálogo obrigatório, atributos e imagens.
+2. Criar o item e obter o frete real por `item_id`.
+3. Aplicar imediatamente preço de proteção com margem operacional mínima de 50%, usando o maior frete comprovado disponível.
+4. Confirmar read-back remoto e persistir o vínculo local transacionalmente.
+5. Registrar `QUALITY_OPTIMIZATION_PENDING`; qualidade, performance, completeness, health e recomendações não bloqueiam criação ou persistência industrial.
+6. Registrar `COMMERCIAL_OPTIMIZATION_PENDING`; Buy Box, `price_to_win` e competitividade não bloqueiam este ciclo.
+
+Preço protetivo não é preço comercial definitivo. Dimensões normalizadas pelo Mercado Envios não substituem silenciosamente o cadastro mestre do fornecedor.
+
 ## Fontes oficiais
 
 - https://developers.mercadolivre.com.br/pt_br/pt_br/publicacao-de-produtos
+- https://developers.mercadolivre.com.br/pt_br/usuarios-e-aplicativos/atualiza-tuas-publicacoes
+- https://developers.mercadolivre.com.br/pt_br/como-comecar/qualidade-das-publicacoes
 - https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br/atributos
 - https://developers.mercadolivre.com.br/pt_br/descricao-de-produtos
 - https://developers.mercadolivre.com.br/pt_br/realizacao-de-testes/trabalhar-com-imagens

@@ -1,0 +1,690 @@
+{
+  "checked_at": "2026-08-17T12:54:27.975Z",
+  "product": {
+    "id": "fb948071-e1ce-45bd-9c17-e6922f37ea26",
+    "sku": "VTK001297",
+    "nome": "Guitarra Giannini G100 Sunburst Com Escudo Branco",
+    "marca": "GIANNINI",
+    "gtin": "7890443014374"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/38402",
+    "consulted_at": "2026-08-17T12:54:27.181Z",
+    "product": {
+      "produtoid": "38402",
+      "produtoid_empresa": "HYX38402",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 635.73,
+      "preco_crossdocking": 635.73,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 635.73,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-08 18:16:21.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Guitarra Giannini G100 Sunburst Com Escudo Branco",
+      "titulo_curto": "GUITARRA GIANNINI G100 SBT C/ESCUDO BR",
+      "categoriaid": "0295",
+      "categoria_nome": "Instrumentos Musicais / Cordas / Guitarras",
+      "abc": "B",
+      "ean11": "7890443014374",
+      "ncm": "9207.90.10",
+      "descricao": "A Guitarra Giannini G100 é um excelente instrumento, ideal para músicos que estão começando no mundo da música, sendo a escolha certa para a maioria dos guitarristas, além de ser uma marca renomada e com ótimo custo-benefício. <br/> <br/> Constituída com um corpo em Basswood, essa guitarra possui versatilidade, com timbre produzido pelos bons captadores Single Coils Sonic-X, se adapta facilmente ao estilo musical. <br/> <br/> A Giannini faz a fabricação de instrumentos musicais fabricados no Brasil, possuindo em seu design madeiras selecionadas, com a criação de produtos de excelente qualidade, buscando assim satisfazer os clientes. Giannini está no mercado desde 1900, fundada inicialmente na cidade de São Paulo. Tendo sua história unida a da música brasileira a empresa se tornou uma das mais tradicionais marcas de instrumentos musicais existentes no Brasil.",
+      "caracteristicas": "Escudo:Branco<br>Tarraxas:Blindadas Cromadas 6 em Linha<br>Ponte:Standard Cromada com Trêmolo<br>Cor:Sunburst<br>Acabamento:Verniz Brilhante no Corpo e Verniz Fosco no Braço<br>Corpo:Basswood<br>Braço:Maple com Tensor<br>Escala:Rosewood<br>Captadores:3 Single Coils<br>Controles:Chave Seletora de 5 Posições (1 Volume e 2 Tonalidades)<br>Trastes:22 em Alpaca<br>Pesquisa:guitarra|stratocaster|sunburst|ggx|1s|giannini|1-s|guitarra giannini|<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "GIANNINI",
+      "modelo": "G-100",
+      "peso": 4.3,
+      "largura": 43.5,
+      "altura": 100.025,
+      "profundidade": 7.5,
+      "peso_embalagem": 4.3,
+      "largura_embalagem": 43.5,
+      "altura_embalagem": 100.025,
+      "profundidade_embalagem": 7.5,
+      "link": "http://www.hayamax.com.br/guitarra-giannini-g100-sunburst-com-escudo-branco",
+      "link_imagem": "https://static.hayapek.com.br/produtos/38402/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 24668,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-12 09:51:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:05.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/38402/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/38402/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/38402/550/3.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_CATEGORY",
+    "reason": "category confidence is not HIGH for domain MLB-ELECTRIC_GUITARS",
+    "sanitation": "CATEGORY_FIX_REQUIRED",
+    "source": "ML catalog MLB17460880 + domain discovery"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB17460880",
+      "catalog_product_id": "MLB17460880",
+      "domain_id": "MLB-ELECTRIC_GUITARS",
+      "name": "Guitarra elétrica Giannini Standard G-100 de choupo 3-tone sunburst e white shell verniz com diapasão de madeira técnica",
+      "parent_id": "MLB17460876",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "45321",
+          "value_name": "Giannini",
+          "values": [
+            {
+              "id": "45321",
+              "name": "Giannini"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "15207",
+          "value_name": "Standard",
+          "values": [
+            {
+              "id": "15207",
+              "name": "Standard"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "99305",
+          "value_name": "G-100",
+          "values": [
+            {
+              "id": "99305",
+              "name": "G-100"
+            }
+          ]
+        },
+        {
+          "id": "ORIGIN",
+          "name": "Origem",
+          "value_id": "96381",
+          "value_name": "China",
+          "values": [
+            {
+              "id": "96381",
+              "name": "China"
+            }
+          ]
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "name": "Orientação da mão",
+          "value_id": "96533",
+          "value_name": "Destro",
+          "values": [
+            {
+              "id": "96533",
+              "name": "Destro"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "10253629",
+          "value_name": "3-Tone sunburst/White shell",
+          "values": [
+            {
+              "id": "10253629",
+              "name": "3-Tone sunburst/White shell"
+            }
+          ]
+        },
+        {
+          "id": "BODY_WOOD_TYPE",
+          "name": "Tipo de madeira do corpo",
+          "value_id": "5810785",
+          "value_name": "Choupo",
+          "values": [
+            {
+              "id": "5810785",
+              "name": "Choupo"
+            }
+          ]
+        },
+        {
+          "id": "FINGERBOARD_MATERIAL",
+          "name": "Material do diapasão",
+          "value_id": "10215160",
+          "value_name": "Madeira técnica",
+          "values": [
+            {
+              "id": "10215160",
+              "name": "Madeira técnica"
+            }
+          ]
+        },
+        {
+          "id": "BODY_FINISH",
+          "name": "Acabamento do corpo",
+          "value_id": "10450751",
+          "value_name": "Verniz",
+          "values": [
+            {
+              "id": "10450751",
+              "name": "Verniz"
+            }
+          ]
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "10484195",
+          "value_name": "G-100 3TS/WH",
+          "values": [
+            {
+              "id": "10484195",
+              "name": "G-100 3TS/WH"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "NECK_WOOD_TYPES",
+          "name": "Tipos de madeira do braço",
+          "value_id": "2792083",
+          "value_name": "Bordo",
+          "values": [
+            {
+              "id": "2792083",
+              "name": "Bordo"
+            }
+          ]
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "15146",
+          "value_name": "6",
+          "values": [
+            {
+              "id": "15146",
+              "name": "6"
+            }
+          ]
+        },
+        {
+          "id": "SCALE_LENGTH",
+          "name": "Comprimento da escala",
+          "value_id": "8621791",
+          "value_name": "647.7 mm",
+          "values": [
+            {
+              "id": "8621791",
+              "name": "647.7 mm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "10253630",
+          "value_name": "7890443014374",
+          "values": [
+            {
+              "id": "10253630",
+              "name": "7890443014374"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BAR",
+          "name": "Com alavanca",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_DOUBLE_NECK",
+          "name": "Com braço duplo",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_MINI",
+          "name": "É mini",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_INFANT",
+          "name": "É infantil",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_CASE",
+          "name": "Inclui estojo",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "FRETS_NUMBER",
+          "name": "Quantidade de trastes",
+          "value_id": "1090718",
+          "value_name": "22",
+          "values": [
+            {
+              "id": "1090718",
+              "name": "22"
+            }
+          ]
+        },
+        {
+          "id": "PICKUPS_NUMBER",
+          "name": "Quantidade de captadores",
+          "value_id": "1090711",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "1090711",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "PICKUP_SWITCH",
+          "name": "Chave seletora de captadores",
+          "value_id": "9841427",
+          "value_name": "5 posições",
+          "values": [
+            {
+              "id": "9841427",
+              "name": "5 posições"
+            }
+          ]
+        },
+        {
+          "id": "FRET_SIZE",
+          "name": "Tamanho de traste",
+          "value_id": "110293",
+          "value_name": "Medium Jumbo",
+          "values": [
+            {
+              "id": "110293",
+              "name": "Medium Jumbo"
+            }
+          ]
+        },
+        {
+          "id": "NECK_SHAPE",
+          "name": "Forma do braço",
+          "value_id": "1131585",
+          "value_name": "C",
+          "values": [
+            {
+              "id": "1131585",
+              "name": "C"
+            }
+          ]
+        },
+        {
+          "id": "NECK_CONSTRUCTION",
+          "name": "Construção do braço",
+          "value_id": "11402932",
+          "value_name": "Bolt-on",
+          "values": [
+            {
+              "id": "11402932",
+              "name": "Bolt-on"
+            }
+          ]
+        },
+        {
+          "id": "BRIDGE_TYPE_CLASSIFICATION",
+          "name": "Classificação do tipo de ponte",
+          "value_id": "11402941",
+          "value_name": "Synch tremolo",
+          "values": [
+            {
+              "id": "11402941",
+              "name": "Synch tremolo"
+            }
+          ]
+        },
+        {
+          "id": "BRIDGE_TYPE",
+          "name": "Tipo de ponte",
+          "value_id": "6132622",
+          "value_name": "Tremolo",
+          "values": [
+            {
+              "id": "6132622",
+              "name": "Tremolo"
+            }
+          ]
+        },
+        {
+          "id": "CONTROL_TYPES",
+          "name": "Tipos de controle",
+          "value_name": "Chave seletora de captadores, Tone, Volumen",
+          "values": [
+            {
+              "id": "10397364",
+              "name": "Chave seletora de captadores"
+            },
+            {
+              "id": "9841428",
+              "name": "Tone"
+            },
+            {
+              "id": "7335124",
+              "name": "Volumen"
+            }
+          ]
+        },
+        {
+          "id": "PICKUP_TYPES",
+          "name": "Tipos de captadores",
+          "value_id": "96538",
+          "value_name": "Simples",
+          "values": [
+            {
+              "id": "96538",
+              "name": "Simples"
+            }
+          ]
+        },
+        {
+          "id": "NECK_PICKUP_TYPE",
+          "name": "Tipo de captador do braço",
+          "value_id": "10484081",
+          "value_name": "Single coil cerâmico",
+          "values": [
+            {
+              "id": "10484081",
+              "name": "Single coil cerâmico"
+            }
+          ]
+        },
+        {
+          "id": "MIDDLE_PICKUP_TYPE",
+          "name": "Tipo de captador do meio",
+          "value_id": "10484079",
+          "value_name": "Single coil cerâmico",
+          "values": [
+            {
+              "id": "10484079",
+              "name": "Single coil cerâmico"
+            }
+          ]
+        },
+        {
+          "id": "BRIDGE_PICKUP_TYPE",
+          "name": "Tipo de captador da ponte",
+          "value_id": "10484187",
+          "value_name": "Bobina simples cerâmica",
+          "values": [
+            {
+              "id": "10484187",
+              "name": "Bobina simples cerâmica"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_name": "Cabo de conexão, Chave de ajuste",
+          "values": [
+            {
+              "id": "10263358",
+              "name": "Cabo de conexão"
+            },
+            {
+              "id": "9807734",
+              "name": "Chave de ajuste"
+            }
+          ]
+        },
+        {
+          "id": "MPN",
+          "name": "MPN",
+          "value_id": "11112696",
+          "value_name": "19596",
+          "values": [
+            {
+              "id": "11112696",
+              "name": "19596"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Guitarra Stratocaster Giannini G 100 3 Singles\n\nGuitarra 3 Singles  \nCódigo Antigo: GGX-1S  \nCorpo: Basswood  \nBraço: Maple com tensor  \nEscala: Rosewood  \nTrastes: 22 em Alpaca  \nMarcação: Bolinhas Brancas  \nPonte: Standard cromada com trêmolo  \nTarraxas: Blindadas cromadas 6 em linha  \nCaptador(es): 3 Single Coils  \nControles: Chave seletora de 5 posições (1 volume e 2 tonalidades)  \nAcabamento: Verniz brilhante no corpo e verniz fosco no braço  \nPeso Líquido: 3,500 Kg  "
+      },
+      "pictures": [
+        {
+          "id": "667741-MLA95701568836_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_667741-MLA95701568836_102025-F.jpg",
+          "max_width": "383",
+          "max_height": "1200"
+        },
+        {
+          "id": "794992-MLA74780591397_022024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_794992-MLA74780591397_022024-F.jpg",
+          "max_width": "347",
+          "max_height": "1102"
+        },
+        {
+          "id": "842479-MLU77830954856_072024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_842479-MLU77830954856_072024-F.jpg",
+          "max_width": "1039",
+          "max_height": "1200"
+        },
+        {
+          "id": "770487-MLU78052216665_072024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_770487-MLU78052216665_072024-F.jpg",
+          "max_width": "1014",
+          "max_height": "1200"
+        },
+        {
+          "id": "977555-MLU75023586474_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_977555-MLU75023586474_032024-F.jpg",
+          "max_width": "370",
+          "max_height": "1197"
+        },
+        {
+          "id": "694240-MLU75165828447_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_694240-MLU75165828447_032024-F.jpg",
+          "max_width": "370",
+          "max_height": "1196"
+        },
+        {
+          "id": "936146-MLU72847729297_112023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_936146-MLU72847729297_112023-F.jpg",
+          "max_width": "753",
+          "max_height": "678"
+        },
+        {
+          "id": "917477-MLU78052216671_072024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_917477-MLU78052216671_072024-F.jpg",
+          "max_width": "1118",
+          "max_height": "1200"
+        },
+        {
+          "id": "694112-MLU78052216681_072024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_694112-MLU78052216681_072024-F.jpg",
+          "max_width": "758",
+          "max_height": "1199"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY",
+        "INTERNAL"
+      ],
+      "date_created": "2021-03-12T20:40:14Z",
+      "last_updated": "2026-01-29T23:35:02Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

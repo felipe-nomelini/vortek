@@ -1,0 +1,349 @@
+{
+  "checked_at": "2026-08-17T12:53:54.388Z",
+  "product": {
+    "id": "2d39b0f9-ecd8-482c-a2cb-48917df39ab1",
+    "sku": "VTK021164",
+    "nome": "Alto Falante Subwoofer 12\" Pioneer Ts-w3060br 350w Rms 4 Ohms Bobina Simples",
+    "marca": "PIONEER",
+    "gtin": "4988028352713"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/347972",
+    "consulted_at": "2026-08-17T12:53:54.199Z",
+    "product": {
+      "produtoid": "347972",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 282.9,
+      "preco_crossdocking": 282.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 282.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Alto Falante Subwoofer 12\" Pioneer Ts-w3060br 350w Rms 4 Ohms Bobina Simples",
+      "titulo_curto": "Alto Falante Subwoofer 12\" Pioneer Ts-w3060br 350w Rms 4 Ohms Bobina Simples",
+      "categoriaid": "117532",
+      "categoria_nome": "Automotivo/ Alto Falante/ Subwoofer",
+      "abc": null,
+      "ean11": "4988028352713",
+      "ncm": "85182990",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p>O TS-W3060BR é um subwoofer se 12 polegadas, ideal para realçar os graves do seu som e curtir músicas com total intensidade. Seu cone reforçado garante ainda maior durabilidade e precisão na reprodução.<br><br />\r\n  Projetado para caixa selada ou dutada, ele possui conexões por pressão, facilitando também sua instalação e projetos especiais.<br><br />\r\n</p><br />\r\n<b>Características</b><br><br />\r\n<p>&bull; Suspensa&#771;o reforc&#807;ada<br><br />\r\n  &bull; Woofer com cone de IMPP (Polipropileno moldado por injeção)<br><br />\r\n  &bull; Terminais para conexa&#771;o por pressa&#771;o<br><br />\r\n  &bull; Bobina simples - 4 ohms<br><br />\r\n</p><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\n<p>- Pote&#770;ncia ma&#769;xima - 600 W<br><br />\r\n  - Pote&#770;ncia de entrada nominal RMS - 350 W<br><br />\r\n  - Resposta em freque&#770;ncia - 30 Hz a 2.000 Hz<br><br />\r\n  - Sensibilidade - 87 dB (1 W / 1 m)<br><br />\r\n  - Freque&#770;ncia de ressona&#770;ncia - 46 Hz<br><br />\r\n  - Impeda&#770;ncia - 4 ohms<br><br />\r\n</p><br />\r\n<b>Dimensões</b><br><br />\r\n<p>- Profundidade de instalac&#807;a&#771;o - 146 mm<br><br />\r\n  - Dimenso&#771;es do alto-falante - Ø306 mm x 157 mm<br><br />\r\n  - Dimenso&#771;es para corte - Ø277 mm<br><br />\r\n</p><br />\r\n<b>Recomendações de Caixa</b><br><br />\r\n<p>- Volume para caixa selada - 35 litros<br><br />\r\n  - Volume para caixa com po&#769;rtico (dutada) - 35 ou 50 litros<br><br />\r\n  - Dia&#770;metro do po&#769;rtico (duto) - 100 mm<br><br />\r\n  - Comprimento do po&#769;rtico (duto) - 180 mm (caixa com 35 litros) ou 110 mm (caixa com 50 litros)<br><br />\r\n</p><br />\r\n<br><br />\r\n<b>Parâmetros THIELE / SMALL</b><br><br />\r\n<p>- Qts 0,96<br><br />\r\n  - Fs 46Hz<br><br />\r\n  - Vas 38,1 litros<br><br />\r\n  - Xmax 6 mm<br><br />\r\n</p><br />\r\n<br><br />\r\n<h3><b><u>Conteúdo da Embalagem</u></b></h3><br />\r\n<p>- 1 subwoofer<br><br />\r\n  - 8 parafusos<br><br />\r\n  - Certificado de garantia<br><br />\r\n  - Lista de postos de assiste&#770;ncia te&#769;cnica<br><br />\r\n</p><br />\r\n<p><i>*Instruc&#807;o&#771;es de instalac&#807;a&#771;o na pro&#769;pria embalagem</i></p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PIONEER",
+      "modelo": "",
+      "peso": 4.204,
+      "largura": 34,
+      "altura": 17,
+      "profundidade": 33,
+      "peso_embalagem": 4.204,
+      "largura_embalagem": 34,
+      "altura_embalagem": 17,
+      "profundidade_embalagem": 33,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/4/347972_67d2caf602922.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1611,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.057.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-10 10:49:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-10 10:49:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/347972_67d2caf602922.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_BRAND_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: BRAND,MODEL",
+    "foundValue": "MLB27415054",
+    "source": "ML catalog MLB27415054 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "BRAND",
+        "MODEL"
+      ],
+      "catalog_brand": "Shutt",
+      "model": "Subwoofer Shutt Beatz",
+      "local_pack": 35,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.16666666666666666
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB27415054",
+      "catalog_product_id": "MLB27415054",
+      "domain_id": "MLB-VEHICLE_SPEAKERS",
+      "name": "Shutt Subwoofer Shutt Beatz Preto 30.5 cm",
+      "parent_id": "MLB27415053",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2200675",
+          "value_name": "Shutt",
+          "values": [
+            {
+              "id": "2200675",
+              "name": "Shutt"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24794110",
+          "value_name": "Subwoofer Shutt Beatz",
+          "values": [
+            {
+              "id": "24794110",
+              "name": "Subwoofer Shutt Beatz"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "name": "Diâmetro do alto-falante",
+          "value_id": "48701622",
+          "value_name": "12.008 \"",
+          "values": [
+            {
+              "id": "48701622",
+              "name": "12.008 \""
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "7452068",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7452068",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete",
+          "values": [
+            {
+              "id": "11377043",
+              "name": "Carro/Caminhonete"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "name": "Tipo de alto-falante",
+          "value_id": "7119772",
+          "value_name": "Subwoofer",
+          "values": [
+            {
+              "id": "7119772",
+              "name": "Subwoofer"
+            }
+          ]
+        },
+        {
+          "id": "COILS_NUMBER",
+          "name": "Quantidade de bobinas",
+          "value_id": "8704186",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "8704186",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "RMS_POWER",
+          "name": "Potência RMS",
+          "value_id": "161328",
+          "value_name": "350 W",
+          "values": [
+            {
+              "id": "161328",
+              "name": "350 W"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "name": "Faixa de frequência",
+          "value_id": "24794112",
+          "value_name": "45 a 2.500 Hz",
+          "values": [
+            {
+              "id": "24794112",
+              "name": "45 a 2.500 Hz"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "570708",
+          "value_name": "13 cm",
+          "values": [
+            {
+              "id": "570708",
+              "name": "13 cm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "24794113",
+          "value_name": "4988028352713",
+          "values": [
+            {
+              "id": "24794113",
+              "name": "4988028352713"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Apresentamos o Subwoofer Shutt Beatz de 12 polegadas com 350W RMS, disponível na cor preta.\n\nModelos Disponíveis:\n• Bobina Simples 4 ohms\n• Bobina Simples 8 ohms\n\nEspecificação Técnica:\n• Modelo: Subwoofer Shutt Beatz\n• Diâmetro Nominal: 12 Polegadas\n• Potência RMS: 350W\n• Potência Musical: 700W\n• Impedância Nominal: 4 ou 8 Ohms\n• Resposta de Frequência: 45 a 2.500 Hz\n• Sensibilidade: 92 dB\n• Bobina Simples\n• Carcaça em Chapa de Aço\n• Diâmetro Aproximado do Ímã: 11,5cm\n• Altura Aproximada do Ímã: 3cm\n• Dimensões Aproximadas (DxP): 30,5x13cm\n\nAtenção: De acordo com a Lei Federal nº 11.291, a exposição prolongada a ruídos superiores a 85 dB pode causar danos ao sistema auditivo.\n\nConteúdo da Embalagem:\n• 01 Subwoofer\n\nRecomendamos que a instalação seja feita por profissional especializado."
+      },
+      "pictures": [
+        {
+          "id": "927056-MLU71979046230_092023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_927056-MLU71979046230_092023-F.jpg",
+          "suggested_for_picker": [
+            "COLOR"
+          ],
+          "max_width": "500",
+          "max_height": "499"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-09-30T20:54:24Z",
+      "last_updated": "2025-05-20T23:48:11Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

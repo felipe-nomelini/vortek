@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-08-17T14:15:47.587Z",
+  "product": {
+    "id": "f525b013-e64a-470c-a64d-77750eef6a47",
+    "sku": "VTK020904",
+    "nome": "Rack Piso 19\" Max Eletron 16u X 470mm Preto",
+    "marca": "MAX ELETRON",
+    "estoque": 4,
+    "custo": 872.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 15,
+    "peso_bruto": 15,
+    "largura": 47,
+    "altura": 78,
+    "profundidade": 54,
+    "gtin": "7908060203368",
+    "descricao": "Informações do Produto Bracket Mini Rack Padrão 19\" 16Us X 470 mm. Material de ótima qualidade e durabilidade, confeccionado em aço estampado, tratado por fosfatização e pintado em tinta hibrida epóxi-pó na cor preta com secagem em forno de alta temperatura, o que garante excelente acabamento e resistência. O Bracket ou Mini Rack Padrão 19” é ideal para alojamento de switches, modems, roteadores, gravadores de dvd e equipamentos de rede em áreas de usuários ou outros locais que estes precisem ficar bem organizados e protegidos. Possui um plano de fixação para equipamentos (permite o uso de um segundo plano), porta frontal com abertura reversível sem o uso de Ferramentas, visor em acrílico translúcido e duas chaves para maior proteção e segurança. As suas laterais com fecho rápido facilitam a instalação e manutenção dos equipamentos. A entrada de cabos pode ser feita pelo topo ou pela base do Mini Rack (o fundo tem uma passagem de cabos extra). Seu teto está configurado para receber dois ventiladores de 5” (não inclusos). Garantia 12 meses (Contra Defeitos de fabricação).",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/3/334283_67d2caf0dd647.jpg"
+    ],
+    "categoria": "Redes E Provedores/ Internet E Rede/ Rack",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:36:31.60221+00:00",
+    "updated_at": "2026-08-17T11:14:23.119767+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "334283",
+    "dslite_ultima_sync": "2026-08-17T11:14:22.869+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "94032090",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "a1460f2b-82c4-435c-9116-26233b5bbd77",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "electronic_security",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "470 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "electronic_security",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

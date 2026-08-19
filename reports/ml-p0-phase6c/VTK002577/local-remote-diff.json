@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432502292",
+      "local": "MLB7432502292",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK002577",
+      "local": "VTK002577",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "cf2dcc02-31a2-4264-8472-6f634a5f09e4",
+      "local": "cf2dcc02-31a2-4264-8472-6f634a5f09e4",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Suporte Caixa De Som Ask Ch10 Parede Longo 4 Regulagem 45kg Cor Preto",
+      "local": "Suporte Caixa De Som Ask Ch10 Parede Longo 4 Regulagem 45kg Cor Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 279.9,
+      "local": 279.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432502292-suporte-caixa-de-som-ask-ch10-parede-longo-4-regulagem-45kg-cor-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432502292-suporte-caixa-de-som-ask-ch10-parede-longo-4-regulagem-45kg-cor-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

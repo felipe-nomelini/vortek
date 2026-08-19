@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conector Tnc Macho Rt Rg/rgcc 213 Tm-10",
+    "supplier_category": "Antenas E Acessórios/ Acessórios Para Antenas Tv/ Conectores",
+    "supplier_brand": "K.L.C.",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/360641",
+    "captured_at": "2026-08-17T12:56:32.441Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

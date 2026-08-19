@@ -1,0 +1,1290 @@
+{
+  "generated_at": "2026-08-16T06:42:32.110Z",
+  "phase": "4B.1",
+  "mode": "AUDIT_ONLY",
+  "result": "P0_PHASE_4B1_DIAGNOSTIC_HOLD",
+  "sku": "VTK000486",
+  "failed_request": {
+    "generated_at": "2026-08-16T06:42:32.110Z",
+    "destination": "Mercado Livre developer support",
+    "seller_id": "3294514937",
+    "timestamp_utc": "2026-08-16T06:25:48.432Z",
+    "timestamp_america_sao_paulo": "2026-08-16T03:25:48.432-03:00",
+    "endpoint": "POST https://api.mercadolibre.com/items",
+    "http_status": 500,
+    "request_id": "60e5c148-b1f9-479c-8ed9-53a06a52b29a",
+    "response": {
+      "cause": [],
+      "message": "Oops! Something went wrong...",
+      "error": "internal_error",
+      "status": 500
+    },
+    "payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792",
+    "category_id": "MLB11290",
+    "seller_user_product_enabled": true,
+    "item_created": false,
+    "remote_confirmation": {
+      "checked_at": "2026-08-16T06:25:48.047Z",
+      "exhaustive_scan_reliable": true,
+      "seller_inventory_total": 5798,
+      "equivalent_matches": 0,
+      "existing_equivalent_family": false
+    },
+    "credentials_included": false,
+    "requested_support_action": "Trace the internal failure using request_id and identify the backend validation/service that returned HTTP 500 for a valid initial User Products POST /items request."
+  },
+  "endpoint": {
+    "initial_user_product_creation": {
+      "method": "POST",
+      "endpoint": "/items",
+      "confirmed": true
+    },
+    "existing_user_product_condition_creation": {
+      "method": "POST",
+      "endpoint": "/user-products/{USER_PRODUCT_ID}/items",
+      "applicable": false,
+      "reason": "No existing equivalent User Product was found."
+    },
+    "separate_user_product_creation_endpoint": {
+      "exists_in_official_contract": false
+    },
+    "required_headers": [
+      "Authorization: Bearer <token>",
+      "Content-Type: application/json"
+    ],
+    "additional_headers_feature_flags_or_query_parameters": [],
+    "title_rule": "ML generates title; title must be omitted.",
+    "family_name_rule": "Required and <= category max_title_length (60).",
+    "family_name_length": 42
+  },
+  "complete_payload": {
+    "family_name": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+    "category_id": "MLB11290",
+    "price": 187.22,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_pro",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/7.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/8.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/6.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/9.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/5.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_name": "Toshiba"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "28280064",
+        "value_name": "Pilha"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "24420060",
+        "value_name": "Plug"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "4904530109270"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_SIZE",
+        "value_name": "AA, AAA"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_COMPOSITION",
+        "value_id": "2516404",
+        "value_name": "Ni-Mh"
+      },
+      {
+        "id": "WITH_CHARGE_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_CELL_BATTERIES",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "CHARGING_PORTS_NUMBER",
+        "value_name": "4"
+      },
+      {
+        "id": "BATTERIES_CHARGE_CAPACITY",
+        "value_name": "2600 mAh"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_name": "Toshiba"
+      },
+      {
+        "id": "MPN",
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000486"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "value_name": "13 cm"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "value_name": "12 cm"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "value_name": "17 cm"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "value_name": "262 g"
+      }
+    ],
+    "seller_custom_field": "VTK000486",
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    }
+  },
+  "complete_payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792",
+  "contract_audit": {
+    "generated_at": "2026-08-16T06:42:31.950Z",
+    "mode": "AUDIT_ONLY",
+    "sku": "VTK000486",
+    "seller": {
+      "id": "3294514937",
+      "user_product_seller": true,
+      "listing_allowed": true
+    },
+    "endpoint_contract": {
+      "initial_user_product_creation": {
+        "method": "POST",
+        "endpoint": "/items",
+        "confirmed": true
+      },
+      "existing_user_product_condition_creation": {
+        "method": "POST",
+        "endpoint": "/user-products/{USER_PRODUCT_ID}/items",
+        "applicable": false,
+        "reason": "No existing equivalent User Product was found."
+      },
+      "separate_user_product_creation_endpoint": {
+        "exists_in_official_contract": false
+      },
+      "required_headers": [
+        "Authorization: Bearer <token>",
+        "Content-Type: application/json"
+      ],
+      "additional_headers_feature_flags_or_query_parameters": [],
+      "title_rule": "ML generates title; title must be omitted.",
+      "family_name_rule": "Required and <= category max_title_length (60).",
+      "family_name_length": 42
+    },
+    "live_contract": {
+      "category_id": "MLB11290",
+      "category_status": "enabled",
+      "listing_allowed": true,
+      "max_title_length": 60,
+      "max_pictures_per_item": 12,
+      "stock": "required",
+      "price": "required",
+      "listing_type_id": "gold_pro",
+      "requires_picture": true,
+      "max_stock_per_item": 99999,
+      "input_voltage_allowed_values": [
+        {
+          "id": "198813",
+          "name": "220V"
+        },
+        {
+          "id": "39205162",
+          "name": "127V"
+        },
+        {
+          "id": "39205163",
+          "name": "127/220V"
+        }
+      ]
+    },
+    "fields": [
+      {
+        "field": "family_name",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+        "evidence": "Required for user_product_seller; used to calculate family_id."
+      },
+      {
+        "field": "category_id",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": "MLB11290",
+        "evidence": "Required by POST /items; live category is enabled and listing_allowed."
+      },
+      {
+        "field": "price",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": 187.22,
+        "evidence": "Required sales-condition field."
+      },
+      {
+        "field": "currency_id",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": "BRL",
+        "evidence": "Required sales-condition field; BRL is allowed by category."
+      },
+      {
+        "field": "available_quantity",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": 15,
+        "evidence": "Required for initial item creation; category settings.stock=required."
+      },
+      {
+        "field": "buying_mode",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": "buy_it_now",
+        "evidence": "Required and buy_it_now is allowed by category."
+      },
+      {
+        "field": "listing_type_id",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": "gold_pro",
+        "evidence": "Required; gold_pro is available and not excluded for MLB11290."
+      },
+      {
+        "field": "condition",
+        "status": "DEPRECATED",
+        "sent": true,
+        "value": "new",
+        "evidence": "Backward-compatible, but current official contract says to use ITEM_CONDITION inside attributes."
+      },
+      {
+        "field": "pictures",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": "9 pictures",
+        "evidence": "gold_pro live configuration requires_picture=true; category permits up to 12."
+      },
+      {
+        "field": "attributes",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": "20 attributes",
+        "evidence": "Required attributes BRAND, MODEL and PRODUCT_TYPE are carried here."
+      },
+      {
+        "field": "sale_terms",
+        "status": "OPTIONAL",
+        "sent": false,
+        "value": null,
+        "evidence": "Omitted; no sale term is tagged required for a new item in this category."
+      },
+      {
+        "field": "shipping",
+        "status": "OPTIONAL",
+        "sent": true,
+        "value": {
+          "mode": "me2",
+          "local_pick_up": false,
+          "free_shipping": true
+        },
+        "evidence": "Optional sales-condition configuration."
+      },
+      {
+        "field": "seller_custom_field",
+        "status": "OPTIONAL",
+        "sent": true,
+        "value": "VTK000486",
+        "evidence": "Seller internal reference; SELLER_SKU attribute is also present."
+      },
+      {
+        "field": "title",
+        "status": "PROHIBITED",
+        "sent": false,
+        "value": null,
+        "evidence": "Must not be sent for a user_product_seller; ML generates it."
+      },
+      {
+        "field": "description",
+        "status": "PROHIBITED",
+        "sent": false,
+        "value": null,
+        "evidence": "Must be posted only after item creation to /items/{id}/description."
+      },
+      {
+        "field": "GTIN",
+        "status": "UNKNOWN",
+        "sent": true,
+        "value": "4904530109270",
+        "evidence": "Live schema marks GTIN conditional_required; resolving the condition requires POST /attributes/conditional, prohibited in this diagnostic. Present and valid in full payload."
+      },
+      {
+        "field": "PARENT_PK",
+        "status": "REQUIRED",
+        "sent": true,
+        "value": [
+          "BRAND",
+          "MODEL"
+        ],
+        "evidence": "BRAND and MODEL are live PARENT_PK attributes tagged required; both are present."
+      },
+      {
+        "field": "CHILD_PK",
+        "status": "OPTIONAL",
+        "sent": true,
+        "value": [
+          "INPUT_VOLTAGE"
+        ],
+        "evidence": "INPUT_VOLTAGE is the only live CHILD_PK in the payload and is not tagged required."
+      },
+      {
+        "field": "custom_attributes",
+        "status": "OPTIONAL",
+        "sent": true,
+        "value": [
+          "CONNECTOR_TYPE",
+          "INPUT_VOLTAGE",
+          "DETAILED_MODEL",
+          "SUPPORTED_BATTERY_SIZE",
+          "SUPPORTED_BATTERY_COMPOSITION",
+          "WITH_CHARGE_INDICATOR",
+          "INCLUDES_CELL_BATTERIES",
+          "CHARGING_PORTS_NUMBER",
+          "BATTERIES_CHARGE_CAPACITY",
+          "MANUFACTURER",
+          "MPN",
+          "SELLER_SKU",
+          "SELLER_PACKAGE_WIDTH",
+          "SELLER_PACKAGE_LENGTH",
+          "SELLER_PACKAGE_HEIGHT",
+          "SELLER_PACKAGE_WEIGHT"
+        ],
+        "evidence": "Category attributes without required tags may enrich the UP but are not required for the initial contract."
+      }
+    ],
+    "attributes": [
+      {
+        "attribute_id": "BRAND",
+        "sent": {
+          "id": "BRAND",
+          "value_name": "Toshiba"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "PARENT_PK",
+        "value_type": "string",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "REQUIRED",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "MODEL",
+        "sent": {
+          "id": "MODEL",
+          "value_name": "TNHC-6GAE4 CB"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "PARENT_PK",
+        "value_type": "string",
+        "tags": {
+          "catalog_required": true,
+          "required": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "REQUIRED",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "PRODUCT_TYPE",
+        "sent": {
+          "id": "PRODUCT_TYPE",
+          "value_id": "28280064",
+          "value_name": "Pilha"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "list",
+        "tags": {
+          "required": true
+        },
+        "suggested_value_match": {
+          "id": "28280064",
+          "name": "Pilha"
+        },
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "REQUIRED",
+        "conclusion": "value_id_matches_live_allowed_value"
+      },
+      {
+        "attribute_id": "CONNECTOR_TYPE",
+        "sent": {
+          "id": "CONNECTOR_TYPE",
+          "value_id": "24420060",
+          "value_name": "Plug"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "string",
+        "tags": {
+          "catalog_required": true
+        },
+        "suggested_value_match": {
+          "id": "24420060",
+          "name": "Plug"
+        },
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "GTIN",
+        "sent": {
+          "id": "GTIN",
+          "value_name": "4904530109270"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "value_type": "string",
+        "tags": {
+          "multivalued": true,
+          "variation_attribute": true,
+          "used_hidden": true,
+          "validate": true,
+          "conditional_required": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": [
+            "4904530109270"
+          ]
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "INPUT_VOLTAGE",
+        "sent": {
+          "id": "INPUT_VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "CHILD_PK",
+        "value_type": "string",
+        "tags": {},
+        "suggested_value_match": {
+          "id": "39205163",
+          "name": "127/220V"
+        },
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "NORMALIZED",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "DETAILED_MODEL",
+        "sent": {
+          "id": "DETAILED_MODEL",
+          "value_name": "TNHC-6GAE4 CB"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "CHILD_DEPENDENT",
+        "value_type": "string",
+        "tags": {
+          "variation_attribute": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "SUPPORTED_BATTERY_SIZE",
+        "sent": {
+          "id": "SUPPORTED_BATTERY_SIZE",
+          "value_name": "AA, AAA"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "string",
+        "tags": {
+          "multivalued": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": [
+            "AA",
+            "AAA"
+          ]
+        },
+        "status": "OPTIONAL",
+        "conclusion": "valid_multivalued_comma_separated_encoding_per_official_attributes_documentation"
+      },
+      {
+        "attribute_id": "SUPPORTED_BATTERY_COMPOSITION",
+        "sent": {
+          "id": "SUPPORTED_BATTERY_COMPOSITION",
+          "value_id": "2516404",
+          "value_name": "Ni-Mh"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "string",
+        "tags": {
+          "multivalued": true
+        },
+        "suggested_value_match": {
+          "id": "2516404",
+          "name": "Ni-Mh"
+        },
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": [
+            "Ni-Mh"
+          ]
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "WITH_CHARGE_INDICATOR",
+        "sent": {
+          "id": "WITH_CHARGE_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "boolean",
+        "tags": {},
+        "suggested_value_match": {
+          "id": "242085",
+          "name": "Sim"
+        },
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_id_matches_live_allowed_value"
+      },
+      {
+        "attribute_id": "INCLUDES_CELL_BATTERIES",
+        "sent": {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "boolean",
+        "tags": {},
+        "suggested_value_match": {
+          "id": "242085",
+          "name": "Sim"
+        },
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_id_matches_live_allowed_value"
+      },
+      {
+        "attribute_id": "CHARGING_PORTS_NUMBER",
+        "sent": {
+          "id": "CHARGING_PORTS_NUMBER",
+          "value_name": "4"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "number",
+        "tags": {},
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "BATTERIES_CHARGE_CAPACITY",
+        "sent": {
+          "id": "BATTERIES_CHARGE_CAPACITY",
+          "value_name": "2600 mAh"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "number_unit",
+        "tags": {},
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "valid_number_and_allowed_unit_in_value_name; value_struct_is_not_mandatory_for_item_write"
+      },
+      {
+        "attribute_id": "MANUFACTURER",
+        "sent": {
+          "id": "MANUFACTURER",
+          "value_name": "Toshiba"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "FAMILY",
+        "value_type": "string",
+        "tags": {},
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "MPN",
+        "sent": {
+          "id": "MPN",
+          "value_name": "TNHC-6GAE4 CB"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "value_type": "string",
+        "tags": {
+          "hidden": true,
+          "multivalued": true,
+          "variation_attribute": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": [
+            "TNHC-6GAE4 CB"
+          ]
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "SELLER_SKU",
+        "sent": {
+          "id": "SELLER_SKU",
+          "value_name": "VTK000486"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "ITEM",
+        "value_type": "string",
+        "tags": {
+          "hidden": true,
+          "variation_attribute": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "value_matches_live_attribute_contract"
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_WIDTH",
+        "sent": {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "13 cm"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "ITEM",
+        "value_type": "number_unit",
+        "tags": {
+          "hidden": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "valid_number_and_allowed_unit_in_value_name; value_struct_is_not_mandatory_for_item_write"
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_LENGTH",
+        "sent": {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "12 cm"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "ITEM",
+        "value_type": "number_unit",
+        "tags": {
+          "hidden": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "valid_number_and_allowed_unit_in_value_name; value_struct_is_not_mandatory_for_item_write"
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_HEIGHT",
+        "sent": {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "17 cm"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "ITEM",
+        "value_type": "number_unit",
+        "tags": {
+          "hidden": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "valid_number_and_allowed_unit_in_value_name; value_struct_is_not_mandatory_for_item_write"
+      },
+      {
+        "attribute_id": "SELLER_PACKAGE_WEIGHT",
+        "sent": {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "262 g"
+        },
+        "exists_in_category_schema": true,
+        "hierarchy": "ITEM",
+        "value_type": "number_unit",
+        "tags": {
+          "hidden": true
+        },
+        "suggested_value_match": null,
+        "encoding_checks": {
+          "number_unit_allowed": true,
+          "boolean_value_id_allowed": true,
+          "list_value_id_allowed": true,
+          "multivalued_comma_encoding": null
+        },
+        "status": "OPTIONAL",
+        "conclusion": "valid_number_and_allowed_unit_in_value_name; value_struct_is_not_mandatory_for_item_write"
+      }
+    ],
+    "special_attribute_conclusions": {
+      "INPUT_VOLTAGE": {
+        "sent": {
+          "id": "INPUT_VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        "live_value": {
+          "id": "39205163",
+          "name": "127/220V"
+        },
+        "result": "NORMALIZED",
+        "explanation": "Official product evidence says AC 100-240V; category schema exposes 127/220V as its bivolt normalization. The authorized payload uses the exact live value_id and value_name."
+      },
+      "PRODUCT_TYPE": {
+        "result": "CONFIRMED",
+        "explanation": "value_id 28280064 maps to Pilha in the live list schema."
+      },
+      "CONNECTOR_TYPE": {
+        "result": "CONFIRMED",
+        "explanation": "value_id 24420060 maps to Plug in the live schema."
+      },
+      "SUPPORTED_BATTERY_SIZE": {
+        "result": "CONFIRMED",
+        "explanation": "Attribute is multivalued; official attribute documentation permits comma-separated values. AA and AAA both exist in the live value list."
+      },
+      "BATTERIES_CHARGE_CAPACITY": {
+        "result": "CONFIRMED",
+        "explanation": "number_unit accepts mAh; value_name 2600 mAh follows the official item-write form. value_struct is not mandatory for this write contract."
+      }
+    },
+    "official_sources": {
+      "user_products": "https://developers.mercadolivre.com.br/pt_br/guia-para-produtos/preco-variacao",
+      "user_products_concepts": "https://developers.mercadolivre.com.br/pt_br/publicacao-de-produtos/user-products",
+      "publish_items": "https://developers.mercadolivre.com.br/pt_br/autenticacao-e-autorizacao/publicacao-de-produtos",
+      "attributes": "https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br/atributos",
+      "listing_types": "https://developers.mercadolivre.com.br/pt_br/tutorial-tipos-de-publicacao-y-atualizacao-de-artigos",
+      "pictures": "https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br/trabalhar-com-imagens"
+    },
+    "documentation_access_note": "Direct portal opens returned HTTP 403 in this environment. Assertions were cross-checked against indexed official documentation and current official GET API contracts."
+  },
+  "theoretical_minimal_payload": {
+    "family_name": "Carregador de Pilhas Toshiba TNHC-6GAE4 CB",
+    "category_id": "MLB11290",
+    "price": 187.22,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_pro",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/74810/550/3.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_name": "Toshiba"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "28280064",
+        "value_name": "Pilha"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      }
+    ]
+  },
+  "theoretical_minimal_payload_sha256": "0fbe3ad9b492eccf856f490adaec907718ee2c08aefa4ceb2d976dc85268596f",
+  "extras_vs_minimal": {
+    "top_level": [
+      "condition",
+      "seller_custom_field",
+      "shipping"
+    ],
+    "attributes": [
+      "CONNECTOR_TYPE",
+      "GTIN",
+      "INPUT_VOLTAGE",
+      "DETAILED_MODEL",
+      "SUPPORTED_BATTERY_SIZE",
+      "SUPPORTED_BATTERY_COMPOSITION",
+      "WITH_CHARGE_INDICATOR",
+      "INCLUDES_CELL_BATTERIES",
+      "CHARGING_PORTS_NUMBER",
+      "BATTERIES_CHARGE_CAPACITY",
+      "MANUFACTURER",
+      "MPN",
+      "SELLER_SKU",
+      "SELLER_PACKAGE_WIDTH",
+      "SELLER_PACKAGE_LENGTH",
+      "SELLER_PACKAGE_HEIGHT",
+      "SELLER_PACKAGE_WEIGHT"
+    ],
+    "pictures_beyond_minimum": [
+      "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+      "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+      "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+      "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+      "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+      "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+      "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+      "https://static.hayapek.com.br/produtos/74810/550/1.jpg"
+    ],
+    "note": "Extras are not proven invalid. They are omitted only to isolate optional dimensions in a future explicitly authorized attempt."
+  },
+  "condition_migration": {
+    "removed_top_level": {
+      "condition": "new"
+    },
+    "added_current_attribute": {
+      "id": "ITEM_CONDITION",
+      "value_id": "2230284",
+      "value_name": "Novo"
+    },
+    "reason": "Top-level condition is backward-compatible but officially scheduled for deprecation; current implementations should use ITEM_CONDITION."
+  },
+  "image_audit": {
+    "generated_at": "2026-08-16T06:42:32.109Z",
+    "mode": "AUDIT_ONLY",
+    "total": 9,
+    "passed": 9,
+    "redirects": 0,
+    "failures": 0,
+    "category_limit": 12,
+    "within_category_limit": true,
+    "images": [
+      {
+        "order": 1,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/3.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 26174,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 2,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/4.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 20599,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 3,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/2.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 16525,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 4,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/7.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 13055,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 5,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/8.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 21093,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 6,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 24154,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 7,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/9.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 9420,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 8,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/5.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 30752,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      },
+      {
+        "order": 9,
+        "url": "https://static.hayapek.com.br/produtos/74810/550/1.jpg",
+        "https": true,
+        "authentication_sent": false,
+        "direct_http_status": 200,
+        "redirect": null,
+        "final_http_status": 200,
+        "content_type": "image/jpg",
+        "content_length_bytes": 37429,
+        "format": "jpeg",
+        "width": 550,
+        "height": 550,
+        "externally_accessible": true,
+        "within_10_mb": true,
+        "meets_recommended_1200_square": false,
+        "accepted_format": true,
+        "status": "PASS",
+        "note": "No ML picture-diagnostics POST was called because all POST requests are prohibited in Phase 4B.1."
+      }
+    ]
+  },
+  "technical_specs_contract_read": {
+    "status": 200,
+    "consulted_at": "2026-08-16T06:42:31.887Z",
+    "groups": 4
+  },
+  "sale_terms_contract_read": {
+    "status": 200,
+    "consulted_at": "2026-08-16T06:42:31.889Z",
+    "total": 30
+  },
+  "suspicious_fields": [
+    {
+      "field": "condition",
+      "risk": "LOW",
+      "finding": "Deprecated but explicitly backward-compatible; migrate to ITEM_CONDITION in a future authorized payload."
+    },
+    {
+      "field": "optional_fields_and_8_extra_pictures",
+      "risk": "LOW",
+      "finding": "No invalid value found; a minimum payload would reduce the ML backend surface for a controlled retry."
+    },
+    {
+      "field": "SUPPORTED_BATTERY_SIZE",
+      "risk": "CLEARED",
+      "finding": "Comma-separated AA, AAA is the documented multivalued encoding and both values exist in the live schema."
+    }
+  ],
+  "probable_cause": {
+    "classification": "MERCADO_LIVRE_INTERNAL_ERROR",
+    "confidence": "high",
+    "ruled_out": {
+      "PAYLOAD_CONTRACT_ERROR": "No field in the failed payload is proven prohibited or invalid; title and description were correctly absent.",
+      "ATTRIBUTE_ENCODING_ERROR": "All special values match the live schema; multivalued comma encoding and number_unit value_name forms are documented.",
+      "IMAGE_SOURCE_ERROR": "All 9 public HTTPS images returned valid image responses without redirects.",
+      "ENDPOINT_FLOW_ERROR": "POST /items is the official endpoint for initial UP/item creation for user_product_seller."
+    },
+    "evidence": [
+      "HTTP 500 response error=internal_error with empty cause array.",
+      "Request id 60e5c148-b1f9-479c-8ed9-53a06a52b29a.",
+      "Seller currently has user_product_seller tag.",
+      "Payload follows current initial User Products contract: family_name present; title and description omitted; required PARENT_PK present.",
+      "Live category, attribute, technical specification, listing type, and sale-term GET contracts were successfully read.",
+      "No item was returned by the failed response and the exhaustive post-error remote scan found no equivalent item."
+    ],
+    "residual_uncertainty": "Only Mercado Livre internal tracing tied to the request_id can identify the failing backend component. Optional-field reduction is a diagnostic strategy, not proof that an optional field caused the 500."
+  },
+  "recommended_next_action": {
+    "post_authorized": false,
+    "action": "Open ML support case with support-diagnostic.json. After support feedback or explicit operator authorization, make at most one controlled POST using the theoretical minimum payload plus any business-required fields explicitly approved.",
+    "preserve_identity": [
+      "family_name",
+      "category_id",
+      "price",
+      "currency_id",
+      "available_quantity",
+      "buying_mode",
+      "listing_type_id",
+      "BRAND",
+      "MODEL",
+      "PRODUCT_TYPE",
+      "ITEM_CONDITION"
+    ],
+    "unresolved_conditional_gate": "GTIN conditional_required cannot be resolved in this phase because /attributes/conditional is a POST and all POST requests are prohibited."
+  },
+  "official_sources": {
+    "user_products": "https://developers.mercadolivre.com.br/pt_br/guia-para-produtos/preco-variacao",
+    "user_products_concepts": "https://developers.mercadolivre.com.br/pt_br/publicacao-de-produtos/user-products",
+    "publish_items": "https://developers.mercadolivre.com.br/pt_br/autenticacao-e-autorizacao/publicacao-de-produtos",
+    "attributes": "https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br/atributos",
+    "listing_types": "https://developers.mercadolivre.com.br/pt_br/tutorial-tipos-de-publicacao-y-atualizacao-de-artigos",
+    "pictures": "https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br/trabalhar-com-imagens"
+  },
+  "metrics": {
+    "supabase_reads": 1,
+    "supabase_writes": 0,
+    "ml_gets": 6,
+    "ml_posts": 0,
+    "ml_puts": 0,
+    "image_gets": 9,
+    "local_report_writes": 4
+  },
+  "invariants": {
+    "ml_posts": 0,
+    "ml_puts": 0,
+    "supabase_writes": 0,
+    "commercial_changes": 0
+  },
+  "hold": "P0 PHASE 4B.1 — DIAGNOSTIC HOLD"
+}

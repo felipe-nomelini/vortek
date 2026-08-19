@@ -1,0 +1,215 @@
+{
+  "phase": "6E",
+  "selection_sha256": "e6efdcfb027a6eb117472e589ed4683a15b5d5d03019dcc96cf4b024b34558a6",
+  "rows": [
+    {
+      "classified": 25,
+      "generated_at": "2026-08-17T12:54:13.477Z",
+      "last_sku": "VTK018748",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 7,
+        "BLOCK_CATEGORY": 3,
+        "SOURCE_DEFERRED": 8,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 1,
+        "BLOCK_GTIN_BRAND_CONFLICT": 3,
+        "BLOCK_GTIN_UNIT_CONFLICT": 1
+      },
+      "writes": {
+        "posts": 0,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    },
+    {
+      "classified": 50,
+      "generated_at": "2026-08-17T12:54:45.898Z",
+      "last_sku": "VTK018911",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 14,
+        "BLOCK_CATEGORY": 5,
+        "SOURCE_DEFERRED": 17,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 2,
+        "BLOCK_GTIN_BRAND_CONFLICT": 8,
+        "BLOCK_GTIN_UNIT_CONFLICT": 2
+      },
+      "writes": {
+        "posts": 0,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    },
+    {
+      "classified": 75,
+      "generated_at": "2026-08-17T12:55:32.887Z",
+      "last_sku": "VTK019099",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 18,
+        "BLOCK_CATEGORY": 7,
+        "SOURCE_DEFERRED": 33,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 3,
+        "BLOCK_GTIN_BRAND_CONFLICT": 10,
+        "BLOCK_GTIN_UNIT_CONFLICT": 2
+      },
+      "writes": {
+        "posts": 0,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    },
+    {
+      "classified": 100,
+      "generated_at": "2026-08-17T12:56:28.350Z",
+      "last_sku": "VTK012369",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 23,
+        "BLOCK_CATEGORY": 9,
+        "SOURCE_DEFERRED": 50,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 3,
+        "BLOCK_GTIN_BRAND_CONFLICT": 10,
+        "BLOCK_GTIN_UNIT_CONFLICT": 2,
+        "REMOTE_PROPAGATION_PENDING": 1
+      },
+      "writes": {
+        "posts": 1,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    },
+    {
+      "classified": 125,
+      "generated_at": "2026-08-17T12:56:34.951Z",
+      "last_sku": "VTK017378",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 23,
+        "BLOCK_CATEGORY": 9,
+        "SOURCE_DEFERRED": 74,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 3,
+        "BLOCK_GTIN_BRAND_CONFLICT": 10,
+        "BLOCK_GTIN_UNIT_CONFLICT": 2,
+        "REMOTE_PROPAGATION_PENDING": 1,
+        "BLOCK_LOCAL_STATE": 1
+      },
+      "writes": {
+        "posts": 1,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    },
+    {
+      "classified": 150,
+      "generated_at": "2026-08-17T12:56:42.013Z",
+      "last_sku": "VTK017740",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 23,
+        "BLOCK_CATEGORY": 9,
+        "SOURCE_DEFERRED": 99,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 3,
+        "BLOCK_GTIN_BRAND_CONFLICT": 10,
+        "BLOCK_GTIN_UNIT_CONFLICT": 2,
+        "REMOTE_PROPAGATION_PENDING": 1,
+        "BLOCK_LOCAL_STATE": 1
+      },
+      "writes": {
+        "posts": 1,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    },
+    {
+      "classified": 175,
+      "generated_at": "2026-08-17T12:56:48.920Z",
+      "last_sku": "VTK017939",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 23,
+        "BLOCK_CATEGORY": 9,
+        "SOURCE_DEFERRED": 124,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 3,
+        "BLOCK_GTIN_BRAND_CONFLICT": 10,
+        "BLOCK_GTIN_UNIT_CONFLICT": 2,
+        "REMOTE_PROPAGATION_PENDING": 1,
+        "BLOCK_LOCAL_STATE": 1
+      },
+      "writes": {
+        "posts": 1,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    },
+    {
+      "classified": 200,
+      "generated_at": "2026-08-17T12:56:56.356Z",
+      "last_sku": "VTK018641",
+      "counts": {
+        "BLOCK_GTIN_MODEL_CONFLICT": 23,
+        "BLOCK_CATEGORY": 9,
+        "SOURCE_DEFERRED": 149,
+        "BLOCK_CATALOG_IDENTITY": 2,
+        "BLOCK_IDENTITY": 3,
+        "BLOCK_GTIN_BRAND_CONFLICT": 10,
+        "BLOCK_GTIN_UNIT_CONFLICT": 2,
+        "REMOTE_PROPAGATION_PENDING": 1,
+        "BLOCK_LOCAL_STATE": 1
+      },
+      "writes": {
+        "posts": 1,
+        "puts": 0,
+        "commits": 0,
+        "rollbacks": 0
+      },
+      "remote_inventory": {
+        "captured": 5857,
+        "expected": 5857,
+        "reliable": true
+      }
+    }
+  ]
+}

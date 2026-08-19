@@ -1,0 +1,23 @@
+{
+  "index": 27,
+  "sku": "VTK006567",
+  "expected_gtin": "3121040090657",
+  "started_at": "2026-08-17T00:43:58.040Z",
+  "local_time": "2026-08-16T21:43:58",
+  "completed_at": "2026-08-17T00:43:58.080Z",
+  "elapsed_ms": 40,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "required catalog exposes a generic MODEL value instead of official/local FMQ identity",
+  "sanitation": "CATALOG_REVIEW_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

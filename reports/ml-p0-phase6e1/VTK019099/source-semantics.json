@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-08-17T14:15:50.545Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla Sem Gancho Com Step 2010/2013 Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194486",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/320331",
+    "captured_at": "2026-08-17T12:55:30.583Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "bca12a3e-9ee1-4338-983d-6a858e3a0480",
+    "produto_id": "2feb7e97-6953-4508-8055-755956acb219",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "320331",
+    "sku_fornecedor": "320331",
+    "custo": 499.9,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:19:15.296+00:00",
+    "created_at": "2026-07-20T18:33:35.650576+00:00",
+    "updated_at": "2026-08-17T11:19:15.306+00:00",
+    "sku_oferta": "320331",
+    "nome": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla Sem Gancho Com Step 2010/2013 Force",
+    "descricao": "Informações do Produto A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo Strada CD S/Gan C/Stp 10/13 FF",
+    "marca": "FLASH COVER",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/2/320331_68d427065f75c.png",
+      "https://evolusom.com.br/media/catalog/product/3/2/320331_68d427065fbac.png",
+      "https://evolusom.com.br/media/catalog/product/3/2/320331_68d427065fc4e.png",
+      "https://evolusom.com.br/media/catalog/product/3/2/320331_68d427065fc9a.png",
+      "https://evolusom.com.br/media/catalog/product/3/2/320331_68d427065fcdf.png",
+      "https://evolusom.com.br/media/catalog/product/3/2/320331_68d427065fd20.png",
+      "https://evolusom.com.br/media/catalog/product/3/2/320331_68d427065fd65.png"
+    ],
+    "gtin": "7899630194486",
+    "ncm": "87082999",
+    "cest": "01.075.00"
+  }
+}

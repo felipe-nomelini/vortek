@@ -1,0 +1,17 @@
+{
+  "captured_at": "2026-08-17T14:15:35.864Z",
+  "expected": 5858,
+  "captured": 5858,
+  "pages": 117,
+  "reliable": true,
+  "ids_sha256": "dab1fe638c49c63c0899bd4c84a5ae13051c7e0a6ec3ee8f422dceee33332b9a",
+  "selected_matches": [
+    {
+      "id": "MLB7437196478",
+      "sku": "VTK012864",
+      "gtin": "7898640362106",
+      "category_id": "MLB129666",
+      "status": "under_review"
+    }
+  ]
+}

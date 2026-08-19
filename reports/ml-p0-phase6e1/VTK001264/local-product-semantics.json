@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-17T14:15:38.046Z",
+  "product": {
+    "id": "92748703-c816-44b1-a3fd-735be0af6f49",
+    "sku": "VTK001264",
+    "nome": "Antena Omnidirecional Passiva Sennheiser A1031-U",
+    "marca": "SENNHEISER",
+    "estoque": 5,
+    "custo": 1333.27,
+    "ml_fee": 0.18,
+    "ml_shipping": 24.65,
+    "custom_price": 2168.25,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.3,
+    "peso_bruto": 0.3,
+    "largura": 1.6,
+    "altura": 3.5,
+    "profundidade": 31.8,
+    "gtin": "4006087046456",
+    "descricao": "A Antena Omnidirecional Passiva Sennheiser A1031-U é um modelo projetado para uso com receptores de montagem em rack da série G2 ou amplificadores de distribuição de RF. Pernitinndo o uso em aplicações onde os transmissores estão constantemente em movimento e o sinal de RF é gerado a partir de várias direções dentro de uma sala. Pode também ser utilizado como uma antena de transmissão, sendo este, um modelo compatível com transmissores Sennheiser SR 3054 e SR 3056-U-U, SR 1000, SER 20, e todos os outros transmissores UHF até 10 watts.",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/83208/550/1.jpg"
+    ],
+    "categoria": "Som Profissional / Microfones / Sem Fio",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:15:37.087038+00:00",
+    "updated_at": "2026-08-17T14:01:15.195412+00:00",
+    "dslite_fornecedor_id": "2",
+    "dslite_produto_id": "83208",
+    "dslite_ultima_sync": "2026-08-17T14:01:15.146+00:00",
+    "fornecedor": "HAYAMAX-PR",
+    "ncm": "8517.71.90",
+    "cest": null,
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "cd74f9c1-633b-484f-9278-7e7768e11da9",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "musical_instrument",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "musical_instrument",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

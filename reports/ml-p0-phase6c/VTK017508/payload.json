@@ -1,0 +1,75 @@
+{
+  "payload": {
+    "family_name": "Potes Tramontina MixColor 2 L Vermelho",
+    "category_id": "MLB244658",
+    "price": 159.9,
+    "currency_id": "BRL",
+    "available_quantity": 48,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/01-a314345543f5d59cb48f.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/02-da2fbb6778bb92c247c8.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/03-0916feb0e7409ca91811.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_name": "Tramontina"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7891112359307"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "51993",
+        "value_name": "Vermelho"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450307",
+        "value_name": "Vermelho"
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "value_name": "2 L"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "value_name": "2"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017508"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK017508"
+  },
+  "sha256": "af976567bff886b653f8b9145d1ae5c4bafeb49d1dc3d1275fe2ec31b2c206b4",
+  "family_name_sha256": "437367a5d045a8c1a632370df12a78d1d5785b332243f8d39446ffd24f483597",
+  "title_absent": true,
+  "description_absent": true
+}

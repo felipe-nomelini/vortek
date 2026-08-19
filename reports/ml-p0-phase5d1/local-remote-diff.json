@@ -1,0 +1,65 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "local": "MLB7432322488",
+      "remote": "MLB7432322488",
+      "status": "MATCH"
+    },
+    {
+      "field": "SKU",
+      "local": "VTK000392",
+      "remote": "VTK000392",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "local": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "remote": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "local": "Ventisol Turbo 6 Pás Turbo 6 10023 De Mesa 40 Cm 60 Hz Preto 127v Azul Plástico 6",
+      "remote": "Ventisol Turbo 6 Pás Turbo 6 10023 De Mesa 40 Cm 60 Hz Preto 127v Azul Plástico 6",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "local": 599.9,
+      "remote": 599.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "local": "ativo",
+      "remote": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "local": "classico",
+      "remote": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalogo",
+      "local": true,
+      "remote": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432322488-ventisol-turbo-6-pas-turbo-6-10023-de-mesa-40-cm-60-hz-preto-127v-azul-plastico-6-_JM",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432322488-ventisol-turbo-6-pas-turbo-6-10023-de-mesa-40-cm-60-hz-preto-127v-azul-plastico-6-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "uniqueness": {
+    "product_links": 1,
+    "item_listings": 1,
+    "product_listings": 1
+  },
+  "unique": true,
+  "material_drift": false
+}

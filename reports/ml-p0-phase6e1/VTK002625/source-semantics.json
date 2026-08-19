@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:39.402Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Garra Jacare 13,5cm 300a Preta Storm 02 Unidades",
+    "supplier_category": "Acessórios Para Veículos > Ferramentas Para Veículos > Ferramentas Para Baterias >  carregadores De Baterías",
+    "supplier_brand": "Storm",
+    "supplier_gtin": "7898566205846",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3528",
+    "captured_at": "2026-08-17T12:54:02.247Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "aee3d82c-32da-4e01-9b80-7feed9ea1c7b",
+    "produto_id": "39037073-9744-4671-93f4-2954ebd515df",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "3528",
+    "sku_fornecedor": "3528",
+    "custo": 9.83,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:05:21.06+00:00",
+    "created_at": "2026-07-06T22:31:08.373613+00:00",
+    "updated_at": "2026-08-17T10:05:21.067+00:00",
+    "sku_oferta": "3528",
+    "nome": "Garra Jacare 13,5cm 300a Preta Storm 02 Unidades",
+    "descricao": "Garra Jacaré 13,5cm 300A Preta Storm Descrição Breve A Garra Jacaré 13,5cm 300A Preta Storm é robusta e projetada para suportar altas correntes, oferecendo conexão firme e segura em aplicações automotivas e elétricas de maior exigência. Detalhes Técnicos • Marca: Storm • Modelo: Garra Jacaré • Cor: Preta • Tamanho: 13,5 cm • Capacidade de Corrente: 300A • Material: Corpo metálico reforçado com revestimento isolante em PVC • Uso Indicado: • Conexões de baterias automotivas • Carregadores de bateria • Instalações elétricas de alta corrente • Uso em oficinas, laboratórios e aplicações profissionais • Fixação: Mola de pressão resistente que garante excelente contato elétrico Resistente e eficiente, a Garra Jacaré 13,5cm 300A Preta Storm é ideal para quem precisa de conexões seguras em trabalhos com alta corrente.",
+    "marca": "Storm",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/97e91b736d2f3cdc051bf88d6b37dfc8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7a2f24d11c99488494281f912bd226e2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e9b9c4200965b2571a5598a3f41f1a7f.jpg"
+    ],
+    "gtin": "7898566205846",
+    "ncm": "8536.69.90",
+    "cest": null
+  }
+}

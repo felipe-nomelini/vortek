@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075741703",
+      "local": "MLB5075741703",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK000799",
+      "local": "VTK000799",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "fc7e5495-fb06-47ca-8530-97a7187d0167",
+      "local": "fc7e5495-fb06-47ca-8530-97a7187d0167",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cadeira Gamer Thunderx3 Tgc12 Giratória Reclinável Cinza",
+      "local": "Cadeira Gamer Thunderx3 Tgc12 Giratória Reclinável Cinza",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 3829.9,
+      "local": 3829.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075741703-cadeira-gamer-thunderx3-tgc12-giratoria-reclinavel-cinza-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075741703-cadeira-gamer-thunderx3-tgc12-giratoria-reclinavel-cinza-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

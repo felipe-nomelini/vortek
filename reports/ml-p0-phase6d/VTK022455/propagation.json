@@ -1,0 +1,1444 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 171,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:15:15 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 81aa5b946f2f955d94231eedc507d3d4.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "L_nubnDQCHzNCetS0KWb1ff8zdmf1mvXdQlEU-pLxWj8TMF3bBZz-Q==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "ed76e29c-b064-4a7b-9cd0-4cbd2aef14ee",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432766214",
+        "site_id": "MLB",
+        "title": "Roteador Giga Tp-link Ec220-g5 Branco",
+        "family_name": "TP-Link Aginet EC220-G5 V3",
+        "family_id": 933313392633810,
+        "seller_id": 3294514937,
+        "category_id": "MLB5867",
+        "user_product_id": "MLBU4743614409",
+        "official_store_id": null,
+        "price": 609.9,
+        "base_price": 609.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 13,
+        "available_quantity": 13,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:15:14.973Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:15:15.069Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432766214-roteador-giga-tp-link-ec220-g5-branco-_JM",
+        "thumbnail_id": "731500-MLA95941429561_102025",
+        "thumbnail": "http://http2.mlstatic.com/D_731500-MLA95941429561_102025-I.jpg",
+        "pictures": [
+          {
+            "id": "731500-MLA95941429561_102025",
+            "url": "http://http2.mlstatic.com/D_731500-MLA95941429561_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_731500-MLA95941429561_102025-O.jpg",
+            "size": "497x500",
+            "max_size": "1195x1200",
+            "quality": ""
+          },
+          {
+            "id": "641558-MLA95501730832_102025",
+            "url": "http://http2.mlstatic.com/D_641558-MLA95501730832_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_641558-MLA95501730832_102025-O.jpg",
+            "size": "500x449",
+            "max_size": "1018x916",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "ANATEL_HOMOLOGATION_NUMBER",
+            "name": "Homologação Anatel Nº",
+            "value_id": "40366083",
+            "value_name": "134742203177",
+            "values": [
+              {
+                "id": "40366083",
+                "name": "134742203177",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "7885",
+            "value_name": "TP-Link",
+            "values": [
+              {
+                "id": "7885",
+                "name": "TP-Link",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52055",
+            "value_name": "Branco",
+            "values": [
+              {
+                "id": "52055",
+                "name": "Branco",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "CONNECTION_TYPES",
+            "name": "Tipos de conexões",
+            "value_id": "11296606",
+            "value_name": "Sem fio",
+            "values": [
+              {
+                "id": "11296606",
+                "name": "Sem fio",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "DEPTH",
+            "name": "Profundidade",
+            "value_id": "4615848",
+            "value_name": "14.4 cm",
+            "values": [
+              {
+                "id": "4615848",
+                "name": "14.4 cm",
+                "struct": {
+                  "number": 14.4,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "DIAMETER",
+            "name": "Diâmetro",
+            "value_id": "13452364",
+            "value_name": "12 cm",
+            "values": [
+              {
+                "id": "13452364",
+                "name": "12 cm",
+                "struct": {
+                  "number": 12,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "EXTERNAL_ANTENNAS_NUMBER",
+            "name": "Quantidade de antenas externas",
+            "value_id": "8637174",
+            "value_name": "4",
+            "values": [
+              {
+                "id": "8637174",
+                "name": "4",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "FREQUENCIES",
+            "name": "Frequências",
+            "value_id": null,
+            "value_name": "2.4 GHz,5 GHz",
+            "values": [
+              {
+                "id": "2791070",
+                "name": "2.4 GHz",
+                "struct": null
+              },
+              {
+                "id": "2793416",
+                "name": "5 GHz",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "FREQUENCY_TYPE",
+            "name": "Tipo de frequência",
+            "value_id": "6059549",
+            "value_name": "Banda dupla",
+            "values": [
+              {
+                "id": "6059549",
+                "name": "Banda dupla",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "FUNCTIONS",
+            "name": "Funções",
+            "value_id": "279956",
+            "value_name": "Roteador",
+            "values": [
+              {
+                "id": "279956",
+                "name": "Roteador",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": null,
+            "value_name": "6935364086688,845973086688,7898544553631,7898544553648,7908902511477",
+            "values": [
+              {
+                "id": "10490102",
+                "name": "6935364086688",
+                "struct": null
+              },
+              {
+                "id": "24599474",
+                "name": "845973086688",
+                "struct": null
+              },
+              {
+                "id": "24611278",
+                "name": "7898544553631",
+                "struct": null
+              },
+              {
+                "id": "20139822",
+                "name": "7898544553648",
+                "struct": null
+              },
+              {
+                "id": "29719129",
+                "name": "7908902511477",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "8257948",
+            "value_name": "3.7 cm",
+            "values": [
+              {
+                "id": "8257948",
+                "name": "3.7 cm",
+                "struct": {
+                  "number": 3.7,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "IEEE_STANDARDS",
+            "name": "Normas IEEE",
+            "value_id": null,
+            "value_name": "IEEE 802.11a/n/ac,IEEE 802.11b/g/n",
+            "values": [
+              {
+                "id": "7929262",
+                "name": "IEEE 802.11a/n/ac",
+                "struct": null
+              },
+              {
+                "id": "82236",
+                "name": "IEEE 802.11b/g/n",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "INTERNAL_ANTENNAS_NUMBER",
+            "name": "Quantidade de antenas internas",
+            "value_id": "8756203",
+            "value_name": "4",
+            "values": [
+              {
+                "id": "8756203",
+                "name": "4",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "LAN_PORTS_NUMBER",
+            "name": "Quantidade de portas LAN",
+            "value_id": "7902397",
+            "value_name": "3",
+            "values": [
+              {
+                "id": "7902397",
+                "name": "3",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "64184114",
+            "value_name": "Aginet",
+            "values": [
+              {
+                "id": "64184114",
+                "name": "Aginet",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MANUFACTURER",
+            "name": "Fabricante",
+            "value_id": "7885",
+            "value_name": "TP-Link",
+            "values": [
+              {
+                "id": "7885",
+                "name": "TP-Link",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MOBILE_NETWORKS",
+            "name": "Redes móveis",
+            "value_id": "22994556",
+            "value_name": "0 °C - 40 °C",
+            "values": [
+              {
+                "id": "22994556",
+                "name": "0 °C - 40 °C",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "9252316",
+            "value_name": "EC220-G5",
+            "values": [
+              {
+                "id": "9252316",
+                "name": "EC220-G5",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "OPERATING_TEMPERATURE",
+            "name": "Temperatura de operação",
+            "value_id": "10589259",
+            "value_name": "0 °C - 40 °C",
+            "values": [
+              {
+                "id": "10589259",
+                "name": "0 °C - 40 °C",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ROUTERS_AND_WIRELESS_SYSTEMS_BANDWIDTH",
+            "name": "Largura de banda",
+            "value_id": "24830198",
+            "value_name": "1 GB/s",
+            "values": [
+              {
+                "id": "24830198",
+                "name": "1 GB/s",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ROUTERS_AND_WIRELESS_SYSTEMS_OPERATING_HUMIDITY",
+            "name": "Umidade de operação",
+            "value_id": "10589260",
+            "value_name": "10 % - 90 %",
+            "values": [
+              {
+                "id": "10589260",
+                "name": "10 % - 90 %",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SATELLITES_NUMBER",
+            "name": "Quantidade de satélites",
+            "value_id": "11277339",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "11277339",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "SECURITY_PROTOCOLS",
+            "name": "Protocolos de segurança",
+            "value_id": null,
+            "value_name": "DMZ,SPI,WEP,WPA,WPA2",
+            "values": [
+              {
+                "id": "7881437",
+                "name": "DMZ",
+                "struct": null
+              },
+              {
+                "id": "7179629",
+                "name": "SPI",
+                "struct": null
+              },
+              {
+                "id": "4442785",
+                "name": "WEP",
+                "struct": null
+              },
+              {
+                "id": "4442779",
+                "name": "WPA",
+                "struct": null
+              },
+              {
+                "id": "4442780",
+                "name": "WPA2",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK022455",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK022455",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "TOTAL_PORTS_NUMBER",
+            "name": "Quantidade total de portas",
+            "value_id": "1000090",
+            "value_name": "4",
+            "values": [
+              {
+                "id": "1000090",
+                "name": "4",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "7386989",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "7386989",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "USB_PORTS_NUMBER",
+            "name": "Quantidade de portas USB",
+            "value_id": "13402895",
+            "value_name": "0",
+            "values": [
+              {
+                "id": "13402895",
+                "name": "0",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "VERSION",
+            "name": "Versão",
+            "value_id": "7783566",
+            "value_name": "V3",
+            "values": [
+              {
+                "id": "7783566",
+                "name": "V3",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem",
+            "value_id": "39205163",
+            "value_name": "127/220V",
+            "values": [
+              {
+                "id": "39205163",
+                "name": "127/220V",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "WAN_LAN_PORTS_NUMBER",
+            "name": "Quantidade de portas WAN/LAN",
+            "value_id": "7913404",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "7913404",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "WAN_PORTS_NUMBER",
+            "name": "Quantidade de portas WAN",
+            "value_id": "7881190",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "7881190",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "57121",
+            "value_name": "800 g",
+            "values": [
+              {
+                "id": "57121",
+                "name": "800 g",
+                "struct": {
+                  "number": 800,
+                  "unit": "g"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "570699",
+            "value_name": "23 cm",
+            "values": [
+              {
+                "id": "570699",
+                "name": "23 cm",
+                "struct": {
+                  "number": 23,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WIRELESS_SPEED",
+            "name": "Velocidade wireless",
+            "value_id": "73457179",
+            "value_name": "0 Mbps",
+            "values": [
+              {
+                "id": "73457179",
+                "name": "0 Mbps",
+                "struct": {
+                  "number": 0,
+                  "unit": "Mbps"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WITH_ADAPTATIVE_QOS_FUNCTION",
+            "name": "Com função Adaptative QoS",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_AI_PROTECTION",
+            "name": "Com proteção de AI",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_HOTSPOT",
+            "name": "Com Hotspot",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_INTEGRATED_FIREWALL",
+            "name": "Com firewall integrado",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_PARENTAL_CONTROL",
+            "name": "Com controle parental",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_POE_CONNECTION",
+            "name": "Com conexão PoE",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_RESET_BUTTON",
+            "name": "Com botão de reinício",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB16268838",
+        "domain_id": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+        "seller_custom_field": "VTK022455",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:15:15.167Z",
+        "last_updated": "2026-08-17T01:15:15.167Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3678,
+    "user_product": {
+      "id": "MLBU4743614409",
+      "name": "Roteador Giga Tp-link Ec220-g5 Branco",
+      "family_name": "TP-Link Aginet EC220-G5 V3",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+      "attributes": [
+        {
+          "id": "ROUTERS_AND_WIRELESS_SYSTEMS_OPERATING_HUMIDITY",
+          "name": "Umidade de operação",
+          "values": [
+            {
+              "id": "10589260",
+              "name": "10 % - 90 %",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "values": [
+            {
+              "id": "4615848",
+              "name": "14.4 cm",
+              "struct": {
+                "number": 14.4,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "7885",
+              "name": "TP-Link",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCIES",
+          "name": "Frequências",
+          "values": [
+            {
+              "id": "2791070",
+              "name": "2.4 GHz",
+              "struct": null
+            },
+            {
+              "id": "2793416",
+              "name": "5 GHz",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_AI_PROTECTION",
+          "name": "Com proteção de AI",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WAN_PORTS_NUMBER",
+          "name": "Quantidade de portas WAN",
+          "values": [
+            {
+              "id": "7881190",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WIRELESS_SPEED",
+          "name": "Velocidade wireless",
+          "values": [
+            {
+              "id": "73457179",
+              "name": "0 Mbps",
+              "struct": {
+                "number": 0,
+                "unit": "Mbps"
+              }
+            }
+          ]
+        },
+        {
+          "id": "WAN_LAN_PORTS_NUMBER",
+          "name": "Quantidade de portas WAN/LAN",
+          "values": [
+            {
+              "id": "7913404",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_ADAPTATIVE_QOS_FUNCTION",
+          "name": "Com função Adaptative QoS",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "EXTERNAL_ANTENNAS_NUMBER",
+          "name": "Quantidade de antenas externas",
+          "values": [
+            {
+              "id": "8637174",
+              "name": "4",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "values": [
+            {
+              "id": "7885",
+              "name": "TP-Link",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_HOTSPOT",
+          "name": "Com Hotspot",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "name": "Tipos de conexões",
+          "values": [
+            {
+              "id": "11296606",
+              "name": "Sem fio",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "VERSION",
+          "name": "Versão",
+          "values": [
+            {
+              "id": "7783566",
+              "name": "V3",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SECURITY_PROTOCOLS",
+          "name": "Protocolos de segurança",
+          "values": [
+            {
+              "id": "7881437",
+              "name": "DMZ",
+              "struct": null
+            },
+            {
+              "id": "7179629",
+              "name": "SPI",
+              "struct": null
+            },
+            {
+              "id": "4442785",
+              "name": "WEP",
+              "struct": null
+            },
+            {
+              "id": "4442779",
+              "name": "WPA",
+              "struct": null
+            },
+            {
+              "id": "4442780",
+              "name": "WPA2",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MOBILE_NETWORKS",
+          "name": "Redes móveis",
+          "values": [
+            {
+              "id": "22994556",
+              "name": "0 °C - 40 °C",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "values": [
+            {
+              "id": "40366083",
+              "name": "134742203177",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK022455",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "values": [
+            {
+              "id": "7386989",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "TOTAL_PORTS_NUMBER",
+          "name": "Quantidade total de portas",
+          "values": [
+            {
+              "id": "1000090",
+              "name": "4",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "values": [
+            {
+              "id": "8257948",
+              "name": "3.7 cm",
+              "struct": {
+                "number": 3.7,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "9252316",
+              "name": "EC220-G5",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_PARENTAL_CONTROL",
+          "name": "Com controle parental",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY_TYPE",
+          "name": "Tipo de frequência",
+          "values": [
+            {
+              "id": "6059549",
+              "name": "Banda dupla",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "FUNCTIONS",
+          "name": "Funções",
+          "values": [
+            {
+              "id": "279956",
+              "name": "Roteador",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_INTEGRATED_FIREWALL",
+          "name": "Com firewall integrado",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "values": [
+            {
+              "id": "13452364",
+              "name": "12 cm",
+              "struct": {
+                "number": 12,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "values": [
+            {
+              "id": "52055",
+              "name": "Branco",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "values": [
+            {
+              "id": "64184114",
+              "name": "Aginet",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "name": "Quantidade de portas USB",
+          "values": [
+            {
+              "id": "13402895",
+              "name": "0",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "10490102",
+              "name": "6935364086688",
+              "struct": null
+            },
+            {
+              "id": "24599474",
+              "name": "845973086688",
+              "struct": null
+            },
+            {
+              "id": "24611278",
+              "name": "7898544553631",
+              "struct": null
+            },
+            {
+              "id": "20139822",
+              "name": "7898544553648",
+              "struct": null
+            },
+            {
+              "id": "29719129",
+              "name": "7908902511477",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ROUTERS_AND_WIRELESS_SYSTEMS_BANDWIDTH",
+          "name": "Largura de banda",
+          "values": [
+            {
+              "id": "24830198",
+              "name": "1 GB/s",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SATELLITES_NUMBER",
+          "name": "Quantidade de satélites",
+          "values": [
+            {
+              "id": "11277339",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IEEE_STANDARDS",
+          "name": "Normas IEEE",
+          "values": [
+            {
+              "id": "7929262",
+              "name": "IEEE 802.11a/n/ac",
+              "struct": null
+            },
+            {
+              "id": "82236",
+              "name": "IEEE 802.11b/g/n",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "values": [
+            {
+              "id": "570699",
+              "name": "23 cm",
+              "struct": {
+                "number": 23,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "values": [
+            {
+              "id": "57121",
+              "name": "800 g",
+              "struct": {
+                "number": 800,
+                "unit": "g"
+              }
+            }
+          ]
+        },
+        {
+          "id": "WITH_POE_CONNECTION",
+          "name": "Com conexão PoE",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "LAN_PORTS_NUMBER",
+          "name": "Quantidade de portas LAN",
+          "values": [
+            {
+              "id": "7902397",
+              "name": "3",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_RESET_BUTTON",
+          "name": "Com botão de reinício",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "INTERNAL_ANTENNAS_NUMBER",
+          "name": "Quantidade de antenas internas",
+          "values": [
+            {
+              "id": "8756203",
+              "name": "4",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "OPERATING_TEMPERATURE",
+          "name": "Temperatura de operação",
+          "values": [
+            {
+              "id": "10589259",
+              "name": "0 °C - 40 °C",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "731500-MLA95941429561_102025",
+          "secure_url": "https://http2.mlstatic.com/D_731500-MLA95941429561_102025-O.jpg"
+        },
+        {
+          "id": "641558-MLA95501730832_102025",
+          "secure_url": "https://http2.mlstatic.com/D_641558-MLA95501730832_102025-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "731500-MLA95941429561_102025",
+        "secure_url": "https://http2.mlstatic.com/D_731500-MLA95941429561_102025-O.jpg"
+      },
+      "catalog_product_id": "MLB16268838",
+      "bundle": null,
+      "family_id": 933313392633810,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:15:15.295+0000",
+      "last_updated": "2026-08-17T01:15:15.295+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4743614409"
+      ],
+      "family_id": 933313392633810,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

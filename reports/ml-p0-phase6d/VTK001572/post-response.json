@@ -1,0 +1,377 @@
+{
+  "attempted_at": "2026-08-17T01:15:00.720Z",
+  "local_time": "2026-08-16T22:15:00",
+  "endpoint": "POST /items",
+  "request_id": "4223212c-75da-4401-9a51-17ee023a0e49",
+  "http_status": 201,
+  "elapsed_ms": 800,
+  "payload_sha256": "7bc632e8f8dc14fcfa04df571ee872e9afa1fffc009dcb208d5b9608dc1c19fa",
+  "body": {
+    "id": "MLB7432766170",
+    "site_id": "MLB",
+    "title": "Cordas Guitarra 09 Custom Light Revestimento Nanoweb Elixir",
+    "seller_id": 3294514937,
+    "category_id": "MLB278076",
+    "user_product_id": "MLBU4743614307",
+    "official_store_id": null,
+    "price": 459.9,
+    "base_price": 459.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Elixir Custom NANOWEB GUITARRA",
+    "family_id": 6263027619289489,
+    "start_time": "2026-08-17T01:15:00.175Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:15:00.234Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432766170-cordas-guitarra-09-custom-light-revestimento-nanoweb-elixir-_JM",
+    "pictures": [
+      {
+        "id": "703370-MLA101177397441_122025",
+        "url": "http://mla-s1-p.mlstatic.com/703370-MLA101177397441_122025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/703370-MLA101177397441_122025-O.jpg",
+        "size": "293x499",
+        "max_size": "569x968",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2499062",
+        "value_name": "Elixir",
+        "values": [
+          {
+            "id": "2499062",
+            "name": "Elixir",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "501847",
+        "value_name": "Custom",
+        "values": [
+          {
+            "id": "501847",
+            "name": "Custom",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "16040382",
+        "value_name": "NANOWEB",
+        "values": [
+          {
+            "id": "16040382",
+            "name": "NANOWEB",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "name": "Instrumento recomendado",
+        "value_id": "16040015",
+        "value_name": "GUITARRA",
+        "values": [
+          {
+            "id": "16040015",
+            "name": "GUITARRA",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "value_id": "15146",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "15146",
+            "name": "6",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "GAUGES",
+        "name": "Calibres",
+        "value_id": "20234808",
+        "value_name": "009 - 011 - 016 - 026 - 036 - 046",
+        "values": [
+          {
+            "id": "20234808",
+            "name": "009 - 011 - 016 - 026 - 036 - 046",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "3964687",
+        "value_name": "Aço niquelado",
+        "values": [
+          {
+            "id": "3964687",
+            "name": "Aço niquelado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "TENSION",
+        "name": "Tensão",
+        "value_id": "16040066",
+        "value_name": "Light",
+        "values": [
+          {
+            "id": "16040066",
+            "name": "Light",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NOTES",
+        "name": "Notas",
+        "value_id": null,
+        "value_name": "A5, B2, D4, E1, E6, G3",
+        "values": [
+          {
+            "id": "16068407",
+            "name": "A5",
+            "struct": null
+          },
+          {
+            "id": "16068404",
+            "name": "B2",
+            "struct": null
+          },
+          {
+            "id": "16068406",
+            "name": "D4",
+            "struct": null
+          },
+          {
+            "id": "16068403",
+            "name": "E1",
+            "struct": null
+          },
+          {
+            "id": "16068408",
+            "name": "E6",
+            "struct": null
+          },
+          {
+            "id": "16068405",
+            "name": "G3",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SCALE",
+        "name": "Escala",
+        "value_id": "15312683",
+        "value_name": "4:4",
+        "values": [
+          {
+            "id": "15312683",
+            "name": "4:4",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "7897626832152,733132120277",
+        "values": [
+          {
+            "id": "17599677",
+            "name": "7897626832152",
+            "struct": null
+          },
+          {
+            "id": "16324500",
+            "name": "733132120277",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK001572",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK001572",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "703370-MLA101177397441_122025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/703370-MLA101177397441_122025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB22319192",
+    "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+    "seller_custom_field": "VTK001572",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:15:00.322Z",
+    "last_updated": "2026-08-17T01:15:00.322Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

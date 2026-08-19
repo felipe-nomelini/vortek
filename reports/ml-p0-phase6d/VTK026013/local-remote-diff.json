@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075856301",
+      "local": "MLB5075856301",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026013",
+      "local": "VTK026013",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "80f3c37b-9033-48d4-adf7-c8765edd38cb",
+      "local": "80f3c37b-9033-48d4-adf7-c8765edd38cb",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+      "local": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 479.9,
+      "local": 479.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075856301-suporte-de-celular-p-pedestal-musico-palestra-sc01-saty-pro-cor-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075856301-suporte-de-celular-p-pedestal-musico-palestra-sc01-saty-pro-cor-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

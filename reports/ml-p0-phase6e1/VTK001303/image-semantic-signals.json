@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-08-17T14:15:38.367Z",
+  "local_images": [
+    "https://static.hayapek.com.br/produtos/38389/550/1.jpg",
+    "https://static.hayapek.com.br/produtos/38389/550/2.jpg",
+    "https://static.hayapek.com.br/produtos/38389/550/3.jpg",
+    "https://static.hayapek.com.br/produtos/38389/550/4.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "774538-MLA96418050918_102025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_774538-MLA96418050918_102025-F.jpg",
+      "max_width": "376",
+      "max_height": "1200"
+    },
+    {
+      "id": "648650-MLA74650238740_022024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_648650-MLA74650238740_022024-F.jpg",
+      "max_width": "365",
+      "max_height": "1190"
+    },
+    {
+      "id": "872970-MLA47620095925_092021",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_872970-MLA47620095925_092021-F.jpg",
+      "max_width": "652",
+      "max_height": "731"
+    },
+    {
+      "id": "687625-MLA47620519508_092021",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_687625-MLA47620519508_092021-F.jpg",
+      "max_width": "618",
+      "max_height": "731"
+    },
+    {
+      "id": "650200-MLA47620146918_092021",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_650200-MLA47620146918_092021-F.jpg",
+      "max_width": "1200",
+      "max_height": "766"
+    },
+    {
+      "id": "683438-MLU72847338499_112023",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_683438-MLU72847338499_112023-F.jpg",
+      "max_width": "708",
+      "max_height": "1000"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

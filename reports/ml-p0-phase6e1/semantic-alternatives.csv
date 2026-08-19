@@ -1,0 +1,8 @@
+ordinal,sku,phase6e_state,phase6e1_state,category_candidate,semantic_score,second_pass,evidence
+"3","VTK018422","BLOCK_CATEGORY","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","Acessórios para Veículos > Som Automotivo > Antenas","93","PASS","supplier/local semantics and full category path agree"
+"15","VTK001303","BLOCK_CATEGORY","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","Instrumentos Musicais > Instrumentos de Corda > Guitarras > Elétricas","100","PASS","supplier/local semantics and full category path agree"
+"36","VTK001297","BLOCK_CATEGORY","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","Instrumentos Musicais > Instrumentos de Corda > Guitarras > Elétricas","100","PASS","supplier/local semantics and full category path agree"
+"42","VTK018562","BLOCK_CATEGORY","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Antenas de Conectividade","93","PASS","supplier/local semantics and full category path agree"
+"52","VTK018924","BLOCK_CATEGORY","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","Celulares e Telefones > Telefonia Fixa e Sem Fio > Telefones","100","PASS","supplier/local semantics and full category path agree"
+"63","VTK012632","BLOCK_CATEGORY","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores","100","PASS","supplier/local semantics and full category path agree"
+"79","VTK019126","BLOCK_CATEGORY","SEMANTIC_CATEGORY_ALTERNATIVE_FOUND","Casa, Móveis e Decoração > Segurança para Casa > Ferragens de Segurança > Fechaduras > Elétricas","93","PASS","supplier/local semantics and full category path agree"

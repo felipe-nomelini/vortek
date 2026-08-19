@@ -1,0 +1,126 @@
+{
+  "payload": {
+    "family_name": "Abraçadeira Nylon MXT 40 cm Kit 100",
+    "category_id": "MLB235632",
+    "catalog_product_id": "MLB26209409",
+    "catalog_listing": true,
+    "price": 99.9,
+    "currency_id": "BRL",
+    "available_quantity": 50,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e1494b.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14d99.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14de1.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "14449988",
+        "value_name": "40cm"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "7980354",
+        "value_name": "Náilon"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "value_id": "131783",
+        "value_name": "100"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "517234",
+        "value_name": "40 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "8892922",
+        "value_name": "4.8 mm"
+      },
+      {
+        "id": "IS_NUMBERED",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "23176271",
+        "value_name": "7908324703320"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026043"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026043"
+  },
+  "sha256": "3446bad31e990e7e7b1e1a004313318aa018e04091b70420e3432f37fe5c14fd",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 12,
+  "pictures_count": 3,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e1494b.png",
+      "status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14d99.png",
+      "status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "url": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14de1.png",
+      "status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ]
+}

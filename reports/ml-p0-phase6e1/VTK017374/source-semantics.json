@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:53.555Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cooler Gamer Evus F-12fix Fan 12cm Com Led",
+    "supplier_category": "Informatica/ Perifericos/ Cooler",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381522",
+    "captured_at": "2026-08-17T12:56:34.596Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "2a941b13-1780-4510-b5e0-2ea5edfb9498",
+    "produto_id": "ba2f906b-b82c-41c2-93a8-4b85f62a6270",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "381522",
+    "sku_fornecedor": "381522",
+    "custo": 17.63,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:27:23.222+00:00",
+    "created_at": "2026-07-20T18:30:39.682006+00:00",
+    "updated_at": "2026-08-17T10:27:23.231+00:00",
+    "sku_oferta": "381522",
+    "nome": "Cooler Gamer Evus F-12fix Fan 12cm Com Led",
+    "descricao": "O Cooler Fan para gabinete F-12FIX proporciona mais iluminação e desempenho para o seu setup. Seu LED de cores fixas promove a turbinada que estava faltando em seu gabinete. Com alta tecnologia em seu desenvolvimento, seu ruído é quase imperceptível, possui alta durabilidade e ótima iluminação em LED. *Imagens meramente ilustrativas.\n\nDimensões: 120 * 120 * 25mm Conector: Molex Tensão nominal: 12V Corrente nominal: 0.3A Velocidade nominal: 1000rpm Fluxo de ar: 35.8CFM Material do Fan: Plástico + led Ruído: 19,6 dBA Tipo de rolamento: hidráulico Tempo de vida: 60000 horas Comprimento do cabo: 420mm Cores Led: 5 cores fixas (quais são as cores) Peso líquido: 0.13KGS Peso com embalagem: 0.15KGS CÓD de barras 7898597133118 NCM: 84145990",
+    "marca": "EVUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3e210.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3ed28.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3f4b3.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3fb3c.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f40187.jpg"
+    ],
+    "gtin": "",
+    "ncm": "84145990",
+    "cest": "21.088.00"
+  }
+}

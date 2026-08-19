@@ -1,0 +1,318 @@
+{
+  "checked_at": "2026-08-17T12:54:53.546Z",
+  "product": {
+    "id": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+    "sku": "VTK018944",
+    "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+    "marca": "CITROX",
+    "gtin": "7898954353074"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/366711",
+    "consulted_at": "2026-08-17T12:54:53.354Z",
+    "product": {
+      "produtoid": "366711",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 684.9,
+      "preco_crossdocking": 684.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 684.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:15.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+      "titulo_curto": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+      "categoriaid": "117440",
+      "categoria_nome": "Segurança / Alarme/ Acessórios Alarme",
+      "abc": null,
+      "ean11": "7898954353074",
+      "ncm": "85439090",
+      "descricao": "<p>Suporta dois laços Indutivos (somente a central de 2 pontos);<br />Saídas da Central com pulso e retenção (somente a de 1 ponto);<br />Garantia de acesso somente por veículos;<br />Ajuste da frequência de operação;<br />Ajuste de sensibilidade;<br />Monitoramento de falha no laço detector.</p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p>Alimentação: 220V Ac<br />Tolerância: 10%<br />Consumo: 5VA<br />Relés de saída: 240V/5A<br />Temp. de operação: 20 ~ 65C<br />Temp. de armazenam: -40 ~ 85C<br />Frequência: 20~170kHz<br />Tempo de reação: 10ms<br />Tempo de armazenamento do sinal: Ilimitado/limitado quando o laço é permanentemente coberto 10 min<br />Indutância do laço: 50~100uH; ideal: 100~300uH<br />Fio de conexão do laço: Tamanho máximo de 20m bitola 0,75mm</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "CITROX",
+      "modelo": "",
+      "peso": 0.306,
+      "largura": 9,
+      "altura": 5,
+      "profundidade": 14.5,
+      "peso_embalagem": 0.306,
+      "largura_embalagem": 9,
+      "altura_embalagem": 5,
+      "profundidade_embalagem": 14.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafceac34.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1355,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-02-12 15:06:54.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:58:28.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafceac34.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafceb888.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafcebf0d.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/6/366711_67d2cafcec584.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB30417363",
+    "source": "ML catalog MLB30417363 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Citrox",
+      "model": "CX-CLI2",
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [
+        220
+      ],
+      "local_colors": [],
+      "catalog_colors": [],
+      "title_similarity": 0.5714285714285714
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB30417363",
+      "catalog_product_id": "MLB30417363",
+      "domain_id": "MLB-GATE_MOTORS",
+      "name": "Central De Laço Indutivo 2 Canais Para Portões Ppa Citrox",
+      "parent_id": "MLB30417358",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3249259",
+          "value_name": "Citrox",
+          "values": [
+            {
+              "id": "3249259",
+              "name": "Citrox"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "15007",
+          "value_name": "BV",
+          "values": [
+            {
+              "id": "15007",
+              "name": "BV"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "84099186",
+          "value_name": "CX-CLI2",
+          "values": [
+            {
+              "id": "84099186",
+              "name": "CX-CLI2"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V",
+          "values": [
+            {
+              "id": "198813",
+              "name": "220V"
+            }
+          ]
+        },
+        {
+          "id": "GARAGE_DOOR_TYPES",
+          "name": "Tipos de portão",
+          "value_name": "Cancelas, Portões",
+          "values": [
+            {
+              "id": "55658323",
+              "name": "Cancelas"
+            },
+            {
+              "id": "55658324",
+              "name": "Portões"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_GEAR_RACK",
+          "name": "Inclui cremalheira",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "USE",
+          "name": "Uso",
+          "value_id": "8849814",
+          "value_name": "Intensivo",
+          "values": [
+            {
+              "id": "8849814",
+              "name": "Intensivo"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "29611904",
+          "value_name": "7898954353074",
+          "values": [
+            {
+              "id": "29611904",
+              "name": "7898954353074"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Central de laço indutivo Citrox\n\nA central de laço indutivo tem a função de detectar a presença de um veículo. Para isso deverá ser instalada em conjunto com um ou dois laços indutivos. Um laço indutivo instalado antes de uma cancela ou portão garante que um cartão RFID cadastrado para um veículo abra a cancela apenas quando um veículo estiver presente. Dessa maneira, evita que um pedestre consiga entrar apenas com o cartão, sem o veículo. O laço instalado após a cancela envia um sinal para o fechamento da mesma. Dessa maneira o laço substituirá o fechamento por feixe infravermelho, com a vantagem de não detectar passagens de pedestres, mas somente de veículos. Para maior durabilidade, utilize o laço indutivo Citrox.\n\nCaracterísticas:\n• Suporta até dois laços Indutivos  \n• Acesso somente por veículos  \n• Ajuste da frequência de operação  \n• Ajuste de sensibilidade  \n• Monitoramento de falha no laço detector  \n\nItens Inclusos:  \n01 Central de laço indutivo 2 canais\n\nO fabricante recomenda que a instalação e manutenção dos produtos sejam feitas por técnico especializado."
+      },
+      "pictures": [
+        {
+          "id": "852905-MLA99963149153_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_852905-MLA99963149153_112025-F.jpg",
+          "max_width": "1068",
+          "max_height": "1114"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-01-26T21:58:50Z",
+      "last_updated": "2026-07-02T03:30:31Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194240",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317308",
+    "captured_at": "2026-08-17T12:54:43.588Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

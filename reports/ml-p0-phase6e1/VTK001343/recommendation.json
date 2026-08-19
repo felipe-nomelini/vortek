@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_UNIT_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Suporte Para Caixa JBL Bumper MAX26 AF-LA Preto",
+    "supplier_category": "áudio / Suportes Para áudio / Suporte Para Caixas Acústicas",
+    "supplier_brand": "JBL",
+    "supplier_gtin": "7898678590564",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/83445",
+    "captured_at": "2026-08-17T12:54:01.297Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

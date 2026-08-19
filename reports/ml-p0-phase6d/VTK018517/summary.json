@@ -1,0 +1,23 @@
+{
+  "index": 88,
+  "sku": "VTK018517",
+  "expected_gtin": "7898253497974",
+  "started_at": "2026-08-17T01:17:51.482Z",
+  "local_time": "2026-08-16T22:17:51",
+  "completed_at": "2026-08-17T01:17:51.519Z",
+  "elapsed_ms": 37,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "catalog vehicle application states Corsa/Montana/Vectra and conflicts with local Corsa/Montana/Meriva",
+  "sanitation": "CATALOG_REVIEW_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

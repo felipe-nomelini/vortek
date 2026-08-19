@@ -1,0 +1,23 @@
+{
+  "index": 61,
+  "sku": "VTK018297",
+  "expected_gtin": "7898917230725",
+  "started_at": "2026-08-17T01:16:07.531Z",
+  "local_time": "2026-08-16T22:16:07",
+  "completed_at": "2026-08-17T01:16:07.567Z",
+  "elapsed_ms": 36,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Telecam alarm cable catalog/domain category evidence is inconsistent",
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

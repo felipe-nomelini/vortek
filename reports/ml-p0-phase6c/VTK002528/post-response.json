@@ -1,0 +1,409 @@
+{
+  "attempted_at": "2026-08-17T00:44:47.115Z",
+  "local_time": "2026-08-16T21:44:47",
+  "endpoint": "POST /items",
+  "request_id": "d376216d-45b7-4a36-bd85-44ac259c7834",
+  "http_status": 201,
+  "elapsed_ms": 857,
+  "payload_sha256": "10399deedf5d2870f04b228f0ef8f17b55f26e817c27210b2ed4463de9a68c34",
+  "body": {
+    "id": "MLB7432625710",
+    "site_id": "MLB",
+    "title": "Antena Amphibious Proeletronic Prohd-2000a Cinza",
+    "seller_id": 3294514937,
+    "category_id": "MLB44572",
+    "user_product_id": "MLBU4772715346",
+    "official_store_id": null,
+    "price": 279.9,
+    "base_price": 279.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Proeletronic PROHD-2000A",
+    "family_id": 229815397469971,
+    "start_time": "2026-08-17T00:44:46.548Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:44:46.647Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432625710-antena-amphibious-proeletronic-prohd-2000a-cinza-_JM",
+    "pictures": [
+      {
+        "id": "908921-MLA106665695352_022026",
+        "url": "http://mla-s2-p.mlstatic.com/908921-MLA106665695352_022026-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/908921-MLA106665695352_022026-O.jpg",
+        "size": "500x380",
+        "max_size": "1200x914",
+        "quality": ""
+      },
+      {
+        "id": "764239-MLA106665950962_022026",
+        "url": "http://mla-s1-p.mlstatic.com/764239-MLA106665950962_022026-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/764239-MLA106665950962_022026-O.jpg",
+        "size": "500x418",
+        "max_size": "1200x1005",
+        "quality": ""
+      },
+      {
+        "id": "876684-MLA106665837964_022026",
+        "url": "http://mla-s1-p.mlstatic.com/876684-MLA106665837964_022026-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/876684-MLA106665837964_022026-O.jpg",
+        "size": "240x500",
+        "max_size": "577x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "1175465",
+        "value_name": "Proeletronic",
+        "values": [
+          {
+            "id": "1175465",
+            "name": "Proeletronic",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "18119921",
+        "value_name": "PROHD-2000A",
+        "values": [
+          {
+            "id": "18119921",
+            "name": "PROHD-2000A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "283165",
+        "value_name": "Cinza",
+        "values": [
+          {
+            "id": "283165",
+            "name": "Cinza",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LOCATION",
+        "name": "Localização",
+        "value_id": "2434728",
+        "value_name": "Interno",
+        "values": [
+          {
+            "id": "2434728",
+            "name": "Interno",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2748302",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "TV_ANTENNA_FREQUENCY_BAND",
+        "name": "Faixa de frequência da antena de TV",
+        "value_id": "4316261",
+        "value_name": "UHF/VHF",
+        "values": [
+          {
+            "id": "4316261",
+            "name": "UHF/VHF",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "name": "Comprimento do cabo",
+        "value_id": "17100693",
+        "value_name": "3 m",
+        "values": [
+          {
+            "id": "17100693",
+            "name": "3 m",
+            "struct": {
+              "number": 3,
+              "unit": "m"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "TV_RECEPTION_RANGE",
+        "name": "Faixa de recepção da antena de TV",
+        "value_id": "20180857",
+        "value_name": "56 km",
+        "values": [
+          {
+            "id": "20180857",
+            "name": "56 km",
+            "struct": {
+              "number": 56,
+              "unit": "km"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "6819",
+        "value_name": "650 g",
+        "values": [
+          {
+            "id": "6819",
+            "name": "650 g",
+            "struct": {
+              "number": 650,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "3157",
+        "value_name": "10 cm",
+        "values": [
+          {
+            "id": "3157",
+            "name": "10 cm",
+            "struct": {
+              "number": 10,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "3368",
+        "value_name": "6 cm",
+        "values": [
+          {
+            "id": "3368",
+            "name": "6 cm",
+            "struct": {
+              "number": 6,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "1018395",
+        "value_name": "20 cm",
+        "values": [
+          {
+            "id": "1018395",
+            "name": "20 cm",
+            "struct": {
+              "number": 20,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "IS_DIGITAL_FREEVIEW",
+        "name": "É TV digital terrestre",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "18119920",
+        "value_name": "7898419490665",
+        "values": [
+          {
+            "id": "18119920",
+            "name": "7898419490665",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK002528",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK002528",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "908921-MLA106665695352_022026",
+    "thumbnail": "http://mlb-s2-p.mlstatic.com/908921-MLA106665695352_022026-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB65679273",
+    "domain_id": "MLB-TV_ANTENNAS",
+    "seller_custom_field": "VTK002528",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:44:46.752Z",
+    "last_updated": "2026-08-17T00:44:46.752Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

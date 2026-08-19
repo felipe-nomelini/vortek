@@ -1,0 +1,23 @@
+{
+  "index": 80,
+  "sku": "VTK018292",
+  "expected_gtin": "4988028352720",
+  "started_at": "2026-08-17T01:16:54.032Z",
+  "local_time": "2026-08-16T22:16:54",
+  "completed_at": "2026-08-17T01:16:54.063Z",
+  "elapsed_ms": 31,
+  "result": "BLOCK_GTIN_UNIT_CONFLICT",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact GTIN catalog represents a complete trio bundle, not the standalone Pioneer subwoofer",
+  "sanitation": "GTIN_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

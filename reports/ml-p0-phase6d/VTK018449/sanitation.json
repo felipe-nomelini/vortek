@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018449",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "Viaweb VW8Z alarm panel is mapped by the catalog to a business telephone system",
+  "local_value": "7898936319029",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB33583521 + DSLite supplier",
+  "timestamp": "2026-08-17T01:16:53.939Z"
+}

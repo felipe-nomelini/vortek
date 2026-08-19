@@ -1,0 +1,411 @@
+{
+  "attempted_at": "2026-08-17T01:14:21.910Z",
+  "local_time": "2026-08-16T22:14:21",
+  "endpoint": "POST /items",
+  "request_id": "4d9e3a5d-ae53-467d-80e6-2443d81dfe2e",
+  "http_status": 201,
+  "elapsed_ms": 756,
+  "payload_sha256": "4356dbd0b5b460128ef166cd466cdfaaaadfadd4100261b202890df85fdb1737",
+  "body": {
+    "id": "MLB5075856591",
+    "site_id": "MLB",
+    "title": "Encordoamento 010-046 P/ Guitarra Regular Slink Niquel P02221 Ernie Ball",
+    "seller_id": 3294514937,
+    "category_id": "MLB278076",
+    "user_product_id": "MLBU4743600709",
+    "official_store_id": null,
+    "price": 259.9,
+    "base_price": 259.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Ernie Ball Guitarra Regular Slinky Guitarra elétrica",
+    "family_id": 2193656618262225,
+    "start_time": "2026-08-17T01:14:21.425Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:14:21.482Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-5075856591-encordoamento-010-046-p-guitarra-regular-slink-niquel-p02221-ernie-ball-_JM",
+    "pictures": [
+      {
+        "id": "881255-MLA99444723826_112025",
+        "url": "http://mla-s1-p.mlstatic.com/881255-MLA99444723826_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/881255-MLA99444723826_112025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2863328",
+        "value_name": "Ernie Ball",
+        "values": [
+          {
+            "id": "2863328",
+            "name": "Ernie Ball",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "13963338",
+        "value_name": "Guitarra",
+        "values": [
+          {
+            "id": "13963338",
+            "name": "Guitarra",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "15992493",
+        "value_name": "Regular Slinky",
+        "values": [
+          {
+            "id": "15992493",
+            "name": "Regular Slinky",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "name": "Instrumento recomendado",
+        "value_id": "15312680",
+        "value_name": "Guitarra elétrica",
+        "values": [
+          {
+            "id": "15312680",
+            "name": "Guitarra elétrica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "value_id": "15146",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "15146",
+            "name": "6",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "GAUGES",
+        "name": "Calibres",
+        "value_id": "17014136",
+        "value_name": ".010/.046",
+        "values": [
+          {
+            "id": "17014136",
+            "name": ".010/.046",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "18413414",
+        "value_name": "Nickel",
+        "values": [
+          {
+            "id": "18413414",
+            "name": "Nickel",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "TENSION",
+        "name": "Tensão",
+        "value_id": "15647635",
+        "value_name": "Regular",
+        "values": [
+          {
+            "id": "15647635",
+            "name": "Regular",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NOTES",
+        "name": "Notas",
+        "value_id": null,
+        "value_name": "1E, 2B, 3G, 4D, 5A, 6E",
+        "values": [
+          {
+            "id": "20202134",
+            "name": "1E",
+            "struct": null
+          },
+          {
+            "id": "20202135",
+            "name": "2B",
+            "struct": null
+          },
+          {
+            "id": "20202136",
+            "name": "3G",
+            "struct": null
+          },
+          {
+            "id": "20202137",
+            "name": "4D",
+            "struct": null
+          },
+          {
+            "id": "20202138",
+            "name": "5A",
+            "struct": null
+          },
+          {
+            "id": "20202139",
+            "name": "6E",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SCALE",
+        "name": "Escala",
+        "value_id": "15312683",
+        "value_name": "4:4",
+        "values": [
+          {
+            "id": "15312683",
+            "name": "4:4",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "749699122210,741459813000,7899574330582,7496991208342,867271103997,632829859028",
+        "values": [
+          {
+            "id": "15992516",
+            "name": "749699122210",
+            "struct": null
+          },
+          {
+            "id": "18714287",
+            "name": "741459813000",
+            "struct": null
+          },
+          {
+            "id": "16486448",
+            "name": "7899574330582",
+            "struct": null
+          },
+          {
+            "id": "47853724",
+            "name": "7496991208342",
+            "struct": null
+          },
+          {
+            "id": "72214292",
+            "name": "867271103997",
+            "struct": null
+          },
+          {
+            "id": "62528274",
+            "name": "632829859028",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK003366",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK003366",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "881255-MLA99444723826_112025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/881255-MLA99444723826_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB21272052",
+    "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+    "seller_custom_field": "VTK003366",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:14:21.582Z",
+    "last_updated": "2026-08-17T01:14:21.582Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

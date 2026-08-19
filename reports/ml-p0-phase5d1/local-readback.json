@@ -1,0 +1,60 @@
+{
+  "read_at": "2026-08-16T23:13:36.107467+00:00",
+  "product": {
+    "id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+    "sku": "VTK000392",
+    "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+    "gtin": "7898461970375",
+    "ml_item_id": "MLB7432322488",
+    "ml_status": "ativo",
+    "estoque": 15,
+    "custo": 132.55,
+    "altura": 18,
+    "largura": 44,
+    "profundidade": 45,
+    "peso_bruto": 2.6,
+    "updated_at": "2026-08-16T23:13:35.750792+00:00"
+  },
+  "item_listings": [
+    {
+      "id": "d763d2de-d824-4218-a044-15f83043f9cf",
+      "ml_item_id": "MLB7432322488",
+      "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "titulo": "Ventisol Turbo 6 Pás Turbo 6 10023 De Mesa 40 Cm 60 Hz Preto 127v Azul Plástico 6",
+      "tipo": "classico",
+      "preco_ml": 599.9,
+      "vendidos": 0,
+      "visitas": 0,
+      "qualidade": 0,
+      "qualidade_info": null,
+      "status": "ativo",
+      "catalogo": true,
+      "thumbnail": "https://http2.mlstatic.com/D_702853-MLA99429972606_112025-O.webp",
+      "permalink": "https://produto.mercadolivre.com.br/MLB-7432322488-ventisol-turbo-6-pas-turbo-6-10023-de-mesa-40-cm-60-hz-preto-127v-azul-plastico-6-_JM",
+      "created_at": "2026-08-16T23:13:35.750792+00:00",
+      "updated_at": "2026-08-16T23:13:35.750792+00:00"
+    }
+  ],
+  "product_listings": [
+    {
+      "id": "d763d2de-d824-4218-a044-15f83043f9cf",
+      "ml_item_id": "MLB7432322488",
+      "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "titulo": "Ventisol Turbo 6 Pás Turbo 6 10023 De Mesa 40 Cm 60 Hz Preto 127v Azul Plástico 6",
+      "preco_ml": 599.9,
+      "status": "ativo",
+      "catalogo": true,
+      "created_at": "2026-08-16T23:13:35.750792+00:00"
+    }
+  ],
+  "products_pointing_to_item": [
+    {
+      "id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "ml_item_id": "MLB7432322488",
+      "ml_status": "ativo"
+    }
+  ]
+}

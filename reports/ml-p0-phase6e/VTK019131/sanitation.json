@@ -1,0 +1,10 @@
+{
+  "sku": "VTK019131",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category confidence is not HIGH for domain MLB-HOME_ALARMS_AND_SENSORS",
+  "local_value": "7898954353265",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB28393443 + domain discovery",
+  "timestamp": "2026-08-17T12:55:41.082Z"
+}

@@ -1,0 +1,85 @@
+{
+  "payload": {
+    "family_name": "Espaleira Scarlett Violino 3/4 e 4/4",
+    "category_id": "MLB271226",
+    "catalog_product_id": "MLB27716824",
+    "catalog_listing": true,
+    "price": 189.9,
+    "currency_id": "BRL",
+    "available_quantity": 7,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a873ad4b8f4db74421c4281596ca78a9.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "19707",
+        "value_name": "Scarlett"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "48866686",
+        "value_name": "Espaleira scarlett"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "COMPATIBLE_INSTRUMENTS",
+        "value_id": "4574294",
+        "value_name": "Violino"
+      },
+      {
+        "id": "COMPATIBLE_SIZES",
+        "value_id": "4574304",
+        "value_name": "4/4"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_PADDED",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "25322939",
+        "value_name": "7898672372227"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026035"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026035"
+  },
+  "sha256": "1f937ec1d99c21b1b178959a73cd692cb81edc6a531a59182ddacef39c8c8fb7",
+  "family_name_sha256": "7d6fcb64937cdde330cbaad7b7eb727b472e8d3acffca9574a73aff7a3927911",
+  "title_absent": true,
+  "description_absent": true
+}

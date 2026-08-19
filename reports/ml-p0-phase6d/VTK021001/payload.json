@@ -1,0 +1,210 @@
+{
+  "payload": {
+    "family_name": "Alto Falante Pioneer TS-6960BR 6x9",
+    "category_id": "MLB3905",
+    "catalog_product_id": "MLB27957192",
+    "catalog_listing": true,
+    "price": 849.9,
+    "currency_id": "BRL",
+    "available_quantity": 7,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_68f1359f12a9c.png"
+      },
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e0989.jpg"
+      },
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e15cf.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "9838",
+        "value_name": "Pioneer"
+      },
+      {
+        "id": "LINE",
+        "value_id": "195550",
+        "value_name": "BR"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "2292869",
+        "value_name": "TS-6960BR"
+      },
+      {
+        "id": "VEHICLE_SPEAKER_WIDTH",
+        "value_id": "8737281",
+        "value_name": "6 \""
+      },
+      {
+        "id": "VEHICLE_SPEAKER_LENGTH",
+        "value_id": "8737282",
+        "value_name": "9 \""
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "IMPEDANCE",
+        "value_id": "945309",
+        "value_name": "4 Ω"
+      },
+      {
+        "id": "SPEAKERS_NUMBER",
+        "value_id": "999572",
+        "value_name": "2"
+      },
+      {
+        "id": "VEHICLE_TYPE",
+        "value_id": "11377043",
+        "value_name": "Carro/Caminhonete"
+      },
+      {
+        "id": "VEHICLE_SPEAKER_TYPE",
+        "value_id": "8704188",
+        "value_name": "Quadraxial"
+      },
+      {
+        "id": "WAYS_NUMBER",
+        "value_id": "8268966",
+        "value_name": "4"
+      },
+      {
+        "id": "COILS_NUMBER",
+        "value_id": "8704186",
+        "value_name": "1"
+      },
+      {
+        "id": "RMS_POWER",
+        "value_id": "161514",
+        "value_name": "200 W"
+      },
+      {
+        "id": "FREQUENCY_RANGE",
+        "value_id": "8722426",
+        "value_name": "40 Hz - 20000 Hz"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "1160547",
+        "value_name": "8.3 cm"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "8272010",
+            "name": "4988028352850"
+          },
+          {
+            "id": "25286267",
+            "name": "4988028283420"
+          }
+        ]
+      },
+      {
+        "id": "SUSPENSION_MATERIALS",
+        "value_id": "160253",
+        "value_name": "Espuma"
+      },
+      {
+        "id": "CASING_MATERIALS",
+        "value_id": "945389",
+        "value_name": "Aço"
+      },
+      {
+        "id": "COIL_MATERIALS",
+        "value_id": "160257",
+        "value_name": "Alumínio"
+      },
+      {
+        "id": "CONE_MATERIALS",
+        "value_id": "160243",
+        "value_name": "Polipropileno"
+      },
+      {
+        "id": "INTEGRATED_SPEAKERS_TYPES",
+        "values": [
+          {
+            "id": "8694535",
+            "name": "Woofer"
+          },
+          {
+            "id": "8704185",
+            "name": "Midrange"
+          },
+          {
+            "id": "8694536",
+            "name": "Tweeter"
+          },
+          {
+            "id": "8694537",
+            "name": "Super tweeter"
+          }
+        ]
+      },
+      {
+        "id": "MAX_POWER_PMPO",
+        "value_id": "8711757",
+        "value_name": "200 W"
+      },
+      {
+        "id": "RESONANCE_FREQUENCY",
+        "value_id": "27127460",
+        "value_name": "20 kHz"
+      },
+      {
+        "id": "SENSITIVITY",
+        "value_id": "945369",
+        "value_name": "88 dB"
+      },
+      {
+        "id": "WITH_PROTECTIVE_SCREEN",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SUBWOOFER_BOX",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK021001"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK021001"
+  },
+  "sha256": "c16e71733c7e4b22e3b3b8286217c420b0a52bc19d24b718d168b880edc1ffd9",
+  "family_name_sha256": "6ce4a30f623226b681dc52b252fd69bbaa7232a816710f8631e2b09fd50257fa",
+  "title_absent": true,
+  "description_absent": true
+}

@@ -1,0 +1,1812 @@
+{
+  "checked_at": "2026-08-17T00:43:56.291Z",
+  "item": {
+    "id": "MLB7432625530",
+    "site_id": "MLB",
+    "title": "Cadeira Gamer Ergonômica Thunderx3 Yama1 Preto/cíano Com Encosto Reclinável Malha",
+    "family_name": "ThunderX3 Essential Gaming Chairs YAMA1",
+    "family_id": 6001622948921169,
+    "seller_id": 3294514937,
+    "category_id": "MLB447782",
+    "user_product_id": "MLBU4772705488",
+    "official_store_id": null,
+    "price": 4089.9,
+    "base_price": 4089.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T00:43:54.946Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:43:55.050Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432625530-cadeira-gamer-ergonmica-thunderx3-yama1-pretociano-com-encosto-reclinavel-malha-_JM",
+    "thumbnail_id": "976832-MLA99508595596_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_976832-MLA99508595596_112025-I.jpg",
+    "pictures": [
+      {
+        "id": "976832-MLA99508595596_112025",
+        "url": "http://http2.mlstatic.com/D_976832-MLA99508595596_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_976832-MLA99508595596_112025-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "721870-MLA43816459338_102020",
+        "url": "http://http2.mlstatic.com/D_721870-MLA43816459338_102020-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_721870-MLA43816459338_102020-O.jpg",
+        "size": "277x500",
+        "max_size": "666x1200",
+        "quality": ""
+      },
+      {
+        "id": "684574-MLA43816459327_102020",
+        "url": "http://http2.mlstatic.com/D_684574-MLA43816459327_102020-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_684574-MLA43816459327_102020-O.jpg",
+        "size": "271x500",
+        "max_size": "652x1200",
+        "quality": ""
+      },
+      {
+        "id": "863222-MLA49542944144_042022",
+        "url": "http://http2.mlstatic.com/D_863222-MLA49542944144_042022-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_863222-MLA49542944144_042022-O.jpg",
+        "size": "270x500",
+        "max_size": "649x1200",
+        "quality": ""
+      },
+      {
+        "id": "881933-MLU70023982875_062023",
+        "url": "http://http2.mlstatic.com/D_881933-MLU70023982875_062023-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_881933-MLU70023982875_062023-O.jpg",
+        "size": "300x500",
+        "max_size": "722x1200",
+        "quality": ""
+      },
+      {
+        "id": "834202-MLU70023982879_062023",
+        "url": "http://http2.mlstatic.com/D_834202-MLU70023982879_062023-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_834202-MLU70023982879_062023-O.jpg",
+        "size": "372x500",
+        "max_size": "895x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BACKREST_HEIGHT",
+        "name": "Altura do encosto",
+        "value_id": "7995975",
+        "value_name": "74 cm",
+        "values": [
+          {
+            "id": "7995975",
+            "name": "74 cm",
+            "struct": {
+              "number": 74,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "BACKREST_TILT_RANGE",
+        "name": "Faixa de inclinação do encosto",
+        "value_id": "10299882",
+        "value_name": "90 ° x 135 °",
+        "values": [
+          {
+            "id": "10299882",
+            "name": "90 ° x 135 °",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "name": "Largura do encosto",
+        "value_id": "9737942",
+        "value_name": "48 cm",
+        "values": [
+          {
+            "id": "9737942",
+            "name": "48 cm",
+            "struct": {
+              "number": 48,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "BASE_DIAMETER",
+        "name": "Diâmetro da base",
+        "value_id": "12905531",
+        "value_name": "35 cm",
+        "values": [
+          {
+            "id": "12905531",
+            "name": "35 cm",
+            "struct": {
+              "number": 35,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "8848598",
+        "value_name": "ThunderX3",
+        "values": [
+          {
+            "id": "8848598",
+            "name": "ThunderX3",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "3304748",
+        "value_name": "Preto/Cíano",
+        "values": [
+          {
+            "id": "3304748",
+            "name": "Preto/Cíano",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "26078166",
+        "value_name": "Yama1",
+        "values": [
+          {
+            "id": "26078166",
+            "name": "Yama1",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "name": "Materiais do enchimento",
+        "value_id": "13809804",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "13809804",
+            "name": "Espuma",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FILTRABLE_COLOR",
+        "name": "Cor filtrável",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "FOOT_RING_MATERIALS",
+        "name": "Materiais do aro para pés",
+        "value_id": "16602172",
+        "value_name": "Metal",
+        "values": [
+          {
+            "id": "16602172",
+            "name": "Metal",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "9078075",
+        "value_name": "4718009159150",
+        "values": [
+          {
+            "id": "9078075",
+            "name": "4718009159150",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "name": "Inclui manual de montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "name": "É ergonômica",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_SWIVEL",
+        "name": "É giratória",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "name": "Tipos de mecanismos de reclinação",
+        "value_id": null,
+        "value_name": "Encosto reclinável,Sincrônico",
+        "values": [
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável",
+            "struct": null
+          },
+          {
+            "id": "10201910",
+            "name": "Sincrônico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "10589946",
+        "value_name": "Essential Gaming Chairs",
+        "values": [
+          {
+            "id": "10589946",
+            "name": "Essential Gaming Chairs",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "name": "Tipo de apoio lombar",
+        "value_id": "10201909",
+        "value_name": "Regulável",
+        "values": [
+          {
+            "id": "10201909",
+            "name": "Regulável",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "name": "Altura máxima da cadeira",
+        "value_id": "10312765",
+        "value_name": "128 cm",
+        "values": [
+          {
+            "id": "10312765",
+            "name": "128 cm",
+            "struct": {
+              "number": 128,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "name": "Altura máxima do chão ao assento\r",
+        "value_id": "9845040",
+        "value_name": "56 cm",
+        "values": [
+          {
+            "id": "9845040",
+            "name": "56 cm",
+            "struct": {
+              "number": 56,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "2514092",
+        "value_name": "150 kg",
+        "values": [
+          {
+            "id": "2514092",
+            "name": "150 kg",
+            "struct": {
+              "number": 150,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MIN_CHAIR_HEIGHT",
+        "name": "Altura mínima da cadeira",
+        "value_id": "10312766",
+        "value_name": "118 cm",
+        "values": [
+          {
+            "id": "10312766",
+            "name": "118 cm",
+            "struct": {
+              "number": 118,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MIN_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "name": "Altura mínima do chão ao assento",
+        "value_id": "9845039",
+        "value_name": "46 cm",
+        "values": [
+          {
+            "id": "9845039",
+            "name": "46 cm",
+            "struct": {
+              "number": 46,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "8991084",
+        "value_name": "YAMA1",
+        "values": [
+          {
+            "id": "8991084",
+            "name": "YAMA1",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OFFICE_CHAIR_DEPTH",
+        "name": "Profundidade da cadeira",
+        "value_id": "7661943",
+        "value_name": "70 cm",
+        "values": [
+          {
+            "id": "7661943",
+            "name": "70 cm",
+            "struct": {
+              "number": 70,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "OFFICE_CHAIR_HEIGHT",
+        "name": "Altura da cadeira",
+        "value_id": "53835643",
+        "value_name": "132 cm",
+        "values": [
+          {
+            "id": "53835643",
+            "name": "132 cm",
+            "struct": {
+              "number": 132,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "name": "Tipo de cadeira de escritório",
+        "value_id": "13016814",
+        "value_name": "Gamer",
+        "values": [
+          {
+            "id": "13016814",
+            "name": "Gamer",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "name": "Peso da cadeira",
+        "value_id": "10808289",
+        "value_name": "15.5 kg",
+        "values": [
+          {
+            "id": "10808289",
+            "name": "15.5 kg",
+            "struct": {
+              "number": 15.5,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "name": "Largura da cadeira",
+        "value_id": "7661942",
+        "value_name": "66 cm",
+        "values": [
+          {
+            "id": "7661942",
+            "name": "66 cm",
+            "struct": {
+              "number": 66,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "name": "Requer montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "name": "Profundidade do assento",
+        "value_id": "9567306",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "9567306",
+            "name": "50 cm",
+            "struct": {
+              "number": 50,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SEAT_WIDTH",
+        "name": "Largura do assento",
+        "value_id": "3202979",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "3202979",
+            "name": "50 cm",
+            "struct": {
+              "number": 50,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK000378",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK000378",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "STRUCTURE_FINISH",
+        "name": "Acabamento da estrutura",
+        "value_id": "1185554",
+        "value_name": "Cromado",
+        "values": [
+          {
+            "id": "1185554",
+            "name": "Cromado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "name": "Materiais da estrutura",
+        "value_id": "7980354",
+        "value_name": "Náilon",
+        "values": [
+          {
+            "id": "7980354",
+            "name": "Náilon",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "UPHOLSTERY_MATERIAL",
+        "name": "Material do estofamento",
+        "value_id": "3112424",
+        "value_name": "Malha",
+        "values": [
+          {
+            "id": "3112424",
+            "name": "Malha",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "name": "Com apoio de braços ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ARMREST",
+        "name": "Com apoio de braços",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "name": "Com apoio de pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "name": "Com aro para pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_HEADREST",
+        "name": "Com apoio de cabeça",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "name": "Com luzes",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "name": "Com encosto reclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_WHEELS",
+        "name": "Com rodas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB16097954",
+    "domain_id": "MLB-OFFICE_CHAIRS",
+    "seller_custom_field": "VTK000378",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:43:55.163Z",
+    "last_updated": "2026-08-17T00:43:55.163Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "propagation": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 163,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 00:43:55 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 05c123ce9ed88aac1269d5f13441b908.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "FFQ79Bpwx7xAXt3X2MvRoJsOm5lf9fML1u12AiUkG9N5AIdnZZ8qkA==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "8ccfa22e-d2ae-4083-934e-935a1636c203",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432625530",
+        "site_id": "MLB",
+        "title": "Cadeira Gamer Ergonômica Thunderx3 Yama1 Preto/cíano Com Encosto Reclinável Malha",
+        "family_name": "ThunderX3 Essential Gaming Chairs YAMA1",
+        "family_id": 6001622948921169,
+        "seller_id": 3294514937,
+        "category_id": "MLB447782",
+        "user_product_id": "MLBU4772705488",
+        "official_store_id": null,
+        "price": 4089.9,
+        "base_price": 4089.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 15,
+        "available_quantity": 15,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T00:43:54.946Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T00:43:55.050Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432625530-cadeira-gamer-ergonmica-thunderx3-yama1-pretociano-com-encosto-reclinavel-malha-_JM",
+        "thumbnail_id": "976832-MLA99508595596_112025",
+        "thumbnail": "http://http2.mlstatic.com/D_976832-MLA99508595596_112025-I.jpg",
+        "pictures": [
+          {
+            "id": "976832-MLA99508595596_112025",
+            "url": "http://http2.mlstatic.com/D_976832-MLA99508595596_112025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_976832-MLA99508595596_112025-O.jpg",
+            "size": "500x500",
+            "max_size": "1024x1024",
+            "quality": ""
+          },
+          {
+            "id": "721870-MLA43816459338_102020",
+            "url": "http://http2.mlstatic.com/D_721870-MLA43816459338_102020-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_721870-MLA43816459338_102020-O.jpg",
+            "size": "277x500",
+            "max_size": "666x1200",
+            "quality": ""
+          },
+          {
+            "id": "684574-MLA43816459327_102020",
+            "url": "http://http2.mlstatic.com/D_684574-MLA43816459327_102020-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_684574-MLA43816459327_102020-O.jpg",
+            "size": "271x500",
+            "max_size": "652x1200",
+            "quality": ""
+          },
+          {
+            "id": "863222-MLA49542944144_042022",
+            "url": "http://http2.mlstatic.com/D_863222-MLA49542944144_042022-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_863222-MLA49542944144_042022-O.jpg",
+            "size": "270x500",
+            "max_size": "649x1200",
+            "quality": ""
+          },
+          {
+            "id": "881933-MLU70023982875_062023",
+            "url": "http://http2.mlstatic.com/D_881933-MLU70023982875_062023-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_881933-MLU70023982875_062023-O.jpg",
+            "size": "300x500",
+            "max_size": "722x1200",
+            "quality": ""
+          },
+          {
+            "id": "834202-MLU70023982879_062023",
+            "url": "http://http2.mlstatic.com/D_834202-MLU70023982879_062023-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_834202-MLU70023982879_062023-O.jpg",
+            "size": "372x500",
+            "max_size": "895x1200",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BACKREST_HEIGHT",
+            "name": "Altura do encosto",
+            "value_id": "7995975",
+            "value_name": "74 cm",
+            "values": [
+              {
+                "id": "7995975",
+                "name": "74 cm",
+                "struct": {
+                  "number": 74,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "BACKREST_TILT_RANGE",
+            "name": "Faixa de inclinação do encosto",
+            "value_id": "10299882",
+            "value_name": "90 ° x 135 °",
+            "values": [
+              {
+                "id": "10299882",
+                "name": "90 ° x 135 °",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "BACKREST_WIDTH",
+            "name": "Largura do encosto",
+            "value_id": "9737942",
+            "value_name": "48 cm",
+            "values": [
+              {
+                "id": "9737942",
+                "name": "48 cm",
+                "struct": {
+                  "number": 48,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "BASE_DIAMETER",
+            "name": "Diâmetro da base",
+            "value_id": "12905531",
+            "value_name": "35 cm",
+            "values": [
+              {
+                "id": "12905531",
+                "name": "35 cm",
+                "struct": {
+                  "number": 35,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "8848598",
+            "value_name": "ThunderX3",
+            "values": [
+              {
+                "id": "8848598",
+                "name": "ThunderX3",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "3304748",
+            "value_name": "Preto/Cíano",
+            "values": [
+              {
+                "id": "3304748",
+                "name": "Preto/Cíano",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DETAILED_MODEL",
+            "name": "Modelo detalhado",
+            "value_id": "26078166",
+            "value_name": "Yama1",
+            "values": [
+              {
+                "id": "26078166",
+                "name": "Yama1",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "FILLING_MATERIALS",
+            "name": "Materiais do enchimento",
+            "value_id": "13809804",
+            "value_name": "Espuma",
+            "values": [
+              {
+                "id": "13809804",
+                "name": "Espuma",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "FILTRABLE_COLOR",
+            "name": "Cor filtrável",
+            "value_id": "2450295",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "2450295",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "FOOT_RING_MATERIALS",
+            "name": "Materiais do aro para pés",
+            "value_id": "16602172",
+            "value_name": "Metal",
+            "values": [
+              {
+                "id": "16602172",
+                "name": "Metal",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "9078075",
+            "value_name": "4718009159150",
+            "values": [
+              {
+                "id": "9078075",
+                "name": "4718009159150",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "INCLUDES_ASSEMBLY_MANUAL",
+            "name": "Inclui manual de montagem",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_ERGONOMIC",
+            "name": "É ergonômica",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_GAMER",
+            "name": "É gamer",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_SWIVEL",
+            "name": "É giratória",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "LEAN_BACK_MECHANISM_TYPES",
+            "name": "Tipos de mecanismos de reclinação",
+            "value_id": null,
+            "value_name": "Encosto reclinável,Sincrônico",
+            "values": [
+              {
+                "id": "10219265",
+                "name": "Encosto reclinável",
+                "struct": null
+              },
+              {
+                "id": "10201910",
+                "name": "Sincrônico",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "10589946",
+            "value_name": "Essential Gaming Chairs",
+            "values": [
+              {
+                "id": "10589946",
+                "name": "Essential Gaming Chairs",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "LUMBAR_SUPPORT_TYPE",
+            "name": "Tipo de apoio lombar",
+            "value_id": "10201909",
+            "value_name": "Regulável",
+            "values": [
+              {
+                "id": "10201909",
+                "name": "Regulável",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MAIN_COLOR",
+            "name": "Cor principal",
+            "value_id": "2450295",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "2450295",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MAX_CHAIR_HEIGHT",
+            "name": "Altura máxima da cadeira",
+            "value_id": "10312765",
+            "value_name": "128 cm",
+            "values": [
+              {
+                "id": "10312765",
+                "name": "128 cm",
+                "struct": {
+                  "number": 128,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MAX_HEIGHT_FROM_FLOOR_TO_SEAT",
+            "name": "Altura máxima do chão ao assento\r",
+            "value_id": "9845040",
+            "value_name": "56 cm",
+            "values": [
+              {
+                "id": "9845040",
+                "name": "56 cm",
+                "struct": {
+                  "number": 56,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MAX_WEIGHT_SUPPORTED",
+            "name": "Peso máximo suportado",
+            "value_id": "2514092",
+            "value_name": "150 kg",
+            "values": [
+              {
+                "id": "2514092",
+                "name": "150 kg",
+                "struct": {
+                  "number": 150,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MIN_CHAIR_HEIGHT",
+            "name": "Altura mínima da cadeira",
+            "value_id": "10312766",
+            "value_name": "118 cm",
+            "values": [
+              {
+                "id": "10312766",
+                "name": "118 cm",
+                "struct": {
+                  "number": 118,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MIN_HEIGHT_FROM_FLOOR_TO_SEAT",
+            "name": "Altura mínima do chão ao assento",
+            "value_id": "9845039",
+            "value_name": "46 cm",
+            "values": [
+              {
+                "id": "9845039",
+                "name": "46 cm",
+                "struct": {
+                  "number": 46,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "8991084",
+            "value_name": "YAMA1",
+            "values": [
+              {
+                "id": "8991084",
+                "name": "YAMA1",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "OFFICE_CHAIR_DEPTH",
+            "name": "Profundidade da cadeira",
+            "value_id": "7661943",
+            "value_name": "70 cm",
+            "values": [
+              {
+                "id": "7661943",
+                "name": "70 cm",
+                "struct": {
+                  "number": 70,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "OFFICE_CHAIR_HEIGHT",
+            "name": "Altura da cadeira",
+            "value_id": "53835643",
+            "value_name": "132 cm",
+            "values": [
+              {
+                "id": "53835643",
+                "name": "132 cm",
+                "struct": {
+                  "number": 132,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "OFFICE_CHAIR_TYPE",
+            "name": "Tipo de cadeira de escritório",
+            "value_id": "13016814",
+            "value_name": "Gamer",
+            "values": [
+              {
+                "id": "13016814",
+                "name": "Gamer",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "OFFICE_CHAIR_WEIGHT",
+            "name": "Peso da cadeira",
+            "value_id": "10808289",
+            "value_name": "15.5 kg",
+            "values": [
+              {
+                "id": "10808289",
+                "name": "15.5 kg",
+                "struct": {
+                  "number": 15.5,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "OFFICE_CHAIR_WIDTH",
+            "name": "Largura da cadeira",
+            "value_id": "7661942",
+            "value_name": "66 cm",
+            "values": [
+              {
+                "id": "7661942",
+                "name": "66 cm",
+                "struct": {
+                  "number": 66,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "REQUIRES_ASSEMBLY",
+            "name": "Requer montagem",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "SEAT_DEPTH",
+            "name": "Profundidade do assento",
+            "value_id": "9567306",
+            "value_name": "50 cm",
+            "values": [
+              {
+                "id": "9567306",
+                "name": "50 cm",
+                "struct": {
+                  "number": 50,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SEAT_WIDTH",
+            "name": "Largura do assento",
+            "value_id": "3202979",
+            "value_name": "50 cm",
+            "values": [
+              {
+                "id": "3202979",
+                "name": "50 cm",
+                "struct": {
+                  "number": 50,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK000378",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK000378",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "STRUCTURE_FINISH",
+            "name": "Acabamento da estrutura",
+            "value_id": "1185554",
+            "value_name": "Cromado",
+            "values": [
+              {
+                "id": "1185554",
+                "name": "Cromado",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "STRUCTURE_MATERIALS",
+            "name": "Materiais da estrutura",
+            "value_id": "7980354",
+            "value_name": "Náilon",
+            "values": [
+              {
+                "id": "7980354",
+                "name": "Náilon",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "UPHOLSTERY_MATERIAL",
+            "name": "Material do estofamento",
+            "value_id": "3112424",
+            "value_name": "Malha",
+            "values": [
+              {
+                "id": "3112424",
+                "name": "Malha",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "WITH_ADJUSTABLE_ARMREST",
+            "name": "Com apoio de braços ajustável",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_ADJUSTABLE_HEIGHT",
+            "name": "Com altura ajustável",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_ARMREST",
+            "name": "Com apoio de braços",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_FOOTREST",
+            "name": "Com apoio de pés",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_FOOT_RING",
+            "name": "Com aro para pés",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_HEADREST",
+            "name": "Com apoio de cabeça",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_LIGHTS",
+            "name": "Com luzes",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_RECLINING_BACKREST",
+            "name": "Com encosto reclinável",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_WHEELS",
+            "name": "Com rodas",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB16097954",
+        "domain_id": "MLB-OFFICE_CHAIRS",
+        "seller_custom_field": "VTK000378",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T00:43:55.163Z",
+        "last_updated": "2026-08-17T00:43:55.163Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

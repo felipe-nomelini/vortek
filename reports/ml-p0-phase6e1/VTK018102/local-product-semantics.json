@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-17T14:15:53.788Z",
+  "product": {
+    "id": "254525a8-644d-435d-a823-2595f61f3cb9",
+    "sku": "VTK018102",
+    "nome": "Emenda Mecanica Seccon Para Fibra Optica Universal",
+    "marca": "SECCON",
+    "estoque": 14,
+    "custo": 108.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.021,
+    "peso_bruto": 0.021,
+    "largura": 6,
+    "altura": 1.5,
+    "profundidade": 5,
+    "gtin": "",
+    "descricao": "Informações do Produto Emenda Mecânica ( Universal ) para cabos ópticos. Estojo com 05 peças / emendas.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/9/298861_67d2cae925111.jpg"
+    ],
+    "categoria": "Redes E Provedores/ Internet E Rede/ Plugues E Conectores",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:48.184396+00:00",
+    "updated_at": "2026-08-17T11:00:34.96273+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "298861",
+    "dslite_ultima_sync": "2026-08-17T11:00:34.877+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85369040",
+    "cest": "12.004.00",
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "9ee67038-a572-4290-bc6c-6c4e97d93ca0",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "audio_connector",
+    "function": "connect_audio_signal",
+    "intended_use": "professional_audio",
+    "physical_form": "audio_connector",
+    "expected_category_signals": [
+      "conector",
+      "audio",
+      "xlr",
+      "speakon",
+      "p10"
+    ],
+    "incompatible_category_signals": [
+      "hidraulica",
+      "redeethernet"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": [
+        5
+      ]
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

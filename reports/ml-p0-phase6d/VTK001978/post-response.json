@@ -1,0 +1,408 @@
+{
+  "attempted_at": "2026-08-17T01:13:26.716Z",
+  "local_time": "2026-08-16T22:13:26",
+  "endpoint": "POST /items",
+  "request_id": "d0d66f5a-4902-4557-a233-ec64e397737e",
+  "http_status": 201,
+  "elapsed_ms": 915,
+  "payload_sha256": "b11c88874e55a3d1ff3dcf57a1c4fd7891545ac46615304ee360a7e0987e2af0",
+  "body": {
+    "id": "MLB7432632684",
+    "site_id": "MLB",
+    "title": "Kit 6 Cordas Elixir Nanoweb 16002 P/ Violão Acústico 10-47",
+    "seller_id": 3294514937,
+    "category_id": "MLB278076",
+    "user_product_id": "MLBU4743590281",
+    "official_store_id": null,
+    "price": 699.9,
+    "base_price": 699.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Elixir NANOWEB 16002 Violão acústico",
+    "family_id": 1190191002853330,
+    "start_time": "2026-08-17T01:13:26.084Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:13:26.161Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432632684-kit-6-cordas-elixir-nanoweb-16002-p-violo-acustico-10-47-_JM",
+    "pictures": [
+      {
+        "id": "945877-MLA114204557624_082026",
+        "url": "http://mla-s1-p.mlstatic.com/945877-MLA114204557624_082026-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/945877-MLA114204557624_082026-O.jpg",
+        "size": "485x500",
+        "max_size": "503x518",
+        "quality": ""
+      },
+      {
+        "id": "921544-MLA101349563045_122025",
+        "url": "http://mla-s1-p.mlstatic.com/921544-MLA101349563045_122025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/921544-MLA101349563045_122025-O.jpg",
+        "size": "377x500",
+        "max_size": "905x1199",
+        "quality": ""
+      },
+      {
+        "id": "765949-MLA100852650754_122025",
+        "url": "http://mla-s1-p.mlstatic.com/765949-MLA100852650754_122025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/765949-MLA100852650754_122025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "727906-MLA100852650762_122025",
+        "url": "http://mla-s2-p.mlstatic.com/727906-MLA100852650762_122025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/727906-MLA100852650762_122025-O.jpg",
+        "size": "494x500",
+        "max_size": "495x501",
+        "quality": ""
+      },
+      {
+        "id": "753059-MLA101349563075_122025",
+        "url": "http://mla-s2-p.mlstatic.com/753059-MLA101349563075_122025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/753059-MLA101349563075_122025-O.jpg",
+        "size": "500x233",
+        "max_size": "528x247",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2499062",
+        "value_name": "Elixir",
+        "values": [
+          {
+            "id": "2499062",
+            "name": "Elixir",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "16040021",
+        "value_name": "NANOWEB",
+        "values": [
+          {
+            "id": "16040021",
+            "name": "NANOWEB",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "2444749",
+        "value_name": "16002",
+        "values": [
+          {
+            "id": "2444749",
+            "name": "16002",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "name": "Instrumento recomendado",
+        "value_id": "15312679",
+        "value_name": "Violão acústico",
+        "values": [
+          {
+            "id": "15312679",
+            "name": "Violão acústico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359392",
+        "value_name": "Kit",
+        "values": [
+          {
+            "id": "1359392",
+            "name": "Kit",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "140750",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "140750",
+            "name": "6",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "value_id": "15146",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "15146",
+            "name": "6",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "GAUGES",
+        "name": "Calibres",
+        "value_id": "16268093",
+        "value_name": "10-47",
+        "values": [
+          {
+            "id": "16268093",
+            "name": "10-47",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "19812201",
+        "value_name": "Fósforo Bronze",
+        "values": [
+          {
+            "id": "19812201",
+            "name": "Fósforo Bronze",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "TENSION",
+        "name": "Tensão",
+        "value_id": "5344248",
+        "value_name": "Média",
+        "values": [
+          {
+            "id": "5344248",
+            "name": "Média",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NOTES",
+        "name": "Notas",
+        "value_id": null,
+        "value_name": "10-47, Cordas para violão, Nanoweb",
+        "values": [
+          {
+            "id": "17479080",
+            "name": "10-47",
+            "struct": null
+          },
+          {
+            "id": "17479081",
+            "name": "Cordas para violão",
+            "struct": null
+          },
+          {
+            "id": "17479078",
+            "name": "Nanoweb",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SCALE",
+        "name": "Escala",
+        "value_id": "15312683",
+        "value_name": "4:4",
+        "values": [
+          {
+            "id": "15312683",
+            "name": "4:4",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "113333248589,733132160020",
+        "values": [
+          {
+            "id": "67941214",
+            "name": "113333248589",
+            "struct": null
+          },
+          {
+            "id": "16420855",
+            "name": "733132160020",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK001978",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK001978",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "945877-MLA114204557624_082026",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/945877-MLA114204557624_082026-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB63166896",
+    "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+    "seller_custom_field": "VTK001978",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:13:26.357Z",
+    "last_updated": "2026-08-17T01:13:26.357Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

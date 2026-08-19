@@ -1,0 +1,21 @@
+{
+  "read_at": "2026-08-16T21:16:32.721Z",
+  "endpoint": "https://api.mercadolibre.com/items/MLB7432157712/description",
+  "http_status": 200,
+  "item_id": "MLB7432157712",
+  "plain_text": "CARREGADOR DE PILHAS TOSHIBA TNHC-6GAE4 CB COM 4 PILHAS AA 2600 mAh\n\nO carregador de pilhas Toshiba TNHC-6GAE4 CB recarrega pilhas Ni-MH nos tamanhos AA e AAA. Este carregador bivolt permite carregar até quatro pilhas simultaneamente e acompanha quatro pilhas recarregáveis Toshiba AA de 2600 mAh.\n\nPRINCIPAIS CARACTERÍSTICAS\n\n- Marca: Toshiba\n- Modelo: TNHC-6GAE4 CB\n- Tipo: carregador de pilhas AA e AAA\n- Composição compatível: Ni-MH\n- Capacidade de carga: até 4 pilhas simultaneamente\n- Indicador de carga: sim\n- Entrada: bivolt automática, compatível com a faixa de 100 a 240 V indicada pelo fabricante\n- Pilhas inclusas: 4 unidades AA recarregáveis\n- Capacidade das pilhas inclusas: 2600 mAh\n\nCONTEÚDO DA EMBALAGEM\n\n- 1 carregador Toshiba TNHC-6GAE4 CB\n- 4 pilhas AA recarregáveis Toshiba de 2600 mAh\n- 1 manual\n\nINFORMAÇÕES IMPORTANTES\n\n- Utilize o carregador somente com pilhas recarregáveis Ni-MH nos formatos AA ou AAA.\n- Não carrega baterias de 9 V.\n- Consulte o manual e respeite os tempos e condições de carregamento indicados pelo fabricante.\n- Produto novo.\n\nSKU: VTK000486",
+  "last_updated": "2026-08-16T21:16:32.452Z",
+  "date_created": "2026-08-16T21:16:32.452Z",
+  "response_body": {
+    "text": "",
+    "plain_text": "CARREGADOR DE PILHAS TOSHIBA TNHC-6GAE4 CB COM 4 PILHAS AA 2600 mAh\n\nO carregador de pilhas Toshiba TNHC-6GAE4 CB recarrega pilhas Ni-MH nos tamanhos AA e AAA. Este carregador bivolt permite carregar até quatro pilhas simultaneamente e acompanha quatro pilhas recarregáveis Toshiba AA de 2600 mAh.\n\nPRINCIPAIS CARACTERÍSTICAS\n\n- Marca: Toshiba\n- Modelo: TNHC-6GAE4 CB\n- Tipo: carregador de pilhas AA e AAA\n- Composição compatível: Ni-MH\n- Capacidade de carga: até 4 pilhas simultaneamente\n- Indicador de carga: sim\n- Entrada: bivolt automática, compatível com a faixa de 100 a 240 V indicada pelo fabricante\n- Pilhas inclusas: 4 unidades AA recarregáveis\n- Capacidade das pilhas inclusas: 2600 mAh\n\nCONTEÚDO DA EMBALAGEM\n\n- 1 carregador Toshiba TNHC-6GAE4 CB\n- 4 pilhas AA recarregáveis Toshiba de 2600 mAh\n- 1 manual\n\nINFORMAÇÕES IMPORTANTES\n\n- Utilize o carregador somente com pilhas recarregáveis Ni-MH nos formatos AA ou AAA.\n- Não carrega baterias de 9 V.\n- Consulte o manual e respeite os tempos e condições de carregamento indicados pelo fabricante.\n- Produto novo.\n\nSKU: VTK000486",
+    "last_updated": "2026-08-16T21:16:32.452Z",
+    "date_created": "2026-08-16T21:16:32.452Z",
+    "snapshot": {
+      "url": "http://descriptions.mlstatic.com/D-MLB7432157712.jpg?hash=8520c3b8559cb08aa7e782b8f5334ffe_0x0",
+      "width": 0,
+      "height": 0,
+      "status": ""
+    }
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "checked_at": "2026-08-17T00:06:30.247Z",
+  "expected_catalog_product_id": "MLB41877035",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "strategy": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true,
+      "UNITS_PER_PACK": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB41877035",
+    "catalog_product_id": "MLB41877035",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+    "permalink": "",
+    "name": "Conector Plug P10 Mono Bk Wc 153 Wireconex 10 Unidades",
+    "family_name": "Wireconex cabo para guitarra",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB38806334",
+            "picker_label": "Prateado",
+            "picture_id": "645338-MLA95835966665_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_645338-MLA95835966665_102025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Prateado"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Wireconex cabo para guitarra - Prateado - Kit - 10",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB41877035",
+            "picker_label": "Preto",
+            "picture_id": "951854-MLA95395149760_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_951854-MLA95395149760_102025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Wireconex cabo para guitarra - Preto - Kit - 10",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por kit",
+        "products": [
+          {
+            "product_id": "MLB41877035",
+            "picker_label": "10",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Wireconex cabo para guitarra - Preto - Kit - 10",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "951854-MLA95395149760_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_951854-MLA95395149760_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 882,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "650267-MLA86754869724_072025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_650267-MLA86754869724_072025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 753,
+        "max_height": 532,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "794167-MLA91256159121_082025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_794167-MLA91256159121_082025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 882,
+        "max_height": 490,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Conector P10 Mono macho para uma conexão segura em equipamentos de áudio.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Material de revestimento em plástico garantindo durabilidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Compatível com amplificadores, microfones e instrumentos musicais.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "13660752",
+        "value_name": "Wireconex",
+        "values": [
+          {
+            "id": "13660752",
+            "name": "Wireconex"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "84972506",
+        "value_name": "cabo para guitarra",
+        "values": [
+          {
+            "id": "84972506",
+            "name": "cabo para guitarra"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359392",
+        "value_name": "Kit",
+        "values": [
+          {
+            "id": "1359392",
+            "name": "Kit"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "150349",
+        "value_name": "10",
+        "values": [
+          {
+            "id": "150349",
+            "name": "10"
+          }
+        ]
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "46885538",
+        "value_name": "Conector",
+        "values": [
+          {
+            "id": "46885538",
+            "name": "Conector"
+          }
+        ]
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "value_id": "24279588",
+        "value_name": "P10 Mono",
+        "values": [
+          {
+            "id": "24279588",
+            "name": "P10 Mono"
+          }
+        ]
+      },
+      {
+        "id": "CONNECTOR_GENDER",
+        "name": "Gênero do conector",
+        "value_id": "2210104",
+        "value_name": "Macho",
+        "values": [
+          {
+            "id": "2210104",
+            "name": "Macho"
+          }
+        ]
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "name": "Material de revestimento",
+        "value_id": "5504726",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "5504726",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "name": "Dispositivos compatíveis",
+        "value_id": null,
+        "value_name": "Amplificador, Cabo, Controlador, Microfone, Mixer, Som, Violão, baixo, Estudo, fone, Guitarra, mesa, p.a, p10, pa, Áudio",
+        "values": [
+          {
+            "id": "20395414",
+            "name": "Amplificador"
+          },
+          {
+            "id": "2311197",
+            "name": "Cabo"
+          },
+          {
+            "id": "20163364",
+            "name": "Controlador"
+          },
+          {
+            "id": "15289676",
+            "name": "Microfone"
+          },
+          {
+            "id": "24621891",
+            "name": "Mixer"
+          },
+          {
+            "id": "38801627",
+            "name": "Som"
+          },
+          {
+            "id": "36765567",
+            "name": "Violão"
+          },
+          {
+            "id": "33103071",
+            "name": "baixo"
+          },
+          {
+            "id": "19784633",
+            "name": "Estudo"
+          },
+          {
+            "id": "40040115",
+            "name": "fone"
+          },
+          {
+            "id": "17642207",
+            "name": "Guitarra"
+          },
+          {
+            "id": "31772332",
+            "name": "mesa"
+          },
+          {
+            "id": "40040116",
+            "name": "p.a"
+          },
+          {
+            "id": "28658160",
+            "name": "p10"
+          },
+          {
+            "id": "40040117",
+            "name": "pa"
+          },
+          {
+            "id": "26431589",
+            "name": "Áudio"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "46830404",
+        "value_name": "153",
+        "values": [
+          {
+            "id": "46830404",
+            "name": "153"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Conector P10 Mono Bk Wireconex 10 Unidades\n\nO Conector P10 Mono da Wireconex é a escolha ideal para quem busca qualidade e desempenho em equipamentos de áudio. Com um design robusto e material de revestimento em plástico, este conector é compatível com uma ampla gama de dispositivos, incluindo amplificadores, cabos, controladores, microfones, mixers e instrumentos como violão, guitarra e baixo. Cada pacote contém 10 unidades, garantindo que você tenha sempre um conector à mão para suas necessidades. Seu gênero macho e tecnologia de ponta asseguram uma conexão segura e um desempenho sonoro excepcional. Este conector é perfeito para estúdios, apresentações ao vivo e uso em sistemas de som, proporcionando a confiabilidade que você espera de um produto novo e homologado. Invista na qualidade sonora do seu equipamento com o Conector P10 Mono Wireconex!"
+    },
+    "parent_id": "MLB38806333",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T02:59:04.349016234"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-10-12T13:56:24Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-22T10:35:09Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "optional_catalog_optimization_pending": false
+}

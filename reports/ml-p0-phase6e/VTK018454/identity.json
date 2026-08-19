@@ -1,0 +1,354 @@
+{
+  "checked_at": "2026-08-17T12:53:43.406Z",
+  "product": {
+    "id": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+    "sku": "VTK018454",
+    "nome": "Conector Para Cd Vw Jetta/passat",
+    "marca": "PERMAK",
+    "gtin": "7898253504511"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/350071",
+    "consulted_at": "2026-08-17T12:53:43.209Z",
+    "product": {
+      "produtoid": "350071",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 24.99,
+      "preco_crossdocking": 24.99,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 24.99,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Conector Para Cd Vw Jetta/passat",
+      "titulo_curto": "Conector Para Cd Vw Jetta/passat",
+      "categoriaid": "117470",
+      "categoria_nome": "Automotivo/ Acessórios Para Instalacao/ Conectores Para Instalacao Automotiva",
+      "abc": null,
+      "ean11": "7898253504511",
+      "ncm": "85444200",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Conector para CD VW Jetta / Passat</b></p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PERMAK",
+      "modelo": "",
+      "peso": 0.074,
+      "largura": 58,
+      "altura": 4,
+      "profundidade": 22,
+      "peso_embalagem": 0.074,
+      "largura_embalagem": 58,
+      "altura_embalagem": 4,
+      "profundidade_embalagem": 22,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/5/350071_67d2caf6adb8e.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1395,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "12.007.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-29 07:25:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-29 07:25:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/350071_67d2caf6adb8e.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/5/350071_67d2caf6afe46.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB21341534",
+    "source": "ML catalog MLB21341534 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Permak",
+      "model": "35D12",
+      "local_pack": null,
+      "catalog_pack": 1,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [],
+      "catalog_colors": [],
+      "title_similarity": 0.2222222222222222
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB21341534",
+      "catalog_product_id": "MLB21341534",
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "name": "Chicote De Ligação New Quadrilock 2016 Gol G7 Jetta Passat",
+      "parent_id": "MLB21341510",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak",
+          "values": [
+            {
+              "id": "3289477",
+              "name": "Permak"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16088677",
+          "value_name": "35D12",
+          "values": [
+            {
+              "id": "16088677",
+              "name": "35D12"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "13788223",
+          "value_name": "Plug",
+          "values": [
+            {
+              "id": "13788223",
+              "name": "Plug"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827368",
+          "value_name": "Cabo adaptador",
+          "values": [
+            {
+              "id": "13827368",
+              "name": "Cabo adaptador"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de entrada",
+          "value_id": "15267153",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "15267153",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de saída",
+          "value_id": "15267154",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "15267154",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "name": "Conector de entrada",
+          "value_id": "17642536",
+          "value_name": "Padrão",
+          "values": [
+            {
+              "id": "17642536",
+              "name": "Padrão"
+            }
+          ]
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "name": "Conector de saída",
+          "value_id": "28311656",
+          "value_name": "Normal",
+          "values": [
+            {
+              "id": "28311656",
+              "name": "Normal"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16088703",
+          "value_name": "7898253504511",
+          "values": [
+            {
+              "id": "16088703",
+              "name": "7898253504511"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Chicote Conector Som CD e DVD da marca Permak é a solução ideal para quem procura uma conexão confiável e eficiente para os modelos VW Jetta, Passat e Gol G7 2016. Com a referência 35/D12, este cabos adaptador é projetado especificamente para garantir a melhor performance na reprodução de áudio em seu veículo. Com um comprimento de 19 cm, proporciona flexibilidade no posicionamento, mantendo uma estética limpa e organizada. Este produto é novo e não apresenta características gamer ou de marca TOM, o que o torna uma escolha versátil e funcional. Seu conector é do tipo plug e a cor preta oferece discrição e elegância. O Chicote Conector é uma adição essencial para quem deseja aprimorar a qualidade do som em ambientes automotivos, assegurando uma experiência auditiva superior enquanto dirige. Invista em sua satisfação auditiva e transforme suas viagens em momentos inesquecíveis."
+      },
+      "pictures": [
+        {
+          "id": "751513-MLA94167559800_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_751513-MLA94167559800_102025-F.jpg",
+          "max_width": "1200",
+          "max_height": "367"
+        },
+        {
+          "id": "899768-MLA99472179550_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_899768-MLA99472179550_112025-F.jpg",
+          "max_width": "500",
+          "max_height": "417"
+        },
+        {
+          "id": "626779-MLA94167589746_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_626779-MLA94167589746_102025-F.jpg",
+          "max_width": "1200",
+          "max_height": "398"
+        },
+        {
+          "id": "870870-MLA99472298214_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_870870-MLA99472298214_112025-F.jpg",
+          "max_width": "1198",
+          "max_height": "270"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-01-25T11:20:53Z",
+      "last_updated": "2024-08-20T20:42:31Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

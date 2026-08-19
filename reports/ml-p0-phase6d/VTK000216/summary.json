@@ -1,0 +1,23 @@
+{
+  "index": 34,
+  "sku": "VTK000216",
+  "expected_gtin": "7899810414007",
+  "started_at": "2026-08-17T01:15:05.766Z",
+  "local_time": "2026-08-16T22:15:05",
+  "completed_at": "2026-08-17T01:15:05.799Z",
+  "elapsed_ms": 33,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "catalog MODEL 21K203 and title SC40 34W diverge from local CP40S Plus 40W identity",
+  "sanitation": "CATALOG_REVIEW_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

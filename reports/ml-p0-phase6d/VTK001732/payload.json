@@ -1,0 +1,88 @@
+{
+  "payload": {
+    "family_name": "Corda Giannini Canário 6ª Mi Dúzia",
+    "category_id": "MLB278076",
+    "catalog_product_id": "MLB43132601",
+    "catalog_listing": true,
+    "price": 289.9,
+    "currency_id": "BRL",
+    "available_quantity": 13,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/4560/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/4560/550/2.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "45321",
+        "value_name": "Giannini"
+      },
+      {
+        "id": "LINE",
+        "value_id": "2348061",
+        "value_name": "Canário"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "31835318",
+        "value_name": "Desconhecido"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_id": "16040054",
+        "value_name": "Violão de náilon"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15146",
+        "value_name": "6"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "112648",
+        "value_name": "Metal"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "44427222",
+        "value_name": "7898159180246"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001732"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001732"
+  },
+  "sha256": "c2426da6d989cca89df78b01c60a4a301999d2178eb404df9d663a3c110f0c5e",
+  "family_name_sha256": "98cd8c8cef22f2d63808645b174583b8309f82702564a307be9192c88becba9f",
+  "title_absent": true,
+  "description_absent": true
+}

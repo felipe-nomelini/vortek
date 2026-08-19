@@ -1,0 +1,10 @@
+{
+  "sku": "VTK001897",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Tiaflex 2x0.20 mm² 100 m lacks official identity/category evidence",
+  "local_value": "7898429981023",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:16:53.848Z"
+}

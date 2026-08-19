@@ -1,0 +1,23 @@
+{
+  "index": 59,
+  "sku": "VTK002521",
+  "expected_gtin": "7890443020955",
+  "started_at": "2026-08-17T01:16:06.074Z",
+  "local_time": "2026-08-16T22:16:06",
+  "completed_at": "2026-08-17T01:16:07.491Z",
+  "elapsed_ms": 1417,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE",
+  "item_id": null,
+  "catalog_product_id": "MLB24335881",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "missing category-required attributes: BASS_GUITAR_TYPE",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

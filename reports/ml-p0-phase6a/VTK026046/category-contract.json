@@ -1,0 +1,651 @@
+{
+  "checked_at": "2026-08-16T23:44:49.537Z",
+  "category": {
+    "id": "MLB120425",
+    "name": "Umidificadores",
+    "picture": null,
+    "permalink": null,
+    "total_items_in_this_category": 27544,
+    "path_from_root": [
+      {
+        "id": "MLB264586",
+        "name": "Saúde"
+      },
+      {
+        "id": "MLB264192",
+        "name": "Cuidado da Saúde"
+      },
+      {
+        "id": "MLB435064",
+        "name": "Tratamentos Respiratórios"
+      },
+      {
+        "id": "MLB120425",
+        "name": "Umidificadores"
+      }
+    ],
+    "children_categories": [],
+    "attribute_types": "variations",
+    "settings": {
+      "adult_content": false,
+      "buying_allowed": true,
+      "buying_modes": [
+        "auction",
+        "buy_it_now"
+      ],
+      "catalog_domain": "MLB-ELECTRIC_OIL_DIFFUSERS_HUMIDIFIERS_AND_VAPORIZERS",
+      "coverage_areas": "not_allowed",
+      "currencies": [
+        "BRL"
+      ],
+      "fragile": false,
+      "immediate_payment": "required",
+      "item_conditions": [
+        "new",
+        "not_specified",
+        "used"
+      ],
+      "items_reviews_allowed": false,
+      "listing_allowed": true,
+      "max_description_length": 50000,
+      "max_pictures_per_item": 12,
+      "max_pictures_per_item_var": 10,
+      "max_sub_title_length": 70,
+      "max_title_length": 60,
+      "max_variations_allowed": 100,
+      "maximum_price": null,
+      "maximum_price_currency": "BRL",
+      "minimum_price": 8,
+      "minimum_price_currency": "BRL",
+      "mirror_category": null,
+      "mirror_master_category": null,
+      "mirror_slave_categories": [],
+      "price": "required",
+      "reservation_allowed": "not_allowed",
+      "restrictions": [],
+      "rounded_address": false,
+      "seller_contact": "not_allowed",
+      "shipping_options": [
+        "carrier",
+        "custom"
+      ],
+      "shipping_profile": "optional",
+      "show_contact_information": false,
+      "simple_shipping": "optional",
+      "stock": "required",
+      "sub_vertical": null,
+      "subscribable": false,
+      "tags": [],
+      "vertical": null,
+      "vip_subdomain": "produto",
+      "buyer_protection_programs": [
+        "undelivered",
+        "delivered"
+      ],
+      "status": "enabled"
+    },
+    "channels_settings": [
+      {
+        "channel": "mshops",
+        "settings": {
+          "minimum_price": 0
+        }
+      },
+      {
+        "channel": "proximity",
+        "settings": {
+          "status": "disabled"
+        }
+      },
+      {
+        "channel": "mp-merchants",
+        "settings": {
+          "buying_modes": [
+            "buy_it_now"
+          ],
+          "immediate_payment": "required",
+          "minimum_price": 0.01,
+          "status": "enabled"
+        }
+      },
+      {
+        "channel": "mp-link",
+        "settings": {
+          "buying_modes": [
+            "buy_it_now"
+          ],
+          "immediate_payment": "required",
+          "minimum_price": 0.01,
+          "status": "enabled"
+        }
+      }
+    ],
+    "meta_categ_id": null,
+    "attributable": false,
+    "date_created": "2018-04-25T08:12:56.000Z"
+  },
+  "catalog_product": {
+    "id": "MLB62224438",
+    "catalog_product_id": "MLB62224438",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-ELECTRIC_OIL_DIFFUSERS_HUMIDIFIERS_AND_VAPORIZERS",
+    "permalink": "",
+    "name": "Umidificador De Ar 4 L Purificador Vaporizador Ultrassônico Branco",
+    "family_name": "Ventisol Ultrassônico UV-04 BIVOLT Umidificador",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB62224438",
+            "picker_label": "Branco",
+            "picture_id": "685700-MLA98070222972_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_685700-MLA98070222972_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Ultrassônico UV-04 BIVOLT Umidificador - Branco - 127/220V",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB62224438",
+            "picker_label": "127/220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Ultrassônico UV-04 BIVOLT Umidificador - Branco - 127/220V",
+            "auto_completed": false
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "685700-MLA98070222972_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_685700-MLA98070222972_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 675,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "863307-MLA98070203182_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_863307-MLA98070203182_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1175,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "767641-MLA98070417222_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_767641-MLA98070417222_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1141,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "823914-MLA98541529401_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_823914-MLA98541529401_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1195,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "833338-MLA98070417232_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_833338-MLA98070417232_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1192,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "662764-MLA109143633272_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_662764-MLA109143633272_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1155,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "920364-MLA109143633284_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_920364-MLA109143633284_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1155,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "941199-MLA109984716511_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_941199-MLA109984716511_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "999210-MLA109984543011_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_999210-MLA109984543011_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "621155-MLA109984512695_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_621155-MLA109984512695_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "729575-MLA109143603208_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_729575-MLA109143603208_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "857406-MLA109143370202_042026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_857406-MLA109143370202_042026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Capacidade do reservatório de água de 4 L para umidificação prolongada.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Desligamento automático para segurança e economia de energia.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Operação silenciosa ideal para ambientes tranquilos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Indicador de pouca água para evitar danos ao aparelho.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "24100982",
+        "value_name": "Ultrassônico",
+        "values": [
+          {
+            "id": "24100982",
+            "name": "Ultrassônico"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "67003067",
+        "value_name": "UV-04 BIVOLT",
+        "values": [
+          {
+            "id": "67003067",
+            "name": "UV-04 BIVOLT"
+          }
+        ]
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "13074268",
+        "value_name": "Umidificador",
+        "values": [
+          {
+            "id": "13074268",
+            "name": "Umidificador"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52055",
+        "value_name": "Branco",
+        "values": [
+          {
+            "id": "52055",
+            "name": "Branco"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V"
+          }
+        ]
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "67003069",
+        "value_name": "UV-04 BIVOLT",
+        "values": [
+          {
+            "id": "67003069",
+            "name": "UV-04 BIVOLT"
+          }
+        ]
+      },
+      {
+        "id": "WATER_TANK_CAPACITY",
+        "name": "Capacidade do reservatório de água",
+        "value_id": "3163906",
+        "value_name": "4 L",
+        "values": [
+          {
+            "id": "3163906",
+            "name": "4 L"
+          }
+        ]
+      },
+      {
+        "id": "MIST_TEMPERATURE",
+        "name": "Temperatura do vapor",
+        "value_id": "216875",
+        "value_name": "Ambiente",
+        "values": [
+          {
+            "id": "216875",
+            "name": "Ambiente"
+          }
+        ]
+      },
+      {
+        "id": "WITH_OIL_DIFFUSER",
+        "name": "Com difusor de aromas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_AUTO_SHUT_OFF",
+        "name": "Com desligamento automático",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_NIGHT_LIGHT_FUNCTION",
+        "name": "Com função de lanterna noturna",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_SILENT_OPERATION",
+        "name": "Com operação silenciosa",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REMOVABLE_FILTER",
+        "name": "Com filtro removível",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_LOW_WATER_INDICATOR",
+        "name": "Com indicador de poca água",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ANTIBACTERIAL",
+        "name": "É antibacteriana",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Umidificador de Ar 4 L Purificador Vaporizador Difusor Ultrassônico Portátil Bivolt Ventisol UV-04\n\nO Umidificador de Ar Ventisol UV-04 foi desenvolvido para proporcionar mais conforto e bem-estar em ambientes com ar seco, ajudando a aliviar sintomas como irritação nos olhos, garganta ressecada, pele seca e desconfortos respiratórios. Com capacidade de 4 litros e autonomia de até 12 horas de funcionamento contínuo, ele mantém o ar mais saudável por longos períodos, ideal para uso em quartos, salas, escritórios e ambientes de descanso.\n\nSilencioso, eficiente e econômico, o UV-04 consome pouca energia elétrica e conta com sistema de standby automático, que desliga o aparelho quando o reservatório está vazio, garantindo maior segurança e praticidade no dia a dia. Basta encher o reservatório e ligá-lo para desfrutar de um ambiente mais agradável e equilibrado.\n\nSeu design moderno na cor branca combina facilmente com diferentes estilos de decoração, trazendo elegância e funcionalidade ao ambiente. Além disso, possui botão touch que facilita a operação, tornando o uso simples e intuitivo para toda a família.\n\nO Umidificador Ventisol UV-04 é indicado para famílias, pessoas com problemas respiratórios, alérgicos e todos que buscam melhorar a qualidade do ar, principalmente em períodos de clima seco ou durante o inverno, quando o uso de aquecedores pode reduzir ainda mais a umidade relativa do ar.\n\nInformações técnicas  \nMarca: Ventisol  \nModelo: UV-04  \nLinha: Ultrassônico  \nCor: Branco  \nVoltagem: 110V/220V  \nTipo de produto: Umidificador  \nFrequência: 50/60 Hz  \nPotência: 25W  \nTemperatura do vapor: Ambiente  \nCom desligamento automático: Sim  \nCom operação silenciosa: Sim  \nCom indicador de pouca água: Sim  \nTemporizador: Sim  \nNíveis de intensidade: 7  \nReservatório removível: Sim  \nCapacidade do reservatório de água: 4 L  \nTomada: 2 pinos (10A)  \n\nEspecificações  \n- Capacidade de 4 L  \n- Até 24 horas de funcionamento  \n- Standby automático (quando o reservatório fica sem água)  \n- Fácil de limpar  \n- Controle de névoa  \n- Botão touch  \n\nPeso e medidas (aproximados)  \nMedidas do produto: 26.5 x 15 x 15 cm (altura x largura x comprimento)  \nComprimento do cabo de energia: 1.2 m  \nMedidas de embalagem: 16 x 16 x 28 cm (altura x largura x comprimento)  \nPeso bruto: 1.1 kg  \n\nItens inclusos: 1 Umidificador, 1 Fonte de Alimentação, 1 Manual  "
+    },
+    "parent_id": "MLB62224436",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-16T23:50:26.246720734"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2025-11-16T16:37:44Z",
+    "authorized_stores": null,
+    "last_updated": "2026-04-03T00:58:04Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "strategy": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "VOLTAGE": true,
+      "COLOR": true,
+      "WATER_TANK_CAPACITY": true
+    },
+    "passed": true
+  },
+  "required_ids": [
+    "BRAND",
+    "MODEL",
+    "PRODUCT_TYPE"
+  ],
+  "missing_required": [],
+  "listing_strategy": "catalog_required",
+  "endpoint": "POST /items",
+  "user_products": {
+    "family_name": "required",
+    "title": "prohibited",
+    "description": "separate_not_executed"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:43.043Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Fio Cabinho Flexível 0,20mm Vermelho Tiaflex - RL / 100",
+    "supplier_category": "Materiais Elétricos / Fios E Cabos Para Meteriais Elétricos / Fios Em Rolo",
+    "supplier_brand": "TIAFLEX",
+    "supplier_gtin": "7898429980415",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/81314",
+    "captured_at": "2026-08-17T12:54:28.706Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "0b6cbd4d-4489-4343-8880-cd30c26bc4f4",
+    "produto_id": "cfb64673-64e9-4601-adce-779a5205a446",
+    "dslite_fornecedor_id": "2",
+    "fornecedor_nome": "HAYAMAX-PR",
+    "dslite_produto_id": "81314",
+    "sku_fornecedor": "81314",
+    "custo": 65.05,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "balance_account",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T14:03:23.868+00:00",
+    "created_at": "2026-06-08T18:46:40.559351+00:00",
+    "updated_at": "2026-08-17T14:03:23.877+00:00",
+    "sku_oferta": "81314",
+    "nome": "Fio Cabinho Flexível 0,20mm Vermelho Tiaflex",
+    "descricao": "O Fio Cabinho Flexível é um cabo de conexão utilizado para ligações internas e externas em aparelhos eletroeletrônicos, circuitos elétricos e de informática em geral. Ele suporta tensões de até 300V e possui uma temperatura máxima de operação de 70ºC. Esse fio é altamente flexível, o que facilita a instalação e o manuseio em diferentes projetos. Com sua capacidade de condução elétrica confiável e resistência térmica adequada, o Fio Cabinho Flexível é uma escolha segura e eficiente para aplicações de baixa tensão e temperaturas moderadas.",
+    "marca": "TIAFLEX",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/81314/550/1.jpg"
+    ],
+    "gtin": "7898429980415",
+    "ncm": "8544.49.00",
+    "cest": null
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "index": 50,
+  "sku": "VTK017783",
+  "expected_gtin": "7898382148075",
+  "started_at": "2026-08-17T00:45:07.812Z",
+  "local_time": "2026-08-16T21:45:07",
+  "completed_at": "2026-08-17T00:45:07.851Z",
+  "elapsed_ms": 39,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact required catalog has no seller offer and domain discovery returned no high-confidence category",
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

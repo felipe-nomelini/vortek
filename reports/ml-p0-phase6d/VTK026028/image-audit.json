@@ -1,0 +1,73 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0063e766e1ece87516bd6b54b92f861.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0063e766e1ece87516bd6b54b92f861.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ffb85a0fdb6393268b979bb73810d0f.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ffb85a0fdb6393268b979bb73810d0f.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/80cb65961f0e6c07ab15e29aea248816.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/80cb65961f0e6c07ab15e29aea248816.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0063e766e1ece87516bd6b54b92f861.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0063e766e1ece87516bd6b54b92f861.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ffb85a0fdb6393268b979bb73810d0f.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ffb85a0fdb6393268b979bb73810d0f.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/80cb65961f0e6c07ab15e29aea248816.jpg",
+      "final_url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/80cb65961f0e6c07ab15e29aea248816.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1200,
+      "height": 1200,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

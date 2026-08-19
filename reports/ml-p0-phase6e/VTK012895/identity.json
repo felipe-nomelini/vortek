@@ -1,0 +1,411 @@
+{
+  "checked_at": "2026-08-17T12:55:06.361Z",
+  "product": {
+    "id": "51ba6fa6-aba2-4f80-8458-858a68ff5311",
+    "sku": "VTK012895",
+    "nome": "Caixa Retorno Attack Vsm112 - Monitor Palco Passivo 12 Polegadas 300 W Rms",
+    "marca": "Attack",
+    "gtin": "7898640362021"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1656",
+    "consulted_at": "2026-08-17T12:55:06.165Z",
+    "product": {
+      "produtoid": "1656",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 1850.82,
+      "preco_crossdocking": 1850.82,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 1850.82,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Caixa Retorno Attack Vsm112 - Monitor Palco Passivo 12 Polegadas 300 W Rms",
+      "titulo_curto": "Caixa Retorno Attack Vsm112 - Monitor Palco Passivo 12 Polegadas 300 W Rms",
+      "categoriaid": "289657",
+      "categoria_nome": "Eletrônicos, áudio E Vídeo > áudio > Caixas Acústicas",
+      "abc": null,
+      "ean11": "7898640362021",
+      "ncm": "8518.22.00",
+      "descricao": "<p>Caixa Retorno Attack VSM112 - Monitor Palco Passivo 12 polegadas 300 W RMS</p> <p>Descrição:<br>Monitor de palco passivo de duas vias composto por um alto-falante coaxial de 12” equipado com corneta de 50° (H) x 60° (V) de cobertura. Projetado para ser utilizado em conjunto com VSM112A ou com outro sistema amplificado.<br>Possui uma chave seletora que permite a utilização tanto no modo BI-AMP (para sistemas bi-amplificados ou VSM112A) ou no modo FULL, onde o sinal de alta frequência passa por um filtro passa-altas com sistema de proteção contra baixas frequências e sobrecarga.</p> <p>Características:<br>-Transdutores - LOW - 1 x 12\" - Coaxial / HIGH - 1 x Driver de Compressão 1\";<br>-Resposta em Frequência - 70 Hz - 20 kHz -6dB;<br>-Cobertura - Horizontal - 50º / Vertical - 60º;<br>-Conectores de Áudio - 2 x Speakon®;<br>-Potência máxima admissível - Alto-falante: 300W AES @ 8 Ohm / Driver: 50W AES @ 8 Ohm;<br>-Sensibilidade - Modo Full - 95 dB / 1 W @ 1m / Modo BI-AMP - LOW - 95 dB / 1 W @ 1m / Modo BI-AMP - HIGH - 104 dB / 1 W @ 1m;<br>-Corte Recomendado - LOW - HPF 65 Hz / Filtro 12 dB / OCT ou Superior / HIGH - HPF 2 kHz / Filtro 12 dB / OCT ou Superior;<br>-Dimensões : 320 mm x 480 mm x 460 mm (AxLxP);<br>-Peso: 15,5 kg.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Attack",
+      "modelo": "",
+      "peso": 15.5,
+      "largura": 53,
+      "altura": 51,
+      "profundidade": 41,
+      "peso_embalagem": 17.39,
+      "largura_embalagem": 53,
+      "altura_embalagem": 51,
+      "profundidade_embalagem": 41,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6930842c25fe201738a90680f6b4b50.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 23,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "683372993",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 18:31:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 18:31:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 3,
+      "tempo_cross": 0,
+      "estoque_total": 3,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6930842c25fe201738a90680f6b4b50.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/534529b52922eea57ac7654e54a4cd13.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d0fc017cfd6c2acc98340729b0f78040.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6b643f2cf13a7d16ba9926ac1319a21c.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/49ddad29175561ba892c5450fcacfd7d.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/33af02fe13ed96ef360d5c762ebb09cc.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f3e79371c7f77a82edeb61b20b63cce3.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_IDENTITY",
+    "sanitation": "IDENTITY_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: COLOR",
+    "foundValue": "MLB23545878",
+    "source": "ML catalog MLB23545878 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "COLOR"
+      ],
+      "catalog_brand": "Attack",
+      "model": "VSM 112",
+      "local_pack": 1,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "verde"
+      ],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.3
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB23545878",
+      "catalog_product_id": "MLB23545878",
+      "domain_id": "MLB-STUDIO_MONITORS",
+      "name": "Caixa de Retorno Passiva Attack Versa RED VSM 112 300W Preta",
+      "parent_id": "MLB23545877",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3178815",
+          "value_name": "Attack",
+          "values": [
+            {
+              "id": "3178815",
+              "name": "Attack"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "19507586",
+          "value_name": "Versa RED Series",
+          "values": [
+            {
+              "id": "19507586",
+              "name": "Versa RED Series"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "19507587",
+          "value_name": "VSM 112",
+          "values": [
+            {
+              "id": "19507587",
+              "name": "VSM 112"
+            }
+          ]
+        },
+        {
+          "id": "MONITORS_NUMBER",
+          "name": "Quantidade de monitores",
+          "value_id": "18136372",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "18136372",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SYSTEM_TYPE",
+          "name": "Tipo de sistema",
+          "value_id": "5278574",
+          "value_name": "Passivo",
+          "values": [
+            {
+              "id": "5278574",
+              "name": "Passivo"
+            }
+          ]
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "name": "Conectores de entrada",
+          "value_id": "25933637",
+          "value_name": "2 x speakon®",
+          "values": [
+            {
+              "id": "25933637",
+              "name": "2 x speakon®"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "124074",
+          "value_name": "300 W",
+          "values": [
+            {
+              "id": "124074",
+              "name": "300 W"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_NEAR_FIELD",
+          "name": "É near-field",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7818552",
+          "value_name": "48 cm",
+          "values": [
+            {
+              "id": "7818552",
+              "name": "48 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "5662050",
+          "value_name": "32 cm",
+          "values": [
+            {
+              "id": "5662050",
+              "name": "32 cm"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "8943148",
+          "value_name": "46 cm",
+          "values": [
+            {
+              "id": "8943148",
+              "name": "46 cm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "19507588",
+          "value_name": "7898640362021",
+          "values": [
+            {
+              "id": "19507588",
+              "name": "7898640362021"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Monitor de palco passivo de duas vias com alto-falante coaxial de 12\" e corneta de 50° horizontal x 60° vertical, projetado para oferecer perfeito ajuste de fase. Possui chave seletora para operação nos modos BI-AMP ou FULL, com proteção contra sobrecarga.\n\nCaracterísticas técnicas:\n- Alto-falante coaxial de 12\" com driver de compressão para som preciso.\n- Chave seletora para modos BI-AMP e FULL com proteção contra sobrecarga.\n- Cobertura controlada de 50° horizontal x 60° vertical.\n- Conectores Speakon para conexões profissionais.\n- Gabinete robusto e compacto para aplicações de palco.\n\nEspecificações:\n- Transdutores: Low: 1 x 12\" Coaxial / High: 1 x Driver de Compressão.\n- Conectores: 2 x Speakon.\n- Resposta de Frequência: 70 Hz a 20 kHz (-6 dB).\n- Cobertura: Horizontal 50 graus / Vertical 60 graus.\n- Potência Máxima Admissível: Woofer: 300W AES @ 8 Ohm / Driver: 50W AES @ 8 Ohm.\n- Sensibilidade: Modo Full: 95 dB/1W @ 1m / Modo BI-AMP Low: 95 dB/1W @ 1m / Modo BI-AMP High: 104 dB/1W @ 1m.\n- Corte Recomendado: Low: HPF 65 Hz / Filtro 12 dB/oitava ou superior / High: HPF 2 kHz / Filtro 12 dB/oitava ou superior.\n- Dimensões: 320 mm x 480 mm x 460 mm.\n- Peso: 15.5 kg.\n\nConteúdo:\n- 01 Monitor Passivo Attack VSM112 PT."
+      },
+      "pictures": [
+        {
+          "id": "831540-MLA99513673134_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_831540-MLA99513673134_112025-F.jpg",
+          "max_width": "500",
+          "max_height": "342"
+        },
+        {
+          "id": "700530-MLA99998010391_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_700530-MLA99998010391_112025-F.jpg",
+          "max_width": "500",
+          "max_height": "333"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-05-30T07:05:25Z",
+      "last_updated": "2025-03-18T07:25:23Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

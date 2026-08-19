@@ -1,0 +1,709 @@
+{
+  "checked_at": "2026-08-17T12:54:26.920Z",
+  "product": {
+    "id": "8cb69c5a-3ec9-4b01-8de2-203f6ecca2d4",
+    "sku": "VTK001156",
+    "nome": "Arandela 6\" Frahm HS 200w Quadrada Branca",
+    "marca": "FRAHM",
+    "gtin": "7896673814180"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/83837",
+    "consulted_at": "2026-08-17T12:54:26.733Z",
+    "product": {
+      "produtoid": "83837",
+      "produtoid_empresa": "HYX83837",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 241.72,
+      "preco_crossdocking": 241.72,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 241.72,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:29.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-05-20 17:37:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Arandela 6\" Frahm HS 200w Quadrada Branca",
+      "titulo_curto": "ARANDELA FRAHM 6\" HS 200W QUAD BR",
+      "categoriaid": "292272",
+      "categoria_nome": "áudio / Som Ambiente / Arandelas Para Som Ambiente",
+      "abc": "B",
+      "ean11": "7896673814180",
+      "ncm": "8518.21.00",
+      "descricao": "A Arandela 6\" Frahm Hs é a escolha ideal para quem busca combinar elegância, discrição e praticidade em ambientes residenciais ou comerciais. Desenvolvida por especialistas em áudio e engenharia acústica, esta arandela oferece qualidade sonora em qualquer espaço. Sua construção robusta, com telar em alumínio e carcaça em poliestireno, garantindo durabilidade. Além disso, sua instalação é simples e sem complicações, contribuindo para uma integração perfeita à superfície onde é colocada.",
+      "caracteristicas": "Cor:Branca<br>Alto Falantes:Woofer 6\" Coaxial<br>Potência:RMS : 100W <br/> Potência Máxima : 200W<br>Impedância:8 Ohms<br>Dimensões:Diâmetro da Arandela: 222 mm <br/> Diâmetro do furo para fixá-la: 196 mm <br/> Altura da arandela: 80 mm<br>Peso:850 g<br>Resposta Frequência:50 - 20KHz<br>Pesquisa:arandela|arandela frahm|arandela branca|branca|arandela quadrada|hs|arandela hs|arandela 6 polegadas|6\"<br>",
+      "informacoes": "<br/> • Woofer 6\": Cone de Kevlar, suspensão de borracha nitrílica, bobina móvel em PSC e conjunto magnético de 91mm <br/> <br/> • Tweeter: Neodímio e domo de seda com sistema pivotante. Proteção contra sobre carga. <br/> <br/> • Divisor: Duas vias <br/> <br/> • Crossover: Corte de frequência para o alto-falante e tweeter <br/> <br/> • SPL (dB/W/m): 89",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "FRAHM",
+      "modelo": "HS",
+      "peso": 1.46,
+      "largura": 24.5,
+      "altura": 9,
+      "profundidade": 24.5,
+      "peso_embalagem": 1.46,
+      "largura_embalagem": 24.5,
+      "altura_embalagem": 9,
+      "profundidade_embalagem": 24.5,
+      "link": "http://www.hayamax.com.br/arandela-6-frahm-hs-200w-quadrada-branca",
+      "link_imagem": "https://static.hayapek.com.br/produtos/83837/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 1,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 36,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-12 12:06:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:17:00.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/83837/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/83837/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/83837/550/3.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL",
+    "foundValue": "MLB20223388",
+    "source": "ML catalog MLB20223388 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL"
+      ],
+      "catalog_brand": "Frahm",
+      "model": "Quadrada 6¿CX 100W",
+      "local_pack": null,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [],
+      "catalog_colors": [
+        "branco"
+      ],
+      "title_similarity": 0.4444444444444444
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB20223388",
+      "catalog_product_id": "MLB20223388",
+      "domain_id": "MLB-SPEAKERS",
+      "name": "Caixa de Som Arandela 6\" CX 100W Branca Quadrada Frahm - 31819",
+      "parent_id": "MLB20223362",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "116881",
+          "value_name": "Frahm",
+          "values": [
+            {
+              "id": "116881",
+              "name": "Frahm"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "49049780",
+          "value_name": "Quadrada 6¿CX 100W",
+          "values": [
+            {
+              "id": "49049780",
+              "name": "Quadrada 6¿CX 100W"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "52055",
+              "name": "Branco"
+            }
+          ]
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "name": "Potência de saída (RMS)",
+          "value_id": "109746",
+          "value_name": "100 W",
+          "values": [
+            {
+              "id": "109746",
+              "name": "100 W"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "name": "Tipos de alimentação",
+          "value_id": "17413368",
+          "value_name": "Amplificador",
+          "values": [
+            {
+              "id": "17413368",
+              "name": "Amplificador"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "977967",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "977967",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "PICKUPS_NUMBER",
+          "name": "Quantidade de captadores",
+          "value_id": "2297315",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2297315",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKER_TYPES",
+          "name": "Tipos de alto-falante",
+          "value_id": "7199379",
+          "value_name": "Woofer",
+          "values": [
+            {
+              "id": "7199379",
+              "name": "Woofer"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKER_FILTER_TYPES",
+          "name": "Tipos de filtros do alto-falante",
+          "value_id": "352987",
+          "value_name": "Passivo",
+          "values": [
+            {
+              "id": "352987",
+              "name": "Passivo"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKER_FORMAT",
+          "name": "Formato do alto-falante",
+          "value_id": "7199382",
+          "value_name": "Caixa",
+          "values": [
+            {
+              "id": "7199382",
+              "name": "Caixa"
+            }
+          ]
+        },
+        {
+          "id": "INSTALLATION_PLACEMENTS",
+          "name": "Lugares de colocação",
+          "value_id": "7786267",
+          "value_name": "Teto",
+          "values": [
+            {
+              "id": "7786267",
+              "name": "Teto"
+            }
+          ]
+        },
+        {
+          "id": "CHANNELS_SETUP",
+          "name": "Configuração de canais",
+          "value_id": "353330",
+          "value_name": "2.1",
+          "values": [
+            {
+              "id": "353330",
+              "name": "2.1"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_WI_FI",
+          "name": "Com Wi-Fi",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BASE",
+          "name": "Com base",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "name": "Com luzes LED",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "name": "Com microfone",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "name": "Com modo mãos livres",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_INTEGRATED_DJ_CONTROLLERS",
+          "name": "Com controladores DJ integrados",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_KARAOKE_FUNCTION",
+          "name": "Com função karaokê",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_VOICE_EFFECT",
+          "name": "Com efeito de voz",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_RADIO",
+          "name": "Com radio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_PORTABLE",
+          "name": "É portátil",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "name": "É à prova d'água",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "name": "Inclui suporte",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_RECHARGEABLE_BATTERY",
+          "name": "Inclui bateria recarregável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "14254151",
+          "value_name": "7896673814180",
+          "values": [
+            {
+              "id": "14254151",
+              "name": "7896673814180"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450308",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "2450308",
+              "name": "Branco"
+            }
+          ],
+          "meta": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "116881",
+          "value_name": "Frahm",
+          "values": [
+            {
+              "id": "116881",
+              "name": "Frahm"
+            }
+          ]
+        },
+        {
+          "id": "IS_PROFESSIONAL",
+          "name": "É profissional",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "8574681",
+          "value_name": "8 cm",
+          "values": [
+            {
+              "id": "8574681",
+              "name": "8 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "8258148",
+          "value_name": "1.46 kg",
+          "values": [
+            {
+              "id": "8258148",
+              "name": "1.46 kg"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "CAIXA DE SOM DE EMBUTIR HS 6 100W QUADRADA – TELAR ALUMÍNIO\n\nA caixa de som de embutir coaxial HS 6”, utiliza os métodos de construção avançados e uma experiência de mais de 60 anos em desenvolvimento de caixas acústicas. Perfeita para atender os mais variados ambientes, dissipa potência real e reproduz áudio de qualidade com excelentes timbres.\n\nDiferenciais Do Produto:\n• Integração com o ambiente: Disponível no modelo quadrado e na cor branco gelo, é ideal para qualquer ambiente onde se faz necessário a integração do sistema de sonorização com a iluminação\n• Acústica e qualidade sonora: Para que o áudio seja reproduzido da melhor forma e que haja eficiência máxima\n• Instalação: É facilitada através dos fixadores de pressão mecânica, que são feitos através de parafusos e quatro castelos plásticos um em cada lado da caixa de embutir\n• Segurança: Com terminais de engate rápido, não é necessário o uso de soldas e gera agilidade na instalação e segurança na conexão dos fios ao produto.\n\nEspecificações Técnicas:\n• Modelo: Coaxial\n• Potência: 100W RMS\n• Alto-falante: 6\n• Woofer: Cone de Kevlar, suspensão de borracha nitrílica, bobina móvel em PISV e conjunto magnético de 91mm\n• Tweeter: Neodímio e domo de seda com sistema pivotante. Proteção contra sobrecarga\n• Impedância: 8 Ohms\n• Resposta de frequência: 50 – 20KHz\n• SPL (dB/W/m): 89\n• Furo de fixação: 196x196mm\n• Dimensões (AxL): 222x222mm\n• Peso: 1,26 Kg\n\nConteúdo da Embalagem:\n• 01 Caixa de embutir FRAHM\n• 01 Gabarito de furação\n• 01 Manual de instruções"
+      },
+      "pictures": [
+        {
+          "id": "917194-MLA112980441109_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_917194-MLA112980441109_062026-F.jpg",
+          "max_width": "935",
+          "max_height": "1200"
+        },
+        {
+          "id": "945220-MLA112980500265_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_945220-MLA112980500265_062026-F.jpg",
+          "max_width": "935",
+          "max_height": "1200"
+        },
+        {
+          "id": "744284-MLA112981202487_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_744284-MLA112981202487_062026-F.jpg",
+          "max_width": "935",
+          "max_height": "1200"
+        },
+        {
+          "id": "690469-MLA111867485062_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_690469-MLA111867485062_062026-F.jpg",
+          "max_width": "935",
+          "max_height": "1200"
+        },
+        {
+          "id": "827807-MLA111867485072_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_827807-MLA111867485072_062026-F.jpg",
+          "max_width": "935",
+          "max_height": "1200"
+        },
+        {
+          "id": "907001-MLA112981497359_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_907001-MLA112981497359_062026-F.jpg",
+          "max_width": "935",
+          "max_height": "1200"
+        },
+        {
+          "id": "889790-MLA112981379899_062026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_889790-MLA112981379899_062026-F.jpg",
+          "max_width": "935",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2022-12-08T17:37:06Z",
+      "last_updated": "2025-07-30T00:09:02Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

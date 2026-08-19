@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018129",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": "catalog MODEL is Intelbras instead of XAT 1018 MT",
+  "local_value": "7896637611749",
+  "found_value": "Intelbras",
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML catalog MLB38386677",
+  "timestamp": "2026-08-17T01:15:05.950Z"
+}

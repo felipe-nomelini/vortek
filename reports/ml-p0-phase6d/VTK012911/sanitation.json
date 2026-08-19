@@ -1,0 +1,10 @@
+{
+  "sku": "VTK012911",
+  "gate": "BLOCK_GTIN_BRAND_CONFLICT",
+  "evidence": "exact GTIN catalog brand is JPG, not local BKR1",
+  "local_value": "7898663801019",
+  "found_value": "JPG",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB27400707",
+  "timestamp": "2026-08-17T01:13:23.011Z"
+}

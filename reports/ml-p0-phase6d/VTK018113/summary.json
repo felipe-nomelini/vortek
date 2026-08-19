@@ -1,0 +1,23 @@
+{
+  "index": 53,
+  "sku": "VTK018113",
+  "expected_gtin": "7898127608291",
+  "started_at": "2026-08-17T01:15:57.144Z",
+  "local_time": "2026-08-16T22:15:57",
+  "completed_at": "2026-08-17T01:15:57.174Z",
+  "elapsed_ms": 30,
+  "result": "SOURCE_DEFERRED",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Aquário Viúva Negra 11 m lacks exact official/catalog identity in the validated source set",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

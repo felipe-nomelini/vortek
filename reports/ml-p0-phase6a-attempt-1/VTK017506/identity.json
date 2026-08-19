@@ -1,0 +1,512 @@
+{
+  "index": 7,
+  "sku": "VTK017506",
+  "started_at": "2026-08-16T23:39:11.151Z",
+  "local_time": "2026-08-16T20:39:11",
+  "expected_gtin": "7891112359253",
+  "product": {
+    "id": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+    "sku": "VTK017506",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+    "marca": "TRAMONTINA",
+    "estoque": 50,
+    "custo": 20.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.322,
+    "peso_bruto": 0.322,
+    "largura": 14,
+    "altura": 14,
+    "profundidade": 14,
+    "gtin": "7891112359253",
+    "descricao": "O jogo de potes Tramontina MixColor em polipropileno preto com tampa transparente 600 mililitros 3 peças oferece uma solução prática para armazenar alimentos com organização e eficiência. Produzidos em polipropileno com proteção antimicrobiana, os potes auxiliam na redução do crescimento de fungos e bactérias, contribuindo para maior cuidado no uso diário. As tampas transparentes facilitam a identificação do conteúdo, enquanto a capacidade de 600 mililitros atende diferentes necessidades de armazenamento. As peças podem ser utilizadas no freezer, micro-ondas e máquina de lavar louças, garantindo versatilidade e praticidade na rotina. *Imagens meramente ilustrativas.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017506/01-a8691bf034c295cbe76d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017506/02-768b753dc867e6379240.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017506/03-2623b67973c5029d1a46.jpg"
+    ],
+    "categoria": "Utilidades Domesticas/ Utensilios De Cozinha/ Utensílios Para Churrasco",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:56.790751+00:00",
+    "updated_at": "2026-08-16T20:52:32.232249+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "391212",
+    "dslite_ultima_sync": "2026-08-16T20:52:32.045+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "39241000",
+    "cest": null,
+    "origem_fiscal": "5",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "c392343a-92da-4f15-8500-e008cd3a7fd6",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "c392343a-92da-4f15-8500-e008cd3a7fd6",
+    "produto_id": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "391212",
+    "sku_fornecedor": "391212",
+    "custo": 20.9,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:52:32.045+00:00",
+    "created_at": "2026-07-20T18:30:57.116305+00:00",
+    "updated_at": "2026-08-16T20:52:32.063+00:00",
+    "sku_oferta": "391212",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+    "descricao": "O jogo de potes Tramontina MixColor em polipropileno preto com tampa transparente 600 mililitros 3 peças oferece uma solução prática para armazenar alimentos com organização e eficiência. Produzidos em polipropileno com proteção antimicrobiana, os potes auxiliam na redução do crescimento de fungos e bactérias, contribuindo para maior cuidado no uso diário. As tampas transparentes facilitam a identificação do conteúdo, enquanto a capacidade de 600 mililitros atende diferentes necessidades de armazenamento. As peças podem ser utilizadas no freezer, micro-ondas e máquina de lavar louças, garantindo versatilidade e praticidade na rotina. *Imagens meramente ilustrativas.\n\nInformações Gerais Potes e tampas de polipropileno com maior resistência e durabilidade. Tampas transparente que facilitam o dia a dia. Potes com proteção antimicrobiana que inibem o crescimento de fungos e bactérias, proporcionando benefícios em higiene e redução de microorganismos que causam contaminação. Podes ser levados à máquina de lavar, micro-ondas, refrigerador e freezer, facilitando o dia a dia. Produtos Livre de BPA: O Bisfenol-A é um componente químico usado na produção de alguns plásticos como o Policarbonato. Este componente pode ser prejudicial à saúde e por isso a Tramontina não o utiliza em seus produtos. Recomendações de uso Antes da primeira utilização, lave bem as peças e seque-as. Para limpeza, use somente esponja macia e detergente neutro. Não utilize materiais abrasivos. Com o uso, é normal que apareçam riscos no interior dos potes. Enquanto estiver congelado, evite impactos. Não coloque o pote em contato direto com superfícies quentes. Ao levar ao micro-ondas, deixe a tampa do pote entreaberta. Recomenda-se mexer o alimento durante o aquecimento no micro-ondas. Nunca utilize a função grill do micro-ondas. Evite aquecer alimentos como chocolates, caramelos, açúcar, manteiga e alimentos gordurosos, pois podem atingir altas temperaturas e danificar seu pote. Não utilize o pote para fazer pipocas no microondas pois irá danificá-lo. Molhos com forte pigmentação, como de tomate, açafrão e curry podem manchar o interior das peças. Guarde os potes separados das tampas para evitar odores. Para descarte dos produtos e embalagem siga as orientações de reciclagem vigentes.",
+    "marca": "TRAMONTINA",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391212_6a2c575412e7c.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/9/391212_6a2c575413180.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/9/391212_6a2c5754131cd.jpg"
+    ],
+    "gtin": "7891112359253",
+    "ncm": "39241000",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391212",
+    "consulted_at": "2026-08-16T23:39:11.383Z",
+    "product": {
+      "produtoid": "391212",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 20.9,
+      "preco_crossdocking": 20.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 20.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+      "titulo_curto": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+      "categoriaid": "118437",
+      "categoria_nome": "Utilidades Domesticas/ Utensilios De Cozinha/ Utensílios Para Churrasco",
+      "abc": null,
+      "ean11": "7891112359253",
+      "ncm": "39241000",
+      "descricao": "<p>O jogo de potes Tramontina MixColor em polipropileno preto com tampa transparente 600 mililitros 3 peças oferece uma solução prática para armazenar alimentos com organização e eficiência.</p>\r\n<p>Produzidos em polipropileno com proteção antimicrobiana, os potes auxiliam na redução do crescimento de fungos e bactérias, contribuindo para maior cuidado no uso diário.</p>\r\n<p>As tampas transparentes facilitam a identificação do conteúdo, enquanto a capacidade de 600 mililitros atende diferentes necessidades de armazenamento.</p>\r\n<p>As peças podem ser utilizadas no freezer, micro-ondas e máquina de lavar louças, garantindo versatilidade e praticidade na rotina.</p>\r\n<p> </p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<div class=\"headline\">\r\n<h3 class=\"heading dxp-text-heading-medium\"><strong>Informações Gerais</strong></h3>\r\n</div>\r\n<div class=\"content\">\r\n<div class=\"custom-text-overflow\">\r\n<div class=\"custom-text-box\" data-overflow=\"true\" data-expanded=\"true\">\r\n<p class=\"custom-text\">Potes e tampas de polipropileno com maior resistência e durabilidade. Tampas transparente que facilitam o dia a dia. Potes com proteção antimicrobiana que inibem o crescimento de fungos e bactérias, proporcionando benefícios em higiene e redução de microorganismos que causam contaminação. Podes ser levados à máquina de lavar, micro-ondas, refrigerador e freezer, facilitando o dia a dia. Produtos Livre de BPA: O Bisfenol-A é um componente químico usado na produção de alguns plásticos como o Policarbonato. Este componente pode ser prejudicial à saúde e por isso a Tramontina não o utiliza em seus produtos.</p>\r\n<div class=\"headline\">\r\n<h3 class=\"heading dxp-text-heading-medium\"><strong>Recomendações de uso</strong></h3>\r\n</div>\r\n<div class=\"content\">\r\n<div class=\"custom-text-overflow\">\r\n<div class=\"custom-text-box\" data-overflow=\"true\" data-expanded=\"true\">\r\n<p class=\"custom-text\">Antes da primeira utilização, lave bem as peças e seque-as. Para limpeza, use somente esponja macia e detergente neutro. Não utilize materiais abrasivos. Com o uso, é normal que apareçam riscos no interior dos potes. Enquanto estiver congelado, evite impactos. Não coloque o pote em contato direto com superfícies quentes. Ao levar ao micro-ondas, deixe a tampa do pote entreaberta. Recomenda-se mexer o alimento durante o aquecimento no micro-ondas. Nunca utilize a função grill do micro-ondas. Evite aquecer alimentos como chocolates, caramelos, açúcar, manteiga e alimentos gordurosos, pois podem atingir altas temperaturas e danificar seu pote. Não utilize o pote para fazer pipocas no microondas pois irá danificá-lo. Molhos com forte pigmentação, como de tomate, açafrão e curry podem manchar o interior das peças. Guarde os potes separados das tampas para evitar odores. Para descarte dos produtos e embalagem siga as orientações de reciclagem vigentes.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "TRAMONTINA",
+      "modelo": "",
+      "peso": 0.322,
+      "largura": 14,
+      "altura": 14,
+      "profundidade": 14,
+      "peso_embalagem": 0.322,
+      "largura_embalagem": 14,
+      "altura_embalagem": 14,
+      "profundidade_embalagem": 14,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391212_6a2c575412e7c.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 29,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 1,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-12 16:43:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-12 16:43:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 153,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391212_6a2c575412e7c.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391212_6a2c575413180.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391212_6a2c5754131cd.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "https://www.tramontina.com.br/conjunto-de-potes-tramontina-mixcolor-em-polipropileno-misto-com-tampa-transparente-600-ml-03-pecas/25099879.html",
+    "secondary": "https://www.supertem.com.br/jg-pote-tramont-mixcolor-pto-3pc-600ml/p",
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391212",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7891112359253"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB77404563",
+      "catalog_product_id": "MLB77404563",
+      "domain_id": "MLB-FOOD_STORAGE_CONTAINERS",
+      "name": "Conjunto Kit 3 Potes Herméticos Tramontina Mix Color 600 Ml Preto",
+      "parent_id": "MLB66715010",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "433",
+          "value_name": "Tramontina",
+          "values": [
+            {
+              "id": "433",
+              "name": "Tramontina"
+            }
+          ]
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "name": "Capacidade em volume",
+          "value_id": "4704253",
+          "value_name": "600 mL",
+          "values": [
+            {
+              "id": "4704253",
+              "name": "600 mL"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "name": "Unidades por embalagem",
+          "value_id": "334424",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "334424",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "FOOD_STORAGE_CONTAINER_SHAPE",
+          "name": "Forma",
+          "value_id": "17100449",
+          "value_name": "Redonda",
+          "values": [
+            {
+              "id": "17100449",
+              "name": "Redonda"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "2748302",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "2748302",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "2517251",
+          "value_name": "13.5 cm",
+          "values": [
+            {
+              "id": "2517251",
+              "name": "13.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "3714533",
+          "value_name": "6.5 cm",
+          "values": [
+            {
+              "id": "3714533",
+              "name": "6.5 cm"
+            }
+          ]
+        },
+        {
+          "id": "IS_AIRTIGHT",
+          "name": "É hermético",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_MICROWAVE_SAFE",
+          "name": "É apto para micro-ondas",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_DISHWASHER_SAFE",
+          "name": "É apto para lava-louças",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_CEREAL_CONTAINER",
+          "name": "É porta-cereais",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_LID",
+          "name": "Com tampa",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "LID_TYPE",
+          "name": "Tipo de tampa",
+          "value_id": "26200220",
+          "value_name": "Hermética",
+          "values": [
+            {
+              "id": "26200220",
+              "name": "Hermética"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "86942371",
+          "value_name": "07891112359253",
+          "values": [
+            {
+              "id": "86942371",
+              "name": "07891112359253"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": ""
+      },
+      "pictures": [
+        {
+          "id": "619921-MLA114846055694_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_619921-MLA114846055694_082026-F.jpg",
+          "max_width": "650",
+          "max_height": "650"
+        },
+        {
+          "id": "637656-MLA116220693897_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_637656-MLA116220693897_082026-F.jpg",
+          "max_width": "782",
+          "max_height": "597"
+        },
+        {
+          "id": "929249-MLA116220286851_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_929249-MLA116220286851_082026-F.jpg",
+          "max_width": "872",
+          "max_height": "933"
+        },
+        {
+          "id": "743948-MLA114846085700_082026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_743948-MLA114846085700_082026-F.jpg",
+          "max_width": "1124",
+          "max_height": "1124"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2026-08-15T06:17:33Z",
+      "last_updated": "2026-08-15T06:17:35Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

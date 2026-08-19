@@ -1,0 +1,299 @@
+{
+  "payload": {
+    "family_name": "Cadeira Gamer ThunderX3 EC3",
+    "category_id": "MLB447782",
+    "catalog_product_id": "MLB15243051",
+    "catalog_listing": true,
+    "price": 3409.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/5.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/6.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/7.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/67998/550/8.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "8848598",
+        "value_name": "ThunderX3"
+      },
+      {
+        "id": "LINE",
+        "value_id": "10474757",
+        "value_name": "Pro Gaming Chairs"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "3368227",
+        "value_name": "EC3"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "UPHOLSTERY_MATERIAL",
+        "value_id": "570721",
+        "value_name": "Couro sintético"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "value_id": "13016815",
+        "value_name": "Escritório"
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "values": [
+          {
+            "id": "4837600",
+            "name": "Aço"
+          },
+          {
+            "id": "112648",
+            "name": "Metal"
+          },
+          {
+            "id": "7980354",
+            "name": "Náilon"
+          }
+        ]
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "value_id": "5897875",
+        "value_name": "Espuma"
+      },
+      {
+        "id": "FOOT_RING_MATERIALS",
+        "value_id": "16602171",
+        "value_name": "Náilon"
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "value_id": "7866996",
+        "value_name": "81 cm"
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "value_id": "9272377",
+        "value_name": "54 cm"
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "value_id": "7866994",
+        "value_name": "69 cm"
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "value_id": "50154411",
+        "value_name": "131 cm"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "2514092",
+        "value_name": "150 kg"
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_WHEELS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ARMREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_HEADREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SWIVEL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "15429539",
+        "value_name": "Cadeira Gamer"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "11028550",
+            "name": "7908144025220"
+          },
+          {
+            "id": "10589947",
+            "name": "4718009154506"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "value_id": "10201909",
+        "value_name": "Regulável"
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "values": [
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável"
+          },
+          {
+            "id": "10204587",
+            "name": "Basculante"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_TILT_RANGE",
+        "value_id": "10222172",
+        "value_name": "90 ° x 180 °"
+      },
+      {
+        "id": "OFFICE_CHAIR_DEPTH",
+        "value_id": "7661943",
+        "value_name": "70 cm"
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "value_id": "10365839",
+        "value_name": "17 kg"
+      },
+      {
+        "id": "SEAT_WIDTH",
+        "value_id": "9589000",
+        "value_name": "53 cm"
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "value_id": "9272376",
+        "value_name": "56 cm"
+      },
+      {
+        "id": "MIN_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "value_id": "9272009",
+        "value_name": "47 cm"
+      },
+      {
+        "id": "MAX_HEIGHT_FROM_FLOOR_TO_SEAT",
+        "value_id": "9272010",
+        "value_name": "57 cm"
+      },
+      {
+        "id": "MIN_CHAIR_HEIGHT",
+        "value_id": "53835610",
+        "value_name": "121 cm"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000223"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000223"
+  },
+  "sha256": "ce7e179578a8dd05a943d0b0c1179c8163a044c06a34acf8284ea32271f976ea",
+  "family_name_sha256": "a5745c13edbe011a441446b4e69d49289b3d1efc29108824f763a48958324ba1",
+  "title_absent": true,
+  "description_absent": true
+}

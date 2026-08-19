@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-08-17T14:15:39.418Z",
+  "product": {
+    "id": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+    "sku": "VTK018635",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+    "marca": "FLASH COVER",
+    "estoque": 5,
+    "custo": 469.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 6.05,
+    "peso_bruto": 6.05,
+    "largura": 21,
+    "altura": 16,
+    "profundidade": 160,
+    "gtin": "7899630182629",
+    "descricao": "Capota Concórdia - Flash BA155L Fabricada em alumínio de alta resistência, você tem a tranquilidade de saber que seus pertences estarão mais seguros contra furto ou qualquer outra eventualidade. Além de sua resistência, ainda conta com trava que garante proteção extra para suas bagagens. - Cantoneiras em nylon injetado com Kinop; - Travamento lateral em baguete. Modelo Saveiro CS C/G 10+",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018635/01-da1bcd7e5668e6152bad.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018635/02-07e4f740b58d2ef85b19.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018635/03-99abdfe9c0e32be0c3d5.jpg"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:40.745348+00:00",
+    "updated_at": "2026-08-17T11:09:28.029642+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "319957",
+    "dslite_ultima_sync": "2026-08-17T11:09:27.941+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87082999",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "bed54013-a133-416d-9cb9-d47f95f055a5",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

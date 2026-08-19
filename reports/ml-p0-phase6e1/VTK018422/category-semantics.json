@@ -1,0 +1,67 @@
+{
+  "selected": {
+    "category_id": "MLB45256",
+    "domain_id": "MLB-VEHICLE_ANTENNAS",
+    "domain_name": "Antenas para veículos",
+    "category_name": "Antenas",
+    "category_path": [
+      "Acessórios para Veículos",
+      "Som Automotivo",
+      "Antenas"
+    ],
+    "normalized_context": "mlbvehicleantennasantenasparaveiculosmlbvehicleantennasacessoriosparaveiculossomautomotivoantenasantenas"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB45256",
+        "domain_id": "MLB-VEHICLE_ANTENNAS",
+        "domain_name": "Antenas para veículos",
+        "category_name": "Antenas",
+        "category_path": [
+          "Acessórios para Veículos",
+          "Som Automotivo",
+          "Antenas"
+        ],
+        "normalized_context": "mlbvehicleantennasantenasparaveiculosmlbvehicleantennasacessoriosparaveiculossomautomotivoantenasantenas"
+      },
+      "score": 93,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB456898",
+        "domain_id": "MLB-VEHICLE_ANTENNAS",
+        "domain_name": "Antenas para veículos",
+        "category_name": "Antenas",
+        "category_path": [
+          "Agro",
+          "Peças Maquinaria Agrícola",
+          "Carroceria",
+          "Antenas"
+        ],
+        "normalized_context": "mlbvehicleantennasantenasparaveiculosmlbvehicleantennasagropecasmaquinariaagricolacarroceriaantenasantenas"
+      },
+      "score": 93,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB271439",
+        "domain_id": "MLB-VEHICLE_ANTENNAS",
+        "domain_name": "Antenas para veículos",
+        "category_name": "Antenas",
+        "category_path": [
+          "Acessórios para Veículos",
+          "Acessórios Náuticos",
+          "Sistemas de Navegação",
+          "Comunicações",
+          "Antenas"
+        ],
+        "normalized_context": "mlbvehicleantennasantenasparaveiculosmlbvehicleantennasacessoriosparaveiculosacessoriosnauticossistemasdenavegacaocomunicacoesantenasantenas"
+      },
+      "score": 93,
+      "hard_mismatch": false
+    }
+  ]
+}

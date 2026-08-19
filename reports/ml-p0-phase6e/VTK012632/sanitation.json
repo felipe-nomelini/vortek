@@ -1,0 +1,10 @@
+{
+  "sku": "VTK012632",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category confidence is not HIGH for domain MLB-AUDIO_AND_VIDEO_CONNECTORS",
+  "local_value": "7898640363523",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB37812904 + domain discovery",
+  "timestamp": "2026-08-17T12:55:05.888Z"
+}

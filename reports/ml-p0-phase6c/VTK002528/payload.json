@@ -1,0 +1,110 @@
+{
+  "payload": {
+    "family_name": "Antena Digital Proeletronic PROHD2000A",
+    "category_id": "MLB44572",
+    "catalog_product_id": "MLB65679273",
+    "catalog_listing": true,
+    "price": 279.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/65534/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "1175465",
+        "value_name": "Proeletronic"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "18119921",
+        "value_name": "PROHD-2000A"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "283165",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "LOCATION",
+        "value_id": "2434728",
+        "value_name": "Interno"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "TV_ANTENNA_FREQUENCY_BAND",
+        "value_id": "4316261",
+        "value_name": "UHF/VHF"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "17100693",
+        "value_name": "3 m"
+      },
+      {
+        "id": "TV_RECEPTION_RANGE",
+        "value_id": "20180857",
+        "value_name": "56 km"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "6819",
+        "value_name": "650 g"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "3157",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "3368",
+        "value_name": "6 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "1018395",
+        "value_name": "20 cm"
+      },
+      {
+        "id": "IS_DIGITAL_FREEVIEW",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18119920",
+        "value_name": "7898419490665"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK002528"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK002528"
+  },
+  "sha256": "10399deedf5d2870f04b228f0ef8f17b55f26e817c27210b2ed4463de9a68c34",
+  "family_name_sha256": "6ce4af8f2f3fe3d6a786d1a7ae971b7fe6172b6f27a78dff82864406e9995ab4",
+  "title_absent": true,
+  "description_absent": true
+}

@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432766896",
+      "local": "MLB7432766896",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK004630",
+      "local": "VTK004630",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "4e0d7bea-ddfb-4da0-8362-ded5fa01065b",
+      "local": "4e0d7bea-ddfb-4da0-8362-ded5fa01065b",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Violino Scarlett 4/4 Linden Ebanizado Estudante Laminado Cor Natural",
+      "local": "Violino Scarlett 4/4 Linden Ebanizado Estudante Laminado Cor Natural",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 1819.9,
+      "local": 1819.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432766896-violino-scarlett-44-linden-ebanizado-estudante-laminado-cor-natural-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432766896-violino-scarlett-44-linden-ebanizado-estudante-laminado-cor-natural-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

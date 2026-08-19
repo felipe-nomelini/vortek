@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-08-17T14:15:36.063Z",
+  "local_images": [
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5fdf30e297f375f373f7335fe92c10e9.jpg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/934485774464d2e614be8784fa60517f.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "833371-MLA99825469905_112025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_833371-MLA99825469905_112025-F.jpg",
+      "max_width": "464",
+      "max_height": "1068"
+    },
+    {
+      "id": "811396-MLA40929138609_022020",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_811396-MLA40929138609_022020-F.jpg",
+      "suggested_for_picker": [],
+      "max_width": "422",
+      "max_height": "739"
+    },
+    {
+      "id": "835911-MLU78675681987_082024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_835911-MLU78675681987_082024-F.jpg",
+      "max_width": "396",
+      "max_height": "1200"
+    },
+    {
+      "id": "712889-MLU78675681993_082024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_712889-MLU78675681993_082024-F.jpg",
+      "max_width": "1093",
+      "max_height": "1200"
+    },
+    {
+      "id": "754087-MLU78444036532_082024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_754087-MLU78444036532_082024-F.jpg",
+      "max_width": "1200",
+      "max_height": "1200"
+    },
+    {
+      "id": "852709-MLU78675682013_082024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_852709-MLU78675682013_082024-F.jpg",
+      "max_width": "1200",
+      "max_height": "1200"
+    },
+    {
+      "id": "752820-MLU78444036550_082024",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_752820-MLU78444036550_082024-F.jpg",
+      "max_width": "1200",
+      "max_height": "1200"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

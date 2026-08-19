@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.482Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Tesoura Seccon Corta Kevlar 5,8\" Ct-c151n",
+    "supplier_category": "Eletronica/ Alicates/ Alicates",
+    "supplier_brand": "FERRAGENS FTTH",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/298928",
+    "captured_at": "2026-08-17T12:56:28.606Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "2bdab277-9c30-42da-ae84-f4629c5540c1",
+    "produto_id": "7327df44-719b-401b-b3af-dac4e8ad51d0",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "298928",
+    "sku_fornecedor": "298928",
+    "custo": 79.9,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:22:24.939+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:22:24.946+00:00",
+    "sku_oferta": "298928",
+    "nome": "Tesoura Seccon Corta Kevlar 5,8\" Ct-c151n",
+    "descricao": "Informações do Produto &bull; Ferramenta Ergonômica, com 5,8” (147mm ) &bull; Para Corte do Kevlar da Fibra Óptica.\n\nTesoura Seccon Corta Kevlar 5,8\" Ct-C151N",
+    "marca": "FERRAGENS FTTH",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/9/298928_67d2cae92cae3.jpg"
+    ],
+    "gtin": "",
+    "ncm": "82032090",
+    "cest": "08.008.00"
+  }
+}

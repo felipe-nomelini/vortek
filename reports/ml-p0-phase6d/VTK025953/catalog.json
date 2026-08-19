@@ -1,0 +1,801 @@
+{
+  "checked_at": "2026-08-17T01:13:43.913Z",
+  "expected_catalog_product_id": "MLB63370268",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "VOLTAGE": true,
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB63370268",
+    "catalog_product_id": "MLB63370268",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-BLENDERS",
+    "permalink": "",
+    "name": "Liquidificador Portátil Arno Lightmix Amarelo Lp00 Amarelo",
+    "family_name": "Arno Lighmix LP00 300 mL 1 USB",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB63370268",
+            "picker_label": "Amarelo",
+            "picture_id": "767985-MLA101495382112_122025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_767985-MLA101495382112_122025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Arno Lighmix LP00 300 mL 1 USB - Amarelo - 127/220V - Plástico",
+            "auto_completed": true,
+            "rgb_meta": "FFED00"
+          },
+          {
+            "product_id": "MLB76540493",
+            "picker_label": "Lavanda",
+            "picture_id": "951771-MLA114440863228_082026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_951771-MLA114440863228_082026-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Lavanda"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Arno Lighmix LP00 300 mL 1 USB - Lavanda - 127/220V - Plástico",
+            "auto_completed": false,
+            "rgb_meta": "9F00FF"
+          },
+          {
+            "product_id": "MLB76540494",
+            "picker_label": "Verde",
+            "picture_id": "871929-MLA114441079722_082026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_871929-MLA114441079722_082026-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Verde"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Arno Lighmix LP00 300 mL 1 USB - Verde - 127/220V - Plástico",
+            "auto_completed": false,
+            "rgb_meta": "0DA600"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB63370268",
+            "picker_label": "127/220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Arno Lighmix LP00 300 mL 1 USB - Amarelo - 127/220V - Plástico",
+            "auto_completed": false,
+            "rgb_meta": "FFED00"
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BLENDER_JAR_MATERIAL",
+        "picker_name": "Material da jarra",
+        "products": [
+          {
+            "product_id": "MLB63370268",
+            "picker_label": "Plástico",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Arno Lighmix LP00 300 mL 1 USB - Amarelo - 127/220V - Plástico",
+            "auto_completed": false,
+            "rgb_meta": "FFED00"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BLENDER_JAR_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "767985-MLA101495382112_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_767985-MLA101495382112_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 573,
+        "max_height": 953,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "698118-MLA114489844205_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_698118-MLA114489844205_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 821,
+        "max_height": 1018,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "617932-MLA113249733932_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_617932-MLA113249733932_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "729287-MLA114489844217_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_729287-MLA114489844217_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "842603-MLA113249319248_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_842603-MLA113249319248_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "738758-MLA113249555778_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_738758-MLA113249555778_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "826405-MLA113249348374_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_826405-MLA113249348374_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "913158-MLA113249705752_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_913158-MLA113249705752_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "775208-MLA113249991086_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_775208-MLA113249991086_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "738933-MLA114489988829_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_738933-MLA114489988829_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "617299-MLA113249991100_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_617299-MLA113249991100_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 735,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "644546-MLA113249288920_072026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_644546-MLA113249288920_072026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 782,
+        "max_height": 1015,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Alimentação via entrada USB permite recarregar a bateria de 1200mAh em computadores ou carregadores de aparelhos móveis.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ciclo de funcionamento programado com desligamento automático em 40 segundos previne o superaquecimento do motor.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Capacidade total de 300ml permite o consumo direto da bebida no recipiente reduzindo a necessidade de lavagem de louça.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Lâminas em inox permitem o processamento de gelo e frutas congeladas mantendo a consistência desejada nas misturas.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Acompanha alça de transporte integrada que permite fixar o copo em bolsas ou mochilas durante o deslocamento diário.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Funcionamento silencioso que possibilita a preparação de shakes ou sucos em ambientes de escritório ou locais públicos.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [
+      {
+        "text": "Livre de BPA.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "455",
+        "value_name": "Arno",
+        "values": [
+          {
+            "id": "455",
+            "name": "Arno"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "68452519",
+        "value_name": "Lighmix",
+        "values": [
+          {
+            "id": "68452519",
+            "name": "Lighmix"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "83592680",
+        "value_name": "LP00",
+        "values": [
+          {
+            "id": "83592680",
+            "name": "LP00"
+          }
+        ]
+      },
+      {
+        "id": "TOTAL_CAPACITY",
+        "name": "Capacidade total",
+        "value_id": "3656932",
+        "value_name": "300 mL",
+        "values": [
+          {
+            "id": "3656932",
+            "name": "300 mL"
+          }
+        ]
+      },
+      {
+        "id": "ACCESSORIES_NUMBER",
+        "name": "Quantidade de acessórios",
+        "value_id": "112805",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "112805",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "value_id": "5422206",
+        "value_name": "USB",
+        "values": [
+          {
+            "id": "5422206",
+            "name": "USB"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52007",
+        "value_name": "Amarelo",
+        "values": [
+          {
+            "id": "52007",
+            "name": "Amarelo"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V"
+          }
+        ]
+      },
+      {
+        "id": "BLENDER_JAR_MATERIAL",
+        "name": "Material da jarra",
+        "value_id": "2364248",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "2364248",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450296",
+        "value_name": "Amarelo",
+        "values": [
+          {
+            "id": "2450296",
+            "name": "Amarelo",
+            "meta": {
+              "rgb": "FFED00"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "FFED00"
+        }
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "84731044",
+        "value_name": "LP00",
+        "values": [
+          {
+            "id": "84731044",
+            "name": "LP00"
+          }
+        ]
+      },
+      {
+        "id": "RECOMMENDED_USES",
+        "name": "Usos recomendados",
+        "value_id": null,
+        "value_name": "Shakes, Sucos, Vitaminas",
+        "values": [
+          {
+            "id": "20145706",
+            "name": "Shakes"
+          },
+          {
+            "id": "17775909",
+            "name": "Sucos"
+          },
+          {
+            "id": "19335335",
+            "name": "Vitaminas"
+          }
+        ]
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "name": "É industrial",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "USEFUL_CAPACITY",
+        "name": "Capacidade útil",
+        "value_id": "18499465",
+        "value_name": "350 L",
+        "values": [
+          {
+            "id": "18499465",
+            "name": "350 L"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY",
+        "name": "Eficiência energética",
+        "value_id": "98473",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "98473",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_ACCESSORIES",
+        "name": "Inclui acessórios",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": "11120761",
+        "value_name": "Alça de transporte",
+        "values": [
+          {
+            "id": "11120761",
+            "name": "Alça de transporte"
+          }
+        ]
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "name": "É apto para lava-louças",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_PORTABLE",
+        "name": "É portátil",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ON_OFF_POWER_BUTTON",
+        "name": "Com botão de ligar/desligar",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_USB_CHARGE",
+        "name": "Com carga USB",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_BPA_FREE",
+        "name": "É livre de BPA",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_STAINLESS_STEEL_BLADE",
+        "name": "Com lâmina de aço inoxidável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7821193",
+        "value_name": "26 cm",
+        "values": [
+          {
+            "id": "7821193",
+            "name": "26 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "7778835",
+        "value_name": "14 cm",
+        "values": [
+          {
+            "id": "7778835",
+            "name": "14 cm"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "7674180",
+        "value_name": "1 kg",
+        "values": [
+          {
+            "id": "7674180",
+            "name": "1 kg"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Liquidificador Portátil Arno Lightmix\n\nShakes e sucos onde e quando quiser!\n\n> Portabilidade real para sua rotina: leve e compacto, o Arno Lightmix é ideal para levar à academia, ao trabalho ou onde desejar, garantindo praticidade na preparação de bebidas a qualquer hora.\n\n> Bateria recarregável com entrada USB-C: prepare suas bebidas onde estiver com liberdade total. O carregamento via USB-C é rápido e prático.\n\n> Copo de Tritan de 300ml livre de BPA: material leve, resistente e inquebrável. Ideal para preparar e consumir direto no copo, economizando tempo com limpeza.\n\n> Mistura gelo e frutas congeladas com segurança: lâminas em inox de alta performance garantem excelente resultado. O desligamento automático após 40 segundos evita superaquecimento.\n\n> Design funcional e confortável para o dia a dia: revestimento em silicone com alça integrada proporciona melhor pegada e transporte fácil na bolsa ou mochila."
+    },
+    "parent_id": "MLB63370266",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T10:41:54.877792965"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": {
+      "template_id": "c03f56da-3127-40d1-86db-d82fbad796ff",
+      "version": "1.0",
+      "components": [
+        {
+          "type": "FLYER",
+          "ui_config": null,
+          "thumbnail": "",
+          "content": [
+            {
+              "id": "608933-MLA112541075578_062026",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_608933-MLA112541075578_062026-F.jpg",
+              "max_width": 970,
+              "max_height": 600,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "897537-MLA113714089365_062026",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_897537-MLA113714089365_062026-F.jpg",
+              "max_width": 970,
+              "max_height": 600,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "810171-MLA113713671475_062026",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_810171-MLA113713671475_062026-F.jpg",
+              "max_width": 970,
+              "max_height": 600,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "656652-MLA113713582281_062026",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_656652-MLA113713582281_062026-F.jpg",
+              "max_width": 970,
+              "max_height": 600,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "924012-MLA112541985684_062026",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_924012-MLA112541985684_062026-F.jpg",
+              "max_width": 970,
+              "max_height": 600,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [],
+    "date_created": "2025-12-20T15:28:08Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-13T17:25:51Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

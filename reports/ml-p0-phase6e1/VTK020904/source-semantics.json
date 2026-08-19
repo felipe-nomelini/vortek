@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:47.587Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Rack Piso 19\" Max Eletron 16u X 470mm Preto",
+    "supplier_category": "Redes E Provedores/ Internet E Rede/ Rack",
+    "supplier_brand": "MAX ELETRON",
+    "supplier_gtin": "7908060203368",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/334283",
+    "captured_at": "2026-08-17T12:54:56.382Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "a1460f2b-82c4-435c-9116-26233b5bbd77",
+    "produto_id": "f525b013-e64a-470c-a64d-77750eef6a47",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "334283",
+    "sku_fornecedor": "334283",
+    "custo": 872.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:36:31.930492+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "334283",
+    "nome": "Rack Piso 19\" Max Eletron 16u X 470mm Preto",
+    "descricao": "Informações do Produto Bracket Mini Rack Padrão 19\" 16Us X 470 mm. Material de ótima qualidade e durabilidade, confeccionado em aço estampado, tratado por fosfatização e pintado em tinta hibrida epóxi-pó na cor preta com secagem em forno de alta temperatura, o que garante excelente acabamento e resistência. O Bracket ou Mini Rack Padrão 19” é ideal para alojamento de switches, modems, roteadores, gravadores de dvd e equipamentos de rede em áreas de usuários ou outros locais que estes precisem ficar bem organizados e protegidos. Possui um plano de fixação para equipamentos (permite o uso de um segundo plano), porta frontal com abertura reversível sem o uso de Ferramentas, visor em acrílico translúcido e duas chaves para maior proteção e segurança. As suas laterais com fecho rápido facilitam a instalação e manutenção dos equipamentos. A entrada de cabos pode ser feita pelo topo ou pela base do Mini Rack (o fundo tem uma passagem de cabos extra). Seu teto está configurado para receber dois ventiladores de 5” (não inclusos). Garantia 12 meses (Contra Defeitos de fabricação).",
+    "marca": "MAX ELETRON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/3/334283_67d2caf0dd647.jpg"
+    ],
+    "gtin": "7908060203368",
+    "ncm": "94032090",
+    "cest": null
+  }
+}

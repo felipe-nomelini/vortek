@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:53.722Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "Bori",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2708",
+    "captured_at": "2026-08-17T12:56:47.797Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "f30793ce-f99b-4519-a875-05c570a7f02e",
+    "produto_id": "c71efd1f-eea6-43ba-adee-9d6dfb0699e9",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2708",
+    "sku_fornecedor": "2708",
+    "custo": 9.11,
+    "estoque": 20,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.02+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.028+00:00",
+    "sku_oferta": "2708",
+    "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+    "descricao": "PALHETA BORI GRL AT-R16112 S.T.D 1,14 MM (PRETO) R21016 10UN A Palheta Bori S.T.D 1,14 mm (Preto) R21016 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais especificações: Características Principais: • Modelo: S.T.D (Standard) • Código do Fabricante: R21016 • Espessura: 1,14 mm • Material: Poliamida Nylon (Resina de Engenharia) • Cor: Preto • Acabamento: Brilho Médio • Dimensões: • Largura: 25 mm • Altura: 28 mm • Peso: 0,50 g Design e Funcionalidade: Ponta Arredondada: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori S.T.D de 1,14 mm na cor preta.",
+    "marca": "Bori",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/cdba08f397ca0ce0ad67cc0e94476728.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a1199a99b9f8bdeebfcbc8d06978122d.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/3962ee6af1a859bffdfa8b7696e97d25.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/8aaf39dd21c8f07c1b635fc63dc32b79.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.92.00",
+    "cest": null
+  }
+}

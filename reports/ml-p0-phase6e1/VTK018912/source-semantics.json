@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:45.500Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Haste Curta Olimpus Da Antena Para Onix",
+    "supplier_category": "Automotivo/ Antena Automotiva/ Haste De Antena",
+    "supplier_brand": "OLIMPUS",
+    "supplier_gtin": "7898382141144",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/318221",
+    "captured_at": "2026-08-17T12:54:46.157Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "76e031c6-89c0-4279-8714-2a38104141b1",
+    "produto_id": "7dde8a4f-c47f-4ff5-9863-f3280d96d753",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "318221",
+    "sku_fornecedor": "318221",
+    "custo": 98.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "318221",
+    "nome": "Haste Curta Olimpus Da Antena Para Onix",
+    "descricao": "Informações do Produto &bull; Antena de teto dianteira &bull; Base quadrada (para furação original) &bull; Inclinação 30º, amplificada e haste removível &bull; Com cabo de 2,4m da antena até o rádio com plug DIN (para rádio convencional).",
+    "marca": "OLIMPUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/318221_67d2caecdf1e0.jpg"
+    ],
+    "gtin": "7898382141144",
+    "ncm": "85291090",
+    "cest": "01.063.00"
+  }
+}

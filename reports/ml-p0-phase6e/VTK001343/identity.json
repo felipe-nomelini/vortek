@@ -1,0 +1,324 @@
+{
+  "checked_at": "2026-08-17T12:54:01.532Z",
+  "product": {
+    "id": "70194821-7380-495a-9040-2ca8ea2e1c53",
+    "sku": "VTK001343",
+    "nome": "Suporte Para Caixa JBL Bumper MAX26 AF-LA Preto",
+    "marca": "JBL",
+    "gtin": "7898678590564"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/83445",
+    "consulted_at": "2026-08-17T12:54:01.297Z",
+    "product": {
+      "produtoid": "83445",
+      "produtoid_empresa": "HYX83445",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 896.48,
+      "preco_crossdocking": 896.48,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 896.48,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-04-21 05:37:16.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 06:06:00.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Suporte Para Caixa JBL Bumper MAX26 AF-LA Preto",
+      "titulo_curto": "SUP P/CAIXA JBL BUMPER MX26 AF-LA PT",
+      "categoriaid": "292464",
+      "categoria_nome": "áudio / Suportes Para áudio / Suporte Para Caixas Acústicas",
+      "abc": "C",
+      "ean11": "7898678590564",
+      "ncm": "8518.90.90",
+      "descricao": "O Suporte Para Caixa JBL Bumper MAX26 AF-LA é a escolha ideal para amplificar o som em ambientes diversos. Com capacidade para até 12 unidades acopladas, este modelo oferece uma cobertura abrangente e segura. Com opções de fatores de segurança 2:1 ou 5:1, proporciona flexibilidade e confiabilidade para suas necessidades de áudio.",
+      "caracteristicas": "Cor:Preto<br>Pesquisa:suporte para caixa|suporte jbl|jbl|suporte para caixa bumper|bumper|suporte para caixa de som<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "JBL",
+      "modelo": "MAX26 AF-LA",
+      "peso": 6.25,
+      "largura": 49,
+      "altura": 10,
+      "profundidade": 49,
+      "peso_embalagem": 6.25,
+      "largura_embalagem": 49,
+      "altura_embalagem": 10,
+      "profundidade_embalagem": 49,
+      "link": "http://www.hayamax.com.br/suporte-para-caixa-jbl-bumper-max26-af-la-preto",
+      "link_imagem": "https://static.hayapek.com.br/produtos/83445/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 1,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 9,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-06-26 17:51:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 5,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/83445/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/83445/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/83445/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/83445/550/4.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_UNIT_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: UNIT",
+    "foundValue": "MLB63661934",
+    "source": "ML catalog MLB63661934 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "UNIT"
+      ],
+      "catalog_brand": "JBL",
+      "model": "Bumper",
+      "local_pack": 12,
+      "catalog_pack": 1,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.625
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB63661934",
+      "catalog_product_id": "MLB63661934",
+      "domain_id": "MLB-SPEAKERS_STANDS",
+      "name": "Suporte Jbl Bumper Compatível Com Max 26-la Preto",
+      "parent_id": "MLB63661930",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "17265",
+          "value_name": "JBL",
+          "values": [
+            {
+              "id": "17265",
+              "name": "JBL"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "113901",
+          "value_name": "Bumper",
+          "values": [
+            {
+              "id": "113901",
+              "name": "Bumper"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "name": "Unidades por embalagem",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "INSTALLATION_PLACEMENT",
+          "name": "Lugar de colocação",
+          "value_id": "3964545",
+          "value_name": "De parede",
+          "values": [
+            {
+              "id": "3964545",
+              "name": "De parede"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "70258012",
+          "value_name": "7898678590564",
+          "values": [
+            {
+              "id": "70258012",
+              "name": "7898678590564"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "SUPORTE JBL BUMPER PARA MAX 26-LA BLACK\n\nO suporte JBL Bumper para o sistema MAX 26-LA foi projetado para oferecer segurança e praticidade na instalação de caixas de som da linha, permitindo o uso em configurações suspensas ou montadas em estruturas apropriadas. Com construção robusta e acabamento na cor preta, o acessório garante sustentação confiável para aplicações de sonorização profissional em igrejas, casas de show, auditórios, palcos e eventos em geral. É a solução ideal para quem precisa de montagem segura e alinhamento adequado do array de caixas JBL.\n\nPor que adquirir?  \n- Acessório dedicado para montagem do sistema JBL MAX 26-LA.  \n- Estrutura robusta para uso em sonorização profissional.  \n- Acabamento na cor preta, discreto e compatível com o sistema.  \n- Facilita a instalação suspensa ou em estruturas adequadas.  \n- Ideal para igrejas, eventos, casas de show e auditórios.  \n- Garante maior segurança e organização no sistema de PA.  \n\nEspecificações técnicas:  \n- Marca: JBL;  \n- Modelo: Bumper para MAX 26-LA;  \n- Tipo: Suporte / frame de suspensão;  \n- Compatibilidade: Sistema de caixas JBL MAX 26-LA;  \n- Cor: Black (preto).  \n\nRef.: 58074148  "
+      },
+      "pictures": [
+        {
+          "id": "936964-MLA103013887463_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_936964-MLA103013887463_122025-F.jpg",
+          "max_width": "948",
+          "max_height": "975"
+        },
+        {
+          "id": "655431-MLA102503331448_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_655431-MLA102503331448_122025-F.jpg",
+          "max_width": "1059",
+          "max_height": "728"
+        },
+        {
+          "id": "945590-MLA102503419952_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_945590-MLA102503419952_122025-F.jpg",
+          "max_width": "1028",
+          "max_height": "764"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-12-29T22:30:35Z",
+      "last_updated": "2025-12-29T22:54:31Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

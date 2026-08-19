@@ -1,0 +1,1198 @@
+{
+  "checked_at": "2026-08-17T00:44:28.057Z",
+  "item": {
+    "id": "MLB7432625640",
+    "site_id": "MLB",
+    "title": "Suporte Teto Tv 32-40-42-43-48-49-55-56 Samsung-LG-sony Cor Preto",
+    "family_name": "Multivisão SKY100",
+    "family_id": 7317817554986767,
+    "seller_id": 3294514937,
+    "category_id": "MLB11529",
+    "user_product_id": "MLBU4772705718",
+    "official_store_id": null,
+    "price": 549.9,
+    "base_price": 549.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T00:44:26.750Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:44:26.858Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432625640-suporte-teto-tv-32-40-42-43-48-49-55-56-samsung-lg-sony-cor-preto-_JM",
+    "thumbnail_id": "933006-MLA95958573454_102025",
+    "thumbnail": "http://http2.mlstatic.com/D_933006-MLA95958573454_102025-I.jpg",
+    "pictures": [
+      {
+        "id": "933006-MLA95958573454_102025",
+        "url": "http://http2.mlstatic.com/D_933006-MLA95958573454_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_933006-MLA95958573454_102025-O.jpg",
+        "size": "269x500",
+        "max_size": "647x1200",
+        "quality": ""
+      },
+      {
+        "id": "801351-MLA82469776497_022025",
+        "url": "http://http2.mlstatic.com/D_801351-MLA82469776497_022025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_801351-MLA82469776497_022025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      },
+      {
+        "id": "994370-MLA96402110649_102025",
+        "url": "http://http2.mlstatic.com/D_994370-MLA96402110649_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_994370-MLA96402110649_102025-O.jpg",
+        "size": "103x500",
+        "max_size": "249x1200",
+        "quality": ""
+      },
+      {
+        "id": "717656-MLA109555836242_042026",
+        "url": "http://http2.mlstatic.com/D_717656-MLA109555836242_042026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_717656-MLA109555836242_042026-O.jpg",
+        "size": "500x472",
+        "max_size": "626x591",
+        "quality": ""
+      },
+      {
+        "id": "733587-MLA95958761870_102025",
+        "url": "http://http2.mlstatic.com/D_733587-MLA95958761870_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_733587-MLA95958761870_102025-O.jpg",
+        "size": "500x333",
+        "max_size": "1000x666",
+        "quality": ""
+      },
+      {
+        "id": "664463-MLA95958761874_102025",
+        "url": "http://http2.mlstatic.com/D_664463-MLA95958761874_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_664463-MLA95958761874_102025-O.jpg",
+        "size": "103x500",
+        "max_size": "249x1200",
+        "quality": ""
+      },
+      {
+        "id": "775955-MLA109556246328_042026",
+        "url": "http://http2.mlstatic.com/D_775955-MLA109556246328_042026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_775955-MLA109556246328_042026-O.jpg",
+        "size": "500x399",
+        "max_size": "644x515",
+        "quality": ""
+      },
+      {
+        "id": "621818-MLA99867377287_112025",
+        "url": "http://http2.mlstatic.com/D_621818-MLA99867377287_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_621818-MLA99867377287_112025-O.jpg",
+        "size": "500x407",
+        "max_size": "1200x978",
+        "quality": ""
+      },
+      {
+        "id": "761261-MLA96402050887_102025",
+        "url": "http://http2.mlstatic.com/D_761261-MLA96402050887_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_761261-MLA96402050887_102025-O.jpg",
+        "size": "104x500",
+        "max_size": "250x1200",
+        "quality": ""
+      },
+      {
+        "id": "723159-MLA109555806702_042026",
+        "url": "http://http2.mlstatic.com/D_723159-MLA109555806702_042026-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_723159-MLA109555806702_042026-O.webp",
+        "size": "500x487",
+        "max_size": "640x624",
+        "quality": ""
+      },
+      {
+        "id": "628038-MLA95958573490_102025",
+        "url": "http://http2.mlstatic.com/D_628038-MLA95958573490_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_628038-MLA95958573490_102025-O.jpg",
+        "size": "159x500",
+        "max_size": "382x1200",
+        "quality": ""
+      },
+      {
+        "id": "809652-MLA96402140559_102025",
+        "url": "http://http2.mlstatic.com/D_809652-MLA96402140559_102025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_809652-MLA96402140559_102025-O.jpg",
+        "size": "500x487",
+        "max_size": "1200x1169",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2716081",
+        "value_name": "Multivisão",
+        "values": [
+          {
+            "id": "2716081",
+            "name": "Multivisão",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COMPATIBLE_SCREEN_TYPES",
+        "name": "Tipos de telas compatíveis",
+        "value_id": "20103107",
+        "value_name": "LCD:LED",
+        "values": [
+          {
+            "id": "20103107",
+            "name": "LCD:LED",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "8285237",
+        "value_name": "7896643440647",
+        "values": [
+          {
+            "id": "8285237",
+            "name": "7896643440647",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "65454983",
+        "value_name": "115 cm",
+        "values": [
+          {
+            "id": "65454983",
+            "name": "115 cm",
+            "struct": {
+              "number": 115,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "INCLUDES_CABLE_ORGANIZER",
+        "name": "Inclui organizador de cabos",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_INSTALLATION_KIT",
+        "name": "Inclui kit de instalação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_ARTICULATED_MOUNT",
+        "name": "É articulado",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_FIXED_MOUNT",
+        "name": "É fixo",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_INCLINABLE",
+        "name": "É inclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_MOTORIZED",
+        "name": "É motorizada",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_SWIVELLING",
+        "name": "É giratório",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "3325160",
+        "value_name": "Aço carbono",
+        "values": [
+          {
+            "id": "3325160",
+            "name": "Aço carbono",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_SCREEN_SIZE",
+        "name": "Tamanho máximo da tela",
+        "value_id": "7634726",
+        "value_name": "56 \"",
+        "values": [
+          {
+            "id": "7634726",
+            "name": "56 \"",
+            "struct": {
+              "number": 56,
+              "unit": "\""
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "1073144",
+        "value_name": "35 kg",
+        "values": [
+          {
+            "id": "1073144",
+            "name": "35 kg",
+            "struct": {
+              "number": 35,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MIN_SCREEN_SIZE",
+        "name": "Tamanho mínimo da tela",
+        "value_id": "7674122",
+        "value_name": "19 \"",
+        "values": [
+          {
+            "id": "7674122",
+            "name": "19 \"",
+            "struct": {
+              "number": 19,
+              "unit": "\""
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "10575178",
+        "value_name": "SKY100",
+        "values": [
+          {
+            "id": "10575178",
+            "name": "SKY100",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MOUNTING_PLACES",
+        "name": "Lugares de montagem",
+        "value_id": "7720909",
+        "value_name": "Teto",
+        "values": [
+          {
+            "id": "7720909",
+            "name": "Teto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "19945472",
+        "value_name": "60006145",
+        "values": [
+          {
+            "id": "19945472",
+            "name": "60006145",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ROTATION_ANGLE",
+        "name": "Ângulo de rotação",
+        "value_id": "8671387",
+        "value_name": "360°",
+        "values": [
+          {
+            "id": "8671387",
+            "name": "360°",
+            "struct": {
+              "number": 360,
+              "unit": "°"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK001288",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK001288",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "STANDARDS_VESA",
+        "name": "Padrões VESA",
+        "value_id": "3568440",
+        "value_name": "400x400",
+        "values": [
+          {
+            "id": "3568440",
+            "name": "400x400",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SUPPORTED_SCREENS_NUMBER",
+        "name": "Quantidade de telas suportadas",
+        "value_id": "9235769",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "9235769",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB23892377",
+    "domain_id": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+    "seller_custom_field": "VTK001288",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:44:26.961Z",
+    "last_updated": "2026-08-17T00:44:26.961Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "propagation": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 159,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 00:44:27 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 05c123ce9ed88aac1269d5f13441b908.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "Q7wJYj3nsXOEdBaQT6l_ubnDwiw7WFujUjAv-G8FV3W3Hum0qYVjyg==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "2d72a1f2-a3ff-4639-895a-662889fac18b",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB7432625640",
+        "site_id": "MLB",
+        "title": "Suporte Teto Tv 32-40-42-43-48-49-55-56 Samsung-LG-sony Cor Preto",
+        "family_name": "Multivisão SKY100",
+        "family_id": 7317817554986767,
+        "seller_id": 3294514937,
+        "category_id": "MLB11529",
+        "user_product_id": "MLBU4772705718",
+        "official_store_id": null,
+        "price": 549.9,
+        "base_price": 549.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 15,
+        "available_quantity": 15,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T00:44:26.750Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T00:44:26.858Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7432625640-suporte-teto-tv-32-40-42-43-48-49-55-56-samsung-lg-sony-cor-preto-_JM",
+        "thumbnail_id": "933006-MLA95958573454_102025",
+        "thumbnail": "http://http2.mlstatic.com/D_933006-MLA95958573454_102025-I.jpg",
+        "pictures": [
+          {
+            "id": "933006-MLA95958573454_102025",
+            "url": "http://http2.mlstatic.com/D_933006-MLA95958573454_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_933006-MLA95958573454_102025-O.jpg",
+            "size": "269x500",
+            "max_size": "647x1200",
+            "quality": ""
+          },
+          {
+            "id": "801351-MLA82469776497_022025",
+            "url": "http://http2.mlstatic.com/D_801351-MLA82469776497_022025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_801351-MLA82469776497_022025-O.jpg",
+            "size": "500x500",
+            "max_size": "1200x1200",
+            "quality": ""
+          },
+          {
+            "id": "994370-MLA96402110649_102025",
+            "url": "http://http2.mlstatic.com/D_994370-MLA96402110649_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_994370-MLA96402110649_102025-O.jpg",
+            "size": "103x500",
+            "max_size": "249x1200",
+            "quality": ""
+          },
+          {
+            "id": "717656-MLA109555836242_042026",
+            "url": "http://http2.mlstatic.com/D_717656-MLA109555836242_042026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_717656-MLA109555836242_042026-O.jpg",
+            "size": "500x472",
+            "max_size": "626x591",
+            "quality": ""
+          },
+          {
+            "id": "733587-MLA95958761870_102025",
+            "url": "http://http2.mlstatic.com/D_733587-MLA95958761870_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_733587-MLA95958761870_102025-O.jpg",
+            "size": "500x333",
+            "max_size": "1000x666",
+            "quality": ""
+          },
+          {
+            "id": "664463-MLA95958761874_102025",
+            "url": "http://http2.mlstatic.com/D_664463-MLA95958761874_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_664463-MLA95958761874_102025-O.jpg",
+            "size": "103x500",
+            "max_size": "249x1200",
+            "quality": ""
+          },
+          {
+            "id": "775955-MLA109556246328_042026",
+            "url": "http://http2.mlstatic.com/D_775955-MLA109556246328_042026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_775955-MLA109556246328_042026-O.jpg",
+            "size": "500x399",
+            "max_size": "644x515",
+            "quality": ""
+          },
+          {
+            "id": "621818-MLA99867377287_112025",
+            "url": "http://http2.mlstatic.com/D_621818-MLA99867377287_112025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_621818-MLA99867377287_112025-O.jpg",
+            "size": "500x407",
+            "max_size": "1200x978",
+            "quality": ""
+          },
+          {
+            "id": "761261-MLA96402050887_102025",
+            "url": "http://http2.mlstatic.com/D_761261-MLA96402050887_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_761261-MLA96402050887_102025-O.jpg",
+            "size": "104x500",
+            "max_size": "250x1200",
+            "quality": ""
+          },
+          {
+            "id": "723159-MLA109555806702_042026",
+            "url": "http://http2.mlstatic.com/D_723159-MLA109555806702_042026-O.webp",
+            "secure_url": "https://http2.mlstatic.com/D_723159-MLA109555806702_042026-O.webp",
+            "size": "500x487",
+            "max_size": "640x624",
+            "quality": ""
+          },
+          {
+            "id": "628038-MLA95958573490_102025",
+            "url": "http://http2.mlstatic.com/D_628038-MLA95958573490_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_628038-MLA95958573490_102025-O.jpg",
+            "size": "159x500",
+            "max_size": "382x1200",
+            "quality": ""
+          },
+          {
+            "id": "809652-MLA96402140559_102025",
+            "url": "http://http2.mlstatic.com/D_809652-MLA96402140559_102025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_809652-MLA96402140559_102025-O.jpg",
+            "size": "500x487",
+            "max_size": "1200x1169",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "2716081",
+            "value_name": "Multivisão",
+            "values": [
+              {
+                "id": "2716081",
+                "name": "Multivisão",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COMPATIBLE_SCREEN_TYPES",
+            "name": "Tipos de telas compatíveis",
+            "value_id": "20103107",
+            "value_name": "LCD:LED",
+            "values": [
+              {
+                "id": "20103107",
+                "name": "LCD:LED",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "8285237",
+            "value_name": "7896643440647",
+            "values": [
+              {
+                "id": "8285237",
+                "name": "7896643440647",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "65454983",
+            "value_name": "115 cm",
+            "values": [
+              {
+                "id": "65454983",
+                "name": "115 cm",
+                "struct": {
+                  "number": 115,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "INCLUDES_CABLE_ORGANIZER",
+            "name": "Inclui organizador de cabos",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "INCLUDES_INSTALLATION_KIT",
+            "name": "Inclui kit de instalação",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_ARTICULATED_MOUNT",
+            "name": "É articulado",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_FIXED_MOUNT",
+            "name": "É fixo",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_GAMER",
+            "name": "É gamer",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_INCLINABLE",
+            "name": "É inclinável",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_MOTORIZED",
+            "name": "É motorizada",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_SWIVELLING",
+            "name": "É giratório",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MATERIALS",
+            "name": "Materiais",
+            "value_id": "3325160",
+            "value_name": "Aço carbono",
+            "values": [
+              {
+                "id": "3325160",
+                "name": "Aço carbono",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MAX_SCREEN_SIZE",
+            "name": "Tamanho máximo da tela",
+            "value_id": "7634726",
+            "value_name": "56 \"",
+            "values": [
+              {
+                "id": "7634726",
+                "name": "56 \"",
+                "struct": {
+                  "number": 56,
+                  "unit": "\""
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MAX_WEIGHT_SUPPORTED",
+            "name": "Peso máximo suportado",
+            "value_id": "1073144",
+            "value_name": "35 kg",
+            "values": [
+              {
+                "id": "1073144",
+                "name": "35 kg",
+                "struct": {
+                  "number": 35,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MIN_SCREEN_SIZE",
+            "name": "Tamanho mínimo da tela",
+            "value_id": "7674122",
+            "value_name": "19 \"",
+            "values": [
+              {
+                "id": "7674122",
+                "name": "19 \"",
+                "struct": {
+                  "number": 19,
+                  "unit": "\""
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "10575178",
+            "value_name": "SKY100",
+            "values": [
+              {
+                "id": "10575178",
+                "name": "SKY100",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MOUNTING_PLACES",
+            "name": "Lugares de montagem",
+            "value_id": "7720909",
+            "value_name": "Teto",
+            "values": [
+              {
+                "id": "7720909",
+                "name": "Teto",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MPN",
+            "name": "MPN",
+            "value_id": "19945472",
+            "value_name": "60006145",
+            "values": [
+              {
+                "id": "19945472",
+                "name": "60006145",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ROTATION_ANGLE",
+            "name": "Ângulo de rotação",
+            "value_id": "8671387",
+            "value_name": "360°",
+            "values": [
+              {
+                "id": "8671387",
+                "name": "360°",
+                "struct": {
+                  "number": 360,
+                  "unit": "°"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK001288",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK001288",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "STANDARDS_VESA",
+            "name": "Padrões VESA",
+            "value_id": "3568440",
+            "value_name": "400x400",
+            "values": [
+              {
+                "id": "3568440",
+                "name": "400x400",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SUPPORTED_SCREENS_NUMBER",
+            "name": "Quantidade de telas suportadas",
+            "value_id": "9235769",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "9235769",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB23892377",
+        "domain_id": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "seller_custom_field": "VTK001288",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T00:44:26.961Z",
+        "last_updated": "2026-08-17T00:44:26.961Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

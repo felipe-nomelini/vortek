@@ -1,0 +1,575 @@
+{
+  "checked_at": "2026-08-17T12:54:56.578Z",
+  "product": {
+    "id": "f525b013-e64a-470c-a64d-77750eef6a47",
+    "sku": "VTK020904",
+    "nome": "Rack Piso 19\" Max Eletron 16u X 470mm Preto",
+    "marca": "MAX ELETRON",
+    "gtin": "7908060203368"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/334283",
+    "consulted_at": "2026-08-17T12:54:56.382Z",
+    "product": {
+      "produtoid": "334283",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 872.9,
+      "preco_crossdocking": 872.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 872.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Rack Piso 19\" Max Eletron 16u X 470mm Preto",
+      "titulo_curto": "Rack Piso 19\" Max Eletron 16u X 470mm Preto",
+      "categoriaid": "118324",
+      "categoria_nome": "Redes E Provedores/ Internet E Rede/ Rack",
+      "abc": null,
+      "ean11": "7908060203368",
+      "ncm": "94032090",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><span id=\"lblProduto\"><b>Bracket Mini Rack Padrão 19\" 16Us X 470 mm.</b></span></p><br />\r\nMaterial de ótima qualidade e durabilidade, confeccionado em aço estampado, tratado por fosfatização e pintado em tinta hibrida epóxi-pó na cor preta com secagem em forno de alta temperatura, o que garante excelente acabamento e resistência.<br />\r\n<p>O Bracket ou Mini Rack Padrão 19” é ideal para alojamento de switches, modems, roteadores, gravadores de dvd e equipamentos de rede em áreas de usuários ou outros locais que estes precisem ficar bem organizados e protegidos.</p><br />\r\n<p>Possui um plano de fixação para equipamentos (permite o uso de um segundo plano), porta frontal com abertura reversível sem o uso de Ferramentas, visor em acrílico translúcido e duas chaves para maior proteção e segurança. As suas laterais com fecho rápido facilitam a instalação e manutenção dos equipamentos. A entrada de cabos pode ser feita pelo topo ou pela base do Mini Rack (o fundo tem uma passagem de cabos extra). Seu teto está configurado para receber dois ventiladores de 5” (não inclusos).</p><br />\r\n<p>Garantia <br><br />\r\n  12 meses (Contra Defeitos de fabricação).</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MAX ELETRON",
+      "modelo": "",
+      "peso": 14.85,
+      "largura": 55,
+      "altura": 79,
+      "profundidade": 48,
+      "peso_embalagem": 14.85,
+      "largura_embalagem": 55,
+      "altura_embalagem": 79,
+      "profundidade_embalagem": 48,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/3/334283_67d2caf0dd647.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 12,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-12 10:38:41.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-12 13:21:16.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/334283_67d2caf0dd647.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_BRAND_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: BRAND,MODEL",
+    "foundValue": "MLB62474756",
+    "source": "ML catalog MLB62474756 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "BRAND",
+        "MODEL"
+      ],
+      "catalog_brand": "Crown",
+      "model": "Hawai",
+      "local_pack": null,
+      "catalog_pack": 1,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto"
+      ],
+      "catalog_colors": [],
+      "title_similarity": 0
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB62474756",
+      "catalog_product_id": "MLB62474756",
+      "domain_id": "MLB-PENS",
+      "name": "Caneta Esferográfica Crown Hawai Luxo Azul Traço 1mm Metal Violeta-escuro",
+      "parent_id": "MLB22763037",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3435",
+          "value_name": "Crown",
+          "values": [
+            {
+              "id": "3435",
+              "name": "Crown"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "2207583",
+          "value_name": "Hawai",
+          "values": [
+            {
+              "id": "2207583",
+              "name": "Hawai"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "18372788",
+          "value_name": "Hawai",
+          "values": [
+            {
+              "id": "18372788",
+              "name": "Hawai"
+            }
+          ]
+        },
+        {
+          "id": "EXTERIOR_COLOR",
+          "name": "Cor do exterior",
+          "value_id": "52047",
+          "value_name": "Violeta-escuro",
+          "values": [
+            {
+              "id": "52047",
+              "name": "Violeta-escuro"
+            }
+          ]
+        },
+        {
+          "id": "INK_COLOR",
+          "name": "Cor da tinta",
+          "value_id": "52028",
+          "value_name": "Azul",
+          "values": [
+            {
+              "id": "52028",
+              "name": "Azul"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "name": "Unidades por embalagem",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "PACKAGING_TYPE",
+          "name": "Tipo de embalagem",
+          "value_id": "131493",
+          "value_name": "Caixa",
+          "values": [
+            {
+              "id": "131493",
+              "name": "Caixa"
+            }
+          ]
+        },
+        {
+          "id": "PEN_STROKE_THICKNESS",
+          "name": "Espessura do traço",
+          "value_id": "18095100",
+          "value_name": "1 mm",
+          "values": [
+            {
+              "id": "18095100",
+              "name": "1 mm"
+            }
+          ]
+        },
+        {
+          "id": "PEN_TYPE",
+          "name": "Tipo de caneta",
+          "value_id": "930285",
+          "value_name": "Caneta esferográfica",
+          "values": [
+            {
+              "id": "930285",
+              "name": "Caneta esferográfica"
+            }
+          ]
+        },
+        {
+          "id": "TRACE_TYPE",
+          "name": "Tipo de ponta",
+          "value_id": "930288",
+          "value_name": "Média",
+          "values": [
+            {
+              "id": "930288",
+              "name": "Média"
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal",
+          "values": [
+            {
+              "id": "112648",
+              "name": "Metal"
+            }
+          ]
+        },
+        {
+          "id": "INK_TYPE",
+          "name": "Tipo de tinta",
+          "value_id": "930293",
+          "value_name": "À base de óleo",
+          "values": [
+            {
+              "id": "930293",
+              "name": "À base de óleo"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7816576",
+          "value_name": "15 cm",
+          "values": [
+            {
+              "id": "7816576",
+              "name": "15 cm"
+            }
+          ]
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "17862095",
+          "value_name": "1 mm",
+          "values": [
+            {
+              "id": "17862095",
+              "name": "1 mm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "16628723",
+          "value_name": "11 g",
+          "values": [
+            {
+              "id": "16628723",
+              "name": "11 g"
+            }
+          ]
+        },
+        {
+          "id": "IS_SUITABLE_FOR_ENGRAVING",
+          "name": "É adequada para gravação",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_CASE",
+          "name": "Inclui estojo",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "67236652",
+          "value_name": "7908060203368",
+          "values": [
+            {
+              "id": "67236652",
+              "name": "7908060203368"
+            }
+          ]
+        },
+        {
+          "id": "WITH_CARTRIDGE",
+          "name": "Com cartucho",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_GRIP",
+          "name": "Com grip",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_CAP",
+          "name": "Com tampa",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_CLIP",
+          "name": "Inclui clip",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_ENGRAVING",
+          "name": "Inclui gravação",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Caneta Crown Hawai Luxo é a escolha perfeita para quem busca elegância e conforto na escrita. Com um design sofisticado em azul-escuro, esta caneta esferográfica combina estilo e funcionalidade, tornando-a ideal para uso diário ou ocasiões especiais.\n\nSua tinta à base de óleo proporciona uma escrita suave e precisa, com uma espessura de traço de 1 mm que garante clareza em cada palavra. O corpo em metal confere durabilidade e um toque de classe, enquanto seu peso leve de 11 g a torna confortável para longas sessões de escrita.\n\nA Caneta Crown Hawai é adequada para gravação, permitindo personalizações que a tornam uma adição distinta ao seu material de escritório. Embalada em uma caixa elegante, é uma excelente opção para quem valoriza a apresentação e a qualidade em cada detalhe."
+      },
+      "pictures": [
+        {
+          "id": "904676-MLA98817619888_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_904676-MLA98817619888_112025-F.jpg",
+          "max_width": "1177",
+          "max_height": "1184"
+        },
+        {
+          "id": "638988-MLA98817581240_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_638988-MLA98817581240_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "648750-MLA98817668822_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_648750-MLA98817668822_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "781593-MLA99296262749_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_781593-MLA99296262749_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "687503-MLA98817668834_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_687503-MLA98817668834_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "827687-MLA99296252977_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_827687-MLA99296252977_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "620090-MLA99296396959_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_620090-MLA99296396959_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "735409-MLA99296320721_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_735409-MLA99296320721_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1057"
+        },
+        {
+          "id": "877096-MLA98817581288_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_877096-MLA98817581288_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "731892-MLA99296396977_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_731892-MLA99296396977_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-11-23T18:19:41Z",
+      "last_updated": "2026-07-17T01:33:26Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

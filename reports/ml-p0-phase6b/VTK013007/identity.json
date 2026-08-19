@@ -1,0 +1,438 @@
+{
+  "index": 2,
+  "sku": "VTK013007",
+  "started_at": "2026-08-17T00:06:36.425Z",
+  "local_time": "2026-08-16T21:06:36",
+  "expected_gtin": "7898640365176",
+  "product": {
+    "id": "0e7734e4-586c-4ab5-b65f-a79e96d3f604",
+    "sku": "VTK013007",
+    "nome": "Kit 10 Conectores P10 Stereo Metal Com Mola Wc 244 Wireconex",
+    "marca": "Wireconex",
+    "estoque": 100,
+    "custo": 49.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.19,
+    "peso_bruto": 0.19,
+    "largura": 4,
+    "altura": 12,
+    "profundidade": 10,
+    "gtin": "7898640365176",
+    "descricao": "Conector P10 TRS WC 244 Wireconex Indicado para montagem e manutenção de cabos de áudio estéreo ou balanceado, o Conector P10 TRS WC 244 da Wireconex oferece excelente qualidade de transmissão e encaixe preciso. Ideal para interligações entre mesas de som, interfaces, instrumentos musicais e demais equipamentos de áudio profissional, garante sinal estável e com baixa interferência. Com construção resistente e terminais para solda, proporciona montagem prática, fixação segura do cabo e maior durabilidade mesmo em aplicações de uso frequente. Especificações • Modelo: WC 244 • Marca: Wireconex • Tipo: Conector P10 TRS (1/4\") estéreo • Aplicação: Cabos de áudio estéreo ou balanceado • Construção: Corpo resistente com terminais para solda e sistema de fixação segura do cabo Robusto e confiável, o WC 244 é a escolha ideal para profissionais que buscam desempenho, segurança e excelente padrão de qualidade em conexões de áudio P10 TRS.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1eb165d7177fceee7f132d67f3e1e49b.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/7c2854794c1faac8c4c6244beedb3ed4.jpeg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9aadd9c38d90ad1acea20776bd2ddf72.jpeg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/669efe0aff290d5eaa2017fe7623d95c.jpeg"
+    ],
+    "categoria": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.983532+00:00",
+    "updated_at": "2026-08-16T20:05:24.892119+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "2813",
+    "dslite_ultima_sync": "2026-08-16T20:05:24.491+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8536.90.10",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "77711b84-ea0a-4eb2-9414-66a262b490ad",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "77711b84-ea0a-4eb2-9414-66a262b490ad",
+    "produto_id": "0e7734e4-586c-4ab5-b65f-a79e96d3f604",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2813",
+    "sku_fornecedor": "2813",
+    "custo": 49.5,
+    "estoque": 100,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:05:24.491+00:00",
+    "created_at": "2026-07-06T22:31:08.33707+00:00",
+    "updated_at": "2026-08-16T20:05:24.498+00:00",
+    "sku_oferta": "2813",
+    "nome": "Kit 10 Conectores P10 Stereo Metal Com Mola Wc 244 Wireconex",
+    "descricao": "Conector P10 TRS WC 244 Wireconex Indicado para montagem e manutenção de cabos de áudio estéreo ou balanceado, o Conector P10 TRS WC 244 da Wireconex oferece excelente qualidade de transmissão e encaixe preciso. Ideal para interligações entre mesas de som, interfaces, instrumentos musicais e demais equipamentos de áudio profissional, garante sinal estável e com baixa interferência. Com construção resistente e terminais para solda, proporciona montagem prática, fixação segura do cabo e maior durabilidade mesmo em aplicações de uso frequente. Especificações • Modelo: WC 244 • Marca: Wireconex • Tipo: Conector P10 TRS (1/4\") estéreo • Aplicação: Cabos de áudio estéreo ou balanceado • Construção: Corpo resistente com terminais para solda e sistema de fixação segura do cabo Robusto e confiável, o WC 244 é a escolha ideal para profissionais que buscam desempenho, segurança e excelente padrão de qualidade em conexões de áudio P10 TRS.",
+    "marca": "Wireconex",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1eb165d7177fceee7f132d67f3e1e49b.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/7c2854794c1faac8c4c6244beedb3ed4.jpeg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9aadd9c38d90ad1acea20776bd2ddf72.jpeg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/669efe0aff290d5eaa2017fe7623d95c.jpeg"
+    ],
+    "gtin": "7898640365176",
+    "ncm": "8536.90.10",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2813",
+    "consulted_at": "2026-08-17T00:06:37.331Z",
+    "product": {
+      "produtoid": "2813",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 49.5,
+      "preco_crossdocking": 49.5,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 49.5,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Kit 10 Conectores P10 Stereo Metal Com Mola Wc 244 Wireconex",
+      "titulo_curto": "Kit 10 Conectores P10 Stereo Metal Com Mola Wc 244 Wireconex",
+      "categoriaid": "289629",
+      "categoria_nome": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+      "abc": null,
+      "ean11": "7898640365176",
+      "ncm": "8536.90.10",
+      "descricao": "<p>Conector P10 TRS WC 244 Wireconex </p> <p>Indicado para montagem e manutenção de cabos de áudio estéreo ou balanceado, o Conector P10 TRS WC 244 da Wireconex oferece excelente qualidade de transmissão e encaixe preciso. Ideal para interligações entre mesas de som, interfaces, instrumentos musicais e demais equipamentos de áudio profissional, garante sinal estável e com baixa interferência.<br>Com construção resistente e terminais para solda, proporciona montagem prática, fixação segura do cabo e maior durabilidade mesmo em aplicações de uso frequente.</p> <p>Especificações<br>• Modelo: WC 244<br>• Marca: Wireconex<br>• Tipo: Conector P10 TRS (1/4\") estéreo<br>• Aplicação: Cabos de áudio estéreo ou balanceado<br>• Construção: Corpo resistente com terminais para solda e sistema de fixação segura do cabo</p> <p>Robusto e confiável, o WC 244 é a escolha ideal para profissionais que buscam desempenho, segurança e excelente padrão de qualidade em conexões de áudio P10 TRS.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Wireconex",
+      "modelo": "",
+      "peso": 0.19,
+      "largura": 4,
+      "altura": 12,
+      "profundidade": 10,
+      "peso_embalagem": 0.19,
+      "largura_embalagem": 4,
+      "altura_embalagem": 12,
+      "profundidade_embalagem": 10,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1eb165d7177fceee7f132d67f3e1e49b.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 217,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "897550538",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 18:37:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 18:37:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 100,
+      "tempo_cross": 0,
+      "estoque_total": 100,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1eb165d7177fceee7f132d67f3e1e49b.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/7c2854794c1faac8c4c6244beedb3ed4.jpeg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9aadd9c38d90ad1acea20776bd2ddf72.jpeg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/669efe0aff290d5eaa2017fe7623d95c.jpeg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "DSLITE supplier SKU + exact ML catalog GTIN",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2813",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898640365176"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB49706888",
+      "catalog_product_id": "MLB49706888",
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "name": "Conector TRS P10 Wireconex WC 244 Kit 10 Unidades Audio Instrumentos",
+      "parent_id": "MLB49706882",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "13660752",
+          "value_name": "Wireconex",
+          "values": [
+            {
+              "id": "13660752",
+              "name": "Wireconex"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "40833980",
+          "value_name": "Modelo Desconhecido",
+          "values": [
+            {
+              "id": "40833980",
+              "name": "Modelo Desconhecido"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52053",
+          "value_name": "Prateado",
+          "values": [
+            {
+              "id": "52053",
+              "name": "Prateado"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit",
+          "values": [
+            {
+              "id": "1359392",
+              "name": "Kit"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "150349",
+          "value_name": "10",
+          "values": [
+            {
+              "id": "150349",
+              "name": "10"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "46885538",
+          "value_name": "Conector",
+          "values": [
+            {
+              "id": "46885538",
+              "name": "Conector"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_TYPE",
+          "name": "Tipo de conector",
+          "value_id": "8180799",
+          "value_name": "RCA",
+          "values": [
+            {
+              "id": "8180799",
+              "name": "RCA"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_GENDER",
+          "name": "Gênero do conector",
+          "value_id": "2210104",
+          "value_name": "Macho",
+          "values": [
+            {
+              "id": "2210104",
+              "name": "Macho"
+            }
+          ]
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "name": "Material de revestimento",
+          "value_id": "5520057",
+          "value_name": "Metal",
+          "values": [
+            {
+              "id": "5520057",
+              "name": "Metal"
+            }
+          ]
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "name": "Dispositivos compatíveis",
+          "value_name": "Microfone, Monitor",
+          "values": [
+            {
+              "id": "15289676",
+              "name": "Microfone"
+            },
+            {
+              "id": "24159330",
+              "name": "Monitor"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "75081580",
+          "value_name": "WC244",
+          "values": [
+            {
+              "id": "75081580",
+              "name": "WC244"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "53233954",
+          "value_name": "7898640365176",
+          "values": [
+            {
+              "id": "53233954",
+              "name": "7898640365176"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O conector P10 TRS Wireconex, modelo WC 244, é a escolha perfeita para quem busca qualidade e confiabilidade na interconexão de áudio. Com um total de 10 unidades, você terá o suficiente para atender todas as suas necessidades, seja para instrumentos como violão, guitarra ou baixo, ou para equipamentos de áudio como mesas de som e microfones. Fabricado em metal, seu material de revestimento garante durabilidade e resistência, ideal para o uso em estúdios ou performances ao vivo. Este conector macho do tipo P10 é compatível com diversos dispositivos, oferecendo uma conexão estável e de alta qualidade. O modelo é novo e projetado para atender as exigências dos músicos e profissionais do áudio. Com o conector P10 TRS Wireconex, você terá a certeza de que suas conexões de áudio serão sempre seguras e eficazes, permitindo que você foque na sua música e performances."
+      },
+      "pictures": [
+        {
+          "id": "931172-MLA99484852166_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_931172-MLA99484852166_112025-F.jpg",
+          "max_width": "1190",
+          "max_height": "1200"
+        },
+        {
+          "id": "933745-MLA91526142774_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_933745-MLA91526142774_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1100"
+        },
+        {
+          "id": "946943-MLA84609842191_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_946943-MLA84609842191_052025-F.jpg",
+          "max_width": "826",
+          "max_height": "608"
+        },
+        {
+          "id": "792177-MLA84609937599_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_792177-MLA84609937599_052025-F.jpg",
+          "max_width": "837",
+          "max_height": "591"
+        },
+        {
+          "id": "694692-MLA84312514544_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_694692-MLA84312514544_052025-F.jpg",
+          "max_width": "830",
+          "max_height": "96"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-05-12T16:22:57Z",
+      "last_updated": "2026-03-25T04:25:06Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

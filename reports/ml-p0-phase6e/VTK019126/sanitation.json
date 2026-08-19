@@ -1,0 +1,10 @@
+{
+  "sku": "VTK019126",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category confidence is not HIGH for domain MLB-DOOR_AND_WINDOW_LOCKS",
+  "local_value": "7896637671330",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB28223714 + domain discovery",
+  "timestamp": "2026-08-17T12:55:39.963Z"
+}

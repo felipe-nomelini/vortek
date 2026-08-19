@@ -1,0 +1,216 @@
+{
+  "checked_at": "2026-08-17T12:54:10.508Z",
+  "product": {
+    "id": "4d070eba-1f9d-4bee-8fbd-7e1c483a84dc",
+    "sku": "VTK018729",
+    "nome": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+    "marca": "TURY",
+    "gtin": "7898096330209"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/264746",
+    "consulted_at": "2026-08-17T12:54:09.811Z",
+    "product": {
+      "produtoid": "264746",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 123.9,
+      "preco_crossdocking": 123.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 123.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:06.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:06.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+      "titulo_curto": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+      "categoriaid": "117463",
+      "categoria_nome": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+      "abc": null,
+      "ean11": "7898096330209",
+      "ncm": "85437099",
+      "descricao": "Proteção anti esmagamento<br />\r\nSubida e Descida expressa dos vidros<br />\r\nSubida e descida dos vidros via alarme<br />\r\nTemporização dos botões de comando<br />\r\nModo Fail Disparo do Alarme<br />\r\nModo Econômico Batery Saver",
+      "caracteristicas": "O módulo de automação de vidros elétricos com anti esmagamento TW2PT é utilizado nos vidros traseiros dos veículos FIAT. Este módulo possui um sistema de conectividade compatível com o sistema original dando maior praticidade a instalação, mantendo a originalidade do veículo<br />\r\n<br />\r\n",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "TURY",
+      "modelo": "",
+      "peso": 0.14,
+      "largura": 8,
+      "altura": 3.5,
+      "profundidade": 12.5,
+      "peso_embalagem": 0.14,
+      "largura_embalagem": 8,
+      "altura_embalagem": 3.5,
+      "profundidade_embalagem": 12.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/2/6/264746_67d2cae28e99f.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1217,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.999.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-04-29 19:39:41.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:56:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 5,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/2/6/264746_67d2cae28e99f.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_CATEGORY",
+    "reason": "category confidence is not HIGH for domain MLB-VEHICLE_ALARMS",
+    "sanitation": "CATEGORY_FIX_REQUIRED",
+    "source": "ML catalog MLB41368352 + domain discovery"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB41368352",
+      "catalog_product_id": "MLB41368352",
+      "domain_id": "MLB-VEHICLE_ALARMS",
+      "name": "Mod. Vidro Ae Tw2pt Fiat",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3636286",
+          "value_name": "Tury",
+          "values": [
+            {
+              "id": "3636286",
+              "name": "Tury"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "43087089",
+          "value_name": "TURY",
+          "values": [
+            {
+              "id": "43087089",
+              "name": "TURY"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "43087088",
+          "value_name": "7898096330209",
+          "values": [
+            {
+              "id": "43087088",
+              "name": "7898096330209"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": ""
+      },
+      "pictures": [
+        {
+          "id": "873125-MLA79454251482_102024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_873125-MLA79454251482_102024-F.jpg",
+          "max_width": "960",
+          "max_height": "578"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-10-02T08:36:23Z",
+      "last_updated": "2024-10-02T08:45:53Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

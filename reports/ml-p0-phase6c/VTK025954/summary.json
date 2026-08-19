@@ -1,0 +1,23 @@
+{
+  "index": 22,
+  "sku": "VTK025954",
+  "expected_gtin": "3045384363973",
+  "started_at": "2026-08-17T00:43:48.232Z",
+  "local_time": "2026-08-16T21:43:48",
+  "completed_at": "2026-08-17T00:43:48.262Z",
+  "elapsed_ms": 30,
+  "result": "BLOCK_GTIN_BRAND_CONFLICT",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "GTIN identifies Rochedo Trendy 6 L while local master brand is ARNO",
+  "sanitation": "GTIN_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

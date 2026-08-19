@@ -1,0 +1,16 @@
+{
+  "candidates": [
+    {
+      "domain_id": "MLB-ELECTRIC_GUITARS",
+      "domain_name": "Guitarras elétricas",
+      "classification": "SEMANTIC_MATCH",
+      "score": 100
+    },
+    {
+      "domain_id": "MLB-ELECTRIC_GUITARS",
+      "domain_name": "Guitarras elétricas",
+      "classification": "SEMANTIC_MATCH",
+      "score": 100
+    }
+  ]
+}

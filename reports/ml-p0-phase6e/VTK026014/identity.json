@@ -1,0 +1,173 @@
+{
+  "checked_at": "2026-08-17T12:56:49.177Z",
+  "product": {
+    "id": "0adbd893-32af-44f1-ac6d-d1ca44668266",
+    "sku": "VTK026014",
+    "nome": "Capa Chave Canivete Compatível Vw 3 B G5",
+    "marca": "R3a Automotive",
+    "gtin": ""
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4157",
+    "consulted_at": "2026-08-17T12:56:49.177Z",
+    "product": {
+      "produtoid": "4157",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 18.48,
+      "preco_crossdocking": 18.48,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 18.48,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-21 16:07:58.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-21 16:07:58.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Capa Chave Canivete Compatível Vw 3 B G5",
+      "titulo_curto": "Capa Chave Canivete Compatível Vw 3 B G5",
+      "categoriaid": "291505",
+      "categoria_nome": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+      "abc": null,
+      "ean11": "",
+      "ncm": "8529.90.90",
+      "descricao": "<p>CAPA CHAVE CANIVETE COMPATÍVEL VW 3 BOTÕES G5 VW301 (0074468168701)</p> <p>A capa para chave canivete VW301 é ideal para substituir carcaças desgastadas, quebradas ou danificadas, restaurando a aparência da chave e mantendo a funcionalidade dos componentes originais do veículo.</p> <p>Ficha técnica:<br>•    Modelo: VW301<br>•    Tipo: Capa/Carcaça para chave canivete<br>•    Compatível com veículos Volkswagen linha G5<br>•    Compatível com chave de 3 botões<br>•    Cor: Preta<br>•    Material resistente e durável<br>•    Sistema canivete retrátil<br>•    Excelente acabamento<br>•    Não acompanha placa eletrônica, bateria ou transponder</p> <p>Produzida com material de qualidade, a VW301 proporciona encaixe preciso e ótima durabilidade. É a solução ideal para renovar chaves com sinais de desgaste ou danos causados pelo uso diário, permitindo o reaproveitamento da eletrônica original. Uma alternativa prática, econômica e eficiente para manter sua chave com aparência de nova.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "R3a Automotive",
+      "modelo": "",
+      "peso": 0.04,
+      "largura": 3,
+      "altura": 7,
+      "profundidade": 1,
+      "peso_embalagem": 0.04,
+      "largura_embalagem": 3,
+      "altura_embalagem": 7,
+      "profundidade_embalagem": 1,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/678344dbae3313780eaab68cfc87c776.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 6,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "926020273",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-27 19:06:34.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-03 11:17:32.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 19,
+      "tempo_cross": 0,
+      "estoque_total": 19,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/678344dbae3313780eaab68cfc87c776.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/aee78be560c908b4950f94d94f303298.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1608e29dbef917887135df3e51784012.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9a92c988f788bef231b9d21568c4afb6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/183db0d215ea79f4a1c9b07a5ad2630f.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/351096b99a7379f756ad20400d9b175e.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7da9dfbd1af296ead8242c24987327c6.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "SOURCE_DEFERRED",
+    "reason": "GTIN absence is not a product failure; this SKU has no prior official identity proof sufficient for automatic publication",
+    "sanitation": "IDENTITY_FIX_REQUIRED",
+    "source": "local + DSLite supplier; official identity unresolved"
+  },
+  "catalog_results": []
+}

@@ -1,0 +1,332 @@
+{
+  "index": 10,
+  "sku": "VTK026000",
+  "started_at": "2026-08-16T23:46:02.485Z",
+  "local_time": "2026-08-16T20:46:02",
+  "expected_gtin": "6940651411517",
+  "product": {
+    "id": "f5d8608f-1a03-462e-8b6a-118f4a938bb4",
+    "sku": "VTK026000",
+    "nome": "Encordoamento Violão Aço 010 Light Sx",
+    "marca": "Sx",
+    "estoque": 100,
+    "custo": 20,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.02,
+    "peso_bruto": 0.02,
+    "largura": 10,
+    "altura": 1,
+    "profundidade": 13,
+    "gtin": "6940651411517",
+    "descricao": "ENCORDOAMENTO PARA VIOLÃO SX (SZSTA1EL) O Encordoamento SX SZSTA1EL Extra Light .010 foi desenvolvido para violonistas que buscam conforto, maciez ao tocar e excelente qualidade sonora. Fabricado com núcleo de aço e revestimento em bronze 80/20, proporciona um timbre brilhante, equilibrado e com ótima projeção. Seu calibre Extra Light reduz a tensão das cordas, tornando a execução mais leve e confortável, especialmente para iniciantes e músicos que tocam por longos períodos. Ficha Técnica • Marca: SX • Modelo: SZSTA1EL • Aplicação: Violão acústico • Número de Cordas: 6 • Calibre: .010 / .047 (Extra Light) • Material: Bronze 80/20 • Núcleo: Aço hexagonal de alto carbono • Tipo de Encordoamento: Round Wound • Tipo de Ponta: Ball End (ponta com bola) • Timbre: Brilhante, equilibrado e com ótima projeção Garanta já o Encordoamento SX SZSTA1EL e desfrute de mais conforto, estabilidade de afinação e qualidade sonora em suas apresentações, estudos e gravações. Uma excelente opção para quem procura durabilidade, tocabilidade suave e ótimo custo-benefício para o dia a dia.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/138585471d9c310c1e63bbc48af7bfb9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ce184936bae350572e5b2a4d60225a01.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/34cf885dd3eaf8acec29cbac5e95c44c.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Cordas Para Instrumentos",
+    "ml_item_id": null,
+    "created_at": "2026-08-12T22:52:31.370953+00:00",
+    "updated_at": "2026-08-16T20:05:24.85013+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4242",
+    "dslite_ultima_sync": "2026-08-16T20:05:24.491+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.30.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "32233833-804a-4a02-85ab-a114ec21708f",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "32233833-804a-4a02-85ab-a114ec21708f",
+    "produto_id": "f5d8608f-1a03-462e-8b6a-118f4a938bb4",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4242",
+    "sku_fornecedor": "4242",
+    "custo": 20,
+    "estoque": 100,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:05:24.491+00:00",
+    "created_at": "2026-08-12T22:52:31.517601+00:00",
+    "updated_at": "2026-08-16T20:05:24.498+00:00",
+    "sku_oferta": "4242",
+    "nome": "Encordoamento Violão Aço 010 Light Sx",
+    "descricao": "ENCORDOAMENTO PARA VIOLÃO SX (SZSTA1EL) O Encordoamento SX SZSTA1EL Extra Light .010 foi desenvolvido para violonistas que buscam conforto, maciez ao tocar e excelente qualidade sonora. Fabricado com núcleo de aço e revestimento em bronze 80/20, proporciona um timbre brilhante, equilibrado e com ótima projeção. Seu calibre Extra Light reduz a tensão das cordas, tornando a execução mais leve e confortável, especialmente para iniciantes e músicos que tocam por longos períodos. Ficha Técnica • Marca: SX • Modelo: SZSTA1EL • Aplicação: Violão acústico • Número de Cordas: 6 • Calibre: .010 / .047 (Extra Light) • Material: Bronze 80/20 • Núcleo: Aço hexagonal de alto carbono • Tipo de Encordoamento: Round Wound • Tipo de Ponta: Ball End (ponta com bola) • Timbre: Brilhante, equilibrado e com ótima projeção Garanta já o Encordoamento SX SZSTA1EL e desfrute de mais conforto, estabilidade de afinação e qualidade sonora em suas apresentações, estudos e gravações. Uma excelente opção para quem procura durabilidade, tocabilidade suave e ótimo custo-benefício para o dia a dia.",
+    "marca": "Sx",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/138585471d9c310c1e63bbc48af7bfb9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ce184936bae350572e5b2a4d60225a01.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/34cf885dd3eaf8acec29cbac5e95c44c.jpg"
+    ],
+    "gtin": "6940651411517",
+    "ncm": "9209.30.00",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4242",
+    "consulted_at": "2026-08-16T23:46:02.839Z",
+    "product": {
+      "produtoid": "4242",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 20,
+      "preco_crossdocking": 20,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 20,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-10 14:15:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-10 14:15:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Encordoamento Violão Aço 010 Light Sx",
+      "titulo_curto": "Encordoamento Violão Aço 010 Light Sx",
+      "categoriaid": "289607",
+      "categoria_nome": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Cordas Para Instrumentos",
+      "abc": null,
+      "ean11": "6940651411517",
+      "ncm": "9209.30.00",
+      "descricao": "<p>ENCORDOAMENTO PARA VIOLÃO SX (SZSTA1EL)</p> <p>O Encordoamento SX SZSTA1EL Extra Light .010 foi desenvolvido para violonistas que buscam conforto, maciez ao tocar e excelente qualidade sonora. Fabricado com núcleo de aço e revestimento em bronze 80/20, proporciona um timbre brilhante, equilibrado e com ótima projeção. Seu calibre Extra Light reduz a tensão das cordas, tornando a execução mais leve e confortável, especialmente para iniciantes e músicos que tocam por longos períodos.</p> <p>Ficha Técnica<br>•    Marca: SX<br>•    Modelo: SZSTA1EL<br>•    Aplicação: Violão acústico<br>•    Número de Cordas: 6<br>•    Calibre: .010 / .047 (Extra Light)<br>•    Material: Bronze 80/20<br>•    Núcleo: Aço hexagonal de alto carbono<br>•    Tipo de Encordoamento: Round Wound<br>•    Tipo de Ponta: Ball End (ponta com bola)<br>•    Timbre: Brilhante, equilibrado e com ótima projeção</p> <p>Garanta já o Encordoamento SX SZSTA1EL e desfrute de mais conforto, estabilidade de afinação e qualidade sonora em suas apresentações, estudos e gravações. Uma excelente opção para quem procura durabilidade, tocabilidade suave e ótimo custo-benefício para o dia a dia.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Sx",
+      "modelo": "",
+      "peso": 0.02,
+      "largura": 10,
+      "altura": 1,
+      "profundidade": 13,
+      "peso_embalagem": 0.02,
+      "largura_embalagem": 10,
+      "altura_embalagem": 1,
+      "profundidade_embalagem": 13,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/138585471d9c310c1e63bbc48af7bfb9.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 5,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "926214902",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-23 18:35:54.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-23 18:35:54.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 100,
+      "tempo_cross": 0,
+      "estoque_total": 107,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/138585471d9c310c1e63bbc48af7bfb9.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ce184936bae350572e5b2a4d60225a01.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/34cf885dd3eaf8acec29cbac5e95c44c.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_CATALOG_IDENTITY",
+  "configured_reason": "catalog_identifies_acoustic_set_with_model_szste1sl_which_external_evidence_assigns_to_electric_009_042_set",
+  "evidence": {
+    "manufacturer_or_official": null,
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4242",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=6940651411517"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB75102536",
+      "catalog_product_id": "MLB75102536",
+      "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+      "name": "Encordoamento Violao Sx Extra Light 010 + Cordas Extras",
+      "parent_id": "MLB75102535",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15158",
+          "value_name": "SX",
+          "values": [
+            {
+              "id": "15158",
+              "name": "SX"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "66329564",
+          "value_name": "SZSTE1SL",
+          "values": [
+            {
+              "id": "66329564",
+              "name": "SZSTE1SL"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "15312679",
+          "value_name": "Violão acústico",
+          "values": [
+            {
+              "id": "15312679",
+              "name": "Violão acústico"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "84382401",
+          "value_name": "06940651411517",
+          "values": [
+            {
+              "id": "84382401",
+              "name": "06940651411517"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Encordoamento Violão SX Extra Light 010 é desenvolvido para músicos que buscam experiência sonora aprimorada e conforto ao tocar. Com tensão leve e toque suave, as cordas oferecem sonoridade com brilho nítido e claro, indicado para estilos como folk, pop e gêneros que exigem precisão e delicadeza.\n\nO modelo SZSTE1SL da marca SX possui características voltadas para durabilidade e resistência. O conjunto inclui cordas extras para manutenção. \n\nEspecificações:\n- Modelo: SZSTE1SL\n- Calibre: 010 (Extra Light)\n- Aplicação: Violão\n- Incluso: Cordas extras para reposição"
+      },
+      "pictures": [
+        {
+          "id": "714356-MLA113036253420_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_714356-MLA113036253420_072026-F.jpg",
+          "max_width": "656",
+          "max_height": "949"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2026-07-07T19:34:43Z",
+      "last_updated": "2026-07-07T19:47:33Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

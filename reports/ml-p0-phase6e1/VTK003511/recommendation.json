@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Extensao 2x0,75x3,0m Pto",
+    "supplier_category": "Eletronica/ Extensão/ Cordao/ Prolongador/ Extensão",
+    "supplier_brand": "MEGATRON",
+    "supplier_gtin": "7899278900982",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/361347",
+    "captured_at": "2026-08-17T12:55:02.016Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

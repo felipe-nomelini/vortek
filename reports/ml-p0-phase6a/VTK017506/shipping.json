@@ -1,0 +1,32 @@
+{
+  "dimensions": "14x14x14,322",
+  "source": "DSLITE_SUPPLIER_PACKAGE",
+  "pre_item": {
+    "coverage": {
+      "all_country": {
+        "list_cost": 15.45,
+        "currency_id": "BRL",
+        "billable_weight": 458,
+        "discount": {
+          "rate": 0.5,
+          "type": "mandatory",
+          "promoted_amount": 30.9
+        }
+      }
+    }
+  },
+  "post_item": {
+    "coverage": {
+      "all_country": {
+        "list_cost": 18.35,
+        "currency_id": "BRL",
+        "billable_weight": 2352,
+        "discount": {
+          "rate": 0.5,
+          "type": "mandatory",
+          "promoted_amount": 36.7
+        }
+      }
+    }
+  }
+}

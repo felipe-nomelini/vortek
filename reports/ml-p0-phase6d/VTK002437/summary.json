@@ -1,0 +1,23 @@
+{
+  "index": 25,
+  "sku": "VTK002437",
+  "expected_gtin": "7898946771152",
+  "started_at": "2026-08-17T01:14:17.025Z",
+  "local_time": "2026-08-16T22:14:17",
+  "completed_at": "2026-08-17T01:14:18.244Z",
+  "elapsed_ms": 1219,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE",
+  "item_id": null,
+  "catalog_product_id": "MLB35894914",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "missing category-required attributes: MODEL",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

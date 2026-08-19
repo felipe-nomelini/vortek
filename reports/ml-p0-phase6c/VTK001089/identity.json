@@ -1,0 +1,532 @@
+{
+  "checked_at": "2026-08-17T00:44:15.005Z",
+  "product": {
+    "id": "de613369-7204-430c-aa4a-c0ddf6a7a31d",
+    "sku": "VTK001089",
+    "nome": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Preto/Turtle",
+    "marca": "GIANNINI",
+    "gtin": "7890443020962"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/65441",
+    "consulted_at": "2026-08-17T00:44:14.809Z",
+    "product": {
+      "produtoid": "65441",
+      "produtoid_empresa": "HYX65441",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 824.14,
+      "preco_crossdocking": 824.14,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 824.14,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-08 18:16:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Preto/Turtle",
+      "titulo_curto": "C BAIXO GIANNINI GB100 PT ESCUDO TURTLE",
+      "categoriaid": "292376",
+      "categoria_nome": "Instrumentos Musicais / Cordas / Baixos",
+      "abc": "B",
+      "ean11": "7890443020962",
+      "ncm": "9207.90.10",
+      "descricao": "O Contrabaixo Giannini GB-100 Jazz Bass é ideal para contrabaixistas que estão iniciando suas carreiras. Além do design anatômico e moderno, também oferece uma captação com maior qualidade. Possui estilo Jazz Bass, tarraxas Open Gear cromadas, que são estáveis e seguras na afinação, e, dois captadores que produzem graves bem encorpados e controlados, além de agudos mais claros. <br/> <br/> A Giannini nasceu há mais de 120 anos, tendo sua história unida a da música brasileira a empresa se tornou uma das mais tradicionais marcas de instrumentos musicais existentes no Brasil. <br/> <br/> O crescimento da marca a levou a se tornar uma referência, principalmente em instrumentos acústicos. Até hoje sua produção e importação aliam a eficiente técnica artesanal ao que há de mais moderno em tecnologia industrial. Seus produtos passam por um rígido controle de qualidade e já saem das fábricas impregnados com a credibilidade e os cuidados que são característicos da marca desde 1900.",
+      "caracteristicas": "Tarraxas:Open Gear<br>Trastes:20<br>Controles:2 volumes e 1 tonalidade<br>Escudo:Turtle<br>Cordas:4 Cordas em Aço<br>Corpo:Poplar Maciço<br>Cor:Preto/Turtle<br>Acabamento:Verniz brilhante<br>Braço:Maple<br>Escala:Rosewood<br>Captadores:2 J com ímãs cerâmicos<br>Pesquisa:contrabaixo|eletrico|4|cordas|gb100|gb-100|gb 100|giannini|turtle<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "GIANNINI",
+      "modelo": "GB-100",
+      "peso": 5,
+      "largura": 45,
+      "altura": 7.5,
+      "profundidade": 124,
+      "peso_embalagem": 5,
+      "largura_embalagem": 45,
+      "altura_embalagem": 7.5,
+      "profundidade_embalagem": 124,
+      "link": "http://www.hayamax.com.br/contrabaixo-giannini-gb-100-jazz-bass-eletrico-passivo-preto-turtle",
+      "link_imagem": "https://static.hayapek.com.br/produtos/65441/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 24760,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-07 09:51:06.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 1,
+      "estoque_total": 16,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/65441/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/65441/550/2.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB23013100",
+      "catalog_product_id": "MLB23013100",
+      "domain_id": "MLB-BASS_GUITARS",
+      "name": "Contrabaixo Giannini GB100 Jazz Bass 4 Cordas Preto Tortoise",
+      "parent_id": "MLB24540849",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "45321",
+          "value_name": "Giannini",
+          "values": [
+            {
+              "id": "45321",
+              "name": "Giannini"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "44623",
+          "value_name": "GB",
+          "values": [
+            {
+              "id": "44623",
+              "name": "GB"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "20891192",
+          "value_name": "GB100 BK/WH",
+          "values": [
+            {
+              "id": "20891192",
+              "name": "GB100 BK/WH"
+            }
+          ]
+        },
+        {
+          "id": "BASS_GUITAR_TYPE",
+          "name": "Tipo de baixo",
+          "value_id": "1131566",
+          "value_name": "Elétrico",
+          "values": [
+            {
+              "id": "1131566",
+              "name": "Elétrico"
+            }
+          ]
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "name": "Orientação da mão",
+          "value_id": "96533",
+          "value_name": "Destro",
+          "values": [
+            {
+              "id": "96533",
+              "name": "Destro"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "116435",
+          "value_name": "Black",
+          "values": [
+            {
+              "id": "116435",
+              "name": "Black"
+            }
+          ]
+        },
+        {
+          "id": "BODY_FINISH",
+          "name": "Acabamento do corpo",
+          "value_id": "1131573",
+          "value_name": "Envernizado",
+          "values": [
+            {
+              "id": "1131573",
+              "name": "Envernizado"
+            }
+          ]
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "5119",
+          "value_name": "4",
+          "values": [
+            {
+              "id": "5119",
+              "name": "4"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "BODY_DEPTH",
+          "name": "Profundidade do corpo",
+          "value_id": "27712663",
+          "value_name": "10 cm",
+          "values": [
+            {
+              "id": "27712663",
+              "name": "10 cm"
+            }
+          ]
+        },
+        {
+          "id": "BODY_WIDTH",
+          "name": "Largura do corpo",
+          "value_id": "26160463",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "26160463",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "BODY_LENGTH",
+          "name": "Comprimento do corpo",
+          "value_id": "25481981",
+          "value_name": "130 cm",
+          "values": [
+            {
+              "id": "25481981",
+              "name": "130 cm"
+            }
+          ]
+        },
+        {
+          "id": "SCALE_LENGTH",
+          "name": "Comprimento da escala",
+          "value_id": "18735862",
+          "value_name": "255 mm",
+          "values": [
+            {
+              "id": "18735862",
+              "name": "255 mm"
+            }
+          ]
+        },
+        {
+          "id": "ORIGIN",
+          "name": "Origem",
+          "value_id": "96381",
+          "value_name": "China",
+          "values": [
+            {
+              "id": "96381",
+              "name": "China"
+            }
+          ]
+        },
+        {
+          "id": "BODY_WOOD_TYPE",
+          "name": "Tipo de madeira do corpo",
+          "value_id": "3647513",
+          "value_name": "Álamo",
+          "values": [
+            {
+              "id": "3647513",
+              "name": "Álamo"
+            }
+          ]
+        },
+        {
+          "id": "NECK_WOOD_TYPE",
+          "name": "Tipo de madeira do braço",
+          "value_id": "1131577",
+          "value_name": "Madeira de bordo",
+          "values": [
+            {
+              "id": "1131577",
+              "name": "Madeira de bordo"
+            }
+          ]
+        },
+        {
+          "id": "FINGERBOARD_MATERIAL_TYPE",
+          "name": "Tipo de material do diapasão",
+          "value_id": "36097094",
+          "value_name": "aço",
+          "values": [
+            {
+              "id": "36097094",
+              "name": "aço"
+            }
+          ]
+        },
+        {
+          "id": "BRIDGE_TYPE",
+          "name": "Tipo de ponte",
+          "value_id": "36097098",
+          "value_name": "aço",
+          "values": [
+            {
+              "id": "36097098",
+              "name": "aço"
+            }
+          ]
+        },
+        {
+          "id": "PICKUPS_TYPE",
+          "name": "Tipo de captadores",
+          "value_id": "36097097",
+          "value_name": "aço",
+          "values": [
+            {
+              "id": "36097097",
+              "name": "aço"
+            }
+          ]
+        },
+        {
+          "id": "PICKUP_EQUALIZATION_TYPE",
+          "name": "Tipo de equalização do captadores",
+          "value_id": "4962975",
+          "value_name": "Passivo",
+          "values": [
+            {
+              "id": "4962975",
+              "name": "Passivo"
+            }
+          ]
+        },
+        {
+          "id": "NUMBER_OF_PICKUPS",
+          "name": "Quantidade de captadores",
+          "value_id": "18569350",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "18569350",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "FRETS_NUMBER",
+          "name": "Quantidade de trastes",
+          "value_id": "1090726",
+          "value_name": "20",
+          "values": [
+            {
+              "id": "1090726",
+              "name": "20"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "18825734",
+          "value_name": "7890443020962",
+          "values": [
+            {
+              "id": "18825734",
+              "name": "7890443020962"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "name": "Inclui acessórios",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "36097095",
+          "value_name": "chave afinação",
+          "values": [
+            {
+              "id": "36097095",
+              "name": "chave afinação"
+            }
+          ]
+        },
+        {
+          "id": "NECK_SHAPE",
+          "name": "Forma do braço",
+          "value_id": "1131585",
+          "value_name": "C",
+          "values": [
+            {
+              "id": "1131585",
+              "name": "C"
+            }
+          ]
+        },
+        {
+          "id": "PICKUP_CONFIGURATION",
+          "name": "Configuração dos captadores",
+          "value_id": "110291",
+          "value_name": "SS",
+          "values": [
+            {
+              "id": "110291",
+              "name": "SS"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "BAIXO GIANNINI JAZZ BASS 4 CORDAS PASSIVO PRETO / TORTOISE\n\nA série Standard traz modelos de guitarra e contra-baixo, com estilos Strato e diferentes configurações de captação, além de contra-baixos estilo Jazz Bazz, com diferentes tipos de captação e circuitos.\nO modelo GB-100 possui corpo em Poplar maciço e braço em maple satinado com tensor bi-direcional.\n\nESPECIFICAÇÕES:\n- Cor: Black (BK)\n- Corpo: Poplar maciço\n- Braço: Maple satinado com tensor bi-direcional\n- Escala: Techwood\n- Escudo: Tortoise (TT)\n- Comprimento da escala: 864 mm\n- Trastes: 20 trastes em alpaca\n- Ponte: Cromada JB standard\n- Tarraxas: Open gear cromada standard Giannini, 4L\n- Pestana: ABS na cor marfim\n- Largura da pestana: 42 mm\n- Captadores: 2 captadores estilo JB com ímãs cerâmicos\n- Controles: 2 volumes/1 tone\n- Cordas: Aço .045\n- Acabamento: Verniz brilhante\n- Tamanho total: 119 cm\n- Acompanha: Chaves para ajuste de tensor/ponte e cabo P-10"
+      },
+      "pictures": [
+        {
+          "id": "861578-MLA99887268907_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_861578-MLA99887268907_112025-F.jpg",
+          "max_width": "1122",
+          "max_height": "1200"
+        },
+        {
+          "id": "937167-MLU74181753659_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_937167-MLU74181753659_012024-F.jpg",
+          "max_width": "317",
+          "max_height": "1193"
+        },
+        {
+          "id": "907272-MLU74051945458_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_907272-MLU74051945458_012024-F.jpg",
+          "max_width": "300",
+          "max_height": "1197"
+        },
+        {
+          "id": "775519-MLU78959205678_092024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_775519-MLU78959205678_092024-F.jpg",
+          "max_width": "1044",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-05-03T05:00:56Z",
+      "last_updated": "2026-07-24T12:56:04Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

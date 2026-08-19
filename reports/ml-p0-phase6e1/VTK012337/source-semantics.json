@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:53.725Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "Bori",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2717",
+    "captured_at": "2026-08-17T12:56:48.044Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "221793cc-92e9-456e-9bfa-9de8bc6d5586",
+    "produto_id": "e6b1f9d9-cb95-4695-ad62-b9593259ae60",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2717",
+    "sku_fornecedor": "2717",
+    "custo": 10,
+    "estoque": 20,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.02+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.028+00:00",
+    "sku_oferta": "2717",
+    "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+    "descricao": "PALHETA BORI GRL AT-R16138 DRIP GOTA 3,00 MM (AZUL) R21020 10UN A Palheta Bori GRL AT-R16138 Drip Gota 3,00 mm (Azul) R21020 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais especificações: Características Principais: • Modelo: Drip Gota • Código do Fabricante: R21020 • Espessura: 3,00 mm • Material: Policarbonato (Resina de Engenharia) • Cor: Azul Transparente • Acabamento: Alto Brilho • Dimensões: • Largura: 21 mm • Altura: 26 mm • Peso: 0,60 g Design e Funcionalidade: Ponta Fina com Ranhuras Texturizadas: Proporciona maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Fina: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto e Borda Arredondada: Ideais para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori Drip Gota de 3,00 mm na cor azul.",
+    "marca": "Bori",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/46d434a443951f75985dca8cd61ec699.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/91ae93724d41146041c547b3cf982da3.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2429d64c0dc8b8cc44c453a65a9df000.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/ddcf57a8af0c94788477eeec8515db42.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.92.00",
+    "cest": null
+  }
+}

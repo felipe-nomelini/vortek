@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-08-17T14:15:41.574Z",
+  "product": {
+    "id": "69df5c41-2a36-4f2c-bcb1-c563df1d92d8",
+    "sku": "VTK001439",
+    "nome": "Apoio de Braço Esquerdo Core Loft Grey ThunderX3",
+    "marca": "THUNDERX3",
+    "estoque": 5,
+    "custo": 340.71,
+    "ml_fee": 0.17,
+    "ml_shipping": 30.75,
+    "custom_price": 534.89,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.61,
+    "peso_bruto": 1.61,
+    "largura": 30,
+    "altura": 26.5,
+    "profundidade": 37,
+    "gtin": "7890000797726",
+    "descricao": "O Apoio de Braço Esquerdo Core Loft Grey da ThunderX3 é um produto original e ideal para a reposição das nossas cadeiras, oferecendo conforto e compatibilidade perfeita com o seu equipamento. • Modelos compatíveis: Core Loft Grey • Cor: Cinza",
+    "imagens": [],
+    "categoria": "Peças De Reposição / Peças De Reposição / Peças De Reposição",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:15:40.943792+00:00",
+    "updated_at": "2026-08-17T14:01:15.340897+00:00",
+    "dslite_fornecedor_id": "2",
+    "dslite_produto_id": "79772",
+    "dslite_ultima_sync": "2026-08-17T14:01:15.146+00:00",
+    "fornecedor": "HAYAMAX-PR",
+    "ncm": "9401.99.00",
+    "cest": null,
+    "origem_fiscal": "1",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "f06d34dd-180b-4bd0-af62-1ac883164255",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "computing",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

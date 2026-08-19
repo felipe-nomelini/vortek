@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075856705",
+      "local": "MLB5075856705",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001246",
+      "local": "VTK001246",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "67b24205-6321-479c-8e2c-e4f68c4326f8",
+      "local": "67b24205-6321-479c-8e2c-e4f68c4326f8",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Suporte Para Caixa De Som Ask Cp10 Articulado Cinza-escuro",
+      "local": "Suporte Para Caixa De Som Ask Cp10 Articulado Cinza-escuro",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 289.9,
+      "local": 289.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075856705-suporte-para-caixa-de-som-ask-cp10-articulado-cinza-escuro-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075856705-suporte-para-caixa-de-som-ask-cp10-articulado-cinza-escuro-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

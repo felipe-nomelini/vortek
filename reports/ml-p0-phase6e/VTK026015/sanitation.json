@@ -1,0 +1,10 @@
+{
+  "sku": "VTK026015",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "GTIN absence is not a product failure; this SKU has no prior official identity proof sufficient for automatic publication",
+  "local_value": "",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "local + DSLite supplier; official identity unresolved",
+  "timestamp": "2026-08-17T12:56:49.448Z"
+}

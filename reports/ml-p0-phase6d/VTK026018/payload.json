@@ -1,0 +1,108 @@
+{
+  "payload": {
+    "family_name": "Suporte Parede Instrumentos Saty SPG20",
+    "category_id": "MLB278064",
+    "catalog_product_id": "MLB27048509",
+    "catalog_listing": true,
+    "price": 179.9,
+    "currency_id": "BRL",
+    "available_quantity": 10,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/55e2d6ecd3ed19581d5eee56d36bc2d7.jpeg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "5451933",
+        "value_name": "Saty"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24289906",
+        "value_name": "SPG-20"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "11821526",
+        "value_name": "Preto"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "1233288",
+        "value_name": "De parede"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENTS",
+        "value_id": "2106570",
+        "value_name": "Guitarra"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "112648",
+        "value_name": "Metal"
+      },
+      {
+        "id": "INSTRUMENT_CAPACITY",
+        "value_id": "24276403",
+        "value_name": "1"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "121923",
+        "value_name": "18 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "1018574",
+        "value_name": "21 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "3001",
+        "value_name": "9 cm"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "1125599",
+        "value_name": "5 kg"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "24289924",
+            "name": "7898572860602"
+          },
+          {
+            "id": "41480486",
+            "name": "7804492667535"
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026018"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026018"
+  },
+  "sha256": "40d2699eb514ad88ae7e27bcb0a02e7757154aacb80b215527591be1762a429a",
+  "family_name_sha256": "38ec093565e4cf4c52ca5b402ea67209ca965c65fe3cdc80b9e911aaab5c4e8e",
+  "title_absent": true,
+  "description_absent": true
+}

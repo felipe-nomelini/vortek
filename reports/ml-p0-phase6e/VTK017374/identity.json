@@ -1,0 +1,163 @@
+{
+  "checked_at": "2026-08-17T12:56:34.596Z",
+  "product": {
+    "id": "ba2f906b-b82c-41c2-93a8-4b85f62a6270",
+    "sku": "VTK017374",
+    "nome": "Cooler Gamer Evus F-12fix Fan 12cm Com Led",
+    "marca": "EVUS",
+    "gtin": ""
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381522",
+    "consulted_at": "2026-08-17T12:56:34.596Z",
+    "product": {
+      "produtoid": "381522",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 17.63,
+      "preco_crossdocking": 17.63,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 17.63,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cooler Gamer Evus F-12fix Fan 12cm Com Led",
+      "titulo_curto": "Cooler Gamer Evus F-12fix Fan 12cm Com Led",
+      "categoriaid": "118158",
+      "categoria_nome": "Informatica/ Perifericos/ Cooler",
+      "abc": null,
+      "ean11": "",
+      "ncm": "84145990",
+      "descricao": "O Cooler Fan para gabinete F-12FIX proporciona mais iluminação e desempenho para o seu setup. Seu LED de cores fixas promove a turbinada que estava faltando em seu gabinete.<br />\r\n<br />\r\nCom alta tecnologia em seu desenvolvimento, seu ruído é quase imperceptível, possui alta durabilidade e ótima iluminação em LED.<br />\r\n<br />\r\n<br />\r\n<br />\r\n*Imagens meramente ilustrativas.",
+      "caracteristicas": "Dimensões: 120 * 120 * 25mm<br />\r\n<br />\r\nConector: Molex<br />\r\n<br />\r\nTensão nominal: 12V<br />\r\n<br />\r\nCorrente nominal: 0.3A<br />\r\n<br />\r\nVelocidade nominal: 1000rpm<br />\r\n<br />\r\nFluxo de ar: 35.8CFM<br />\r\n<br />\r\nMaterial do Fan: Plástico + led<br />\r\n<br />\r\nRuído: 19,6 dBA<br />\r\n<br />\r\nTipo de rolamento: hidráulico<br />\r\n<br />\r\nTempo de vida: 60000 horas<br />\r\n<br />\r\nComprimento do cabo: 420mm<br />\r\n<br />\r\nCores Led: 5 cores fixas (quais são as cores)<br />\r\n<br />\r\nPeso líquido: 0.13KGS<br />\r\n<br />\r\nPeso com embalagem: 0.15KGS<br />\r\n<br />\r\n <br />\r\n<br />\r\nCÓD de barras 7898597133118<br />\r\n<br />\r\nNCM: 84145990",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "EVUS",
+      "modelo": "",
+      "peso": 0.154,
+      "largura": 12.5,
+      "altura": 2.5,
+      "profundidade": 18,
+      "peso_embalagem": 0.154,
+      "largura_embalagem": 12.5,
+      "altura_embalagem": 2.5,
+      "profundidade_embalagem": 18,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3e210.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1525,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.088.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 4,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-11 18:44:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-11 18:44:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 2766,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3e210.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3ed28.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3f4b3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f3fb3c.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/381522_67d2cb0f40187.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "SOURCE_DEFERRED",
+    "reason": "GTIN absence is not a product failure; this SKU has no prior official identity proof sufficient for automatic publication",
+    "sanitation": "IDENTITY_FIX_REQUIRED",
+    "source": "local + DSLite supplier; official identity unresolved"
+  },
+  "catalog_results": []
+}

@@ -1,0 +1,487 @@
+{
+  "checked_at": "2026-08-17T01:16:07.069Z",
+  "product": {
+    "id": "4a5919a1-7059-4274-8fd1-3b9c5ce927cf",
+    "sku": "VTK002521",
+    "nome": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Sunburst/Turtle",
+    "marca": "GIANNINI",
+    "gtin": "7890443020955"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/65440",
+    "consulted_at": "2026-08-17T01:16:06.871Z",
+    "product": {
+      "produtoid": "65440",
+      "produtoid_empresa": "HYX65440",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 797.23,
+      "preco_crossdocking": 797.23,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 797.23,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Contrabaixo Giannini GB-100 Jazz Bass Elétrico Passivo Sunburst/Turtle",
+      "titulo_curto": "C BAIXO GIANNINI GB100 SBT ESC TURTLE",
+      "categoriaid": "292376",
+      "categoria_nome": "Instrumentos Musicais / Cordas / Baixos",
+      "abc": "B",
+      "ean11": "7890443020955",
+      "ncm": "9207.90.10",
+      "descricao": "O Contrabaixo Giannini GB-100 Jazz Bass é ideal para contrabaixistas que estão iniciando suas carreiras. Além do design anatômico e moderno, também oferece uma captação com maior qualidade. Possui estilo Jazz Bass, tarraxas Open Gear cromadas, que são estáveis eseguras na afinação, e, dois captadores que produzem graves bem encorpados e controlados, além de agudos mais claros. <br/> <br/> A Giannini nasceu há mais de 120 anos, tendo sua história unida a da música brasileira a empresa se tornou uma das mais tradicionais marcas de instrumentos musicais existentes no Brasil. <br/> <br/> O crescimento da marca a levou a se tornar uma referência, principalmente em instrumentos acústicos. Até hoje sua produção e importação aliam a eficiente técnica artesanal ao que há de mais modernoem tecnologia industrial. Seus produtos passam por um rígido controle de qualidade e já saem das fábricas impregnados com a credibilidade e os cuidados que são característicos da marca desde 1900.",
+      "caracteristicas": "Tarraxas:Open Gear<br>Trastes:20<br>Controles:2 volumes e 1 tonalidade<br>Escudo:Turtle<br>Cordas:4 Cordas em Aço<br>Corpo:Poplar Maciço<br>Cor:Sunburst/ Turtle<br>Acabamento:Verniz brilhante<br>Braço:Maple<br>Escala:Rosewood<br>Captadores:2 J com ímãs cerâmicos<br>Pesquisa:contra-baixo|contra|baixo|gb-100|gb100|gb 100|giannini|cordas|4<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "GIANNINI",
+      "modelo": "GB -100",
+      "peso": 4.9,
+      "largura": 45,
+      "altura": 7.5,
+      "profundidade": 124,
+      "peso_embalagem": 4.9,
+      "largura_embalagem": 45,
+      "altura_embalagem": 7.5,
+      "profundidade_embalagem": 124,
+      "link": "http://www.hayamax.com.br/contrabaixo-giannini-gb-100-jazz-bass-eletrico-passivo-sunburst-turtle",
+      "link_imagem": "https://static.hayapek.com.br/produtos/65440/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 24667,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-10 12:06:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 10,
+      "tempo_cross": 1,
+      "estoque_total": 10,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/65440/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/65440/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/65440/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/65440/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/65440/550/5.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB24335881 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB24335881",
+      "catalog_product_id": "MLB24335881",
+      "domain_id": "MLB-BASS_GUITARS",
+      "name": "Contrabaixo 4 Cordas Giannini Gb100 3ts/tt Sunburst Turtle",
+      "parent_id": "MLB24335878",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "45321",
+          "value_name": "Giannini",
+          "values": [
+            {
+              "id": "45321",
+              "name": "Giannini"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "20620319",
+          "value_name": "GB100 3TS/TT",
+          "values": [
+            {
+              "id": "20620319",
+              "name": "GB100 3TS/TT"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "2614014",
+          "value_name": "Sunburst",
+          "values": [
+            {
+              "id": "2614014",
+              "name": "Sunburst"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450289",
+          "value_name": "Dourado",
+          "values": [
+            {
+              "id": "2450289",
+              "name": "Dourado"
+            }
+          ],
+          "meta": {
+            "rgb": "FFD700"
+          }
+        },
+        {
+          "id": "BODY_DEPTH",
+          "name": "Profundidade do corpo",
+          "value_id": "27712663",
+          "value_name": "10 cm",
+          "values": [
+            {
+              "id": "27712663",
+              "name": "10 cm"
+            }
+          ]
+        },
+        {
+          "id": "BODY_WIDTH",
+          "name": "Largura do corpo",
+          "value_id": "26160463",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "26160463",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "BODY_LENGTH",
+          "name": "Comprimento do corpo",
+          "value_id": "25481981",
+          "value_name": "130 cm",
+          "values": [
+            {
+              "id": "25481981",
+              "name": "130 cm"
+            }
+          ]
+        },
+        {
+          "id": "SCALE_LENGTH",
+          "name": "Comprimento da escala",
+          "value_id": "18735862",
+          "value_name": "255 mm",
+          "values": [
+            {
+              "id": "18735862",
+              "name": "255 mm"
+            }
+          ]
+        },
+        {
+          "id": "ORIGIN",
+          "name": "Origem",
+          "value_id": "96381",
+          "value_name": "China",
+          "values": [
+            {
+              "id": "96381",
+              "name": "China"
+            }
+          ]
+        },
+        {
+          "id": "BODY_WOOD_TYPE",
+          "name": "Tipo de madeira do corpo",
+          "value_id": "3647513",
+          "value_name": "Álamo",
+          "values": [
+            {
+              "id": "3647513",
+              "name": "Álamo"
+            }
+          ]
+        },
+        {
+          "id": "NECK_WOOD_TYPE",
+          "name": "Tipo de madeira do braço",
+          "value_id": "1131577",
+          "value_name": "Madeira de bordo",
+          "values": [
+            {
+              "id": "1131577",
+              "name": "Madeira de bordo"
+            }
+          ]
+        },
+        {
+          "id": "FINGERBOARD_MATERIAL_TYPE",
+          "name": "Tipo de material do diapasão",
+          "value_id": "24817065",
+          "value_name": "Madeira",
+          "values": [
+            {
+              "id": "24817065",
+              "name": "Madeira"
+            }
+          ]
+        },
+        {
+          "id": "BRIDGE_TYPE",
+          "name": "Tipo de ponte",
+          "value_id": "24817067",
+          "value_name": "Ajustável",
+          "values": [
+            {
+              "id": "24817067",
+              "name": "Ajustável"
+            }
+          ]
+        },
+        {
+          "id": "PICKUPS_TYPE",
+          "name": "Tipo de captadores",
+          "value_id": "1131570",
+          "value_name": "Jazz",
+          "values": [
+            {
+              "id": "1131570",
+              "name": "Jazz"
+            }
+          ]
+        },
+        {
+          "id": "PICKUP_EQUALIZATION_TYPE",
+          "name": "Tipo de equalização do captadores",
+          "value_id": "4962974",
+          "value_name": "Ativo",
+          "values": [
+            {
+              "id": "4962974",
+              "name": "Ativo"
+            }
+          ]
+        },
+        {
+          "id": "NUMBER_OF_PICKUPS",
+          "name": "Quantidade de captadores",
+          "value_id": "16787435",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "16787435",
+              "name": "2"
+            }
+          ]
+        },
+        {
+          "id": "FRETS_NUMBER",
+          "name": "Quantidade de trastes",
+          "value_id": "1090726",
+          "value_name": "20",
+          "values": [
+            {
+              "id": "1090726",
+              "name": "20"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "20620324",
+          "value_name": "7890443020955",
+          "values": [
+            {
+              "id": "20620324",
+              "name": "7890443020955"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "name": "Inclui acessórios",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "36097095",
+          "value_name": "chave afinação",
+          "values": [
+            {
+              "id": "36097095",
+              "name": "chave afinação"
+            }
+          ]
+        },
+        {
+          "id": "NECK_SHAPE",
+          "name": "Forma do braço",
+          "value_id": "1131585",
+          "value_name": "C",
+          "values": [
+            {
+              "id": "1131585",
+              "name": "C"
+            }
+          ]
+        },
+        {
+          "id": "PICKUP_CONFIGURATION",
+          "name": "Configuração dos captadores",
+          "value_id": "110291",
+          "value_name": "SS",
+          "values": [
+            {
+              "id": "110291",
+              "name": "SS"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Contra-baixo Elétrico Giannini GB-100 4 cordas Techwood\n\nA linha Standard da Giannini apresenta modelos de guitarra e contrabaixo. O baixo GB-100 é inspirado no estilo Jazz Bass, equipado com captadores J tradicionais. Toda a linha Standard utiliza madeiras como Poplar, Maple e Techwood, possui ferragens cromadas e está disponível em diversas opções de cores.\n\nCorpo: Poplar maciço\n\nBraço: Maple satinado com tensor bi-direcional\n\nEscala: Techwood\n\nComprimento da escala: 864 mm (34,01\")\n\nTrastes: 20 trastes em alpaca\n\nPonte: Cromada JB standard\n\nTarraxas: Open gear cromada standard Giannini, 4L\n\nPestana: ABS na cor marfim\n\nLargura da pestana: 42 mm (1,65\")\n\nCaptadores: 2 captadores estilo JB com ímãs cerâmicos\n\nControles: 2 volumes/1 tone\n\nCordas: Aço .040. Recomendamos para a troca as cordas Giannini Electric GEEBRL ou Canário GESBX.\n\nItens Inclusos: \n\n1x Contra-baixo Elétrico Giannini GB-100 4 cordas Techwood  \n1x Chaves para ajuste de tensor  \n1x ponte  \n1x cabo P-10  "
+      },
+      "pictures": [
+        {
+          "id": "888837-MLA99413643448_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_888837-MLA99413643448_112025-F.jpg",
+          "max_width": "480",
+          "max_height": "500"
+        },
+        {
+          "id": "849361-MLA93084151218_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_849361-MLA93084151218_092025-F.jpg",
+          "max_width": "336",
+          "max_height": "1200"
+        },
+        {
+          "id": "812051-MLA93500215887_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_812051-MLA93500215887_092025-F.jpg",
+          "max_width": "352",
+          "max_height": "1200"
+        },
+        {
+          "id": "947373-MLA93500022369_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_947373-MLA93500022369_092025-F.jpg",
+          "max_width": "872",
+          "max_height": "1000"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-07-07T11:29:22Z",
+      "last_updated": "2026-07-01T18:55:29Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

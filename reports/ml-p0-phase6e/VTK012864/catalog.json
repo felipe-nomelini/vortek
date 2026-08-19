@@ -1,0 +1,115 @@
+{
+  "checked_at": "2026-08-17T12:55:50.966Z",
+  "expected_catalog_product_id": null,
+  "catalog_search_identity": null,
+  "catalog_detail": {
+    "id": "MLB32450801",
+    "catalog_product_id": "MLB32450801",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-TABLET_INTERNAL_SPEAKERS",
+    "permalink": "",
+    "name": "Alto-falante Profissional Atk Eletroacústica 18lf3000b-8",
+    "family_name": "Alto-falante Profissional Atk Eletroacústica 18lf3000b-8",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [],
+    "pictures": [
+      {
+        "id": "714638-MLU74346658196_022024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_714638-MLU74346658196_022024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1084,
+        "max_height": 558,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "732733-MLU78907216152_092024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_732733-MLU78907216152_092024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 971,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Potência de 3000W para som de alta qualidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Resposta de frequência ampla para graves profundos.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Construção robusta para durabilidade.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "27107924",
+        "value_name": "Atk Eletroacústica",
+        "values": [
+          {
+            "id": "27107924",
+            "name": "Atk Eletroacústica"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "32294330",
+        "value_name": "18LF3000B-8",
+        "values": [
+          {
+            "id": "32294330",
+            "name": "18LF3000B-8"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Alto-Falante Profissional Atk Eletroacústica 18Lf3000B-8\nAlto-falante de 18\" de alta potência, baixíssima distorção e compressão dinâmica. Excelente linearidade devido ao alto grau de exigência e controle de qualidade na seleção dos materiais e na montagem.\n\nUtiliza uma bobina de 100mm de diâmetro (4\") e um cone de alta resistência, montados em um conjunto magnético otimizado para alto desempenho.\nDesign exclusivo e moderno. Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, proporcionando excelente visual e alta resistência mecânica.\n\nProjetado com base em softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão, garantindo alta sensibilidade, dissipação otimizada e performance superior.\n\nCaracterísticas:\n- 1500 W Potência Nominal\n- 8 Ohms de Impedância Nominal\n- 97 dB SPL de Sensibilidade\n- Resposta de Frequência: 30 a 1800Hz\n\nEspecificações do Fabricante:\n- Potência Nominal Admissível: 1500 W\n- Potência Máxima do Amplificador: 24000 W pico\n- Sensibilidade (1W/1m): 97 dB SPL\n- Impedância Nominal: 8 Ohms\n- Impedância Mínima: 7.4 ohms\n- Diâmetro Nominal: 457.2mm (18 pol)\n- Diâmetro da Bobina: 100 mm (4\")\n- Fio da Bobina: Fio de Cobre Seção Circular\n- Resistência da Bobina (Re): 5.9 ohms\n- X.Máx: 12 mm\n- Volume de Ar ocupado: 5.45 L"
+    },
+    "parent_id": null,
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "open",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-19T07:40:51.200249275"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-02-09T00:02:01Z",
+    "authorized_stores": null,
+    "last_updated": "2024-02-14T03:59:23Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "optional_or_none",
+  "optional_catalog_optimization_pending": true
+}

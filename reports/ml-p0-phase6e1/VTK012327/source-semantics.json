@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-08-17T14:15:53.704Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+    "supplier_category": "Eletrônicos, áudio E Vídeo > Componentes Eletrônicos > Conectores",
+    "supplier_brand": "Wireconex",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3283",
+    "captured_at": "2026-08-17T12:56:46.462Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "b9247077-8cfb-41ca-a68f-02aac0779d0e",
+    "produto_id": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "3283",
+    "sku_fornecedor": "3283",
+    "custo": 27.87,
+    "estoque": 21,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.02+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.028+00:00",
+    "sku_oferta": "3283",
+    "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+    "descricao": "Kit 04 Conectores XLR Fêmea para PCI 3 Polos WC 4046 Wireconex O Kit com 04 Conectores XLR Fêmea WC 4046 Wireconex foi desenvolvido para montagem em placa de circuito impresso (PCI), oferecendo uma conexão segura e estável para equipamentos de áudio. Ideal para projetos eletrônicos, manutenção e montagem de aparelhos profissionais, garantindo excelente qualidade na transmissão de sinal. Principais Características: • Conector XLR fêmea para montagem em PCI (placa de circuito impresso) • 3 polos, ideal para sistemas de áudio balanceado • Construção resistente para maior durabilidade • Conexão firme que ajuda a reduzir ruídos e interferências • Indicado para mesas de som, amplificadores, interfaces de áudio e projetos eletrônicos • Produto da marca Wireconex, reconhecida pela qualidade em conectores O Conector XLR Fêmea WC 4046 Wireconex é uma excelente escolha para quem precisa de confiabilidade e qualidade em conexões de áudio. Com padrão profissional e fácil instalação em placas PCI, ele garante desempenho eficiente e maior segurança nas conexões, sendo ideal para técnicos, eletrônicos e profissionais de áudio.",
+    "marca": "Wireconex",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7af1c1590c5e68310f55f102d9d265ef.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/dd79a56d55f56b0b1aaf7a25f5e6682b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/cf9adfb6a4ce1870b72ea18ed9dc53f0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8204f90c338d2e4e6018ac852e233023.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6f1a0da25f316bd98a886160d54bcd04.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8536.90.10",
+    "cest": null
+  }
+}

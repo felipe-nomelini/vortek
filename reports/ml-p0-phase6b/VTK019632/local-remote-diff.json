@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075703185",
+      "local": "MLB5075703185",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK019632",
+      "local": "VTK019632",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "5e983602-2303-4ebb-8e76-4f5b36d81bbf",
+      "local": "5e983602-2303-4ebb-8e76-4f5b36d81bbf",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Fonte Chaveada P/cftv 9v 1a",
+      "local": "Fonte Chaveada P/cftv 9v 1a",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 99.9,
+      "local": 99.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075703185-fonte-chaveada-pcftv-9v-1a-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075703185-fonte-chaveada-pcftv-9v-1a-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

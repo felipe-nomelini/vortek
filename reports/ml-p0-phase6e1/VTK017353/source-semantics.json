@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.546Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Fonte Atx Evus Psu-200 Oem 200w 20/24p 2 Sata - PC / 10",
+    "supplier_category": "Informatica/ Perifericos/ Fonte Atx",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/380874",
+    "captured_at": "2026-08-17T12:56:33.824Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "7d5939a7-5e47-49f6-bdfe-2797d9832aa7",
+    "produto_id": "60155eac-28af-4c82-8166-d94b257ad80b",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "380874",
+    "sku_fornecedor": "380874",
+    "custo": 419,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:27:23.222+00:00",
+    "created_at": "2026-07-20T18:30:39.682006+00:00",
+    "updated_at": "2026-08-17T10:27:23.231+00:00",
+    "sku_oferta": "380874",
+    "nome": "Fonte Atx Evus Psu-200 Oem 200w 20/24p 2 Sata",
+    "descricao": "Fonte PSU-200 *Imagem meramente ilustrativa\n\nInformações do Produto Fonte PSU-200 Informações Técnicas Ventilador 8cm Bivolt Conectores 20 + 4 Pinos 2 x Sata 2 x IDE 1 x FDD Não acompanha Cabo de força Não acompanha caixa individual Caixa Master com 10 unidades *Imagem meramente ilustrativa",
+    "marca": "EVUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/380874_67d2cb0b41e4d.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85044021",
+    "cest": null
+  }
+}

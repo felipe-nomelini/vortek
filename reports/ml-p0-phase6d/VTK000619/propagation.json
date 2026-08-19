@@ -1,0 +1,1434 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 163,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:14:38 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 dc4ba626a6645ad4a6ad5918e6e30c24.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "P8mHnFtI9MJ9Wt0dZN8HXrTl1XJbAJftpTUbOrQLetpCis0GgMRdow==",
+        "x-amz-cf-pop": "GIG52-P4",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "bef271b5-7b07-4c65-be76-4c2bb1803da1",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB5075856655",
+        "site_id": "MLB",
+        "title": "Mesa Gamer Thunderx3 Ed5 2.0 Preta 140cm Preto",
+        "family_name": "ThunderX3 Mesa Gamer ThunderX3 ED5",
+        "family_id": 6015657479591824,
+        "seller_id": 3294514937,
+        "category_id": "MLB439418",
+        "user_product_id": "MLBU4743601055",
+        "official_store_id": null,
+        "price": 2919.9,
+        "base_price": 2919.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 15,
+        "available_quantity": 15,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:14:38.266Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:14:38.373Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5075856655-mesa-gamer-thunderx3-ed5-20-preta-140cm-preto-_JM",
+        "thumbnail_id": "680308-MLA99521848356_122025",
+        "thumbnail": "http://http2.mlstatic.com/D_680308-MLA99521848356_122025-I.jpg",
+        "pictures": [
+          {
+            "id": "680308-MLA99521848356_122025",
+            "url": "http://http2.mlstatic.com/D_680308-MLA99521848356_122025-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_680308-MLA99521848356_122025-O.jpg",
+            "size": "500x443",
+            "max_size": "851x755",
+            "quality": ""
+          },
+          {
+            "id": "654259-MLU74958083725_032024",
+            "url": "http://http2.mlstatic.com/D_654259-MLU74958083725_032024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_654259-MLU74958083725_032024-O.jpg",
+            "size": "500x349",
+            "max_size": "1197x837",
+            "quality": ""
+          },
+          {
+            "id": "797142-MLU75280072135_032024",
+            "url": "http://http2.mlstatic.com/D_797142-MLU75280072135_032024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_797142-MLU75280072135_032024-O.jpg",
+            "size": "500x387",
+            "max_size": "899x697",
+            "quality": ""
+          },
+          {
+            "id": "981949-MLU74958054513_032024",
+            "url": "http://http2.mlstatic.com/D_981949-MLU74958054513_032024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_981949-MLU74958054513_032024-O.jpg",
+            "size": "456x500",
+            "max_size": "964x1056",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "ASSEMBLY_TIME",
+            "name": "Tempo de montagem",
+            "value_id": "13748510",
+            "value_name": "15 m",
+            "values": [
+              {
+                "id": "13748510",
+                "name": "15 m",
+                "struct": {
+                  "number": 15,
+                  "unit": "m"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "8848598",
+            "value_name": "ThunderX3",
+            "values": [
+              {
+                "id": "8848598",
+                "name": "ThunderX3",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "value_id": "52049",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DEPTH",
+            "name": "Profundidade",
+            "value_id": "908317",
+            "value_name": "60 cm",
+            "values": [
+              {
+                "id": "908317",
+                "name": "60 cm",
+                "struct": {
+                  "number": 60,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "DESK_MATERIALS",
+            "name": "Materiais da escrivaninha",
+            "value_id": null,
+            "value_name": "Aglomerado de 18 mm de espessura superfície plástica impermeável,Aço com revestimento em pó",
+            "values": [
+              {
+                "id": "34973454",
+                "name": "Aglomerado de 18 mm de espessura superfície plástica impermeável",
+                "struct": null
+              },
+              {
+                "id": "67450784",
+                "name": "Aço com revestimento em pó",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DOORS_NUMBER",
+            "name": "Quantidade de portas",
+            "value_id": "12875240",
+            "value_name": "0",
+            "values": [
+              {
+                "id": "12875240",
+                "name": "0",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "DRAWERS_NUMBER",
+            "name": "Quantidade de gavetas",
+            "value_id": "3003376",
+            "value_name": "0",
+            "values": [
+              {
+                "id": "3003376",
+                "name": "0",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "FINISHES",
+            "name": "Acabamentos",
+            "value_id": "37774303",
+            "value_name": "carbono",
+            "values": [
+              {
+                "id": "37774303",
+                "name": "carbono",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "31935986",
+            "value_name": "4711099473977",
+            "values": [
+              {
+                "id": "31935986",
+                "name": "4711099473977",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "HEIGHT",
+            "name": "Altura",
+            "value_id": "1018499",
+            "value_name": "75 cm",
+            "values": [
+              {
+                "id": "1018499",
+                "name": "75 cm",
+                "struct": {
+                  "number": 75,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "INCLUDES_ASSEMBLY_MANUAL",
+            "name": "Inclui manual de montagem",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "INCLUDES_BOOKCASE",
+            "name": "Inclui estante para livros",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "INCLUDES_INSTALLATION_KIT",
+            "name": "Inclui kit de instalação",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "INCLUDES_INSTRUCTION_MANUAL",
+            "name": "Inclui manual de instruções",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "INCLUDES_KEYS",
+            "name": "Inclui chaves",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_FLOATING",
+            "name": "É flutuante",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_FOLDABLE",
+            "name": "É dobrável",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_GAMER",
+            "name": "É gamer",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_L_SHAPED",
+            "name": "É em forma de L",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "LENGTH",
+            "name": "Comprimento",
+            "value_id": "8141217",
+            "value_name": "140 cm",
+            "values": [
+              {
+                "id": "8141217",
+                "name": "140 cm",
+                "struct": {
+                  "number": 140,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "MAIN_COLOR",
+            "name": "Cor principal",
+            "value_id": "2450295",
+            "value_name": "Preto",
+            "values": [
+              {
+                "id": "2450295",
+                "name": "Preto",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "48902572",
+            "value_name": "Mesa Gamer ThunderX3 ED5",
+            "values": [
+              {
+                "id": "48902572",
+                "name": "Mesa Gamer ThunderX3 ED5",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "REQUIRES_ASSEMBLY",
+            "name": "Requer montagem",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK000619",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK000619",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SHELVES_NUMBER",
+            "name": "Quantidade de prateleiras",
+            "value_id": "12085975",
+            "value_name": "0",
+            "values": [
+              {
+                "id": "12085975",
+                "name": "0",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "SLIDES_MATERIAL",
+            "name": "Material das corrediças",
+            "value_id": "14919524",
+            "value_name": "N/A",
+            "values": [
+              {
+                "id": "14919524",
+                "name": "N/A",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "STYLE",
+            "name": "Estilo",
+            "value_id": "432204",
+            "value_name": "Moderno",
+            "values": [
+              {
+                "id": "432204",
+                "name": "Moderno",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "WEIGHT",
+            "name": "Peso",
+            "value_id": "7180249",
+            "value_name": "16.8 kg",
+            "values": [
+              {
+                "id": "7180249",
+                "name": "16.8 kg",
+                "struct": {
+                  "number": 16.8,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WEIGHT_CAPACITY",
+            "name": "Capacidade em peso",
+            "value_id": "13218745",
+            "value_name": "50 kg",
+            "values": [
+              {
+                "id": "13218745",
+                "name": "50 kg",
+                "struct": {
+                  "number": 50,
+                  "unit": "kg"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WHEELS_NUMBER",
+            "name": "Quantidade de rodas",
+            "value_id": "12907879",
+            "value_name": "0",
+            "values": [
+              {
+                "id": "12907879",
+                "name": "0",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "WIDTH",
+            "name": "Largura",
+            "value_id": "2593437",
+            "value_name": "140 cm",
+            "values": [
+              {
+                "id": "2593437",
+                "name": "140 cm",
+                "struct": {
+                  "number": 140,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "WITH_AC_PLUG_INS",
+            "name": "Com tomadas",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_ADJUSTABLE_ANGLE",
+            "name": "Com ângulo ajustável",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_ADJUSTABLE_HEIGHT",
+            "name": "Com altura ajustável",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_CPU_SHELF",
+            "name": "Com prateleira para CPU",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_DOORS",
+            "name": "Com portas",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_DRAWERS",
+            "name": "Com gavetas",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_GROMMET",
+            "name": "Com passa-cabos",
+            "value_id": "242085",
+            "value_name": "Sim",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_LED_LIGHTS",
+            "name": "Com luzes LED",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_LOCK",
+            "name": "Com fechadura",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_MOBILE_MODULE",
+            "name": "Com módulo móvel",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_SHELVES",
+            "name": "Com prateleiras",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_SLIDING_TRAY",
+            "name": "Com bandeja móvel",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_USB_PORTS",
+            "name": "Com portas USB",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "WITH_WHEELS",
+            "name": "Com rodas",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB32168602",
+        "domain_id": "MLB-HOME_OFFICE_DESKS",
+        "seller_custom_field": "VTK000619",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:14:38.483Z",
+        "last_updated": "2026-08-17T01:14:38.483Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3664,
+    "user_product": {
+      "id": "MLBU4743601055",
+      "name": "Mesa Gamer Thunderx3 Ed5 2.0 Preta 140cm Preto",
+      "family_name": "ThunderX3 Mesa Gamer ThunderX3 ED5",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-HOME_OFFICE_DESKS",
+      "attributes": [
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK000619",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_WHEELS",
+          "name": "Com rodas",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "48902572",
+              "name": "Mesa Gamer ThunderX3 ED5",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_GROMMET",
+          "name": "Com passa-cabos",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_MOBILE_MODULE",
+          "name": "Com módulo móvel",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_ADJUSTABLE_HEIGHT",
+          "name": "Com altura ajustável",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WHEELS_NUMBER",
+          "name": "Quantidade de rodas",
+          "values": [
+            {
+              "id": "12907879",
+              "name": "0",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ASSEMBLY_TIME",
+          "name": "Tempo de montagem",
+          "values": [
+            {
+              "id": "13748510",
+              "name": "15 m",
+              "struct": {
+                "number": 15,
+                "unit": "m"
+              }
+            }
+          ]
+        },
+        {
+          "id": "SHELVES_NUMBER",
+          "name": "Quantidade de prateleiras",
+          "values": [
+            {
+              "id": "12085975",
+              "name": "0",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_SHELVES",
+          "name": "Com prateleiras",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DOORS_NUMBER",
+          "name": "Quantidade de portas",
+          "values": [
+            {
+              "id": "12875240",
+              "name": "0",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "REQUIRES_ASSEMBLY",
+          "name": "Requer montagem",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_DOORS",
+          "name": "Com portas",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_INSTRUCTION_MANUAL",
+          "name": "Inclui manual de instruções",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SLIDES_MATERIAL",
+          "name": "Material das corrediças",
+          "values": [
+            {
+              "id": "14919524",
+              "name": "N/A",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_ADJUSTABLE_ANGLE",
+          "name": "Com ângulo ajustável",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "STYLE",
+          "name": "Estilo",
+          "values": [
+            {
+              "id": "432204",
+              "name": "Moderno",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "FINISHES",
+          "name": "Acabamentos",
+          "values": [
+            {
+              "id": "37774303",
+              "name": "carbono",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_DRAWERS",
+          "name": "Com gavetas",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DESK_MATERIALS",
+          "name": "Materiais da escrivaninha",
+          "values": [
+            {
+              "id": "34973454",
+              "name": "Aglomerado de 18 mm de espessura superfície plástica impermeável",
+              "struct": null
+            },
+            {
+              "id": "67450784",
+              "name": "Aço com revestimento em pó",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "name": "Com luzes LED",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_L_SHAPED",
+          "name": "É em forma de L",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_FLOATING",
+          "name": "É flutuante",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DRAWERS_NUMBER",
+          "name": "Quantidade de gavetas",
+          "values": [
+            {
+              "id": "3003376",
+              "name": "0",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_CPU_SHELF",
+          "name": "Com prateleira para CPU",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "values": [
+            {
+              "id": "8141217",
+              "name": "140 cm",
+              "struct": {
+                "number": 140,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "WITH_USB_PORTS",
+          "name": "Com portas USB",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_FOLDABLE",
+          "name": "É dobrável",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "values": [
+            {
+              "id": "1018499",
+              "name": "75 cm",
+              "struct": {
+                "number": 75,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "name": "Inclui kit de instalação",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "values": [
+            {
+              "id": "908317",
+              "name": "60 cm",
+              "struct": {
+                "number": 60,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ASSEMBLY_MANUAL",
+          "name": "Inclui manual de montagem",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_LOCK",
+          "name": "Com fechadura",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "values": [
+            {
+              "id": "2593437",
+              "name": "140 cm",
+              "struct": {
+                "number": 140,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "8848598",
+              "name": "ThunderX3",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT_CAPACITY",
+          "name": "Capacidade em peso",
+          "values": [
+            {
+              "id": "13218745",
+              "name": "50 kg",
+              "struct": {
+                "number": 50,
+                "unit": "kg"
+              }
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_AC_PLUG_INS",
+          "name": "Com tomadas",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_KEYS",
+          "name": "Inclui chaves",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WITH_SLIDING_TRAY",
+          "name": "Com bandeja móvel",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_BOOKCASE",
+          "name": "Inclui estante para livros",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "values": [
+            {
+              "id": "7180249",
+              "name": "16.8 kg",
+              "struct": {
+                "number": 16.8,
+                "unit": "kg"
+              }
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "31935986",
+              "name": "4711099473977",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "680308-MLA99521848356_122025",
+          "secure_url": "https://http2.mlstatic.com/D_680308-MLA99521848356_122025-O.jpg"
+        },
+        {
+          "id": "654259-MLU74958083725_032024",
+          "secure_url": "https://http2.mlstatic.com/D_654259-MLU74958083725_032024-O.jpg"
+        },
+        {
+          "id": "797142-MLU75280072135_032024",
+          "secure_url": "https://http2.mlstatic.com/D_797142-MLU75280072135_032024-O.jpg"
+        },
+        {
+          "id": "981949-MLU74958054513_032024",
+          "secure_url": "https://http2.mlstatic.com/D_981949-MLU74958054513_032024-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "680308-MLA99521848356_122025",
+        "secure_url": "https://http2.mlstatic.com/D_680308-MLA99521848356_122025-O.jpg"
+      },
+      "catalog_product_id": "MLB32168602",
+      "bundle": null,
+      "family_id": 6015657479591824,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:14:38.617+0000",
+      "last_updated": "2026-08-17T01:14:38.617+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4743601055"
+      ],
+      "family_id": 6015657479591824,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

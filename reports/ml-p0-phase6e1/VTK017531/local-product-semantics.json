@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-08-17T14:15:53.596Z",
+  "product": {
+    "id": "9b0f50fa-8a3d-4926-a677-858efeba8d8b",
+    "sku": "VTK017531",
+    "nome": "Terminal De Fio Aberto Forquilha1/8 Permak Para Módulo - 100un.",
+    "marca": "PERMAK",
+    "estoque": 50,
+    "custo": 15.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.036,
+    "peso_bruto": 0.036,
+    "largura": 6,
+    "altura": 0.5,
+    "profundidade": 7,
+    "gtin": "",
+    "descricao": "O terminal forquilha aberto apresenta um comprimento de 2 cm, seu furo possui 1/8 polegadas e é resistente a vibrações. Sua composição é em latão, proporcionando alta condutividade elétrica e ótima resistência à corrosão. O terminal está disponível na cor dourada. Os terminais forquilha têm a função de proporcionar maior segurança e praticidade quando usados em terminações de fios e cabos de montagens de máquinas, painéis elétricos e automação, permitindo ganho de tempo. Pacote com 100 un. *Imagens meramente ilustrativas.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/6/4/64951_67d2cb35732da.png"
+    ],
+    "categoria": "Eletronica/ Adaptadores/plugues/tomadas/ Adaptores",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:56.790751+00:00",
+    "updated_at": "2026-08-17T10:33:15.625343+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "64951",
+    "dslite_ultima_sync": "2026-08-17T10:33:15.508+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85369010",
+    "cest": "01.999.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "0289c767-24c7-48f8-923a-4f95ea17d3bb",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "electronic_security",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "2 cm",
+        "8 polegadas"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "electronic_security",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

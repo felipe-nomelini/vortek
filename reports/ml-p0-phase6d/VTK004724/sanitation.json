@@ -1,0 +1,10 @@
+{
+  "sku": "VTK004724",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category contract/domain is not a high-confidence match",
+  "local_value": "7908417102245",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB36679917 + DSLite supplier",
+  "timestamp": "2026-08-17T01:17:49.920Z"
+}

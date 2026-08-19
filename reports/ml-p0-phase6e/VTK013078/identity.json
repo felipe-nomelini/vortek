@@ -1,0 +1,451 @@
+{
+  "checked_at": "2026-08-17T12:53:41.475Z",
+  "product": {
+    "id": "859e5bfa-ccd4-41b0-8ec0-e3ccbb00138d",
+    "sku": "VTK013078",
+    "nome": "Pilha Max Aa8+aaa4 Cart 12 Energizer",
+    "marca": "Energizer",
+    "gtin": "8888021206128"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3312",
+    "consulted_at": "2026-08-17T12:53:41.284Z",
+    "product": {
+      "produtoid": "3312",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 42.83,
+      "preco_crossdocking": 42.83,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 42.83,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Pilha Max Aa8+aaa4 Cart 12 Energizer",
+      "titulo_curto": "Pilha Max Aa8+aaa4 Cart 12 Energizer",
+      "categoriaid": "48727",
+      "categoria_nome": "Eletrônicos, áudio E Vídeo > Pilhas E Carregadores > Pilhas",
+      "abc": null,
+      "ean11": "8888021206128",
+      "ncm": "8506.10.19",
+      "descricao": "<p>PILHA ENERGIZER MAX AA8+AAA4 CART12 </p> <p>Kit Pilhas Alcalinas Energizer Max AA8 + AAA4 – Energia Confiável para Todos os Seus Dispositivos<br>O Kit Pilhas Alcalinas Energizer Max combina 8 pilhas AA e 4 pilhas AAA, oferecendo uma solução completa para garantir energia de longa duração e alto desempenho em diversos dispositivos do seu dia a dia. Com a tecnologia PowerSeal™, essas pilhas protegem contra vazamentos e podem ser armazenadas por até 10 anos sem perder carga, proporcionando mais segurança e eficiência para seus aparelhos eletrônicos.</p> <p>Especificações do Produto:<br>•    Marca: Energizer<br>•    Linha: Max<br>•    Modelo: AA8 + AAA4<br>•    Tipo: Alcalina<br>•    Voltagem: 1,5V<br>•    Tecnologia PowerSeal™: Proteção contra vazamentos, prolongando a vida útil dos dispositivos<br>•    Vida útil armazenada: Até 10 anos sem perda de energia<br>•    Indicação de uso:<br>•    Pilhas AA: Controles remotos, brinquedos, teclados e mouses sem fio, lanternas, câmeras digitais e outros dispositivos de médio e alto consumo<br>Pilhas AAA: Relógios, controles de TV, termômetros digitais, brinquedos pequenos e outros eletrônicos compactos<br>•    Quantidade na embalagem: 12 unidades (8x AA + 4x AAA)</p> <p>Com o Kit Energizer Max AA8 + AAA4, você garante energia confiável e duradoura para todos os seus dispositivos.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Energizer",
+      "modelo": "",
+      "peso": 0.26,
+      "largura": 9,
+      "altura": 21,
+      "profundidade": 2,
+      "peso_embalagem": 0.26,
+      "largura_embalagem": 9,
+      "altura_embalagem": 21,
+      "profundidade_embalagem": 2,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/26d0d122b3c06a28878177f097e823cd.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 81,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "916710598",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-17 08:09:28.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-17 08:09:28.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 100,
+      "tempo_cross": 0,
+      "estoque_total": 800,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/26d0d122b3c06a28878177f097e823cd.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b68cec61849bc47c2f85fc2df986a665.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/794c39f83c164554bcd062204b398f2b.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: MODEL,BATTERY_SIZE,COMPOSITION",
+    "foundValue": "MLB21645092",
+    "source": "ML catalog MLB21645092 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "MODEL",
+        "BATTERY_SIZE",
+        "COMPOSITION"
+      ],
+      "catalog_brand": "Energizer",
+      "model": "E95 Grande",
+      "local_pack": 12,
+      "catalog_pack": 12,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.14285714285714285
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB21645092",
+      "catalog_product_id": "MLB21645092",
+      "domain_id": "MLB-CELL_BATTERIES",
+      "name": "Pilhas Energizer Econopack Aa Aaa 8 Aa + 4 Aaa Alcalinas Máximas",
+      "parent_id": "MLB19547091",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15375",
+          "value_name": "Energizer",
+          "values": [
+            {
+              "id": "15375",
+              "name": "Energizer"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "18167",
+          "value_name": "MAX",
+          "values": [
+            {
+              "id": "18167",
+              "name": "MAX"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "22061184",
+          "value_name": "E95 Grande",
+          "values": [
+            {
+              "id": "22061184",
+              "name": "E95 Grande"
+            }
+          ]
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "2351057",
+          "value_name": "D",
+          "values": [
+            {
+              "id": "2351057",
+              "name": "D"
+            }
+          ]
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "6739196",
+          "value_name": "Cilíndrica",
+          "values": [
+            {
+              "id": "6739196",
+              "name": "Cilíndrica"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2211322",
+          "value_name": "12",
+          "values": [
+            {
+              "id": "2211322",
+              "name": "12"
+            }
+          ]
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "6055455",
+          "value_name": "1.5V",
+          "values": [
+            {
+              "id": "6055455",
+              "name": "1.5V"
+            }
+          ]
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "7511522",
+          "value_name": "Lítio",
+          "values": [
+            {
+              "id": "7511522",
+              "name": "Lítio"
+            }
+          ]
+        },
+        {
+          "id": "CELL_BATTERY_CAPACITY",
+          "name": "Capacidade da pilha",
+          "value_id": "20175824",
+          "value_name": "2 mAh",
+          "values": [
+            {
+              "id": "20175824",
+              "name": "2 mAh"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16558764",
+          "value_name": "8888021206128",
+          "values": [
+            {
+              "id": "16558764",
+              "name": "8888021206128"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "13117895",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "13117895",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "name": "Usos recomendados",
+          "value_name": "Alarme, Controle do carro, Brinquedos, Relojes, acessórios",
+          "values": [
+            {
+              "id": "13174659",
+              "name": "Alarme"
+            },
+            {
+              "id": "22775731",
+              "name": "Controle do carro"
+            },
+            {
+              "id": "9063092",
+              "name": "Brinquedos"
+            },
+            {
+              "id": "9729363",
+              "name": "Relojes"
+            },
+            {
+              "id": "22780280",
+              "name": "acessórios"
+            }
+          ]
+        },
+        {
+          "id": "MAX_LOAD_HOLDING_TIME",
+          "name": "Tempo máximo de retenção de carga",
+          "value_id": "9021367",
+          "value_name": "10 anos",
+          "values": [
+            {
+              "id": "9021367",
+              "name": "10 anos"
+            }
+          ]
+        },
+        {
+          "id": "WITH_MERCURY",
+          "name": "Com mercúrio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Energizer desenvolve soluções simples para um mundo dinâmico onde a tecnologia e a conectividade são abundantes. Desde a sua criação, a missão tem sido inovar levando em conta o desempenho e a responsabilidade para fornecer a energia necessária e alcançar um impacto positivo nas pessoas e no planeta. \n \n Uma solução para cada dispositivo \n As baterias de lítio são leves e compactas e se adaptam a diferentes dispositivos devido à diversidade de seus tamanhos. Suas vantagens incluem maior duração e baixo peso."
+      },
+      "pictures": [
+        {
+          "id": "833371-MLA99825469905_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_833371-MLA99825469905_112025-F.jpg",
+          "max_width": "464",
+          "max_height": "1068"
+        },
+        {
+          "id": "811396-MLA40929138609_022020",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_811396-MLA40929138609_022020-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "422",
+          "max_height": "739"
+        },
+        {
+          "id": "835911-MLU78675681987_082024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_835911-MLU78675681987_082024-F.jpg",
+          "max_width": "396",
+          "max_height": "1200"
+        },
+        {
+          "id": "712889-MLU78675681993_082024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_712889-MLU78675681993_082024-F.jpg",
+          "max_width": "1093",
+          "max_height": "1200"
+        },
+        {
+          "id": "754087-MLU78444036532_082024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_754087-MLU78444036532_082024-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "852709-MLU78675682013_082024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_852709-MLU78675682013_082024-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "752820-MLU78444036550_082024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_752820-MLU78444036550_082024-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-02-06T04:42:18Z",
+      "last_updated": "2025-03-05T05:49:54Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

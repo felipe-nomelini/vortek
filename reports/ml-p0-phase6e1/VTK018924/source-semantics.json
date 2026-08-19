@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:45.658Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+    "supplier_category": "Telefonia/ Telefones/ Telefone Com Fio",
+    "supplier_brand": "INTELBRAS",
+    "supplier_gtin": "7896637677004",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/337921",
+    "captured_at": "2026-08-17T12:54:48.756Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "032d96ba-dd0b-4c45-a2f4-80310c957a1e",
+    "produto_id": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "337921",
+    "sku_fornecedor": "337921",
+    "custo": 362.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "337921",
+    "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+    "descricao": "Informações do Produto Kit telefone celular - Fixo GSM CFA 4211 O kit telefone celular fixo de longo alcance CFA 4211 foi desenvolvido para uso em locais onde o sinal de celular é fraco ou não há acesso a linhas telefônicas fixas, como na praia ou área rural. É uma solução completa, fácil de instalar e funciona com um chip SIM card (não incluso), ampliando o sinal em até 50 vezes, se comparado a um telefone celular comum. - Até 50× mais sinal - Fácil instalação - Single chip (não incluso) - Antena externa dual band: opera nas frequências 850 MHz e 900 MHz - Permite acesso à internet GPRS (verificar plano e disponibilidade da operadora) - Temperatura de operação: -10 a 55 ° - Desbloqueado para todas as operadoras¹ - Acesso à internet GPRS&sup2; - Perfeito para uso na praia ou no campo - Verifica a intensidade do sinal - Possui rádio FM e envia SMS Informações Técnicas Telefone Peso (com bateria, antena e fonte) 608 g Dimensões (L × A × P) 230 × 208 × 172 mm Frequência de operação 850/900/1800/1900 MHz Alimentação 5 Vdc (via USB) Ganho da antena 3 dBi Conector da antena TNC fêmea Bateria Tipo de bateria 3,7 V Li-ion Capacidade 800 mAh Tempo de conversação Aprox. 5h Tempo de repouso Aprox. 200h Adaptador AC/DC Entrada 100-240 Vac 50/60 Hz Saída 5 Vdc 750 mA Consumo de energia Aprox. 0,69 Wh em operação Aprox. 0,11 Wh em repouso Antena Frequência 824 a 960 MHz Ganho 17 dBi VSWR &#8804; 2 Conector N fêmea Impedância 50&#937; Diâmetro do mastro 30 a 53 mm Dimensão (L × A × P) 390 × 250 × 1.500 mm Número de elementos 22",
+    "marca": "INTELBRAS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf282790.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf282eb1.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf283528.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/3/337921_67d2caf284048.jpg"
+    ],
+    "gtin": "7896637677004",
+    "ncm": "85171439",
+    "cest": "21.053.00"
+  }
+}

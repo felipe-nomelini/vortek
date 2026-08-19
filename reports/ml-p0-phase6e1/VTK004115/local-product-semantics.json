@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-08-17T14:15:36.073Z",
+  "product": {
+    "id": "2c2705af-8d9d-4155-a010-0213811f3a67",
+    "sku": "VTK004115",
+    "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+    "marca": "AQUARIO",
+    "estoque": 6,
+    "custo": 105.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.617,
+    "peso_bruto": 0.617,
+    "largura": 5,
+    "altura": 12,
+    "profundidade": 12,
+    "gtin": "7898127600530",
+    "descricao": "SUPORTE MAGNÉTICO PARA ANTENA MÓVEL. ACOMPANHA CABO DE 4m. - Com o suporte M-700K você poderá instalar sua antena em qualquer ponto da lataria do veículo. Seu imã é extremamente forte, de forma que o suporte não se solta da lataria mesmo com ventos de 180Km/h. Acompanha ainda um adesivo na parte inferior que evita danos no local onde está instalada. - Tipo do Cabo: Coaxial RG-58 - Impedância: 50 Ohms - Comprimento do Cabo: 4m - Conectores: Cabo UHF Macho e Base UHF Fêmea - Peso: 595g",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK004115/01-b036e28c4058950019fa.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK004115/02-d8f2f4a63967f90e5a54.jpg"
+    ],
+    "categoria": "Seguranca / Comunicacoes / Outros De Antenas",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:16:32.704244+00:00",
+    "updated_at": "2026-08-17T11:07:22.459771+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "222789",
+    "dslite_ultima_sync": "2026-08-17T11:07:22.424+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "8517.71.90",
+    "cest": null,
+    "origem_fiscal": "5",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "b5846944-6c5a-4b77-b586-72d892ac8faa",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "audio_connector",
+    "function": "connect_audio_signal",
+    "intended_use": "professional_audio",
+    "physical_form": "audio_connector",
+    "expected_category_signals": [
+      "conector",
+      "audio",
+      "xlr",
+      "speakon",
+      "p10"
+    ],
+    "incompatible_category_signals": [
+      "hidraulica",
+      "redeethernet"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

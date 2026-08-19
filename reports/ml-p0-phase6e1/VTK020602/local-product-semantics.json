@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-08-17T14:15:41.393Z",
+  "product": {
+    "id": "c56848d6-3f38-496d-aeec-e4e0cc8f22c9",
+    "sku": "VTK020602",
+    "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,20 Mm 502010",
+    "marca": "TIAFLEX",
+    "estoque": 5,
+    "custo": 237.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.43,
+    "peso_bruto": 1.43,
+    "largura": 21,
+    "altura": 7,
+    "profundidade": 21,
+    "gtin": "7898429981450",
+    "descricao": "Cabo Microfone Mono AF(E) Secção: 0,20mm² Diâmetro: 3,00mm Cor: Preto Rolo com 100 metros",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK020602/01-33c05f6ac1dd1d7b468d.jpg"
+    ],
+    "categoria": "Eletronica/ Adaptadores/plugues/tomadas/ Adaptores",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:35:56.57232+00:00",
+    "updated_at": "2026-08-17T11:09:28.155204+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "31446",
+    "dslite_ultima_sync": "2026-08-17T11:09:27.941+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85444900",
+    "cest": "12.007.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "80d9ece7-c6a3-44f9-8f92-046f9e89f3af",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "audio_cable",
+    "function": "connect_audio_signal",
+    "intended_use": "professional_audio",
+    "physical_form": "audio_cable",
+    "expected_category_signals": [
+      "cabo",
+      "audio",
+      "p10",
+      "xlr",
+      "rca",
+      "instrumentomusical"
+    ],
+    "incompatible_category_signals": [
+      "redeethernet",
+      "alimentacaoeletrica",
+      "usbcelular"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "20 Mm",
+        "0,20 mm",
+        "3,00 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

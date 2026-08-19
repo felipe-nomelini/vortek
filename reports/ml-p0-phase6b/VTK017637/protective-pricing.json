@@ -1,0 +1,7 @@
+{
+  "tax_rate": 0.05,
+  "target_margin_percent": 50,
+  "safety_target_percent": 50.5,
+  "cost": 122.9,
+  "pre_item": null
+}

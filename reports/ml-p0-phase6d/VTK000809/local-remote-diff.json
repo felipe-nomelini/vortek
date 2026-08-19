@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432633246",
+      "local": "MLB7432633246",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK000809",
+      "local": "VTK000809",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "10c77f6c-7c78-4bcb-8030-c866c53ddc89",
+      "local": "10c77f6c-7c78-4bcb-8030-c866c53ddc89",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Omeleteira Antiaderente Elétrica Dupla 800w Mr. Cheff Redonda Preta 220v Agratto Aoip01i-02 Preto",
+      "local": "Omeleteira Antiaderente Elétrica Dupla 800w Mr. Cheff Redonda Preta 220v Agratto Aoip01i-02 Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 339.9,
+      "local": 339.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432633246-omeleteira-antiaderente-eletrica-dupla-800w-mr-cheff-redonda-preta-220v-agratto-aoip01i-02-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432633246-omeleteira-antiaderente-eletrica-dupla-800w-mr-cheff-redonda-preta-220v-agratto-aoip01i-02-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

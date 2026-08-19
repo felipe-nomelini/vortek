@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-08-17T14:15:52.942Z",
+  "product": {
+    "id": "24f67a3a-a737-4058-815e-8dbdf54e5f1a",
+    "sku": "VTK020645",
+    "nome": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton 2009/2017 Force",
+    "marca": "FLASH COVER",
+    "estoque": 3,
+    "custo": 539.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 6.901,
+    "peso_bruto": 6.901,
+    "largura": 21,
+    "altura": 16,
+    "profundidade": 159,
+    "gtin": "7899630194318",
+    "descricao": "Informações do Produto A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo L200 Triton 09+ FF",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/317328_68d3f5143f2c1.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317328_68d3f5143f5be.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317328_68d3f5143f66b.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317328_68d3f5143f6be.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317328_68d3f5143f700.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317328_68d3f5143f743.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317328_68d3f5143f782.png"
+    ],
+    "categoria": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:35:56.57232+00:00",
+    "updated_at": "2026-08-17T11:19:15.42844+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "317328",
+    "dslite_ultima_sync": "2026-08-17T11:19:15.296+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "87082999",
+    "cest": "01.075.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "db35a30f-dc6c-49a7-9445-c0d46ee17be2",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

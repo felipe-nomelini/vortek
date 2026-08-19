@@ -1,0 +1,754 @@
+{
+  "checked_at": "2026-08-17T01:15:06.902Z",
+  "product": {
+    "id": "5298cf99-80e2-43ce-a5b6-e3568bcd46f4",
+    "sku": "VTK022455",
+    "nome": "Roteador Wi-fi Tp-link Ec220g5 Ac1200 Giga 4 Antenas Dual",
+    "marca": "TP-LINK",
+    "gtin": "7898544553648"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/384675",
+    "consulted_at": "2026-08-17T01:15:06.703Z",
+    "product": {
+      "produtoid": "384675",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 139.9,
+      "preco_crossdocking": 139.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 139.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Roteador Wi-fi Tp-link Ec220g5 Ac1200 Giga 4 Antenas Dual",
+      "titulo_curto": "Roteador Wi-fi Tp-link Ec220g5 Ac1200 Giga 4 Antenas Dual",
+      "categoriaid": "117900",
+      "categoria_nome": "Redes E Provedores/ Internet E Rede/ Roteador Wifi",
+      "abc": null,
+      "ean11": "7898544553648",
+      "ncm": "85176241",
+      "descricao": "<p>O EC220-G5 permite que seu PC ou laptop desfrute de conexões 3x mais rápidas do que o Wireless N com a tecnologia Wireless AC. Com 300Mbps na banda de 2.4GHz e 867Mbps na banda mais cristalina de 5GHz, o EC220-G5 é a escolha superior para streaming contínuo em HD, jogos online e outras tarefas que consomem muita largura de banda.<br /><br />Wi-Fi 5° geração, dual band 300Mbps em 2.4GHz + 867Mbps em 5GHz.<br />Gerenciamento remoto fácil, protocolo TR-069 permite que um operador configure e gerencie remotamente o dispositivo do usuário final.<br />IPv6: compatível com IPv6 (Internet Protocol versão 6<br />IPTV: suporta IGMP Proxy / Snooping, Bridge e Tag VLAN para otimizar streaming de IPTV<br />Portas Full Gigabit, porta WAN de 1000 Mbps e três portas LAN de 1000 Mbps, para velocidades de transferência de dados ultrarrápidas<br />Se você tem uma velocidade acima de 100mega contratada com o seu provedor de internet, o EC220-G5 é ideal para a sua casa.</p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p><strong>CARACTERÍSTICAS DE HARDWARE</strong><br />Interface: 3 Portas 10/100/1000Mbps LAN &amp; 1 Porta 10/100/1000Mbps WAN<br />Fonte de Alimentação Externa: 12V/1.0A<br />Dimensões (L X C X A): 9.1 × 5.7 × 1.5 in (230.0 x 144.0 x 37.0mm)<br />Antena: 4 Antenas Externas<br /><br /><strong>CARACTERÍSTICAS WIRELESS</strong><br />Padrões Wireless: IEEE 802.11a/n/ac 5GHz, IEEE 802.11b/g/n 2.4GHz<br />Frequência: 2.4GHz e 5GHz<br />Taxa de Sinal: 300Mbps em 2.4GHz, 867Mbps em 5GHz<br />Potência de Transmissão CE: &lt;20dBm(2.4GHz), &lt;23dBm(5GHz)<br />Funções Wireless: Ativar / Desativar Rádio Wireless , WDS Bridge, WMM, Estatísticas Wireless<br />Segurança Wireless: 64/128-bit WEP, WPA/WPA2, WPA-PSK/WPA2-PSK<br /><br /><strong>CARACTERÍSTICAS DE SOFTWARE</strong><br />QoS: WMM, Controle Bandwidth<br />Tipo de WAN: IP Dinâmico /IP Estático/PPPoE/PPTP/L2TP(Multi-EWAN)<br />Gerenciamento: Controle de Acesso, Gerenciamento Local, Gerenciamento Remoto, TR-069, TR-098, TR-111<br />DHCP: Servidor, Cliente, Lista Cliente DHCP, Endereço de Reserva<br />Redirecionamento de Portas: Vritual Server, Port Triggering, DMZ, UPnP<br />VPN Pass-Through: PPTP, L2TP, IPSec<br />Controle de Acesso: Controle dos Pais,Controle de Gerenciamento Local, Lista de Hosts, Programação de Acesso, Gerenciamento de Regras<br />Firewall: DoS, SPI Firewall, Filtro de endereço IP, IP e MAC Address Binding<br />Protocolos: Suporte IPv4 e IPv6<br /><br /><strong>OUTROS</strong><br />Conteúdo do Pacote: Roteador Gigabit de banda dupla sem fio AC1200 EC220-G5<br />Fonte de alimentação<br />Cabo Ethernet RJ45<br />Guia de Instalação Rápido<br /><br />Requerimentos do Sistema: Microsoft Windows 98SE, NT, 2000, XP, Vista™ ou Windows 7, 8, 8.1,10, MAC OS, NetWare, UNIX ou Linux Internet Explorer 11, Firefox 12.0, Chrome 20.0, Safari 4.0 ou superior.<br /><br />Certificação: CE, RoHS<br /><br />Ambiente: Temperatura de Operação: 0 ° C ~ 40 ° C (32 ° F ~ 104 ° F)<br />Temperatura de Armazenamento: -40 ° C ~ 70 ° C (-40 ° F ~ 158 ° F)<br />Umidade Operacional: 10% ~ 90% sem condensação<br />Umidade de Armazenamento: 5% ~ 90% sem condensação</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "TP-LINK",
+      "modelo": "",
+      "peso": 0.69,
+      "largura": 31,
+      "altura": 6,
+      "profundidade": 29.5,
+      "peso_embalagem": 0.69,
+      "largura_embalagem": 31,
+      "altura_embalagem": 6,
+      "profundidade_embalagem": 29.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/384675_67d2cb1f08d61.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1800,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.083.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 10:38:57.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 10:38:57.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 13,
+      "tempo_cross": 0,
+      "estoque_total": 13,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/384675_67d2cb1f08d61.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/384675_67d2cb1f09c00.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/384675_67d2cb1f0a782.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB16268838 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB16268838",
+      "catalog_product_id": "MLB16268838",
+      "domain_id": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+      "name": "Roteador Giga Tp-link Ec220-g5 Branco",
+      "parent_id": "MLB16268837",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "7885",
+          "value_name": "TP-Link",
+          "values": [
+            {
+              "id": "7885",
+              "name": "TP-Link"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "64184114",
+          "value_name": "Aginet",
+          "values": [
+            {
+              "id": "64184114",
+              "name": "Aginet"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "9252316",
+          "value_name": "EC220-G5",
+          "values": [
+            {
+              "id": "9252316",
+              "name": "EC220-G5"
+            }
+          ]
+        },
+        {
+          "id": "VERSION",
+          "name": "Versão",
+          "value_id": "7783566",
+          "value_name": "V3",
+          "values": [
+            {
+              "id": "7783566",
+              "name": "V3"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "52055",
+              "name": "Branco"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "7386989",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7386989",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205163",
+          "value_name": "127/220V",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ]
+        },
+        {
+          "id": "WITH_POE_CONNECTION",
+          "name": "Com conexão PoE",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "FUNCTIONS",
+          "name": "Funções",
+          "value_id": "279956",
+          "value_name": "Roteador",
+          "values": [
+            {
+              "id": "279956",
+              "name": "Roteador"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "name": "Tipos de conexões",
+          "value_id": "11296606",
+          "value_name": "Sem fio",
+          "values": [
+            {
+              "id": "11296606",
+              "name": "Sem fio"
+            }
+          ]
+        },
+        {
+          "id": "WIRELESS_SPEED",
+          "name": "Velocidade wireless",
+          "value_id": "73457179",
+          "value_name": "0 Mbps",
+          "values": [
+            {
+              "id": "73457179",
+              "name": "0 Mbps"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCIES",
+          "name": "Frequências",
+          "value_name": "2.4 GHz, 5 GHz",
+          "values": [
+            {
+              "id": "2791070",
+              "name": "2.4 GHz"
+            },
+            {
+              "id": "2793416",
+              "name": "5 GHz"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY_TYPE",
+          "name": "Tipo de frequência",
+          "value_id": "6059549",
+          "value_name": "Banda dupla",
+          "values": [
+            {
+              "id": "6059549",
+              "name": "Banda dupla"
+            }
+          ]
+        },
+        {
+          "id": "INTERNAL_ANTENNAS_NUMBER",
+          "name": "Quantidade de antenas internas",
+          "value_id": "8756203",
+          "value_name": "4",
+          "values": [
+            {
+              "id": "8756203",
+              "name": "4"
+            }
+          ]
+        },
+        {
+          "id": "EXTERNAL_ANTENNAS_NUMBER",
+          "name": "Quantidade de antenas externas",
+          "value_id": "8637174",
+          "value_name": "4",
+          "values": [
+            {
+              "id": "8637174",
+              "name": "4"
+            }
+          ]
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "40366083",
+          "value_name": "134742203177",
+          "values": [
+            {
+              "id": "40366083",
+              "name": "134742203177"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_name": "6935364086688, 845973086688, 7898544553631, 7898544553648, 7908902511477",
+          "values": [
+            {
+              "id": "10490102",
+              "name": "6935364086688"
+            },
+            {
+              "id": "24599474",
+              "name": "845973086688"
+            },
+            {
+              "id": "24611278",
+              "name": "7898544553631"
+            },
+            {
+              "id": "20139822",
+              "name": "7898544553648"
+            },
+            {
+              "id": "29719129",
+              "name": "7908902511477"
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "7885",
+          "value_name": "TP-Link",
+          "values": [
+            {
+              "id": "7885",
+              "name": "TP-Link"
+            }
+          ]
+        },
+        {
+          "id": "ROUTERS_AND_WIRELESS_SYSTEMS_BANDWIDTH",
+          "name": "Largura de banda",
+          "value_id": "24830198",
+          "value_name": "1 GB/s",
+          "values": [
+            {
+              "id": "24830198",
+              "name": "1 GB/s"
+            }
+          ]
+        },
+        {
+          "id": "SATELLITES_NUMBER",
+          "name": "Quantidade de satélites",
+          "value_id": "11277339",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "11277339",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "TOTAL_PORTS_NUMBER",
+          "name": "Quantidade total de portas",
+          "value_id": "1000090",
+          "value_name": "4",
+          "values": [
+            {
+              "id": "1000090",
+              "name": "4"
+            }
+          ]
+        },
+        {
+          "id": "LAN_PORTS_NUMBER",
+          "name": "Quantidade de portas LAN",
+          "value_id": "7902397",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "7902397",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "WAN_PORTS_NUMBER",
+          "name": "Quantidade de portas WAN",
+          "value_id": "7881190",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7881190",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "WAN_LAN_PORTS_NUMBER",
+          "name": "Quantidade de portas WAN/LAN",
+          "value_id": "7913404",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7913404",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "name": "Quantidade de portas USB",
+          "value_id": "13402895",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "13402895",
+              "name": "0"
+            }
+          ]
+        },
+        {
+          "id": "IEEE_STANDARDS",
+          "name": "Normas IEEE",
+          "value_name": "IEEE 802.11a/n/ac, IEEE 802.11b/g/n",
+          "values": [
+            {
+              "id": "7929262",
+              "name": "IEEE 802.11a/n/ac"
+            },
+            {
+              "id": "82236",
+              "name": "IEEE 802.11b/g/n"
+            }
+          ]
+        },
+        {
+          "id": "WITH_INTEGRATED_FIREWALL",
+          "name": "Com firewall integrado",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_HOTSPOT",
+          "name": "Com Hotspot",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_RESET_BUTTON",
+          "name": "Com botão de reinício",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_PARENTAL_CONTROL",
+          "name": "Com controle parental",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_ADAPTATIVE_QOS_FUNCTION",
+          "name": "Com função Adaptative QoS",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_AI_PROTECTION",
+          "name": "Com proteção de AI",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "SECURITY_PROTOCOLS",
+          "name": "Protocolos de segurança",
+          "value_name": "DMZ, SPI, WEP, WPA, WPA2",
+          "values": [
+            {
+              "id": "7881437",
+              "name": "DMZ"
+            },
+            {
+              "id": "7179629",
+              "name": "SPI"
+            },
+            {
+              "id": "4442785",
+              "name": "WEP"
+            },
+            {
+              "id": "4442779",
+              "name": "WPA"
+            },
+            {
+              "id": "4442780",
+              "name": "WPA2"
+            }
+          ]
+        },
+        {
+          "id": "MOBILE_NETWORKS",
+          "name": "Redes móveis",
+          "value_id": "22994556",
+          "value_name": "0 °C - 40 °C",
+          "values": [
+            {
+              "id": "22994556",
+              "name": "0 °C - 40 °C"
+            }
+          ]
+        },
+        {
+          "id": "OPERATING_TEMPERATURE",
+          "name": "Temperatura de operação",
+          "value_id": "10589259",
+          "value_name": "0 °C - 40 °C",
+          "values": [
+            {
+              "id": "10589259",
+              "name": "0 °C - 40 °C"
+            }
+          ]
+        },
+        {
+          "id": "ROUTERS_AND_WIRELESS_SYSTEMS_OPERATING_HUMIDITY",
+          "name": "Umidade de operação",
+          "value_id": "10589260",
+          "value_name": "10 % - 90 %",
+          "values": [
+            {
+              "id": "10589260",
+              "name": "10 % - 90 %"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "57121",
+          "value_name": "800 g",
+          "values": [
+            {
+              "id": "57121",
+              "name": "800 g"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "8257948",
+          "value_name": "3.7 cm",
+          "values": [
+            {
+              "id": "8257948",
+              "name": "3.7 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "570699",
+          "value_name": "23 cm",
+          "values": [
+            {
+              "id": "570699",
+              "name": "23 cm"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "4615848",
+          "value_name": "14.4 cm",
+          "values": [
+            {
+              "id": "4615848",
+              "name": "14.4 cm"
+            }
+          ]
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "13452364",
+          "value_name": "12 cm",
+          "values": [
+            {
+              "id": "13452364",
+              "name": "12 cm"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Especificações Roteador Wireless EC220-G5 BR TP-Link\n\n\nHardware\n- Interface: 3 Portas 10/100/1000Mbps LAN & 1 Porta 10/100/1000Mbps WAN\n- Fonte de Alimentação Externa: 12V/1.0A\n- Antena: 4 Antenas Externas\n\n\nWireless\n- Padrões Wireless: IEEE 802.11a/n/ac 5GHz, IEEE 802.11b/g/n 2.4GHz\n- Frequência: 2.4GHz e 5GHz\n- Taxa de Sinal: 300Mbps em 2.4GHz, 867Mbps em 5GHz\n- Potência de Transmissão: CE: <20dBm(2.4GHz), <23dBm(5GHz)\n- Funções Wireless: Ativar / Desativar Rádio Wireless WDS Bridge, WMM, Estatísticas Wireless\n- Segurança Wireless: 64/128-bit WEP, WPA/WPA2, WPA-PSK/WPA2-PSK\n\n\nSoftware\n- QoS: WMM, Controle Bandwidth\n- Tipo de WAN: IP Dinâmico /IP Estático/PPPoE/PPTP/L2TP(Multi-EWAN)\n- Gerenciamento: Controle de Acesso, Gerenciamento Local, Gerenciamento Remoto, TR-069, TR-098, TR-111\n- DHCP: Servidor, Cliente, Lista Cliente DHCP, Endereço de Reserva\n- Redirecionamento de Portas: Vritual Server, Port Triggering, DMZ, UPnP\n- VPN Pass-Through: PPTP, L2TP, IPSec\n- Controle de Acesso: Controle dos Pais,Controle de Gerenciamento Local, Lista de Hosts, Programação de Acesso, Gerenciamento de Regras\n- Firewall: DoS, SPI Firewall, Filtro de endereço IP, IP e MAC Address Binding\n- Protocolos: Suporte IPv4 e IPv6\n- Número de Homologação Anatel: 042672003177\n\n\nRequerimentos do Sistema\n- Microsoft Windows 98SE, NT, 2000, XP, Vista™ ou Windows 7, 8, 8.1,10, MAC OS, NetWare, UNIX ou Linux Internet Explorer 11, Firefox 12.0, Chrome 20.0, Safari 4.0 ou superior.\n\n\nCertificação\n- CE, RoHS"
+      },
+      "pictures": [
+        {
+          "id": "731500-MLA95941429561_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_731500-MLA95941429561_102025-F.jpg",
+          "max_width": "1195",
+          "max_height": "1200"
+        },
+        {
+          "id": "641558-MLA95501730832_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_641558-MLA95501730832_102025-F.jpg",
+          "max_width": "1018",
+          "max_height": "916"
+        }
+      ],
+      "authority_types": [
+        "INTERNAL"
+      ],
+      "date_created": "2020-11-20T17:29:27Z",
+      "last_updated": "2026-02-12T14:09:39Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

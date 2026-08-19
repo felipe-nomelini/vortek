@@ -1,0 +1,451 @@
+{
+  "attempted_at": "2026-08-17T00:43:43.318Z",
+  "local_time": "2026-08-16T21:43:43",
+  "endpoint": "POST /items",
+  "request_id": "d676cbad-a373-4fbe-9b95-1c6fb8edba53",
+  "http_status": 201,
+  "elapsed_ms": 865,
+  "payload_sha256": "a9af99f6647afae4d4c22527eb4805686715bc33b27fb256a2084ee48e2d62a4",
+  "body": {
+    "id": "MLB7432502048",
+    "site_id": "MLB",
+    "title": "Botão De Panico Para Acionamento De Alarme - Ipec",
+    "seller_id": 3294514937,
+    "category_id": "MLB33412",
+    "user_product_id": "MLBU4772705390",
+    "official_store_id": null,
+    "price": 149.9,
+    "base_price": 149.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 19,
+    "available_quantity": 19,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Ipec A2064",
+    "family_id": 3625262742991888,
+    "start_time": "2026-08-17T00:43:42.733Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:43:42.822Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432502048-boto-de-panico-para-acionamento-de-alarme-ipec-_JM",
+    "pictures": [
+      {
+        "id": "931689-MLA99017105682_112025",
+        "url": "http://mla-s1-p.mlstatic.com/931689-MLA99017105682_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/931689-MLA99017105682_112025-O.jpg",
+        "size": "491x500",
+        "max_size": "1178x1199",
+        "quality": ""
+      },
+      {
+        "id": "626682-MLA99016253820_112025",
+        "url": "http://mla-s2-p.mlstatic.com/626682-MLA99016253820_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/626682-MLA99016253820_112025-O.jpg",
+        "size": "500x500",
+        "max_size": "1200x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "5333037",
+        "value_name": "Ipec",
+        "values": [
+          {
+            "id": "5333037",
+            "name": "Ipec",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "29339794",
+        "value_name": "A2064",
+        "values": [
+          {
+            "id": "29339794",
+            "name": "A2064",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "value_id": "1176674",
+        "value_name": "Pilha",
+        "values": [
+          {
+            "id": "1176674",
+            "name": "Pilha",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2748302",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "24556082",
+        "value_name": "433",
+        "values": [
+          {
+            "id": "24556082",
+            "name": "433",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7818800",
+        "value_name": "33 cm",
+        "values": [
+          {
+            "id": "7818800",
+            "name": "33 cm",
+            "struct": {
+              "number": 33,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "7627437",
+        "value_name": "55 cm",
+        "values": [
+          {
+            "id": "7627437",
+            "name": "55 cm",
+            "struct": {
+              "number": 55,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "8038984",
+        "value_name": "27 cm",
+        "values": [
+          {
+            "id": "8038984",
+            "name": "27 cm",
+            "struct": {
+              "number": 27,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "16045938",
+        "value_name": "19 g",
+        "values": [
+          {
+            "id": "16045938",
+            "name": "19 g",
+            "struct": {
+              "number": 19,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "CONTROL_BUTTONS_NUMBER",
+        "name": "Quantidade de botões do controle",
+        "value_id": "28101208",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "28101208",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "WITH_ANTENNA",
+        "name": "Com antena",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "name": "É resistente à água",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "RECOMMENDED_USES",
+        "name": "Usos recomendados",
+        "value_id": "17608281",
+        "value_name": "Casa",
+        "values": [
+          {
+            "id": "17608281",
+            "name": "Casa",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "29339796",
+        "value_name": "7898663560183",
+        "values": [
+          {
+            "id": "29339796",
+            "name": "7898663560183",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "5333037",
+        "value_name": "Ipec",
+        "values": [
+          {
+            "id": "5333037",
+            "name": "Ipec",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "74511123",
+        "value_name": "A2064",
+        "values": [
+          {
+            "id": "74511123",
+            "name": "A2064",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK017933",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK017933",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "931689-MLA99017105682_112025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/931689-MLA99017105682_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB30220377",
+    "domain_id": "MLB-ALARM_REMOTE_CONTROLS",
+    "seller_custom_field": "VTK017933",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:43:42.931Z",
+    "last_updated": "2026-08-17T00:43:42.931Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

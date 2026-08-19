@@ -1,0 +1,490 @@
+{
+  "checked_at": "2026-08-17T01:14:19.010Z",
+  "expected_catalog_product_id": "MLB22520390",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "VOLTAGE": true,
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB22520390",
+    "catalog_product_id": "MLB22520390",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-ELECTRIC_SQUEEZERS",
+    "permalink": "",
+    "name": "Espremedor De Frutas Express 0,75l Vermelho Cp32 Arno",
+    "family_name": "Arno CP32",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB22520390",
+            "picker_label": "220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Arno CP32 - Vermelho - 220V - 220V",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "FREQUENCY",
+        "picker_name": "Frequência",
+        "products": [
+          {
+            "product_id": "MLB22520390",
+            "picker_label": "220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Arno CP32 - Vermelho - 220V - 220V",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "FREQUENCY",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB22520390",
+            "picker_label": "Vermelho",
+            "picture_id": "717953-MLA99458049220_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_717953-MLA99458049220_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Arno CP32 - Vermelho - 220V - 220V",
+            "auto_completed": true,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "717953-MLA99458049220_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_717953-MLA99458049220_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1199,
+        "max_height": 1155,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "908934-MLU74035726122_012024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_908934-MLU74035726122_012024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 368,
+        "max_height": 745,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "777818-MLA92077741318_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_777818-MLA92077741318_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "790643-MLA92482926267_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_790643-MLA92482926267_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "993105-MLA92482264293_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_993105-MLA92482264293_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1000,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "609636-MLU77901685010_082024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_609636-MLU77901685010_082024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1198,
+        "max_height": 1126,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "811297-MLA92482383443_092025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_811297-MLA92482383443_092025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 786,
+        "max_height": 940,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Potência de 40W para extração eficiente de suco.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Capacidade de 0,75L com jarra transparente para visualização do suco.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Design moderno e compacto com dimensões de 22,4 x 18,5 x 22,4 cm.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "455",
+        "value_name": "Arno",
+        "values": [
+          {
+            "id": "455",
+            "name": "Arno"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "40657",
+        "value_name": "CP32",
+        "values": [
+          {
+            "id": "40657",
+            "name": "CP32"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "51993",
+        "value_name": "Vermelho",
+        "values": [
+          {
+            "id": "51993",
+            "name": "Vermelho"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "198813",
+        "value_name": "220V",
+        "values": [
+          {
+            "id": "198813",
+            "name": "220V"
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "15151687",
+        "value_name": "220V",
+        "values": [
+          {
+            "id": "15151687",
+            "name": "220V"
+          }
+        ]
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "7726407",
+        "value_name": "40 W",
+        "values": [
+          {
+            "id": "7726407",
+            "name": "40 W"
+          }
+        ]
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "22113585",
+        "value_name": "cp32",
+        "values": [
+          {
+            "id": "22113585",
+            "name": "cp32"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450307",
+        "value_name": "Vermelho",
+        "values": [
+          {
+            "id": "2450307",
+            "name": "Vermelho",
+            "meta": {
+              "rgb": "FF0000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "FF0000"
+        }
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "name": "É industrial",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "10936975",
+        "value_name": "22.4 cm",
+        "values": [
+          {
+            "id": "10936975",
+            "name": "22.4 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "8775263",
+        "value_name": "18.5 cm",
+        "values": [
+          {
+            "id": "8775263",
+            "name": "18.5 cm"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "12873928",
+        "value_name": "750 g",
+        "values": [
+          {
+            "id": "12873928",
+            "name": "750 g"
+          }
+        ]
+      },
+      {
+        "id": "WITH_AUTO_REVERSING",
+        "name": "Com reversão automática",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_EASY_ON_OFF_FUNCTION",
+        "name": "Com acionamento automático",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_BUILT_IN_JAR",
+        "name": "Com jarra integrada",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "BUILT_IN_JAR_MATERIALS",
+        "name": "Materiais da jarra integrada",
+        "value_id": "99392",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "99392",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": "6621919",
+        "value_name": "Jarra",
+        "values": [
+          {
+            "id": "6621919",
+            "name": "Jarra"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Espremedor de Frutas Suco Express com design moderno e jarra transparente, facilitando a visualização do suco. Possui capacidade de 0,75L e potência de 40W, eficiente para extração completa do suco da fruta.\n\nESPECIFICAÇÕES:\n- Marca: Arno\n- Modelo: CP32\n- Cor: Vermelho\n- Potência: 40W\n- Voltagem: 220V\n- Material: Plástico\n- Tipo de tomada: 20A\n\nPESO E DIMENSÕES:\n- Peso: 750 g\n- Altura: 22,4 cm\n- Largura: 18,5 cm\n- Profundidade: 22,4 cm\n\nCONTEÚDO DA EMBALAGEM:\n- 1 Espremedor De Frutas Suco Express 0,75l Cp32 Vermelho Arno 220V\n- Manual"
+    },
+    "parent_id": "MLB22520389",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T01:24:02.333794915"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-04-06T23:09:41Z",
+    "authorized_stores": null,
+    "last_updated": "2026-03-30T04:48:08Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

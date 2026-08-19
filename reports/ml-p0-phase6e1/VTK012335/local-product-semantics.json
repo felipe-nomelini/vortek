@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-08-17T14:15:53.722Z",
+  "product": {
+    "id": "c71efd1f-eea6-43ba-adee-9d6dfb0699e9",
+    "sku": "VTK012335",
+    "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+    "marca": "Bori",
+    "estoque": 20,
+    "custo": 9.11,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.03,
+    "peso_bruto": 0.03,
+    "largura": 10,
+    "altura": 10,
+    "profundidade": 2,
+    "gtin": "",
+    "descricao": "PALHETA BORI GRL AT-R16112 S.T.D 1,14 MM (PRETO) R21016 10UN A Palheta Bori S.T.D 1,14 mm (Preto) R21016 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais especificações: Características Principais: • Modelo: S.T.D (Standard) • Código do Fabricante: R21016 • Espessura: 1,14 mm • Material: Poliamida Nylon (Resina de Engenharia) • Cor: Preto • Acabamento: Brilho Médio • Dimensões: • Largura: 25 mm • Altura: 28 mm • Peso: 0,50 g Design e Funcionalidade: Ponta Arredondada: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros. Conteúdo da Embalagem: O kit contém 10 palhetas Bori S.T.D de 1,14 mm na cor preta.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012335/01-83242193babd339c9bce.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012335/02-0401e2d2590ae40bd2d6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012335/03-6137bfa6370b9b575274.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012335/04-c80a03a673a099f84442.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.87647+00:00",
+    "updated_at": "2026-08-17T09:52:24.073797+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "2708",
+    "dslite_ultima_sync": "2026-08-17T09:52:24.02+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.92.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "f30793ce-f99b-4519-a875-05c570a7f02e",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "guitar_strings",
+    "function": "produce_instrument_sound",
+    "intended_use": "musical_instrument",
+    "physical_form": "string_set",
+    "expected_category_signals": [
+      "corda",
+      "guitarra",
+      "instrumentomusical"
+    ],
+    "incompatible_category_signals": [
+      "caboeletrico",
+      "automotivo",
+      "cozinha"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "1,14 Mm",
+        "1,14 MM",
+        "1,14 mm",
+        "25 mm",
+        "28 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "musical_instrument",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

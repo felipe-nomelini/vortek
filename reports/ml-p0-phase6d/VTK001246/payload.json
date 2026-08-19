@@ -1,0 +1,76 @@
+{
+  "payload": {
+    "family_name": "Suporte para Caixa ASK CP10",
+    "category_id": "MLB49488",
+    "catalog_product_id": "MLB26428961",
+    "catalog_listing": true,
+    "price": 289.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/81705/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/81705/550/2.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "4238929",
+        "value_name": "ASK"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "49857832",
+        "value_name": "ASK CP10"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52051",
+        "value_name": "Cinza-escuro"
+      },
+      {
+        "id": "STAND_TYPE",
+        "value_id": "18274557",
+        "value_name": "Articulado"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "23451128",
+            "name": "7902531558377"
+          },
+          {
+            "id": "23451140",
+            "name": "7898939971583"
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001246"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001246"
+  },
+  "sha256": "64047741489fc61d58271ab5c458123d1d282f8bb1104731b4ef1ac09d123a50",
+  "family_name_sha256": "72f636a4c685aeb083c3af2dbb60ed3b40ddefe91c8f8512f49ba2d8704bc5bf",
+  "title_absent": true,
+  "description_absent": true
+}

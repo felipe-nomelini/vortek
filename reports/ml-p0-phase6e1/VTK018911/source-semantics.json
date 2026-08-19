@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-08-17T14:15:45.335Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630194240",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317308",
+    "captured_at": "2026-08-17T12:54:43.588Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "44f22c76-a631-4e57-82de-df5a04b530f9",
+    "produto_id": "e92d8175-c067-44e4-ac0a-6c104db748f2",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "317308",
+    "sku_fornecedor": "317308",
+    "custo": 539.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "317308",
+    "nome": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+    "descricao": "Informações do Produto A linha de capotas FLASH FORCE foi desenvolvida com a finalidade de inovar. Resistente, durável e de fácil manuseio, também conta com sistema de travas robusto, totalmente injetados em alumínio e perfil traseiro reforçado. Esse modelo não possui costuras nos cantos traseiros, garantindo assim um acabamento impecável. Estrutura Alumínio/Eva/Nylon Modelo Frontier Sel D40 CD 09/15",
+    "marca": "FLASH COVER",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/317308_68d2d100d06db.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317308_68d2d100d0b04.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317308_68d2d100d0b96.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317308_68d2d100d0be5.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317308_68d2d100d0c29.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317308_68d2d100d0c68.png",
+      "https://evolusom.com.br/media/catalog/product/3/1/317308_68d2d100d0ca6.png"
+    ],
+    "gtin": "7899630194240",
+    "ncm": "87082999",
+    "cest": "01.075.00"
+  }
+}

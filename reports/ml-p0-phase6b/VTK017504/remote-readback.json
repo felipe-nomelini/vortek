@@ -1,0 +1,500 @@
+{
+  "checked_at": "2026-08-17T00:06:50.860Z",
+  "item": {
+    "id": "MLB7432492782",
+    "site_id": "MLB",
+    "title": "Jogo De Potes 300ml Tramontina Mixcolor Preto C/tampa 3 Un Preto",
+    "family_name": "Tramontina 300 mL",
+    "family_id": 4802355533471121,
+    "seller_id": 3294514937,
+    "category_id": "MLB244658",
+    "user_product_id": "MLBU4743251931",
+    "official_store_id": null,
+    "price": 99.9,
+    "base_price": 99.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 50,
+    "available_quantity": 50,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T00:06:49.573Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:06:49.668Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432492782-jogo-de-potes-300ml-tramontina-mixcolor-preto-ctampa-3-un-preto-_JM",
+    "thumbnail_id": "929685-MLA114564634252_082026",
+    "thumbnail": "http://http2.mlstatic.com/D_929685-MLA114564634252_082026-I.jpg",
+    "pictures": [
+      {
+        "id": "929685-MLA114564634252_082026",
+        "url": "http://http2.mlstatic.com/D_929685-MLA114564634252_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_929685-MLA114564634252_082026-O.jpg",
+        "size": "500x360",
+        "max_size": "1199x865",
+        "quality": ""
+      },
+      {
+        "id": "907226-MLA115924335783_082026",
+        "url": "http://http2.mlstatic.com/D_907226-MLA115924335783_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_907226-MLA115924335783_082026-O.jpg",
+        "size": "311x500",
+        "max_size": "582x934",
+        "quality": ""
+      },
+      {
+        "id": "692431-MLA115924566275_082026",
+        "url": "http://http2.mlstatic.com/D_692431-MLA115924566275_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_692431-MLA115924566275_082026-O.jpg",
+        "size": "500x500",
+        "max_size": "1124x1124",
+        "quality": ""
+      },
+      {
+        "id": "893113-MLA115924742489_082026",
+        "url": "http://http2.mlstatic.com/D_893113-MLA115924742489_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_893113-MLA115924742489_082026-O.jpg",
+        "size": "500x500",
+        "max_size": "800x800",
+        "quality": ""
+      },
+      {
+        "id": "640280-MLA115924335801_082026",
+        "url": "http://http2.mlstatic.com/D_640280-MLA115924335801_082026-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_640280-MLA115924335801_082026-O.webp",
+        "size": "466x500",
+        "max_size": "678x727",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "433",
+        "value_name": "Tramontina",
+        "values": [
+          {
+            "id": "433",
+            "name": "Tramontina",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "value_id": "4117846",
+        "value_name": "11 cm",
+        "values": [
+          {
+            "id": "4117846",
+            "name": "11 cm",
+            "struct": {
+              "number": 11,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "FOOD_STORAGE_CONTAINER_SHAPE",
+        "name": "Forma",
+        "value_id": "21014479",
+        "value_name": "Quadrado",
+        "values": [
+          {
+            "id": "21014479",
+            "name": "Quadrado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "86146470",
+        "value_name": "07891112359222",
+        "values": [
+          {
+            "id": "86146470",
+            "name": "07891112359222",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "3002",
+        "value_name": "5 cm",
+        "values": [
+          {
+            "id": "3002",
+            "name": "5 cm",
+            "struct": {
+              "number": 5,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "IS_AIRTIGHT",
+        "name": "É hermético",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_CEREAL_CONTAINER",
+        "name": "É porta-cereais",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "name": "É apto para lava-louças",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_MICROWAVE_SAFE",
+        "name": "É apto para micro-ondas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "45551",
+        "value_name": "11 cm",
+        "values": [
+          {
+            "id": "45551",
+            "name": "11 cm",
+            "struct": {
+              "number": 11,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "LID_TYPE",
+        "name": "Tipo de tampa",
+        "value_id": "41652862",
+        "value_name": "Tampa Transparente",
+        "values": [
+          {
+            "id": "41652862",
+            "name": "Tampa Transparente",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2482319",
+        "value_name": "Polipropileno",
+        "values": [
+          {
+            "id": "2482319",
+            "name": "Polipropileno",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK017504",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK017504",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "name": "Unidades por embalagem",
+        "value_id": "334424",
+        "value_name": "3",
+        "values": [
+          {
+            "id": "334424",
+            "name": "3",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "name": "Capacidade em volume",
+        "value_id": "3656932",
+        "value_name": "300 mL",
+        "values": [
+          {
+            "id": "3656932",
+            "name": "300 mL",
+            "struct": {
+              "number": 300,
+              "unit": "mL"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "45551",
+        "value_name": "11 cm",
+        "values": [
+          {
+            "id": "45551",
+            "name": "11 cm",
+            "struct": {
+              "number": 11,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WITH_LID",
+        "name": "Com tampa",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB76738398",
+    "domain_id": "MLB-FOOD_STORAGE_CONTAINERS",
+    "seller_custom_field": "VTK017504",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:06:49.766Z",
+    "last_updated": "2026-08-17T00:06:49.766Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {
+      "COLOR": true,
+      "VOLUME_CAPACITY": true,
+      "UNITS_PER_PACKAGE": true
+    },
+    "passed": true
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

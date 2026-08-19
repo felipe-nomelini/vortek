@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "D Addario",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1199",
+    "captured_at": "2026-08-17T12:56:45.353Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

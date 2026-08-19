@@ -1,0 +1,16 @@
+{
+  "candidates": [
+    {
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "domain_name": "Conectores de áudio e vídeo",
+      "classification": "SEMANTIC_MATCH",
+      "score": 100
+    },
+    {
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "domain_name": "Conectores de áudio e vídeo",
+      "classification": "SEMANTIC_MATCH",
+      "score": 100
+    }
+  ]
+}

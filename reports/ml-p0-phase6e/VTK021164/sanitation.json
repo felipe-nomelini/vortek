@@ -1,0 +1,10 @@
+{
+  "sku": "VTK021164",
+  "gate": "BLOCK_GTIN_BRAND_CONFLICT",
+  "evidence": "exact GTIN catalog identity conflict: BRAND,MODEL",
+  "local_value": "4988028352713",
+  "found_value": "MLB27415054",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB27415054 + DSLite supplier",
+  "timestamp": "2026-08-17T12:53:54.389Z"
+}

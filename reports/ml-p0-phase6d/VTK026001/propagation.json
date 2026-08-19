@@ -1,0 +1,571 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 164,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-length": "2041",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:13:05 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "vary": "Accept-Encoding",
+        "via": "1.1 dc4ba626a6645ad4a6ad5918e6e30c24.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "MW6GKOYC4gRpPh2TMHniOU-hrrrSqtqH2gsb7BE-8dkNHW1Q5ywB-g==",
+        "x-amz-cf-pop": "GIG52-P4",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "9596127e-f31e-4b12-8740-5969f63f4351",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB5075856243",
+        "site_id": "MLB",
+        "title": "Encordoamento Para Guitarra Elétrica Sx .010 Light Com Cordas Extras",
+        "family_name": "SX Electric SZSTE1L Guitarra",
+        "family_id": 6330742256188561,
+        "seller_id": 3294514937,
+        "category_id": "MLB278076",
+        "user_product_id": "MLBU4772901554",
+        "official_store_id": null,
+        "price": 119.9,
+        "base_price": 119.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 78,
+        "available_quantity": 78,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:13:05.238Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:13:05.298Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5075856243-encordoamento-para-guitarra-eletrica-sx-010-light-com-cordas-extras-_JM",
+        "thumbnail_id": "678798-MLA109630503679_032026",
+        "thumbnail": "http://http2.mlstatic.com/D_678798-MLA109630503679_032026-I.jpg",
+        "pictures": [
+          {
+            "id": "678798-MLA109630503679_032026",
+            "url": "http://http2.mlstatic.com/D_678798-MLA109630503679_032026-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_678798-MLA109630503679_032026-O.jpg",
+            "size": "394x500",
+            "max_size": "946x1200",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "15158",
+            "value_name": "SX",
+            "values": [
+              {
+                "id": "15158",
+                "name": "SX",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GAUGES",
+            "name": "Calibres",
+            "value_id": null,
+            "value_name": "0.010,0.013,0.017,0.026,0.036,0.046",
+            "values": [
+              {
+                "id": "17715802",
+                "name": "0.010",
+                "struct": null
+              },
+              {
+                "id": "17715803",
+                "name": "0.013",
+                "struct": null
+              },
+              {
+                "id": "17715804",
+                "name": "0.017",
+                "struct": null
+              },
+              {
+                "id": "17715805",
+                "name": "0.026",
+                "struct": null
+              },
+              {
+                "id": "17599676",
+                "name": "0.036",
+                "struct": null
+              },
+              {
+                "id": "5344250",
+                "name": "0.046",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "75577306",
+            "value_name": "06940651411555",
+            "values": [
+              {
+                "id": "75577306",
+                "name": "06940651411555",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "13767790",
+            "value_name": "Electric",
+            "values": [
+              {
+                "id": "13767790",
+                "name": "Electric",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MATERIALS",
+            "name": "Materiais",
+            "value_id": "2342782",
+            "value_name": "Níquel",
+            "values": [
+              {
+                "id": "2342782",
+                "name": "Níquel",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "65025512",
+            "value_name": "SZSTE1L",
+            "values": [
+              {
+                "id": "65025512",
+                "name": "SZSTE1L",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "RECOMMENDED_INSTRUMENT",
+            "name": "Instrumento recomendado",
+            "value_id": "17598422",
+            "value_name": "Guitarra",
+            "values": [
+              {
+                "id": "17598422",
+                "name": "Guitarra",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK026001",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK026001",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "STRINGS_NUMBER",
+            "name": "Quantidade de cordas",
+            "value_id": "15146",
+            "value_name": "6",
+            "values": [
+              {
+                "id": "15146",
+                "name": "6",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "TENSION",
+            "name": "Tensão",
+            "value_id": "5344248",
+            "value_name": "Média",
+            "values": [
+              {
+                "id": "5344248",
+                "name": "Média",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB67298918",
+        "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+        "seller_custom_field": "VTK026001",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:13:05.402Z",
+        "last_updated": "2026-08-17T01:13:05.402Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3659,
+    "user_product": {
+      "id": "MLBU4772901554",
+      "name": "Encordoamento Para Guitarra Elétrica Sx .010 Light Com Cordas Extras",
+      "family_name": "SX Electric SZSTE1L Guitarra",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+      "attributes": [
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "65025512",
+              "name": "SZSTE1L",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GAUGES",
+          "name": "Calibres",
+          "values": [
+            {
+              "id": "17715802",
+              "name": "0.010",
+              "struct": null
+            },
+            {
+              "id": "17715803",
+              "name": "0.013",
+              "struct": null
+            },
+            {
+              "id": "17715804",
+              "name": "0.017",
+              "struct": null
+            },
+            {
+              "id": "17715805",
+              "name": "0.026",
+              "struct": null
+            },
+            {
+              "id": "17599676",
+              "name": "0.036",
+              "struct": null
+            },
+            {
+              "id": "5344250",
+              "name": "0.046",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "values": [
+            {
+              "id": "5344248",
+              "name": "Média",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "75577306",
+              "name": "06940651411555",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "values": [
+            {
+              "id": "13767790",
+              "name": "Electric",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "15158",
+              "name": "SX",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "values": [
+            {
+              "id": "2342782",
+              "name": "Níquel",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "values": [
+            {
+              "id": "17598422",
+              "name": "Guitarra",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "values": [
+            {
+              "id": "15146",
+              "name": "6",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK026001",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "678798-MLA109630503679_032026",
+          "secure_url": "https://http2.mlstatic.com/D_678798-MLA109630503679_032026-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "678798-MLA109630503679_032026",
+        "secure_url": "https://http2.mlstatic.com/D_678798-MLA109630503679_032026-O.jpg"
+      },
+      "catalog_product_id": "MLB67298918",
+      "bundle": null,
+      "family_id": 6330742256188561,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:13:05.509+0000",
+      "last_updated": "2026-08-17T01:13:05.509+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4772901554"
+      ],
+      "family_id": 6330742256188561,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

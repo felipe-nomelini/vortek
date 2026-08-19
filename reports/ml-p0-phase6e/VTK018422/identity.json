@@ -1,0 +1,242 @@
+{
+  "checked_at": "2026-08-17T12:53:42.947Z",
+  "product": {
+    "id": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+    "sku": "VTK018422",
+    "nome": "Haste Permak Para Antena De Teto Gti 095",
+    "marca": "PERMAK",
+    "gtin": "7898253494676"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/157761",
+    "consulted_at": "2026-08-17T12:53:42.186Z",
+    "product": {
+      "produtoid": "157761",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 15.4,
+      "preco_crossdocking": 15.4,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 15.4,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:03.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Haste Permak Para Antena De Teto Gti 095",
+      "titulo_curto": "Haste Permak Para Antena De Teto Gti 095",
+      "categoriaid": "117444",
+      "categoria_nome": "Automotivo/ Antena Automotiva/ Haste De Antena",
+      "abc": null,
+      "ean11": "7898253494676",
+      "ncm": "85291090",
+      "descricao": "Haste Para Antena De Teto <br />\r\nGTI Permak 095<br />\r\n",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PERMAK",
+      "modelo": "",
+      "peso": 0.038,
+      "largura": 4.5,
+      "altura": 2,
+      "profundidade": 44,
+      "peso_embalagem": 0.038,
+      "largura_embalagem": 4.5,
+      "altura_embalagem": 2,
+      "profundidade_embalagem": 44,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/1/5/157761_67d2cada0c2a6.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1369,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.063.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-10 10:49:36.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-10 10:49:36.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/1/5/157761_67d2cada0c2a6.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_CATEGORY",
+    "reason": "category confidence is not HIGH for domain MLB-GPS_ANTENNAS",
+    "sanitation": "CATEGORY_FIX_REQUIRED",
+    "source": "ML catalog MLB52897049 + domain discovery"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB52897049",
+      "catalog_product_id": "MLB52897049",
+      "domain_id": "MLB-GPS_ANTENNAS",
+      "name": "Haste Para Antena Gti Preto",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak",
+          "values": [
+            {
+              "id": "3289477",
+              "name": "Permak"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "19052",
+          "value_name": "95",
+          "values": [
+            {
+              "id": "19052",
+              "name": "95"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "570724",
+          "value_name": "37 cm",
+          "values": [
+            {
+              "id": "570724",
+              "name": "37 cm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "58006619",
+          "value_name": "7898253494676",
+          "values": [
+            {
+              "id": "58006619",
+              "name": "7898253494676"
+            }
+          ]
+        },
+        {
+          "id": "MPN",
+          "name": "MPN",
+          "value_id": "58006620",
+          "value_name": "Gti",
+          "values": [
+            {
+              "id": "58006620",
+              "name": "Gti"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Haste para Antena GTI, com 37 cm de extensão e rosca de 5 mm, é a solução ideal para quem busca durabilidade e resistência. Fabricada com materiais de alta qualidade, como Santoprene (TPV), cobre, aço e PVC, ela suporta temperaturas extremas, raios UV e corrosão, mantendo seu desempenho ao longo do tempo.\n\nDisponível na cor preta, esta haste é compatível com os modelos Gol G1, G2 e G3 e deve ser instalada na parte traseira do veículo. Ela oferece um excelente isolamento térmico e elétrico, proporcionando um desempenho confiável no sistema de antena."
+      },
+      "pictures": [
+        {
+          "id": "639611-MLA88139199793_072025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_639611-MLA88139199793_072025-F.jpg",
+          "max_width": "1069",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-07-18T04:12:20Z",
+      "last_updated": "2025-07-18T04:22:14Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

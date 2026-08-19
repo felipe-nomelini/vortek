@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Capota Maritima",
+    "supplier_brand": "FLASH COVER",
+    "supplier_gtin": "7899630182377",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/314358",
+    "captured_at": "2026-08-17T12:55:17.795Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

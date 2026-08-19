@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075741815",
+      "local": "MLB5075741815",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK006193",
+      "local": "VTK006193",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "f25daf26-7ac7-4f67-a81d-c36367da57c0",
+      "local": "f25daf26-7ac7-4f67-a81d-c36367da57c0",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cabo Para Instrumentos Hayonik P10 X P10 Azul 5m Conexão Segura",
+      "local": "Cabo Para Instrumentos Hayonik P10 X P10 Azul 5m Conexão Segura",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 269.9,
+      "local": 269.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075741815-cabo-para-instrumentos-hayonik-p10-x-p10-azul-5m-conexo-segura-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075741815-cabo-para-instrumentos-hayonik-p10-x-p10-azul-5m-conexo-segura-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

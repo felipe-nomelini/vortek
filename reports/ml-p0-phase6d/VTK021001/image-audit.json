@@ -1,0 +1,73 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://evolusom.com.br/media/catalog/product/3/3/339087_68f1359f12a9c.png",
+      "final_url": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_68f1359f12a9c.png",
+      "redirected": true,
+      "http_status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e0989.jpg",
+      "final_url": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e0989.jpg",
+      "redirected": true,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1001,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e15cf.jpg",
+      "final_url": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e15cf.jpg",
+      "redirected": true,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1001,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://evolusom.com.br/media/catalog/product/3/3/339087_68f1359f12a9c.png",
+      "final_url": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_68f1359f12a9c.png",
+      "redirected": true,
+      "http_status": 200,
+      "content_type": "image/png",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e0989.jpg",
+      "final_url": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e0989.jpg",
+      "redirected": true,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1001,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e15cf.jpg",
+      "final_url": "https://www.evolusom.com.br/media/catalog/product/3/3/339087_67d2caf2e15cf.jpg",
+      "redirected": true,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1001,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

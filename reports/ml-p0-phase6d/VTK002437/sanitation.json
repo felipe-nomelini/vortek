@@ -1,0 +1,10 @@
+{
+  "sku": "VTK002437",
+  "gate": "BLOCK_REQUIRED_ATTRIBUTE",
+  "evidence": "missing category-required attributes: MODEL",
+  "local_value": "7898946771152",
+  "found_value": null,
+  "suggested_action": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "source": "ML catalog MLB35894914 + DSLite supplier",
+  "timestamp": "2026-08-17T01:14:18.244Z"
+}

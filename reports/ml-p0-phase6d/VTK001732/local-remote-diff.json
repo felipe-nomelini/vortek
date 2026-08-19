@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075856847",
+      "local": "MLB5075856847",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001732",
+      "local": "VTK001732",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "57cd87d9-9961-405c-a4ed-027495051b55",
+      "local": "57cd87d9-9961-405c-a4ed-027495051b55",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Corda Para Violão Nylon 6a (mi) Genw6 Canário Giannini Dz 12",
+      "local": "Corda Para Violão Nylon 6a (mi) Genw6 Canário Giannini Dz 12",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 289.9,
+      "local": 289.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075856847-corda-para-violo-nylon-6a-mi-genw6-canario-giannini-dz-12-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075856847-corda-para-violo-nylon-6a-mi-genw6-canario-giannini-dz-12-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

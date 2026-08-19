@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.572Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Solar Cabel 6,0mm² Preto 50m",
+    "supplier_category": "Kit Gerador Fotovoltaico/ Cabos Para Energia Solar/ Cabeamento Solar",
+    "supplier_brand": "CABEL",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/386025",
+    "captured_at": "2026-08-17T12:56:35.868Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "bbc067b2-9e98-48fd-b031-be8cbb020ab1",
+    "produto_id": "c480d7fd-a6c3-4bd3-83d8-dd9ee60cf619",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "386025",
+    "sku_fornecedor": "386025",
+    "custo": 269.9,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:30:21.583+00:00",
+    "created_at": "2026-07-20T18:30:39.682006+00:00",
+    "updated_at": "2026-08-17T10:30:21.591+00:00",
+    "sku_oferta": "386025",
+    "nome": "Cabo Solar Cabel 6,0mm² Preto 50m",
+    "descricao": "A CABEL possui o selo BVQI - Bureau Veritas, uma organização internacional de certificação, devidamente acreditado pelo INMETRO garantido a excelência dentro dos padrões estabelecidos nas normas da ABNT. A Cabel fornece cabos de potência para sistemas fotovoltaicos, não halogenados, isolados, com cobertura, para tensão de até 1,8 KV. Contam com excelente flexibilidade para facilitar o manuseio durante a instalação. Possui compostos retardantes de chama, inibindo a propagação e fogo, e baixa emissão de fumaça tóxica. Cor: Preto Comprimento: 50m Características Construtivas: Condutor: Formado por fios de cobre eletrolítico estanhado, tempera mole, conforme NBR NM 280, CLASSE 5 de encordoamento. Isolação: Constituída por uma camada de material termofixo. Cobertura: Constituída por uma camada de material termofixo, não halógeno, resistente aos raios solares UV com alta durabilidade em ambientes externos. Seção do Condutor (mm²): 6 Diâmetro do Condutor (mm²): 3,02 Espessura da isolação (mm²): 0,70 Espessura da Cobertura (mm²): 0,80 Resistência Elétrica Máxima a 20°C (Ω/km): 3,39 Peso Nominal (Kg/Km): 78,6 Classe de térmica -40°C a 120°C. Resistência em CC (Ω/km): 20°C: 3,39 90°C: 4,32 120°C: 4,72 Capacidade de Corrente (A): Ao ar livre: 65 Em dutos: 54 Dutos aterrados: 56 Os cabos Cabel possuem excelente resistência mecânica. Operação em corrente contínua (CC), a uma tensão elétrica máxima de 1,8kV ou em corrente alternada (CA), a uma tensão elétrica máxima de 0,6/1kV. Possui alta durabilidade quando instalados e operados conforme especificação da norma NBR 5410. Garantia: Garantia do produto indeterminada.\n\nCabo Solar Cabel 6,0Mm² Preto 50M",
+    "marca": "CABEL",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/8/386025_67d2cb2518f64.png"
+    ],
+    "gtin": "",
+    "ncm": "85444900",
+    "cest": "12.007.00"
+  }
+}

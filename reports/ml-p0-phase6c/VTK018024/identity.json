@@ -1,0 +1,360 @@
+{
+  "checked_at": "2026-08-17T00:43:47.822Z",
+  "product": {
+    "id": "85bd6a53-e81c-426c-9450-ae424299e482",
+    "sku": "VTK018024",
+    "nome": "Teclado Viaweb 16s",
+    "marca": "VIAWEB",
+    "gtin": "7898936319227"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/336822",
+    "consulted_at": "2026-08-17T00:43:47.379Z",
+    "product": {
+      "produtoid": "336822",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 99.9,
+      "preco_crossdocking": 99.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 99.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Teclado Viaweb 16s",
+      "titulo_curto": "Teclado Viaweb 16s",
+      "categoriaid": "118370",
+      "categoria_nome": "Segurança / Alarme/ Central De Alarme",
+      "abc": null,
+      "ean11": "7898936319227",
+      "ncm": "85319000",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Teclado 16S Leds - 3.02.00.0026</b></p><br />\r\n<p>Visualização <br><br />\r\n  16 zonas</p><br />\r\n<p>Teclas especiais programáveis <br><br />\r\n  2</p><br />\r\n<p>Dimensões <br><br />\r\n  11,4 x 7,1 x 1,7 cm</p><br />\r\n<p>- Visualização de partições restritas;<br><br />\r\n  - Luminosidade de backlight e leds programável;<br><br />\r\n  - Modo noturno - apaga display e leds em repouso.</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "VIAWEB",
+      "modelo": "",
+      "peso": 0.098,
+      "largura": 9,
+      "altura": 3,
+      "profundidade": 12,
+      "peso_embalagem": 0.098,
+      "largura_embalagem": 9,
+      "altura_embalagem": 3,
+      "profundidade_embalagem": 12,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/3/336822_67d2caf226410.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1356,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.113.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-09-03 18:44:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:57:39.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 16,
+      "tempo_cross": 0,
+      "estoque_total": 16,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/336822_67d2caf226410.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB21742933",
+      "catalog_product_id": "MLB21742933",
+      "domain_id": "MLB-HOME_ALARMS_AND_SENSORS",
+      "name": "Teclado Viaweb 16s",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "16717793",
+          "value_name": "Viaweb",
+          "values": [
+            {
+              "id": "16717793",
+              "name": "Viaweb"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16718079",
+          "value_name": "TECLADO VIAWEB 16S",
+          "values": [
+            {
+              "id": "16718079",
+              "name": "TECLADO VIAWEB 16S"
+            }
+          ]
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "name": "Tipo de dispositivo",
+          "value_id": "395193",
+          "value_name": "Alarme",
+          "values": [
+            {
+              "id": "395193",
+              "name": "Alarme"
+            }
+          ]
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "name": "Tipos de sensores",
+          "value_name": "Alarme, Teclado, via web",
+          "values": [
+            {
+              "id": "16716889",
+              "name": "Alarme"
+            },
+            {
+              "id": "16718030",
+              "name": "Teclado"
+            },
+            {
+              "id": "43309486",
+              "name": "via web"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "2748302",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "2748302",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "WITH_BACKUP_BATTERY",
+          "name": "Com bateria de respaldo",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "COVERAGE_DISTANCE",
+          "name": "Distância de cobertura",
+          "value_id": "7555954",
+          "value_name": "100 m",
+          "values": [
+            {
+              "id": "7555954",
+              "name": "100 m"
+            }
+          ]
+        },
+        {
+          "id": "WITH_WIFI",
+          "name": "Com Wi-Fi",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_AUTOMATIC_DIALLING",
+          "name": "Com discado automático",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_SOUND_ALARM",
+          "name": "Com alarme sonoro",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_DISCREET_ALARM",
+          "name": "Com alarme discreto",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "MAX_SENSORS_NUMBER",
+          "name": "Quantidade máxima de sensores",
+          "value_id": "7626115",
+          "value_name": "16",
+          "values": [
+            {
+              "id": "7626115",
+              "name": "16"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16718078",
+          "value_name": "7898936319227",
+          "values": [
+            {
+              "id": "16718078",
+              "name": "7898936319227"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Você está olhando para sair de sua casa ou dormir pacificamente sem se preocupar com sua segurança e a daqueles que você mais ama? Cada casa é diferente e requer soluções específicas para evitar roubos e outras ameaças. Escolha um sistema de alarme adequado às suas necessidades.\n\nSegurança no seu espaço\nUm alarme discreto é um dispositivo opcional que pode ser programado por meio dum botão localizado no painel de controle e um botão remoto também conhecido como botão de emergência. Não emite som mas, ao ser pressionado, avisará a central de recebimento da empresa de segurança que você contratar.\n"
+      },
+      "pictures": [
+        {
+          "id": "681218-MLA99389876466_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_681218-MLA99389876466_112025-F.jpg",
+          "max_width": "870",
+          "max_height": "642"
+        },
+        {
+          "id": "655697-MLA92980615137_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_655697-MLA92980615137_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "930"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-02-14T00:02:08Z",
+      "last_updated": "2024-10-06T06:05:01Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

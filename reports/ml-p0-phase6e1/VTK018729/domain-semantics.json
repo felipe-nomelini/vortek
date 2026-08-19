@@ -1,0 +1,16 @@
+{
+  "candidates": [
+    {
+      "domain_id": "MLB-VEHICLE_MAINTENANCE_KITS",
+      "domain_name": "Kits de revisão para veículos",
+      "classification": "SEMANTIC_MISMATCH",
+      "score": 56
+    },
+    {
+      "domain_id": "MLB-VEHICLE_MAINTENANCE_KITS",
+      "domain_name": "Kits de revisão para veículos",
+      "classification": "SEMANTIC_MISMATCH",
+      "score": 56
+    }
+  ]
+}

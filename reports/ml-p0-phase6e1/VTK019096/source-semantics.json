@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:50.389Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Lampada Normal Automotiva",
+    "supplier_brand": "SHOCKLIGHT",
+    "supplier_gtin": "6949999896093",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317612",
+    "captured_at": "2026-08-17T12:55:28.035Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "14c1d253-0e75-4aef-aee4-9ecad974e036",
+    "produto_id": "6fd8c5c2-1073-4dc9-9566-97933b90f4ee",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "317612",
+    "sku_fornecedor": "317612",
+    "custo": 128.25,
+    "estoque": 3,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:19:15.296+00:00",
+    "created_at": "2026-07-20T18:33:35.650576+00:00",
+    "updated_at": "2026-08-17T11:19:15.306+00:00",
+    "sku_oferta": "317612",
+    "nome": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+    "descricao": "Informações Técnicas Código Shocklight SLL-60027 Voltagem DC9-32V Potência 50W Lumens 4000lm IP Rate IP65 LED Chip de última Geração Coreano Temperatura de Cor 6000K Dissipador Alumínio de Aviação 6063 Vida útil 20x lâmpada halógena Temperatura de Operação -40ºC ~ +80ºC Acabamento Galvanizado e Cromado Corpo de Liga de Alumínio Driver Incorporado Resistente a Vibrações À Prova d&rsquo;Água Não Necessita de Cooler",
+    "marca": "SHOCKLIGHT",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/317612_67d2caecc1f87.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/1/317612_67d2caecc2675.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/1/317612_67d2caecc3251.jpg"
+    ],
+    "gtin": "6949999896093",
+    "ncm": "85122019",
+    "cest": "01.055.00"
+  }
+}

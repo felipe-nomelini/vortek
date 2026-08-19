@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:45.157Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+    "supplier_category": "Automotivo/ Acessórios Para Instalacao/ Moldura",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": "7898253495581",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/245596",
+    "captured_at": "2026-08-17T12:54:39.643Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "d5394086-5fc7-4720-9d16-aee2470c157b",
+    "produto_id": "f890678d-4601-445e-ae96-e7580dabdd80",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "245596",
+    "sku_fornecedor": "245596",
+    "custo": 85.9,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:14:22.869+00:00",
+    "created_at": "2026-07-20T18:33:17.292871+00:00",
+    "updated_at": "2026-08-17T11:14:22.878+00:00",
+    "sku_oferta": "245596",
+    "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+    "descricao": "preto",
+    "marca": "PERMAK",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/4/245596_67d2cae04c66f.jpg"
+    ],
+    "gtin": "7898253495581",
+    "ncm": "85299090",
+    "cest": "01.999.00"
+  }
+}

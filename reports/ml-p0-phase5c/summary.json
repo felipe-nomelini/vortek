@@ -1,0 +1,266 @@
+{
+  "phase": "5C",
+  "generated_at": "2026-08-16T22:31:09.385Z",
+  "result": "CANARY_POST_FINANCIAL_DRIFT",
+  "sku": "VTK000392",
+  "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+  "item_id": "MLB7432322488",
+  "user_product_id": "MLBU4772165100",
+  "family_id": 5623652722530511,
+  "title": "Ventilador De Mesa Turbo 6 Pás 40cm Ventisol 40 Cm 60 Hz Preto 127v Azul Plástico",
+  "status": "active",
+  "permalink": "https://produto.mercadolivre.com.br/MLB-7432322488-ventilador-de-mesa-turbo-6-pas-40cm-ventisol-40-cm-60-hz-preto-127v-azul-plastico-_JM",
+  "payload_sha256": "17bbed8f4bdae44267e1134be13a1713036e3d6a08d233691b06e6f4d613620d",
+  "post": {
+    "http_status": 201,
+    "request_id": "4b5aa5df-d37f-4a42-b17e-0c6efecac0ff",
+    "elapsed_ms": 1022.098348
+  },
+  "catalog": {
+    "checked_at": "2026-08-16T22:31:06.229Z",
+    "item_id": "MLB7432322488",
+    "fields": {
+      "catalog_product_id": true,
+      "catalog_listing": true,
+      "category_id": true,
+      "voltage": true,
+      "not_220_catalog": true,
+      "catalog_still_exact": true
+    },
+    "identity_fields": [
+      {
+        "field": "seller_id",
+        "expected": 3294514937,
+        "remote": 3294514937,
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "SKU",
+        "expected": "VTK000392",
+        "remote": "VTK000392",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "GTIN",
+        "expected": "7898461970375",
+        "remote": "7898461970375",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "BRAND",
+        "expected": "Ventisol",
+        "remote": "Ventisol",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "MODEL",
+        "expected": "Turbo 6",
+        "remote": "Turbo 6",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "VOLTAGE",
+        "expected": "127V",
+        "remote": "127V",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "BLADES_COLOR",
+        "expected": "Azul",
+        "remote": "Azul",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "DIAMETER",
+        "expected": "40 cm",
+        "remote": "40 cm",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "category_id",
+        "expected": "MLB1645",
+        "remote": "MLB1645",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "catalog_product_id",
+        "expected": "MLB15284402",
+        "remote": "MLB15284402",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "price",
+        "expected": 250.62,
+        "remote": 250.62,
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "available_quantity",
+        "expected": 15,
+        "remote": 15,
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "listing_type_id",
+        "expected": "gold_special",
+        "remote": "gold_special",
+        "status": "MATCH",
+        "material": true
+      },
+      {
+        "field": "condition",
+        "expected": "new",
+        "remote": "new",
+        "status": "MATCH",
+        "material": true
+      }
+    ],
+    "title": {
+      "status": "GENERATED_TITLE_OK",
+      "required": {
+        "brand": true,
+        "model": true,
+        "diameter": true,
+        "voltage": true,
+        "product_type": true
+      },
+      "wrong_voltage": false
+    },
+    "passed": true
+  },
+  "image": {
+    "classification": "IMAGE_NORMALIZED_BY_ML",
+    "pictures": 6
+  },
+  "financial": {
+    "checked_at": "2026-08-16T22:31:09.053Z",
+    "dimensions": null,
+    "item_id": "MLB7432322488",
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_special",
+      "listing_type_name": "Clássico",
+      "requires_picture": true,
+      "sale_fee_amount": 27.57,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 27.57,
+        "percentage_fee": 11
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 68.65,
+          "currency_id": "BRL",
+          "billable_weight": 9010,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 137.3
+          }
+        }
+      }
+    },
+    "values": {
+      "price": 250.62,
+      "commission": 27.57,
+      "shipping": 68.65,
+      "cost": 132.55,
+      "tax": 12.53,
+      "profit": 9.32,
+      "margin_percent": 3.718777431968718
+    },
+    "prepost": {
+      "price": 250.62,
+      "commission": 27.57,
+      "shipping": 39.75,
+      "cost": 132.55,
+      "tax": 12.53,
+      "profit": 38.22,
+      "margin_percent": 15.250179554704332
+    },
+    "minimum_post_margin_percent": 15,
+    "approved": false,
+    "drift": {
+      "commission": 0,
+      "shipping": 28.900000000000006,
+      "profit": -28.9,
+      "margin_percentage_points": -11.531402122735614
+    }
+  },
+  "competition": {
+    "checked_at": "2026-08-16T22:31:09.370Z",
+    "price_to_win_http": 200,
+    "price_to_win": {
+      "item_id": "MLB7432322488",
+      "current_price": null,
+      "currency_id": null,
+      "price_to_win": null,
+      "boosts": null,
+      "status": "not_listed",
+      "consistent": false,
+      "visit_share": null,
+      "competitors_sharing_first_place": null,
+      "reason": [
+        "item_not_opted_in"
+      ],
+      "catalog_product_id": null
+    },
+    "buy_box_winner": null,
+    "own_offer": null,
+    "offers_total": 29,
+    "no_price_change_performed": true
+  },
+  "local_persistence": {
+    "performed": false,
+    "product": {
+      "id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "ml_item_id": null,
+      "ml_status": "sem_anuncio"
+    },
+    "listings": [],
+    "unchanged": true
+  },
+  "description_posted": false,
+  "metrics": {
+    "supabase_reads": 8,
+    "supabase_writes": 0,
+    "dslite_gets": 1,
+    "manufacturer_gets": 1,
+    "image_gets": 7,
+    "ml_gets": 431,
+    "ml_item_post_attempts": 1,
+    "ml_item_posts_successful": 1,
+    "ml_other_writes": 0
+  },
+  "invariants": {
+    "exactly_one_item_post": true,
+    "no_other_ml_writes": true,
+    "no_supabase_writes": true,
+    "no_description_write": true,
+    "single_sku": "VTK000392"
+  },
+  "hold": "P0 PHASE 5C — CATALOG CANARY POST HOLD"
+}

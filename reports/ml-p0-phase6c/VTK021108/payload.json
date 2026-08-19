@@ -1,0 +1,177 @@
+{
+  "payload": {
+    "family_name": "Telefone Headset Intelbras HSB 50",
+    "category_id": "MLB454750",
+    "catalog_product_id": "MLB20801741",
+    "catalog_listing": true,
+    "price": 499.9,
+    "currency_id": "BRL",
+    "available_quantity": 20,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK021108/01-f933a4321879950ee900.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK021108/02-f443255b6d75f65a8f4a.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK021108/03-9d5381f68d686f18d6da.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK021108/04-39e68c7c4c763ee63f6d.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK021108/05-437db73cfe4b5679a185.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "15164704",
+        "value_name": "HSB 50"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "value_id": "102258",
+        "value_name": "Digital"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPES",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "value_id": "7512605",
+        "value_name": "1"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_RURAL_TELEPHONE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "40364878",
+        "value_name": "13841200160"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "15164709",
+        "value_name": "7896637637961"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "75658586",
+        "value_name": "HSC"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CALL_BLOCKING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ALARM_CLOCK_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BACKLIT_KEYPAD",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DATE_AND_TIME_INDICATOR",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_FLASH_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_HANDSET_VOLUME_CONTROL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SILENCE_MODE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK021108"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK021108"
+  },
+  "sha256": "95cd711ca2b58d935c94ef1334fea6d7f57eb9e2f8ecd06091ad86fef0e13f5d",
+  "family_name_sha256": "e570d93248c936ebf8fc91629aa4f725cb5d99671fdf65521da827e87e33122a",
+  "title_absent": true,
+  "description_absent": true
+}

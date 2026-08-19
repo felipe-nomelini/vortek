@@ -1,0 +1,241 @@
+{
+  "payload": {
+    "family_name": "Cadeira Gamer ThunderX3 TGC12 Loft",
+    "category_id": "MLB193945",
+    "catalog_product_id": "MLB37849530",
+    "catalog_listing": true,
+    "price": 3829.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/82875/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/82875/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/82875/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/82875/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/82875/550/5.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/82875/550/6.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/82875/550/7.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "8848598",
+        "value_name": "ThunderX3"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "38933704",
+        "value_name": "ThunderX3 TGC12"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "38933703",
+        "value_name": "82875"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "283165",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450294",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "value_id": "13016814",
+        "value_name": "Gamer"
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico"
+          },
+          {
+            "id": "24028945",
+            "name": "Metal"
+          }
+        ]
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "value_id": "5897875",
+        "value_name": "Espuma"
+      },
+      {
+        "id": "FOOT_RING_MATERIALS",
+        "value_id": "16602172",
+        "value_name": "Metal"
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "value_id": "7661944",
+        "value_name": "85 cm"
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "value_id": "9567306",
+        "value_name": "50 cm"
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "value_id": "7866161",
+        "value_name": "70 cm"
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "value_id": "50153881",
+        "value_name": "125 cm"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "2218331",
+        "value_name": "120 kg"
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_WHEELS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ARMREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_HEADREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SWIVEL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "38933705",
+        "value_name": "ThunderX3 TGC12"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "38933706",
+        "value_name": "4711099476480"
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "value_id": "10201909",
+        "value_name": "Regulável"
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "value_id": "10219265",
+        "value_name": "Encosto reclinável"
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "value_id": "10263987",
+        "value_name": "21.5 kg"
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "value_id": "9567305",
+        "value_name": "57 cm"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000799"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000799"
+  },
+  "sha256": "7a519f96a94f2607f342800cf6fe6db76cd8af946d4f06e3d1e4c9de21b31470",
+  "family_name_sha256": "b5321691b2811f913235c082328d382374006a7f9c6742439f1af96b4e01f035",
+  "title_absent": true,
+  "description_absent": true
+}

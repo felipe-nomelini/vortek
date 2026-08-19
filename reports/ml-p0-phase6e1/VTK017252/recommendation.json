@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Otg Evus C-078 Lightning X Usb 2.0 15cm",
+    "supplier_category": "Informatica/ Cabos Para Informática/ Cabos Em Geral",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/359001",
+    "captured_at": "2026-08-17T12:56:31.246Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

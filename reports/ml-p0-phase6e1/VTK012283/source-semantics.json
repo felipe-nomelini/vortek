@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:53.667Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "Bori",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2725",
+    "captured_at": "2026-08-17T12:56:43.653Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "0f66d44a-c22c-425f-8712-b82c22f3a4d3",
+    "produto_id": "87cdd472-e303-43a5-a712-339a38abc358",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2725",
+    "sku_fornecedor": "2725",
+    "custo": 10,
+    "estoque": 25,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:52:24.019+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:52:24.027+00:00",
+    "sku_oferta": "2725",
+    "nome": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+    "descricao": "As palhetas Bori RIO, possuem as pontas diferenciadas com suas ranhuras texturizadas na gravação nos dois lados para maior firmeza e segurança, evitando que a palheta escape. Detalhe rígido para uma sonoridade com excelência. Borda arredondada para redução de ruídos e maior flexibilidade para obter frases rápidas, arpejos e acordes. Seu tamanho compacto e borda arredondada são ideais para palhetadas rápidas. Modelo: Palhetas RIO “JAZZ” Código: Ref.21028 [RIO I-XXL 1,70mm Vermelho] Acabamento: Alto Brilho Material: Poliamida Nylon Cores disponíveis: Vermelho e Preto Ideal para: Cavaco, Banjo, Bandolim, Violão, Guitarra e Baixo Espessura: 1,70mm Largura: 21mm Altura: 26mm Peso: 0,55g Ref. da linha RIO: Código: Ref.21025 [RIO I 0,98mm Vermelho] Código: Ref.21026 [RIO II 1,16mm Vermelho] Código: Ref.21027 [RIO III 1,38mm Vermelho] Código: Ref.21028 [RIO I-XXL 1,70mm Vermelho] Código: Ref.21029 [RIO I 0,98mm Preto] Código: Ref.21030 [RIO II 1,16mm Preto] Código: Ref.21031 [RIO III 1,38mm Preto] Código: Ref.21032 [RIO I-XXL 1,70mm Preto]",
+    "marca": "Bori",
+    "imagens": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d09ad423be3ffd763529b7552732e6af.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a74e6c91cb7f86ce5474fd363536c9ae.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5f80684c1071ed9a55eaf7b6e9464c13.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f3e5708d83bedee81c30c058076db780.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.92.00",
+    "cest": null
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "payload": {
+    "family_name": "Roteador TP-Link EC220-G5 AC1200",
+    "category_id": "MLB5867",
+    "catalog_product_id": "MLB16268838",
+    "catalog_listing": true,
+    "price": 609.9,
+    "currency_id": "BRL",
+    "available_quantity": 13,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/8/384675_67d2cb1f08d61.jpg"
+      },
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/8/384675_67d2cb1f09c00.jpg"
+      },
+      {
+        "source": "https://www.evolusom.com.br/media/catalog/product/3/8/384675_67d2cb1f0a782.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "7885",
+        "value_name": "TP-Link"
+      },
+      {
+        "id": "LINE",
+        "value_id": "64184114",
+        "value_name": "Aginet"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "9252316",
+        "value_name": "EC220-G5"
+      },
+      {
+        "id": "VERSION",
+        "value_id": "7783566",
+        "value_name": "V3"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "7386989",
+        "value_name": "1"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "WITH_POE_CONNECTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "FUNCTIONS",
+        "value_id": "279956",
+        "value_name": "Roteador"
+      },
+      {
+        "id": "CONNECTION_TYPES",
+        "value_id": "11296606",
+        "value_name": "Sem fio"
+      },
+      {
+        "id": "WIRELESS_SPEED",
+        "value_id": "73457179",
+        "value_name": "0 Mbps"
+      },
+      {
+        "id": "FREQUENCIES",
+        "values": [
+          {
+            "id": "2791070",
+            "name": "2.4 GHz"
+          },
+          {
+            "id": "2793416",
+            "name": "5 GHz"
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY_TYPE",
+        "value_id": "6059549",
+        "value_name": "Banda dupla"
+      },
+      {
+        "id": "INTERNAL_ANTENNAS_NUMBER",
+        "value_id": "8756203",
+        "value_name": "4"
+      },
+      {
+        "id": "EXTERNAL_ANTENNAS_NUMBER",
+        "value_id": "8637174",
+        "value_name": "4"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "40366083",
+        "value_name": "134742203177"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "10490102",
+            "name": "6935364086688"
+          },
+          {
+            "id": "24599474",
+            "name": "845973086688"
+          },
+          {
+            "id": "24611278",
+            "name": "7898544553631"
+          },
+          {
+            "id": "20139822",
+            "name": "7898544553648"
+          },
+          {
+            "id": "29719129",
+            "name": "7908902511477"
+          }
+        ]
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "7885",
+        "value_name": "TP-Link"
+      },
+      {
+        "id": "ROUTERS_AND_WIRELESS_SYSTEMS_BANDWIDTH",
+        "value_id": "24830198",
+        "value_name": "1 GB/s"
+      },
+      {
+        "id": "SATELLITES_NUMBER",
+        "value_id": "11277339",
+        "value_name": "1"
+      },
+      {
+        "id": "TOTAL_PORTS_NUMBER",
+        "value_id": "1000090",
+        "value_name": "4"
+      },
+      {
+        "id": "LAN_PORTS_NUMBER",
+        "value_id": "7902397",
+        "value_name": "3"
+      },
+      {
+        "id": "WAN_PORTS_NUMBER",
+        "value_id": "7881190",
+        "value_name": "1"
+      },
+      {
+        "id": "WAN_LAN_PORTS_NUMBER",
+        "value_id": "7913404",
+        "value_name": "1"
+      },
+      {
+        "id": "USB_PORTS_NUMBER",
+        "value_id": "13402895",
+        "value_name": "0"
+      },
+      {
+        "id": "IEEE_STANDARDS",
+        "values": [
+          {
+            "id": "7929262",
+            "name": "IEEE 802.11a/n/ac"
+          },
+          {
+            "id": "82236",
+            "name": "IEEE 802.11b/g/n"
+          }
+        ]
+      },
+      {
+        "id": "WITH_INTEGRATED_FIREWALL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_HOTSPOT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_RESET_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_PARENTAL_CONTROL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ADAPTATIVE_QOS_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_AI_PROTECTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "SECURITY_PROTOCOLS",
+        "values": [
+          {
+            "id": "7881437",
+            "name": "DMZ"
+          },
+          {
+            "id": "7179629",
+            "name": "SPI"
+          },
+          {
+            "id": "4442785",
+            "name": "WEP"
+          },
+          {
+            "id": "4442779",
+            "name": "WPA"
+          },
+          {
+            "id": "4442780",
+            "name": "WPA2"
+          }
+        ]
+      },
+      {
+        "id": "MOBILE_NETWORKS",
+        "value_id": "22994556",
+        "value_name": "0 °C - 40 °C"
+      },
+      {
+        "id": "OPERATING_TEMPERATURE",
+        "value_id": "10589259",
+        "value_name": "0 °C - 40 °C"
+      },
+      {
+        "id": "ROUTERS_AND_WIRELESS_SYSTEMS_OPERATING_HUMIDITY",
+        "value_id": "10589260",
+        "value_name": "10 % - 90 %"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "57121",
+        "value_name": "800 g"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "8257948",
+        "value_name": "3.7 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "570699",
+        "value_name": "23 cm"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "4615848",
+        "value_name": "14.4 cm"
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "13452364",
+        "value_name": "12 cm"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK022455"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK022455"
+  },
+  "sha256": "4295189b1ee4da974c2cfc6f568783e3e125b4d55ec3cc77c7d5bc978b98eb52",
+  "family_name_sha256": "33bbcaa100ecc859a808ff64bc3553424936b2dd8e253c2371c3463f6341994c",
+  "title_absent": true,
+  "description_absent": true
+}

@@ -1,0 +1,267 @@
+{
+  "checked_at": "2026-08-17T01:14:04.193Z",
+  "product": {
+    "id": "9ca0eedc-b0b7-4c5b-9c3e-805f1ad42d74",
+    "sku": "VTK001762",
+    "nome": "Jogo de Chaves de Fenda/Philips Com 6 Peças Brasfort",
+    "marca": "BRASFORT",
+    "gtin": "7898464732758"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/49381",
+    "consulted_at": "2026-08-17T01:14:03.982Z",
+    "product": {
+      "produtoid": "49381",
+      "produtoid_empresa": "HYX49381",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 58.39,
+      "preco_crossdocking": 58.39,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 58.39,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-03 18:05:51.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Jogo de Chaves de Fenda/Philips Com 6 Peças Brasfort",
+      "titulo_curto": "JOGO CHAVES FENDA/PHILIPS BRASFORT C/6",
+      "categoriaid": "292310",
+      "categoria_nome": "Ferramentas / Ferramentas Manuais / Chaves E Jogos De Chaves",
+      "abc": "C",
+      "ean11": "7898464732758",
+      "ncm": "8205.40.00",
+      "descricao": "Este kit de chaves de fenda e philips é indispensável para qualquer serviço manual, pois foram selecionadas as chaves mais usadas para ajustes comuns e inseridos em um só kit. <br/> <br/> Confira!",
+      "caracteristicas": "Ferramentas:Fenda 5 x 75mm, Fenda 5 x 100mm, Fenda 6 x 125mm, PH1 x 75mm, PH1 x 100mm e PH2 x 125mm<br>Pesquisa:jogo|chave|fenda|philips|estrela|6|brasfort||<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "BRASFORT",
+      "modelo": "Fenda/Philips",
+      "peso": 0.52,
+      "largura": 23,
+      "altura": 33,
+      "profundidade": 5,
+      "peso_embalagem": 0.52,
+      "largura_embalagem": 23,
+      "altura_embalagem": 33,
+      "profundidade_embalagem": 5,
+      "link": "http://www.hayamax.com.br/jogo-de-chaves-de-fenda-philips-com-6-pecas-brasfort",
+      "link_imagem": "https://static.hayapek.com.br/produtos/49381/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 900,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 26791,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 15:51:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:06.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 27,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/49381/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB28218432 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB28218432",
+      "catalog_product_id": "MLB28218432",
+      "domain_id": "MLB-MANUAL_SCREWDRIVERS",
+      "name": "Jogo Chave Fenda Brasfort+phillips Com 06 Pecas 7029",
+      "parent_id": "MLB28218429",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "1120727",
+          "value_name": "Brasfort",
+          "values": [
+            {
+              "id": "1120727",
+              "name": "Brasfort"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26291722",
+          "value_name": "Fenda/Philips",
+          "values": [
+            {
+              "id": "26291722",
+              "name": "Fenda/Philips"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "140750",
+          "value_name": "6",
+          "values": [
+            {
+              "id": "140750",
+              "name": "6"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "name": "Unidades por embalagem",
+          "value_id": "140750",
+          "value_name": "6",
+          "values": [
+            {
+              "id": "140750",
+              "name": "6"
+            }
+          ]
+        },
+        {
+          "id": "TIP_SHAPE",
+          "name": "Forma da ponta",
+          "value_id": "24796307",
+          "value_name": "Phillips, fenda",
+          "values": [
+            {
+              "id": "24796307",
+              "name": "Phillips, fenda"
+            }
+          ]
+        },
+        {
+          "id": "HANDLE_GRIP_MATERIAL",
+          "name": "Material do cabo",
+          "value_id": "2693362",
+          "value_name": "Borracha",
+          "values": [
+            {
+              "id": "2693362",
+              "name": "Borracha"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "26291725",
+          "value_name": "7898464732758",
+          "values": [
+            {
+              "id": "26291725",
+              "name": "7898464732758"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Este Jogo de Chaves Fenda e Philips, com 6 peças, é um produto de alta qualidade da marca Brasfort. O conjunto, referência do modelo 7029, é composto por chaves de fenda de 5 x 75mm, 5 x 100mm e 6 x 125mm, e chaves Philips de 1 x 75mm, 1 x 100mm e 2 x 125mm. \n\nAs chaves são feitas de aço cromo vanádio, um material resistente e durável, garantindo um produto de longa duração. As pontas das chaves são magnetizadas, facilitando o manuseio de parafusos e diminuindo a chance de perda dos mesmos. Além disso, os cabos das chaves são feitos de borracha, proporcionando um manuseio confortável e seguro, mesmo em longos períodos de uso.\n\nOs cabos também possuem um furo para pendurar, tornando o armazenamento e a organização mais fáceis. Este conjunto de chaves é ideal para uso profissional ou doméstico, sendo uma ferramenta essencial para qualquer caixa de ferramentas. O conteúdo da embalagem inclui 6 unidades de chaves, sendo 3 de fenda e 3 Philips."
+      },
+      "pictures": [
+        {
+          "id": "731080-MLA99976488813_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_731080-MLA99976488813_112025-F.jpg",
+          "max_width": "847",
+          "max_height": "1200"
+        },
+        {
+          "id": "964078-MLA80560912394_112024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_964078-MLA80560912394_112024-F.jpg",
+          "max_width": "1200",
+          "max_height": "1185"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-11-19T22:52:52Z",
+      "last_updated": "2024-01-23T12:20:08Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

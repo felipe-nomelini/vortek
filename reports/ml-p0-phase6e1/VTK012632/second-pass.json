@@ -1,0 +1,7 @@
+{
+  "verdict": "PASS",
+  "supplier_context": "unresolved",
+  "remote_context": "unresolved",
+  "independent_function_match": true,
+  "reason": "supplier/local semantics and full category path agree"
+}

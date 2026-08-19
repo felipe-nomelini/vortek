@@ -1,0 +1,164 @@
+{
+  "payload": {
+    "family_name": "Suporte de Teto Multivisão SKY100",
+    "category_id": "MLB11529",
+    "catalog_product_id": "MLB23892377",
+    "catalog_listing": true,
+    "price": 549.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/65404/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/65404/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/65404/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/65404/550/4.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2716081",
+        "value_name": "Multivisão"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "10575178",
+        "value_name": "SKY100"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "COMPATIBLE_SCREEN_TYPES",
+        "value_id": "20103107",
+        "value_name": "LCD:LED"
+      },
+      {
+        "id": "MIN_SCREEN_SIZE",
+        "value_id": "7674122",
+        "value_name": "19 \""
+      },
+      {
+        "id": "MAX_SCREEN_SIZE",
+        "value_id": "7634726",
+        "value_name": "56 \""
+      },
+      {
+        "id": "STANDARDS_VESA",
+        "value_id": "3568440",
+        "value_name": "400x400"
+      },
+      {
+        "id": "MOUNTING_PLACES",
+        "value_id": "7720909",
+        "value_name": "Teto"
+      },
+      {
+        "id": "IS_INCLINABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_ARTICULATED_MOUNT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SWIVELLING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_FIXED_MOUNT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_MOTORIZED",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "8285237",
+        "value_name": "7896643440647"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "3325160",
+        "value_name": "Aço carbono"
+      },
+      {
+        "id": "SUPPORTED_SCREENS_NUMBER",
+        "value_id": "9235769",
+        "value_name": "1"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "1073144",
+        "value_name": "35 kg"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "65454983",
+        "value_name": "115 cm"
+      },
+      {
+        "id": "ROTATION_ANGLE",
+        "value_id": "8671387",
+        "value_name": "360°"
+      },
+      {
+        "id": "INCLUDES_INSTALLATION_KIT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_CABLE_ORGANIZER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "MPN",
+        "value_id": "19945472",
+        "value_name": "60006145"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001288"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001288"
+  },
+  "sha256": "d2983621fbdc36b84b64215da74840e30068ba8ae106d8cfa8c069a9d6ba7419",
+  "family_name_sha256": "e36c36a027ec24d26cf7b636be9e115cdf7d0a5714f52ff5647cf9a33871ddd5",
+  "title_absent": true,
+  "description_absent": true
+}

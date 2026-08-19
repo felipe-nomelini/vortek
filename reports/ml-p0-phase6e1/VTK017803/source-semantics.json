@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.709Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Extensão Daneva Sort Pl 2x0.75mm² 5 Metros Cores Sortidas Ref1514",
+    "supplier_category": "Eletronica/ Extensão/ Cordao/ Prolongador/ Extensão",
+    "supplier_brand": "DANEVA",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/315849",
+    "captured_at": "2026-08-17T12:56:46.752Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "d554c35e-c8c6-47e7-923b-bbdcd4c1979e",
+    "produto_id": "fccbe856-e04a-4113-abd9-fdf7437e4e8f",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "315849",
+    "sku_fornecedor": "315849",
+    "custo": 16,
+    "estoque": 21,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:44:15.272+00:00",
+    "created_at": "2026-07-20T18:31:31.097875+00:00",
+    "updated_at": "2026-08-17T10:44:15.28+00:00",
+    "sku_oferta": "315849",
+    "nome": "Extensão Daneva Sort Pl 2x0.75mm² 5 Metros Cores Sortidas Ref1514",
+    "descricao": "EXTENSÃO SORT PL - CORDÃO PARALELO (PL) Este produto está equipado com um cordão paralelo. Permite a conexão de 1 a 3 plugues de 2 polos simultaneamente, sendo ideal para escritórios e ambientes residenciais. Informações Técnicas Fiação 2 x 0,75mm&sup2; Plug 3 Amperagem 10A Tensão 250V~ *Imagens meramente ilustrativa\n\nExtensão Daneva Sort Pl 2X0.75Mm² 5 Metros Cores Sortidas Ref1514",
+    "marca": "DANEVA",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/1/315849_67d2caec09288.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85444900",
+    "cest": "12.007.00"
+  }
+}

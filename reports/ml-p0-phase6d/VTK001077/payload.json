@@ -1,0 +1,295 @@
+{
+  "payload": {
+    "family_name": "Ventilador Ventisol Turbo 6 40 cm",
+    "category_id": "MLB1645",
+    "catalog_product_id": "MLB15284403",
+    "catalog_listing": true,
+    "price": 619.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/70706/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "82653",
+        "value_name": "Ventisol"
+      },
+      {
+        "id": "LINE",
+        "value_id": "36862317",
+        "value_name": "Turbo 6 pás"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "11860495",
+        "value_name": "Turbo 6"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "60638666",
+        "value_name": "10023"
+      },
+      {
+        "id": "FAN_TYPE",
+        "value_id": "291722",
+        "value_name": "De mesa"
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "135253",
+        "value_name": "40 cm"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "8219790",
+        "value_name": "60 Hz"
+      },
+      {
+        "id": "STRUCTURE_COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "198813",
+        "value_name": "220V"
+      },
+      {
+        "id": "BLADES_COLOR",
+        "value_id": "26510686",
+        "value_name": "Azul"
+      },
+      {
+        "id": "BLADES_MATERIAL",
+        "value_id": "6350782",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "value_id": "1000324",
+        "value_name": "6"
+      },
+      {
+        "id": "POWER",
+        "value_id": "357784",
+        "value_name": "80 W"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "8078905",
+        "value_name": "68 cm"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "8998137",
+        "value_name": "44 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7622438",
+        "value_name": "52 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "925895",
+        "value_name": "2.5 kg"
+      },
+      {
+        "id": "NOISE_LEVEL",
+        "value_id": "8073070",
+        "value_name": "48 dB"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "8152567",
+        "value_name": "Corrente elétrica"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ARGENTINA",
+        "value_id": "33344208",
+        "value_name": "A"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "value_id": "33344215",
+        "value_name": "A"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_COLOMBIA",
+        "value_id": "33344222",
+        "value_name": "A"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_CHILE",
+        "value_id": "33344231",
+        "value_name": "A"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_URUGUAY",
+        "value_id": "33344238",
+        "value_name": "A"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ECUADOR",
+        "value_id": "33344245",
+        "value_name": "A"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_PERU",
+        "value_id": "33344252",
+        "value_name": "A"
+      },
+      {
+        "id": "GRID_MATERIAL",
+        "value_id": "82756",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "value_id": "1000288",
+        "value_name": "3"
+      },
+      {
+        "id": "INCLUDES_REMOTE_CONTROL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_LIGHT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_REVERSIBLE_BLADES",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "8469041",
+        "value_name": "7898461970382"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "82653",
+        "value_name": "Ventisol"
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "value_id": "7947248",
+        "value_name": "1500 rpm"
+      },
+      {
+        "id": "LAMPS_NUMBER",
+        "value_id": "13174582",
+        "value_name": "0"
+      },
+      {
+        "id": "WITH_WI_FI",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_PROGRAMMABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_SILENT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_360_DEGREES_ROTATION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_INMETRO_CERTIFICATE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_REPELLENT_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_EXTRACTABLE_GRID",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_TILT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_OSCILLATION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ROTATING_GRID",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_LIGHT_SWITCH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MPN",
+        "value_id": "10980901",
+        "value_name": "10029"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001077"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001077"
+  },
+  "sha256": "31e9be5acb51333906dd6a7c193dc38236116746ec73484e4ae17bfa9bd1ab61",
+  "family_name_sha256": "c4cfabfae17ee0da3e4bf5c4db8933c799df9fb35fc73cddec88f2ea8b7a1a56",
+  "title_absent": true,
+  "description_absent": true
+}

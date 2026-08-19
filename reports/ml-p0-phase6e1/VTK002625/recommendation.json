@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Garra Jacare 13,5cm 300a Preta Storm 02 Unidades",
+    "supplier_category": "Acessórios Para Veículos > Ferramentas Para Veículos > Ferramentas Para Baterias >  carregadores De Baterías",
+    "supplier_brand": "Storm",
+    "supplier_gtin": "7898566205846",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3528",
+    "captured_at": "2026-08-17T12:54:02.247Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

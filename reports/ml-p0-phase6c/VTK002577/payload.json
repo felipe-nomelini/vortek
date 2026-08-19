@@ -1,0 +1,105 @@
+{
+  "payload": {
+    "family_name": "Suporte para Caixa ASK CH10",
+    "category_id": "MLB10233",
+    "catalog_product_id": "MLB27866916",
+    "catalog_listing": true,
+    "price": 279.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/65023/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "4238929",
+        "value_name": "ASK"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "5114383",
+        "value_name": "CH10"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "112648",
+        "value_name": "Metal"
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "value_id": "3964545",
+        "value_name": "De parede"
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "1115147",
+        "value_name": "21 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "1115182",
+        "value_name": "7 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "57654",
+        "value_name": "950 g"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "57654",
+        "value_name": "950 g"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "25595458",
+        "value_name": "7898939971323"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK002577"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK002577"
+  },
+  "sha256": "c375fe817d10d78d002dd6365110dc7916eb56d9bcd7fda0fd7701c242913aab",
+  "family_name_sha256": "538fcda7e456ee9b9647cb312dee7faf447bf0d360876c3d1e8ac11beaa9fa6c",
+  "title_absent": true,
+  "description_absent": true
+}

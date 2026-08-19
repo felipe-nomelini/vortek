@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018636",
+  "gate": "BLOCK_IDENTITY",
+  "evidence": "exact GTIN catalog identity conflict: COLOR",
+  "local_value": "7893137226954",
+  "found_value": "MLB32453654",
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "ML catalog MLB32453654 + DSLite supplier",
+  "timestamp": "2026-08-17T12:53:50.860Z"
+}

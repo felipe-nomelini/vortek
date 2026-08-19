@@ -1,0 +1,555 @@
+{
+  "generated_at": "2026-08-17T00:45:07.853Z",
+  "rows": [
+    {
+      "sku": "VTK017508",
+      "source": "supplier + Tramontina official brand/line",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017625",
+      "source": "https://sulton.com.br/produto/srx-302/",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017666",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK012235",
+      "source": "https://www.taschibra.com.br/public/pt_BR/produto/lampadas/led-bulbo/lampada-led-tkl-80-12w-6500k/18506",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017384",
+      "source": "DSLite supplier only",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK012839",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK021012",
+      "source": "https://www.intelbras.com/pt-br/telefone-com-fio-tc-20",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017633",
+      "source": "DSLite supplier only",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017898",
+      "source": "https://www.intelbras.com/pt-br/headset-mono-usb-ths-55-usb",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017848",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK026012",
+      "source": "https://saty.com.br/tripes/",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK021108",
+      "source": "https://www.intelbras.com/pt-br/telefone-headset-hsb-50",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK026050",
+      "source": "DSLite supplier only",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017933",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK005775",
+      "source": "DSLite supplier only",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017982",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017944",
+      "source": "https://downloads.aquario.com.br/Manuais/B-2007-2007P%20ficha%20comercial.pdf",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK018024",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK019952",
+      "source": "https://www.intelbras.com/pt-br/ramal-sem-fio-digital-ts-5121",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000540",
+      "source": "local baseline",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017155",
+      "source": "supplier only",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK025954",
+      "source": "ML catalog MLB67678401",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK025859",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK025860",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000378",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000092",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK006567",
+      "source": "ML catalog MLB34292485 + Arno product identity",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000568",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000799",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK025955",
+      "source": "supplier only",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK005382",
+      "source": "https://www.ventisol.com.br/exaustor-de-banheiro-ventisol-150mm-127v220v",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK005397",
+      "source": "https://www.ventisol.com.br/exaustor/profissional/exaustor-de-banheiro-ventisol-100mm-127v220v",
+      "source_type": "official",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK001089",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000223",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK001288",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000504",
+      "source": "local baseline",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK001075",
+      "source": "ML catalog MLB35868259",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK011959",
+      "source": "ML catalog MLB49765180",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK000429",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK011960",
+      "source": "supplier only",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK003043",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK006193",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK002528",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK025858",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK025861",
+      "source": "exact ML catalog GTIN + supplier; catalog title confirms Preto/Rosa",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK006318",
+      "source": "local baseline",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK002577",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK001155",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK006152",
+      "source": "exact ML catalog GTIN + supplier",
+      "source_type": "ML_catalog_and_supplier",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    },
+    {
+      "sku": "VTK017783",
+      "source": "ML catalog MLB26280451",
+      "source_type": "supplier_or_local",
+      "consulted_at": "2026-08-17T00:45:07.853Z",
+      "supported_fields": [
+        "identity",
+        "GTIN",
+        "model_or_family"
+      ]
+    }
+  ]
+}

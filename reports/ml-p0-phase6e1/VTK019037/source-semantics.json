@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:53.638Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Headset Logitech H390 Usb",
+    "supplier_category": "Informatica/ Fones De Ouvido/ Fone De Ouvido",
+    "supplier_brand": "LOGITECH",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/230781",
+    "captured_at": "2026-08-17T12:56:41.098Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "16acb899-cff3-43c3-812f-4d246e71909f",
+    "produto_id": "203d99f8-bf9a-4438-80a4-4402c0d4dd79",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "230781",
+    "sku_fornecedor": "230781",
+    "custo": 199.9,
+    "estoque": 32,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:38:22.992+00:00",
+    "created_at": "2026-07-20T18:33:35.650576+00:00",
+    "updated_at": "2026-08-17T10:38:23+00:00",
+    "sku_oferta": "230781",
+    "nome": "Headset Logitech H390 Usb",
+    "descricao": "Fone De Ouvido Logitech Headset Modelo: H390 Requisitos do sistema: PC: Windows® 2000, Windows® XP, Windows Vista™, Windows® 7 Porta USB Mac: OS® X (10.2.8 ou posterior) Porta USB Resposta de freqüência: Headset: 20 Hz-20 kHz Microfone: 100 Hz- 10 kHz Sensibilidade de entrada: -62 dBV/µbar, -42 dBV/Pa +/- 3 dBs Comprimento do cabo: 2,4 m (8 pés) Conexões: compatível com USB (1.1 e 2.0)\n\nDesign confortável: A alça almofadada e ajustável e os fones acolchoados mantêm você confortável. Microfone com eliminador de ruídos: Você será ouvido sem as interrupções causadas por ruídos de fundo. Microfone giratório: O microfone giratório pode ser afastado quando você ouve música ou vê um filme. Controles de áudio in-line: Você pode ajustar imediatamente o volume e tirar o som do microfone. Puro USB digital: Você irá experimentar um som digital claro com a simplicidade de uma única conexão plug-and-play USB.",
+    "marca": "LOGITECH",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/3/230781_67d2cadeb91b6.jpg",
+      "https://evolusom.com.br/media/catalog/product/2/3/230781_67d2cadeb9965.jpg",
+      "https://evolusom.com.br/media/catalog/product/2/3/230781_67d2cadeba96a.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85183000",
+    "cest": "21.057.00"
+  }
+}

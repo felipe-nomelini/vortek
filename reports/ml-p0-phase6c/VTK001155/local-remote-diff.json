@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432502310",
+      "local": "MLB7432502310",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001155",
+      "local": "VTK001155",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "8c65ae6e-e178-45db-9ed3-c40f318b07af",
+      "local": "8c65ae6e-e178-45db-9ed3-c40f318b07af",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Cabo Coaxial Rg59 67% Malha Com 100 Mts Megatron",
+      "local": "Cabo Coaxial Rg59 67% Malha Com 100 Mts Megatron",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 439.9,
+      "local": 439.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432502310-cabo-coaxial-rg59-67-malha-com-100-mts-megatron-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432502310-cabo-coaxial-rg59-67-malha-com-100-mts-megatron-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

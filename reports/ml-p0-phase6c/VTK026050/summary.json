@@ -1,0 +1,23 @@
+{
+  "index": 13,
+  "sku": "VTK026050",
+  "expected_gtin": "7908324709056",
+  "started_at": "2026-08-17T00:43:39.807Z",
+  "local_time": "2026-08-16T21:43:39",
+  "completed_at": "2026-08-17T00:43:39.886Z",
+  "elapsed_ms": 79,
+  "result": "BLOCK_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "MXT HY-033 crimping plier has no official manufacturer identity located",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

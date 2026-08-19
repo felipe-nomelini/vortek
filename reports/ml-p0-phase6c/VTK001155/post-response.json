@@ -1,0 +1,410 @@
+{
+  "attempted_at": "2026-08-17T00:45:00.083Z",
+  "local_time": "2026-08-16T21:45:00",
+  "endpoint": "POST /items",
+  "request_id": "73cea57e-8df6-4d87-85b1-0ab10d344fed",
+  "http_status": 201,
+  "elapsed_ms": 914,
+  "payload_sha256": "a170c10de8f1f1af8365b652c5e2bc3ddea9e4fd6946b0a5d0212c4fba125410",
+  "body": {
+    "id": "MLB7432502310",
+    "site_id": "MLB",
+    "title": "Cabo Coaxial Rg59 67% Malha Com 100 Mts Megatron",
+    "seller_id": 3294514937,
+    "category_id": "MLB431815",
+    "user_product_id": "MLBU4743416003",
+    "official_store_id": null,
+    "price": 439.9,
+    "base_price": 439.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Megatron Coaxial RG59 67% Malha Coaxial",
+    "family_id": 1511139070739280,
+    "start_time": "2026-08-17T00:44:59.460Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T00:44:59.555Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432502310-cabo-coaxial-rg59-67-malha-com-100-mts-megatron-_JM",
+    "pictures": [
+      {
+        "id": "751009-MLA99983072481_112025",
+        "url": "http://mla-s1-p.mlstatic.com/751009-MLA99983072481_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/751009-MLA99983072481_112025-O.jpg",
+        "size": "500x496",
+        "max_size": "525x521",
+        "quality": ""
+      },
+      {
+        "id": "741158-MLA99983141721_112025",
+        "url": "http://mla-s1-p.mlstatic.com/741158-MLA99983141721_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/741158-MLA99983141721_112025-O.jpg",
+        "size": "500x269",
+        "max_size": "1022x551",
+        "quality": ""
+      },
+      {
+        "id": "883166-MLA99499032450_112025",
+        "url": "http://mla-s1-p.mlstatic.com/883166-MLA99499032450_112025-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/883166-MLA99499032450_112025-O.jpg",
+        "size": "500x170",
+        "max_size": "646x220",
+        "quality": ""
+      },
+      {
+        "id": "706414-MLA99983457843_112025",
+        "url": "http://mla-s2-p.mlstatic.com/706414-MLA99983457843_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/706414-MLA99983457843_112025-O.jpg",
+        "size": "500x312",
+        "max_size": "1016x635",
+        "quality": ""
+      },
+      {
+        "id": "769793-MLA99498864312_112025",
+        "url": "http://mla-s2-p.mlstatic.com/769793-MLA99498864312_112025-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/769793-MLA99498864312_112025-O.jpg",
+        "size": "500x374",
+        "max_size": "638x478",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "3695029",
+        "value_name": "Megatron",
+        "values": [
+          {
+            "id": "3695029",
+            "name": "Megatron",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "28511639",
+        "value_name": "Coaxial RG59 67% Malha",
+        "values": [
+          {
+            "id": "28511639",
+            "name": "Coaxial RG59 67% Malha",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NETWORK_CABLE_TYPE",
+        "name": "Tipo de cabo de rede",
+        "value_id": "17155965",
+        "value_name": "Coaxial",
+        "values": [
+          {
+            "id": "17155965",
+            "name": "Coaxial",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALES_UNIT",
+        "name": "Unidade de venda",
+        "value_id": "5203052",
+        "value_name": "Bobina",
+        "values": [
+          {
+            "id": "5203052",
+            "name": "Bobina",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "2693635",
+        "value_name": "100 m",
+        "values": [
+          {
+            "id": "2693635",
+            "name": "100 m",
+            "struct": {
+              "number": 100,
+              "unit": "m"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "CABLE_SHAPE",
+        "name": "Forma do cabo",
+        "value_id": "433716",
+        "value_name": "Circular",
+        "values": [
+          {
+            "id": "433716",
+            "name": "Circular",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NETWORK_CABLE_CATEGORY",
+        "name": "Categoria do cabo de rede",
+        "value_id": "28511641",
+        "value_name": "RG59",
+        "values": [
+          {
+            "id": "28511641",
+            "name": "RG59",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "name": "Material de revestimento",
+        "value_id": "34488195",
+        "value_name": "Polietileno expandido",
+        "values": [
+          {
+            "id": "34488195",
+            "name": "Polietileno expandido",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONDUCTOR_MATERIAL",
+        "name": "Material condutor",
+        "value_id": "34488196",
+        "value_name": "Aço cobreado",
+        "values": [
+          {
+            "id": "34488196",
+            "name": "Aço cobreado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "name": "Conector de entrada",
+        "value_id": "24278295",
+        "value_name": "RG59",
+        "values": [
+          {
+            "id": "24278295",
+            "name": "RG59",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "name": "Conector de saída",
+        "value_id": "24278296",
+        "value_name": "RG59",
+        "values": [
+          {
+            "id": "24278296",
+            "name": "RG59",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "AMBIENT",
+        "name": "Ambiente",
+        "value_id": "417560",
+        "value_name": "Interior/Exterior",
+        "values": [
+          {
+            "id": "417560",
+            "name": "Interior/Exterior",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "INCLUDES_CONNECTORS",
+        "name": "Inclui conectores",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "28511640",
+        "value_name": "7899278914408",
+        "values": [
+          {
+            "id": "28511640",
+            "name": "7899278914408",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK001155",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK001155",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "751009-MLA99983072481_112025",
+    "thumbnail": "http://mlb-s1-p.mlstatic.com/751009-MLA99983072481_112025-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB29649341",
+    "domain_id": "MLB-NETWORK_CABLES",
+    "seller_custom_field": "VTK001155",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T00:44:59.656Z",
+    "last_updated": "2026-08-17T00:44:59.656Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

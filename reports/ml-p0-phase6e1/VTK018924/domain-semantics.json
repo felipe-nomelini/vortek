@@ -1,0 +1,22 @@
+{
+  "candidates": [
+    {
+      "domain_id": "MLB-TELEPHONES",
+      "domain_name": "Telefones",
+      "classification": "SEMANTIC_MATCH",
+      "score": 100
+    },
+    {
+      "domain_id": "MLB-TELEPHONES",
+      "domain_name": "Telefones",
+      "classification": "SEMANTIC_MATCH",
+      "score": 100
+    },
+    {
+      "domain_id": "MLB-TELEPHONES",
+      "domain_name": "Telefones",
+      "classification": "SEMANTIC_MATCH",
+      "score": 100
+    }
+  ]
+}

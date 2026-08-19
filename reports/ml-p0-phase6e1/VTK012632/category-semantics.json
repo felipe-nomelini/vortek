@@ -1,0 +1,52 @@
+{
+  "selected": {
+    "category_id": "MLB420707",
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+    "domain_name": "Conectores de áudio e vídeo",
+    "category_name": "Conectores",
+    "category_path": [
+      "Eletrônicos, Áudio e Vídeo",
+      "Áudio",
+      "Equipamento para DJs",
+      "Acessórios",
+      "Conectores"
+    ],
+    "normalized_context": "mlbaudioandvideoconnectorsconectoresdeaudioevideomlbaudioandvideoconnectorseletronicosaudioevideoaudioequipamentoparadjsacessoriosconectoresconectores"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB420707",
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+        "domain_name": "Conectores de áudio e vídeo",
+        "category_name": "Conectores",
+        "category_path": [
+          "Eletrônicos, Áudio e Vídeo",
+          "Áudio",
+          "Equipamento para DJs",
+          "Acessórios",
+          "Conectores"
+        ],
+        "normalized_context": "mlbaudioandvideoconnectorsconectoresdeaudioevideomlbaudioandvideoconnectorseletronicosaudioevideoaudioequipamentoparadjsacessoriosconectoresconectores"
+      },
+      "score": 100,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB38172",
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+        "domain_name": "Conectores de áudio e vídeo",
+        "category_name": "Conectores",
+        "category_path": [
+          "Eletrônicos, Áudio e Vídeo",
+          "Componentes Eletrônicos",
+          "Conectores"
+        ],
+        "normalized_context": "mlbaudioandvideoconnectorsconectoresdeaudioevideomlbaudioandvideoconnectorseletronicosaudioevideocomponenteseletronicosconectoresconectores"
+      },
+      "score": 100,
+      "hard_mismatch": false
+    }
+  ]
+}

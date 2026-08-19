@@ -1,0 +1,335 @@
+{
+  "index": 9,
+  "sku": "VTK017698",
+  "started_at": "2026-08-17T00:07:06.250Z",
+  "local_time": "2026-08-16T21:07:06",
+  "expected_gtin": "7899471878965",
+  "product": {
+    "id": "bb82582c-4fa7-4fd0-bdee-6d5fc037345d",
+    "sku": "VTK017698",
+    "nome": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+    "marca": "MXT",
+    "estoque": 50,
+    "custo": 21.3,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.114,
+    "peso_bruto": 0.114,
+    "largura": 5.5,
+    "altura": 7,
+    "profundidade": 9.5,
+    "gtin": "7899471878965",
+    "descricao": "Fonte Chaveada Mxt Para CFTV 12V / 2A Com LED Centro +",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017698/01-ceb500ba1213b4f08166.jpg"
+    ],
+    "categoria": "Eletroeletronicos/ Fonte Chaveada/ Fonte Chaveada Para Uso Geral",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:13.990172+00:00",
+    "updated_at": "2026-08-16T20:42:34.618037+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "213314",
+    "dslite_ultima_sync": "2026-08-16T20:42:34.511+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85044029",
+    "cest": null,
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "410e4c8a-edd2-4f34-913c-d02f54f9eea4",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "410e4c8a-edd2-4f34-913c-d02f54f9eea4",
+    "produto_id": "bb82582c-4fa7-4fd0-bdee-6d5fc037345d",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "213314",
+    "sku_fornecedor": "213314",
+    "custo": 21.3,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:42:34.511+00:00",
+    "created_at": "2026-07-20T18:31:14.303365+00:00",
+    "updated_at": "2026-08-16T20:42:34.518+00:00",
+    "sku_oferta": "213314",
+    "nome": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+    "descricao": "Fonte Chaveada Mxt Para CFTV 12V / 2A Com LED Centro +",
+    "marca": "MXT",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/1/213314_67d2cadd08894.png"
+    ],
+    "gtin": "7899471878965",
+    "ncm": "85044029",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/213314",
+    "consulted_at": "2026-08-17T00:07:07.082Z",
+    "product": {
+      "produtoid": "213314",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 21.3,
+      "preco_crossdocking": 21.3,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 21.3,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+      "titulo_curto": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+      "categoriaid": "117931",
+      "categoria_nome": "Eletroeletronicos/ Fonte Chaveada/ Fonte Chaveada Para Uso Geral",
+      "abc": null,
+      "ean11": "7899471878965",
+      "ncm": "85044029",
+      "descricao": "Fonte Chaveada Mxt <br />\r\nPara CFTV <br />\r\n12V / 2A<br />\r\nCom LED <br />\r\nCentro +",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MXT",
+      "modelo": "",
+      "peso": 0.11,
+      "largura": 5.5,
+      "altura": 7,
+      "profundidade": 9.5,
+      "peso_embalagem": 0.11,
+      "largura_embalagem": 5.5,
+      "altura_embalagem": 7,
+      "profundidade_embalagem": 9.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/2/1/213314_67d2cadd08894.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1954,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 17:08:51.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-13 17:08:51.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 355,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/2/1/213314_67d2cadd08894.png"
+        }
+      ]
+    }
+  },
+  "configured_decision": "BLOCK_GTIN",
+  "configured_reason": "exact_gtin_catalog_identifies_lomes_product_instead_of_local_mxt_12v_2a",
+  "evidence": {
+    "manufacturer_or_official": "ML catalog MLB30453141",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/213314",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7899471878965"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB30453141",
+      "catalog_product_id": "MLB30453141",
+      "domain_id": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+      "name": "Fonte Chaveada Lomes 12V 2A para Uso Geral",
+      "parent_id": "MLB30453140",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "29657895",
+          "value_name": "Lomes",
+          "values": [
+            {
+              "id": "29657895",
+              "name": "Lomes"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "29657896",
+          "value_name": "12V 24 24W",
+          "values": [
+            {
+              "id": "29657896",
+              "name": "12V 24 24W"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "444010",
+          "value_name": "24 W",
+          "values": [
+            {
+              "id": "444010",
+              "name": "24 W"
+            }
+          ]
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "name": "Potência de saída",
+          "value_id": "16719654",
+          "value_name": "24 W",
+          "values": [
+            {
+              "id": "16719654",
+              "name": "24 W"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY",
+          "name": "Frequência",
+          "value_id": "11074305",
+          "value_name": "50/60 Hz",
+          "values": [
+            {
+              "id": "11074305",
+              "name": "50/60 Hz"
+            }
+          ]
+        },
+        {
+          "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+          "name": "Com proteção contra curto-circuito",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "29657897",
+          "value_name": "7899471878965",
+          "values": [
+            {
+              "id": "29657897",
+              "name": "7899471878965"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Fonte Chaveada 12v/2a Vdc Para Uso Geral é a solução ideal para quem busca eficiência e praticidade em suas aplicações elétricas. Com um design moderno e funcional, este modelo MX 12v 2a FX é perfeito para diversos dispositivos que requerem uma fonte de alimentação confiável. Sua entrada é compatível com 110v e 220vac, operando em frequências de 50/60hz, o que a torna versátil para diferentes ambientes. A saída de 12v e 2a garante um desempenho estável, enquanto a polaridade positiva do plug P4 assegura uma conexão segura. A fonte possui um LED indicador, facilitando o monitoramento do funcionamento. Com uma tomada padrão ABNT e embalagem em caixa, este produto da marca Lomes é novo e atende a todas as suas necessidades de energia, sendo ideal para uso geral em projetos eletrônicos e equipamentos que exigem uma fonte de qualidade."
+      },
+      "pictures": [
+        {
+          "id": "767283-MLA99992484505_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_767283-MLA99992484505_112025-F.jpg",
+          "max_width": "900",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-01-27T05:56:02Z",
+      "last_updated": "2026-03-13T23:30:32Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

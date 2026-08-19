@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Caixa Dio 19\" Evus Ev-dio12 12fo Para Rack Preto",
+    "supplier_category": "Redes E Provedores/ Internet E Rede/ Rack",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/381473",
+    "captured_at": "2026-08-17T12:56:48.919Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

@@ -1,0 +1,483 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 166,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-length": "1942",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:15:25 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "vary": "Accept-Encoding",
+        "via": "1.1 81aa5b946f2f955d94231eedc507d3d4.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "28NwOGvmf9dEo3EOCFtNiaAKZDN-CDPbV5oH-BTf-qbTmPj-I1kLrg==",
+        "x-amz-cf-pop": "GIG52-P3",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "ca25d7cf-e8ad-4e35-a9e2-10de055f70af",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB5075856847",
+        "site_id": "MLB",
+        "title": "Corda Para Violão Nylon 6a (mi) Genw6 Canário Giannini Dz 12",
+        "family_name": "Giannini Canário Desconhecido VIOLÃO NYLON",
+        "family_id": 3934678071264721,
+        "seller_id": 3294514937,
+        "category_id": "MLB278076",
+        "user_product_id": "MLBU4743603391",
+        "official_store_id": null,
+        "price": 289.9,
+        "base_price": 289.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 13,
+        "available_quantity": 13,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:15:24.969Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:15:25.029Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5075856847-corda-para-violo-nylon-6a-mi-genw6-canario-giannini-dz-12-_JM",
+        "thumbnail_id": "633956-MLA80402254720_112024",
+        "thumbnail": "http://http2.mlstatic.com/D_633956-MLA80402254720_112024-I.jpg",
+        "pictures": [
+          {
+            "id": "633956-MLA80402254720_112024",
+            "url": "http://http2.mlstatic.com/D_633956-MLA80402254720_112024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_633956-MLA80402254720_112024-O.jpg",
+            "size": "500x438",
+            "max_size": "550x482",
+            "quality": ""
+          },
+          {
+            "id": "769949-MLA80661413335_112024",
+            "url": "http://http2.mlstatic.com/D_769949-MLA80661413335_112024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_769949-MLA80661413335_112024-O.jpg",
+            "size": "486x500",
+            "max_size": "518x532",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "45321",
+            "value_name": "Giannini",
+            "values": [
+              {
+                "id": "45321",
+                "name": "Giannini",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "44427222",
+            "value_name": "7898159180246",
+            "values": [
+              {
+                "id": "44427222",
+                "name": "7898159180246",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "value_id": "2348061",
+            "value_name": "Canário",
+            "values": [
+              {
+                "id": "2348061",
+                "name": "Canário",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MATERIALS",
+            "name": "Materiais",
+            "value_id": "112648",
+            "value_name": "Metal",
+            "values": [
+              {
+                "id": "112648",
+                "name": "Metal",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "31835318",
+            "value_name": "Desconhecido",
+            "values": [
+              {
+                "id": "31835318",
+                "name": "Desconhecido",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "RECOMMENDED_INSTRUMENT",
+            "name": "Instrumento recomendado",
+            "value_id": "16040054",
+            "value_name": "Violão de náilon",
+            "values": [
+              {
+                "id": "16040054",
+                "name": "Violão de náilon",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "value_id": "1359391",
+            "value_name": "Unidade",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK001732",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK001732",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "STRINGS_NUMBER",
+            "name": "Quantidade de cordas",
+            "value_id": "15146",
+            "value_name": "6",
+            "values": [
+              {
+                "id": "15146",
+                "name": "6",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "value_id": "2726554",
+            "value_name": "1",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ],
+            "value_type": "number"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB43132601",
+        "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+        "seller_custom_field": "VTK001732",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:15:25.133Z",
+        "last_updated": "2026-08-17T01:15:25.133Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3677,
+    "user_product": {
+      "id": "MLBU4743603391",
+      "name": "Corda Para Violão Nylon 6a (mi) Genw6 Canário Giannini Dz 12",
+      "family_name": "Giannini Canário Desconhecido VIOLÃO NYLON",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+      "attributes": [
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "45321",
+              "name": "Giannini",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "44427222",
+              "name": "7898159180246",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "values": [
+            {
+              "id": "112648",
+              "name": "Metal",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "31835318",
+              "name": "Desconhecido",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK001732",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "values": [
+            {
+              "id": "16040054",
+              "name": "Violão de náilon",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "values": [
+            {
+              "id": "2348061",
+              "name": "Canário",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "values": [
+            {
+              "id": "15146",
+              "name": "6",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "633956-MLA80402254720_112024",
+          "secure_url": "https://http2.mlstatic.com/D_633956-MLA80402254720_112024-O.jpg"
+        },
+        {
+          "id": "769949-MLA80661413335_112024",
+          "secure_url": "https://http2.mlstatic.com/D_769949-MLA80661413335_112024-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "633956-MLA80402254720_112024",
+        "secure_url": "https://http2.mlstatic.com/D_633956-MLA80402254720_112024-O.jpg"
+      },
+      "catalog_product_id": "MLB43132601",
+      "bundle": null,
+      "family_id": 3934678071264721,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:15:25.238+0000",
+      "last_updated": "2026-08-17T01:15:25.238+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4743603391"
+      ],
+      "family_id": 3934678071264721,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

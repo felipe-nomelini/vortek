@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+    "supplier_category": "Informatica/ Perifericos/ Cooler",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/376192",
+    "captured_at": "2026-08-17T12:56:33.471Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

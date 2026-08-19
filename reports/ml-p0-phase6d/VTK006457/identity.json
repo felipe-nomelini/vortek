@@ -1,0 +1,882 @@
+{
+  "checked_at": "2026-08-17T01:17:52.042Z",
+  "product": {
+    "id": "86b23aea-1a3c-4c4c-a47a-13d04370c59f",
+    "sku": "VTK006457",
+    "nome": "Grill Arno Dual GNOX Inox Com Abertura de 180° 220v",
+    "marca": "ARNO",
+    "gtin": "3016661152948"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/87076",
+    "consulted_at": "2026-08-17T01:17:51.846Z",
+    "product": {
+      "produtoid": "87076",
+      "produtoid_empresa": "HYX87076",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 245.58,
+      "preco_crossdocking": 245.58,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 245.58,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-06 18:07:40.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Grill Arno Dual GNOX Inox Com Abertura de 180° 220v",
+      "titulo_curto": "GRILL DUAL ARNO INOX GNOX 220V",
+      "categoriaid": "292692",
+      "categoria_nome": "Eletroportáteis / Grills E Sanduicheiras / Grill",
+      "abc": "B",
+      "ean11": "3016661152948",
+      "ncm": "8516.79.90",
+      "descricao": "Com o Grill Arno Dual Inox você pode ter mais espaço para cozinhar, uma vez que possui abertura de 180° e aquecimento em ambas as placas, o que permite que seja utilizada de forma aberta ou fechada, conforme a sua necessidade. Suas placas são antiaderentes e o equipamento acompanha um termostato com controle de temperatura. Prepare carnes, grelhados e muito mais! <br/> <br/> Diferenciais do Grill Arno Dual GNOX: <br/> <br/> • Diferentes usos: possui abertura 180º graus. <br/> • Placa ajustável conforme a altura do alimento. <br/> • Fácil limpeza, por meio de placas com revestimento antiaderente. <br/> • Maior segurança: Alça permanente fria e trava de segurança na lateral. <br/> • Controle de temperatura. <br/> • Coletor de gordura. <br/> • Indicador luminoso. <br/> <br/> A Arno é uma das marcas mais tradicionais e respeitadas do Brasil, com mais de 70 anos de história no mercado. Desde sua fundação, conquistou espaço nos lares brasileiros oferecendo eletrodomésticos que combinam inovação, durabilidade e praticidade. Essa longa trajetória reforça a credibilidade da marca, que se mantém relevante ao acompanhar a evolução das necessidades do consumidor, sempre trazendo soluções que facilitam o dia a dia com eficiência e qualidade. <br/> <br/> Com tecnologia de ponta e foco em desempenho, a Arno entrega não apenas equipamentos funcionais, mas também a segurança de contar com um nome que é sinônimo de confiança e tradição. <br/>",
+      "caracteristicas": "Tamanho:com embalagem: 14,9x31,2x33,4 <br/> Tamanho sem embalagem: 13,0x25,0x20,0 <br/> Tamanho com pacote mestre: 34,9 x 33,2 x 61,6 <br/><br>Potência:1100W<br>Voltagem:220V<br>Dimensões:34.9 x 33.2 x 61.6 cm<br>Pesquisa:Grill|Grill elétrico|SANDUICHEIRA GRILL|grill eletrico|Sanduicheira Elétrica Grill|Grill Elétrico Sanduicheira|Grill Arno<br>",
+      "informacoes": "<br/> • Cor: Inox <br/> • Registro do Inmetro: UL-BR 122017-101463314/3 <br/> • Tipo de material: Plástico e Metal <br/> • Conteúdo do pacote: Grill, manual de instruções e certificado de garantia <br/> • Selo de qualidade: A <br/> • Consumo KW: 0.83 <br/> • Temperatura: 220 <br/> • Amperagem: 220 <br/> • Comprimento do cabo: 50.00 <br/> • Peso sem embalagem: 2,00kg <br/> • Peso com embalagem: 2,10kg <br/> <br/>",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "ARNO",
+      "modelo": "Dual GNOX",
+      "peso": 2,
+      "largura": 15,
+      "altura": 31,
+      "profundidade": 33,
+      "peso_embalagem": 2,
+      "largura_embalagem": 15,
+      "altura_embalagem": 31,
+      "profundidade_embalagem": 33,
+      "link": "http://www.hayamax.com.br/grill-arno-dual-gnox-inox-com-abertura-de-180o-220v",
+      "link_imagem": "https://static.hayapek.com.br/produtos/87076/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 37,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 07:51:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:17:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 7,
+      "tempo_cross": 0,
+      "estoque_total": 7,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/7.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "8",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/8.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "9",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/9.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "10",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/10.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "11",
+          "valor": "https://static.hayapek.com.br/produtos/87076/550/11.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB29477098 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB29477098",
+      "catalog_product_id": "MLB29477098",
+      "domain_id": "MLB-ELECTRIC_SANDWICH_MAKERS",
+      "name": "Sanduicheira dupla de aço inoxidável Arno com abertura de 180 graus com placa antiaderente de 1100 w",
+      "parent_id": "MLB22296296",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "455",
+          "value_name": "Arno",
+          "values": [
+            {
+              "id": "455",
+              "name": "Arno"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "13199125",
+          "value_name": "Grill",
+          "values": [
+            {
+              "id": "13199125",
+              "name": "Grill"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "8216971",
+          "value_name": "GNOX",
+          "values": [
+            {
+              "id": "8216971",
+              "name": "GNOX"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "283165",
+          "value_name": "Cinza",
+          "values": [
+            {
+              "id": "283165",
+              "name": "Cinza"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V",
+          "values": [
+            {
+              "id": "198813",
+              "name": "220V"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450294",
+          "value_name": "Cinza",
+          "values": [
+            {
+              "id": "2450294",
+              "name": "Cinza"
+            }
+          ],
+          "meta": {
+            "rgb": "E1E1E1"
+          }
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "50227688",
+          "value_name": "Sandwichera Arno Dual Inox",
+          "values": [
+            {
+              "id": "50227688",
+              "name": "Sandwichera Arno Dual Inox"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "109624",
+          "value_name": "1100 W",
+          "values": [
+            {
+              "id": "109624",
+              "name": "1100 W"
+            }
+          ]
+        },
+        {
+          "id": "SANDWICHES_CAPACITY",
+          "name": "Capacidade de sanduíches",
+          "value_id": "13698834",
+          "value_name": "2",
+          "values": [
+            {
+              "id": "13698834",
+              "name": "2"
+            }
+          ]
+        },
+        {
+          "id": "PLATE_TYPES",
+          "name": "Tipos de placas",
+          "value_id": "2210212",
+          "value_name": "Grill",
+          "values": [
+            {
+              "id": "2210212",
+              "name": "Grill"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "17566635",
+          "value_name": "3016661152948",
+          "values": [
+            {
+              "id": "17566635",
+              "name": "3016661152948"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável",
+          "values": [
+            {
+              "id": "4086949",
+              "name": "Aço inoxidável"
+            }
+          ]
+        },
+        {
+          "id": "WITH_NON_STICK_SURFACE",
+          "name": "Com superfície antiaderente",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_SECURITY_LOCK",
+          "name": "Com trava de segurança",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_CORD_STORAGE",
+          "name": "Com porta fio",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_POWER_LIGHT",
+          "name": "Com luz indicadora de funcionamento",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_REMOVABLE_PLATES",
+          "name": "Com placas removíveis",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_HEAT_RESISTANT_HANDLE",
+          "name": "Com puxador resistente ao calor",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Prepare suas receitas com a grelha aberta ou fechada \n A grelha dupla de aço inoxidável Arno tem uma abertura e aquecimento de 180 graus em ambos os pratos, permitindo que você use a grelha aberta ou fechada para preparar suas carnes, sanduíches, pratos grelhados e muito mais. \n \n Descrição do produto \n Prepare suas receitas com a grelha dupla de aço inoxidável aberta ou fechada! \n A churrasqueira Arno Dual Inox tem uma abertura e aquecimento de 180° em suas duas placas antiaderentes, permitindo que a churrasqueira Dual Inox seja usada aberta ou fechada. \n Ideal para preparar carnes, sanduíches, grelhados e muitos outros alimentos. \n A placa superior ajusta a altura dos alimentos para um melhor resultado na grelha. \n Além disso, a grade dupla de aço inoxidável tem controle de temperatura, permitindo que você ajuste a temperatura de acordo com suas preferências. \n Grelha dupla de aço inoxidável"
+      },
+      "pictures": [
+        {
+          "id": "720904-MLU74195013731_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_720904-MLU74195013731_012024-F.jpg",
+          "max_width": "763",
+          "max_height": "410"
+        },
+        {
+          "id": "701264-MLU74161178601_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_701264-MLU74161178601_012024-F.jpg",
+          "max_width": "775",
+          "max_height": "452"
+        },
+        {
+          "id": "911403-MLU74129736377_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_911403-MLU74129736377_012024-F.jpg",
+          "max_width": "642",
+          "max_height": "786"
+        },
+        {
+          "id": "847426-MLU74163702003_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_847426-MLU74163702003_012024-F.jpg",
+          "max_width": "817",
+          "max_height": "365"
+        },
+        {
+          "id": "991213-MLU74139422953_012024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_991213-MLU74139422953_012024-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "851",
+          "max_height": "536"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-01-03T16:54:13Z",
+      "last_updated": "2026-07-28T21:32:37Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    },
+    {
+      "id": "MLB22296304",
+      "catalog_product_id": "MLB22296304",
+      "domain_id": "MLB-ELECTRIC_SANDWICH_MAKERS",
+      "name": "Grill Arno Dual Inox com abertura de 180° GNOX",
+      "parent_id": "MLB22296296",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "455",
+          "value_name": "Arno",
+          "values": [
+            {
+              "id": "455",
+              "name": "Arno"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "13199125",
+          "value_name": "Grill",
+          "values": [
+            {
+              "id": "13199125",
+              "name": "Grill"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "8216971",
+          "value_name": "GNOX",
+          "values": [
+            {
+              "id": "8216971",
+              "name": "GNOX"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V",
+          "values": [
+            {
+              "id": "198813",
+              "name": "220V"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "19087693",
+          "value_name": "GNOX",
+          "values": [
+            {
+              "id": "19087693",
+              "name": "GNOX"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "109624",
+          "value_name": "1100 W",
+          "values": [
+            {
+              "id": "109624",
+              "name": "1100 W"
+            }
+          ]
+        },
+        {
+          "id": "SANDWICHES_CAPACITY",
+          "name": "Capacidade de sanduíches",
+          "value_id": "17672705",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "17672705",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "PLATE_TYPES",
+          "name": "Tipos de placas",
+          "value_name": "Ajustável, Antiaderetes, Grill",
+          "values": [
+            {
+              "id": "19046405",
+              "name": "Ajustável"
+            },
+            {
+              "id": "24463682",
+              "name": "Antiaderetes"
+            },
+            {
+              "id": "2210212",
+              "name": "Grill"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "17566635",
+          "value_name": "3016661152948",
+          "values": [
+            {
+              "id": "17566635",
+              "name": "3016661152948"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável",
+          "values": [
+            {
+              "id": "4086949",
+              "name": "Aço inoxidável"
+            }
+          ]
+        },
+        {
+          "id": "WITH_NON_STICK_SURFACE",
+          "name": "Com superfície antiaderente",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_SECURITY_LOCK",
+          "name": "Com trava de segurança",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_CORD_STORAGE",
+          "name": "Com porta fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_POWER_LIGHT",
+          "name": "Com luz indicadora de funcionamento",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_REMOVABLE_PLATES",
+          "name": "Com placas removíveis",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_HEAT_RESISTANT_HANDLE",
+          "name": "Com puxador resistente ao calor",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7857377",
+          "value_name": "13 cm",
+          "values": [
+            {
+              "id": "7857377",
+              "name": "13 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "5760546",
+          "value_name": "25 cm",
+          "values": [
+            {
+              "id": "5760546",
+              "name": "25 cm"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "7175734",
+          "value_name": "20 cm",
+          "values": [
+            {
+              "id": "7175734",
+              "name": "20 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "6630461",
+          "value_name": "2 kg",
+          "values": [
+            {
+              "id": "6630461",
+              "name": "2 kg"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Com o Grill Arno Dual Inox você pode ter mais espaço para cozinhar, uma vez que possui abertura de 180° e aquecimento em ambas as placas, o que permite que seja utilizada de forma aberta ou fechada, de acordo com a sua necessidade. Suas placas são antiaderentes e o equipamento acompanha um termostato com controle de temperatura. Prepare carnes, grelhados e muito mais!\n\n\n\n\n• Diferentes usos: possui abertura 180º graus\n• Placa ajustável de acordo com a altura do alimento\n• Fácil limpeza, através de placas com revestimento antiaderente\n• Maior segurança: Alça permanente fria e trava de segurança na lateral\n• Controle de temperatura\n• Coletor de gordura\n• Indicador luminoso\n\n\nAtenção: Prezado cliente, infelizmente nossas políticas não permitem a venda de produtos para consumidores que usam CNPJ. Para evitar cancelamento do seu pedido, realize sua compra via CPF"
+      },
+      "pictures": [
+        {
+          "id": "898490-MLA100072062185_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_898490-MLA100072062185_122025-F.jpg",
+          "max_width": "970",
+          "max_height": "516"
+        },
+        {
+          "id": "749314-MLA84538287680_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_749314-MLA84538287680_052025-F.jpg",
+          "max_width": "1028",
+          "max_height": "410"
+        },
+        {
+          "id": "674768-MLA84836464015_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_674768-MLA84836464015_052025-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "811079-MLA84836464039_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_811079-MLA84836464039_052025-F.jpg",
+          "max_width": "1000",
+          "max_height": "1028"
+        },
+        {
+          "id": "643177-MLA84836500879_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_643177-MLA84836500879_052025-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "885415-MLA84538287756_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_885415-MLA84538287756_052025-F.jpg",
+          "max_width": "1000",
+          "max_height": "1028"
+        },
+        {
+          "id": "880092-MLA84538326652_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_880092-MLA84538326652_052025-F.jpg",
+          "max_width": "1000",
+          "max_height": "1062"
+        },
+        {
+          "id": "708270-MLA84538287788_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_708270-MLA84538287788_052025-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "732119-MLA84836545979_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_732119-MLA84836545979_052025-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "762909-MLA84538287836_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_762909-MLA84538287836_052025-F.jpg",
+          "max_width": "962",
+          "max_height": "511"
+        },
+        {
+          "id": "697770-MLA84538326742_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_697770-MLA84538326742_052025-F.jpg",
+          "max_width": "947",
+          "max_height": "954"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-03-18T20:36:05Z",
+      "last_updated": "2026-06-12T12:30:04Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

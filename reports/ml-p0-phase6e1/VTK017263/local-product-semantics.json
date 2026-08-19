@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-17T14:15:53.531Z",
+  "product": {
+    "id": "20992744-7828-47a8-aae3-2c4c84420557",
+    "sku": "VTK017263",
+    "nome": "Conector Uhf Fem Rg/rgcc 58(cn-130)kf-11",
+    "marca": "K.L.C.",
+    "estoque": 50,
+    "custo": 29.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.014,
+    "peso_bruto": 0.014,
+    "largura": 1.5,
+    "altura": 2.5,
+    "profundidade": 1.5,
+    "gtin": "",
+    "descricao": "Conector UHF Fêmea Angular Painel Crimpagem Rg/Rgc-58 KF-11. Produto novo utilizado para conectar o cabo Rg-58 ou Rgc-58 ao seu receptor. Família: UHF. Sistema de fixação do cabo: Crimpagem. Gênero: Fêmea. Formato: Angular. Fabricação: KLC Conectores. Freqüência de operação: 0 &ndash; 300 MHz Tensão máxima de operação: 750 Volts Tensão máxima de teste: 2000 Volts rms Resistência de contato: - contato central: = 5 mOhms max. - contato externo: = 5 mOhms max. Resistência de isolação: = 5GOhms min Resistência de isolação após conexão: = 200MOhms min Temperatura de operação: -25ºC a 70ºC Materiais Contato fêmea: Bronze Fosforoso Isolante: Teflon &ndash; PTFE&reg; Outras partes: Latão Elementos de vedação: Borracha / Neoprene",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/360651_67d2cafa84039.jpg"
+    ],
+    "categoria": "Antenas E Acessórios/ Acessórios Para Antenas Tv/ Conectores",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:22.80718+00:00",
+    "updated_at": "2026-08-17T10:24:30.699772+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "360651",
+    "dslite_ultima_sync": "2026-08-17T10:24:30.545+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85299019",
+    "cest": "21.112.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "20274511-5bbb-4ebd-b30e-307abc860f2c",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "audio_connector",
+    "function": "connect_audio_signal",
+    "intended_use": "professional_audio",
+    "physical_form": "audio_connector",
+    "expected_category_signals": [
+      "conector",
+      "audio",
+      "xlr",
+      "speakon",
+      "p10"
+    ],
+    "incompatible_category_signals": [
+      "hidraulica",
+      "redeethernet"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

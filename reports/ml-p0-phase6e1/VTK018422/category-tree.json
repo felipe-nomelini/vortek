@@ -1,0 +1,31 @@
+{
+  "candidates": [
+    {
+      "category_id": "MLB45256",
+      "path": [
+        "Acessórios para Veículos",
+        "Som Automotivo",
+        "Antenas"
+      ]
+    },
+    {
+      "category_id": "MLB456898",
+      "path": [
+        "Agro",
+        "Peças Maquinaria Agrícola",
+        "Carroceria",
+        "Antenas"
+      ]
+    },
+    {
+      "category_id": "MLB271439",
+      "path": [
+        "Acessórios para Veículos",
+        "Acessórios Náuticos",
+        "Sistemas de Navegação",
+        "Comunicações",
+        "Antenas"
+      ]
+    }
+  ]
+}

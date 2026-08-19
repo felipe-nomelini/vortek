@@ -1,0 +1,23 @@
+{
+  "index": 90,
+  "sku": "VTK018434",
+  "expected_gtin": "7898253491392",
+  "started_at": "2026-08-17T01:17:51.554Z",
+  "local_time": "2026-08-16T22:17:51",
+  "completed_at": "2026-08-17T01:17:51.586Z",
+  "elapsed_ms": 32,
+  "result": "SOURCE_DEFERRED",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Permak 12-inch grille two-unit identity lacks official package evidence",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

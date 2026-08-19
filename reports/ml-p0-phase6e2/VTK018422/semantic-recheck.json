@@ -1,0 +1,68 @@
+{
+  "passed": false,
+  "required_score": 95,
+  "original_score": 93,
+  "assessment": {
+    "score": 93,
+    "parts": {
+      "product_identity": 25,
+      "function_match": 25,
+      "intended_use": 20,
+      "category_path_coherence": 20,
+      "catalog_coherence": 3
+    },
+    "identity_confidence": 100,
+    "classification": "SEMANTIC_PARTIAL",
+    "hard_mismatch": false,
+    "hard_conflicts": [],
+    "function_match": true,
+    "intended_use_match": true,
+    "path_coherent": true,
+    "expected_hits": [
+      "antena",
+      "automotivo",
+      "veiculo"
+    ],
+    "functional_hits": [
+      "antena"
+    ],
+    "incompatible_hits": [],
+    "catalog_category_correlated_error": false,
+    "independent_source_present": true,
+    "attribute_signals": {
+      "checked": true,
+      "attribute_count": 59,
+      "conflicts": [],
+      "classification": "NO_HARD_ATTRIBUTE_MISMATCH"
+    }
+  },
+  "second_pass": {
+    "verdict": "PASS",
+    "supplier_context": "automotive",
+    "remote_context": "automotive",
+    "independent_function_match": true,
+    "reason": "supplier/local semantics and full category path agree"
+  },
+  "independent_supplier_gtin_match": true,
+  "category": {
+    "category_id": "MLB45256",
+    "domain_id": "MLB-VEHICLE_ANTENNAS",
+    "domain_name": null,
+    "category_name": "Antenas",
+    "category_path": [
+      "Acessórios para Veículos",
+      "Som Automotivo",
+      "Antenas"
+    ],
+    "normalized_context": "mlbvehicleantennasmlbvehicleantennasacessoriosparaveiculossomautomotivoantenasantenas"
+  },
+  "expected_path": [
+    "Acessórios para Veículos",
+    "Som Automotivo",
+    "Antenas"
+  ],
+  "path_match": true,
+  "expected_domain": "MLB-VEHICLE_ANTENNAS",
+  "domain_match": true,
+  "anti_frankenstein_answer": "YES"
+}

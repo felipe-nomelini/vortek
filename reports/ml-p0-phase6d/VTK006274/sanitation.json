@@ -1,0 +1,10 @@
+{
+  "sku": "VTK006274",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": "catalog MODEL A06V6_S diverges from local/supplier MODEL TVA06V6S",
+  "local_value": "7898378703493",
+  "found_value": "A06V6_S",
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML catalog MLB15220855 + DSLite supplier",
+  "timestamp": "2026-08-17T01:14:17.025Z"
+}

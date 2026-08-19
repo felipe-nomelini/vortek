@@ -1,0 +1,11 @@
+index,sku,state,item_id,catalog_product_id,protective_price,margin_percent,persisted,observation
+"1","VTK026045","SAFE_PUBLICATION_PERSIST_SUCCESS","MLB5075665407","MLB54158165","289.9","50.762332","true",""""""
+"2","VTK026046","SAFE_PUBLICATION_PERSIST_SUCCESS","MLB7432445588","MLB62224438","379.9","51.52935","true",""""""
+"3","VTK021013","BLOCK_IDENTITY","","MLB7980692","","","false","""exact_catalog_contains_technical_identity_conflicts_with_official_wired_unpowered_product"""
+"4","VTK017236","BLOCK_CATALOG_IDENTITY","","MLB22432562","","","false","""gtin_catalog_maps_to_vehicle_stereo_kit_model_6660_not_ts_1360br_speaker_pair"""
+"5","VTK002141","BLOCK_GTIN","","MLB26855145","","","false","""local_model_pmg_10_but_exact_gtin_catalog_and_secondary_sources_identify_smg_10"""
+"6","VTK026003","BLOCK_CATEGORY","","MLB29389761","","","false","""exact_catalog_domain_is_keyboard_stands_but_official_saty_product_is_slator_wall_string_instrument_support"""
+"7","VTK017506","SAFE_PUBLICATION_PERSIST_SUCCESS","MLB5075698225","MLB77404563","119.9","50.758966","true",""""""
+"8","VTK017211","BLOCK_CATALOG_IDENTITY","","MLB27380888","","","false","""exact_catalog_model_paptb100001_does_not_confirm_local_model_b10"""
+"9","VTK025999","BLOCK_IDENTITY","","","","","false","""no_official_manufacturer_source_and_no_active_ml_catalog_product_confirmed"""
+"10","VTK026000","BLOCK_CATALOG_IDENTITY","","MLB75102536","","","false","""catalog_identifies_acoustic_set_with_model_szste1sl_which_external_evidence_assigns_to_electric_009_042_set"""

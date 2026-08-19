@@ -1,0 +1,9 @@
+{
+  "inventory_snapshot": {
+    "captured": 5813,
+    "expected": 5813,
+    "timestamp": "2026-08-17T00:42:57.218Z"
+  },
+  "local_duplicates": [],
+  "remote_matches": []
+}

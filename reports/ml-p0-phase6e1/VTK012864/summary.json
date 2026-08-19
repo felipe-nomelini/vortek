@@ -1,0 +1,10 @@
+{
+  "ordinal": 85,
+  "sku": "VTK012864",
+  "phase6e_state": "REMOTE_PROPAGATION_PENDING",
+  "phase6e1_state": "KNOWN_WRONG_CATEGORY_REMOTE_ITEM",
+  "category_candidate": "Informática > Tablets e Acessórios > Peças > Alto-Falantes",
+  "semantic_score": 73,
+  "second_pass": "REJECT",
+  "evidence": "MLB7437196478 exists in MLB-TABLET_INTERNAL_SPEAKERS; new gate simulation blocks before payload"
+}

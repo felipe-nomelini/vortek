@@ -1,0 +1,569 @@
+{
+  "checked_at": "2026-08-17T00:43:35.563Z",
+  "product": {
+    "id": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+    "sku": "VTK021108",
+    "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+    "marca": "INTELBRAS",
+    "gtin": "7896637637961"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/344333",
+    "consulted_at": "2026-08-17T00:43:35.372Z",
+    "product": {
+      "produtoid": "344333",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 121.9,
+      "preco_crossdocking": 121.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 121.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:13.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+      "titulo_curto": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+      "categoriaid": "118291",
+      "categoria_nome": "Telefonia/ Aparelho Headset/ Amplificador Para Telefone Com Headset",
+      "abc": null,
+      "ean11": "7896637637961",
+      "ncm": "85171830",
+      "descricao": "<h3><b><u>Informações do Produto</u></b></h3><br />\r\n<p><b>Telefone Headset - HSB 50</b></p><br />\r\n<p>O HSB 50 facilita a vida dos profissionais que utilizam muito o telefone. Desenvolvido para linhas analógicas, o modelo é ideal para operadores de telemarketing, área comercial <br><br />\r\n  e atendimento ao cliente, devido ao seu design compacto, fácil acesso ao botão de atendimento e uso do headset, deixando as mãos sempre livres.</p><br />\r\n<p>- Controle digital do volume de recepção;<br><br />\r\n  - Teclado emborrachado de alta durabilidade;<br><br />\r\n  - 2 níveis de campainha e modo de atendimento automático;<br><br />\r\n  - Teclas Flash, Mute, Redial e ON/OFF e LEDs indicativos de status de chamada e mudo;<br><br />\r\n  - Chaves para ajuste de campainha, mode (Tom e Pulso) e flash (100, 300 e 600 ms);<br><br />\r\n  - Headset com conector do tipo RJ9;<br><br />\r\n  - Tiara de aço com revestimento PVC e apoio de cabeça confortável e resistente;<br><br />\r\n  - Headset monoauricular ajustável com protetor removível em espuma;<br><br />\r\n  - Microfone com cancelador de ruído ambiente, haste flexível (semirrígida) e conversível (300º); <br><br />\r\n  - Compatível com linhas e centrais analógicas e com os acessórios AP 3601 (protetor auricular) e AM 3551 (protetor de microfone), que ajudarão a manter os headsets sempre novos, evitando a substituição de produtos e gerando mais economia.</p><br />\r\n<h3><b><u>Informações Técnicas</u></b></h3><br />\r\n<p>Comprimento do cabo<br><br />\r\n  1,5M</p><br />\r\n<p>Peso<br><br />\r\n  60g</p><br />\r\n<p>Headset <br><br />\r\n  Dimensões<br><br />\r\n  190(L)x150(A)x41(P)mm</p><br />\r\n<p>Base discadora <br><br />\r\n  Dimensões<br><br />\r\n  85(L)x45(A)x133(P)mm<br><br />\r\n</p><br />\r\n<br />\r\n<br />\r\n*Imagem meramente ilustrativa",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "INTELBRAS",
+      "modelo": "",
+      "peso": 0.352,
+      "largura": 6,
+      "altura": 18,
+      "profundidade": 19.5,
+      "peso_embalagem": 0.352,
+      "largura_embalagem": 6,
+      "altura_embalagem": 18,
+      "profundidade_embalagem": 19.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/4/344333_69af146767331.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1453,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.055.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-27 09:27:16.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-27 09:27:16.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 20,
+      "tempo_cross": 0,
+      "estoque_total": 20,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/344333_69af146767331.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/344333_69af14676770b.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/344333_69af146767774.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/344333_69af1467677af.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/4/344333_69af1467677e2.png"
+        }
+      ]
+    }
+  },
+  "source": "https://www.intelbras.com/pt-br/telefone-headset-hsb-50",
+  "source_confidence": "official",
+  "catalog_results": [
+    {
+      "id": "MLB20801741",
+      "catalog_product_id": "MLB20801741",
+      "domain_id": "MLB-TELEPHONES",
+      "name": "Telefone Headset Hsb50 Preto Intelbras",
+      "parent_id": "MLB20801737",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "15164704",
+          "value_name": "HSB 50",
+          "values": [
+            {
+              "id": "15164704",
+              "name": "HSB 50"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "name": "Tipo de tela",
+          "value_id": "102258",
+          "value_name": "Digital",
+          "values": [
+            {
+              "id": "102258",
+              "name": "Digital"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "name": "Tipos de alimentação",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica",
+          "values": [
+            {
+              "id": "49713698",
+              "name": "Corrente doméstica"
+            }
+          ]
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "name": "Quantidade de fones de ouvido incluídos",
+          "value_id": "7512605",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7512605",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "name": "Com identificação de chamadas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "name": "Com secretária eletrônica",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "name": "É montável na parede",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_RURAL_TELEPHONE",
+          "name": "É telefone rural",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "40364878",
+          "value_name": "13841200160",
+          "values": [
+            {
+              "id": "40364878",
+              "name": "13841200160"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "15164709",
+          "value_name": "7896637637961",
+          "values": [
+            {
+              "id": "15164709",
+              "name": "7896637637961"
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "10366",
+          "value_name": "Intelbras",
+          "values": [
+            {
+              "id": "10366",
+              "name": "Intelbras"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "75658586",
+          "value_name": "HSC",
+          "values": [
+            {
+              "id": "75658586",
+              "name": "HSC"
+            }
+          ]
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "name": "Com modo mãos livres",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "name": "Com bloqueio de chamadas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "name": "Com função de relógio despertador",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "name": "Com teclado retroiluminado",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "name": "Com indicador de data e hora",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "name": "Com botão flash",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "name": "Com função de rediscagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "name": "Com controle de volume do auscultador ",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_SILENCE_MODE",
+          "name": "Com modo silencioso",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Experimente a qualidade sonora e o conforto que o Telefone Headset HSB50 Preto da Intelbras oferece. \n\nIdeal para uso em casa ou no escritório, esse aparelho é projetado para proporcionar clareza em suas chamadas, garantindo que você ouça e seja ouvido sem dificuldade.\n\nO design leve e anatômico permite longas horas de uso sem desconforto, enquanto o cabo resistente assegura durabilidade no dia a dia. \n\nDesfrute da liberdade de movimentação e mantenha suas mãos livres para outras atividades enquanto fala ao telefone. \n\nPerfeito para profissionais que precisam de produtividade e concentração, este headset é uma adição valiosa ao seu ambiente de trabalho."
+      },
+      "pictures": [
+        {
+          "id": "961547-MLA114911999013_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_961547-MLA114911999013_072026-F.jpg",
+          "max_width": "788",
+          "max_height": "795"
+        },
+        {
+          "id": "831477-MLA99850765453_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_831477-MLA99850765453_112025-F.jpg",
+          "max_width": "556",
+          "max_height": "527"
+        },
+        {
+          "id": "862482-MLB49004190654_022022",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_862482-MLB49004190654_022022-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "864",
+          "max_height": "444"
+        },
+        {
+          "id": "909842-MLA114911821769_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_909842-MLA114911821769_072026-F.jpg",
+          "max_width": "788",
+          "max_height": "783"
+        },
+        {
+          "id": "894984-MLA113630893118_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_894984-MLA113630893118_072026-F.jpg",
+          "max_width": "469",
+          "max_height": "654"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2022-12-19T21:50:21Z",
+      "last_updated": "2026-03-29T19:05:50Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

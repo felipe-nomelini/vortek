@@ -1,0 +1,180 @@
+{
+  "phase": "6E.2",
+  "mode": "SEMANTIC_ALTERNATIVES_CONTROLLED_WRITE_RESUME",
+  "generated_at": "2026-08-17T20:01:48.996Z",
+  "authorized_skus": [
+    "VTK018422",
+    "VTK001303",
+    "VTK001297",
+    "VTK018562",
+    "VTK018924",
+    "VTK012632",
+    "VTK019126"
+  ],
+  "processed": 2,
+  "unprocessed": [
+    "VTK001297",
+    "VTK018562",
+    "VTK018924",
+    "VTK012632",
+    "VTK019126"
+  ],
+  "counts": {
+    "BLOCK_SEMANTIC_CATEGORY_MISMATCH": 1,
+    "REMOTE_WRONG_CATEGORY_CREATED": 1
+  },
+  "metrics": {
+    "selected": 7,
+    "processed": 2,
+    "fast_rejected": 0,
+    "expensive_lookups_saved": 0,
+    "layer2": 2,
+    "payloads_built": 1,
+    "created": 1,
+    "persisted": 0,
+    "already_consistent": 0,
+    "skipped_linked": 0,
+    "blocked": 2,
+    "ml_gets": 431,
+    "diagnostic_posts": 1,
+    "item_posts": 1,
+    "price_puts": 0,
+    "local_reads": 59,
+    "local_transactions": 0,
+    "rollbacks": 0,
+    "source_lookups": 4,
+    "false_positive_duplicates": 0,
+    "propagation_wait_ms": 155,
+    "started_at": "2026-08-17T19:59:55.820Z",
+    "completed_at": "2026-08-17T20:01:48.995Z",
+    "elapsed_ms": 113175,
+    "mean_sku_ms": 3746,
+    "success_rate_percent": 0,
+    "post_success_rate_percent": 0,
+    "protection_put_rate_percent": 0
+  },
+  "stop_loss": {
+    "triggered": true,
+    "reason": "STOP_LOSS_SEMANTIC_CATEGORY_PUBLICATION",
+    "wrong_identity_publications": 0,
+    "wrong_semantic_category_publications": 1,
+    "duplicate_creations": 0,
+    "wrong_catalog_publications": 0,
+    "consecutive_pricing_failures": 0,
+    "consecutive_persistence_failures": 0,
+    "structural_400": {}
+  },
+  "selection": {
+    "source_file": "reports/ml-p0-phase6e1/semantic-alternatives.csv",
+    "source_sha256": "46d60ccbc26feeebac9ed6f06e5674d90f824873a73b159df02235b122f60ecc",
+    "selected_file": "reports/ml-p0-phase6e2/selected-7.csv",
+    "selected_sha256": "f856d7edac31c063c4ae7cf3c3c272e2b828dfb73adb29210367e0a9ac746e78",
+    "count": 7,
+    "order_preserved": true,
+    "substitutions": false
+  },
+  "inventory": {
+    "expected": 5876,
+    "captured": 5876,
+    "pages": 117,
+    "timestamp": "2026-08-17T20:01:41.498Z",
+    "reliable": true
+  },
+  "results": [
+    {
+      "index": 1,
+      "sku": "VTK018422",
+      "expected_gtin": "7898253494676",
+      "started_at": "2026-08-17T20:01:41.500Z",
+      "local_time": "2026-08-17T17:01:41",
+      "completed_at": "2026-08-17T20:01:43.127Z",
+      "elapsed_ms": 1627,
+      "result": "BLOCK_SEMANTIC_CATEGORY_MISMATCH",
+      "item_id": null,
+      "catalog_product_id": null,
+      "protective_price": null,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "semantic alternative recheck failed: score=93, second=PASS, path=true, domain=true, supplier=true",
+      "sanitation": "CATEGORY_FIX_REQUIRED",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false,
+        "optional_catalog_optimization_pending": false
+      }
+    },
+    {
+      "index": 2,
+      "sku": "VTK001303",
+      "expected_gtin": "7890443014381",
+      "started_at": "2026-08-17T20:01:43.129Z",
+      "local_time": "2026-08-17T17:01:43",
+      "completed_at": "2026-08-17T20:01:48.994Z",
+      "elapsed_ms": 5865,
+      "result": "REMOTE_WRONG_CATEGORY_CREATED",
+      "item_id": "MLB7440213282",
+      "catalog_product_id": "MLB17460878",
+      "protective_price": 2379.9,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": {
+        "passed": false,
+        "result": "POST_SEMANTIC_CATEGORY_MATCH",
+        "expected_category_id": "MLB438516",
+        "remote_category_id": "MLB438516",
+        "expected_category_path": [
+          "Instrumentos Musicais",
+          "Instrumentos de Corda",
+          "Guitarras",
+          "Elétricas"
+        ],
+        "remote_category_path": [
+          "Instrumentos Musicais",
+          "Instrumentos de Corda",
+          "Guitarras",
+          "Elétricas"
+        ],
+        "path_match": true,
+        "expected_domain_id": "MLB-ELECTRIC_GUITARS",
+        "remote_domain_id": "MLB-ELECTRIC_GUITARS",
+        "domain_match": true,
+        "expected_catalog_product_id": "MLB17460878",
+        "remote_catalog_product_id": "MLB17460878",
+        "catalog_match": true,
+        "semantic_score": 93,
+        "hard_mismatch": false,
+        "second_pass": {
+          "verdict": "PASS",
+          "supplier_context": "musical_instrument",
+          "remote_context": "musical_instrument",
+          "independent_function_match": true,
+          "reason": "supplier/local semantics and full category path agree"
+        }
+      },
+      "sanitation": "CATEGORY_FIX_REQUIRED",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false,
+        "optional_catalog_optimization_pending": false
+      }
+    }
+  ],
+  "hold": "P0 PHASE 6E.2 — SEMANTIC ALTERNATIVES WRITE RESUME HOLD",
+  "invariants": {
+    "all_authorized_classified": false,
+    "max_authorized": true,
+    "no_unauthorized_sku": true,
+    "writes_sequential": true,
+    "no_reprocessing": true,
+    "no_quality_calls": true,
+    "no_description_calls": true,
+    "no_competition_calls": true,
+    "protective_margin_min_percent": 50,
+    "selection_frozen": true,
+    "semantic_source_count_seven": true,
+    "excluded_incidents_untouched": true,
+    "vtk017508_excluded": true
+  }
+}

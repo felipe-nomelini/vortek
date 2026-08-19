@@ -1,0 +1,22 @@
+{
+  "index": 17,
+  "sku": "VTK012909",
+  "started_at": "2026-08-17T00:07:25.274Z",
+  "local_time": "2026-08-16T21:07:25",
+  "expected_gtin": "7898946772609",
+  "completed_at": "2026-08-17T00:07:25.734Z",
+  "elapsed_ms": 474,
+  "result": "BLOCK_GTIN",
+  "item_id": null,
+  "catalog_product_id": "MLB33678717",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact_gtin_catalog_identifies_jpg_folk_guitar_cover_not_bkr1_classical_cover",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": true
+  }
+}

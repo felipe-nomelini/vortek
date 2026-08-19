@@ -1,0 +1,67 @@
+{
+  "selected": {
+    "category_id": "MLB457887",
+    "domain_id": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+    "domain_name": "Antenas e adaptadores sem fio",
+    "category_name": "Antenas de Conectividade",
+    "category_path": [
+      "Acessórios para Veículos",
+      "Aces. de Carros e Caminhonetes",
+      "Exterior",
+      "Antenas de Conectividade"
+    ],
+    "normalized_context": "mlbwirelessantennasandadaptersantenaseadaptadoressemfiomlbwirelessantennasandadaptersacessoriosparaveiculosacesdecarrosecaminhonetesexteriorantenasdeconectividadeantenasdeconectividade"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB457887",
+        "domain_id": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+        "domain_name": "Antenas e adaptadores sem fio",
+        "category_name": "Antenas de Conectividade",
+        "category_path": [
+          "Acessórios para Veículos",
+          "Aces. de Carros e Caminhonetes",
+          "Exterior",
+          "Antenas de Conectividade"
+        ],
+        "normalized_context": "mlbwirelessantennasandadaptersantenaseadaptadoressemfiomlbwirelessantennasandadaptersacessoriosparaveiculosacesdecarrosecaminhonetesexteriorantenasdeconectividadeantenasdeconectividade"
+      },
+      "score": 93,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB457888",
+        "domain_id": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+        "domain_name": "Antenas e adaptadores sem fio",
+        "category_name": "Antenas de Conectividade",
+        "category_path": [
+          "Acessórios para Veículos",
+          "Acessórios de Linha Pesada",
+          "Acessórios de Exterior",
+          "Antenas de Conectividade"
+        ],
+        "normalized_context": "mlbwirelessantennasandadaptersantenaseadaptadoressemfiomlbwirelessantennasandadaptersacessoriosparaveiculosacessoriosdelinhapesadaacessoriosdeexteriorantenasdeconectividadeantenasdeconectividade"
+      },
+      "score": 93,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB63312",
+        "domain_id": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+        "domain_name": "Antenas e adaptadores sem fio",
+        "category_name": "Antenas",
+        "category_path": [
+          "Informática",
+          "Conectividade e Redes",
+          "Antenas"
+        ],
+        "normalized_context": "mlbwirelessantennasandadaptersantenaseadaptadoressemfiomlbwirelessantennasandadaptersinformaticaconectividadeeredesantenasantenas"
+      },
+      "score": 74,
+      "hard_mismatch": true
+    }
+  ]
+}

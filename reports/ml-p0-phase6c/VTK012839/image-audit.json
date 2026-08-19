@@ -1,0 +1,51 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/dec2d6e491bf5d0711bb681638fc6b8c.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/dec2d6e491bf5d0711bb681638fc6b8c.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 2500,
+      "height": 2500,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/65cd8057e19b7cbb41d576cfdb285954.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/65cd8057e19b7cbb41d576cfdb285954.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 2500,
+      "height": 2500,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/dec2d6e491bf5d0711bb681638fc6b8c.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/dec2d6e491bf5d0711bb681638fc6b8c.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 2500,
+      "height": 2500,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/65cd8057e19b7cbb41d576cfdb285954.jpg",
+      "final_url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/65cd8057e19b7cbb41d576cfdb285954.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 2500,
+      "height": 2500,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

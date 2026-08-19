@@ -1,0 +1,23 @@
+{
+  "index": 3,
+  "sku": "VTK017666",
+  "expected_gtin": "7898179310913",
+  "started_at": "2026-08-17T00:43:17.866Z",
+  "local_time": "2026-08-16T21:43:17",
+  "completed_at": "2026-08-17T00:43:19.436Z",
+  "elapsed_ms": 1570,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE",
+  "item_id": null,
+  "catalog_product_id": "MLB9004870",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "missing category-required attributes: ANATEL_HOMOLOGATION_NUMBER",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

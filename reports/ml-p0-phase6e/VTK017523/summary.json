@@ -1,0 +1,23 @@
+{
+  "index": 131,
+  "sku": "VTK017523",
+  "expected_gtin": "",
+  "started_at": "2026-08-17T12:56:36.401Z",
+  "local_time": "2026-08-17T09:56:36",
+  "completed_at": "2026-08-17T12:56:36.649Z",
+  "elapsed_ms": 248,
+  "result": "SOURCE_DEFERRED",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "GTIN absence is not a product failure; this SKU has no prior official identity proof sufficient for automatic publication",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

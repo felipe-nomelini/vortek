@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.800Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alça Pré Formada Cabo 9,60/ 10,40 Apco6104 Preto - PC / 10",
+    "supplier_category": "Antenas E Acessórios/ Acessórios Para Parabolica/ Tubo Para Antena Parabolica",
+    "supplier_brand": "CONIMEL",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/290545",
+    "captured_at": "2026-08-17T12:56:54.613Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "aeea1c12-5381-4f0e-9555-d6a53904054c",
+    "produto_id": "996ad7bf-d057-4181-8f25-ee24a1e8d843",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "290545",
+    "sku_fornecedor": "290545",
+    "custo": 135.8,
+    "estoque": 13,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:53:18.221+00:00",
+    "created_at": "2026-07-20T18:32:05.417031+00:00",
+    "updated_at": "2026-08-17T10:53:18.228+00:00",
+    "sku_oferta": "290545",
+    "nome": "Alça Pré Formada Cabo 9,60/ 10,40 Apco6104 Preto",
+    "descricao": "Informações do Produto A Alça Pré Formada é utilizada na ancoragem de cabos ópticos. Fabricada a partir de fios de liga de alumínio de alta resistência, recebe na parte interna um material abrasivo para melhorar a fixação sobre o cabo. - Economia; - É mais prático, pois não se faz necessário uso de um protetor sobre o cabo; - Realiza a ancoragem do cabo sem provocar danos à capa do cabo ou às fibras ópticas.",
+    "marca": "CONIMEL",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/2/9/290545_67d2cae6e418e.jpg"
+    ],
+    "gtin": "",
+    "ncm": "73262000",
+    "cest": null
+  }
+}

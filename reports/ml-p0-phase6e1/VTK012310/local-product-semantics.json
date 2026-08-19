@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-08-17T14:15:53.695Z",
+  "product": {
+    "id": "e9198188-46cf-49eb-b90f-b7b7eaf37b3b",
+    "sku": "VTK012310",
+    "nome": "Palheta Bori Grl At-r16142 Rio Ii (vermelho) R21026 10un",
+    "marca": "Bori",
+    "estoque": 21,
+    "custo": 10,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.03,
+    "peso_bruto": 0.03,
+    "largura": 10,
+    "altura": 10,
+    "profundidade": 2,
+    "gtin": "",
+    "descricao": "As palhetas Bori RIO, possuem as pontas diferenciadas com suas ranhuras texturizadas na gravação nos dois lados para maior firmeza e segurança, evitando que a palheta escape. Detalhe rígido para uma sonoridade com excelência. Borda arredondada para redução de ruídos e maior flexibilidade para obter frases rápidas, arpejos e acordes. Seu tamanho compacto e borda arredondada são ideais para palhetadas rápidas. Modelo: Palhetas RIO “JAZZ” Código: Ref.21026 [RIO II 1,16mm Vermelho] Acabamento: Alto Brilho Material: Poliamida Nylon Cores disponíveis: Vermelho e Preto Ideal para: Cavaco, Banjo, Bandolim, Violão, Guitarra e Baixo Espessura: 1,16mm Largura: 21mm Altura: 26mm Peso: 0,55g Ref. da linha RIO: Código: Ref.21025 [RIO I 0,98mm Vermelho] Código: Ref.21026 [RIO II 1,16mm Vermelho] Código: Ref.21027 [RIO III 1,38mm Vermelho] Código: Ref.21028 [RIO I-XXL 1,70mm Vermelho] Código: Ref.21029 [RIO I 0,98mm Preto] Código: Ref.21030 [RIO II 1,16mm Preto] Código: Ref.21031 [RIO III 1,38mm Preto] Código: Ref.21032 [RIO I-XXL 1,70mm Preto]",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012310/01-f792e58a0c07f01d2117.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012310/02-f5bf249e0c052e194f3d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012310/03-d4960afa31217c0b83e3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1/VTK012310/04-fe75a0b5f82e2b3d2830.jpg"
+    ],
+    "categoria": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "ml_item_id": null,
+    "created_at": "2026-07-06T22:31:07.87647+00:00",
+    "updated_at": "2026-08-17T09:52:24.258462+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "2721",
+    "dslite_ultima_sync": "2026-08-17T09:52:24.02+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.92.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "af70b5ea-dea2-4f96-9480-5de183ca49ed",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "guitar_strings",
+    "function": "produce_instrument_sound",
+    "intended_use": "musical_instrument",
+    "physical_form": "string_set",
+    "expected_category_signals": [
+      "corda",
+      "guitarra",
+      "instrumentomusical"
+    ],
+    "incompatible_category_signals": [
+      "caboeletrico",
+      "automotivo",
+      "cozinha"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "1,16 mm",
+        "21 mm",
+        "26 mm",
+        "0,98 mm",
+        "1,38 mm",
+        "1,70 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "musical_instrument",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

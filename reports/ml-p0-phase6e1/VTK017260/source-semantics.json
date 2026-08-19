@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.521Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conector Klc Macho Rg/rgc  Km-8",
+    "supplier_category": "Antenas E Acessórios/ Acessórios Para Antenas Tv/ Conectores",
+    "supplier_brand": "K.L.C.",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/360621",
+    "captured_at": "2026-08-17T12:56:31.881Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "2eb2c981-ef8a-4864-a46c-853c9089d90b",
+    "produto_id": "c522bccc-21ae-475e-a04f-ddf8f70078c6",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "360621",
+    "sku_fornecedor": "360621",
+    "custo": 16.5,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:24:30.545+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:24:30.554+00:00",
+    "sku_oferta": "360621",
+    "nome": "Conector Klc Macho Rg/rgc  Km-8",
+    "descricao": "Informações do Produto Características Conector UHF Macho Reto Prensa Cabo Rg/Rgc-58 KM-8. Produto novo utilizado para conectar o cabo Rg-58 ou Rgc-58 ao seu receptor. Família: UHF. Sistema de fixação do cabo: Prensa Cabo. Gênero: Macho. Formato: Reto. Fabricação: KLC Conectores. Freqüência de operação: 0 &ndash; 300 MHz Tensão máxima de operação: 750 Volts Tensão máxima de teste: 2000 Volts rms Resistência de contato: - contato central: = 5 mO max. - contato externo: = 5 mO max. Resistência de isolação: = 5GO min Resistência de isolação após conexão: = 200MO min Temperatura de operação: -25ºC a 70ºC",
+    "marca": "K.L.C.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/360621_67d2cafa816a4.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85299019",
+    "cest": "21.112.00"
+  }
+}

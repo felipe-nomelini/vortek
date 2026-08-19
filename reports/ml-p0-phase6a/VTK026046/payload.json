@@ -1,0 +1,141 @@
+{
+  "payload": {
+    "family_name": "Umidificador Ventisol UV-04 4 L",
+    "category_id": "MLB120425",
+    "catalog_product_id": "MLB62224438",
+    "catalog_listing": true,
+    "price": 379.9,
+    "currency_id": "BRL",
+    "available_quantity": 50,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8460.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8732.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8780.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87b8.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87e9.png"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac881b.png"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "82653",
+        "value_name": "Ventisol"
+      },
+      {
+        "id": "LINE",
+        "value_id": "24100982",
+        "value_name": "Ultrassônico"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "67003067",
+        "value_name": "UV-04 BIVOLT"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13074268",
+        "value_name": "Umidificador"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "67003069",
+        "value_name": "UV-04 BIVOLT"
+      },
+      {
+        "id": "WATER_TANK_CAPACITY",
+        "value_id": "3163906",
+        "value_name": "4 L"
+      },
+      {
+        "id": "MIST_TEMPERATURE",
+        "value_id": "216875",
+        "value_name": "Ambiente"
+      },
+      {
+        "id": "WITH_OIL_DIFFUSER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_AUTO_SHUT_OFF",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_NIGHT_LIGHT_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SILENT_OPERATION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_REMOVABLE_FILTER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_LOW_WATER_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_ANTIBACTERIAL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "64958329",
+        "value_name": "7898461978913"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026046"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026046"
+  },
+  "sha256": "59108660d2d18227d3aca12dde0e40af4d034df392f9338c27e384eaf7366e3e",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 19,
+  "pictures_count": 6
+}

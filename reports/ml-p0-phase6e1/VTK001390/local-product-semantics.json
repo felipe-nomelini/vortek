@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-08-17T14:15:41.566Z",
+  "product": {
+    "id": "e528b430-e3e3-4f5a-b60a-53f97b995fd6",
+    "sku": "VTK001390",
+    "nome": "Almofada Para Lombar BC3 Preto ThunderX3",
+    "marca": "THUNDERX3",
+    "estoque": 5,
+    "custo": 321.11,
+    "ml_fee": 0.135,
+    "ml_shipping": 68.65,
+    "custom_price": 530.82,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.62,
+    "peso_bruto": 1.62,
+    "largura": 22,
+    "altura": 14,
+    "profundidade": 30,
+    "gtin": "7890000797696",
+    "descricao": "A Almofada para Lombar da ThunderX3 é um produto original e ideal para a reposição das nossas cadeiras, oferecendo conforto e compatibilidade perfeita com o seu equipamento. • Modelos compatíveis: Cadeiras Gamer BC3 • Cor: Preto • Material: Courino",
+    "imagens": [],
+    "categoria": "Peças De Reposição / Peças De Reposição / Peças De Reposição",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:15:37.537556+00:00",
+    "updated_at": "2026-08-17T14:01:15.391329+00:00",
+    "dslite_fornecedor_id": "2",
+    "dslite_produto_id": "79769",
+    "dslite_ultima_sync": "2026-08-17T14:01:15.146+00:00",
+    "fornecedor": "HAYAMAX-PR",
+    "ncm": "9401.99.00",
+    "cest": null,
+    "origem_fiscal": "1",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "899b7313-d41b-469b-9502-00b0dc74cff6",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "computing",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

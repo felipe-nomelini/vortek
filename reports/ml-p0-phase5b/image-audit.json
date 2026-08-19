@@ -1,0 +1,93 @@
+{
+  "rows": [
+    {
+      "scope": "local",
+      "index": 1,
+      "url": "https://static.hayapek.com.br/produtos/70704/550/1.jpg",
+      "http_status": 200,
+      "https": true,
+      "content_type": "image/jpg",
+      "width": 550,
+      "height": 550,
+      "classification": "APPROVED",
+      "reason": "exact_blue_six_blade_table_fan_on_white_background; identity_confirmed_in_phase5a"
+    },
+    {
+      "scope": "catalog",
+      "index": 1,
+      "url": "https://http2.mlstatic.com/D_NQ_NP_702853-MLA99429972606_112025-F.jpg",
+      "http_status": 200,
+      "https": true,
+      "content_type": "image/jpeg",
+      "width": 1090,
+      "height": 1080,
+      "classification": "CATALOG_REFERENCE_APPROVED",
+      "reason": "image_belongs_to_exact_catalog_product"
+    },
+    {
+      "scope": "catalog",
+      "index": 2,
+      "url": "https://http2.mlstatic.com/D_NQ_NP_606330-MLA84550752742_052025-F.jpg",
+      "http_status": 200,
+      "https": true,
+      "content_type": "image/jpeg",
+      "width": 612,
+      "height": 861,
+      "classification": "CATALOG_REFERENCE_APPROVED",
+      "reason": "image_belongs_to_exact_catalog_product"
+    },
+    {
+      "scope": "catalog",
+      "index": 3,
+      "url": "https://http2.mlstatic.com/D_NQ_NP_665395-MLA85061029336_052025-F.jpg",
+      "http_status": 200,
+      "https": true,
+      "content_type": "image/jpeg",
+      "width": 708,
+      "height": 720,
+      "classification": "CATALOG_REFERENCE_APPROVED",
+      "reason": "image_belongs_to_exact_catalog_product"
+    },
+    {
+      "scope": "catalog",
+      "index": 4,
+      "url": "https://http2.mlstatic.com/D_NQ_NP_676908-MLA85060990100_052025-F.jpg",
+      "http_status": 200,
+      "https": true,
+      "content_type": "image/jpeg",
+      "width": 630,
+      "height": 631,
+      "classification": "CATALOG_REFERENCE_APPROVED",
+      "reason": "image_belongs_to_exact_catalog_product"
+    },
+    {
+      "scope": "catalog",
+      "index": 5,
+      "url": "https://http2.mlstatic.com/D_NQ_NP_873398-MLA85061039218_052025-F.jpg",
+      "http_status": 200,
+      "https": true,
+      "content_type": "image/jpeg",
+      "width": 347,
+      "height": 626,
+      "classification": "CATALOG_REFERENCE_APPROVED",
+      "reason": "image_belongs_to_exact_catalog_product"
+    },
+    {
+      "scope": "catalog",
+      "index": 6,
+      "url": "https://http2.mlstatic.com/D_NQ_NP_948799-MLA85060990112_052025-F.jpg",
+      "http_status": 200,
+      "https": true,
+      "content_type": "image/jpeg",
+      "width": 420,
+      "height": 628,
+      "classification": "CATALOG_REFERENCE_APPROVED",
+      "reason": "image_belongs_to_exact_catalog_product"
+    }
+  ],
+  "local_total": 1,
+  "local_approved": 1,
+  "main_approved": true,
+  "catalog_images_checked": 6,
+  "identity_comparison": "same Ventisol Turbo 6 table fan, blue blades, black structure, six blades; catalog linkage exact"
+}

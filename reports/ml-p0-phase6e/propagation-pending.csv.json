@@ -1,0 +1,27 @@
+{
+  "rows": [
+    {
+      "index": 85,
+      "sku": "VTK012864",
+      "expected_gtin": "7898640362106",
+      "started_at": "2026-08-17T12:55:49.331Z",
+      "local_time": "2026-08-17T09:55:49",
+      "completed_at": "2026-08-17T12:56:23.014Z",
+      "elapsed_ms": 33683,
+      "result": "REMOTE_PROPAGATION_PENDING",
+      "item_id": "MLB7437196478",
+      "catalog_product_id": null,
+      "protective_price": 4919.9,
+      "margin_percent": null,
+      "persisted": false,
+      "observation": "picture propagation did not settle within bounded read-only polling",
+      "sanitation": "REMOTE_LINK_REVIEW",
+      "backlogs": {
+        "quality_optimization_pending": false,
+        "description_optimization_pending": false,
+        "commercial_optimization_pending": false,
+        "optional_catalog_optimization_pending": false
+      }
+    }
+  ]
+}

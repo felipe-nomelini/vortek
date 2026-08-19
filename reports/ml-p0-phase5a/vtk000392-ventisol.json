@@ -1,0 +1,746 @@
+{
+  "sku": "VTK000392",
+  "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+  "product_name": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+  "supplier": "HAYAMAX-PR",
+  "state": "MULTI_CANARY_READY",
+  "baseline_drift": {
+    "detected": false,
+    "checks": [
+      {
+        "field": "stock",
+        "baseline": 15,
+        "live": 15,
+        "match": true
+      },
+      {
+        "field": "cost",
+        "baseline": 132.55,
+        "live": 132.55,
+        "match": true
+      },
+      {
+        "field": "supplier",
+        "baseline": "HAYAMAX-PR",
+        "live": "HAYAMAX-PR",
+        "match": true
+      },
+      {
+        "field": "gtin",
+        "baseline": "7898461970375",
+        "live": "7898461970375",
+        "match": true
+      }
+    ]
+  },
+  "local_level0": {
+    "product": {
+      "id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "sku": "VTK000392",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "marca": "VENTISOL",
+      "estoque": 15,
+      "custo": 132.55,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 2.6,
+      "peso_bruto": 2.6,
+      "largura": 44,
+      "altura": 18,
+      "profundidade": 45,
+      "gtin": "7898461970375",
+      "descricao": "O Ventilador de Mesa Ventisol Turbo 6 é a escolha ideal para quem busca um ambiente fresco e agradável. Com seu motor turbo de alta performance e sua hélice de 6 pás projetadas com nova aerodinâmica, ele proporciona uma ventilação potente e silenciosa. Sua base e acabamento da grade foram redesenhados com um design moderno e arrojado, garantindo maior estabilidade ao ventilador. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui três velocidades ajustáveis através de um prático controle na capa protetora do motor. A tecnologia de grade Wind-line oferece uma melhor vazão e direcionamento de ar, tornando a ventilação ainda mais eficiente. Seu recurso de oscilação automática permite que o ventilador movimente-se horizontalmente, alcançando uma área maior. Com a regulagem de inclinação manual, você pode ajustar o ângulo do ventilador de acordo com sua necessidade, direcionando o fluxo de ar para onde desejar. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui certificação Classe A no INMETRO, garantindo a melhor classificação de energia do mercado. Possuindo suporte de parede integrado, você tem a opção de utilizar o ventilador no chão, na mesa ou fixá-lo na parede, adaptando-se perfeitamente às suas preferências e necessidades. Desfrute de um ambiente mais fresco e confortável com o Ventilador de Mesa Ventisol Turbo 6.",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+      ],
+      "categoria": "Eletrodomesticos E Eletroportateis / Ar E Ventilacao / Ventiladores De Mesa",
+      "ml_item_id": null,
+      "created_at": "2026-05-11T20:15:16.842116+00:00",
+      "updated_at": "2026-08-16T17:10:31.390817+00:00",
+      "dslite_fornecedor_id": "2",
+      "dslite_produto_id": "70704",
+      "dslite_ultima_sync": "2026-08-16T17:10:31.075+00:00",
+      "fornecedor": "HAYAMAX-PR",
+      "ncm": "8414.51.10",
+      "cest": null,
+      "origem_fiscal": "5",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "9ccf4021-feb0-4653-86f1-59d476521b4c",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "preferred_offer": {
+      "id": "9ccf4021-feb0-4653-86f1-59d476521b4c",
+      "produto_id": "eef0e527-8ef8-4a19-8132-9b1f670bb461",
+      "dslite_fornecedor_id": "2",
+      "fornecedor_nome": "HAYAMAX-PR",
+      "dslite_produto_id": "70704",
+      "sku_fornecedor": "70704",
+      "custo": 132.55,
+      "estoque": 15,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "balance_account",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-08-16T17:10:31.075+00:00",
+      "created_at": "2026-06-08T18:46:40.559351+00:00",
+      "updated_at": "2026-08-16T17:10:31.083+00:00",
+      "sku_oferta": "70704",
+      "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "descricao": "O Ventilador de Mesa Ventisol Turbo 6 é a escolha ideal para quem busca um ambiente fresco e agradável. Com seu motor turbo de alta performance e sua hélice de 6 pás projetadas com nova aerodinâmica, ele proporciona uma ventilação potente e silenciosa. Sua base e acabamento da grade foram redesenhados com um design moderno e arrojado, garantindo maior estabilidade ao ventilador. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui três velocidades ajustáveis através de um prático controle na capa protetora do motor. A tecnologia de grade Wind-line oferece uma melhor vazão e direcionamento de ar, tornando a ventilação ainda mais eficiente. Seu recurso de oscilação automática permite que o ventilador movimente-se horizontalmente, alcançando uma área maior. Com a regulagem de inclinação manual, você pode ajustar o ângulo do ventilador de acordo com sua necessidade, direcionando o fluxo de ar para onde desejar. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui certificação Classe A no INMETRO, garantindo a melhor classificação de energia do mercado. Possuindo suporte de parede integrado, você tem a opção de utilizar o ventilador no chão, na mesa ou fixá-lo na parede, adaptando-se perfeitamente às suas preferências e necessidades. Desfrute de um ambiente mais fresco e confortável com o Ventilador de Mesa Ventisol Turbo 6.",
+      "marca": "VENTISOL",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+      ],
+      "gtin": "7898461970375",
+      "ncm": "8414.51.10",
+      "cest": null
+    }
+  },
+  "dslite_level1": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/70704",
+    "consulted_at": "2026-08-16T21:42:55.912Z",
+    "product": {
+      "produtoid": "70704",
+      "produtoid_empresa": "HYX70704",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 132.55,
+      "preco_crossdocking": 132.55,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 132.55,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-12 18:04:55.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 127v",
+      "titulo_curto": "VENT MESA 40CM VENTISOL TURBO6 AZ 127V",
+      "categoriaid": "292391",
+      "categoria_nome": "Ar E Ventilação / Ventiladores / Ventiladores De Mesa",
+      "abc": "B",
+      "ean11": "7898461970375",
+      "ncm": "8414.51.10",
+      "descricao": "O Ventilador de Mesa Ventisol Turbo 6 é a escolha ideal para quem busca um ambiente fresco e agradável. Com seu motor turbo de alta performance e sua hélice de 6 pás projetadas com nova aerodinâmica, ele proporciona uma ventilação potente e silenciosa. <br/> <br/> Sua base e acabamento da grade foram redesenhados com um design moderno e arrojado, garantindo maior estabilidade ao ventilador. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui três velocidades ajustáveis através de um prático controle na capa protetora do motor. A tecnologia de grade Wind-line oferece uma melhor vazão e direcionamento de ar, tornando a ventilação ainda mais eficiente. Seu recurso de oscilação automática permite que o ventilador movimente-se horizontalmente, alcançando uma área maior. <br/> <br/> Com a regulagem de inclinação manual, você pode ajustar o ângulo do ventilador de acordo com sua necessidade, direcionando o fluxo de ar para onde desejar. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui certificação Classe A no INMETRO, garantindo a melhor classificação de energia do mercado. <br/> <br/> Possuindo suporte de parede integrado, você tem a opção de utilizar o ventilador no chão, na mesa ou fixá-lo na parede, adaptando-se perfeitamente às suas preferências e necessidades. Desfrute de um ambiente mais fresco e confortável com o Ventilador de Mesa Ventisol Turbo 6.",
+      "caracteristicas": "Peso:2,500Kg<br>Voltagem:127V<br>Cor:Azul<br>Potência:80W<br>Rotação:1500<br>Vazão:0,81M3/S<br>Hélice:380mm<br>Grade:430mm<br>Consumo de Energia:2,03KWH/MES<br>Pesquisa:mesa|40|40-cm|turbo-6|6|127V|127-v|Azul<br>",
+      "informacoes": "<br/> • Dimensões: 440 x 180 x 440mm <br/> <br/> • Nova Base e Acabamento da Grade: Design moderno e arrojado. Maior estabilidade para o ventilador. <br/> • Motor Turbo: Motor turbo com alta performance. Gera menos ruído. <br/> • Hélice 6 Pás: Design e aerodinâmica para alta ventilação <br/> • Três velocidades: Controle de velocidade na capa protetora do motor do ventilador. <br/> • Grade Wind-line: Tecnologia que proporciona melhor vazão e direcionamento de ar. <br/> • Oscilação Automática: Oscilação horizontal pode ser ativada ou desativada. <br/> • Regulagem de inclinação manual: Ajustada de acordo com a necessidade. <br/> • Classe A no INMETRO: Melhor classificação de energia do mercado. <br/> • Suporte de parede integrado: Pode ser usado no chão, na mesa ou na parede em algum ponto de fixação. <br/>",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "VENTISOL",
+      "modelo": "TURBO6",
+      "peso": 2.6,
+      "largura": 44,
+      "altura": 18,
+      "profundidade": 45,
+      "peso_embalagem": 2.6,
+      "largura_embalagem": 44,
+      "altura_embalagem": 18,
+      "profundidade_embalagem": 45,
+      "link": "http://www.hayamax.com.br/ventilador-de-mesa-ventisol-turbo-6-40cm-azul-127v",
+      "link_imagem": "https://static.hayapek.com.br/produtos/70704/550/1.jpg",
+      "link_youtube": "lmr8HHcpbuU",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 7849,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 08:51:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:15:56.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 213,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "manufacturer_level2": {
+    "status": "OFFICIAL_IDENTITY_CONFIRMED",
+    "consulted_at": "2026-08-16T21:42:55.912Z",
+    "primary_url": "https://www.ventisol.com.br/ventilador-de-mesa-ventisol-turbo-6p-40cm-azul",
+    "model_confirmed": true,
+    "official_gtin": "7898461970375",
+    "supplier_gtin": "7898461970375",
+    "gtin_match": true,
+    "excerpt": "Produto de mesa Turbo 6P 40 cm azul; variação 127 V; EAN 7898461970375; 80 W; 3 velocidades; dimensões montado 44 x 35 x 60 cm."
+  },
+  "identity_classification": "OFFICIAL_IDENTITY_CONFIRMED",
+  "gtin": {
+    "local": "7898461970375",
+    "dslite": "7898461970375",
+    "manufacturer": "7898461970375",
+    "catalog": "7898461970375",
+    "status": "CONFIRMED"
+  },
+  "category": {
+    "id": "MLB1645",
+    "name": "Ventiladores",
+    "domain_id": "MLB-FANS",
+    "valid": true,
+    "catalog_product_id": "MLB15284402",
+    "catalog_strategy": "catalog_required"
+  },
+  "remote": {
+    "classification": "NO_REMOTE_MATCH",
+    "matches": []
+  },
+  "local_duplicates": [],
+  "existing_local_listings": [],
+  "attributes": {
+    "prepared": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "hierarchy": "PARENT_PK",
+        "required": true,
+        "source": "manufacturer",
+        "value": "Ventisol",
+        "payload": {
+          "id": "BRAND",
+          "value_name": "Ventisol"
+        }
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "hierarchy": "PARENT_PK",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Turbo 6 pás",
+        "payload": {
+          "id": "LINE",
+          "value_name": "Turbo 6 pás"
+        }
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "hierarchy": "PARENT_PK",
+        "required": true,
+        "source": "manufacturer",
+        "value": "Turbo 6",
+        "payload": {
+          "id": "MODEL",
+          "value_name": "Turbo 6"
+        }
+      },
+      {
+        "id": "FAN_TYPE",
+        "name": "Tipo de ventilador",
+        "hierarchy": "PARENT_PK",
+        "required": true,
+        "source": "manufacturer",
+        "value": "De mesa",
+        "payload": {
+          "id": "FAN_TYPE",
+          "value_id": "291722",
+          "value_name": "De mesa"
+        }
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "required": false,
+        "source": "manufacturer",
+        "value": "7898461970375",
+        "payload": {
+          "id": "GTIN",
+          "value_name": "7898461970375"
+        }
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "hierarchy": "CHILD_PK",
+        "required": false,
+        "source": "manufacturer",
+        "value": "127V",
+        "payload": {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        }
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "hierarchy": "CHILD_DEPENDENT",
+        "required": false,
+        "source": "manufacturer",
+        "value": "80 W",
+        "payload": {
+          "id": "POWER",
+          "value_name": "80 W"
+        }
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "hierarchy": "CHILD_PK",
+        "required": false,
+        "source": "manufacturer",
+        "value": "40 cm",
+        "payload": {
+          "id": "DIAMETER",
+          "value_name": "40 cm"
+        }
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "name": "Quantidade de pás",
+        "hierarchy": "CHILD_PK",
+        "required": false,
+        "source": "manufacturer",
+        "value": "6",
+        "payload": {
+          "id": "BLADES_NUMBER",
+          "value_name": "6"
+        }
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "name": "Quantidade de velocidades",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "3",
+        "payload": {
+          "id": "SPEEDS_NUMBER",
+          "value_name": "3"
+        }
+      },
+      {
+        "id": "STRUCTURE_COLOR",
+        "name": "Cor da estrutura",
+        "hierarchy": "CHILD_PK",
+        "required": false,
+        "source": "image",
+        "value": "Preto",
+        "payload": {
+          "id": "STRUCTURE_COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        }
+      },
+      {
+        "id": "BLADES_COLOR",
+        "name": "Cor das pás",
+        "hierarchy": "CHILD_PK",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Azul",
+        "payload": {
+          "id": "BLADES_COLOR",
+          "value_name": "Azul"
+        }
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Corrente elétrica",
+        "payload": {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_name": "Corrente elétrica"
+        }
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "name": "Com função turbo",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Sim",
+        "payload": {
+          "id": "WITH_TURBO_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      },
+      {
+        "id": "WITH_OSCILLATION",
+        "name": "Com oscilação",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "supplier",
+        "value": "Sim",
+        "payload": {
+          "id": "WITH_OSCILLATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      },
+      {
+        "id": "WITH_TILT",
+        "name": "Com inclinação",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "supplier",
+        "value": "Sim",
+        "payload": {
+          "id": "WITH_TILT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "name": "Eficiência energética Brasil",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "supplier",
+        "value": "A",
+        "payload": {
+          "id": "ENERGY_EFFICIENCY_BRASIL",
+          "value_id": "33344215",
+          "value_name": "A"
+        }
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "name": "Velocidade máxima de rotação",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "supplier",
+        "value": "1500 rpm",
+        "payload": {
+          "id": "MAX_ROTATION_SPEED",
+          "value_name": "1500 rpm"
+        }
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "60 cm",
+        "payload": {
+          "id": "HEIGHT",
+          "value_name": "60 cm"
+        }
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "44 cm",
+        "payload": {
+          "id": "DEPTH",
+          "value_name": "44 cm"
+        }
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "35 cm",
+        "payload": {
+          "id": "WIDTH",
+          "value_name": "35 cm"
+        }
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "supplier",
+        "value": "2.5 kg",
+        "payload": {
+          "id": "WEIGHT",
+          "value_name": "2.5 kg"
+        }
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Ventisol",
+        "payload": {
+          "id": "MANUFACTURER",
+          "value_name": "Ventisol"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "44 cm",
+        "payload": {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "44 cm"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "45 cm",
+        "payload": {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "45 cm"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "18 cm",
+        "payload": {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "18 cm"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "2600 g",
+        "payload": {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "2600 g"
+        }
+      }
+    ],
+    "required_missing": [],
+    "parent_pk": [
+      "BRAND",
+      "LINE",
+      "MODEL",
+      "ALPHANUMERIC_MODEL",
+      "FAN_TYPE",
+      "BRAND",
+      "LINE",
+      "MODEL",
+      "ALPHANUMERIC_MODEL",
+      "FAN_TYPE"
+    ],
+    "child_pk": [
+      "DIAMETER",
+      "FREQUENCY",
+      "STRUCTURE_COLOR",
+      "VOLTAGE",
+      "BLADES_COLOR",
+      "BLADES_MATERIAL",
+      "BLADES_NUMBER",
+      "FREQUENCY",
+      "VOLTAGE",
+      "DIAMETER",
+      "STRUCTURE_COLOR",
+      "BLADES_COLOR",
+      "BLADES_MATERIAL",
+      "BLADES_NUMBER"
+    ],
+    "conditional_required": [
+      "GTIN"
+    ]
+  },
+  "images": {
+    "sku": "VTK000392",
+    "total": 1,
+    "approved": 1,
+    "rejected": 0,
+    "manual_review": 0,
+    "main_approved": true,
+    "rows": [
+      {
+        "sku": "VTK000392",
+        "index": 1,
+        "url": "https://static.hayapek.com.br/produtos/70704/550/1.jpg",
+        "origin": "supplier",
+        "initial_http_status": 200,
+        "redirected": false,
+        "final_url": "https://static.hayapek.com.br/produtos/70704/550/1.jpg",
+        "final_http_status": 200,
+        "https": true,
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "classification": "APPROVED",
+        "reason": "identity_visually_confirmed_white_background",
+        "main_candidate": true
+      }
+    ]
+  },
+  "financial": {
+    "sku": "VTK000392",
+    "simulated_at": "2026-08-16T21:42:59.540Z",
+    "engine": "scripts/lib/ml-p0-audit.js#pricingStrategy + live rounded ML fee",
+    "listing_type_id": "gold_pro",
+    "dimensions": "18x44x45,2600",
+    "weight_unit": "grams",
+    "cost": 132.55,
+    "stock": 15,
+    "commission": 43.08,
+    "shipping_cost": 39.75,
+    "tax_rate": 0.05,
+    "tax_amount": 13.46,
+    "price_recommended": 269.23,
+    "minimum_safety_price": 269.23,
+    "estimated_operational_profit": 40.39,
+    "estimated_operational_margin_percent": 15.002042862979609,
+    "target_margin_percent": 15,
+    "minimum_profit": 20,
+    "approved": true,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 43.08,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 43.08,
+        "percentage_fee": 16
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 39.75,
+          "currency_id": "BRL",
+          "billable_weight": 5940,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 79.5
+          }
+        }
+      }
+    }
+  },
+  "family_name": {
+    "value": "Ventilador de Mesa Ventisol Turbo 6 40 cm",
+    "characters": 41,
+    "limit": 60,
+    "approved_length": true
+  },
+  "description": {
+    "text": "VENTILADOR DE MESA VENTISOL TURBO 6 40 CM AZUL 127 V\n\nVentilador de mesa Ventisol Turbo 6 com hélice de seis pás, três velocidades e potência de 80 W. A oscilação horizontal e a inclinação manual auxiliam no direcionamento do fluxo de ar.\n\nCARACTERÍSTICAS\n- Marca: Ventisol\n- Modelo: Turbo 6\n- Tipo: ventilador de mesa\n- Voltagem: 127 V\n- Potência: 80 W\n- Diâmetro: 40 cm\n- Pás: 6\n- Velocidades: 3\n- Cor das pás: azul\n\nCONTEÚDO\n- 1 ventilador de mesa\n\nSKU: VTK000392",
+    "status": "PREPARED_NOT_PUBLISHED"
+  },
+  "payload_preview": {
+    "full_sha256": "077f1a7b5360fe32630236c8bcedf178f567ff43ba41f4a281cab3296daa01b1",
+    "minimal_sha256": "88ad3b93c3bd3ac96b318c7b8af4f53ec3bc298c22f957cccc30048970bf0c5e",
+    "usable": true
+  },
+  "scores": {
+    "identity_confidence": 100,
+    "documentation_score": 100,
+    "publication_readiness": 100,
+    "duplicate_risk": 0,
+    "financial_confidence": 100
+  },
+  "gates": {
+    "remote_exact": false,
+    "remote_possible": false,
+    "local_duplicate": false,
+    "gtin_conflict": false,
+    "identity_confirmed": true,
+    "category_valid": true,
+    "image_approved": true,
+    "attributes_complete": true,
+    "financial_approved": true,
+    "source_deferred": false
+  },
+  "blocking_reason": null
+}

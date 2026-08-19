@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-08-17T14:15:41.550Z",
+  "product": {
+    "id": "17cea929-81c4-4615-b147-b7be7dc6b84b",
+    "sku": "VTK021438",
+    "nome": "Bandeja Fixa Max Eletron 19\" 1u X 350mm Frontal",
+    "marca": "MAX ELETRON",
+    "estoque": 5,
+    "custo": 57.45,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.226,
+    "peso_bruto": 1.226,
+    "largura": 45,
+    "altura": 5,
+    "profundidade": 35,
+    "gtin": "7908060203627",
+    "descricao": "Informações do Produto ESPECIFICAÇÕES TÉCNICAS | DIMENSÕES &bull; Bandeja 19” com dois pontos de fixação. &bull; Espessura da chapa 1,5 mm &bull; Com aletas para ventilação utilizada para fechamento das posições não ocupadas dos planos de Racks 19”. &bull; Fabricado em plástico de engenharia ABS &bull; Dispensa o uso de parafusos e porca-gaiolas &bull; Altura disponível: 1U &bull; Cor: preto",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad2264b.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad2280b.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/6/364838_683715ad22850.jpg"
+    ],
+    "categoria": "Redes E Provedores/ Internet E Rede/ Rack",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:37:23.984215+00:00",
+    "updated_at": "2026-08-17T11:11:32.803428+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "364838",
+    "dslite_ultima_sync": "2026-08-17T11:11:32.755+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "94032090",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "0df32a5b-c7d9-44d9-b3aa-912075defb25",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "unresolved",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "350 mm",
+        "1,5 mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "unresolved",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

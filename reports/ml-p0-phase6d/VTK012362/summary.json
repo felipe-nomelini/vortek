@@ -1,0 +1,23 @@
+{
+  "index": 8,
+  "sku": "VTK012362",
+  "expected_gtin": "008576114039",
+  "started_at": "2026-08-17T01:13:23.011Z",
+  "local_time": "2026-08-16T22:13:23",
+  "completed_at": "2026-08-17T01:13:23.044Z",
+  "elapsed_ms": 33,
+  "result": "BLOCK_REMOTE_DUPLICATE",
+  "item_id": null,
+  "catalog_product_id": "MLB26802337",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact remote seller SKU, GTIN, or catalog match already exists",
+  "sanitation": "REMOTE_LINK_REVIEW",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

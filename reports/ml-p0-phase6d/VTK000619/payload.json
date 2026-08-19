@@ -1,0 +1,277 @@
+{
+  "payload": {
+    "family_name": "Mesa Gamer ThunderX3 ED5 2.0",
+    "category_id": "MLB439418",
+    "catalog_product_id": "MLB32168602",
+    "catalog_listing": true,
+    "price": 2919.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/80952/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/80952/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/80952/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/80952/550/4.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "8848598",
+        "value_name": "ThunderX3"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "48902572",
+        "value_name": "Mesa Gamer ThunderX3 ED5"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "8141217",
+        "value_name": "140 cm"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "908317",
+        "value_name": "60 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "2593437",
+        "value_name": "140 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "1018499",
+        "value_name": "75 cm"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "WEIGHT_CAPACITY",
+        "value_id": "13218745",
+        "value_name": "50 kg"
+      },
+      {
+        "id": "DESK_MATERIALS",
+        "values": [
+          {
+            "id": "34973454",
+            "name": "Aglomerado de 18 mm de espessura superfície plástica impermeável"
+          },
+          {
+            "id": "67450784",
+            "name": "Aço com revestimento em pó"
+          }
+        ]
+      },
+      {
+        "id": "STYLE",
+        "value_id": "432204",
+        "value_name": "Moderno"
+      },
+      {
+        "id": "ASSEMBLY_TIME",
+        "value_id": "13748510",
+        "value_name": "15 m"
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DRAWERS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "DRAWERS_NUMBER",
+        "value_id": "3003376",
+        "value_name": "0"
+      },
+      {
+        "id": "IS_L_SHAPED",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_BOOKCASE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_FLOATING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7180249",
+        "value_name": "16.8 kg"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "31935986",
+        "value_name": "4711099473977"
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_INSTRUCTION_MANUAL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_INSTALLATION_KIT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "FINISHES",
+        "value_id": "37774303",
+        "value_name": "carbono"
+      },
+      {
+        "id": "SLIDES_MATERIAL",
+        "value_id": "14919524",
+        "value_name": "N/A"
+      },
+      {
+        "id": "WITH_DOORS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "DOORS_NUMBER",
+        "value_id": "12875240",
+        "value_name": "0"
+      },
+      {
+        "id": "WITH_LOCK",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_KEYS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SHELVES",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "SHELVES_NUMBER",
+        "value_id": "12085975",
+        "value_name": "0"
+      },
+      {
+        "id": "WITH_CPU_SHELF",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_WHEELS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WHEELS_NUMBER",
+        "value_id": "12907879",
+        "value_name": "0"
+      },
+      {
+        "id": "WITH_MOBILE_MODULE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ANGLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_FOLDABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_USB_PORTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_AC_PLUG_INS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_GROMMET",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SLIDING_TRAY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000619"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000619"
+  },
+  "sha256": "68559ee316848d651346cbfd8a0a26c0a254ce1a7661c7b024abd31f04610a77",
+  "family_name_sha256": "e79479ab4e9ab3d760eb294218c00de78eafc547570626fc8b4ad58013fdede4",
+  "title_absent": true,
+  "description_absent": true
+}

@@ -1,0 +1,571 @@
+{
+  "checked_at": "2026-08-17T00:43:19.435Z",
+  "expected_catalog_product_id": "MLB9004870",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB9004870",
+    "catalog_product_id": "MLB9004870",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-TELEPHONES",
+    "permalink": "",
+    "name": "Telefone Multitoc Gôndola fixo cor grafite",
+    "family_name": "Multitoc Gôndola",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB9004348",
+            "picker_label": "Branco",
+            "picture_id": "944634-MLA99935148117_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_944634-MLA99935148117_112025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Branco"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Multitoc Gôndola - Branco - 127/220V",
+            "auto_completed": true,
+            "rgb_meta": "FFFFFF"
+          },
+          {
+            "product_id": "MLB9004870",
+            "picker_label": "Grafite",
+            "picture_id": "776184-MLA99370933620_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_776184-MLA99370933620_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Multitoc Gôndola - Grafite - 127/220V",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB9022708",
+            "picker_label": "Rosa",
+            "picture_id": "937700-MLU75239681177_032024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_937700-MLU75239681177_032024-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Rosa"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Multitoc Gôndola - Rosa - 127/220V",
+            "auto_completed": true,
+            "rgb_meta": "FCB1BE"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB9004870",
+            "picker_label": "127/220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Multitoc Gôndola - Grafite - 127/220V",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "776184-MLA99370933620_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_776184-MLA99370933620_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 728,
+        "max_height": 630,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "665418-MLA79834072547_102024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_665418-MLA79834072547_102024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 893,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "616588-MLA79834072555_102024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_616588-MLA79834072555_102024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1025,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "701552-MLU70045206090_062023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_701552-MLU70045206090_062023-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1019,
+        "max_height": 662,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Teclado decádico e multifrequencial para discagem eficiente.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Bloqueio de chamadas para maior segurança.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Função de rediscagem para conveniência.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Controle de volume do auscultador para ajuste personalizado.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "15 teclas emborrachadas para conforto ao discar.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Montável na parede, otimizando o espaço disponível.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "79916",
+        "value_name": "Multitoc",
+        "values": [
+          {
+            "id": "79916",
+            "name": "Multitoc"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "2448403",
+        "value_name": "Gôndola",
+        "values": [
+          {
+            "id": "2448403",
+            "name": "Gôndola"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "2324",
+        "value_name": "Grafite",
+        "values": [
+          {
+            "id": "2324",
+            "name": "Grafite"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "000000"
+        }
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "name": "Tipo de tela",
+        "value_id": "36718182",
+        "value_name": "Digital",
+        "values": [
+          {
+            "id": "36718182",
+            "name": "Digital"
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPES",
+        "name": "Tipos de alimentação",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica",
+        "values": [
+          {
+            "id": "49713698",
+            "name": "Corrente doméstica"
+          }
+        ]
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "name": "Quantidade de fones de ouvido incluídos",
+        "value_id": "7512605",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "7512605",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "IS_WIRELESS",
+        "name": "É sem fio",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "name": "Com identificação de chamadas",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "name": "Com secretária eletrônica",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "name": "É montável na parede",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "name": "Modelo alfanumérico",
+        "value_id": "59382570",
+        "value_name": "0489",
+        "values": [
+          {
+            "id": "59382570",
+            "name": "0489"
+          }
+        ]
+      },
+      {
+        "id": "WITH_BATTERY_CHARGE_INDICATOR",
+        "name": "Com indicador de carga de bateria",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "name": "Com modo mãos livres",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_CALL_BLOCKING",
+        "name": "Com bloqueio de chamadas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ALARM_CLOCK_FUNCTION",
+        "name": "Com função de relógio despertador",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_BACKLIT_KEYPAD",
+        "name": "Com teclado retroiluminado",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_FLASH_BUTTON",
+        "name": "Com botão flash",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "name": "Com função de rediscagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_HANDSET_VOLUME_CONTROL",
+        "name": "Com controle de volume do auscultador ",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "O Telefone Com Fio Gôndola Grafite da marca Multitoc é a escolha ideal para quem busca praticidade e funcionalidade em um aparelho de telefonia. Compatível com centrais públicas e PABX, ele possui um teclado decádico e multifrequencial, garantindo uma discagem eficiente. Seu design moderno e a cor grafite se adaptam a qualquer ambiente. Com 15 teclas emborrachadas, proporciona conforto ao discar. O circuito totalmente eletrônico assegura maior durabilidade e eficiência. Além disso, conta com memória do último número discado, função de rediscagem e bloqueio de chamadas, oferecendo segurança e conveniência. O telefone também possui dois níveis de campainha e é montável na parede, otimizando o espaço. Embora não seja sem fio, sua robustez e funcionalidades, como o controle de volume do auscultador e a função de relógio despertador, fazem dele uma excelente adição à sua casa ou escritório."
+    },
+    "parent_id": "MLB9004347",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T18:56:33.098488351"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2018-03-15T15:18:59Z",
+    "authorized_stores": null,
+    "last_updated": "2025-10-06T17:54:47Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

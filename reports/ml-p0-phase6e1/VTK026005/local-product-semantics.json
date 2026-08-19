@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-08-17T14:15:53.602Z",
+  "product": {
+    "id": "599c0254-c9e6-435f-92ca-699369096497",
+    "sku": "VTK026005",
+    "nome": "Chip De Vidro Id48 Oe002",
+    "marca": "R3a Automotive",
+    "estoque": 50,
+    "custo": 7.2,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.06,
+    "peso_bruto": 0.06,
+    "largura": 3,
+    "altura": 7,
+    "profundidade": 1,
+    "gtin": "",
+    "descricao": "CHIP DE VIDRO ID48 OE002 (0074468171305) O chip de vidro ID48 OE002 é um componente utilizado em sistemas de imobilizador automotivo, responsável pela comunicação entre a chave e o veículo, contribuindo para o funcionamento correto do sistema de partida. Ficha técnica: • Modelo: OE002 • Tipo: Chip transponder de vidro • Tecnologia: ID48 • Aplicação: Sistemas de imobilizador automotivo • Material: Cápsula de vidro resistente • Alta durabilidade • Fácil adaptação em chaves compatíveis • Produto para reposição automotiva Desenvolvido para aplicações automotivas compatíveis com tecnologia ID48, o chip de vidro OE002 oferece desempenho confiável e excelente durabilidade. É indicado para substituição de chips danificados ou para confecção de novas chaves, auxiliando no correto reconhecimento da chave pelo sistema eletrônico do veículo. Ideal para profissionais especializados em chaves automotivas e sistemas de codificação.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f0fae07408b82953593c61fc51d0fb70.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/cad505fec23dac934ef46a2e7c80c235.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d467da96b6e854fa3e26135eb859303b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a7c9c2a3ed582710367ff6b7149b84e5.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a8d9c8d3450e728aeb6071e6b595ebb7.jpg"
+    ],
+    "categoria": "Acessórios Para Veículos > Peças De Carros E Caminhonetes > Fechaduras E Chaves > Interruptores De Energia",
+    "ml_item_id": null,
+    "created_at": "2026-08-13T10:53:28.116308+00:00",
+    "updated_at": "2026-08-17T09:49:33.089947+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4162",
+    "dslite_ultima_sync": "2026-08-17T09:49:32.762+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8529.90.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "62509303-5bb6-4e7f-ae1b-ee7e5269aa18",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "electric_lock",
+    "function": "control_physical_access",
+    "intended_use": "electronic_security",
+    "physical_form": "electric_lock",
+    "expected_category_signals": [
+      "fechadura",
+      "controledeacesso",
+      "seguranca"
+    ],
+    "incompatible_category_signals": [
+      "software",
+      "automotivo"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "electronic_security",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,574 @@
+{
+  "index": 2,
+  "sku": "VTK026046",
+  "started_at": "2026-08-16T23:44:47.612Z",
+  "local_time": "2026-08-16T20:44:47",
+  "expected_gtin": "7898461978913",
+  "product": {
+    "id": "6071fadf-6a8b-4731-a82a-80874fee6353",
+    "sku": "VTK026046",
+    "nome": "Umidificador Ventisol Branco Uv-04 4,0 Litros Bivolt",
+    "marca": "VENTISOL",
+    "estoque": 50,
+    "custo": 94.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.474,
+    "peso_bruto": 1.474,
+    "largura": 18,
+    "altura": 30,
+    "profundidade": 30,
+    "gtin": "7898461978913",
+    "descricao": "Proporcionar mais saúde e conforto para a família é muito importante, por isso o Umidificador de Ar Ventisol é ideal para melhorar a qualidade do ambiente. Com sistema ultrassônico, ele produz uma névoa fina e silenciosa, ajudando a manter o ar mais agradável e confortável. Se você deseja um ambiente mais agradável, especialmente em períodos de baixa umidade do ar ou em ambientes climatizados, o Umidificador de Ar Ventisol é uma excelente opção. Com reservatório de 4 litros , oferece até 24 horas de funcionamento na intensidade mínima , além de contar com baixo consumo de energia e recursos que facilitam sua utilização. Sistema Ultrassônico Tecnologia ultrassônica que proporciona uma névoa fina para ajudar a melhorar a umidade do ambiente. Controle de Névoa Permite ajustar a intensidade da névoa de acordo com a necessidade do ambiente. Reservatório de 4 Litros Grande capacidade para proporcionar maior autonomia durante o uso, chegando a até 21 horas de funcionamento na intensidade mínima. Baixo Consumo de Energia Desenvolvido para oferecer uma umidificação eficiente com baixo consumo de energia. Funcionamento Silencioso Ideal para utilização em diferentes ambientes, proporcionando mais conforto sem comprometer o silêncio. Botão Touch Controle por toque que facilita a utilização das funções do umidificador. Fácil de Limpar Projetado para facilitar a limpeza e a manutenção do aparelho. Mais Qualidade do Ar Ajuda a tornar o ambiente mais agradável, sendo especialmente indicado para locais com baixa umidade do ar e ambientes climatizados. *Imagens meramente ilustrativas.\n\nAmbiente umidificado Alivia o desconforto do ar seco Bico direcionador Melhor controle da névoa Standby automático Sem água o umidificador entra em standby Botão touch Prático e fácil de usar Sistema ultrassônico Tecnologia que quebra moléculas de água em microgotas. Capacidade de 4L Silencioso Econômico Fácil de limpar Especificações técnicas do produto: Comprimento: 15cm Largura : 15cm Altura: 31cm Peso: 0,977kg Garantia 12 meses* *Vide Manual de Instruções/Termo de Garantia",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8460.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8732.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8780.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87b8.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87e9.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac881b.png"
+    ],
+    "categoria": "Eletroportateis/ Umidificador/ Umidificador",
+    "ml_item_id": null,
+    "created_at": "2026-08-16T11:00:23.694417+00:00",
+    "updated_at": "2026-08-16T20:52:32.133011+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "391337",
+    "dslite_ultima_sync": "2026-08-16T20:52:32.045+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85098090",
+    "cest": "21.041.00",
+    "origem_fiscal": "5",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "2d26dd7b-5e07-4313-8ce1-d7faeaa1bc0f",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "2d26dd7b-5e07-4313-8ce1-d7faeaa1bc0f",
+    "produto_id": "6071fadf-6a8b-4731-a82a-80874fee6353",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "391337",
+    "sku_fornecedor": "391337",
+    "custo": 94.9,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:52:32.045+00:00",
+    "created_at": "2026-08-16T11:00:23.70381+00:00",
+    "updated_at": "2026-08-16T20:52:32.063+00:00",
+    "sku_oferta": "391337",
+    "nome": "Umidificador Ventisol Branco Uv-04 4,0 Litros Bivolt",
+    "descricao": "Proporcionar mais saúde e conforto para a família é muito importante, por isso o Umidificador de Ar Ventisol é ideal para melhorar a qualidade do ambiente. Com sistema ultrassônico, ele produz uma névoa fina e silenciosa, ajudando a manter o ar mais agradável e confortável. Se você deseja um ambiente mais agradável, especialmente em períodos de baixa umidade do ar ou em ambientes climatizados, o Umidificador de Ar Ventisol é uma excelente opção. Com reservatório de 4 litros , oferece até 24 horas de funcionamento na intensidade mínima , além de contar com baixo consumo de energia e recursos que facilitam sua utilização. Sistema Ultrassônico Tecnologia ultrassônica que proporciona uma névoa fina para ajudar a melhorar a umidade do ambiente. Controle de Névoa Permite ajustar a intensidade da névoa de acordo com a necessidade do ambiente. Reservatório de 4 Litros Grande capacidade para proporcionar maior autonomia durante o uso, chegando a até 21 horas de funcionamento na intensidade mínima. Baixo Consumo de Energia Desenvolvido para oferecer uma umidificação eficiente com baixo consumo de energia. Funcionamento Silencioso Ideal para utilização em diferentes ambientes, proporcionando mais conforto sem comprometer o silêncio. Botão Touch Controle por toque que facilita a utilização das funções do umidificador. Fácil de Limpar Projetado para facilitar a limpeza e a manutenção do aparelho. Mais Qualidade do Ar Ajuda a tornar o ambiente mais agradável, sendo especialmente indicado para locais com baixa umidade do ar e ambientes climatizados. *Imagens meramente ilustrativas.\n\nAmbiente umidificado Alivia o desconforto do ar seco Bico direcionador Melhor controle da névoa Standby automático Sem água o umidificador entra em standby Botão touch Prático e fácil de usar Sistema ultrassônico Tecnologia que quebra moléculas de água em microgotas. Capacidade de 4L Silencioso Econômico Fácil de limpar Especificações técnicas do produto: Comprimento: 15cm Largura : 15cm Altura: 31cm Peso: 0,977kg Garantia 12 meses* *Vide Manual de Instruções/Termo de Garantia",
+    "marca": "VENTISOL",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8460.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8732.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8780.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87b8.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87e9.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac881b.png"
+    ],
+    "gtin": "7898461978913",
+    "ncm": "85098090",
+    "cest": "21.041.00"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391337",
+    "consulted_at": "2026-08-16T23:44:48.925Z",
+    "product": {
+      "produtoid": "391337",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 94.9,
+      "preco_crossdocking": 94.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 94.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-08-10 14:20:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-10 14:20:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Umidificador Ventisol Branco Uv-04 4,0 Litros Bivolt",
+      "titulo_curto": "Umidificador Ventisol Branco Uv-04 4,0 Litros Bivolt",
+      "categoriaid": "118641",
+      "categoria_nome": "Eletroportateis/ Umidificador/ Umidificador",
+      "abc": null,
+      "ean11": "7898461978913",
+      "ncm": "85098090",
+      "descricao": "<div class=\"flex max-w-full flex-col gap-4 grow\">\r\n<div class=\"min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal outline-none keyboard-focused:focus-ring [.text-message+&amp;]:mt-1\" dir=\"auto\" tabindex=\"0\" data-message-author-role=\"assistant\" data-message-id=\"621cab8a-0f9f-44ed-a206-64ed584d9584\" data-message-model-slug=\"gpt-5-6\" data-turn-start-message=\"true\">\r\n<div class=\"flex w-full flex-col gap-1 empty:hidden\">\r\n<div class=\"markdown prose dark:prose-invert wrap-break-word w-full dark markdown-new-styling\">\r\n<p class=\"PDq2pG_selectionAnchorContainer\" data-start=\"96\" data-end=\"374\">Proporcionar mais saúde e conforto para a família é muito importante, por isso o <strong data-start=\"177\" data-end=\"208\">Umidificador de Ar Ventisol</strong> é ideal para melhorar a qualidade do ambiente. Com sistema ultrassônico, ele produz uma névoa fina e silenciosa, ajudando a manter o ar mais agradável e confortável.</p>\r\n<p data-start=\"376\" data-end=\"738\">Se você deseja um ambiente mais agradável, especialmente em períodos de baixa umidade do ar ou em ambientes climatizados, o <strong data-start=\"500\" data-end=\"531\">Umidificador de Ar Ventisol</strong> é uma excelente opção. Com <strong data-start=\"559\" data-end=\"587\">reservatório de 4 litros</strong>, oferece até <strong data-start=\"601\" data-end=\"652\">24 horas de funcionamento na intensidade mínima</strong>, além de contar com baixo consumo de energia e recursos que facilitam sua utilização.</p>\r\n<p data-start=\"740\" data-end=\"867\"><strong data-start=\"740\" data-end=\"764\">Sistema Ultrassônico</strong><br data-start=\"764\" data-end=\"767\" />Tecnologia ultrassônica que proporciona uma névoa fina para ajudar a melhorar a umidade do ambiente.</p>\r\n<p data-start=\"869\" data-end=\"972\"><strong data-start=\"869\" data-end=\"890\">Controle de Névoa</strong><br data-start=\"890\" data-end=\"893\" />Permite ajustar a intensidade da névoa de acordo com a necessidade do ambiente.</p>\r\n<p data-start=\"974\" data-end=\"1135\"><strong data-start=\"974\" data-end=\"1002\">Reservatório de 4 Litros</strong><br data-start=\"1002\" data-end=\"1005\" />Grande capacidade para proporcionar maior autonomia durante o uso, chegando a até 21 horas de funcionamento na intensidade mínima.</p>\r\n<p data-start=\"1137\" data-end=\"1251\"><strong data-start=\"1137\" data-end=\"1165\">Baixo Consumo de Energia</strong><br data-start=\"1165\" data-end=\"1168\" />Desenvolvido para oferecer uma umidificação eficiente com baixo consumo de energia.</p>\r\n<p data-start=\"1253\" data-end=\"1387\"><strong data-start=\"1253\" data-end=\"1281\">Funcionamento Silencioso</strong><br data-start=\"1281\" data-end=\"1284\" />Ideal para utilização em diferentes ambientes, proporcionando mais conforto sem comprometer o silêncio.</p>\r\n<p data-start=\"1389\" data-end=\"1480\"><strong data-start=\"1389\" data-end=\"1404\">Botão Touch</strong><br data-start=\"1404\" data-end=\"1407\" />Controle por toque que facilita a utilização das funções do umidificador.</p>\r\n<p data-start=\"1597\" data-end=\"1681\"><strong data-start=\"1597\" data-end=\"1616\">Fácil de Limpar</strong><br data-start=\"1616\" data-end=\"1619\" />Projetado para facilitar a limpeza e a manutenção do aparelho.</p>\r\n<p data-start=\"1683\" data-end=\"1842\"><strong data-start=\"1683\" data-end=\"1707\">Mais Qualidade do Ar</strong><br data-start=\"1707\" data-end=\"1710\" />Ajuda a tornar o ambiente mais agradável, sendo especialmente indicado para locais com baixa umidade do ar e ambientes climatizados.</p>\r\n<p data-start=\"1844\" data-end=\"1877\" data-is-last-node=\"\" data-is-only-node=\"\">*Imagens meramente ilustrativas.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>",
+      "caracteristicas": "<p><strong>Ambiente umidificado </strong><br />Alivia o desconforto do ar seco<br /><br /><strong>Bico direcionador </strong><br />Melhor controle da névoa<br /><br /><strong>Standby automático</strong><br />Sem água o umidificador entra em standby<br /><br /><strong>Botão touch</strong><br />Prático e fácil de usar<br /><br /><strong>Sistema ultrassônico</strong><br />Tecnologia que quebra moléculas de água em microgotas.<br /><br /><strong>Capacidade de 4L<br />Silencioso <br />Econômico<br />Fácil de limpar<br /><br /><br />Especificações técnicas do produto:<br />Comprimento:</strong> 15cm<br /><strong>Largura</strong>: 15cm<br /><strong>Altura:</strong> 31cm<br /><strong>Peso:</strong> 0,977kg<br /><br /><strong>Garantia 12 meses* <br />*Vide Manual de Instruções/Termo de Garantia</strong></p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "VENTISOL",
+      "modelo": "",
+      "peso": 1.474,
+      "largura": 18,
+      "altura": 30,
+      "profundidade": 30,
+      "peso_embalagem": 1.474,
+      "largura_embalagem": 18,
+      "altura_embalagem": 30,
+      "profundidade_embalagem": 30,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8460.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 3,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.041.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 17:36:37.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 17:36:37.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 435,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8460.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8732.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac8780.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87b8.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac87e9.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391337_6a79bd7ac881b.png"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "https://www.ventisol.com.br/umidificador/umidificador-ventisol-branco-bivolt-4-0l-nacional-mod-uv-04",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391337",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898461978913"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB62224438",
+      "catalog_product_id": "MLB62224438",
+      "domain_id": "MLB-ELECTRIC_OIL_DIFFUSERS_HUMIDIFIERS_AND_VAPORIZERS",
+      "name": "Umidificador De Ar 4 L Purificador Vaporizador Ultrassônico Branco",
+      "parent_id": "MLB62224436",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "82653",
+          "value_name": "Ventisol",
+          "values": [
+            {
+              "id": "82653",
+              "name": "Ventisol"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "24100982",
+          "value_name": "Ultrassônico",
+          "values": [
+            {
+              "id": "24100982",
+              "name": "Ultrassônico"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "67003067",
+          "value_name": "UV-04 BIVOLT",
+          "values": [
+            {
+              "id": "67003067",
+              "name": "UV-04 BIVOLT"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13074268",
+          "value_name": "Umidificador",
+          "values": [
+            {
+              "id": "13074268",
+              "name": "Umidificador"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "52055",
+              "name": "Branco"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205163",
+          "value_name": "127/220V",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ]
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "67003069",
+          "value_name": "UV-04 BIVOLT",
+          "values": [
+            {
+              "id": "67003069",
+              "name": "UV-04 BIVOLT"
+            }
+          ]
+        },
+        {
+          "id": "WATER_TANK_CAPACITY",
+          "name": "Capacidade do reservatório de água",
+          "value_id": "3163906",
+          "value_name": "4 L",
+          "values": [
+            {
+              "id": "3163906",
+              "name": "4 L"
+            }
+          ]
+        },
+        {
+          "id": "MIST_TEMPERATURE",
+          "name": "Temperatura do vapor",
+          "value_id": "216875",
+          "value_name": "Ambiente",
+          "values": [
+            {
+              "id": "216875",
+              "name": "Ambiente"
+            }
+          ]
+        },
+        {
+          "id": "WITH_OIL_DIFFUSER",
+          "name": "Com difusor de aromas",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_AUTO_SHUT_OFF",
+          "name": "Com desligamento automático",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_NIGHT_LIGHT_FUNCTION",
+          "name": "Com função de lanterna noturna",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_SILENT_OPERATION",
+          "name": "Com operação silenciosa",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_REMOVABLE_FILTER",
+          "name": "Com filtro removível",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_LOW_WATER_INDICATOR",
+          "name": "Com indicador de poca água",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_ANTIBACTERIAL",
+          "name": "É antibacteriana",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "64958329",
+          "value_name": "7898461978913",
+          "values": [
+            {
+              "id": "64958329",
+              "name": "7898461978913"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Umidificador de Ar 4 L Purificador Vaporizador Difusor Ultrassônico Portátil Bivolt Ventisol UV-04\n\nO Umidificador de Ar Ventisol UV-04 foi desenvolvido para proporcionar mais conforto e bem-estar em ambientes com ar seco, ajudando a aliviar sintomas como irritação nos olhos, garganta ressecada, pele seca e desconfortos respiratórios. Com capacidade de 4 litros e autonomia de até 12 horas de funcionamento contínuo, ele mantém o ar mais saudável por longos períodos, ideal para uso em quartos, salas, escritórios e ambientes de descanso.\n\nSilencioso, eficiente e econômico, o UV-04 consome pouca energia elétrica e conta com sistema de standby automático, que desliga o aparelho quando o reservatório está vazio, garantindo maior segurança e praticidade no dia a dia. Basta encher o reservatório e ligá-lo para desfrutar de um ambiente mais agradável e equilibrado.\n\nSeu design moderno na cor branca combina facilmente com diferentes estilos de decoração, trazendo elegância e funcionalidade ao ambiente. Além disso, possui botão touch que facilita a operação, tornando o uso simples e intuitivo para toda a família.\n\nO Umidificador Ventisol UV-04 é indicado para famílias, pessoas com problemas respiratórios, alérgicos e todos que buscam melhorar a qualidade do ar, principalmente em períodos de clima seco ou durante o inverno, quando o uso de aquecedores pode reduzir ainda mais a umidade relativa do ar.\n\nInformações técnicas  \nMarca: Ventisol  \nModelo: UV-04  \nLinha: Ultrassônico  \nCor: Branco  \nVoltagem: 110V/220V  \nTipo de produto: Umidificador  \nFrequência: 50/60 Hz  \nPotência: 25W  \nTemperatura do vapor: Ambiente  \nCom desligamento automático: Sim  \nCom operação silenciosa: Sim  \nCom indicador de pouca água: Sim  \nTemporizador: Sim  \nNíveis de intensidade: 7  \nReservatório removível: Sim  \nCapacidade do reservatório de água: 4 L  \nTomada: 2 pinos (10A)  \n\nEspecificações  \n- Capacidade de 4 L  \n- Até 24 horas de funcionamento  \n- Standby automático (quando o reservatório fica sem água)  \n- Fácil de limpar  \n- Controle de névoa  \n- Botão touch  \n\nPeso e medidas (aproximados)  \nMedidas do produto: 26.5 x 15 x 15 cm (altura x largura x comprimento)  \nComprimento do cabo de energia: 1.2 m  \nMedidas de embalagem: 16 x 16 x 28 cm (altura x largura x comprimento)  \nPeso bruto: 1.1 kg  \n\nItens inclusos: 1 Umidificador, 1 Fonte de Alimentação, 1 Manual  "
+      },
+      "pictures": [
+        {
+          "id": "685700-MLA98070222972_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_685700-MLA98070222972_112025-F.jpg",
+          "max_width": "675",
+          "max_height": "1200"
+        },
+        {
+          "id": "863307-MLA98070203182_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_863307-MLA98070203182_112025-F.jpg",
+          "max_width": "1175",
+          "max_height": "1200"
+        },
+        {
+          "id": "767641-MLA98070417222_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_767641-MLA98070417222_112025-F.jpg",
+          "max_width": "1141",
+          "max_height": "1200"
+        },
+        {
+          "id": "823914-MLA98541529401_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_823914-MLA98541529401_112025-F.jpg",
+          "max_width": "1195",
+          "max_height": "1200"
+        },
+        {
+          "id": "833338-MLA98070417232_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_833338-MLA98070417232_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1192"
+        },
+        {
+          "id": "662764-MLA109143633272_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_662764-MLA109143633272_042026-F.jpg",
+          "max_width": "1155",
+          "max_height": "1200"
+        },
+        {
+          "id": "920364-MLA109143633284_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_920364-MLA109143633284_042026-F.jpg",
+          "max_width": "1155",
+          "max_height": "1200"
+        },
+        {
+          "id": "941199-MLA109984716511_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_941199-MLA109984716511_042026-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "999210-MLA109984543011_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_999210-MLA109984543011_042026-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "621155-MLA109984512695_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_621155-MLA109984512695_042026-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "729575-MLA109143603208_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_729575-MLA109143603208_042026-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "857406-MLA109143370202_042026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_857406-MLA109143370202_042026-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-11-16T16:37:44Z",
+      "last_updated": "2026-04-03T00:58:04Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

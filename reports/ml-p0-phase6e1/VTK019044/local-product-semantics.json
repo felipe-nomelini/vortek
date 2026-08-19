@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-08-17T14:15:49.605Z",
+  "product": {
+    "id": "fc83972a-ead2-4687-b53a-07c3fd56c4a3",
+    "sku": "VTK019044",
+    "nome": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+    "marca": "TECHNOISE",
+    "estoque": 3,
+    "custo": 161.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.406,
+    "peso_bruto": 1.406,
+    "largura": 20,
+    "altura": 6,
+    "profundidade": 20,
+    "gtin": "7898530518873",
+    "descricao": "rolo 100 mts",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK019044/01-7ae0f5769342082ba313.jpg"
+    ],
+    "categoria": "Automotivo/ Cabos Para Som Automotivo/ Cabos",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:35.398356+00:00",
+    "updated_at": "2026-08-17T11:19:15.493976+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "247448",
+    "dslite_ultima_sync": "2026-08-17T11:19:15.295+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85444900",
+    "cest": "12.007.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "6672e759-b1b8-4374-8ecb-e9a5b07ee7a5",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "1.50 Mm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

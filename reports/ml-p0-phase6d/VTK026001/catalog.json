@@ -1,0 +1,257 @@
+{
+  "checked_at": "2026-08-17T01:13:02.085Z",
+  "expected_catalog_product_id": "MLB67298918",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB67298918",
+    "catalog_product_id": "MLB67298918",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-STRING_INSTRUMENT_STRINGS",
+    "permalink": "",
+    "name": "Encordoamento para Guitarra Elétrica SX .010 Light com Cordas Extras",
+    "family_name": "SX Electric SZSTE1L Guitarra",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por kit",
+        "products": [
+          {
+            "product_id": "MLB67298918",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "SX Electric SZSTE1L Guitarra - Unidade - 1",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "678798-MLA109630503679_032026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_678798-MLA109630503679_032026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 946,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Construídas em níquel, as cordas proporcionam som poderoso e brilho duradouro para sua guitarra elétrica.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Calibres de 0.010 a 0.046 garantem versatilidade e tensão leve para tocabilidade equilibrada em diversas afinações.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "15158",
+        "value_name": "SX",
+        "values": [
+          {
+            "id": "15158",
+            "name": "SX"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "13767790",
+        "value_name": "Electric",
+        "values": [
+          {
+            "id": "13767790",
+            "name": "Electric"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "65025512",
+        "value_name": "SZSTE1L",
+        "values": [
+          {
+            "id": "65025512",
+            "name": "SZSTE1L"
+          }
+        ]
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "name": "Instrumento recomendado",
+        "value_id": "17598422",
+        "value_name": "Guitarra",
+        "values": [
+          {
+            "id": "17598422",
+            "name": "Guitarra"
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "value_id": "15146",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "15146",
+            "name": "6"
+          }
+        ]
+      },
+      {
+        "id": "GAUGES",
+        "name": "Calibres",
+        "value_id": null,
+        "value_name": "0.010, 0.013, 0.017, 0.026, 0.036, 0.046",
+        "values": [
+          {
+            "id": "17715802",
+            "name": "0.010"
+          },
+          {
+            "id": "17715803",
+            "name": "0.013"
+          },
+          {
+            "id": "17715804",
+            "name": "0.017"
+          },
+          {
+            "id": "17715805",
+            "name": "0.026"
+          },
+          {
+            "id": "17599676",
+            "name": "0.036"
+          },
+          {
+            "id": "5344250",
+            "name": "0.046"
+          }
+        ]
+      },
+      {
+        "id": "MATERIALS",
+        "name": "Materiais",
+        "value_id": "2342782",
+        "value_name": "Níquel",
+        "values": [
+          {
+            "id": "2342782",
+            "name": "Níquel"
+          }
+        ]
+      },
+      {
+        "id": "TENSION",
+        "name": "Tensão",
+        "value_id": "5344248",
+        "value_name": "Média",
+        "values": [
+          {
+            "id": "5344248",
+            "name": "Média"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "As cordas para guitarra SX Super Light 010 + Cordas Extras são a escolha ideal para músicos que buscam leveza e conforto durante a execução. \n\nCom uma tensão leve, estas cordas proporcionam uma tocabilidade suave, facilitando a realização de bends e notas rápidas. \n\nFabricadas pela renomada marca SX, estas cordas são projetadas com materiais de alta qualidade, garantindo sonoridade rica e durabilidade excepcional. \n\nO modelo SZSTE1L inclui cordas extras, permitindo que você tenha sempre uma substituição à mão em caso de necessidade. \n\nA combinação perfeita entre qualidade sonora e facilidade de uso com as cordas SX Super Light. Ideal para guitarristas de todos os níveis que desejam aprimorar sua performance musical."
+    },
+    "parent_id": "MLB67298915",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-16T19:09:33.309184584"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2026-03-27T16:59:03Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-02T09:28:00Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

@@ -1,0 +1,122 @@
+{
+  "checked_at": "2026-08-16T22:31:08.674Z",
+  "submitted": [
+    "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+  ],
+  "remote": [
+    "https://http2.mlstatic.com/D_702853-MLA99429972606_112025-O.webp",
+    "https://http2.mlstatic.com/D_606330-MLA84550752742_052025-O.jpg",
+    "https://http2.mlstatic.com/D_665395-MLA85061029336_052025-O.jpg",
+    "https://http2.mlstatic.com/D_676908-MLA85060990100_052025-O.webp",
+    "https://http2.mlstatic.com/D_873398-MLA85061039218_052025-O.jpg",
+    "https://http2.mlstatic.com/D_948799-MLA85060990112_052025-O.jpg"
+  ],
+  "rows": [
+    {
+      "picture_id": "702853-MLA99429972606_112025",
+      "url": "https://http2.mlstatic.com/D_702853-MLA99429972606_112025-O.webp",
+      "source": {
+        "checked_at": "2026-08-16T22:31:06.328Z",
+        "url": "https://http2.mlstatic.com/D_702853-MLA99429972606_112025-O.webp",
+        "http_status": 200,
+        "content_type": "image/webp",
+        "width": 500,
+        "height": 495,
+        "sha256": "7e6a8554257f99db49d87dd657cb79935ec00f884b6d19b4a51057f8badd1ce6",
+        "prior_visual_identity": "Phase 5B manual inspection: exact Ventisol Turbo 6, blue, six blades, single unit, no voltage contradiction",
+        "passed": true
+      },
+      "diagnostic_http": 404,
+      "errors": []
+    },
+    {
+      "picture_id": "606330-MLA84550752742_052025",
+      "url": "https://http2.mlstatic.com/D_606330-MLA84550752742_052025-O.jpg",
+      "source": {
+        "checked_at": "2026-08-16T22:31:06.729Z",
+        "url": "https://http2.mlstatic.com/D_606330-MLA84550752742_052025-O.jpg",
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "width": 355,
+        "height": 500,
+        "sha256": "7ec1946144677dd8990172006500bc54b822d3dcf47a29ce3921d8a1b58d1644",
+        "prior_visual_identity": "Phase 5B manual inspection: exact Ventisol Turbo 6, blue, six blades, single unit, no voltage contradiction",
+        "passed": true
+      },
+      "diagnostic_http": 404,
+      "errors": []
+    },
+    {
+      "picture_id": "665395-MLA85061029336_052025",
+      "url": "https://http2.mlstatic.com/D_665395-MLA85061029336_052025-O.jpg",
+      "source": {
+        "checked_at": "2026-08-16T22:31:07.106Z",
+        "url": "https://http2.mlstatic.com/D_665395-MLA85061029336_052025-O.jpg",
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "width": 492,
+        "height": 500,
+        "sha256": "4652310601c8b0b378398c386f742ad91166db1fefec55b2afdbd2a0baeade2b",
+        "prior_visual_identity": "Phase 5B manual inspection: exact Ventisol Turbo 6, blue, six blades, single unit, no voltage contradiction",
+        "passed": true
+      },
+      "diagnostic_http": 404,
+      "errors": []
+    },
+    {
+      "picture_id": "676908-MLA85060990100_052025",
+      "url": "https://http2.mlstatic.com/D_676908-MLA85060990100_052025-O.webp",
+      "source": {
+        "checked_at": "2026-08-16T22:31:07.846Z",
+        "url": "https://http2.mlstatic.com/D_676908-MLA85060990100_052025-O.webp",
+        "http_status": 200,
+        "content_type": "image/webp",
+        "width": 499,
+        "height": 500,
+        "sha256": "e498fd405d66ef532a2d23b6c78153fd9c7f869079833f78d3fcc0566a4881a0",
+        "prior_visual_identity": "Phase 5B manual inspection: exact Ventisol Turbo 6, blue, six blades, single unit, no voltage contradiction",
+        "passed": true
+      },
+      "diagnostic_http": 404,
+      "errors": []
+    },
+    {
+      "picture_id": "873398-MLA85061039218_052025",
+      "url": "https://http2.mlstatic.com/D_873398-MLA85061039218_052025-O.jpg",
+      "source": {
+        "checked_at": "2026-08-16T22:31:08.190Z",
+        "url": "https://http2.mlstatic.com/D_873398-MLA85061039218_052025-O.jpg",
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "width": 277,
+        "height": 500,
+        "sha256": "5e3e3966b5ea3bc6c0fb90595197e3623b489e8b3e88ac44b60d1a3e07db2ac9",
+        "prior_visual_identity": "Phase 5B manual inspection: exact Ventisol Turbo 6, blue, six blades, single unit, no voltage contradiction",
+        "passed": true
+      },
+      "diagnostic_http": 404,
+      "errors": []
+    },
+    {
+      "picture_id": "948799-MLA85060990112_052025",
+      "url": "https://http2.mlstatic.com/D_948799-MLA85060990112_052025-O.jpg",
+      "source": {
+        "checked_at": "2026-08-16T22:31:08.533Z",
+        "url": "https://http2.mlstatic.com/D_948799-MLA85060990112_052025-O.jpg",
+        "http_status": 200,
+        "content_type": "image/jpeg",
+        "width": 334,
+        "height": 500,
+        "sha256": "01b6a7a08068c2f254ed176d2db603f03b3fbc141383786d1f382dd8560e2b0f",
+        "prior_visual_identity": "Phase 5B manual inspection: exact Ventisol Turbo 6, blue, six blades, single unit, no voltage contradiction",
+        "passed": true
+      },
+      "diagnostic_http": 404,
+      "errors": []
+    }
+  ],
+  "rehosted": true,
+  "classification": "IMAGE_NORMALIZED_BY_ML",
+  "material": false,
+  "identity_basis": "exact catalog linkage plus accessible error-free catalog image; manual visual inspection required at hold if ML substitutes the source"
+}

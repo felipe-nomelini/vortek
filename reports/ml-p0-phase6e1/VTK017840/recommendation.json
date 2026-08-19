@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Lnbf Multiponto Elsys Banda C - PC / 2",
+    "supplier_category": "Antenas E Acessórios/ Acessórios Para Parabolica/ Lnbf Multiponto",
+    "supplier_brand": "ELSYS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/240163",
+    "captured_at": "2026-08-17T12:56:47.000Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

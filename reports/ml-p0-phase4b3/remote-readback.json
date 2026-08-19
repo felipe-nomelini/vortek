@@ -1,0 +1,825 @@
+{
+  "read_at": "2026-08-16T21:00:57.044Z",
+  "item": {
+    "id": "MLB7432157712",
+    "site_id": "MLB",
+    "title": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "family_name": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "family_id": 4094059417953552,
+    "seller_id": 3294514937,
+    "category_id": "MLB11290",
+    "user_product_id": "MLBU4771606790",
+    "official_store_id": null,
+    "price": 187.22,
+    "base_price": 187.22,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_pro",
+    "start_time": "2026-08-16T20:18:46.479Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-04T20:23:47.812Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM",
+    "thumbnail_id": "603667-MLB116278971945_082026",
+    "thumbnail": "http://http2.mlstatic.com/D_603667-MLB116278971945_082026-I.jpg",
+    "pictures": [
+      {
+        "id": "603667-MLB116278971945_082026",
+        "url": "http://http2.mlstatic.com/D_603667-MLB116278971945_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_603667-MLB116278971945_082026-O.jpg",
+        "size": "382x500",
+        "max_size": "421x550",
+        "quality": ""
+      },
+      {
+        "id": "633503-MLB116278971947_082026",
+        "url": "http://http2.mlstatic.com/D_633503-MLB116278971947_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_633503-MLB116278971947_082026-O.jpg",
+        "size": "500x407",
+        "max_size": "550x448",
+        "quality": ""
+      },
+      {
+        "id": "810784-MLB116278971949_082026",
+        "url": "http://http2.mlstatic.com/D_810784-MLB116278971949_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_810784-MLB116278971949_082026-O.jpg",
+        "size": "382x500",
+        "max_size": "421x550",
+        "quality": ""
+      },
+      {
+        "id": "689863-MLB116278971951_082026",
+        "url": "http://http2.mlstatic.com/D_689863-MLB116278971951_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_689863-MLB116278971951_082026-O.jpg",
+        "size": "500x466",
+        "max_size": "550x513",
+        "quality": ""
+      },
+      {
+        "id": "637841-MLA114900711030_082026",
+        "url": "http://http2.mlstatic.com/D_637841-MLA114900711030_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_637841-MLA114900711030_082026-O.jpg",
+        "size": "500x492",
+        "max_size": "558x550",
+        "quality": ""
+      },
+      {
+        "id": "842932-MLA116279067739_082026",
+        "url": "http://http2.mlstatic.com/D_842932-MLA116279067739_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_842932-MLA116279067739_082026-O.jpg",
+        "size": "380x500",
+        "max_size": "418x550",
+        "quality": ""
+      },
+      {
+        "id": "766664-MLB116278971957_082026",
+        "url": "http://http2.mlstatic.com/D_766664-MLB116278971957_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_766664-MLB116278971957_082026-O.jpg",
+        "size": "500x388",
+        "max_size": "550x427",
+        "quality": ""
+      },
+      {
+        "id": "733686-MLB116278971959_082026",
+        "url": "http://http2.mlstatic.com/D_733686-MLB116278971959_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_733686-MLB116278971959_082026-O.jpg",
+        "size": "366x500",
+        "max_size": "424x578",
+        "quality": ""
+      },
+      {
+        "id": "925000-MLB116278971961_082026",
+        "url": "http://http2.mlstatic.com/D_925000-MLB116278971961_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_925000-MLB116278971961_082026-O.jpg",
+        "size": "365x500",
+        "max_size": "426x582",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "BATTERIES_CHARGE_CAPACITY",
+        "name": "Capacidade de carga das baterias",
+        "value_id": null,
+        "value_name": "2600 mAh",
+        "values": [
+          {
+            "id": null,
+            "name": "2600 mAh",
+            "struct": {
+              "number": 2600,
+              "unit": "mAh"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": null,
+        "value_name": "Toshiba",
+        "values": [
+          {
+            "id": null,
+            "name": "Toshiba",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CHARGING_PORTS_NUMBER",
+        "name": "Quantidade de portos de carga",
+        "value_id": null,
+        "value_name": "4",
+        "values": [
+          {
+            "id": null,
+            "name": "4",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "value_id": "24420060",
+        "value_name": "Plug",
+        "values": [
+          {
+            "id": "24420060",
+            "name": "Plug",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB",
+        "values": [
+          {
+            "id": null,
+            "name": "TNHC-6GAE4 CB",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "4904530109270",
+        "values": [
+          {
+            "id": null,
+            "name": "4904530109270",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INCLUDES_CELL_BATTERIES",
+        "name": "Inclui pilhas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "name": "Voltagem de entrada",
+        "value_id": "39205163",
+        "value_name": "127/220V",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": null,
+        "value_name": "Toshiba",
+        "values": [
+          {
+            "id": null,
+            "name": "Toshiba",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB",
+        "values": [
+          {
+            "id": null,
+            "name": "TNHC-6GAE4 CB",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB",
+        "values": [
+          {
+            "id": null,
+            "name": "TNHC-6GAE4 CB",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "28280064",
+        "value_name": "Pilha",
+        "values": [
+          {
+            "id": "28280064",
+            "name": "Pilha",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "value_id": null,
+        "value_name": "16 cm",
+        "values": [
+          {
+            "id": null,
+            "name": "16 cm",
+            "struct": {
+              "number": 16,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "value_id": null,
+        "value_name": "5 cm",
+        "values": [
+          {
+            "id": null,
+            "name": "5 cm",
+            "struct": {
+              "number": 5,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "value_id": null,
+        "value_name": "110 g",
+        "values": [
+          {
+            "id": null,
+            "name": "110 g",
+            "struct": {
+              "number": 110,
+              "unit": "g"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "value_id": null,
+        "value_name": "11 cm",
+        "values": [
+          {
+            "id": null,
+            "name": "11 cm",
+            "struct": {
+              "number": 11,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK000486",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK000486",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_COMPOSITION",
+        "name": "Composição da bateria suportada",
+        "value_id": "2516404",
+        "value_name": "Ni-Mh",
+        "values": [
+          {
+            "id": "2516404",
+            "name": "Ni-Mh",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_SIZE",
+        "name": "Tamanho de bateria suportado",
+        "value_id": null,
+        "value_name": "AA,AAA",
+        "values": [
+          {
+            "id": "2516393",
+            "name": "AA",
+            "struct": null
+          },
+          {
+            "id": "2516394",
+            "name": "AAA",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WITH_CHARGE_INDICATOR",
+        "name": "Com indicador de carga",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "good_quality_thumbnail",
+      "user_product_listing",
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": null,
+    "domain_id": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS",
+    "seller_custom_field": "VTK000486",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-16T20:18:46.754Z",
+    "last_updated": "2026-08-16T20:28:30.618Z",
+    "health": null,
+    "catalog_listing": false,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "user_product": {
+    "id": "MLBU4771606790",
+    "name": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "family_name": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "site_id": "MLB",
+    "user_id": 3294514937,
+    "domain_id": "MLB-BATTERY_AND_CELL_BATTERIES_CHARGERS",
+    "attributes": [
+      {
+        "id": "BATTERIES_CHARGE_CAPACITY",
+        "name": "Capacidade de carga das baterias",
+        "values": [
+          {
+            "id": null,
+            "name": "2600 mAh",
+            "struct": {
+              "number": 2600,
+              "unit": "mAh"
+            }
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "16 cm",
+            "struct": {
+              "number": 16,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "values": [
+          {
+            "id": null,
+            "name": "TNHC-6GAE4 CB",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "name": "Voltagem de entrada",
+        "values": [
+          {
+            "id": "39205163",
+            "name": "127/220V",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_CELL_BATTERIES",
+        "name": "Inclui pilhas",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "values": [
+          {
+            "id": null,
+            "name": "TNHC-6GAE4 CB",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "110 g",
+            "struct": {
+              "number": 110,
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "values": [
+          {
+            "id": null,
+            "name": "4904530109270",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_CHARGE_INDICATOR",
+        "name": "Com indicador de carga",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SUPPORTED_BATTERY_COMPOSITION",
+        "name": "Composição da bateria suportada",
+        "values": [
+          {
+            "id": "2516404",
+            "name": "Ni-Mh",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CHARGING_PORTS_NUMBER",
+        "name": "Quantidade de portos de carga",
+        "values": [
+          {
+            "id": null,
+            "name": "4",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "values": [
+          {
+            "id": null,
+            "name": "Toshiba",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "values": [
+          {
+            "id": "28280064",
+            "name": "Pilha",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "11 cm",
+            "struct": {
+              "number": 11,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "SUPPORTED_BATTERY_SIZE",
+        "name": "Tamanho de bateria suportado",
+        "values": [
+          {
+            "id": "2516393",
+            "name": "AA",
+            "struct": null
+          },
+          {
+            "id": "2516394",
+            "name": "AAA",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "name": "Tipo de conector",
+        "values": [
+          {
+            "id": "24420060",
+            "name": "Plug",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "values": [
+          {
+            "id": null,
+            "name": "Toshiba",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "values": [
+          {
+            "id": null,
+            "name": "TNHC-6GAE4 CB",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "5 cm",
+            "struct": {
+              "number": 5,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK000486",
+            "struct": null
+          }
+        ]
+      }
+    ],
+    "pictures": [
+      {
+        "id": "603667-MLB116278971945_082026",
+        "secure_url": "https://http2.mlstatic.com/D_603667-MLB116278971945_082026-O.jpg"
+      },
+      {
+        "id": "633503-MLB116278971947_082026",
+        "secure_url": "https://http2.mlstatic.com/D_633503-MLB116278971947_082026-O.jpg"
+      },
+      {
+        "id": "810784-MLB116278971949_082026",
+        "secure_url": "https://http2.mlstatic.com/D_810784-MLB116278971949_082026-O.jpg"
+      },
+      {
+        "id": "689863-MLB116278971951_082026",
+        "secure_url": "https://http2.mlstatic.com/D_689863-MLB116278971951_082026-O.jpg"
+      },
+      {
+        "id": "637841-MLA114900711030_082026",
+        "secure_url": "https://http2.mlstatic.com/D_637841-MLA114900711030_082026-O.jpg"
+      },
+      {
+        "id": "842932-MLA116279067739_082026",
+        "secure_url": "https://http2.mlstatic.com/D_842932-MLA116279067739_082026-O.jpg"
+      },
+      {
+        "id": "766664-MLB116278971957_082026",
+        "secure_url": "https://http2.mlstatic.com/D_766664-MLB116278971957_082026-O.jpg"
+      },
+      {
+        "id": "733686-MLB116278971959_082026",
+        "secure_url": "https://http2.mlstatic.com/D_733686-MLB116278971959_082026-O.jpg"
+      },
+      {
+        "id": "925000-MLB116278971961_082026",
+        "secure_url": "https://http2.mlstatic.com/D_925000-MLB116278971961_082026-O.jpg"
+      }
+    ],
+    "thumbnail": {
+      "id": "603667-MLB116278971945_082026",
+      "secure_url": "https://http2.mlstatic.com/D_603667-MLB116278971945_082026-O.jpg"
+    },
+    "catalog_product_id": null,
+    "bundle": null,
+    "family_id": 4094059417953552,
+    "tags": [
+      "primary"
+    ],
+    "date_created": "2026-08-16T20:18:46.895+0000",
+    "last_updated": "2026-08-16T20:28:28.664+0000",
+    "main_features": [],
+    "commingling": null
+  },
+  "family": {
+    "user_products_ids": [
+      "MLBU4771606790"
+    ],
+    "family_id": 4094059417953552,
+    "site_id": "MLB",
+    "user_id": 3294514937
+  },
+  "description": null
+}

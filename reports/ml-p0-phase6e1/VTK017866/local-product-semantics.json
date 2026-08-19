@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-17T14:15:53.715Z",
+  "product": {
+    "id": "c92b422e-2c62-4d08-94a4-d1aaff732ee7",
+    "sku": "VTK017866",
+    "nome": "Alça Pré Formada Para Cabo 9,60/ 10,40 Acpo6104 Preto - PC / 10",
+    "marca": "CONIMEL",
+    "estoque": 21,
+    "custo": 113.3,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.126,
+    "peso_bruto": 0.126,
+    "largura": 8,
+    "altura": 1.5,
+    "profundidade": 61,
+    "gtin": "",
+    "descricao": "Informações do Produto A Alça Pré Formada é utilizada na ancoragem de cabos ópticos. Fabricada a partir de fios de liga de alumínio de alta resistência, recebe na parte interna um material abrasivo para melhorar a fixação sobre o cabo. - Economia; - É mais prático, pois não se faz necessário uso de um protetor sobre o cabo; - Realiza a ancoragem do cabo sem provocar danos à capa do cabo ou às fibras ópticas.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/0/306807_67d2cae9f2adc.jpg"
+    ],
+    "categoria": "Antenas E Acessórios/ Acessórios Para Parabolica/ Tubo Para Antena Parabolica",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:30.798566+00:00",
+    "updated_at": "2026-08-17T10:44:15.514029+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "306807",
+    "dslite_ultima_sync": "2026-08-17T10:44:15.272+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "76052910",
+    "cest": "12.007.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "88e10a3e-d018-4be2-8eb5-3df60a40ce83",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "unresolved",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "unresolved",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

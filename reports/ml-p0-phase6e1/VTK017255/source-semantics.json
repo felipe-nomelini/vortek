@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:53.516Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo óptico Splitter Evus Opf-plc1x2-nc250 Plc 1x2 Nc 1,5m G657a1",
+    "supplier_category": "Redes E Provedores/ Passivos De Rede/ Splitter",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": null,
+    "captured_at": null,
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "63e6f475-b51c-4857-bab6-be80c26ebd51",
+    "produto_id": "6ae0ec08-13cc-4813-89a5-5f92bf8ca15c",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "359728",
+    "sku_fornecedor": "359728",
+    "custo": 23.99,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:24:30.545+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:24:30.554+00:00",
+    "sku_oferta": "359728",
+    "nome": "Cabo óptico Splitter Evus Opf-plc1x2-nc250 Plc 1x2 Nc 1,5m G657a1",
+    "descricao": "Informações do Produto O Cabo Optico Splitter Evus OPF-PLC1X2-NC2 PLC (Planar Lightwave Circuit) ou divisor de fibra óptica, baseia-se num substrato de quartzo que serve como guia de ondas, atuando como um dispositivo de distribuição de energia. Seu funcionamento é similar aos divisores utilizados em sistemas de transmissão de cabo coaxial. É especialmente adequado para a instalação de pequenos espaços e pode ser facilmente utilizado na construção de rede FTTx, construção de redes ópticas, redes CATV e etc. Baixa perda de inserção e baixa PDL Ampla faixa de comprimento de onda Design compacto Grande faixa de operação e temperatura Embalagem e configuração customizada Aplicações: FTTX (FTTP, FTTH, FTTN, FTTC) Redes óticas passivas analógicas/digitais (PON) Redes de área local (LAN) Equipamentos de teste CATV Splitter Óptico PLC 1x2 ANATEL 01532-19-10548 *Imagens meramente ilustrativas.",
+    "marca": "EVUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/5/359728_67d2cafa2f2ef.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/359728_67d2cafa32324.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/359728_67d2cafa32ca4.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85176259",
+    "cest": "21.056.00"
+  }
+}

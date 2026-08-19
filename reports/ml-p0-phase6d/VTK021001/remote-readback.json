@@ -1,0 +1,2102 @@
+{
+  "checked_at": "2026-08-17T01:17:47.630Z",
+  "item": {
+    "id": "MLB7432633734",
+    "site_id": "MLB",
+    "title": "Pioneer Br Ts-6960br Preto Par Alto Falantes Quadriaxial 6x9 100w Rms",
+    "family_name": "Pioneer BR TS-6960BR 6   9  ",
+    "family_id": 982827654641106,
+    "seller_id": 3294514937,
+    "category_id": "MLB3905",
+    "user_product_id": "MLBU4772942272",
+    "official_store_id": null,
+    "price": 849.9,
+    "base_price": 849.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 7,
+    "available_quantity": 7,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T01:17:46.013Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:17:46.108Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432633734-pioneer-br-ts-6960br-preto-par-alto-falantes-quadriaxial-6x9-100w-rms-_JM",
+    "thumbnail_id": "951788-MLA99436997646_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_951788-MLA99436997646_112025-I.jpg",
+    "pictures": [
+      {
+        "id": "951788-MLA99436997646_112025",
+        "url": "http://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg",
+        "size": "500x356",
+        "max_size": "1200x855",
+        "quality": ""
+      },
+      {
+        "id": "712312-MLU75820915993_042024",
+        "url": "http://http2.mlstatic.com/D_712312-MLU75820915993_042024-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_712312-MLU75820915993_042024-O.jpg",
+        "size": "494x500",
+        "max_size": "1186x1200",
+        "quality": ""
+      },
+      {
+        "id": "633543-MLU78195822978_082024",
+        "url": "http://http2.mlstatic.com/D_633543-MLU78195822978_082024-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_633543-MLU78195822978_082024-O.jpg",
+        "size": "500x345",
+        "max_size": "1200x829",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "9838",
+        "value_name": "Pioneer",
+        "values": [
+          {
+            "id": "9838",
+            "name": "Pioneer",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CASING_MATERIALS",
+        "name": "Materiais da carcaça",
+        "value_id": "945389",
+        "value_name": "Aço",
+        "values": [
+          {
+            "id": "945389",
+            "name": "Aço",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COILS_NUMBER",
+        "name": "Quantidade de bobinas",
+        "value_id": "8704186",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "8704186",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "COIL_MATERIALS",
+        "name": "Materiais da bobina",
+        "value_id": "160257",
+        "value_name": "Alumínio",
+        "values": [
+          {
+            "id": "160257",
+            "name": "Alumínio",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONE_MATERIALS",
+        "name": "Materiais do cone",
+        "value_id": "160243",
+        "value_name": "Polipropileno",
+        "values": [
+          {
+            "id": "160243",
+            "name": "Polipropileno",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "value_id": "1160547",
+        "value_name": "8.3 cm",
+        "values": [
+          {
+            "id": "1160547",
+            "name": "8.3 cm",
+            "struct": {
+              "number": 8.3,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "FREQUENCY_RANGE",
+        "name": "Faixa de frequência",
+        "value_id": "8722426",
+        "value_name": "40 Hz - 20000 Hz",
+        "values": [
+          {
+            "id": "8722426",
+            "name": "40 Hz - 20000 Hz",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "4988028352850,4988028283420",
+        "values": [
+          {
+            "id": "8272010",
+            "name": "4988028352850",
+            "struct": null
+          },
+          {
+            "id": "25286267",
+            "name": "4988028283420",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "IMPEDANCE",
+        "name": "Impedância",
+        "value_id": "945309",
+        "value_name": "4 Ω",
+        "values": [
+          {
+            "id": "945309",
+            "name": "4 Ω",
+            "struct": {
+              "number": 4,
+              "unit": "Ω"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "INTEGRATED_SPEAKERS_TYPES",
+        "name": "Tipos de alto-falantes integrados",
+        "value_id": null,
+        "value_name": "Woofer,Midrange,Tweeter,Super tweeter",
+        "values": [
+          {
+            "id": "8694535",
+            "name": "Woofer",
+            "struct": null
+          },
+          {
+            "id": "8704185",
+            "name": "Midrange",
+            "struct": null
+          },
+          {
+            "id": "8694536",
+            "name": "Tweeter",
+            "struct": null
+          },
+          {
+            "id": "8694537",
+            "name": "Super tweeter",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "name": "É resistente à água",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "195550",
+        "value_name": "BR",
+        "values": [
+          {
+            "id": "195550",
+            "name": "BR",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_POWER_PMPO",
+        "name": "Potência máxima PMPO",
+        "value_id": "8711757",
+        "value_name": "200 W",
+        "values": [
+          {
+            "id": "8711757",
+            "name": "200 W",
+            "struct": {
+              "number": 200,
+              "unit": "W"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "2292869",
+        "value_name": "TS-6960BR",
+        "values": [
+          {
+            "id": "2292869",
+            "name": "TS-6960BR",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "RESONANCE_FREQUENCY",
+        "name": "Frequência de ressonância",
+        "value_id": "27127460",
+        "value_name": "20 kHz",
+        "values": [
+          {
+            "id": "27127460",
+            "name": "20 kHz",
+            "struct": {
+              "number": 20,
+              "unit": "kHz"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "RMS_POWER",
+        "name": "Potência RMS",
+        "value_id": "161514",
+        "value_name": "200 W",
+        "values": [
+          {
+            "id": "161514",
+            "name": "200 W",
+            "struct": {
+              "number": 200,
+              "unit": "W"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK021001",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK021001",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SENSITIVITY",
+        "name": "Sensibilidade",
+        "value_id": "945369",
+        "value_name": "88 dB",
+        "values": [
+          {
+            "id": "945369",
+            "name": "88 dB",
+            "struct": {
+              "number": 88,
+              "unit": "dB"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "SPEAKERS_NUMBER",
+        "name": "Quantidade de caixas de som",
+        "value_id": "999572",
+        "value_name": "2",
+        "values": [
+          {
+            "id": "999572",
+            "name": "2",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "SUSPENSION_MATERIALS",
+        "name": "Materiais da suspensão",
+        "value_id": "160253",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "160253",
+            "name": "Espuma",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VEHICLE_SPEAKER_LENGTH",
+        "name": "Comprimento do alto-falante",
+        "value_id": "8737282",
+        "value_name": "9 \"",
+        "values": [
+          {
+            "id": "8737282",
+            "name": "9 \"",
+            "struct": {
+              "number": 9,
+              "unit": "\""
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "VEHICLE_SPEAKER_TYPE",
+        "name": "Tipo de alto-falante",
+        "value_id": "8704188",
+        "value_name": "Quadraxial",
+        "values": [
+          {
+            "id": "8704188",
+            "name": "Quadraxial",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VEHICLE_SPEAKER_WIDTH",
+        "name": "Largura do alto-falante",
+        "value_id": "8737281",
+        "value_name": "6 \"",
+        "values": [
+          {
+            "id": "8737281",
+            "name": "6 \"",
+            "struct": {
+              "number": 6,
+              "unit": "\""
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "VEHICLE_TYPE",
+        "name": "Tipo de veículo",
+        "value_id": "11377043",
+        "value_name": "Carro/Caminhonete",
+        "values": [
+          {
+            "id": "11377043",
+            "name": "Carro/Caminhonete",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "WAYS_NUMBER",
+        "name": "Quantidade de vias",
+        "value_id": "8268966",
+        "value_name": "4",
+        "values": [
+          {
+            "id": "8268966",
+            "name": "4",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "name": "Com luzes LED",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_PROTECTIVE_SCREEN",
+        "name": "Com tela de proteção",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_SUBWOOFER_BOX",
+        "name": "Com caixa de subwoofer",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB27957192",
+    "domain_id": "MLB-VEHICLE_SPEAKERS",
+    "seller_custom_field": "VTK021001",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:17:46.226Z",
+    "last_updated": "2026-08-17T01:17:46.226Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "user_product": {
+    "id": "MLBU4772942272",
+    "name": "Pioneer Br Ts-6960br Preto Par Alto Falantes Quadriaxial 6x9 100w Rms",
+    "family_name": "Pioneer BR TS-6960BR 6   9  ",
+    "site_id": "MLB",
+    "user_id": 3294514937,
+    "domain_id": "MLB-VEHICLE_SPEAKERS",
+    "attributes": [
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "values": [
+          {
+            "id": "195550",
+            "name": "BR",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "RESONANCE_FREQUENCY",
+        "name": "Frequência de ressonância",
+        "values": [
+          {
+            "id": "27127460",
+            "name": "20 kHz",
+            "struct": {
+              "number": 20,
+              "unit": "kHz"
+            }
+          }
+        ]
+      },
+      {
+        "id": "COIL_MATERIALS",
+        "name": "Materiais da bobina",
+        "values": [
+          {
+            "id": "160257",
+            "name": "Alumínio",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_SPEAKER_LENGTH",
+        "name": "Comprimento do alto-falante",
+        "values": [
+          {
+            "id": "8737282",
+            "name": "9 \"",
+            "struct": {
+              "number": 9,
+              "unit": "\""
+            }
+          }
+        ]
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "values": [
+          {
+            "id": "1160547",
+            "name": "8.3 cm",
+            "struct": {
+              "number": 8.3,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_SPEAKER_WIDTH",
+        "name": "Largura do alto-falante",
+        "values": [
+          {
+            "id": "8737281",
+            "name": "6 \"",
+            "struct": {
+              "number": 6,
+              "unit": "\""
+            }
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_TYPE",
+        "name": "Tipo de veículo",
+        "values": [
+          {
+            "id": "11377043",
+            "name": "Carro/Caminhonete",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY_RANGE",
+        "name": "Faixa de frequência",
+        "values": [
+          {
+            "id": "8722426",
+            "name": "40 Hz - 20000 Hz",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_SUBWOOFER_BOX",
+        "name": "Com caixa de subwoofer",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INTEGRATED_SPEAKERS_TYPES",
+        "name": "Tipos de alto-falantes integrados",
+        "values": [
+          {
+            "id": "8694535",
+            "name": "Woofer",
+            "struct": null
+          },
+          {
+            "id": "8704185",
+            "name": "Midrange",
+            "struct": null
+          },
+          {
+            "id": "8694536",
+            "name": "Tweeter",
+            "struct": null
+          },
+          {
+            "id": "8694537",
+            "name": "Super tweeter",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SPEAKERS_NUMBER",
+        "name": "Quantidade de caixas de som",
+        "values": [
+          {
+            "id": "999572",
+            "name": "2",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CASING_MATERIALS",
+        "name": "Materiais da carcaça",
+        "values": [
+          {
+            "id": "945389",
+            "name": "Aço",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "values": [
+          {
+            "id": "2292869",
+            "name": "TS-6960BR",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_PROTECTIVE_SCREEN",
+        "name": "Com tela de proteção",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "VEHICLE_SPEAKER_TYPE",
+        "name": "Tipo de alto-falante",
+        "values": [
+          {
+            "id": "8704188",
+            "name": "Quadraxial",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "name": "Com luzes LED",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK021001",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "values": [
+          {
+            "id": "9838",
+            "name": "Pioneer",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MAX_POWER_PMPO",
+        "name": "Potência máxima PMPO",
+        "values": [
+          {
+            "id": "8711757",
+            "name": "200 W",
+            "struct": {
+              "number": 200,
+              "unit": "W"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "WAYS_NUMBER",
+        "name": "Quantidade de vias",
+        "values": [
+          {
+            "id": "8268966",
+            "name": "4",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "values": [
+          {
+            "id": "8272010",
+            "name": "4988028352850",
+            "struct": null
+          },
+          {
+            "id": "25286267",
+            "name": "4988028283420",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "IMPEDANCE",
+        "name": "Impedância",
+        "values": [
+          {
+            "id": "945309",
+            "name": "4 Ω",
+            "struct": {
+              "number": 4,
+              "unit": "Ω"
+            }
+          }
+        ]
+      },
+      {
+        "id": "COILS_NUMBER",
+        "name": "Quantidade de bobinas",
+        "values": [
+          {
+            "id": "8704186",
+            "name": "1",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "RMS_POWER",
+        "name": "Potência RMS",
+        "values": [
+          {
+            "id": "161514",
+            "name": "200 W",
+            "struct": {
+              "number": 200,
+              "unit": "W"
+            }
+          }
+        ]
+      },
+      {
+        "id": "IS_WATER_RESISTANT",
+        "name": "É resistente à água",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SUSPENSION_MATERIALS",
+        "name": "Materiais da suspensão",
+        "values": [
+          {
+            "id": "160253",
+            "name": "Espuma",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CONE_MATERIALS",
+        "name": "Materiais do cone",
+        "values": [
+          {
+            "id": "160243",
+            "name": "Polipropileno",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SENSITIVITY",
+        "name": "Sensibilidade",
+        "values": [
+          {
+            "id": "945369",
+            "name": "88 dB",
+            "struct": {
+              "number": 88,
+              "unit": "dB"
+            }
+          }
+        ]
+      }
+    ],
+    "pictures": [
+      {
+        "id": "951788-MLA99436997646_112025",
+        "secure_url": "https://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg"
+      },
+      {
+        "id": "712312-MLU75820915993_042024",
+        "secure_url": "https://http2.mlstatic.com/D_712312-MLU75820915993_042024-O.jpg"
+      },
+      {
+        "id": "633543-MLU78195822978_082024",
+        "secure_url": "https://http2.mlstatic.com/D_633543-MLU78195822978_082024-O.jpg"
+      }
+    ],
+    "thumbnail": {
+      "id": "951788-MLA99436997646_112025",
+      "secure_url": "https://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg"
+    },
+    "catalog_product_id": "MLB27957192",
+    "bundle": null,
+    "family_id": 982827654641106,
+    "tags": [
+      "primary"
+    ],
+    "date_created": "2026-08-17T01:17:46.357+0000",
+    "last_updated": "2026-08-17T01:17:46.357+0000",
+    "main_features": [],
+    "commingling": null
+  },
+  "family": {
+    "user_products_ids": [
+      "MLBU4772942272"
+    ],
+    "family_id": 982827654641106,
+    "site_id": "MLB",
+    "user_id": 3294514937
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "title": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "propagation": {
+    "item": {
+      "settled": true,
+      "attempts": 1,
+      "elapsed_ms": 160,
+      "response": {
+        "ok": true,
+        "status": 200,
+        "headers": {
+          "access-control-allow-headers": "Content-Type",
+          "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+          "access-control-allow-origin": "*",
+          "access-control-max-age": "86400",
+          "connection": "keep-alive",
+          "content-encoding": "gzip",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Mon, 17 Aug 2026 01:17:46 GMT",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "transfer-encoding": "chunked",
+          "vary": "Accept-Encoding",
+          "via": "1.1 7c066e0a11a81c42cc2203e5b598b722.cloudfront.net (CloudFront)",
+          "x-amz-cf-id": "yeu20IL_KxHtMMOhTYZrzj0LmuCLsqSnW3kmkjy2iYTJnpZtjeHqiQ==",
+          "x-amz-cf-pop": "GIG52-P3",
+          "x-api-server-segment": "legacy",
+          "x-cache": "Miss from cloudfront",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-request-id": "18c05d8c-8bde-42db-b469-279ed1c74ed6",
+          "x-xss-protection": "1; mode=block"
+        },
+        "data": {
+          "id": "MLB7432633734",
+          "site_id": "MLB",
+          "title": "Pioneer Br Ts-6960br Preto Par Alto Falantes Quadriaxial 6x9 100w Rms",
+          "family_name": "Pioneer BR TS-6960BR 6   9  ",
+          "family_id": 982827654641106,
+          "seller_id": 3294514937,
+          "category_id": "MLB3905",
+          "user_product_id": "MLBU4772942272",
+          "official_store_id": null,
+          "price": 849.9,
+          "base_price": 849.9,
+          "original_price": null,
+          "inventory_id": null,
+          "currency_id": "BRL",
+          "initial_quantity": 7,
+          "available_quantity": 7,
+          "sold_quantity": 0,
+          "sale_terms": [],
+          "buying_mode": "buy_it_now",
+          "listing_type_id": "gold_special",
+          "start_time": "2026-08-17T01:17:46.013Z",
+          "stop_time": "2046-08-11T04:00:00.000Z",
+          "end_time": "2046-08-11T04:00:00.000Z",
+          "expiration_time": "2026-11-05T01:17:46.108Z",
+          "condition": "new",
+          "permalink": "https://produto.mercadolivre.com.br/MLB-7432633734-pioneer-br-ts-6960br-preto-par-alto-falantes-quadriaxial-6x9-100w-rms-_JM",
+          "thumbnail_id": "951788-MLA99436997646_112025",
+          "thumbnail": "http://http2.mlstatic.com/D_951788-MLA99436997646_112025-I.jpg",
+          "pictures": [
+            {
+              "id": "951788-MLA99436997646_112025",
+              "url": "http://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg",
+              "size": "500x356",
+              "max_size": "1200x855",
+              "quality": ""
+            },
+            {
+              "id": "712312-MLU75820915993_042024",
+              "url": "http://http2.mlstatic.com/D_712312-MLU75820915993_042024-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_712312-MLU75820915993_042024-O.jpg",
+              "size": "494x500",
+              "max_size": "1186x1200",
+              "quality": ""
+            },
+            {
+              "id": "633543-MLU78195822978_082024",
+              "url": "http://http2.mlstatic.com/D_633543-MLU78195822978_082024-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_633543-MLU78195822978_082024-O.jpg",
+              "size": "500x345",
+              "max_size": "1200x829",
+              "quality": ""
+            }
+          ],
+          "video_id": null,
+          "descriptions": [],
+          "accepts_mercadopago": true,
+          "non_mercado_pago_payment_methods": [],
+          "shipping": {
+            "mode": "me2",
+            "methods": [],
+            "tags": [
+              "mandatory_free_shipping"
+            ],
+            "dimensions": null,
+            "local_pick_up": false,
+            "free_shipping": true,
+            "logistic_type": "xd_drop_off",
+            "store_pick_up": false
+          },
+          "international_delivery_mode": "none",
+          "seller_address": {
+            "address_line": "Rua João Marques de Nóbrega 300",
+            "zip_code": "86206240",
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "BR-PR",
+              "name": "Paraná"
+            },
+            "country": {
+              "id": "BR",
+              "name": "Brasil"
+            },
+            "search_location": {
+              "city": {
+                "id": "TUxCQ0lCSTQ1Y2Fh",
+                "name": "Ibiporã"
+              },
+              "state": {
+                "id": "TUxCUFBBUkExODBlZA",
+                "name": "Paraná"
+              }
+            },
+            "latitude": -23.284674,
+            "longitude": -51.083409,
+            "id": 1586042717
+          },
+          "seller_contact": null,
+          "location": {},
+          "geolocation": {
+            "latitude": -23.284674,
+            "longitude": -51.083409
+          },
+          "coverage_areas": [],
+          "attributes": [
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "value_id": "9838",
+              "value_name": "Pioneer",
+              "values": [
+                {
+                  "id": "9838",
+                  "name": "Pioneer",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "CASING_MATERIALS",
+              "name": "Materiais da carcaça",
+              "value_id": "945389",
+              "value_name": "Aço",
+              "values": [
+                {
+                  "id": "945389",
+                  "name": "Aço",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "COILS_NUMBER",
+              "name": "Quantidade de bobinas",
+              "value_id": "8704186",
+              "value_name": "1",
+              "values": [
+                {
+                  "id": "8704186",
+                  "name": "1",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            },
+            {
+              "id": "COIL_MATERIALS",
+              "name": "Materiais da bobina",
+              "value_id": "160257",
+              "value_name": "Alumínio",
+              "values": [
+                {
+                  "id": "160257",
+                  "name": "Alumínio",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "COLOR",
+              "name": "Cor",
+              "value_id": "52049",
+              "value_name": "Preto",
+              "values": [
+                {
+                  "id": "52049",
+                  "name": "Preto",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "CONE_MATERIALS",
+              "name": "Materiais do cone",
+              "value_id": "160243",
+              "value_name": "Polipropileno",
+              "values": [
+                {
+                  "id": "160243",
+                  "name": "Polipropileno",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "DEPTH",
+              "name": "Profundidade",
+              "value_id": "1160547",
+              "value_name": "8.3 cm",
+              "values": [
+                {
+                  "id": "1160547",
+                  "name": "8.3 cm",
+                  "struct": {
+                    "number": 8.3,
+                    "unit": "cm"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "FREQUENCY_RANGE",
+              "name": "Faixa de frequência",
+              "value_id": "8722426",
+              "value_name": "40 Hz - 20000 Hz",
+              "values": [
+                {
+                  "id": "8722426",
+                  "name": "40 Hz - 20000 Hz",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "GTIN",
+              "name": "Código universal de produto",
+              "value_id": null,
+              "value_name": "4988028352850,4988028283420",
+              "values": [
+                {
+                  "id": "8272010",
+                  "name": "4988028352850",
+                  "struct": null
+                },
+                {
+                  "id": "25286267",
+                  "name": "4988028283420",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "IMPEDANCE",
+              "name": "Impedância",
+              "value_id": "945309",
+              "value_name": "4 Ω",
+              "values": [
+                {
+                  "id": "945309",
+                  "name": "4 Ω",
+                  "struct": {
+                    "number": 4,
+                    "unit": "Ω"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "INTEGRATED_SPEAKERS_TYPES",
+              "name": "Tipos de alto-falantes integrados",
+              "value_id": null,
+              "value_name": "Woofer,Midrange,Tweeter,Super tweeter",
+              "values": [
+                {
+                  "id": "8694535",
+                  "name": "Woofer",
+                  "struct": null
+                },
+                {
+                  "id": "8704185",
+                  "name": "Midrange",
+                  "struct": null
+                },
+                {
+                  "id": "8694536",
+                  "name": "Tweeter",
+                  "struct": null
+                },
+                {
+                  "id": "8694537",
+                  "name": "Super tweeter",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "IS_WATER_RESISTANT",
+              "name": "É resistente à água",
+              "value_id": "242084",
+              "value_name": "Não",
+              "values": [
+                {
+                  "id": "242084",
+                  "name": "Não",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            },
+            {
+              "id": "ITEM_CONDITION",
+              "name": "Condição do item",
+              "value_id": "2230284",
+              "value_name": "Novo",
+              "values": [
+                {
+                  "id": "2230284",
+                  "name": "Novo",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "LINE",
+              "name": "Linha",
+              "value_id": "195550",
+              "value_name": "BR",
+              "values": [
+                {
+                  "id": "195550",
+                  "name": "BR",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "MAX_POWER_PMPO",
+              "name": "Potência máxima PMPO",
+              "value_id": "8711757",
+              "value_name": "200 W",
+              "values": [
+                {
+                  "id": "8711757",
+                  "name": "200 W",
+                  "struct": {
+                    "number": 200,
+                    "unit": "W"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "MODEL",
+              "name": "Modelo",
+              "value_id": "2292869",
+              "value_name": "TS-6960BR",
+              "values": [
+                {
+                  "id": "2292869",
+                  "name": "TS-6960BR",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "RESONANCE_FREQUENCY",
+              "name": "Frequência de ressonância",
+              "value_id": "27127460",
+              "value_name": "20 kHz",
+              "values": [
+                {
+                  "id": "27127460",
+                  "name": "20 kHz",
+                  "struct": {
+                    "number": 20,
+                    "unit": "kHz"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "RMS_POWER",
+              "name": "Potência RMS",
+              "value_id": "161514",
+              "value_name": "200 W",
+              "values": [
+                {
+                  "id": "161514",
+                  "name": "200 W",
+                  "struct": {
+                    "number": 200,
+                    "unit": "W"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "SELLER_SKU",
+              "name": "SKU",
+              "value_id": null,
+              "value_name": "VTK021001",
+              "values": [
+                {
+                  "id": null,
+                  "name": "VTK021001",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "SENSITIVITY",
+              "name": "Sensibilidade",
+              "value_id": "945369",
+              "value_name": "88 dB",
+              "values": [
+                {
+                  "id": "945369",
+                  "name": "88 dB",
+                  "struct": {
+                    "number": 88,
+                    "unit": "dB"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "SPEAKERS_NUMBER",
+              "name": "Quantidade de caixas de som",
+              "value_id": "999572",
+              "value_name": "2",
+              "values": [
+                {
+                  "id": "999572",
+                  "name": "2",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            },
+            {
+              "id": "SUSPENSION_MATERIALS",
+              "name": "Materiais da suspensão",
+              "value_id": "160253",
+              "value_name": "Espuma",
+              "values": [
+                {
+                  "id": "160253",
+                  "name": "Espuma",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "VEHICLE_SPEAKER_LENGTH",
+              "name": "Comprimento do alto-falante",
+              "value_id": "8737282",
+              "value_name": "9 \"",
+              "values": [
+                {
+                  "id": "8737282",
+                  "name": "9 \"",
+                  "struct": {
+                    "number": 9,
+                    "unit": "\""
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "VEHICLE_SPEAKER_TYPE",
+              "name": "Tipo de alto-falante",
+              "value_id": "8704188",
+              "value_name": "Quadraxial",
+              "values": [
+                {
+                  "id": "8704188",
+                  "name": "Quadraxial",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "VEHICLE_SPEAKER_WIDTH",
+              "name": "Largura do alto-falante",
+              "value_id": "8737281",
+              "value_name": "6 \"",
+              "values": [
+                {
+                  "id": "8737281",
+                  "name": "6 \"",
+                  "struct": {
+                    "number": 6,
+                    "unit": "\""
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "VEHICLE_TYPE",
+              "name": "Tipo de veículo",
+              "value_id": "11377043",
+              "value_name": "Carro/Caminhonete",
+              "values": [
+                {
+                  "id": "11377043",
+                  "name": "Carro/Caminhonete",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "WAYS_NUMBER",
+              "name": "Quantidade de vias",
+              "value_id": "8268966",
+              "value_name": "4",
+              "values": [
+                {
+                  "id": "8268966",
+                  "name": "4",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            },
+            {
+              "id": "WITH_LED_LIGHTS",
+              "name": "Com luzes LED",
+              "value_id": "242084",
+              "value_name": "Não",
+              "values": [
+                {
+                  "id": "242084",
+                  "name": "Não",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            },
+            {
+              "id": "WITH_PROTECTIVE_SCREEN",
+              "name": "Com tela de proteção",
+              "value_id": "242085",
+              "value_name": "Sim",
+              "values": [
+                {
+                  "id": "242085",
+                  "name": "Sim",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            },
+            {
+              "id": "WITH_SUBWOOFER_BOX",
+              "name": "Com caixa de subwoofer",
+              "value_id": "242084",
+              "value_name": "Não",
+              "values": [
+                {
+                  "id": "242084",
+                  "name": "Não",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            }
+          ],
+          "warnings": [],
+          "listing_source": "",
+          "variations": [],
+          "status": "active",
+          "sub_status": [],
+          "tags": [
+            "immediate_payment",
+            "cart_eligible"
+          ],
+          "warranty": null,
+          "catalog_product_id": "MLB27957192",
+          "domain_id": "MLB-VEHICLE_SPEAKERS",
+          "seller_custom_field": "VTK021001",
+          "parent_item_id": null,
+          "differential_pricing": null,
+          "deal_ids": [],
+          "automatic_relist": false,
+          "date_created": "2026-08-17T01:17:46.226Z",
+          "last_updated": "2026-08-17T01:17:46.226Z",
+          "health": null,
+          "catalog_listing": true,
+          "item_relations": [],
+          "channels": [
+            "marketplace"
+          ]
+        }
+      }
+    },
+    "user_product_family": {
+      "settled": true,
+      "attempts": 1,
+      "elapsed_ms": 330,
+      "user_product": {
+        "id": "MLBU4772942272",
+        "name": "Pioneer Br Ts-6960br Preto Par Alto Falantes Quadriaxial 6x9 100w Rms",
+        "family_name": "Pioneer BR TS-6960BR 6   9  ",
+        "site_id": "MLB",
+        "user_id": 3294514937,
+        "domain_id": "MLB-VEHICLE_SPEAKERS",
+        "attributes": [
+          {
+            "id": "LINE",
+            "name": "Linha",
+            "values": [
+              {
+                "id": "195550",
+                "name": "BR",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "RESONANCE_FREQUENCY",
+            "name": "Frequência de ressonância",
+            "values": [
+              {
+                "id": "27127460",
+                "name": "20 kHz",
+                "struct": {
+                  "number": 20,
+                  "unit": "kHz"
+                }
+              }
+            ]
+          },
+          {
+            "id": "COIL_MATERIALS",
+            "name": "Materiais da bobina",
+            "values": [
+              {
+                "id": "160257",
+                "name": "Alumínio",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "VEHICLE_SPEAKER_LENGTH",
+            "name": "Comprimento do alto-falante",
+            "values": [
+              {
+                "id": "8737282",
+                "name": "9 \"",
+                "struct": {
+                  "number": 9,
+                  "unit": "\""
+                }
+              }
+            ]
+          },
+          {
+            "id": "DEPTH",
+            "name": "Profundidade",
+            "values": [
+              {
+                "id": "1160547",
+                "name": "8.3 cm",
+                "struct": {
+                  "number": 8.3,
+                  "unit": "cm"
+                }
+              }
+            ]
+          },
+          {
+            "id": "VEHICLE_SPEAKER_WIDTH",
+            "name": "Largura do alto-falante",
+            "values": [
+              {
+                "id": "8737281",
+                "name": "6 \"",
+                "struct": {
+                  "number": 6,
+                  "unit": "\""
+                }
+              }
+            ]
+          },
+          {
+            "id": "VEHICLE_TYPE",
+            "name": "Tipo de veículo",
+            "values": [
+              {
+                "id": "11377043",
+                "name": "Carro/Caminhonete",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "FREQUENCY_RANGE",
+            "name": "Faixa de frequência",
+            "values": [
+              {
+                "id": "8722426",
+                "name": "40 Hz - 20000 Hz",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "WITH_SUBWOOFER_BOX",
+            "name": "Com caixa de subwoofer",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "INTEGRATED_SPEAKERS_TYPES",
+            "name": "Tipos de alto-falantes integrados",
+            "values": [
+              {
+                "id": "8694535",
+                "name": "Woofer",
+                "struct": null
+              },
+              {
+                "id": "8704185",
+                "name": "Midrange",
+                "struct": null
+              },
+              {
+                "id": "8694536",
+                "name": "Tweeter",
+                "struct": null
+              },
+              {
+                "id": "8694537",
+                "name": "Super tweeter",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SPEAKERS_NUMBER",
+            "name": "Quantidade de caixas de som",
+            "values": [
+              {
+                "id": "999572",
+                "name": "2",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "CASING_MATERIALS",
+            "name": "Materiais da carcaça",
+            "values": [
+              {
+                "id": "945389",
+                "name": "Aço",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "values": [
+              {
+                "id": "2292869",
+                "name": "TS-6960BR",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "WITH_PROTECTIVE_SCREEN",
+            "name": "Com tela de proteção",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "VEHICLE_SPEAKER_TYPE",
+            "name": "Tipo de alto-falante",
+            "values": [
+              {
+                "id": "8704188",
+                "name": "Quadraxial",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "WITH_LED_LIGHTS",
+            "name": "Com luzes LED",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK021001",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "values": [
+              {
+                "id": "9838",
+                "name": "Pioneer",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MAX_POWER_PMPO",
+            "name": "Potência máxima PMPO",
+            "values": [
+              {
+                "id": "8711757",
+                "name": "200 W",
+                "struct": {
+                  "number": 200,
+                  "unit": "W"
+                }
+              }
+            ]
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "WAYS_NUMBER",
+            "name": "Quantidade de vias",
+            "values": [
+              {
+                "id": "8268966",
+                "name": "4",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "values": [
+              {
+                "id": "8272010",
+                "name": "4988028352850",
+                "struct": null
+              },
+              {
+                "id": "25286267",
+                "name": "4988028283420",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "IMPEDANCE",
+            "name": "Impedância",
+            "values": [
+              {
+                "id": "945309",
+                "name": "4 Ω",
+                "struct": {
+                  "number": 4,
+                  "unit": "Ω"
+                }
+              }
+            ]
+          },
+          {
+            "id": "COILS_NUMBER",
+            "name": "Quantidade de bobinas",
+            "values": [
+              {
+                "id": "8704186",
+                "name": "1",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "RMS_POWER",
+            "name": "Potência RMS",
+            "values": [
+              {
+                "id": "161514",
+                "name": "200 W",
+                "struct": {
+                  "number": 200,
+                  "unit": "W"
+                }
+              }
+            ]
+          },
+          {
+            "id": "IS_WATER_RESISTANT",
+            "name": "É resistente à água",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SUSPENSION_MATERIALS",
+            "name": "Materiais da suspensão",
+            "values": [
+              {
+                "id": "160253",
+                "name": "Espuma",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "CONE_MATERIALS",
+            "name": "Materiais do cone",
+            "values": [
+              {
+                "id": "160243",
+                "name": "Polipropileno",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SENSITIVITY",
+            "name": "Sensibilidade",
+            "values": [
+              {
+                "id": "945369",
+                "name": "88 dB",
+                "struct": {
+                  "number": 88,
+                  "unit": "dB"
+                }
+              }
+            ]
+          }
+        ],
+        "pictures": [
+          {
+            "id": "951788-MLA99436997646_112025",
+            "secure_url": "https://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg"
+          },
+          {
+            "id": "712312-MLU75820915993_042024",
+            "secure_url": "https://http2.mlstatic.com/D_712312-MLU75820915993_042024-O.jpg"
+          },
+          {
+            "id": "633543-MLU78195822978_082024",
+            "secure_url": "https://http2.mlstatic.com/D_633543-MLU78195822978_082024-O.jpg"
+          }
+        ],
+        "thumbnail": {
+          "id": "951788-MLA99436997646_112025",
+          "secure_url": "https://http2.mlstatic.com/D_951788-MLA99436997646_112025-O.jpg"
+        },
+        "catalog_product_id": "MLB27957192",
+        "bundle": null,
+        "family_id": 982827654641106,
+        "tags": [
+          "primary"
+        ],
+        "date_created": "2026-08-17T01:17:46.357+0000",
+        "last_updated": "2026-08-17T01:17:46.357+0000",
+        "main_features": [],
+        "commingling": null
+      },
+      "family": {
+        "user_products_ids": [
+          "MLBU4772942272"
+        ],
+        "family_id": 982827654641106,
+        "site_id": "MLB",
+        "user_id": 3294514937
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:38.038Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Fio Cabinho Flexível 0,30mm Preto Tiaflex - RL / 100",
+    "supplier_category": "Materiais Elétricos / Fios E Cabos Para Meteriais Elétricos / Fios Em Rolo",
+    "supplier_brand": "TIAFLEX",
+    "supplier_gtin": "7898429980552",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/5105",
+    "captured_at": "2026-08-17T12:53:54.660Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "27cf9ac0-7a92-4833-a7ca-accf0ed78336",
+    "produto_id": "78b803ed-2e47-448d-a02c-938e19a345dc",
+    "dslite_fornecedor_id": "2",
+    "fornecedor_nome": "HAYAMAX-PR",
+    "dslite_produto_id": "5105",
+    "sku_fornecedor": "5105",
+    "custo": 115.97,
+    "estoque": 5,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "balance_account",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T14:01:15.146+00:00",
+    "created_at": "2026-06-08T18:46:40.559351+00:00",
+    "updated_at": "2026-08-17T14:01:15.155+00:00",
+    "sku_oferta": "5105",
+    "nome": "Fio Cabinho Flexível 0,30mm Preto Tiaflex",
+    "descricao": "O Fio Cabinho Flexível é um cabo de conexão utilizado para ligações internas e externas em aparelhos eletroeletrônicos, circuitos elétricos e de informática em geral. Ele suporta tensões de até 300V e possui uma temperatura máxima de operação de 70ºC. Esse fio é altamente flexível, o que facilita a instalação e o manuseio em diferentes projetos. Com sua capacidade de condução elétrica confiável e resistência térmica adequada, o Fio Cabinho Flexível é uma escolha segura e eficiente para aplicações de baixa tensão e temperaturas moderadas.",
+    "marca": "TIAFLEX",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/5105/550/1.jpg"
+    ],
+    "gtin": "7898429980552",
+    "ncm": "8544.49.00",
+    "cest": null
+  }
+}

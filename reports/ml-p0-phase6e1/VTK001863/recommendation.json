@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Bateria Telefone Sem Fio Fx50u 3,6v Flex",
+    "supplier_category": "Energia E Eletrônicos > Baterias",
+    "supplier_brand": "Flex",
+    "supplier_gtin": "5379861525010",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/3019",
+    "captured_at": "2026-08-17T12:54:01.795Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

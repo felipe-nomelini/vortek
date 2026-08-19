@@ -1,0 +1,416 @@
+{
+  "checked_at": "2026-08-17T01:18:09.026Z",
+  "product": {
+    "id": "e11152d6-2123-4403-a089-7f51fe3e082f",
+    "sku": "VTK004693",
+    "nome": "Violino Scarlett SCV F44 Flamed Maple 4/4 Natural",
+    "marca": "SCARLETT",
+    "gtin": "7898672372173"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2248",
+    "consulted_at": "2026-08-17T01:18:08.807Z",
+    "product": {
+      "produtoid": "2248",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 522.3,
+      "preco_crossdocking": 522.3,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 522.3,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-13 16:17:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-13 16:17:44.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Violino Scarlett Envelhecido Fosco F 4/4 Tampo Linden, Lateral/fundo Flamed Maple, Escala Ebanizada",
+      "titulo_curto": "Violino Scarlett Envelhecido Fosco F 4/4 Tampo Linden, Lateral/fundo Flamed Maple, Escala Ebanizada",
+      "categoriaid": "38206",
+      "categoria_nome": "Instrumentos Musicais > Instrumentos De Corda > Violino",
+      "abc": null,
+      "ean11": "7898672372173",
+      "ncm": "9202.10.00",
+      "descricao": "<p>Violino Scarlett Envelhecido Fosco F 4/4 Tampo Linden, Lateral/Fundo Flamed Maple, Escala Ebanizada</p> <p> </p> <p>Marca: SCARLETT</p> <p>Modelo: SCV F44</p> <p>Cores: Natural</p> <p>Material: Madeira</p> <p>Tampo: Linden Laminado</p> <p>Lateral: Maple</p> <p>Fundo: Flamed maple laminado</p> <p>Espelho: Ebanizado</p> <p>Braço: Maple</p> <p>Cravelha/ Queixeira / Estandarte: Ebanizado</p> <p>Micro-afinação as 4 cordas</p> <p>Case gota, revestido em veludo</p> <p>Arco de madeira com crina animal Talão com detalhe em madre pérola Breu</p> <p>Acabamento : Envelhecido fosco</p> <p>Tamanhos: 4/4</p> <div id=\"acfifjfajpekbmhmjppnmmjgmhjkildl\" class=\"acfifjfajpekbmhmjppnmmjgmhjkildl\"></div> <div id=\"acfifjfajpekbmhmjppnmmjgmhjkildl\" class=\"acfifjfajpekbmhmjppnmmjgmhjkildl\"></div> <div id=\"acfifjfajpekbmhmjppnmmjgmhjkildl\" class=\"acfifjfajpekbmhmjppnmmjgmhjkildl\"></div>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Scarlett",
+      "modelo": "",
+      "peso": 1.5,
+      "largura": 20,
+      "altura": 30,
+      "profundidade": 85,
+      "peso_embalagem": 1.5,
+      "largura_embalagem": 20,
+      "altura_embalagem": 30,
+      "profundidade_embalagem": 85,
+      "link": null,
+      "link_imagem": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/65a4e3315f5883504a65efdb1e403c1e.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Pç",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 44,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "697317209",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-05-14 20:02:25.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-14 10:35:14.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 6,
+      "tempo_cross": 0,
+      "estoque_total": 6,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/65a4e3315f5883504a65efdb1e403c1e.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/7e44b12b0f3bc76eb714d0fdeec36669.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/264755b2bbf3501bfc3021a933a55669.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/19fa333d2846866e7f2d1a7027fd5294.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/eb93fe45915edcdb33fc804100044431.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB26631710 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB26631710",
+      "catalog_product_id": "MLB26631710",
+      "domain_id": "MLB-VIOLINS",
+      "name": "Violino Acústico 4/4 Scarlett SCV F44 Acabamento Envelhecido Fosco Natural",
+      "parent_id": "MLB26631704",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "19707",
+          "value_name": "Scarlett",
+          "values": [
+            {
+              "id": "19707",
+              "name": "Scarlett"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "23730803",
+          "value_name": "SCV F44",
+          "values": [
+            {
+              "id": "23730803",
+              "name": "SCV F44"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "7869826",
+          "value_name": "Natural fosco",
+          "values": [
+            {
+              "id": "7869826",
+              "name": "Natural fosco"
+            }
+          ]
+        },
+        {
+          "id": "VIOLIN_SIZE",
+          "name": "Tamanho do violino",
+          "value_id": "2201515",
+          "value_name": "4/4",
+          "values": [
+            {
+              "id": "2201515",
+              "name": "4/4"
+            }
+          ]
+        },
+        {
+          "id": "VIOLIN_TYPE",
+          "name": "Tipo de violino",
+          "value_id": "2201516",
+          "value_name": "Acústico",
+          "values": [
+            {
+              "id": "2201516",
+              "name": "Acústico"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "name": "Inclui acessórios",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_BOW",
+          "name": "Inclui arco",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "INCLUDES_CASE",
+          "name": "Inclui estojo",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "FINGERBOARD_MATERIAL",
+          "name": "Material do diapasão",
+          "value_id": "96561",
+          "value_name": "Ébano",
+          "values": [
+            {
+              "id": "96561",
+              "name": "Ébano"
+            }
+          ]
+        },
+        {
+          "id": "BODY_MATERIALS",
+          "name": "Materiais do corpo",
+          "value_id": "2194266",
+          "value_name": "Bordo",
+          "values": [
+            {
+              "id": "2194266",
+              "name": "Bordo"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "25841254",
+          "value_name": "Breu",
+          "values": [
+            {
+              "id": "25841254",
+              "name": "Breu"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "23730811",
+          "value_name": "7898672372173",
+          "values": [
+            {
+              "id": "23730811",
+              "name": "7898672372173"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Os violinos Scarlett possuem um som agradável e prazeroso de se ouvir, sendo excelente para iniciantes e profissionais, conta com arco com crina animal e madeira hardwood e um breu produzido com excelente qualidade, provendo conforto e suavidade ao tocar.\n\nCom seu designer diferenciado, o modelo SCV F44 tem acabamento envelhecido fosco, trazendo elegância para quem toca e deixando brilho nos olhos de quem observa e escuta.\n\nPara facilitar os iniciantes da música, os violinos Scarlett já vem ajustado de fábrica com cordas e cavalete posicionados corretamente, também conta com micro-afinação nas 4 cordas, para produzir um som afinado e encantador.\n\n\nEspecificações Técnicas:\n\nTamanho: 4/4\n\nModelo: SCV F44\n\nCor: Natural\n\nAcabamento: Envelhecido Fosco\n\nMaterial: Madeira\n\nTampo: Linden Laminado\n\nLateral: Maple\n\nFundo: Flamed maple laminado\n\nEspelho: Ebanizado\n\nBraço: Maple\n\nCravelha/ Queixeira / Estandarte: Ebanizado\n\nAcessórios:\n\nBreu.\n\nArco de madeira com crina animal e talão com detalhe em madre pérola.\n\nEstojo: Revestido em veludo, formato gota."
+      },
+      "pictures": [
+        {
+          "id": "878950-MLA93090986102_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_878950-MLA93090986102_092025-F.jpg",
+          "max_width": "1022",
+          "max_height": "860"
+        },
+        {
+          "id": "616393-MLA93506643097_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_616393-MLA93506643097_092025-F.jpg",
+          "max_width": "1006",
+          "max_height": "1000"
+        },
+        {
+          "id": "923899-MLA93507017419_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_923899-MLA93507017419_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "916"
+        },
+        {
+          "id": "629144-MLA99489113538_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_629144-MLA99489113538_112025-F.jpg",
+          "max_width": "1137",
+          "max_height": "380"
+        },
+        {
+          "id": "601346-MLA99489878136_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_601346-MLA99489878136_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "755546-MLA93507017439_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_755546-MLA93507017439_092025-F.jpg",
+          "max_width": "459",
+          "max_height": "1200"
+        },
+        {
+          "id": "644371-MLA93506928511_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_644371-MLA93506928511_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "716"
+        },
+        {
+          "id": "910787-MLA99974404827_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_910787-MLA99974404827_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "425"
+        },
+        {
+          "id": "974720-MLA93090926934_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_974720-MLA93090926934_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "390"
+        },
+        {
+          "id": "697023-MLA93091045662_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_697023-MLA93091045662_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "746"
+        },
+        {
+          "id": "978904-MLA93506948093_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_978904-MLA93506948093_092025-F.jpg",
+          "max_width": "1200",
+          "max_height": "836"
+        },
+        {
+          "id": "821806-MLA99489153724_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_821806-MLA99489153724_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "600"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-08-28T03:42:42Z",
+      "last_updated": "2025-02-16T09:29:05Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

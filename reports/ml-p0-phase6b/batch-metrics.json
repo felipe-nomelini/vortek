@@ -1,0 +1,22 @@
+{
+  "selected": 20,
+  "processed": 20,
+  "created": 10,
+  "persisted": 10,
+  "existing": 0,
+  "blocked": 10,
+  "ml_gets": 568,
+  "item_posts": 10,
+  "price_puts": 2,
+  "local_reads": 107,
+  "local_transactions": 13,
+  "primary_persistence_transactions": 10,
+  "post_normalization_transactions": 3,
+  "rollbacks": 0,
+  "source_lookups": 40,
+  "started_at": "2026-08-17T00:04:57.655Z",
+  "completed_at": "2026-08-17T00:07:32.376Z",
+  "elapsed_ms": 154721,
+  "mean_sku_ms": 3210,
+  "industrial_conversion_percent": 50
+}

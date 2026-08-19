@@ -1,0 +1,23 @@
+{
+  "index": 44,
+  "sku": "VTK025858",
+  "expected_gtin": "7898554606587",
+  "started_at": "2026-08-17T00:44:49.081Z",
+  "local_time": "2026-08-16T21:44:49",
+  "completed_at": "2026-08-17T00:44:50.280Z",
+  "elapsed_ms": 1199,
+  "result": "BLOCK_REQUIRED_ATTRIBUTE",
+  "item_id": null,
+  "catalog_product_id": "MLB34692956",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "missing category-required attributes: SEAT_DEPTH,MAX_CHAIR_HEIGHT,INCLUDES_ASSEMBLY_MANUAL",
+  "sanitation": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

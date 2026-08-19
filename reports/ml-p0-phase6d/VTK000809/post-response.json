@@ -1,0 +1,529 @@
+{
+  "attempted_at": "2026-08-17T01:15:37.226Z",
+  "local_time": "2026-08-16T22:15:37",
+  "endpoint": "POST /items",
+  "request_id": "a236c717-ca50-4863-b2eb-0a714fe83672",
+  "http_status": 201,
+  "elapsed_ms": 861,
+  "payload_sha256": "e19e7a5b023a3badcb6f5d6be6b00c3cde1ad57b48583a33e9b009269cbe7ea7",
+  "body": {
+    "id": "MLB7432633246",
+    "site_id": "MLB",
+    "title": "Omeleteira Antiaderente Elétrica Dupla 800w Mr. Cheff Redonda Preta 220v Agratto Aoip01i-02 Preto",
+    "seller_id": 3294514937,
+    "category_id": "MLB107482",
+    "user_product_id": "MLBU4743603507",
+    "official_store_id": null,
+    "price": 339.9,
+    "base_price": 339.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 12,
+    "available_quantity": 12,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "family_name": "Agratto AOIP01I-02 220V Frigideira",
+    "family_id": 7341270300092432,
+    "start_time": "2026-08-17T01:15:36.689Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:15:36.764Z",
+    "condition": "new",
+    "permalink": "http://produto.mercadolivre.com.br/MLB-7432633246-omeleteira-antiaderente-eletrica-dupla-800w-mr-cheff-redonda-preta-220v-agratto-aoip01i-02-preto-_JM",
+    "pictures": [
+      {
+        "id": "665189-MLA104458491676_012026",
+        "url": "http://mla-s2-p.mlstatic.com/665189-MLA104458491676_012026-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/665189-MLA104458491676_012026-O.jpg",
+        "size": "500x409",
+        "max_size": "1198x980",
+        "quality": ""
+      },
+      {
+        "id": "641666-MLA104457868686_012026",
+        "url": "http://mla-s2-p.mlstatic.com/641666-MLA104457868686_012026-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/641666-MLA104457868686_012026-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "672140-MLA104457898650_012026",
+        "url": "http://mla-s2-p.mlstatic.com/672140-MLA104457898650_012026-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/672140-MLA104457898650_012026-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "828617-MLA79547463353_092024",
+        "url": "http://mla-s1-p.mlstatic.com/828617-MLA79547463353_092024-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/828617-MLA79547463353_092024-O.jpg",
+        "size": "500x295",
+        "max_size": "831x491",
+        "quality": ""
+      },
+      {
+        "id": "761500-MLA104458462038_012026",
+        "url": "http://mla-s2-p.mlstatic.com/761500-MLA104458462038_012026-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/761500-MLA104458462038_012026-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "792448-MLA79547314371_092024",
+        "url": "http://mla-s2-p.mlstatic.com/792448-MLA79547314371_092024-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/792448-MLA79547314371_092024-O.jpg",
+        "size": "488x500",
+        "max_size": "816x836",
+        "quality": ""
+      },
+      {
+        "id": "855029-MLA79548006253_092024",
+        "url": "http://mla-s2-p.mlstatic.com/855029-MLA79548006253_092024-O.jpg",
+        "secure_url": "https://mla-s2-p.mlstatic.com/855029-MLA79548006253_092024-O.jpg",
+        "size": "385x500",
+        "max_size": "640x830",
+        "quality": ""
+      },
+      {
+        "id": "804164-MLA104458581868_012026",
+        "url": "http://mla-s1-p.mlstatic.com/804164-MLA104458581868_012026-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/804164-MLA104458581868_012026-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "606123-MLA104458521840_012026",
+        "url": "http://mla-s1-p.mlstatic.com/606123-MLA104458521840_012026-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/606123-MLA104458521840_012026-O.jpg",
+        "size": "500x500",
+        "max_size": "1024x1024",
+        "quality": ""
+      },
+      {
+        "id": "763538-MLA80088589767_102024",
+        "url": "http://mla-s1-p.mlstatic.com/763538-MLA80088589767_102024-O.jpg",
+        "secure_url": "https://mla-s1-p.mlstatic.com/763538-MLA80088589767_102024-O.jpg",
+        "size": "454x499",
+        "max_size": "896x985",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true,
+      "methods": [],
+      "dimensions": null,
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "id": 1586042717,
+      "comment": "",
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "search_location": {
+        "neighborhood": {
+          "id": "",
+          "name": ""
+        },
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      }
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "97494",
+        "value_name": "Agratto",
+        "values": [
+          {
+            "id": "97494",
+            "name": "Agratto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "42961234",
+        "value_name": "AOIP01I-02 220V",
+        "values": [
+          {
+            "id": "42961234",
+            "name": "AOIP01I-02 220V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "6816798",
+        "value_name": "Frigideira",
+        "values": [
+          {
+            "id": "6816798",
+            "name": "Frigideira",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "BODY_MATERIAL",
+        "name": "Material do corpo",
+        "value_id": "19412569",
+        "value_name": "Plástico e inox",
+        "values": [
+          {
+            "id": "19412569",
+            "name": "Plástico e inox",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HANDLE_GRIP_MATERIAL",
+        "name": "Material do cabo",
+        "value_id": "42961236",
+        "value_name": "-/A",
+        "values": [
+          {
+            "id": "42961236",
+            "name": "-/A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SHAPE",
+        "name": "Forma",
+        "value_id": "39977660",
+        "value_name": "Redonda",
+        "values": [
+          {
+            "id": "39977660",
+            "name": "Redonda",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "4790",
+        "value_name": "9 cm",
+        "values": [
+          {
+            "id": "4790",
+            "name": "9 cm",
+            "struct": {
+              "number": 9,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "1115167",
+        "value_name": "18.5 cm",
+        "values": [
+          {
+            "id": "1115167",
+            "name": "18.5 cm",
+            "struct": {
+              "number": 18.5,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "3038872",
+        "value_name": "22.5 cm",
+        "values": [
+          {
+            "id": "3038872",
+            "name": "22.5 cm",
+            "struct": {
+              "number": 22.5,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "1000143",
+        "value_name": "1.2 kg",
+        "values": [
+          {
+            "id": "1000143",
+            "name": "1.2 kg",
+            "struct": {
+              "number": 1.2,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WITH_NON_STICK_SURFACE",
+        "name": "Com superfície antiaderente",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_RIDGED_SURFACE",
+        "name": "Com superfície canelada",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "name": "É apto para lava-louças",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_LID",
+        "name": "Inclui tampa",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_SPATULA",
+        "name": "Inclui espátula",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "42961235",
+        "value_name": "7898461976650",
+        "values": [
+          {
+            "id": "42961235",
+            "name": "7898461976650",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK000809",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK000809",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      }
+    ],
+    "warnings": [
+      {
+        "department": "shipping",
+        "cause_id": 4053,
+        "code": "shipping.lost_me1_by_user",
+        "message": "User has not mode me1",
+        "references": [
+          "user.shipping_preferences.modes"
+        ]
+      },
+      {
+        "department": "items",
+        "cause_id": 350,
+        "code": "item.shipping.mandatory_free_shipping",
+        "message": "Mandatory free shipping added",
+        "references": []
+      }
+    ],
+    "listing_source": "",
+    "variations": [],
+    "thumbnail_id": "665189-MLA104458491676_012026",
+    "thumbnail": "http://mlb-s2-p.mlstatic.com/665189-MLA104458491676_012026-I.jpg",
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "cart_eligible",
+      "immediate_payment"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB41174119",
+    "domain_id": "MLB-FRYING_PANS_WOKS_GRIDDLES_AND_GRILL_PANS",
+    "seller_custom_field": "VTK000809",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:15:36.865Z",
+    "last_updated": "2026-08-17T01:15:36.865Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  }
+}

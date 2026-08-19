@@ -1,0 +1,23 @@
+{
+  "index": 5,
+  "sku": "VTK017789",
+  "expected_gtin": "7898253503859",
+  "started_at": "2026-08-17T01:13:11.436Z",
+  "local_time": "2026-08-16T22:13:11",
+  "completed_at": "2026-08-17T01:13:11.469Z",
+  "elapsed_ms": 33,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Permak Ray Flex vehicle application has no high-confidence ML category in the validated source set",
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

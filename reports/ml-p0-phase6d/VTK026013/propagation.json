@@ -1,0 +1,544 @@
+{
+  "item": {
+    "settled": true,
+    "attempts": 1,
+    "elapsed_ms": 155,
+    "response": {
+      "ok": true,
+      "status": 200,
+      "headers": {
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+        "access-control-allow-origin": "*",
+        "access-control-max-age": "86400",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Mon, 17 Aug 2026 01:13:17 GMT",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "transfer-encoding": "chunked",
+        "vary": "Accept-Encoding",
+        "via": "1.1 dc4ba626a6645ad4a6ad5918e6e30c24.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "lE_2_MsQ6u4slwZ7Na8p1Wtom0Udlx1s3jbLiTX0prW9Uwg97gFNMQ==",
+        "x-amz-cf-pop": "GIG52-P4",
+        "x-api-server-segment": "legacy",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-request-id": "3a7b4a76-b207-46cb-97f2-36438abb48be",
+        "x-xss-protection": "1; mode=block"
+      },
+      "data": {
+        "id": "MLB5075856301",
+        "site_id": "MLB",
+        "title": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+        "family_name": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+        "family_id": 1085809202063699,
+        "seller_id": 3294514937,
+        "category_id": "MLB439386",
+        "user_product_id": "MLBU4743590157",
+        "official_store_id": null,
+        "price": 479.9,
+        "base_price": 479.9,
+        "original_price": null,
+        "inventory_id": null,
+        "currency_id": "BRL",
+        "initial_quantity": 20,
+        "available_quantity": 20,
+        "sold_quantity": 0,
+        "sale_terms": [],
+        "buying_mode": "buy_it_now",
+        "listing_type_id": "gold_special",
+        "start_time": "2026-08-17T01:13:16.914Z",
+        "stop_time": "2046-08-11T04:00:00.000Z",
+        "end_time": "2046-08-11T04:00:00.000Z",
+        "expiration_time": "2026-11-05T01:13:17.013Z",
+        "condition": "new",
+        "permalink": "https://produto.mercadolivre.com.br/MLB-5075856301-suporte-de-celular-p-pedestal-musico-palestra-sc01-saty-pro-cor-preto-_JM",
+        "thumbnail_id": "767851-MLU74553520059_022024",
+        "thumbnail": "http://http2.mlstatic.com/D_767851-MLU74553520059_022024-I.jpg",
+        "pictures": [
+          {
+            "id": "767851-MLU74553520059_022024",
+            "url": "http://http2.mlstatic.com/D_767851-MLU74553520059_022024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_767851-MLU74553520059_022024-O.jpg",
+            "size": "484x500",
+            "max_size": "1013x1046",
+            "quality": ""
+          },
+          {
+            "id": "610570-MLU73415696454_122023",
+            "url": "http://http2.mlstatic.com/D_610570-MLU73415696454_122023-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_610570-MLU73415696454_122023-O.jpg",
+            "size": "500x300",
+            "max_size": "849x510",
+            "quality": ""
+          },
+          {
+            "id": "662324-MLU74553471225_022024",
+            "url": "http://http2.mlstatic.com/D_662324-MLU74553471225_022024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_662324-MLU74553471225_022024-O.jpg",
+            "size": "500x393",
+            "max_size": "1030x810",
+            "quality": ""
+          },
+          {
+            "id": "950668-MLU74553520069_022024",
+            "url": "http://http2.mlstatic.com/D_950668-MLU74553520069_022024-O.jpg",
+            "secure_url": "https://http2.mlstatic.com/D_950668-MLU74553520069_022024-O.jpg",
+            "size": "500x349",
+            "max_size": "1064x743",
+            "quality": ""
+          }
+        ],
+        "video_id": null,
+        "descriptions": [],
+        "accepts_mercadopago": true,
+        "non_mercado_pago_payment_methods": [],
+        "shipping": {
+          "mode": "me2",
+          "methods": [],
+          "tags": [
+            "mandatory_free_shipping"
+          ],
+          "dimensions": null,
+          "local_pick_up": false,
+          "free_shipping": true,
+          "logistic_type": "xd_drop_off",
+          "store_pick_up": false
+        },
+        "international_delivery_mode": "none",
+        "seller_address": {
+          "address_line": "Rua João Marques de Nóbrega 300",
+          "zip_code": "86206240",
+          "city": {
+            "id": "TUxCQ0lCSTQ1Y2Fh",
+            "name": "Ibiporã"
+          },
+          "state": {
+            "id": "BR-PR",
+            "name": "Paraná"
+          },
+          "country": {
+            "id": "BR",
+            "name": "Brasil"
+          },
+          "search_location": {
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "TUxCUFBBUkExODBlZA",
+              "name": "Paraná"
+            }
+          },
+          "latitude": -23.284674,
+          "longitude": -51.083409,
+          "id": 1586042717
+        },
+        "seller_contact": null,
+        "location": {},
+        "geolocation": {
+          "latitude": -23.284674,
+          "longitude": -51.083409
+        },
+        "coverage_areas": [],
+        "attributes": [
+          {
+            "id": "BASE_TYPE",
+            "name": "Tipo de base",
+            "value_id": "19830858",
+            "value_name": "Pedestal",
+            "values": [
+              {
+                "id": "19830858",
+                "name": "Pedestal",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "value_id": "5451933",
+            "value_name": "Saty",
+            "values": [
+              {
+                "id": "5451933",
+                "name": "Saty",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "DIAMETER",
+            "name": "Diâmetro",
+            "value_id": "15074673",
+            "value_name": "15 cm",
+            "values": [
+              {
+                "id": "15074673",
+                "name": "15 cm",
+                "struct": {
+                  "number": 15,
+                  "unit": "cm"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "value_id": "27566111",
+            "value_name": "7898572860039",
+            "values": [
+              {
+                "id": "27566111",
+                "name": "7898572860039",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "INCLUDES_ANTIVIBRATION_STAND",
+            "name": "Inclui suporte antivibração",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "IS_TABLE_STAND",
+            "name": "É suporte de mesa",
+            "value_id": "242084",
+            "value_name": "Não",
+            "values": [
+              {
+                "id": "242084",
+                "name": "Não",
+                "struct": null
+              }
+            ],
+            "value_type": "boolean"
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "value_id": "2230284",
+            "value_name": "Novo",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ],
+            "value_type": "list"
+          },
+          {
+            "id": "MATERIAL",
+            "name": "Material",
+            "value_id": "2748302",
+            "value_name": "Plástico",
+            "values": [
+              {
+                "id": "2748302",
+                "name": "Plástico",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "value_id": "22973465",
+            "value_name": "SC-01",
+            "values": [
+              {
+                "id": "22973465",
+                "name": "SC-01",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "ROTATION_ANGLE",
+            "name": "Ângulo de rotação",
+            "value_id": "8671387",
+            "value_name": "360°",
+            "values": [
+              {
+                "id": "8671387",
+                "name": "360°",
+                "struct": {
+                  "number": 360,
+                  "unit": "°"
+                }
+              }
+            ],
+            "value_type": "number_unit"
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "value_id": null,
+            "value_name": "VTK026013",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK026013",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          },
+          {
+            "id": "STAND_TYPE",
+            "name": "Tipo de suporte",
+            "value_id": "28030143",
+            "value_name": "Celular",
+            "values": [
+              {
+                "id": "28030143",
+                "name": "Celular",
+                "struct": null
+              }
+            ],
+            "value_type": "string"
+          }
+        ],
+        "warnings": [],
+        "listing_source": "",
+        "variations": [],
+        "status": "active",
+        "sub_status": [],
+        "tags": [
+          "immediate_payment",
+          "cart_eligible"
+        ],
+        "warranty": null,
+        "catalog_product_id": "MLB29045908",
+        "domain_id": "MLB-MICROPHONE_STANDS",
+        "seller_custom_field": "VTK026013",
+        "parent_item_id": null,
+        "differential_pricing": null,
+        "deal_ids": [],
+        "automatic_relist": false,
+        "date_created": "2026-08-17T01:13:17.151Z",
+        "last_updated": "2026-08-17T01:13:17.151Z",
+        "health": null,
+        "catalog_listing": true,
+        "item_relations": [],
+        "channels": [
+          "marketplace"
+        ]
+      }
+    }
+  },
+  "user_product_family": {
+    "settled": true,
+    "attempts": 2,
+    "elapsed_ms": 3689,
+    "user_product": {
+      "id": "MLBU4743590157",
+      "name": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+      "family_name": "Suporte De Celular P/ Pedestal Musico Palestra Sc01 Saty Pro Cor Preto",
+      "site_id": "MLB",
+      "user_id": 3294514937,
+      "domain_id": "MLB-MICROPHONE_STANDS",
+      "attributes": [
+        {
+          "id": "STAND_TYPE",
+          "name": "Tipo de suporte",
+          "values": [
+            {
+              "id": "28030143",
+              "name": "Celular",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "values": [
+            {
+              "id": "15074673",
+              "name": "15 cm",
+              "struct": {
+                "number": 15,
+                "unit": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "values": [
+            {
+              "id": "2748302",
+              "name": "Plástico",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ROTATION_ANGLE",
+          "name": "Ângulo de rotação",
+          "values": [
+            {
+              "id": "8671387",
+              "name": "360°",
+              "struct": {
+                "number": 360,
+                "unit": "°"
+              }
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ANTIVIBRATION_STAND",
+          "name": "Inclui suporte antivibração",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "IS_TABLE_STAND",
+          "name": "É suporte de mesa",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "values": [
+            {
+              "id": "27566111",
+              "name": "7898572860039",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BASE_TYPE",
+          "name": "Tipo de base",
+          "values": [
+            {
+              "id": "19830858",
+              "name": "Pedestal",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "values": [
+            {
+              "id": "22973465",
+              "name": "SC-01",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "name": "Condição do item",
+          "values": [
+            {
+              "id": "2230284",
+              "name": "Novo",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "values": [
+            {
+              "id": "5451933",
+              "name": "Saty",
+              "struct": null
+            }
+          ]
+        },
+        {
+          "id": "SELLER_SKU",
+          "name": "SKU",
+          "values": [
+            {
+              "id": null,
+              "name": "VTK026013",
+              "struct": null
+            }
+          ]
+        }
+      ],
+      "pictures": [
+        {
+          "id": "767851-MLU74553520059_022024",
+          "secure_url": "https://http2.mlstatic.com/D_767851-MLU74553520059_022024-O.jpg"
+        },
+        {
+          "id": "610570-MLU73415696454_122023",
+          "secure_url": "https://http2.mlstatic.com/D_610570-MLU73415696454_122023-O.jpg"
+        },
+        {
+          "id": "662324-MLU74553471225_022024",
+          "secure_url": "https://http2.mlstatic.com/D_662324-MLU74553471225_022024-O.jpg"
+        },
+        {
+          "id": "950668-MLU74553520069_022024",
+          "secure_url": "https://http2.mlstatic.com/D_950668-MLU74553520069_022024-O.jpg"
+        }
+      ],
+      "thumbnail": {
+        "id": "767851-MLU74553520059_022024",
+        "secure_url": "https://http2.mlstatic.com/D_767851-MLU74553520059_022024-O.jpg"
+      },
+      "catalog_product_id": "MLB29045908",
+      "bundle": null,
+      "family_id": 1085809202063699,
+      "tags": [
+        "primary"
+      ],
+      "date_created": "2026-08-17T01:13:17.285+0000",
+      "last_updated": "2026-08-17T01:13:17.285+0000",
+      "main_features": [],
+      "commingling": null
+    },
+    "family": {
+      "user_products_ids": [
+        "MLBU4743590157"
+      ],
+      "family_id": 1085809202063699,
+      "site_id": "MLB",
+      "user_id": 3294514937
+    }
+  }
+}

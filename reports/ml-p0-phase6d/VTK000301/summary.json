@@ -1,0 +1,23 @@
+{
+  "index": 69,
+  "sku": "VTK000301",
+  "expected_gtin": "7898461970368",
+  "started_at": "2026-08-17T01:16:53.671Z",
+  "local_time": "2026-08-16T22:16:53",
+  "completed_at": "2026-08-17T01:16:53.711Z",
+  "elapsed_ms": 40,
+  "result": "BLOCK_CATALOG_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "catalog title identifies 30 cm while local product is 40 cm",
+  "sanitation": "CATALOG_REVIEW_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

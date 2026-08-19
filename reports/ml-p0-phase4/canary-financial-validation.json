@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-08-16T06:25:49.043Z",
+  "stage": "immediately_before_post",
+  "result": "CANARY_POST_FAILED",
+  "current": {
+    "checked_at": "2026-08-16T06:25:48.431Z",
+    "price": 187.22,
+    "listing_type_id": "gold_pro",
+    "cost": 96.22,
+    "commission": 33.7,
+    "commission_rate_percent": 18,
+    "shipping": 19.85,
+    "tax": 9.361,
+    "other_expenses": 0,
+    "profit": 28.088999999999988,
+    "margin_percent": 15.003204785813477,
+    "target_margin_percent": 15,
+    "approved": true,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 33.7,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 33.7,
+        "percentage_fee": 18
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 19.85,
+          "currency_id": "BRL",
+          "billable_weight": 442,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 39.7
+          }
+        }
+      }
+    }
+  },
+  "post_http_status": 500,
+  "item_created": false,
+  "financial_gate_passed": true
+}

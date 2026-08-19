@@ -1,0 +1,135 @@
+{
+  "payload": {
+    "family_name": "Mastro Proeletronic KTAA-2000",
+    "category_id": "MLB11529",
+    "catalog_product_id": "MLB21469644",
+    "catalog_listing": true,
+    "price": 99.9,
+    "currency_id": "BRL",
+    "available_quantity": 41,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017376/01-70b0b20e7e55ce842f91.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "1175465",
+        "value_name": "Proeletronic"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "16289470",
+        "value_name": "Suporte Antena Externa"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52053",
+        "value_name": "Prateado"
+      },
+      {
+        "id": "MOUNTING_PLACES",
+        "value_id": "7720908",
+        "value_name": "Parede"
+      },
+      {
+        "id": "IS_INCLINABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_ARTICULATED_MOUNT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SWIVELLING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_FIXED_MOUNT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_MOTORIZED",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "16289516",
+            "name": "7898419499132"
+          },
+          {
+            "id": "40728279",
+            "name": "17898419502389"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7877821",
+        "value_name": "40 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7847007",
+        "value_name": "6 cm"
+      },
+      {
+        "id": "INCLUDES_INSTALLATION_KIT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_CABLE_ORGANIZER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017376"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK017376"
+  },
+  "sha256": "d510cabe262f33663312a97bedddde77dd9a02861d967a1c66cb137ba6c0a9c8",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 17,
+  "pictures_count": 1,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017376/01-70b0b20e7e55ce842f91.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ]
+}

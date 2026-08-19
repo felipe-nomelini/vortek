@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018292",
+  "gate": "BLOCK_GTIN_UNIT_CONFLICT",
+  "evidence": "exact GTIN catalog represents a complete trio bundle, not the standalone Pioneer subwoofer",
+  "local_value": "4988028352720",
+  "found_value": "complete trio bundle",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB27668505",
+  "timestamp": "2026-08-17T01:16:54.063Z"
+}

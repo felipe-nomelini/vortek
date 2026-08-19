@@ -1,0 +1,186 @@
+{
+  "payload": {
+    "family_name": "Microfone Sennheiser E906",
+    "category_id": "MLB4469",
+    "catalog_product_id": "MLB37761258",
+    "catalog_listing": true,
+    "price": 6299.9,
+    "currency_id": "BRL",
+    "available_quantity": 6,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/85760/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85760/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/85760/550/3.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "15371",
+        "value_name": "Sennheiser"
+      },
+      {
+        "id": "LINE",
+        "value_id": "145462",
+        "value_name": "Evolution Series"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "2364969",
+        "value_name": "E906"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52051",
+        "value_name": "Cinza-escuro"
+      },
+      {
+        "id": "MICROPHONE_FORMATS",
+        "value_id": "182429",
+        "value_name": "Estúdio"
+      },
+      {
+        "id": "MICROPHONE_TYPES",
+        "value_id": "103745",
+        "value_name": "Dinâmico"
+      },
+      {
+        "id": "POLAR_PATTERNS",
+        "value_id": "2253807",
+        "value_name": "Cardioide"
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "value_id": "934836",
+        "value_name": "1"
+      },
+      {
+        "id": "CONNECTION_TYPES",
+        "value_id": "1210905",
+        "value_name": "Com fio"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MIN_FREQUENCY",
+        "value_id": "7229468",
+        "value_name": "40 Hz"
+      },
+      {
+        "id": "MAX_FREQUENCY",
+        "value_id": "7229466",
+        "value_name": "18 kHz"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BUILT_IN_SPEAKERS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "15438",
+        "value_name": "Shure"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "76666379",
+        "value_name": "e906"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS",
+        "value_id": "2305169",
+        "value_name": "XLR"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "26520286",
+        "value_name": "4044155001174"
+      },
+      {
+        "id": "IMPEDANCE",
+        "value_id": "1247746",
+        "value_name": "350 Ω"
+      },
+      {
+        "id": "COMPATIBLE_OPERATIVE_SYSTEMS",
+        "values": [
+          {
+            "id": "4804541",
+            "name": "Windows"
+          },
+          {
+            "id": "189046",
+            "name": "iOS"
+          },
+          {
+            "id": "168370",
+            "name": "Android"
+          }
+        ]
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "values": [
+          {
+            "id": "8621306",
+            "name": "Computador"
+          },
+          {
+            "id": "11554747",
+            "name": "Tablet"
+          }
+        ]
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "24028945",
+        "value_name": "Metal"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7800081",
+        "value_name": "20 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "8036741",
+        "value_name": "140 g"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK006377"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK006377"
+  },
+  "sha256": "bf0a6b5bc6f861e861aecdcdcfb91ee5868e57cd326393cf1516c6a9aff8f7e8",
+  "family_name_sha256": "65a198557c78679f8dfe7240f97d8ddb4d013a9c812ded8dc8edabde3812ad6b",
+  "title_absent": true,
+  "description_absent": true
+}

@@ -1,0 +1,1452 @@
+{
+  "checked_at": "2026-08-17T01:14:34.138Z",
+  "item": {
+    "id": "MLB7432766020",
+    "site_id": "MLB",
+    "title": "Cabo Para Instrumentos Hayonik P10xp10 Amarelo 5 Metros Confiável",
+    "family_name": "Hayonik Player P10",
+    "family_id": 5241795118625107,
+    "seller_id": 3294514937,
+    "category_id": "MLB72745",
+    "user_product_id": "MLBU4743600903",
+    "official_store_id": null,
+    "price": 269.9,
+    "base_price": 269.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 15,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T01:14:32.629Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:14:32.692Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432766020-cabo-para-instrumentos-hayonik-p10xp10-amarelo-5-metros-confiavel-_JM",
+    "thumbnail_id": "794891-MLA99510133922_112025",
+    "thumbnail": "http://http2.mlstatic.com/D_794891-MLA99510133922_112025-I.jpg",
+    "pictures": [
+      {
+        "id": "794891-MLA99510133922_112025",
+        "url": "http://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg",
+        "size": "427x500",
+        "max_size": "1027x1200",
+        "quality": ""
+      },
+      {
+        "id": "930595-MLA91567101840_092025",
+        "url": "http://http2.mlstatic.com/D_930595-MLA91567101840_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_930595-MLA91567101840_092025-O.jpg",
+        "size": "478x500",
+        "max_size": "1148x1200",
+        "quality": ""
+      },
+      {
+        "id": "831467-MLA82669523748_032025",
+        "url": "http://http2.mlstatic.com/D_831467-MLA82669523748_032025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_831467-MLA82669523748_032025-O.jpg",
+        "size": "129x500",
+        "max_size": "311x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "AWG_SIZE",
+        "name": "Tamanho AWG",
+        "value_id": "16088654",
+        "value_name": "24",
+        "values": [
+          {
+            "id": "16088654",
+            "name": "24",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "1088020",
+        "value_name": "Hayonik",
+        "values": [
+          {
+            "id": "1088020",
+            "name": "Hayonik",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "name": "Tipo de cabo e adaptador",
+        "value_id": "22998232",
+        "value_name": "P10",
+        "values": [
+          {
+            "id": "22998232",
+            "name": "P10",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "name": "Diâmetro do cabo",
+        "value_id": "16625013",
+        "value_name": "0.2 mm",
+        "values": [
+          {
+            "id": "16625013",
+            "name": "0.2 mm",
+            "struct": {
+              "number": 0.2,
+              "unit": "mm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "name": "Comprimento do cabo",
+        "value_id": "129121",
+        "value_name": "5 m",
+        "values": [
+          {
+            "id": "129121",
+            "name": "5 m",
+            "struct": {
+              "number": 5,
+              "unit": "m"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52007",
+        "value_name": "Amarelo",
+        "values": [
+          {
+            "id": "52007",
+            "name": "Amarelo",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "name": "Material de revestimento do conector",
+        "value_id": "75049731",
+        "value_name": "Niquelado",
+        "values": [
+          {
+            "id": "75049731",
+            "name": "Niquelado",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "48458347",
+        "value_name": "7899638111188",
+        "values": [
+          {
+            "id": "48458347",
+            "name": "7899638111188",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "name": "Conector de entrada",
+        "value_id": "16484508",
+        "value_name": "P10 Mono",
+        "values": [
+          {
+            "id": "16484508",
+            "name": "P10 Mono",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "name": "Quantidade de conectores de entrada",
+        "value_id": "15267153",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "15267153",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "name": "Gênero do conector de entrada",
+        "value_id": "6116079",
+        "value_name": "Macho",
+        "values": [
+          {
+            "id": "6116079",
+            "name": "Macho",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "3088206",
+        "value_name": "Player",
+        "values": [
+          {
+            "id": "3088206",
+            "name": "Player",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "name": "Conector de saída",
+        "value_id": "16173852",
+        "value_name": "P10 Mono",
+        "values": [
+          {
+            "id": "16173852",
+            "name": "P10 Mono",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "name": "Quantidade de conectores de saída",
+        "value_id": "15267154",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "15267154",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "name": "Gênero do conector de saída",
+        "value_id": "6116086",
+        "value_name": "Macho",
+        "values": [
+          {
+            "id": "6116086",
+            "name": "Macho",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "value_id": "13827368",
+        "value_name": "Cabo adaptador",
+        "values": [
+          {
+            "id": "13827368",
+            "name": "Cabo adaptador",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK006158",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK006158",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB46996574",
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+    "seller_custom_field": "VTK006158",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:14:32.772Z",
+    "last_updated": "2026-08-17T01:14:32.772Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "user_product": {
+    "id": "MLBU4743600903",
+    "name": "Cabo Para Instrumentos Hayonik P10xp10 Amarelo 5 Metros Confiável",
+    "family_name": "Hayonik Player P10",
+    "site_id": "MLB",
+    "user_id": 3294514937,
+    "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+    "attributes": [
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK006158",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "AWG_SIZE",
+        "name": "Tamanho AWG",
+        "values": [
+          {
+            "id": "16088654",
+            "name": "24",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "name": "Conector de entrada",
+        "values": [
+          {
+            "id": "16484508",
+            "name": "P10 Mono",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "values": [
+          {
+            "id": "48458347",
+            "name": "7899638111188",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "values": [
+          {
+            "id": "52007",
+            "name": "Amarelo",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "name": "Quantidade de conectores de entrada",
+        "values": [
+          {
+            "id": "15267153",
+            "name": "1",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "name": "Comprimento do cabo",
+        "values": [
+          {
+            "id": "129121",
+            "name": "5 m",
+            "struct": {
+              "number": 5,
+              "unit": "m"
+            }
+          }
+        ]
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "name": "Gênero do conector de saída",
+        "values": [
+          {
+            "id": "6116086",
+            "name": "Macho",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "values": [
+          {
+            "id": "3088206",
+            "name": "Player",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "name": "Tipo de produto",
+        "values": [
+          {
+            "id": "13827368",
+            "name": "Cabo adaptador",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "name": "Diâmetro do cabo",
+        "values": [
+          {
+            "id": "16625013",
+            "name": "0.2 mm",
+            "struct": {
+              "number": 0.2,
+              "unit": "mm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "name": "Tipo de cabo e adaptador",
+        "values": [
+          {
+            "id": "22998232",
+            "name": "P10",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "name": "Gênero do conector de entrada",
+        "values": [
+          {
+            "id": "6116079",
+            "name": "Macho",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "name": "Material de revestimento do conector",
+        "values": [
+          {
+            "id": "75049731",
+            "name": "Niquelado",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "name": "Quantidade de conectores de saída",
+        "values": [
+          {
+            "id": "15267154",
+            "name": "1",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "values": [
+          {
+            "id": "1088020",
+            "name": "Hayonik",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "name": "Conector de saída",
+        "values": [
+          {
+            "id": "16173852",
+            "name": "P10 Mono",
+            "struct": null
+          }
+        ]
+      }
+    ],
+    "pictures": [
+      {
+        "id": "794891-MLA99510133922_112025",
+        "secure_url": "https://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg"
+      },
+      {
+        "id": "930595-MLA91567101840_092025",
+        "secure_url": "https://http2.mlstatic.com/D_930595-MLA91567101840_092025-O.jpg"
+      },
+      {
+        "id": "831467-MLA82669523748_032025",
+        "secure_url": "https://http2.mlstatic.com/D_831467-MLA82669523748_032025-O.jpg"
+      }
+    ],
+    "thumbnail": {
+      "id": "794891-MLA99510133922_112025",
+      "secure_url": "https://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg"
+    },
+    "catalog_product_id": "MLB46996574",
+    "bundle": null,
+    "family_id": 5241795118625107,
+    "tags": [
+      "primary"
+    ],
+    "date_created": "2026-08-17T01:14:32.874+0000",
+    "last_updated": "2026-08-17T01:14:32.874+0000",
+    "main_features": [],
+    "commingling": null
+  },
+  "family": {
+    "user_products_ids": [
+      "MLBU4772715326",
+      "MLBU4772720838"
+    ],
+    "family_id": 5241795118625107,
+    "site_id": "MLB",
+    "user_id": 3294514937
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "title": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "propagation": {
+    "item": {
+      "settled": true,
+      "attempts": 1,
+      "elapsed_ms": 161,
+      "response": {
+        "ok": true,
+        "status": 200,
+        "headers": {
+          "access-control-allow-headers": "Content-Type",
+          "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+          "access-control-allow-origin": "*",
+          "access-control-max-age": "86400",
+          "connection": "keep-alive",
+          "content-encoding": "gzip",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Mon, 17 Aug 2026 01:14:33 GMT",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "transfer-encoding": "chunked",
+          "vary": "Accept-Encoding",
+          "via": "1.1 dc4ba626a6645ad4a6ad5918e6e30c24.cloudfront.net (CloudFront)",
+          "x-amz-cf-id": "Gfd-nanPO8KID7pjWA8Ba6rBbp9C8gW-q7Fg3lwLOCsYFQt_pp5rIA==",
+          "x-amz-cf-pop": "GIG52-P4",
+          "x-api-server-segment": "legacy",
+          "x-cache": "Miss from cloudfront",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-request-id": "3517ecea-f34c-4f55-b9f8-6dbd2196ac8f",
+          "x-xss-protection": "1; mode=block"
+        },
+        "data": {
+          "id": "MLB7432766020",
+          "site_id": "MLB",
+          "title": "Cabo Para Instrumentos Hayonik P10xp10 Amarelo 5 Metros Confiável",
+          "family_name": "Hayonik Player P10",
+          "family_id": 5241795118625107,
+          "seller_id": 3294514937,
+          "category_id": "MLB72745",
+          "user_product_id": "MLBU4743600903",
+          "official_store_id": null,
+          "price": 269.9,
+          "base_price": 269.9,
+          "original_price": null,
+          "inventory_id": null,
+          "currency_id": "BRL",
+          "initial_quantity": 15,
+          "available_quantity": 15,
+          "sold_quantity": 0,
+          "sale_terms": [],
+          "buying_mode": "buy_it_now",
+          "listing_type_id": "gold_special",
+          "start_time": "2026-08-17T01:14:32.629Z",
+          "stop_time": "2046-08-11T04:00:00.000Z",
+          "end_time": "2046-08-11T04:00:00.000Z",
+          "expiration_time": "2026-11-05T01:14:32.692Z",
+          "condition": "new",
+          "permalink": "https://produto.mercadolivre.com.br/MLB-7432766020-cabo-para-instrumentos-hayonik-p10xp10-amarelo-5-metros-confiavel-_JM",
+          "thumbnail_id": "794891-MLA99510133922_112025",
+          "thumbnail": "http://http2.mlstatic.com/D_794891-MLA99510133922_112025-I.jpg",
+          "pictures": [
+            {
+              "id": "794891-MLA99510133922_112025",
+              "url": "http://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg",
+              "size": "427x500",
+              "max_size": "1027x1200",
+              "quality": ""
+            },
+            {
+              "id": "930595-MLA91567101840_092025",
+              "url": "http://http2.mlstatic.com/D_930595-MLA91567101840_092025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_930595-MLA91567101840_092025-O.jpg",
+              "size": "478x500",
+              "max_size": "1148x1200",
+              "quality": ""
+            },
+            {
+              "id": "831467-MLA82669523748_032025",
+              "url": "http://http2.mlstatic.com/D_831467-MLA82669523748_032025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_831467-MLA82669523748_032025-O.jpg",
+              "size": "129x500",
+              "max_size": "311x1200",
+              "quality": ""
+            }
+          ],
+          "video_id": null,
+          "descriptions": [],
+          "accepts_mercadopago": true,
+          "non_mercado_pago_payment_methods": [],
+          "shipping": {
+            "mode": "me2",
+            "methods": [],
+            "tags": [
+              "mandatory_free_shipping"
+            ],
+            "dimensions": null,
+            "local_pick_up": false,
+            "free_shipping": true,
+            "logistic_type": "xd_drop_off",
+            "store_pick_up": false
+          },
+          "international_delivery_mode": "none",
+          "seller_address": {
+            "address_line": "Rua João Marques de Nóbrega 300",
+            "zip_code": "86206240",
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "BR-PR",
+              "name": "Paraná"
+            },
+            "country": {
+              "id": "BR",
+              "name": "Brasil"
+            },
+            "search_location": {
+              "city": {
+                "id": "TUxCQ0lCSTQ1Y2Fh",
+                "name": "Ibiporã"
+              },
+              "state": {
+                "id": "TUxCUFBBUkExODBlZA",
+                "name": "Paraná"
+              }
+            },
+            "latitude": -23.284674,
+            "longitude": -51.083409,
+            "id": 1586042717
+          },
+          "seller_contact": null,
+          "location": {},
+          "geolocation": {
+            "latitude": -23.284674,
+            "longitude": -51.083409
+          },
+          "coverage_areas": [],
+          "attributes": [
+            {
+              "id": "AWG_SIZE",
+              "name": "Tamanho AWG",
+              "value_id": "16088654",
+              "value_name": "24",
+              "values": [
+                {
+                  "id": "16088654",
+                  "name": "24",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            },
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "value_id": "1088020",
+              "value_name": "Hayonik",
+              "values": [
+                {
+                  "id": "1088020",
+                  "name": "Hayonik",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "CABLE_AND_ADAPTER_TYPE",
+              "name": "Tipo de cabo e adaptador",
+              "value_id": "22998232",
+              "value_name": "P10",
+              "values": [
+                {
+                  "id": "22998232",
+                  "name": "P10",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "CABLE_DIAMETER",
+              "name": "Diâmetro do cabo",
+              "value_id": "16625013",
+              "value_name": "0.2 mm",
+              "values": [
+                {
+                  "id": "16625013",
+                  "name": "0.2 mm",
+                  "struct": {
+                    "number": 0.2,
+                    "unit": "mm"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "CABLE_LENGTH",
+              "name": "Comprimento do cabo",
+              "value_id": "129121",
+              "value_name": "5 m",
+              "values": [
+                {
+                  "id": "129121",
+                  "name": "5 m",
+                  "struct": {
+                    "number": 5,
+                    "unit": "m"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "COLOR",
+              "name": "Cor",
+              "value_id": "52007",
+              "value_name": "Amarelo",
+              "values": [
+                {
+                  "id": "52007",
+                  "name": "Amarelo",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "CONNECTOR_COATING_MATERIAL",
+              "name": "Material de revestimento do conector",
+              "value_id": "75049731",
+              "value_name": "Niquelado",
+              "values": [
+                {
+                  "id": "75049731",
+                  "name": "Niquelado",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "GTIN",
+              "name": "Código universal de produto",
+              "value_id": "48458347",
+              "value_name": "7899638111188",
+              "values": [
+                {
+                  "id": "48458347",
+                  "name": "7899638111188",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "INPUT_CONNECTOR",
+              "name": "Conector de entrada",
+              "value_id": "16484508",
+              "value_name": "P10 Mono",
+              "values": [
+                {
+                  "id": "16484508",
+                  "name": "P10 Mono",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "INPUT_CONNECTORS_NUMBER",
+              "name": "Quantidade de conectores de entrada",
+              "value_id": "15267153",
+              "value_name": "1",
+              "values": [
+                {
+                  "id": "15267153",
+                  "name": "1",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            },
+            {
+              "id": "INPUT_CONNECTOR_GENDER",
+              "name": "Gênero do conector de entrada",
+              "value_id": "6116079",
+              "value_name": "Macho",
+              "values": [
+                {
+                  "id": "6116079",
+                  "name": "Macho",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "ITEM_CONDITION",
+              "name": "Condição do item",
+              "value_id": "2230284",
+              "value_name": "Novo",
+              "values": [
+                {
+                  "id": "2230284",
+                  "name": "Novo",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "MODEL",
+              "name": "Modelo",
+              "value_id": "3088206",
+              "value_name": "Player",
+              "values": [
+                {
+                  "id": "3088206",
+                  "name": "Player",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "OUTPUT_CONNECTOR",
+              "name": "Conector de saída",
+              "value_id": "16173852",
+              "value_name": "P10 Mono",
+              "values": [
+                {
+                  "id": "16173852",
+                  "name": "P10 Mono",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "OUTPUT_CONNECTORS_NUMBER",
+              "name": "Quantidade de conectores de saída",
+              "value_id": "15267154",
+              "value_name": "1",
+              "values": [
+                {
+                  "id": "15267154",
+                  "name": "1",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            },
+            {
+              "id": "OUTPUT_CONNECTOR_GENDER",
+              "name": "Gênero do conector de saída",
+              "value_id": "6116086",
+              "value_name": "Macho",
+              "values": [
+                {
+                  "id": "6116086",
+                  "name": "Macho",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "PRODUCT_TYPE",
+              "name": "Tipo de produto",
+              "value_id": "13827368",
+              "value_name": "Cabo adaptador",
+              "values": [
+                {
+                  "id": "13827368",
+                  "name": "Cabo adaptador",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "SALE_FORMAT",
+              "name": "Formato de venda",
+              "value_id": "1359391",
+              "value_name": "Unidade",
+              "values": [
+                {
+                  "id": "1359391",
+                  "name": "Unidade",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "SELLER_SKU",
+              "name": "SKU",
+              "value_id": null,
+              "value_name": "VTK006158",
+              "values": [
+                {
+                  "id": null,
+                  "name": "VTK006158",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "UNITS_PER_PACK",
+              "name": "Unidades por kit",
+              "value_id": "2726554",
+              "value_name": "1",
+              "values": [
+                {
+                  "id": "2726554",
+                  "name": "1",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            }
+          ],
+          "warnings": [],
+          "listing_source": "",
+          "variations": [],
+          "status": "active",
+          "sub_status": [],
+          "tags": [
+            "immediate_payment",
+            "cart_eligible"
+          ],
+          "warranty": null,
+          "catalog_product_id": "MLB46996574",
+          "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+          "seller_custom_field": "VTK006158",
+          "parent_item_id": null,
+          "differential_pricing": null,
+          "deal_ids": [],
+          "automatic_relist": false,
+          "date_created": "2026-08-17T01:14:32.772Z",
+          "last_updated": "2026-08-17T01:14:32.772Z",
+          "health": null,
+          "catalog_listing": true,
+          "item_relations": [],
+          "channels": [
+            "marketplace"
+          ]
+        }
+      }
+    },
+    "user_product_family": {
+      "settled": true,
+      "attempts": 1,
+      "elapsed_ms": 335,
+      "user_product": {
+        "id": "MLBU4743600903",
+        "name": "Cabo Para Instrumentos Hayonik P10xp10 Amarelo 5 Metros Confiável",
+        "family_name": "Hayonik Player P10",
+        "site_id": "MLB",
+        "user_id": 3294514937,
+        "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "attributes": [
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK006158",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "AWG_SIZE",
+            "name": "Tamanho AWG",
+            "values": [
+              {
+                "id": "16088654",
+                "name": "24",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "INPUT_CONNECTOR",
+            "name": "Conector de entrada",
+            "values": [
+              {
+                "id": "16484508",
+                "name": "P10 Mono",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "values": [
+              {
+                "id": "48458347",
+                "name": "7899638111188",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "values": [
+              {
+                "id": "52007",
+                "name": "Amarelo",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "INPUT_CONNECTORS_NUMBER",
+            "name": "Quantidade de conectores de entrada",
+            "values": [
+              {
+                "id": "15267153",
+                "name": "1",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "CABLE_LENGTH",
+            "name": "Comprimento do cabo",
+            "values": [
+              {
+                "id": "129121",
+                "name": "5 m",
+                "struct": {
+                  "number": 5,
+                  "unit": "m"
+                }
+              }
+            ]
+          },
+          {
+            "id": "OUTPUT_CONNECTOR_GENDER",
+            "name": "Gênero do conector de saída",
+            "values": [
+              {
+                "id": "6116086",
+                "name": "Macho",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "values": [
+              {
+                "id": "3088206",
+                "name": "Player",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "PRODUCT_TYPE",
+            "name": "Tipo de produto",
+            "values": [
+              {
+                "id": "13827368",
+                "name": "Cabo adaptador",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "CABLE_DIAMETER",
+            "name": "Diâmetro do cabo",
+            "values": [
+              {
+                "id": "16625013",
+                "name": "0.2 mm",
+                "struct": {
+                  "number": 0.2,
+                  "unit": "mm"
+                }
+              }
+            ]
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "CABLE_AND_ADAPTER_TYPE",
+            "name": "Tipo de cabo e adaptador",
+            "values": [
+              {
+                "id": "22998232",
+                "name": "P10",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "INPUT_CONNECTOR_GENDER",
+            "name": "Gênero do conector de entrada",
+            "values": [
+              {
+                "id": "6116079",
+                "name": "Macho",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "CONNECTOR_COATING_MATERIAL",
+            "name": "Material de revestimento do conector",
+            "values": [
+              {
+                "id": "75049731",
+                "name": "Niquelado",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "OUTPUT_CONNECTORS_NUMBER",
+            "name": "Quantidade de conectores de saída",
+            "values": [
+              {
+                "id": "15267154",
+                "name": "1",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "values": [
+              {
+                "id": "1088020",
+                "name": "Hayonik",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "OUTPUT_CONNECTOR",
+            "name": "Conector de saída",
+            "values": [
+              {
+                "id": "16173852",
+                "name": "P10 Mono",
+                "struct": null
+              }
+            ]
+          }
+        ],
+        "pictures": [
+          {
+            "id": "794891-MLA99510133922_112025",
+            "secure_url": "https://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg"
+          },
+          {
+            "id": "930595-MLA91567101840_092025",
+            "secure_url": "https://http2.mlstatic.com/D_930595-MLA91567101840_092025-O.jpg"
+          },
+          {
+            "id": "831467-MLA82669523748_032025",
+            "secure_url": "https://http2.mlstatic.com/D_831467-MLA82669523748_032025-O.jpg"
+          }
+        ],
+        "thumbnail": {
+          "id": "794891-MLA99510133922_112025",
+          "secure_url": "https://http2.mlstatic.com/D_794891-MLA99510133922_112025-O.jpg"
+        },
+        "catalog_product_id": "MLB46996574",
+        "bundle": null,
+        "family_id": 5241795118625107,
+        "tags": [
+          "primary"
+        ],
+        "date_created": "2026-08-17T01:14:32.874+0000",
+        "last_updated": "2026-08-17T01:14:32.874+0000",
+        "main_features": [],
+        "commingling": null
+      },
+      "family": {
+        "user_products_ids": [
+          "MLBU4772715326",
+          "MLBU4772720838"
+        ],
+        "family_id": 5241795118625107,
+        "site_id": "MLB",
+        "user_id": 3294514937
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

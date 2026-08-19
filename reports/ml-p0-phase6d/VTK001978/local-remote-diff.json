@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432632684",
+      "local": "MLB7432632684",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001978",
+      "local": "VTK001978",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "c65bc62f-8b77-4096-aead-8f3c4911e14c",
+      "local": "c65bc62f-8b77-4096-aead-8f3c4911e14c",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Kit 6 Cordas Elixir Nanoweb 16002 P/ Violão Acústico 10-47",
+      "local": "Kit 6 Cordas Elixir Nanoweb 16002 P/ Violão Acústico 10-47",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 699.9,
+      "local": 699.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432632684-kit-6-cordas-elixir-nanoweb-16002-p-violo-acustico-10-47-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432632684-kit-6-cordas-elixir-nanoweb-16002-p-violo-acustico-10-47-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

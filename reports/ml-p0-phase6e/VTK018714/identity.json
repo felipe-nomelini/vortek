@@ -1,0 +1,296 @@
+{
+  "checked_at": "2026-08-17T12:54:09.542Z",
+  "product": {
+    "id": "61eddeb1-1475-4a17-8344-adbeca5cc8af",
+    "sku": "VTK018714",
+    "nome": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+    "marca": "PERMAK",
+    "gtin": "7898253497813"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/189698",
+    "consulted_at": "2026-08-17T12:54:08.609Z",
+    "product": {
+      "produtoid": "189698",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 14.9,
+      "preco_crossdocking": 14.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 14.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+      "titulo_curto": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+      "categoriaid": "117480",
+      "categoria_nome": "Automotivo/ Acessórios Para Instalacao/ Moldura",
+      "abc": null,
+      "ean11": "7898253497813",
+      "ncm": "85299090",
+      "descricao": "Contra Frente <br />\r\nPlástica <br />\r\nToyota Hilux / SW4 2 Din <br />\r\nPermak 89/Z3",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PERMAK",
+      "modelo": "",
+      "peso": 0.028,
+      "largura": 5,
+      "altura": 1,
+      "profundidade": 10,
+      "peso_embalagem": 0.028,
+      "largura_embalagem": 5,
+      "altura_embalagem": 1,
+      "profundidade_embalagem": 10,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/1/8/189698_67d2cadb77756.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1356,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.112.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-06-01 16:36:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-06-01 16:36:24.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 5,
+      "tempo_cross": 0,
+      "estoque_total": 5,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/1/8/189698_67d2cadb77756.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML exact GTIN catalog MLB51341026 + DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/189698",
+  "source_confidence": "ML_catalog_and_supplier",
+  "identity_assessment": {
+    "passed": true,
+    "conflicts": [],
+    "catalog_brand": "Permak",
+    "model": "89-Z3",
+    "local_pack": null,
+    "catalog_pack": null,
+    "local_voltages": [],
+    "catalog_voltages": [],
+    "local_colors": [],
+    "catalog_colors": [
+      "preto"
+    ],
+    "title_similarity": 0.5
+  },
+  "catalog_results": [
+    {
+      "id": "MLB51341026",
+      "catalog_product_id": "MLB51341026",
+      "domain_id": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "name": "Moldura 2 Din Toyota Hilux/sw4 2005 2015 Preto",
+      "parent_id": "MLB51341025",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak",
+          "values": [
+            {
+              "id": "3289477",
+              "name": "Permak"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "55335403",
+          "value_name": "89-Z3",
+          "values": [
+            {
+              "id": "55335403",
+              "name": "89-Z3"
+            }
+          ]
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN",
+          "values": [
+            {
+              "id": "38480992",
+              "name": "2 DIN"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "2511571",
+          "value_name": "ABS",
+          "values": [
+            {
+              "id": "2511571",
+              "name": "ABS"
+            }
+          ]
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "name": "Tamanho da tela",
+          "value_id": "2399979",
+          "value_name": "7 \"",
+          "values": [
+            {
+              "id": "2399979",
+              "name": "7 \""
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "24747056",
+          "value_name": "7898253497813",
+          "values": [
+            {
+              "id": "24747056",
+              "name": "7898253497813"
+            }
+          ]
+        },
+        {
+          "id": "MPN",
+          "name": "MPN",
+          "value_id": "55335404",
+          "value_name": "89-Z3",
+          "values": [
+            {
+              "id": "55335404",
+              "name": "89-Z3"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A moldura 2DIN para Toyota Hilux e SW4 2005 a 2015 foi desenvolvida para quem busca uma instalação de central multimídia com encaixe perfeito e acabamento sofisticado. Fabricada em plástico ABS de alta resistência, essa moldura oferece durabilidade, resistência a impactos e variações de temperatura, mantendo sua funcionalidade e estética ao longo do tempo.\n\nDisponível na cor preta com acabamento em verniz, essa moldura confere ao painel um visual moderno e elegante, agregando sofisticação ao interior do seu Toyota Hilux ou SW4. A instalação é simples e rápida, sem a necessidade de modificações no painel original.\n\nCompatível com:\n\nToyota Hilux (2005 – 2015)\n\nToyota SW4 (2005 – 2015)"
+      },
+      "pictures": [
+        {
+          "id": "601083-MLA99419558884_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_601083-MLA99419558884_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1008"
+        },
+        {
+          "id": "749074-MLA99904916917_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_749074-MLA99904916917_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1008"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-06-17T20:43:05Z",
+      "last_updated": "2025-06-17T21:04:54Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

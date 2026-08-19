@@ -1,0 +1,397 @@
+{
+  "checked_at": "2026-08-17T00:07:18.422Z",
+  "expected_catalog_product_id": "MLB21469644",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "strategy": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB21469644",
+    "catalog_product_id": "MLB21469644",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+    "permalink": "",
+    "name": "Mastro Articulado P/ Instalação De Antenas Proeletronic Suporte Antena Externa",
+    "family_name": "Proeletronic Suporte Antena Externa",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB21469644",
+            "picker_label": "Prateado",
+            "picture_id": "757534-MLA99604055092_122025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_757534-MLA99604055092_122025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Proeletronic Suporte Antena Externa - Prateado",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "757534-MLA99604055092_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_757534-MLA99604055092_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 513,
+        "max_height": 1182,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "657470-MLA97527757628_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_657470-MLA97527757628_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1112,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "810847-MLA97527885726_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_810847-MLA97527885726_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 975,
+        "max_height": 647,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "706643-MLA99604045352_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_706643-MLA99604045352_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 345,
+        "max_height": 512,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "866756-MLA97991486563_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_866756-MLA97991486563_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 554,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "624898-MLA97527885740_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_624898-MLA97527885740_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 948,
+        "max_height": 1163,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "697751-MLA97527579938_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_697751-MLA97527579938_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1008,
+        "max_height": 1026,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Inclinável e articulado.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Dimensões: 6 cm de altura x 40 cm de largura. ",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "1175465",
+        "value_name": "Proeletronic",
+        "values": [
+          {
+            "id": "1175465",
+            "name": "Proeletronic"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "16289470",
+        "value_name": "Suporte Antena Externa",
+        "values": [
+          {
+            "id": "16289470",
+            "name": "Suporte Antena Externa"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52053",
+        "value_name": "Prateado",
+        "values": [
+          {
+            "id": "52053",
+            "name": "Prateado"
+          }
+        ]
+      },
+      {
+        "id": "MOUNTING_PLACES",
+        "name": "Lugares de montagem",
+        "value_id": "7720908",
+        "value_name": "Parede",
+        "values": [
+          {
+            "id": "7720908",
+            "name": "Parede"
+          }
+        ]
+      },
+      {
+        "id": "IS_INCLINABLE",
+        "name": "É inclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ARTICULATED_MOUNT",
+        "name": "É articulado",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_SWIVELLING",
+        "name": "É giratório",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_FIXED_MOUNT",
+        "name": "É fixo",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_MOTORIZED",
+        "name": "É motorizada",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "7877821",
+        "value_name": "40 cm",
+        "values": [
+          {
+            "id": "7877821",
+            "name": "40 cm"
+          }
+        ]
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "7847007",
+        "value_name": "6 cm",
+        "values": [
+          {
+            "id": "7847007",
+            "name": "6 cm"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_INSTALLATION_KIT",
+        "name": "Inclui kit de instalação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "INCLUDES_CABLE_ORGANIZER",
+        "name": "Inclui organizador de cabos",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Mastro Articulado para Instalação de Antenas – Proeletronic\n\nMaximize o desempenho da sua antena com mais praticidade e segurança!\n\nO Mastro Articulado de ferro Proeletronic é a solução ideal para instalar antenas externas com ajuste preciso, estabilidade e durabilidade garantida.\n\nMaterial Premium: fabricado em ferro de alta qualidade, é leve, resistente à corrosão e suporta condições climáticas adversas por muito mais tempo.\nDesign Articulado: permite ajuste prático da posição da antena para otimizar o sinal — instalação e manutenção muito mais fáceis!\nVersátil: compatível com antenas externas de diferentes tamanhos e modelos, para uso residencial ou comercial.\n\nBenefícios:\n• Suporte firme e alinhamento perfeito da antena.\n• Ajuste preciso para máximo desempenho de sinal.\n• Instalação descomplicada e manutenção simplificada.\n• Maior resistência ao tempo, sol e chuva.\n\nIdeal para quem busca qualidade, praticidade e confiabilidade na hora de instalar sua antena!\n\nAposte no Mastro Articulado Proeletronic e tenha mais liberdade de ajuste e robustez para sua instalação."
+    },
+    "parent_id": "MLB21469602",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T15:50:07.376335628"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-01-31T11:12:39Z",
+    "authorized_stores": null,
+    "last_updated": "2026-03-29T07:22:34Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "optional_catalog_optimization_pending": false
+}

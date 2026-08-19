@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018106",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "Viaweb GPRS IP 2.3 lacks exact official/catalog identity in the validated source set",
+  "local_value": "7898936319241",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:15:05.831Z"
+}

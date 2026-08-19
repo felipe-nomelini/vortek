@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-08-16T21:16:32.721Z",
+  "result": "DESCRIPTION_SUCCESS",
+  "write_result": "DESCRIPTION_POST_SUCCESS",
+  "sku": "VTK000486",
+  "item_id": "MLB7432157712",
+  "endpoint": "https://api.mercadolibre.com/items/MLB7432157712/description",
+  "http_status": 201,
+  "request_id": "4582c323-945d-4721-8ebf-75c1b6d41c76",
+  "description_diff": "MATCH",
+  "commercial_side_effect_drift": false,
+  "final_remote_status": "active",
+  "final_remote_price": 187.22,
+  "final_remote_stock": 15,
+  "description_write_attempts": 1,
+  "mercado_livre_commercial_writes": 0,
+  "supabase_writes": 0,
+  "second_sku_actions": 0,
+  "hold": "P0 PHASE 4C — DESCRIPTION HOLD"
+}

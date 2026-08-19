@@ -1,0 +1,200 @@
+{
+  "payload": {
+    "family_name": "Conector P10 Mono Wireconex WC153 Kit 10",
+    "category_id": "MLB420707",
+    "catalog_product_id": "MLB41877035",
+    "catalog_listing": true,
+    "price": 219.9,
+    "currency_id": "BRL",
+    "available_quantity": 100,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6212d51af12cd0a2aea9266d7ab495a.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/04ca795522c3ee43611f45d989e1ce18.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/536dbad55a3ef12dfc78e23742be3775.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "13660752",
+        "value_name": "Wireconex"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "84972506",
+        "value_name": "cabo para guitarra"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "150349",
+        "value_name": "10"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "46885538",
+        "value_name": "Conector"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "24279588",
+        "value_name": "P10 Mono"
+      },
+      {
+        "id": "CONNECTOR_GENDER",
+        "value_id": "2210104",
+        "value_name": "Macho"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "value_id": "5504726",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "values": [
+          {
+            "id": "20395414",
+            "name": "Amplificador"
+          },
+          {
+            "id": "2311197",
+            "name": "Cabo"
+          },
+          {
+            "id": "20163364",
+            "name": "Controlador"
+          },
+          {
+            "id": "15289676",
+            "name": "Microfone"
+          },
+          {
+            "id": "24621891",
+            "name": "Mixer"
+          },
+          {
+            "id": "38801627",
+            "name": "Som"
+          },
+          {
+            "id": "36765567",
+            "name": "Violão"
+          },
+          {
+            "id": "33103071",
+            "name": "baixo"
+          },
+          {
+            "id": "19784633",
+            "name": "Estudo"
+          },
+          {
+            "id": "40040115",
+            "name": "fone"
+          },
+          {
+            "id": "17642207",
+            "name": "Guitarra"
+          },
+          {
+            "id": "31772332",
+            "name": "mesa"
+          },
+          {
+            "id": "40040116",
+            "name": "p.a"
+          },
+          {
+            "id": "28658160",
+            "name": "p10"
+          },
+          {
+            "id": "40040117",
+            "name": "pa"
+          },
+          {
+            "id": "26431589",
+            "name": "Áudio"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "46830404",
+        "value_name": "153"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "43536268",
+        "value_name": "7898640365206"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK013008"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK013008"
+  },
+  "sha256": "b6b1b47e2afbb04ae4d2147a164815f0ac66b05e892eb96a84cbd0f8ee812fdc",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 14,
+  "pictures_count": 3,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f6212d51af12cd0a2aea9266d7ab495a.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/04ca795522c3ee43611f45d989e1ce18.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/536dbad55a3ef12dfc78e23742be3775.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "classification": "APPROVED"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075665407",
+      "local": "MLB5075665407",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK026045",
+      "local": "VTK026045",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "946c9536-dcd9-4ca3-b247-26b960b40319",
+      "local": "946c9536-dcd9-4ca3-b247-26b960b40319",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Fone De Ouvido Headset Com Microfone Usb Redução De Ruído C3tech Ph-380bk Preto",
+      "local": "Fone De Ouvido Headset Com Microfone Usb Redução De Ruído C3tech Ph-380bk Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 289.9,
+      "local": 289.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075665407-fone-de-ouvido-headset-com-microfone-usb-reduco-de-ruido-c3tech-ph-380bk-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075665407-fone-de-ouvido-headset-com-microfone-usb-reduco-de-ruido-c3tech-ph-380bk-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

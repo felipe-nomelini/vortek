@@ -1,0 +1,196 @@
+{
+  "checked_at": "2026-08-17T01:17:52.782Z",
+  "expected_catalog_product_id": "MLB27787543",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB27787543",
+    "catalog_product_id": "MLB27787543",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-POWER_STRIPS",
+    "permalink": "",
+    "name": "Multi Carregador Daneva Dn1648 2 Usb + 2 Tomadas 20 A Cor Branco",
+    "family_name": "Daneva Dn1648",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB27787543",
+            "picker_label": "Branco",
+            "picture_id": "822118-MLU72253218218_102023",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_822118-MLU72253218218_102023-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Daneva Dn1648 - Branco",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "822118-MLU72253218218_102023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_822118-MLU72253218218_102023-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 500,
+        "max_height": 386,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "673300-MLU72316986101_102023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_673300-MLU72316986101_102023-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 500,
+        "max_height": 442,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Cor branco elegante que combina com qualquer ambiente.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Duas portas USB para carregar múltiplos dispositivos simultaneamente.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "12046553",
+        "value_name": "Daneva",
+        "values": [
+          {
+            "id": "12046553",
+            "name": "Daneva"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "25442127",
+        "value_name": "Dn1648",
+        "values": [
+          {
+            "id": "25442127",
+            "name": "Dn1648"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52055",
+        "value_name": "Branco",
+        "values": [
+          {
+            "id": "52055",
+            "name": "Branco"
+          }
+        ]
+      },
+      {
+        "id": "MAX_CURRENT",
+        "name": "Corrente máxima",
+        "value_id": "18242386",
+        "value_name": "20 A",
+        "values": [
+          {
+            "id": "18242386",
+            "name": "20 A"
+          }
+        ]
+      },
+      {
+        "id": "WITH_USB",
+        "name": "Com USB",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "O Multi Carregador Daneva DN1648 permite conectar até 4 dispositivos ao mesmo tempo, sendo 2 por alimentação elétrica e 2 por cabo USB. \n\nUm produto cheio de benefícios:\n\nCompacto, cabe em qualquer lugar; \n\nPortátil, fácil de transportar;\n\nPrático, conecte até 4 dispositivos ao mesmo tempo.\n\nCaracterísticas:\n\nMarca: Daneva\n\nModelo: DN1648\n\nCor: Branco\n\nEspecificações:\n\n2 entradas USB;\n\n2 Entradas fêmea 3 pinos, padrão atualizado - 20A;\n\nUSB saída 5V (1,5A).\n\nAlimentação:\n\nVoltagem: Bivolt\n\nPotência máxima: 1270W em 127V~ 2200W em 220V\n\nItens Inclusos:\n\n1 Multi plug\n\nDimensões:\n\nPeso: 0,100 gramas"
+    },
+    "parent_id": "MLB27787542",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T08:49:27.457129243"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-10-18T02:41:05Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-01T22:07:32Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

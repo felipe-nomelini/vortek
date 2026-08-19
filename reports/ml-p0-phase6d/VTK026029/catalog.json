@@ -1,0 +1,302 @@
+{
+  "checked_at": "2026-08-17T01:16:08.790Z",
+  "expected_catalog_product_id": "MLB61498691",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB61498691",
+    "catalog_product_id": "MLB61498691",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-MICROPHONE_STANDS",
+    "permalink": "",
+    "name": "Suporte Pedestal Tripe Microfone Girafa C Cachimbo Gm10 Saty - Preto",
+    "family_name": "Saty Não identificado",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB61498691",
+            "picker_label": "Preto",
+            "picture_id": "844027-MLA96666115264_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_844027-MLA96666115264_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Saty Não identificado - Preto",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "844027-MLA96666115264_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_844027-MLA96666115264_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 408,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "687822-MLA96394174974_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_687822-MLA96394174974_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1172,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "749122-MLA96844206543_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_749122-MLA96844206543_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 452,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "898514-MLA96394184928_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_898514-MLA96394184928_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1098,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "791909-MLA96394075738_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_791909-MLA96394075738_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1199,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "696093-MLA96393629556_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_696093-MLA96393629556_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 336,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "614803-MLA96393659424_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_614803-MLA96393659424_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "825107-MLA96843603717_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_825107-MLA96843603717_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "778014-MLA96393609842_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_778014-MLA96393609842_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 414,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Suporte robusto em ferro para estabilidade e segurança do microfone.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Altura ajustável de 76 cm para diferentes necessidades.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Base em tripé para suporte firme e seguro.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "5451933",
+        "value_name": "Saty",
+        "values": [
+          {
+            "id": "5451933",
+            "name": "Saty"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "39906875",
+        "value_name": "Não identificado",
+        "values": [
+          {
+            "id": "39906875",
+            "name": "Não identificado"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "STAND_TYPE",
+        "name": "Tipo de suporte",
+        "value_id": "5507064",
+        "value_name": "Braço girafa",
+        "values": [
+          {
+            "id": "5507064",
+            "name": "Braço girafa"
+          }
+        ]
+      },
+      {
+        "id": "BASE_TYPE",
+        "name": "Tipo de base",
+        "value_id": "5507065",
+        "value_name": "Tripé",
+        "values": [
+          {
+            "id": "5507065",
+            "name": "Tripé"
+          }
+        ]
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2431883",
+        "value_name": "Ferro",
+        "values": [
+          {
+            "id": "2431883",
+            "name": "Ferro"
+          }
+        ]
+      },
+      {
+        "id": "IS_TABLE_STAND",
+        "name": "É suporte de mesa",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "SUPORTE PARA 1 MICROFONE GIRAFA GM-10 SATY\n\nSuporte pedestal tripe para microfone, ideal para uso em estúdios, apresentações e ensaios. Com uma estrutura robusta e ajustável, proporciona estabilidade e segurança ao microfone, permitindo que você se concentre na sua performance. O design prático facilita o transporte e armazenamento, tornando-o perfeito para músicos em movimento. Este modelo, conhecido como RETO GIRAFA BRAÇO MG10 GAKKI DUPLO, é compatível com diversos modelos de microfones, garantindo versatilidade para diferentes necessidades. A base em tripé oferece um suporte firme, enquanto a cor preta e o material em ferro conferem durabilidade e um visual profissional. Com dimensões de 76 cm de altura, 10 cm de comprimento e 13 cm de largura, e um peso de 1080 g, é fácil de manusear e transportar. Ideal para quem busca qualidade e praticidade em um suporte de microfone."
+    },
+    "parent_id": "MLB61498690",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-16T23:51:51.621716544"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2025-10-31T13:54:25Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-07T23:29:59Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

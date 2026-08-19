@@ -1,0 +1,165 @@
+{
+  "checked_at": "2026-08-17T01:14:45.101Z",
+  "expected_catalog_product_id": "MLB26428961",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB26428961",
+    "catalog_product_id": "MLB26428961",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-MICROPHONE_STANDS",
+    "permalink": "",
+    "name": "Suporte Para Caixa De Som Ask Cp10 Articulado",
+    "family_name": "ASK CP10",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB26428961",
+            "picker_label": "Cinza-escuro",
+            "picture_id": "687291-MLA99936767681_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_687291-MLA99936767681_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "ASK CP10 - Cinza-escuro",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "687291-MLA99936767681_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_687291-MLA99936767681_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 585,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Estrutura resistente que suporta o peso das caixas de som sem comprometer a qualidade do som.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Design moderno e elegante que combina com qualquer ambiente.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "4238929",
+        "value_name": "ASK",
+        "values": [
+          {
+            "id": "4238929",
+            "name": "ASK"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "49857832",
+        "value_name": "ASK CP10",
+        "values": [
+          {
+            "id": "49857832",
+            "name": "ASK CP10"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52051",
+        "value_name": "Cinza-escuro",
+        "values": [
+          {
+            "id": "52051",
+            "name": "Cinza-escuro"
+          }
+        ]
+      },
+      {
+        "id": "STAND_TYPE",
+        "name": "Tipo de suporte",
+        "value_id": "18274557",
+        "value_name": "Articulado",
+        "values": [
+          {
+            "id": "18274557",
+            "name": "Articulado"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "O Suporte Para Caixa De Som Ask Cp10 é a escolha perfeita para quem busca qualidade e praticidade na hora de montar seu sistema de som. Com design moderno e elegante, este suporte articulado da marca ASK é ideal para caixas de som de diversos modelos.\n\nFabricado em uma cor cinza-escuro, este suporte possui um acabamento impecável que combina com qualquer ambiente. Além disso, sua condição é nova, garantindo que você receba um produto de alta qualidade e durabilidade.\n\nO modelo CP10 é projetado para oferecer estabilidade e segurança para suas caixas de som. Com uma estrutura resistente, ele suporta o peso das caixas sem comprometer a qualidade do som. \n\nCom o Suporte Para Caixa De Som Ask Cp10, você terá a liberdade de posicionar suas caixas de som da maneira que desejar, garantindo uma experiência sonora única em qualquer ambiente. \n\nNão perca tempo e adquira agora mesmo o Suporte Para Caixa De Som Ask Cp10. Aproveite essa oportunidade de melhorar a qualidade do som em sua casa ou estabelecimento."
+    },
+    "parent_id": "MLB26428896",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-17T17:36:09.50995343"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-08-23T09:54:41Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-02T22:06:59Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

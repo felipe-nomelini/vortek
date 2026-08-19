@@ -1,0 +1,65 @@
+{
+  "payload": {
+    "family_name": "Alto-falante Profissional Atk Eletroacústica 18lf3000b-8",
+    "category_id": "MLB129666",
+    "price": 4919.9,
+    "currency_id": "BRL",
+    "available_quantity": 2,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/61f81d26948fad532bc77f9d45d8e4af.jpg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a450edfaa96f0db39f5fda582a0a0f6.jpg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9e31d6c2cd542dfc2b48eaeb926c91cb.jpg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/016056bf0658505e328938363a9d5635.jpg"
+      },
+      {
+        "source": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d5aea2ffe4af7c8654cc6440a1255469.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "27107924",
+        "value_name": "Atk Eletroacústica"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "32294330",
+        "value_name": "18LF3000B-8"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "32294329",
+        "value_name": "7898640362106"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK012864"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK012864"
+  },
+  "sha256": "41004422e968214f780b7ec6c0bc0dbf8866ee2dd5d547c60271a8657105e8c6",
+  "family_name_sha256": "975b7d4a76c1701c40a1a148ba4af8567464539a4a93c1224011d15de1431bb6",
+  "title_absent": true,
+  "description_absent": true
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.807Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+    "supplier_category": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Palhetas Para Guitarras",
+    "supplier_brand": "D Addario",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1186",
+    "captured_at": "2026-08-17T12:56:55.166Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "3ee698fd-a9b0-42ba-aa6c-76129be08515",
+    "produto_id": "9bba78bf-6c76-45dd-afa1-c460ae550ace",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "1186",
+    "sku_fornecedor": "1186",
+    "custo": 32.27,
+    "estoque": 12,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:57:32.629+00:00",
+    "created_at": "2026-07-06T22:31:08.14522+00:00",
+    "updated_at": "2026-08-17T09:57:32.637+00:00",
+    "sku_oferta": "1186",
+    "nome": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+    "descricao": "PALHETA GUITARRA SHL LGHT 1CSH2 D Addario .50mm 10un Descrição: A D Addario SHL Light 1CSH2 é uma palheta de celuloide com espessura leve (0,50 mm), ideal para quem busca flexibilidade e um ataque mais suave às cordas. O material proporciona um timbre quente e uma sensação confortável ao tocar. Seu design clássico na cor tartaruga oferece um visual sofisticado. Características Principais: • Modelo: 1CSH2 • Linha: SHL (Shell) • Material: Celuloide • Espessura: 0,50 mm (Light) • Cor: Tartaruga (Shell) • Formato: Padrão Aplicações Recomendadas: Perfeita para ritmos mais suaves, como acompanhamento de violão, pop e folk. Boa para técnicas de strumming, pois a menor espessura facilita o deslize nas cordas e proporciona um som mais aberto. Conteúdo da Embalagem: 10 palhetas D Addario SHL Light 1CSH2 (0,50 mm).",
+    "marca": "D Addario",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d98d66a30fb83ce92b489492a9b4e0ab.jpg"
+    ],
+    "gtin": "",
+    "ncm": "9209.94.00",
+    "cest": null
+  }
+}

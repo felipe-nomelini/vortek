@@ -1,0 +1,10 @@
+{
+  "ordinal": 152,
+  "sku": "VTK017600",
+  "phase6e_state": "SOURCE_DEFERRED",
+  "phase6e1_state": "SOURCE_DEFERRED",
+  "category_candidate": null,
+  "semantic_score": null,
+  "second_pass": "NOT_APPLICABLE",
+  "evidence": "no GTIN and no independent official identity/category proof sufficient for automatic semantic approval"
+}

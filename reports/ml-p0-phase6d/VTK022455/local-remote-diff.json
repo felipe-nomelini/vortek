@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432766214",
+      "local": "MLB7432766214",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK022455",
+      "local": "VTK022455",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "5298cf99-80e2-43ce-a5b6-e3568bcd46f4",
+      "local": "5298cf99-80e2-43ce-a5b6-e3568bcd46f4",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Roteador Giga Tp-link Ec220-g5 Branco",
+      "local": "Roteador Giga Tp-link Ec220-g5 Branco",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 609.9,
+      "local": 609.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432766214-roteador-giga-tp-link-ec220-g5-branco-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432766214-roteador-giga-tp-link-ec220-g5-branco-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

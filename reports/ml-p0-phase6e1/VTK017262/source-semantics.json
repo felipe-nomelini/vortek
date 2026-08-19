@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.529Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Conector Tnc Macho Rt Rg/rgcc 213 Tm-10",
+    "supplier_category": "Antenas E Acessórios/ Acessórios Para Antenas Tv/ Conectores",
+    "supplier_brand": "K.L.C.",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/360641",
+    "captured_at": "2026-08-17T12:56:32.441Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "aaa28fda-fa42-45b4-9f24-1b51dc84f89c",
+    "produto_id": "31bfa2c9-7fa7-40c6-bbbc-6b80d4a04259",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "360641",
+    "sku_fornecedor": "360641",
+    "custo": 20.2,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:24:30.545+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:24:30.554+00:00",
+    "sku_oferta": "360641",
+    "nome": "Conector Tnc Macho Rt Rg/rgcc 213 Tm-10",
+    "descricao": "Conector TNC Macho Reto Prensa Cabo RG/RGC-213 TM-10 KLC Caracteristicas Modelo: TM-10 Tipo de Cabo: RGC-213 Família: TNC Gênero: Macho S. F. Cabo: Prensa Cabo Formato: Reto Tipo: Conector Montagem: Cabo Itens Inclusos 01 Conector TNC Macho Reto Prensa Cabo RG/RGC-213 TM-10",
+    "marca": "K.L.C.",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/6/360641_67d2cafa83546.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85299019",
+    "cest": "21.112.00"
+  }
+}

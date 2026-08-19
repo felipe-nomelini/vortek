@@ -1,0 +1,125 @@
+{
+  "payload": {
+    "family_name": "Encordoamento Guitarra SX SZSTE1L .010",
+    "category_id": "MLB278076",
+    "catalog_product_id": "MLB67298918",
+    "catalog_listing": true,
+    "price": 119.9,
+    "currency_id": "BRL",
+    "available_quantity": 78,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/76c9b1b460acf0851d4b52160cc8d122.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4aa55ff377a7f6faed05c5caf070e2c4.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8530f1ae77ddc3e0e9efff165047b743.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "15158",
+        "value_name": "SX"
+      },
+      {
+        "id": "LINE",
+        "value_id": "13767790",
+        "value_name": "Electric"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "65025512",
+        "value_name": "SZSTE1L"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_id": "17598422",
+        "value_name": "Guitarra"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15146",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "values": [
+          {
+            "id": "17715802",
+            "name": "0.010"
+          },
+          {
+            "id": "17715803",
+            "name": "0.013"
+          },
+          {
+            "id": "17715804",
+            "name": "0.017"
+          },
+          {
+            "id": "17715805",
+            "name": "0.026"
+          },
+          {
+            "id": "17599676",
+            "name": "0.036"
+          },
+          {
+            "id": "5344250",
+            "name": "0.046"
+          }
+        ]
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "2342782",
+        "value_name": "Níquel"
+      },
+      {
+        "id": "TENSION",
+        "value_id": "5344248",
+        "value_name": "Média"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "75577306",
+        "value_name": "06940651411555"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026001"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026001"
+  },
+  "sha256": "06403bcf4c8380ec46ff3c476b7e3e28a89e81e9db92776dda1d15fe82e6dbc0",
+  "family_name_sha256": "1d3f26704c4b33cf7fbac9bcedb4e39e99c39bf05bedda35b742375e71301cce",
+  "title_absent": true,
+  "description_absent": true
+}

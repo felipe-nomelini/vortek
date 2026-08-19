@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:37.518Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+    "supplier_category": "Automotivo/ Alto Falante/ Arandelas",
+    "supplier_brand": "FRAHM",
+    "supplier_gtin": "7896673801746",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/145181",
+    "captured_at": "2026-08-17T12:53:43.663Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "ca1f5907-9314-4fe0-b5c1-0144e4457eec",
+    "produto_id": "a2a8c7b8-aae0-4782-8b91-d74299209621",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "145181",
+    "sku_fornecedor": "145181",
+    "custo": 139.9,
+    "estoque": 6,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T11:07:22.424+00:00",
+    "created_at": "2026-07-20T18:32:41.005073+00:00",
+    "updated_at": "2026-08-17T11:07:22.434+00:00",
+    "sku_oferta": "145181",
+    "nome": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+    "descricao": "A Arandela 6&#8243; Coxial é produzida com carcaça e telas plásticos e, por isso, oferece um alto nível de resistência a exposição em locais insalubres. *Imagem meramente ilustrativa.",
+    "marca": "FRAHM",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/1/4/145181_67d2cad9ab171.jpg"
+    ],
+    "gtin": "7896673801746",
+    "ncm": "85182100",
+    "cest": "01.057.00"
+  }
+}

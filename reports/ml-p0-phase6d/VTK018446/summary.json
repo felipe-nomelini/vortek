@@ -1,0 +1,23 @@
+{
+  "index": 92,
+  "sku": "VTK018446",
+  "expected_gtin": "7896586816486",
+  "started_at": "2026-08-17T01:17:52.044Z",
+  "local_time": "2026-08-16T22:17:52",
+  "completed_at": "2026-08-17T01:17:52.782Z",
+  "elapsed_ms": 738,
+  "result": "BLOCK_CATEGORY",
+  "item_id": null,
+  "catalog_product_id": "MLB27787543",
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "category contract/domain is not a high-confidence match",
+  "sanitation": "CATEGORY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

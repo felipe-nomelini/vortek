@@ -1,0 +1,1873 @@
+{
+  "generated_at": "2026-08-16T22:05:24.449Z",
+  "prepared_count": 19,
+  "required_missing": [],
+  "rows": [
+    {
+      "id": "BRAND",
+      "name": "Marca",
+      "hierarchy": "PARENT_PK",
+      "value_type": "string",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "required": true,
+      "hidden_or_read_only": false,
+      "value": "Ventisol",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "BRAND",
+        "value_name": "Ventisol"
+      }
+    },
+    {
+      "id": "LINE",
+      "name": "Linha",
+      "hierarchy": "PARENT_PK",
+      "value_type": "string",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "Turbo 6 pás",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "LINE",
+        "value_name": "Turbo 6 pás"
+      }
+    },
+    {
+      "id": "MODEL",
+      "name": "Modelo",
+      "hierarchy": "PARENT_PK",
+      "value_type": "string",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "required": true,
+      "hidden_or_read_only": false,
+      "value": "Turbo 6",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "MODEL",
+        "value_name": "Turbo 6"
+      }
+    },
+    {
+      "id": "ALPHANUMERIC_MODEL",
+      "name": "Modelo alfanumérico",
+      "hierarchy": "PARENT_PK",
+      "value_type": "string",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "FAN_TYPE",
+      "name": "Tipo de ventilador",
+      "hierarchy": "PARENT_PK",
+      "value_type": "string",
+      "tags": {
+        "catalog_required": true,
+        "required": true
+      },
+      "required": true,
+      "hidden_or_read_only": false,
+      "value": "De mesa",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "FAN_TYPE",
+        "value_id": "291722",
+        "value_name": "De mesa"
+      }
+    },
+    {
+      "id": "DIAMETER",
+      "name": "Diâmetro",
+      "hierarchy": "CHILD_PK",
+      "value_type": "number_unit",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "40 cm",
+      "source": "manufacturer+catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "DIAMETER",
+        "value_name": "40 cm"
+      }
+    },
+    {
+      "id": "FREQUENCY",
+      "name": "Frequência",
+      "hierarchy": "CHILD_PK",
+      "value_type": "string",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "STRUCTURE_COLOR",
+      "name": "Cor da estrutura",
+      "hierarchy": "CHILD_PK",
+      "value_type": "string",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "Preto",
+      "source": "image+catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "STRUCTURE_COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      }
+    },
+    {
+      "id": "VOLTAGE",
+      "name": "Voltagem",
+      "hierarchy": "CHILD_PK",
+      "value_type": "string",
+      "tags": {
+        "allow_variations": true
+      },
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "127V",
+      "source": "manufacturer+supplier+catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      }
+    },
+    {
+      "id": "BLADES_COLOR",
+      "name": "Cor das pás",
+      "hierarchy": "CHILD_PK",
+      "value_type": "string",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "Azul",
+      "source": "manufacturer+supplier+catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "BLADES_COLOR",
+        "value_name": "Azul"
+      }
+    },
+    {
+      "id": "BLADES_MATERIAL",
+      "name": "Material das pás",
+      "hierarchy": "CHILD_PK",
+      "value_type": "string",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "BLADES_NUMBER",
+      "name": "Quantidade de pás",
+      "hierarchy": "CHILD_PK",
+      "value_type": "number",
+      "tags": {
+        "allow_variations": true,
+        "defines_picture": true
+      },
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "6",
+      "source": "manufacturer+catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "BLADES_NUMBER",
+        "value_name": "6"
+      }
+    },
+    {
+      "id": "DETAILED_MODEL",
+      "name": "Modelo detalhado",
+      "hierarchy": "CHILD_DEPENDENT",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "POWER",
+      "name": "Potência",
+      "hierarchy": "CHILD_DEPENDENT",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "80 W",
+      "source": "manufacturer+catalog",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PACKAGE_HEIGHT",
+      "name": "Altura da embalagem",
+      "hierarchy": "CHILD_DEPENDENT",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PACKAGE_WIDTH",
+      "name": "Largura da embalagem",
+      "hierarchy": "CHILD_DEPENDENT",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem",
+      "hierarchy": "CHILD_DEPENDENT",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PACKAGE_WEIGHT",
+      "name": "Peso da embalagem",
+      "hierarchy": "CHILD_DEPENDENT",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true,
+        "read_only": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "HEIGHT",
+      "name": "Altura",
+      "hierarchy": "FAMILY",
+      "value_type": "number_unit",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "60 cm",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "HEIGHT",
+        "value_name": "60 cm"
+      }
+    },
+    {
+      "id": "DEPTH",
+      "name": "Profundidade",
+      "hierarchy": "FAMILY",
+      "value_type": "number_unit",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "44 cm",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "DEPTH",
+        "value_name": "44 cm"
+      }
+    },
+    {
+      "id": "WIDTH",
+      "name": "Largura",
+      "hierarchy": "FAMILY",
+      "value_type": "number_unit",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "35 cm",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "WIDTH",
+        "value_name": "35 cm"
+      }
+    },
+    {
+      "id": "WEIGHT",
+      "name": "Peso",
+      "hierarchy": "FAMILY",
+      "value_type": "number_unit",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "2.5 kg",
+      "source": "supplier",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "WEIGHT",
+        "value_name": "2.5 kg"
+      }
+    },
+    {
+      "id": "NOISE_LEVEL",
+      "name": "Nível de ruído",
+      "hierarchy": "FAMILY",
+      "value_type": "number_unit",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "POWER_SUPPLY_TYPE",
+      "name": "Tipo de alimentação",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "Corrente elétrica",
+      "source": "catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_name": "Corrente elétrica"
+      }
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_ARGENTINA",
+      "name": "Eficiência energética Argentina",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_MEXICO",
+      "name": "Eficiência energética México",
+      "hierarchy": "FAMILY",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_BRASIL",
+      "name": "Eficiência energética Brasil",
+      "hierarchy": "FAMILY",
+      "value_type": "list",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "A",
+      "source": "supplier",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "value_id": "33344215",
+        "value_name": "A"
+      }
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_COLOMBIA",
+      "name": "Eficiência energética Colômbia",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_CHILE",
+      "name": "Eficiência energética Chile",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_URUGUAY",
+      "name": "Eficiência energética Uruguai",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_ECUADOR",
+      "name": "Eficiência energética Equador",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_PERU",
+      "name": "Eficiência energética Peru",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "GRID_MATERIAL",
+      "name": "Material da grade",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "SPEEDS_NUMBER",
+      "name": "Quantidade de velocidades",
+      "hierarchy": "FAMILY",
+      "value_type": "number",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "3",
+      "source": "manufacturer+catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "SPEEDS_NUMBER",
+        "value_name": "3"
+      }
+    },
+    {
+      "id": "INCLUDES_REMOTE_CONTROL",
+      "name": "Inclui controle remoto",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "WITH_LIGHT",
+      "name": "Com luz",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "WITH_TURBO_FUNCTION",
+      "name": "Com função turbo",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "Sim",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "WITH_TURBO_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      }
+    },
+    {
+      "id": "WITH_REVERSIBLE_BLADES",
+      "name": "Com pás reversíveis",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "GTIN",
+      "name": "Código universal de produto",
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "value_type": "string",
+      "tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "required": true,
+      "hidden_or_read_only": false,
+      "value": "7898461970375",
+      "source": "manufacturer+supplier+catalog",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "GTIN",
+        "value_name": "7898461970375"
+      }
+    },
+    {
+      "id": "EMPTY_GTIN_REASON",
+      "name": "Motivo de GTIN vazio",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true,
+        "conditional_required": true
+      },
+      "required": true,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SEC_STAMP",
+      "name": "Selo SEC",
+      "hierarchy": "ITEM",
+      "value_type": "picture_id",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ENERGY_EFFICIENCY_LABEL",
+      "name": "Etiqueta de conservação de energia",
+      "hierarchy": "ITEM",
+      "value_type": "picture_id",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "INMETRO_CERTIFICATION_REGISTRATION_NUMBER",
+      "name": "Número de registro/certificação INMETRO",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "IMPORT_DECLARATION_NUMBER",
+      "name": "Número da DI",
+      "hierarchy": "ITEM",
+      "value_type": "number",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ELECTRICAL_SAFETY_CERTIFICATE_NUMBER",
+      "name": "Número de certificado de segurança elétrica",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "OCP_CERTIFICATION_AGENCY",
+      "name": "Organismo de certificação (OCP)",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PRODUCT_LIFE",
+      "name": "Duração do produto",
+      "hierarchy": "ITEM",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "TECHNICAL_SERVICE_OR_REPLACEMENT_PARTS_PERIOD",
+      "name": "Período de parte de reposição ou serviço técnico",
+      "hierarchy": "ITEM",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ANATEL_HOMOLOGATION_NUMBER",
+      "name": "Homologação Anatel Nº",
+      "hierarchy": "FAMILY",
+      "value_type": "number",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "MANUFACTURER",
+      "name": "Fabricante",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": "Ventisol",
+      "source": "manufacturer",
+      "send": true,
+      "reason": "confirmed_evidence",
+      "payload": {
+        "id": "MANUFACTURER",
+        "value_name": "Ventisol"
+      }
+    },
+    {
+      "id": "VERTICAL_TAGS",
+      "name": "Tags vertical",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ANATEL_HOMOLOGATION_LABEL",
+      "name": "Etiqueta de homologação da Anatel",
+      "hierarchy": "ITEM",
+      "value_type": "picture_id",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "AGID",
+      "name": "AGID",
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "BATTERY_VOLTAGE",
+      "name": "Voltagem da bateria",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "CELL_BATTERY_TYPE",
+      "name": "Tipo de pilha",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {},
+      "required": false,
+      "hidden_or_read_only": false,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "not_confirmed_or_not_applicable",
+      "payload": null
+    },
+    {
+      "id": "INVOICE_PRODUCT_NAME",
+      "name": "Nome do produto na nota fiscal",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SAT_KEY",
+      "name": "Chave do produto",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "MEASURE_UNIT_KEY",
+      "name": "Chave da unidade de medida",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "MEASURE_UNIT_DESCRIPTION",
+      "name": "Unidade de medida",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IVA_FOR_RESALE",
+      "name": "IVA para revenda",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IEPS",
+      "name": "IEPS",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "MAX_ROTATION_SPEED",
+      "name": "Velocidade máxima de rotação",
+      "hierarchy": "FAMILY",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "1500 rpm",
+      "source": "supplier",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "LAMPS_NUMBER",
+      "name": "Quantidade de lâmpadas",
+      "hierarchy": "FAMILY",
+      "value_type": "number",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_WI_FI",
+      "name": "Com Wi-Fi",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IS_PROGRAMMABLE",
+      "name": "É programável",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IS_INDUSTRIAL",
+      "name": "É industrial",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IS_SILENT",
+      "name": "É silencioso",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_360_DEGREES_ROTATION",
+      "name": "Com rotação de 360 graus",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_INMETRO_CERTIFICATE",
+      "name": "Com certificado INMETRO",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_REPELLENT_FUNCTION",
+      "name": "Com função repelente",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_EXTRACTABLE_GRID",
+      "name": "Com grade removível",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_LED_LIGHTS",
+      "name": "Com luzes LED",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_TILT",
+      "name": "Com inclinação",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "Sim",
+      "source": "supplier",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_OSCILLATION",
+      "name": "Com oscilação",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "Sim",
+      "source": "supplier",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_ROTATING_GRID",
+      "name": "Com grade giratória",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_ADJUSTABLE_HEIGHT",
+      "name": "Com altura ajustável",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "INCLUDES_LIGHT_SWITCH",
+      "name": "Inclui interruptor de luz",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "MPN",
+      "name": "MPN",
+      "hierarchy": "PRODUCT_IDENTIFIER",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ITEM_CONDITION",
+      "name": "Condição do item",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "VALUE_ADDED_TAX",
+      "name": "Imposto sobre o valor acrescentado",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IMPORT_DUTY",
+      "name": "Imposto de importação",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SELLER_SKU",
+      "name": "SKU",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "variation_attribute": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SELLER_PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de envio",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SELLER_PACKAGE_WIDTH",
+      "name": "Largura da embalagem do vendor",
+      "hierarchy": "ITEM",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "44 cm",
+      "source": "supplier",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SELLER_PACKAGE_LENGTH",
+      "name": "Comprimento da embalagem do vendor",
+      "hierarchy": "ITEM",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "45 cm",
+      "source": "supplier",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SELLER_PACKAGE_HEIGHT",
+      "name": "Altura da embalagem do vendor",
+      "hierarchy": "ITEM",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "18 cm",
+      "source": "supplier",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SELLER_PACKAGE_WEIGHT",
+      "name": "Peso da embalagem do vendor",
+      "hierarchy": "ITEM",
+      "value_type": "number_unit",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": "2600 g",
+      "source": "supplier",
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IS_FLAMMABLE",
+      "name": "É inflamável",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "WITH_POSITIVE_IMPACT",
+      "name": "Com impacto positivo",
+      "hierarchy": "FAMILY",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PACKAGE_DATA_SOURCE",
+      "name": "Origem do dado do pacote de fábrica",
+      "hierarchy": "FAMILY",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "HAZMAT_TRANSPORTABILITY",
+      "name": "Transportabilidade Hazmat",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IS_KIT",
+      "name": "É kit",
+      "hierarchy": "ITEM",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "DESCRIPTIVE_TAGS",
+      "name": "Tags descritivos",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PRODUCT_CHEMICAL_FEATURES",
+      "name": "Características químicas do produto",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "FOODS_AND_DRINKS",
+      "name": "Alimentos e bebidas",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "MEDICINES",
+      "name": "Medicamentos",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "BATTERIES_FEATURES",
+      "name": "Características das baterias",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SHIPMENT_PACKING",
+      "name": "Embalagem do envío",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "ADDITIONAL_INFO_REQUIRED",
+      "name": "Informação adicional requerida",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "EXCLUDED_PLATFORMS",
+      "name": "Plataformas excluídas",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IS_SUITABLE_FOR_SHIPMENT",
+      "name": "É adequado para envío",
+      "hierarchy": "ITEM",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PRODUCT_DATA_SOURCE",
+      "name": "Fonte do produto",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "LIMITED_MARKETPLACE_VISIBILITY_REASONS",
+      "name": "Razões de visibilidade limitada no Marketplace",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "HAS_COMPATIBILITIES",
+      "name": "Tem compatibilidades",
+      "hierarchy": "ITEM",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "CATALOG_TITLE",
+      "name": "Título de catálogo",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SEARCH_ENHANCEMENT_FIELDS",
+      "name": "Campos de aprimoramento de pesquisa",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "PRODUCT_FEATURES",
+      "name": "Características do produto",
+      "hierarchy": "ITEM",
+      "value_type": "list",
+      "tags": {
+        "hidden": true,
+        "multivalued": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "IS_NEW_OFFER",
+      "name": "É nova oferta",
+      "hierarchy": "ITEM",
+      "value_type": "boolean",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    },
+    {
+      "id": "SYI_PYMES_ID",
+      "name": "syi pymes id",
+      "hierarchy": "ITEM",
+      "value_type": "string",
+      "tags": {
+        "hidden": true,
+        "read_only": true
+      },
+      "required": false,
+      "hidden_or_read_only": true,
+      "value": null,
+      "source": null,
+      "send": false,
+      "reason": "schema_managed_or_read_only",
+      "payload": null
+    }
+  ],
+  "appended_item_attributes": [
+    {
+      "id": "ITEM_CONDITION",
+      "value_id": "2230284",
+      "value_name": "Novo"
+    },
+    {
+      "id": "SELLER_SKU",
+      "value_name": "VTK000392"
+    }
+  ],
+  "sale_terms": [
+    {
+      "id": "WARRANTY_TYPE",
+      "value_id": "2230279",
+      "value_name": "Garantia de fábrica"
+    },
+    {
+      "id": "WARRANTY_TIME",
+      "value_name": "12 meses"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "payload": {
+    "family_name": "Potes Tramontina MixColor 600 ml",
+    "category_id": "MLB244658",
+    "price": 119.9,
+    "currency_id": "BRL",
+    "available_quantity": 50,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017507/01-27a6be89769a468eecd7.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017507/02-b352a0d7e9e8b7e9cd8e.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017507/03-6fa795132ef195e2ff18.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_name": "Tramontina"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7891112359277"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "51993",
+        "value_name": "Vermelho"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450307",
+        "value_name": "Vermelho"
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "value_name": "600 mL"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "value_name": "3"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017507"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK017507"
+  },
+  "sha256": "d17ec599ea27bc9a5295ec174980405ef4a60b5f8f7f2c98d5edf36613773f29",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 9,
+  "pictures_count": 3,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017507/01-27a6be89769a468eecd7.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017507/02-b352a0d7e9e8b7e9cd8e.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017507/03-6fa795132ef195e2ff18.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ]
+}

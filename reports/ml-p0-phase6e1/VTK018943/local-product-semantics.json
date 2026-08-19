@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-08-17T14:15:47.420Z",
+  "product": {
+    "id": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+    "sku": "VTK018943",
+    "nome": "Controlador Acesso Ip Wide Cx-7006",
+    "marca": "CITROX",
+    "estoque": 4,
+    "custo": 515.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.18,
+    "peso_bruto": 0.18,
+    "largura": 12,
+    "altura": 5,
+    "profundidade": 16,
+    "gtin": "7898954353630",
+    "descricao": "Comunicação Ethernet (TCP/IP); Alimentação 12Vdc (fonte não acompanha); Mantém informações em caso de falta de energia; Gerenciada pelo software Access Control Web (software gratuito); Capacidade de armazenamento ilimitada no modo Online; Armazena 8000 cartões e 10.000 eventos offline; Quatro entradas Wiegand 26 bits; Quatro entradas para botoeiras; Quatro entradas para sensores; Quatro relés independentes para acionamento de pontos; Um relé para alarme/auxiliar. *Imagem meramente ilustrativa.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018943/01-3e02dcf14ed8f153255e.jpg"
+    ],
+    "categoria": "Segurança / Alarme/ Acessórios Alarme",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:33:17.035182+00:00",
+    "updated_at": "2026-08-17T11:14:22.89793+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "366611",
+    "dslite_ultima_sync": "2026-08-17T11:14:22.869+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "84714100",
+    "cest": "21.029.00",
+    "origem_fiscal": "4",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "41e217f5-b6bb-4d2a-8ed6-ef1b1973ff99",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "alarm_sensor",
+    "function": "detect_security_event",
+    "intended_use": "electronic_security",
+    "physical_form": "alarm_sensor",
+    "expected_category_signals": [
+      "sensor",
+      "alarme",
+      "seguranca",
+      "presenca"
+    ],
+    "incompatible_category_signals": [
+      "estacionamento",
+      "automotivo",
+      "temperatura"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "electronic_security",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

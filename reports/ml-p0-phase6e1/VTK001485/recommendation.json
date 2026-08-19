@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Fio PP 2x1,00mm Controller Preto - RL / 100",
+    "supplier_category": "Materiais Elétricos / Fios E Cabos Para Meteriais Elétricos / Fios Em Rolo",
+    "supplier_brand": "CONTROLLER",
+    "supplier_gtin": "7898417291479",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/13268",
+    "captured_at": "2026-08-17T12:54:31.417Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

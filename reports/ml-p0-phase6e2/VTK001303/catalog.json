@@ -1,0 +1,1080 @@
+{
+  "checked_at": "2026-08-17T20:01:44.327Z",
+  "expected_catalog_product_id": "MLB17460878",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB17460878",
+    "catalog_product_id": "MLB17460878",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-ELECTRIC_GUITARS",
+    "permalink": "",
+    "name": "Guitarra Elétrica Giannini Standard G-100 Choupo Tremolo 3 Captadores",
+    "family_name": "Giannini Standard G-100 China",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "HAND_ORIENTATION",
+        "picker_name": "Orientação da mão",
+        "products": [
+          {
+            "product_id": "MLB17460878",
+            "picker_label": "Destro",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Translucent red/White shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "HAND_ORIENTATION",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB36821998",
+            "picker_label": "3-Tone sunburst/Tortoise shell",
+            "picture_id": "927375-MLA96232148880_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_927375-MLA96232148880_102025-I.jpg",
+            "tags": [
+              "no-winner",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "3-Tone sunburst/Tortoise shell"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - 3-Tone sunburst/Tortoise shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB17460880",
+            "picker_label": "3-Tone sunburst/White shell",
+            "picture_id": "667741-MLA95701568836_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_667741-MLA95701568836_102025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "3-Tone sunburst/White shell"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - 3-Tone sunburst/White shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB17460879",
+            "picker_label": "Black/Tortoise shell",
+            "picture_id": "886499-MLA74781944237_022024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_886499-MLA74781944237_022024-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Black/Tortoise shell"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Black/Tortoise shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB17460881",
+            "picker_label": "Black/White shell",
+            "picture_id": "756104-MLA95674670060_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_756104-MLA95674670060_102025-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Black/White shell"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Black/White shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB53222204",
+            "picker_label": "G-100 3TS/TT",
+            "picture_id": "795565-MLA88577712509_072025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_795565-MLA88577712509_072025-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "G-100 3TS/TT"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - G-100 3TS/TT - Choupo - Madeira técnica - Verniz",
+            "auto_completed": true,
+            "rgb_meta": "A0522D"
+          },
+          {
+            "product_id": "MLB53222205",
+            "picker_label": "G-100 BK/WH",
+            "picture_id": "939210-MLA88577594705_072025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_939210-MLA88577594705_072025-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "G-100 BK/WH"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - G-100 BK/WH - Choupo - Madeira técnica - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB53222206",
+            "picker_label": "G-100 TRD/WH",
+            "picture_id": "776624-MLA88234825440_072025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_776624-MLA88234825440_072025-I.jpg",
+            "tags": [
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "G-100 TRD/WH"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - G-100 TRD/WH - Choupo - Madeira técnica - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          },
+          {
+            "product_id": "MLB70012008",
+            "picker_label": "Sunburst escudo Escuro",
+            "picture_id": "923799-MLA110939762420_052026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_923799-MLA110939762420_052026-I.jpg",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Sunburst escudo Escuro"
+              ],
+              [
+                "FINGERBOARD_MATERIAL",
+                "Techwood"
+              ],
+              [
+                "BODY_FINISH",
+                "Envernizado, Verniz Brilhante"
+              ],
+              [
+                "BODY_WOOD_TYPE",
+                "Poplar Maciço"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Sunburst escudo Escuro - Poplar Maciço - Techwood - Envernizado, Verniz Brilhante",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB17460878",
+            "picker_label": "Translucent red/White shell",
+            "picture_id": "774538-MLA96418050918_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_774538-MLA96418050918_102025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Translucent red/White shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": true,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "FINGERBOARD_MATERIAL",
+        "picker_name": "Material do diapasão",
+        "products": [
+          {
+            "product_id": "MLB17460878",
+            "picker_label": "Madeira técnica",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Translucent red/White shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          },
+          {
+            "product_id": "MLB17460877",
+            "picker_label": "Pau-rosa",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "3-Tone sunburst/Tortoise shell"
+              ],
+              [
+                "FINGERBOARD_MATERIAL",
+                "Pau-rosa"
+              ],
+              [
+                "BODY_WOOD_TYPE",
+                "Tília"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - 3-Tone sunburst/Tortoise shell - Basswood - Pau-rosa - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB70012008",
+            "picker_label": "Techwood",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Sunburst escudo Escuro"
+              ],
+              [
+                "FINGERBOARD_MATERIAL",
+                "Techwood"
+              ],
+              [
+                "BODY_FINISH",
+                "Envernizado, Verniz Brilhante"
+              ],
+              [
+                "BODY_WOOD_TYPE",
+                "Poplar Maciço"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Sunburst escudo Escuro - Poplar Maciço - Techwood - Envernizado, Verniz Brilhante",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "FINGERBOARD_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BODY_FINISH",
+        "picker_name": "Acabamento do corpo",
+        "products": [
+          {
+            "product_id": "MLB70012008",
+            "picker_label": "Envernizado, Verniz Brilhante",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Sunburst escudo Escuro"
+              ],
+              [
+                "FINGERBOARD_MATERIAL",
+                "Techwood"
+              ],
+              [
+                "BODY_FINISH",
+                "Envernizado, Verniz Brilhante"
+              ],
+              [
+                "BODY_WOOD_TYPE",
+                "Poplar Maciço"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Sunburst escudo Escuro - Poplar Maciço - Techwood - Envernizado, Verniz Brilhante",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB17460878",
+            "picker_label": "Verniz",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Translucent red/White shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BODY_FINISH",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BODY_WOOD_TYPE",
+        "picker_name": "Tipo de madeira do corpo",
+        "products": [
+          {
+            "product_id": "MLB17460878",
+            "picker_label": "Choupo",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Translucent red/White shell - Choupo - Madeira técnica - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          },
+          {
+            "product_id": "MLB70012008",
+            "picker_label": "Poplar Maciço",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Sunburst escudo Escuro"
+              ],
+              [
+                "FINGERBOARD_MATERIAL",
+                "Techwood"
+              ],
+              [
+                "BODY_FINISH",
+                "Envernizado, Verniz Brilhante"
+              ],
+              [
+                "BODY_WOOD_TYPE",
+                "Poplar Maciço"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - Sunburst escudo Escuro - Poplar Maciço - Techwood - Envernizado, Verniz Brilhante",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB17460877",
+            "picker_label": "Tília",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "3-Tone sunburst/Tortoise shell"
+              ],
+              [
+                "FINGERBOARD_MATERIAL",
+                "Pau-rosa"
+              ],
+              [
+                "BODY_WOOD_TYPE",
+                "Tília"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Giannini Standard G-100 China - Destro - 3-Tone sunburst/Tortoise shell - Basswood - Pau-rosa - Verniz",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BODY_WOOD_TYPE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "774538-MLA96418050918_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_774538-MLA96418050918_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 376,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "648650-MLA74650238740_022024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_648650-MLA74650238740_022024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 365,
+        "max_height": 1190,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "872970-MLA47620095925_092021",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_872970-MLA47620095925_092021-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 652,
+        "max_height": 731,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "687625-MLA47620519508_092021",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_687625-MLA47620519508_092021-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 618,
+        "max_height": 731,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "650200-MLA47620146918_092021",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_650200-MLA47620146918_092021-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 766,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "683438-MLU72847338499_112023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_683438-MLU72847338499_112023-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 708,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Comprimento da escala de 647.7 mm para melhor tocabilidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Braço feito de bordo, proporcionando durabilidade.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Guitarra com 22 trastes para facilitar a execução.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Três captadores cerâmicos tipo single coil para versatilidade sonora.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Chave seletora de 5 posições para amplo controle sonoro.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ponte tremolo tipo synch para efeitos vibrato dinâmicos.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "45321",
+        "value_name": "Giannini",
+        "values": [
+          {
+            "id": "45321",
+            "name": "Giannini"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "15207",
+        "value_name": "Standard",
+        "values": [
+          {
+            "id": "15207",
+            "name": "Standard"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "99305",
+        "value_name": "G-100",
+        "values": [
+          {
+            "id": "99305",
+            "name": "G-100"
+          }
+        ]
+      },
+      {
+        "id": "ORIGIN",
+        "name": "Origem",
+        "value_id": "96381",
+        "value_name": "China",
+        "values": [
+          {
+            "id": "96381",
+            "name": "China"
+          }
+        ]
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "name": "Orientação da mão",
+        "value_id": "96533",
+        "value_name": "Destro",
+        "values": [
+          {
+            "id": "96533",
+            "name": "Destro"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "10253626",
+        "value_name": "Translucent red/White shell",
+        "values": [
+          {
+            "id": "10253626",
+            "name": "Translucent red/White shell"
+          }
+        ]
+      },
+      {
+        "id": "BODY_WOOD_TYPE",
+        "name": "Tipo de madeira do corpo",
+        "value_id": "5810785",
+        "value_name": "Choupo",
+        "values": [
+          {
+            "id": "5810785",
+            "name": "Choupo"
+          }
+        ]
+      },
+      {
+        "id": "FINGERBOARD_MATERIAL",
+        "name": "Material do diapasão",
+        "value_id": "10215160",
+        "value_name": "Madeira técnica",
+        "values": [
+          {
+            "id": "10215160",
+            "name": "Madeira técnica"
+          }
+        ]
+      },
+      {
+        "id": "BODY_FINISH",
+        "name": "Acabamento do corpo",
+        "value_id": "10450751",
+        "value_name": "Verniz",
+        "values": [
+          {
+            "id": "10450751",
+            "name": "Verniz"
+          }
+        ]
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "10484191",
+        "value_name": "G-100 TRD/WH",
+        "values": [
+          {
+            "id": "10484191",
+            "name": "G-100 TRD/WH"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450307",
+        "value_name": "Vermelho",
+        "values": [
+          {
+            "id": "2450307",
+            "name": "Vermelho",
+            "meta": {
+              "rgb": "FF0000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "FF0000"
+        }
+      },
+      {
+        "id": "NECK_WOOD_TYPES",
+        "name": "Tipos de madeira do braço",
+        "value_id": "2792083",
+        "value_name": "Bordo",
+        "values": [
+          {
+            "id": "2792083",
+            "name": "Bordo"
+          }
+        ]
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "value_id": "15146",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "15146",
+            "name": "6"
+          }
+        ]
+      },
+      {
+        "id": "SCALE_LENGTH",
+        "name": "Comprimento da escala",
+        "value_id": "8621791",
+        "value_name": "647.7 mm",
+        "values": [
+          {
+            "id": "8621791",
+            "name": "647.7 mm"
+          }
+        ]
+      },
+      {
+        "id": "WITH_BAR",
+        "name": "Com alavanca",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_DOUBLE_NECK",
+        "name": "Com braço duplo",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_MINI",
+        "name": "É mini",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_INFANT",
+        "name": "É infantil",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "INCLUDES_CASE",
+        "name": "Inclui estojo",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "FRETS_NUMBER",
+        "name": "Quantidade de trastes",
+        "value_id": "1090718",
+        "value_name": "22",
+        "values": [
+          {
+            "id": "1090718",
+            "name": "22"
+          }
+        ]
+      },
+      {
+        "id": "PICKUPS_NUMBER",
+        "name": "Quantidade de captadores",
+        "value_id": "1090711",
+        "value_name": "3",
+        "values": [
+          {
+            "id": "1090711",
+            "name": "3"
+          }
+        ]
+      },
+      {
+        "id": "PICKUP_SWITCH",
+        "name": "Chave seletora de captadores",
+        "value_id": "9841427",
+        "value_name": "5 posições",
+        "values": [
+          {
+            "id": "9841427",
+            "name": "5 posições"
+          }
+        ]
+      },
+      {
+        "id": "FRET_SIZE",
+        "name": "Tamanho de traste",
+        "value_id": "110293",
+        "value_name": "Medium Jumbo",
+        "values": [
+          {
+            "id": "110293",
+            "name": "Medium Jumbo"
+          }
+        ]
+      },
+      {
+        "id": "NECK_SHAPE",
+        "name": "Forma do braço",
+        "value_id": "1131585",
+        "value_name": "C",
+        "values": [
+          {
+            "id": "1131585",
+            "name": "C"
+          }
+        ]
+      },
+      {
+        "id": "NECK_CONSTRUCTION",
+        "name": "Construção do braço",
+        "value_id": "11402932",
+        "value_name": "Bolt-on",
+        "values": [
+          {
+            "id": "11402932",
+            "name": "Bolt-on"
+          }
+        ]
+      },
+      {
+        "id": "BRIDGE_TYPE_CLASSIFICATION",
+        "name": "Classificação do tipo de ponte",
+        "value_id": "11402941",
+        "value_name": "Synch tremolo",
+        "values": [
+          {
+            "id": "11402941",
+            "name": "Synch tremolo"
+          }
+        ]
+      },
+      {
+        "id": "BRIDGE_TYPE",
+        "name": "Tipo de ponte",
+        "value_id": "6132622",
+        "value_name": "Tremolo",
+        "values": [
+          {
+            "id": "6132622",
+            "name": "Tremolo"
+          }
+        ]
+      },
+      {
+        "id": "CONTROL_TYPES",
+        "name": "Tipos de controle",
+        "value_id": null,
+        "value_name": "Chave seletora de captadores, Tone, Volumen",
+        "values": [
+          {
+            "id": "10397364",
+            "name": "Chave seletora de captadores"
+          },
+          {
+            "id": "9841428",
+            "name": "Tone"
+          },
+          {
+            "id": "7335124",
+            "name": "Volumen"
+          }
+        ]
+      },
+      {
+        "id": "PICKUP_TYPES",
+        "name": "Tipos de captadores",
+        "value_id": "96538",
+        "value_name": "Simples",
+        "values": [
+          {
+            "id": "96538",
+            "name": "Simples"
+          }
+        ]
+      },
+      {
+        "id": "NECK_PICKUP_TYPE",
+        "name": "Tipo de captador do braço",
+        "value_id": "10484081",
+        "value_name": "Single coil cerâmico",
+        "values": [
+          {
+            "id": "10484081",
+            "name": "Single coil cerâmico"
+          }
+        ]
+      },
+      {
+        "id": "MIDDLE_PICKUP_TYPE",
+        "name": "Tipo de captador do meio",
+        "value_id": "10484079",
+        "value_name": "Single coil cerâmico",
+        "values": [
+          {
+            "id": "10484079",
+            "name": "Single coil cerâmico"
+          }
+        ]
+      },
+      {
+        "id": "BRIDGE_PICKUP_TYPE",
+        "name": "Tipo de captador da ponte",
+        "value_id": "10484187",
+        "value_name": "Bobina simples cerâmica",
+        "values": [
+          {
+            "id": "10484187",
+            "name": "Bobina simples cerâmica"
+          }
+        ]
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "name": "Acessórios incluídos",
+        "value_id": null,
+        "value_name": "Cabo de conexão, Chave de ajuste",
+        "values": [
+          {
+            "id": "10263358",
+            "name": "Cabo de conexão"
+          },
+          {
+            "id": "9807734",
+            "name": "Chave de ajuste"
+          }
+        ]
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "11112692",
+        "value_name": "19597",
+        "values": [
+          {
+            "id": "11112692",
+            "name": "19597"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Guitarra Stratocaster Giannini G 100 3 Singles\n\nGuitarra 3 Singles  \nCódigo Antigo: GGX-1S  \nCorpo: Basswood  \nBraço: Maple com tensor  \nEscala: Rosewood  \nTrastes: 22 em Alpaca  \nMarcação: Bolinhas Brancas  \nPonte: Standard cromada com trêmolo  \nTarraxas: Blindadas cromadas 6 em linha  \nCaptador(es): 3 Single Coils  \nControles: Chave seletora de 5 posições (1 volume e 2 tonalidades)  \nAcabamento: Verniz brilhante no corpo e verniz fosco no braço  \nPeso Líquido: 3,500 Kg  "
+    },
+    "parent_id": "MLB17460876",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T08:53:44.018972427"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2021-03-12T20:40:14Z",
+    "authorized_stores": null,
+    "last_updated": "2026-01-29T23:35:00Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

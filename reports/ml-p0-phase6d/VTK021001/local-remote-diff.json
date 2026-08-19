@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432633734",
+      "local": "MLB7432633734",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK021001",
+      "local": "VTK021001",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "5d099971-67ae-4b60-9d2c-9364111c5c10",
+      "local": "5d099971-67ae-4b60-9d2c-9364111c5c10",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Pioneer Br Ts-6960br Preto Par Alto Falantes Quadriaxial 6x9 100w Rms",
+      "local": "Pioneer Br Ts-6960br Preto Par Alto Falantes Quadriaxial 6x9 100w Rms",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 849.9,
+      "local": 849.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432633734-pioneer-br-ts-6960br-preto-par-alto-falantes-quadriaxial-6x9-100w-rms-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432633734-pioneer-br-ts-6960br-preto-par-alto-falantes-quadriaxial-6x9-100w-rms-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

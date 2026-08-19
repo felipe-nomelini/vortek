@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-08-17T14:15:53.599Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Super Chip Xhorse Vvdi Xt27a",
+    "supplier_category": "Acessórios Para Veículos > Peças De Carros E Caminhonetes > Fechaduras E Chaves > Interruptores De Energia",
+    "supplier_brand": "R3a Automotive",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4161",
+    "captured_at": "2026-08-17T12:56:37.461Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "5676624e-ad3f-4f6d-bb5d-8ad5edebbb17",
+    "produto_id": "52dce833-d612-4b0e-af38-342daca46bfb",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "4161",
+    "sku_fornecedor": "4161",
+    "custo": 25.2,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T09:49:32.762+00:00",
+    "created_at": "2026-08-13T10:53:28.2054+00:00",
+    "updated_at": "2026-08-17T09:49:32.769+00:00",
+    "sku_oferta": "4161",
+    "nome": "Super Chip Xhorse Vvdi Xt27a",
+    "descricao": "SUPER CHIP XHORSE VVDI XT27A XH001 (0074468171299) O Super Chip Xhorse VVDI XT27A XH001 é uma solução versátil para profissionais de chaveiro automotivo, desenvolvido para aplicações de programação e clonagem em equipamentos compatíveis da linha Xhorse. Ficha técnica: • Modelo: XH001 • Tipo: Super Chip automotivo • Marca: Xhorse • Tecnologia: VVDI XT27A • Aplicação: Programação e clonagem de chaves automotivas • Compatível com equipamentos Xhorse compatíveis • Alta versatilidade de aplicação • Produto para uso profissional Desenvolvido para atender às necessidades de profissionais especializados em chaves automotivas, o Super Chip Xhorse VVDI XT27A oferece ampla compatibilidade e excelente desempenho em processos de programação e clonagem. Sua tecnologia avançada proporciona praticidade e eficiência, tornando-se uma ferramenta indispensável para oficinas e chaveiros que buscam soluções confiáveis para serviços automotivos.",
+    "marca": "R3a Automotive",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a1e7668fe9b83ef1f528719f746e807c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1fd9c67b31cdd764f20c1c5c77a1a990.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0fa2bc0ce6c5c4960870124e52d4f81f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4d42b84b34dbe0398fe6e1459294e1b3.jpg"
+    ],
+    "gtin": "",
+    "ncm": "8529.90.90",
+    "cest": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "sku": "VTK002521",
+  "gate": "BLOCK_REQUIRED_ATTRIBUTE",
+  "evidence": "missing category-required attributes: BASS_GUITAR_TYPE",
+  "local_value": "7890443020955",
+  "found_value": null,
+  "suggested_action": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "source": "ML catalog MLB24335881 + DSLite supplier",
+  "timestamp": "2026-08-17T01:16:07.491Z"
+}

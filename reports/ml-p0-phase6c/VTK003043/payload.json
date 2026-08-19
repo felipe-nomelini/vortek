@@ -1,0 +1,271 @@
+{
+  "payload": {
+    "family_name": "Cadeira Gamer Fortrek Cruiser",
+    "category_id": "MLB447782",
+    "catalog_product_id": "MLB15963092",
+    "catalog_listing": true,
+    "price": 3299.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/70514/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/70514/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/70514/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/70514/550/4.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/70514/550/5.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/70514/550/6.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/70514/550/7.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "46525",
+        "value_name": "Fortrek"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "977211",
+        "value_name": "Cruiser"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "UPHOLSTERY_MATERIAL",
+        "value_id": "570721",
+        "value_name": "Couro sintético"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "value_id": "13016815",
+        "value_name": "Escritório"
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "value_id": "7980354",
+        "value_name": "Náilon"
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "value_id": "5897875",
+        "value_name": "Espuma"
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "value_id": "7571534",
+        "value_name": "84 cm"
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "value_id": "9871307",
+        "value_name": "60 cm"
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "value_id": "7661942",
+        "value_name": "66 cm"
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "value_id": "50154411",
+        "value_name": "131 cm"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "3183623",
+        "value_name": "135 kg"
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_WHEELS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ARMREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_HEADREST",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SWIVEL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "66353431",
+        "value_name": "FORTREK CRUISER PT"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "9095930",
+        "value_name": "7898554606532"
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "value_id": "10201909",
+        "value_name": "Regulável"
+      },
+      {
+        "id": "STRUCTURE_FINISH",
+        "value_id": "1185554",
+        "value_name": "Cromado"
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "values": [
+          {
+            "id": "10204587",
+            "name": "Basculante"
+          },
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_TILT_RANGE",
+        "value_id": "10340644",
+        "value_name": "90 ° x 155 °"
+      },
+      {
+        "id": "OFFICE_CHAIR_HEIGHT",
+        "value_id": "53835640",
+        "value_name": "131 cm"
+      },
+      {
+        "id": "OFFICE_CHAIR_DEPTH",
+        "value_id": "7866305",
+        "value_name": "60 cm"
+      },
+      {
+        "id": "BASE_DIAMETER",
+        "value_id": "12905531",
+        "value_name": "35 cm"
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "value_id": "11518281",
+        "value_name": "22.6 kg"
+      },
+      {
+        "id": "SEAT_WIDTH",
+        "value_id": "3202979",
+        "value_name": "50 cm"
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "value_id": "9272011",
+        "value_name": "55 cm"
+      },
+      {
+        "id": "MIN_CHAIR_HEIGHT",
+        "value_id": "10263986",
+        "value_name": "123 cm"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK003043"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK003043"
+  },
+  "sha256": "5a26651b612219f773cbf83b1ef8fdefb786a936d3187069e7969d267a2088fc",
+  "family_name_sha256": "04c091955aeccd519c082fe64020cf782c51c56ba0cd106050a6a8479edab6b9",
+  "title_absent": true,
+  "description_absent": true
+}

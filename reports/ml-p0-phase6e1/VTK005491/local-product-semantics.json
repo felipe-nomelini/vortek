@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-17T14:15:47.919Z",
+  "product": {
+    "id": "dc408ec6-8e7c-420d-951c-00c68ca7256d",
+    "sku": "VTK005491",
+    "nome": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+    "marca": "STORM",
+    "estoque": 3,
+    "custo": 27.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.038,
+    "peso_bruto": 0.038,
+    "largura": 12,
+    "altura": 1,
+    "profundidade": 22,
+    "gtin": "7908638400236",
+    "descricao": "O Cabo DisplayPort 1.2v Para DVI Fêmea Storm é a solução perfeita para conectar dispositivos com saída DisplayPort a monitores ou outros dispositivos com entrada DVI. Com alta qualidade de construção e suporte a resoluções de alta definição, esse cabo oferece uma conexão confiável e nítida.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK005491/01-4fe01a23442da8d04aa5.jpg"
+    ],
+    "categoria": "Eletronicos / Cabos E Acessorios / Cabos Hdmi",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:16:59.891189+00:00",
+    "updated_at": "2026-08-17T11:21:19.496399+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "385520",
+    "dslite_ultima_sync": "2026-08-17T11:21:19.436+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "8544.42.00",
+    "cest": null,
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "3f4c6dc9-4a56-46d9-a6f4-cf9db5c76273",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "computing",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

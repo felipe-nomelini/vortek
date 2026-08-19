@@ -1,0 +1,760 @@
+{
+  "sku": "VTK001507",
+  "produto_id": "1014dfbf-fa3b-4a03-8758-5ed7015ce29c",
+  "product_name": "Violão Yamaha C70II Acústico Nylon Natural",
+  "supplier": "HAYAMAX-PR",
+  "state": "MANUAL_IDENTITY",
+  "baseline_drift": {
+    "detected": false,
+    "checks": [
+      {
+        "field": "stock",
+        "baseline": 7,
+        "live": 7,
+        "match": true
+      },
+      {
+        "field": "cost",
+        "baseline": 700.29,
+        "live": 700.29,
+        "match": true
+      },
+      {
+        "field": "supplier",
+        "baseline": "HAYAMAX-PR",
+        "live": "HAYAMAX-PR",
+        "match": true
+      },
+      {
+        "field": "gtin",
+        "baseline": "4957812496889",
+        "live": "4957812496889",
+        "match": true
+      }
+    ]
+  },
+  "local_level0": {
+    "product": {
+      "id": "1014dfbf-fa3b-4a03-8758-5ed7015ce29c",
+      "sku": "VTK001507",
+      "nome": "Violão Yamaha C70II Acústico Nylon Natural",
+      "marca": "YAMAHA",
+      "estoque": 7,
+      "custo": 700.29,
+      "ml_fee": 0.15,
+      "ml_shipping": 0,
+      "custom_price": null,
+      "ml_status": "sem_anuncio",
+      "peso_liq": 2.166,
+      "peso_bruto": 2.166,
+      "largura": 20,
+      "altura": 112,
+      "profundidade": 51,
+      "gtin": "4957812496889",
+      "descricao": "O Violão Yamaha C70II é padrão entre os violões clássicos. Com encordoamento de nylon, acabamento natural e modelo acústico, este violão soa como tradicional e básico. Constituídos com tampo em pinho sueco, caixa de ressonância em mogno da Indonésia, escala em Javanese Rosewood e um belo acabamento fosco. A história da Yamaha começou por volta do ano de 1887 pelo fundador Torakusu Yamaha, iniciando a produção de instrumentos ocidentais no Japão. O primeiro instrumento foi um órgão de bambu do Japão, e consequentemente a inspiração veio de forma natural para a criação de outros instrumentos. Atualmente, a marca é uma das maiores fabricantes de instrumentos musicais do mundo, buscando entregar qualidade e inspirar cada vez mais as pessoas a se apaixonar pelo mundo da música.",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/18692/550/1.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/4.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/5.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/6.jpg"
+      ],
+      "categoria": "Instrumentos Musicais / Cordas / Violoes",
+      "ml_item_id": null,
+      "created_at": "2026-05-11T20:15:41.405052+00:00",
+      "updated_at": "2026-08-16T17:33:16.560324+00:00",
+      "dslite_fornecedor_id": "2",
+      "dslite_produto_id": "18692",
+      "dslite_ultima_sync": "2026-08-16T17:33:16.249+00:00",
+      "fornecedor": "HAYAMAX-PR",
+      "ncm": "9202.90.00",
+      "cest": null,
+      "origem_fiscal": "2",
+      "origem_uf": "PR",
+      "csosn": "101",
+      "ml_shipping_warning": null,
+      "oferta_preferencial_id": "4dc12970-1a93-4140-8d87-9f6e5d7c11d7",
+      "ativo": true,
+      "fornecedor_preferencial_manual": false
+    },
+    "preferred_offer": {
+      "id": "4dc12970-1a93-4140-8d87-9f6e5d7c11d7",
+      "produto_id": "1014dfbf-fa3b-4a03-8758-5ed7015ce29c",
+      "dslite_fornecedor_id": "2",
+      "fornecedor_nome": "HAYAMAX-PR",
+      "dslite_produto_id": "18692",
+      "sku_fornecedor": "18692",
+      "custo": 700.29,
+      "estoque": 7,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "balance_account",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-08-16T17:33:16.249+00:00",
+      "created_at": "2026-06-08T18:46:40.559351+00:00",
+      "updated_at": "2026-08-16T17:33:16.257+00:00",
+      "sku_oferta": "18692",
+      "nome": "Violão Yamaha C70II Acústico Nylon Natural",
+      "descricao": "O Violão Yamaha C70II é padrão entre os violões clássicos. Com encordoamento de nylon, acabamento natural e modelo acústico, este violão soa como tradicional e básico. Constituídos com tampo em pinho sueco, caixa de ressonância em mogno da Indonésia, escala em Javanese Rosewood e um belo acabamento fosco. A história da Yamaha começou por volta do ano de 1887 pelo fundador Torakusu Yamaha, iniciando a produção de instrumentos ocidentais no Japão. O primeiro instrumento foi um órgão de bambu do Japão, e consequentemente a inspiração veio de forma natural para a criação de outros instrumentos. Atualmente, a marca é uma das maiores fabricantes de instrumentos musicais do mundo, buscando entregar qualidade e inspirar cada vez mais as pessoas a se apaixonar pelo mundo da música.",
+      "marca": "YAMAHA",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/18692/550/1.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/4.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/5.jpg",
+        "https://static.hayapek.com.br/produtos/18692/550/6.jpg"
+      ],
+      "gtin": "4957812496889",
+      "ncm": "9202.90.00",
+      "cest": null
+    }
+  },
+  "dslite_level1": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/18692",
+    "consulted_at": "2026-08-16T21:43:00.489Z",
+    "product": {
+      "produtoid": "18692",
+      "produtoid_empresa": "HYX18692",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 700.29,
+      "preco_crossdocking": 700.29,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 700.29,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-05-07 17:36:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Violão Yamaha C70II Acústico Nylon Natural",
+      "titulo_curto": "VIOLAO NY YAMAHA C70II NT",
+      "categoriaid": "0279",
+      "categoria_nome": "Instrumentos Musicais / Cordas / Violões",
+      "abc": "A",
+      "ean11": "4957812496889",
+      "ncm": "9202.90.00",
+      "descricao": "O Violão Yamaha C70II é padrão entre os violões clássicos. Com encordoamento de nylon, acabamento natural e modelo acústico, este violão soa como tradicional e básico. <br/> <br/> Constituídos com tampo em pinho sueco, caixa de ressonância em mogno da Indonésia, escala em Javanese Rosewood e um belo acabamento fosco. <br/> <br/> A história da Yamaha começou por volta do ano de 1887 pelo fundador Torakusu Yamaha, iniciando a produção de instrumentos ocidentais no Japão. O primeiro instrumento foi um órgão de bambu do Japão, e consequentemente a inspiração veio de forma natural para a criação de outros instrumentos. <br/> <br/> Atualmente, a marca é uma das maiores fabricantes de instrumentos musicais do mundo, buscando entregar qualidade e inspirar cada vez mais as pessoas a se apaixonar pelo mundo da música.",
+      "caracteristicas": "Tarraxas:Dourada<br>Tipo:Acústico<br>Cordas:Nylon<br>Cor:Natural<br>Tampo:Spruce<br>Faixa e Fundo:Meranti<br>Acabamento:Verniz Brilhante<br>Braço:Nato<br>Escala:Rosewood<br>Pesquisa:classico|c70ii|c70 ii|c-70|c 70|c70-ii|violao|acustico|yamaha<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "YAMAHA",
+      "modelo": "C70II",
+      "peso": 2.166,
+      "largura": 20,
+      "altura": 112,
+      "profundidade": 51,
+      "peso_embalagem": 2.166,
+      "largura_embalagem": 20,
+      "altura_embalagem": 112,
+      "profundidade_embalagem": 51,
+      "link": "http://www.hayamax.com.br/violao-yamaha-c70ii-acustico-nylon-natural",
+      "link_imagem": "https://static.hayapek.com.br/produtos/18692/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 25878,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 17:51:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:04.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 7,
+      "tempo_cross": 0,
+      "estoque_total": 7,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/18692/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/18692/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/18692/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/18692/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/18692/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/18692/550/6.jpg"
+        }
+      ]
+    }
+  },
+  "manufacturer_level2": {
+    "status": "OFFICIAL_IDENTITY_PARTIAL",
+    "consulted_at": "2026-08-16T21:43:00.489Z",
+    "primary_url": "https://br.yamaha.com/pt/musical-instruments/guitars-basses-amps/products/classical-nylon-guitars/c-cx/index.html",
+    "specs_url": "https://br.yamaha.com/pt/musical-instruments/guitars-basses-amps/products/classical-nylon-guitars/c-cx/specs.html",
+    "model_confirmed": true,
+    "official_model": "C70",
+    "supplier_model": "C70II",
+    "official_gtin": null,
+    "supplier_gtin": "4957812496889",
+    "gtin_match": null,
+    "model_alias_conflict": true,
+    "excerpt": "Yamaha Brasil publica C70, não C70II: clássico, escala 650 mm, nut 52 mm, tampo spruce, escala e cavalete rosewood, acabamento gloss."
+  },
+  "identity_classification": "OFFICIAL_IDENTITY_PARTIAL",
+  "gtin": {
+    "local": "4957812496889",
+    "dslite": "4957812496889",
+    "manufacturer": null,
+    "catalog": "4957812496889",
+    "status": "PARTIAL"
+  },
+  "category": {
+    "id": "MLB432320",
+    "name": "Clássicas",
+    "domain_id": "MLB-CLASSICAL_GUITARS",
+    "valid": true,
+    "catalog_product_id": "MLB25239228",
+    "catalog_strategy": "catalog_required"
+  },
+  "remote": {
+    "classification": "NO_REMOTE_MATCH",
+    "matches": []
+  },
+  "local_duplicates": [],
+  "existing_local_listings": [],
+  "attributes": {
+    "prepared": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "hierarchy": "PARENT_PK",
+        "required": true,
+        "source": "manufacturer",
+        "value": "Yamaha",
+        "payload": {
+          "id": "BRAND",
+          "value_name": "Yamaha"
+        }
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "hierarchy": "PARENT_PK",
+        "required": false,
+        "source": "manufacturer",
+        "value": "C",
+        "payload": {
+          "id": "LINE",
+          "value_name": "C"
+        }
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "hierarchy": "PARENT_PK",
+        "required": true,
+        "source": "manufacturer",
+        "value": "C70",
+        "payload": {
+          "id": "MODEL",
+          "value_name": "C70"
+        }
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "hierarchy": "CHILD_PK",
+        "required": false,
+        "source": "supplier",
+        "value": "Natural",
+        "payload": {
+          "id": "COLOR",
+          "value_name": "Natural"
+        }
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "name": "Orientação da mão",
+        "hierarchy": "CHILD_PK",
+        "required": false,
+        "source": "catalog",
+        "value": "Destro",
+        "payload": {
+          "id": "HAND_ORIENTATION",
+          "value_id": "96533",
+          "value_name": "Destro"
+        }
+      },
+      {
+        "id": "IS_ELECTROACOUSTIC",
+        "name": "É eletroacústica",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Não",
+        "payload": {
+          "id": "IS_ELECTROACOUSTIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      },
+      {
+        "id": "WITH_CUTAWAY",
+        "name": "Com corte",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Não",
+        "payload": {
+          "id": "WITH_CUTAWAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      },
+      {
+        "id": "BODY_SHAPE",
+        "name": "Forma do corpo",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Classical Guitar Style",
+        "payload": {
+          "id": "BODY_SHAPE",
+          "value_name": "Classical Guitar Style"
+        }
+      },
+      {
+        "id": "BODY_SIZE",
+        "name": "Tamanho do corpo",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "secondary",
+        "value": "4/4",
+        "payload": {
+          "id": "BODY_SIZE",
+          "value_id": "2295181",
+          "value_name": "4/4"
+        }
+      },
+      {
+        "id": "BODY_FINISH",
+        "name": "Acabamento do corpo",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Brilhante",
+        "payload": {
+          "id": "BODY_FINISH",
+          "value_name": "Brilhante"
+        }
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "name": "Quantidade de cordas",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "catalog",
+        "value": "6",
+        "payload": {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        }
+      },
+      {
+        "id": "BODY_TOP_MATERIAL",
+        "name": "Material do tampo",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Spruce",
+        "payload": {
+          "id": "BODY_TOP_MATERIAL",
+          "value_name": "Spruce"
+        }
+      },
+      {
+        "id": "NECK_MATERIALS",
+        "name": "Materiais do braço",
+        "hierarchy": "FAMILY",
+        "required": false,
+        "source": "manufacturer",
+        "value": "Locally Sourced Tonewood",
+        "payload": {
+          "id": "NECK_MATERIALS",
+          "value_name": "Locally Sourced Tonewood"
+        }
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "required": false,
+        "source": "supplier_catalog",
+        "value": "4957812496889",
+        "payload": {
+          "id": "GTIN",
+          "value_name": "4957812496889"
+        }
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "hierarchy": "PRODUCT_IDENTIFIER",
+        "required": false,
+        "source": "catalog",
+        "value": "C70",
+        "payload": {
+          "id": "MPN",
+          "value_name": "C70"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "20 cm",
+        "payload": {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "20 cm"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "51 cm",
+        "payload": {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "51 cm"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "112 cm",
+        "payload": {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "112 cm"
+        }
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "hierarchy": "ITEM",
+        "required": false,
+        "source": "supplier",
+        "value": "2166 g",
+        "payload": {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "2166 g"
+        }
+      }
+    ],
+    "required_missing": [],
+    "parent_pk": [
+      "BRAND",
+      "LINE",
+      "MODEL",
+      "BRAND",
+      "LINE",
+      "MODEL"
+    ],
+    "child_pk": [
+      "COLOR",
+      "HAND_ORIENTATION",
+      "COLOR",
+      "HAND_ORIENTATION"
+    ],
+    "conditional_required": [
+      "GTIN"
+    ]
+  },
+  "images": {
+    "sku": "VTK001507",
+    "total": 6,
+    "approved": 0,
+    "rejected": 0,
+    "manual_review": 6,
+    "main_approved": false,
+    "rows": [
+      {
+        "sku": "VTK001507",
+        "index": 1,
+        "url": "https://static.hayapek.com.br/produtos/18692/550/1.jpg",
+        "origin": "supplier",
+        "initial_http_status": 200,
+        "redirected": false,
+        "final_url": "https://static.hayapek.com.br/produtos/18692/550/1.jpg",
+        "final_http_status": 200,
+        "https": true,
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "classification": "MANUAL_REVIEW",
+        "reason": "image_matches_Yamaha_classical_guitar_but_does_not_prove_C70_vs_C70II_revision",
+        "main_candidate": true
+      },
+      {
+        "sku": "VTK001507",
+        "index": 2,
+        "url": "https://static.hayapek.com.br/produtos/18692/550/2.jpg",
+        "origin": "supplier",
+        "initial_http_status": 200,
+        "redirected": false,
+        "final_url": "https://static.hayapek.com.br/produtos/18692/550/2.jpg",
+        "final_http_status": 200,
+        "https": true,
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "classification": "MANUAL_REVIEW",
+        "reason": "image_matches_Yamaha_classical_guitar_but_does_not_prove_C70_vs_C70II_revision",
+        "main_candidate": false
+      },
+      {
+        "sku": "VTK001507",
+        "index": 3,
+        "url": "https://static.hayapek.com.br/produtos/18692/550/3.jpg",
+        "origin": "supplier",
+        "initial_http_status": 200,
+        "redirected": false,
+        "final_url": "https://static.hayapek.com.br/produtos/18692/550/3.jpg",
+        "final_http_status": 200,
+        "https": true,
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "classification": "MANUAL_REVIEW",
+        "reason": "image_matches_Yamaha_classical_guitar_but_does_not_prove_C70_vs_C70II_revision",
+        "main_candidate": false
+      },
+      {
+        "sku": "VTK001507",
+        "index": 4,
+        "url": "https://static.hayapek.com.br/produtos/18692/550/4.jpg",
+        "origin": "supplier",
+        "initial_http_status": 200,
+        "redirected": false,
+        "final_url": "https://static.hayapek.com.br/produtos/18692/550/4.jpg",
+        "final_http_status": 200,
+        "https": true,
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "classification": "MANUAL_REVIEW",
+        "reason": "image_matches_Yamaha_classical_guitar_but_does_not_prove_C70_vs_C70II_revision",
+        "main_candidate": false
+      },
+      {
+        "sku": "VTK001507",
+        "index": 5,
+        "url": "https://static.hayapek.com.br/produtos/18692/550/5.jpg",
+        "origin": "supplier",
+        "initial_http_status": 200,
+        "redirected": false,
+        "final_url": "https://static.hayapek.com.br/produtos/18692/550/5.jpg",
+        "final_http_status": 200,
+        "https": true,
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "classification": "MANUAL_REVIEW",
+        "reason": "image_matches_Yamaha_classical_guitar_but_does_not_prove_C70_vs_C70II_revision",
+        "main_candidate": false
+      },
+      {
+        "sku": "VTK001507",
+        "index": 6,
+        "url": "https://static.hayapek.com.br/produtos/18692/550/6.jpg",
+        "origin": "supplier",
+        "initial_http_status": 200,
+        "redirected": false,
+        "final_url": "https://static.hayapek.com.br/produtos/18692/550/6.jpg",
+        "final_http_status": 200,
+        "https": true,
+        "content_type": "image/jpg",
+        "width": 550,
+        "height": 550,
+        "classification": "MANUAL_REVIEW",
+        "reason": "image_matches_Yamaha_classical_guitar_but_does_not_prove_C70_vs_C70II_revision",
+        "main_candidate": false
+      }
+    ]
+  },
+  "financial": {
+    "sku": "VTK001507",
+    "simulated_at": "2026-08-16T21:43:03.230Z",
+    "engine": "scripts/lib/ml-p0-audit.js#pricingStrategy + live rounded ML fee",
+    "listing_type_id": "gold_pro",
+    "dimensions": "112x20x51,2166",
+    "weight_unit": "grams",
+    "cost": 700.29,
+    "stock": 7,
+    "commission": 223.23,
+    "shipping_cost": 91.15,
+    "tax_rate": 0.05,
+    "tax_amount": 67.64,
+    "price_recommended": 1352.89,
+    "minimum_safety_price": 1352.89,
+    "estimated_operational_profit": 270.58,
+    "estimated_operational_margin_percent": 20.000147831678845,
+    "target_margin_percent": 20,
+    "minimum_profit": 60,
+    "approved": true,
+    "fee_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 223.23,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 223.23,
+        "percentage_fee": 16.5
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    },
+    "shipping_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 91.15,
+          "currency_id": "BRL",
+          "billable_weight": 19040,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 182.3
+          }
+        }
+      }
+    }
+  },
+  "family_name": {
+    "value": "Violão Clássico Yamaha C70",
+    "characters": 26,
+    "limit": 60,
+    "approved_length": true
+  },
+  "description": {
+    "text": "VIOLÃO CLÁSSICO YAMAHA C70/C70II NYLON NATURAL\n\nRascunho bloqueado até conciliação documental definitiva entre as referências C70 e C70II. As fontes confirmam construção clássica, seis cordas de nylon, tampo em spruce, escala de 650 mm e acabamento natural brilhante.\n\nSKU: VTK001507",
+    "status": "PREPARED_BLOCKED_NOT_PUBLISHED"
+  },
+  "payload_preview": {
+    "full_sha256": "29d28bbee0c2a24a4b33424a1ad87e5ced30496eedb7e883dc9425a907186146",
+    "minimal_sha256": "61cc8ea7360e56b4466c6a62666f2717e9f1cfcbc090bef0a839359403706da7",
+    "usable": false
+  },
+  "scores": {
+    "identity_confidence": 82,
+    "documentation_score": 85,
+    "publication_readiness": 55,
+    "duplicate_risk": 0,
+    "financial_confidence": 100
+  },
+  "gates": {
+    "remote_exact": false,
+    "remote_possible": false,
+    "local_duplicate": false,
+    "gtin_conflict": false,
+    "identity_confirmed": false,
+    "category_valid": true,
+    "image_approved": false,
+    "attributes_complete": true,
+    "financial_approved": true,
+    "source_deferred": false
+  },
+  "blocking_reason": [
+    "identity_not_confirmed",
+    "image_not_approved"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "payload": {
+    "family_name": "Potes Tramontina MixColor 600 ml",
+    "category_id": "MLB244658",
+    "catalog_product_id": "MLB77404563",
+    "catalog_listing": true,
+    "price": 119.9,
+    "currency_id": "BRL",
+    "available_quantity": 50,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017506/01-a8691bf034c295cbe76d.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017506/02-768b753dc867e6379240.jpg"
+      },
+      {
+        "source": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017506/03-2623b67973c5029d1a46.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "433",
+        "value_name": "Tramontina"
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "value_id": "4704253",
+        "value_name": "600 mL"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "value_id": "334424",
+        "value_name": "3"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "FOOD_STORAGE_CONTAINER_SHAPE",
+        "value_id": "17100449",
+        "value_name": "Redonda"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "2517251",
+        "value_name": "13.5 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "3714533",
+        "value_name": "6.5 cm"
+      },
+      {
+        "id": "IS_AIRTIGHT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_MICROWAVE_SAFE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_CEREAL_CONTAINER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_LID",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "LID_TYPE",
+        "value_id": "26200220",
+        "value_name": "Hermética"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "86942371",
+        "value_name": "07891112359253"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK017506"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK017506"
+  },
+  "sha256": "abb2809194db11d6061471a27d622e065e0b9e79252b4fb1c2e3e09033ee6da4",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 20,
+  "pictures_count": 3
+}

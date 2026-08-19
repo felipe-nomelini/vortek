@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-08-17T14:15:43.208Z",
+  "product": {
+    "id": "ced59fd1-7861-43f2-a558-23d0cf58099b",
+    "sku": "VTK003779",
+    "nome": "Suporte Para Teclado SZ-02 Saty",
+    "marca": "SATY",
+    "estoque": 4,
+    "custo": 234.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 5.74,
+    "peso_bruto": 5.74,
+    "largura": 57,
+    "altura": 12,
+    "profundidade": 61,
+    "gtin": "7898572861081",
+    "descricao": "Projetado para garantir total segurança do seu teclado enquanto você toca, o suporte fixo para teclado Saty SZ-02 suporta teclados de até 40kg. Seu formato em Z estável com ajuste de altura máxima de 90 cm e mínima de 60 cm, permite ajustá-lo para que você toque da melhor forma possível.",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/74704/550/1.jpg"
+    ],
+    "categoria": "Instrumentos Musicais / Partes E Acessorios / Estantes E Suportes",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:16:24.342097+00:00",
+    "updated_at": "2026-08-17T10:07:29.099846+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4226",
+    "dslite_ultima_sync": "2026-08-17T10:07:28.852+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "9209.94.00",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "bd8be7a0-b071-4ffc-8159-e976261dd98f",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "instrument_support",
+    "function": "support_musical_instrument",
+    "intended_use": "musical_instrument",
+    "physical_form": "instrument_stand",
+    "expected_category_signals": [
+      "suporte",
+      "instrumentomusical",
+      "guitarra",
+      "violao",
+      "teclado"
+    ],
+    "incompatible_category_signals": [
+      "televisao",
+      "tv",
+      "celular",
+      "tablet"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [
+        "90 cm",
+        "60 cm",
+        "25 mm",
+        "91 cm",
+        "70 cm"
+      ],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "musical_instrument",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

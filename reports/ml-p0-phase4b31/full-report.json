@@ -1,0 +1,318 @@
+{
+  "phase": "4B.3.1",
+  "mode": "AUDIT_ONLY",
+  "started_at": "2026-08-16T20:50:07.245Z",
+  "completed_at": "2026-08-16T20:50:08.104Z",
+  "sku": "VTK000486",
+  "item_id": "MLB7432157712",
+  "critical_identity": {
+    "result": "MATCH",
+    "checks": [
+      {
+        "field": "seller_id",
+        "expected": 3294514937,
+        "remote": 3294514937,
+        "result": "MATCH"
+      },
+      {
+        "field": "seller_sku",
+        "expected": "VTK000486",
+        "remote": "VTK000486",
+        "result": "MATCH"
+      },
+      {
+        "field": "GTIN",
+        "expected": "4904530109270",
+        "remote": "4904530109270",
+        "result": "MATCH"
+      },
+      {
+        "field": "BRAND",
+        "expected": "Toshiba",
+        "remote": "Toshiba",
+        "result": "MATCH"
+      },
+      {
+        "field": "MODEL",
+        "expected": "TNHC-6GAE4 CB",
+        "remote": "TNHC-6GAE4 CB",
+        "result": "MATCH"
+      },
+      {
+        "field": "category_id",
+        "expected": "MLB11290",
+        "remote": "MLB11290",
+        "result": "MATCH"
+      },
+      {
+        "field": "user_product_id",
+        "expected": "MLBU4771606790",
+        "remote": "MLBU4771606790",
+        "result": "MATCH"
+      },
+      {
+        "field": "family_id",
+        "expected": "4094059417953552",
+        "remote": "4094059417953552",
+        "result": "MATCH"
+      },
+      {
+        "field": "PRODUCT_TYPE",
+        "expected": "Pilha",
+        "remote": "Pilha",
+        "result": "MATCH"
+      },
+      {
+        "field": "price",
+        "expected": 187.22,
+        "remote": 187.22,
+        "result": "MATCH"
+      },
+      {
+        "field": "available_quantity",
+        "expected": 15,
+        "remote": 15,
+        "result": "MATCH"
+      },
+      {
+        "field": "listing_type",
+        "expected": "gold_pro",
+        "remote": "gold_pro",
+        "result": "MATCH"
+      },
+      {
+        "field": "condition",
+        "expected": "new",
+        "remote": "new",
+        "result": "MATCH"
+      }
+    ]
+  },
+  "image_audit": {
+    "classification": "IMAGE_NORMALIZED_BY_ML",
+    "reviewed_manually_at": "2026-08-16T20:50:08.104Z",
+    "position": 6,
+    "original_source_url": "https://static.hayapek.com.br/produtos/74810/550/6.jpg",
+    "previous_ml_url": "https://http2.mlstatic.com/D_881494-MLA116279066915_082026-O.jpg",
+    "current_ml_url": "https://http2.mlstatic.com/D_842932-MLA116279067739_082026-O.jpg",
+    "file_sha256": {
+      "source": "7818b6c8491befa4914fb1cd3daa667f2b2f5ab904c7e6e8d406ab24b3767310",
+      "ml_previous": "508d28d0879b22109e5380272635b877d3d2ed5b802b8826075d8fe7f3c20d70",
+      "ml_current": "0178dbdb788f7fc2a606d4ade06f8fe00b7c31fd1203de6bc36915fb1637db94"
+    },
+    "resolutions": {
+      "source": "550x550",
+      "previous_ml": "380x500",
+      "current_ml": "380x500"
+    },
+    "visual_checks": {
+      "same_product": true,
+      "same_brand": true,
+      "same_model_label": true,
+      "same_commercial_quantity": true,
+      "same_color_or_variation": true,
+      "different_kit": false,
+      "excluded_accessory_added": false
+    },
+    "observation": "Same rear view and product label; Mercado Livre assigned a new CDN picture ID and binary encoding without changing commercial identity.",
+    "diagnostics": {
+      "previous": {
+        "status": 404,
+        "data": null
+      },
+      "current": {
+        "status": 404,
+        "data": null
+      }
+    }
+  },
+  "package_dimensions": {
+    "original_supplier_payload": {
+      "height_cm": 17,
+      "length_cm": 12,
+      "width_cm": 13,
+      "weight_g": 262
+    },
+    "current_ml": {
+      "height_cm": 16,
+      "length_cm": 5,
+      "width_cm": 11,
+      "weight_g": 110
+    },
+    "initial_classification": "ML_LOGISTICS_NORMALIZATION_PENDING_VALIDATION",
+    "final_classification": "ML_LOGISTICS_NORMALIZATION_ACCEPTABLE",
+    "overwrite_product_master": false,
+    "source_separation_required": true,
+    "ml_context": {
+      "shipping_mode": "me2",
+      "logistic_type": "xd_drop_off"
+    }
+  },
+  "shipping_revalidation": {
+    "currency_id": "BRL",
+    "previous_cost": 19.85,
+    "item_id_quote_cost": 18.45,
+    "current_ml_dimensions_quote_cost": 18.45,
+    "original_dimensions_control_quote_cost": 19.85,
+    "effective_current_cost": 18.45,
+    "effective_source": "active_item_id_quote",
+    "caveat": "Pre-sale estimate. Definitive seller charge exists only after a sale via /shipments/{shipment_id}/costs senders[].cost.",
+    "item_id_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 18.45,
+          "currency_id": "BRL",
+          "billable_weight": 147,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 36.9
+          }
+        }
+      }
+    },
+    "current_dimensions_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 18.45,
+          "currency_id": "BRL",
+          "billable_weight": 147,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 36.9
+          }
+        }
+      }
+    },
+    "original_dimensions_control_quote": {
+      "coverage": {
+        "all_country": {
+          "list_cost": 19.85,
+          "currency_id": "BRL",
+          "billable_weight": 442,
+          "discount": {
+            "rate": 0.5,
+            "type": "mandatory",
+            "promoted_amount": 39.7
+          }
+        }
+      }
+    }
+  },
+  "financial_revalidation": {
+    "previous": {
+      "checked_at": "2026-08-16T20:20:21.603Z",
+      "price": 187.22,
+      "listing_type_id": "gold_pro",
+      "cost": 96.22,
+      "commission": 33.7,
+      "commission_rate_percent": 18,
+      "shipping": 19.85,
+      "tax": 9.361,
+      "other_expenses": 0,
+      "profit": 28.088999999999988,
+      "margin_percent": 15.003204785813477,
+      "target_margin_percent": 15,
+      "approved": true,
+      "fee_quote": {
+        "currency_id": "BRL",
+        "free_relist": false,
+        "listing_exposure": "highest",
+        "listing_fee_amount": 0,
+        "listing_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 0
+        },
+        "listing_type_id": "gold_pro",
+        "listing_type_name": "Premium",
+        "requires_picture": true,
+        "sale_fee_amount": 33.7,
+        "sale_fee_details": {
+          "fixed_fee": 0,
+          "gross_amount": 33.7,
+          "percentage_fee": 18
+        },
+        "stop_time": "2046-08-11T00:00:00.000-04:00"
+      },
+      "shipping_quote": {
+        "coverage": {
+          "all_country": {
+            "list_cost": 19.85,
+            "currency_id": "BRL",
+            "billable_weight": 442,
+            "discount": {
+              "rate": 0.5,
+              "type": "mandatory",
+              "promoted_amount": 39.7
+            }
+          }
+        }
+      }
+    },
+    "current": {
+      "price": 187.22,
+      "commission": 33.7,
+      "shipping": 18.45,
+      "cost": 96.22,
+      "tax_rate_percent": 5,
+      "tax": 9.361,
+      "profit": 29.488999999999994,
+      "margin_percent": 15.750988142292488,
+      "target_margin_percent": 15,
+      "approved": true
+    },
+    "shipping_difference": -1.4000000000000021,
+    "profit_difference": 1.4000000000000057,
+    "margin_percentage_point_difference": 0.7477833564790117,
+    "commission_quote": {
+      "currency_id": "BRL",
+      "free_relist": false,
+      "listing_exposure": "highest",
+      "listing_fee_amount": 0,
+      "listing_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 0
+      },
+      "listing_type_id": "gold_pro",
+      "listing_type_name": "Premium",
+      "requires_picture": true,
+      "sale_fee_amount": 33.7,
+      "sale_fee_details": {
+        "fixed_fee": 0,
+        "gross_amount": 33.7,
+        "percentage_fee": 18
+      },
+      "stop_time": "2046-08-11T00:00:00.000-04:00"
+    }
+  },
+  "classification": "REMOTE_NORMALIZATION_ACCEPTABLE",
+  "recommendation": "Authorize a new local-persistence phase using current remote commercial fields; keep supplier package data and ML logistics data as separate evidence.",
+  "pipeline_proposal_only": {
+    "applied_globally": false,
+    "blocking_drift": [
+      "seller_sku",
+      "gtin",
+      "brand",
+      "model",
+      "category_id",
+      "price",
+      "available_quantity",
+      "condition",
+      "commercial_unit",
+      "material_visual_identity"
+    ],
+    "acceptable_remote_normalization": [
+      "equivalent_image_rehosting",
+      "ordering_or_formatting",
+      "platform_managed_fields",
+      "logistics_normalization_without_identity_or_margin_harm"
+    ]
+  },
+  "writes": {
+    "mercado_livre": 0,
+    "supabase": 0,
+    "description": 0
+  },
+  "hold": "P0 PHASE 4B.3.1 — REMOTE NORMALIZATION HOLD"
+}

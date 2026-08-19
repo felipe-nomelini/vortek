@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB5075856655",
+      "local": "MLB5075856655",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK000619",
+      "local": "VTK000619",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "28cc9ec1-ec96-469d-a57a-71b9f60361ec",
+      "local": "28cc9ec1-ec96-469d-a57a-71b9f60361ec",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Mesa Gamer Thunderx3 Ed5 2.0 Preta 140cm Preto",
+      "local": "Mesa Gamer Thunderx3 Ed5 2.0 Preta 140cm Preto",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 2919.9,
+      "local": 2919.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-5075856655-mesa-gamer-thunderx3-ed5-20-preta-140cm-preto-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-5075856655-mesa-gamer-thunderx3-ed5-20-preta-140cm-preto-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

@@ -1,0 +1,664 @@
+{
+  "checked_at": "2026-08-17T01:13:43.596Z",
+  "product": {
+    "id": "34a42f9d-bc9b-436d-aab2-098d44a3a598",
+    "sku": "VTK025953",
+    "nome": "Liquidificador Portátil Arno Lightmix LP00",
+    "marca": "ARNO",
+    "gtin": "3016661179594"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/88432",
+    "consulted_at": "2026-08-17T01:13:43.396Z",
+    "product": {
+      "produtoid": "88432",
+      "produtoid_empresa": "",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 225.56,
+      "preco_crossdocking": 225.56,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 225.56,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-27 18:06:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-04 18:05:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Liquidificador Portátil Arno Lightmix LP00",
+      "titulo_curto": "LIQ PORTATIL 300ML ARNO LIGHTMIX LP00 AM",
+      "categoriaid": "0472",
+      "categoria_nome": "Eletrodomesticos E Eletroportateis / Cozinha / Liquidificadores",
+      "abc": "C",
+      "ean11": "3016661179594",
+      "ncm": "8509.40.10",
+      "descricao": "O Liquidificador Portátil Arno Lightmix é o modelo perfeito para quem busca praticidade e vida saudável. Ideal para shakes, smoothies, sucos e preparos pré ou pós-treino, ele combina potência, segurança e conveniência em um design compacto. Com bateria recarregável e copo inquebrável, você pode preparar suas bebidas favoritas a qualquer hora e em qualquer lugar.   <br/>   <br/> · Copo único: prepare e consuma no mesmo copo, sem sujeira.   <br/> · Portátil e recarregável: bateria USB para levar e usar onde quiser.   <br/> · Copo de 300ml em Tritan: inquebrável* e livre de BPA.   <br/> · Potência e eficiência: lâminas em inox que trituram até gelo e frutas congeladas.   <br/> · Segurança: desligamento automático após 40 segundos.   <br/> · Design compacto e leve: revestimento e alça em silicone para melhor manuseio.   <br/>   <br/> A Arno é uma das marcas mais tradicionais e respeitadas do Brasil, com mais de 70 anos de história no mercado. Desde sua fundação, conquistou espaço nos lares brasileiros oferecendo eletrodomésticos que combinam inovação, durabilidade e praticidade. Essa longa trajetória reforça a credibilidade da marca, que se mantém relevante ao acompanhar a evolução das necessidades do consumidor, sempre trazendo soluções que facilitam o dia a dia com eficiência e qualidade.   <br/>   <br/> Com tecnologia de ponta e foco em desempenho, a Arno entrega não apenas equipamentos funcionais, mas também a segurança de contar com um nome que é sinônimo de confiança e tradição.  <br/>   <br/> *Tritan™ é altamente resistente a impactos e quedas, podendo apresentar danos em condições extremas.  <br/>",
+      "caracteristicas": "Tamanho:com embalagem: 13,4 (L) x 25,2 (A) x 11 (P)  <br/> Tamanho sem embalagem: 9 (L) x 18,5 (A) x 8,5 (P)  <br/><br>Potência:Bateria de 1200mAh<br>Velocidade:1<br>Pesquisa: liquidificador portatil|liquidificador amarelo|liquidificador arno|arno |portatil|liquidificador <br>",
+      "informacoes": "<br/> • Cor: Amarelo  <br/> • Tipo de material: Plástico e Metal  <br/> • Conteúdo do pacote: 1 peronsal blender portátil + 1 cabo USB-C + 1 manual de instruções  <br/> • Volume: 300ml  <br/> • Peso sem embalagem: 0,53kg  <br/> • Peso com embalagem: 0,78kg <br/>",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "ARNO",
+      "modelo": "Lightm LP00",
+      "peso": 0.72,
+      "largura": 11,
+      "altura": 25,
+      "profundidade": 13.5,
+      "peso_embalagem": 0.72,
+      "largura_embalagem": 11,
+      "altura_embalagem": 25,
+      "profundidade_embalagem": 13.5,
+      "link": "http://www.hayamax.com.br/liquidificador-portatil-arno-lightmix-lp00",
+      "link_imagem": "https://static.hayapek.com.br/produtos/88432/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 1,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 6,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-28 14:06:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:15:52.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 24,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/7.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "8",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/8.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "9",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/9.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "10",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/10.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "11",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/11.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "12",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/12.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "13",
+          "valor": "https://static.hayapek.com.br/produtos/88432/550/13.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB63370268 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB63370268",
+      "catalog_product_id": "MLB63370268",
+      "domain_id": "MLB-BLENDERS",
+      "name": "Liquidificador Portátil Arno Lightmix Amarelo Lp00 Amarelo",
+      "parent_id": "MLB63370266",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "455",
+          "value_name": "Arno",
+          "values": [
+            {
+              "id": "455",
+              "name": "Arno"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "68452519",
+          "value_name": "Lighmix",
+          "values": [
+            {
+              "id": "68452519",
+              "name": "Lighmix"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "83592680",
+          "value_name": "LP00",
+          "values": [
+            {
+              "id": "83592680",
+              "name": "LP00"
+            }
+          ]
+        },
+        {
+          "id": "TOTAL_CAPACITY",
+          "name": "Capacidade total",
+          "value_id": "3656932",
+          "value_name": "300 mL",
+          "values": [
+            {
+              "id": "3656932",
+              "name": "300 mL"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_NUMBER",
+          "name": "Quantidade de acessórios",
+          "value_id": "112805",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "112805",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "5422206",
+          "value_name": "USB",
+          "values": [
+            {
+              "id": "5422206",
+              "name": "USB"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52007",
+          "value_name": "Amarelo",
+          "values": [
+            {
+              "id": "52007",
+              "name": "Amarelo"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205163",
+          "value_name": "127/220V",
+          "values": [
+            {
+              "id": "39205163",
+              "name": "127/220V"
+            }
+          ]
+        },
+        {
+          "id": "BLENDER_JAR_MATERIAL",
+          "name": "Material da jarra",
+          "value_id": "2364248",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "2364248",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450296",
+          "value_name": "Amarelo",
+          "values": [
+            {
+              "id": "2450296",
+              "name": "Amarelo"
+            }
+          ],
+          "meta": {
+            "rgb": "FFED00"
+          }
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "84731044",
+          "value_name": "LP00",
+          "values": [
+            {
+              "id": "84731044",
+              "name": "LP00"
+            }
+          ]
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "name": "Usos recomendados",
+          "value_name": "Shakes, Sucos, Vitaminas",
+          "values": [
+            {
+              "id": "20145706",
+              "name": "Shakes"
+            },
+            {
+              "id": "17775909",
+              "name": "Sucos"
+            },
+            {
+              "id": "19335335",
+              "name": "Vitaminas"
+            }
+          ]
+        },
+        {
+          "id": "IS_INDUSTRIAL",
+          "name": "É industrial",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "USEFUL_CAPACITY",
+          "name": "Capacidade útil",
+          "value_id": "18499465",
+          "value_name": "350 L",
+          "values": [
+            {
+              "id": "18499465",
+              "name": "350 L"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "name": "Eficiência energética",
+          "value_id": "98473",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "98473",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "68452555",
+          "value_name": "3016661179594",
+          "values": [
+            {
+              "id": "68452555",
+              "name": "3016661179594"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "name": "Inclui acessórios",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "11120761",
+          "value_name": "Alça de transporte",
+          "values": [
+            {
+              "id": "11120761",
+              "name": "Alça de transporte"
+            }
+          ]
+        },
+        {
+          "id": "IS_DISHWASHER_SAFE",
+          "name": "É apto para lava-louças",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_PORTABLE",
+          "name": "É portátil",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_ON_OFF_POWER_BUTTON",
+          "name": "Com botão de ligar/desligar",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_USB_CHARGE",
+          "name": "Com carga USB",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_BPA_FREE",
+          "name": "É livre de BPA",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_STAINLESS_STEEL_BLADE",
+          "name": "Com lâmina de aço inoxidável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "7821193",
+          "value_name": "26 cm",
+          "values": [
+            {
+              "id": "7821193",
+              "name": "26 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "7778835",
+          "value_name": "14 cm",
+          "values": [
+            {
+              "id": "7778835",
+              "name": "14 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "7674180",
+          "value_name": "1 kg",
+          "values": [
+            {
+              "id": "7674180",
+              "name": "1 kg"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Liquidificador Portátil Arno Lightmix\n\nShakes e sucos onde e quando quiser!\n\n> Portabilidade real para sua rotina: leve e compacto, o Arno Lightmix é ideal para levar à academia, ao trabalho ou onde desejar, garantindo praticidade na preparação de bebidas a qualquer hora.\n\n> Bateria recarregável com entrada USB-C: prepare suas bebidas onde estiver com liberdade total. O carregamento via USB-C é rápido e prático.\n\n> Copo de Tritan de 300ml livre de BPA: material leve, resistente e inquebrável. Ideal para preparar e consumir direto no copo, economizando tempo com limpeza.\n\n> Mistura gelo e frutas congeladas com segurança: lâminas em inox de alta performance garantem excelente resultado. O desligamento automático após 40 segundos evita superaquecimento.\n\n> Design funcional e confortável para o dia a dia: revestimento em silicone com alça integrada proporciona melhor pegada e transporte fácil na bolsa ou mochila."
+      },
+      "pictures": [
+        {
+          "id": "767985-MLA101495382112_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_767985-MLA101495382112_122025-F.jpg",
+          "max_width": "573",
+          "max_height": "953"
+        },
+        {
+          "id": "698118-MLA114489844205_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_698118-MLA114489844205_072026-F.jpg",
+          "max_width": "821",
+          "max_height": "1018"
+        },
+        {
+          "id": "617932-MLA113249733932_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_617932-MLA113249733932_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "729287-MLA114489844217_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_729287-MLA114489844217_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "842603-MLA113249319248_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_842603-MLA113249319248_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "738758-MLA113249555778_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_738758-MLA113249555778_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "826405-MLA113249348374_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_826405-MLA113249348374_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "913158-MLA113249705752_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_913158-MLA113249705752_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "775208-MLA113249991086_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_775208-MLA113249991086_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "738933-MLA114489988829_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_738933-MLA114489988829_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "1000"
+        },
+        {
+          "id": "617299-MLA113249991100_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_617299-MLA113249991100_072026-F.jpg",
+          "max_width": "1000",
+          "max_height": "735"
+        },
+        {
+          "id": "644546-MLA113249288920_072026",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_644546-MLA113249288920_072026-F.jpg",
+          "max_width": "782",
+          "max_height": "1015"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-12-20T15:28:08Z",
+      "last_updated": "2026-07-13T17:25:51Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "enhanced_content_template_id": "c03f56da-3127-40d1-86db-d82fbad796ff",
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

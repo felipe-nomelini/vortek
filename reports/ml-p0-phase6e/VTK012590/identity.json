@@ -1,0 +1,369 @@
+{
+  "checked_at": "2026-08-17T12:54:32.509Z",
+  "product": {
+    "id": "d5dadf67-755e-4ddb-8364-3b53e162d62f",
+    "sku": "VTK012590",
+    "nome": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+    "marca": "Dunlop",
+    "gtin": "7897626819399"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2236",
+    "consulted_at": "2026-08-17T12:54:32.314Z",
+    "product": {
+      "produtoid": "2236",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 22.92,
+      "preco_crossdocking": 22.92,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 22.92,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:43.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+      "titulo_curto": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+      "categoriaid": null,
+      "categoria_nome": "",
+      "abc": null,
+      "ean11": "7897626819399",
+      "ncm": "9209.94.00",
+      "descricao": "<p>Não é de se admirar que o Jazz III Nylon Pick tenha conquistado tantos seguidores entre uma variedade dos melhores guitarristas do mundo - seu formato foi projetado para permitir que sua técnica assuma o controle. Com um perfil pequeno, borda moldada de liberação rápida e uma ponta afiada, o Jazz III oferece o controle de que você precisa para tocar com velocidade e precisão enquanto as notas soam com clareza. Disponível no Nylon vermelho de som quente ou no “Stiffo” preto mais brilhante e agressivo.</p> <p>Calibre: Duro<br>Material: Nylon<br>Pacote com 4</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Dunlop",
+      "modelo": "",
+      "peso": 0.01,
+      "largura": 7,
+      "altura": 9,
+      "profundidade": 1,
+      "peso_embalagem": 0.01,
+      "largura_embalagem": 7,
+      "altura_embalagem": 9,
+      "profundidade_embalagem": 1,
+      "link": null,
+      "link_imagem": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/489bcc333bb2e5133f5287d05391730c.jpeg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Pç",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 23,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "914052715",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-21 23:51:38.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-21 23:51:38.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/489bcc333bb2e5133f5287d05391730c.jpeg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/742b9328b520986c7f601eb0cfe49b3e.jpeg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ac8d067decb000693b90b45a5abe97f.jpeg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_UNIT_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: UNIT",
+    "foundValue": "MLB24680597",
+    "source": "ML catalog MLB24680597 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "UNIT"
+      ],
+      "catalog_brand": "Dunlop",
+      "model": "47R3S DUNLOP 1939",
+      "local_pack": 4,
+      "catalog_pack": 1,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "preto",
+        "vermelho"
+      ],
+      "catalog_colors": [],
+      "title_similarity": 0.6666666666666666
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB24680597",
+      "catalog_product_id": "MLB24680597",
+      "domain_id": "MLB-STRING_INSTRUMENT_PICKS",
+      "name": "Palheta Jazz Iii 47r3 Com 24 Dunlop",
+      "parent_id": "MLB24680593",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "9269",
+          "value_name": "Dunlop",
+          "values": [
+            {
+              "id": "9269",
+              "name": "Dunlop"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "21105187",
+          "value_name": "47R3S DUNLOP 1939",
+          "values": [
+            {
+              "id": "21105187",
+              "name": "47R3S DUNLOP 1939"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "2826196",
+          "value_name": "Preta",
+          "values": [
+            {
+              "id": "2826196",
+              "name": "Preta"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "name": "Unidades por embalagem",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "PICKS_THICKNESS",
+          "name": "Espessura",
+          "value_id": "7435996",
+          "value_name": "1.38 mm",
+          "values": [
+            {
+              "id": "7435996",
+              "name": "1.38 mm"
+            }
+          ]
+        },
+        {
+          "id": "PICK_MATERIAL",
+          "name": "Material da palheta",
+          "value_id": "2511559",
+          "value_name": "Náilon",
+          "values": [
+            {
+              "id": "2511559",
+              "name": "Náilon"
+            }
+          ]
+        },
+        {
+          "id": "RELATED_ARTIST",
+          "name": "Artista relacionado",
+          "value_id": "2511562",
+          "value_name": "John Petrucci",
+          "values": [
+            {
+              "id": "2511562",
+              "name": "John Petrucci"
+            }
+          ]
+        },
+        {
+          "id": "PICKS_NUMBER",
+          "name": "Quantidade de palhetas",
+          "value_id": "23707647",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "23707647",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "IS_THUMB_PICK",
+          "name": "É palheta tipo dedeira",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "21105193",
+          "value_name": "7897626819399",
+          "values": [
+            {
+              "id": "21105193",
+              "name": "7897626819399"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "9789461",
+          "value_name": "Caixa",
+          "values": [
+            {
+              "id": "9789461",
+              "name": "Caixa"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Jazz III Nylon Pick é reconhecido por muitos dos melhores guitarristas do mundo devido ao seu design que permite uma técnica apurada. Com um perfil compacto, borda moldada para liberação rápida e uma ponta afiada, o Jazz III proporciona o controle necessário para tocar com velocidade e precisão, garantindo que as notas sejam emitidas com clareza. Disponível em Nylon vermelho, que produz um som quente, ou em “Stiffo” preto, que oferece um timbre mais brilhante e agressivo."
+      },
+      "pictures": [
+        {
+          "id": "813894-MLA99567003198_122025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_813894-MLA99567003198_122025-F.jpg",
+          "max_width": "1059",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-07-21T12:00:50Z",
+      "last_updated": "2026-07-16T12:17:16Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

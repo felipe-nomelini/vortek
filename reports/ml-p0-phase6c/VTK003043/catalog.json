@@ -1,0 +1,965 @@
+{
+  "checked_at": "2026-08-17T00:44:31.259Z",
+  "expected_catalog_product_id": "MLB15963092",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB15963092",
+    "catalog_product_id": "MLB15963092",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-OFFICE_CHAIRS",
+    "permalink": "",
+    "name": "Cadeira gamer ergonômica Fortrek Cruiser preta com estofado de couro sintético",
+    "family_name": "Fortrek Cruiser",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB15963092",
+            "picker_label": "Preto",
+            "picture_id": "917745-MLU72643269723_112023",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_917745-MLU72643269723_112023-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15963094",
+            "picker_label": "Preto/Azul",
+            "picture_id": "614815-MLA44000182432_112020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_614815-MLA44000182432_112020-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Azul"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto/Azul - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15963096",
+            "picker_label": "Preto/Rosa",
+            "picture_id": "620980-MLA44000133593_112020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_620980-MLA44000133593_112020-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Rosa"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto/Rosa - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15963095",
+            "picker_label": "Preto/Verde",
+            "picture_id": "876356-MLA44000182434_112020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_876356-MLA44000182434_112020-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Verde"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto/Verde - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB15963093",
+            "picker_label": "Preto/Vermelho",
+            "picture_id": "741301-MLA44000182431_112020",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_741301-MLA44000182431_112020-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Preto/Vermelho"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto/Vermelho - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB75886619",
+            "picker_label": "Rosa",
+            "picture_id": "720616-MLA113960966814_072026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_720616-MLA113960966814_072026-I.jpg",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Rosa"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Revestimento Sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Rosa - Revestimento Sintético - 1",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UPHOLSTERY_MATERIAL",
+        "picker_name": "Material do estofamento",
+        "products": [
+          {
+            "product_id": "MLB15963092",
+            "picker_label": "Couro sintético",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB24031156",
+            "picker_label": "Poliuretano",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [],
+            "changes": [
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Poliuretano"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto - Poliuretano - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB75886619",
+            "picker_label": "Revestimento Sintético",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Rosa"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Revestimento Sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Rosa - Revestimento Sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UPHOLSTERY_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por pacote",
+        "products": [
+          {
+            "product_id": "MLB15963092",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Fortrek Cruiser - Preto - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "882827-MLA99855528043_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_882827-MLA99855528043_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "917745-MLU72643269723_112023",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_917745-MLU72643269723_112023-F.jpg",
+        "suggested_for_picker": [
+          "COLOR"
+        ],
+        "max_width": 628,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "762275-MLU74829557446_032024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_762275-MLU74829557446_032024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 799,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "696706-MLU74829428610_032024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_696706-MLU74829428610_032024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 765,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "633973-MLU74829557448_032024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_633973-MLU74829557448_032024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 727,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "946023-MLU74965209901_032024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_946023-MLU74965209901_032024-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 1200,
+        "max_height": 1124,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Cor principal: Preto.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Materiais da estrutura: Náilon.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Altura do encosto: 84 cm.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Profundidade do assento: 60 cm.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Peso máximo suportado: 135 kg.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com encosto reclinável: Sim.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "46525",
+        "value_name": "Fortrek",
+        "values": [
+          {
+            "id": "46525",
+            "name": "Fortrek"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "977211",
+        "value_name": "Cruiser",
+        "values": [
+          {
+            "id": "977211",
+            "name": "Cruiser"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "UPHOLSTERY_MATERIAL",
+        "name": "Material do estofamento",
+        "value_id": "570721",
+        "value_name": "Couro sintético",
+        "values": [
+          {
+            "id": "570721",
+            "name": "Couro sintético"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "000000"
+        }
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "name": "Tipo de cadeira de escritório",
+        "value_id": "13016815",
+        "value_name": "Escritório",
+        "values": [
+          {
+            "id": "13016815",
+            "name": "Escritório"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "name": "Materiais da estrutura",
+        "value_id": "7980354",
+        "value_name": "Náilon",
+        "values": [
+          {
+            "id": "7980354",
+            "name": "Náilon"
+          }
+        ]
+      },
+      {
+        "id": "FILLING_MATERIALS",
+        "name": "Materiais do enchimento",
+        "value_id": "5897875",
+        "value_name": "Espuma",
+        "values": [
+          {
+            "id": "5897875",
+            "name": "Espuma"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "name": "Altura do encosto",
+        "value_id": "7571534",
+        "value_name": "84 cm",
+        "values": [
+          {
+            "id": "7571534",
+            "name": "84 cm"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "name": "Profundidade do assento",
+        "value_id": "9871307",
+        "value_name": "60 cm",
+        "values": [
+          {
+            "id": "9871307",
+            "name": "60 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "name": "Largura da cadeira",
+        "value_id": "7661942",
+        "value_name": "66 cm",
+        "values": [
+          {
+            "id": "7661942",
+            "name": "66 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "name": "Altura máxima da cadeira",
+        "value_id": "50154411",
+        "value_name": "131 cm",
+        "values": [
+          {
+            "id": "50154411",
+            "name": "131 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "3183623",
+        "value_name": "135 kg",
+        "values": [
+          {
+            "id": "3183623",
+            "name": "135 kg"
+          }
+        ]
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "name": "Requer montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_WHEELS",
+        "name": "Com rodas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "name": "Com aro para pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ARMREST",
+        "name": "Com apoio de braços",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "name": "Com encosto reclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "name": "Com luzes",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "name": "Com apoio de braços ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_HEADREST",
+        "name": "Com apoio de cabeça",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "name": "Com apoio de pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "name": "É ergonômica",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_SWIVEL",
+        "name": "É giratória",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "66353431",
+        "value_name": "FORTREK CRUISER PT",
+        "values": [
+          {
+            "id": "66353431",
+            "name": "FORTREK CRUISER PT"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_ASSEMBLY_MANUAL",
+        "name": "Inclui manual de montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "name": "Tipo de apoio lombar",
+        "value_id": "10201909",
+        "value_name": "Regulável",
+        "values": [
+          {
+            "id": "10201909",
+            "name": "Regulável"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_FINISH",
+        "name": "Acabamento da estrutura",
+        "value_id": "1185554",
+        "value_name": "Cromado",
+        "values": [
+          {
+            "id": "1185554",
+            "name": "Cromado"
+          }
+        ]
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "name": "Tipos de mecanismos de reclinação",
+        "value_id": null,
+        "value_name": "Basculante, Encosto reclinável",
+        "values": [
+          {
+            "id": "10204587",
+            "name": "Basculante"
+          },
+          {
+            "id": "10219265",
+            "name": "Encosto reclinável"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_TILT_RANGE",
+        "name": "Faixa de inclinação do encosto",
+        "value_id": "10340644",
+        "value_name": "90 ° x 155 °",
+        "values": [
+          {
+            "id": "10340644",
+            "name": "90 ° x 155 °"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_HEIGHT",
+        "name": "Altura da cadeira",
+        "value_id": "53835640",
+        "value_name": "131 cm",
+        "values": [
+          {
+            "id": "53835640",
+            "name": "131 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_DEPTH",
+        "name": "Profundidade da cadeira",
+        "value_id": "7866305",
+        "value_name": "60 cm",
+        "values": [
+          {
+            "id": "7866305",
+            "name": "60 cm"
+          }
+        ]
+      },
+      {
+        "id": "BASE_DIAMETER",
+        "name": "Diâmetro da base",
+        "value_id": "12905531",
+        "value_name": "35 cm",
+        "values": [
+          {
+            "id": "12905531",
+            "name": "35 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WEIGHT",
+        "name": "Peso da cadeira",
+        "value_id": "11518281",
+        "value_name": "22.6 kg",
+        "values": [
+          {
+            "id": "11518281",
+            "name": "22.6 kg"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_WIDTH",
+        "name": "Largura do assento",
+        "value_id": "3202979",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "3202979",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_WIDTH",
+        "name": "Largura do encosto",
+        "value_id": "9272011",
+        "value_name": "55 cm",
+        "values": [
+          {
+            "id": "9272011",
+            "name": "55 cm"
+          }
+        ]
+      },
+      {
+        "id": "MIN_CHAIR_HEIGHT",
+        "name": "Altura mínima da cadeira",
+        "value_id": "10263986",
+        "value_name": "123 cm",
+        "values": [
+          {
+            "id": "10263986",
+            "name": "123 cm"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A Cadeira Gamer Fortrek Cruiser possui um design exclusivo cuja costura remete aos famosos bancos dos carros esportivos, proporcionando conforto durante suas sessões de jogos. \n\nUma inclinação do encosto de 155º permite que o usuário relaxe após horas de partida ou trabalho, unida a um balanço relaxante de 3~18º. \n\nUm assento firme com apoio para cabeça e almofada para as costas oferecem conforto prolongado. Com rodas de 60mm de diâmetro construídas em nylon, a cadeira Cruiser garante liberdade de movimento.\n\nCor: Preta  \nMaterial: Revestimento sintético, nylon  \nDimensões: Geral: 66 x 60 x 123-131 cm  \nEncosto: 55 x 84 cm  \nAssento: 50 x 60 x 11,5 cm  \nEspuma: Moldado por injeção  \nApoio de Braço: ajustável, 1D  \nAjuste de encosto: sim, 90~155º  \nMecanismo: Borboleta  \nElevação de gás: classe 4  \nBase: 350mm em nylon  \nPeso máximo recomendado: 120Kg  \nRodinhas: 60mm em nylon  \nPeso: 22,6 kg  \n\nRequer montagem."
+    },
+    "parent_id": "MLB15963091",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T09:11:51.635386877"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2020-07-29T19:56:32Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-19T01:41:58Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

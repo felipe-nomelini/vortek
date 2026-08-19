@@ -1,0 +1,10 @@
+{
+  "sku": "VTK001336",
+  "gate": "BLOCK_GTIN_UNIT_CONFLICT",
+  "evidence": "GTIN-14 packaging relation and local commercial quantity are not proven for the requested single frying pan",
+  "local_value": "17702073028751",
+  "found_value": null,
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:13:23.082Z"
+}

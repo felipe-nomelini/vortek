@@ -1,0 +1,636 @@
+{
+  "checked_at": "2026-08-17T00:44:50.738Z",
+  "product": {
+    "id": "fb955111-ce40-4901-9b5f-32a9bf040152",
+    "sku": "VTK025861",
+    "nome": "Cadeira Gamer Fortrek Vickers Preta/Rosa",
+    "marca": "FORTREK",
+    "gtin": "7898554606624"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/70523",
+    "consulted_at": "2026-08-17T00:44:50.541Z",
+    "product": {
+      "produtoid": "70523",
+      "produtoid_empresa": "",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 787,
+      "preco_crossdocking": 787,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 787,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "1",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-29 22:04:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-29 22:04:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Cadeira Gamer Fortrek Vickers Preta/Rosa",
+      "titulo_curto": "CADEIRA FORTREK VICKERS PT/RS",
+      "categoriaid": "293287",
+      "categoria_nome": "Móveis / Cadeiras / Gamer",
+      "abc": "B",
+      "ean11": "7898554606624",
+      "ncm": "9401.39.00",
+      "descricao": "A Cadeira Gamer Fortrek Vickers possui uma design exclusivo cuja costura remete aos famosos bancos dos carros esportivos enquanto você desfruta do prazer de jogar seus games favoritos, isso unido a um balanço relaxante de 3~18º e apoios de braços fixos e confortáveis para posicionar os cotovelos durante horas de jogabilidade. <br/> <br/> Ainda pensando em comodidade um assento firme com um pequeno apoio para cabeça e almofada para as costas oferecem um conforto prolongado. Com roda de 60mm de diâmetro construída em nylon a cadeira Vickers garante liberdade para movimentar-se para todos os lados. <br/> <br/> <br/> INSTRUÇÕES DE LIMPEZA: <br/> Limpe sua cadeira utilizando um pano de microfibra e um pulverizador com mistura de detergente neutro e água. Para limpeza das rodas, utilize uma escova ou um pincel pequeno. <br/> Remova as almofadas de pescoço e lombar, pulverize uma pequena quantidade de água no pano e limpe-as. Coloque as peças para secar naturalmente e execute o mesmo processo no restante da cadeira ficando atento às áreas com acúmulo de sujeira, como onde encosto e assento se juntam. Limpe a base da cadeira com um pano umedecido e, se for de metal, utilize um pano seco para remover o excesso de umidade. <br/> <br/> INSTRUÇÕES DE CONSERVAÇÃO: <br/> Para um melhor movimento e preservar a durabilidade das rodas é importante que a cadeira esteja em uma superfície plana e nivelada. <br/> Não coloque sua cadeira em locais expostos ao sol, pois a cor pode começar a desbotar, e evite que pets subam nela e danifiquem o tecido. <br/> Não utilize produtos abrasivos ou alvejantes, nem escovas de cerdas duras. Para manter a cadeira segura e funcional, verifique os parafusos a cada seis meses. <br/> As cadeiras com inclinação possuem fixação do pistão a gás recuado para manter o equilíbrio, para evitar quedas não sente na parte da frente do assento. <br/> Respeite o peso máximo estabelecido para o seu conforto e segurança.",
+      "caracteristicas": "Cor:Preta/Rosa<br>Material:Revestimento Sintético<br>Dimensões:Geral: 66 x 50 x 121-129 cm <br/> Encosto: 58 x 80 cm <br/> Assento: 49 x 50 x 11 cm<br>Pesquisa:cadeira|gamer|vickers|preta|black|rosa|fortrek|<br>",
+      "informacoes": "<br/> Espuma: Moldada por injeção <br/> Apoio de braço: Fixo <br/> Ajuste de encosto: Não <br/> Mecanismo: Borboleta <br/> Elevação de gás: classe 4 <br/> Base: 350mm em nylon <br/> Peso máximo recomendado: 120Kg <br/> Rodinhas: 60mm em nylon <br/> Peso: 17,5 kg <br/> <br/> Requer montagem. <br/> <br/> O prazo de garantia já inclui a garantia legal, Art. 26. CDC.",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "FORTREK",
+      "modelo": "Vickers",
+      "peso": 17.6,
+      "largura": 65,
+      "altura": 29,
+      "profundidade": 85,
+      "peso_embalagem": 17.6,
+      "largura_embalagem": 65,
+      "altura_embalagem": 29,
+      "profundidade_embalagem": 85,
+      "link": "http://www.hayamax.com.br/cadeira-gamer-fortrek-vickers-preta-rosa",
+      "link_imagem": "https://static.hayapek.com.br/produtos/70523/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 180,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 3.25,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 7748,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-06 08:51:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:18.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 18,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/3.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/5.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/6.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/7.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "8",
+          "valor": "https://static.hayapek.com.br/produtos/70523/550/8.jpg"
+        }
+      ]
+    }
+  },
+  "source": "exact ML catalog GTIN + supplier; catalog title confirms Preto/Rosa",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB28408894",
+      "catalog_product_id": "MLB28408894",
+      "domain_id": "MLB-OFFICE_CHAIRS",
+      "name": "Cadeira Gamer Fortrek Vickers Preto/Rosa Reclinável 135kg",
+      "parent_id": "MLB28408891",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "46525",
+          "value_name": "Fortrek",
+          "values": [
+            {
+              "id": "46525",
+              "name": "Fortrek"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "9096042",
+          "value_name": "Vickers",
+          "values": [
+            {
+              "id": "9096042",
+              "name": "Vickers"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "26569771",
+          "value_name": "Vickers",
+          "values": [
+            {
+              "id": "26569771",
+              "name": "Vickers"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "OFFICE_CHAIR_TYPE",
+          "name": "Tipo de cadeira de escritório",
+          "value_id": "13016814",
+          "value_name": "Gamer",
+          "values": [
+            {
+              "id": "13016814",
+              "name": "Gamer"
+            }
+          ]
+        },
+        {
+          "id": "STRUCTURE_MATERIALS",
+          "name": "Materiais da estrutura",
+          "value_id": "2516298",
+          "value_name": "Fluorocarboneto",
+          "values": [
+            {
+              "id": "2516298",
+              "name": "Fluorocarboneto"
+            }
+          ]
+        },
+        {
+          "id": "BACKREST_HEIGHT",
+          "name": "Altura do encosto",
+          "value_id": "7899449",
+          "value_name": "80 cm",
+          "values": [
+            {
+              "id": "7899449",
+              "name": "80 cm"
+            }
+          ]
+        },
+        {
+          "id": "SEAT_DEPTH",
+          "name": "Profundidade do assento",
+          "value_id": "9567306",
+          "value_name": "50 cm",
+          "values": [
+            {
+              "id": "9567306",
+              "name": "50 cm"
+            }
+          ]
+        },
+        {
+          "id": "OFFICE_CHAIR_WIDTH",
+          "name": "Largura da cadeira",
+          "value_id": "7661942",
+          "value_name": "66 cm",
+          "values": [
+            {
+              "id": "7661942",
+              "name": "66 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_CHAIR_HEIGHT",
+          "name": "Altura máxima da cadeira",
+          "value_id": "50153760",
+          "value_name": "129 cm",
+          "values": [
+            {
+              "id": "50153760",
+              "name": "129 cm"
+            }
+          ]
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "name": "Peso máximo suportado",
+          "value_id": "3183623",
+          "value_name": "135 kg",
+          "values": [
+            {
+              "id": "3183623",
+              "name": "135 kg"
+            }
+          ]
+        },
+        {
+          "id": "REQUIRES_ASSEMBLY",
+          "name": "Requer montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_HEIGHT",
+          "name": "Com altura ajustável",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_WHEELS",
+          "name": "Com rodas",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_FOOT_RING",
+          "name": "Com aro para pés",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ARMREST",
+          "name": "Com apoio de braços",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_RECLINING_BACKREST",
+          "name": "Com encosto reclinável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_ARMREST",
+          "name": "Com apoio de braços ajustável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_HEADREST",
+          "name": "Com apoio de cabeça",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_FOOTREST",
+          "name": "Com apoio de pés",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_GAMER",
+          "name": "É gamer",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_ERGONOMIC",
+          "name": "É ergonômica",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_SWIVEL",
+          "name": "É giratória",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "10718815",
+          "value_name": "7898554606624",
+          "values": [
+            {
+              "id": "10718815",
+              "name": "7898554606624"
+            }
+          ]
+        },
+        {
+          "id": "LUMBAR_SUPPORT_TYPE",
+          "name": "Tipo de apoio lombar",
+          "value_id": "10201909",
+          "value_name": "Regulável",
+          "values": [
+            {
+              "id": "10201909",
+              "name": "Regulável"
+            }
+          ]
+        },
+        {
+          "id": "LEAN_BACK_MECHANISM_TYPES",
+          "name": "Tipos de mecanismos de reclinação",
+          "value_id": "34594363",
+          "value_name": "Borboleta",
+          "values": [
+            {
+              "id": "34594363",
+              "name": "Borboleta"
+            }
+          ]
+        },
+        {
+          "id": "OFFICE_CHAIR_HEIGHT",
+          "name": "Altura da cadeira",
+          "value_id": "53834579",
+          "value_name": "129 cm",
+          "values": [
+            {
+              "id": "53834579",
+              "name": "129 cm"
+            }
+          ]
+        },
+        {
+          "id": "OFFICE_CHAIR_DEPTH",
+          "name": "Profundidade da cadeira",
+          "value_id": "7866305",
+          "value_name": "60 cm",
+          "values": [
+            {
+              "id": "7866305",
+              "name": "60 cm"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A cadeira Vickers é revestida em poliuretano com detalhes em fibra de carbono. A costura é inspirada nos bancos de carros esportivos, proporcionando uma experiência única durante os jogos.\n\n- Conforto o Dia Todo\n\nO assento firme, com um pequeno apoio para a cabeça e almofada para as costas, proporciona conforto prolongado.\n\n- Apoio Almofadado para o Antebraço\n\nIdeal para posicionar os cotovelos durante horas de jogabilidade.\n\n- Deslocamento Facilitado\n\nA roda de 60mm de diâmetro, construída em nylon, permite movimentação livre em todas as direções.\n\nCor: Preta/Rosa\nMaterial: Revestimento Sintético\nDimensões: Dimensão Geral: 66x60x121-129 cm (LxPxA). \n- Dimensão do Encosto: 58x80 cm (LxPxA). \n- Dimensão do Assento: 49x50x11 cm (LxPxA).\n\n- Tipo De espuma: Moldado por injeção. \n- Braços ajustáveis: Não (Fixo). \n- Tipo de mecanismo: Butterfly. \n- Especificação de elevação de gás: Classe 4. \n- Tamanho da Base e Tipo: 350mm e Nylon. \n- Rodinhas: 60mm em Nylon. \n- Suporta: Até 135kg. \n- Montagem da cadeira necessária."
+      },
+      "pictures": [
+        {
+          "id": "896449-MLA99949984665_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_896449-MLA99949984665_112025-F.jpg",
+          "max_width": "1024",
+          "max_height": "1024"
+        },
+        {
+          "id": "671230-MLA99950092581_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_671230-MLA99950092581_112025-F.jpg",
+          "max_width": "309",
+          "max_height": "534"
+        },
+        {
+          "id": "862678-MLA99466070970_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_862678-MLA99466070970_112025-F.jpg",
+          "max_width": "310",
+          "max_height": "535"
+        },
+        {
+          "id": "724238-MLA99466149590_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_724238-MLA99466149590_112025-F.jpg",
+          "max_width": "286",
+          "max_height": "525"
+        },
+        {
+          "id": "845182-MLA94225926022_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_845182-MLA94225926022_102025-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "634",
+          "max_height": "1122"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-11-25T18:14:33Z",
+      "last_updated": "2026-03-13T19:12:03Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

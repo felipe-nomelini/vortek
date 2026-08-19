@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018079",
+  "gate": "SOURCE_DEFERRED",
+  "evidence": "NWT microfan voltage and category identity lack official evidence in the validated source set",
+  "local_value": "7898566200605",
+  "found_value": null,
+  "suggested_action": "IDENTITY_FIX_REQUIRED",
+  "source": "DSLite supplier only",
+  "timestamp": "2026-08-17T01:14:02.981Z"
+}

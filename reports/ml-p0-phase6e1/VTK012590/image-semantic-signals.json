@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-17T14:15:43.215Z",
+  "local_images": [
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/489bcc333bb2e5133f5287d05391730c.jpeg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/742b9328b520986c7f601eb0cfe49b3e.jpeg",
+    "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ac8d067decb000693b90b45a5abe97f.jpeg"
+  ],
+  "catalog_images": [
+    {
+      "id": "813894-MLA99567003198_122025",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_813894-MLA99567003198_122025-F.jpg",
+      "max_width": "1059",
+      "max_height": "1200"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

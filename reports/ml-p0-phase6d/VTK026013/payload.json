@@ -1,0 +1,108 @@
+{
+  "payload": {
+    "family_name": "Suporte para Celular Saty SC-01",
+    "category_id": "MLB439386",
+    "catalog_product_id": "MLB29045908",
+    "catalog_listing": true,
+    "price": 479.9,
+    "currency_id": "BRL",
+    "available_quantity": 20,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd9ab7931cba037fb7019cb73ac7a17.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d43a55d6695a009df02debf9d976e137.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0969fe99de2a41fd574e0010e625a969.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1306c6aeb6cca811b2941d4f41c3d720.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/28a215493f60123db3a21e5ef77b9025.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/53495f8b7d9c3908bbb4957bd95c2bd8.jpg"
+      },
+      {
+        "source": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f50ed2daeffc004f96b3926de6009e41.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "5451933",
+        "value_name": "Saty"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "22973465",
+        "value_name": "SC-01"
+      },
+      {
+        "id": "STAND_TYPE",
+        "value_id": "28030143",
+        "value_name": "Celular"
+      },
+      {
+        "id": "BASE_TYPE",
+        "value_id": "19830858",
+        "value_name": "Pedestal"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "15074673",
+        "value_name": "15 cm"
+      },
+      {
+        "id": "ROTATION_ANGLE",
+        "value_id": "8671387",
+        "value_name": "360°"
+      },
+      {
+        "id": "IS_TABLE_STAND",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_ANTIVIBRATION_STAND",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "27566111",
+        "value_name": "7898572860039"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK026013"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK026013"
+  },
+  "sha256": "39c27e91ab70b0b4b4a22bba51997387dcb44ed8790c93838aac8abbc23d0fcf",
+  "family_name_sha256": "9d35230fe2404916d7163dd002b8df1cc7a0e173796a49946ab3901207c41d66",
+  "title_absent": true,
+  "description_absent": true
+}

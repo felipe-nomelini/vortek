@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "(ind) Cabo Tronco Deye P/sun-m225g4",
+    "supplier_category": "Kit Gerador Fotovoltaico/ Conectores Para Energia Solar/ Conector Solar",
+    "supplier_brand": "DEYE",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/388674",
+    "captured_at": "2026-08-17T12:56:38.235Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Para Microfone Mono Tiaflex  Espiralado 100 Metros 1x0,20 Mm 502010",
+    "supplier_category": "Eletronica/ Adaptadores/plugues/tomadas/ Adaptores",
+    "supplier_brand": "TIAFLEX",
+    "supplier_gtin": "7898429981450",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/31446",
+    "captured_at": "2026-08-17T12:54:19.316Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

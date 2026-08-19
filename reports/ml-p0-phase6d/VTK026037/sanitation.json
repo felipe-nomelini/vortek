@@ -1,0 +1,10 @@
+{
+  "sku": "VTK026037",
+  "gate": "BLOCK_GTIN_BRAND_CONFLICT",
+  "evidence": "exact GTIN catalog brand is Matrix Audio, not local Mark Audio",
+  "local_value": "7898640366234",
+  "found_value": "Matrix Audio",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB54397763",
+  "timestamp": "2026-08-17T01:18:08.068Z"
+}

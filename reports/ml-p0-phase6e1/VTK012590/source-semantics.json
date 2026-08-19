@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:43.215Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+    "supplier_category": null,
+    "supplier_brand": "Dunlop",
+    "supplier_gtin": "7897626819399",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/2236",
+    "captured_at": "2026-08-17T12:54:32.314Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "0f5964b3-f349-45ca-be18-8bd6aeaa6fa6",
+    "produto_id": "d5dadf67-755e-4ddb-8364-3b53e162d62f",
+    "dslite_fornecedor_id": "108",
+    "fornecedor_nome": "BKR1",
+    "dslite_produto_id": "2236",
+    "sku_fornecedor": "2236",
+    "custo": 22.92,
+    "estoque": 4,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:05:21.06+00:00",
+    "created_at": "2026-07-06T22:31:08.232919+00:00",
+    "updated_at": "2026-08-17T10:05:21.067+00:00",
+    "sku_oferta": "2236",
+    "nome": "Palheta Nylon Jazz Iii Preta Pct C/4 Un 47r3s Dunlop (1939)",
+    "descricao": "Não é de se admirar que o Jazz III Nylon Pick tenha conquistado tantos seguidores entre uma variedade dos melhores guitarristas do mundo - seu formato foi projetado para permitir que sua técnica assuma o controle. Com um perfil pequeno, borda moldada de liberação rápida e uma ponta afiada, o Jazz III oferece o controle de que você precisa para tocar com velocidade e precisão enquanto as notas soam com clareza. Disponível no Nylon vermelho de som quente ou no “Stiffo” preto mais brilhante e agressivo. Calibre: Duro Material: Nylon Pacote com 4",
+    "marca": "Dunlop",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/489bcc333bb2e5133f5287d05391730c.jpeg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/742b9328b520986c7f601eb0cfe49b3e.jpeg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ac8d067decb000693b90b45a5abe97f.jpeg"
+    ],
+    "gtin": "7897626819399",
+    "ncm": "9209.94.00",
+    "cest": null
+  }
+}

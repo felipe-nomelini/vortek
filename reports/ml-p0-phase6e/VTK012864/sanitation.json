@@ -1,0 +1,10 @@
+{
+  "sku": "VTK012864",
+  "gate": "REMOTE_PROPAGATION_PENDING",
+  "evidence": "picture propagation did not settle within bounded read-only polling",
+  "local_value": "7898640362106",
+  "found_value": null,
+  "suggested_action": "REMOTE_LINK_REVIEW",
+  "source": "ML exact GTIN catalog MLB32450801 + DSLite supplier https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1550",
+  "timestamp": "2026-08-17T12:56:23.014Z"
+}

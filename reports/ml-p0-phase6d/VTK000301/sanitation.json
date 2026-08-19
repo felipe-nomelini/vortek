@@ -1,0 +1,10 @@
+{
+  "sku": "VTK000301",
+  "gate": "BLOCK_CATALOG_IDENTITY",
+  "evidence": "catalog title identifies 30 cm while local product is 40 cm",
+  "local_value": "7898461970368",
+  "found_value": "30 cm",
+  "suggested_action": "CATALOG_REVIEW_REQUIRED",
+  "source": "ML catalog MLB15284401",
+  "timestamp": "2026-08-17T01:16:53.711Z"
+}

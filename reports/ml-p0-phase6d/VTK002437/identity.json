@@ -1,0 +1,236 @@
+{
+  "checked_at": "2026-08-17T01:14:17.926Z",
+  "product": {
+    "id": "65140c10-3d26-4f38-a3e4-6e2c588034d1",
+    "sku": "VTK002437",
+    "nome": "Capa Para Violão Folk Harmonics Nylon Preta",
+    "marca": "HARMONICS",
+    "gtin": "7898946771152"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/63747",
+    "consulted_at": "2026-08-17T01:14:17.711Z",
+    "product": {
+      "produtoid": "63747",
+      "produtoid_empresa": "HYX63747",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 50.5,
+      "preco_crossdocking": 50.5,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 50.5,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:22.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-04 18:05:20.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Capa Para Violão Folk Harmonics Nylon Preta",
+      "titulo_curto": "CAPA VIOLAO FOLK NYLON HARMONICS",
+      "categoriaid": "292441",
+      "categoria_nome": "Instrumentos Musicais / Acessórios Para Cordas / Capas",
+      "abc": "A",
+      "ean11": "7898946771152",
+      "ncm": "4202.29.00",
+      "descricao": "A Capa Violão Folk é ideal para proteger seu instrumento de batidas e quedas. Conta com uma bolsa externa para você carregar seus acessórios e é ideal para músicos que precisam se locomover com o instrumento. <br/> <br/> Feita em nylon e conta com uma bolsa externa para aumentar ainda mais a praticidade de quem utiliza o instrumento no dia a dia. <br/> <br/>",
+      "caracteristicas": "Cor:Preta<br>Pesquisa:capa|case|bag|violao|folk|nylon|harmonics|<br>",
+      "informacoes": "",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "HARMONICS",
+      "modelo": "",
+      "peso": 0.471,
+      "largura": 40,
+      "altura": 100,
+      "profundidade": 45,
+      "peso_embalagem": 0.471,
+      "largura_embalagem": 40,
+      "altura_embalagem": 100,
+      "profundidade_embalagem": 45,
+      "link": "http://www.hayamax.com.br/capa-para-violao-folk-harmonics-nylon-preta",
+      "link_imagem": "https://static.hayapek.com.br/produtos/63747/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "TOP100",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 30283,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-14 17:06:05.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:16:10.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 269,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/63747/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB35894914 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB35894914",
+      "catalog_product_id": "MLB35894914",
+      "domain_id": "MLB-GUITAR_COVERS_AND_BAGS",
+      "name": "Capa Violão Folk Nylon Preto Harmonics",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "480322",
+          "value_name": "Harmonics",
+          "values": [
+            {
+              "id": "480322",
+              "name": "Harmonics"
+            }
+          ]
+        },
+        {
+          "id": "EXTERIOR_LENGTH",
+          "name": "Comprimento exterior",
+          "value_id": "65958773",
+          "value_name": "100 cm",
+          "values": [
+            {
+              "id": "65958773",
+              "name": "100 cm"
+            }
+          ]
+        },
+        {
+          "id": "EXTERIOR_WIDTH",
+          "name": "Largura exterior",
+          "value_id": "25251830",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "25251830",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "25917528",
+          "value_name": "471 g",
+          "values": [
+            {
+              "id": "25917528",
+              "name": "471 g"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "36599569",
+          "value_name": "7898946771152",
+          "values": [
+            {
+              "id": "36599569",
+              "name": "7898946771152"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Capa Violão Folk Nylon Preto Harmonics é a escolha perfeita para músicos que buscam proteção e estilo. Com uma cor preta elegante, esta capa é ideal para violões folk, garantindo que seu instrumento esteja sempre seguro durante o transporte. Fabricada pela renomada marca Harmonics, conhecida por sua qualidade e durabilidade, a capa é nova e apresenta um design funcional. Seu modelo específico foi desenvolvido para atender às necessidades dos músicos, proporcionando um ajuste perfeito. Além disso, a capa é leve, com um peso total de apenas 471 gramas, facilitando o transporte. Com dimensões de 100 cm de altura, 40 cm de largura e 45 cm de profundidade, ela oferece amplo espaço para acomodar seu violão com conforto. Invista na proteção do seu instrumento com a Capa Violão Folk Nylon Preto Harmonics e toque com tranquilidade em qualquer lugar!"
+      },
+      "pictures": [
+        {
+          "id": "934665-MLA99977465917_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_934665-MLA99977465917_112025-F.jpg",
+          "max_width": "829",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-04-18T06:06:41Z",
+      "last_updated": "2026-03-13T22:01:48Z",
+      "quality_type": "PRIMITIVE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

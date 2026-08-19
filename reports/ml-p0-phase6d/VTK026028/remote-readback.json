@@ -1,0 +1,1236 @@
+{
+  "checked_at": "2026-08-17T01:16:41.278Z",
+  "item": {
+    "id": "MLB7432633436",
+    "site_id": "MLB",
+    "title": "Prolongador Suporte Para Subwoofer Prs-130 Saty Preto",
+    "family_name": "Saty PRS-130",
+    "family_id": 7485571339935695,
+    "seller_id": 3294514937,
+    "category_id": "MLB10233",
+    "user_product_id": "MLBU4772936270",
+    "official_store_id": null,
+    "price": 509.9,
+    "base_price": 509.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 10,
+    "available_quantity": 10,
+    "sold_quantity": 0,
+    "sale_terms": [],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-17T01:16:31.200Z",
+    "stop_time": "2046-08-11T04:00:00.000Z",
+    "end_time": "2046-08-11T04:00:00.000Z",
+    "expiration_time": "2026-11-05T01:16:40.501Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432633436-prolongador-suporte-para-subwoofer-prs-130-saty-preto-_JM",
+    "thumbnail_id": "704983-MLA100010262247_122025",
+    "thumbnail": "http://http2.mlstatic.com/D_704983-MLA100010262247_122025-I.jpg",
+    "pictures": [
+      {
+        "id": "704983-MLA100010262247_122025",
+        "url": "http://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg",
+        "size": "495x500",
+        "max_size": "1190x1200",
+        "quality": ""
+      },
+      {
+        "id": "658669-MLA91996314843_092025",
+        "url": "http://http2.mlstatic.com/D_658669-MLA91996314843_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_658669-MLA91996314843_092025-O.jpg",
+        "size": "492x500",
+        "max_size": "1181x1200",
+        "quality": ""
+      },
+      {
+        "id": "692877-MLA91996235087_092025",
+        "url": "http://http2.mlstatic.com/D_692877-MLA91996235087_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_692877-MLA91996235087_092025-O.jpg",
+        "size": "340x500",
+        "max_size": "817x1200",
+        "quality": ""
+      },
+      {
+        "id": "876560-MLA91596378032_092025",
+        "url": "http://http2.mlstatic.com/D_876560-MLA91596378032_092025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_876560-MLA91596378032_092025-O.jpg",
+        "size": "459x500",
+        "max_size": "1103x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "5451933",
+        "value_name": "Saty",
+        "values": [
+          {
+            "id": "5451933",
+            "name": "Saty",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": "34405547",
+        "value_name": "7898572863467",
+        "values": [
+          {
+            "id": "34405547",
+            "name": "7898572863467",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "name": "Lugar de colocação",
+        "value_id": "4502036",
+        "value_name": "De chão",
+        "values": [
+          {
+            "id": "4502036",
+            "name": "De chão",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "name": "É ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "2431883",
+        "value_name": "Ferro",
+        "values": [
+          {
+            "id": "2431883",
+            "name": "Ferro",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_HEIGHT",
+        "name": "Altura máxima",
+        "value_id": "73870149",
+        "value_name": "142 cm",
+        "values": [
+          {
+            "id": "73870149",
+            "name": "142 cm",
+            "struct": {
+              "number": 142,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MIN_HEIGHT",
+        "name": "Altura mínima",
+        "value_id": "19927265",
+        "value_name": "80 cm",
+        "values": [
+          {
+            "id": "19927265",
+            "name": "80 cm",
+            "struct": {
+              "number": 80,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "34405546",
+        "value_name": "PRS-130",
+        "values": [
+          {
+            "id": "34405546",
+            "name": "PRS-130",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "value_id": "1359391",
+        "value_name": "Unidade",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK026028",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026028",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": null,
+    "catalog_product_id": "MLB34133110",
+    "domain_id": "MLB-SPEAKERS_STANDS",
+    "seller_custom_field": "VTK026028",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-17T01:16:31.410Z",
+    "last_updated": "2026-08-17T01:16:40.571Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "user_product": {
+    "id": "MLBU4772936270",
+    "name": "Saty Prs-130 Preto",
+    "family_name": "Saty PRS-130",
+    "site_id": "MLB",
+    "user_id": 3294514937,
+    "domain_id": "MLB-SPEAKERS_STANDS",
+    "attributes": [
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "values": [
+          {
+            "id": "2431883",
+            "name": "Ferro",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SALE_FORMAT",
+        "name": "Formato de venda",
+        "values": [
+          {
+            "id": "1359391",
+            "name": "Unidade",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MAX_HEIGHT",
+        "name": "Altura máxima",
+        "values": [
+          {
+            "id": "73870149",
+            "name": "142 cm",
+            "struct": {
+              "number": 142,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "MIN_HEIGHT",
+        "name": "Altura mínima",
+        "values": [
+          {
+            "id": "19927265",
+            "name": "80 cm",
+            "struct": {
+              "number": 80,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "name": "Lugar de colocação",
+        "values": [
+          {
+            "id": "4502036",
+            "name": "De chão",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "values": [
+          {
+            "id": "5451933",
+            "name": "Saty",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "values": [
+          {
+            "id": "34405547",
+            "name": "7898572863467",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "values": [
+          {
+            "id": "34405546",
+            "name": "PRS-130",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK026028",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "name": "É ajustável",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "name": "Peso da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "3110 g",
+            "struct": {
+              "number": 3110,
+              "unit": "g"
+            }
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "name": "Altura da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "102 cm",
+            "struct": {
+              "number": 102,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "name": "Comprimento da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "14 cm",
+            "struct": {
+              "number": 14,
+              "unit": "cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "name": "Largura da embalagem do vendor",
+        "values": [
+          {
+            "id": null,
+            "name": "38 cm",
+            "struct": {
+              "number": 38,
+              "unit": "cm"
+            }
+          }
+        ]
+      }
+    ],
+    "pictures": [
+      {
+        "id": "704983-MLA100010262247_122025",
+        "secure_url": "https://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg"
+      },
+      {
+        "id": "658669-MLA91996314843_092025",
+        "secure_url": "https://http2.mlstatic.com/D_658669-MLA91996314843_092025-O.jpg"
+      },
+      {
+        "id": "692877-MLA91996235087_092025",
+        "secure_url": "https://http2.mlstatic.com/D_692877-MLA91996235087_092025-O.jpg"
+      },
+      {
+        "id": "876560-MLA91596378032_092025",
+        "secure_url": "https://http2.mlstatic.com/D_876560-MLA91596378032_092025-O.jpg"
+      }
+    ],
+    "thumbnail": {
+      "id": "704983-MLA100010262247_122025",
+      "secure_url": "https://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg"
+    },
+    "catalog_product_id": "MLB34133110",
+    "bundle": null,
+    "family_id": 7485571339935695,
+    "tags": [
+      "primary"
+    ],
+    "date_created": "2026-08-17T01:16:31.546+0000",
+    "last_updated": "2026-08-17T01:16:37.897+0000",
+    "main_features": [],
+    "commingling": null
+  },
+  "family": {
+    "user_products_ids": [
+      "MLBU4772936270"
+    ],
+    "family_id": 7485571339935695,
+    "site_id": "MLB",
+    "user_id": 3294514937
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "category": true,
+      "quantity": true,
+      "listing_type": true,
+      "condition": true,
+      "title": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "propagation": {
+    "item": {
+      "settled": true,
+      "attempts": 1,
+      "elapsed_ms": 172,
+      "response": {
+        "ok": true,
+        "status": 200,
+        "headers": {
+          "access-control-allow-headers": "Content-Type",
+          "access-control-allow-methods": "PUT, GET, POST, DELETE, OPTIONS",
+          "access-control-allow-origin": "*",
+          "access-control-max-age": "86400",
+          "connection": "keep-alive",
+          "content-encoding": "gzip",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Mon, 17 Aug 2026 01:16:31 GMT",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "transfer-encoding": "chunked",
+          "vary": "Accept-Encoding",
+          "via": "1.1 81aa5b946f2f955d94231eedc507d3d4.cloudfront.net (CloudFront)",
+          "x-amz-cf-id": "MV0t3tpwS0TaZ-DX0ZnupRMkdkMTeHAB0j1Wm322UgN5M_EYTAwZFA==",
+          "x-amz-cf-pop": "GIG52-P3",
+          "x-api-server-segment": "legacy",
+          "x-cache": "Miss from cloudfront",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-request-id": "8b6fba28-9043-44fd-8b6d-a3a467f6fcd7",
+          "x-xss-protection": "1; mode=block"
+        },
+        "data": {
+          "id": "MLB7432633436",
+          "site_id": "MLB",
+          "title": "Prolongador Suporte Para Subwoofer Prs-130 Saty Preto",
+          "family_name": "Saty PRS-130",
+          "family_id": 7485571339935695,
+          "seller_id": 3294514937,
+          "category_id": "MLB10233",
+          "user_product_id": "MLBU4772936270",
+          "official_store_id": null,
+          "price": 439.9,
+          "base_price": 439.9,
+          "original_price": null,
+          "inventory_id": null,
+          "currency_id": "BRL",
+          "initial_quantity": 10,
+          "available_quantity": 10,
+          "sold_quantity": 0,
+          "sale_terms": [],
+          "buying_mode": "buy_it_now",
+          "listing_type_id": "gold_special",
+          "start_time": "2026-08-17T01:16:31.200Z",
+          "stop_time": "2046-08-11T04:00:00.000Z",
+          "end_time": "2046-08-11T04:00:00.000Z",
+          "expiration_time": "2026-11-05T01:16:31.303Z",
+          "condition": "new",
+          "permalink": "https://produto.mercadolivre.com.br/MLB-7432633436-prolongador-suporte-para-subwoofer-prs-130-saty-preto-_JM",
+          "thumbnail_id": "704983-MLA100010262247_122025",
+          "thumbnail": "http://http2.mlstatic.com/D_704983-MLA100010262247_122025-I.jpg",
+          "pictures": [
+            {
+              "id": "704983-MLA100010262247_122025",
+              "url": "http://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg",
+              "size": "495x500",
+              "max_size": "1190x1200",
+              "quality": ""
+            },
+            {
+              "id": "658669-MLA91996314843_092025",
+              "url": "http://http2.mlstatic.com/D_658669-MLA91996314843_092025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_658669-MLA91996314843_092025-O.jpg",
+              "size": "492x500",
+              "max_size": "1181x1200",
+              "quality": ""
+            },
+            {
+              "id": "692877-MLA91996235087_092025",
+              "url": "http://http2.mlstatic.com/D_692877-MLA91996235087_092025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_692877-MLA91996235087_092025-O.jpg",
+              "size": "340x500",
+              "max_size": "817x1200",
+              "quality": ""
+            },
+            {
+              "id": "876560-MLA91596378032_092025",
+              "url": "http://http2.mlstatic.com/D_876560-MLA91596378032_092025-O.jpg",
+              "secure_url": "https://http2.mlstatic.com/D_876560-MLA91596378032_092025-O.jpg",
+              "size": "459x500",
+              "max_size": "1103x1200",
+              "quality": ""
+            }
+          ],
+          "video_id": null,
+          "descriptions": [],
+          "accepts_mercadopago": true,
+          "non_mercado_pago_payment_methods": [],
+          "shipping": {
+            "mode": "me2",
+            "methods": [],
+            "tags": [
+              "mandatory_free_shipping"
+            ],
+            "dimensions": null,
+            "local_pick_up": false,
+            "free_shipping": true,
+            "logistic_type": "xd_drop_off",
+            "store_pick_up": false
+          },
+          "international_delivery_mode": "none",
+          "seller_address": {
+            "address_line": "Rua João Marques de Nóbrega 300",
+            "zip_code": "86206240",
+            "city": {
+              "id": "TUxCQ0lCSTQ1Y2Fh",
+              "name": "Ibiporã"
+            },
+            "state": {
+              "id": "BR-PR",
+              "name": "Paraná"
+            },
+            "country": {
+              "id": "BR",
+              "name": "Brasil"
+            },
+            "search_location": {
+              "city": {
+                "id": "TUxCQ0lCSTQ1Y2Fh",
+                "name": "Ibiporã"
+              },
+              "state": {
+                "id": "TUxCUFBBUkExODBlZA",
+                "name": "Paraná"
+              }
+            },
+            "latitude": -23.284674,
+            "longitude": -51.083409,
+            "id": 1586042717
+          },
+          "seller_contact": null,
+          "location": {},
+          "geolocation": {
+            "latitude": -23.284674,
+            "longitude": -51.083409
+          },
+          "coverage_areas": [],
+          "attributes": [
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "value_id": "5451933",
+              "value_name": "Saty",
+              "values": [
+                {
+                  "id": "5451933",
+                  "name": "Saty",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "COLOR",
+              "name": "Cor",
+              "value_id": "52049",
+              "value_name": "Preto",
+              "values": [
+                {
+                  "id": "52049",
+                  "name": "Preto",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "GTIN",
+              "name": "Código universal de produto",
+              "value_id": "34405547",
+              "value_name": "7898572863467",
+              "values": [
+                {
+                  "id": "34405547",
+                  "name": "7898572863467",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "INSTALLATION_PLACEMENT",
+              "name": "Lugar de colocação",
+              "value_id": "4502036",
+              "value_name": "De chão",
+              "values": [
+                {
+                  "id": "4502036",
+                  "name": "De chão",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "IS_ADJUSTABLE",
+              "name": "É ajustável",
+              "value_id": "242085",
+              "value_name": "Sim",
+              "values": [
+                {
+                  "id": "242085",
+                  "name": "Sim",
+                  "struct": null
+                }
+              ],
+              "value_type": "boolean"
+            },
+            {
+              "id": "ITEM_CONDITION",
+              "name": "Condição do item",
+              "value_id": "2230284",
+              "value_name": "Novo",
+              "values": [
+                {
+                  "id": "2230284",
+                  "name": "Novo",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "MATERIAL",
+              "name": "Material",
+              "value_id": "2431883",
+              "value_name": "Ferro",
+              "values": [
+                {
+                  "id": "2431883",
+                  "name": "Ferro",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "MAX_HEIGHT",
+              "name": "Altura máxima",
+              "value_id": "73870149",
+              "value_name": "142 cm",
+              "values": [
+                {
+                  "id": "73870149",
+                  "name": "142 cm",
+                  "struct": {
+                    "number": 142,
+                    "unit": "cm"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "MIN_HEIGHT",
+              "name": "Altura mínima",
+              "value_id": "19927265",
+              "value_name": "80 cm",
+              "values": [
+                {
+                  "id": "19927265",
+                  "name": "80 cm",
+                  "struct": {
+                    "number": 80,
+                    "unit": "cm"
+                  }
+                }
+              ],
+              "value_type": "number_unit"
+            },
+            {
+              "id": "MODEL",
+              "name": "Modelo",
+              "value_id": "34405546",
+              "value_name": "PRS-130",
+              "values": [
+                {
+                  "id": "34405546",
+                  "name": "PRS-130",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "SALE_FORMAT",
+              "name": "Formato de venda",
+              "value_id": "1359391",
+              "value_name": "Unidade",
+              "values": [
+                {
+                  "id": "1359391",
+                  "name": "Unidade",
+                  "struct": null
+                }
+              ],
+              "value_type": "list"
+            },
+            {
+              "id": "SELLER_SKU",
+              "name": "SKU",
+              "value_id": null,
+              "value_name": "VTK026028",
+              "values": [
+                {
+                  "id": null,
+                  "name": "VTK026028",
+                  "struct": null
+                }
+              ],
+              "value_type": "string"
+            },
+            {
+              "id": "UNITS_PER_PACK",
+              "name": "Unidades por kit",
+              "value_id": "2726554",
+              "value_name": "1",
+              "values": [
+                {
+                  "id": "2726554",
+                  "name": "1",
+                  "struct": null
+                }
+              ],
+              "value_type": "number"
+            }
+          ],
+          "warnings": [],
+          "listing_source": "",
+          "variations": [],
+          "status": "active",
+          "sub_status": [],
+          "tags": [
+            "immediate_payment",
+            "cart_eligible"
+          ],
+          "warranty": null,
+          "catalog_product_id": "MLB34133110",
+          "domain_id": "MLB-SPEAKERS_STANDS",
+          "seller_custom_field": "VTK026028",
+          "parent_item_id": null,
+          "differential_pricing": null,
+          "deal_ids": [],
+          "automatic_relist": false,
+          "date_created": "2026-08-17T01:16:31.410Z",
+          "last_updated": "2026-08-17T01:16:31.410Z",
+          "health": null,
+          "catalog_listing": true,
+          "item_relations": [],
+          "channels": [
+            "marketplace"
+          ]
+        }
+      }
+    },
+    "user_product_family": {
+      "settled": true,
+      "attempts": 3,
+      "elapsed_ms": 7049,
+      "user_product": {
+        "id": "MLBU4772936270",
+        "name": "Saty Prs-130 Preto",
+        "family_name": "Saty PRS-130",
+        "site_id": "MLB",
+        "user_id": 3294514937,
+        "domain_id": "MLB-SPEAKERS_STANDS",
+        "attributes": [
+          {
+            "id": "MATERIAL",
+            "name": "Material",
+            "values": [
+              {
+                "id": "2431883",
+                "name": "Ferro",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SALE_FORMAT",
+            "name": "Formato de venda",
+            "values": [
+              {
+                "id": "1359391",
+                "name": "Unidade",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MAX_HEIGHT",
+            "name": "Altura máxima",
+            "values": [
+              {
+                "id": "73870149",
+                "name": "142 cm",
+                "struct": {
+                  "number": 142,
+                  "unit": "cm"
+                }
+              }
+            ]
+          },
+          {
+            "id": "MIN_HEIGHT",
+            "name": "Altura mínima",
+            "values": [
+              {
+                "id": "19927265",
+                "name": "80 cm",
+                "struct": {
+                  "number": 80,
+                  "unit": "cm"
+                }
+              }
+            ]
+          },
+          {
+            "id": "INSTALLATION_PLACEMENT",
+            "name": "Lugar de colocação",
+            "values": [
+              {
+                "id": "4502036",
+                "name": "De chão",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "COLOR",
+            "name": "Cor",
+            "values": [
+              {
+                "id": "52049",
+                "name": "Preto",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "ITEM_CONDITION",
+            "name": "Condição do item",
+            "values": [
+              {
+                "id": "2230284",
+                "name": "Novo",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "BRAND",
+            "name": "Marca",
+            "values": [
+              {
+                "id": "5451933",
+                "name": "Saty",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "GTIN",
+            "name": "Código universal de produto",
+            "values": [
+              {
+                "id": "34405547",
+                "name": "7898572863467",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "MODEL",
+            "name": "Modelo",
+            "values": [
+              {
+                "id": "34405546",
+                "name": "PRS-130",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "UNITS_PER_PACK",
+            "name": "Unidades por kit",
+            "values": [
+              {
+                "id": "2726554",
+                "name": "1",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SELLER_SKU",
+            "name": "SKU",
+            "values": [
+              {
+                "id": null,
+                "name": "VTK026028",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "IS_ADJUSTABLE",
+            "name": "É ajustável",
+            "values": [
+              {
+                "id": "242085",
+                "name": "Sim",
+                "struct": null
+              }
+            ]
+          },
+          {
+            "id": "SELLER_PACKAGE_WEIGHT",
+            "name": "Peso da embalagem do vendor",
+            "values": [
+              {
+                "id": null,
+                "name": "3110 g",
+                "struct": {
+                  "number": 3110,
+                  "unit": "g"
+                }
+              }
+            ]
+          },
+          {
+            "id": "SELLER_PACKAGE_HEIGHT",
+            "name": "Altura da embalagem do vendor",
+            "values": [
+              {
+                "id": null,
+                "name": "102 cm",
+                "struct": {
+                  "number": 102,
+                  "unit": "cm"
+                }
+              }
+            ]
+          },
+          {
+            "id": "SELLER_PACKAGE_LENGTH",
+            "name": "Comprimento da embalagem do vendor",
+            "values": [
+              {
+                "id": null,
+                "name": "14 cm",
+                "struct": {
+                  "number": 14,
+                  "unit": "cm"
+                }
+              }
+            ]
+          },
+          {
+            "id": "SELLER_PACKAGE_WIDTH",
+            "name": "Largura da embalagem do vendor",
+            "values": [
+              {
+                "id": null,
+                "name": "38 cm",
+                "struct": {
+                  "number": 38,
+                  "unit": "cm"
+                }
+              }
+            ]
+          }
+        ],
+        "pictures": [
+          {
+            "id": "704983-MLA100010262247_122025",
+            "secure_url": "https://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg"
+          },
+          {
+            "id": "658669-MLA91996314843_092025",
+            "secure_url": "https://http2.mlstatic.com/D_658669-MLA91996314843_092025-O.jpg"
+          },
+          {
+            "id": "692877-MLA91996235087_092025",
+            "secure_url": "https://http2.mlstatic.com/D_692877-MLA91996235087_092025-O.jpg"
+          },
+          {
+            "id": "876560-MLA91596378032_092025",
+            "secure_url": "https://http2.mlstatic.com/D_876560-MLA91596378032_092025-O.jpg"
+          }
+        ],
+        "thumbnail": {
+          "id": "704983-MLA100010262247_122025",
+          "secure_url": "https://http2.mlstatic.com/D_704983-MLA100010262247_122025-O.jpg"
+        },
+        "catalog_product_id": "MLB34133110",
+        "bundle": null,
+        "family_id": 7485571339935695,
+        "tags": [
+          "primary"
+        ],
+        "date_created": "2026-08-17T01:16:31.546+0000",
+        "last_updated": "2026-08-17T01:16:37.897+0000",
+        "main_features": [],
+        "commingling": null
+      },
+      "family": {
+        "user_products_ids": [
+          "MLBU4772936270"
+        ],
+        "family_id": 7485571339935695,
+        "site_id": "MLB",
+        "user_id": 3294514937
+      }
+    }
+  },
+  "image_normalization": "IMAGE_NORMALIZED_BY_ML"
+}

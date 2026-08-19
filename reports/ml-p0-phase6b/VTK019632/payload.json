@@ -1,0 +1,145 @@
+{
+  "payload": {
+    "family_name": "Fonte Chaveada MXT 9V 1A",
+    "category_id": "MLB420411",
+    "catalog_product_id": "MLB32967972",
+    "catalog_listing": true,
+    "price": 99.9,
+    "currency_id": "BRL",
+    "available_quantity": 50,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/2/1/213344_67d2cadd0b46b.jpg"
+      },
+      {
+        "source": "https://evolusom.com.br/media/catalog/product/2/1/213344_67d2cadd0c59c.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "32954237",
+        "value_name": "9v 1a"
+      },
+      {
+        "id": "POWER",
+        "value_id": "3716209",
+        "value_name": "9 W"
+      },
+      {
+        "id": "POWER_OUTPUT",
+        "value_id": "16719811",
+        "value_name": "9 W"
+      },
+      {
+        "id": "MATERIALS",
+        "values": [
+          {
+            "id": "2511571",
+            "name": "ABS"
+          },
+          {
+            "id": "2508991",
+            "name": "Cobre"
+          },
+          {
+            "id": "18103732",
+            "name": "PCB"
+          },
+          {
+            "id": "27575667",
+            "name": "SMD"
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "12737658",
+        "value_name": "50 / 60 HZ"
+      },
+      {
+        "id": "MIN_INPUT_VOLTAGE",
+        "value_id": "17561522",
+        "value_name": "110V"
+      },
+      {
+        "id": "MAX_INPUT_VOLTAGE",
+        "value_id": "198813",
+        "value_name": "220V"
+      },
+      {
+        "id": "MIN_OUTPUT_VOLTAGE",
+        "value_id": "19940978",
+        "value_name": "9V"
+      },
+      {
+        "id": "MAX_OUTPUT_VOLTAGE",
+        "value_id": "8149915",
+        "value_name": "9V"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "7806877",
+        "value_name": "100 cm"
+      },
+      {
+        "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "32954238",
+        "value_name": "7899471878941"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK019632"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK019632"
+  },
+  "sha256": "2af4fb7d751a55f1ac118c3680ca779afbc5867c905dcef2fa2ebda2d3268e7b",
+  "title_absent": true,
+  "description_absent": true,
+  "attributes_count": 15,
+  "pictures_count": 2,
+  "image_audit": [
+    {
+      "index": 1,
+      "url": "https://evolusom.com.br/media/catalog/product/2/1/213344_67d2cadd0b46b.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "url": "https://evolusom.com.br/media/catalog/product/2/1/213344_67d2cadd0c59c.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "index": 10,
+  "sku": "VTK017336",
+  "started_at": "2026-08-17T00:07:07.341Z",
+  "local_time": "2026-08-16T21:07:07",
+  "expected_gtin": "7898597131879",
+  "completed_at": "2026-08-17T00:07:07.763Z",
+  "elapsed_ms": 439,
+  "result": "BLOCK_IDENTITY",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "manufacturer_identity_not_available_for_evus_p10_to_xlr_cable",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": true
+  }
+}

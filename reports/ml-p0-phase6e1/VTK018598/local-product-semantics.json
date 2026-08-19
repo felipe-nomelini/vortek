@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-08-17T14:15:37.518Z",
+  "product": {
+    "id": "a2a8c7b8-aae0-4782-8b91-d74299209621",
+    "sku": "VTK018598",
+    "nome": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+    "marca": "FRAHM",
+    "estoque": 6,
+    "custo": 139.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.612,
+    "peso_bruto": 0.612,
+    "largura": 20,
+    "altura": 8,
+    "profundidade": 24,
+    "gtin": "7896673801746",
+    "descricao": "A Arandela 6&#8243; Coxial é produzida com carcaça e telas plásticos e, por isso, oferece um alto nível de resistência a exposição em locais insalubres. *Imagem meramente ilustrativa.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018598/01-a7735cef935aff55ea14.jpg"
+    ],
+    "categoria": "Automotivo/ Alto Falante/ Arandelas",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:40.745348+00:00",
+    "updated_at": "2026-08-17T11:07:22.598305+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "145181",
+    "dslite_ultima_sync": "2026-08-17T11:07:22.424+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85182100",
+    "cest": "01.057.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "ca1f5907-9314-4fe0-b5c1-0144e4457eec",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "professional_speaker_driver",
+    "function": "audio_reproduction",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_driver",
+    "expected_category_signals": [
+      "altofalante",
+      "woofer",
+      "subwoofer",
+      "audio",
+      "somprofissional"
+    ],
+    "incompatible_category_signals": [
+      "tablet",
+      "celular",
+      "notebook",
+      "computador",
+      "internal_speaker"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [
+        "30w Rms"
+      ],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

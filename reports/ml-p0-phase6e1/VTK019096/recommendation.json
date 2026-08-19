@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+    "supplier_category": "Automotivo/ Acessórios Automotivos/ Lampada Normal Automotiva",
+    "supplier_brand": "SHOCKLIGHT",
+    "supplier_gtin": "6949999896093",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/317612",
+    "captured_at": "2026-08-17T12:55:28.035Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

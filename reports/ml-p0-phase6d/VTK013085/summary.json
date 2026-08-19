@@ -1,0 +1,23 @@
+{
+  "index": 78,
+  "sku": "VTK013085",
+  "expected_gtin": "7898640363240",
+  "started_at": "2026-08-17T01:16:53.972Z",
+  "local_time": "2026-08-16T22:16:53",
+  "completed_at": "2026-08-17T01:16:54.002Z",
+  "elapsed_ms": 30,
+  "result": "SOURCE_DEFERRED",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "Attack VS83/VSC83A side/color application lacks official evidence",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

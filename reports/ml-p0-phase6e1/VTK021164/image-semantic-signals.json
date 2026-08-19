@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-08-17T14:15:38.030Z",
+  "local_images": [
+    "https://evolusom.com.br/media/catalog/product/3/4/347972_67d2caf602922.jpg"
+  ],
+  "catalog_images": [
+    {
+      "id": "927056-MLU71979046230_092023",
+      "url": "https://http2.mlstatic.com/D_NQ_NP_927056-MLU71979046230_092023-F.jpg",
+      "suggested_for_picker": [
+        "COLOR"
+      ],
+      "max_width": "500",
+      "max_height": "499"
+    }
+  ],
+  "classification": "SUPPORTING_ONLY_NOT_USED_AS_PRIMARY_SEMANTIC_PROOF"
+}

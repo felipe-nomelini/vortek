@@ -1,0 +1,23 @@
+{
+  "index": 78,
+  "sku": "VTK019117",
+  "expected_gtin": "7898478324987",
+  "started_at": "2026-08-17T12:55:35.974Z",
+  "local_time": "2026-08-17T09:55:35",
+  "completed_at": "2026-08-17T12:55:38.941Z",
+  "elapsed_ms": 2967,
+  "result": "SOURCE_DEFERRED",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact GTIN lookup completed without an ML catalog identity; supplier evidence alone is insufficient for automatic category/model approval",
+  "sanitation": "IDENTITY_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

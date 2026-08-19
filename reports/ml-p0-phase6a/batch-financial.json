@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-08-16T23:46:03.048Z",
+  "target_margin_percent": 50,
+  "tax_rate": 0.05,
+  "rows": [
+    {
+      "sku": "VTK026045",
+      "item_id": "MLB5075665407",
+      "protective_price": 289.9,
+      "margin_percent": 50.762332
+    },
+    {
+      "sku": "VTK026046",
+      "item_id": "MLB7432445588",
+      "protective_price": 379.9,
+      "margin_percent": 51.52935
+    },
+    {
+      "sku": "VTK017506",
+      "item_id": "MLB5075698225",
+      "protective_price": 119.9,
+      "margin_percent": 50.758966
+    }
+  ]
+}

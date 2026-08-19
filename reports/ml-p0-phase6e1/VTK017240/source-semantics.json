@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-17T14:15:53.497Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Vga Evus C-041 Hd15 Macho X Hd15 Macho Com Filtro 10,0m",
+    "supplier_category": "Informatica/ Cabos Para Informática/ Cabo Vga",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/353531",
+    "captured_at": "2026-08-17T12:56:29.877Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "6dac40de-5a83-4edf-b61f-51c46bf80c4f",
+    "produto_id": "f6ae5113-1265-4894-b074-52fe349867f5",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "353531",
+    "sku_fornecedor": "353531",
+    "custo": 30.5,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:24:30.545+00:00",
+    "created_at": "2026-07-20T18:30:23.096395+00:00",
+    "updated_at": "2026-08-17T10:24:30.554+00:00",
+    "sku_oferta": "353531",
+    "nome": "Cabo Vga Evus C-041 Hd15 Macho X Hd15 Macho Com Filtro 10,0m",
+    "descricao": "Informações do Produto Características O Cabo EVUS VGA proporciona maior facilidade em conectar aparelhos para uso em longas distâncias, possuí 10 metros de comprimento e diâmetro de 7 milímetros. ESPECIFICAÇÕES TÉCNICAS | DIMENSÕES - Cabo VGA EVUS - 10m comprimento - Diâmetro 7mm",
+    "marca": "EVUS",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/5/353531_67d2caf7bcf03.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/353531_67d2caf7bd5ea.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/5/353531_67d2caf7be1f8.jpg"
+    ],
+    "gtin": "",
+    "ncm": "85444200",
+    "cest": "12.007.00"
+  }
+}

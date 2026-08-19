@@ -1,0 +1,220 @@
+{
+  "checked_at": "2026-08-17T12:55:05.887Z",
+  "product": {
+    "id": "ebb84cd8-c62e-4c91-8f53-85d294b6ce03",
+    "sku": "VTK012632",
+    "nome": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex",
+    "marca": "Wireconex",
+    "gtin": "7898640363523"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1538",
+    "consulted_at": "2026-08-17T12:55:05.086Z",
+    "product": {
+      "produtoid": "1538",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 156.7,
+      "preco_crossdocking": 156.7,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 156.7,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Painel Multicabo 36 Vias Xlr Sem Conectores Wireconex",
+      "titulo_curto": "Painel Multicabo 36 Vias Xlr Sem Conectores Wireconex",
+      "categoriaid": "289632",
+      "categoria_nome": "Instrumentos Musicais > Instrumentos De Corda > Acessórios > Cabos > Multicabos",
+      "abc": null,
+      "ean11": "7898640363523",
+      "ncm": "8536.90.90",
+      "descricao": "<p>Painel Multicabo 36 Vias XLR Sem Conectores Wireconex</p> <p>Garanta máxima organização e flexibilidade nas suas conexões com o Painel Multicabo 36 Vias XLR sem conectores Wireconex. Ideal para projetos personalizados, ele permite a montagem conforme a sua necessidade, sendo perfeito para sistemas profissionais de áudio em estúdios, palcos e eventos.</p> <p>Especificações Técnicas:<br>•    Marca: Wireconex<br>•    Modelo: Multicabo 36 Vias<br>•    Conexões: XLR (sem conectores)<br>•    Quantidade de vias: 36 canais<br>•    Material: Estrutura resistente e durável<br>•    Aplicações: Estúdios, sistemas de som, mesas de áudio, igrejas e eventos<br>•    Diferencial: Permite personalização das conexões conforme o projeto</p> <p>O painel multicabo 36 vias da Wireconex é ideal para quem precisa de alta capacidade e personalização em sistemas de áudio. Com estrutura robusta e excelente organização, ele facilita a instalação e garante mais eficiência na distribuição dos sinais, sendo perfeito para aplicações profissionais de maior porte.</p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Wireconex",
+      "modelo": "",
+      "peso": 2.04,
+      "largura": 25,
+      "altura": 7,
+      "profundidade": 47,
+      "peso_embalagem": 2.04,
+      "largura_embalagem": 25,
+      "altura_embalagem": 7,
+      "profundidade_embalagem": 47,
+      "link": null,
+      "link_imagem": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/50dd8a0eea001d14e28d7392ef363d1e.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "Un",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 76,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "683241024",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 1,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-27 21:32:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-27 21:32:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 3,
+      "tempo_cross": 0,
+      "estoque_total": 3,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/50dd8a0eea001d14e28d7392ef363d1e.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/579f6cc08d1e66e49c3632615aef5ead.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/899a0f5fa90329f58d238658e25c97c8.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_CATEGORY",
+    "reason": "category confidence is not HIGH for domain MLB-AUDIO_AND_VIDEO_CONNECTORS",
+    "sanitation": "CATEGORY_FIX_REQUIRED",
+    "source": "ML catalog MLB37812904 + domain discovery"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB37812904",
+      "catalog_product_id": "MLB37812904",
+      "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "name": "Painel Multicabo 36 Vias Xlr Sem Conectores - Wireconex",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "13660752",
+          "value_name": "Wireconex",
+          "values": [
+            {
+              "id": "13660752",
+              "name": "Wireconex"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "38896220",
+          "value_name": "7898640363523",
+          "values": [
+            {
+              "id": "38896220",
+              "name": "7898640363523"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O Painel Multicabo 36 Vias XLR Sem Conectores da Wireconex é a solução ideal para quem busca qualidade e eficiência em sistemas de áudio. Este painel, modelo MED2 36 2S, possui 36 furações XLR, permitindo uma organização prática e segura dos cabos, facilitando a conexão e desconexão de equipamentos. Com duas saídas, ele é perfeito para profissionais que necessitam de um sistema versátil e confiável em estúdios ou eventos ao vivo. Fabricado pela renomada marca Wireconex, este produto é novo e garante durabilidade e desempenho superior. A ausência de conectores proporciona flexibilidade para personalizar suas conexões de acordo com suas necessidades específicas. Invista em um painel que combina funcionalidade e qualidade, otimizando seu espaço e melhorando a performance do seu sistema de áudio."
+      },
+      "pictures": [
+        {
+          "id": "716013-MLA99927756021_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_716013-MLA99927756021_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1115"
+        },
+        {
+          "id": "868568-MLU76918811510_062024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_868568-MLU76918811510_062024-F.jpg",
+          "max_width": "574",
+          "max_height": "1001"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-06-20T03:27:50Z",
+      "last_updated": "2025-02-26T05:25:24Z",
+      "quality_type": "PRIMITIVE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-17T14:15:53.627Z",
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Extensão De Antena Permak 2,50 Metros - PC / 2",
+    "supplier_category": "Eletronica/ Adaptadores/plugues/tomadas/ Adaptores",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/11122",
+    "captured_at": "2026-08-17T12:56:39.855Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  },
+  "preferred_offer": {
+    "id": "647f2213-ba2a-4719-93b2-7c6590ef320c",
+    "produto_id": "7b2841e9-6480-4013-8234-529149937c74",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "11122",
+    "sku_fornecedor": "11122",
+    "custo": 29.8,
+    "estoque": 38,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-17T10:35:30.801+00:00",
+    "created_at": "2026-07-20T18:30:57.116305+00:00",
+    "updated_at": "2026-08-17T10:35:30.808+00:00",
+    "sku_oferta": "11122",
+    "nome": "Cabo Extensão De Antena Permak 2,50 Metros",
+    "descricao": "Essa extensão é própria para antenas, ela tem a finalidade de conectar a antena à fiação original do carro. Por ser universal, as extensões de antena são compatíveis com diversos modelos de antenas e carros. A extensão 2,50 m possui a parte interna do fio feita de cobre, a isolação é em polipropileno e seu plug é composto de latão banhado a níquel. A combinação desses materiais proporciona alta condutividade elétrica, ótima resistência à corrosão, boa resistência a impactos e baixa absorção de umidade. Está disponível na cor preta e em rolos de 2,5 m. Múltiplo 2 unidades *Imagens meramente ilustrativas.\n\n– Material do fio: cobre; – Material de isolação: polipropileno; – Material do plug: latão banhado a níquel; – Cor: preto; – Comprimento: rolos de 2,5 m; – Múltiplo 2 unidades",
+    "marca": "PERMAK",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/1/1/11122_67d2cad8e8f5d.png"
+    ],
+    "gtin": "",
+    "ncm": "85444200",
+    "cest": "12.007.00"
+  }
+}

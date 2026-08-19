@@ -1,0 +1,406 @@
+{
+  "index": 11,
+  "sku": "VTK026043",
+  "started_at": "2026-08-17T00:07:07.780Z",
+  "local_time": "2026-08-16T21:07:07",
+  "expected_gtin": "7908324703320",
+  "product": {
+    "id": "4546e46e-4916-4ebb-b2a2-0d70648c6c59",
+    "sku": "VTK026043",
+    "nome": "Abraçadeira De Nylon Mxt 4,8x40cm 100 Unidades Preta",
+    "marca": "MXT",
+    "estoque": 50,
+    "custo": 13.2,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.24,
+    "peso_bruto": 0.24,
+    "largura": 12,
+    "altura": 2,
+    "profundidade": 50,
+    "gtin": "7908324703320",
+    "descricao": "Abraçadeira de Nylon MXT 4,8 x 400mm 100 Unidades Preta. *Imagens meramente ilustrativas.\n\nAbraçadeira de Nylon Medidas: 4,8 x 400mm Cor: Preta Pacote: 100 Unidades",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e1494b.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14d99.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14de1.png"
+    ],
+    "categoria": "Eletronica/ Acessórios/ Cinta Abraçadeira",
+    "ml_item_id": null,
+    "created_at": "2026-08-15T22:59:37.911799+00:00",
+    "updated_at": "2026-08-16T20:50:18.773298+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "391086",
+    "dslite_ultima_sync": "2026-08-16T20:50:18.738+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "39269090",
+    "cest": null,
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "913492dc-9fd2-4919-8fb1-1829986be7ed",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "913492dc-9fd2-4919-8fb1-1829986be7ed",
+    "produto_id": "4546e46e-4916-4ebb-b2a2-0d70648c6c59",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "391086",
+    "sku_fornecedor": "391086",
+    "custo": 13.2,
+    "estoque": 50,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:50:18.738+00:00",
+    "created_at": "2026-08-15T22:59:37.972542+00:00",
+    "updated_at": "2026-08-16T20:50:18.745+00:00",
+    "sku_oferta": "391086",
+    "nome": "Abraçadeira De Nylon Mxt 4,8x40cm 100 Unidades Preta",
+    "descricao": "Abraçadeira de Nylon MXT 4,8 x 400mm 100 Unidades Preta. *Imagens meramente ilustrativas.\n\nAbraçadeira de Nylon Medidas: 4,8 x 400mm Cor: Preta Pacote: 100 Unidades",
+    "marca": "MXT",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e1494b.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14d99.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14de1.png"
+    ],
+    "gtin": "7908324703320",
+    "ncm": "39269090",
+    "cest": null
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391086",
+    "consulted_at": "2026-08-17T00:07:08.019Z",
+    "product": {
+      "produtoid": "391086",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 13.2,
+      "preco_crossdocking": 13.2,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 13.2,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "2",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-29 16:09:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-29 16:09:26.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Abraçadeira De Nylon Mxt 4,8x40cm 100 Unidades Preta",
+      "titulo_curto": "Abraçadeira De Nylon Mxt 4,8x40cm 100 Unidades Preta",
+      "categoriaid": "117692",
+      "categoria_nome": "Eletronica/ Acessórios/ Cinta Abraçadeira",
+      "abc": null,
+      "ean11": "7908324703320",
+      "ncm": "39269090",
+      "descricao": "<p>Abraçadeira de Nylon MXT 4,8 x 400mm 100 Unidades Preta.</p>\r\n<p> </p>\r\n<p>*Imagens meramente ilustrativas.</p>",
+      "caracteristicas": "<p>Abraçadeira de Nylon</p>\r\n<p>Medidas: 4,8 x 400mm</p>\r\n<p>Cor: Preta</p>\r\n<p>Pacote: 100 Unidades</p>",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "MXT",
+      "modelo": "",
+      "peso": 0.24,
+      "largura": 12,
+      "altura": 2,
+      "profundidade": 50,
+      "peso_embalagem": 0.24,
+      "largura_embalagem": 12,
+      "altura_embalagem": 2,
+      "profundidade_embalagem": 50,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e1494b.png",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 3,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-10 14:52:46.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-10 14:52:46.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 50,
+      "tempo_cross": 0,
+      "estoque_total": 97,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e1494b.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14d99.png"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/9/391086_6a690d9e14de1.png"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "DSLITE supplier + exact ML catalog GTIN",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391086",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7908324703320"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB26209409",
+      "catalog_product_id": "MLB26209409",
+      "domain_id": "MLB-SECURITY_SEALS",
+      "name": "Cinta Plástica Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto",
+      "parent_id": "MLB25809162",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2153976",
+          "value_name": "MXT",
+          "values": [
+            {
+              "id": "2153976",
+              "name": "MXT"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "14449988",
+          "value_name": "40cm",
+          "values": [
+            {
+              "id": "14449988",
+              "name": "40cm"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "7980354",
+          "value_name": "Náilon",
+          "values": [
+            {
+              "id": "7980354",
+              "name": "Náilon"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "name": "Unidades por embalagem",
+          "value_id": "131783",
+          "value_name": "100",
+          "values": [
+            {
+              "id": "131783",
+              "name": "100"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "517234",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "517234",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "8892922",
+          "value_name": "4.8 mm",
+          "values": [
+            {
+              "id": "8892922",
+              "name": "4.8 mm"
+            }
+          ]
+        },
+        {
+          "id": "IS_NUMBERED",
+          "name": "É numerado",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "23176271",
+          "value_name": "7908324703320",
+          "values": [
+            {
+              "id": "23176271",
+              "name": "7908324703320"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto da marca MXT é perfeita para diversas aplicações. Com 400 mm de comprimento e 4.8 mm de largura, é feita de nylon resistente e durável. Sua cor preta combina com qualquer ambiente. Ideal para organizar cabos, fios e objetos soltos, mantendo tudo no lugar de forma prática e segura. Com 100 unidades, você terá o suficiente para várias tarefas. A Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto é um produto novo e de alta qualidade."
+      },
+      "pictures": [
+        {
+          "id": "791282-MLA95556407449_102025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_791282-MLA95556407449_102025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1183"
+        },
+        {
+          "id": "879052-MLA89574495858_082025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_879052-MLA89574495858_082025-F.jpg",
+          "max_width": "989",
+          "max_height": "968"
+        },
+        {
+          "id": "978944-MLA89574161452_082025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_978944-MLA89574161452_082025-F.jpg",
+          "max_width": "610",
+          "max_height": "686"
+        },
+        {
+          "id": "964404-MLA89946107481_082025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_964404-MLA89946107481_082025-F.jpg",
+          "max_width": "569",
+          "max_height": "281"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-08-18T07:18:02Z",
+      "last_updated": "2025-03-13T14:14:07Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

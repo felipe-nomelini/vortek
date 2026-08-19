@@ -1,0 +1,360 @@
+{
+  "read_at": "2026-08-16T21:16:32.721Z",
+  "before": {
+    "item_id": "MLB7432157712",
+    "seller_id": 3294514937,
+    "seller_sku": "VTK000486",
+    "user_product_id": "MLBU4771606790",
+    "family_id": "4094059417953552",
+    "family_name": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "title": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "status": "active",
+    "price": 187.22,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "category_id": "MLB11290",
+    "listing_type_id": "gold_pro",
+    "condition": "new",
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "catalog_listing": false,
+    "catalog_product_id": null,
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM",
+    "pictures": [
+      {
+        "id": "603667-MLB116278971945_082026",
+        "secure_url": "https://http2.mlstatic.com/D_603667-MLB116278971945_082026-O.jpg"
+      },
+      {
+        "id": "633503-MLB116278971947_082026",
+        "secure_url": "https://http2.mlstatic.com/D_633503-MLB116278971947_082026-O.jpg"
+      },
+      {
+        "id": "810784-MLB116278971949_082026",
+        "secure_url": "https://http2.mlstatic.com/D_810784-MLB116278971949_082026-O.jpg"
+      },
+      {
+        "id": "689863-MLB116278971951_082026",
+        "secure_url": "https://http2.mlstatic.com/D_689863-MLB116278971951_082026-O.jpg"
+      },
+      {
+        "id": "637841-MLA114900711030_082026",
+        "secure_url": "https://http2.mlstatic.com/D_637841-MLA114900711030_082026-O.jpg"
+      },
+      {
+        "id": "842932-MLA116279067739_082026",
+        "secure_url": "https://http2.mlstatic.com/D_842932-MLA116279067739_082026-O.jpg"
+      },
+      {
+        "id": "766664-MLB116278971957_082026",
+        "secure_url": "https://http2.mlstatic.com/D_766664-MLB116278971957_082026-O.jpg"
+      },
+      {
+        "id": "733686-MLB116278971959_082026",
+        "secure_url": "https://http2.mlstatic.com/D_733686-MLB116278971959_082026-O.jpg"
+      },
+      {
+        "id": "925000-MLB116278971961_082026",
+        "secure_url": "https://http2.mlstatic.com/D_925000-MLB116278971961_082026-O.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BATTERIES_CHARGE_CAPACITY",
+        "value_id": null,
+        "value_name": "2600 mAh"
+      },
+      {
+        "id": "BRAND",
+        "value_id": null,
+        "value_name": "Toshiba"
+      },
+      {
+        "id": "CHARGING_PORTS_NUMBER",
+        "value_id": null,
+        "value_name": "4"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "24420060",
+        "value_name": "Plug"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "GTIN",
+        "value_id": null,
+        "value_name": "4904530109270"
+      },
+      {
+        "id": "INCLUDES_CELL_BATTERIES",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": null,
+        "value_name": "Toshiba"
+      },
+      {
+        "id": "MODEL",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "MPN",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "28280064",
+        "value_name": "Pilha"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "value_id": null,
+        "value_name": "16 cm"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "value_id": null,
+        "value_name": "5 cm"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "value_id": null,
+        "value_name": "110 g"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "value_id": null,
+        "value_name": "11 cm"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_id": null,
+        "value_name": "VTK000486"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_COMPOSITION",
+        "value_id": "2516404",
+        "value_name": "Ni-Mh"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_SIZE",
+        "value_id": null,
+        "value_name": "AA,AAA"
+      },
+      {
+        "id": "WITH_CHARGE_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      }
+    ]
+  },
+  "after": {
+    "item_id": "MLB7432157712",
+    "seller_id": 3294514937,
+    "seller_sku": "VTK000486",
+    "user_product_id": "MLBU4771606790",
+    "family_id": "4094059417953552",
+    "family_name": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "title": "Carregador De Pilhas Toshiba Tnhc-6gae4 Cb",
+    "status": "active",
+    "price": 187.22,
+    "available_quantity": 15,
+    "sold_quantity": 0,
+    "category_id": "MLB11290",
+    "listing_type_id": "gold_pro",
+    "condition": "new",
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "catalog_listing": false,
+    "catalog_product_id": null,
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7432157712-carregador-de-pilhas-toshiba-tnhc-6gae4-cb-_JM",
+    "pictures": [
+      {
+        "id": "603667-MLB116278971945_082026",
+        "secure_url": "https://http2.mlstatic.com/D_603667-MLB116278971945_082026-O.jpg"
+      },
+      {
+        "id": "633503-MLB116278971947_082026",
+        "secure_url": "https://http2.mlstatic.com/D_633503-MLB116278971947_082026-O.jpg"
+      },
+      {
+        "id": "810784-MLB116278971949_082026",
+        "secure_url": "https://http2.mlstatic.com/D_810784-MLB116278971949_082026-O.jpg"
+      },
+      {
+        "id": "689863-MLB116278971951_082026",
+        "secure_url": "https://http2.mlstatic.com/D_689863-MLB116278971951_082026-O.jpg"
+      },
+      {
+        "id": "637841-MLA114900711030_082026",
+        "secure_url": "https://http2.mlstatic.com/D_637841-MLA114900711030_082026-O.jpg"
+      },
+      {
+        "id": "842932-MLA116279067739_082026",
+        "secure_url": "https://http2.mlstatic.com/D_842932-MLA116279067739_082026-O.jpg"
+      },
+      {
+        "id": "766664-MLB116278971957_082026",
+        "secure_url": "https://http2.mlstatic.com/D_766664-MLB116278971957_082026-O.jpg"
+      },
+      {
+        "id": "733686-MLB116278971959_082026",
+        "secure_url": "https://http2.mlstatic.com/D_733686-MLB116278971959_082026-O.jpg"
+      },
+      {
+        "id": "925000-MLB116278971961_082026",
+        "secure_url": "https://http2.mlstatic.com/D_925000-MLB116278971961_082026-O.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BATTERIES_CHARGE_CAPACITY",
+        "value_id": null,
+        "value_name": "2600 mAh"
+      },
+      {
+        "id": "BRAND",
+        "value_id": null,
+        "value_name": "Toshiba"
+      },
+      {
+        "id": "CHARGING_PORTS_NUMBER",
+        "value_id": null,
+        "value_name": "4"
+      },
+      {
+        "id": "CONNECTOR_TYPE",
+        "value_id": "24420060",
+        "value_name": "Plug"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "GTIN",
+        "value_id": null,
+        "value_name": "4904530109270"
+      },
+      {
+        "id": "INCLUDES_CELL_BATTERIES",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INPUT_VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": null,
+        "value_name": "Toshiba"
+      },
+      {
+        "id": "MODEL",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "MPN",
+        "value_id": null,
+        "value_name": "TNHC-6GAE4 CB"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "28280064",
+        "value_name": "Pilha"
+      },
+      {
+        "id": "SELLER_PACKAGE_HEIGHT",
+        "value_id": null,
+        "value_name": "16 cm"
+      },
+      {
+        "id": "SELLER_PACKAGE_LENGTH",
+        "value_id": null,
+        "value_name": "5 cm"
+      },
+      {
+        "id": "SELLER_PACKAGE_WEIGHT",
+        "value_id": null,
+        "value_name": "110 g"
+      },
+      {
+        "id": "SELLER_PACKAGE_WIDTH",
+        "value_id": null,
+        "value_name": "11 cm"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_id": null,
+        "value_name": "VTK000486"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_COMPOSITION",
+        "value_id": "2516404",
+        "value_name": "Ni-Mh"
+      },
+      {
+        "id": "SUPPORTED_BATTERY_SIZE",
+        "value_id": null,
+        "value_name": "AA,AAA"
+      },
+      {
+        "id": "WITH_CHARGE_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      }
+    ]
+  },
+  "diff": {
+    "fields": [],
+    "drift": false
+  },
+  "side_effect_drift": false
+}

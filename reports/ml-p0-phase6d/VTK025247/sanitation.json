@@ -1,0 +1,10 @@
+{
+  "sku": "VTK025247",
+  "gate": "BLOCK_IMAGE",
+  "evidence": "local product has zero images; exact GTIN catalog also identifies an unrelated automotive part",
+  "local_value": "7890000784603",
+  "found_value": null,
+  "suggested_action": "IMAGE_FIX_REQUIRED",
+  "source": "local baseline + ML catalog MLB35303266",
+  "timestamp": "2026-08-17T01:13:53.492Z"
+}

@@ -1,0 +1,24 @@
+{
+  "inventory_snapshot": {
+    "captured": 5829,
+    "expected": 5829,
+    "timestamp": "2026-08-17T01:13:00.441Z"
+  },
+  "local_duplicates": [],
+  "remote_matches": [
+    {
+      "id": "MLB4880561619",
+      "status": "active",
+      "sku": "VTK012334",
+      "gtin": "008576114022",
+      "catalog_product_id": "MLB26802337"
+    },
+    {
+      "id": "MLB7111710806",
+      "status": "active",
+      "sku": "VTK012334",
+      "gtin": "008576114022",
+      "catalog_product_id": "MLB26802337"
+    }
+  ]
+}

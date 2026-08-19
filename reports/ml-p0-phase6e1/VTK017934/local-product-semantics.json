@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-08-17T14:15:53.756Z",
+  "product": {
+    "id": "ed0d9b3f-e237-4747-8c47-bd3864dc8df2",
+    "sku": "VTK017934",
+    "nome": "Caixa R.l.p. Vazia Corujinha A.f 6 + Rádio + Duto",
+    "marca": "CAIXARIAS",
+    "estoque": 17,
+    "custo": 62.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 4.5,
+    "peso_bruto": 4.5,
+    "largura": 25,
+    "altura": 22,
+    "profundidade": 56,
+    "gtin": "",
+    "descricao": "Informações do Produto Caixa para 2 Alto falantes de 6\" + Rádio + Duto\"",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/3/339734_67d2caf318122.jpg",
+      "https://evolusom.com.br/media/catalog/product/3/3/339734_67d2caf318d20.jpg"
+    ],
+    "categoria": "Automotivo/ Caixa De Som/ Caixa Selada",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:31:30.798566+00:00",
+    "updated_at": "2026-08-17T11:00:32.963109+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "339734",
+    "dslite_ultima_sync": "2026-08-17T11:00:32.915+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "92081000",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "d81c0c18-db17-4660-b42d-201f16ea0923",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "acoustic_speaker",
+    "function": "reproduce_audio",
+    "intended_use": "professional_audio",
+    "physical_form": "speaker_enclosure",
+    "expected_category_signals": [
+      "caixaacustica",
+      "audio",
+      "som",
+      "altofalante"
+    ],
+    "incompatible_category_signals": [
+      "organizacao",
+      "armazenamento",
+      "ferramenta"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "professional_audio",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

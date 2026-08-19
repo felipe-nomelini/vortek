@@ -1,0 +1,592 @@
+{
+  "checked_at": "2026-08-17T12:56:24.688Z",
+  "product": {
+    "id": "fffee6d5-b53a-4b4b-b015-5088a2bd0735",
+    "sku": "VTK012866",
+    "nome": "Alto-falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4/a Atk",
+    "marca": "Atk Eletroacústica",
+    "gtin": "7898640360676"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/1557",
+    "consulted_at": "2026-08-17T12:56:24.491Z",
+    "product": {
+      "produtoid": "1557",
+      "produtoid_empresa": "",
+      "fornecedorid": 108,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 1194.9,
+      "preco_crossdocking": 1194.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 1194.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "",
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-02 16:56:42.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Alto-falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4/a Atk",
+      "titulo_curto": "Alto-falante 12 Pol 1300w Rms 4 Ohms Wf3004600b4/a Atk",
+      "categoriaid": "289648",
+      "categoria_nome": "Acessórios Para Veículos > Som Automotivo > Alto Falantes",
+      "abc": null,
+      "ean11": "7898640360676",
+      "ncm": "8518.29.90",
+      "descricao": "<p>Descrição:</p> <p>Alto-falante de 12” de alta potência, com baixíssima distorção e compressão dinâmica. O elevado grau de exigência e o controle de qualidade na seleção dos materiais e na montagem, proporcionam excelente linearidade.</p> <p>Utiliza uma bobina de 100 mm de diâmetro (4”) e um cone impermeabilizado e resistente, montados em um conjunto magnético otimizado para um desempenho superior.</p> <p>Carcaça em alumínio injetado com pintura eletrostática texturizada na cor preta, assegurando um visual elegante e resistência mecânica.</p> <p>Projetado com base nos mais avançados softwares F.E.A (Finite Element Analysis), que permitem simulação de parâmetros elétricos e mecânicos com extrema precisão. Tudo isso para conceber um transdutor com ampla sensibilidade, melhor dissipação e excepcional performance.</p> <p>Características:</p> <p>-4600 W de Programa Contínuo</p> <p>-Frequência Sonora: Graves</p> <p>-4 Ohms de Impedância Nominal</p> <p>-96 dB SPL de Sensibilidade</p> <p>-60 a 2500Hz</p> <p>Informações para transporte:</p> <p>-Peso unidade: 19.75 kg</p> <p>-Unidade de Transporte: 1 unidade</p> <p>-Dimensões da embalagem: (A) 200 mm x (L) 325 mm x (P) 315 mm</p> <p>-Volume da embalagem: 20.5 L</p> <p>-Peso da unidade embalada: 20.5 kg</p> <p> </p> <p>Especificações do Fabricante:</p> <p>-Potência Nominal Admissível(1): 1300 W</p> <p>-Potência Máxima do Amplificador(2) : 20800 W pico</p> <p>-Potência Máxima Dinâmica por períodos &lt;30 segundos(3): 4600 W</p> <p>-Sensibilidade (1W/1m)(4) : 96 dB SPL</p> <p>-Impedância Nominal: 4 Ohms</p> <p>-Impedância Mínima: 3.7 Ohms</p> <p>-Diâmetro Nominal: 304.8mm (12 pol)</p> <p>-Resposta de Frequência: 60 a 2500 Hz</p> <p>-Diâmetro da Bobina: 100 mm (4”)</p> <p>-Fio da Bobina: Fio de Cobre Seção Circular</p> <p>-Resistência da Bobina (Re): 2.2 Ohms</p> <p>-X.máx(5) : 15 mm</p> <p>-Volume de Ar ocupado: 5.4 L</p> <p> </p> <p>(1)  2 horas de teste realizado com ruído rosa (fator de crista 12 dB) no range de frequência de Fs a 10xFs. Potência calculada com impedância mínima. Alto-falante ao ar livre.</p> <p>Obs: Para aplicar esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no mínimo 12h com 50% da potência nominal.</p> <p>(2)  Potência de pico exigida do amplificador para alcançar a potência nominal considerando um sinal de teste de ruído rosa com fator de crista de 12dB.</p> <p>(3)  Potência máxima com sinal dinâmico por períodos inferiores a 30 segundos. Para aplicar</p> <p>esta potência o alto-falante já deve ter passado pelo período inicial de amaciamento, no</p> <p>mínimo 24h com 50% da potência nominal. Para cada ciclo de utilização com esta potência,</p> <p>considerar que o conjunto magnético esteja próximo da temperatura ambiente.</p> <p>(4)  Aplicada tensão de 2 V RMS sobre a impedância nominal.</p> <p>(5)  O X.máx é calculado considerando uma queda &gt; que 50 % do campo magnético Bl sobre a bobina.</p> <p> </p> <p>Parâmetros Thiele-Small (6)</p> <p>Fs: 80.8 Hz</p> <p>Re: 2.2 Ohms</p> <p>Qes: 0.40</p> <p>Qms: 2.3</p> <p>Qts: 0.34</p> <p>Vas: 11 l</p> <p>Sd: 585 cm²</p> <p>n0: 1.4 %</p> <p>Mms: 164 g</p> <p>Bl: 21.1 Tm</p> <p>Le: 0.39 mH</p> <p> </p> <p>(6) Os parâmetros Thiele-Small são medidos após um burn-in com ½ potência nominal em um range de frequência de Fs a 10xFs.</p> <p> </p>",
+      "caracteristicas": null,
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "Atk Eletroacústica",
+      "modelo": "",
+      "peso": 19.75,
+      "largura": 33,
+      "altura": 20,
+      "profundidade": 33,
+      "peso_embalagem": 20.5,
+      "largura_embalagem": 33,
+      "altura_embalagem": 20,
+      "profundidade_embalagem": 33,
+      "link": null,
+      "link_imagem": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f23bb7a86abfe426eda281d898d935ce.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "UN",
+      "embalagem_quantidade": 0,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": null,
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 25,
+      "local_estoque": "PR",
+      "cep_origem": "86206008",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": "",
+      "cest": null,
+      "produtoid_original": "683256006",
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-06 11:23:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-06 11:23:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 2,
+      "tempo_cross": 0,
+      "estoque_total": 2,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f23bb7a86abfe426eda281d898d935ce.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e9e3d2bc96c9329fd1b7199cf51a4ff4.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1b8158e35423ce76a941e4b170933b5c.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "4",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a5cd9f9c635364ce491300f565c5b570.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "5",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d7736c951742c642454dc7f96e10bf53.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "6",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/823d027afd45f7e2ebd71c83fabf3814.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "7",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/6935cae3b4cf0b2fc572a036486f529e.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "8",
+          "valor": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/2a6c0a94cfc6cbb3637febd7d5209440.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_MODEL_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: COLOR,MODEL",
+    "foundValue": "MLB37585574",
+    "source": "ML catalog MLB37585574 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "COLOR",
+        "MODEL"
+      ],
+      "catalog_brand": "Atk Eletroacústica",
+      "model": "Woofer Graves 12 Polegadas",
+      "local_pack": 50,
+      "catalog_pack": null,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "rosa",
+        "ciano"
+      ],
+      "catalog_colors": [
+        "preto"
+      ],
+      "title_similarity": 0.5555555555555556
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB37585574",
+      "catalog_product_id": "MLB37585574",
+      "domain_id": "MLB-VEHICLE_SPEAKERS",
+      "name": "Alto-falante Competição 12 Pol 1300 W - 4 Ohms Wf300-4600b-4",
+      "parent_id": "MLB37585567",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "27107924",
+          "value_name": "Atk Eletroacústica",
+          "values": [
+            {
+              "id": "27107924",
+              "name": "Atk Eletroacústica"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "22980208",
+          "value_name": "Alto-falantes",
+          "values": [
+            {
+              "id": "22980208",
+              "name": "Alto-falantes"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "38594885",
+          "value_name": "Woofer Graves 12 Polegadas",
+          "values": [
+            {
+              "id": "38594885",
+              "name": "Woofer Graves 12 Polegadas"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "name": "Largura do alto-falante",
+          "value_id": "49405983",
+          "value_name": "11.693 \"",
+          "values": [
+            {
+              "id": "49405983",
+              "name": "11.693 \""
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "name": "Comprimento do alto-falante",
+          "value_id": "49405984",
+          "value_name": "7.343 \"",
+          "values": [
+            {
+              "id": "49405984",
+              "name": "7.343 \""
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "name": "Diâmetro do alto-falante",
+          "value_id": "8737312",
+          "value_name": "12 \"",
+          "values": [
+            {
+              "id": "8737312",
+              "name": "12 \""
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "7452068",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7452068",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete",
+          "values": [
+            {
+              "id": "11377043",
+              "name": "Carro/Caminhonete"
+            }
+          ]
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "name": "Tipo de alto-falante",
+          "value_id": "7509874",
+          "value_name": "Woofer",
+          "values": [
+            {
+              "id": "7509874",
+              "name": "Woofer"
+            }
+          ]
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "name": "Quantidade de vias",
+          "value_id": "8704194",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "8704194",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "COILS_NUMBER",
+          "name": "Quantidade de bobinas",
+          "value_id": "8704186",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "8704186",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "RMS_POWER",
+          "name": "Potência RMS",
+          "value_id": "24951096",
+          "value_name": "1300 W",
+          "values": [
+            {
+              "id": "24951096",
+              "name": "1300 W"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "name": "Faixa de frequência",
+          "value_id": "38594894",
+          "value_name": "60 a 2500 Hz",
+          "values": [
+            {
+              "id": "38594894",
+              "name": "60 a 2500 Hz"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "28212328",
+          "value_name": "18.65 cm",
+          "values": [
+            {
+              "id": "28212328",
+              "name": "18.65 cm"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "38594895",
+          "value_name": "7898640360676",
+          "values": [
+            {
+              "id": "38594895",
+              "name": "7898640360676"
+            }
+          ]
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "name": "Materiais da suspensão",
+          "value_id": "8266188",
+          "value_name": "Borracha",
+          "values": [
+            {
+              "id": "8266188",
+              "name": "Borracha"
+            }
+          ]
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "name": "Materiais da carcaça",
+          "value_id": "945389",
+          "value_name": "Aço",
+          "values": [
+            {
+              "id": "945389",
+              "name": "Aço"
+            }
+          ]
+        },
+        {
+          "id": "COIL_MATERIALS",
+          "name": "Materiais da bobina",
+          "value_id": "74819921",
+          "value_name": "Fio de Cobre Seção Circular",
+          "values": [
+            {
+              "id": "74819921",
+              "name": "Fio de Cobre Seção Circular"
+            }
+          ]
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "name": "Materiais do cone",
+          "value_id": "160245",
+          "value_name": "Celulose",
+          "values": [
+            {
+              "id": "160245",
+              "name": "Celulose"
+            }
+          ]
+        },
+        {
+          "id": "RESONANCE_FREQUENCY",
+          "name": "Frequência de ressonância",
+          "value_id": "75088256",
+          "value_name": "80.8 Hz",
+          "values": [
+            {
+              "id": "75088256",
+              "name": "80.8 Hz"
+            }
+          ]
+        },
+        {
+          "id": "SENSITIVITY",
+          "name": "Sensibilidade",
+          "value_id": "945379",
+          "value_name": "96 dB",
+          "values": [
+            {
+              "id": "945379",
+              "name": "96 dB"
+            }
+          ]
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "name": "Com tela de proteção",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "name": "Com caixa de subwoofer",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "name": "Com luzes LED",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "name": "É resistente à água",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Alto-falante de 12” de alta potência, projetado para competição, com baixíssima distorção e compressão dinâmica. A seleção rigorosa de materiais e a montagem precisa garantem excelente linearidade.\n\nPossui bobina de 100 mm (4”) de diâmetro, cone impermeabilizado e resistente, montados em um conjunto magnético otimizado. A carcaça em alumínio injetado com pintura eletrostática texturizada proporciona resistência mecânica e acabamento superior. Desenvolvido com tecnologia F.E.A (Finite Element Analysis) para simulação precisa de parâmetros elétricos e mecânicos.\n\nEspecificações Técnicas:\n\n- Faixa de frequência: Graves\n- Potência Nominal Admissível: 1300 W\n- Potência Máxima do Amplificador (Pico): 20800 W\n- Potência Máxima Dinâmica (< 30s): 4600 W\n- Impedância Nominal: 4 Ohms\n- Impedância Mínima: 3.7 Ohms\n- Sensibilidade: 96 dB SPL (1W/1m)\n- Resposta de Frequência: 60 a 2500 Hz\n- Diâmetro Nominal: 304.8 mm (12 pol)\n- Diâmetro da Bobina: 100 mm (4”)\n- Fio da Bobina: Cobre, seção circular\n- Resistência da Bobina (Re): 2.2 Ohms\n- X.máx: 15 mm\n- Volume de Ar ocupado: 5.4 L\n\nParâmetros Thiele-Small:\n\n- Fs: 80.8 Hz\n- Re: 2.2 Ohms\n- Qes: 0.40\n- Qms: 2.3\n- Qts: 0.34\n- Vas: 11 L\n- Sd: 585 cm²\n- n0: 1.4 %\n- Mms: 164 g\n- Bl: 21.1 Tm\n- Le: 0.39 mH"
+      },
+      "pictures": [
+        {
+          "id": "988792-MLA99935859897_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_988792-MLA99935859897_112025-F.jpg",
+          "max_width": "1078",
+          "max_height": "836"
+        },
+        {
+          "id": "600690-MLU76690367498_062024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_600690-MLU76690367498_062024-F.jpg",
+          "max_width": "1083",
+          "max_height": "987"
+        },
+        {
+          "id": "870465-MLU76690212906_062024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_870465-MLU76690212906_062024-F.jpg",
+          "max_width": "1078",
+          "max_height": "1080"
+        },
+        {
+          "id": "809964-MLU76690338586_062024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_809964-MLU76690338586_062024-F.jpg",
+          "max_width": "710",
+          "max_height": "1067"
+        },
+        {
+          "id": "649960-MLU76690367512_062024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_649960-MLU76690367512_062024-F.jpg",
+          "max_width": "1062",
+          "max_height": "976"
+        },
+        {
+          "id": "769053-MLA84024349992_052025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_769053-MLA84024349992_052025-F.jpg",
+          "max_width": "1038",
+          "max_height": "646"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2024-06-08T06:01:53Z",
+      "last_updated": "2026-03-20T23:10:20Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

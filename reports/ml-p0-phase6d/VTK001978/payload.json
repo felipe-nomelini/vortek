@@ -1,0 +1,125 @@
+{
+  "payload": {
+    "family_name": "Encordoamento Violão Elixir Nanoweb 16002",
+    "category_id": "MLB278076",
+    "catalog_product_id": "MLB63166896",
+    "catalog_listing": true,
+    "price": 699.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/55126/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "2499062",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "LINE",
+        "value_id": "16040021",
+        "value_name": "NANOWEB"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "2444749",
+        "value_name": "16002"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_id": "15312679",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "140750",
+        "value_name": "6"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15146",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_id": "16268093",
+        "value_name": "10-47"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "19812201",
+        "value_name": "Fósforo Bronze"
+      },
+      {
+        "id": "TENSION",
+        "value_id": "5344248",
+        "value_name": "Média"
+      },
+      {
+        "id": "NOTES",
+        "values": [
+          {
+            "id": "17479080",
+            "name": "10-47"
+          },
+          {
+            "id": "17479081",
+            "name": "Cordas para violão"
+          },
+          {
+            "id": "17479078",
+            "name": "Nanoweb"
+          }
+        ]
+      },
+      {
+        "id": "SCALE",
+        "value_id": "15312683",
+        "value_name": "4:4"
+      },
+      {
+        "id": "GTIN",
+        "values": [
+          {
+            "id": "67941214",
+            "name": "113333248589"
+          },
+          {
+            "id": "16420855",
+            "name": "733132160020"
+          }
+        ]
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001978"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001978"
+  },
+  "sha256": "b11c88874e55a3d1ff3dcf57a1c4fd7891545ac46615304ee360a7e0987e2af0",
+  "family_name_sha256": "0d81bcce25f37a5b52db81aede3728e83d77121693ad987b9a3531603e9775bd",
+  "title_absent": true,
+  "description_absent": true
+}

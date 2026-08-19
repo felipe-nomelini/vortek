@@ -1,0 +1,22 @@
+{
+  "candidates": [
+    {
+      "domain_id": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+      "domain_name": "Antenas e adaptadores sem fio",
+      "classification": "SEMANTIC_PARTIAL",
+      "score": 93
+    },
+    {
+      "domain_id": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+      "domain_name": "Antenas e adaptadores sem fio",
+      "classification": "SEMANTIC_PARTIAL",
+      "score": 93
+    },
+    {
+      "domain_id": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+      "domain_name": "Antenas e adaptadores sem fio",
+      "classification": "SEMANTIC_MISMATCH",
+      "score": 74
+    }
+  ]
+}

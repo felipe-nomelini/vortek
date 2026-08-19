@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-08-17T14:15:37.865Z",
+  "product": {
+    "id": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+    "sku": "VTK018639",
+    "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+    "marca": "MAX ELETRON",
+    "estoque": 6,
+    "custo": 299.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 1.534,
+    "peso_bruto": 1.534,
+    "largura": 37,
+    "altura": 4.5,
+    "profundidade": 43,
+    "gtin": "7908060206284",
+    "descricao": "Kit de Ventilador Para Rack Piso - Utilizado para refrigerar os equipamentos. - Proporciona circulação de ar dentro do Rack Piso. - Fixado e adaptado na parte interna do teto nos Racks por meio de parafusos M5. * O Kit para Rack Piso só pode ser utilizado em Rack Piso. *Imagens meramente ilustrativas.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018639/01-52be38fc778b035796d6.jpg"
+    ],
+    "categoria": "Redes E Provedores/ Internet E Rede/ Rack",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:40.745348+00:00",
+    "updated_at": "2026-08-17T11:07:22.569825+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "334676",
+    "dslite_ultima_sync": "2026-08-17T11:07:22.424+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85354090",
+    "cest": "12.003.00",
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "a581da61-0d99-42bd-8a14-38d27ddc9ccb",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "room_fan",
+    "function": "air_circulation",
+    "intended_use": "home_appliance",
+    "physical_form": "electric_fan",
+    "expected_category_signals": [
+      "ventilador",
+      "climatizacao",
+      "eletrodomestico"
+    ],
+    "incompatible_category_signals": [
+      "coolercomputador",
+      "automotivo",
+      "instrumentomusical"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "home_appliance",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

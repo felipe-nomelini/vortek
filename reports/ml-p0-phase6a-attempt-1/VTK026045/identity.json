@@ -1,0 +1,703 @@
+{
+  "index": 1,
+  "sku": "VTK026045",
+  "started_at": "2026-08-16T23:39:08.784Z",
+  "local_time": "2026-08-16T20:39:08",
+  "expected_gtin": "7908639903217",
+  "product": {
+    "id": "946c9536-dcd9-4ca3-b247-26b960b40319",
+    "sku": "VTK026045",
+    "nome": "Fone Headset C3 Tech Ph-380bk Usb",
+    "marca": "C3 TECH",
+    "estoque": 50,
+    "custo": 66.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.228,
+    "peso_bruto": 0.228,
+    "largura": 17,
+    "altura": 7,
+    "profundidade": 25,
+    "gtin": "7908639903217",
+    "descricao": "FONE COM MICROFONE USB PH-380BK C3TECH PH-380BK O PH-380 BK é a escolha ideal para quem busca qualidade de áudio, conforto e praticidade no dia a dia. Com drivers de neodímio de 40mm, entrega um som imersivo, com graves potentes e agudos nítidos. O microfone com redução de ruído e rotação de 120° garante comunicação clara em qualquer ambiente, seja em reuniões, aulas online ou durante o lazer. Seu design ergonômico, com arco ajustável e almofadas macias em PU, proporciona conforto mesmo após longas horas de uso. Já o cabo de 1,8 metro com controles integrados de volume, mute e função handsfree oferece liberdade de movimento e praticidade. Com conexão USB Plug & Play, o PH-380 BK combina desempenho, estilo e versatilidade em um headset pensado para acompanhar todas as suas necessidades. *Imagens meramente ilustrativas.\n\nModelo: PH-380BK Referência: 410021880100 CARACTERÍSTICAS GERAIS Drives de ímã de neodímio de alta qualidade Arco e drives almofadados em PU Haste de microfone rotativo 120° Redução de ruído Dimensão: 17 x 6 x 19 cm Conexão: USB 1.1/2.0 Comprimento de Cabo: 1,8 metro Possui Microfone Integrado Possui Ajuste de Volume Possui Função Mudo Possui Handsfree Funções de botões variável conforme sistema do dispositivo, consulte manual CARACTERÍSTICAS ACÚSTICAS Tamanho de Alto-Falante: 40 mm Tamanho de Microfone: 6x5 mm Direção de Captação do Microfone: Omnidirecional Frequência de Resposta: 20 Hz a 20 kHz Impedância: 32 Ohms ± 15% Sensibilidade: 113dB ± 3dB SPL Sensibilidade do microfone: -56dB ± 3dB Frequência de Resposta do Microfone: 50 Hz a 20 kHz Possui Som Estéreo Acoplamento de Ouvido: Circumaural (Over-Ear) CARACTERÍSTICAS ELÉTRICAS Potência Nominal: 15mW Tensão de Operação: 5V Corrente de Operação: 10mA Alimentação: USB",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414fafcb6.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414faff47.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414faff9b.png",
+      "https://evolusom.com.br/media/catalog/product/3/9/391327_6a73414faffd4.png"
+    ],
+    "categoria": "Informatica/ Fones De Ouvido/ Fone De Ouvido",
+    "ml_item_id": null,
+    "created_at": "2026-08-16T11:00:23.694417+00:00",
+    "updated_at": "2026-08-16T20:52:32.139284+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "391327",
+    "dslite_ultima_sync": "2026-08-16T20:52:32.045+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85183000",
+    "cest": "21.057.00",
+    "origem_fiscal": "2",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "020bb6b3-46f2-4b4d-89f1-362c113ca27e",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": null,
+  "dslite": null,
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "https://c3technology.com.br/fichatecnica/PH-380BK",
+    "secondary": null,
+    "supplier": null,
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7908639903217"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB54158165",
+      "catalog_product_id": "MLB54158165",
+      "domain_id": "MLB-HEADPHONES",
+      "name": "Fone de Ouvido Headset Com Microfone Usb Redução De Ruído C3tech Ph-380bk",
+      "parent_id": "MLB54158164",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "47439",
+          "value_name": "Coletek",
+          "values": [
+            {
+              "id": "47439",
+              "name": "Coletek"
+            }
+          ]
+        },
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "8774306",
+          "value_name": "C3Tech",
+          "values": [
+            {
+              "id": "8774306",
+              "name": "C3Tech"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "59664132",
+          "value_name": "PH-380BK",
+          "values": [
+            {
+              "id": "59664132",
+              "name": "PH-380BK"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "59664130",
+          "value_name": "PH-380",
+          "values": [
+            {
+              "id": "59664130",
+              "name": "PH-380"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "PAIRS_NUMBER",
+          "name": "Quantidade de pares",
+          "value_id": "7386989",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "7386989",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "2450295",
+              "name": "Preto"
+            }
+          ],
+          "meta": {
+            "rgb": "000000"
+          }
+        },
+        {
+          "id": "HEADPHONE_FORMAT",
+          "name": "Formato do fone de ouvido",
+          "value_id": "182354",
+          "value_name": "Over-ear",
+          "values": [
+            {
+              "id": "182354",
+              "name": "Over-ear"
+            }
+          ]
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "name": "Com Bluetooth",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "name": "Com microfone",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_MONAURAL",
+          "name": "É monaural",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_INFANT",
+          "name": "É infantil",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "name": "Com luz LED",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "59664134",
+          "value_name": "7908639903217",
+          "values": [
+            {
+              "id": "59664134",
+              "name": "7908639903217"
+            }
+          ]
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "name": "Modelo detalhado",
+          "value_id": "59664133",
+          "value_name": "PH-380BK",
+          "values": [
+            {
+              "id": "59664133",
+              "name": "PH-380BK"
+            }
+          ]
+        },
+        {
+          "id": "DIAPHRAGM_UNIT",
+          "name": "Unidade de diafragma",
+          "value_id": "10814759",
+          "value_name": "4 cm",
+          "values": [
+            {
+              "id": "10814759",
+              "name": "4 cm"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY_RESPONSE",
+          "name": "Resposta em frequência",
+          "value_id": "925820",
+          "value_name": "20 Hz - 20 kHz",
+          "values": [
+            {
+              "id": "925820",
+              "name": "20 Hz - 20 kHz"
+            }
+          ]
+        },
+        {
+          "id": "SENSITIVITY",
+          "name": "Sensibilidade",
+          "value_id": "7933719",
+          "value_name": "113 dB",
+          "values": [
+            {
+              "id": "7933719",
+              "name": "113 dB"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "129119",
+          "value_name": "1.8 m",
+          "values": [
+            {
+              "id": "129119",
+              "name": "1.8 m"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_CHARGING_CASE",
+          "name": "Inclui estojo de carregamento",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_WIRELESS_CHARGING",
+          "name": "Com carregamento sem fio",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_TWS_TECHNOLOGY",
+          "name": "Com tecnologia TWS",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "name": "Com modo mãos livres",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_MP3_PLAYER",
+          "name": "Com leitor de MP3",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_FM_RADIO",
+          "name": "Com rádio FM",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_NOISE_CANCELLING",
+          "name": "Com cancelamento de ruído",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "name": "É resistente à água",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "name": "É à prova d'água",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "name": "É resistente ao pó",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_DETACHABLE_CABLE",
+          "name": "Com cabo desmontável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_DETACHABLE_MICROPHONE",
+          "name": "Com microfone desmontável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_FLEXIBLE_MICROPHONE",
+          "name": "Com microfone flexível",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_INTEGRATED_VOICE_ASSISTANTS",
+          "name": "Com assistentes de voz integrados",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "name": "Quantidade de microfones",
+          "value_id": "934836",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "934836",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "CONNECTOR_TYPES",
+          "name": "Tipos de conectores",
+          "value_id": "82230",
+          "value_name": "USB",
+          "values": [
+            {
+              "id": "82230",
+              "name": "USB"
+            }
+          ]
+        },
+        {
+          "id": "MICROPHONE_ORIENTATIONS",
+          "name": "Orientações do microfone",
+          "value_id": "8847355",
+          "value_name": "Esquerda",
+          "values": [
+            {
+              "id": "8847355",
+              "name": "Esquerda"
+            }
+          ]
+        },
+        {
+          "id": "SUITABLE_USES",
+          "name": "Usos adequados",
+          "value_name": "Profissional, Esporte, Entretenimento",
+          "values": [
+            {
+              "id": "8701147",
+              "name": "Profissional"
+            },
+            {
+              "id": "8701148",
+              "name": "Esporte"
+            },
+            {
+              "id": "19992751",
+              "name": "Entretenimento"
+            }
+          ]
+        },
+        {
+          "id": "CONTROL_FUNCTIONS",
+          "name": "Funções do controle ",
+          "value_name": "Controle de volume, Silenciar, Controle de chamadas",
+          "values": [
+            {
+              "id": "11559796",
+              "name": "Controle de volume"
+            },
+            {
+              "id": "11655376",
+              "name": "Silenciar"
+            },
+            {
+              "id": "11588393",
+              "name": "Controle de chamadas"
+            }
+          ]
+        },
+        {
+          "id": "CHANNEL_SETUP",
+          "name": "Configuração de canais",
+          "value_id": "59664131",
+          "value_name": "Surround",
+          "values": [
+            {
+              "id": "59664131",
+              "name": "Surround"
+            }
+          ]
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "name": "Acessórios incluídos",
+          "value_id": "59664129",
+          "value_name": "Headset C3Tech PH-380BK",
+          "values": [
+            {
+              "id": "59664129",
+              "name": "Headset C3Tech PH-380BK"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "O PH-380 BK é a escolha ideal para quem busca qualidade de áudio, conforto e praticidade no dia a dia. Com drivers de neodímio de 40mm, entrega um som imersivo, com graves potentes e agudos nítidos. O microfone com redução de ruído e rotação de 120° garante comunicação clara em qualquer ambiente, seja em reuniões, aulas online ou durante o lazer. Seu design ergonômico, com arco ajustável e almofadas macias em PU, proporciona conforto mesmo após longas horas de uso. Já o cabo de 1,8 metro com controles integrados de volume, mute e função handsfree oferece liberdade de movimento e praticidade. Com conexão USB Plug & Play, o PH-380 BK combina desempenho, estilo e versatilidade em um headset pensado para acompanhar todas as suas necessidades.\n\n- CARACTERÍSTICAS GERAIS:\nDrives de ímã de neodímio de alta qualidade\nArco e drives almofadados em PU\nHaste de microfone rotativo 120°\nRedução de ruído\n\nDimensão: 17 x 6 x 19 cm\nConexão: USB 1.1/2.0\nComprimento de Cabo: 1,8 metro\n\nPossui Microfone Integrado\nPossui Ajuste de Volume\nPossui Função Mudo\nPossui Handsfree\nFunções de botões variável conforme sistema do dispositivo, consulte manual\n\n- CARACTERÍSTICAS ACÚSTICAS:\nTamanho de Alto-Falante: 40 mm\nTamanho de Microfone: 6x5 mm\nDireção de Captação do Microfone: Omnidirecional\nFrequência de Resposta: 20 Hz a 20 kHz\nImpedância: 32 Ohms ± 15%\nSensibilidade: 113dB ± 3dB SPL\nSensibilidade do microfone: -56dB ± 3dB\nPossui Som Estéreo"
+      },
+      "pictures": [
+        {
+          "id": "840430-MLA99505523402_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_840430-MLA99505523402_112025-F.jpg",
+          "max_width": "1184",
+          "max_height": "1200"
+        },
+        {
+          "id": "951457-MLA91972303385_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_951457-MLA91972303385_092025-F.jpg",
+          "max_width": "925",
+          "max_height": "1200"
+        },
+        {
+          "id": "816189-MLA91573279660_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_816189-MLA91573279660_092025-F.jpg",
+          "max_width": "982",
+          "max_height": "1200"
+        },
+        {
+          "id": "851156-MLA91972588593_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_851156-MLA91972588593_092025-F.jpg",
+          "max_width": "195",
+          "max_height": "1200"
+        },
+        {
+          "id": "887001-MLA91972460989_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_887001-MLA91972460989_092025-F.jpg",
+          "max_width": "995",
+          "max_height": "1200"
+        },
+        {
+          "id": "909056-MLA91573279680_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_909056-MLA91573279680_092025-F.jpg",
+          "max_width": "1070",
+          "max_height": "1200"
+        },
+        {
+          "id": "971346-MLA91972431135_092025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_971346-MLA91972431135_092025-F.jpg",
+          "max_width": "777",
+          "max_height": "1200"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-08-29T18:32:35Z",
+      "last_updated": "2025-12-25T22:36:09Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

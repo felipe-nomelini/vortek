@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Suporte Antena 207-b Tripe Laje Tubo 1\" Prata Cromo",
+    "supplier_category": "Eletronica/ Antenas/ Antenas Para Tv",
+    "supplier_brand": "DIMATIX",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/348824",
+    "captured_at": "2026-08-17T12:56:42.009Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

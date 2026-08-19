@@ -1,0 +1,10 @@
+{
+  "ordinal": 80,
+  "sku": "VTK019131",
+  "phase6e_state": "BLOCK_CATEGORY",
+  "phase6e1_state": "BLOCK_SEMANTIC_CATEGORY_MISMATCH",
+  "category_candidate": "Esportes e Fitness > Equitação > Equipamento do Cavalo > Laços",
+  "semantic_score": 41,
+  "second_pass": "REJECT",
+  "evidence": "INCOMPATIBLE_CONTEXT:equitacao|cavalo|lacos|PRODUCT_FUNCTION_MISMATCH:detect_metal_vehicle_presence"
+}

@@ -1,0 +1,73 @@
+{
+  "rows": [
+    {
+      "index": 1,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/01-a314345543f5d59cb48f.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/01-a314345543f5d59cb48f.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/02-da2fbb6778bb92c247c8.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/02-da2fbb6778bb92c247c8.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/03-0916feb0e7409ca91811.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/03-0916feb0e7409ca91811.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ],
+  "approved": [
+    {
+      "index": 1,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/01-a314345543f5d59cb48f.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/01-a314345543f5d59cb48f.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 2,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/02-da2fbb6778bb92c247c8.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/02-da2fbb6778bb92c247c8.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    },
+    {
+      "index": 3,
+      "original_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/03-0916feb0e7409ca91811.jpg",
+      "final_url": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017508/03-0916feb0e7409ca91811.jpg",
+      "redirected": false,
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "width": 1000,
+      "height": 1000,
+      "classification": "APPROVED"
+    }
+  ],
+  "main_approved": true
+}

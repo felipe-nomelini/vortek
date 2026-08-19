@@ -1,0 +1,303 @@
+{
+  "index": 20,
+  "sku": "VTK017637",
+  "started_at": "2026-08-17T00:07:31.169Z",
+  "local_time": "2026-08-16T21:07:31",
+  "expected_gtin": "7898911419775",
+  "product": {
+    "id": "063dbebd-b445-4a04-af92-4036ba27b15d",
+    "sku": "VTK017637",
+    "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+    "marca": "SULTON",
+    "estoque": 37,
+    "custo": 122.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.746,
+    "peso_bruto": 0.746,
+    "largura": 9,
+    "altura": 19.5,
+    "profundidade": 17.5,
+    "gtin": "7898911419775",
+    "descricao": "CLS 1400 Tele alarme incorporado com 6 memórias Setor imediato e/ou temporizado - 4 setores mistos, com fio e sem fio simultaneamente e 6 setores exclusivamente sem fio; - Discador integrado compatível com o uso em linhas telefônicas digitais; - 6 memórias de telefones, com até 16 dígitos cada uma; - Permite conexão com PABX; - Setor Imediato e/ou Temporizado; - Reporta bateria baixa; - Entrada PAR para armar e desarmar a central por teclado ou chave (pulso negativo); - Tempo de disparo de sirene programável; - Possibilidade de silenciar bip de sirene; - Função pânico silencioso; - Memória para 100 códigos de controle remoto, pânico silencioso e sensores sem fio; - Particionamento de setores por controle remoto e senha no painel; - Indicador sonoro e visual de bateria baixa e tamper dos sensores sem fio; - Apagamento de controle remoto e sensores sem fio individualmente por transmissão de código; - Bloqueio e rearme automático dos setores.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017637/01-5cd971f11fcea9617fb6.jpg"
+    ],
+    "categoria": "Segurança / Alarme/ Central De Alarme",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:56.790751+00:00",
+    "updated_at": "2026-08-16T20:55:22.285694+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "336057",
+    "dslite_ultima_sync": "2026-08-16T20:55:22.225+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85311090",
+    "cest": "21.114.00",
+    "origem_fiscal": "4",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "c302d80a-af5d-4f07-9dd0-4d3ed1cced09",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "preferred_offer": {
+    "id": "c302d80a-af5d-4f07-9dd0-4d3ed1cced09",
+    "produto_id": "063dbebd-b445-4a04-af92-4036ba27b15d",
+    "dslite_fornecedor_id": "133",
+    "fornecedor_nome": "EVOLUSOM-PR",
+    "dslite_produto_id": "336057",
+    "sku_fornecedor": "336057",
+    "custo": 122.9,
+    "estoque": 37,
+    "ativo": true,
+    "prioridade": 100,
+    "payment_mode": "prepaid_pix",
+    "lead_time_dias": null,
+    "last_sync_at": "2026-08-16T20:55:22.225+00:00",
+    "created_at": "2026-07-20T18:30:57.116305+00:00",
+    "updated_at": "2026-08-16T20:55:22.233+00:00",
+    "sku_oferta": "336057",
+    "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+    "descricao": "CLS 1400 Tele alarme incorporado com 6 memórias Setor imediato e/ou temporizado - 4 setores mistos, com fio e sem fio simultaneamente e 6 setores exclusivamente sem fio; - Discador integrado compatível com o uso em linhas telefônicas digitais; - 6 memórias de telefones, com até 16 dígitos cada uma; - Permite conexão com PABX; - Setor Imediato e/ou Temporizado; - Reporta bateria baixa; - Entrada PAR para armar e desarmar a central por teclado ou chave (pulso negativo); - Tempo de disparo de sirene programável; - Possibilidade de silenciar bip de sirene; - Função pânico silencioso; - Memória para 100 códigos de controle remoto, pânico silencioso e sensores sem fio; - Particionamento de setores por controle remoto e senha no painel; - Indicador sonoro e visual de bateria baixa e tamper dos sensores sem fio; - Apagamento de controle remoto e sensores sem fio individualmente por transmissão de código; - Bloqueio e rearme automático dos setores.",
+    "marca": "SULTON",
+    "imagens": [
+      "https://evolusom.com.br/media/catalog/product/3/3/336057_67d2caf1db0dc.jpg"
+    ],
+    "gtin": "7898911419775",
+    "ncm": "85311090",
+    "cest": "21.114.00"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/336057",
+    "consulted_at": "2026-08-17T00:07:31.392Z",
+    "product": {
+      "produtoid": "336057",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 122.9,
+      "preco_crossdocking": 122.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 122.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "4",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:12.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "titulo_curto": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "categoriaid": "118370",
+      "categoria_nome": "Segurança / Alarme/ Central De Alarme",
+      "abc": null,
+      "ean11": "7898911419775",
+      "ncm": "85311090",
+      "descricao": "<p><b>CLS 1400</b></p><br />\r\n<p>Tele alarme incorporado com 6 memórias<br><br />\r\n  Setor imediato e/ou temporizado </p><br />\r\n<p>- 4 setores mistos, com fio e sem fio simultaneamente e 6 setores exclusivamente sem fio;<br><br />\r\n  - Discador integrado compatível com o uso em linhas telefônicas digitais;<br><br />\r\n  - 6 memórias de telefones, com até 16 dígitos cada uma;<br><br />\r\n  - Permite conexão com PABX;<br><br />\r\n  - Setor Imediato e/ou Temporizado;<br><br />\r\n  - Reporta bateria baixa;<br><br />\r\n  - Entrada PAR para armar e desarmar a central por teclado ou chave (pulso negativo);<br><br />\r\n  - Tempo de disparo de sirene programável;<br><br />\r\n  - Possibilidade de silenciar bip de sirene;<br><br />\r\n  - Função pânico silencioso;<br><br />\r\n  - Memória para 100 códigos de controle remoto, pânico silencioso e sensores sem fio;<br><br />\r\n  - Particionamento de setores por controle remoto e senha no painel;<br><br />\r\n  - Indicador sonoro e visual de bateria baixa e tamper dos sensores sem fio;<br><br />\r\n  - Apagamento de controle remoto e sensores sem fio individualmente por transmissão de código;<br><br />\r\n  - Bloqueio e rearme automático dos setores.</p>",
+      "caracteristicas": "",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "SULTON",
+      "modelo": "",
+      "peso": 0.746,
+      "largura": 9,
+      "altura": 19.5,
+      "profundidade": 17.5,
+      "peso_embalagem": 0.746,
+      "largura_embalagem": 9,
+      "altura_embalagem": 19.5,
+      "profundidade_embalagem": 17.5,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/3/336057_67d2caf1db0dc.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1356,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "21.114.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2025-08-07 17:45:48.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-04-30 09:57:38.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 37,
+      "tempo_cross": 0,
+      "estoque_total": 37,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/3/336057_67d2caf1db0dc.jpg"
+        }
+      ]
+    }
+  },
+  "configured_decision": "PASS",
+  "configured_reason": null,
+  "evidence": {
+    "manufacturer_or_official": "https://sulton.com.br/produto/cls-1400/",
+    "secondary": null,
+    "supplier": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/336057",
+    "ml_exact_lookup": "/products/search?status=active&site_id=MLB&product_identifier=7898911419775"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB21757400",
+      "catalog_product_id": "MLB21757400",
+      "domain_id": "MLB-HOME_ALARMS_AND_SENSORS",
+      "name": "Central De Alarme 10 Setores Cls 1400 Com Discadora",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3736389",
+          "value_name": "Sulton",
+          "values": [
+            {
+              "id": "3736389",
+              "name": "Sulton"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16811831",
+          "value_name": "CLS 1400",
+          "values": [
+            {
+              "id": "16811831",
+              "name": "CLS 1400"
+            }
+          ]
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16811830",
+          "value_name": "7898911419775",
+          "values": [
+            {
+              "id": "16811830",
+              "name": "7898911419775"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Central de Alarme CLS 1400 10 Setores Sendo 4 Mistos (com e sem fio) e 6 Sem Fio com Discador Integrado Sulton\n\nCaracterísticas\n\n- 4 setores mistos, com fio e sem fio simultaneamente e 6 setores exclusivamente sem fio\n- Discador integrado aplicável com o uso em linhas telefônicas digitais\n- 6 memórias de telefones, com até 16 dígitos cada uma\n- Permite conexão com PABX\n- Setor Imediato e/ou Temporizado\n- Reporta bateria baixa\n- Entrada PAR para armar e desarmar a central por teclado ou chave (pulso negativo)\n- Tempo de disparo de sirene programável\n- Possibilidade de silenciar bip de sirene\n- Função pânico silencioso\n- Memória para 100 códigos de controle remoto, pânico silencioso e sensores sem fio\n- Particionamento de setores por controle remoto e senha no painel\n- Indicador sonoro e visual de bateria baixa e tamper dos sensores sem fio\n- Apagamento de controle remoto e sensores sem fio individualmente por transmissão de código\n- Bloqueio e rearme automático dos setores"
+      },
+      "pictures": [
+        {
+          "id": "850946-MLA99968623149_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_850946-MLA99968623149_112025-F.jpg",
+          "max_width": "598",
+          "max_height": "690"
+        },
+        {
+          "id": "607168-MLB44529424554_012021",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_607168-MLB44529424554_012021-F.jpg",
+          "suggested_for_picker": [],
+          "max_width": "876",
+          "max_height": "492"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-02-14T21:25:10Z",
+      "last_updated": "2024-08-08T23:36:41Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

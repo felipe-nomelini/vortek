@@ -1,0 +1,10 @@
+{
+  "sku": "VTK018729",
+  "gate": "BLOCK_CATEGORY",
+  "evidence": "category confidence is not HIGH for domain MLB-VEHICLE_ALARMS",
+  "local_value": "7898096330209",
+  "found_value": null,
+  "suggested_action": "CATEGORY_FIX_REQUIRED",
+  "source": "ML catalog MLB41368352 + domain discovery",
+  "timestamp": "2026-08-17T12:54:10.508Z"
+}

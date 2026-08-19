@@ -1,0 +1,51 @@
+{
+  "selected": {
+    "category_id": "MLB438516",
+    "domain_id": "MLB-ELECTRIC_GUITARS",
+    "domain_name": "Guitarras elétricas",
+    "category_name": "Elétricas",
+    "category_path": [
+      "Instrumentos Musicais",
+      "Instrumentos de Corda",
+      "Guitarras",
+      "Elétricas"
+    ],
+    "normalized_context": "mlbelectricguitarsguitarraseletricasmlbelectricguitarsinstrumentosmusicaisinstrumentosdecordaguitarraseletricaseletricas"
+  },
+  "candidates": [
+    {
+      "semantics": {
+        "category_id": "MLB438516",
+        "domain_id": "MLB-ELECTRIC_GUITARS",
+        "domain_name": "Guitarras elétricas",
+        "category_name": "Elétricas",
+        "category_path": [
+          "Instrumentos Musicais",
+          "Instrumentos de Corda",
+          "Guitarras",
+          "Elétricas"
+        ],
+        "normalized_context": "mlbelectricguitarsguitarraseletricasmlbelectricguitarsinstrumentosmusicaisinstrumentosdecordaguitarraseletricaseletricas"
+      },
+      "score": 100,
+      "hard_mismatch": false
+    },
+    {
+      "semantics": {
+        "category_id": "MLB455583",
+        "domain_id": "MLB-ELECTRIC_GUITARS",
+        "domain_name": "Guitarras elétricas",
+        "category_name": "Kits Guitarras e Amplificador",
+        "category_path": [
+          "Instrumentos Musicais",
+          "Instrumentos de Corda",
+          "Guitarras",
+          "Kits Guitarras e Amplificador"
+        ],
+        "normalized_context": "mlbelectricguitarsguitarraseletricasmlbelectricguitarsinstrumentosmusicaisinstrumentosdecordaguitarraskitsguitarraseamplificadorkitsguitarraseamplificador"
+      },
+      "score": 100,
+      "hard_mismatch": false
+    }
+  ]
+}

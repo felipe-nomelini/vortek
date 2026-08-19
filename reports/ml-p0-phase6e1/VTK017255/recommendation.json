@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_LOCAL_STATE",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo óptico Splitter Evus Opf-plc1x2-nc250 Plc 1x2 Nc 1,5m G657a1",
+    "supplier_category": "Redes E Provedores/ Passivos De Rede/ Splitter",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": null,
+    "captured_at": null,
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

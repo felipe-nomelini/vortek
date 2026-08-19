@@ -1,0 +1,865 @@
+{
+  "checked_at": "2026-08-17T01:14:12.732Z",
+  "product": {
+    "id": "bb448e81-fbca-4852-9720-597c82e78373",
+    "sku": "VTK001077",
+    "nome": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 220v",
+    "marca": "VENTISOL",
+    "gtin": "7898461970382"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/70706",
+    "consulted_at": "2026-08-17T01:14:12.541Z",
+    "product": {
+      "produtoid": "70706",
+      "produtoid_empresa": "HYX70706",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 137.44,
+      "preco_crossdocking": 137.44,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 137.44,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "5",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:23.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-08-12 18:04:55.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Ventilador de Mesa Ventisol Turbo 6 40cm Azul 220v",
+      "titulo_curto": "VENT MESA 40CM VENTISOL TURBO6 AZ 220V",
+      "categoriaid": "292391",
+      "categoria_nome": "Ar E Ventilação / Ventiladores / Ventiladores De Mesa",
+      "abc": "B",
+      "ean11": "7898461970382",
+      "ncm": "8414.51.10",
+      "descricao": "O Ventilador de Mesa Ventisol Turbo 6 é a escolha ideal para quem busca um ambiente fresco e agradável. Com seu motor turbo de alta performance e sua hélice de 6 pás projetadas com nova aerodinâmica, ele proporciona uma ventilação potente e silenciosa. <br/> <br/> Sua base e acabamento da grade foram redesenhados com um design moderno e arrojado, garantindo maior estabilidade ao ventilador. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui três velocidades ajustáveis através de um prático controle na capa protetora do motor. A tecnologia de grade Wind-line oferece uma melhor vazão e direcionamento de ar, tornando a ventilação ainda mais eficiente. Seu recurso de oscilação automática permite que o ventilador movimente-se horizontalmente, alcançando uma área maior. <br/> <br/> Com a regulagem de inclinação manual, você pode ajustar o ângulo do ventilador de acordo com sua necessidade, direcionando o fluxo de ar para onde desejar. Além disso, o Ventilador de Mesa Ventisol Turbo 6 possui certificação Classe A no INMETRO, garantindo a melhor classificação de energia do mercado. <br/> <br/> Possuindo suporte de parede integrado, você tem a opção de utilizar o ventilador no chão, na mesa ou fixá-lo na parede, adaptando-se perfeitamente às suas preferências e necessidades. Desfrute de um ambiente mais fresco e confortável com o Ventilador de Mesa Ventisol Turbo 6. <br/>",
+      "caracteristicas": "Peso:2,500Kg<br>Voltagem:220V<br>Cor:Azul<br>Potência:80W<br>Rotação:1500<br>Vazão:0,73M3/S<br>Hélice:380mm<br>Grade:430mm<br>Consumo de Energia:1,83KWH/MES<br>Pesquisa:mesa|40|40-cm|turbo-6|6|220V|220-v|Azul<br>",
+      "informacoes": "<br/> • Dimensões: 440x180x440mm <br/> <br/> • Nova Base e Acabamento da Grade: Design moderno e arrojado. Maior estabilidade para o ventilador. <br/> • Motor Turbo: Motor turbo com alta performance. Gera menos ruído. <br/> • Hélice 6 Pás: Design e aerodinâmica para alta ventilação <br/> • Três velocidades: Controle de velocidade na capa protetora do motor do ventilador. <br/> • Grade Wind-line: Tecnologia que proporciona melhor vazão e direcionamento de ar. <br/> • Oscilação Automática: Oscilação horizontal pode ser ativada ou desativada. <br/> • Regulagem de inclinação manual: Ajustada de acordo com a necessidade. <br/> • Classe A no INMETRO: Melhor classificação de energia do mercado. <br/> • Suporte de parede integrado: Pode ser usado no chão, na mesa ou na parede em algum ponto de fixação. <br/>",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "VENTISOL",
+      "modelo": "TURBO6",
+      "peso": 2.6,
+      "largura": 18,
+      "altura": 44,
+      "profundidade": 44,
+      "peso_embalagem": 2.6,
+      "largura_embalagem": 18,
+      "altura_embalagem": 44,
+      "profundidade_embalagem": 44,
+      "link": "http://www.hayamax.com.br/ventilador-de-mesa-ventisol-turbo-6-40cm-azul-220v",
+      "link_imagem": "https://static.hayapek.com.br/produtos/70706/550/1.jpg",
+      "link_youtube": "lmr8HHcpbuU",
+      "tempo_garantia": 360,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 0,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 7734,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-08-13 15:51:07.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:15:56.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 15,
+      "tempo_cross": 0,
+      "estoque_total": 216,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/70706/550/1.jpg"
+        }
+      ]
+    }
+  },
+  "source": "ML catalog MLB15284403 + DSLite supplier",
+  "source_confidence": "ML catalog",
+  "catalog_results": [
+    {
+      "id": "MLB15284403",
+      "catalog_product_id": "MLB15284403",
+      "domain_id": "MLB-FANS",
+      "name": "Ventisol Turbo 6 pás VOM50 De mesa Azul",
+      "parent_id": "MLB14002770",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "82653",
+          "value_name": "Ventisol",
+          "values": [
+            {
+              "id": "82653",
+              "name": "Ventisol"
+            }
+          ]
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "36862317",
+          "value_name": "Turbo 6 pás",
+          "values": [
+            {
+              "id": "36862317",
+              "name": "Turbo 6 pás"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "11860495",
+          "value_name": "Turbo 6",
+          "values": [
+            {
+              "id": "11860495",
+              "name": "Turbo 6"
+            }
+          ]
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "name": "Modelo alfanumérico",
+          "value_id": "60638666",
+          "value_name": "10023",
+          "values": [
+            {
+              "id": "60638666",
+              "name": "10023"
+            }
+          ]
+        },
+        {
+          "id": "FAN_TYPE",
+          "name": "Tipo de ventilador",
+          "value_id": "291722",
+          "value_name": "De mesa",
+          "values": [
+            {
+              "id": "291722",
+              "name": "De mesa"
+            }
+          ]
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "135253",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "135253",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "FREQUENCY",
+          "name": "Frequência",
+          "value_id": "8219790",
+          "value_name": "60 Hz",
+          "values": [
+            {
+              "id": "8219790",
+              "name": "60 Hz"
+            }
+          ]
+        },
+        {
+          "id": "STRUCTURE_COLOR",
+          "name": "Cor da estrutura",
+          "value_id": "52049",
+          "value_name": "Preto",
+          "values": [
+            {
+              "id": "52049",
+              "name": "Preto"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V",
+          "values": [
+            {
+              "id": "198813",
+              "name": "220V"
+            }
+          ]
+        },
+        {
+          "id": "BLADES_COLOR",
+          "name": "Cor das pás",
+          "value_id": "26510686",
+          "value_name": "Azul",
+          "values": [
+            {
+              "id": "26510686",
+              "name": "Azul"
+            }
+          ]
+        },
+        {
+          "id": "BLADES_MATERIAL",
+          "name": "Material das pás",
+          "value_id": "6350782",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "6350782",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "BLADES_NUMBER",
+          "name": "Quantidade de pás",
+          "value_id": "1000324",
+          "value_name": "6",
+          "values": [
+            {
+              "id": "1000324",
+              "name": "6"
+            }
+          ]
+        },
+        {
+          "id": "POWER",
+          "name": "Potência",
+          "value_id": "357784",
+          "value_name": "80 W",
+          "values": [
+            {
+              "id": "357784",
+              "name": "80 W"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "8078905",
+          "value_name": "68 cm",
+          "values": [
+            {
+              "id": "8078905",
+              "name": "68 cm"
+            }
+          ]
+        },
+        {
+          "id": "DEPTH",
+          "name": "Profundidade",
+          "value_id": "8998137",
+          "value_name": "44 cm",
+          "values": [
+            {
+              "id": "8998137",
+              "name": "44 cm"
+            }
+          ]
+        },
+        {
+          "id": "WIDTH",
+          "name": "Largura",
+          "value_id": "7622438",
+          "value_name": "52 cm",
+          "values": [
+            {
+              "id": "7622438",
+              "name": "52 cm"
+            }
+          ]
+        },
+        {
+          "id": "WEIGHT",
+          "name": "Peso",
+          "value_id": "925895",
+          "value_name": "2.5 kg",
+          "values": [
+            {
+              "id": "925895",
+              "name": "2.5 kg"
+            }
+          ]
+        },
+        {
+          "id": "NOISE_LEVEL",
+          "name": "Nível de ruído",
+          "value_id": "8073070",
+          "value_name": "48 dB",
+          "values": [
+            {
+              "id": "8073070",
+              "name": "48 dB"
+            }
+          ]
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "8152567",
+          "value_name": "Corrente elétrica",
+          "values": [
+            {
+              "id": "8152567",
+              "name": "Corrente elétrica"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_ARGENTINA",
+          "name": "Eficiência energética Argentina",
+          "value_id": "33344208",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "33344208",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_BRASIL",
+          "name": "Eficiência energética Brasil",
+          "value_id": "33344215",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "33344215",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_COLOMBIA",
+          "name": "Eficiência energética Colômbia",
+          "value_id": "33344222",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "33344222",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_CHILE",
+          "name": "Eficiência energética Chile",
+          "value_id": "33344231",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "33344231",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_URUGUAY",
+          "name": "Eficiência energética Uruguai",
+          "value_id": "33344238",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "33344238",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_ECUADOR",
+          "name": "Eficiência energética Equador",
+          "value_id": "33344245",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "33344245",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_PERU",
+          "name": "Eficiência energética Peru",
+          "value_id": "33344252",
+          "value_name": "A",
+          "values": [
+            {
+              "id": "33344252",
+              "name": "A"
+            }
+          ]
+        },
+        {
+          "id": "GRID_MATERIAL",
+          "name": "Material da grade",
+          "value_id": "82756",
+          "value_name": "Plástico",
+          "values": [
+            {
+              "id": "82756",
+              "name": "Plástico"
+            }
+          ]
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "name": "Quantidade de velocidades",
+          "value_id": "1000288",
+          "value_name": "3",
+          "values": [
+            {
+              "id": "1000288",
+              "name": "3"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "name": "Inclui controle remoto",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_LIGHT",
+          "name": "Com luz",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_TURBO_FUNCTION",
+          "name": "Com função turbo",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_REVERSIBLE_BLADES",
+          "name": "Com pás reversíveis",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "8469041",
+          "value_name": "7898461970382",
+          "values": [
+            {
+              "id": "8469041",
+              "name": "7898461970382"
+            }
+          ]
+        },
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "82653",
+          "value_name": "Ventisol",
+          "values": [
+            {
+              "id": "82653",
+              "name": "Ventisol"
+            }
+          ]
+        },
+        {
+          "id": "MAX_ROTATION_SPEED",
+          "name": "Velocidade máxima de rotação",
+          "value_id": "7947248",
+          "value_name": "1500 rpm",
+          "values": [
+            {
+              "id": "7947248",
+              "name": "1500 rpm"
+            }
+          ]
+        },
+        {
+          "id": "LAMPS_NUMBER",
+          "name": "Quantidade de lâmpadas",
+          "value_id": "13174582",
+          "value_name": "0",
+          "values": [
+            {
+              "id": "13174582",
+              "name": "0"
+            }
+          ]
+        },
+        {
+          "id": "WITH_WI_FI",
+          "name": "Com Wi-Fi",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_PROGRAMMABLE",
+          "name": "É programável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_INDUSTRIAL",
+          "name": "É industrial",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "IS_SILENT",
+          "name": "É silencioso",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_360_DEGREES_ROTATION",
+          "name": "Com rotação de 360 graus",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_INMETRO_CERTIFICATE",
+          "name": "Com certificado INMETRO",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_REPELLENT_FUNCTION",
+          "name": "Com função repelente",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_EXTRACTABLE_GRID",
+          "name": "Com grade removível",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "name": "Com luzes LED",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_TILT",
+          "name": "Com inclinação",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_OSCILLATION",
+          "name": "Com oscilação",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "WITH_ROTATING_GRID",
+          "name": "Com grade giratória",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "WITH_ADJUSTABLE_HEIGHT",
+          "name": "Com altura ajustável",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "INCLUDES_LIGHT_SWITCH",
+          "name": "Inclui interruptor de luz",
+          "value_id": "242084",
+          "value_name": "Não",
+          "values": [
+            {
+              "id": "242084",
+              "name": "Não"
+            }
+          ],
+          "meta": {
+            "value": false
+          }
+        },
+        {
+          "id": "MPN",
+          "name": "MPN",
+          "value_id": "10980901",
+          "value_name": "10029",
+          "values": [
+            {
+              "id": "10980901",
+              "name": "10029"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "AR MAIS REFRESCANTE PARA VOCÊ E SUA FAMÍLIA!\n\nPara você que deseja um ambiente mais refrescante e agradável, o ventilador de mesa da Ventisol com 40cm é perfeito. Seu motor turbo, com sua hélice de 6 pás e uma nova aerodinâmica, são silenciosos e geram uma maior ventilação no aparelho.\n\nSua grade Wind-line faz com que haja melhor vazão do ar. Seu motor turbo possui 3 velocidades para você ajustar da melhor forma que quiser. Além disso, possui inclinação regulável para ser ajustada no seu melhor formato e oscilação horizontal automática que pode ser desativada quando preferir. Com sua base estabilizadora, você terá maior segurança no uso. \n----------------------------------------------------\nDIMENSÕES E PESO:\nAltura: 60,0 cm\nLargura: 43 cm\nComprimento: 33 cm\nPeso: 2,500 kg"
+      },
+      "pictures": [
+        {
+          "id": "980910-MLA99434278058_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_980910-MLA99434278058_112025-F.jpg",
+          "max_width": "1090",
+          "max_height": "1080"
+        },
+        {
+          "id": "657314-MLA99434278068_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_657314-MLA99434278068_112025-F.jpg",
+          "max_width": "403",
+          "max_height": "569"
+        },
+        {
+          "id": "953064-MLA99917524375_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_953064-MLA99917524375_112025-F.jpg",
+          "max_width": "618",
+          "max_height": "608"
+        },
+        {
+          "id": "617521-MLA99917514495_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_617521-MLA99917514495_112025-F.jpg",
+          "max_width": "526",
+          "max_height": "521"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY",
+        "INTERNAL"
+      ],
+      "date_created": "2019-12-12T17:58:50Z",
+      "last_updated": "2026-07-30T18:52:09Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "enhanced_content_template_id": "9cd514bd-b995-4291-a992-af05db16f435",
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

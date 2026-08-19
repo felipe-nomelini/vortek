@@ -1,0 +1,291 @@
+{
+  "checked_at": "2026-08-17T00:07:08.567Z",
+  "expected_catalog_product_id": "MLB26209409",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "strategy": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true,
+      "UNITS_PER_PACKAGE": true,
+      "LENGTH": true,
+      "WIDTH": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB26209409",
+    "catalog_product_id": "MLB26209409",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-SECURITY_SEALS",
+    "permalink": "",
+    "name": "Cinta Plástica Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto",
+    "family_name": "MXT 40cm",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB25809173",
+            "picker_label": "Branco",
+            "picture_id": "747310-MLU78122202133_082024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_747310-MLU78122202133_082024-I.jpg",
+            "tags": [],
+            "changes": [
+              [
+                "COLOR",
+                "Branco"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "MXT 40cm - Branco",
+            "auto_completed": true,
+            "rgb_meta": "FFFFFF"
+          },
+          {
+            "product_id": "MLB26209409",
+            "picker_label": "Preto",
+            "picture_id": "791282-MLA95556407449_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_791282-MLA95556407449_102025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "MXT 40cm - Preto",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "791282-MLA95556407449_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_791282-MLA95556407449_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1183,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "879052-MLA89574495858_082025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_879052-MLA89574495858_082025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 989,
+        "max_height": 968,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "978944-MLA89574161452_082025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_978944-MLA89574161452_082025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 610,
+        "max_height": 686,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "964404-MLA89946107481_082025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_964404-MLA89946107481_082025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 569,
+        "max_height": 281,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Náilon resistente e durável para uso prolongado.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Comprimento de 40 cm e largura de 4.8 mm para diversas aplicações.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "2153976",
+        "value_name": "MXT",
+        "values": [
+          {
+            "id": "2153976",
+            "name": "MXT"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "14449988",
+        "value_name": "40cm",
+        "values": [
+          {
+            "id": "14449988",
+            "name": "40cm"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450295",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2450295",
+            "name": "Preto",
+            "meta": {
+              "rgb": "000000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "000000"
+        }
+      },
+      {
+        "id": "MATERIAL",
+        "name": "Material",
+        "value_id": "7980354",
+        "value_name": "Náilon",
+        "values": [
+          {
+            "id": "7980354",
+            "name": "Náilon"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "name": "Unidades por embalagem",
+        "value_id": "131783",
+        "value_name": "100",
+        "values": [
+          {
+            "id": "131783",
+            "name": "100"
+          }
+        ]
+      },
+      {
+        "id": "LENGTH",
+        "name": "Comprimento",
+        "value_id": "517234",
+        "value_name": "40 cm",
+        "values": [
+          {
+            "id": "517234",
+            "name": "40 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "8892922",
+        "value_name": "4.8 mm",
+        "values": [
+          {
+            "id": "8892922",
+            "name": "4.8 mm"
+          }
+        ]
+      },
+      {
+        "id": "IS_NUMBERED",
+        "name": "É numerado",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto da marca MXT é perfeita para diversas aplicações. Com 400 mm de comprimento e 4.8 mm de largura, é feita de nylon resistente e durável. Sua cor preta combina com qualquer ambiente. Ideal para organizar cabos, fios e objetos soltos, mantendo tudo no lugar de forma prática e segura. Com 100 unidades, você terá o suficiente para várias tarefas. A Fita Braçadeira Nylon Enforca Gato 40cm 100un Cor Preto é um produto novo e de alta qualidade."
+    },
+    "parent_id": "MLB25809162",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-16T23:30:04.392458463"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-08-18T07:18:02Z",
+    "authorized_stores": null,
+    "last_updated": "2025-03-13T14:14:07Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "optional_catalog_optimization_pending": false
+}

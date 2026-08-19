@@ -1,0 +1,42 @@
+{
+  "result": "CANARY_POST_FAILED",
+  "attempted_at": "2026-08-16T05:01:02.888Z",
+  "completed_at": "2026-08-16T05:01:03.068Z",
+  "endpoint": "POST https://api.mercadolibre.com/items",
+  "payload_sha256": "6ca8c8894aaddfc349af121c7285c3c50b74efed18c740b02a45a56500e3fddb",
+  "request_id": "baa297ae-61f7-4bb2-aa8e-608030c5a7b7",
+  "http_status": 400,
+  "response_headers": {
+    "content-type": "application/json;charset=UTF-8",
+    "date": "Sun, 16 Aug 2026 05:01:02 GMT",
+    "x-request-id": "baa297ae-61f7-4bb2-aa8e-608030c5a7b7"
+  },
+  "response_body": {
+    "cause": [
+      {
+        "department": "items",
+        "cause_id": 369,
+        "type": "error",
+        "code": "body.required_fields",
+        "references": [
+          "body"
+        ],
+        "message": "The body does not contains some or none of the following properties [family_name]"
+      }
+    ],
+    "message": "body.required_fields",
+    "error": "validation_error",
+    "status": 400
+  },
+  "item_id": null,
+  "user_product_id": null,
+  "catalog_product_id": null,
+  "status": 400,
+  "permalink": null,
+  "error_classification": "VALIDATION_ERROR",
+  "one_post_guard": {
+    "attempts": 1,
+    "successful": 0,
+    "other_writes": 0
+  }
+}

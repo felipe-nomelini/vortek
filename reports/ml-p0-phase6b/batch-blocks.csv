@@ -1,0 +1,11 @@
+sku,gate,evidence
+"VTK013088","BLOCK_CATEGORY","""exact_catalog_has_no_reliable_category_and_domain_discovery_maps_to_incompatible_portable_satellite_kit"""
+"VTK013087","BLOCK_CATEGORY","""no_exact_catalog_and_domain_discovery_maps_divider_to_incompatible_portable_satellite_kit"""
+"VTK017698","BLOCK_GTIN","""exact_gtin_catalog_identifies_lomes_product_instead_of_local_mxt_12v_2a"""
+"VTK017336","BLOCK_IDENTITY","""manufacturer_identity_not_available_for_evus_p10_to_xlr_cable"""
+"VTK026048","BLOCK_GTIN","""exact_gtin_catalog_identifies_pioneer_radio_bundle_not_stetsom_control_alone"""
+"VTK026007","BLOCK_IDENTITY","""official_saty_model_bgt_15_conflicts_with_local_and_catalog_gbt_15"""
+"VTK026008","BLOCK_CATEGORY","""exact_catalog_domain_and_category_are_microphone_stands_but_product_is_wall_speaker_support"""
+"VTK012909","BLOCK_GTIN","""exact_gtin_catalog_identifies_jpg_folk_guitar_cover_not_bkr1_classical_cover"""
+"VTK017630","BLOCK_GTIN","""exact_gtin_catalog_identifies_peccinin_gate_motor_not_sulton_spw_700_sensor"""
+"VTK017637","BLOCK_API_CONTRACT","""required_attributes_missing:VOLTAGE,DEVICE_TYPE"""

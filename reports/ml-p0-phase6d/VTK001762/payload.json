@@ -1,0 +1,75 @@
+{
+  "payload": {
+    "family_name": "Jogo de Chaves Brasfort 6 Peças",
+    "category_id": "MLB270879",
+    "catalog_product_id": "MLB28218432",
+    "catalog_listing": true,
+    "price": 289.9,
+    "currency_id": "BRL",
+    "available_quantity": 15,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/49381/550/1.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "1120727",
+        "value_name": "Brasfort"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "26291722",
+        "value_name": "Fenda/Philips"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "140750",
+        "value_name": "6"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "value_id": "140750",
+        "value_name": "6"
+      },
+      {
+        "id": "TIP_SHAPE",
+        "value_id": "24796307",
+        "value_name": "Phillips, fenda"
+      },
+      {
+        "id": "HANDLE_GRIP_MATERIAL",
+        "value_id": "2693362",
+        "value_name": "Borracha"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "26291725",
+        "value_name": "7898464732758"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK001762"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK001762"
+  },
+  "sha256": "7076273f2055f077dac7d313046b026290dadbc2265ecdc7aba1b2e93920317f",
+  "family_name_sha256": "31b58a1ba475a377f225796668ffb372c27ee6e6066b7424c1a137c36c011d5c",
+  "title_absent": true,
+  "description_absent": true
+}

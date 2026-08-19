@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-08-16T21:00:57.807Z",
+  "mechanism": "single_postgresql_session_begin_commit",
+  "advisory_lock": "ml-p0:VTK000486",
+  "row_lock": "public.produtos FOR UPDATE plus matching anuncios_ml FOR UPDATE",
+  "expected_mutations": [
+    "insert public.anuncios_ml",
+    "update public.produtos.ml_item_id/ml_status"
+  ],
+  "supplier_master_fields_updated": [],
+  "statement_sha256": "22c215bffd85c9ee887e2f17b0c15b5569e56321937a18e339fbe1a60ecd6993"
+}

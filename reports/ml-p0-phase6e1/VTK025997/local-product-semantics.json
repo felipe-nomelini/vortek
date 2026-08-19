@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-08-17T14:15:53.466Z",
+  "product": {
+    "id": "dd72e19a-69f2-4157-a41b-7444fb8fc1f3",
+    "sku": "VTK025997",
+    "nome": "Controle Compatível Pxn52 4 B Direct",
+    "marca": "R3a Automotive",
+    "estoque": 100,
+    "custo": 24.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.01,
+    "peso_bruto": 0.01,
+    "largura": 3,
+    "altura": 4,
+    "profundidade": 1,
+    "gtin": "",
+    "descricao": "CONTROLE COMPATÍVEL PXN52 4 BOTÕES DIRECT PS205 (0074468170681) O controle remoto PS205 é uma excelente opção para reposição ou substituição do controle original, oferecendo praticidade, durabilidade e desempenho confiável para sistemas compatíveis. Ficha técnica: • Modelo: PS205 • Tipo: Controle remoto automotivo • Compatível com PXN52 • Quantidade de botões: 4 • Modelo: Direct • Cor: Preta • Design compacto e ergonômico • Material resistente e durável • Produto para reposição automotiva Desenvolvido com excelente acabamento e construção robusta, o PS205 proporciona conforto e praticidade no uso diário. Seus 4 botões permitem o acionamento rápido das funções compatíveis do sistema, sendo ideal para substituir controles desgastados ou danificados. Uma solução eficiente para manter a funcionalidade e a comodidade do seu sistema automotivo.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/31343c1fc613f11dc5bcfcff94a23fec.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/efe828892b6de88201f09719251580be.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/effebf1939391ead6f3667b5e49b38b6.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/113821cfe3cc065c357b646d967b6d25.jpg"
+    ],
+    "categoria": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+    "ml_item_id": null,
+    "created_at": "2026-08-12T22:52:31.370953+00:00",
+    "updated_at": "2026-08-17T09:45:17.028792+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4145",
+    "dslite_ultima_sync": "2026-08-17T09:45:16.735+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8529.90.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "4c9a157a-339b-4408-9521-cf9b56e543ef",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

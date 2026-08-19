@@ -1,0 +1,129 @@
+{
+  "checked_at": "2026-08-17T01:14:18.243Z",
+  "expected_catalog_product_id": "MLB35894914",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB35894914",
+    "catalog_product_id": "MLB35894914",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-GUITAR_COVERS_AND_BAGS",
+    "permalink": "",
+    "name": "Capa Violão Folk Nylon Preto Harmonics",
+    "family_name": "Capa Violão Folk Nylon Preto Harmonics",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [],
+    "pictures": [
+      {
+        "id": "934665-MLA99977465917_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_934665-MLA99977465917_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 829,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Cor preto elegante para combinar com qualquer estilo musical.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "480322",
+        "value_name": "Harmonics",
+        "values": [
+          {
+            "id": "480322",
+            "name": "Harmonics"
+          }
+        ]
+      },
+      {
+        "id": "EXTERIOR_LENGTH",
+        "name": "Comprimento exterior",
+        "value_id": "65958773",
+        "value_name": "100 cm",
+        "values": [
+          {
+            "id": "65958773",
+            "name": "100 cm"
+          }
+        ]
+      },
+      {
+        "id": "EXTERIOR_WIDTH",
+        "name": "Largura exterior",
+        "value_id": "25251830",
+        "value_name": "40 cm",
+        "values": [
+          {
+            "id": "25251830",
+            "name": "40 cm"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "25917528",
+        "value_name": "471 g",
+        "values": [
+          {
+            "id": "25917528",
+            "name": "471 g"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "A Capa Violão Folk Nylon Preto Harmonics é a escolha perfeita para músicos que buscam proteção e estilo. Com uma cor preta elegante, esta capa é ideal para violões folk, garantindo que seu instrumento esteja sempre seguro durante o transporte. Fabricada pela renomada marca Harmonics, conhecida por sua qualidade e durabilidade, a capa é nova e apresenta um design funcional. Seu modelo específico foi desenvolvido para atender às necessidades dos músicos, proporcionando um ajuste perfeito. Além disso, a capa é leve, com um peso total de apenas 471 gramas, facilitando o transporte. Com dimensões de 100 cm de altura, 40 cm de largura e 45 cm de profundidade, ela oferece amplo espaço para acomodar seu violão com conforto. Invista na proteção do seu instrumento com a Capa Violão Folk Nylon Preto Harmonics e toque com tranquilidade em qualquer lugar!"
+    },
+    "parent_id": null,
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T10:22:28.766044746"
+    },
+    "quality_type": "PRIMITIVE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2024-04-18T06:06:41Z",
+    "authorized_stores": null,
+    "last_updated": "2026-03-13T22:01:48Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

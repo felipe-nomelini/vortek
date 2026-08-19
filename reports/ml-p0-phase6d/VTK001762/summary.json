@@ -1,0 +1,23 @@
+{
+  "index": 22,
+  "sku": "VTK001762",
+  "expected_gtin": "7898464732758",
+  "started_at": "2026-08-17T01:14:02.981Z",
+  "local_time": "2026-08-16T22:14:02",
+  "completed_at": "2026-08-17T01:14:11.857Z",
+  "elapsed_ms": 8876,
+  "result": "SAFE_PUBLICATION_PERSIST_SUCCESS",
+  "item_id": "MLB7432632892",
+  "catalog_product_id": "MLB28218432",
+  "protective_price": 289.9,
+  "margin_percent": 55.35357,
+  "persisted": true,
+  "observation": null,
+  "sanitation": null,
+  "backlogs": {
+    "quality_optimization_pending": true,
+    "description_optimization_pending": true,
+    "commercial_optimization_pending": true,
+    "optional_catalog_optimization_pending": false
+  }
+}

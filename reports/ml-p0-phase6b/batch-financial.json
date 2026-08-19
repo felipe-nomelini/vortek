@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-08-17T00:07:32.377Z",
+  "target_margin_percent": 50,
+  "tax_rate": 0.05,
+  "rows": [
+    {
+      "sku": "VTK013008",
+      "item_id": "MLB5075703099",
+      "protective_price": 219.9,
+      "margin_percent": 50.941337
+    },
+    {
+      "sku": "VTK013007",
+      "item_id": "MLB5075703121",
+      "protective_price": 249.9,
+      "margin_percent": 50.844338
+    },
+    {
+      "sku": "VTK017504",
+      "item_id": "MLB7432492782",
+      "protective_price": 99.9,
+      "margin_percent": 54.714715
+    },
+    {
+      "sku": "VTK017505",
+      "item_id": "MLB5075703147",
+      "protective_price": 99.9,
+      "margin_percent": 54.714715
+    },
+    {
+      "sku": "VTK017507",
+      "item_id": "MLB7432450504",
+      "protective_price": 119.9,
+      "margin_percent": 52.593828
+    },
+    {
+      "sku": "VTK019632",
+      "item_id": "MLB5075703185",
+      "protective_price": 99.9,
+      "margin_percent": 50.41041
+    },
+    {
+      "sku": "VTK026043",
+      "item_id": "MLB7432450528",
+      "protective_price": 99.9,
+      "margin_percent": 52.712713
+    },
+    {
+      "sku": "VTK026047",
+      "item_id": "MLB7432492832",
+      "protective_price": 199.9,
+      "margin_percent": 50.805403
+    },
+    {
+      "sku": "VTK017376",
+      "item_id": "MLB7432492844",
+      "protective_price": 119.9,
+      "margin_percent": 51.009174
+    },
+    {
+      "sku": "VTK017562",
+      "item_id": "MLB5075703275",
+      "protective_price": 119.9,
+      "margin_percent": 50.842369
+    }
+  ]
+}

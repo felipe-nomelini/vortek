@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+    "supplier_category": "Automotivo/ Alto Falante/ Woofer",
+    "supplier_brand": "EROS",
+    "supplier_gtin": "7899021996743",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/147091",
+    "captured_at": "2026-08-17T12:55:12.283Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

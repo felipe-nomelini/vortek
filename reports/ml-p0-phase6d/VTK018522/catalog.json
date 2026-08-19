@@ -1,0 +1,227 @@
+{
+  "checked_at": "2026-08-17T01:17:50.662Z",
+  "expected_catalog_product_id": "MLB22546869",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "title": true
+    },
+    "critical": {},
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB22546869",
+    "catalog_product_id": "MLB22546869",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-MULTIMETERS",
+    "permalink": "",
+    "name": "Testador de Tensão 500V EZ TEST II Minipa",
+    "family_name": "Testador de Tensão 500V EZ TEST II Minipa",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [],
+    "pictures": [
+      {
+        "id": "632177-MLA99595811660_122025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_632177-MLA99595811660_122025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1007,
+        "max_height": 938,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "601177-MLB42183448942_062020",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_601177-MLB42183448942_062020-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 944,
+        "max_height": 866,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "994594-MLB42886934207_072020",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_994594-MLB42886934207_072020-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 1030,
+        "max_height": 899,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "932417-MLB42886934205_072020",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_932417-MLB42886934205_072020-F.jpg",
+        "suggested_for_picker": [],
+        "max_width": 1017,
+        "max_height": 974,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "957339-MLA95649472112_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_957339-MLA95649472112_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 1186,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Detecta tensões AC/DC com precisão e segurança.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "3053665",
+        "value_name": "Minipa",
+        "values": [
+          {
+            "id": "3053665",
+            "name": "Minipa"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "18124990",
+        "value_name": "EZTEST-II",
+        "values": [
+          {
+            "id": "18124990",
+            "name": "EZTEST-II"
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPES",
+        "name": "Tipos de alimentação",
+        "value_id": "4491927",
+        "value_name": "Bateria",
+        "values": [
+          {
+            "id": "4491927",
+            "name": "Bateria"
+          }
+        ]
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "name": "Tipo de tela",
+        "value_id": "102258",
+        "value_name": "Digital",
+        "values": [
+          {
+            "id": "102258",
+            "name": "Digital"
+          }
+        ]
+      },
+      {
+        "id": "MAX_TENSION_AC",
+        "name": "Tensão máxima CA",
+        "value_id": "16972562",
+        "value_name": "380V",
+        "values": [
+          {
+            "id": "16972562",
+            "name": "380V"
+          }
+        ]
+      },
+      {
+        "id": "MAX_TENSION_CC",
+        "name": "Tensão máxima CC",
+        "value_id": "8131480",
+        "value_name": "500V",
+        "values": [
+          {
+            "id": "8131480",
+            "name": "500V"
+          }
+        ]
+      },
+      {
+        "id": "MAX_FREQUENCY",
+        "name": "Frequência máxima",
+        "value_id": "42131025",
+        "value_name": "62 Hz",
+        "values": [
+          {
+            "id": "42131025",
+            "name": "62 Hz"
+          }
+        ]
+      },
+      {
+        "id": "IS_WATERPROOF",
+        "name": "É à prova d'água",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Testador de Tensão AC/DC EzTest II Minipa\n\nCaracterísticas da Ferramenta\n\nEste instrumento é utilizado para testar tensão AC/DC de forma segura, rápida e precisa, mostrando em três níveis diferentes. Isto ajudará a encontrar problemas em circuitos e equipamentos, e verificar se os circuitos estão desligados corretamente antes de realizar a manutenção. Imagem Meramente Ilustrativa\n\nDados Técnicos\n\nTestador de Tensão AC/DC\n\nExtensão do Cabo: Aprox. 800mm\n\nDimensões: 185(A) x 26.5(L) x 23(P)mm\n\nPeso: Aprox. 80g\n\nTensão DC: Faixas 150V, 300V e 500V\n\nTensão AC: Faixas 110V, 220V e 380V\n\nFrequência de Operação: 48Hz a 62Hz\n\nAcompanha\n\nManual de Instruções no Blister\n\nEspecificações\n\nCódigo: 114222\n\nModelo: EZTEST-II"
+    },
+    "parent_id": null,
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-18T08:01:46.49593664"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-04-12T23:38:01Z",
+    "authorized_stores": null,
+    "last_updated": "2025-12-26T23:06:38Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

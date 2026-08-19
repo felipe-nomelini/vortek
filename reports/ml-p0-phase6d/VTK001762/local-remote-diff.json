@@ -1,0 +1,60 @@
+{
+  "fields": [
+    {
+      "field": "ml_item_id",
+      "remote": "MLB7432632892",
+      "local": "MLB7432632892",
+      "status": "MATCH"
+    },
+    {
+      "field": "sku",
+      "remote": "VTK001762",
+      "local": "VTK001762",
+      "status": "MATCH"
+    },
+    {
+      "field": "produto_id",
+      "remote": "9ca0eedc-b0b7-4c5b-9c3e-805f1ad42d74",
+      "local": "9ca0eedc-b0b7-4c5b-9c3e-805f1ad42d74",
+      "status": "MATCH"
+    },
+    {
+      "field": "title",
+      "remote": "Jogo Chave Fenda Brasfort+phillips Com 06 Pecas 7029",
+      "local": "Jogo Chave Fenda Brasfort+phillips Com 06 Pecas 7029",
+      "status": "MATCH"
+    },
+    {
+      "field": "price",
+      "remote": 289.9,
+      "local": 289.9,
+      "status": "MATCH"
+    },
+    {
+      "field": "status",
+      "remote": "ativo",
+      "local": "ativo",
+      "status": "MATCH"
+    },
+    {
+      "field": "listing_type",
+      "remote": "classico",
+      "local": "classico",
+      "status": "MATCH"
+    },
+    {
+      "field": "catalog",
+      "remote": true,
+      "local": true,
+      "status": "MATCH"
+    },
+    {
+      "field": "permalink",
+      "remote": "https://produto.mercadolivre.com.br/MLB-7432632892-jogo-chave-fenda-brasfortphillips-com-06-pecas-7029-_JM",
+      "local": "https://produto.mercadolivre.com.br/MLB-7432632892-jogo-chave-fenda-brasfortphillips-com-06-pecas-7029-_JM",
+      "status": "MATCH"
+    }
+  ],
+  "unique": true,
+  "material_drift": false
+}

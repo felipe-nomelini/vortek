@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Capa Chave Canivete Compatível Vw 2 B G5",
+    "supplier_category": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+    "supplier_brand": "R3a Automotive",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/108/4158",
+    "captured_at": "2026-08-17T12:56:38.486Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

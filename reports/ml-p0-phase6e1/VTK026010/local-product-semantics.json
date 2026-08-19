@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-08-17T14:15:53.645Z",
+  "product": {
+    "id": "debf2fe7-4a7d-4555-852f-0ff2e7d26bad",
+    "sku": "VTK026010",
+    "nome": "Controle 4 B Universal Wr912",
+    "marca": "R3a Automotive",
+    "estoque": 30,
+    "custo": 24.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.02,
+    "peso_bruto": 0.02,
+    "largura": 3,
+    "altura": 5,
+    "profundidade": 1,
+    "gtin": "",
+    "descricao": "CONTROLE 4 BOTÕES UNIVERSAL WR912 (0074468173026) O controle remoto universal WR912 foi desenvolvido para oferecer praticidade e eficiência no acionamento de sistemas compatíveis, sendo uma excelente opção para reposição ou utilização em centrais automotivas compatíveis. Ficha técnica: • Modelo: WR912 • Tipo: Controle remoto universal • Quantidade de botões: 4 • Aplicação: Sistemas automotivos compatíveis • Design compacto e ergonômico • Material resistente e durável • Fácil manuseio • Produto para reposição ou substituição Com design moderno e excelente acabamento, o WR912 oferece praticidade no uso diário e alta durabilidade. Seus 4 botões permitem o acionamento de diferentes funções em sistemas compatíveis, sendo uma solução versátil para substituição de controles danificados ou como controle adicional. Ideal para quem busca qualidade, funcionalidade e confiabilidade.",
+    "imagens": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a8dafebae0f4294a2e724a6454481a0f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/49e7997a9d28e6cb0d808a54f609b8c9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/431113f69288180bbd2040c9df0fd228.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/85ff37a89760af8f6b151607ef56b6fe.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6e392266a889b346d7c876a2cef9c0a1.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5b4d2cbfcaaece7055718a43e1088e62.jpg"
+    ],
+    "categoria": "Acessórios Para Veículos > Segurança Veicular > Alarmes E Acessórios > Carcaças Para Controle",
+    "ml_item_id": null,
+    "created_at": "2026-08-13T10:53:28.116308+00:00",
+    "updated_at": "2026-08-17T09:49:32.980008+00:00",
+    "dslite_fornecedor_id": "108",
+    "dslite_produto_id": "4150",
+    "dslite_ultima_sync": "2026-08-17T09:49:32.762+00:00",
+    "fornecedor": "BKR1",
+    "ncm": "8529.90.90",
+    "cest": null,
+    "origem_fiscal": "0",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "165b6560-a838-46e0-90e4-ec7c0702af28",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "automotive",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "sku": "VTK006444",
+  "gate": "BLOCK_REQUIRED_ATTRIBUTE",
+  "evidence": "missing category-required attributes: POWER_SUPPLY_TYPE",
+  "local_value": "3016661158094",
+  "found_value": null,
+  "suggested_action": "REQUIRED_ATTRIBUTE_REQUIRED",
+  "source": "ML catalog MLB22520390 + DSLite supplier",
+  "timestamp": "2026-08-17T01:14:19.012Z"
+}

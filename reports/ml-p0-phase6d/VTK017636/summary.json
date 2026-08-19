@@ -1,0 +1,23 @@
+{
+  "index": 36,
+  "sku": "VTK017636",
+  "expected_gtin": "7898419487009",
+  "started_at": "2026-08-17T01:15:05.832Z",
+  "local_time": "2026-08-16T22:15:05",
+  "completed_at": "2026-08-17T01:15:05.861Z",
+  "elapsed_ms": 29,
+  "result": "BLOCK_GTIN_UNIT_CONFLICT",
+  "item_id": null,
+  "catalog_product_id": null,
+  "protective_price": null,
+  "margin_percent": null,
+  "persisted": false,
+  "observation": "exact GTIN catalog is a five-unit kit while local commercial unit is one divider",
+  "sanitation": "GTIN_FIX_REQUIRED",
+  "backlogs": {
+    "quality_optimization_pending": false,
+    "description_optimization_pending": false,
+    "commercial_optimization_pending": false,
+    "optional_catalog_optimization_pending": false
+  }
+}

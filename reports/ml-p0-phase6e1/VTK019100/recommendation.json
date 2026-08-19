@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_MODEL_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+    "supplier_category": "Segurança / Cameras/ Camera Colorida",
+    "supplier_brand": "HIKVISION",
+    "supplier_gtin": "7898957865710",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/329702",
+    "captured_at": "2026-08-17T12:55:33.144Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

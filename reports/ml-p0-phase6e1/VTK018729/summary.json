@@ -1,0 +1,10 @@
+{
+  "ordinal": 23,
+  "sku": "VTK018729",
+  "phase6e_state": "BLOCK_CATEGORY",
+  "phase6e1_state": "BLOCK_SEMANTIC_CATEGORY_MISMATCH",
+  "category_candidate": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Motor > Kits de Motor",
+  "semantic_score": 56,
+  "second_pass": "REJECT",
+  "evidence": "PRODUCT_FUNCTION_MISMATCH:control_vehicle_windows"
+}

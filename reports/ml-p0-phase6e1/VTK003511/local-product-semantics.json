@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-17T14:15:47.912Z",
+  "product": {
+    "id": "11460c2a-409a-43e8-9fe7-becc8ce904b8",
+    "sku": "VTK003511",
+    "nome": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+    "marca": "MEGATRON",
+    "estoque": 3,
+    "custo": 11.5,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.138,
+    "peso_bruto": 0.138,
+    "largura": 3.5,
+    "altura": 32,
+    "profundidade": 14.5,
+    "gtin": "7899278900982",
+    "descricao": "Apresentamos as extensões elétricas 2P, produtos de qualidade que garantem segurança aos usuários, atendendo ao novo padrão brasileiro de plugues e tomadas (NBR 14136). O seu uso se estende de residencial até o comercial.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK003511/01-553a4d3b070caf58b052.jpg"
+    ],
+    "categoria": "Materiais Eletricos / Extensao Eletrica / Extensão Eletrica 2 Polos",
+    "ml_item_id": null,
+    "created_at": "2026-05-11T20:16:20.314094+00:00",
+    "updated_at": "2026-08-17T11:19:15.474423+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "361347",
+    "dslite_ultima_sync": "2026-08-17T11:19:15.296+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "8544.42.00",
+    "cest": null,
+    "origem_fiscal": "5",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "a569ba80-ab71-4b52-91fc-3386e8dc40fc",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "unresolved",
+    "function": "unresolved",
+    "intended_use": "electronic_security",
+    "physical_form": "unresolved",
+    "expected_category_signals": [],
+    "incompatible_category_signals": [],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "electronic_security",
+    "confidence": 55,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-08-16T06:42:32.110Z",
+  "destination": "Mercado Livre developer support",
+  "seller_id": "3294514937",
+  "timestamp_utc": "2026-08-16T06:25:48.432Z",
+  "timestamp_america_sao_paulo": "2026-08-16T03:25:48.432-03:00",
+  "endpoint": "POST https://api.mercadolibre.com/items",
+  "http_status": 500,
+  "request_id": "60e5c148-b1f9-479c-8ed9-53a06a52b29a",
+  "response": {
+    "cause": [],
+    "message": "Oops! Something went wrong...",
+    "error": "internal_error",
+    "status": 500
+  },
+  "payload_sha256": "653cefbbb29736d4973a8099f939923efef7d196a22b005400243b5e85609792",
+  "category_id": "MLB11290",
+  "seller_user_product_enabled": true,
+  "item_created": false,
+  "remote_confirmation": {
+    "checked_at": "2026-08-16T06:25:48.047Z",
+    "exhaustive_scan_reliable": true,
+    "seller_inventory_total": 5798,
+    "equivalent_matches": 0,
+    "existing_equivalent_family": false
+  },
+  "credentials_included": false,
+  "requested_support_action": "Trace the internal failure using request_id and identify the backend validation/service that returned HTTP 500 for a valid initial User Products POST /items request."
+}

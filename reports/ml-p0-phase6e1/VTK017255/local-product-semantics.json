@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-08-17T14:15:53.516Z",
+  "product": {
+    "id": "6ae0ec08-13cc-4813-89a5-5f92bf8ca15c",
+    "sku": "VTK017255",
+    "nome": "Cabo óptico Splitter Evus Opf-plc1x2-nc250 Plc 1x2 Nc 1,5m G657a1",
+    "marca": "EVUS",
+    "estoque": 50,
+    "custo": 23.99,
+    "ml_fee": 0.17,
+    "ml_shipping": 12.35,
+    "custom_price": 71.32,
+    "ml_status": "pausado",
+    "peso_liq": 0.028,
+    "peso_bruto": 0.028,
+    "largura": 10,
+    "altura": 1,
+    "profundidade": 20,
+    "gtin": "",
+    "descricao": "Informações do Produto O Cabo Optico Splitter Evus OPF-PLC1X2-NC2 PLC (Planar Lightwave Circuit) ou divisor de fibra óptica, baseia-se num substrato de quartzo que serve como guia de ondas, atuando como um dispositivo de distribuição de energia. Seu funcionamento é similar aos divisores utilizados em sistemas de transmissão de cabo coaxial. É especialmente adequado para a instalação de pequenos espaços e pode ser facilmente utilizado na construção de rede FTTx, construção de redes ópticas, redes CATV e etc. Baixa perda de inserção e baixa PDL Ampla faixa de comprimento de onda Design compacto Grande faixa de operação e temperatura Embalagem e configuração customizada Aplicações: FTTX (FTTP, FTTH, FTTN, FTTC) Redes óticas passivas analógicas/digitais (PON) Redes de área local (LAN) Equipamentos de teste CATV Splitter Óptico PLC 1x2 ANATEL 01532-19-10548 *Imagens meramente ilustrativas.",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017255/01-dbe925cb1f5c2f6b3884.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017255/02-d00f32eef5e64ece0bcf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK017255/03-04e3473b1c6cd7d17cd2.jpg"
+    ],
+    "categoria": "Redes E Provedores/ Passivos De Rede/ Splitter",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:30:22.80718+00:00",
+    "updated_at": "2026-08-17T10:24:30.770914+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "359728",
+    "dslite_ultima_sync": "2026-08-17T10:24:30.545+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85176259",
+    "cest": "21.056.00",
+    "origem_fiscal": "6",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "63e6f475-b51c-4857-bab6-be80c26ebd51",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "network_cable",
+    "function": "connect_data_network",
+    "intended_use": "computing_network",
+    "physical_form": "network_cable",
+    "expected_category_signals": [
+      "cabo",
+      "rede",
+      "ethernet",
+      "rj45"
+    ],
+    "incompatible_category_signals": [
+      "instrumentomusical",
+      "cozinha",
+      "automotivo"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "computing_network",
+    "confidence": 100,
+    "evidence": [
+      "local_product"
+    ]
+  }
+}

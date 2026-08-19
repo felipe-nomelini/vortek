@@ -1,0 +1,15 @@
+{
+  "action": "SOURCE_DEFERRED",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Cabo Hdmi Evus C-052 4k Macho X Macho V2.0 10,0m",
+    "supplier_category": "Informatica/ Cabos Para Informática/ Cabo Hdmi",
+    "supplier_brand": "EVUS",
+    "supplier_gtin": null,
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/353651",
+    "captured_at": "2026-08-17T12:56:30.663Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

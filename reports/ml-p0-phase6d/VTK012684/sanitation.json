@@ -1,0 +1,10 @@
+{
+  "sku": "VTK012684",
+  "gate": "BLOCK_GTIN_UNIT_CONFLICT",
+  "evidence": "exact GTIN catalog is a three-pick kit while the authorized local commercial unit is four picks",
+  "local_value": "7897626818279",
+  "found_value": "3 units",
+  "suggested_action": "GTIN_FIX_REQUIRED",
+  "source": "ML catalog MLB24383783",
+  "timestamp": "2026-08-17T01:13:11.399Z"
+}

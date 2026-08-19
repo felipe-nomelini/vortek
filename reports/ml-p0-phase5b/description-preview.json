@@ -1,0 +1,10 @@
+{
+  "sku": "VTK000392",
+  "status": "PREPARED_NOT_PUBLISHED",
+  "endpoint_future": "PUT /items/{item_id}/description?api_version=2",
+  "text": "VENTILADOR DE MESA VENTISOL TURBO 6 40 CM AZUL 127 V\n\nVentilador de mesa Ventisol Turbo 6P com hélice de seis pás, três níveis de velocidade e potência de 80 W. A versão deste anúncio é azul e opera em 127 V.\n\nCARACTERÍSTICAS\n- Marca: Ventisol\n- Linha: Turbo 6P\n- Tipo: ventilador de mesa\n- Voltagem: 127 V\n- Potência: 80 W\n- Diâmetro: 40 cm\n- Quantidade de pás: 6\n- Velocidades: 3\n- Cor das pás: azul\n- Dimensões montado: 44 × 35 × 60 cm\n\nCONTEÚDO\n- 1 ventilador de mesa Ventisol Turbo 6P 40 cm azul 127 V\n\nGARANTIA\n- 12 meses, conforme manual e termo de garantia do fabricante.\n\nSKU: VTK000392",
+  "evidence": [
+    "https://www.ventisol.com.br/ventilador-de-mesa-ventisol-turbo-6p-40cm-azul",
+    "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/70704"
+  ]
+}

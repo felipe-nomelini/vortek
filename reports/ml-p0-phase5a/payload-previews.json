@@ -1,0 +1,516 @@
+[
+  {
+    "sku": "VTK026044",
+    "state": "MANUAL_GTIN",
+    "publish_authorized": false,
+    "payload_usable": false,
+    "full": {
+      "family_name": "Mouse sem fio Intelbras MSI 50",
+      "category_id": "MLB1714",
+      "price": 93.83,
+      "currency_id": "BRL",
+      "available_quantity": 50,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_pro",
+      "condition": "new",
+      "catalog_listing": false,
+      "pictures": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MSI 50"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "40905268",
+          "value_name": "MSI50"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "value_id": "109003",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "value_name": "1200 dpi"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_name": "3"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "2862903",
+          "value_name": "Ambidestro"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WIRELESS_TECHNOLOGY",
+          "value_name": "2.4 GHz"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_name": "Dongle wireless, pilha AA"
+        },
+        {
+          "id": "LENGTH",
+          "value_name": "10.7 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_name": "6.2 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_name": "3.8 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_name": "83 g"
+        },
+        {
+          "id": "MPN",
+          "value_name": "MSI 50"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7899298724933"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "value_id": "2230284",
+          "value_name": "Novo"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK026044"
+        }
+      ],
+      "seller_custom_field": "VTK026044",
+      "shipping": {
+        "mode": "me2",
+        "local_pick_up": false,
+        "free_shipping": true
+      }
+    },
+    "minimal": {
+      "family_name": "Mouse sem fio Intelbras MSI 50",
+      "category_id": "MLB1714",
+      "price": 93.83,
+      "currency_id": "BRL",
+      "available_quantity": 50,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_pro",
+      "pictures": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MSI 50"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "40905268",
+          "value_name": "MSI50"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "value_id": "2230284",
+          "value_name": "Novo"
+        }
+      ]
+    },
+    "full_sha256": "30f4c2f0eccfab1475d979bfb63b8b81a621e36875d9fc6ce08e9f83845e0146",
+    "minimal_sha256": "40ab464b0aa374806ff4250136f383cc8c323a805bbd12faa567f434649a3f99",
+    "title_present": false,
+    "description_present": false,
+    "family_name_characters": 30
+  },
+  {
+    "sku": "VTK000392",
+    "state": "MULTI_CANARY_READY",
+    "publish_authorized": false,
+    "payload_usable": true,
+    "full": {
+      "family_name": "Ventilador de Mesa Ventisol Turbo 6 40 cm",
+      "category_id": "MLB1645",
+      "price": 269.23,
+      "currency_id": "BRL",
+      "available_quantity": 15,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_pro",
+      "condition": "new",
+      "catalog_product_id": "MLB15284402",
+      "catalog_listing": true,
+      "pictures": [
+        {
+          "source": "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+        }
+      ],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Ventisol"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Turbo 6 pás"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "Turbo 6"
+        },
+        {
+          "id": "FAN_TYPE",
+          "value_id": "291722",
+          "value_name": "De mesa"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7898461970375"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "POWER",
+          "value_name": "80 W"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "40 cm"
+        },
+        {
+          "id": "BLADES_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_name": "3"
+        },
+        {
+          "id": "STRUCTURE_COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "BLADES_COLOR",
+          "value_name": "Azul"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_name": "Corrente elétrica"
+        },
+        {
+          "id": "WITH_TURBO_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_OSCILLATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TILT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_BRASIL",
+          "value_id": "33344215",
+          "value_name": "A"
+        },
+        {
+          "id": "MAX_ROTATION_SPEED",
+          "value_name": "1500 rpm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_name": "60 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_name": "44 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_name": "2.5 kg"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_name": "Ventisol"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "44 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "45 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "2600 g"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "value_id": "2230284",
+          "value_name": "Novo"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK000392"
+        }
+      ],
+      "seller_custom_field": "VTK000392",
+      "shipping": {
+        "mode": "me2",
+        "local_pick_up": false,
+        "free_shipping": true
+      }
+    },
+    "minimal": {
+      "family_name": "Ventilador de Mesa Ventisol Turbo 6 40 cm",
+      "category_id": "MLB1645",
+      "price": 269.23,
+      "currency_id": "BRL",
+      "available_quantity": 15,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_pro",
+      "pictures": [
+        {
+          "source": "https://static.hayapek.com.br/produtos/70704/550/1.jpg"
+        }
+      ],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Ventisol"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Turbo 6 pás"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "Turbo 6"
+        },
+        {
+          "id": "FAN_TYPE",
+          "value_id": "291722",
+          "value_name": "De mesa"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "value_id": "2230284",
+          "value_name": "Novo"
+        }
+      ],
+      "catalog_product_id": "MLB15284402",
+      "catalog_listing": true
+    },
+    "full_sha256": "077f1a7b5360fe32630236c8bcedf178f567ff43ba41f4a281cab3296daa01b1",
+    "minimal_sha256": "88ad3b93c3bd3ac96b318c7b8af4f53ec3bc298c22f957cccc30048970bf0c5e",
+    "title_present": false,
+    "description_present": false,
+    "family_name_characters": 41
+  },
+  {
+    "sku": "VTK001507",
+    "state": "MANUAL_IDENTITY",
+    "publish_authorized": false,
+    "payload_usable": false,
+    "full": {
+      "family_name": "Violão Clássico Yamaha C70",
+      "category_id": "MLB432320",
+      "price": 1352.89,
+      "currency_id": "BRL",
+      "available_quantity": 7,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_pro",
+      "condition": "new",
+      "catalog_product_id": "MLB25239228",
+      "catalog_listing": true,
+      "pictures": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Yamaha"
+        },
+        {
+          "id": "LINE",
+          "value_name": "C"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "C70"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Natural"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "96533",
+          "value_name": "Destro"
+        },
+        {
+          "id": "IS_ELECTROACOUSTIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CUTAWAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BODY_SHAPE",
+          "value_name": "Classical Guitar Style"
+        },
+        {
+          "id": "BODY_SIZE",
+          "value_id": "2295181",
+          "value_name": "4/4"
+        },
+        {
+          "id": "BODY_FINISH",
+          "value_name": "Brilhante"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "BODY_TOP_MATERIAL",
+          "value_name": "Spruce"
+        },
+        {
+          "id": "NECK_MATERIALS",
+          "value_name": "Locally Sourced Tonewood"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "4957812496889"
+        },
+        {
+          "id": "MPN",
+          "value_name": "C70"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "51 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "112 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "2166 g"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "value_id": "2230284",
+          "value_name": "Novo"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK001507"
+        }
+      ],
+      "seller_custom_field": "VTK001507",
+      "shipping": {
+        "mode": "me2",
+        "local_pick_up": false,
+        "free_shipping": true
+      }
+    },
+    "minimal": {
+      "family_name": "Violão Clássico Yamaha C70",
+      "category_id": "MLB432320",
+      "price": 1352.89,
+      "currency_id": "BRL",
+      "available_quantity": 7,
+      "buying_mode": "buy_it_now",
+      "listing_type_id": "gold_pro",
+      "pictures": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Yamaha"
+        },
+        {
+          "id": "LINE",
+          "value_name": "C"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "C70"
+        },
+        {
+          "id": "ITEM_CONDITION",
+          "value_id": "2230284",
+          "value_name": "Novo"
+        }
+      ],
+      "catalog_product_id": "MLB25239228",
+      "catalog_listing": true
+    },
+    "full_sha256": "29d28bbee0c2a24a4b33424a1ad87e5ced30496eedb7e883dc9425a907186146",
+    "minimal_sha256": "61cc8ea7360e56b4466c6a62666f2717e9f1cfcbc090bef0a839359403706da7",
+    "title_present": false,
+    "description_present": false,
+    "family_name_characters": 26
+  }
+]

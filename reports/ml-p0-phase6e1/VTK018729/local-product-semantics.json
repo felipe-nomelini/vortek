@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-08-17T14:15:39.736Z",
+  "product": {
+    "id": "4d070eba-1f9d-4bee-8fbd-7e1c483a84dc",
+    "sku": "VTK018729",
+    "nome": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+    "marca": "TURY",
+    "estoque": 5,
+    "custo": 123.9,
+    "ml_fee": 0.15,
+    "ml_shipping": 0,
+    "custom_price": null,
+    "ml_status": "sem_anuncio",
+    "peso_liq": 0.14,
+    "peso_bruto": 0.14,
+    "largura": 8,
+    "altura": 3.5,
+    "profundidade": 12.5,
+    "gtin": "7898096330209",
+    "descricao": "Proteção anti esmagamento Subida e Descida expressa dos vidros Subida e descida dos vidros via alarme Temporização dos botões de comando Modo Fail Disparo do Alarme Modo Econômico Batery Saver",
+    "imagens": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK018729/01-2bd98af5db41450904b3.jpg"
+    ],
+    "categoria": "Automotivo/ Seguranca Automotiva/ Acessórios Para Vidro Elétrico",
+    "ml_item_id": null,
+    "created_at": "2026-07-20T18:32:58.760928+00:00",
+    "updated_at": "2026-08-17T11:09:28.01033+00:00",
+    "dslite_fornecedor_id": "133",
+    "dslite_produto_id": "264746",
+    "dslite_ultima_sync": "2026-08-17T11:09:27.941+00:00",
+    "fornecedor": "EVOLUSOM-PR",
+    "ncm": "85437099",
+    "cest": "01.999.00",
+    "origem_fiscal": "4",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "4b74578f-0c5d-4400-ba3f-80c64dbab6c1",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "semantics": {
+    "product_type": "vehicle_window_controller",
+    "function": "control_vehicle_windows",
+    "intended_use": "automotive",
+    "physical_form": "vehicle_window_module",
+    "expected_category_signals": [
+      "vidroeletrico",
+      "modulo",
+      "automotivo",
+      "veiculo",
+      "conforto"
+    ],
+    "incompatible_category_signals": [
+      "kitdemotor",
+      "pecademotor",
+      "alarmeresidencial"
+    ],
+    "key_attributes": {
+      "voltages": [],
+      "dimensions": [],
+      "powers": [],
+      "quantities": []
+    },
+    "audience_use_context": "automotive",
+    "confidence": 100,
+    "evidence": [
+      "local_product",
+      "supplier"
+    ]
+  }
+}

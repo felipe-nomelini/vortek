@@ -1,0 +1,874 @@
+{
+  "checked_at": "2026-08-17T00:43:49.021Z",
+  "expected_catalog_product_id": "MLB27356383",
+  "catalog_search_identity": {
+    "fields": {
+      "catalog_id": true,
+      "catalog_required": true,
+      "gtin": true,
+      "brand": true,
+      "model": true
+    },
+    "critical": {
+      "COLOR": true
+    },
+    "passed": true
+  },
+  "catalog_detail": {
+    "id": "MLB27356383",
+    "catalog_product_id": "MLB27356383",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-OFFICE_CHAIRS",
+    "permalink": "",
+    "name": "Cadeira Gamer Ergonômica Vickers Fortrek Vermelho/Preto Reclinável 135kg",
+    "family_name": "Fortrek Vickers 70519",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB70098176",
+            "picker_label": "Azul",
+            "picture_id": "817709-MLA112010736283_052026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_817709-MLA112010736283_052026-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Azul"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Couro sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Azul - Couro sintético - 1",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB34692956",
+            "picker_label": "Preto",
+            "picture_id": "739619-MLU75270072551_032024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_739619-MLU75270072551_032024-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Preto"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Couro sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Preto - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB69321462",
+            "picker_label": "Rosa",
+            "picture_id": "778187-MLA110410008266_052026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_778187-MLA110410008266_052026-I.jpg",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Rosa"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Couro sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Rosa - Couro sintético - 1",
+            "auto_completed": true,
+            "rgb_meta": "FCB1BE"
+          },
+          {
+            "product_id": "MLB27011060",
+            "picker_label": "Verde",
+            "picture_id": "900730-MLU71678915356_092023",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_900730-MLU71678915356_092023-I.jpg",
+            "tags": [
+              "change-multiple-pickers",
+              "no-winner",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Verde"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Couro sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Verde - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "0DA600"
+          },
+          {
+            "product_id": "MLB70217434",
+            "picker_label": "Vermelho",
+            "picture_id": "613144-MLA111154094422_052026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_613144-MLA111154094422_052026-I.jpg",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Vermelho"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Couro sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Vermelho - Couro sintético - 1",
+            "auto_completed": true,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB27356383",
+            "picker_label": "Vermelho/Preto",
+            "picture_id": "715653-MLA99992704701_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_715653-MLA99992704701_112025-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Vermelho/Preto - Revestimento Sintético - 1",
+            "auto_completed": true,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "COLOR",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UPHOLSTERY_MATERIAL",
+        "picker_name": "Material do estofamento",
+        "products": [
+          {
+            "product_id": "MLB70098176",
+            "picker_label": "Couro sintético",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Azul"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Couro sintético"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Azul - Couro sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "000000"
+          },
+          {
+            "product_id": "MLB27360006",
+            "picker_label": "Náilon",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "COLOR",
+                "Azul"
+              ],
+              [
+                "UPHOLSTERY_MATERIAL",
+                "Náilon"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Azul - Náilon - 1",
+            "auto_completed": false,
+            "rgb_meta": "1717FF"
+          },
+          {
+            "product_id": "MLB27356383",
+            "picker_label": "Revestimento Sintético",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Vermelho/Preto - Revestimento Sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UPHOLSTERY_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "UNITS_PER_PACK",
+        "picker_name": "Unidades por pacote",
+        "products": [
+          {
+            "product_id": "MLB27356383",
+            "picker_label": "1",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Fortrek Vickers 70519 - Vermelho/Preto - Revestimento Sintético - 1",
+            "auto_completed": false,
+            "rgb_meta": "FF0000"
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "UNITS_PER_PACK",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "715653-MLA99992704701_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_715653-MLA99992704701_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1024,
+        "max_height": 1024,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "776450-MLA99508593738_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_776450-MLA99508593738_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 290,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "821170-MLA99508887714_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_821170-MLA99508887714_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 294,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "836918-MLA94584893253_102025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_836918-MLA94584893253_102025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 564,
+        "max_height": 1000,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "982514-MLA99992927381_112025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_982514-MLA99992927381_112025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 277,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [],
+    "main_features": [
+      {
+        "text": "Confortável e durável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Apoios de braços confortáveis.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Suporte lombar regulável.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Tem um apoio para cabeça.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Com rodas. ",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Giratória. ",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Peso máximo suportado:  135kg.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Medidas da cadeira completa: 66 cm de largura, 129 cm de altura e 60 cm de profundidade.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "46525",
+        "value_name": "Fortrek",
+        "values": [
+          {
+            "id": "46525",
+            "name": "Fortrek"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "9096042",
+        "value_name": "Vickers",
+        "values": [
+          {
+            "id": "9096042",
+            "name": "Vickers"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "35131708",
+        "value_name": "70519",
+        "values": [
+          {
+            "id": "35131708",
+            "name": "70519"
+          }
+        ]
+      },
+      {
+        "id": "COLOR",
+        "name": "Cor",
+        "value_id": "58783",
+        "value_name": "Vermelho/Preto",
+        "values": [
+          {
+            "id": "58783",
+            "name": "Vermelho/Preto"
+          }
+        ]
+      },
+      {
+        "id": "UPHOLSTERY_MATERIAL",
+        "name": "Material do estofamento",
+        "value_id": "24706728",
+        "value_name": "Revestimento Sintético",
+        "values": [
+          {
+            "id": "24706728",
+            "name": "Revestimento Sintético"
+          }
+        ]
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "name": "Unidades por kit",
+        "value_id": "2726554",
+        "value_name": "1",
+        "values": [
+          {
+            "id": "2726554",
+            "name": "1"
+          }
+        ]
+      },
+      {
+        "id": "MAIN_COLOR",
+        "name": "Cor principal",
+        "value_id": "2450307",
+        "value_name": "Vermelho",
+        "values": [
+          {
+            "id": "2450307",
+            "name": "Vermelho",
+            "meta": {
+              "rgb": "FF0000"
+            }
+          }
+        ],
+        "meta": {
+          "rgb": "FF0000"
+        }
+      },
+      {
+        "id": "OFFICE_CHAIR_TYPE",
+        "name": "Tipo de cadeira de escritório",
+        "value_id": "13016814",
+        "value_name": "Gamer",
+        "values": [
+          {
+            "id": "13016814",
+            "name": "Gamer"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_MATERIALS",
+        "name": "Materiais da estrutura",
+        "value_id": null,
+        "value_name": "Plástico, Metal",
+        "values": [
+          {
+            "id": "2748302",
+            "name": "Plástico"
+          },
+          {
+            "id": "24028945",
+            "name": "Metal"
+          }
+        ]
+      },
+      {
+        "id": "BACKREST_HEIGHT",
+        "name": "Altura do encosto",
+        "value_id": "7899449",
+        "value_name": "80 cm",
+        "values": [
+          {
+            "id": "7899449",
+            "name": "80 cm"
+          }
+        ]
+      },
+      {
+        "id": "SEAT_DEPTH",
+        "name": "Profundidade do assento",
+        "value_id": "9567306",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "9567306",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_WIDTH",
+        "name": "Largura da cadeira",
+        "value_id": "7661942",
+        "value_name": "66 cm",
+        "values": [
+          {
+            "id": "7661942",
+            "name": "66 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_CHAIR_HEIGHT",
+        "name": "Altura máxima da cadeira",
+        "value_id": "50153760",
+        "value_name": "129 cm",
+        "values": [
+          {
+            "id": "50153760",
+            "name": "129 cm"
+          }
+        ]
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "name": "Peso máximo suportado",
+        "value_id": "2218331",
+        "value_name": "120 kg",
+        "values": [
+          {
+            "id": "2218331",
+            "name": "120 kg"
+          }
+        ]
+      },
+      {
+        "id": "REQUIRES_ASSEMBLY",
+        "name": "Requer montagem",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_WHEELS",
+        "name": "Com rodas",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOT_RING",
+        "name": "Com aro para pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ARMREST",
+        "name": "Com apoio de braços",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_RECLINING_BACKREST",
+        "name": "Com encosto reclinável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_ARMREST",
+        "name": "Com apoio de braços ajustável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_HEADREST",
+        "name": "Com apoio de cabeça",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_FOOTREST",
+        "name": "Com apoio de pés",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_GAMER",
+        "name": "É gamer",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_ERGONOMIC",
+        "name": "É ergonômica",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "IS_SWIVEL",
+        "name": "É giratória",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "name": "Modelo detalhado",
+        "value_id": "24706727",
+        "value_name": "Vickers",
+        "values": [
+          {
+            "id": "24706727",
+            "name": "Vickers"
+          }
+        ]
+      },
+      {
+        "id": "LUMBAR_SUPPORT_TYPE",
+        "name": "Tipo de apoio lombar",
+        "value_id": "10201909",
+        "value_name": "Regulável",
+        "values": [
+          {
+            "id": "10201909",
+            "name": "Regulável"
+          }
+        ]
+      },
+      {
+        "id": "LEAN_BACK_MECHANISM_TYPES",
+        "name": "Tipos de mecanismos de reclinação",
+        "value_id": "34594363",
+        "value_name": "Borboleta",
+        "values": [
+          {
+            "id": "34594363",
+            "name": "Borboleta"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_HEIGHT",
+        "name": "Altura da cadeira",
+        "value_id": "53834579",
+        "value_name": "129 cm",
+        "values": [
+          {
+            "id": "53834579",
+            "name": "129 cm"
+          }
+        ]
+      },
+      {
+        "id": "OFFICE_CHAIR_DEPTH",
+        "name": "Profundidade da cadeira",
+        "value_id": "7866305",
+        "value_name": "60 cm",
+        "values": [
+          {
+            "id": "7866305",
+            "name": "60 cm"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Cadeira Gamer Ergonómica com Almofadas Vickers FORTREK\n\nA cadeira Vickers é revestida em poliuretano com detalhes em fibra de carbono. Sua costura remete aos famosos bancos de carros esportivos, proporcionando uma experiência única enquanto joga seus games favoritos.\n\n- Conforto o Dia Todo\nUm assento firme com um pequeno apoio para cabeça e almofada para as costas oferecem um conforto prolongado.\n\n- Apoie seu antebraço no apoio almofadado\nIdeal para posicionar os cotovelos durante horas de jogabilidade.\n\n- Deslocamento facilitado\nCom uma roda de 60mm de diâmetro construída em nylon, proporciona liberdade para movimentar-se para todos os lados.\n\nCaracterísticas\n\nCor: Preta\nMaterial: Revestimento Sintético\nDimensões: Dimensão Geral: 66x60x121-129 cm (LxPxA).\n- Dimensão do Encosto: 58x80 cm (LxPxA).\n- Dimensão do Assento: 49x50x11 cm (LxPxA).\n- Tipo De espuma: Moldado por injeção.\n- Braços ajustáveis: Não (Fixo).\n- Tipo de mecanismo: Butterfly.\n- Especificação de elevação de gás: Classe 4.\n- Tamanho da Base e Tipo: 350mm e Nylon.\n- Rodinhas: 60mm em Nylon.\n- Suporta: Até 135kg.\n- Montagem da cadeira necessária."
+    },
+    "parent_id": "MLB34692955",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-16T23:11:53.159227087"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": null,
+    "tags": [],
+    "date_created": "2023-09-29T19:29:20Z",
+    "authorized_stores": null,
+    "last_updated": "2026-05-07T18:21:45Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "strategy": "catalog_required",
+  "optional_catalog_optimization_pending": false
+}

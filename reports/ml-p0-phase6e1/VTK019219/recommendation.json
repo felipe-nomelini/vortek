@@ -1,0 +1,15 @@
+{
+  "action": "BLOCK_GTIN_BRAND_CONFLICT",
+  "future_write_authorized": false,
+  "source": {
+    "supplier_present": true,
+    "supplier_name": "Espaguete Liso Permak 12mm 100m",
+    "supplier_category": "Automotivo/ Acessórios Para Instalacao/ Espaguete Liso",
+    "supplier_brand": "PERMAK",
+    "supplier_gtin": "7899079103070",
+    "supplier_url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/391225",
+    "captured_at": "2026-08-17T12:53:53.737Z",
+    "independent_of_ml": true,
+    "live_lookup": false
+  }
+}

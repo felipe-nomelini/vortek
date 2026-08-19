@@ -1,0 +1,240 @@
+{
+  "checked_at": "2026-08-17T12:54:33.701Z",
+  "product": {
+    "id": "83b8f2ec-1894-4f3e-a1f1-01b0a8c62309",
+    "sku": "VTK018562",
+    "nome": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+    "marca": "PERMAK",
+    "gtin": "7898253502104"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/133/380928",
+    "consulted_at": "2026-08-17T12:54:32.762Z",
+    "product": {
+      "produtoid": "380928",
+      "produtoid_empresa": "",
+      "fornecedorid": 133,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 32.9,
+      "preco_crossdocking": 32.9,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 32.9,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": null,
+      "ics3perc": 0,
+      "icmsrate": 0,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-07-20 15:18:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-07-20 15:18:17.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+      "titulo_curto": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+      "categoriaid": "117444",
+      "categoria_nome": "Automotivo/ Antena Automotiva/ Haste De Antena",
+      "abc": null,
+      "ean11": "7898253502104",
+      "ncm": "85291090",
+      "descricao": "Antena Permak para Palio/ Mobi com Cabo 3 Metros - REF. 100/G<br />\r\n<br />\r\n<br />\r\n<br />\r\n*Imagem meramente ilustrativa",
+      "caracteristicas": "Marca: Permak<br />\r\nCor: Preta<br />\r\nModelo: 100/G",
+      "informacoes": null,
+      "informacoes_tec": null,
+      "itens_inclusos": "",
+      "marca": "PERMAK",
+      "modelo": "",
+      "peso": 0.106,
+      "largura": 3.5,
+      "altura": 4,
+      "profundidade": 40,
+      "peso_embalagem": 0.106,
+      "largura_embalagem": 3.5,
+      "altura_embalagem": 4,
+      "profundidade_embalagem": 40,
+      "link": null,
+      "link_imagem": "https://evolusom.com.br/media/catalog/product/3/8/380928_67d2cb0b9bda5.jpg",
+      "link_youtube": null,
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": null,
+      "qtde_minima": 1,
+      "simbolo": "COM_ST",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 1381,
+      "local_estoque": "Maringa-PR",
+      "cep_origem": "87070130",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 1.5,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": "01.063.00",
+      "produtoid_original": null,
+      "produtoid_bling": null,
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-29 07:25:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-07-29 07:25:27.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 0,
+      "total_produtos_integracoes_ativas": 0,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://evolusom.com.br/media/catalog/product/3/8/380928_67d2cb0b9bda5.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_CATEGORY",
+    "reason": "category confidence is not HIGH for domain MLB-GPS_ANTENNAS",
+    "sanitation": "CATEGORY_FIX_REQUIRED",
+    "source": "ML catalog MLB52591992 + domain discovery"
+  },
+  "catalog_results": [
+    {
+      "id": "MLB52591992",
+      "catalog_product_id": "MLB52591992",
+      "domain_id": "MLB-GPS_ANTENNAS",
+      "name": "Antena Para Palio/ Mobi Com Cabo 3mtrs Preto",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak",
+          "values": [
+            {
+              "id": "3289477",
+              "name": "Permak"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "57562181",
+          "value_name": "100-G",
+          "values": [
+            {
+              "id": "57562181",
+              "name": "100-G"
+            }
+          ]
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "129130",
+          "value_name": "3 m",
+          "values": [
+            {
+              "id": "129130",
+              "name": "3 m"
+            }
+          ]
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "57562180",
+          "value_name": "7898253502104",
+          "values": [
+            {
+              "id": "57562180",
+              "name": "7898253502104"
+            }
+          ]
+        },
+        {
+          "id": "MPN",
+          "name": "MPN",
+          "value_id": "57562182",
+          "value_name": "100-G",
+          "values": [
+            {
+              "id": "57562182",
+              "name": "100-G"
+            }
+          ]
+        }
+      ],
+      "tags": [],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "A antena para Fiat Palio e Mobi conta com 30 cm de extensão e cabo de 3 metros de comprimento. Fabricada com materiais como Santoprene (TPV), cobre, aço e PVC, ela oferece resistência a temperaturas extremas, raios UV, ozônio e outros agentes atmosféricos. Além disso, possui excelente isolamento térmico e elétrico, alta resistência à corrosão e durabilidade.\n\nA antena deve ser instalada na parte dianteira do veículo e está disponível na cor preta.\n\nCompatível com:\n\nIdea 2006 a 2012;\n\nMarea 1998 a 2007;\n\nPalio 1996 a 2014;\n\nPalio Weekend 1997 a 2008;\n\nSiena 1997 a 2016;\n\nStrada Cab. Simples 1998 a 2012;\n\nStrada Cab. Estendida 1999 a 2008."
+      },
+      "pictures": [
+        {
+          "id": "602265-MLA87768981232_072025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_602265-MLA87768981232_072025-F.jpg",
+          "max_width": "874",
+          "max_height": "882"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2025-07-17T13:50:37Z",
+      "last_updated": "2025-07-17T14:01:05Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

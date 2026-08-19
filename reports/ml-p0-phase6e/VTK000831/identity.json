@@ -1,0 +1,445 @@
+{
+  "checked_at": "2026-08-17T12:54:26.472Z",
+  "product": {
+    "id": "4cf8a83f-dee6-4c77-b966-65378d316271",
+    "sku": "VTK000831",
+    "nome": "Kit Prateleiras Decore Multivisão Branco",
+    "marca": "MULTIVISÃO",
+    "gtin": "7896643439405"
+  },
+  "dslite": {
+    "url": "https://api.dslite.com.br/v1/CrossDocking/Catalogo/2/85606",
+    "consulted_at": "2026-08-17T12:54:26.282Z",
+    "product": {
+      "produtoid": "85606",
+      "produtoid_empresa": "HYX85606",
+      "fornecedorid": 2,
+      "fornecedor_filho": 0,
+      "status_empresa": "A",
+      "margem_lucro": 0,
+      "preco_normal": 114.98,
+      "preco_crossdocking": 114.98,
+      "preco_promocional": 0,
+      "preco_dropshipping": 0,
+      "vlr_adic_margem": 0,
+      "preco_drop_base_armazem": 0,
+      "preco_promocional_base_armazem": 0,
+      "preco_normal_base_armazem": 0,
+      "preco_revenda": 114.98,
+      "preco_revenda_promocional": 0,
+      "preco_min_venda": 0,
+      "preco_sug_venda": 0,
+      "taxsit": "00",
+      "ics3perc": 0,
+      "icmsrate": 12,
+      "origem": "0",
+      "visibilidade": "publico",
+      "data_inclusao": {
+        "date": "2026-03-30 21:39:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_preco": {
+        "date": "2026-03-30 21:39:31.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "valor_comissao": 0,
+      "titulo": "Kit Prateleiras Decore Multivisão Branco",
+      "titulo_curto": "KIT PRATELEIRAS MULTIVISAO DECORE BR",
+      "categoriaid": "292678",
+      "categoria_nome": "Móveis Para Casa / Estantes E Prateleiras / Estantes E Prateleiras",
+      "abc": "C",
+      "ean11": "7896643439405",
+      "ncm": "9403.60.00",
+      "descricao": "O Kit Prateleiras Decore é a solução perfeita para organizar e decorar diversos ambientes. Fabricada em MDP com acabamento em pintura UV, oferece durabilidade e um visual moderno. Um dos detalhes desse modelo é a fita de bordo, que garante um acabamento impecável, tornando-a ideal para uso na cozinha, escritório ou qualquer outro espaço que necessite de praticidade e estilo. ",
+      "caracteristicas": "Cor:Branco<br>Dimensões:do produto (A x L x P): 39,6 x 71,8 x 24,8 cm  <br/> Dimensões da embalagem (A x L x P): 7,9 x 42,3 x 74,0 cm <br>Pesquisa:kit prateleira|prateleira|prateleira branca|multivisão|prateleira decore|branca|branco<br>",
+      "informacoes": "<br/> • Peso líquido do produto (kg): 9,5  <br/> • Peso bruto do produto (kg): 10,35  <br/> • Matéria-prima predominante: mdp / uv  <br/> • Acabamento predominante: pintura uv / fita de bordo  <br/> • Acompanha puxadores: não  <br/> • Acompanha encarte: sim  <br/> • Forma de limpeza: pano levemente umedecido ",
+      "informacoes_tec": "",
+      "itens_inclusos": "",
+      "marca": "MULTIVISÃO",
+      "modelo": "Decore",
+      "peso": 3.2,
+      "largura": 40,
+      "altura": 3,
+      "profundidade": 50,
+      "peso_embalagem": 3.2,
+      "largura_embalagem": 40,
+      "altura_embalagem": 3,
+      "profundidade_embalagem": 50,
+      "link": "http://www.hayamax.com.br/kit-prateleiras-decore-multivisao-branco",
+      "link_imagem": "https://static.hayapek.com.br/produtos/85606/550/1.jpg",
+      "link_youtube": "",
+      "tempo_garantia": 90,
+      "embalagem_unidade": "PC",
+      "embalagem_quantidade": 1,
+      "ppb": "0",
+      "qtde_minima": 1,
+      "simbolo": "",
+      "ipi": 0,
+      "origem_faturamento": "PR",
+      "status_fornecedor": "A",
+      "numero_atualizacoes": 35,
+      "local_estoque": "PR",
+      "cep_origem": "86206240",
+      "preco_venda_direta": 0,
+      "preco_base_venda_direta": 0,
+      "perc_comissao_venda_direta": 0,
+      "perc_comissao_min_venda_direta": 0,
+      "perc_comissao_max_venda_direta": 0,
+      "perc_comissao_exed_venda_direta": 0,
+      "volumes": 1,
+      "sped_tipo_item": null,
+      "descricao_fornecedor": null,
+      "controle_estoque": "F",
+      "integrar_id_fabricante": "N",
+      "id_produto_fabricante": null,
+      "cest": null,
+      "produtoid_original": null,
+      "produtoid_bling": "",
+      "produtoid_tiny": null,
+      "produtoid_li": null,
+      "anatel_certif": null,
+      "numero_vendas": 0,
+      "data_atualizacao_estoque": {
+        "date": "2026-07-30 11:36:11.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "data_atualizacao_fornecedor": {
+        "date": "2026-08-14 01:17:09.000000",
+        "timezone_type": 3,
+        "timezone": "Etc/GMT+3"
+      },
+      "estoque": 4,
+      "tempo_cross": 0,
+      "estoque_total": 4,
+      "total_arquivos_marketing": 0,
+      "total_integracoes": 1,
+      "total_produtos_integracoes_ativas": 1,
+      "total_produtos_integracoes_pausadas": 0,
+      "total_produtos_integracoes_bloqueadas": 0,
+      "produtoid_pai": "",
+      "variacao": "",
+      "part_number": null,
+      "pai_titulo": null,
+      "variacoes": [],
+      "midias": [
+        {
+          "tipo": "imagem",
+          "indice": "1",
+          "valor": "https://static.hayapek.com.br/produtos/85606/550/1.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "2",
+          "valor": "https://static.hayapek.com.br/produtos/85606/550/2.jpg"
+        },
+        {
+          "tipo": "imagem",
+          "indice": "3",
+          "valor": "https://static.hayapek.com.br/produtos/85606/550/3.jpg"
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "decision": "BLOCK_GTIN_BRAND_CONFLICT",
+    "sanitation": "GTIN_FIX_REQUIRED",
+    "reason": "exact GTIN catalog identity conflict: BRAND,MODEL",
+    "foundValue": "MLB27987903",
+    "source": "ML catalog MLB27987903 + DSLite supplier",
+    "identityAssessment": {
+      "passed": false,
+      "conflicts": [
+        "BRAND",
+        "MODEL"
+      ],
+      "catalog_brand": null,
+      "model": "KIT-2Z-UV",
+      "local_pack": null,
+      "catalog_pack": 1,
+      "local_voltages": [],
+      "catalog_voltages": [],
+      "local_colors": [
+        "branco"
+      ],
+      "catalog_colors": [
+        "branco"
+      ],
+      "title_similarity": 0.2222222222222222
+    }
+  },
+  "catalog_results": [
+    {
+      "id": "MLB27987903",
+      "catalog_product_id": "MLB27987903",
+      "domain_id": "MLB-SHELVES",
+      "name": "Prateleira Parede Branco MDP 40cm Kit Z2-UV-BR Multivisão",
+      "parent_id": "MLB27987901",
+      "settings": {
+        "content": "fixed",
+        "listing_strategy": "catalog_required",
+        "exclusive": false
+      },
+      "children_ids": [],
+      "attributes": [
+        {
+          "id": "MANUFACTURER",
+          "name": "Fabricante",
+          "value_id": "2716081",
+          "value_name": "Multivisão",
+          "values": [
+            {
+              "id": "2716081",
+              "name": "Multivisão"
+            }
+          ]
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "25886707",
+          "value_name": "KIT-2Z-UV",
+          "values": [
+            {
+              "id": "25886707",
+              "name": "KIT-2Z-UV"
+            }
+          ]
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359391",
+          "value_name": "Unidade",
+          "values": [
+            {
+              "id": "1359391",
+              "name": "Unidade"
+            }
+          ]
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "2726554",
+          "value_name": "1",
+          "values": [
+            {
+              "id": "2726554",
+              "name": "1"
+            }
+          ]
+        },
+        {
+          "id": "FINISH",
+          "name": "Acabamento",
+          "value_id": "373817",
+          "value_name": "Fosco",
+          "values": [
+            {
+              "id": "373817",
+              "name": "Fosco"
+            }
+          ]
+        },
+        {
+          "id": "LENGTH",
+          "name": "Comprimento",
+          "value_id": "517234",
+          "value_name": "40 cm",
+          "values": [
+            {
+              "id": "517234",
+              "name": "40 cm"
+            }
+          ]
+        },
+        {
+          "id": "HEIGHT",
+          "name": "Altura",
+          "value_id": "3002",
+          "value_name": "5 cm",
+          "values": [
+            {
+              "id": "3002",
+              "name": "5 cm"
+            }
+          ]
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "18141100",
+          "value_name": "Aço, mdp",
+          "values": [
+            {
+              "id": "18141100",
+              "name": "Aço, mdp"
+            }
+          ]
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "52055",
+              "name": "Branco"
+            }
+          ]
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450308",
+          "value_name": "Branco",
+          "values": [
+            {
+              "id": "2450308",
+              "name": "Branco"
+            }
+          ],
+          "meta": {
+            "rgb": "FFFFFF"
+          }
+        },
+        {
+          "id": "SHELF_TYPE",
+          "name": "Tipo de prateleira",
+          "value_id": "26156621",
+          "value_name": "Prateleira",
+          "values": [
+            {
+              "id": "26156621",
+              "name": "Prateleira"
+            }
+          ]
+        },
+        {
+          "id": "STYLE",
+          "name": "Estilo",
+          "value_id": "432204",
+          "value_name": "Moderno",
+          "values": [
+            {
+              "id": "432204",
+              "name": "Moderno"
+            }
+          ]
+        },
+        {
+          "id": "REQUIRES_ASSEMBLY",
+          "name": "Requer montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "SHAPE",
+          "name": "Forma",
+          "value_id": "1163800",
+          "value_name": "Retangular",
+          "values": [
+            {
+              "id": "1163800",
+              "name": "Retangular"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "name": "Inclui kit de instalação",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "25886708",
+          "value_name": "7896643439405",
+          "values": [
+            {
+              "id": "25886708",
+              "name": "7896643439405"
+            }
+          ]
+        },
+        {
+          "id": "INCLUDES_ASSEMBLY_MANUAL",
+          "name": "Inclui manual de montagem",
+          "value_id": "242085",
+          "value_name": "Sim",
+          "values": [
+            {
+              "id": "242085",
+              "name": "Sim"
+            }
+          ],
+          "meta": {
+            "value": true
+          }
+        }
+      ],
+      "tags": [
+        "pi_fbm_validated"
+      ],
+      "status": "active",
+      "short_description": {
+        "type": "plaintext",
+        "content": "Suporte para Microondas 2 prateleiras Kit Z2-UV-BR Multivisão \nSuporte Para Micro-ondas Kit Z2-Uv-BR Tipo Prateleira Branco - Multivisão\n\nCaracterísticas Cor:Branco\nMaterial em MDP\nCom 1,5 cm de espessura\nPintura em UV\nSuportes em aço carbono com pintura epóxi\nPeso suportado: até 40 kg distribuídos\nFácil montagem e instalação \n\nEspecificações: \nSão duas prateleiras nas dimensões:\n01 prateleira 50 x 40 cm\n01 prateleira 40 x 18,5 cm \n\nConteúdo da Embalagem:\n01 Suporte Para Micro-ondas Kit Z2-UV-BR Tipo Prateleira da Multivisão. \n\nImagem meramente ilustrativa."
+      },
+      "pictures": [
+        {
+          "id": "790669-MLA99501004742_112025",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_790669-MLA99501004742_112025-F.jpg",
+          "max_width": "1200",
+          "max_height": "1200"
+        },
+        {
+          "id": "635499-MLU74976704914_032024",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_635499-MLU74976704914_032024-F.jpg",
+          "suggested_for_picker": [
+            "COLOR"
+          ],
+          "max_width": "907",
+          "max_height": "332"
+        },
+        {
+          "id": "799205-MLU72649155702_112023",
+          "url": "https://http2.mlstatic.com/D_NQ_NP_799205-MLU72649155702_112023-F.jpg",
+          "max_width": "590",
+          "max_height": "748"
+        }
+      ],
+      "authority_types": [
+        "COMMUNITY"
+      ],
+      "date_created": "2023-11-06T18:51:51Z",
+      "last_updated": "2026-08-11T12:08:16Z",
+      "quality_type": "COMPLETE",
+      "product_standard": false,
+      "search_type": "IDENTIFIER"
+    }
+  ]
+}

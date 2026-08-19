@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-08-16T23:39:08.808Z",
+  "inventory": {
+    "expected": 5800,
+    "captured": 5800,
+    "pages": 115,
+    "reliable": true
+  },
+  "local_duplicates": [],
+  "remote_matches": []
+}

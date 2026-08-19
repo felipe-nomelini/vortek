@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-17T20:01:48.996Z",
+  "target_margin_percent": 50,
+  "tax_rate": 0.05,
+  "rows": [],
+  "summary": {
+    "cost_total": 0,
+    "price_total": 0,
+    "commission_total": 0,
+    "shipping_total": 0,
+    "tax_total": 0,
+    "protected_profit_total": 0,
+    "min_margin": null,
+    "max_margin": null,
+    "mean_margin": null
+  }
+}
