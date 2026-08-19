@@ -5,6 +5,15 @@ const {
   extractStrictVoltage,
   normalizeVoltageValue,
 } = require("../src/lib/ml-voltage.ts");
+const {
+  extractStrictProductDiameter,
+  findMlListingIdentityConflicts,
+  mergeMlAttributePrefill,
+} = require("../src/lib/ml-listing-identity.ts");
+const {
+  applyProductFactsToMlAttribute,
+  extractMlProductFacts,
+} = require("../src/lib/ml-product-facts.ts");
 
 test("aceita tensão DC explícita como evidência crítica", () => {
   assert.equal(extractStrictVoltage("Alimentação 3 Vdc, bateria CR2450"), "3 Vdc");
@@ -27,5 +36,75 @@ test("não deduz tensão DC a partir de uma bateria sem rótulo elétrico", () =
   assert.equal(
     extractStrictVoltage("Bateria interna 3,7 V; dimensões 80 x 34 mm"),
     null,
+  );
+});
+
+test("extrai 30 cm do nome sem confundir descrição logística ou hélice", () => {
+  const product = {
+    nome: "Ventilador de Coluna Ventisol Turbo 6 30cm Preto 127v",
+    descricao: "Produto montado 40 x 40 x 116 cm. Medida da hélice 33 cm.",
+  };
+  const facts = extractMlProductFacts(product);
+  assert.equal(extractStrictProductDiameter(product.nome), "30 cm");
+  assert.equal(facts.diameter, "30 cm");
+  assert.deepEqual(
+    applyProductFactsToMlAttribute({ id: "DIAMETER", name: "Diâmetro" }, facts),
+    { value_name: "30 cm" },
+  );
+});
+
+test("bloqueia anúncio 50 cm quando produto comprovado é 30 cm", () => {
+  const conflicts = findMlListingIdentityConflicts(
+    {
+      seller_custom_field: "VTK000456",
+      attributes: [
+        { id: "GTIN", value_name: "7898461967658" },
+        { id: "BRAND", value_name: "Ventisol" },
+        { id: "DIAMETER", value_name: "50 cm" },
+        { id: "VOLTAGE", value_name: "127V" },
+      ],
+    },
+    {
+      sellerSku: "VTK000456",
+      gtin: "7898461967658",
+      brand: "VENTISOL",
+      diameter: "30 cm",
+      voltage: "127V",
+    },
+  );
+  assert.deepEqual(conflicts, [
+    { field: "DIAMETER", expected: "30 cm", remote: "50 cm" },
+  ]);
+});
+
+test("aceita anúncio com identidade crítica equivalente", () => {
+  const conflicts = findMlListingIdentityConflicts(
+    {
+      seller_custom_field: "VTK000456",
+      attributes: [
+        { id: "GTIN", value_name: "7898461967658" },
+        { id: "BRAND", value_name: "Ventisol" },
+        { id: "DIAMETER", value_name: "30 cm" },
+        { id: "VOLTAGE", value_name: "127 V" },
+      ],
+    },
+    {
+      sellerSku: "VTK000456",
+      gtin: "7898461967658",
+      brand: "VENTISOL",
+      diameter: "30cm",
+      voltage: "127V",
+    },
+  );
+  assert.deepEqual(conflicts, []);
+});
+
+test("predição ML de 50 cm não sobrescreve evidência local de 30 cm", () => {
+  assert.deepEqual(
+    mergeMlAttributePrefill({
+      prediction: { value_id: "124616", value_name: "50 cm" },
+      ruleBased: { value_id: "124571", value_name: "30 cm" },
+    }),
+    { value_id: "124571", value_name: "30 cm" },
   );
 });

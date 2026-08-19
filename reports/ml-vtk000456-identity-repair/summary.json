@@ -1,0 +1,128 @@
+{
+  "result": "VTK000456_IDENTITY_REPAIR_SUCCESS",
+  "item_id": "MLB7461511580",
+  "catalog_product_id": "MLB18971070",
+  "title": "Ventilador Oscilante De Coluna Ventisol 30cm Turbo 6 Pás Preto 30 Cm 60 Hz 127v Plástico",
+  "diameter": "30 cm",
+  "status": "active",
+  "price": 599.9,
+  "stock": 4,
+  "financial": {
+    "price": 599.9,
+    "fee": 65.99,
+    "shipping": 68.65,
+    "cost": 132.28,
+    "tax": 24,
+    "profit": 308.98,
+    "margin": 0.5150525087514586
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "diameter": true,
+      "voltage": true,
+      "category": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "passed": true
+  },
+  "transaction": {
+    "result": "REPAIR_SUCCESS",
+    "listing_id": "d7d8274c-17e7-4d58-b5a7-5056886635b5",
+    "transaction_id": 18382556
+  },
+  "local": {
+    "product": {
+      "id": "8e3ae3fe-a402-481f-983f-9493bf7085bc",
+      "sku": "VTK000456",
+      "gtin": "7898461967658",
+      "ml_item_id": "MLB7461511580",
+      "ml_status": "ativo",
+      "custom_price": 599.9,
+      "ml_fee": 0.11,
+      "ml_shipping": 68.65
+    },
+    "listings": [
+      {
+        "id": "d7d8274c-17e7-4d58-b5a7-5056886635b5",
+        "ml_item_id": "MLB7461511580",
+        "produto_id": "8e3ae3fe-a402-481f-983f-9493bf7085bc",
+        "sku": "VTK000456",
+        "titulo": "Ventilador Oscilante De Coluna Ventisol 30cm Turbo 6 Pás Preto 30 Cm 60 Hz 127v Plástico",
+        "preco_ml": 599.9,
+        "status": "ativo",
+        "catalogo": true,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7461511580-ventilador-oscilante-de-coluna-ventisol-30cm-turbo-6-pas-preto-30-cm-60-hz-127v-plastico-_JM"
+      }
+    ],
+    "wrong_item_blocks": [
+      {
+        "ml_item_id": "MLB4841991561",
+        "sku": null,
+        "ativo": true,
+        "motivo": "VTK000456: produto local 30 cm; item/catálogo remoto 50 cm. Bloqueio por item."
+      },
+      {
+        "ml_item_id": "MLB7149272254",
+        "sku": null,
+        "ativo": true,
+        "motivo": "VTK000456: produto local 30 cm; item/catálogo remoto 50 cm. Bloqueio por item."
+      }
+    ]
+  },
+  "old_remote_items": [
+    {
+      "id": "MLB4841991561",
+      "status": "paused",
+      "catalog_product_id": "MLB21605404",
+      "diameter": "50 cm",
+      "identity": {
+        "fields": {
+          "seller": true,
+          "sku": true,
+          "gtin": true,
+          "brand": true,
+          "model": true,
+          "diameter": false,
+          "voltage": true,
+          "category": true,
+          "catalog": false,
+          "catalog_listing": false
+        },
+        "passed": false
+      }
+    },
+    {
+      "id": "MLB7149272254",
+      "status": "paused",
+      "catalog_product_id": "MLB21605404",
+      "diameter": "50 cm",
+      "identity": {
+        "fields": {
+          "seller": true,
+          "sku": true,
+          "gtin": true,
+          "brand": true,
+          "model": true,
+          "diameter": false,
+          "voltage": true,
+          "category": true,
+          "catalog": false,
+          "catalog_listing": true
+        },
+        "passed": false
+      }
+    }
+  ],
+  "writes": {
+    "posts": 1,
+    "price_puts": 0,
+    "safety_pauses": 0,
+    "local_transaction": 1
+  }
+}

@@ -1,0 +1,1691 @@
+{
+  "started_at": "2026-08-19T23:10:22.948Z",
+  "mode": "apply",
+  "product": {
+    "id": "8e3ae3fe-a402-481f-983f-9493bf7085bc",
+    "sku": "VTK000456",
+    "nome": "Ventilador de Coluna Ventisol Turbo 6 30cm Preto 127v",
+    "marca": "VENTISOL",
+    "estoque": 4,
+    "custo": 132.28,
+    "ml_fee": 0.16,
+    "ml_shipping": 68.65,
+    "custom_price": 279.66,
+    "ml_status": "pausado",
+    "peso_liq": 2.86,
+    "peso_bruto": 2.86,
+    "largura": 22,
+    "altura": 41,
+    "profundidade": 40,
+    "gtin": "7898461967658",
+    "descricao": "O Ventilador de Coluna Ventisol Turbo 6 é o complemento perfeito para a sua casa. Além de potente, econômico e bonito, ele oferece o pacote completo de conforto, transformando sua casa em um ambiente agradável e charmoso. Com um motor Turbo e uma hélice de 6 pás de aerodinâmica avançada, esse ventilador garante um desempenho silencioso e uma excelente compatibilidade com outros aparelhos. Sua tecnologia inovadora proporciona um fluxo de ar eficiente, refrescando o ambiente de forma rápida e uniforme. Além disso, o Ventilador de Coluna Ventisol Turbo 6 possui um design elegante, que adiciona um toque de estilo à decoração da sua casa. Com ele, você pode desfrutar de um ambiente mais agradável, com uma brisa refrescante e a certeza de um produto de qualidade que irá durar por muito tempo. Invista no Ventilador de Coluna Ventisol Turbo 6 e experimente o conforto, a economia e a beleza que ele pode trazer para o seu lar.",
+    "imagens": [
+      "https://static.hayapek.com.br/produtos/75064/550/1.jpg",
+      "https://static.hayapek.com.br/produtos/75064/550/2.jpg",
+      "https://static.hayapek.com.br/produtos/75064/550/3.jpg",
+      "https://static.hayapek.com.br/produtos/75064/550/4.jpg"
+    ],
+    "categoria": "Eletrodomesticos E Eletroportateis / Ar E Ventilacao / Ventiladores De Coluna",
+    "ml_item_id": "MLB4841991561",
+    "created_at": "2026-05-11T20:15:20.730635+00:00",
+    "updated_at": "2026-08-19T21:03:52.931069+00:00",
+    "dslite_fornecedor_id": "2",
+    "dslite_produto_id": "75064",
+    "dslite_ultima_sync": "2026-08-19T20:43:32.033+00:00",
+    "fornecedor": "HAYAMAX-PR",
+    "ncm": "8414.51.90",
+    "cest": null,
+    "origem_fiscal": "5",
+    "origem_uf": "PR",
+    "csosn": "101",
+    "ml_shipping_warning": null,
+    "oferta_preferencial_id": "50e9864e-37ae-4160-9869-b14012e2674a",
+    "ativo": true,
+    "fornecedor_preferencial_manual": false
+  },
+  "offers": [
+    {
+      "id": "f132e56e-e79b-4251-9ceb-d09f1db63927",
+      "produto_id": "8e3ae3fe-a402-481f-983f-9493bf7085bc",
+      "dslite_fornecedor_id": "133",
+      "fornecedor_nome": "EVOLUSOM-PR",
+      "dslite_produto_id": "381147",
+      "sku_fornecedor": "381147",
+      "custo": 124.9,
+      "estoque": 0,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "prepaid_pix",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-08-19T16:39:22.285+00:00",
+      "created_at": "2026-07-20T18:32:23.345495+00:00",
+      "updated_at": "2026-08-19T16:39:22.292+00:00",
+      "sku_oferta": "381147",
+      "nome": "Ventilador De Coluna Ventisol Turbo 6 30cm Preto 127v",
+      "descricao": "Se você deseja um ambiente mais refrescante e agradável, o Ventilador de Coluna Ventisol Turbo 6 30cm é perfeito. Seu Motor Turbo junto com sua hélice de 6 pás com nova aerodinâmica são silenciosos e geram uma maior ventilação no aparelho. Ar mais refrescante para você e sua família. *Imagens meramente ilustrativas.\n\nPeso: 2.688 kg Embalagem: 39.0 × 22.0 × 39.5 cm Produto Montado: Comprimento: 35.0 cm Largura: 32.5 cm Altura: 116.0 cm Medida Hélice: 33cm Voltagem: 127V, 220V Potência: 52W Cor: Preto Ambiente: Cozinha, Quarto, Sala Climatização: Ventilação Linha Turbo 6 Medidas: 30cm Garantia: 12 meses* Vide Manual de Instruções/Termo de Garantia",
+      "marca": "VENTISOL",
+      "imagens": [
+        "https://evolusom.com.br/media/catalog/product/3/8/381147_67d2cb0d406aa.jpg",
+        "https://evolusom.com.br/media/catalog/product/3/8/381147_67d2cb0d40d3e.jpg",
+        "https://evolusom.com.br/media/catalog/product/3/8/381147_67d2cb0d4138e.jpg",
+        "https://evolusom.com.br/media/catalog/product/3/8/381147_67d2cb0d41eb8.jpg"
+      ],
+      "gtin": "7898461967658",
+      "ncm": "84145190",
+      "cest": "21.088.00"
+    },
+    {
+      "id": "50e9864e-37ae-4160-9869-b14012e2674a",
+      "produto_id": "8e3ae3fe-a402-481f-983f-9493bf7085bc",
+      "dslite_fornecedor_id": "2",
+      "fornecedor_nome": "HAYAMAX-PR",
+      "dslite_produto_id": "75064",
+      "sku_fornecedor": "75064",
+      "custo": 132.28,
+      "estoque": 4,
+      "ativo": true,
+      "prioridade": 100,
+      "payment_mode": "balance_account",
+      "lead_time_dias": null,
+      "last_sync_at": "2026-08-19T20:43:32.033+00:00",
+      "created_at": "2026-06-08T18:46:40.559351+00:00",
+      "updated_at": "2026-08-19T20:43:32.033+00:00",
+      "sku_oferta": "75064",
+      "nome": "Ventilador de Coluna Ventisol Turbo 6 30cm Preto 127v",
+      "descricao": "O Ventilador de Coluna Ventisol Turbo 6 é o complemento perfeito para a sua casa. Além de potente, econômico e bonito, ele oferece o pacote completo de conforto, transformando sua casa em um ambiente agradável e charmoso. Com um motor Turbo e uma hélice de 6 pás de aerodinâmica avançada, esse ventilador garante um desempenho silencioso e uma excelente compatibilidade com outros aparelhos. Sua tecnologia inovadora proporciona um fluxo de ar eficiente, refrescando o ambiente de forma rápida e uniforme. Além disso, o Ventilador de Coluna Ventisol Turbo 6 possui um design elegante, que adiciona um toque de estilo à decoração da sua casa. Com ele, você pode desfrutar de um ambiente mais agradável, com uma brisa refrescante e a certeza de um produto de qualidade que irá durar por muito tempo. Invista no Ventilador de Coluna Ventisol Turbo 6 e experimente o conforto, a economia e a beleza que ele pode trazer para o seu lar.",
+      "marca": "VENTISOL",
+      "imagens": [
+        "https://static.hayapek.com.br/produtos/75064/550/1.jpg",
+        "https://static.hayapek.com.br/produtos/75064/550/2.jpg",
+        "https://static.hayapek.com.br/produtos/75064/550/3.jpg",
+        "https://static.hayapek.com.br/produtos/75064/550/4.jpg"
+      ],
+      "gtin": "7898461967658",
+      "ncm": "8414.51.90",
+      "cest": null
+    }
+  ],
+  "catalog": {
+    "id": "MLB18971070",
+    "catalog_product_id": "MLB18971070",
+    "status": "active",
+    "pdp_types": [
+      "traditional"
+    ],
+    "domain_id": "MLB-FANS",
+    "permalink": "",
+    "name": "Ventilador Oscilante De Coluna Ventisol 30cm Turbo 6 Pás Preto",
+    "family_name": "Ventisol Coluna Turbo 6 8234 De pé",
+    "type": "catalog_product",
+    "buy_box_winner": null,
+    "pickers": [
+      {
+        "picker_id": "STRUCTURE_COLOR-BLADES_COLOR",
+        "picker_name": "Cor",
+        "products": [
+          {
+            "product_id": "MLB10513382",
+            "picker_label": "Branco | Prata",
+            "picture_id": "629803-MLU77368855113_072024",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_629803-MLU77368855113_072024-I.jpg",
+            "tags": [
+              "change-multiple-pickers",
+              "no-bids"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Branco | Prata"
+              ],
+              [
+                "DIAMETER",
+                "40 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 40 cm - 60 Hz - Branco - 127V - Prata - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB18971070",
+            "picker_label": "Preto",
+            "picture_id": "866766-MLA116256502055_082026",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_866766-MLA116256502055_082026-I.jpg",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 30 cm - 60 Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB15284708",
+            "picker_label": "Preto | Azul",
+            "picture_id": "858531-MLA99503251080_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_858531-MLA99503251080_112025-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Azul"
+              ],
+              [
+                "DIAMETER",
+                "40 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 40 cm - 60 Hz - Preto - 127V - Azul - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB15284704",
+            "picker_label": "Preto | Bronze",
+            "picture_id": "802629-MLA99953889997_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_802629-MLA99953889997_112025-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Bronze"
+              ],
+              [
+                "DIAMETER",
+                "40 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 40 cm - 60 Hz - Preto - 127V - Bronze - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB27761961",
+            "picker_label": "Preto | Cinza",
+            "picture_id": "809845-MLA99580431918_122025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_809845-MLA99580431918_122025-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Cinza"
+              ],
+              [
+                "DIAMETER",
+                "40 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 40 cm - 60 Hz - Preto - 127V - Cinza - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB14434776",
+            "picker_label": "Preto | Prata",
+            "picture_id": "943360-MLA100001035423_112025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_943360-MLA100001035423_112025-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Prata"
+              ],
+              [
+                "DIAMETER",
+                "50 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 50 cm - 60 Hz - Preto - 127V - Prata - Plástico - 6",
+            "auto_completed": true
+          },
+          {
+            "product_id": "MLB15284706",
+            "picker_label": "Preto | Vermelho",
+            "picture_id": "858510-MLA96140311221_102025",
+            "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_858510-MLA96140311221_102025-I.jpg",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "STRUCTURE_COLOR-BLADES_COLOR",
+                "Preto | Vermelho"
+              ],
+              [
+                "DIAMETER",
+                "40 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 40 cm - 60 Hz - Preto - 127V - Vermelho - Plástico - 6",
+            "auto_completed": true
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "STRUCTURE_COLOR",
+            "template": "",
+            "position": 1
+          },
+          {
+            "attribute_id": "BLADES_COLOR",
+            "template": "",
+            "position": 2
+          }
+        ],
+        "value_name_delimiter": " | ",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "DIAMETER",
+        "picker_name": "Diâmetro",
+        "products": [
+          {
+            "product_id": "MLB18971070",
+            "picker_label": "30 cm",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 30 cm - 60 Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB10513380",
+            "picker_label": "40 cm",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [],
+            "changes": [
+              [
+                "DIAMETER",
+                "40 cm"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 40 cm - 60 Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB14434777",
+            "picker_label": "50 cm",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "change-multiple-pickers"
+            ],
+            "changes": [
+              [
+                "DIAMETER",
+                "50 cm"
+              ],
+              [
+                "VOLTAGE",
+                "220V"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 50 cm - 60 Hz - Preto - 220V - Preto - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "DIAMETER",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "VOLTAGE",
+        "picker_name": "Voltagem",
+        "products": [
+          {
+            "product_id": "MLB18971070",
+            "picker_label": "127V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 30 cm - 60 Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": false
+          },
+          {
+            "product_id": "MLB18971071",
+            "picker_label": "220V",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [],
+            "changes": [
+              [
+                "VOLTAGE",
+                "220V"
+              ]
+            ],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 30 cm - 60 Hz - Preto - 220V - Preto - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [
+          "selection_required"
+        ],
+        "attributes": [
+          {
+            "attribute_id": "VOLTAGE",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BLADES_MATERIAL",
+        "picker_name": "Material das pás",
+        "products": [
+          {
+            "product_id": "MLB18971070",
+            "picker_label": "Plástico",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 30 cm - 60 Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BLADES_MATERIAL",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "BLADES_NUMBER",
+        "picker_name": "Quantidade de pás",
+        "products": [
+          {
+            "product_id": "MLB18971070",
+            "picker_label": "6",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 30 cm - 60 Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "BLADES_NUMBER",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      },
+      {
+        "picker_id": "FREQUENCY",
+        "picker_name": "Frequência",
+        "products": [
+          {
+            "product_id": "MLB18971070",
+            "picker_label": "60 Hz",
+            "picture_id": "",
+            "thumbnail": "",
+            "tags": [
+              "selected"
+            ],
+            "changes": [],
+            "permalink": "",
+            "product_name": "Ventisol Coluna Turbo 6 8234 De pé - 30 cm - 60 Hz - Preto - 127V - Preto - Plástico - 6",
+            "auto_completed": false
+          }
+        ],
+        "tags": [],
+        "attributes": [
+          {
+            "attribute_id": "FREQUENCY",
+            "template": "",
+            "position": 1
+          }
+        ],
+        "value_name_delimiter": "",
+        "hide_extra_decoration": false,
+        "secondary_picker_name": ""
+      }
+    ],
+    "pictures": [
+      {
+        "id": "866766-MLA116256502055_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_866766-MLA116256502055_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 959,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "638147-MLA112113125060_062026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_638147-MLA112113125060_062026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 800,
+        "max_height": 800,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "641348-MLU75816553608_042024",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_641348-MLU75816553608_042024-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 225,
+        "max_height": 676,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "784363-MLA88000255162_072025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_784363-MLA88000255162_072025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 800,
+        "max_height": 800,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "678534-MLA116256725947_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_678534-MLA116256725947_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 1200,
+        "max_height": 900,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "797842-MLA116257018201_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_797842-MLA116257018201_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 617,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      },
+      {
+        "id": "837199-MLA114880009534_082026",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_837199-MLA114880009534_082026-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 900,
+        "max_height": 1200,
+        "source_metadata": null,
+        "tags": [
+          "CAROUSEL"
+        ]
+      }
+    ],
+    "description_pictures": [
+      {
+        "id": "642647-MLA82477512885_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_642647-MLA82477512885_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 950,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": null
+      },
+      {
+        "id": "777147-MLA82477512893_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_777147-MLA82477512893_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 950,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": null
+      },
+      {
+        "id": "657120-MLA82194259834_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_657120-MLA82194259834_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 950,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": null
+      },
+      {
+        "id": "749548-MLA82477541875_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_749548-MLA82477541875_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 950,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": null
+      },
+      {
+        "id": "924548-MLA82477512937_022025",
+        "url": "https://http2.mlstatic.com/D_NQ_NP_924548-MLA82477512937_022025-F.jpg",
+        "suggested_for_picker": null,
+        "max_width": 950,
+        "max_height": 500,
+        "source_metadata": null,
+        "tags": null
+      }
+    ],
+    "main_features": [
+      {
+        "text": "Refresca os ambientes sem ruídos irritantes.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ajusta-se á diferentes alturas.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Ventilador de 3 velocidades.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Potência de 52 W.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Possui grade removível.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "É Ideal para refrescar.",
+        "type": "key_value",
+        "metadata": {}
+      },
+      {
+        "text": "Motor Turbo.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "disclaimers": [
+      {
+        "text": "Certificado pela INMETRO.",
+        "type": "key_value",
+        "metadata": {}
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol"
+          }
+        ]
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "8062811",
+        "value_name": "Coluna",
+        "values": [
+          {
+            "id": "8062811",
+            "name": "Coluna"
+          }
+        ]
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "11860495",
+        "value_name": "Turbo 6",
+        "values": [
+          {
+            "id": "11860495",
+            "name": "Turbo 6"
+          }
+        ]
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "72564569",
+        "value_name": "8234",
+        "values": [
+          {
+            "id": "72564569",
+            "name": "8234"
+          }
+        ]
+      },
+      {
+        "id": "FAN_TYPE",
+        "name": "Tipo de ventilador",
+        "value_id": "291721",
+        "value_name": "De pé",
+        "values": [
+          {
+            "id": "291721",
+            "name": "De pé"
+          }
+        ]
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "value_id": "124571",
+        "value_name": "30 cm",
+        "values": [
+          {
+            "id": "124571",
+            "name": "30 cm"
+          }
+        ]
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "8219790",
+        "value_name": "60 Hz",
+        "values": [
+          {
+            "id": "8219790",
+            "name": "60 Hz"
+          }
+        ]
+      },
+      {
+        "id": "STRUCTURE_COLOR",
+        "name": "Cor da estrutura",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205162",
+        "value_name": "127V",
+        "values": [
+          {
+            "id": "39205162",
+            "name": "127V"
+          }
+        ]
+      },
+      {
+        "id": "BLADES_COLOR",
+        "name": "Cor das pás",
+        "value_id": "2247758",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2247758",
+            "name": "Preto"
+          }
+        ]
+      },
+      {
+        "id": "BLADES_MATERIAL",
+        "name": "Material das pás",
+        "value_id": "6350782",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "6350782",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "name": "Quantidade de pás",
+        "value_id": "1000324",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "1000324",
+            "name": "6"
+          }
+        ]
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "3658971",
+        "value_name": "52 W",
+        "values": [
+          {
+            "id": "3658971",
+            "name": "52 W"
+          }
+        ]
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "13410255",
+        "value_name": "1.16 m",
+        "values": [
+          {
+            "id": "13410255",
+            "name": "1.16 m"
+          }
+        ]
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "value_id": "8970584",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "8970584",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "5662053",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "5662053",
+            "name": "50 cm"
+          }
+        ]
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "946977",
+        "value_name": "3.5 kg",
+        "values": [
+          {
+            "id": "946977",
+            "name": "3.5 kg"
+          }
+        ]
+      },
+      {
+        "id": "NOISE_LEVEL",
+        "name": "Nível de ruído",
+        "value_id": "8058449",
+        "value_name": "54 dB",
+        "values": [
+          {
+            "id": "8058449",
+            "name": "54 dB"
+          }
+        ]
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "value_id": "8152567",
+        "value_name": "Corrente elétrica",
+        "values": [
+          {
+            "id": "8152567",
+            "name": "Corrente elétrica"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ARGENTINA",
+        "name": "Eficiência energética Argentina",
+        "value_id": "33344208",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344208",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "name": "Eficiência energética Brasil",
+        "value_id": "33344215",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344215",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_COLOMBIA",
+        "name": "Eficiência energética Colômbia",
+        "value_id": "33344222",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344222",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_CHILE",
+        "name": "Eficiência energética Chile",
+        "value_id": "33344231",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344231",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_URUGUAY",
+        "name": "Eficiência energética Uruguai",
+        "value_id": "33344238",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344238",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ECUADOR",
+        "name": "Eficiência energética Equador",
+        "value_id": "33344245",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344245",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_PERU",
+        "name": "Eficiência energética Peru",
+        "value_id": "33344252",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344252",
+            "name": "A"
+          }
+        ]
+      },
+      {
+        "id": "GRID_MATERIAL",
+        "name": "Material da grade",
+        "value_id": "82756",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "82756",
+            "name": "Plástico"
+          }
+        ]
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "name": "Quantidade de velocidades",
+        "value_id": "1000288",
+        "value_name": "3",
+        "values": [
+          {
+            "id": "1000288",
+            "name": "3"
+          }
+        ]
+      },
+      {
+        "id": "INCLUDES_REMOTE_CONTROL",
+        "name": "Inclui controle remoto",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_LIGHT",
+        "name": "Com luz",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "name": "Com função turbo",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REVERSIBLE_BLADES",
+        "name": "Com pás reversíveis",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol"
+          }
+        ]
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "name": "Velocidade máxima de rotação",
+        "value_id": "25483101",
+        "value_name": "1560 rpm",
+        "values": [
+          {
+            "id": "25483101",
+            "name": "1560 rpm"
+          }
+        ]
+      },
+      {
+        "id": "LAMPS_NUMBER",
+        "name": "Quantidade de lâmpadas",
+        "value_id": "13174582",
+        "value_name": "0",
+        "values": [
+          {
+            "id": "13174582",
+            "name": "0"
+          }
+        ]
+      },
+      {
+        "id": "WITH_WI_FI",
+        "name": "Com Wi-Fi",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_PROGRAMMABLE",
+        "name": "É programável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "name": "É industrial",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "IS_SILENT",
+        "name": "É silencioso",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_360_DEGREES_ROTATION",
+        "name": "Com rotação de 360 graus",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_INMETRO_CERTIFICATE",
+        "name": "Com certificado INMETRO",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_REPELLENT_FUNCTION",
+        "name": "Com função repelente",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_EXTRACTABLE_GRID",
+        "name": "Com grade removível",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "name": "Com luzes LED",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_TILT",
+        "name": "Com inclinação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_OSCILLATION",
+        "name": "Com oscilação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "WITH_ROTATING_GRID",
+        "name": "Com grade giratória",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "meta": {
+              "value": true
+            }
+          }
+        ],
+        "meta": {
+          "value": true
+        }
+      },
+      {
+        "id": "INCLUDES_LIGHT_SWITCH",
+        "name": "Inclui interruptor de luz",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "meta": {
+              "value": false
+            }
+          }
+        ],
+        "meta": {
+          "value": false
+        }
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "11861696",
+        "value_name": "8235",
+        "values": [
+          {
+            "id": "11861696",
+            "name": "8235"
+          }
+        ]
+      }
+    ],
+    "short_description": {
+      "type": "plaintext",
+      "content": "Ventilador de coluna Ventisol \n\nCom o ventilador de Coluna oscilante Ventisol o seu ambiente ficará mais fresco e agradável\n\nCaracterísticas:\n- Design moderno e arrojado. Maior estabilidade para o ventilador\n- Motor turbo com alta performance. Gera menos ruído\n- Helices com Design e aerodinâmica para alta ventilação\n- Grade Wind-line, tecnologia que proporciona melhor vazão e direcionamento de ar\n- Oscilação horizontal pode ser ativada ou desativada\n- Regulagem de inclinação manual, ajustada de acordo com a necessidade\n\nEspecificações:\n- Voltagem: 110v\n- Potência: 52w\n- Quantidade de hélices: 6\n- Velocidades: 3 \n- Ajuste de altura: Mínimo 110cm e Máximo 125cm \n\nDimensões do produto:\n- Comprimento: 40cm\n- Largura: 40cm\n- Altura: 116cm\n\nConteúdo da embalagem:\n- 1 Ventilador de coluna Ventisol \n- Manual de instruções \n"
+    },
+    "parent_id": "MLB14002777",
+    "children_ids": [],
+    "settings": {
+      "content": "fixed",
+      "listing_strategy": "catalog_required",
+      "exclusive": false,
+      "with_enhanced_pictures": false,
+      "base_site_product_id": null,
+      "ttr": "2026-08-20T15:55:25.195977808"
+    },
+    "quality_type": "COMPLETE",
+    "release_info": null,
+    "presale_info": null,
+    "enhanced_content": {
+      "template_id": "c55b055e-7bb3-4f70-b4c4-2e1d9838809d",
+      "version": "1.0",
+      "components": [
+        {
+          "type": "FLYER",
+          "ui_config": null,
+          "thumbnail": "",
+          "content": [
+            {
+              "id": "642647-MLA82477512885_022025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_642647-MLA82477512885_022025-F.jpg",
+              "max_width": 950,
+              "max_height": 500,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "777147-MLA82477512893_022025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_777147-MLA82477512893_022025-F.jpg",
+              "max_width": 950,
+              "max_height": 500,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "657120-MLA82194259834_022025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_657120-MLA82194259834_022025-F.jpg",
+              "max_width": 950,
+              "max_height": 500,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "749548-MLA82477541875_022025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_749548-MLA82477541875_022025-F.jpg",
+              "max_width": 950,
+              "max_height": 500,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            },
+            {
+              "id": "924548-MLA82477512937_022025",
+              "url": "https://http2.mlstatic.com/D_NQ_NP_924548-MLA82477512937_022025-F.jpg",
+              "max_width": 950,
+              "max_height": 500,
+              "source_metadata": null,
+              "status": "COMPLETED",
+              "tags": null
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [],
+    "date_created": "2022-03-18T13:45:25Z",
+    "authorized_stores": null,
+    "last_updated": "2026-07-30T19:46:03Z",
+    "grouper_id": null,
+    "experiments": {}
+  },
+  "old_items": [
+    {
+      "id": "MLB4841991561",
+      "status": "paused",
+      "catalog_product_id": "MLB21605404",
+      "diameter": "50 cm",
+      "identity": {
+        "fields": {
+          "seller": true,
+          "sku": true,
+          "gtin": true,
+          "brand": true,
+          "model": true,
+          "diameter": false,
+          "voltage": true,
+          "category": true,
+          "catalog": false,
+          "catalog_listing": false
+        },
+        "passed": false
+      }
+    },
+    {
+      "id": "MLB7149272254",
+      "status": "paused",
+      "catalog_product_id": "MLB21605404",
+      "diameter": "50 cm",
+      "identity": {
+        "fields": {
+          "seller": true,
+          "sku": true,
+          "gtin": true,
+          "brand": true,
+          "model": true,
+          "diameter": false,
+          "voltage": true,
+          "category": true,
+          "catalog": false,
+          "catalog_listing": true
+        },
+        "passed": false
+      }
+    }
+  ],
+  "images": [
+    {
+      "url": "https://static.hayapek.com.br/produtos/75064/550/1.jpg",
+      "status": 200,
+      "content_type": "image/jpg",
+      "ok": true
+    },
+    {
+      "url": "https://static.hayapek.com.br/produtos/75064/550/2.jpg",
+      "status": 200,
+      "content_type": "image/jpg",
+      "ok": true
+    },
+    {
+      "url": "https://static.hayapek.com.br/produtos/75064/550/3.jpg",
+      "status": 200,
+      "content_type": "image/jpg",
+      "ok": true
+    },
+    {
+      "url": "https://static.hayapek.com.br/produtos/75064/550/4.jpg",
+      "status": 200,
+      "content_type": "image/jpg",
+      "ok": true
+    }
+  ],
+  "finance": {
+    "price": 599.9,
+    "fee": 65.99,
+    "shipping": 44.05,
+    "cost": 132.28,
+    "tax": 24,
+    "profit": 333.58,
+    "margin": 0.5560593432238706
+  },
+  "gates": {
+    "product": true,
+    "stock": true,
+    "catalog": true,
+    "wrong_items_paused": true,
+    "wrong_catalog_confirmed": true,
+    "images": true,
+    "financial": true
+  },
+  "payload_hash": "61d398ce5464e517b2c6d0edfe2e2138fb490b9350eef570d0b3235faf1c86a3",
+  "payload": {
+    "family_name": "Ventilador de Coluna Ventisol Turbo 6 30 cm",
+    "category_id": "MLB1645",
+    "catalog_product_id": "MLB18971070",
+    "catalog_listing": true,
+    "price": 599.9,
+    "currency_id": "BRL",
+    "available_quantity": 4,
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "condition": "new",
+    "pictures": [
+      {
+        "source": "https://static.hayapek.com.br/produtos/75064/550/1.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/75064/550/2.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/75064/550/3.jpg"
+      },
+      {
+        "source": "https://static.hayapek.com.br/produtos/75064/550/4.jpg"
+      }
+    ],
+    "attributes": [
+      {
+        "id": "BRAND",
+        "value_id": "82653",
+        "value_name": "Ventisol"
+      },
+      {
+        "id": "LINE",
+        "value_id": "8062811",
+        "value_name": "Coluna"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "11860495",
+        "value_name": "Turbo 6"
+      },
+      {
+        "id": "FAN_TYPE",
+        "value_id": "291721",
+        "value_name": "De pé"
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "124571",
+        "value_name": "30 cm"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "8219790",
+        "value_name": "60 Hz"
+      },
+      {
+        "id": "STRUCTURE_COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "BLADES_COLOR",
+        "value_id": "2247758",
+        "value_name": "Preto"
+      },
+      {
+        "id": "BLADES_MATERIAL",
+        "value_id": "6350782",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "value_id": "1000324",
+        "value_name": "6"
+      },
+      {
+        "id": "POWER",
+        "value_id": "3658971",
+        "value_name": "52 W"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "13410255",
+        "value_name": "1.16 m"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "8152567",
+        "value_name": "Corrente elétrica"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "value_id": "1000288",
+        "value_name": "3"
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_name": "7898461967658"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "82653",
+        "value_name": "Ventisol"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "value_id": "2230284",
+        "value_name": "Novo"
+      },
+      {
+        "id": "SELLER_SKU",
+        "value_name": "VTK000456"
+      }
+    ],
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "value_name": "12 meses"
+      }
+    ],
+    "shipping": {
+      "mode": "me2",
+      "local_pick_up": false,
+      "free_shipping": true
+    },
+    "seller_custom_field": "VTK000456"
+  }
+}

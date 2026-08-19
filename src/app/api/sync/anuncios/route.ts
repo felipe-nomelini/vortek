@@ -14,6 +14,7 @@ import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
+import { findMlProductIdentityConflicts } from '@/lib/ml-critical-attributes';
 
 export const maxDuration = 300;
 
@@ -26,6 +27,35 @@ const ML_SCAN_PAGE_SIZE = 100;
 const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at';
 const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
 const PERFORMANCE_REFRESH_INTERVAL_MS = 6 * 60 * 60 * 1000;
+
+async function ensureMlIdentityManualBlock(
+  client: ReturnType<typeof createServiceClient>,
+  itemId: string,
+  reason: string,
+) {
+  const { data: existing, error: lookupError } = await client
+    .from('ml_manual_blocklist')
+    .select('id')
+    .eq('ml_item_id', itemId)
+    .eq('ativo', true)
+    .limit(1)
+    .maybeSingle();
+  if (lookupError) return { ok: false as const, error: lookupError.message };
+  if (existing?.id) return { ok: true as const };
+
+  const { error } = await client.from('ml_manual_blocklist').insert({
+    ml_item_id: itemId,
+    // O bloqueio é por item incorreto. Bloquear o SKU impediria a publicação
+    // da oferta corrigida do mesmo produto.
+    sku: null,
+    ativo: true,
+    motivo: reason,
+    created_by: 'ml_identity_gate',
+  });
+  return error
+    ? { ok: false as const, error: error.message }
+    : { ok: true as const };
+}
 
 type MlPerformance = {
   entity_id?: string;
@@ -545,14 +575,14 @@ export async function POST(request: Request) {
 
       const { data: byItem } = await serviceClient
         .from('produtos')
-        .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
+        .select('id, sku, nome, descricao, categoria, marca, gtin, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
         .eq('ml_item_id', String(item.id))
         .maybeSingle();
 
       const bySku = !byItem && sku
         ? await serviceClient
             .from('produtos')
-            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
+            .select('id, sku, nome, descricao, categoria, marca, gtin, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
             .eq('sku', sku)
             .maybeSingle()
         : { data: null } as any;
@@ -577,7 +607,7 @@ export async function POST(request: Request) {
         if (productId) {
           const { data: productByOffer } = await serviceClient
             .from('produtos')
-            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
+            .select('id, sku, nome, descricao, categoria, marca, gtin, oferta_preferencial_id, fornecedor_preferencial_manual, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
             .eq('id', productId)
             .maybeSingle();
           produto = productByOffer || null;
@@ -587,7 +617,57 @@ export async function POST(request: Request) {
         produtoId = String(produto.id);
         skuLocal = String(produto.sku || '') || null;
 
-        if (produto.ativo !== false) {
+        const { data: identityOffers, error: identityOffersError } = await serviceClient
+          .from('produto_fornecedor_ofertas')
+          .select('id, nome, descricao, custo, estoque, prioridade, ativo')
+          .eq('produto_id', produtoId);
+        if (identityOffersError) {
+          errors.push({
+            code: 'ml_identity_supplier_evidence_failed',
+            message: identityOffersError.message,
+            context: { mlItemId: String(item.id), produtoId },
+          });
+          produtoId = null;
+          skuLocal = null;
+          produto = null;
+        } else {
+          const identityConflicts = findMlProductIdentityConflicts(
+            item,
+            produto,
+            identityOffers || [],
+          );
+          if (identityConflicts.length > 0) {
+            const reason = `Divergência material de identidade ML: ${identityConflicts
+              .map((conflict) => `${conflict.field} local=${conflict.expected} remoto=${conflict.remote}`)
+              .join('; ')}`;
+            const blockResult = await ensureMlIdentityManualBlock(
+              serviceClient,
+              String(item.id),
+              reason,
+            );
+            if (!blockResult.ok) {
+              errors.push({
+                code: 'ml_identity_manual_block_failed',
+                message: blockResult.error,
+                context: { mlItemId: String(item.id), produtoId },
+              });
+            }
+            warnings.push({
+              code: 'ml_listing_identity_mismatch_blocked',
+              message: reason,
+              context: {
+                mlItemId: String(item.id),
+                produtoId,
+                conflicts: identityConflicts,
+              },
+            });
+            produtoId = null;
+            skuLocal = null;
+            produto = null;
+          }
+        }
+
+        if (produto?.ativo !== false && produto?.id) {
           const pricing = await resolveCurrentMlPricing(item, sellerZipResult.zip);
           if (pricing.warning) {
             warnings.push({
@@ -655,7 +735,7 @@ export async function POST(request: Request) {
             const { error: pricingUpdateError } = await serviceClient
               .from('produtos')
               .update(productPatch as any)
-              .eq('id', produtoId);
+              .eq('id', String(produtoId));
 
             if (pricingUpdateError) {
               errors.push({
@@ -671,7 +751,7 @@ export async function POST(request: Request) {
                 && Math.abs(Number(item.price || 0) - configuredShippingPrice) >= 0.01
               ) {
                 const outbox = await enqueueMlPublishOutbox(serviceClient, {
-                  produtoId,
+                  produtoId: String(produtoId),
                   mlItemId: String(item.id),
                   desiredPrice: configuredShippingPrice,
                   source: 'ml_not_specified_fixed_shipping_price',

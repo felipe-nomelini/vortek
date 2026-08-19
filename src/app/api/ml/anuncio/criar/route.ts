@@ -30,6 +30,7 @@ import {
 import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
 import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
 import {
+  findMlProductIdentityConflicts,
   isMlCriticalAttributeId,
   normalizeCriticalAttributeValue,
   resolveTrustedMlCriticalValue,
@@ -1274,6 +1275,31 @@ export async function POST(req: Request) {
           { status: 502 },
         );
       }
+      const identityConflicts = findMlProductIdentityConflicts(
+        existingItem,
+        { ...produto, gtin: gtinForMl || produto.gtin },
+        supplierOffers || [],
+      );
+      if (identityConflicts.length > 0) {
+        return NextResponse.json(
+          {
+            success: false,
+            steps,
+            warnings,
+            error:
+              "Anúncio existente com o mesmo SKU diverge da identidade comprovada do produto. O vínculo automático foi bloqueado.",
+            identity_conflicts: identityConflicts,
+            existing_item: {
+              id: existingItem.id,
+              category_id: existingItem.category_id,
+              catalog_product_id: existingItem.catalog_product_id || null,
+              status: existingItem.status,
+              permalink: existingItem.permalink,
+            },
+          },
+          { status: 409 },
+        );
+      }
       if (
         existingItem.category_id &&
         String(existingItem.category_id) !== String(categoriaId)
@@ -1551,6 +1577,33 @@ export async function POST(req: Request) {
     }
     steps.anuncio.ok = true;
 
+    let latestItem = (await getListingSnapshot(result.id)) || result;
+    const identityConflicts = findMlProductIdentityConflicts(
+      latestItem,
+      { ...produto, gtin: gtinForMl || produto.gtin },
+      supplierOffers || [],
+    );
+    if (identityConflicts.length > 0) {
+      const pauseResult = await pauseCreatedListing(result.id);
+      steps.anuncio = {
+        ok: false,
+        error:
+          "Item criado, mas pausado antes da persistência por divergência material de identidade.",
+      };
+      return NextResponse.json(
+        {
+          success: false,
+          steps,
+          warnings,
+          error: steps.anuncio.error,
+          item_id: result.id,
+          identity_conflicts: identityConflicts,
+          safety_pause: pauseResult,
+        },
+        { status: 409 },
+      );
+    }
+
     const descriptionResult = await upsertListingDescription(
       result.id,
       listingDescription,
@@ -1572,7 +1625,7 @@ export async function POST(req: Request) {
       warnings.push(`Descrição pendente no ML: ${steps.descricao.error}`);
     }
 
-    let latestItem = (await getListingSnapshot(result.id)) || result;
+    latestItem = (await getListingSnapshot(result.id)) || latestItem;
     addListingStatusWarnings(latestItem, warnings);
 
     let mlFee = safePrice.mlFee || produto.ml_fee || 0.15;

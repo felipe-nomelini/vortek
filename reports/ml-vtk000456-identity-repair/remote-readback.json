@@ -1,0 +1,988 @@
+{
+  "item": {
+    "id": "MLB7461511580",
+    "site_id": "MLB",
+    "title": "Ventilador Oscilante De Coluna Ventisol 30cm Turbo 6 Pás Preto 30 Cm 60 Hz 127v Plástico",
+    "family_name": "Ventisol Coluna Turbo 6 8234 De pé",
+    "family_id": 3680007597258449,
+    "seller_id": 3294514937,
+    "category_id": "MLB1645",
+    "user_product_id": "MLBU4831701935",
+    "official_store_id": null,
+    "price": 599.9,
+    "base_price": 599.9,
+    "original_price": null,
+    "inventory_id": null,
+    "currency_id": "BRL",
+    "initial_quantity": 4,
+    "available_quantity": 4,
+    "sold_quantity": 0,
+    "sale_terms": [
+      {
+        "id": "WARRANTY_TYPE",
+        "name": "Tipo de garantia",
+        "value_id": "2230279",
+        "value_name": "Garantia de fábrica",
+        "value_struct": null,
+        "values": [
+          {
+            "id": "2230279",
+            "name": "Garantia de fábrica",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "WARRANTY_TIME",
+        "name": "Tempo de garantia",
+        "value_id": null,
+        "value_name": "12 meses",
+        "value_struct": {
+          "number": 12,
+          "unit": "meses"
+        },
+        "values": [
+          {
+            "id": null,
+            "name": "12 meses",
+            "struct": {
+              "number": 12,
+              "unit": "meses"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      }
+    ],
+    "buying_mode": "buy_it_now",
+    "listing_type_id": "gold_special",
+    "start_time": "2026-08-19T23:11:52.983Z",
+    "stop_time": "2046-08-14T04:00:00.000Z",
+    "end_time": "2046-08-14T04:00:00.000Z",
+    "expiration_time": "2026-11-07T23:11:53.156Z",
+    "condition": "new",
+    "permalink": "https://produto.mercadolivre.com.br/MLB-7461511580-ventilador-oscilante-de-coluna-ventisol-30cm-turbo-6-pas-preto-30-cm-60-hz-127v-plastico-_JM",
+    "thumbnail_id": "866766-MLA116256502055_082026",
+    "thumbnail": "http://http2.mlstatic.com/D_866766-MLA116256502055_082026-I.jpg",
+    "pictures": [
+      {
+        "id": "866766-MLA116256502055_082026",
+        "url": "http://http2.mlstatic.com/D_866766-MLA116256502055_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_866766-MLA116256502055_082026-O.jpg",
+        "size": "500x399",
+        "max_size": "1200x959",
+        "quality": ""
+      },
+      {
+        "id": "638147-MLA112113125060_062026",
+        "url": "http://http2.mlstatic.com/D_638147-MLA112113125060_062026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_638147-MLA112113125060_062026-O.jpg",
+        "size": "500x500",
+        "max_size": "800x800",
+        "quality": ""
+      },
+      {
+        "id": "641348-MLU75816553608_042024",
+        "url": "http://http2.mlstatic.com/D_641348-MLU75816553608_042024-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_641348-MLU75816553608_042024-O.webp",
+        "size": "166x500",
+        "max_size": "225x676",
+        "quality": ""
+      },
+      {
+        "id": "784363-MLA88000255162_072025",
+        "url": "http://http2.mlstatic.com/D_784363-MLA88000255162_072025-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_784363-MLA88000255162_072025-O.jpg",
+        "size": "500x500",
+        "max_size": "800x800",
+        "quality": ""
+      },
+      {
+        "id": "678534-MLA116256725947_082026",
+        "url": "http://http2.mlstatic.com/D_678534-MLA116256725947_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_678534-MLA116256725947_082026-O.jpg",
+        "size": "500x375",
+        "max_size": "1200x900",
+        "quality": ""
+      },
+      {
+        "id": "797842-MLA116257018201_082026",
+        "url": "http://http2.mlstatic.com/D_797842-MLA116257018201_082026-O.webp",
+        "secure_url": "https://http2.mlstatic.com/D_797842-MLA116257018201_082026-O.webp",
+        "size": "257x500",
+        "max_size": "617x1200",
+        "quality": ""
+      },
+      {
+        "id": "837199-MLA114880009534_082026",
+        "url": "http://http2.mlstatic.com/D_837199-MLA114880009534_082026-O.jpg",
+        "secure_url": "https://http2.mlstatic.com/D_837199-MLA114880009534_082026-O.jpg",
+        "size": "375x500",
+        "max_size": "900x1200",
+        "quality": ""
+      }
+    ],
+    "video_id": null,
+    "descriptions": [],
+    "accepts_mercadopago": true,
+    "non_mercado_pago_payment_methods": [],
+    "shipping": {
+      "mode": "me2",
+      "methods": [],
+      "tags": [
+        "mandatory_free_shipping"
+      ],
+      "dimensions": null,
+      "local_pick_up": false,
+      "free_shipping": true,
+      "logistic_type": "xd_drop_off",
+      "store_pick_up": false
+    },
+    "international_delivery_mode": "none",
+    "seller_address": {
+      "address_line": "Rua João Marques de Nóbrega 300",
+      "zip_code": "86206240",
+      "city": {
+        "id": "TUxCQ0lCSTQ1Y2Fh",
+        "name": "Ibiporã"
+      },
+      "state": {
+        "id": "BR-PR",
+        "name": "Paraná"
+      },
+      "country": {
+        "id": "BR",
+        "name": "Brasil"
+      },
+      "search_location": {
+        "city": {
+          "id": "TUxCQ0lCSTQ1Y2Fh",
+          "name": "Ibiporã"
+        },
+        "state": {
+          "id": "TUxCUFBBUkExODBlZA",
+          "name": "Paraná"
+        }
+      },
+      "latitude": -23.284674,
+      "longitude": -51.083409,
+      "id": 1586042717
+    },
+    "seller_contact": null,
+    "location": {},
+    "geolocation": {
+      "latitude": -23.284674,
+      "longitude": -51.083409
+    },
+    "coverage_areas": [],
+    "attributes": [
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "name": "Modelo alfanumérico",
+        "value_id": "72564569",
+        "value_name": "8234",
+        "values": [
+          {
+            "id": "72564569",
+            "name": "8234",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BLADES_COLOR",
+        "name": "Cor das pás",
+        "value_id": "2247758",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "2247758",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BLADES_MATERIAL",
+        "name": "Material das pás",
+        "value_id": "6350782",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "6350782",
+            "name": "Plástico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "BLADES_NUMBER",
+        "name": "Quantidade de pás",
+        "value_id": "1000324",
+        "value_name": "6",
+        "values": [
+          {
+            "id": "1000324",
+            "name": "6",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "BRAND",
+        "name": "Marca",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "DEPTH",
+        "name": "Profundidade",
+        "value_id": "8970584",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "8970584",
+            "name": "50 cm",
+            "struct": {
+              "number": 50,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "DIAMETER",
+        "name": "Diâmetro",
+        "value_id": "124571",
+        "value_name": "30 cm",
+        "values": [
+          {
+            "id": "124571",
+            "name": "30 cm",
+            "struct": {
+              "number": 30,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ARGENTINA",
+        "name": "Eficiência energética Argentina",
+        "value_id": "33344208",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344208",
+            "name": "A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_BRASIL",
+        "name": "Eficiência energética Brasil",
+        "value_id": "33344215",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344215",
+            "name": "A",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_CHILE",
+        "name": "Eficiência energética Chile",
+        "value_id": "33344231",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344231",
+            "name": "A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_COLOMBIA",
+        "name": "Eficiência energética Colômbia",
+        "value_id": "33344222",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344222",
+            "name": "A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_ECUADOR",
+        "name": "Eficiência energética Equador",
+        "value_id": "33344245",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344245",
+            "name": "A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_PERU",
+        "name": "Eficiência energética Peru",
+        "value_id": "33344252",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344252",
+            "name": "A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY_URUGUAY",
+        "name": "Eficiência energética Uruguai",
+        "value_id": "33344238",
+        "value_name": "A",
+        "values": [
+          {
+            "id": "33344238",
+            "name": "A",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FAN_TYPE",
+        "name": "Tipo de ventilador",
+        "value_id": "291721",
+        "value_name": "De pé",
+        "values": [
+          {
+            "id": "291721",
+            "name": "De pé",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "FREQUENCY",
+        "name": "Frequência",
+        "value_id": "8219790",
+        "value_name": "60 Hz",
+        "values": [
+          {
+            "id": "8219790",
+            "name": "60 Hz",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GRID_MATERIAL",
+        "name": "Material da grade",
+        "value_id": "82756",
+        "value_name": "Plástico",
+        "values": [
+          {
+            "id": "82756",
+            "name": "Plástico",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "GTIN",
+        "name": "Código universal de produto",
+        "value_id": null,
+        "value_name": "7898461967658",
+        "values": [
+          {
+            "id": null,
+            "name": "7898461967658",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "HEIGHT",
+        "name": "Altura",
+        "value_id": "13410255",
+        "value_name": "1.16 m",
+        "values": [
+          {
+            "id": "13410255",
+            "name": "1.16 m",
+            "struct": {
+              "number": 1.16,
+              "unit": "m"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "INCLUDES_LIGHT_SWITCH",
+        "name": "Inclui interruptor de luz",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "INCLUDES_REMOTE_CONTROL",
+        "name": "Inclui controle remoto",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "name": "É industrial",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_PROGRAMMABLE",
+        "name": "É programável",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "IS_SILENT",
+        "name": "É silencioso",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "ITEM_CONDITION",
+        "name": "Condição do item",
+        "value_id": "2230284",
+        "value_name": "Novo",
+        "values": [
+          {
+            "id": "2230284",
+            "name": "Novo",
+            "struct": null
+          }
+        ],
+        "value_type": "list"
+      },
+      {
+        "id": "LAMPS_NUMBER",
+        "name": "Quantidade de lâmpadas",
+        "value_id": "13174582",
+        "value_name": "0",
+        "values": [
+          {
+            "id": "13174582",
+            "name": "0",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "LINE",
+        "name": "Linha",
+        "value_id": "8062811",
+        "value_name": "Coluna",
+        "values": [
+          {
+            "id": "8062811",
+            "name": "Coluna",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MANUFACTURER",
+        "name": "Fabricante",
+        "value_id": "82653",
+        "value_name": "Ventisol",
+        "values": [
+          {
+            "id": "82653",
+            "name": "Ventisol",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MAX_ROTATION_SPEED",
+        "name": "Velocidade máxima de rotação",
+        "value_id": "25483101",
+        "value_name": "1560 rpm",
+        "values": [
+          {
+            "id": "25483101",
+            "name": "1560 rpm",
+            "struct": {
+              "number": 1560,
+              "unit": "rpm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "MODEL",
+        "name": "Modelo",
+        "value_id": "11860495",
+        "value_name": "Turbo 6",
+        "values": [
+          {
+            "id": "11860495",
+            "name": "Turbo 6",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "MPN",
+        "name": "MPN",
+        "value_id": "11861696",
+        "value_name": "8235",
+        "values": [
+          {
+            "id": "11861696",
+            "name": "8235",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "NOISE_LEVEL",
+        "name": "Nível de ruído",
+        "value_id": "8058449",
+        "value_name": "54 dB",
+        "values": [
+          {
+            "id": "8058449",
+            "name": "54 dB",
+            "struct": {
+              "number": 54,
+              "unit": "dB"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "POWER",
+        "name": "Potência",
+        "value_id": "3658971",
+        "value_name": "52 W",
+        "values": [
+          {
+            "id": "3658971",
+            "name": "52 W",
+            "struct": {
+              "number": 52,
+              "unit": "W"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "name": "Tipo de alimentação",
+        "value_id": "8152567",
+        "value_name": "Corrente elétrica",
+        "values": [
+          {
+            "id": "8152567",
+            "name": "Corrente elétrica",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SELLER_SKU",
+        "name": "SKU",
+        "value_id": null,
+        "value_name": "VTK000456",
+        "values": [
+          {
+            "id": null,
+            "name": "VTK000456",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "name": "Quantidade de velocidades",
+        "value_id": "1000288",
+        "value_name": "3",
+        "values": [
+          {
+            "id": "1000288",
+            "name": "3",
+            "struct": null
+          }
+        ],
+        "value_type": "number"
+      },
+      {
+        "id": "STRUCTURE_COLOR",
+        "name": "Cor da estrutura",
+        "value_id": "52049",
+        "value_name": "Preto",
+        "values": [
+          {
+            "id": "52049",
+            "name": "Preto",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "VOLTAGE",
+        "name": "Voltagem",
+        "value_id": "39205162",
+        "value_name": "127V",
+        "values": [
+          {
+            "id": "39205162",
+            "name": "127V",
+            "struct": null
+          }
+        ],
+        "value_type": "string"
+      },
+      {
+        "id": "WEIGHT",
+        "name": "Peso",
+        "value_id": "946977",
+        "value_name": "3.5 kg",
+        "values": [
+          {
+            "id": "946977",
+            "name": "3.5 kg",
+            "struct": {
+              "number": 3.5,
+              "unit": "kg"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WIDTH",
+        "name": "Largura",
+        "value_id": "5662053",
+        "value_name": "50 cm",
+        "values": [
+          {
+            "id": "5662053",
+            "name": "50 cm",
+            "struct": {
+              "number": 50,
+              "unit": "cm"
+            }
+          }
+        ],
+        "value_type": "number_unit"
+      },
+      {
+        "id": "WITH_360_DEGREES_ROTATION",
+        "name": "Com rotação de 360 graus",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ADJUSTABLE_HEIGHT",
+        "name": "Com altura ajustável",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_EXTRACTABLE_GRID",
+        "name": "Com grade removível",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_INMETRO_CERTIFICATE",
+        "name": "Com certificado INMETRO",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_LED_LIGHTS",
+        "name": "Com luzes LED",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_LIGHT",
+        "name": "Com luz",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_OSCILLATION",
+        "name": "Com oscilação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_REPELLENT_FUNCTION",
+        "name": "Com função repelente",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_REVERSIBLE_BLADES",
+        "name": "Com pás reversíveis",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_ROTATING_GRID",
+        "name": "Com grade giratória",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_TILT",
+        "name": "Com inclinação",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "name": "Com função turbo",
+        "value_id": "242085",
+        "value_name": "Sim",
+        "values": [
+          {
+            "id": "242085",
+            "name": "Sim",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      },
+      {
+        "id": "WITH_WI_FI",
+        "name": "Com Wi-Fi",
+        "value_id": "242084",
+        "value_name": "Não",
+        "values": [
+          {
+            "id": "242084",
+            "name": "Não",
+            "struct": null
+          }
+        ],
+        "value_type": "boolean"
+      }
+    ],
+    "warnings": [],
+    "listing_source": "",
+    "variations": [],
+    "status": "active",
+    "sub_status": [],
+    "tags": [
+      "immediate_payment",
+      "cart_eligible"
+    ],
+    "warranty": "Garantia de fábrica: 12 meses",
+    "catalog_product_id": "MLB18971070",
+    "domain_id": "MLB-FANS",
+    "seller_custom_field": "VTK000456",
+    "parent_item_id": null,
+    "differential_pricing": null,
+    "deal_ids": [],
+    "automatic_relist": false,
+    "date_created": "2026-08-19T23:11:53.364Z",
+    "last_updated": "2026-08-19T23:11:53.364Z",
+    "health": null,
+    "catalog_listing": true,
+    "item_relations": [],
+    "channels": [
+      "marketplace"
+    ]
+  },
+  "identity": {
+    "fields": {
+      "seller": true,
+      "sku": true,
+      "gtin": true,
+      "brand": true,
+      "model": true,
+      "diameter": true,
+      "voltage": true,
+      "category": true,
+      "catalog": true,
+      "catalog_listing": true
+    },
+    "passed": true
+  }
+}

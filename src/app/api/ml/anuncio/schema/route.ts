@@ -21,6 +21,7 @@ import {
 } from "@/lib/ml-critical-attributes";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
+import { mergeMlAttributePrefill } from "@/lib/ml-listing-identity";
 
 function normalizeStr(v: unknown): string {
   return String(v ?? "").trim();
@@ -405,16 +406,17 @@ export async function POST(req: Request) {
         ? trustedCriticalValue
           ? pickAllowedValue(attr, trustedCriticalValue)
           : {}
-        : {
-            ...initialAttributeValue(attr, produtoForMl),
-            ...ruleBasedValue,
-            // Category prediction is useful for assisted editing, but cannot
-            // be treated as evidence in unattended supplier batches.
-            ...(strictEvidence ? {} : (predictionByAttr.get(attrId) || {})),
+        : mergeMlAttributePrefill({
+            // Predição ML é apenas preenchimento auxiliar. Evidência local e
+            // regra derivada do produto sempre têm precedência.
+            prediction: predictionByAttr.get(attrId),
+            initial: initialAttributeValue(attr, produtoForMl),
+            ruleBased: ruleBasedValue,
+            strictEvidence,
             // ML prediction often defaults pack attributes to one unit. For a
             // kit, the quantity parsed from the local product is authoritative.
-            ...(mustKeepLocalPackValue ? ruleBasedValue : {}),
-          };
+            keepRuleBased: mustKeepLocalPackValue,
+          });
       if (isInvalidLiteralValue(pre.value_name) && !pre.value_id) {
         delete pre.value_name;
       }

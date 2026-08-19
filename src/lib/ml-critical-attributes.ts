@@ -3,6 +3,12 @@ import {
   extractStrictVoltage,
   normalizeVoltageValue,
 } from "@/lib/ml-voltage";
+import {
+  extractStrictProductDiameter,
+  findMlListingIdentityConflicts,
+  normalizeMlDiameter,
+  type MlListingIdentityConflict,
+} from "@/lib/ml-listing-identity";
 
 export {
   extractStrictVoltage,
@@ -14,6 +20,8 @@ const CRITICAL_ML_ATTRIBUTE_IDS = new Set([
   "NOMINAL_VOLTAGE",
   "PACKAGES_NUMBER",
   "PACKAGING_BOXES_NUMBER",
+  "DIAMETER",
+  "BLADES_DIAMETER",
 ]);
 
 function normalizeText(input: unknown): string {
@@ -52,6 +60,9 @@ export function normalizeCriticalAttributeValue(
     const numeric = Number(String(value).match(/\d+/)?.[0]);
     return Number.isFinite(numeric) && numeric > 0 ? String(numeric) : null;
   }
+  if (id === "DIAMETER" || id === "BLADES_DIAMETER") {
+    return normalizeMlDiameter(value);
+  }
   return String(value).trim() || null;
 }
 
@@ -72,6 +83,7 @@ export function resolveMlCriticalFacts(produto: any, offers: any[] = []) {
     id: String(offer?.id || ""),
     voltage: extractStrictVoltage([offer?.nome, offer?.descricao].filter(Boolean).join(" ")),
     packagesNumber: extractPackagesNumber([offer?.nome, offer?.descricao].filter(Boolean).join(" ")),
+    diameter: extractStrictProductDiameter(offer?.nome),
   }));
   const distinctVoltages = Array.from(
     new Set(allOfferFacts.map((row) => row.voltage).filter(Boolean)),
@@ -89,6 +101,9 @@ export function resolveMlCriticalFacts(produto: any, offers: any[] = []) {
     voltage: extractStrictVoltage(preferredText) || extractStrictVoltage(productText),
     packagesNumber:
       extractPackagesNumber(preferredText) ?? extractPackagesNumber(productText),
+    diameter:
+      extractStrictProductDiameter(preferredOffer?.nome) ||
+      extractStrictProductDiameter(produto?.nome),
     distinctVoltages,
     distinctPackages,
   };
@@ -107,5 +122,24 @@ export function resolveTrustedMlCriticalValue(
   if (id === "PACKAGES_NUMBER" || id === "PACKAGING_BOXES_NUMBER") {
     return normalizeCriticalAttributeValue(id, facts.packagesNumber);
   }
+  if (id === "DIAMETER" || id === "BLADES_DIAMETER") {
+    return normalizeCriticalAttributeValue(id, facts.diameter);
+  }
   return null;
+}
+
+export function findMlProductIdentityConflicts(
+  item: any,
+  produto: any,
+  offers: any[] = [],
+): MlListingIdentityConflict[] {
+  const facts = resolveMlCriticalFacts(produto, offers);
+  return findMlListingIdentityConflicts(item, {
+    sellerSku: produto?.sku,
+    gtin: produto?.gtin,
+    brand: produto?.marca,
+    diameter: facts.diameter,
+    voltage: facts.voltage,
+    packagesNumber: facts.packagesNumber,
+  });
 }

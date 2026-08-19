@@ -40,7 +40,19 @@ export type MlProductFacts = {
   coolingCapacity?: string;
   packagesNumber?: number;
   isRechargeable?: string;
+  diameter?: string;
 };
+
+function extractProductDiameterFromName(value: unknown): string | undefined {
+  const matches = Array.from(
+    String(value ?? "").matchAll(/(\d{1,3}(?:[.,]\d+)?)\s*cm\b/gi),
+  )
+    .map((match) => Number(String(match[1]).replace(",", ".")))
+    .filter((numeric) => Number.isFinite(numeric) && numeric > 0)
+    .map((numeric) => `${Number.isInteger(numeric) ? numeric : numeric.toFixed(1)} cm`);
+  const distinct = Array.from(new Set(matches));
+  return distinct.length === 1 ? distinct[0] : undefined;
+}
 
 function normalizeText(input: unknown) {
   return String(input ?? "")
@@ -189,6 +201,9 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
   const isAirConditioner =
     text.includes("ar-condicionado") || text.includes("ar condicionado");
   const isFan = text.includes("ventilador");
+  const diameter = isFan
+    ? extractProductDiameterFromName(produto?.nome || "")
+    : undefined;
   const isMonitorMount = text.includes("suporte") && text.includes("monitor");
   const isPortableRadio =
     text.includes("radio portatil") || text.includes("rádio portátil");
@@ -358,6 +373,7 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
           ? "Não"
           : undefined
       : undefined,
+    diameter,
   };
 }
 
@@ -368,6 +384,13 @@ export function applyProductFactsToMlAttribute(
   const id = String(field?.id || "").toUpperCase();
   const name = normalizeText(field?.name);
   const tags = field?.tags || {};
+
+  if (
+    (id === "DIAMETER" || id === "BLADES_DIAMETER" || name === "diametro") &&
+    facts.diameter
+  ) {
+    return { value_name: facts.diameter };
+  }
 
   if (
     (id === "SALE_FORMAT" || name.includes("formato de venda")) &&

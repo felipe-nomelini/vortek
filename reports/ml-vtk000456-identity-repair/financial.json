@@ -1,0 +1,45 @@
+{
+  "values": {
+    "price": 599.9,
+    "fee": 65.99,
+    "shipping": 68.65,
+    "cost": 132.28,
+    "tax": 24,
+    "profit": 308.98,
+    "margin": 0.5150525087514586
+  },
+  "fee_raw": {
+    "currency_id": "BRL",
+    "free_relist": false,
+    "listing_exposure": "highest",
+    "listing_fee_amount": 0,
+    "listing_fee_details": {
+      "fixed_fee": 0,
+      "gross_amount": 0
+    },
+    "listing_type_id": "gold_special",
+    "listing_type_name": "Clássico",
+    "requires_picture": true,
+    "sale_fee_amount": 65.99,
+    "sale_fee_details": {
+      "fixed_fee": 0,
+      "gross_amount": 65.99,
+      "percentage_fee": 11
+    },
+    "stop_time": "2046-08-14T00:00:00.000-04:00"
+  },
+  "shipping_raw": {
+    "coverage": {
+      "all_country": {
+        "list_cost": 68.65,
+        "currency_id": "BRL",
+        "billable_weight": 9625,
+        "discount": {
+          "rate": 0.5,
+          "type": "mandatory",
+          "promoted_amount": 137.3
+        }
+      }
+    }
+  }
+}
