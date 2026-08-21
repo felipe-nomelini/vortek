@@ -1,6 +1,8 @@
-type DsliteCreateFailureLike = {
-  failureType?: unknown;
-  parsedBody?: unknown;
+export type DsliteCreatePayloadClassification = {
+  accepted: boolean;
+  lockTimeout: boolean;
+  dsid: number | null;
+  nfeKey: string | null;
 };
 
 export function isDsliteCreatedOrderVerified(
@@ -12,21 +14,40 @@ export function isDsliteCreatedOrderVerified(
   return actualDsid.length > 0 && actualDsid === String(expectedDsid).trim();
 }
 
-export function canFallbackToSupplierlessCreate(
-  failure: DsliteCreateFailureLike,
-): boolean {
-  if (failure.failureType !== 'invalid_response') return false;
-  if (!failure.parsedBody || typeof failure.parsedBody !== 'object') return false;
+export function isDsliteLockWaitTimeout(payload: unknown): boolean {
+  const normalized = JSON.stringify(payload || {}).toLowerCase();
+  return normalized.includes('lock wait timeout exceeded')
+    || (normalized.includes('sqlstate[hy000]') && normalized.includes('1205'));
+}
 
-  const body = failure.parsedBody as {
-    sucesso?: unknown;
-    erros?: unknown;
-    logs?: Array<{ dsid?: unknown }>;
+export function classifyDsliteCreatePayload(
+  payload: unknown,
+): DsliteCreatePayloadClassification {
+  const body = payload && typeof payload === 'object'
+    ? payload as {
+        sucesso?: unknown;
+        erros?: unknown;
+        logs?: Array<{ dsid?: unknown; chave_acesso?: unknown }>;
+      }
+    : null;
+  const logs = Array.isArray(body?.logs) ? body.logs : [];
+  const dsidRaw = logs.find((log) => String(log?.dsid ?? '').trim())?.dsid;
+  const parsedDsid = Number(dsidRaw);
+  const nfeKey = logs
+    .map((log) => String(log?.chave_acesso ?? '').replace(/\D/g, ''))
+    .find((key) => key.length === 44) || null;
+
+  return {
+    accepted: Number(body?.sucesso) > 0 && Number(body?.erros) === 0,
+    lockTimeout: isDsliteLockWaitTimeout(payload),
+    dsid: Number.isFinite(parsedDsid) && parsedDsid > 0 ? parsedDsid : null,
+    nfeKey,
   };
-  const hasReturnedDsid = Array.isArray(body.logs)
-    && body.logs.some((log) => String(log?.dsid ?? '').trim().length > 0);
+}
 
-  return !hasReturnedDsid
-    && Number(body.sucesso) === 0
-    && Number(body.erros) > 0;
+export function extractDsliteNfeKeyFromXml(xml: string): string | null {
+  const chNfe = xml.match(/<(?:\w+:)?chNFe>\s*(\d{44})\s*<\/(?:\w+:)?chNFe>/i)?.[1];
+  if (chNfe) return chNfe;
+
+  return xml.match(/\bId=["']NFe(\d{44})["']/i)?.[1] || null;
 }

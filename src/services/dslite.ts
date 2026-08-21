@@ -5,7 +5,11 @@
  */
 import { createServiceClient } from '@/lib/supabase';
 import { DSLITE_LABEL_FORM_FIELD } from '@/lib/dslite/api-contract';
-import { isDsliteCreatedOrderVerified } from '@/lib/dslite/create-order-verification';
+import {
+  classifyDsliteCreatePayload,
+  extractDsliteNfeKeyFromXml,
+  isDsliteCreatedOrderVerified,
+} from '@/lib/dslite/create-order-verification';
 import { z } from 'zod';
 
 interface DsliteConfig {
@@ -26,7 +30,6 @@ export type DsliteFetchResult<T> = {
 
 const DSLITE_FETCH_MAX_ATTEMPTS = 3;
 const DSLITE_FETCH_RETRY_DELAYS_MS = [750, 2000];
-const DSLITE_CREATE_ORDER_MAX_ATTEMPTS = 2;
 const DSLITE_CREATE_VERIFY_MAX_ATTEMPTS = 3;
 const DSLITE_CREATE_VERIFY_RETRY_DELAYS_MS = [1500, 3000];
 
@@ -36,12 +39,6 @@ function sleep(ms: number): Promise<void> {
 
 function isRetryableDsliteStatus(status: number): boolean {
   return status === 408 || status === 425 || status === 429 || status >= 500;
-}
-
-function isDsliteLockWaitTimeout(value: unknown): boolean {
-  return JSON.stringify(value || {})
-    .toLowerCase()
-    .includes('lock wait timeout exceeded');
 }
 
 async function getConfig(): Promise<DsliteConfig | null> {
@@ -346,6 +343,8 @@ export function findDsliteShippingOptionForCarrier(
 export type DsliteCreateOrderFailureType =
   | 'http_error'
   | 'timeout'
+  | 'lock_timeout'
+  | 'busy'
   | 'invalid_response'
   | 'verification_failed'
   | 'cancelled';
@@ -358,6 +357,7 @@ export type DsliteCreateOrderResult =
       raw: DsliteCriarPedidoResponse;
       createMode: DsliteCreateOrderMode;
       endpointPath: string;
+      reconciledBy?: 'pre_write_nf_key' | 'post_write_nf_key' | 'returned_dsid';
     } & DslitePedidoRetorno)
   | {
       success: false;
@@ -407,47 +407,66 @@ export interface DsliteCriarPedidoResponse {
   sucesso: number;
   erros: number;
   logs: {
-    dsid: number;
-    status: string;
-    chave_acesso: string;
-    nf_numero: string;
-    mensagem_tipo: string;
-    mensagem_conteudo: string;
+    dsid?: number;
+    status?: string;
+    chave_acesso?: string;
+    nf_numero?: string;
+    mensagem_tipo?: string;
+    mensagem_conteudo?: string;
   }[];
+}
+
+async function fetchDsliteOrderByReference(
+  cfg: DsliteConfig,
+  reference: number | string,
+): Promise<DslitePedidoRetorno | null> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+
+  try {
+    const response = await fetch(
+      `${cfg.url}/v1/DropShipping/${encodeURIComponent(String(reference))}`,
+      {
+        method: 'GET',
+        signal: controller.signal,
+        headers: {
+          Accept: 'application/json',
+          Token: cfg.token,
+        },
+      },
+    );
+    if (response.ok) {
+      const payload = await response.json().catch(() => null);
+      if (payload && typeof payload === 'object' && Number((payload as any).dsid) > 0) {
+        return payload as DslitePedidoRetorno;
+      }
+    }
+  } catch (error: any) {
+    console.warn(
+      `[dslite] Falha ao consultar pedido por ${reference}: ${error?.message || 'sem detalhe'}`,
+    );
+  } finally {
+    clearTimeout(timeout);
+  }
+
+  return null;
 }
 
 async function verifyCreatedDsliteOrder(
   cfg: DsliteConfig,
-  dsid: number | string,
+  reference: number | string,
+  expectedDsid?: number | string | null,
 ): Promise<DslitePedidoRetorno | null> {
   for (let attempt = 1; attempt <= DSLITE_CREATE_VERIFY_MAX_ATTEMPTS; attempt += 1) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const payload = await fetchDsliteOrderByReference(cfg, reference);
+    if (payload && (!expectedDsid || isDsliteCreatedOrderVerified(payload, expectedDsid))) {
+      return payload;
+    }
 
-    try {
-      const response = await fetch(
-        `${cfg.url}/v1/DropShipping/${encodeURIComponent(String(dsid))}`,
-        {
-          method: 'GET',
-          signal: controller.signal,
-          headers: {
-            Accept: 'application/json',
-            Token: cfg.token,
-          },
-        },
-      );
-      if (response.ok) {
-        const payload = await response.json().catch(() => null);
-        if (isDsliteCreatedOrderVerified(payload, dsid)) {
-          return payload as DslitePedidoRetorno;
-        }
-      }
-    } catch (error: any) {
+    if (!payload) {
       console.warn(
-        `[dslite] Falha ao confirmar pedido ${dsid} (tentativa ${attempt}/${DSLITE_CREATE_VERIFY_MAX_ATTEMPTS}): ${error?.message || 'sem detalhe'}`,
+        `[dslite] Pedido ${reference} ainda não confirmado (tentativa ${attempt}/${DSLITE_CREATE_VERIFY_MAX_ATTEMPTS})`,
       );
-    } finally {
-      clearTimeout(timeout);
     }
 
     if (attempt < DSLITE_CREATE_VERIFY_MAX_ATTEMPTS) {
@@ -456,6 +475,30 @@ async function verifyCreatedDsliteOrder(
   }
 
   return null;
+}
+
+function isCancelledDsliteOrder(order: DslitePedidoRetorno): boolean {
+  const status = String(order.status || '').toLowerCase();
+  const statusCode = String((order as any).status_code || '').toUpperCase();
+  return statusCode === 'CAN' || statusCode === 'CEM' || status.includes('cancelado');
+}
+
+function buildReconciledCreateResult(params: {
+  order: DslitePedidoRetorno;
+  raw: DsliteCriarPedidoResponse;
+  createMode: DsliteCreateOrderMode;
+  endpointPath: string;
+  reconciledBy: 'pre_write_nf_key' | 'post_write_nf_key' | 'returned_dsid';
+}): DsliteCreateOrderResult {
+  return {
+    success: true,
+    ...params.order,
+    dsid: Number(params.order.dsid),
+    raw: params.raw,
+    createMode: params.createMode,
+    endpointPath: params.endpointPath,
+    reconciledBy: params.reconciledBy,
+  };
 }
 
 // ── Services ─────────────────────────────────────────────────
@@ -541,16 +584,27 @@ async function criarPedidoDropshippingBase(
     };
   }
 
-  let lastFailure: DsliteCreateOrderResult | null = null;
+  const nfeKey = extractDsliteNfeKeyFromXml(xmlConteudo);
+  if (nfeKey) {
+    const existingOrder = await fetchDsliteOrderByReference(cfg, nfeKey);
+    if (existingOrder && !isCancelledDsliteOrder(existingOrder)) {
+      return buildReconciledCreateResult({
+        order: existingOrder,
+        raw: { total: 1, sucesso: 1, erros: 0, logs: [] },
+        createMode,
+        endpointPath,
+        reconciledBy: 'pre_write_nf_key',
+      });
+    }
+  }
 
-  for (let attempt = 1; attempt <= DSLITE_CREATE_ORDER_MAX_ATTEMPTS; attempt += 1) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 60000);
-    const formData = new FormData();
-    const blob = new Blob([xmlConteudo], { type: 'application/xml' });
-    formData.append('files', blob, 'nota.xml');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000);
+  const formData = new FormData();
+  const blob = new Blob([xmlConteudo], { type: 'application/xml' });
+  formData.append('files', blob, 'nota.xml');
 
-    try {
+  try {
       const res = await fetch(`${cfg.url}${endpointPath}`, {
         method: 'POST',
         signal: controller.signal,
@@ -574,7 +628,7 @@ async function criarPedidoDropshippingBase(
       if (!res.ok) {
         const message = `HTTP ${res.status}: ${responseText.substring(0, 500) || 'resposta vazia da DSLite'}`;
         console.error(`[dslite] Erro ao criar pedido: ${message}`);
-        lastFailure = {
+        const failure: DsliteCreateOrderResult = {
           success: false,
           failureType: 'http_error',
           statusHttp: res.status,
@@ -584,21 +638,52 @@ async function criarPedidoDropshippingBase(
           createMode,
           endpointPath,
         };
-        if (isRetryableDsliteStatus(res.status) && attempt < DSLITE_CREATE_ORDER_MAX_ATTEMPTS) {
-          await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
-          continue;
+        if (nfeKey && isRetryableDsliteStatus(res.status)) {
+          const ghostOrder = await verifyCreatedDsliteOrder(cfg, nfeKey);
+          if (ghostOrder && !isCancelledDsliteOrder(ghostOrder)) {
+            return buildReconciledCreateResult({
+              order: ghostOrder,
+              raw: parsedBody as DsliteCriarPedidoResponse || { total: 1, sucesso: 1, erros: 0, logs: [] },
+              createMode,
+              endpointPath,
+              reconciledBy: 'post_write_nf_key',
+            });
+          }
         }
-        return lastFailure;
+        return failure;
       }
 
       const data = parsedBody as DsliteCriarPedidoResponse | null;
       const log = data?.logs?.[0];
-      if (!log?.dsid) {
-        const message = 'Resposta DSLite sem dsid no payload de criação';
+      const classification = classifyDsliteCreatePayload(parsedBody);
+      const reconciliationKey = classification.nfeKey || nfeKey;
+      if (!classification.dsid) {
+        if (reconciliationKey) {
+          const reconciledOrder = await verifyCreatedDsliteOrder(cfg, reconciliationKey);
+          if (reconciledOrder && !isCancelledDsliteOrder(reconciledOrder)) {
+            return buildReconciledCreateResult({
+              order: reconciledOrder,
+              raw: data || { total: 1, sucesso: 1, erros: 0, logs: [] },
+              createMode,
+              endpointPath,
+              reconciledBy: 'post_write_nf_key',
+            });
+          }
+        }
+
+        const message = classification.lockTimeout
+          ? 'DSLite sofreu lock interno SQL 1205; nenhum pedido foi confirmado. Aguarde e tente manualmente.'
+          : classification.accepted
+            ? 'DSLite aceitou a criação, mas o pedido ainda não pôde ser confirmado pela chave da NF.'
+            : 'Resposta DSLite sem dsid no payload de criação';
         console.error(`[dslite] ${message}:`, JSON.stringify(data, null, 2));
-        lastFailure = {
+        return {
           success: false,
-          failureType: 'invalid_response',
+          failureType: classification.lockTimeout
+            ? 'lock_timeout'
+            : classification.accepted
+              ? 'verification_failed'
+              : 'invalid_response',
           statusHttp: res.status,
           responseText,
           parsedBody,
@@ -606,16 +691,15 @@ async function criarPedidoDropshippingBase(
           createMode,
           endpointPath,
         };
-        if (isDsliteLockWaitTimeout(parsedBody) && attempt < DSLITE_CREATE_ORDER_MAX_ATTEMPTS) {
-          await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
-          continue;
-        }
-        return lastFailure;
       }
 
-      const verifiedOrder = await verifyCreatedDsliteOrder(cfg, log.dsid);
+      const verifiedOrder = await verifyCreatedDsliteOrder(
+        cfg,
+        classification.dsid,
+        classification.dsid,
+      );
       if (!verifiedOrder) {
-        const message = `DSLite retornou o pedido ${log.dsid}, mas não confirmou sua existência após a criação`;
+        const message = `DSLite retornou o pedido ${classification.dsid}, mas não confirmou sua existência após a criação`;
         console.error(`[dslite] ${message}`);
         return {
           success: false,
@@ -626,29 +710,44 @@ async function criarPedidoDropshippingBase(
           message,
           createMode,
           endpointPath,
-          unverifiedDsid: Number(log.dsid),
+          unverifiedDsid: classification.dsid,
         };
       }
 
-      return {
-        success: true,
-        ...verifiedOrder,
-        dsid: Number(verifiedOrder.dsid),
-        status: verifiedOrder.status || log.status,
-        chave_acesso:
-          verifiedOrder.chave_acesso
-          || String((verifiedOrder as any).nf_chave || '')
-          || log.chave_acesso,
-        nf_numero: verifiedOrder.nf_numero || log.nf_numero,
+      return buildReconciledCreateResult({
+        order: {
+          ...verifiedOrder,
+          status: verifiedOrder.status || log?.status || '',
+          chave_acesso:
+            verifiedOrder.chave_acesso
+            || String((verifiedOrder as any).nf_chave || '')
+            || log?.chave_acesso
+            || nfeKey
+            || '',
+          nf_numero: verifiedOrder.nf_numero || log?.nf_numero || '',
+        },
         raw: data as DsliteCriarPedidoResponse,
         createMode,
         endpointPath,
-      };
+        reconciledBy: 'returned_dsid',
+      });
     } catch (err: any) {
       const failureType: DsliteCreateOrderFailureType = err?.name === 'AbortError' ? 'timeout' : 'cancelled';
       const message = err?.message || 'Erro inesperado ao criar pedido na DSLite';
       console.error(`[dslite] Erro inesperado ao criar pedido:`, err);
-      lastFailure = {
+      if (nfeKey) {
+        const ghostOrder = await verifyCreatedDsliteOrder(cfg, nfeKey);
+        if (ghostOrder && !isCancelledDsliteOrder(ghostOrder)) {
+          return buildReconciledCreateResult({
+            order: ghostOrder,
+            raw: { total: 1, sucesso: 1, erros: 0, logs: [] },
+            createMode,
+            endpointPath,
+            reconciledBy: 'post_write_nf_key',
+          });
+        }
+      }
+      return {
         success: false,
         failureType,
         statusHttp: null,
@@ -658,26 +757,9 @@ async function criarPedidoDropshippingBase(
         createMode,
         endpointPath,
       };
-      if (attempt < DSLITE_CREATE_ORDER_MAX_ATTEMPTS) {
-        await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
-        continue;
-      }
-      return lastFailure;
     } finally {
       clearTimeout(timeout);
     }
-  }
-
-  return lastFailure || {
-    success: false,
-    failureType: 'invalid_response',
-    statusHttp: null,
-    responseText: null,
-    parsedBody: null,
-    message: 'Falha ao criar pedido na DSLite após tentativas',
-    createMode,
-    endpointPath,
-  };
 }
 
 export async function criarPedidoDropshipping(
