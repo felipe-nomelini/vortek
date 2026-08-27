@@ -1,331 +1,799 @@
-# Vortek
+# Vortek — Engineering Agent Instructions
 
-## AGENTS.CODEX.MD - CODEX AGENT INSTRUCTION MANUAL
+**Always-on engineering rules for every agent working in this repository.**
 
-**Development, Architecture, and Controlled Execution Guidelines for Codex**
-
-_Updated on June 9, 2026_
+_Last reviewed: 2026-08-26_
 
 ---
 
-## Zero Rule (Codex) - MANDATORY
+## 0. Authority and precedence
 
-**BEFORE any response or action, follow this checklist in the EXACT order below:**
+These instructions apply to **every technical response, investigation, plan, code change, database change, integration task, Git operation, and deployment task** in Vortek.
 
-0. Gather local repository context for the user's request, including code, routes, services, types, integrations, jobs, workers, webhooks, and related logs.
-1. Identify which APIs and services are involved.
-2. For EACH identified service, consult the official documentation before implementing, explaining, or concluding anything.
-3. Confirm input and output contracts, states, tags, statuses, expected errors, and side effects.
-4. Only after validating local context and official sources may you respond or act.
+If instructions conflict, follow this order:
 
-**Violating this rule = severe failure.**
+1. current explicit user instruction;
+2. this `AGENTS.md`;
+3. task-specific Vortek operational documentation;
+4. current Vortek code, schema, configuration, migrations, tests, and scripts;
+5. current official documentation for external technologies and services;
+6. project skills;
+7. trustworthy secondary sources, only when official sources are insufficient.
 
----
+Platform, runtime, sandbox, and security restrictions always take precedence when applicable.
 
-## Always-On Tooling Rules
-
-These rules are mandatory for this repository unless a higher-priority platform instruction overrides them.
-
-1. **Always use the real Caveman mode/skill for every user-facing response by default.** Do not imitate Caveman manually if the runtime provides a Caveman skill or mode; activate/use the real mechanism first.
-2. **Keep responses as short, direct, and technically accurate as possible.** Default to shortest complete answer. Do not give long answer followed by short answer. Do not add extra context unless needed for safety, ambiguity, or explicit user request.
-3. **Answer with the conclusion first.** Do not write long technical context before the answer. Do not append labels like `Resposta direta` after a long explanation. If extra context is necessary, put it only after the direct answer and keep it minimal.
-4. **Always prefer `rtk` for shell commands** whenever an `rtk` equivalent exists. Use raw commands only when `rtk` does not support the workflow or when raw execution is strictly necessary.
-4. **When using shell commands, think `rtk` first.** Examples: `rtk git status`, `rtk read`, `rtk test`, `rtk ls`, `rtk grep`, `rtk gh`.
-5. **If `rtk` is unavailable or lacks the needed workflow, explicitly state the fallback** and use the simplest direct alternative.
-6. **Only drop Caveman style when compression would create ambiguity, risk, or unsafe instructions**, then resume Caveman style afterward.
-7. **Do not claim Caveman or `rtk` were used unless they actually were.** Be explicit when a tool limitation forced another path.
+**A generic skill must never override a Vortek-specific rule in this file or the actual state of the repository.**
 
 ---
 
-## Direct Path and Git Sync Rule - MANDATORY
+# 1. Non-negotiable rules
 
-These rules were added after repeated workflow failures. They are mandatory for every agent working in this repository.
+These rules are mandatory.
 
-1. **Use the existing local project folder.** Do not create a clone, helper repo, temporary repo, side checkout, or alternate worktree unless the user explicitly asks or the current folder is unusable and the user approves.
-2. **If the local folder is not configured as the GitHub repo, configure this same folder as the Git repo instead of cloning elsewhere**, when safe and possible.
-3. **Always choose the shortest safe path the user would expect.** Normal workflow: edit local project -> validate -> commit if requested/needed -> push to `main` -> deploy webhook only when requested.
-4. **Ask for the smallest missing credential/access/info instead of inventing workaround.** Missing `gh`, token, remote, branch, sudo, SSH, deploy secret, or unclear state = stop and ask or install/configure directly with user approval.
-5. **If a standard tool is missing and installing it is the simplest path, propose/install that tool instead of building workaround machinery.** Example: install GitHub CLI `gh` when GitHub workflow needs it.
-6. **Before every push or deploy, include every modified project file in the normal Git workflow.** This includes pre-existing changes, code, configuration, documentation, and agent instructions. Never leave any tracked or untracked project modification only on the local filesystem.
-7. **Every push must keep local `main` and GitHub `main` fully synchronized.** Push all project modifications together; partial pushes are forbidden unless the user explicitly overrides this rule for that specific operation.
-8. **After every successful push, verify clean tracked working tree and confirm local `main` matches `origin/main`.** Only ignored env/cache files may remain.
-9. **Never edit project files directly in Easypanel.** Deployment path is GitHub `main` first, then Easypanel webhook.
-10. **Deploy webhook for `vortek-erp`:** `http://192.168.1.160:3000/api/deploy/f2f75bfaa9c228097a40066b2c41e5744a793e80df3d6cb2`.
-11. **Production/development Supabase server IP:** `192.168.1.160`. Network was migrated from `192.168.0.x` to `192.168.1.x`; do **not** use old `192.168.0.160` addresses for deploy or Supabase access. Use stored/authorized credentials only through safe tooling; never hardcode secrets into source files.
-12. **This project uses local/self-hosted Supabase, not Supabase Cloud.** Do not ask the user for Supabase Cloud dashboard access, cloud project refs, cloud personal access tokens, or other cloud-only credentials. Assume local Supabase operations must use already stored project/server credentials, local environment variables, existing self-hosted endpoints, or direct host access on `192.168.1.160`.
-13. **For any Supabase credential, dashboard, migration, or direct database access task, first inspect the local Supabase host `192.168.1.160` before asking the user anything.** Default first path: test SSH access, inspect the self-hosted stack at `/opt/supabase-vortek/supabase-project`, and read `/opt/supabase-vortek/supabase-project/.env` or equivalent live stack configuration to discover `DASHBOARD_USERNAME`, `DASHBOARD_PASSWORD`, `POSTGRES_PASSWORD`, `POOLER_TENANT_ID`, and connection details. If SSH fails, fix host-key/non-interactive access issues first when safe. Only ask the user for Supabase credentials after checking the host and project files and confirming the needed value is genuinely unavailable.
-14. **Known local Supabase location for this project:** stack directory `/opt/supabase-vortek/supabase-project`, env file `/opt/supabase-vortek/supabase-project/.env`, Studio URLs `https://supabase.vortek.shop` and `http://192.168.1.160:8000`.
-15. **Do not over-engineer.** No mirabolant solutions, no broad process, no new abstraction, no extra service, no extra deployment path unless required and justified.
-16. **If user corrects workflow, immediately update project instructions when asked and obey from then on.**
-17. **Never lie about tool usage, actions, validation, push, deploy, or external checks.** If not done, say not done.
-18. **When staging/committing files through shell, never pass unquoted paths containing parentheses, spaces, or shell metacharacters.** Prefer `rtk git add --all` for intentional full-project commits. If staging specific files, quote paths like "src/app/(app)/tv/page.tsx"; otherwise `/bin/sh` fails with `Syntax error: "(" unexpected`.
+1. **Never give a technical conclusion from model memory alone.**
+   Inspect the current Vortek implementation relevant to the request first.
 
----
+2. **Never assume the behavior of an external API, framework, library, service, CLI, or platform.**
+   Consult its current official documentation before explaining, deciding, planning, or implementing behavior that depends on it.
 
-## Simplicity and Direct Execution Rule - MANDATORY
+3. **Never implement a fix before identifying the root cause, or proving why the root cause cannot currently be identified.**
 
-**Always choose the simplest, most direct, least surprising path.**
+4. **Never fix only the symptom when the root cause can be corrected safely inside Vortek.**
 
-1. Do not create extra clones, helper repos, side workflows, abstractions, scripts, agents, or deployment paths unless strictly necessary and explicitly justified.
-2. If a normal developer workflow exists, use it exactly: edit in the project, validate, commit, push to `main`, then deploy by webhook when requested.
-3. For deploys, never modify files directly inside Easypanel. Push to GitHub `main` first, then call the configured webhook. If credentials/token are missing, ask the user before attempting alternatives.
-4. If the direct path is blocked by missing credentials, missing access, unknown command, or ambiguous state, stop and ask for the smallest missing piece. Do not invent a workaround.
-5. Before adding process, ask: "Is this the shortest safe path the user would expect?" If not, simplify.
-6. Prefer one clear action over multi-step machinery. No mirabolant solutions.
-7. Before pushing or deploying, include every modified project file in the same normal Git workflow so local `main` and GitHub `main` remain fully synchronized. This includes changes that existed before the current task; do not leave tracked or untracked project modifications stranded locally.
-8. After every successful push, verify that the working tree has no unintended tracked changes and that `main` matches `origin/main`; only ignored local environment/cache files may remain.
-9. Report deviations immediately and explicitly if a higher-priority rule or tool limitation prevents the direct path.
+5. **Always choose the smallest correct, safe, maintainable, and reversible solution.**
 
-**Violating this rule = severe failure.**
+6. **Do not create fallback paths, compatibility layers, parallel flows, extra retries, wrappers, helpers, services, abstractions, tables, jobs, queues, caches, scripts, or dependencies unless there is a proven need.**
+
+7. **Never claim that something was tested, validated, executed, deployed, migrated, pushed, or verified unless it actually was.**
+
+8. **Never expose credentials, secrets, tokens, cookies, private keys, passwords, webhook secrets, or sensitive environment values.**
+
+These rules may be repeated later intentionally. Repetition of these core rules is reinforcement, not permission to weaken them.
 
 ---
 
-## Controlled Execution Rule for GPT-5.4
+# 2. Mandatory engineering cycle
 
-When using models that are not exclusively dedicated to coding, especially `gpt-5.4`, operate as an engineering agent with restricted scope.
+For every technical request, follow this sequence.
 
-**Mandatory priorities:**
+## Gate A — Understand the real scope
 
-1. Do not rewrite architecture without proven need.
-2. Before changing code, identify the current flow in the repository.
-3. Make minimal, localized, and reversible changes.
-4. Do not investigate outside scope without direct evidence.
-5. For complex tasks, keep a short list of hypotheses and eliminate them one by one.
-6. Separate investigation from implementation when the issue involves flow, integration, state, queues, webhooks, jobs, or external synchronization.
-7. Run the applicable tests, typecheck, lint, or build. If you cannot run them, explain exactly why.
-8. At the end, report: root cause found, files changed, validation performed, and remaining risks.
+Before acting:
 
-**Forbidden behavior:**
+1. identify exactly what the user asked;
+2. identify the affected Vortek flow;
+3. avoid expanding the task beyond that flow;
+4. determine whether the user is asking for:
+   - explanation;
+   - investigation;
+   - plan;
+   - implementation;
+   - validation;
+   - Git operation;
+   - deployment.
 
-- Thinking out loud or expanding scope unnecessarily.
-- Performing broad refactors to fix a narrow bug.
-- Changing business rules without locating the existing rule first.
-- Creating a new abstraction before checking current project patterns.
-- Implementing by trial and error without local evidence or official documentation.
+Do not turn a focused task into a broad audit or refactor.
 
----
-
-## Investigation Protocol Before Implementing
-
-Use this protocol whenever the request involves bugs, inconsistent state, integrations, orders, inventory, invoices, synchronization, webhooks, workers, queues, or tags.
-
-### Phase 1 - Investigate without changing code
-
-1. Locate the main flow related to the problem.
-2. Map the entities and states involved.
-3. Identify where the state should change.
-4. Check asynchronous points: webhooks, callbacks, jobs, workers, cron, queues, retries, and external integrations.
-5. Look for silent failures, incorrect filters, race conditions, cache issues, permissions, and incomplete error handling.
-6. Point to evidence in the code before proposing a change.
-
-**Required investigation output:**
-
-1. likely root cause;
-2. relevant files and functions;
-3. evidence found;
-4. minimal fix hypothesis;
-5. recommended validation;
-6. remaining risks or open questions.
-
-### Phase 2 - Implement only the smallest necessary fix
-
-Only implement after finishing the investigation, or when the user explicitly asks for implementation.
-
-1. Change only the necessary files.
-2. Preserve current project patterns.
-3. Do not change schema, external contracts, or business rules without evidence and justification.
-4. Add or adjust tests only at the affected point.
-5. Validate technically with the most appropriate available command.
+If the user already asked to fix or implement something, do not stop after diagnosis to ask whether you should implement. Investigate first, then continue with the requested implementation when safe.
 
 ---
 
-## Default Operational Prompt for Complex Tasks
+## Gate B — Gather local evidence
 
-When the request is complex, treat the following instruction as default behavior:
+Before forming a technical conclusion:
 
-```text
-You are acting as a software engineering agent.
+1. inspect the current repository;
+2. read the files directly related to the request;
+3. trace callers and consumers when necessary;
+4. inspect relevant:
+   - routes;
+   - services;
+   - components;
+   - hooks;
+   - types;
+   - schemas;
+   - migrations;
+   - tests;
+   - jobs;
+   - workers;
+   - webhooks;
+   - scripts;
+   - configuration;
+   - logs, when available;
+5. confirm dependency/runtime versions from the repository when the answer depends on versions.
 
-Priorities:
-1. Do not rewrite architecture without proven need.
-2. Before changing code, identify the current flow.
-3. Make minimal and localized changes.
-4. Do not investigate beyond scope without evidence.
-5. For complex tasks, keep a short list of hypotheses and eliminate them one by one.
-6. Run tests or explain exactly why you could not run them.
-7. At the end, report: root cause found, files changed, validation performed, and remaining risks.
-```
+Use the current code as evidence of **how Vortek behaves now**.
 
----
+Do not rely on old architecture descriptions when current code proves otherwise.
 
-## Default Prompt for Order, Tag, Status, or Shipping Bugs
-
-Use this pattern when the issue involves shipped orders, incorrect tags, mismatched status, synchronization with marketplaces, DSLite, Mercado Livre, Brasil NFe, or Supabase.
-
-```text
-Investigate why orders that have already been shipped still keep the wrong tag or status.
-
-Scope:
-- Do not implement broad refactors.
-- Do not change business rules without confirming where they already exist.
-- First trace the status/tag update flow after shipping.
-- Check webhooks, jobs, workers, logs, callbacks, and external integrations.
-- Look for silent failures, retries, stalled queues, race conditions, and incorrect filters.
-- Apply the smallest possible fix.
-- Add or adjust tests only at the affected point.
-
-Deliver:
-1. likely root cause;
-2. evidence in the code;
-3. proposed change;
-4. how to validate;
-5. risks.
-```
+Do not read the entire repository without reason. Investigate only as far as necessary to understand the affected flow and its real dependencies.
 
 ---
 
-## Mandatory Procedure for Mercado Livre Listings
+## Gate C — Consult official documentation
 
-Before creating, updating, repairing, or validating any Mercado Livre listing, read and follow [docs/mercado-livre-publicacao-operacional.md](docs/mercado-livre-publicacao-operacional.md).
+For every external technology, platform, API, library, framework, CLI, or service involved:
 
-This is mandatory for every listing operation. It covers category precision, attributes, `Não se aplica`, evidence requirements, descriptions, supplier-image fallback to Vortek Storage, Mercado Livre image diagnostics, and post-publication verification.
+1. identify the exact product and feature involved;
+2. confirm the version used by Vortek when version matters;
+3. consult the current official documentation;
+4. read the documentation directly related to the exact behavior, endpoint, method, contract, error, configuration, or lifecycle involved;
+5. compare the official contract with the current Vortek implementation.
 
----
+**Finding the documentation homepage is not enough. Read the relevant documentation.**
 
-## Tool Matrix (Codex Compatibility)
+Do not say or imply that documentation was consulted if it was not.
 
-| Goal | Original tool (Opencode) | Operational equivalent in Codex | Forbidden |
-|---|---|---|---|
-| Internal Vortek examples/patterns | `consultar_dataset` | Repository search (`rg`, file reads), local history, and available MCP resources | Deductions without evidence |
-| Web research | `firecrawl_search` | Codex web tool (`search_query`) | Guessing |
-| Page content extraction | `firecrawl_scrape` | Codex web tool (`open`) | Summaries without reading the source |
-| Supabase docs | MCP `search_docs` | `supabase` skill + official Supabase docs | Memory as primary source |
+Official documentation is the primary source.
 
-**Mandatory substitution rule:**
+If official documentation does not answer the question:
 
-- If the original tool does not exist in the current runtime, use the official equivalent available here and explicitly record the substitution in the technical delivery.
+1. say so briefly;
+2. prefer the provider's official SDK source, official GitHub repository, changelog, release notes, or API schema;
+3. use a trustworthy secondary source only when still necessary;
+4. clearly separate verified fact from inference.
 
----
-
-## Official Sources by Service
-
-| Service | Official source |
-|---|---|
-| Supabase (MCP, CLI, API, any feature) | https://supabase.com/docs |
-| Mercado Livre | https://developers.mercadolivre.com.br |
-| DSLite | https://documenter.getpostman.com/view/5316990/RWaRNkaA |
-| Brasil NFe | https://www.brasilnfe.com.br/docs |
-| RTK | https://github.com/rtk-ai/rtk |
-| Caveman | https://github.com/JuliusBrussee/caveman |
+Never present a hypothesis or inference as a confirmed fact.
 
 ---
 
-## Mandatory Execution Protocol
+## Gate D — Find the root cause
 
-Whenever implementation is required, execute in this order:
+For bugs or unexpected behavior, determine:
 
-0. Gather local repository context and locate related implementations.
-1. Consult official documentation for the involved APIs and services.
-2. Confirm input and output contracts, states, tags, statuses, and error rules.
-3. Identify performance, security, data, and integration impact.
-4. Only then implement.
-5. Validate with the appropriate technical check: typing, build, lint, or tests.
-6. Report what changed and which sources support the change.
+**Expected behavior → actual behavior → exact divergence point → root cause.**
 
-**Trial and error without prior research = severe failure.**
+Trace the complete relevant flow when applicable:
 
----
+`input → auth → route → business rule → database → async processing → external integration → webhook/callback → persistence → UI`
 
-## Priority Rules
+Check, when relevant:
 
-1. **Never deduce or invent answers.** Every answer must be based on local code and/or verifiable official sources.
-2. **Whenever Mercado Livre, DSLite, Brasil NFe, or Supabase are mentioned**, consult official documentation before answering or implementing.
-3. **Answer only what was asked.** No speculation and no scope extrapolation.
-4. **Separate diagnosis from correction** for bugs involving flow, state, orders, integrations, workers, webhooks, or queues.
-5. **Prefer the smallest correction** over refactor, redesign, or architecture changes.
-6. **Do not change business rules implicitly.** If a rule seems wrong, point to evidence and ask for a decision when necessary.
-7. **Use `rtk` as the default command interface** for inspection, reading, testing, logs, and git workflows whenever supported.
-8. **Keep Caveman mode active by default** for user-facing responses unless a temporary clarity or safety exception is required.
-9. **If you find a real bug outside the exact user request, you may fix it too when the fix is small, safe, clearly correct, and does not create unrelated scope expansion.** Report it explicitly in the final delivery.
+- origin of the data;
+- business rules;
+- state transitions;
+- filters;
+- permissions;
+- authentication;
+- authorization;
+- RLS;
+- database constraints;
+- async ordering;
+- retries;
+- idempotency;
+- concurrency;
+- race conditions;
+- cache;
+- stale data;
+- external API contracts;
+- token expiration;
+- pagination;
+- rate limits;
+- silent failures;
+- incomplete error handling;
+- duplicate processing.
 
----
+Before implementing, be able to point to concrete evidence supporting the diagnosis.
 
-## Vortek Engineering Standards
-
-### 1) Identity and Role
-
-You act as a Senior Fullstack Developer focused on e-commerce and dropshipping, with the mission of evolving Vortek through clean, modular, typed, production-grade code.
-
-### 2) Technology Stack
-
-| Category | Technology |
-|---|---|
-| Framework | Next.js 14+ (App Router) |
-| UI Library | Ant Design 5.x (CSS-in-JS) |
-| Language | TypeScript (strict mode) |
-| Backend/Database | Supabase (PostgreSQL + Auth) |
-| Communication | Axios + TanStack Query (React Query) |
-| Validation | Zod |
-
-### 3) UI/UX (Vortek Standard)
-
-- Dark theme using Ant Design `darkAlgorithm`.
-- Palette:
-  - General background: `#000000`
-  - Containers/cards: `#141414`
-  - Primary: `#1677ff`
-- Aesthetic: `borderRadius: 8`, minimalist layout, generous spacing.
-- Prefer native AntD components such as `Table`, `Statistic`, `Modal`, `Form`, and `Steps`.
-
-### 4) Integration Flows
-
-- Mercado Livre: listings (import, create, activate/pause, shipping, fees).
-- DSLite: orders, catalog, inventory.
-- Brasil NFe: NF-e model 55 issuance.
-
-### 5) Development Rules (Performance First)
-
-- Think about scale before coding: call volume and call frequency matter.
-- Avoid unnecessary requests. Do not fetch on every keystroke in high-scale scenarios.
-- For large lists on the frontend, prefer pagination or server-side processing.
-- Architecture: Server Components for initial load, Client Components for interactivity.
-- Security: validate external responses with Zod.
-- Organization:
-  - `src/app` -> routes and pages
-  - `src/components` -> UI components
-  - `src/services` -> external APIs
-  - `src/lib` -> global configuration
-  - `src/hooks` -> custom hooks
-- Documentation: add JSDoc to integrations and complex calculations.
-
-### 6) Bug Fix Standard
-
-When fixing a bug:
-
-1. Reproduce it or find evidence in code or logs.
-2. Find the exact point where behavior diverges from the expected result.
-3. Fix the smallest responsible section.
-4. Avoid mixing cosmetic changes with functional fixes.
-5. Validate with tests, build, typecheck, or an equivalent command.
-6. Report impact and residual risk.
-
-### 7) Working Attitude
-
-- No excuses.
-- No speculation.
-- No trial and error without prior research.
-- If you do not know, research; if still missing, research again.
-- Answer only what was asked.
-- Do not get lost in broad analysis when the task requires an objective fix.
-- Do not turn a focused investigation into a redesign.
+For complex problems, maintain a small set of hypotheses and eliminate them with evidence. Do not expose hidden chain-of-thought; report only conclusions, evidence, and unresolved uncertainty.
 
 ---
 
-## Conflicts and Precedence
+## Gate E — Design the smallest correct fix
 
-1. When a rule in this file conflicts with system, platform, or tool policy, follow platform precedence and explicitly state the limitation.
-2. If a required tool does not exist, use the official equivalent and explicitly report the substitution.
-3. Do not bypass security or sandbox restrictions; use the correct permission flow when needed.
-4. If the selected model is unavailable in the current interface, do not try to bypass the restriction; state the limitation and continue with the most suitable available model while preserving controlled execution.
+Before creating anything new, ask:
 
-@RTK.md
+**Can this be solved by correcting, removing, consolidating, or reusing something that already exists?**
+
+Prefer, in this order:
+
+1. correct an existing rule or flow;
+2. remove incorrect or unnecessary behavior;
+3. reuse an existing implementation;
+4. consolidate duplicated behavior;
+5. simplify an existing implementation;
+6. only then add something new.
+
+If two solutions solve the problem correctly, prefer the one with:
+
+- fewer concepts;
+- fewer files;
+- fewer states;
+- fewer dependencies;
+- fewer network calls;
+- fewer moving parts;
+- less duplicated data;
+- less operational burden.
+
+Do not add architecture for hypothetical future needs.
+
+Do not create a generic abstraction for one isolated use case unless it solves a proven existing problem.
+
+Do not introduce a second source of truth when one source can own the data.
+
+---
+
+## Gate F — Implement only what is necessary
+
+When implementation was requested:
+
+1. change only the responsible area;
+2. preserve established Vortek patterns unless they are part of the proven problem;
+3. do not silently change business rules;
+4. do not mix cosmetic refactors with functional fixes;
+5. do not modify unrelated areas merely because they could be improved;
+6. do not add fallbacks "just in case";
+7. do not suppress errors instead of fixing their cause;
+8. do not use arbitrary delays, polling, retries, or cleanup jobs as a substitute for fixing deterministic logic.
+
+A workaround is allowed only when:
+
+- the real cause is outside Vortek's control, or cannot safely be fixed now;
+- the workaround is operationally necessary;
+- its temporary nature is explicit;
+- it does not create a hidden parallel architecture.
+
+When a permanent root fix is available and safe, use it instead.
+
+---
+
+## Gate G — Validate the affected behavior
+
+After a change, run the smallest meaningful validation that proves the affected behavior.
+
+Use repository scripts and existing tests whenever possible.
+
+Current root project includes:
+
+- `npm run typecheck`
+- `npm run lint`
+- `npm run validate`
+- `npm run build`
+- targeted `npm run test:*` scripts
+
+Current mobile project includes:
+
+- `npm run typecheck`
+- `npm run doctor`
+
+Choose validation based on the changed area.
+
+Examples:
+
+- type-only change → typecheck may be sufficient;
+- logic bug with an existing test area → run the targeted test;
+- build-sensitive framework/config change → build;
+- mobile dependency/config change → mobile typecheck and/or doctor;
+- database change → verify schema/behavior safely;
+- integration change → validate the relevant contract or safe test path.
+
+Do not run destructive operations merely to "validate".
+
+If validation cannot be executed, state exactly what was not validated and why.
+
+---
+
+## Gate H — Report concisely
+
+For a bug fix, normally report only:
+
+1. **cause**;
+2. **evidence**;
+3. **change**;
+4. **validation executed**;
+5. **remaining risk**, only if relevant.
+
+For a technical question, answer the conclusion first and include only the evidence necessary to support it.
+
+Do not dump the investigation process unless the user asks for it.
+
+---
+
+# 3. Root-cause rule
+
+The objective is not to make the visible error disappear.
+
+The objective is to make the underlying Vortek behavior correct.
+
+Forbidden as default fixes when the actual cause can be fixed:
+
+- catching and ignoring an error;
+- retrying an invalid operation;
+- adding arbitrary `setTimeout` or delay;
+- refreshing the page to hide stale state;
+- periodically repairing data that is being written incorrectly;
+- duplicating data to avoid fixing ownership;
+- adding a second endpoint around a broken endpoint;
+- keeping both old and new flows "for safety";
+- adding a fallback provider without a proven availability requirement;
+- adding a cron to repair a deterministic state-transition bug;
+- adding client-side compensation for incorrect backend state.
+
+If a symptom-level mitigation is temporarily necessary, label it as mitigation and continue to identify the root cause whenever that root cause is controllable by Vortek.
+
+---
+
+# 4. Simplicity rule
+
+Vortek should remain easy to understand and hard to break.
+
+Before adding any of the following:
+
+- file;
+- helper;
+- hook;
+- service;
+- wrapper;
+- abstraction;
+- endpoint;
+- table;
+- column duplicating existing data;
+- queue;
+- worker;
+- cron;
+- cache;
+- retry layer;
+- dependency;
+- script;
+- deployment path;
+
+first search for the existing mechanism that should own the behavior.
+
+**Removal, consolidation, and reuse are preferred to addition.**
+
+Do not over-engineer.
+
+Do not refactor for aesthetics.
+
+Do not introduce patterns only because they are fashionable or common in other projects.
+
+A pattern is justified only when it solves a real Vortek problem.
+
+---
+
+# 5. One-solution rule
+
+When one solution is clearly best, recommend and implement that solution.
+
+Do not present multiple alternatives merely to appear thorough.
+
+Only present alternatives when there is a real unresolved tradeoff that materially affects the user's decision.
+
+Do not add optional complexity without a concrete requirement.
+
+---
+
+# 6. Scope control
+
+Do only what was requested.
+
+If you find another issue outside the task:
+
+- do not modify it automatically;
+- mention it briefly only if it is important, dangerous, or directly affects the requested work.
+
+Do not fix unrelated bugs merely because they are easy.
+
+Do not broaden a bug fix into a redesign.
+
+Do not broaden a question into an audit.
+
+Do not change schema, business rules, API contracts, or public behavior without evidence that the requested task requires it.
+
+---
+
+# 7. Current Vortek architecture
+
+Treat this section as orientation, **not as a permanent version source**.
+
+Before any version-sensitive decision, read the current `package.json`, lockfile, configuration, and relevant code.
+
+## Web application
+
+The root application currently uses the Vortek web stack centered on:
+
+- Next.js App Router;
+- React;
+- TypeScript;
+- Ant Design;
+- Supabase;
+- Zod.
+
+Do not assume Axios or TanStack Query are part of the root web architecture. Verify current dependencies before introducing or using them.
+
+Prefer existing project patterns over adding a new client/data layer.
+
+## Mobile application
+
+The `mobile/` application is a separate Expo/React Native application and currently uses, among other project dependencies:
+
+- Expo;
+- React Native;
+- TypeScript;
+- TanStack Query;
+- Supabase;
+- Zod.
+
+Do not apply web-only architectural assumptions to mobile.
+
+Do not apply mobile dependencies or patterns to the web app unless there is a proven reason.
+
+---
+
+# 8. Database and Supabase
+
+Vortek uses **self-hosted/local Supabase**, not Supabase Cloud as its operational project environment.
+
+This project-specific rule overrides generic skills or documentation examples that assume Supabase Cloud project setup.
+
+Do not ask for:
+
+- Supabase Cloud project refs;
+- Supabase Cloud dashboard access;
+- Supabase Cloud personal access tokens;
+- Supabase Cloud MCP authentication
+
+as a prerequisite for operating the Vortek self-hosted environment.
+
+For a Supabase/database task:
+
+1. inspect current Vortek schema and migrations;
+2. inspect code that reads and writes the affected data;
+3. inspect RLS, grants, functions, triggers, indexes, and constraints when relevant;
+4. consult current official Supabase/PostgreSQL documentation for the exact feature involved;
+5. verify the self-hosted environment before assuming cloud behavior.
+
+Current known self-hosted infrastructure:
+
+- host: `192.168.1.160`;
+- stack directory: `/opt/supabase-vortek/supabase-project`;
+- stack env: `/opt/supabase-vortek/supabase-project/.env`;
+- Studio/public endpoint configuration is self-hosted.
+
+Before asking the user for a missing Supabase credential, first inspect the authorized local project/server configuration when access is available.
+
+Never print secret values discovered in `.env`, server configuration, logs, or command output.
+
+For destructive database changes, consider:
+
+- existing data;
+- compatibility;
+- migration path;
+- backup;
+- rollback;
+- dry-run or preview;
+- reprocessing requirements.
+
+Do not create duplicate persistent fields merely to avoid correcting the real source of truth.
+
+---
+
+# 9. External integrations
+
+Never guess external API behavior.
+
+For integrations such as:
+
+- Mercado Livre;
+- Mercado Pago;
+- DSLite;
+- Brasil NFe;
+- WAHA / WhatsApp;
+- e-mail providers;
+- notification providers;
+- GitHub;
+- Easypanel;
+- Supabase;
+- any SDK or external API;
+
+verify the exact official contract involved.
+
+Check as relevant:
+
+- authentication;
+- request contract;
+- response contract;
+- documented states/statuses;
+- errors;
+- retries;
+- rate limits;
+- pagination;
+- idempotency;
+- token expiration;
+- webhook delivery;
+- ordering;
+- duplicate delivery;
+- side effects.
+
+Do not implement behavior the official API does not support.
+
+---
+
+# 10. Mercado Livre special rule
+
+Before creating, updating, repairing, validating, or diagnosing a Mercado Livre listing, read:
+
+`docs/mercado-livre-publicacao-operacional.md`
+
+This is mandatory.
+
+Also consult the current official Mercado Livre documentation relevant to the exact operation.
+
+Do not invent product specifications, attributes, category behavior, status behavior, image requirements, shipping behavior, or API contracts.
+
+---
+
+# 11. Async flows
+
+For queues, jobs, workers, cron, synchronization, webhooks, callbacks, and background processing, always verify:
+
+- can it run twice?
+- can events arrive out of order?
+- can it fail halfway?
+- is retry safe?
+- is the operation idempotent?
+- is concurrency controlled?
+- are failures observable?
+- can it be safely reprocessed?
+- can stale state overwrite newer state?
+
+A flow is not reliable merely because it succeeds on the happy path.
+
+Prefer correcting event ownership/state transitions over adding compensating background repair.
+
+---
+
+# 12. Performance
+
+Do not optimize without evidence.
+
+First identify the actual source of cost or latency.
+
+Check:
+
+- query count;
+- external-call count;
+- repeated processing;
+- N+1 patterns;
+- pagination;
+- unnecessary data loading;
+- large client-side processing;
+- sequential work that is safely independent;
+- missing indexes;
+- repeated network fetches.
+
+Prefer eliminating unnecessary work before adding cache.
+
+Do not add caching merely as a workaround for an inefficient or incorrect flow.
+
+---
+
+# 13. Security
+
+Security and data integrity outrank convenience and aesthetic cleanup.
+
+Never expose or commit:
+
+- passwords;
+- tokens;
+- cookies;
+- API keys;
+- webhook secrets;
+- private keys;
+- service-role credentials;
+- database passwords;
+- SSH secrets.
+
+You may inspect authorized secret configuration when necessary for the task, but never reproduce secret values in user-facing output or source code.
+
+If a secret appears to be versioned:
+
+1. do not repeat it;
+2. report the exposure;
+3. remove it from active source/config where appropriate;
+4. recommend rotation;
+5. consider repository history if relevant.
+
+Check authentication, authorization, permissions, and RLS when they are part of the affected flow.
+
+---
+
+# 14. Git working rules
+
+Use the existing local Vortek project folder.
+
+Do not create:
+
+- helper clones;
+- temporary repositories;
+- alternate worktrees;
+- side checkouts
+
+unless the user explicitly requests one or the existing project folder is unusable.
+
+Before editing project files, inspect the working tree state.
+
+**Preserve pre-existing user changes.**
+
+Do not:
+
+- overwrite unrelated local modifications;
+- discard unrelated changes;
+- stage unrelated changes;
+- commit unrelated changes;
+- push unrelated changes
+
+without explicit user instruction.
+
+Stage and commit the files belonging to the requested task.
+
+Do not use destructive Git operations such as force reset, force checkout, history rewriting, or force push without explicit need and user authorization.
+
+If paths contain spaces, parentheses, or shell metacharacters, quote them correctly.
+
+Use `rtk` when it is available and provides a correct equivalent, because it can reduce command-output noise. `rtk` is a convenience, not a reason to block or complicate the task.
+
+---
+
+# 15. Deployment
+
+Normal Vortek deployment path:
+
+`local project → validated code → GitHub main → Easypanel deployment`
+
+Never edit application files directly inside Easypanel as a normal deployment method.
+
+Use the repository deployment script and its configured environment:
+
+`npm run deploy:easypanel`
+
+The deploy webhook URL must come from authorized environment configuration such as `EASYPANEL_DEPLOY_WEBHOOK_URL`.
+
+**Never hardcode the deploy webhook URL or secret in `AGENTS.md`, source code, or committed configuration.**
+
+Do not deploy unless deployment was requested or clearly included in the current task.
+
+Before deployment, ensure the code intended for deployment is committed and available on the expected Git branch.
+
+Do not publish unrelated local work merely to obtain a clean working tree.
+
+---
+
+# 16. Tools and skills
+
+Tools and skills are implementation aids, not sources of truth.
+
+Use the simplest available tools that let you:
+
+- read/search the repository;
+- inspect Git state;
+- run validation;
+- inspect logs;
+- access official documentation;
+- interact safely with authorized infrastructure.
+
+If a tool is unavailable, use the simplest safe equivalent.
+
+Do not build workaround machinery merely because a preferred tool is missing.
+
+## Skills
+
+A skill may provide specialized workflow knowledge.
+
+A skill must not override:
+
+- this `AGENTS.md`;
+- current Vortek code;
+- current Vortek infrastructure;
+- task-specific Vortek documentation;
+- verified official API behavior.
+
+Generic skills often contain generic assumptions. Verify those assumptions against Vortek before following them.
+
+In particular, generic Supabase skills must not change the project's self-hosted Supabase model into a Supabase Cloud workflow.
+
+Caveman or other response-compression skills are not required. Follow the communication rules in this file directly.
+
+---
+
+# 17. Communication with the user
+
+Default language: **Brazilian Portuguese**.
+
+Be technical internally and simple externally.
+
+Every response should be:
+
+- direct;
+- short;
+- precise;
+- evidence-based;
+- focused on the requested task.
+
+Start with the conclusion.
+
+Do not give a long explanation followed by a short conclusion.
+
+Do not give an architecture lesson unless requested.
+
+Do not use unnecessary jargon.
+
+If a technical term is necessary, explain it in one short sentence when needed.
+
+Do not repeat the same conclusion in multiple sections.
+
+Do not list many alternatives when one solution is clearly better.
+
+When uncertainty remains, state exactly what is confirmed and what is not.
+
+Do not expose internal chain-of-thought. Provide evidence and conclusions instead.
+
+---
+
+# 18. Forbidden behaviors
+
+The following are prohibited:
+
+- answering external API behavior from memory;
+- saying "according to the docs" without reading the relevant official docs;
+- implementing before understanding the affected flow;
+- trial-and-error coding without evidence;
+- treating a symptom when the root cause can be fixed;
+- hiding an error instead of correcting it;
+- adding retries as a default fix;
+- adding arbitrary delays as a default fix;
+- adding a cron/job to compensate for deterministic broken logic;
+- creating duplicate sources of truth;
+- creating unnecessary fallback flows;
+- keeping old and new implementations in parallel without a real compatibility requirement;
+- broad refactors for narrow bugs;
+- changing business rules implicitly;
+- adding new dependencies when existing capabilities solve the problem;
+- fixing unrelated issues without authorization;
+- editing production files directly as a shortcut;
+- exposing secrets;
+- claiming tests or operations that were not executed.
+
+---
+
+# 19. Final self-check before every technical conclusion
+
+Before giving a final technical answer or completing an implementation, verify:
+
+- [ ] Did I inspect the current Vortek files relevant to this request?
+- [ ] Did I confirm current versions/configuration when the answer depends on them?
+- [ ] Did I identify every external service or library whose behavior matters?
+- [ ] Did I read the relevant current official documentation for those external dependencies?
+- [ ] Is my conclusion supported by code, logs, contracts, or other concrete evidence?
+- [ ] For a bug, did I identify the root cause rather than only the symptom?
+- [ ] Is the proposed/implemented solution the smallest correct solution?
+- [ ] Did I avoid unnecessary abstractions, fallbacks, parallel flows, retries, services, and dependencies?
+- [ ] Did I stay inside the requested scope?
+- [ ] Did I preserve unrelated user work?
+- [ ] Did I validate the affected behavior when implementation occurred?
+- [ ] Am I accurately stating what was and was not executed?
+- [ ] Did I avoid exposing any secret?
+
+If a mandatory item is not satisfied, do not present the missing conclusion as confirmed fact.
+
+---
+
+# 20. Final principle
+
+The goal is not the most sophisticated architecture.
+
+The goal is the **simplest architecture that solves Vortek's real problem correctly**.
+
+Investigate deeply.
+
+Verify external behavior in official sources.
+
+Fix the cause.
+
+Change the minimum necessary.
+
+Validate the result.
+
+Explain simply.
+
+Stop when the requested task is complete.
