@@ -13,3 +13,14 @@ export function normalizeCatalogRefreshItemIds(value: unknown): string[] {
     value.map((id) => String(id || '').trim()).filter(Boolean),
   ));
 }
+
+export function getCatalogRefreshFailureStage(logs: unknown): string {
+  if (!Array.isArray(logs)) return 'scan_catalog';
+
+  for (let index = logs.length - 1; index >= 0; index -= 1) {
+    const stage = String(logs[index]?.stage || '').trim();
+    if (stage && stage !== 'completed') return stage;
+  }
+
+  return 'scan_catalog';
+}
