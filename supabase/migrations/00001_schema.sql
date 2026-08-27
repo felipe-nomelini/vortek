@@ -8,7 +8,7 @@ create type user_role as enum ('admin', 'gerente', 'operador', 'visualizador');
 create type pedido_status as enum ('aberto', 'atendido', 'cancelado', 'faturado', 'entregue');
 create type ml_status as enum ('ativo', 'pausado', 'sem_anuncio');
 create type bling_status as enum ('ativo', 'inativo');
-create type integracao_tipo as enum ('mercadolivre', 'bling', 'dslite');
+create type integracao_tipo as enum ('mercadolivre', 'bling', 'dslite', 'brasilnfe');
 
 -- ── Profiles (extends Supabase auth.users) ─────────────────
 create table public.profiles (
@@ -58,6 +58,8 @@ create table public.integracoes (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+create unique index integracoes_tipo_unique_idx on public.integracoes (tipo);
 
 -- ── Produtos ───────────────────────────────────────────────
 create table public.produtos (
