@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import type { Database } from '@/types/database';
+import {
+  resolveSupabaseAuthCookieName,
+  resolveSupabaseServiceUrl,
+} from '@/lib/supabase-url';
 
 export async function POST(request: Request) {
   const { email, senha } = await request.json();
@@ -12,10 +16,13 @@ export async function POST(request: Request) {
 
   const cookieStore = await cookies();
   const response = NextResponse.json({ ok: true });
+  const serviceUrl = resolveSupabaseServiceUrl();
+  const cookieName = resolveSupabaseAuthCookieName();
   const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    serviceUrl,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      cookieOptions: { name: cookieName },
       cookies: {
         getAll() {
           return cookieStore.getAll();

@@ -7,15 +7,21 @@ import { createServerClient } from "@supabase/ssr";
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 import type { Database } from "@/types/database";
-import { resolveSupabaseServiceUrl } from "@/lib/supabase-url";
+import {
+  resolveSupabaseAuthCookieName,
+  resolveSupabaseServiceUrl,
+} from "@/lib/supabase-url";
 
 export async function createClient() {
   const cookieStore = await cookies();
+  const serviceUrl = resolveSupabaseServiceUrl();
+  const cookieName = resolveSupabaseAuthCookieName();
 
   return createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    serviceUrl,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      cookieOptions: { name: cookieName },
       cookies: {
         getAll() {
           return cookieStore.getAll();
@@ -47,10 +53,10 @@ export function createServiceClient() {
  * por clientes externos, como o aplicativo móvel.
  */
 export function createTokenValidationClient() {
-  const publicUrl = String(process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim();
+  const serviceUrl = resolveSupabaseServiceUrl();
 
   return createSupabaseClient<Database>(
-    publicUrl,
+    serviceUrl,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     { auth: { autoRefreshToken: false, persistSession: false } },
   );
