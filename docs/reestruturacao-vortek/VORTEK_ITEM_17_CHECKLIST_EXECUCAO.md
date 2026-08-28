@@ -65,7 +65,7 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Investigar e executar `SEC-03 — Permissões web + mobile`.
+- [ ] Concluir o deploy e a validação de `SEC-03` em `dev.vortek.shop`.
 - [ ] Não avançar para `SEC-04` antes de `SEC-03` estar integralmente validada.
 
 ---
@@ -160,16 +160,28 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P1
 **Dependência:** `SEC-01`, concluída.
-**Situação:** próxima ação obrigatória.
+**Situação:** implementada e validada localmente contra o `supabase-dev`; deploy em homologação pendente.
+**Commit funcional:** `677fa2f` — `security: enforce shared web and mobile permissions`.
 
-- [ ] mapear a matriz atual e todos os consumidores web/mobile necessários;
-- [ ] confirmar a divergência entre cookie web e Bearer mobile;
-- [ ] fazer ambos os caminhos usarem a mesma matriz de permissões;
-- [ ] não criar uma segunda matriz para web;
-- [ ] provar que operador web e mobile recebem a mesma decisão;
-- [ ] provar que visualizador permanece somente leitura;
-- [ ] provar as permissões definidas para admin e gerente;
+- [x] mapear a matriz atual e todos os consumidores web/mobile necessários;
+- [x] confirmar a divergência entre cookie web e Bearer mobile;
+- [x] fazer ambos os caminhos usarem a mesma matriz de permissões;
+- [x] não criar uma segunda matriz para web;
+- [x] provar localmente que operador web e mobile recebem a mesma decisão;
+- [x] provar localmente que visualizador permanece somente leitura;
+- [x] provar localmente as permissões definidas para admin e gerente;
 - [ ] concluir o gate obrigatório da seção 3.
+
+**Validação executada:**
+
+- `npm run test:api-auth`: 8 testes aprovados;
+- `npm run validate`: aprovado;
+- `npm run build`: aprovado, 121 páginas geradas;
+- integração local com o `supabase-dev`: admin/gerente passaram pela autorização, operador/visualizador receberam `403` para confirmação de pagamento, e todos mantiveram as leituras permitidas, tanto por cookie quanto por Bearer;
+- quatro contas temporárias foram removidas ao final da validação;
+- nenhuma migration foi necessária.
+
+**Pendência bloqueante:** `.env.deploy.local` não possui configuração neste worktree e o serviço não fez auto-deploy após o push. A prova em `dev.vortek.shop` ainda apresentou `404` para operador web e `403` para operador mobile, confirmando que o domínio continua no código anterior. Não liberar `SEC-04` até configurar/acionar o webhook exclusivo do staging e repetir os testes no domínio.
 
 ### SEC-04 — Secrets no browser
 
