@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `SEC-05 — Links sensíveis com expiração`
+**Próxima ação obrigatória:** `ML-01 — Preços por Quantidade`
 
 ---
 
@@ -51,8 +51,8 @@ Regras de uso:
 | Ordem | Etapa | Situação | Próxima decisão |
 |---:|---|---|---|
 | 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
-| 1 | Segurança crítica | Em andamento | Executar somente `SEC-05` |
-| 2 | Prazo externo Mercado Livre | Pendente | Aguardar conclusão da Etapa 1 |
+| 1 | Segurança crítica | Encerrada com risco aceito | Reabrir `SEC-05` se a exigência de links permanentes mudar |
+| 2 | Prazo externo Mercado Livre | Em andamento | Executar somente `ML-01` |
 | 3 | Estoque e fulfillment | Pendente | Aguardar etapas anteriores |
 | 4 | Capacidade e quantidade segura | Pendente | Depende de `STO-01/STO-02` |
 | 5 | Mercado Livre observado e publicação | Pendente | Seguir dependências de cada ação |
@@ -66,8 +66,8 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Executar somente `SEC-05 — Links sensíveis com expiração`.
-- [ ] Não avançar para a ação seguinte antes de `SEC-05` estar integralmente validada.
+- [ ] Executar somente `ML-01 — Preços por Quantidade`.
+- [ ] Não avançar para a ação seguinte antes de `ML-01` estar integralmente validada.
 
 ---
 
@@ -218,13 +218,28 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### SEC-05 — Links sensíveis com expiração
 
 **Prioridade:** P1
-**Situação:** pendente.
+**Situação:** encerrada para fins de sequência, com risco aceito e correção técnica pendente.
 
-- [ ] mapear links de XML, DANFE, etiqueta e comprovante;
+- [x] mapear links de XML, DANFE, etiqueta e comprovante;
 - [ ] reutilizar a infraestrutura expirável já existente;
 - [ ] aplicar expiração real a todos os documentos sensíveis mapeados;
 - [ ] provar acesso válido antes e inválido depois da expiração;
 - [ ] concluir o gate obrigatório da seção 3.
+
+**Estado confirmado:** os tokens HMAC dos links públicos de XML, DANFE, etiqueta e comprovante vinculam o tipo e o identificador do documento, mas não possuem prazo. Os respectivos fluxos de `short_links` não preenchem `expires_at`. Enquanto o token e o documento permanecerem válidos, as rotas públicas podem continuar entregando o documento ou emitindo uma nova URL temporária do Storage.
+
+**Risco aceito pelo responsável em 28/08/2026:** os links existentes devem ser mantidos e os links futuros precisam permanecer sem validade. Assim, qualquer pessoa que obtenha um desses links poderá acessar o documento por tempo indeterminado, enquanto o token, o secret de assinatura, a rota e o documento continuarem disponíveis. A expiração e sua prova antes/depois não foram implementadas e o achado P1 não foi eliminado.
+
+**Decisão de implementação:** nenhuma alteração funcional, migration, build ou deploy é aplicável. Reabrir esta ação caso seja definida uma validade real ou um modelo de acesso autenticado.
+
+**Validação executada:**
+
+- branch `dev` e working tree limpo confirmados antes da alteração;
+- implementação atual, auditorias aplicáveis e documentação oficial do Supabase Storage revisadas;
+- `git diff --check`: aprovado;
+- `npm run validate`: aprovado;
+- teste direcionado, build, migration e deploy: **N/A**, pois a mudança é exclusivamente documental;
+- nenhuma integração externa, produção, `main` ou `app.vortek.shop` foi acessada ou alterada.
 
 ---
 
