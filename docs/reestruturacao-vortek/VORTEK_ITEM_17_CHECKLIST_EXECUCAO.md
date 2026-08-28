@@ -1,0 +1,722 @@
+# Vortek — Item 17 — Checklist de Execução
+
+**Função:** painel operacional de acompanhamento
+**Última atualização:** 28/08/2026
+**Ambiente de execução:** desenvolvimento/homologação
+**Branch obrigatória:** `dev`
+**Aplicação de homologação:** `https://dev.vortek.shop`
+**Banco de homologação:** `supabase-dev` em `192.168.1.162`
+**Próxima ação obrigatória:** `SEC-03 — Permissões web + mobile`
+
+---
+
+## 1. Fonte de verdade e uso deste checklist
+
+Este arquivo acompanha o andamento. Ele não substitui a especificação técnica nem as auditorias.
+
+Antes de executar qualquer ação, consultar nesta ordem:
+
+1. `AGENTS.md`;
+2. `INSTRUCOES_AGENTE_VORTEK.md`;
+3. a etapa correspondente em `VORTEK_ITEM_17_PLANO_COMPLETO_EXECUCAO_HOMOLOGACAO.md`;
+4. o identificador e as dependências em `VORTEK_AUDITORIA_ITEM_16_CONSOLIDACAO.md`;
+5. a auditoria detalhada do domínio afetado;
+6. código, schema, migrations, testes e configuração atuais;
+7. documentação oficial atual de qualquer tecnologia ou integração envolvida.
+
+Regras de uso:
+
+- executar somente a **próxima ação obrigatória**;
+- não iniciar outra ação enquanto a atual não estiver validada;
+- atualizar este checklist somente depois de obter evidência real;
+- não marcar como concluído algo apenas planejado ou parcialmente testado;
+- registrar `N/A` somente com uma justificativa;
+- registrar risco aceito sem tratá-lo como risco eliminado;
+- nunca registrar secrets, tokens, senhas ou valores sensíveis;
+- não fazer merge em `main`, migration ou deploy em produção por meio deste checklist.
+
+### Legenda
+
+- `[x]` — executado e validado no nível aplicável;
+- `[ ]` — pendente;
+- **N/A** — não aplicável no momento, com motivo registrado;
+- **Risco aceito** — pendência conhecida que o responsável decidiu não tratar agora;
+- **Bloqueado** — não pode avançar até a condição registrada ser resolvida.
+
+---
+
+## 2. Situação geral
+
+| Ordem | Etapa | Situação | Próxima decisão |
+|---:|---|---|---|
+| 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
+| 1 | Segurança crítica | Em andamento | Executar somente `SEC-03` |
+| 2 | Prazo externo Mercado Livre | Pendente | Aguardar conclusão da Etapa 1 |
+| 3 | Estoque e fulfillment | Pendente | Aguardar etapas anteriores |
+| 4 | Capacidade e quantidade segura | Pendente | Depende de `STO-01/STO-02` |
+| 5 | Mercado Livre observado e publicação | Pendente | Seguir dependências de cada ação |
+| 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
+| 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
+| 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
+| 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
+| 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
+| 11 | Interface | Pendente | Somente após as regras correspondentes |
+| 12 | Limpeza histórica | Pendente | Somente após estabilidade funcional |
+
+### Próxima ação
+
+- [ ] Investigar e executar `SEC-03 — Permissões web + mobile`.
+- [ ] Não avançar para `SEC-04` antes de `SEC-03` estar integralmente validada.
+
+---
+
+## 3. Gate obrigatório de cada ação
+
+Copiar este gate para o registro da ação e preencher com evidências reais:
+
+- [ ] branch confirmada como `dev` e working tree inspecionada;
+- [ ] `AGENTS.md` e documentação aplicável lidos;
+- [ ] estado atual e causa confirmados no código/schema/configuração;
+- [ ] documentação oficial atual consultada quando houver dependência externa;
+- [ ] menor mudança correta e reversível definida;
+- [ ] teste de regressão adicionado quando necessário;
+- [ ] implementação limitada à ação atual;
+- [ ] teste direcionado executado e aprovado;
+- [ ] `npm run validate` executado e aprovado;
+- [ ] `npm run build` executado quando aplicável;
+- [ ] migration aplicada somente no `supabase-dev`, quando aplicável;
+- [ ] comportamento validado em `dev.vortek.shop`, quando aplicável;
+- [ ] isolamento de produção reconfirmado;
+- [ ] diff revisado e sem mudanças fora do escopo;
+- [ ] rollback definido;
+- [ ] resultado e pendências registrados neste documento;
+
+Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e repetir a validação.
+
+---
+
+## 4. Etapa 0 — Homologação isolada
+
+**Situação:** concluída e operacional.
+
+- [x] serviço de homologação separado criado;
+- [x] serviço ligado à branch `dev`;
+- [x] domínio `dev.vortek.shop` configurado;
+- [x] deploy de homologação separado da produção;
+- [x] stack `supabase-dev` independente em `192.168.1.162`;
+- [x] migrations atuais aplicadas na homologação;
+- [x] usuário administrativo de homologação criado;
+- **N/A no momento:** seed adicional; criar apenas quando um cenário exigir;
+- [x] nenhuma credencial produtiva configurada para testes;
+- [x] jobs externos mantidos desabilitados por padrão;
+- **N/A até a etapa exigir:** usuários de teste do Mercado Livre;
+- **N/A até a etapa exigir:** credenciais de teste do Mercado Pago;
+- **N/A até a etapa exigir:** Brasil NFe em ambiente de homologação;
+- [x] escrita DSLite mantida desabilitada;
+- [x] WAHA de teste ou integração desabilitada;
+- [x] login e navegação validados em homologação;
+- [x] validação local concluída;
+- [x] build concluído;
+- [x] `app.vortek.shop` e o Supabase de produção permaneceram intocados.
+
+**Rollback:** parar/remover somente os recursos de staging, sem afetar produção.
+
+---
+
+## 5. Etapa 1 — Segurança crítica
+
+### SEC-02 — Credencial versionada
+
+**Prioridade:** P0/P1
+**Situação:** concluída no estado atual do repositório, com risco residual aceito.
+**Commit:** `d81b3cb` — `docs: remove versioned administrative credential`
+
+- [x] credencial literal removida da documentação ativa;
+- [x] busca no estado atual não depende mais da credencial documentada;
+- [x] acesso administrativo documentado sem reproduzir valor sensível;
+- [ ] credencial histórica rotacionada;
+- [ ] tokens relacionados rotacionados, caso aplicável;
+- [ ] histórico Git tratado após rotação, caso necessário.
+
+**Risco aceito pelo responsável:** a rotação de senhas e tokens foi recusada. A correção do repositório está concluída, mas uma credencial que tenha sido exposta anteriormente deve continuar sendo considerada comprometida.
+
+### SEC-01 — Controle de `cargo`
+
+**Prioridade:** P0
+**Situação:** concluída e validada em homologação.
+**Commit:** `ebb9026` — `security: restrict profile role changes`
+**Migration:** `20260828163450_protect_profiles_cargo.sql`, aplicada somente no `supabase-dev`.
+
+- [x] cadastro público não permite criar usuário privilegiado;
+- [x] usuário autenticado edita somente campos pessoais permitidos;
+- [x] operador/visualizador não altera `cargo`;
+- [x] alteração de `cargo` permanece em operação administrativa autorizada;
+- [x] teste de regressão `tests/sec-01-role-control.test.js` incluído;
+- [x] Auth signup público desabilitado na homologação;
+- [x] migration validada no `supabase-dev`;
+- [x] aplicação validada em `dev.vortek.shop`.
+
+### SEC-03 — Permissões web + mobile
+
+**Prioridade:** P1
+**Dependência:** `SEC-01`, concluída.
+**Situação:** próxima ação obrigatória.
+
+- [ ] mapear a matriz atual e todos os consumidores web/mobile necessários;
+- [ ] confirmar a divergência entre cookie web e Bearer mobile;
+- [ ] fazer ambos os caminhos usarem a mesma matriz de permissões;
+- [ ] não criar uma segunda matriz para web;
+- [ ] provar que operador web e mobile recebem a mesma decisão;
+- [ ] provar que visualizador permanece somente leitura;
+- [ ] provar as permissões definidas para admin e gerente;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### SEC-04 — Secrets no browser
+
+**Prioridade:** P1
+**Situação:** pendente; executar somente depois de `SEC-03`.
+
+- [ ] localizar respostas de API que enviam secrets integrais ao cliente;
+- [ ] impedir retorno de client secrets, access tokens e refresh tokens;
+- [ ] retornar somente estado `configurado`/`não configurado`;
+- [ ] enviar novo valor ao servidor somente quando o usuário o alterar;
+- [ ] provar que nenhum valor sensível permanece no JavaScript do navegador;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### SEC-05 — Links sensíveis com expiração
+
+**Prioridade:** P1
+**Situação:** pendente.
+
+- [ ] mapear links de XML, DANFE, etiqueta e comprovante;
+- [ ] reutilizar a infraestrutura expirável já existente;
+- [ ] aplicar expiração real a todos os documentos sensíveis mapeados;
+- [ ] provar acesso válido antes e inválido depois da expiração;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 6. Etapa 2 — Prazo externo Mercado Livre
+
+### ML-01 — Preços por Quantidade
+
+**Prioridade:** P1 com prazo
+**Prazo externo:** antes de `26/10/2026`
+**Situação:** pendente.
+
+- [ ] reler `docs/mercado-livre-publicacao-operacional.md`;
+- [ ] confirmar o contrato oficial atual de Preços por Quantidade;
+- [ ] confrontar backend, preview da UI e payload publicado;
+- [ ] manter uma única regra de quantity pricing no backend;
+- [ ] fazer a UI somente exibir a regra do backend;
+- [ ] preservar outbox/worker existente;
+- [ ] provar que preview e payload publicado são iguais;
+- [ ] validar faixas, quantidades, erros e versão do contrato;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 7. Etapa 3 — Estoque e fulfillment
+
+### STO-01 + STO-02 — Reserva atômica
+
+**Prioridade:** P1
+**Situação:** pendente; os dois identificadores formam o mesmo change-set conceitual.
+
+- [ ] confirmar o ponto exato entre seleção `internal` e consumo de estoque;
+- [ ] garantir atomicamente que `internal` significa estoque já reservado;
+- [ ] reutilizar PostgreSQL, RPC, locks, ledger e `fulfillment_source` existentes;
+- [ ] representar o fluxo `disponível → reservado → despachado`;
+- [ ] liberar/estornar a reserva quando o fluxo falhar antes do despacho;
+- [ ] provar que saldo 1 com duas vendas simultâneas gera uma reserva;
+- [ ] provar que retry não cria segunda reserva;
+- [ ] provar liberação no cancelamento e saída no despacho;
+- [ ] provar que falha fiscal/etiqueta preserva a reserva;
+- [ ] provar reserva correta dos componentes de kit;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 8. Etapa 4 — Capacidade e quantidade segura
+
+### RULE-01 — Capacidade de fulfillment e Q segura
+
+**Prioridade:** P2 estrutural
+**Dependência:** `STO-01/STO-02`
+**Situação:** pendente.
+
+- [ ] centralizar quanto o fulfillment interno consegue atender;
+- [ ] centralizar quanto o fornecedor consegue atender;
+- [ ] definir `Q_segura = max(Q_internal, Q_supplier)`;
+- [ ] impedir soma de capacidades incompatíveis;
+- [ ] derivar capacidade de kits exclusivamente dos componentes;
+- [ ] provar os cenários `2/3 → 3` e `5/3 → 5`;
+- [ ] provar seleção da melhor oferta válida do fornecedor;
+- [ ] provar que reserva reduz `Q_internal`;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### ML-03 — Não publicar estoque igual
+
+**Prioridade:** P1
+**Dependência:** `STO-01/STO-02` e `RULE-01`
+**Situação:** pendente.
+
+- [ ] comparar quantidade/status relevante na fonte centralizada;
+- [ ] não usar timestamp de sincronização como mudança de estoque;
+- [ ] impedir nova outbox quando a quantidade não mudou;
+- [ ] criar outbox quando a quantidade realmente mudou;
+- [ ] provar ausência de publicação redundante;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 9. Etapa 5 — Mercado Livre observado e publicação
+
+### ML-02 — Scan repetido
+
+**Prioridade:** P1
+**Situação:** pendente.
+
+- [ ] medir e confirmar a reconstrução repetida da população;
+- [ ] obter a população uma vez por ciclo;
+- [ ] processar o ciclo de forma retomável usando mecanismo durável existente;
+- [ ] não persistir `scroll_id` como estado durável;
+- [ ] provar cobertura integral sem itens pulados ou duplicados;
+- [ ] provar retomada e abertura correta de um novo ciclo;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### RULE-06 — Elegibilidade de publicação
+
+**Prioridade:** P2
+**Situação:** pendente.
+
+- [ ] centralizar no domínio ML a decisão de anúncio modificável;
+- [ ] classificar erros transitórios e terminais;
+- [ ] reutilizar a mesma semântica no producer e worker;
+- [ ] impedir reenfileiramento contínuo de anúncio não modificável;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### INV-05 — Automação nativa de preço
+
+**Situação:** pendente de investigação.
+
+- [ ] verificar se existem anúncios de teste com automação nativa ativa;
+- [ ] comparar o comportamento com a documentação oficial atual;
+- [ ] implementar pre-check somente se a necessidade operacional for comprovada;
+- [ ] registrar `N/A` com evidência se nenhuma mudança for necessária;
+- [ ] concluir o gate obrigatório da seção 3 se houver implementação.
+
+### INV-02 — Helpers antigos de estoque
+
+**Situação:** pendente de investigação.
+
+- [ ] localizar todos os chamadores dos helpers antigos;
+- [ ] provar que `stock-publish.ts` cobre integralmente o fluxo atual;
+- [ ] remover somente código sem consumidor e sem função exclusiva;
+- [ ] preservar o código se a cobertura não estiver comprovada;
+- [ ] concluir o gate obrigatório da seção 3 se houver remoção.
+
+---
+
+## 10. Etapa 6 — Fiscal
+
+### FIS-01 — Upload XML correto
+
+**Prioridade:** P1
+**Situação:** pendente.
+
+- [ ] reconfirmar o contrato oficial atual de invoice do Mercado Livre;
+- [ ] localizar e remover chamadas comprovadamente inválidas;
+- [ ] usar `GET → POST` para invoice nova;
+- [ ] usar `GET → PUT` somente para atualização válida;
+- [ ] verificar o estado final com `GET`;
+- [ ] provar upload direto correto para invoice nova;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### FIS-02 — Gate do shipment
+
+**Prioridade:** P1
+**Situação:** pendente; executar separadamente de `FIS-01`.
+
+- [ ] exigir `status = ready_to_ship`;
+- [ ] exigir `substatus = invoice_pending`;
+- [ ] não enviar XML quando o shipment não estiver apto;
+- [ ] aguardar o fluxo legítimo já existente;
+- [ ] provar ausência de `invalid_shipment` causado pelo Vortek;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### FIS-03 — `not_found` Brasil NFe
+
+**Prioridade:** P1
+**Situação:** pendente; executar separadamente.
+
+- [ ] distinguir `not_found` transitório e terminal;
+- [ ] reabrir somente quando houver mudança real de estado;
+- [ ] impedir consulta periódica infinita de resultado terminal;
+- [ ] preservar idempotência quando a chave já estiver vinculada;
+- [ ] não criar outro reconciliador;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 11. Etapa 7 — Mercado Pago e financeiro
+
+### FIN-01 + FIN-02 — Lifecycle e parser
+
+**Prioridade:** P1
+**Situação:** pendente; devem ser coerentes antes de confiar em crédito automático.
+
+- [ ] reconfirmar o lifecycle e os campos oficiais atuais do relatório;
+- [ ] fazer a mesma tarefa percorrer `requested → processing → processed → download → import → complete`;
+- [ ] retomar a mesma tarefa sem criar um segundo cron;
+- [ ] priorizar o valor líquido oficial relevante ao saldo;
+- [ ] validar tipo da transação, moeda e idempotência;
+- [ ] provar que resposta `202/requested` não vira `complete`;
+- [ ] provar retomada da mesma task;
+- [ ] provar importação idempotente e ausência de crédito duplicado;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### WEBHOOK-03 — `payment_lookup_failed`
+
+**Prioridade:** P2
+**Dependência:** `FIN-01/FIN-02`
+**Situação:** pendente.
+
+- [ ] integrar a falha à mesma estratégia de reconciliação financeira;
+- [ ] não criar fila paralela exclusiva para o webhook;
+- [ ] garantir estado observável e reprocessamento seguro;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 12. Etapa 8 — Jobs e DSLite
+
+### JOB-01 — Catálogo `on_hold`
+
+**Prioridade:** P1
+**Situação:** pendente.
+
+- [ ] investigar `pg_cron`, `pg_net`, runtime, worker, eligibility e lock;
+- [ ] identificar a causa exata do job órfão;
+- [ ] corrigir o mecanismo atual sem criar outro cron;
+- [ ] provar que `on_hold` é encontrado, retomado e concluído ou volta a estado observável;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### DSL-01 — Timeout DSLite
+
+**Prioridade:** P1
+**Situação:** pendente.
+
+- [ ] localizar onde timeout/erro vira sucesso vazio;
+- [ ] preservar erro e status da request até a decisão de retry;
+- [ ] impedir resultado `0 pedidos + job completo` em falha;
+- [ ] provar falha observável e retry seguro;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### INV-01 — API DSLite x XML
+
+**Situação:** pendente de investigação; executar após a saúde do sync.
+
+- [ ] mapear a fonte principal de preço/estoque;
+- [ ] mapear o papel de fallback ou reconciliação da outra fonte;
+- [ ] confirmar lock e consumidores compartilhados;
+- [ ] remover uma fonte somente se sua função estiver coberta;
+- [ ] concluir o gate obrigatório da seção 3 se houver mudança.
+
+---
+
+## 13. Etapa 9 — Plataforma e banco
+
+### SEC-06 — Next.js
+
+**Prioridade:** P1
+**Situação:** pendente.
+
+- [ ] confirmar versão atual do repositório;
+- [ ] consultar Support Policy e migration guide oficiais atuais;
+- [ ] escolher uma major atualmente suportada;
+- [ ] executar upgrade isolado, sem refatoração de UI;
+- [ ] executar testes direcionados, `npm run validate` e `npm run build`;
+- [ ] executar smoke test em homologação;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### SEC-07 — Secrets runtime
+
+**Prioridade:** P1
+**Situação:** pendente.
+
+- [ ] confirmar recursos realmente disponíveis no Supabase self-hosted atual;
+- [ ] preferir secret store oficialmente suportado;
+- [ ] não implementar criptografia própria;
+- [ ] migrar sem expor valores em código, logs ou checklist;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### DB-03 — Fotografia real do banco
+
+**Prioridade:** P2
+**Situação:** pendente.
+
+- [ ] capturar RLS, grants, policies e constraints no staging;
+- [ ] capturar indexes, default privileges e funções `SECURITY DEFINER` relevantes;
+- [ ] comparar com migrations sem presumir que elas representam todo o runtime;
+- [ ] conferir produção somente na preparação autorizada da mudança;
+- [ ] bloquear limpeza destrutiva sem essa fotografia;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 14. Etapa 10 — Consolidação de regras P2
+
+Executar **uma regra por tarefa**.
+
+### RULE-02 — Pricing
+
+- [ ] manter `services/pricing.ts` como fonte;
+- [ ] definir os contextos reais de 4% e 5%;
+- [ ] remover fórmulas locais somente depois da equivalência comprovada;
+- [ ] não alterar taxa por suposição;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### RULE-03 — Payment mode
+
+- [ ] usar `offer.payment_mode` como fonte;
+- [ ] reutilizar a inferência compartilhada somente como fallback;
+- [ ] provar que preview e execução produzem o mesmo resultado;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### RULE-04 — Threshold de custo
+
+- [ ] reutilizar `product-activity.ts`;
+- [ ] remover repetição local de `cost > 2000` somente após equivalência;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### RULE-05 — Status fiscal
+
+- [ ] distinguir estado externo bruto, normalizado técnico e persistido canônico;
+- [ ] consolidar somente dentro do domínio correto;
+- [ ] não criar enum global entre domínios;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### RULE-07 — Tipos do ledger
+
+- [ ] mapear tipos realmente aceitos e operados no banco;
+- [ ] alinhar TypeScript com o contrato real;
+- [ ] remover casts dispersos somente no fluxo afetado;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### JOB-02 — Dispatch duplicado
+
+- [ ] mapear a lógica comum de `/api/sync/run` e `/api/sync/disparar`;
+- [ ] consolidar a lógica interna;
+- [ ] preservar autenticação e origem específicas de cada rota;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### JOB-04 — Status de job
+
+- [ ] localizar writers e significados divergentes;
+- [ ] normalizar writers antes de criar constraint;
+- [ ] provar que estados e métricas ficaram inequívocos;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 15. Etapa 11 — Interface
+
+Executar somente depois das regras e correções das quais cada item depende.
+
+### UI-05 — Perguntas
+
+- [ ] confirmar que busca/filtro opera somente sobre a página carregada;
+- [ ] alinhar semântica entre UI e API;
+- [ ] provar busca e filtros sobre o conjunto esperado;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### UI-02 — Tracking Mercado Livre
+
+- [ ] localizar o fluxo compartilhável entre Produtos e Catálogo;
+- [ ] compartilhar somente o acompanhamento de publicação;
+- [ ] não criar framework genérico de polling;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### UI-01 — Pedidos
+
+- [ ] separar somente blocos funcionais reais de DSLite;
+- [ ] separar pagamento de fornecedor quando independente;
+- [ ] separar etiqueta/WhatsApp quando independente;
+- [ ] preservar regras de negócio nas fontes existentes;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### UI-03 — Configurações
+
+**Dependências:** `SEC-01`, `SEC-03` e `SEC-04`.
+
+- [ ] confirmar todas as dependências concluídas;
+- [ ] separar tabs em componentes mantendo a mesma rota;
+- [ ] não duplicar autorização nem manipulação de secrets;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### UI-04 — DTO Pedidos
+
+- [ ] mapear a resposta operacional real da API;
+- [ ] criar o tipo específico dessa resposta;
+- [ ] substituir apenas os `any` do fluxo afetado;
+- [ ] não iniciar campanha genérica de tipagem;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### UI-06 — Compras
+
+- [ ] separar fetch dependente de filtros;
+- [ ] separar indicadores independentes;
+- [ ] provar que filtros não repetem chamadas independentes;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 16. Etapa 12 — Limpeza histórica
+
+Executar somente depois do sistema funcional e validado. Cada remoção exige busca de consumers e rollback conhecido.
+
+### HIST-01 — Cluster `ml-p0-*`
+
+- [ ] confirmar campanha encerrada;
+- [ ] localizar todos os consumers;
+- [ ] separar testes permanentes e preservar evidências necessárias;
+- [ ] remover o cluster por conjunto coerente;
+- [ ] remover objetos atuais de banco somente por nova migration;
+- [ ] preservar migrations históricas;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HIST-02 + HIST-03 — WhatsApp histórico
+
+- [ ] localizar readers/writers de `whatsapp_alert_events`;
+- [ ] localizar readers/writers de `ops_whatsapp_events`;
+- [ ] confirmar ausência de serviços ou scripts externos;
+- [ ] remover somente após ausência completa de consumers;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HIST-04 — Scripts e reports one-off
+
+- [ ] agrupar candidatos por finalidade/campanha;
+- [ ] confirmar que cada processo encerrou;
+- [ ] remover por cluster, nunca por arquivo aleatório;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HIST-05 — Panasonic
+
+- [ ] confirmar encerramento do onboarding/importação;
+- [ ] remover ou arquivar juntos `Panasonic.xls` e seu importador;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HIST-06 — Dataset
+
+- [ ] confirmar ausência de iniciativa atual que use `scripts/build_dataset/`;
+- [ ] remover o cluster somente após essa confirmação;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HIST-07 — OpenCode
+
+- [ ] confirmar se `opencode.json` possui consumidor atual;
+- [ ] corrigir a referência se estiver em uso;
+- [ ] remover o arquivo se estiver sem uso;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HIST-08 — RTK.md
+
+- [ ] confirmar se `RTK.md` possui consumidor atual;
+- [ ] alinhar com `AGENTS.md` se for consumido;
+- [ ] remover se estiver sem consumidor;
+- [ ] concluir o gate obrigatório da seção 3.
+
+---
+
+## 17. Registro obrigatório de cada ação
+
+Adicionar uma entrada ao concluir ou bloquear uma ação:
+
+```text
+Identificador:
+Situação:
+Data:
+Responsável:
+Estado/causa confirmados:
+Mudança realizada:
+Arquivos alterados:
+Commit:
+Teste direcionado:
+npm run validate:
+Build: executado / N/A com motivo
+Migration: identificador e supabase-dev / N/A
+Homologação: cenário e resultado / N/A com motivo
+Rollback:
+Risco ou pendência:
+Próxima ação liberada:
+```
+
+Não colocar valores de variáveis de ambiente, credenciais ou qualquer secret nesse registro.
+
+---
+
+## 18. Checklist de promoção controlada `dev → main`
+
+Esta seção prepara a promoção. Ela não autoriza merge nem deploy.
+
+### Antes de solicitar autorização
+
+- [ ] ação individual concluída e registrada;
+- [ ] branch `dev` atualizada e limpa;
+- [ ] testes direcionados verdes;
+- [ ] `npm run validate` aprovado;
+- [ ] build aprovado quando aplicável;
+- [ ] migrations aplicadas e testadas somente em staging;
+- [ ] `dev.vortek.shop` funcional;
+- [ ] commits e diff destinados à `main` revisados;
+- [ ] nenhuma secret adicionada ao Git;
+- [ ] migrations da promoção identificadas;
+- [ ] novas variáveis de produção identificadas sem expor valores;
+- [ ] rollback e condição de interrupção conhecidos;
+- [ ] nenhuma mudança fora do escopo;
+- [ ] autorização explícita do responsável recebida.
+
+### Depois de merge autorizado
+
+- [ ] backup realizado quando exigido pela mudança;
+- [ ] migration de produção aplicada quando autorizada e aplicável;
+- [ ] deploy executado pelo caminho oficial do Easypanel;
+- [ ] smoke test seguro executado;
+- [ ] logs verificados;
+- [ ] operação confirmada;
+- [ ] release registrada;
+- [ ] branch `dev` reconciliada com a nova base de produção.
+
+---
+
+## 19. Regras de rollback
+
+- **Código sem migration destrutiva:** redeploy do commit anterior ou revert do commit.
+- **Migration aditiva:** manter compatibilidade para permitir rollback do código.
+- **Migration destrutiva:** executar somente com consumers removidos, backup verificado, transição concluída e restauração definida.
+- **Integração externa:** possuir condição de interrupção e não criar efeito externo inverso automaticamente sem confirmar o estado real.
+
+---
+
+## 20. Encerramento do Item 17
+
+O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tiverem evidência registrada:
+
+- [ ] homologação permanece isolada e operacional;
+- [ ] todos os P0 foram resolvidos;
+- [ ] todos os P1 foram resolvidos ou formalmente reclassificados com evidência;
+- [ ] quantity pricing foi migrado antes do prazo;
+- [ ] estoque interno possui reserva segura;
+- [ ] quantidade segura possui uma única fonte;
+- [ ] Mercado Livre não executa scans/outboxes desnecessários comprovados;
+- [ ] fluxo fiscal não faz chamadas inválidas;
+- [ ] Mercado Pago conclui todo o lifecycle;
+- [ ] jobs não escondem falhas críticas;
+- [ ] principais regras duplicadas estão consolidadas;
+- [ ] interface foi simplificada somente onde havia mistura real;
+- [ ] clusters históricos confirmados foram removidos;
+- [ ] testes críticos permanentes estão identificados;
+- [ ] produção permaneceu operacional durante toda a execução.
+
+Quando estes critérios estiverem concluídos, fazer uma revisão final das auditorias e registrar qualquer item formalmente reclassificado antes de declarar o Item 17 encerrado.
