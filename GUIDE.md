@@ -7,7 +7,7 @@
 ## Fase 1 — Backend + Banco de Dados ✅ (Concluída)
 
 - ✅ Supabase configurado (12 tabelas + RLS + triggers)
-- ✅ Admin `admin@vortek.shop` / `Vortek@123` criado
+- ✅ Acesso administrativo configurado; credenciais mantidas fora do repositório.
 - ✅ API routes de CRUD (produtos, pedidos, clientes, configuracoes)
 - ✅ Login + middleware de autenticação
 - ✅ Bling removido (15 arquivos modificados, 5 deletados, migration 00003)
@@ -181,7 +181,7 @@ Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript 
 ### Conectar
 
 1. Acessar `https://app.vortek.shop/login`
-2. Email: `admin@vortek.shop` / Senha: `Vortek@123`
+2. Use apenas credenciais administrativas autorizadas, armazenadas fora do repositório.
 3. Configurações → Integrações → preencher credenciais
 
 ### Ajustes obrigatórios de runtime/build (Nixpacks)
