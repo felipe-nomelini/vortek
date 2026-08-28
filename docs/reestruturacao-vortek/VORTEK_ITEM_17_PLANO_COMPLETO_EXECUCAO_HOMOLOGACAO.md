@@ -76,7 +76,7 @@ e-mail/push reais
 ```text
 GitHub dev
     ↓
-Easypanel: novo serviço vortek-erp-staging
+Easypanel (192.168.1.160): serviço vortek-erp-dev
     ↓
 dev.vortek.shop
     ↓
@@ -142,7 +142,7 @@ smoke test seguro
 | Recurso | Produção | Homologação |
 |---|---|---|
 | Git | `main` | `dev` |
-| App Easypanel | `vortek-erp` | `vortek-erp-staging` |
+| App Easypanel | `vortek-erp` | `vortek-erp-dev` em `192.168.1.160` |
 | Domínio | `app.vortek.shop` | `dev.vortek.shop` |
 | Supabase | stack atual de produção | stack staging independente |
 | Banco PostgreSQL | produção | staging |
@@ -174,7 +174,7 @@ domínio: app.vortek.shop
 ### Novo serviço
 
 ```text
-vortek-erp-staging
+vortek-erp-dev
 branch: dev
 domínio: dev.vortek.shop
 ```
@@ -391,7 +391,7 @@ Domínio recomendado:
 dev.vortek.shop
 ```
 
-Ele deve apontar somente para o serviço `vortek-erp-staging`.
+Ele deve apontar somente para o serviço `vortek-erp-dev`, no host `192.168.1.160`.
 
 `app.vortek.shop` permanece intocado.
 
@@ -575,7 +575,7 @@ Garantir que todas as mudanças futuras possam ser testadas sem risco para `app.
 
 ### Ações
 
-- [ ] Criar serviço `vortek-erp-staging` no Easypanel.
+- [ ] Criar serviço `vortek-erp-dev` no Easypanel, no host `192.168.1.160`.
 - [ ] Configurar source GitHub na branch `dev`.
 - [ ] Configurar domínio `dev.vortek.shop`.
 - [ ] Criar deploy webhook separado para staging.

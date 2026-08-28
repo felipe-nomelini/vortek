@@ -5,8 +5,9 @@
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.vortek.shop`
+**Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `SEC-03 — Permissões web + mobile`
+**Próxima ação obrigatória:** `SEC-04 — Secrets no browser`
 
 ---
 
@@ -50,7 +51,7 @@ Regras de uso:
 | Ordem | Etapa | Situação | Próxima decisão |
 |---:|---|---|---|
 | 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
-| 1 | Segurança crítica | Em andamento | Executar somente `SEC-03` |
+| 1 | Segurança crítica | Em andamento | Executar somente `SEC-04` |
 | 2 | Prazo externo Mercado Livre | Pendente | Aguardar conclusão da Etapa 1 |
 | 3 | Estoque e fulfillment | Pendente | Aguardar etapas anteriores |
 | 4 | Capacidade e quantidade segura | Pendente | Depende de `STO-01/STO-02` |
@@ -65,8 +66,8 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Concluir o deploy e a validação de `SEC-03` em `dev.vortek.shop`.
-- [ ] Não avançar para `SEC-04` antes de `SEC-03` estar integralmente validada.
+- [ ] Executar somente `SEC-04 — Secrets no browser`.
+- [ ] Não avançar para `SEC-05` antes de `SEC-04` estar integralmente validada.
 
 ---
 
@@ -160,7 +161,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P1
 **Dependência:** `SEC-01`, concluída.
-**Situação:** implementada e validada localmente contra o `supabase-dev`; deploy em homologação pendente.
+**Situação:** concluída e validada em homologação.
 **Commit funcional:** `677fa2f` — `security: enforce shared web and mobile permissions`.
 
 - [x] mapear a matriz atual e todos os consumidores web/mobile necessários;
@@ -170,7 +171,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - [x] provar localmente que operador web e mobile recebem a mesma decisão;
 - [x] provar localmente que visualizador permanece somente leitura;
 - [x] provar localmente as permissões definidas para admin e gerente;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] concluir o gate obrigatório da seção 3.
 
 **Validação executada:**
 
@@ -179,9 +180,12 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - `npm run build`: aprovado, 121 páginas geradas;
 - integração local com o `supabase-dev`: admin/gerente passaram pela autorização, operador/visualizador receberam `403` para confirmação de pagamento, e todos mantiveram as leituras permitidas, tanto por cookie quanto por Bearer;
 - quatro contas temporárias foram removidas ao final da validação;
+- deploy da branch `dev` acionado no serviço `vortek-erp-dev` e nova instância confirmada em `dev.vortek.shop`;
+- homologação em `dev.vortek.shop`: leituras web/mobile retornaram `200` para os quatro cargos; confirmação de pagamento chegou ao `404` seguro para admin/gerente e foi bloqueada com `403` para operador/visualizador nos dois clientes;
+- quatro contas temporárias de homologação foram removidas e nenhum perfil temporário permaneceu no `supabase-dev`;
 - nenhuma migration foi necessária.
 
-**Pendência bloqueante:** `.env.deploy.local` não possui configuração neste worktree e o serviço não fez auto-deploy após o push. A prova em `dev.vortek.shop` ainda apresentou `404` para operador web e `403` para operador mobile, confirmando que o domínio continua no código anterior. Não liberar `SEC-04` até configurar/acionar o webhook exclusivo do staging e repetir os testes no domínio.
+**Resultado:** a mesma matriz de permissões governa cookie web e Bearer mobile em homologação. `SEC-04` está liberada como próxima ação única.
 
 ### SEC-04 — Secrets no browser
 
