@@ -66,6 +66,65 @@ const inputStyle = {
   borderRadius: 6,
 };
 
+type SecretFieldName = "client_secret" | "access_token" | "refresh_token";
+
+const secretStatusField: Record<SecretFieldName, string> = {
+  client_secret: "client_secret_configurado",
+  access_token: "access_token_configurado",
+  refresh_token: "refresh_token_configurado",
+};
+
+function SecretCredentialField({
+  placeholder,
+  value,
+  configured,
+  saving,
+  onChange,
+  onSave,
+  onRemove,
+}: {
+  placeholder: string;
+  value: string;
+  configured: boolean;
+  saving: boolean;
+  onChange: (value: string) => void;
+  onSave: () => void;
+  onRemove: () => void;
+}) {
+  return (
+    <div>
+      <Space.Compact style={{ width: "100%" }}>
+        <Input
+          placeholder={placeholder}
+          type="password"
+          autoComplete="new-password"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          style={inputStyle}
+        />
+        <Button
+          size="small"
+          onClick={onSave}
+          loading={saving}
+          disabled={!value.trim()}
+        >
+          Salvar
+        </Button>
+      </Space.Compact>
+      <Space size={4} style={{ marginTop: 4 }}>
+        <Tag color={configured ? "green" : "default"} style={{ margin: 0 }}>
+          {configured ? "Configurado" : "Não configurado"}
+        </Tag>
+        {configured ? (
+          <Button type="link" danger size="small" onClick={onRemove}>
+            Remover
+          </Button>
+        ) : null}
+      </Space>
+    </div>
+  );
+}
+
 function saveIntegrations(ml: boolean, dslite: boolean) {
   if (typeof window !== "undefined") {
     localStorage.setItem("vortek_integrations", JSON.stringify({ ml, dslite }));
@@ -92,6 +151,7 @@ function ConfiguracoesPageContent() {
   const [testingIntegration, setTestingIntegration] = useState<string | null>(
     null,
   );
+  const [savingSecret, setSavingSecret] = useState<string | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   const [empresa, setEmpresa] = useState({
@@ -110,6 +170,7 @@ function ConfiguracoesPageContent() {
   const [ml, setMl] = useState({
     clientId: "",
     clientSecret: "",
+    clientSecretConfigured: false,
     conectado: false,
     lastError: "",
     lastErrorCode: "",
@@ -117,11 +178,14 @@ function ConfiguracoesPageContent() {
   const [dslite, setDslite] = useState({
     url: "",
     token: "",
+    tokenConfigured: false,
     conectado: false,
   });
   const [brasilNfe, setBrasilNfe] = useState({
     token: "",
     userToken: "",
+    tokenConfigured: false,
+    userTokenConfigured: false,
     url: "",
     conectado: false,
   });
@@ -193,7 +257,10 @@ function ConfiguracoesPageContent() {
             if (i.tipo === "mercadolivre") {
               setMl({
                 clientId: i.client_id || "",
-                clientSecret: i.client_secret || "",
+                clientSecret: "",
+                clientSecretConfigured: Boolean(
+                  i.client_secret_configurado,
+                ),
                 conectado: i.conectado,
                 lastError: i.last_refresh_error || "",
                 lastErrorCode: i.last_refresh_error_code || "",
@@ -202,13 +269,16 @@ function ConfiguracoesPageContent() {
             if (i.tipo === "dslite")
               setDslite({
                 url: i.url || "",
-                token: i.access_token || "",
+                token: "",
+                tokenConfigured: Boolean(i.access_token_configurado),
                 conectado: i.conectado,
               });
             if (i.tipo === "brasilnfe")
               setBrasilNfe({
-                token: i.access_token || "",
-                userToken: i.refresh_token || "",
+                token: "",
+                userToken: "",
+                tokenConfigured: Boolean(i.access_token_configurado),
+                userTokenConfigured: Boolean(i.refresh_token_configurado),
                 url: i.url || "",
                 conectado: i.conectado,
               });
@@ -279,19 +349,75 @@ function ConfiguracoesPageContent() {
     [],
   );
 
+  const saveCredential = useCallback(
+    async (input: {
+      tipo: string;
+      field: SecretFieldName;
+      value: string;
+      label: string;
+      onSaved: (configured: boolean) => void;
+    }) => {
+      const value = input.value.trim();
+      if (!value) return;
+      const operation = `${input.tipo}:${input.field}`;
+      setSavingSecret(operation);
+      try {
+        const integration = await saveIntegracao(input.tipo, {
+          [input.field]: value,
+        });
+        input.onSaved(Boolean(integration?.[secretStatusField[input.field]]));
+        messageApi.success(`${input.label} salva`);
+      } catch (error: any) {
+        messageApi.error(error?.message || `Falha ao salvar ${input.label}`);
+      } finally {
+        setSavingSecret(null);
+      }
+    },
+    [messageApi, saveIntegracao],
+  );
+
+  const removeCredential = useCallback(
+    (input: {
+      tipo: string;
+      field: SecretFieldName;
+      label: string;
+      onRemoved: () => void;
+    }) => {
+      Modal.confirm({
+        title: `Remover ${input.label}?`,
+        content: "A integração deixará de usar esta credencial.",
+        okText: "Remover",
+        okButtonProps: { danger: true },
+        cancelText: "Cancelar",
+        async onOk() {
+          try {
+            await saveIntegracao(input.tipo, { [input.field]: null });
+            input.onRemoved();
+            messageApi.success(`${input.label} removida`);
+          } catch (error: any) {
+            messageApi.error(
+              error?.message || `Falha ao remover ${input.label}`,
+            );
+            throw error;
+          }
+        },
+      });
+    },
+    [messageApi, saveIntegracao],
+  );
+
   useEffect(() => {
     saveIntegrations(ml.conectado, dslite.conectado);
   }, [ml.conectado, dslite.conectado]);
 
   const conectarML = async () => {
-    if (!ml.clientId || !ml.clientSecret) {
-      messageApi.warning("Preencha Client ID e Client Secret");
+    if (!ml.clientId || !ml.clientSecretConfigured) {
+      messageApi.warning("Configure e salve o Client ID e o Client Secret");
       return;
     }
     try {
       await saveIntegracao("mercadolivre", {
         client_id: ml.clientId,
-        client_secret: ml.clientSecret,
       });
       window.location.href = "/api/integracao/ml/connect";
     } catch (err: any) {
@@ -302,24 +428,21 @@ function ConfiguracoesPageContent() {
   };
 
   const testarDslite = async () => {
-    if (!dslite.url || !dslite.token) {
-      messageApi.warning("Preencha a URL e o Token");
+    if (!dslite.url || !dslite.tokenConfigured) {
+      messageApi.warning("Configure e salve a URL e o Token");
       return;
     }
     setTestingIntegration("dslite");
     try {
+      await saveIntegracao("dslite", { url: dslite.url });
       const testRes = await fetch("/api/integracoes/teste/dslite", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: dslite.url, token: dslite.token }),
       });
       const testJson = await testRes.json().catch(() => ({}));
       const conectado = Boolean(testRes.ok && testJson?.ok);
 
       setDslite((p) => ({ ...p, conectado }));
       await saveIntegracao("dslite", {
-        url: dslite.url,
-        access_token: dslite.token,
         conectado,
       });
 
@@ -358,29 +481,23 @@ function ConfiguracoesPageContent() {
   );
 
   const testarBrasilNfe = async () => {
-    if (!brasilNfe.token) {
-      messageApi.warning("Preencha o Token da Brasil NFe");
+    if (!brasilNfe.tokenConfigured) {
+      messageApi.warning("Configure e salve o Token da Brasil NFe");
       return;
     }
     setTestingIntegration("brasilnfe");
     try {
+      await saveIntegracao("brasilnfe", {
+        url: brasilNfe.url || null,
+      });
       const testRes = await fetch("/api/integracoes/teste/brasilnfe", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          token: brasilNfe.token,
-          userToken: brasilNfe.userToken,
-          url: brasilNfe.url,
-        }),
       });
       const testJson = await testRes.json().catch(() => ({}));
       const conectado = Boolean(testRes.ok && testJson?.ok);
 
       setBrasilNfe((p) => ({ ...p, conectado }));
       await saveIntegracao("brasilnfe", {
-        access_token: brasilNfe.token,
-        refresh_token: brasilNfe.userToken || null,
-        url: brasilNfe.url || null,
         conectado,
       });
 
@@ -655,17 +772,41 @@ function ConfiguracoesPageContent() {
             }
             style={inputStyle}
           />
-          <Input
+          <SecretCredentialField
             placeholder="Client Secret"
-            type="password"
             value={ml.clientSecret}
-            onChange={(e) =>
-              setMl((p) => ({ ...p, clientSecret: e.target.value }))
+            configured={ml.clientSecretConfigured}
+            saving={savingSecret === "mercadolivre:client_secret"}
+            onChange={(value) =>
+              setMl((current) => ({ ...current, clientSecret: value }))
             }
-            onBlur={() =>
-              saveIntegracao("mercadolivre", { client_secret: ml.clientSecret })
+            onSave={() =>
+              saveCredential({
+                tipo: "mercadolivre",
+                field: "client_secret",
+                value: ml.clientSecret,
+                label: "Client Secret",
+                onSaved: (configured) =>
+                  setMl((current) => ({
+                    ...current,
+                    clientSecret: configured ? "" : current.clientSecret,
+                    clientSecretConfigured: configured,
+                  })),
+              })
             }
-            style={inputStyle}
+            onRemove={() =>
+              removeCredential({
+                tipo: "mercadolivre",
+                field: "client_secret",
+                label: "Client Secret",
+                onRemoved: () =>
+                  setMl((current) => ({
+                    ...current,
+                    clientSecret: "",
+                    clientSecretConfigured: false,
+                  })),
+              })
+            }
           />
           {ml.lastError ? (
             <Text type="danger" style={{ fontSize: 12 }}>
@@ -693,17 +834,41 @@ function ConfiguracoesPageContent() {
             onBlur={() => saveIntegracao("dslite", { url: dslite.url })}
             style={inputStyle}
           />
-          <Input
+          <SecretCredentialField
             placeholder="Token de Acesso"
-            type="password"
             value={dslite.token}
-            onChange={(e) =>
-              setDslite((p) => ({ ...p, token: e.target.value }))
+            configured={dslite.tokenConfigured}
+            saving={savingSecret === "dslite:access_token"}
+            onChange={(value) =>
+              setDslite((current) => ({ ...current, token: value }))
             }
-            onBlur={() =>
-              saveIntegracao("dslite", { access_token: dslite.token })
+            onSave={() =>
+              saveCredential({
+                tipo: "dslite",
+                field: "access_token",
+                value: dslite.token,
+                label: "Token da DSLite",
+                onSaved: (configured) =>
+                  setDslite((current) => ({
+                    ...current,
+                    token: configured ? "" : current.token,
+                    tokenConfigured: configured,
+                  })),
+              })
             }
-            style={inputStyle}
+            onRemove={() =>
+              removeCredential({
+                tipo: "dslite",
+                field: "access_token",
+                label: "Token da DSLite",
+                onRemoved: () =>
+                  setDslite((current) => ({
+                    ...current,
+                    token: "",
+                    tokenConfigured: false,
+                  })),
+              })
+            }
           />
         </>
       ),
@@ -717,31 +882,77 @@ function ConfiguracoesPageContent() {
       bg: "#0b2525",
       fields: (
         <>
-          <Input
+          <SecretCredentialField
             placeholder="Token da Empresa"
-            type="password"
             value={brasilNfe.token}
-            onChange={(e) =>
-              setBrasilNfe((p) => ({ ...p, token: e.target.value }))
+            configured={brasilNfe.tokenConfigured}
+            saving={savingSecret === "brasilnfe:access_token"}
+            onChange={(value) =>
+              setBrasilNfe((current) => ({ ...current, token: value }))
             }
-            onBlur={() =>
-              saveIntegracao("brasilnfe", { access_token: brasilNfe.token })
-            }
-            style={inputStyle}
-          />
-          <Input
-            placeholder="User Token (opcional)"
-            type="password"
-            value={brasilNfe.userToken}
-            onChange={(e) =>
-              setBrasilNfe((p) => ({ ...p, userToken: e.target.value }))
-            }
-            onBlur={() =>
-              saveIntegracao("brasilnfe", {
-                refresh_token: brasilNfe.userToken,
+            onSave={() =>
+              saveCredential({
+                tipo: "brasilnfe",
+                field: "access_token",
+                value: brasilNfe.token,
+                label: "Token da Brasil NFe",
+                onSaved: (configured) =>
+                  setBrasilNfe((current) => ({
+                    ...current,
+                    token: configured ? "" : current.token,
+                    tokenConfigured: configured,
+                  })),
               })
             }
-            style={inputStyle}
+            onRemove={() =>
+              removeCredential({
+                tipo: "brasilnfe",
+                field: "access_token",
+                label: "Token da Brasil NFe",
+                onRemoved: () =>
+                  setBrasilNfe((current) => ({
+                    ...current,
+                    token: "",
+                    tokenConfigured: false,
+                  })),
+              })
+            }
+          />
+          <SecretCredentialField
+            placeholder="User Token (opcional)"
+            value={brasilNfe.userToken}
+            configured={brasilNfe.userTokenConfigured}
+            saving={savingSecret === "brasilnfe:refresh_token"}
+            onChange={(value) =>
+              setBrasilNfe((current) => ({ ...current, userToken: value }))
+            }
+            onSave={() =>
+              saveCredential({
+                tipo: "brasilnfe",
+                field: "refresh_token",
+                value: brasilNfe.userToken,
+                label: "User Token da Brasil NFe",
+                onSaved: (configured) =>
+                  setBrasilNfe((current) => ({
+                    ...current,
+                    userToken: configured ? "" : current.userToken,
+                    userTokenConfigured: configured,
+                  })),
+              })
+            }
+            onRemove={() =>
+              removeCredential({
+                tipo: "brasilnfe",
+                field: "refresh_token",
+                label: "User Token da Brasil NFe",
+                onRemoved: () =>
+                  setBrasilNfe((current) => ({
+                    ...current,
+                    userToken: "",
+                    userTokenConfigured: false,
+                  })),
+              })
+            }
           />
           <Input
             placeholder="URL Base (opcional)"

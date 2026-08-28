@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { BrasilNFe } from 'brasilnfe';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
 
 function normalizeBaseUrl(value: unknown): string {
@@ -9,15 +9,26 @@ function normalizeBaseUrl(value: unknown): string {
   return normalized.endsWith('/') ? normalized : `${normalized}/`;
 }
 
-export async function POST(request: Request) {
+export async function POST() {
   const supabase = await createClient();
   const admin = await requireAdminUser(supabase);
   if (!admin.ok) return admin.response;
 
-  const body = await request.json().catch(() => ({}));
-  const token = String(body?.token || '').trim();
-  const userToken = String(body?.userToken || '').trim() || undefined;
-  const url = normalizeBaseUrl(body?.url);
+  const serviceClient = createServiceClient();
+  const { data: integracao, error } = await serviceClient
+    .from('integracoes')
+    .select('access_token,refresh_token,url')
+    .eq('tipo', 'brasilnfe')
+    .maybeSingle();
+  if (error) {
+    return NextResponse.json(
+      { erro: 'Falha ao carregar configuração da Brasil NFe' },
+      { status: 500 },
+    );
+  }
+  const token = String(integracao?.access_token || '').trim();
+  const userToken = String(integracao?.refresh_token || '').trim() || undefined;
+  const url = normalizeBaseUrl(integracao?.url);
 
   if (!token) {
     return NextResponse.json(

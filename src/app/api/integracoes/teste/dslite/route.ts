@@ -1,19 +1,30 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
 
 function normalizeBaseUrl(value: unknown): string {
   return String(value || '').trim().replace(/\/+$/, '');
 }
 
-export async function POST(request: Request) {
+export async function POST() {
   const supabase = await createClient();
   const admin = await requireAdminUser(supabase);
   if (!admin.ok) return admin.response;
 
-  const body = await request.json().catch(() => ({}));
-  const url = normalizeBaseUrl(body?.url);
-  const token = String(body?.token || '').trim();
+  const serviceClient = createServiceClient();
+  const { data: integracao, error } = await serviceClient
+    .from('integracoes')
+    .select('url,access_token')
+    .eq('tipo', 'dslite')
+    .maybeSingle();
+  if (error) {
+    return NextResponse.json(
+      { erro: 'Falha ao carregar configuração da DSLite' },
+      { status: 500 },
+    );
+  }
+  const url = normalizeBaseUrl(integracao?.url);
+  const token = String(integracao?.access_token || '').trim();
 
   if (!url || !token) {
     return NextResponse.json(

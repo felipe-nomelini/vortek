@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
 import { requireAdminUser } from "@/lib/auth/admin";
+import { toIntegrationConfigDto } from "@/lib/integration-config-dto";
 
 const INTEGRATION_TYPES = new Set([
   "mercadolivre",
@@ -32,7 +33,11 @@ export async function GET() {
     .order("tipo");
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-  return NextResponse.json({ integracoes: data || [] });
+  return NextResponse.json({
+    integracoes: (data || []).map((row) =>
+      toIntegrationConfigDto(row as Record<string, unknown>),
+    ),
+  });
 }
 
 export async function PATCH(request: Request) {
@@ -77,5 +82,7 @@ export async function PATCH(request: Request) {
     .single();
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-  return NextResponse.json({ integracao: data });
+  return NextResponse.json({
+    integracao: toIntegrationConfigDto(data as Record<string, unknown>),
+  });
 }
