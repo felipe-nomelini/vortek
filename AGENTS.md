@@ -2,7 +2,7 @@
 
 **Always-on engineering rules for every agent working in this repository.**
 
-_Last reviewed: 2026-08-26_
+_Last reviewed: 2026-08-27_
 
 ---
 
@@ -23,6 +23,53 @@ If instructions conflict, follow this order:
 Platform, runtime, sandbox, and security restrictions always take precedence when applicable.
 
 **A generic skill must never override a Vortek-specific rule in this file or the actual state of the repository.**
+
+---
+
+## 0.1 Reestruturação — base de conhecimento dos Itens 1 a 17
+
+A base canônica da auditoria, consolidação e execução da reestruturação está em:
+
+`docs/reestruturacao-vortek/`
+
+Ela foi incorporada em 2026-08-27 e deve ser usada como referência especializada, sem substituir a inspeção do código, schema, configuração, testes e documentação oficial atuais.
+
+### Roteamento obrigatório
+
+Para qualquer tarefa ligada à reestruturação, à nova versão ou ao Item 17:
+
+1. leia primeiro este `AGENTS.md`;
+2. leia `docs/reestruturacao-vortek/INSTRUCOES_AGENTE_VORTEK.md` como contexto complementar, mantendo a precedência definida na seção 0;
+3. leia a etapa aplicável de `docs/reestruturacao-vortek/VORTEK_ITEM_17_PLANO_COMPLETO_EXECUCAO_HOMOLOGACAO.md`;
+4. use `docs/reestruturacao-vortek/VORTEK_AUDITORIA_ITEM_16_CONSOLIDACAO.md` para localizar o identificador, a prioridade e as dependências do achado;
+5. leia a auditoria detalhada do domínio afetado antes de concluir ou alterar;
+6. confronte os achados com o estado atual do repositório e reconfirme contratos externos na documentação oficial atual.
+
+Os documentos registram uma fotografia datada da auditoria. Status, versões, prazos, hipóteses e evidências operacionais podem envelhecer; não os apresente como estado atual sem nova verificação.
+
+Execute somente uma ação do Item 17 por tarefa. Não avance para a ação ou etapa seguinte enquanto a atual não estiver validada. A base não autoriza merge em `main`, migration ou deploy em produção.
+
+### Índice por domínio
+
+- Item 1 — mapa geral: `VORTEK_AUDITORIA_ITEM_01_MAPA_GERAL_DO_SISTEMA.md`;
+- Item 2 — pedidos, fulfillment e estoque interno: `VORTEK_AUDITORIA_ITEM_02_PEDIDOS_FULFILLMENT_ESTOQUE_INTERNO_ATUALIZADO.md`;
+- Item 3 — produtos, fornecedores e kits: `VORTEK_AUDITORIA_ITEM_03_PRODUTOS_FORNECEDORES_KITS.md`;
+- Item 4 — Mercado Livre, anúncios e catálogo: `VORTEK_AUDITORIA_ITEM_04_MERCADO_LIVRE_ANUNCIOS_CATALOGO.md`;
+- Item 5 — fiscal: `VORTEK_AUDITORIA_ITEM_05_FISCAL.md`;
+- Item 6 — compras, fornecedores e financeiro: `VORTEK_AUDITORIA_ITEM_06_COMPRAS_FORNECEDORES_FINANCEIRO.md`;
+- Item 7 — sincronizações, jobs e scheduler: `VORTEK_AUDITORIA_ITEM_07_SINCRONIZACOES_JOBS_SCHEDULER.md`;
+- Item 8 — webhooks e eventos: `VORTEK_AUDITORIA_ITEM_08_WEBHOOKS_EVENTOS.md`;
+- Item 9 — autenticação, segurança e permissões: `VORTEK_AUDITORIA_ITEM_09_AUTH_SEGURANCA_PERMISSOES.md`;
+- Item 10 — banco de dados: `VORTEK_AUDITORIA_ITEM_10_BANCO_DE_DADOS.md`;
+- Item 11 — interface web: `VORTEK_AUDITORIA_ITEM_11_INTERFACE_WEB.md`;
+- Item 12 — regras de negócio compartilhadas: `VORTEK_AUDITORIA_ITEM_12_REGRAS_NEGOCIO_COMPARTILHADAS.md`;
+- Item 13 — performance e saúde operacional: `VORTEK_AUDITORIA_ITEM_13_PERFORMANCE_SAUDE_OPERACIONAL.md`;
+- Item 14 — testes e validação: `VORTEK_AUDITORIA_ITEM_14_TESTES_VALIDACAO.md`;
+- Item 15 — scripts, documentação e históricos: `VORTEK_AUDITORIA_ITEM_15_SCRIPTS_DOCUMENTACAO_HISTORICOS.md`;
+- Item 16 — coleta e consolidação: `CHECKLIST_COLETA_PLANEJAMENTO_LIMPEZA_VORTEK_ITEM_16_ATUALIZADO.md` e `VORTEK_AUDITORIA_ITEM_16_CONSOLIDACAO.md`;
+- Item 17 — plano completo e homologação: `VORTEK_ITEM_17_PLANO_COMPLETO_EXECUCAO_HOMOLOGACAO.md`.
+
+Todos os nomes acima são relativos a `docs/reestruturacao-vortek/`.
 
 ---
 

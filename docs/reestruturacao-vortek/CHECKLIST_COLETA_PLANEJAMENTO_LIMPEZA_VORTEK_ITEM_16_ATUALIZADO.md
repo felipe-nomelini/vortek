@@ -1,0 +1,270 @@
+# Checklist — Coleta para Planejamento de Limpeza do Vortek
+
+**Progresso:** 16 de 17 itens concluídos.  
+**Atualizado em:** `2026-08-27`
+
+- [x] **1. Mapa geral do sistema**
+  - [x] Mapear módulos, páginas, APIs, services, libs, jobs, webhooks, banco e integrações.
+  - [x] Identificar quem depende de quem.
+  - [x] Separar código operacional de código administrativo/histórico.
+
+- [x] **2. Pedidos + Fulfillment + Estoque Interno**
+  - [x] Mapear a venda do início ao fim.
+  - [x] Mapear decisão `internal` x `supplier`.
+  - [x] Mapear reservas, saídas, cancelamentos, devoluções e estornos.
+  - [x] Entender tudo que já existe de estoque interno.
+  - [x] Registrar necessidades futuras de estoque próprio.
+  - [x] Identificar concorrência, duplicação e riscos de vender sem estoque.
+  - [x] Confirmar prioridade automática do estoque interno com possibilidade de escolha manual do fornecedor.
+  - [x] Confirmar que o pedido não será dividido entre `internal` e `supplier`.
+  - [x] Confirmar que a quantidade anunciada deve ser calculada de forma segura.
+  - [x] Confirmar que a disponibilidade de kits será calculada pelos componentes.
+
+- [x] **3. Produtos + Fornecedores + Kits**
+  - [x] Definir quem é o produto principal do Vortek.
+  - [x] Mapear ofertas de fornecedores, custos, SKUs e estoque externo.
+  - [x] Mapear produtos com vários fornecedores.
+  - [x] Mapear kits e seus componentes.
+  - [x] Identificar fontes de verdade duplicadas.
+  - [x] Confirmar `produtos` + SKU VTK como identidade mestre.
+  - [x] Confirmar `produto_fornecedor_ofertas` como fonte das ofertas externas.
+  - [x] Registrar o snapshot da oferta preferencial em `produtos` como dado derivado.
+  - [x] Registrar pontos de identidade/duplicação para revisão no Item 10.
+  - [x] Confirmar kits com estoque e custo derivados dos componentes.
+
+- [x] **4. Mercado Livre — Anúncios e Catálogo**
+  - [x] Mapear criação, importação, preço, estoque, status e catálogo.
+  - [x] Mapear Buy Box e automações.
+  - [x] Mapear bloqueios, retries, outbox e reconciliações.
+  - [x] Comparar cada fluxo com a documentação oficial atual.
+  - [x] Definir e validar o cálculo da quantidade segura anunciável, sem permitir quantidade que nenhuma origem válida consiga atender integralmente.
+  - [x] Identificar chamadas repetidas ou impossíveis.
+  - [x] Confirmar `anuncios_ml_outbox` como mecanismo central de publicação confiável.
+  - [x] Confirmar suporte atual a estoque tradicional e multiorigem/User Products.
+  - [x] Definir `Q_segura = max(Q_internal, Q_supplier)`, sem somar as duas origens.
+  - [x] Diferenciar kits locais de Kits Virtuais nativos do Mercado Livre.
+  - [x] Registrar migração obrigatória de Preços por Quantidade antes de `2026-10-26`.
+  - [x] Registrar reenfileiramento repetido de anúncios não modificáveis.
+  - [x] Registrar compatibilidade com Automação de Preços nativa para revisão.
+  - [x] Registrar helpers antigos de estoque para rastreamento nos Itens 7 e 15.
+
+- [x] **5. Fiscal**
+  - [x] Mapear NF-e do pedido até autorização.
+  - [x] Mapear Mercado Livre + Brasil NFe.
+  - [x] Mapear webhooks, polling, retries e reconciliação.
+  - [x] Identificar estados duplicados ou mecanismos de recuperação necessários.
+  - [x] Confirmar Brasil NFe como emissor fiscal operacional.
+  - [x] Confirmar reconciliação/idempotência antes de nova emissão.
+  - [x] Comparar billing info com a documentação atual do Mercado Livre.
+  - [x] Mapear importação do XML autorizado no shipment.
+  - [x] Identificar `PUT JSON` + `POST JSON` desnecessários antes do `POST XML`.
+  - [x] Identificar ausência de gate `ready_to_ship + invoice_pending` antes do upload.
+  - [x] Identificar repetição contínua de `not_found` no reconciliador Brasil NFe.
+  - [x] Registrar campos fiscais derivados/possivelmente históricos para os Itens 10, 12 e 15.
+  - [x] Separar recuperação legítima de repetição operacional desnecessária.
+
+- [x] **6. Compras + Fornecedores + Financeiro**
+  - [x] Mapear compras DSLite.
+  - [x] Mapear pagamento de fornecedores.
+  - [x] Mapear saldo de fornecedores.
+  - [x] Mapear Mercado Pago.
+  - [x] Preparar o entendimento necessário para futuras compras destinadas ao estoque próprio.
+  - [x] Mapear `balance_account` e `prepaid_pix`.
+  - [x] Registrar `postpaid` como candidato a legado.
+  - [x] Confirmar débito idempotente de compras Hayamax no ledger.
+  - [x] Mapear confirmação manual de PIX, comprovantes e retomada do fluxo.
+  - [x] Mapear créditos por cancelamento e uso de crédito.
+  - [x] Identificar divergência dos tipos de `supplier_balance_movements`.
+  - [x] Identificar ambiguidade entre `compras.valor_total` e `supplier_payment_amount`.
+  - [x] Comparar o relatório Dinheiro em Conta com a documentação oficial do Mercado Pago.
+  - [x] Identificar ciclo assíncrono incompleto do job Mercado Pago.
+  - [x] Identificar incompatibilidade do parser com `SETTLEMENT_NET_AMOUNT`.
+  - [x] Confirmar que compra para estoque próprio só deve virar estoque após recebimento e conferência.
+
+- [x] **7. Sincronizações + Jobs + Scheduler**
+  - [x] Inventariar todos os jobs/syncs operacionais atuais.
+  - [x] Identificar quem dispara cada família.
+  - [x] Mapear frequência, duração, locks e retries.
+  - [x] Identificar jobs duplicados ou sobrepostos.
+  - [x] Separar redundância de mecanismos legítimos de recuperação.
+  - [x] Mapear dispatcher central de 1 minuto.
+  - [x] Mapear publicação ML realtime de 15 segundos.
+  - [x] Mapear refresh durável de catálogo de 15 segundos.
+  - [x] Confirmar locks por domínio, claim, `on_hold`, backoff e stale recovery.
+  - [x] Identificar sobreposição real do `cron-dispatch`.
+  - [x] Confirmar cancelamento pós-NF como reconciliador legítimo.
+  - [x] Registrar ownership API DSLite x XML DSLite para investigação.
+  - [x] Identificar duplicação `/api/sync/run` x `/api/sync/disparar`.
+  - [x] Identificar refresh de catálogo `on_hold` sem retomada.
+  - [x] Confirmar dependências dos P1 de Mercado Pago e Brasil NFe.
+  - [x] Registrar lacuna de saúde entre registry e filas duráveis externas.
+
+- [x] **8. Webhooks + Eventos**
+  - [x] Mapear todos os webhooks inbound atuais do projeto web.
+  - [x] Identificar o que processam imediatamente.
+  - [x] Identificar o que delegam para jobs.
+  - [x] Verificar idempotência, duplicidade e perda de eventos.
+  - [x] Confirmar quais reconciliadores realmente precisam existir.
+  - [x] Confirmar `orders_v2` + hidratação durável + sync periódico como desenho resiliente.
+  - [x] Confirmar retomada real de hidratações `on_hold`.
+  - [x] Identificar notificações repetidas para o mesmo pedido.
+  - [x] Registrar ausência de `_id`/`attempts` na auditoria Mercado Livre.
+  - [x] Mapear `questions`, `items`, `shipments`, claims/post_purchase e `invoices`.
+  - [x] Confirmar `invoices` ignorado por política Brasil NFe.
+  - [x] Comparar tópicos atuais com a documentação oficial Mercado Livre.
+  - [x] Mapear e validar assinatura HMAC do webhook Mercado Pago.
+  - [x] Identificar `payment_lookup_failed` com ACK 200 como risco estrutural.
+  - [x] Registrar `catalog_item_competition_status` e `stock_locations` apenas para investigação.
+  - [x] Revisar `ops_whatsapp_events` e `whatsapp_alert_events` como candidatos históricos/redundantes.
+  - [x] Separar evento rápido de reconciliador legítimo.
+
+- [x] **9. Auth + Segurança + Permissões — auditoria concluída; P0 aceito temporariamente e obrigatório no plano de execução**
+  - [x] Mapear usuários, cargos e autenticação.
+  - [x] Revisar middleware e rotas públicas.
+  - [x] Revisar autorização web e mobile.
+  - [x] Revisar RLS, grants e acessos privilegiados nas migrations relacionadas.
+  - [x] Identificar secrets ou permissões excessivas.
+  - [x] Identificar P0: `/api/auth/register` aceita `cargo` controlado pelo caller.
+  - [x] Identificar P0: `authenticated` pode atualizar a própria linha de `profiles`, incluindo `cargo`.
+  - [x] Identificar P1: permissões granulares são aplicadas no mobile, mas não no web pelo `authorizeApiRequest`.
+  - [x] Identificar P1: rota admin de integrações devolve secrets/tokens ao navegador.
+  - [x] Identificar P1: links públicos de NF-e, etiqueta e comprovante não possuem expiração real.
+  - [x] Identificar P1: Next.js 14.2.35 está fora da linha oficial de suporte.
+  - [x] Registrar health público e inconsistências de RLS/policies para revisão.
+  - [x] Registrar o P0 de cargo como risco aceito temporariamente; correção obrigatória antes das mudanças estruturais do plano de execução.
+
+- [x] **10. Banco de Dados**
+  - [x] Mapear tabelas por domínio.
+  - [x] Identificar fonte de verdade de cada dado importante.
+  - [x] Identificar tabelas/campos redundantes.
+  - [x] Revisar relacionamentos, índices, constraints e migrations.
+  - [x] Identificar snapshots e históricos necessários versus excesso.
+  - [x] Confirmar `pedidos_operacionais` como view derivada, não segunda fonte de pedidos.
+  - [x] Confirmar `catalogo_ml_snapshot`, `anuncios_ml` e outbox como estados distintos e necessários.
+  - [x] Confirmar ledgers de estoque e fornecedor como fontes auditáveis.
+  - [x] Identificar `jobs.status` com vocabulário inconsistente (`completo`/`concluido`).
+  - [x] Identificar `whatsapp_alert_events` e `ops_whatsapp_events` como candidatos à revisão histórica.
+  - [x] Identificar tabelas `ml_p0_*` como estruturas especiais/campanha a revisar no Item 15.
+  - [x] Confirmar short links sensíveis atuais sem `expires_at`.
+  - [x] Identificar secrets misturados com configuração comum em `sync_runtime_config`.
+  - [x] Registrar necessidade de fotografia operacional de RLS, grants, constraints e índices antes de alterações destrutivas.
+  - [x] Separar migrations históricas de objetos atuais candidatos à remoção.
+
+- [x] **11. Interface Web**
+  - [x] Revisar cada módulo depois de entender seu domínio.
+  - [x] Identificar páginas fazendo regra de negócio.
+  - [x] Identificar componentes/fluxos duplicados.
+  - [x] Identificar chamadas excessivas comprovadas.
+  - [x] Separar arquivos grandes somente quando houver responsabilidades realmente diferentes.
+  - [x] Confirmar Pedidos como principal candidato a separação funcional.
+  - [x] Confirmar Produtos como listagem + publicação ML excessivamente concentradas.
+  - [x] Confirmar `CatalogoView` com múltiplos fluxos independentes.
+  - [x] Identificar acompanhamento de publicação ML duplicado em Produtos e Catálogo.
+  - [x] Identificar pricing duplicado/ambíguo entre contextos de 4% e 5%.
+  - [x] Identificar contrato DTO de Pedidos compensado com `any`.
+  - [x] Identificar chamadas independentes repetidas na tela Compras.
+  - [x] Identificar busca/filtros de Perguntas aplicados somente sobre a página atual.
+  - [x] Confirmar exposição de secrets na tela Configurações já registrada no Item 9.
+  - [x] Identificar Sidebar sem refletir `cargo`.
+  - [x] Confirmar que `use client` não deve ser removido em massa.
+
+- [x] **12. Regras de Negócio Compartilhadas**
+  - [x] Localizar cálculos de preço, lucro, estoque, status e disponibilidade.
+  - [x] Encontrar regras implementadas em mais de um lugar.
+  - [x] Definir uma única fonte de verdade para cada regra confirmada.
+  - [x] Confirmar fornecedor preferencial em `preferred-offer.ts` como fonte compartilhada.
+  - [x] Confirmar saldo interno em `estoque-interno-saldo.ts`.
+  - [x] Confirmar kits em `produto-kits.ts`.
+  - [x] Confirmar seleção persistida `internal | supplier` na RPC/wrapper existente.
+  - [x] Identificar capacidade de fulfillment distribuída entre preview e execução.
+  - [x] Identificar quantidade segura ainda baseada no snapshot preferencial em mais de um fluxo.
+  - [x] Definir que `Q_segura` deve reutilizar capacidade real de `internal` e `supplier`.
+  - [x] Identificar pricing 4%/5% com semântica duplicada/ambígua.
+  - [x] Identificar preview de atacado com fórmula independente no cliente.
+  - [x] Identificar `payment_mode` divergente entre preview e execução DSLite.
+  - [x] Identificar threshold de custo `2000` duplicado no pricing automático.
+  - [x] Identificar normalização fiscal distribuída.
+  - [x] Identificar elegibilidade/retry ML a consolidar dentro do domínio ML.
+  - [x] Confirmar matriz de permissões atual como base para web + mobile.
+  - [x] Identificar tipos do ledger financeiro desatualizados no TypeScript.
+  - [x] Confirmar que retries/status de provedores diferentes não devem ser generalizados em uma regra global.
+
+- [x] **13. Performance e Saúde Operacional**
+  - [x] Medir duração dos jobs importantes.
+  - [x] Medir volume/amostras de chamadas externas.
+  - [x] Identificar retries recorrentes.
+  - [x] Identificar consultas ou processamentos desnecessários.
+  - [x] Identificar gargalos reais antes de otimizar.
+  - [x] Identificar scan completo de ~5.900 anúncios ML repetido a cada lote de 100.
+  - [x] Comparar o scan com o contrato oficial `scroll_id` do Mercado Livre.
+  - [x] Identificar outboxes repetidas de estoque com a mesma quantidade.
+  - [x] Rastrear a repetição até timestamp/snapshot e processamento downstream.
+  - [x] Medir publisher ML e priorizar redução de trabalho antes de aumentar throughput.
+  - [x] Medir variação de latência do sync DSLite preço/estoque.
+  - [x] Registrar falta de instrumentação por subetapa no DSLite.
+  - [x] Identificar padrão N+1 como candidato, sem classificá-lo como gargalo sem evidência.
+  - [x] Identificar timeout DSLite de pedidos de compra mascarado como sync vazio bem-sucedido.
+  - [x] Confirmar Brasil NFe como problema de repetição, não de duração normal.
+  - [x] Medir refresh de catálogo e preservar job durável.
+  - [x] Manter P1 de catálogo `on_hold` e lifecycle Mercado Pago.
+  - [x] Evitar criação de índices/cache sem `EXPLAIN` ou medição real.
+
+- [x] **14. Testes e Validação**
+  - [x] Mapear testes existentes por domínio.
+  - [x] Identificar operações críticas sem proteção.
+  - [x] Definir conjunto mínimo de testes que precisa passar antes e depois de cada limpeza.
+  - [x] Inventariar 74 arquivos `*.test.js`.
+  - [x] Identificar 19 testes ligados à campanha `ml-p0-*`.
+  - [x] Confirmar Node `node:test` como test runner atual.
+  - [x] Confirmar boa cobertura de fornecedor preferencial, estoque, fulfillment básico, jobs, DSLite, ML e mobile.
+  - [x] Identificar ausência de teste para `Q_segura`.
+  - [x] Identificar ausência de teste para reserva interna atômica.
+  - [x] Identificar ausência de regressão para scan ML repetido.
+  - [x] Identificar ausência de regressão para outbox de estoque sem mudança.
+  - [x] Identificar ausência de teste para timeout DSLite mascarado.
+  - [x] Identificar lacuna crítica de Mercado Pago/financeiro.
+  - [x] Identificar lacuna de segurança web/cargo.
+  - [x] Identificar lacunas dos P1 fiscais e de links públicos expirantes.
+  - [x] Identificar falta de teste de retomada real do catálogo `on_hold`.
+  - [x] Definir `teste direcionado + npm run validate + build quando aplicável` como gate mínimo.
+  - [x] Registrar necessidade futura de uma suíte crítica estável após separar testes históricos no Item 15.
+  - [x] Decidir não adicionar framework/E2E novo sem necessidade comprovada.
+
+- [x] **15. Scripts + Documentação + Arquivos Históricos**
+  - [x] Classificar scripts como operacional, manutenção/recovery ou uso único/campanha.
+  - [x] Revisar documentação antiga.
+  - [x] Revisar arquivos/configurações de ferramentas que podem não ser mais usados.
+  - [x] Só classificar remoção depois de confirmar ausência de função operacional.
+  - [x] Identificar cluster `ml-p0-*` em scripts, testes, reports, comandos npm e banco.
+  - [x] Identificar `reports/` como principal fonte de clutter não-runtime.
+  - [x] Identificar credencial administrativa versionada em `GUIDE.md` sem reproduzir o valor.
+  - [x] Registrar necessidade de remoção/rotação/revisão de histórico para a credencial exposta.
+  - [x] Confirmar `CLAUDE.md` como adapter atual.
+  - [x] Identificar conflito entre `RTK.md` e `AGENTS.md`.
+  - [x] Identificar `opencode.json` com referência repo-local ausente.
+  - [x] Identificar `scripts/build_dataset/` como provável experimento histórico.
+  - [x] Identificar `Panasonic.xls` + importer como artefatos de fornecedor/uso único.
+  - [x] Confirmar docs de deploy e publicação ML como operacionais.
+  - [x] Classificar docs Codex/runtime e WAHA como manutenção/migração.
+  - [x] Confirmar `ops_whatsapp_events` sem atividade recente e `whatsapp_alert_events` vazia.
+  - [x] Definir que migrations aplicadas devem permanecer como histórico, usando nova migration para remover objetos atuais.
+  - [x] Definir remoção futura por clusters, não por exclusões isoladas.
+
+- [x] **16. Consolidar a auditoria**
+  - [x] Para cada área registrar: **manter / corrigir / simplificar / consolidar / remover / investigar mais**.
+  - [x] Separar complexidade necessária de complexidade acidental.
+  - [x] Classificar riscos em P0, P1, P2 e P3.
+  - [x] Registrar dependências entre mudanças.
+  - [x] Confirmar que o núcleo arquitetural será preservado.
+  - [x] Consolidar P0/P1 antes de limpeza estrutural P2.
+  - [x] Consolidar dependência estoque → capacidade → `Q_segura` → publicação ML.
+  - [x] Consolidar lifecycle Mercado Pago e fiscal como correções de domínio, sem novos jobs.
+  - [x] Consolidar limpeza histórica por clusters.
+  - [x] Definir gate mínimo de validação para o futuro Item 17.
+
+- [ ] **17. Só então criar o plano de execução**
+  - Dividir por área.
+  - Executar uma área por vez.
+  - Criar etapas pequenas e reversíveis.
+  - Definir validação antes de cada alteração.
+  - Não iniciar a próxima área até a anterior estar validada.
