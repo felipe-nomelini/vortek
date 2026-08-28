@@ -80,7 +80,7 @@
     "test:ml-p0-phase6e2": "node --test tests/ml-p0-phase6e2.test.js",
     "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js",
     "test:ml-order-status": "node --test tests/ml-order-shipping-mode.test.js",
-    "test:mobile-auth": "node --test tests/mobile-auth-token.test.js tests/mobile-permissions.test.js"
+    "test:api-auth": "node --test tests/mobile-auth-token.test.js tests/permissions.test.js"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",

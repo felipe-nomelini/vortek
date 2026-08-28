@@ -4,7 +4,7 @@ import { POST as completeLabel } from "@/app/api/dslite/etiqueta-auto/route";
 import { POST as selectShipping } from "@/app/api/dslite/frete/route";
 import { POST as unlinkDslite } from "@/app/api/dslite/desvincular-local/route";
 import { authorizeApiRequest } from "@/lib/api-request-auth";
-import type { MobilePermission } from "@/lib/mobile-permissions";
+import type { VortekPermission } from "@/lib/permissions";
 import { loadMobileOperationalSale, mobileSaleIdSchema } from "@/lib/mobile-sale-lookup";
 import { isPostDispatchOrder } from "@/lib/orders/operational-view";
 
@@ -18,7 +18,7 @@ const schema = z.discriminatedUnion("action", [
   z.object({ action: z.literal("unlink_dslite") }),
 ]);
 
-const permissions: Record<z.infer<typeof schema>["action"], MobilePermission> = {
+const permissions: Record<z.infer<typeof schema>["action"], VortekPermission> = {
   complete_dslite_label: "sales.dslite.label.complete",
   process_internal_shipping: "sales.internal_shipping.process",
   select_dslite_shipping: "sales.dslite.shipping.select",

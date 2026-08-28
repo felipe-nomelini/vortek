@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireMobileUser } from "@/lib/mobile-auth";
-import { mobilePermissionsForRole } from "@/lib/mobile-permissions";
+import { permissionsForRole } from "@/lib/permissions";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     {
       data: {
         user: auth.user,
-        permissions: mobilePermissionsForRole(auth.user.role),
+        permissions: permissionsForRole(auth.user.role),
       },
       error: null,
       meta: { requestId: auth.requestId },

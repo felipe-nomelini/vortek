@@ -1,4 +1,6 @@
-export const MOBILE_PERMISSIONS = [
+import type { Database } from "@/types/database";
+
+export const VORTEK_PERMISSIONS = [
   "tv.read",
   "sales.read",
   "purchases.read",
@@ -13,21 +15,17 @@ export const MOBILE_PERMISSIONS = [
   "purchases.payment.confirm",
 ] as const;
 
-export type MobilePermission = (typeof MOBILE_PERMISSIONS)[number];
-export type MobilePermissionRole =
-  | "admin"
-  | "gerente"
-  | "operador"
-  | "visualizador";
+export type VortekPermission = (typeof VORTEK_PERMISSIONS)[number];
+export type VortekRole = Database["public"]["Enums"]["user_role"];
 
-const READ_ONLY_PERMISSIONS: MobilePermission[] = [
+const READ_ONLY_PERMISSIONS: VortekPermission[] = [
   "tv.read",
   "sales.read",
   "purchases.read",
   "sales.track",
 ];
 
-const OPERATIONAL_PERMISSIONS: MobilePermission[] = [
+const OPERATIONAL_PERMISSIONS: VortekPermission[] = [
   ...READ_ONLY_PERMISSIONS,
   "sales.whatsapp_label.send",
   "sales.dslite.resume",
@@ -37,22 +35,20 @@ const OPERATIONAL_PERMISSIONS: MobilePermission[] = [
   "sales.internal_shipping.process",
 ];
 
-const ROLE_PERMISSIONS: Record<MobilePermissionRole, MobilePermission[]> = {
-  admin: [...MOBILE_PERMISSIONS],
-  gerente: [...MOBILE_PERMISSIONS],
+const ROLE_PERMISSIONS: Record<VortekRole, VortekPermission[]> = {
+  admin: [...VORTEK_PERMISSIONS],
+  gerente: [...VORTEK_PERMISSIONS],
   operador: OPERATIONAL_PERMISSIONS,
   visualizador: READ_ONLY_PERMISSIONS,
 };
 
-export function mobilePermissionsForRole(
-  role: MobilePermissionRole,
-): MobilePermission[] {
+export function permissionsForRole(role: VortekRole): VortekPermission[] {
   return [...ROLE_PERMISSIONS[role]];
 }
 
-export function hasMobilePermission(
-  role: MobilePermissionRole,
-  permission: MobilePermission,
+export function hasPermission(
+  role: VortekRole,
+  permission: VortekPermission,
 ): boolean {
   return ROLE_PERMISSIONS[role].includes(permission);
 }
