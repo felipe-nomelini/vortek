@@ -169,14 +169,17 @@ type MlPublishStatusResponse = {
     quantity_pricing_last_error?: string | null;
     quantity_pricing?: Array<{
       min_purchase_unit: number;
+      discount_percent: number;
       amount: number;
       currency_id: string;
+      pricing_model: 'percentage' | 'absolute';
     }>;
     suggested_quantity_pricing?: Array<{
       min_purchase_unit: number;
       discount_percent: number;
       amount: number;
       currency_id: string;
+      pricing_model: 'percentage' | 'absolute';
     }>;
     warnings?: string[];
   } | null;
@@ -280,7 +283,9 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
   const warnings = Array.isArray(result?.warnings) ? result.warnings : [];
 
   const atacadoAtivoDetail = quantityPricing.length > 0
-    ? quantityPricing.map((tier) => `${tier.min_purchase_unit}+ = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')
+    ? quantityPricing.map((tier) => tier.pricing_model === 'percentage'
+      ? `${tier.min_purchase_unit}+ (-${tier.discount_percent}%)`
+      : `${tier.min_purchase_unit}+ = ${formatCurrency(Number(tier.amount || 0))} (legado)`).join(' | ')
     : 'Sem preços de atacado ativos no anúncio.';
   const atacadoSugeridoDetail = suggestedQuantityPricing.length > 0
     ? `Sugestão: ${suggestedQuantityPricing.map((tier) => `${tier.min_purchase_unit}+ (-${tier.discount_percent}%) = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')}`

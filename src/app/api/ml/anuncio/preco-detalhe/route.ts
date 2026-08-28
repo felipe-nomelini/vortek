@@ -7,12 +7,10 @@ import {
   normalizePriceToWin,
   resolveCatalogCompetitionStatus,
 } from '@/lib/catalogo/no-catalogo';
-
-type QuantityPricingTier = {
-  min_purchase_unit: number;
-  amount: number;
-  currency_id: string;
-};
+import {
+  extractQuantityPricingTiers,
+  serializeQuantityPricingTiers,
+} from '@/lib/ml/quantity-pricing';
 
 function round2(value: number) {
   return Math.round(value * 100) / 100;
@@ -31,33 +29,6 @@ function calculateProfit(input: {
       - (input.price * 0.04)
       - (input.price * input.mlFee),
   );
-}
-
-function extractQuantityPricingTiers(raw: any): QuantityPricingTier[] {
-  const source = Array.isArray(raw?.prices) ? raw.prices : Array.isArray(raw) ? raw : [];
-  const tiers: QuantityPricingTier[] = [];
-
-  for (const entry of source) {
-    const contexts = Array.isArray(entry?.conditions?.context_restrictions)
-      ? entry.conditions.context_restrictions.map((value: unknown) => String(value || '').toLowerCase())
-      : [];
-    const amount = Number(entry?.amount);
-    const minPurchaseUnit = Number(
-      entry?.conditions?.min_purchase_unit
-      ?? entry?.conditions?.min_purchase_quantity
-      ?? entry?.min_purchase_unit
-      ?? entry?.min_purchase_quantity,
-    );
-    if (!contexts.includes('user_type_business') || !Number.isFinite(amount) || !Number.isFinite(minPurchaseUnit) || minPurchaseUnit <= 0) continue;
-
-    tiers.push({
-      min_purchase_unit: Math.trunc(minPurchaseUnit),
-      amount: round2(amount),
-      currency_id: String(entry?.currency_id || 'BRL'),
-    });
-  }
-
-  return tiers.sort((a, b) => a.min_purchase_unit - b.min_purchase_unit);
 }
 
 function normalizeReasons(payload: any): string[] {
@@ -216,7 +187,9 @@ export async function GET(request: Request) {
     mlItemId,
     currentPrice: round2(price),
     currentProfit: calculateProfit({ price, cost, shipping, mlFee }),
-    quantityPricing: quantityResult.ok ? extractQuantityPricingTiers(quantityResult.data) : [],
+    quantityPricing: quantityResult.ok
+      ? serializeQuantityPricingTiers(extractQuantityPricingTiers(quantityResult.data, price))
+      : [],
     quantityPricingWarning: quantityResult.ok ? null : (quantityResult.error?.message || 'Não foi possível consultar preços de atacado no ML.'),
     calculator: { cost, shipping, mlFee },
     catalog,

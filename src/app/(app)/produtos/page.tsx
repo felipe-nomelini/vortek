@@ -79,14 +79,17 @@ type MlPublishStatusResponse = {
     quantity_pricing_last_error?: string | null;
     quantity_pricing?: Array<{
       min_purchase_unit: number;
+      discount_percent: number;
       amount: number;
       currency_id: string;
+      pricing_model: 'percentage' | 'absolute';
     }>;
     suggested_quantity_pricing?: Array<{
       min_purchase_unit: number;
       discount_percent: number;
       amount: number;
       currency_id: string;
+      pricing_model: 'percentage' | 'absolute';
     }>;
     warnings?: string[];
   } | null;
@@ -312,7 +315,9 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
   const warnings = Array.isArray(result?.warnings) ? result.warnings : [];
 
   const atacadoAtivoDetail = quantityPricing.length > 0
-    ? quantityPricing.map((tier) => `${tier.min_purchase_unit}+ = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')
+    ? quantityPricing.map((tier) => tier.pricing_model === 'percentage'
+      ? `${tier.min_purchase_unit}+ (-${tier.discount_percent}%)`
+      : `${tier.min_purchase_unit}+ = ${formatCurrency(Number(tier.amount || 0))} (legado)`).join(' | ')
     : 'Sem preços de atacado ativos no anúncio.';
   const atacadoSugeridoDetail = suggestedQuantityPricing.length > 0
     ? `Sugestão: ${suggestedQuantityPricing.map((tier) => `${tier.min_purchase_unit}+ (-${tier.discount_percent}%) = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')}`
@@ -2187,35 +2192,14 @@ export default function ProductsPage() {
             })()}
 
             {/* Preços por Quantidade (Atacado) */}
-            {mlModal.product && (() => {
-              const basePrice = mlModal.editablePrice ?? 0;
-              const tiers = [
-                { qtd: 3, discount: 3, price: Math.round(basePrice * 0.97 * 100) / 100 },
-                { qtd: 5, discount: 4, price: Math.round(basePrice * 0.96 * 100) / 100 },
-                { qtd: 10, discount: 5, price: Math.round(basePrice * 0.95 * 100) / 100 },
-              ];
-              return (
-                <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
-                  <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Preços por Quantidade (B2B)</Title>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    {tiers.map((tier) => (
-                      <div key={tier.qtd} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ color: '#a0a0a0' }}>
-                          {tier.qtd} unidades
-                          <Tag color="green" style={{ marginLeft: 8, fontSize: 11 }}>-{tier.discount}%</Tag>
-                        </span>
-                        <span style={{ color: '#e0e0e0', fontWeight: 600, fontSize: 14 }}>
-                          {formatCurrency(tier.price)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <Text style={{ color: '#666', fontSize: 12, marginTop: 8, display: 'block' }}>
-                    Visíveis apenas para compradores do tipo business (B2B).
-                  </Text>
-                </div>
-              );
-            })()}
+            {mlModal.product && (
+              <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
+                <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Preços por Quantidade (B2B)</Title>
+                <Text style={{ color: '#a0a0a0' }}>
+                  As faixas percentuais serão calculadas pelo backend com as recomendações oficiais do Mercado Livre após a criação do anúncio.
+                </Text>
+              </div>
+            )}
 
             {/* Avisos */}
             {mlModal.product && (() => {

@@ -35,8 +35,10 @@ interface Anuncio {
 
 type QuantityPricingTier = {
   min_purchase_unit: number;
+  discount_percent: number;
   amount: number;
   currency_id: string;
+  pricing_model: 'percentage' | 'absolute';
 };
 
 type PricingDetails = {
@@ -73,13 +75,8 @@ function calculateProfit(price: number, calculator: PricingDetails['calculator']
   return Math.round((price - calculator.cost - calculator.shipping - (price * 0.04) - (price * calculator.mlFee)) * 100) / 100;
 }
 
-function buildWholesalePrices(price: number): QuantityPricingTier[] {
-  if (!Number.isFinite(price) || price <= 0) return [];
-  return [
-    { min_purchase_unit: 3, amount: price * 0.97 },
-    { min_purchase_unit: 5, amount: price * 0.96 },
-    { min_purchase_unit: 10, amount: price * 0.95 },
-  ].map((tier) => ({ ...tier, amount: Math.round(tier.amount * 100) / 100, currency_id: 'BRL' }));
+function formatDiscountPercentage(value: number): string {
+  return `${Number(value || 0).toLocaleString('pt-BR', { maximumFractionDigits: 2 })}%`;
 }
 
 function mapDBtoAnuncio(item: any): Anuncio {
@@ -128,6 +125,9 @@ export default function AnunciosPage() {
   const [priceModalLoading, setPriceModalLoading] = useState(false);
   const [priceModalSaving, setPriceModalSaving] = useState(false);
   const [newPrice, setNewPrice] = useState<number | null>(null);
+  const [quantityPricingPreview, setQuantityPricingPreview] = useState<QuantityPricingTier[]>([]);
+  const [quantityPricingPreviewLoading, setQuantityPricingPreviewLoading] = useState(false);
+  const [quantityPricingPreviewWarning, setQuantityPricingPreviewWarning] = useState<string | null>(null);
   const [summary, setSummary] = useState({
     total: 0,
     ativos: 0,
@@ -345,6 +345,56 @@ export default function AnunciosPage() {
       setUpdatingActionItemId(null);
     }
   }, [fetchData, newPrice, priceModal.details, priceModal.mode, priceModal.record, scheduleStatusPolling]);
+
+  useEffect(() => {
+    const record = priceModal.record;
+    const basePrice = Number(newPrice);
+    if (!priceModal.open || !record?.produtoId || !record.id || !Number.isFinite(basePrice) || basePrice <= 0) {
+      setQuantityPricingPreview([]);
+      setQuantityPricingPreviewLoading(false);
+      setQuantityPricingPreviewWarning(null);
+      return;
+    }
+
+    const controller = new AbortController();
+    setQuantityPricingPreview([]);
+    setQuantityPricingPreviewLoading(true);
+    setQuantityPricingPreviewWarning(null);
+    const timer = setTimeout(async () => {
+      try {
+        const response = await fetch('/api/ml/anuncio/atacado-preview', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            produtoId: record.produtoId,
+            mlItemId: record.id,
+            basePrice,
+          }),
+          signal: controller.signal,
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload?.success) {
+          throw new Error(payload?.error || 'Não foi possível calcular a prévia de atacado.');
+        }
+        setQuantityPricingPreview(
+          Array.isArray(payload.quantityPricing) ? payload.quantityPricing : [],
+        );
+      } catch (error: any) {
+        if (error?.name !== 'AbortError') {
+          setQuantityPricingPreviewWarning(
+            error?.message || 'Não foi possível calcular a prévia de atacado.',
+          );
+        }
+      } finally {
+        if (!controller.signal.aborted) setQuantityPricingPreviewLoading(false);
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [newPrice, priceModal.open, priceModal.record]);
 
   const selectedRecords = useMemo(() => {
     const selectedIds = new Set(selectedRowKeys.map((key) => String(key)));
@@ -675,9 +725,6 @@ export default function AnunciosPage() {
   const nextProfit = priceModal.details && Number.isFinite(targetPrice) && targetPrice > 0
     ? calculateProfit(targetPrice, priceModal.details.calculator)
     : null;
-  const nextWholesalePrices = Number.isFinite(targetPrice) && targetPrice > 0
-    ? buildWholesalePrices(targetPrice)
-    : [];
 
   return (
     <div>
@@ -930,7 +977,11 @@ export default function AnunciosPage() {
                 {priceModal.details.quantityPricing.length > 0 ? (
                   <Space wrap>
                     {priceModal.details.quantityPricing.map((tier) => (
-                      <Tag key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ = {formatCurrency(tier.amount)}</Tag>
+                      <Tag key={`${tier.min_purchase_unit}-${tier.amount}`}>
+                        {tier.min_purchase_unit}+ = {tier.pricing_model === 'percentage'
+                          ? `-${formatDiscountPercentage(tier.discount_percent)}`
+                          : `${formatCurrency(tier.amount)} (legado)`}
+                      </Tag>
                     ))}
                   </Space>
                 ) : <span style={{ color: '#666' }}>Nenhum preço de atacado ativo.</span>}
@@ -971,11 +1022,28 @@ export default function AnunciosPage() {
 
               <div>
                 <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novos preços de atacado</div>
-                <Space wrap>
-                  {nextWholesalePrices.map((tier) => (
-                    <Tag color="blue" key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ = {formatCurrency(tier.amount)}</Tag>
-                  ))}
-                </Space>
+                <Spin spinning={quantityPricingPreviewLoading} size="small">
+                  {quantityPricingPreview.length > 0 && (
+                    <Space wrap>
+                      {quantityPricingPreview.map((tier) => (
+                        <Tag color="blue" key={`${tier.min_purchase_unit}-${tier.discount_percent}`}>
+                          {tier.min_purchase_unit}+ = -{formatDiscountPercentage(tier.discount_percent)} ({formatCurrency(tier.amount)}/un.)
+                        </Tag>
+                      ))}
+                    </Space>
+                  )}
+                  {!quantityPricingPreviewLoading && quantityPricingPreview.length === 0 && !quantityPricingPreviewWarning && (
+                    <span style={{ color: '#666' }}>Informe o novo preço para consultar a regra do Mercado Livre.</span>
+                  )}
+                </Spin>
+                {quantityPricingPreviewWarning && (
+                  <Alert
+                    type="warning"
+                    showIcon
+                    style={{ marginTop: 8 }}
+                    message={quantityPricingPreviewWarning}
+                  />
+                )}
               </div>
             </Space>
           )}

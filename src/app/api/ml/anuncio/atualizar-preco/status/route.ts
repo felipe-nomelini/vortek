@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
+import { previewItemQuantityPricing } from '@/services/mercadolibre';
+import {
+  extractQuantityPricingTiers,
+  serializeQuantityPricingTiers,
+} from '@/lib/ml/quantity-pricing';
 
 type PublishOutboxStatus = 'pending' | 'processing' | 'retry' | 'failed' | 'done';
 type PublishPhase = 'enfileirado' | 'processando' | 'erro' | 'concluido';
@@ -8,12 +13,10 @@ type QuantityPricingState = 'active' | 'absent' | 'failed_validation' | 'provide
 
 type QuantityPricingTier = {
   min_purchase_unit: number;
+  discount_percent: number;
   amount: number;
   currency_id: string;
-};
-
-type SuggestedQuantityPricingTier = QuantityPricingTier & {
-  discount_percent: number;
+  pricing_model: 'percentage' | 'absolute';
 };
 
 function normalizeOutboxStatus(value: unknown): PublishOutboxStatus {
@@ -77,61 +80,10 @@ function normalizeAmount(value: unknown): number | null {
   return Math.round(n * 100) / 100;
 }
 
-function normalizeInt(value: unknown): number | null {
-  const n = Number(value);
-  if (!Number.isFinite(n) || n <= 0) return null;
-  return Math.trunc(n);
-}
-
 function minutesSince(value: unknown): number | null {
   const time = new Date(String(value || '')).getTime();
   if (!Number.isFinite(time)) return null;
   return (Date.now() - time) / 60_000;
-}
-
-function extractQuantityPricingTiers(raw: any): QuantityPricingTier[] {
-  const source = Array.isArray(raw?.prices) ? raw.prices : Array.isArray(raw) ? raw : [];
-  const tiers: QuantityPricingTier[] = [];
-
-  for (const entry of source) {
-    const contextRestrictions = Array.isArray(entry?.conditions?.context_restrictions)
-      ? entry.conditions.context_restrictions.map((value: unknown) => String(value || '').toLowerCase())
-      : [];
-    const isBusinessTier = contextRestrictions.includes('user_type_business');
-    const amount = normalizeAmount(entry?.amount);
-    const minPurchaseUnit = normalizeInt(
-      entry?.conditions?.min_purchase_unit
-      ?? entry?.conditions?.min_purchase_quantity
-      ?? entry?.min_purchase_unit
-      ?? entry?.min_purchase_quantity,
-    );
-
-    if (amount === null || minPurchaseUnit === null || !isBusinessTier) continue;
-
-    tiers.push({
-      min_purchase_unit: minPurchaseUnit,
-      amount,
-      currency_id: String(entry?.currency_id || 'BRL'),
-    });
-  }
-
-  return tiers.sort((a, b) => a.min_purchase_unit - b.min_purchase_unit);
-}
-
-function buildSuggestedQuantityPricing(basePrice: number | null): SuggestedQuantityPricingTier[] {
-  if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) return [];
-  const price = Number(basePrice);
-  const suggestions = [
-    { min_purchase_unit: 3, discount_percent: 3 },
-    { min_purchase_unit: 5, discount_percent: 4 },
-    { min_purchase_unit: 10, discount_percent: 5 },
-  ];
-  return suggestions.map((tier) => ({
-    min_purchase_unit: tier.min_purchase_unit,
-    discount_percent: tier.discount_percent,
-    amount: Math.round(price * (1 - (tier.discount_percent / 100)) * 100) / 100,
-    currency_id: 'BRL',
-  }));
 }
 
 export async function GET(request: Request) {
@@ -241,14 +193,24 @@ export async function GET(request: Request) {
     },
   });
   if (quantityResult.ok) {
-    quantityPricing = extractQuantityPricingTiers(quantityResult.data);
+    quantityPricing = serializeQuantityPricingTiers(
+      extractQuantityPricingTiers(quantityResult.data, Number(itemPrice || 0)),
+    );
   } else {
     warnings.push(quantityResult.error?.message || 'Não foi possível consultar faixas de atacado no ML.');
   }
 
   const hasQuantityPricing = quantityPricing.length > 0;
   const quantityPricingState = mapQuantityPricingState(hasQuantityPricing, failedOperationCode);
-  const suggestedQuantityPricing = buildSuggestedQuantityPricing(itemPrice);
+  let suggestedQuantityPricing: QuantityPricingTier[] = [];
+  if (!hasQuantityPricing && itemPrice !== null) {
+    const preview = await previewItemQuantityPricing(mlItemId, itemPrice);
+    if (preview.ok) {
+      suggestedQuantityPricing = serializeQuantityPricingTiers(preview.tiers);
+    } else {
+      warnings.push(preview.error || 'Não foi possível calcular a sugestão de atacado no ML.');
+    }
+  }
   const quantityPricingLastError = quantityPricingState === 'active'
     ? null
     : (lastError || null);

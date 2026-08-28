@@ -158,6 +158,23 @@ O ciclo industrial e a otimização comercial são independentes.
 
 Preço protetivo não é preço comercial definitivo. Dimensões normalizadas pelo Mercado Envios não substituem silenciosamente o cadastro mestre do fornecedor.
 
+## Preços por Quantidade (B2B)
+
+O Vortek publica preços por quantidade no contrato percentual do Mercado Livre. A regra pertence ao backend; o navegador apenas solicita e exibe a prévia retornada por ele.
+
+Procedimento obrigatório para alterar o preço de um anúncio:
+
+1. consultar `GET /items/{ITEM_ID}/prices?display_version=true` e guardar o `version` atual;
+2. bloquear a atualização automática se existir preço líquido B2B (`amount_tax_inclusion_type = net`);
+3. confirmar que o preço `standard` remoto ainda é o preço-base esperado;
+4. consultar `POST /prices-per-quantity/v1/recommendations` para as quantidades `3`, `5` e `10`;
+5. usar a política Vortek de `3%`, `4%` e `5%` somente quando a recomendação responder `204`;
+6. publicar em `POST /items/{ITEM_ID}/prices/price-per-quantity` com `type = discount_percentage`, contextos `channel_marketplace` e `user_type_business`, `eligible = true` e o header `X-Version`;
+7. quando houver faixa absoluta legada, usar `remove-absolute-pxq=true` na mesma operação;
+8. reler `GET /items/{ITEM_ID}/prices` e só considerar concluído quando quantidades e percentuais coincidirem com o payload.
+
+Resposta `409` ou mudança do preço-base é conflito retomável pelo outbox existente. Erro de elegibilidade, recomendação inválida, preço líquido B2B ou divergência no read-back não autoriza inventar percentuais nem criar outro fluxo.
+
 ## Fontes oficiais
 
 - https://developers.mercadolivre.com.br/pt_br/pt_br/publicacao-de-produtos
@@ -167,4 +184,5 @@ Preço protetivo não é preço comercial definitivo. Dimensões normalizadas pe
 - https://developers.mercadolivre.com.br/pt_br/descricao-de-produtos
 - https://developers.mercadolivre.com.br/pt_br/realizacao-de-testes/trabalhar-com-imagens
 - https://developers.mercadolivre.com.br/pt_br/envio-de-produto/diagnostico-de-imagens
+- https://developers.mercadolivre.com.br/pt_br/api-docs-pt-br/pxq-porcentagem-b2b
 - https://supabase.com/docs/guides/storage/serving/downloads
