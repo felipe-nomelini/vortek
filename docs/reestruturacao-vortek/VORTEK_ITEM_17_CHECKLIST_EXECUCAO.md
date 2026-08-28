@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `SEC-04 — Secrets no browser`
+**Próxima ação obrigatória:** `SEC-05 — Links sensíveis com expiração`
 
 ---
 
@@ -51,7 +51,7 @@ Regras de uso:
 | Ordem | Etapa | Situação | Próxima decisão |
 |---:|---|---|---|
 | 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
-| 1 | Segurança crítica | Em andamento | Executar somente `SEC-04` |
+| 1 | Segurança crítica | Em andamento | Executar somente `SEC-05` |
 | 2 | Prazo externo Mercado Livre | Pendente | Aguardar conclusão da Etapa 1 |
 | 3 | Estoque e fulfillment | Pendente | Aguardar etapas anteriores |
 | 4 | Capacidade e quantidade segura | Pendente | Depende de `STO-01/STO-02` |
@@ -66,8 +66,8 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Executar somente `SEC-04 — Secrets no browser`.
-- [ ] Não avançar para `SEC-05` antes de `SEC-04` estar integralmente validada.
+- [ ] Executar somente `SEC-05 — Links sensíveis com expiração`.
+- [ ] Não avançar para a ação seguinte antes de `SEC-05` estar integralmente validada.
 
 ---
 
@@ -190,14 +190,30 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### SEC-04 — Secrets no browser
 
 **Prioridade:** P1
-**Situação:** pendente; executar somente depois de `SEC-03`.
+**Situação:** concluída e validada em homologação.
+**Commit funcional:** `29be5f9` — `security: keep integration secrets server-side`.
 
-- [ ] localizar respostas de API que enviam secrets integrais ao cliente;
-- [ ] impedir retorno de client secrets, access tokens e refresh tokens;
-- [ ] retornar somente estado `configurado`/`não configurado`;
-- [ ] enviar novo valor ao servidor somente quando o usuário o alterar;
-- [ ] provar que nenhum valor sensível permanece no JavaScript do navegador;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] localizar respostas de API que enviam secrets integrais ao cliente;
+- [x] impedir retorno de client secrets, access tokens e refresh tokens;
+- [x] retornar somente estado `configurado`/`não configurado`;
+- [x] enviar novo valor ao servidor somente quando o usuário o alterar;
+- [x] provar que nenhum valor sensível permanece no JavaScript do navegador;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Validação executada:**
+
+- documentação oficial atual de segurança de dados do Next.js e do Supabase consultada;
+- `npm run test:integration-config`: 4 testes aprovados;
+- `npm run validate`: aprovado;
+- `npm run check:build-secrets`: aprovado;
+- `npm run build`: aprovado, 121 páginas geradas;
+- integração local com o `supabase-dev`: GET administrativo retornou somente flags coerentes, operador recebeu `403` e nenhum campo secreto foi serializado;
+- deploy da branch `dev` acionado no serviço `vortek-erp-dev` e nova instância confirmada em `dev.vortek.shop`;
+- homologação em `dev.vortek.shop`: GET e PATCH administrativos retornaram zero campos secretos, a página de configurações respondeu `200` e operador recebeu `403`;
+- quatro contas temporárias, duas locais e duas de homologação, foram removidas sem perfis residuais;
+- nenhuma credencial de integração foi alterada, nenhuma integração externa foi chamada e nenhuma migration foi necessária.
+
+**Resultado:** o navegador recebe apenas o estado das credenciais; valores existentes permanecem server-side e novos valores exigem gravação ou remoção explícita. `SEC-05` está liberada como próxima ação única.
 
 ### SEC-05 — Links sensíveis com expiração
 
