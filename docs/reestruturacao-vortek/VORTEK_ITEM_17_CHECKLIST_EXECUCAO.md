@@ -249,17 +249,39 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P1 com prazo
 **Prazo externo:** antes de `26/10/2026`
-**Situação:** pendente.
+**Situação:** implementada e validada tecnicamente em homologação; validação externa bloqueada pela ausência de seller de teste.
 
-- [ ] reler `docs/mercado-livre-publicacao-operacional.md`;
-- [ ] confirmar o contrato oficial atual de Preços por Quantidade;
-- [ ] confrontar backend, preview da UI e payload publicado;
-- [ ] manter uma única regra de quantity pricing no backend;
-- [ ] fazer a UI somente exibir a regra do backend;
-- [ ] preservar outbox/worker existente;
-- [ ] provar que preview e payload publicado são iguais;
-- [ ] validar faixas, quantidades, erros e versão do contrato;
+- [x] reler `docs/mercado-livre-publicacao-operacional.md`;
+- [x] confirmar o contrato oficial atual de Preços por Quantidade;
+- [x] confrontar backend, preview da UI e payload publicado;
+- [x] manter uma única regra de quantity pricing no backend;
+- [x] fazer a UI somente exibir a regra do backend;
+- [x] preservar outbox/worker existente;
+- [x] provar em teste que preview e payload publicado são iguais;
+- [x] validar em teste faixas, quantidades, erros e versão do contrato;
 - [ ] concluir o gate obrigatório da seção 3.
+
+**Estado/causa confirmados:** o backend ainda publicava faixas absolutas no endpoint legado e havia fórmulas independentes de `3%/4%/5%` no navegador. Esse estado não atendia ao contrato percentual vigente nem garantia que a prévia coincidisse com o payload.
+
+**Mudança realizada:** regra percentual centralizada no backend para as quantidades `3/5/10`; recomendações oficiais usadas como fonte e fallback `3%/4%/5%` limitado à resposta `204`; leitura de versão, `X-Version`, migração das faixas absolutas, bloqueio de preço líquido B2B e read-back incluídos. As telas passaram a apenas exibir a prévia do backend e o outbox/worker existente foi preservado.
+
+**Commit funcional:** `7c31bbb` — `feat: migrate ML quantity pricing to percentages`.
+
+**Validação executada:**
+
+- `npm run test:ml-quantity-pricing`: 13 testes aprovados;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado, 122 páginas geradas;
+- `git diff --check`: aprovado;
+- deploy da branch `dev` acionado no serviço `vortek-erp-dev` e nova instância confirmada em `192.168.1.160`;
+- `dev.vortek.shop`: health e login responderam `200`; rota de prévia presente no artefato e bloqueada com `401` sem autenticação;
+- nenhum acesso ao Mercado Livre foi registrado durante o smoke test;
+- migration: **N/A**, pois não houve alteração de banco;
+- produção, `main`, `app.vortek.shop` e Supabase de produção permaneceram intocados.
+
+**Rollback:** reverter o commit `7c31bbb` na branch `dev` e redeployar somente `vortek-erp-dev`.
+
+**Pendência bloqueante:** configurar um seller/conta de teste do Mercado Livre na homologação e provar recomendação, publicação percentual e read-back contra a API externa. A conta real não será usada. Até essa prova, `ML-01` permanece como próxima ação obrigatória e nenhuma ação seguinte do Item 17 está liberada.
 
 ---
 
