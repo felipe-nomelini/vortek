@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `INV-01 — API DSLite x XML`
+**Próxima ação obrigatória:** `SEC-06 — Next.js`
 
 ---
 
@@ -1114,13 +1114,40 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 
 ### INV-01 — API DSLite x XML
 
-**Situação:** pendente de investigação; executar após a saúde do sync.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `6db5891` — `docs(sync): clarify DSLite source ownership`.
 
-- [ ] mapear a fonte principal de preço/estoque;
-- [ ] mapear o papel de fallback ou reconciliação da outra fonte;
-- [ ] confirmar lock e consumidores compartilhados;
-- [ ] remover uma fonte somente se sua função estiver coberta;
-- [ ] concluir o gate obrigatório da seção 3 se houver mudança.
+- [x] mapear a fonte principal de preço/estoque;
+- [x] mapear o papel de fallback ou reconciliação da outra fonte;
+- [x] confirmar lock e consumidores compartilhados;
+- [x] remover uma fonte somente se sua função estiver coberta;
+- [x] concluir o gate obrigatório da seção 3 se houver mudança.
+
+**Estado confirmado e decisão:**
+
+- a API DSLite é a fonte principal de ingestão e lifecycle: percorre o catálogo com cursor, identifica produtos, cria ou atualiza ofertas vinculáveis e aplica as regras operacionais de atividade;
+- o XML é o reconciliador em massa: atualiza somente custo e estoque de ofertas ativas que já possuem vínculo por fornecedor e produto DSLite;
+- ambos convergem no snapshot preferencial, kits, preço automático e outbox de publicação Mercado Livre;
+- ambos permanecem serializados pelo domínio `produtos:dslite_preco`;
+- nenhuma fonte foi removida: o XML ainda cobre correções reais que a execução incremental da API não substitui no mesmo intervalo;
+- os rótulos operacionais passaram a explicitar `principal` e `reconciliação`; chaves, endpoints, payloads, frequências e regras de negócio não foram alterados.
+
+**Validação executada em 30/08/2026:**
+
+- documentação oficial atual da DSLite conferida para `GET /v1/CrossDocking/PrecoEstoque/{fornecedorId}`, catálogo XML completo/atualizado e limite padrão de duas baixadas do catálogo completo a cada 20 minutos;
+- fotografia somente leitura de sete dias no `supabase-dev`: API com `4.015/4.018` execuções bem-sucedidas; XML com `883/911` e `2.129` ofertas efetivamente corrigidas;
+- teste direcionado `tests/sync-task-resilience.test.js`: 8/8 aprovados, incluindo papel operacional, frequências, cursor e lock compartilhado;
+- `npm run validate`, `npm run build` com 122 páginas e `git diff --check`: aprovados;
+- commit funcional enviado somente para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=6db5891`; health check respondeu `200`;
+- `/api/sync/cron-status` autenticado confirmou os dois novos rótulos, nenhuma task mal configurada, frequências de 2/10 minutos e domínio compartilhado;
+- as execuções mais recentes da API e do XML terminaram em `completo` após o deploy;
+- migration, escrita manual no Supabase e chamada externa artificial: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `6db5891` na branch `dev` e executar novo deploy somente de homologação. Não há rollback de banco, configuração ou dados.
+
+**Pendência:** nenhuma para `INV-01`. A próxima ação obrigatória é `SEC-06 — Next.js`.
 
 ---
 
