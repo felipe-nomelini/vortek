@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `DSL-01 — Timeout DSLite`
+**Próxima ação obrigatória:** `INV-01 — API DSLite x XML`
 
 ---
 
@@ -60,7 +60,7 @@ Regras de uso:
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
-| 8 | Jobs e DSLite | Em andamento | Executar somente `DSL-01` |
+| 8 | Jobs e DSLite | Em andamento | Executar somente `INV-01` |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
@@ -96,6 +96,8 @@ Regras de uso:
 - [x] Não avançar para `JOB-01` antes de `HAYA-04` estar integralmente validada.
 - [x] Executar somente `JOB-01 — Catálogo on_hold`.
 - [x] Não avançar para `DSL-01` antes de `JOB-01` estar integralmente validada.
+- [x] Executar somente `DSL-01 — Timeout DSLite`.
+- [x] Não avançar para `INV-01` antes de `DSL-01` estar integralmente validada.
 
 ---
 
@@ -1068,18 +1070,47 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 
 **Rollback:** manter o cron inativo, remover `catalog_refresh_worker_url` e `catalog_refresh_worker_host` do runtime, reverter os três commits em `dev` e executar novo deploy somente de homologação. A função falha de forma observável sem a configuração e não ativa cron automaticamente.
 
-**Pendência:** nenhuma para `JOB-01`. A próxima ação obrigatória é `DSL-01 — Timeout DSLite`.
+**Pendência:** nenhuma para `JOB-01`. A ação sucessora `DSL-01` também foi concluída.
 
 ### DSL-01 — Timeout DSLite
 
 **Prioridade:** P1
-**Situação:** pendente.
+**Situação:** concluída e validada operacionalmente em homologação.
+**Commits funcionais:** `a80e441` e `1f6517c`.
 
-- [ ] localizar onde timeout/erro vira sucesso vazio;
-- [ ] preservar erro e status da request até a decisão de retry;
-- [ ] impedir resultado `0 pedidos + job completo` em falha;
-- [ ] provar falha observável e retry seguro;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] localizar onde timeout/erro vira sucesso vazio;
+- [x] preservar erro e status da request até a decisão de retry;
+- [x] impedir resultado `0 pedidos + job completo` em falha;
+- [x] provar falha observável e retry seguro;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** `fetchDsliteResult()` já distinguia dados válidos de timeout, erro HTTP, falha de rede, configuração ausente e JSON inválido. A rota `/api/sync/dslite-pedidos`, porém, usava o wrapper `fetchDslite()`, que descartava o diagnóstico e devolvia apenas `data | null`. O loop interpretava `null` exatamente como `pedidos: []`, encerrava com zero registros e permitia que o job fosse marcado como `completo`.
+
+**Mudança executada:**
+
+- a rota de pedidos passou a consumir `fetchDsliteResult()` e validar explicitamente que `pedidos` é uma lista;
+- timeout e timeout de conexão retornam HTTP `504`, configuração ausente retorna `503` e demais falhas externas ou payload inválido retornam `502`;
+- código, mensagem e `upstream_status` são preservados na resposta e no log do job;
+- somente `pedidos: []` recebido em resposta válida continua representando sincronização vazia bem-sucedida;
+- o lifecycle existente foi preservado: uma falha mantém o job em `on_hold`, sem `finished_at`, e o scheduler reutiliza o mesmo job no retry;
+- o job manual agregado também passou a exibir a mensagem específica da etapa;
+- quantidade de tentativas, timeout, frequência, scheduler, filas e schema não foram alterados.
+
+**Validação executada em 30/08/2026:**
+
+- contrato oficial atual da DSLite para `GET /v1/DropShipping`, erros HTTP e ambiente de homologação consultado, além da documentação oficial do `AbortController` no Node.js 22;
+- testes direcionados de contrato DSLite, resiliência do scheduler e outcome do job: 20/20 aprovados;
+- cenários automatizados aprovados para timeout, erro HTTP com status upstream, payload inválido, resposta válida vazia e decisão `on_hold`;
+- `npm run validate`, `npm run build` e `git diff --check`: aprovados;
+- aplicação enviada para `origin/dev`, implantada somente em `vortek-erp-dev` e confirmada com `GIT_SHA=1f6517c`; health check de homologação respondeu HTTP `200`;
+- como o `supabase-dev` não possuía integração DSLite configurada, um job controlado confirmou falha HTTP `503` com código e mensagem específicos, status `on_hold`, `finished_at = null`, `processados = 0` e `total = 1`;
+- uma segunda execução reutilizou o mesmo ID e registrou o segundo evento `job_deferred`, provando retry idempotente; o job controlado foi cancelado ao final e não ficou elegível para nova retomada;
+- nenhuma chamada externa DSLite foi realizada nessa prova operacional, nenhum secret foi reproduzido e nenhuma migration foi necessária;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `1f6517c` e `a80e441` na branch `dev` e executar novo deploy somente de homologação. Não há rollback de banco ou configuração.
+
+**Pendência:** nenhuma para `DSL-01`. A próxima ação obrigatória é `INV-01 — API DSLite x XML`.
 
 ### INV-01 — API DSLite x XML
 
