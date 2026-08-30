@@ -791,17 +791,50 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### FIN-01 + FIN-02 — Lifecycle e parser
 
 **Prioridade:** P1
-**Situação:** pendente; devem ser coerentes antes de confiar em crédito automático.
+**Situação:** implementada e validada tecnicamente em homologação; lifecycle externo pendente por ausência de credencial Mercado Pago de teste.
+**Commit funcional:** `a56fb06` — `fix(finance): complete Mercado Pago report lifecycle`.
 
-- [ ] reconfirmar o lifecycle e os campos oficiais atuais do relatório;
-- [ ] fazer a mesma tarefa percorrer `requested → processing → processed → download → import → complete`;
-- [ ] retomar a mesma tarefa sem criar um segundo cron;
-- [ ] priorizar o valor líquido oficial relevante ao saldo;
-- [ ] validar tipo da transação, moeda e idempotência;
-- [ ] provar que resposta `202/requested` não vira `complete`;
-- [ ] provar retomada da mesma task;
-- [ ] provar importação idempotente e ausência de crédito duplicado;
+- [x] reconfirmar o lifecycle e os campos oficiais atuais do relatório;
+- [x] fazer a mesma tarefa percorrer `requested → processing → processed → download → import → complete`;
+- [x] retomar a mesma tarefa sem criar um segundo cron;
+- [x] priorizar o valor líquido oficial relevante ao saldo;
+- [x] validar tipo da transação, moeda e idempotência;
+- [x] provar que resposta `202/requested` não vira `complete`;
+- [x] provar retomada da mesma task;
+- [x] provar importação idempotente e ausência de crédito duplicado;
 - [ ] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** a rota retornava `202` com `success=true`, e o executor genérico classificava qualquer resposta HTTP bem-sucedida como `completo`. O `taskId` retornado pelo Mercado Pago ficava apenas no log do job encerrado; a execução seguinte recalculava outra janela e podia solicitar outro relatório. Em paralelo, o parser não reconhecia diretamente `SETTLEMENT_NET_AMOUNT`, `TRANSACTION_TYPE` e `SETTLEMENT_CURRENCY`, permitindo que valor bruto e campos genéricos participassem da criação de crédito.
+
+**Mudança executada:**
+
+- resposta `deferred=true` agora mantém o mesmo job em `on_hold`, sem `finished_at`;
+- a rota recupera do próprio log o `taskId` e o intervalo congelado e consulta a mesma tarefa até `processed`;
+- o lifecycle fica observável como `requested → processing → processed → download → import → complete`;
+- o parser único usa `SOURCE_ID`, `SETTLEMENT_DATE`, `TRANSACTION_TYPE`, `SETTLEMENT_NET_AMOUNT`, `SETTLEMENT_CURRENCY` e valida `TRANSACTION_CURRENCY` quando presente;
+- linha sem identidade, líquido, tipo ou moeda oficial válida é rejeitada e não gera crédito;
+- `topup` automático exige Hayamax, mínimo vigente, BRL, líquido negativo e tipo oficial `PAYOUT` ou `WITHDRAWAL`; casos válidos, porém ambíguos, permanecem para revisão;
+- conflito concorrente da `movement_key` relê o movimento já criado e preserva o vínculo;
+- os índices únicos existentes continuam como fonte de idempotência; nenhum cron, tabela, migration ou dependência foi criado.
+
+**Validação executada em 30/08/2026:**
+
+- documentação oficial atual de criação, acompanhamento, download e campos do relatório Mercado Pago reconfirmada;
+- testes direcionados `tests/mercadopago-account-money.test.js` e `tests/ml-order-hydration-queue.test.js`: 11/11 aprovados;
+- cobertura provou líquido sobre bruto, bloqueios de tipo/moeda/sinal, identidade estável, recuperação da mesma task e `deferred → on_hold`;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- transação com rollback no `supabase-dev` provou um único movimento por `external_id` e um único `topup` por `movement_key`; contagens finais `0|0` confirmaram o rollback;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=a56fb06`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e a rota sem chave respondeu `401`;
+- a chamada interna autenticada respondeu `500` de configuração ausente, coerente com `integracoes.mercadopago.conectado=false`, token no banco ausente e `MERCADOPAGO_ACCESS_TOKEN` ausente;
+- migration: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado persistido pela validação para desfazer.
+
+**Pendência:** configurar credencial/conta de teste do Mercado Pago no DEV e observar o mesmo job passar por solicitação, processamento, download e importação. Até essa prova, `FIN-01/FIN-02` permanece como ação atual e não deve avançar para `WEBHOOK-03`.
 
 ### WEBHOOK-03 — `payment_lookup_failed`
 
