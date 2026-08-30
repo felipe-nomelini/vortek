@@ -179,6 +179,7 @@ export async function POST(request: Request) {
         });
         return NextResponse.json({
           success: false,
+          error: pageResult.error.message,
           domain,
           job: {
             key: 'sync_dslite_pedidos_compra',
