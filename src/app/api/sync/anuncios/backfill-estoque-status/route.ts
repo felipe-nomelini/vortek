@@ -114,6 +114,7 @@ export async function POST(request: Request) {
 
     let enqueued = 0;
     let updatedExisting = 0;
+    let unchanged = 0;
     let skippedManualBlock = 0;
     let failed = 0;
     const capacitiesByProduct = await loadProductFulfillmentCapacities(
@@ -171,7 +172,9 @@ export async function POST(request: Request) {
           message: outbox.error,
           context: { sku, mlItemId },
         });
-      } else if (outbox.action === 'updated_existing') {
+      } else if (outbox.action === 'unchanged') {
+        unchanged += 1;
+      } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
         updatedExisting += 1;
       } else {
         enqueued += 1;
@@ -186,6 +189,7 @@ export async function POST(request: Request) {
         scanned: rows.length,
         enqueued,
         updated_existing: updatedExisting,
+        unchanged,
         skipped_manual_block: skippedManualBlock,
         failed,
       },

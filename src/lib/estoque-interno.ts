@@ -369,20 +369,14 @@ export async function enfileirarSyncMlEstoqueInterno(
       semAlteracao += 1;
       continue;
     }
-    if (observed?.mlItemId === mlItemId) {
-      const { data: processing, error: processingError } = await (db as any)
-        .from('anuncios_ml_outbox')
-        .select('id')
-        .eq('ml_item_id', mlItemId)
-        .eq('status', 'processing')
-        .limit(1)
-        .maybeSingle();
-      if (processingError) throw new Error(processingError.message);
-      if (processing?.id) {
-        emProcessamento += 1;
-        continue;
-      }
-    }
+    const observedTarget = observed?.mlItemId === mlItemId;
+    const observedQuantityDiffers = observedTarget
+      && observed?.availableQuantity !== null
+      && Number.isFinite(observedQuantity)
+      && Math.max(0, Math.trunc(observedQuantity)) !== estoqueDisponivel;
+    const observedStatusDiffers = observedTarget
+      && Boolean(observedStatus)
+      && observedStatus !== desiredStatus;
     const result = await enqueueMlPublishOutbox(db, {
       produtoId: String(produto.id),
       mlItemId,
@@ -390,6 +384,8 @@ export async function enfileirarSyncMlEstoqueInterno(
       desiredQuantity: estoqueDisponivel,
       source: 'internal_stock_automation',
       dedupePending: true,
+      forceQuantityPublish: observedQuantityDiffers,
+      forceStatusPublish: observedStatusDiffers,
       payload: {
         apply_price: false,
         apply_quantity_pricing: false,
@@ -402,7 +398,8 @@ export async function enfileirarSyncMlEstoqueInterno(
       },
     });
     if (!result.ok) throw new Error(result.error);
-    enfileirados += 1;
+    if (result.action === 'unchanged') semAlteracao += 1;
+    else enfileirados += 1;
   }
   return { enfileirados, bloqueadosManualmente, semAlteracao, emProcessamento };
 }

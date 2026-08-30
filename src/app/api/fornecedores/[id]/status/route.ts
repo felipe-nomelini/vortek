@@ -362,9 +362,11 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     let mlDeleteEnqueued = 0;
     let mlDeleteUpdatedExisting = 0;
     let mlDeleteReopenedFailed = 0;
+    let mlDeleteUnchanged = 0;
     let mlDeleteSkippedNoItem = 0;
     let mlDeleteFailed = 0;
     let mlStockEnqueued = 0;
+    let mlStockUnchanged = 0;
     let mlStockFailed = 0;
     let mlPriceProductsUpdated = 0;
     let mlPriceOutboxEnqueued = 0;
@@ -433,6 +435,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
           mlDeleteUpdatedExisting += 1;
         } else if (outbox.action === 'reopened_failed') {
           mlDeleteReopenedFailed += 1;
+        } else if (outbox.action === 'unchanged') {
+          mlDeleteUnchanged += 1;
         } else {
           mlDeleteEnqueued += 1;
         }
@@ -455,6 +459,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         desiredQuantity: capacity.safe,
         desiredPrice: null,
         source: 'fornecedor_inativo_alternativa',
+        dedupePending: true,
         payload: {
           apply_price: false,
           apply_quantity_pricing: false,
@@ -477,6 +482,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
           ml_item_id: snapshot.previous.ml_item_id,
           error: outbox.error,
         });
+      } else if (outbox.action === 'unchanged') {
+        mlStockUnchanged += 1;
       } else {
         mlStockEnqueued += 1;
       }
@@ -497,9 +504,11 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         ml_delete_enqueued: mlDeleteEnqueued,
         ml_delete_updated_existing: mlDeleteUpdatedExisting,
         ml_delete_reopened_failed: mlDeleteReopenedFailed,
+        ml_delete_unchanged: mlDeleteUnchanged,
         ml_delete_skipped_no_item: mlDeleteSkippedNoItem,
         ml_delete_failed: mlDeleteFailed,
         ml_stock_enqueued: mlStockEnqueued,
+        ml_stock_unchanged: mlStockUnchanged,
         ml_stock_failed: mlStockFailed,
         ml_price_products_updated: mlPriceProductsUpdated,
         ml_price_outbox_enqueued: mlPriceOutboxEnqueued,

@@ -245,6 +245,7 @@ export async function POST(req: Request) {
     let recordsInactivatedByCost = 0;
     let mlOutboxEnqueued = 0;
     let mlOutboxUpdatedExisting = 0;
+    let mlOutboxUnchanged = 0;
     let mlOutboxSkippedNoItem = 0;
     let mlOutboxSkippedManualBlock = 0;
     let mlOutboxSkippedNoListing = 0;
@@ -490,7 +491,9 @@ export async function POST(req: Request) {
                 message: outbox.error,
                 context: { fornecedorId: targetFornecedor, page: currentPage, sku: product.sku, mlItemId: product.mlItemId },
               });
-            } else if (outbox.action === 'updated_existing') {
+            } else if (outbox.action === 'unchanged') {
+              mlOutboxUnchanged += 1;
+            } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
               mlOutboxUpdatedExisting += 1;
             } else {
               mlOutboxEnqueued += 1;
@@ -733,6 +736,8 @@ export async function POST(req: Request) {
               message: outbox.error,
               context: { fornecedorId: targetFornecedor, page: currentPage, sku: snapshot.previous.sku, mlItemId },
             });
+          } else if (outbox.action === 'unchanged') {
+            mlOutboxUnchanged += 1;
           } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
             mlOutboxUpdatedExisting += 1;
           } else {
@@ -786,6 +791,7 @@ export async function POST(req: Request) {
         pages: pagesProcessed,
         ml_outbox_enqueued: mlOutboxEnqueued,
         ml_outbox_updated_existing: mlOutboxUpdatedExisting,
+        ml_outbox_unchanged: mlOutboxUnchanged,
         ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
         ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
         ml_outbox_skipped_no_listing: mlOutboxSkippedNoListing,
@@ -811,6 +817,7 @@ export async function POST(req: Request) {
       with_ml_sync: false,
       ml_outbox_enqueued: mlOutboxEnqueued,
       ml_outbox_updated_existing: mlOutboxUpdatedExisting,
+      ml_outbox_unchanged: mlOutboxUnchanged,
       ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
       ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
       ml_outbox_failed: mlOutboxFailed,

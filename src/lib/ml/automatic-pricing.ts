@@ -132,8 +132,11 @@ export async function enqueueAutomaticPricesForCostChanges(
           calculated_at: new Date().toISOString(),
         },
       });
-      if (queued.ok) result.outboxEnqueued += 1;
-      else result.errors.push({ productId, message: queued.error });
+      if (queued.ok) {
+        if (queued.action !== 'unchanged') result.outboxEnqueued += 1;
+      } else {
+        result.errors.push({ productId, message: queued.error });
+      }
     }
   }
 

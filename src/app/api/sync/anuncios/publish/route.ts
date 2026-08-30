@@ -6,6 +6,8 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { loadMlStockContext, publishAndVerifyMlStock } from '@/lib/ml/stock-publish';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 import {
   deleteMlListingPermanently,
   detachDeletedMlListing,
@@ -284,29 +286,48 @@ export async function POST(request: Request) {
     if (seedFromProducts) {
       const { data: produtos } = await client
         .from('produtos')
-        .select('id, ml_item_id, ml_status, custom_price, estoque')
+        .select('id, ml_item_id, ml_status, custom_price')
         .eq('ativo', true)
         .not('ml_item_id', 'is', null)
         .order('updated_at', { ascending: false })
         .limit(limit);
 
       if (produtos?.length) {
-        const seedRows = produtos
-          .filter((p) => String(p.ml_item_id || '').trim())
-          .map((p) => ({
-            produto_id: p.id,
-            ml_item_id: String(p.ml_item_id),
-            desired_status: p.ml_status || null,
-            desired_price: typeof p.custom_price === 'number' ? p.custom_price : null,
-            desired_quantity: typeof p.estoque === 'number' ? p.estoque : null,
+        const capacities = await loadProductFulfillmentCapacities(
+          client,
+          produtos.map((produto) => String(produto.id)),
+        );
+        for (const produto of produtos) {
+          const mlItemId = String(produto.ml_item_id || '').trim();
+          if (!mlItemId) continue;
+          const capacity = capacities.get(String(produto.id))
+            || { internal: 0, supplier: 0, safe: 0 };
+          const seeded = await enqueueMlPublishOutbox(client, {
+            produtoId: String(produto.id),
+            mlItemId,
+            desiredStatus: produto.ml_status || null,
+            desiredPrice: typeof produto.custom_price === 'number' ? produto.custom_price : null,
+            desiredQuantity: capacity.safe,
             source: 'seed_from_products',
-            payload: { seeded_at: new Date().toISOString() },
-            status: 'pending',
-            available_at: new Date().toISOString(),
-          }));
-
-        if (seedRows.length > 0) {
-          await (client.from('anuncios_ml_outbox' as any).insert(seedRows as any) as any).catch(() => null);
+            dedupePending: true,
+            payload: {
+              apply_price: typeof produto.custom_price === 'number',
+              apply_quantity_pricing: false,
+              apply_quantity: true,
+              apply_status: Boolean(produto.ml_status),
+              seeded_at: new Date().toISOString(),
+              estoque_fornecedor: capacity.supplier,
+              estoque_interno: capacity.internal,
+              estoque_disponivel: capacity.safe,
+            },
+          });
+          if (!seeded.ok) {
+            warnings.push({
+              code: 'ml_publish_seed_enqueue_failed',
+              message: seeded.error,
+              context: { produtoId: String(produto.id), mlItemId },
+            });
+          }
         }
       }
     }

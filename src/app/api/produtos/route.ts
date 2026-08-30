@@ -146,7 +146,12 @@ export async function POST(request: Request) {
       desiredPrice: typeof (data as any).custom_price === 'number' ? (data as any).custom_price : null,
       desiredQuantity: capacity.safe,
       source: 'produto_create',
+      dedupePending: true,
       payload: {
+        apply_price: typeof (data as any).custom_price === 'number',
+        apply_quantity_pricing: false,
+        apply_quantity: true,
+        apply_status: Boolean((data as any).ml_status),
         origin: 'api/produtos POST',
         estoque_fornecedor: capacity.supplier,
         estoque_interno: capacity.internal,

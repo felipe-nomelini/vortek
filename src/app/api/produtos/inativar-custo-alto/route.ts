@@ -50,6 +50,7 @@ export async function POST(req: Request) {
   const ids = rows.map((row: any) => String(row.id)).filter(Boolean);
   let inactivated = 0;
   let mlPauseEnqueued = 0;
+  let mlPauseUnchanged = 0;
   let mlPauseSkippedNoItem = 0;
 
   if (!dryRun && ids.length > 0) {
@@ -104,6 +105,8 @@ export async function POST(req: Request) {
           message: outbox.error,
           context: { produtoId: row.id, sku: row.sku, mlItemId },
         });
+      } else if (outbox.action === 'unchanged') {
+        mlPauseUnchanged += 1;
       } else {
         mlPauseEnqueued += 1;
       }
@@ -119,6 +122,7 @@ export async function POST(req: Request) {
       inactivated,
       already_inactive: 0,
       ml_pause_enqueued: mlPauseEnqueued,
+      ml_pause_unchanged: mlPauseUnchanged,
       ml_pause_skipped_no_item: mlPauseSkippedNoItem,
       errors: errors.length,
     },

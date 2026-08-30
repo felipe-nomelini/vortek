@@ -149,7 +149,10 @@ export async function PATCH(
     const shouldPauseByProductInactive = body.ativo === false
       && current.ativo !== false
       && String(data?.ml_item_id || '').trim();
-    const shouldEnqueueMlPublish = ['custom_price', 'estoque', 'ml_status'].some((field) => field in body) || shouldPauseByProductInactive;
+    const shouldApplyPrice = 'custom_price' in body && typeof data.custom_price === 'number';
+    const shouldApplyQuantity = 'estoque' in body || shouldPauseByProductInactive;
+    const shouldApplyStatus = 'ml_status' in body || shouldPauseByProductInactive;
+    const shouldEnqueueMlPublish = shouldApplyPrice || shouldApplyQuantity || shouldApplyStatus;
     let outboxWarning: string | null = null;
     let outboxId: string | null = null;
     let queuedPublish = false;
@@ -162,11 +165,18 @@ export async function PATCH(
       const outbox = await enqueueMlPublishOutbox(supabase, {
         produtoId: String(data.id),
         mlItemId: String(data.ml_item_id),
-        desiredStatus: shouldPauseByProductInactive ? 'pausado' : (data.ml_status || null) as any,
-        desiredPrice: typeof data.custom_price === 'number' ? data.custom_price : null,
-        desiredQuantity: capacity.safe,
+        desiredStatus: shouldApplyStatus
+          ? (shouldPauseByProductInactive ? 'pausado' : (data.ml_status || null) as any)
+          : null,
+        desiredPrice: shouldApplyPrice ? data.custom_price : null,
+        desiredQuantity: shouldApplyQuantity ? capacity.safe : null,
         source: shouldPauseByProductInactive ? 'produto_inativo' : 'produto_patch',
+        dedupePending: true,
         payload: {
+          apply_price: shouldApplyPrice,
+          apply_quantity_pricing: false,
+          apply_quantity: shouldApplyQuantity,
+          apply_status: shouldApplyStatus,
           previous: {
             custom_price: current.custom_price,
             estoque: current.estoque,
@@ -187,7 +197,7 @@ export async function PATCH(
 
       if (!outbox.ok) {
         outboxWarning = outbox.error;
-      } else {
+      } else if (outbox.action !== 'unchanged') {
         queuedPublish = true;
         outboxId = outbox.outboxId;
       }

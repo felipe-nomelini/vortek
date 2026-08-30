@@ -215,7 +215,7 @@ export async function enqueueKitStockUpdates(client: ServiceClientLike, snapshot
         },
       });
       if (!result.ok) throw new Error(`Falha ao enfileirar estoque do kit ${kit.sku}: ${result.error}`);
-      queued += 1;
+      if (result.action !== 'unchanged') queued += 1;
     }
   }
   return queued;

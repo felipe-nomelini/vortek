@@ -61,6 +61,7 @@ export async function POST(request: Request) {
   let enqueued = 0;
   let updatedExisting = 0;
   let reopenedFailed = 0;
+  let unchanged = 0;
   let skippedNoItem = 0;
   let failed = 0;
   const outboxIds: string[] = [];
@@ -101,12 +102,13 @@ export async function POST(request: Request) {
       continue;
     }
 
-    outboxIds.push(outbox.outboxId);
+    if (outbox.action === 'unchanged') unchanged += 1;
+    else outboxIds.push(outbox.outboxId);
     if (outbox.action === 'updated_existing') {
       updatedExisting += 1;
     } else if (outbox.action === 'reopened_failed') {
       reopenedFailed += 1;
-    } else {
+    } else if (outbox.action === 'inserted') {
       enqueued += 1;
     }
   }
@@ -124,6 +126,7 @@ export async function POST(request: Request) {
       enqueued,
       updated_existing: updatedExisting,
       reopened_failed: reopenedFailed,
+      unchanged,
       skipped_no_item: skippedNoItem,
       failed,
     },
