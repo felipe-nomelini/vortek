@@ -283,6 +283,17 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Pendência bloqueante:** configurar um seller/conta de teste do Mercado Livre na homologação e provar recomendação, publicação percentual e read-back contra a API externa. A conta real não será usada. Até essa prova, `ML-01` permanece como próxima ação obrigatória e nenhuma ação seguinte do Item 17 está liberada.
 
+**Preparação adicional em 29/08/2026:**
+
+- commit `503ab0c` — `security: isolate Mercado Livre account allowlist` enviado para `origin/dev`;
+- runtime, OAuth e webhooks passaram a aceitar substituição integral do allowlist por `ML_ALLOWED_USER_IDS`, preservando o ID atual somente como fallback quando a variável estiver ausente;
+- 7 testes do guard de conta e os 13 testes de quantity pricing aprovados;
+- `npm run validate` e `npm run build` aprovados, com 122 páginas geradas;
+- placeholder `integracoes/mercadolivre` criado desconectado somente no `supabase-dev`, sem Client ID, secret ou tokens;
+- arquivo local protegido de bootstrap criado fora do repositório com permissão `0600`, ainda sem valores;
+- deploy do commit foi aceito pelo webhook, mas não entrou em operação: a primeira tentativa falhou no Easypanel durante o download do código por erro transitório de DNS (`curl` exit 6), e as novas tentativas não iniciaram outro rollout;
+- test users não foram criados e nenhuma chamada autenticada ao Mercado Livre foi executada, pois as credenciais exclusivas do app DEV e o token temporário de bootstrap ainda não foram disponibilizados.
+
 ---
 
 ## 7. Etapa 3 — Estoque e fulfillment
