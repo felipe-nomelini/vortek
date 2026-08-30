@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `SEC-07 — Secrets runtime`
+**Próxima ação obrigatória:** `DB-03 — Fotografia real do banco`
 
 ---
 
@@ -61,7 +61,7 @@ Regras de uso:
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
-| 9 | Plataforma e banco | Em andamento | Executar somente `SEC-07` |
+| 9 | Plataforma e banco | Em andamento | Executar somente `DB-03` |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Pendente | Somente após estabilidade funcional |
@@ -102,6 +102,8 @@ Regras de uso:
 - [x] Não avançar para `SEC-06` antes de `INV-01` estar integralmente validada.
 - [x] Executar somente `SEC-06 — Next.js`.
 - [x] Não avançar para `SEC-07` antes de `SEC-06` estar integralmente validada.
+- [x] Executar somente `SEC-07 — Secrets runtime`.
+- [x] Não avançar para `DB-03` antes de `SEC-07` estar integralmente validada.
 
 ---
 
@@ -1204,13 +1206,36 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 ### SEC-07 — Secrets runtime
 
 **Prioridade:** P1
-**Situação:** pendente.
+**Situação:** concluída e validada em desenvolvimento/homologação.
 
-- [ ] confirmar recursos realmente disponíveis no Supabase self-hosted atual;
-- [ ] preferir secret store oficialmente suportado;
-- [ ] não implementar criptografia própria;
-- [ ] migrar sem expor valores em código, logs ou checklist;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] confirmar recursos realmente disponíveis no Supabase self-hosted atual;
+- [x] preferir secret store oficialmente suportado;
+- [x] não implementar criptografia própria;
+- [x] migrar sem expor valores em código, logs ou checklist;
+- [x] concluir o gate obrigatório da seção 3.
+
+#### Gate e evidências
+
+- branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação e auditoria de banco conferidos antes da implementação;
+- estado atual confirmado no `supabase-dev`: PostgreSQL `17.6`, extensão `supabase_vault 0.3.1` instalada, Vault vazio e `api_secret_key` ausente de `sync_runtime_config`; o valor permanecia configurado somente no runtime do `vortek-erp-dev`;
+- causa confirmada: os três dispatchers SQL ainda procuravam o secret em plaintext na tabela de configurações comuns, apesar de os crons estarem inativos;
+- documentação oficial atual do Supabase Vault, self-hosting e segurança de funções `SECURITY DEFINER` do PostgreSQL consultada;
+- migration `20260830210000_secure_runtime_api_secret.sql` criou a migração legada segura, bloqueou a reinserção na tabela e mudou os três dispatchers para o Vault;
+- o secret atual foi transferido em memória do container DEV para o Vault, sem arquivo temporário e sem reprodução de valor ou hash;
+- teste direcionado `tests/sec-07-runtime-secrets.test.js`: 4/4 aprovado;
+- regressão do dispatcher de catálogo `tests/catalog-refresh-batch.test.js`: 6/6 aprovado;
+- `node --check scripts/audit-syncs-production.js`, `npm run validate` e `git diff --check`: aprovados;
+- migration aplicada e registrada somente no `supabase-dev` (`192.168.1.162`);
+- validação do banco confirmou um secret nomeado e criptografado, correspondência com o runtime DEV, zero linha legada, constraint validada e tentativa de regressão bloqueada com `23514`;
+- os três dispatchers permaneceram `SECURITY DEFINER`, com `search_path` seguro, leitura exclusiva do Vault e execução permitida somente a `postgres`;
+- os três crons Vortek permaneceram inativos; nenhuma função de dispatch, integração externa ou URL de produção foi chamada;
+- commit funcional `cdfe1e9` enviado somente para `origin/dev`;
+- build e deploy web: **N/A**, pois a ação alterou apenas migration, teste e script operacional fora do bundle da aplicação;
+- `main`, produção, `app.vortek.shop` e Supabase produção permaneceram intocados.
+
+**Rollback:** manter os crons inativos e reverter `cdfe1e9` em `dev`. A migration pode permanecer sem afetar o runtime web; para retornar integralmente ao estado anterior do banco DEV, restaurar as três funções, remover a constraint e apagar o secret do Vault sem repovoar plaintext. O `API_SECRET_KEY` do container DEV permanece inalterado.
+
+**Pendência:** nenhuma para `SEC-07`. A próxima ação obrigatória é `DB-03 — Fotografia real do banco`.
 
 ### DB-03 — Fotografia real do banco
 
