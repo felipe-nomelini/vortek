@@ -2,12 +2,30 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
+  getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
   isHayamaxTopupCandidate,
   isReviewRequiredCandidate,
+  isMercadoPagoReportReady,
   parseMercadoPagoAccountMoneyCsv,
   resolveMercadoPagoReportTaskId,
 } = require('../src/lib/mercadopago-account-money.ts');
+
+test('relatório aceita o contrato oficial e o formato observado na conta TEST', () => {
+  assert.equal(isMercadoPagoReportReady('processed'), true);
+  assert.equal(isMercadoPagoReportReady('available'), true);
+  assert.equal(isMercadoPagoReportReady('processing'), false);
+  assert.equal(getMercadoPagoReportFileName({
+    file_name: 'official.csv',
+    files: [{ type: 'csv', name: 'fallback.csv' }],
+  }), 'official.csv');
+  assert.equal(getMercadoPagoReportFileName({
+    files: [
+      { type: 'json', name: 'report.json' },
+      { type: 'CSV', name: 'report.csv' },
+    ],
+  }), 'report.csv');
+});
 
 const headers = [
   'SOURCE_ID',

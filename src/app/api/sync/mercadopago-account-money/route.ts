@@ -9,9 +9,11 @@ import {
   type MercadoPagoReportTask,
 } from '@/services/mercadopago';
 import {
+  getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
   isHayamaxTopupCandidate,
   isMercadoPagoReportPending,
+  isMercadoPagoReportReady,
   isReviewRequiredCandidate,
   parseMercadoPagoAccountMoneyCsv,
   resolveMercadoPagoReportTaskId,
@@ -70,7 +72,6 @@ async function importCsv(fileName: string) {
   for (const row of rows) {
     if (row.validationErrors.length > 0) {
       rejected += 1;
-      errors.push(`validation:${row.externalId}:${row.validationErrors.join(',')}`);
       continue;
     }
 
@@ -190,8 +191,8 @@ async function responseForTask(
   if (!taskId) throw new Error('Identificador inteiro da tarefa Mercado Pago ausente');
   const status = String(task.status || '').trim().toLowerCase();
 
-  if (status === 'processed') {
-    const fileName = String(task.file_name || '').trim();
+  if (isMercadoPagoReportReady(status)) {
+    const fileName = getMercadoPagoReportFileName(task);
     if (!fileName) throw new Error(`Tarefa Mercado Pago ${taskId} processada sem arquivo`);
     const imported = await importCsv(fileName);
     return NextResponse.json({
@@ -267,8 +268,10 @@ export async function POST(request: Request) {
       return reportBegin === beginDate && reportEnd === endDate;
     };
     const matchingReports = (search.results || []).filter(sameRange);
-    const ready = matchingReports.find((report) => report.status === 'processed' && report.file_name);
-    if (ready?.file_name) {
+    const ready = matchingReports.find((report) => (
+      isMercadoPagoReportReady(report.status) && getMercadoPagoReportFileName(report)
+    ));
+    if (ready) {
       return responseForTask(ready, beginDate, endDate);
     }
 

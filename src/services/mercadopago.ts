@@ -9,10 +9,16 @@ export {
 const MP_BASE_URL = 'https://api.mercadopago.com';
 
 export interface MercadoPagoReportTask {
-  id: number;
+  id: number | string;
   status?: string;
   report_id?: number | null;
   file_name?: string | null;
+  files?: Array<{
+    type?: string | null;
+    name?: string | null;
+    url?: string | null;
+    [key: string]: unknown;
+  }>;
   [key: string]: unknown;
 }
 

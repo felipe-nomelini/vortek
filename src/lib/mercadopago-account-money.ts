@@ -28,6 +28,28 @@ export function resolveMercadoPagoReportTaskId(preferred: unknown, fallback?: un
   return null;
 }
 
+export function isMercadoPagoReportReady(status: unknown) {
+  const normalized = String(status || '').trim().toLowerCase();
+  return normalized === 'processed' || normalized === 'available';
+}
+
+export function getMercadoPagoReportFileName(task: unknown) {
+  if (!task || typeof task !== 'object' || Array.isArray(task)) return null;
+  const record = task as Record<string, unknown>;
+  const officialFileName = String(record.file_name || '').trim();
+  if (officialFileName) return officialFileName;
+  if (!Array.isArray(record.files)) return null;
+
+  for (const file of record.files) {
+    if (!file || typeof file !== 'object' || Array.isArray(file)) continue;
+    const candidate = file as Record<string, unknown>;
+    const type = String(candidate.type || '').trim().toLowerCase();
+    const name = String(candidate.name || '').trim();
+    if (type === 'csv' && name) return name;
+  }
+  return null;
+}
+
 function normalizeHeader(value: string) {
   return value
     .normalize('NFD')
