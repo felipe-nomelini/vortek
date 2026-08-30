@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `HAYA-04 — Limpeza nominal e histórica`
+**Próxima ação obrigatória:** `JOB-01 — Catálogo on_hold`
 
 ---
 
@@ -57,8 +57,8 @@ Regras de uso:
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
-| 7 | Hayamax, Mercado Pago e financeiro | Em execução | Executar somente `HAYA-04` |
-| 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
+| 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
+| 8 | Jobs e DSLite | Pendente | Executar somente `JOB-01` |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
 | 11 | Interface | Pendente | Somente após as regras correspondentes |
@@ -90,6 +90,8 @@ Regras de uso:
 - [x] Não avançar para `HAYA-03` antes de `HAYA-02` estar integralmente validada.
 - [x] Executar somente `HAYA-03 — Desacoplar Mercado Pago`.
 - [x] Não avançar para `HAYA-04` antes de `HAYA-03` estar integralmente validada.
+- [x] Executar somente `HAYA-04 — Limpeza nominal e histórica`.
+- [x] Não avançar para `JOB-01` antes de `HAYA-04` estar integralmente validada.
 
 ---
 
@@ -927,14 +929,35 @@ As ações abaixo são sequenciais e não podem ser combinadas em uma única tar
 
 **Dependência:** `HAYA-03`
 
-**Situação:** pendente.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `825210d`.
 
-- [ ] remover guardas de categoria exclusivamente Hayamax;
-- [ ] retirar o nome Hayamax de textos e eventos que atendem outros fornecedores;
-- [ ] remover scripts operacionais exclusivamente Hayamax;
-- [ ] atualizar guias ativos sem reescrever auditorias históricas;
-- [ ] não apagar schema ou dados históricos sem inventário, backup e autorização em `vortek-prod`;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] remover guardas de categoria exclusivamente Hayamax;
+- [x] retirar o nome Hayamax de textos e eventos que atendem outros fornecedores;
+- [x] remover scripts operacionais exclusivamente Hayamax;
+- [x] atualizar guias ativos sem reescrever auditorias históricas;
+- [x] não apagar schema ou dados históricos sem inventário, backup e autorização em `vortek-prod`;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Evidências:**
+
+- branch `dev` e working tree inicial limpa confirmadas; instruções, Item 17, auditorias aplicáveis, guia operacional e contrato oficial de categorização do Mercado Livre foram consultados;
+- causa confirmada em três grupos de resíduos executáveis: categorias de uma campanha Hayamax eram injetadas antes do preditor oficial, o ID DSLite `2` ainda aceitava etiqueta provisória e scripts encerrados ainda podiam operar sobre a fornecedora aposentada;
+- constantes, sugestões e validações de categoria exclusivamente Hayamax foram removidas; preditor oficial, Wahl, Panasonic, Pet Shop e a validação genérica de evidência de nicho foram preservados;
+- ID `2` deixou de aceitar etiqueta provisória; evento, payload de fornecedores permitidos e fallback visual passaram a usar nomenclatura neutra para Vanral, BKR1 e Evolusom;
+- oito scripts exclusivamente Hayamax foram removidos; a campanha compartilhada foi renomeada, perdeu o perfil aposentado e passou a exigir perfil explícito; três produtos Hayamax foram retirados do script misto de prateleira rentável;
+- `GUIDE.md` deixou de apresentar Hayamax como ativa; migrations, schema, tipos, dados, labels históricos da conta-saldo, relatórios, auditorias e o cluster coordenado `ml-p0-*` foram preservados;
+- 43 testes direcionados aprovados, incluindo a nova regressão `tests/hayamax-nominal-cleanup.test.js`;
+- `node --check` nos scripts compartilhados, `npm run validate`, `npm run build` e `git diff --check` aprovados sem warnings ou erros;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- task `lambxro7gcd5zq01ku1i15tbu`, imagem `sha256:85fca6b41e94e44beb21383c9c299564d303e63cc8e27c802c1dce70570cd221`, confirmou `GIT_SHA=825210dbf751614206afb0dc363b455094557849`;
+- `https://dev.vortek.shop/api/ops/health` respondeu `200` e a rota de categorias sem sessão respondeu `401`;
+- migration, alteração de schema, escrita ou exclusão de dados: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado estrutural a reverter. Scripts removidos permanecem recuperáveis pelo histórico Git.
+
+**Pendência:** nenhuma para `HAYA-04`. A próxima ação obrigatória é `JOB-01 — Catálogo on_hold`.
 
 ### FIN-01 + FIN-02 — Lifecycle e parser
 
