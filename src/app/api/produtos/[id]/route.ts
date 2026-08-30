@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { assertVortekSku } from '@/lib/product-master-sku';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
 import {
   operationalMlStatus,
   selectOperationalMlListing,
@@ -154,12 +155,16 @@ export async function PATCH(
     let queuedPublish = false;
 
     if (shouldEnqueueMlPublish && String(data?.ml_item_id || '').trim()) {
+      const capacity = await loadProductFulfillmentCapacity(
+        createServiceClient(),
+        String(data.id),
+      );
       const outbox = await enqueueMlPublishOutbox(supabase, {
         produtoId: String(data.id),
         mlItemId: String(data.ml_item_id),
         desiredStatus: shouldPauseByProductInactive ? 'pausado' : (data.ml_status || null) as any,
         desiredPrice: typeof data.custom_price === 'number' ? data.custom_price : null,
-        desiredQuantity: typeof data.estoque === 'number' ? data.estoque : null,
+        desiredQuantity: capacity.safe,
         source: shouldPauseByProductInactive ? 'produto_inativo' : 'produto_patch',
         payload: {
           previous: {
@@ -174,6 +179,9 @@ export async function PATCH(
             ml_status: shouldPauseByProductInactive ? 'pausado' : data.ml_status,
             ativo: data.ativo,
           },
+          estoque_fornecedor: capacity.supplier,
+          estoque_interno: capacity.internal,
+          estoque_disponivel: capacity.safe,
         },
       });
 

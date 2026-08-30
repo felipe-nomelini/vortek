@@ -1,4 +1,5 @@
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 
 type ServiceClientLike = { from: (table: string) => any };
 
@@ -187,17 +188,31 @@ export async function recalculateProductKits(
 }
 
 export async function enqueueKitStockUpdates(client: ServiceClientLike, snapshots: KitStockSnapshot[]): Promise<number> {
+  const capacities = await loadProductFulfillmentCapacities(
+    client,
+    snapshots.map((kit) => kit.produtoId),
+  );
   let queued = 0;
   for (const kit of snapshots) {
+    const capacity = capacities.get(kit.produtoId) || { internal: 0, supplier: 0, safe: 0 };
     for (const mlItemId of kit.mlItemIds) {
       const result = await enqueueMlPublishOutbox(client, {
         produtoId: kit.produtoId,
         mlItemId,
-        desiredStatus: kit.newStock > 0 ? 'ativo' : 'pausado',
-        desiredQuantity: kit.newStock,
+        desiredStatus: capacity.safe > 0 ? 'ativo' : 'pausado',
+        desiredQuantity: capacity.safe,
         source: 'kit_stock_automation',
         dedupePending: true,
-        payload: { apply_price: false, apply_quantity_pricing: false, apply_quantity: true, apply_status: true, sku: kit.sku },
+        payload: {
+          apply_price: false,
+          apply_quantity_pricing: false,
+          apply_quantity: true,
+          apply_status: true,
+          sku: kit.sku,
+          estoque_fornecedor: capacity.supplier,
+          estoque_interno: capacity.internal,
+          estoque_disponivel: capacity.safe,
+        },
       });
       if (!result.ok) throw new Error(`Falha ao enfileirar estoque do kit ${kit.sku}: ${result.error}`);
       queued += 1;

@@ -7,7 +7,7 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
-import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
+import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 import { filterAllowedDropshippingDsliteSupplierIds } from '@/lib/dslite/supplier-policy';
 import {
   enqueueAutomaticPricesForCostChanges,
@@ -668,6 +668,10 @@ export async function POST(req: Request) {
       }
 
       recordsUpdated += changedSnapshots.length;
+      const capacitiesByProduct = await loadProductFulfillmentCapacities(
+        client,
+        changedSnapshots.map((snapshot) => String(snapshot.productId)),
+      );
 
       for (const snapshot of changedSnapshots) {
         const mlItemIds = mlTargetsByProduct.get(String(snapshot.productId)) || [];
@@ -682,9 +686,11 @@ export async function POST(req: Request) {
           continue;
         }
 
-        const estoqueFornecedor = Number(snapshot.next.estoque || 0);
-        const estoqueInterno = await obterSaldoEstoqueInternoProduto(String(snapshot.productId));
-        const estoqueDisponivel = Math.max(estoqueFornecedor, estoqueInterno);
+        const capacity = capacitiesByProduct.get(String(snapshot.productId))
+          || { internal: 0, supplier: 0, safe: 0 };
+        const estoqueFornecedor = capacity.supplier;
+        const estoqueInterno = capacity.internal;
+        const estoqueDisponivel = capacity.safe;
         const desiredStatus = resolveDesiredMlStatusByStock(estoqueDisponivel);
         if (desiredStatus === 'pausado') mlOutboxPausedZeroStock += 1;
 

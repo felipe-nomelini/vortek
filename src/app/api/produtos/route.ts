@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { assertVortekSku } from '@/lib/product-master-sku';
+import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
 import {
   includesInternalSupplierFilter,
   listActiveSupplierOptions,
@@ -134,14 +135,23 @@ export async function POST(request: Request) {
   }
   let warning: string | null = null;
   if (String((data as any)?.ml_item_id || '').trim()) {
+    const capacity = await loadProductFulfillmentCapacity(
+      serviceClient,
+      String((data as any).id),
+    );
     const outbox = await enqueueMlPublishOutbox(createServiceClient(), {
       produtoId: String((data as any).id),
       mlItemId: String((data as any).ml_item_id),
       desiredStatus: ((data as any).ml_status || null) as any,
       desiredPrice: typeof (data as any).custom_price === 'number' ? (data as any).custom_price : null,
-      desiredQuantity: typeof (data as any).estoque === 'number' ? (data as any).estoque : null,
+      desiredQuantity: capacity.safe,
       source: 'produto_create',
-      payload: { origin: 'api/produtos POST' },
+      payload: {
+        origin: 'api/produtos POST',
+        estoque_fornecedor: capacity.supplier,
+        estoque_interno: capacity.internal,
+        estoque_disponivel: capacity.safe,
+      },
     });
     if (!outbox.ok) {
       warning = outbox.error;

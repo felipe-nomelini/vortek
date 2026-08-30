@@ -19,6 +19,7 @@ import {
   expandirItensReservaEstoqueInterno,
   type ComposicaoKitEstoqueInterno,
 } from '@/lib/estoque-interno-saldo';
+import { calculateInternalFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import {
   includesInternalSupplierFilter,
@@ -341,10 +342,10 @@ async function resolveFornecedorPreviewByPedido(
     }>;
     if (!selected.length) continue;
 
-    const quantidadeInternaPorProduto = new Map<string, number>();
+    let internalStockItems: Array<{ produtoId: string; quantidade: number }> = [];
     let composicaoInternaValida = true;
     try {
-      const stockItems = expandirItensReservaEstoqueInterno(
+      internalStockItems = expandirItensReservaEstoqueInterno(
         selected.map((item) => ({
           produtoId: item.produtoId,
           sku: String(item.produtoSku || item.produtoId),
@@ -352,22 +353,22 @@ async function resolveFornecedorPreviewByPedido(
         })),
         internalKitCompositions,
       );
-      for (const stockItem of stockItems) {
-        quantidadeInternaPorProduto.set(
-          stockItem.produtoId,
-          (quantidadeInternaPorProduto.get(stockItem.produtoId) || 0) + stockItem.quantidade,
-        );
-      }
     } catch {
       composicaoInternaValida = false;
     }
+    const saldoInternoDisponivelParaPedido = new Map(
+      internalStockItems.map((item) => [
+        item.produtoId,
+        (saldoInternoPorProduto.get(item.produtoId) || 0)
+          + (compromissoInternoPorPedidoProduto.get(`${pedidoId}:${item.produtoId}`) || 0),
+      ]),
+    );
     const estoqueInternoCompleto = composicaoInternaValida
       && selected.length === itens.length
-      && Array.from(quantidadeInternaPorProduto.entries()).every(([produtoId, quantidade]) => (
-        (saldoInternoPorProduto.get(produtoId) || 0)
-          + (compromissoInternoPorPedidoProduto.get(`${pedidoId}:${produtoId}`) || 0)
-          >= quantidade
-      ));
+      && calculateInternalFulfillmentCapacity(
+        internalStockItems,
+        saldoInternoDisponivelParaPedido,
+      ) >= 1;
     if (estoqueInternoCompleto) {
       const first = selected[0];
       previews.set(pedidoId, {

@@ -13,6 +13,10 @@ import {
   selectOrderFulfillment,
   type OrderFulfillmentStockItem,
 } from '@/lib/orders/fulfillment-selection';
+import {
+  loadInternalStockBalances,
+  loadProductFulfillmentCapacity,
+} from '@/lib/orders/fulfillment-capacity-loader';
 
 export type ItemEstoquePedido = OrderFulfillmentStockItem;
 
@@ -261,7 +265,7 @@ export type MlObservedStock = {
 };
 
 /**
- * Publica o maior saldo disponível: fornecedor selecionado ou estoque próprio.
+ * Publica o maior saldo disponível: qualquer fornecedor operacional ou estoque próprio.
  * Estoques de fornecedores não são somados, para não anunciar quantidade que
  * não pode ser atendida simultaneamente por uma única origem.
  */
@@ -272,7 +276,7 @@ export async function enfileirarSyncMlEstoqueInterno(
   const db = createServiceClient();
   const { data: produto, error: produtoError } = await db
     .from('produtos')
-    .select('id,sku,estoque,ml_item_id,ativo')
+    .select('id,sku,ml_item_id,ativo')
     .eq('id', produtoId)
     .maybeSingle();
   if (produtoError) throw new Error(produtoError.message);
@@ -281,8 +285,8 @@ export async function enfileirarSyncMlEstoqueInterno(
     return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
   }
 
-  const saldoInterno = await obterSaldoEstoqueInternoProduto(String(produto.id));
-  const estoqueDisponivel = Math.max(Number(produto.estoque || 0), saldoInterno);
+  const capacity = await loadProductFulfillmentCapacity(db, String(produto.id));
+  const estoqueDisponivel = capacity.safe;
   const { data: anuncios, error: anunciosError } = await db
     .from('anuncios_ml')
     .select('ml_item_id,status')
@@ -392,8 +396,8 @@ export async function enfileirarSyncMlEstoqueInterno(
         apply_quantity: true,
         apply_status: true,
         sku: produto.sku,
-        estoque_fornecedor: Number(produto.estoque || 0),
-        estoque_interno: saldoInterno,
+        estoque_fornecedor: capacity.supplier,
+        estoque_interno: capacity.internal,
         estoque_disponivel: estoqueDisponivel,
       },
     });
@@ -423,10 +427,15 @@ async function obterReservasDoPedido(pedidoId: string): Promise<Map<string, numb
 export async function validarEstoqueEnvioInterno(pedidoId: string) {
   const itens = await resolverItensEstoqueEnvioInterno(pedidoId);
   const reservasAtuais = await obterReservasDoPedido(pedidoId);
+  const db = createServiceClient();
+  const saldos = await loadInternalStockBalances(
+    db,
+    itens.map((item) => item.produtoId),
+  );
   for (const item of itens) {
     const quantidadePendente = Math.max(0, item.quantidade - (reservasAtuais.get(item.produtoId) || 0));
     if (quantidadePendente <= 0) continue;
-    const saldo = await obterSaldoEstoqueInternoProduto(item.produtoId);
+    const saldo = saldos.get(item.produtoId) || 0;
     if (saldo < quantidadePendente) {
       throw new Error(`Estoque interno insuficiente para ${item.sku}. Disponível: ${saldo}.`);
     }

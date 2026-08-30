@@ -5,6 +5,7 @@ import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
+import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 
 export const maxDuration = 300;
 
@@ -438,14 +439,20 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       }
     }
 
+    const capacitiesByProduct = await loadProductFulfillmentCapacities(
+      client,
+      preferredSnapshots.map((snapshot) => String(snapshot.productId)),
+    );
     for (const snapshot of preferredSnapshots) {
       if (!snapshot.changed || !snapshot.previous.ml_item_id) continue;
+      const capacity = capacitiesByProduct.get(String(snapshot.productId))
+        || { internal: 0, supplier: 0, safe: 0 };
 
       const outbox = await enqueueMlPublishOutbox(client, {
         produtoId: snapshot.productId,
         mlItemId: snapshot.previous.ml_item_id,
         desiredStatus: null,
-        desiredQuantity: snapshot.next.estoque,
+        desiredQuantity: capacity.safe,
         desiredPrice: null,
         source: 'fornecedor_inativo_alternativa',
         payload: {
@@ -455,6 +462,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
           apply_status: false,
           fornecedor_id: params.id,
           fornecedor_dslite_id: String(fornecedor.dslite_id || ''),
+          estoque_fornecedor: capacity.supplier,
+          estoque_interno: capacity.internal,
+          estoque_disponivel: capacity.safe,
           origin: 'api/fornecedores/[id]/status',
         },
       });

@@ -38,6 +38,7 @@ import {
 import { persistSingleAnuncioBySku } from "@/lib/ml/persist-single-anuncio";
 import { mapCreatedListingDesiredStatus } from "@/lib/ml/status";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
+import { loadProductFulfillmentCapacity } from "@/lib/orders/fulfillment-capacity-loader";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 import { getConfiguredMlShippingCost } from "@/lib/ml/shipping-cost";
 
@@ -1513,12 +1514,16 @@ export async function POST(req: Request) {
 
     const listingDescription = buildDescription(produto, description);
 
+    const fulfillmentCapacity = await loadProductFulfillmentCapacity(
+      supabase,
+      String(produto.id),
+    );
     let listingPayload: Parameters<typeof createListing>[0] = {
       title: useFamilyName ? undefined : effectiveFamilyName,
       familyName: useFamilyName ? effectiveFamilyName : undefined,
       categoryId: categoriaId,
       price: displayPrice,
-      availableQuantity: Number(produto.estoque || 0),
+      availableQuantity: fulfillmentCapacity.safe,
       condition: "new",
       listingTypeId: listingType || "gold_pro",
       description: listingDescription,

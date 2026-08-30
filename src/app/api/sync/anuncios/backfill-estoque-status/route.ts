@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 
 export const maxDuration = 300;
 
@@ -53,7 +54,7 @@ export async function POST(request: Request) {
     const client = createServiceClient();
     const { data: produtos, error: produtosError } = await client
       .from('produtos')
-      .select('id,sku,estoque,ml_item_id')
+      .select('id,sku,ml_item_id')
       .not('ml_item_id', 'is', null)
       .order('updated_at', { ascending: false })
       .limit(limit);
@@ -115,12 +116,18 @@ export async function POST(request: Request) {
     let updatedExisting = 0;
     let skippedManualBlock = 0;
     let failed = 0;
+    const capacitiesByProduct = await loadProductFulfillmentCapacities(
+      client,
+      rows.map((row) => String(row.id)),
+    );
 
     for (const row of rows) {
       const mlItemId = String(row.ml_item_id || '').trim();
       const sku = String(row.sku || '').trim();
       const skuUpper = sku.toUpperCase();
-      const estoque = Number(row.estoque || 0);
+      const capacity = capacitiesByProduct.get(String(row.id))
+        || { internal: 0, supplier: 0, safe: 0 };
+      const estoque = capacity.safe;
 
       const isManualBlocked = manualBlockedByItemId.has(mlItemId) || (skuUpper ? manualBlockedBySku.has(skuUpper) : false);
       if (isManualBlocked) {
@@ -148,7 +155,9 @@ export async function POST(request: Request) {
           apply_quantity: true,
           apply_status: true,
           sku,
-          estoque_origem: estoque,
+          estoque_fornecedor: capacity.supplier,
+          estoque_interno: capacity.internal,
+          estoque_disponivel: estoque,
           status_desejado: desiredStatus,
           origin: 'api/sync/anuncios/backfill-estoque-status',
           backfill: true,
