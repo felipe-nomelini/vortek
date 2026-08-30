@@ -163,8 +163,19 @@ export function parseMercadoPagoAccountMoneyCsv(csv: string): MercadoPagoMovemen
       validationErrors.push('currency_mismatch');
     }
 
-    const hashSource = JSON.stringify({ date, description, reference, settlementNetAmount, raw });
-    const externalId = sourceId || crypto.createHash('sha256').update(hashSource).digest('hex');
+    const movementIdentity = sourceId
+      ? {
+          sourceId,
+          movementType,
+          settlementDate: date,
+          settlementNetAmount,
+          settlementCurrency: currency,
+        }
+      : { date, description, reference, settlementNetAmount, raw };
+    const externalId = crypto
+      .createHash('sha256')
+      .update(JSON.stringify(movementIdentity))
+      .digest('hex');
 
     return {
       externalId,

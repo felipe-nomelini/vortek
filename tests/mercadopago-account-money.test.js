@@ -43,7 +43,7 @@ function parseRow(values) {
   return parseMercadoPagoAccountMoneyCsv(`${headers}\n${values.join(',')}\n`)[0];
 }
 
-test('parser usa SOURCE_ID e valor líquido oficial em vez do bruto', () => {
+test('parser usa os campos oficiais e o valor líquido em vez do bruto', () => {
   const row = parseRow([
     'mp-source-1',
     'hayamax-1',
@@ -56,7 +56,8 @@ test('parser usa SOURCE_ID e valor líquido oficial em vez do bruto', () => {
     '2026-08-30T12:00:00Z',
   ]);
 
-  assert.equal(row.externalId, 'mp-source-1');
+  assert.equal(row.raw.source_id, 'mp-source-1');
+  assert.match(row.externalId, /^[a-f0-9]{64}$/);
   assert.equal(row.transactionAmount, -1250);
   assert.equal(row.amount, -1200);
   assert.equal(row.movementType, 'PAYOUT');
@@ -118,6 +119,33 @@ test('parser mantém identidade estável para reimportação idempotente', () =>
   ];
 
   assert.equal(parseRow(values).externalId, parseRow(values).externalId);
+});
+
+test('movimentos financeiros distintos da mesma transação não são consolidados', () => {
+  const settlement = parseRow([
+    'mp-source-5',
+    'order-5',
+    'Pagamento',
+    'SETTLEMENT',
+    '1500.00',
+    'BRL',
+    '1350.00',
+    'BRL',
+    '2026-08-30T12:00:00Z',
+  ]);
+  const dispute = parseRow([
+    'mp-source-5',
+    'order-5',
+    'Contestação',
+    'DISPUTE',
+    '-1500.00',
+    'BRL',
+    '-1350.00',
+    'BRL',
+    '2026-08-31T12:00:00Z',
+  ]);
+
+  assert.notEqual(settlement.externalId, dispute.externalId);
 });
 
 test('retomada recupera a mesma task e o intervalo congelado do log', () => {
