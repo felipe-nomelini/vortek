@@ -12,6 +12,10 @@ test('Vanral aceita etiqueta provisória DSLite', () => {
   assert.equal(allowsDslitePlaceholderLabel(null, 'Vanral Distribuidora'), true);
 });
 
+test('fornecedor aposentado não aceita etiqueta provisória DSLite', () => {
+  assert.equal(allowsDslitePlaceholderLabel(2, 'HAYAMAX-PR'), false);
+});
+
 test('PDF provisório Vanral existe e é válido', () => {
   const pdfPath = path.join(
     process.cwd(),

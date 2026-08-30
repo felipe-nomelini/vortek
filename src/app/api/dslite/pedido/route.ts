@@ -4279,12 +4279,12 @@ async function runDsliteCreateJob(
         mlPackId: (pedidoRow as any)?.ml_pack_id
           ? String((pedidoRow as any).ml_pack_id)
           : null,
-        evento: "placeholder_label_blocked_non_hayamax",
+        evento: "placeholder_label_blocked_supplier_not_configured",
         respostaMl: {
           release_at: releaseAt.toISOString(),
           fornecedor_id: fornecedorId || null,
           fornecedor_nome: fornecedorNomeResolved || null,
-          allowed_fornecedores: ['2', '97', '108', '133'],
+          allowed_fornecedores: ['97', '108', '133'],
           label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
         },
         statusResultante: "blocked",

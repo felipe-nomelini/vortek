@@ -1185,7 +1185,7 @@ export default function PedidosPage() {
         if (operationStatus === 'label_sent') {
           messageApi.success(data?.data?.message || 'Etiqueta real enviada para DSLite.');
         } else if (operationStatus === 'placeholder_label_sent') {
-          messageApi.warning(data?.data?.message || 'Etiqueta genérica Hayamax enviada. Etiqueta real ainda ficará pendente.');
+          messageApi.warning(data?.data?.message || 'Etiqueta provisória do fornecedor enviada. Etiqueta real ainda ficará pendente.');
         } else if (operationStatus === 'waiting_ml_label') {
           messageApi.warning(data?.data?.message || 'Etiqueta ainda não liberada pelo Mercado Livre.');
         } else if (operationStatus === 'order_already_fulfilled') {

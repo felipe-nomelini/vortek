@@ -39,8 +39,7 @@ export function allowsDslitePlaceholderLabel(
   fornecedorId: string | number | null | undefined,
   fornecedorNome?: string | null,
 ) {
-  return isBalanceAccountSupplier(fornecedorId)
-    || isVanralSupplier(fornecedorId, fornecedorNome)
+  return isVanralSupplier(fornecedorId, fornecedorNome)
     || isBkr1Supplier(fornecedorId, fornecedorNome)
     || isEvolusomSupplier(fornecedorId, fornecedorNome);
 }

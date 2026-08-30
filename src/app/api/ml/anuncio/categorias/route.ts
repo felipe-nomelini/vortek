@@ -8,7 +8,6 @@ import { createServiceClient } from "@/lib/supabase";
 import {
   filterPetShopPredictions,
   assertAllowedMlCategoryForProduct,
-  getPreferredHayamaxCategoryForProduct,
   getPreferredPetCategoryForTitle,
   isBlockedMlBrand,
   requiresPetShopCategory,
@@ -133,20 +132,6 @@ export async function POST(req: Request) {
           },
         ]
       : [];
-    const preferredHayamaxCategory =
-      getPreferredHayamaxCategoryForProduct(produto);
-    const preferredHayamaxPrediction: MLCategoryPrediction[] =
-      preferredHayamaxCategory
-        ? [
-            {
-              category_id: preferredHayamaxCategory.id,
-              category_name: preferredHayamaxCategory.name,
-              domain_id: "",
-              domain_name: "Hayamax category guard",
-              attributes: [],
-            },
-          ]
-        : [];
     const basePredictions = await predictCategoryWithFallbacks(produto, 8);
     const rawPredictions = requiresPetShopCategory(produto)
       ? await filterPetShopPredictions(
@@ -157,10 +142,7 @@ export async function POST(req: Request) {
               []),
           ]),
         )
-      : uniquePredictions([
-          ...preferredHayamaxPrediction,
-          ...(basePredictions || []),
-        ]);
+      : uniquePredictions(basePredictions || []);
     const predictions: MLCategoryPrediction[] = [];
     for (const prediction of rawPredictions || []) {
       try {

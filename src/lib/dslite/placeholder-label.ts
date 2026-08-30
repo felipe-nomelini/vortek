@@ -77,7 +77,7 @@ export function getDslitePlaceholderLabelConfig(
     source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
     fileName: DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
     path: PLACEHOLDER_LABEL_PATH,
-    supplierLabel: 'Hayamax',
+    supplierLabel: 'do fornecedor',
   };
 }
 

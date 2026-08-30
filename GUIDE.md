@@ -30,15 +30,14 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 - Empresa: VORTEK TECNOLOGIA (ID 7945) — CrossDocking/DropShipping ativo
 - Validade: 29/05/2026
 
-**Fornecedores disponíveis:**
+**Referência histórica do bootstrap DSLite:** a lista operacional atual deve ser consultada no Vortek. O fornecedor DSLite `2` está aposentado e bloqueado para dropshipping.
 
-| ID | Nome | Produtos | CrossDocking |
-|---|---|---|---|
-| 2 | HAYAMAX-PR | **6.642** | ✅ Ativo |
-| 27 | FLORATTA JOIAS | 247 | ✅ Ativo |
-| 39 | NOVA CENTER | 545 | ✅ Ativo |
-| 81 | VITRINE OUTLET | 2.259 | ✅ Ativo |
-| **Total** | | **~9.693** | |
+| ID | Nome | Produtos no levantamento inicial | Situação documentada |
+|---|---|---:|---|
+| 2 | HAYAMAX-PR | 6.642 | ❌ Aposentado e bloqueado |
+| 27 | FLORATTA JOIAS | 247 | Referência histórica |
+| 39 | NOVA CENTER | 545 | Referência histórica |
+| 81 | VITRINE OUTLET | 2.259 | Referência histórica |
 
 | Funcionalidade | Endpoint API | Rota Vortek |
 |---|---|---|

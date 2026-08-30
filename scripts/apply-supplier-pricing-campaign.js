@@ -11,20 +11,6 @@ const DAS_RATE = 0.05;
 const DEFENSIVE_MARGIN = 0.25;
 const OFFENSIVE_MARGIN = 0.08;
 const PAGE_SIZE = 1000;
-const HAYAMAX_CRITICAL_SKUS = [
-  'VTK001079',
-  'VTK000466',
-  'VTK006361',
-  'VTK006512',
-  'VTK000618',
-];
-const HAYAMAX_PROVIDED_EXAMPLES = new Map([
-  ['VTK001079', { cost: 710.81, mlFee: 0.18, shipping: 28.35, target: 1421.46 }],
-  ['VTK000466', { cost: 1047, mlFee: 0.18, shipping: 49.35, target: 2108.36 }],
-  ['VTK006361', { cost: 55.88, mlFee: 0.12, shipping: 13.85, target: 120.21 }],
-  ['VTK006512', { cost: 312.19, mlFee: 0.16, shipping: 70.25, target: 708.2 }],
-  ['VTK000618', { cost: 786.03, mlFee: 0.165, shipping: 74.95, target: 1609.31 }],
-]);
 const BKR1_CRITICAL_SKUS = [
   'VTK000411',
   'VTK012247',
@@ -235,44 +221,36 @@ function buildSafeInputRows(results, primaryEventName, linkedEventName) {
 }
 
 async function main() {
-  const profile = argValue('--profile', 'hayamax');
+  const profile = argValue('--profile', null);
   const isBkr1 = profile === 'bkr1-batteries';
   const isVanral = profile === 'vanral-instruments';
   const isEvolusom = profile === 'evolusom-cash-tourniquet';
-  const isNicheProfile = isBkr1 || isVanral || isEvolusom;
   if (
     ![
-      'hayamax',
       'bkr1-batteries',
       'vanral-instruments',
       'evolusom-cash-tourniquet',
     ].includes(profile)
   ) {
     throw new Error(
-      '--profile deve ser hayamax, bkr1-batteries, vanral-instruments ou evolusom-cash-tourniquet',
+      '--profile deve ser bkr1-batteries, vanral-instruments ou evolusom-cash-tourniquet',
     );
   }
   const criticalSkus = isEvolusom
     ? EVOLUSOM_CRITICAL_SKUS
     : isVanral
     ? VANRAL_CRITICAL_SKUS
-    : isBkr1
-      ? BKR1_CRITICAL_SKUS
-      : HAYAMAX_CRITICAL_SKUS;
+    : BKR1_CRITICAL_SKUS;
   const providedExamples = isEvolusom
     ? EVOLUSOM_PROVIDED_EXAMPLES
     : isVanral
     ? VANRAL_PROVIDED_EXAMPLES
-    : isBkr1
-      ? BKR1_PROVIDED_EXAMPLES
-      : HAYAMAX_PROVIDED_EXAMPLES;
+    : BKR1_PROVIDED_EXAMPLES;
   const primaryEventName = isEvolusom
     ? 'evolusom_cash_tourniquet_price'
     : isVanral
     ? 'vanral_instrument_dynamic_price'
-    : isBkr1
-      ? 'bkr1_battery_dynamic_price'
-      : 'hayamax_cash_tourniquet_price';
+    : 'bkr1_battery_dynamic_price';
   const linkedEventName = isEvolusom
     ? 'evolusom_cash_tourniquet_linked_listing_price'
     : isVanral
@@ -292,9 +270,7 @@ async function main() {
           ? 'evolusom-cash-tourniquet'
           : isVanral
           ? 'vanral-instrument-pricing'
-          : isBkr1
-            ? 'bkr1-battery-pricing'
-            : 'hayamax-cash-tourniquet',
+          : 'bkr1-battery-pricing',
         new Date().toISOString().replace(/[:.]/g, '-'),
       ),
     ),
@@ -433,7 +409,7 @@ async function main() {
     }
     await assertAllowedMercadoLivreToken(
       payload.access_token,
-      'apply-hayamax-cash-tourniquet:refresh',
+      'apply-supplier-pricing-campaign:refresh',
     );
     const { error } = await supabase
       .from('integracoes')
@@ -464,7 +440,7 @@ async function main() {
     ) {
       await assertAllowedMercadoLivreToken(
         integration.access_token,
-        'apply-hayamax-cash-tourniquet:cached',
+        'apply-supplier-pricing-campaign:cached',
       );
       token = integration.access_token;
       return token;
@@ -565,9 +541,7 @@ async function main() {
       ? query.ilike('fornecedor', 'EVOLUSOM-PR')
       : isVanral
       ? query.ilike('fornecedor', 'VANRAL')
-      : isBkr1
-        ? query.ilike('fornecedor', 'BKR1')
-        : query.ilike('fornecedor', 'HAYAMAX%');
+      : query.ilike('fornecedor', 'BKR1');
     return query;
   };
   if (scope === 'critical') {
@@ -658,9 +632,7 @@ async function main() {
       ? String(product.fornecedor || '').toUpperCase() === 'EVOLUSOM-PR'
       : isVanral
       ? String(product.fornecedor || '').toUpperCase() === 'VANRAL'
-      : isBkr1
-        ? String(product.fornecedor || '').toUpperCase() === 'BKR1'
-        : String(product.fornecedor || '').toUpperCase().startsWith('HAYAMAX');
+      : String(product.fornecedor || '').toUpperCase() === 'BKR1';
     if (!supplierMatches) {
       results.push(
         appendEvent({
@@ -670,9 +642,7 @@ async function main() {
             ? 'supplier_not_evolusom_pr'
             : isVanral
             ? 'supplier_not_vanral'
-            : isBkr1
-              ? 'supplier_not_bkr1'
-              : 'supplier_not_hayamax',
+            : 'supplier_not_bkr1',
         }),
       );
       continue;
@@ -748,23 +718,6 @@ async function main() {
     ) {
       front = 'offensive';
       margin = BKR1_MARGIN_OVERRIDES.get(product.sku) || OFFENSIVE_MARGIN;
-    } else if (!isNicheProfile && Number(product.custo) > 50) {
-      front = 'defensive';
-      margin = DEFENSIVE_MARGIN;
-    } else if (!isNicheProfile && sold === 0 && visits > 0) {
-      front = 'offensive';
-      margin = OFFENSIVE_MARGIN;
-    } else if (!isNicheProfile && sold > 3) {
-      results.push(
-        appendEvent({
-          ...baseEvent,
-          result: 'skipped',
-          reason: 'last_cycle_sales_unavailable',
-          sold_quantity_lifetime: sold,
-          visits_history: visits,
-        }),
-      );
-      continue;
     } else {
       results.push(
         appendEvent({
@@ -780,7 +733,7 @@ async function main() {
 
     const prefetchedItemsById = new Map();
     let item = null;
-    if (isNicheProfile) {
+    {
       const linkedItemIds = [
         ...new Set(
           [itemId, ...productAds.map((row) => row.ml_item_id)]
@@ -1126,7 +1079,6 @@ async function main() {
       fee_tier_guard_applied: feeTierGuardApplied,
     };
     async function syncLinkedListings() {
-      if (!isNicheProfile) return true;
       let linkedOk = true;
       const linkedItemIds = [
         ...new Set(
@@ -1475,7 +1427,7 @@ async function main() {
   }, {});
   let safeInputPath = null;
   let safeProducts = null;
-  if (isNicheProfile && !apply) {
+  if (!apply) {
     const safeRows = buildSafeInputRows(
       results,
       primaryEventName,
@@ -1494,9 +1446,7 @@ async function main() {
       ? 'evolusom_cash_tourniquet_summary'
       : isVanral
       ? 'vanral_instrument_dynamic_pricing_summary'
-      : isBkr1
-        ? 'bkr1_battery_dynamic_pricing_summary'
-        : 'hayamax_cash_tourniquet_summary',
+      : 'bkr1_battery_dynamic_pricing_summary',
     timestamp_utc: new Date().toISOString(),
     mode: apply ? 'apply' : 'dry_run',
     profile,
@@ -1523,7 +1473,7 @@ async function main() {
 main().catch((error) => {
   console.error(
     JSON.stringify({
-      event: 'hayamax_cash_tourniquet_fatal',
+      event: 'supplier_pricing_campaign_fatal',
       timestamp_utc: new Date().toISOString(),
       error: error?.message || String(error),
     }),
