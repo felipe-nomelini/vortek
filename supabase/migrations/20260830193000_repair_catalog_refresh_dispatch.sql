@@ -53,7 +53,8 @@ begin
       'Content-Type', 'application/json',
       'x-api-key', v_api_key
     ),
-    body := jsonb_build_object('jobId', v_job_id)
+    body := jsonb_build_object('jobId', v_job_id),
+    timeout_milliseconds := 300000
   ) into v_request_id;
 end;
 $$;
