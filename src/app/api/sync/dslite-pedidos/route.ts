@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { fetchDslite } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, resolveCompraStatus } from '@/lib/produto-fornecedor';
-import { recordSupplierPurchaseDebit, resolveSupplierPurchaseDebitAmount } from '@/lib/supplier-balance';
+import { resolveSupplierPurchasePaymentAmount } from '@/lib/supplier-balance';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import {
   isDsliteRelinkBlockedByManualUnlink,
@@ -180,9 +180,9 @@ export async function POST(request: Request) {
             .eq('dsid', String(pedido.dsid))
             .maybeSingle();
 
-          const shouldResolveSupplierPaymentAmount = supplierPaymentMode === 'balance_account' || supplierPaymentMode === 'prepaid_pix';
+          const shouldResolveSupplierPaymentAmount = supplierPaymentMode === 'prepaid_pix';
           const resolvedSupplierPaymentAmount = shouldResolveSupplierPaymentAmount
-            ? await resolveSupplierPurchaseDebitAmount({
+            ? await resolveSupplierPurchasePaymentAmount({
               client,
               fornecedorId: pedido.fornecedor?.fornecedorid ? String(pedido.fornecedor.fornecedorid) : '',
               offerId: (existente as any)?.produto_fornecedor_oferta_id || null,
@@ -273,29 +273,6 @@ export async function POST(request: Request) {
               });
             } else {
               inserted += 1;
-            }
-          }
-
-          if (supplierPaymentMode === 'balance_account') {
-            const { data: compraBalance } = await client
-              .from('compras')
-              .select('id,dsid')
-              .eq('dsid', String(pedido.dsid))
-              .maybeSingle();
-
-            if (compraBalance?.id) {
-              await recordSupplierPurchaseDebit({
-                client,
-                fornecedorId: pedido.fornecedor?.fornecedorid ? String(pedido.fornecedor.fornecedorid) : '',
-                fornecedorNome: pedido.fornecedor?.nome || pedido.fornecedor?.apelido || null,
-                compraId: String(compraBalance.id),
-                dsid: String(pedido.dsid),
-                amount: Number(resolvedSupplierPaymentAmount.amount || 0) || 0,
-                reference: `Compra DSLite ${pedido.dsid}`,
-                notes: resolvedSupplierPaymentAmount.amount
-                  ? 'Débito automático por sync de compras DSLite usando custo da oferta'
-                  : `Débito não registrado: custo da oferta não encontrado (${resolvedSupplierPaymentAmount.reason})`,
-              });
             }
           }
 

@@ -33,7 +33,6 @@ async function fetchAllMovements(fornecedorId?: string | null): Promise<Movement
     let query = service
       .from('supplier_balance_movements')
       .select('*')
-      .neq('fornecedor_id', HAYAMAX_FORNECEDOR_ID)
       .order('created_at', { ascending: false })
       .range(offset, offset + pageSize - 1);
 
@@ -55,9 +54,6 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const fornecedorId = String(searchParams.get('fornecedor_id') || '').trim() || null;
-    if (fornecedorId === HAYAMAX_FORNECEDOR_ID) {
-      return NextResponse.json({ error: 'Hayamax não participa deste controle.' }, { status: 404 });
-    }
 
     const service = createServiceClient();
     const [{ data: fornecedores, error: fornecedoresError }, movements] = await Promise.all([
@@ -86,6 +82,7 @@ export async function GET(request: Request) {
       used_month: number;
       last_movement_at: string | null;
       pending_count: number;
+      read_only: boolean;
     }>();
 
     for (const fornecedor of fornecedores || []) {
@@ -101,6 +98,7 @@ export async function GET(request: Request) {
         used_month: 0,
         last_movement_at: null,
         pending_count: 0,
+        read_only: false,
       });
     }
 
@@ -120,6 +118,7 @@ export async function GET(request: Request) {
         used_month: 0,
         last_movement_at: null,
         pending_count: 0,
+        read_only: id === HAYAMAX_FORNECEDOR_ID,
       };
       if (movement.status === 'confirmed') row.available += Number(movement.amount || 0);
       if (movement.status === 'pending' && Number(movement.amount || 0) > 0) {
@@ -146,14 +145,18 @@ export async function GET(request: Request) {
         pending: normalizeMoneyAmount(row.pending),
         used_month: normalizeMoneyAmount(row.used_month),
       }))
-      .sort((a, b) => b.pending - a.pending || b.available - a.available || a.fornecedor_nome.localeCompare(b.fornecedor_nome));
+      .sort((a, b) => Number(a.read_only) - Number(b.read_only)
+        || b.pending - a.pending
+        || b.available - a.available
+        || a.fornecedor_nome.localeCompare(b.fornecedor_nome));
+    const operationalSuppliers = suppliers.filter((row) => !row.read_only);
 
     return NextResponse.json({
       summary: {
-        available: normalizeMoneyAmount(suppliers.reduce((sum, row) => sum + row.available, 0)),
-        pending: normalizeMoneyAmount(suppliers.reduce((sum, row) => sum + row.pending, 0)),
-        used_month: normalizeMoneyAmount(suppliers.reduce((sum, row) => sum + row.used_month, 0)),
-        suppliers_with_pending: suppliers.filter((row) => row.pending_count > 0).length,
+        available: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.available, 0)),
+        pending: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.pending, 0)),
+        used_month: normalizeMoneyAmount(operationalSuppliers.reduce((sum, row) => sum + row.used_month, 0)),
+        suppliers_with_pending: operationalSuppliers.filter((row) => row.pending_count > 0).length,
       },
       suppliers,
     });

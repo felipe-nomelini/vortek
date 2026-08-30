@@ -296,7 +296,12 @@ export async function PATCH(
     }
     if ('payment_mode' in body) {
       const value = String(body.payment_mode || '').trim();
-      patch.payment_mode = value === 'prepaid_pix' || value === 'postpaid' || value === 'balance_account'
+      if (value === 'balance_account') {
+        return NextResponse.json({
+          error: 'A conta-saldo foi aposentada e não aceita novas configurações.',
+        }, { status: 422 });
+      }
+      patch.payment_mode = value === 'prepaid_pix' || value === 'postpaid'
         ? value
         : inferSupplierPaymentMode(offer.dslite_fornecedor_id);
     }

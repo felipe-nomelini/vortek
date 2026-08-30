@@ -45,7 +45,6 @@ import {
 import {
   allowsDslitePlaceholderLabel,
   isBkr1Supplier,
-  recordSupplierPurchaseDebit,
   usesThermalMlLabelSupplier,
 } from "@/lib/supplier-balance";
 import { getSkuLookupVariants } from "@/lib/sku";
@@ -122,10 +121,12 @@ const BRASIL_NFE_MAX_CLIENT_NAME_LENGTH = 60;
 function normalizeSupplierPaymentMode(
   value: unknown,
   fornecedorId?: string | number | null,
+  allowLegacyBalanceAccount = false,
 ): SupplierPaymentMode {
   const raw = String(value || "").trim();
-  if (raw === "balance_account" || raw === "prepaid_pix" || raw === "postpaid")
+  if (raw === "prepaid_pix" || raw === "postpaid")
     return raw;
+  if (allowLegacyBalanceAccount && raw === "balance_account") return raw;
   return inferSupplierPaymentMode(fornecedorId);
 }
 
@@ -3963,6 +3964,7 @@ async function runDsliteCreateJob(
       supplierPaymentMode = normalizeSupplierPaymentMode(
         existingCompra?.supplier_payment_mode,
         fornecedorId,
+        true,
       );
 
       if (!fornecedorId) {
@@ -4565,27 +4567,6 @@ async function runDsliteCreateJob(
         compraAtual = data as any;
       }
 
-      if (supplierPaymentMode === "balance_account") {
-        const { data: compraForBalance, error: compraForBalanceError } =
-          await client
-            .from("compras")
-            .select("id,dsid")
-            .eq("dsid", String(dsidAtual))
-            .maybeSingle();
-
-        if (!compraForBalanceError && compraForBalance?.id) {
-          await recordSupplierPurchaseDebit({
-            client,
-            fornecedorId,
-            fornecedorNome: fornecedorNomeResolved,
-            compraId: String(compraForBalance.id),
-            dsid: String(dsidAtual),
-            amount: supplierPaymentAmount || 0,
-            reference: `Compra DSLite ${dsidAtual}`,
-            notes: `Débito automático por compra criada no pedido ML ${mlOrderId || pedidoId}`,
-          });
-        }
-      }
     }
 
     if (dsidAtual) {

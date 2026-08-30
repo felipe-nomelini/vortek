@@ -262,7 +262,9 @@ export default function ProductOfferDetailPage() {
                   }}
                   style={{ width: '100%' }}
                     options={[
-                      { value: 'balance_account', label: 'Saldo Hayamax' },
+                      ...(offer.payment_mode === 'balance_account'
+                        ? [{ value: 'balance_account', label: 'Saldo Hayamax (histórico)', disabled: true }]
+                        : []),
                       { value: 'postpaid', label: 'Pós-pago' },
                       { value: 'prepaid_pix', label: 'PIX antecipado' },
                     ]}

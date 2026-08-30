@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import {
-  Alert, Input, InputNumber, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Upload,
+  Alert, Input, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Upload,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
@@ -41,16 +41,6 @@ interface Compra {
   supplier_payment_notes: string | null;
   supplier_pix_key: string | null;
   bkr1_pix_deferred: boolean;
-}
-
-interface MercadoPagoPendingMovement {
-  id: string;
-  external_id: string;
-  movement_date: string | null;
-  description: string | null;
-  reference: string | null;
-  amount: number;
-  movement_type: string | null;
 }
 
 interface MlAnunciosAlertas {
@@ -117,20 +107,6 @@ export default function ComprasPage() {
   const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
   const [paymentReceiptFile, setPaymentReceiptFile] = useState<File | null>(null);
   const [paymentNotes, setPaymentNotes] = useState('');
-  const [hayamaxBalance, setHayamaxBalance] = useState<number | null>(null);
-  const [hayamaxLowBalance, setHayamaxLowBalance] = useState(false);
-  const [hayamaxLastTopup, setHayamaxLastTopup] = useState<{ amount: number; source: string; reference: string | null } | null>(null);
-  const [hayamaxMpLastSync, setHayamaxMpLastSync] = useState<string | null>(null);
-  const [hayamaxMpPending, setHayamaxMpPending] = useState<MercadoPagoPendingMovement[]>([]);
-  const [approvingMpMovementId, setApprovingMpMovementId] = useState<string | null>(null);
-  const [topupModalOpen, setTopupModalOpen] = useState(false);
-  const [topupImportModalOpen, setTopupImportModalOpen] = useState(false);
-  const [topupAmount, setTopupAmount] = useState<number | null>(1000);
-  const [topupReference, setTopupReference] = useState('');
-  const [topupNotes, setTopupNotes] = useState('');
-  const [savingTopup, setSavingTopup] = useState(false);
-  const [topupImportFile, setTopupImportFile] = useState<File | null>(null);
-  const [importingTopup, setImportingTopup] = useState(false);
   const [mlAnunciosAlertas, setMlAnunciosAlertas] = useState<MlAnunciosAlertas | null>(null);
   const [summary, setSummary] = useState({
     total: 0,
@@ -199,27 +175,6 @@ export default function ComprasPage() {
         setMlAnunciosAlertas(await mlAlertsRes.json());
       }
 
-      const balanceRes = await fetch('/api/fornecedores/saldo-hayamax');
-      if (balanceRes.ok) {
-        const json = await balanceRes.json();
-        setHayamaxBalance(Number(json.balance || 0));
-        setHayamaxLowBalance(Boolean(json.lowBalance));
-        const lastTopup = (json.movements || []).find((movement: any) => movement?.movement_type === 'topup');
-        setHayamaxLastTopup(lastTopup ? {
-          amount: Number(lastTopup.amount || 0),
-          source: String(lastTopup.created_by || '').startsWith('mercadopago')
-            ? 'Mercado Pago'
-            : String(lastTopup.created_by || '').startsWith('hayamax_xlsx:')
-              ? 'Importado XLS'
-              : 'Manual',
-          reference: lastTopup.reference || null,
-        } : null);
-        setHayamaxMpLastSync(json.mercadoPago?.lastMovementDate || null);
-        setHayamaxMpPending((json.mercadoPago?.pendingReview || []).map((movement: any) => ({
-          ...movement,
-          amount: Number(movement.amount || 0),
-        })));
-      }
     } catch {
       messageApi.error('Erro ao conectar');
     }
@@ -334,84 +289,6 @@ export default function ComprasPage() {
       messageApi.error(err.message || 'Erro ao confirmar pagamento do fornecedor');
     } finally {
       setConfirmingPayment(false);
-    }
-  };
-
-  const handleRegisterHayamaxTopup = async () => {
-    setSavingTopup(true);
-    try {
-      const res = await fetch('/api/fornecedores/saldo-hayamax', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: topupAmount,
-          reference: topupReference,
-          notes: topupNotes,
-        }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json.error || 'Erro ao registrar boleto Hayamax');
-      setHayamaxBalance(Number(json.balance || 0));
-      setHayamaxLowBalance(Number(json.balance || 0) < 1000);
-      setTopupModalOpen(false);
-      setTopupAmount(1000);
-      setTopupReference('');
-      setTopupNotes('');
-      messageApi.success('Boleto Hayamax registrado.');
-    } catch (err: any) {
-      messageApi.error(err.message || 'Erro ao registrar boleto Hayamax');
-    } finally {
-      setSavingTopup(false);
-    }
-  };
-
-  const handleImportHayamaxTopup = async () => {
-    if (!topupImportFile) {
-      messageApi.warning('Selecione um arquivo XLS/XLSX.');
-      return;
-    }
-    setImportingTopup(true);
-    try {
-      const formData = new FormData();
-      formData.append('file', topupImportFile);
-      const res = await fetch('/api/fornecedores/saldo-hayamax', {
-        method: 'POST',
-        body: formData,
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json.error || 'Erro ao importar extrato Hayamax');
-      setTopupImportModalOpen(false);
-      setTopupImportFile(null);
-      const summary = json.importSummary;
-      if (summary) {
-        messageApi.success(`Extrato conciliado. ${summary.inserted} movimento(s) novo(s), ${summary.updated || 0} ajustado(s), ${summary.skipped} já conciliado(s).`);
-      } else {
-        messageApi.success('Extrato Hayamax importado.');
-      }
-      await fetchData();
-    } catch (err: any) {
-      messageApi.error(err.message || 'Erro ao importar extrato Hayamax');
-    } finally {
-      setImportingTopup(false);
-    }
-  };
-
-  const handleApproveMercadoPagoMovement = async (movementId: string) => {
-    setApprovingMpMovementId(movementId);
-    try {
-      const res = await fetch('/api/fornecedores/saldo-hayamax/aprovar-mercadopago', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ movementId }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json.error || 'Erro ao aprovar crédito Mercado Pago');
-      messageApi.success('Crédito Mercado Pago aprovado no saldo Hayamax.');
-      await fetchData();
-    } catch (err: any) {
-      messageApi.error(err.message || 'Erro ao aprovar crédito Mercado Pago');
-    } finally {
-      setApprovingMpMovementId(null);
     }
   };
 
@@ -694,86 +571,6 @@ export default function ComprasPage() {
         </Row>
       </div>
 
-      <div style={{ background: '#141414', border: `1px solid ${hayamaxLowBalance ? '#faad14' : '#303030'}`, borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[16, 16]} align="middle">
-          <Col flex="auto">
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Saldo Hayamax</span>}
-              value={hayamaxBalance === null ? '—' : formatCurrency(hayamaxBalance)}
-              valueStyle={{ color: hayamaxLowBalance ? '#faad14' : '#73d13d', fontWeight: 700, fontSize: 24 }}
-            />
-            {hayamaxLowBalance && (
-              <Text style={{ color: '#faad14' }}>Saldo baixo. Pague boleto Hayamax de R$ 1.000 ou mais.</Text>
-            )}
-            {hayamaxLastTopup && (
-              <div style={{ marginTop: 4 }}>
-                <Text style={{ color: '#8c8c8c', fontSize: 12 }}>
-                  Último crédito: {formatCurrency(hayamaxLastTopup.amount)} · Origem: {hayamaxLastTopup.source}
-                  {hayamaxLastTopup.reference ? ` · ${hayamaxLastTopup.reference}` : ''}
-                </Text>
-              </div>
-            )}
-            <div style={{ marginTop: 4 }}>
-              <Text style={{ color: '#8c8c8c', fontSize: 12 }}>
-                Mercado Pago: {hayamaxMpLastSync ? `último movimento importado em ${new Date(hayamaxMpLastSync).toLocaleDateString('pt-BR')}` : 'sem importação recente'}
-              </Text>
-            </div>
-          </Col>
-          <Col>
-            <Space wrap>
-              <Button onClick={() => setTopupImportModalOpen(true)} icon={<UploadOutlined />}>
-                Importar extrato Hayamax
-              </Button>
-              <Button type="primary" onClick={() => setTopupModalOpen(true)}>
-                Registrar boleto Hayamax
-              </Button>
-            </Space>
-          </Col>
-        </Row>
-        {hayamaxMpPending.length > 0 && (
-          <div style={{ marginTop: 12, borderTop: '1px solid #303030', paddingTop: 12 }}>
-            <Text style={{ color: '#faad14', fontSize: 12, display: 'block', marginBottom: 8 }}>
-              Mercado Pago tem {hayamaxMpPending.length} movimento(s) grande(s) pendente(s) de revisão.
-            </Text>
-            <Space direction="vertical" size={8} style={{ width: '100%' }}>
-              {hayamaxMpPending.map((movement) => (
-                <div
-                  key={movement.id}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: 12,
-                    background: '#1f1f1f',
-                    border: '1px solid #303030',
-                    borderRadius: 6,
-                    padding: '8px 10px',
-                  }}
-                >
-                  <div>
-                    <Text style={{ color: '#e0e0e0', fontSize: 12 }}>
-                      {formatCurrency(Math.abs(movement.amount))} · {movement.description || movement.reference || movement.external_id}
-                    </Text>
-                    <div>
-                      <Text style={{ color: '#8c8c8c', fontSize: 11 }}>
-                        {movement.movement_date ? new Date(movement.movement_date).toLocaleString('pt-BR') : 'sem data'} · confirmar se é boleto Hayamax
-                      </Text>
-                    </div>
-                  </div>
-                  <Button
-                    size="small"
-                    loading={approvingMpMovementId === movement.id}
-                    onClick={() => void handleApproveMercadoPagoMovement(movement.id)}
-                  >
-                    Aprovar crédito
-                  </Button>
-                </div>
-              ))}
-            </Space>
-          </div>
-        )}
-      </div>
-
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">
           <Col>
@@ -943,74 +740,6 @@ export default function ComprasPage() {
         </Space>
       </Modal>
 
-      <Modal
-        title="Importar extrato Hayamax"
-        open={topupImportModalOpen}
-        onCancel={() => {
-          if (importingTopup) return;
-          setTopupImportModalOpen(false);
-          setTopupImportFile(null);
-        }}
-        onOk={() => void handleImportHayamaxTopup()}
-        okText="Importar"
-        cancelText="Cancelar"
-        confirmLoading={importingTopup}
-      >
-        <Space direction="vertical" size={12} style={{ width: '100%' }}>
-          <Text style={{ color: '#a0a0a0' }}>
-            Envie arquivo <code>.xlsx</code> ou <code>.xls</code> no modelo do extrato Hayamax. Sistema importará apenas créditos <code>CREDDROPSHIP</code> ainda não lançados.
-          </Text>
-          <Upload
-            maxCount={1}
-            accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-            fileList={topupImportFile ? [{ uid: 'hayamax-topup-import', name: topupImportFile.name, status: 'done' }] as any : []}
-            beforeUpload={(file) => {
-              if (file.size > 10 * 1024 * 1024) {
-                messageApi.error('Arquivo maior que 10MB.');
-                return Upload.LIST_IGNORE;
-              }
-              setTopupImportFile(file as File);
-              return false;
-            }}
-            onRemove={() => {
-              setTopupImportFile(null);
-            }}
-          >
-            <Button icon={<UploadOutlined />}>Selecionar arquivo</Button>
-          </Upload>
-        </Space>
-      </Modal>
-
-      <Modal
-        title="Registrar boleto Hayamax"
-        open={topupModalOpen}
-        onCancel={() => setTopupModalOpen(false)}
-        onOk={() => void handleRegisterHayamaxTopup()}
-        okText="Registrar"
-        cancelText="Cancelar"
-        confirmLoading={savingTopup}
-      >
-        <Space direction="vertical" size={12} style={{ width: '100%' }}>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Valor pago</div>
-            <InputNumber
-              min={1000}
-              value={topupAmount}
-              onChange={(value) => setTopupAmount(Number(value || 0))}
-              formatter={(value) => `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
-              style={{ width: '100%' }}
-            />
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Referência do boleto</div>
-            <Input value={topupReference} onChange={(event) => setTopupReference(event.target.value)} placeholder="Código, banco ou identificação" />
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Observações</div>
-            <Input.TextArea rows={3} value={topupNotes} onChange={(event) => setTopupNotes(event.target.value)} />
-          </div>
-        </Space>
-      </Modal>
     </div>
   );
 }

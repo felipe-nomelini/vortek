@@ -51,6 +51,7 @@ type SupplierCredit = {
   used_month: number;
   last_movement_at: string | null;
   pending_count: number;
+  read_only: boolean;
 };
 
 type Movement = {
@@ -86,6 +87,8 @@ function movementLabel(type: string): string {
     manual_credit: 'Crédito manual',
     credit_usage: 'Crédito utilizado',
     adjustment: 'Ajuste',
+    topup: 'Crédito da antiga conta-saldo',
+    purchase_debit: 'Débito de compra da antiga conta-saldo',
   };
   return labels[type] || type;
 }
@@ -237,7 +240,9 @@ export default function SupplierCreditsPage() {
       dataIndex: 'available',
       align: 'right',
       sorter: (a, b) => a.available - b.available,
-      render: (value) => <Text style={{ color: value > 0 ? '#52c41a' : '#8c8c8c', fontWeight: 700 }}>{formatCurrency(value)}</Text>,
+      render: (value, record) => record.read_only
+        ? <Text type="secondary">{formatCurrency(value)} · histórico</Text>
+        : <Text style={{ color: value > 0 ? '#52c41a' : '#8c8c8c', fontWeight: 700 }}>{formatCurrency(value)}</Text>,
     },
     {
       title: 'A confirmar',
@@ -261,7 +266,9 @@ export default function SupplierCreditsPage() {
     },
     {
       title: 'Status',
-      render: (_, record) => <Tag color={record.ativo ? 'green' : 'default'}>{record.ativo ? 'Ativo' : 'Inativo'}</Tag>,
+      render: (_, record) => record.read_only
+        ? <Tag>Aposentado · somente leitura</Tag>
+        : <Tag color={record.ativo ? 'green' : 'default'}>{record.ativo ? 'Ativo' : 'Inativo'}</Tag>,
     },
     {
       title: 'Ações',
@@ -307,7 +314,7 @@ export default function SupplierCreditsPage() {
     {
       title: 'Ações',
       width: 170,
-      render: (_, record) => record.status === 'pending' ? (
+      render: (_, record) => !selectedSupplier?.read_only && record.status === 'pending' ? (
         <Space>
           <Popconfirm title="Fornecedor confirmou este crédito?" onConfirm={() => void decideMovement(record, 'confirmed')}>
             <Button size="small" type="primary" icon={<CheckOutlined />} loading={decisionId === record.id}>Confirmar</Button>
@@ -375,10 +382,18 @@ export default function SupplierCreditsPage() {
         width={980}
         onClose={() => setSelectedSupplier(null)}
       >
+        {selectedSupplier?.read_only && (
+          <Alert
+            type="info"
+            showIcon
+            message="Conta-saldo aposentada. Este extrato é somente histórico e não aceita novas operações."
+            style={{ marginBottom: 16 }}
+          />
+        )}
         {selectedSupplier && (
           <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
-            <Col span={8}><Card size="small"><Statistic title="Disponível" value={selectedSupplier.available} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: '#52c41a' }} /></Card></Col>
-            <Col span={8}><Card size="small"><Statistic title="A confirmar" value={selectedSupplier.pending} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: '#faad14' }} /></Card></Col>
+            <Col span={8}><Card size="small"><Statistic title={selectedSupplier.read_only ? 'Saldo histórico' : 'Disponível'} value={selectedSupplier.available} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: selectedSupplier.read_only ? '#8c8c8c' : '#52c41a' }} /></Card></Col>
+            <Col span={8}><Card size="small"><Statistic title={selectedSupplier.read_only ? 'Pendência histórica' : 'A confirmar'} value={selectedSupplier.pending} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: '#faad14' }} /></Card></Col>
             <Col span={8}><Card size="small"><Statistic title="Usado no mês" value={selectedSupplier.used_month} formatter={(value) => formatCurrency(Number(value))} /></Card></Col>
           </Row>
         )}
@@ -405,7 +420,9 @@ export default function SupplierCreditsPage() {
             <Select
               showSearch
               optionFilterProp="label"
-              options={suppliers.map((supplier) => ({ value: supplier.fornecedor_id, label: supplier.fornecedor_nome }))}
+              options={suppliers
+                .filter((supplier) => !supplier.read_only)
+                .map((supplier) => ({ value: supplier.fornecedor_id, label: supplier.fornecedor_nome }))}
             />
           </Form.Item>
           <Form.Item name="movement_type" label="Tipo" rules={[{ required: true }]}>

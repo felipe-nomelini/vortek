@@ -1,5 +1,4 @@
 import type { Database } from '@/types/database';
-import { isBalanceAccountSupplier } from '@/lib/supplier-balance';
 import {
   choosePreferredOffer,
   normalizeOfferPriority,
@@ -17,8 +16,7 @@ export type ProdutoFornecedorOfertaRow = Database['public']['Tables']['produto_f
 export type SupplierPaymentMode = 'postpaid' | 'prepaid_pix' | 'balance_account';
 export type SupplierPaymentStatus = 'pending' | 'paid' | 'failed' | 'cancelled';
 
-export function inferSupplierPaymentMode(fornecedorId: string | number | null | undefined): SupplierPaymentMode {
-  if (isBalanceAccountSupplier(fornecedorId)) return 'balance_account';
+export function inferSupplierPaymentMode(_fornecedorId: string | number | null | undefined): SupplierPaymentMode {
   return 'prepaid_pix';
 }
 
