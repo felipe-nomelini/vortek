@@ -1,7 +1,7 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 29/08/2026
+**Última atualização:** 30/08/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.vortek.shop`
@@ -249,7 +249,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P1 com prazo
 **Prazo externo:** antes de `26/10/2026`
-**Situação:** implementada e validada tecnicamente em homologação; prova externa bloqueada até o Mercado Livre habilitar a tag `business` no seller de teste DEV.
+**Situação:** implementada e validada tecnicamente em homologação; anúncio externo de teste criado e validado, mas a prova de Preços por Quantidade permanece bloqueada até o Mercado Livre habilitar a tag `business` no seller de teste DEV.
 
 - [x] reler `docs/mercado-livre-publicacao-operacional.md`;
 - [x] confirmar o contrato oficial atual de Preços por Quantidade;
@@ -281,7 +281,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Rollback:** reverter o commit `7c31bbb` na branch `dev` e redeployar somente `vortek-erp-dev`.
 
-**Pendência bloqueante:** solicitar ao Mercado Livre a habilitação B2B do seller de teste DEV. A documentação oficial restringe Preços por Quantidade a sellers previamente habilitados e identificados pela tag `business`; o seller DEV atual não possui essa tag. Após a habilitação, criar um único anúncio de teste e provar recomendação, publicação percentual e read-back contra a API externa. A conta real não será usada. Até essa prova, `ML-01` permanece como próxima ação obrigatória e nenhuma ação seguinte do Item 17 está liberada.
+**Pendência bloqueante:** solicitar ao Mercado Livre a habilitação B2B do seller de teste DEV. A documentação oficial restringe Preços por Quantidade a sellers previamente habilitados e identificados pela tag `business`; o seller DEV atual não possui essa tag. O anúncio único de teste necessário para a prova já está ativo. Após a habilitação, falta provar recomendação, publicação percentual e read-back contra a API externa. A conta real não será usada. Até essa prova, `ML-01` permanece como próxima ação obrigatória e nenhuma ação seguinte do Item 17 está liberada.
 
 **Preparação adicional em 29/08/2026:**
 
@@ -296,10 +296,18 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - `ML_ALLOWED_USER_IDS` configurado no runtime somente com o seller de teste e deploy `dev@9ffaf58` confirmado no serviço `vortek-erp-dev`;
 - Client ID e Secret exclusivos do app DEV gravados somente no `supabase-dev`, sem transportar tokens da conta administradora;
 - seller de teste autorizado pelo fluxo OAuth do Vortek DEV; access token, refresh token, expiração futura e proprietário permitido confirmados sem reprodução dos valores;
-- consulta atual de `/users/{id}` confirmou as tags `test_user`, `user_product_seller` e `normal`, sem a tag obrigatória `business`;
-- consulta atual de `/users/{id}/items/search` confirmou que o seller de teste ainda não possui anúncios;
-- a criação do anúncio foi corretamente interrompida antes de qualquer escrita externa, pois a ausência da tag `business` torna o seller inelegível para a prova de PxQ;
-- nenhuma operação de anúncio, preço, pedido ou compra foi executada; permanece pendente a habilitação B2B pelo Mercado Livre e, depois dela, a prova externa de recomendação, publicação percentual e read-back de `ML-01`.
+- consulta atual de `/users/{id}` confirmou as tags `test_user`, `user_product_seller` e `normal`, sem a tag obrigatória `business`.
+
+**Validação externa adicional em 30/08/2026:**
+
+- categoria de teste, atributos obrigatórios, modalidade de anúncio, frete e payload foram pré-validados pelos endpoints oficiais antes da publicação;
+- um único anúncio gratuito foi criado no seller de teste: item `MLB5159583873`, SKU `VORTEK-DEV-ML01-TEST`, categoria de teste `MLB457941`, título explícito de teste e descrição com aviso para não ofertar;
+- o read-back confirmou o seller de teste esperado, status `active`, tag `test_item`, imagem de `500x500` com tag `good_quality_thumbnail`, quantidade `10`, preço de teste e descrição esperada;
+- a busca agregada de itens do seller apresentou atraso de consistência logo após a criação; o mecanismo de segurança pausou o mesmo item, a leitura posterior confirmou a publicação e o anúncio foi reativado sem criar duplicata;
+- a busca posterior do seller confirmou o mesmo item e o SKU esperado;
+- nenhum produto do `supabase-dev` foi criado, associado ou alterado para esta preparação externa;
+- nenhuma compra, pergunta, pedido, transação, conta real ou ambiente de produção foi usado;
+- a tag `business` continua ausente; permanecem pendentes a habilitação B2B pelo Mercado Livre e, depois dela, a prova externa de recomendação, publicação percentual e read-back de `ML-01`.
 
 ---
 
