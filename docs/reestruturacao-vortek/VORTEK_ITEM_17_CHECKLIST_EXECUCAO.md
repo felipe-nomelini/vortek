@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `RULE-06 — Elegibilidade de publicação`
+**Próxima ação obrigatória:** `INV-05 — Automação nativa de preço`
 
 ---
 
@@ -55,7 +55,7 @@ Regras de uso:
 | 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
-| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `RULE-06` |
+| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `INV-05` |
 | 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
@@ -70,8 +70,10 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
 - [x] Executar somente `ML-02 — Scan repetido`.
 - [x] Não avançar para a ação seguinte antes de `ML-02` estar integralmente validada.
-- [ ] Executar somente `RULE-06 — Elegibilidade de publicação`.
-- [ ] Não avançar para a ação seguinte antes de `RULE-06` estar integralmente validada.
+- [x] Executar somente `RULE-06 — Elegibilidade de publicação`.
+- [x] Não avançar para a ação seguinte antes de `RULE-06` estar integralmente validada.
+- [ ] Executar somente `INV-05 — Automação nativa de preço`.
+- [ ] Não avançar para a ação seguinte antes de `INV-05` estar integralmente validada.
 
 ---
 
@@ -532,13 +534,47 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### RULE-06 — Elegibilidade de publicação
 
 **Prioridade:** P2
-**Situação:** pendente.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commits funcionais:** `1a9ddec` — `fix: centralize ML publish eligibility`; `47bb697` — `fix: gate ML outbox by observed status`
 
-- [ ] centralizar no domínio ML a decisão de anúncio modificável;
-- [ ] classificar erros transitórios e terminais;
-- [ ] reutilizar a mesma semântica no producer e worker;
-- [ ] impedir reenfileiramento contínuo de anúncio não modificável;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] centralizar no domínio ML a decisão de anúncio modificável;
+- [x] classificar erros transitórios e terminais;
+- [x] reutilizar a mesma semântica no producer e worker;
+- [x] impedir reenfileiramento contínuo de anúncio não modificável;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** a elegibilidade estava distribuída e incompleta. Alguns producers filtravam `active/paused`, o producer central aceitava reenfileirar sem consultar o estado observado ou o cooldown existente, e o worker reconhecia estados não modificáveis somente depois de tentar alterar o anúncio. Como linhas canceladas não participavam da deduplicação, automações podiam criar uma nova outbox para o mesmo `under_review`, `closed` ou `inactive`.
+
+**Mudança executada:**
+
+- uma regra única no domínio ML classifica elegibilidade e falhas de publicação;
+- `active/paused` permanecem modificáveis, status desconhecido segue para validação no worker e `under_review/closed/inactive` bloqueiam publicação comum;
+- exclusão mantém seu fluxo excepcional e ignora o gate de alteração comum;
+- o producer central consulta em paralelo o snapshot observado e os campos de bloqueio existentes antes de inserir, atualizar ou reabrir outbox;
+- producers automáticos tratam `skipped_ineligible` como descarte esperado; rotas manuais não informam falsamente que houve enfileiramento;
+- o worker faz preflight em lote, cancela estado terminal sem chamar o ML, adia cooldown temporário e preserva metadados estruturados para distinguir retry, autorização e erro determinístico;
+- a reconciliação grava o bloqueio quando observa estado terminal e limpa o bloqueio quando o anúncio volta a `active/paused`, sem alterar o estado desejado durante reconciliação de falha;
+- nenhuma fila, tabela, coluna, dependência ou variável de ambiente foi criada.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree, `AGENTS.md`, Item 17, consolidação e auditorias de ML/regras conferidos antes da alteração;
+- documentação oficial atual do Mercado Livre para sincronização, estados, moderação e conflito `409`, além da documentação oficial do Supabase para filtros, `maybeSingle` e índices, conferida;
+- schema confirmou `ml_item_id` com índice `UNIQUE` em `anuncios_ml` e `catalogo_ml_snapshot`, atendendo às consultas novas sem migration ou índice adicional;
+- 22 testes direcionados aprovados, cobrindo status modificáveis e terminais, estado desconhecido, cooldown, exclusão, falhas transitórias/terminais, persistência/limpeza do bloqueio, deduplicação e snapshot sem vínculo local;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- migration: **N/A**, pois o snapshot, a outbox e os campos de cooldown existentes foram reutilizados;
+- commits funcionais enviados para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=47bb697`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e o worker sem chave respondeu `401`;
+- ciclo observado real DEV processou o único item `under_review` em um lote, com um snapshot atualizado, zero falhas e zero warnings; o item não possui produto/anúncio local vinculado, por isso o gate do producer sem vínculo foi validado pelo teste direcionado sem criar dados artificiais;
+- o DEV possuía zero produtos com `ml_item_id` e zero linhas de outbox, portanto nenhum anúncio remoto foi modificado durante a homologação;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter os commits `47bb697` e `1a9ddec` em `dev` e executar novo deploy somente de homologação. Não há migration nem dado estrutural novo para desfazer; bloqueios gravados nos campos preexistentes serão naturalmente ignorados pelo código anterior.
+
+**Pendência:** nenhuma para `RULE-06`. A próxima ação obrigatória é `INV-05`.
 
 ### INV-05 — Automação nativa de preço
 
