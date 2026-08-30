@@ -249,7 +249,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P1 com prazo
 **Prazo externo:** antes de `26/10/2026`
-**Situação:** implementada e validada tecnicamente em homologação; seller e customer de teste criados, com validação externa ainda pendente da conexão OAuth do seller no runtime DEV.
+**Situação:** implementada e validada tecnicamente em homologação; seller e customer de teste criados e seller conectado por OAuth no runtime DEV, com a prova externa de `ML-01` ainda pendente.
 
 - [x] reler `docs/mercado-livre-publicacao-operacional.md`;
 - [x] confirmar o contrato oficial atual de Preços por Quantidade;
@@ -293,8 +293,10 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - arquivo local protegido de bootstrap mantido fora do repositório com permissão `0600`, contendo somente as credenciais do app DEV e dos usuários de teste;
 - seller e customer de teste `MLB` criados pelo endpoint oficial `/users/test_user`, validados por read-back e armazenados somente no arquivo local protegido;
 - token temporário da conta administradora removido do arquivo imediatamente após a criação e validação dos dois usuários;
-- deploy do commit foi aceito pelo webhook, mas não entrou em operação: a primeira tentativa falhou no Easypanel durante o download do código por erro transitório de DNS (`curl` exit 6), e as novas tentativas não iniciaram outro rollout;
-- nenhuma operação de anúncio, pedido ou compra foi executada; permanece pendente autorizar o app DEV com o seller de teste e concluir a prova externa de `ML-01`.
+- `ML_ALLOWED_USER_IDS` configurado no runtime somente com o seller de teste e deploy `dev@9ffaf58` confirmado no serviço `vortek-erp-dev`;
+- Client ID e Secret exclusivos do app DEV gravados somente no `supabase-dev`, sem transportar tokens da conta administradora;
+- seller de teste autorizado pelo fluxo OAuth do Vortek DEV; access token, refresh token, expiração futura e proprietário permitido confirmados sem reprodução dos valores;
+- nenhuma operação de anúncio, pedido ou compra foi executada; permanece pendente concluir a prova externa de recomendação, publicação percentual e read-back de `ML-01`.
 
 ---
 
