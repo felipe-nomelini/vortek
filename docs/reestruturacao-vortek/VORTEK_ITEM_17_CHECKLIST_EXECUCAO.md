@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `RULE-01 — Capacidade de fulfillment e Q segura`
+**Próxima ação obrigatória:** `ML-03 — Não publicar estoque igual`
 
 ---
 
@@ -54,8 +54,8 @@ Regras de uso:
 | 1 | Segurança crítica | Encerrada com risco aceito | Reabrir `SEC-05` se a exigência de links permanentes mudar |
 | 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
-| 4 | Capacidade e quantidade segura | Próxima ação | Executar somente `RULE-01` |
-| 5 | Mercado Livre observado e publicação | Pendente | Seguir dependências de cada ação |
+| 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
+| 5 | Mercado Livre observado e publicação | Próxima ação | Executar somente `ML-03` |
 | 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
@@ -66,8 +66,8 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Executar somente `RULE-01 — Capacidade de fulfillment e Q segura`.
-- [ ] Não avançar para a ação seguinte antes de `RULE-01` estar integralmente validada.
+- [ ] Executar somente `ML-03 — Não publicar estoque igual`.
+- [ ] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
 
 ---
 
@@ -379,7 +379,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Rollback:** manter a migration e o histórico do ledger; em incidente, interromper temporariamente o envio `internal` e operar somente por `supplier` até uma correção aditiva. Nunca apagar reservas ou reverter estado auditável manualmente.
 
-**Pendência:** nenhuma para `STO-01/STO-02`. A capacidade segura continua fora deste change-set e é a próxima ação `RULE-01`.
+**Pendência:** nenhuma para `STO-01/STO-02`.
 
 ---
 
@@ -389,23 +389,53 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P2 estrutural
 **Dependência:** `STO-01/STO-02`
-**Situação:** próxima ação obrigatória.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `3920a70` — `feat: centralize fulfillment capacity`
 
-- [ ] centralizar quanto o fulfillment interno consegue atender;
-- [ ] centralizar quanto o fornecedor consegue atender;
-- [ ] definir `Q_segura = max(Q_internal, Q_supplier)`;
-- [ ] impedir soma de capacidades incompatíveis;
-- [ ] derivar capacidade de kits exclusivamente dos componentes;
-- [ ] provar os cenários `2/3 → 3` e `5/3 → 5`;
-- [ ] provar seleção da melhor oferta válida do fornecedor;
-- [ ] provar que reserva reduz `Q_internal`;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] centralizar quanto o fulfillment interno consegue atender;
+- [x] centralizar quanto o fornecedor consegue atender;
+- [x] definir `Q_segura = max(Q_internal, Q_supplier)`;
+- [x] impedir soma de capacidades incompatíveis;
+- [x] derivar capacidade de kits exclusivamente dos componentes;
+- [x] provar os cenários `2/3 → 3` e `5/3 → 5`;
+- [x] provar seleção da melhor oferta válida do fornecedor;
+- [x] provar que reserva reduz `Q_internal`;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** a quantidade publicada era calculada em vários pontos a partir de `produtos.estoque`, que representa o snapshot da oferta preferencial, com um `max` local contra o saldo interno. Outra oferta operacional com capacidade maior não participava do cálculo, e kits podiam publicar o snapshot agregado em vez da capacidade real de seus componentes.
+
+**Mudança executada:**
+
+- funções pequenas centralizam `Q_internal`, `Q_supplier` e `Q_segura`, sem criar `AvailabilityEngine`;
+- `Q_supplier` usa a maior capacidade de uma única origem operacional e nunca soma fornecedores ou ofertas incompatíveis;
+- ofertas inativas, bloqueadas, sem vínculo DSLite, sem custo ou sem estoque são excluídas;
+- saldo interno vem exclusivamente do ledger e já desconta reservas/saídas ativas;
+- kits derivam a capacidade interna dos componentes; capacidade externa de kit composto permanece zero porque o fluxo DSLite atual não o atende;
+- publicação automática, criação de anúncio, backfill, alteração de fornecedor, produto, kit e preview interno passaram a reutilizar a fonte central;
+- comandos explícitos de inativação continuam publicando zero como proteção operacional, sem substituir a regra de capacidade.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree, `AGENTS.md` e documentação aplicável conferidos antes da alteração;
+- documentação oficial atual do Mercado Livre para atualização de quantidade e do Supabase/PostgreSQL para filtros e consultas em lote consultada;
+- 37 testes direcionados aprovados, incluindo `2/3 → 3`, `5/3 → 5`, melhor oferta válida, ausência de soma, reserva reduzindo `Q_internal` e kit limitado por componentes;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- migration: **N/A**, pois a fonte existente, o ledger e os índices atuais foram reutilizados;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=3920a70`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e `/api/produtos` sem sessão respondeu `401`;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy de homologação. Não há migration nem dado persistente novo para desfazer.
+
+**Pendência:** nenhuma para `RULE-01`. A próxima ação obrigatória é `ML-03`.
 
 ### ML-03 — Não publicar estoque igual
 
 **Prioridade:** P1
 **Dependência:** `STO-01/STO-02` e `RULE-01`
-**Situação:** pendente.
+**Situação:** próxima ação obrigatória.
 
 - [ ] comparar quantidade/status relevante na fonte centralizada;
 - [ ] não usar timestamp de sincronização como mudança de estoque;
