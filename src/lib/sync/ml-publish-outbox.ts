@@ -214,16 +214,28 @@ export async function enqueueMlPublishOutbox(
   let processingHasDifferentState = false;
 
   if (!deleteListing) {
-    const { data: listingState, error: listingStateError } = await (client
-      .from('anuncios_ml')
-      .select('ml_sync_block_reason,ml_sync_blocked_until')
-      .eq('ml_item_id', mlItemId)
-      .maybeSingle() as any);
+    const [listingStateResult, observedStateResult] = await Promise.all([
+      (client
+        .from('anuncios_ml')
+        .select('ml_sync_block_reason,ml_sync_blocked_until')
+        .eq('ml_item_id', mlItemId)
+        .maybeSingle() as any),
+      (client
+        .from('catalogo_ml_snapshot')
+        .select('status')
+        .eq('ml_item_id', mlItemId)
+        .maybeSingle() as any),
+    ]);
+    const { data: listingState, error: listingStateError } = listingStateResult;
     if (listingStateError) {
       return { ok: false, error: listingStateError.message };
     }
+    if (observedStateResult.error) {
+      return { ok: false, error: observedStateResult.error.message };
+    }
 
     const eligibility = classifyMlPublishEligibility({
+      observedStatus: observedStateResult.data?.status,
       blockReason: listingState?.ml_sync_block_reason,
       blockedUntil: listingState?.ml_sync_blocked_until,
     });

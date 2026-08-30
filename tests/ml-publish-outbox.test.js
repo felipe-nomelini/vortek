@@ -249,6 +249,18 @@ test('não recria outbox quando anúncio possui bloqueio terminal', async () => 
   assert.equal(client.rows.length, 1);
 });
 
+test('não cria outbox quando snapshot observado está não modificável mesmo sem vínculo local', async () => {
+  const client = createFakeClient([{
+    id: 'snapshot',
+    ml_item_id: 'MLB1',
+    status: 'under_review',
+  }]);
+  const result = await enqueueMlPublishOutbox(client, stockInput());
+  assert.equal(result.action, 'skipped_ineligible');
+  assert.equal(result.reason, 'non_modifiable_status:under_review');
+  assert.equal(client.rows.length, 1);
+});
+
 test('não recria outbox durante cooldown temporário', async () => {
   const blockedUntil = new Date(Date.now() + 60 * 60 * 1000).toISOString();
   const client = createFakeClient([{
