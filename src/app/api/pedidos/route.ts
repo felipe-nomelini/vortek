@@ -14,7 +14,11 @@ import {
   type OrdersOperationalView,
 } from '@/lib/orders/operational-view';
 import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
-import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import {
+  calcularSaldoEstoqueInterno,
+  expandirItensReservaEstoqueInterno,
+  type ComposicaoKitEstoqueInterno,
+} from '@/lib/estoque-interno-saldo';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import {
   includesInternalSupplierFilter,
@@ -154,6 +158,68 @@ async function resolveFornecedorPreviewByPedido(
     productsById.set(String((product as any).id || ''), product);
   }
   const productIds = Array.from(productsById.keys()).filter(Boolean);
+  const { data: kits, error: kitsError } = productIds.length > 0
+    ? await (serviceClient as any)
+        .from('produto_kits')
+        .select('produto_id,ativo')
+        .in('produto_id', productIds)
+    : { data: [], error: null as any };
+  if (kitsError) {
+    logDbError('pedidos_internal_stock_kits_failed', '/api/pedidos', '', kitsError);
+    return previews;
+  }
+  const kitByProductId = new Map<string, any>((kits || []).map((kit: any) => [String(kit.produto_id), kit]));
+  const kitIds = Array.from(kitByProductId.keys());
+  const { data: kitComponents, error: kitComponentsError } = kitIds.length > 0
+    ? await (serviceClient as any)
+        .from('produto_kit_componentes')
+        .select('kit_produto_id,componente_produto_id,quantidade')
+        .in('kit_produto_id', kitIds)
+    : { data: [], error: null as any };
+  if (kitComponentsError) {
+    logDbError('pedidos_internal_stock_kit_components_failed', '/api/pedidos', '', kitComponentsError);
+    return previews;
+  }
+  const componentsByKit = new Map<string, any[]>();
+  for (const component of kitComponents || []) {
+    const kitId = String((component as any).kit_produto_id || '');
+    const current = componentsByKit.get(kitId) || [];
+    current.push(component);
+    componentsByKit.set(kitId, current);
+  }
+  const componentProductIds = Array.from(new Set<string>(
+    (kitComponents || [])
+      .map((component: any) => String(component.componente_produto_id || ''))
+      .filter(Boolean),
+  ));
+  const { data: componentProducts, error: componentProductsError } = componentProductIds.length > 0
+    ? await serviceClient
+        .from('produtos')
+        .select('id,sku,ativo')
+        .in('id', componentProductIds)
+    : { data: [], error: null as any };
+  if (componentProductsError) {
+    logDbError('pedidos_internal_stock_component_products_failed', '/api/pedidos', '', componentProductsError);
+    return previews;
+  }
+  const componentProductById = new Map<string, any>(
+    (componentProducts || []).map((product: any) => [String(product.id), product]),
+  );
+  const internalKitCompositions = new Map<string, ComposicaoKitEstoqueInterno>();
+  for (const [kitId, kit] of kitByProductId) {
+    internalKitCompositions.set(kitId, {
+      ativo: kit.ativo !== false,
+      componentes: (componentsByKit.get(kitId) || []).map((component: any) => {
+        const product = componentProductById.get(String(component.componente_produto_id || ''));
+        return {
+          produtoId: String(component.componente_produto_id || ''),
+          sku: String(product?.sku || ''),
+          ativo: product?.ativo !== false && Boolean(product?.sku),
+          quantidade: Number(component.quantidade || 0),
+        };
+      }),
+    });
+  }
   const offers: any[] = [];
   let offerError: any = null;
   for (let index = 0; index < productIds.length; index += 200) {
@@ -173,11 +239,12 @@ async function resolveFornecedorPreviewByPedido(
   }
   const movimentosInternos: any[] = [];
   let movimentosInternosError: any = null;
-  for (let index = 0; index < productIds.length; index += 200) {
+  const internalStockProductIds = Array.from(new Set([...productIds, ...componentProductIds]));
+  for (let index = 0; index < internalStockProductIds.length; index += 200) {
     const result = await (serviceClient as any)
       .from('estoque_interno_movimentacoes')
-      .select('produto_id,tipo,quantidade,situacao_estoque,estornada_em')
-      .in('produto_id', productIds.slice(index, index + 200));
+      .select('pedido_id,produto_id,tipo,quantidade,situacao_estoque,estornada_em')
+      .in('produto_id', internalStockProductIds.slice(index, index + 200));
     if (result.error) {
       movimentosInternosError = result.error;
       break;
@@ -201,6 +268,19 @@ async function resolveFornecedorPreviewByPedido(
       calcularSaldoEstoqueInterno(movimentos),
     ]),
   );
+  const compromissoInternoPorPedidoProduto = new Map<string, number>();
+  for (const movimento of movimentosInternos || []) {
+    if (
+      movimento.tipo !== 'saida_envio_interno'
+      || movimento.estornada_em
+      || !movimento.pedido_id
+    ) continue;
+    const key = `${String(movimento.pedido_id)}:${String(movimento.produto_id)}`;
+    compromissoInternoPorPedidoProduto.set(
+      key,
+      (compromissoInternoPorPedidoProduto.get(key) || 0) + Number(movimento.quantidade || 0),
+    );
+  }
 
   const offersByProductId = new Map<string, any[]>();
   for (const offer of offers || []) {
@@ -262,15 +342,31 @@ async function resolveFornecedorPreviewByPedido(
     if (!selected.length) continue;
 
     const quantidadeInternaPorProduto = new Map<string, number>();
-    for (const item of selected) {
-      quantidadeInternaPorProduto.set(
-        item.produtoId,
-        (quantidadeInternaPorProduto.get(item.produtoId) || 0) + item.quantidade,
+    let composicaoInternaValida = true;
+    try {
+      const stockItems = expandirItensReservaEstoqueInterno(
+        selected.map((item) => ({
+          produtoId: item.produtoId,
+          sku: String(item.produtoSku || item.produtoId),
+          quantidade: item.quantidade,
+        })),
+        internalKitCompositions,
       );
+      for (const stockItem of stockItems) {
+        quantidadeInternaPorProduto.set(
+          stockItem.produtoId,
+          (quantidadeInternaPorProduto.get(stockItem.produtoId) || 0) + stockItem.quantidade,
+        );
+      }
+    } catch {
+      composicaoInternaValida = false;
     }
-    const estoqueInternoCompleto = selected.length === itens.length
+    const estoqueInternoCompleto = composicaoInternaValida
+      && selected.length === itens.length
       && Array.from(quantidadeInternaPorProduto.entries()).every(([produtoId, quantidade]) => (
-        (saldoInternoPorProduto.get(produtoId) || 0) >= quantidade
+        (saldoInternoPorProduto.get(produtoId) || 0)
+          + (compromissoInternoPorPedidoProduto.get(`${pedidoId}:${produtoId}`) || 0)
+          >= quantidade
       ));
     if (estoqueInternoCompleto) {
       const first = selected[0];

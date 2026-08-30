@@ -4,6 +4,7 @@ const test = require('node:test');
 const {
   calcularSaldoEstoqueInterno,
   calcularEntradasVisiveisEstoqueInterno,
+  expandirItensReservaEstoqueInterno,
 } = require('../src/lib/estoque-interno-saldo.ts');
 
 test('saída estornada não reduz o saldo interno', () => {
@@ -98,4 +99,54 @@ test('saídas não alteram itens em revisão', () => {
     ]),
     [entrada],
   );
+});
+
+test('kit reserva todos os componentes com as quantidades corretas', () => {
+  const itens = expandirItensReservaEstoqueInterno([
+    { produtoId: 'kit-1', sku: 'KIT-1', quantidade: 2 },
+  ], new Map([
+    ['kit-1', {
+      ativo: true,
+      componentes: [
+        { produtoId: 'produto-a', sku: 'A', ativo: true, quantidade: 2 },
+        { produtoId: 'produto-b', sku: 'B', ativo: true, quantidade: 1 },
+      ],
+    }],
+  ]));
+
+  assert.deepEqual(itens, [
+    { produtoId: 'produto-a', sku: 'A', quantidade: 4 },
+    { produtoId: 'produto-b', sku: 'B', quantidade: 2 },
+  ]);
+});
+
+test('componente repetido entre kit e item avulso é agregado', () => {
+  const itens = expandirItensReservaEstoqueInterno([
+    { produtoId: 'kit-1', sku: 'KIT-1', quantidade: 1 },
+    { produtoId: 'produto-a', sku: 'A', quantidade: 3 },
+  ], new Map([
+    ['kit-1', {
+      ativo: true,
+      componentes: [
+        { produtoId: 'produto-a', sku: 'A', ativo: true, quantidade: 2 },
+      ],
+    }],
+  ]));
+
+  assert.deepEqual(itens, [
+    { produtoId: 'produto-a', sku: 'A', quantidade: 5 },
+  ]);
+});
+
+test('kit sem componente válido falha sem produzir reserva parcial', () => {
+  assert.throws(() => expandirItensReservaEstoqueInterno([
+    { produtoId: 'kit-1', sku: 'KIT-1', quantidade: 1 },
+  ], new Map([
+    ['kit-1', {
+      ativo: true,
+      componentes: [
+        { produtoId: 'produto-a', sku: '', ativo: false, quantidade: 1 },
+      ],
+    }],
+  ])), /Componente indisponível/);
 });

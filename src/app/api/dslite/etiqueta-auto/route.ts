@@ -32,11 +32,10 @@ import {
   isBkr1Supplier,
   usesThermalMlLabelSupplier,
 } from '@/lib/supplier-balance';
-import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
+import { reservarEnvioInterno } from '@/lib/estoque-interno';
 import {
   fulfillmentSelectionHttpStatus,
   OrderFulfillmentSelectionError,
-  selectOrderFulfillment,
 } from '@/lib/orders/fulfillment-selection';
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
 import { calculateOrderProfit } from '@/services/orders';
@@ -247,31 +246,20 @@ export async function POST(req: Request) {
 
     if (directShipping) {
       try {
-        await selectOrderFulfillment(client, String(pedidoId), 'internal');
+        await reservarEnvioInterno(String(pedidoId));
       } catch (error) {
         const selectionError = error instanceof OrderFulfillmentSelectionError ? error : null;
         return stepError(
           steps,
           'check_ml_invoice_xml',
-          selectionError?.message || 'Falha ao selecionar envio pelo estoque interno.',
+          selectionError?.message
+            || (error instanceof Error ? error.message : 'Falha ao selecionar envio pelo estoque interno.'),
           {
             code: selectionError?.code || 'fulfillment_selection_failed',
             selectedSource: selectionError?.selectedSource || null,
           },
-          fulfillmentSelectionHttpStatus(error),
+          selectionError ? fulfillmentSelectionHttpStatus(error) : 422,
           selectionError?.code === 'migration_missing' ? 'db_schema' : 'business',
-        );
-      }
-      try {
-        await validarEstoqueEnvioInterno(String(pedidoId));
-      } catch (error: any) {
-        return stepError(
-          steps,
-          'check_ml_invoice_xml',
-          error?.message || 'Estoque interno insuficiente para envio próprio.',
-          undefined,
-          422,
-          'business',
         );
       }
     }
@@ -1484,11 +1472,6 @@ export async function POST(req: Request) {
       });
       if (!storedThermal.ok) {
         return stepError(steps, 'download_label_ml', storedThermal.error || 'Falha ao salvar etiqueta térmica no sistema');
-      }
-      try {
-        await reservarEnvioInterno(String(pedidoId));
-      } catch (error: any) {
-        return stepError(steps, 'download_label_ml', error?.message || 'Estoque interno insuficiente');
       }
       await client
         .from('pedidos')

@@ -1362,6 +1362,7 @@ export type Database = {
     Functions: {
       select_order_fulfillment: {
         Args: {
+          p_items: Json | null
           p_pedido_id: string
           p_source: string
         }
@@ -1369,6 +1370,20 @@ export type Database = {
           fulfillment_selected_at: string | null
           fulfillment_source: string
           selected_now: boolean
+        }[]
+      }
+      dispatch_internal_stock_reservation: {
+        Args: { p_pedido_id: string }
+        Returns: {
+          movimentos_atualizados: number
+          produto_ids: string[]
+        }[]
+      }
+      reverse_internal_stock_commitment: {
+        Args: { p_motivo: string; p_pedido_id: string }
+        Returns: {
+          movimentos_atualizados: number
+          produto_ids: string[]
         }[]
       }
       get_fornecedores: {

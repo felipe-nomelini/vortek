@@ -42,3 +42,23 @@ test('ausência da migration retorna indisponibilidade temporária', () => {
   assert.equal(parsed.code, 'migration_missing');
   assert.equal(fulfillmentSelectionHttpStatus(parsed), 503);
 });
+
+test('saldo insuficiente da reserva atômica retorna 422', () => {
+  const parsed = parseOrderFulfillmentSelectionError({
+    code: 'P0001',
+    message: 'internal_stock_insufficient:VTK-001:0',
+  });
+  assert.equal(parsed.code, 'insufficient_stock');
+  assert.equal(parsed.message, 'Estoque interno insuficiente para VTK-001. Disponível: 0.');
+  assert.equal(fulfillmentSelectionHttpStatus(parsed), 422);
+});
+
+test('itens diferentes em retry retornam conflito de reserva', () => {
+  const parsed = parseOrderFulfillmentSelectionError({
+    code: 'P0001',
+    message: 'internal_stock_reservation_conflict',
+  });
+  assert.equal(parsed.code, 'reservation_conflict');
+  assert.equal(parsed.selectedSource, 'internal');
+  assert.equal(fulfillmentSelectionHttpStatus(parsed), 409);
+});

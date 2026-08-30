@@ -10,12 +10,14 @@ import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { alertMlLabelReleased, alertNewQuestion, alertNewSale } from '@/services/whatsapp-alerts';
 import { pushEvents } from '@/services/push-notifications';
 import {
+  despacharReservaEnvioInterno,
   enfileirarSyncMlEstoqueInterno,
   estornarReservaEnvioInternoCancelado,
   isEnderecoEstoqueInternoMl,
   obterEnderecoRetornoPadraoMl,
   registrarDevolucaoInterna,
 } from '@/lib/estoque-interno';
+import { isPostDispatchOrder } from '@/lib/orders/operational-view';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
 import { resolveWebhookOrderSituation } from '@/lib/ml/webhook-order-stub';
@@ -716,6 +718,24 @@ export async function POST(request: Request) {
             .eq('ml_order_id', String(orderId));
 
           if (pedido?.id) {
+            if (isPostDispatchOrder({ situacao: situacaoFinal })) {
+              const despacho = await despacharReservaEnvioInterno(String(pedido.id));
+              if (despacho.despachadas > 0) {
+                await registrarEventoNfAuditoria({
+                  pedidoId: String(pedido.id),
+                  mlOrderId: String(orderId),
+                  mlPackId: (pedido as any).ml_pack_id ? String((pedido as any).ml_pack_id) : null,
+                  evento: 'estoque_interno_reserva_convertida_despacho',
+                  respostaMl: {
+                    movimentos_despachados: despacho.despachadas,
+                    produtos: despacho.produtoIds,
+                    source: 'shipments_topic',
+                  },
+                  statusResultante: 'success',
+                });
+              }
+            }
+
             const shipmentStatus = String(shipment.status || '').toLowerCase();
             const shipmentSubstatus = String(shipment.substatus || '').toLowerCase();
             const isReturningToSender =

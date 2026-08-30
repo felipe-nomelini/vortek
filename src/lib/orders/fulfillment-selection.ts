@@ -6,11 +6,20 @@ export type OrderFulfillmentSelection = {
   selectedNow: boolean;
 };
 
+export type OrderFulfillmentStockItem = {
+  produtoId: string;
+  sku: string;
+  quantidade: number;
+};
+
 export type OrderFulfillmentSelectionErrorCode =
   | 'conflict'
   | 'invalid_source'
+  | 'invalid_stock_items'
+  | 'insufficient_stock'
   | 'migration_missing'
   | 'not_found'
+  | 'reservation_conflict'
   | 'database';
 
 export class OrderFulfillmentSelectionError extends Error {
@@ -54,6 +63,29 @@ export function parseOrderFulfillmentSelectionError(error: any): OrderFulfillmen
       selectedSource,
     );
   }
+  const insufficientStock = message.match(/internal_stock_insufficient:(.*):(\d+)/);
+  if (insufficientStock) {
+    return new OrderFulfillmentSelectionError(
+      'insufficient_stock',
+      `Estoque interno insuficiente para ${insufficientStock[1]}. Disponível: ${insufficientStock[2]}.`,
+    );
+  }
+  if (message.includes('internal_stock_reservation_conflict')) {
+    return new OrderFulfillmentSelectionError(
+      'reservation_conflict',
+      'A reserva existente do pedido não corresponde aos itens atuais.',
+      'internal',
+    );
+  }
+  if (
+    message.includes('invalid_internal_stock_items')
+    || message.includes('internal_stock_product_not_found')
+  ) {
+    return new OrderFulfillmentSelectionError(
+      'invalid_stock_items',
+      'Não foi possível resolver todos os itens do pedido para o estoque interno.',
+    );
+  }
   if (message.includes('order_not_found') || String(error?.code || '') === 'P0002') {
     return new OrderFulfillmentSelectionError('not_found', 'Pedido não encontrado.');
   }
@@ -73,10 +105,18 @@ export async function selectOrderFulfillment(
   client: any,
   pedidoId: string,
   source: OrderFulfillmentSource,
+  stockItems?: OrderFulfillmentStockItem[],
 ): Promise<OrderFulfillmentSelection> {
   const { data, error } = await client.rpc('select_order_fulfillment', {
     p_pedido_id: pedidoId,
     p_source: source,
+    p_items: source === 'internal'
+      ? (stockItems || []).map((item) => ({
+          produto_id: item.produtoId,
+          sku: item.sku,
+          quantidade: item.quantidade,
+        }))
+      : null,
   });
   if (error) throw parseOrderFulfillmentSelectionError(error);
 
@@ -99,7 +139,8 @@ export function fulfillmentSelectionHttpStatus(error: unknown): number {
   if (!(error instanceof OrderFulfillmentSelectionError)) return 500;
   if (error.code === 'not_found') return 404;
   if (error.code === 'migration_missing') return 503;
-  if (error.code === 'conflict') return 409;
+  if (error.code === 'conflict' || error.code === 'reservation_conflict') return 409;
+  if (error.code === 'insufficient_stock' || error.code === 'invalid_stock_items') return 422;
   if (error.code === 'invalid_source') return 400;
   return 500;
 }

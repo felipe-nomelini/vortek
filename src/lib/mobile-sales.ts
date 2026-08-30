@@ -206,6 +206,7 @@ const AUDIT_LABELS: Record<string, string> = {
   whatsapp_label_send_success: "Etiqueta enviada por WhatsApp",
   whatsapp_label_send_not_applicable: "WhatsApp não aplicável",
   estoque_interno_saida_estornada_cancelamento: "Estoque interno devolvido após cancelamento",
+  estoque_interno_reserva_convertida_despacho: "Reserva de estoque convertida em despacho",
   nota_fiscal_cancelamento_success: "NF-e cancelada",
   ml_cancel_auto_detected: "Cancelamento detectado no Mercado Livre",
 };

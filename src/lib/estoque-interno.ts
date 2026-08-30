@@ -1,16 +1,81 @@
 import { createServiceClient } from '@/lib/supabase';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import {
+  calcularSaldoEstoqueInterno,
+  expandirItensReservaEstoqueInterno,
+  type ComposicaoKitEstoqueInterno,
+} from '@/lib/estoque-interno-saldo';
 import { fetchMLResult } from '@/services/integration';
 import { z } from 'zod';
 import { isModifiableMlListingStatus } from '@/lib/ml/operational-listing';
+import {
+  selectOrderFulfillment,
+  type OrderFulfillmentStockItem,
+} from '@/lib/orders/fulfillment-selection';
 
-type ItemEstoquePedido = {
-  produtoId: string;
-  sku: string;
-  quantidade: number;
-};
+export type ItemEstoquePedido = OrderFulfillmentStockItem;
+
+export async function expandirComponentesKitEstoqueInterno(
+  db: ReturnType<typeof createServiceClient>,
+  itens: ItemEstoquePedido[],
+): Promise<ItemEstoquePedido[]> {
+  const produtoIds = Array.from(new Set(itens.map((item) => item.produtoId)));
+  const { data: kits, error: kitsError } = await (db as any)
+    .from('produto_kits')
+    .select('produto_id,ativo')
+    .in('produto_id', produtoIds);
+  if (kitsError) throw new Error(kitsError.message);
+  if (!kits?.length) return itens;
+
+  const kitByProductId = new Map<string, any>((kits || []).map((kit: any) => [String(kit.produto_id), kit]));
+  const kitIds = Array.from(kitByProductId.keys());
+  const { data: componentes, error: componentesError } = await (db as any)
+    .from('produto_kit_componentes')
+    .select('kit_produto_id,componente_produto_id,quantidade')
+    .in('kit_produto_id', kitIds);
+  if (componentesError) throw new Error(componentesError.message);
+
+  const componentesPorKit = new Map<string, any[]>();
+  for (const componente of componentes || []) {
+    const kitId = String(componente.kit_produto_id || '');
+    const atuais = componentesPorKit.get(kitId) || [];
+    atuais.push(componente);
+    componentesPorKit.set(kitId, atuais);
+  }
+
+  const componenteIds = Array.from(new Set<string>(
+    (componentes || []).map((componente: any) => String(componente.componente_produto_id || '')).filter(Boolean),
+  ));
+  const { data: produtosComponentes, error: produtosComponentesError } = componenteIds.length > 0
+    ? await db
+        .from('produtos')
+        .select('id,sku,ativo')
+        .in('id', componenteIds)
+    : { data: [], error: null };
+  if (produtosComponentesError) throw new Error(produtosComponentesError.message);
+  const produtoComponenteById = new Map<string, any>(
+    (produtosComponentes || []).map((produto: any) => [String(produto.id), produto]),
+  );
+
+  const composicoes = new Map<string, ComposicaoKitEstoqueInterno>();
+  for (const [kitId, kit] of kitByProductId) {
+    composicoes.set(kitId, {
+      ativo: kit.ativo !== false,
+      componentes: (componentesPorKit.get(kitId) || []).map((linha: any) => {
+        const produto = produtoComponenteById.get(String(linha.componente_produto_id || ''));
+        return {
+          produtoId: String(linha.componente_produto_id || ''),
+          sku: String(produto?.sku || ''),
+          ativo: produto?.ativo !== false && Boolean(produto?.sku),
+          quantidade: Number(linha.quantidade || 0),
+        };
+      }),
+    });
+  }
+
+  return expandirItensReservaEstoqueInterno(itens, composicoes);
+}
 
 const ESTOQUE_INTERNO_RETURN_ADDRESS_ID = '1634853936';
 const ESTOQUE_INTERNO_RETURN_ZIP_CODE = '21011550';
@@ -96,7 +161,7 @@ export async function obterEnderecoRetornoPadraoMl(): Promise<MlUserAddress | nu
   return address;
 }
 
-async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoquePedido[]> {
+export async function resolverItensEstoqueEnvioInterno(pedidoId: string): Promise<ItemEstoquePedido[]> {
   const db = createServiceClient();
   const { data: itens, error } = await db
     .from('pedido_itens')
@@ -174,7 +239,7 @@ async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoque
       quantidade: (atual?.quantidade || 0) + quantidade,
     });
   }
-  return [...agrupados.values()];
+  return expandirComponentesKitEstoqueInterno(db, [...agrupados.values()]);
 }
 
 /** Saldo físico já conferido e liberado para um novo envio próprio. */
@@ -356,7 +421,7 @@ async function obterReservasDoPedido(pedidoId: string): Promise<Map<string, numb
 
 /** Confere saldo liberado antes de emitir NF ou baixar etiqueta de envio interno. */
 export async function validarEstoqueEnvioInterno(pedidoId: string) {
-  const itens = await carregarItensEstoquePedido(pedidoId);
+  const itens = await resolverItensEstoqueEnvioInterno(pedidoId);
   const reservasAtuais = await obterReservasDoPedido(pedidoId);
   for (const item of itens) {
     const quantidadePendente = Math.max(0, item.quantidade - (reservasAtuais.get(item.produtoId) || 0));
@@ -369,37 +434,51 @@ export async function validarEstoqueEnvioInterno(pedidoId: string) {
   return itens;
 }
 
-/** Registra baixa somente após etiqueta estar salva no sistema. */
+/** Seleciona internal e reserva todos os componentes na mesma transação. */
 export async function reservarEnvioInterno(pedidoId: string) {
-  const itens = await validarEstoqueEnvioInterno(pedidoId);
+  const itens = await resolverItensEstoqueEnvioInterno(pedidoId);
   const db = createServiceClient();
-  const reservasAtuais = await obterReservasDoPedido(pedidoId);
-
-  for (const item of itens) {
-    if ((reservasAtuais.get(item.produtoId) || 0) >= item.quantidade) continue;
-    const { error } = await (db as any)
-      .from('estoque_interno_movimentacoes')
-      .insert({
-        produto_id: item.produtoId,
-        pedido_id: pedidoId,
-        tipo: 'saida_envio_interno',
-        quantidade: item.quantidade,
-        motivo: 'Envio interno',
-      });
-    // A restrição única (pedido, produto, tipo) torna nova tentativa da mesma
-    // etiqueta segura: não pode baixar o estoque pela segunda vez.
-    if (error && String((error as any).code || '') !== '23505') throw new Error(error.message);
-  }
+  const selection = await selectOrderFulfillment(db, pedidoId, 'internal', itens);
 
   await Promise.all(itens.map(async (item) => {
     try {
       await enfileirarSyncMlEstoqueInterno(item.produtoId);
     } catch (error: any) {
-      // A etiqueta já foi salva e a baixa é válida; a fila ML será refeita no
-      // próximo sync externo, sem transformar um envio concluído em erro.
-      console.error('[internal_stock_ml_sync_failed]', { pedidoId, produtoId: item.produtoId, error: error?.message || error });
+      console.error('[internal_stock_reservation_ml_sync_failed]', { pedidoId, produtoId: item.produtoId, error: error?.message || error });
     }
   }));
+
+  return { selection, itens };
+}
+
+/** Converte a reserva em saída física de forma idempotente. */
+export async function despacharReservaEnvioInterno(pedidoId: string) {
+  const db = createServiceClient();
+  const { data, error } = await (db as any).rpc('dispatch_internal_stock_reservation', {
+    p_pedido_id: pedidoId,
+  });
+  if (error) throw new Error(error.message);
+  const row = Array.isArray(data) ? data[0] : data;
+  const produtoIds: string[] = Array.isArray(row?.produto_ids)
+    ? row.produto_ids.map(String).filter(Boolean)
+    : [];
+
+  await Promise.all(produtoIds.map(async (produtoId: string) => {
+    try {
+      await enfileirarSyncMlEstoqueInterno(produtoId);
+    } catch (syncError: any) {
+      console.error('[internal_stock_dispatch_ml_sync_failed]', {
+        pedidoId,
+        produtoId,
+        error: syncError?.message || syncError,
+      });
+    }
+  }));
+
+  return {
+    despachadas: Number(row?.movimentos_atualizados || 0),
+    produtoIds,
+  };
 }
 
 /**
@@ -411,24 +490,15 @@ export async function estornarReservaEnvioInternoCancelado(
   motivo: string,
 ) {
   const db = createServiceClient();
-  const estornadaEm = new Date().toISOString();
-  const { data: movimentos, error } = await (db as any)
-    .from('estoque_interno_movimentacoes')
-    .update({
-      estornada_em: estornadaEm,
-      estorno_motivo: motivo,
-    })
-    .eq('pedido_id', pedidoId)
-    .eq('tipo', 'saida_envio_interno')
-    .is('estornada_em', null)
-    .select('id,produto_id,quantidade');
+  const { data, error } = await (db as any).rpc('reverse_internal_stock_commitment', {
+    p_pedido_id: pedidoId,
+    p_motivo: motivo,
+  });
   if (error) throw new Error(error.message);
-
-  const produtoIds = Array.from(new Set<string>(
-    (movimentos || [])
-      .map((movimento: any) => String(movimento.produto_id || '').trim())
-      .filter(Boolean),
-  ));
+  const row = Array.isArray(data) ? data[0] : data;
+  const produtoIds: string[] = Array.isArray(row?.produto_ids)
+    ? row.produto_ids.map(String).filter(Boolean)
+    : [];
 
   await Promise.all(produtoIds.map(async (produtoId) => {
     try {
@@ -443,7 +513,7 @@ export async function estornarReservaEnvioInternoCancelado(
   }));
 
   return {
-    estornadas: (movimentos || []).length,
+    estornadas: Number(row?.movimentos_atualizados || 0),
     produtoIds,
   };
 }
@@ -457,7 +527,7 @@ export async function registrarDevolucaoInterna(
 ) {
   if (!destinoEstoqueInterno) return;
 
-  const itens = await carregarItensEstoquePedido(pedidoId);
+  const itens = await resolverItensEstoqueEnvioInterno(pedidoId);
   const db = createServiceClient();
 
   for (const item of itens) {

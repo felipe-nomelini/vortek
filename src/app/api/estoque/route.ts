@@ -15,8 +15,9 @@ export async function GET() {
       .order('created_at', { ascending: false }),
     (db as any)
       .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,quantidade,motivo,created_at,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id,envio_interno_at)')
+      .select('id,produto_id,pedido_id,quantidade,motivo,created_at,despachado_em,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id,envio_interno_at)')
       .eq('tipo', 'saida_envio_interno')
+      .eq('estado_envio_interno', 'despachado')
       .is('estornada_em', null)
       .order('created_at', { ascending: false }),
   ]);
@@ -58,7 +59,7 @@ export async function GET() {
     quantidade: Number(item.quantidade || 0),
     pedido_ml: item.pedidos?.ml_order_id || '-',
     pedido_ml_link_id: item.pedidos?.ml_pack_id || item.pedidos?.ml_order_id || null,
-    vendido_em: item.pedidos?.envio_interno_at || item.created_at,
+    vendido_em: item.despachado_em || item.pedidos?.envio_interno_at || item.created_at,
   }));
 
   return NextResponse.json({

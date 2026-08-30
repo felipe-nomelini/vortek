@@ -20,6 +20,7 @@ type AuditEvent =
   | 'sync_snapshot_partial'
   | 'sync_snapshot_failed'
   | 'estoque_interno_saida_estornada_cancelamento'
+  | 'estoque_interno_reserva_convertida_despacho'
   | 'ml_invoice_upload_start'
   | 'ml_invoice_upload_success'
   | 'ml_invoice_upload_failed'

@@ -18,6 +18,65 @@ export type SaidaAtivaEstoqueInterno = {
   quantidade: number;
 };
 
+export type ItemReservaEstoqueInterno = {
+  produtoId: string;
+  sku: string;
+  quantidade: number;
+};
+
+export type ComposicaoKitEstoqueInterno = {
+  ativo: boolean;
+  componentes: Array<{
+    produtoId: string;
+    sku: string;
+    ativo: boolean;
+    quantidade: number;
+  }>;
+};
+
+/** Kits nunca possuem saldo físico próprio: a reserva usa seus componentes diretos. */
+export function expandirItensReservaEstoqueInterno(
+  itens: ItemReservaEstoqueInterno[],
+  composicoesPorProduto: Map<string, ComposicaoKitEstoqueInterno>,
+): ItemReservaEstoqueInterno[] {
+  const expandidos = new Map<string, ItemReservaEstoqueInterno>();
+  for (const item of itens) {
+    const composicao = composicoesPorProduto.get(item.produtoId);
+    if (composicao && !composicao.ativo) {
+      throw new Error(`Kit inativo no pedido: ${item.sku}.`);
+    }
+    if (composicao && composicao.componentes.length === 0) {
+      throw new Error(`Kit sem componentes no pedido: ${item.sku}.`);
+    }
+
+    const movimentos = composicao
+      ? composicao.componentes.map((componente) => {
+          if (!componente.ativo || !componente.sku || componente.quantidade <= 0) {
+            throw new Error(`Componente indisponível no kit ${item.sku}.`);
+          }
+          return {
+            produtoId: componente.produtoId,
+            sku: componente.sku,
+            quantidade: item.quantidade * componente.quantidade,
+          };
+        })
+      : [item];
+
+    for (const movimento of movimentos) {
+      if (!Number.isInteger(movimento.quantidade) || movimento.quantidade <= 0) {
+        throw new Error(`Quantidade inválida para ${movimento.sku || item.sku}.`);
+      }
+      const atual = expandidos.get(movimento.produtoId);
+      expandidos.set(movimento.produtoId, {
+        produtoId: movimento.produtoId,
+        sku: movimento.sku,
+        quantidade: (atual?.quantidade || 0) + movimento.quantidade,
+      });
+    }
+  }
+  return [...expandidos.values()];
+}
+
 /** Calcula somente entradas liberadas e saídas ainda ativas. */
 export function calcularSaldoEstoqueInterno(
   movimentos: MovimentoSaldoEstoqueInterno[],

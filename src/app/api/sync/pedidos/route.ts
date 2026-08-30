@@ -25,11 +25,13 @@ import {
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
 import {
+  despacharReservaEnvioInterno,
   estornarReservaEnvioInternoCancelado,
   isEnderecoEstoqueInternoMl,
   obterEnderecoRetornoPadraoMl,
   registrarDevolucaoInterna,
 } from '@/lib/estoque-interno';
+import { isPostDispatchOrder } from '@/lib/orders/operational-view';
 import {
   resolveMlSellerShippingCost,
   type MlShipmentCosts,
@@ -1582,6 +1584,24 @@ async function processOrder(params: {
       await createSupplierCancellationCreditCandidate(serviceClient, String(upsertedPedido.id), 'ml_sync');
     } catch (creditError) {
       console.error('[supplier-credits] Falha ao registrar cancelamento durante sincronização:', creditError);
+    }
+  }
+
+  if (!error && upsertedPedido?.id && isPostDispatchOrder({ situacao })) {
+    const despacho = await despacharReservaEnvioInterno(String(upsertedPedido.id));
+    if (despacho.despachadas > 0) {
+      await registrarEventoNfAuditoria({
+        pedidoId: String(upsertedPedido.id),
+        mlOrderId: String(o.id),
+        mlPackId,
+        evento: 'estoque_interno_reserva_convertida_despacho',
+        respostaMl: {
+          movimentos_despachados: despacho.despachadas,
+          produtos: despacho.produtoIds,
+          source: 'sync_pedidos',
+        },
+        statusResultante: 'success',
+      });
     }
   }
 
