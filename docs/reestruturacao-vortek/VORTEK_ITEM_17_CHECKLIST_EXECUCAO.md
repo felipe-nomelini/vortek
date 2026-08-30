@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `STO-01 + STO-02 — Reserva atômica`
+**Próxima ação obrigatória:** `RULE-01 — Capacidade de fulfillment e Q segura`
 
 ---
 
@@ -53,8 +53,8 @@ Regras de uso:
 | 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
 | 1 | Segurança crítica | Encerrada com risco aceito | Reabrir `SEC-05` se a exigência de links permanentes mudar |
 | 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
-| 3 | Estoque e fulfillment | Próxima ação | Executar somente `STO-01 + STO-02` |
-| 4 | Capacidade e quantidade segura | Pendente | Depende de `STO-01/STO-02` |
+| 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
+| 4 | Capacidade e quantidade segura | Próxima ação | Executar somente `RULE-01` |
 | 5 | Mercado Livre observado e publicação | Pendente | Seguir dependências de cada ação |
 | 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
@@ -66,8 +66,8 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Executar somente `STO-01 + STO-02 — Reserva atômica`.
-- [ ] Não avançar para a ação seguinte antes de `STO-01 + STO-02` estar integralmente validada.
+- [ ] Executar somente `RULE-01 — Capacidade de fulfillment e Q segura`.
+- [ ] Não avançar para a ação seguinte antes de `RULE-01` estar integralmente validada.
 
 ---
 
@@ -330,19 +330,56 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### STO-01 + STO-02 — Reserva atômica
 
 **Prioridade:** P1
-**Situação:** próxima ação obrigatória; os dois identificadores formam o mesmo change-set conceitual.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `b7b4275` — `fix: reserve internal stock atomically`
 
-- [ ] confirmar o ponto exato entre seleção `internal` e consumo de estoque;
-- [ ] garantir atomicamente que `internal` significa estoque já reservado;
-- [ ] reutilizar PostgreSQL, RPC, locks, ledger e `fulfillment_source` existentes;
-- [ ] representar o fluxo `disponível → reservado → despachado`;
-- [ ] liberar/estornar a reserva quando o fluxo falhar antes do despacho;
-- [ ] provar que saldo 1 com duas vendas simultâneas gera uma reserva;
-- [ ] provar que retry não cria segunda reserva;
-- [ ] provar liberação no cancelamento e saída no despacho;
-- [ ] provar que falha fiscal/etiqueta preserva a reserva;
-- [ ] provar reserva correta dos componentes de kit;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] confirmar o ponto exato entre seleção `internal` e consumo de estoque;
+- [x] garantir atomicamente que `internal` significa estoque já reservado;
+- [x] reutilizar PostgreSQL, RPC, locks, ledger e `fulfillment_source` existentes;
+- [x] representar o fluxo `disponível → reservado → despachado`;
+- [x] liberar/estornar no cancelamento antes do despacho, preservando a reserva em falha fiscal/etiqueta transitória;
+- [x] provar que saldo 1 com duas vendas simultâneas gera uma reserva;
+- [x] provar que retry não cria segunda reserva;
+- [x] provar liberação no cancelamento e saída no despacho;
+- [x] provar que falha fiscal/etiqueta preserva a reserva;
+- [x] provar reserva correta dos componentes de kit;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** `select_order_fulfillment` bloqueava apenas a linha do pedido; a leitura do saldo e a inserção de `saida_envio_interno` aconteciam depois, fora da mesma transação e após fiscal/etiqueta. Dois pedidos distintos podiam observar a mesma unidade, e `fulfillment_source='internal'` podia existir sem estoque comprometido.
+
+**Mudança executada:**
+
+- `select_order_fulfillment` passou a reservar todos os produtos/componentes e gravar a origem `internal` na mesma RPC;
+- produtos são bloqueados em ordem estável de UUID, sem chamadas externas dentro da transação;
+- o ledger existente distingue `reservado` e `despachado`, preserva estorno auditável e trata retry de forma idempotente;
+- kits usam exclusivamente seus componentes diretos, com agregação de quantidades repetidas;
+- fiscal/etiqueta ocorre depois da reserva; `envio_interno_at` continua representando etiqueta pronta;
+- webhook e sincronização convertem a reserva em despacho no primeiro status pós-despacho;
+- cancelamento estorna reserva ou saída sem apagar histórico;
+- o preview desconta compromissos globais e adiciona de volta a reserva do próprio pedido para permitir retry;
+- a tela de estoque lista como vendido somente o que já foi despachado.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree e `AGENTS.md` conferidos antes da alteração;
+- documentação oficial atual de funções/RPC do Supabase e locks/isolation do PostgreSQL consultada;
+- testes unitários direcionados: 15 aprovados;
+- teste de integração protegido no `supabase-dev` (`192.168.1.162`): saldo 1 + duas reservas concorrentes resultou em uma reserva e uma rejeição por saldo;
+- a mesma prova confirmou retry sem duplicação, pedido perdedor livre para `supplier`, reserva anterior à etiqueta, despacho idempotente e cancelamento idempotente;
+- fixtures da prova removidas no `finally`;
+- testes de kit confirmaram múltiplos componentes, multiplicação, agregação do mesmo componente e falha sem reserva parcial;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- migration `20260830143000_atomic_internal_stock_reservation.sql` aplicada e registrada somente no `supabase-dev`;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- novo container iniciado em homologação; `https://dev.vortek.shop/api/ops/health` respondeu `200`;
+- `/api/estoque` respondeu `401` sem sessão, preservando a proteção do endpoint;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** manter a migration e o histórico do ledger; em incidente, interromper temporariamente o envio `internal` e operar somente por `supplier` até uma correção aditiva. Nunca apagar reservas ou reverter estado auditável manualmente.
+
+**Pendência:** nenhuma para `STO-01/STO-02`. A capacidade segura continua fora deste change-set e é a próxima ação `RULE-01`.
 
 ---
 
@@ -352,7 +389,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P2 estrutural
 **Dependência:** `STO-01/STO-02`
-**Situação:** pendente.
+**Situação:** próxima ação obrigatória.
 
 - [ ] centralizar quanto o fulfillment interno consegue atender;
 - [ ] centralizar quanto o fornecedor consegue atender;
