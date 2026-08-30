@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `SEC-06 — Next.js`
+**Próxima ação obrigatória:** `SEC-07 — Secrets runtime`
 
 ---
 
@@ -60,8 +60,8 @@ Regras de uso:
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
-| 8 | Jobs e DSLite | Em andamento | Executar somente `INV-01` |
-| 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
+| 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
+| 9 | Plataforma e banco | Em andamento | Executar somente `SEC-07` |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Pendente | Somente após estabilidade funcional |
@@ -98,6 +98,10 @@ Regras de uso:
 - [x] Não avançar para `DSL-01` antes de `JOB-01` estar integralmente validada.
 - [x] Executar somente `DSL-01 — Timeout DSLite`.
 - [x] Não avançar para `INV-01` antes de `DSL-01` estar integralmente validada.
+- [x] Executar somente `INV-01 — API DSLite x XML`.
+- [x] Não avançar para `SEC-06` antes de `INV-01` estar integralmente validada.
+- [x] Executar somente `SEC-06 — Next.js`.
+- [x] Não avançar para `SEC-07` antes de `SEC-06` estar integralmente validada.
 
 ---
 
@@ -1156,15 +1160,45 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 ### SEC-06 — Next.js
 
 **Prioridade:** P1
-**Situação:** pendente.
+**Situação:** concluída e validada em desenvolvimento/homologação.
 
-- [ ] confirmar versão atual do repositório;
-- [ ] consultar Support Policy e migration guide oficiais atuais;
-- [ ] escolher uma major atualmente suportada;
-- [ ] executar upgrade isolado, sem refatoração de UI;
-- [ ] executar testes direcionados, `npm run validate` e `npm run build`;
-- [ ] executar smoke test em homologação;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] versão inicial confirmada: Next.js `14.2.35`, React `18.3.1` e Node.js 22;
+- [x] Support Policy, migration guides do Next.js 15/16, lint e compatibilidade React 19 do Ant Design consultados nas fontes oficiais atuais;
+- [x] Next.js `16.3.3` escolhido por ser a linha Active LTS atual;
+- [x] upgrade isolado executado para Next.js `16.3.3` e React `19.2.8`, sem refatoração visual ou alteração de regra de negócio;
+- [x] request APIs dinâmicas migradas para contrato assíncrono e chamadas internas ajustadas;
+- [x] `middleware` renomeado para `proxy`, mantendo matchers, autenticação e autorizações existentes;
+- [x] lint migrado de `next lint` para ESLint flat config, preservando o escopo `src`;
+- [x] patch oficial do Ant Design 5 para React 19 carregado no provider raiz;
+- [x] instrumentação isolada no runtime Node e rastreamento Turbopack dos PDFs DSLite restringido;
+- [x] `_document` legado e sem customização removido; o build App Router passou com 119 rotas funcionais;
+- [x] testes direcionados, `npm run validate`, `npm run build`, verificação de dependências, secrets de build e diff aprovados;
+- [x] smoke test executado em `dev.vortek.shop`;
+- [x] gate obrigatório da seção 3 concluído.
+
+#### Gate e evidências
+
+- branch `dev` e working tree limpo confirmados antes da implementação;
+- causa confirmada: Next.js `14.2.35` fora das linhas LTS suportadas;
+- testes de autenticação/permissões: 8/8 aprovados;
+- testes de catálogo/proxy: 6/6 aprovados;
+- `npm run validate`: aprovado sem warnings;
+- `npm run build`: aprovado com Next.js `16.3.3` e Turbopack, sem warnings;
+- `npm ls` confirmou Next.js `16.3.3`, React/React DOM `19.2.8` e dependências sem peers inválidos;
+- `npm run check:build-secrets` e `git diff --check`: aprovados;
+- commit funcional `ca14933` enviado somente para `origin/dev`;
+- deploy acionado somente no serviço `vortek-erp-dev`; container confirmou `GIT_SHA=ca14933` e Next.js `16.3.3`;
+- homologação: health e login `200`, dashboard sem sessão `307` para `/login` e API protegida `401`;
+- smoke autenticado temporário: login, `/api/auth/me`, dashboard e configurações responderam `200`; usuário temporário removido ao final;
+- rota dinâmica pública inexistente respondeu `404` sem erro de framework; logs do novo container permaneceram sem erros;
+- migration, alteração de schema e nova variável de ambiente: **N/A**;
+- `main`, produção, `app.vortek.shop` e Supabase produção permaneceram intocados.
+
+**Observação fora do escopo:** `npm audit` informa sete vulnerabilidades altas em dependências não pertencentes ao Next.js; nenhuma foi corrigida nesta ação isolada.
+
+**Rollback:** reverter `ca14933` na branch `dev` e executar novo deploy somente do `vortek-erp-dev`. Não há rollback de banco, configuração ou dados.
+
+**Pendência:** nenhuma para `SEC-06`. A próxima ação obrigatória é `SEC-07 — Secrets runtime`.
 
 ### SEC-07 — Secrets runtime
 
