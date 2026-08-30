@@ -52,3 +52,13 @@ test('falha transitória fica em espera, mas autenticação fatal não', () => {
     retryOnFailure: true,
   }), 'failed_auth');
 });
+
+test('resposta adiada não conclui job mesmo quando o HTTP foi bem-sucedido', () => {
+  assert.equal(resolveMlJobOutcome({
+    domainLockConflict: false,
+    requestSucceeded: true,
+    authFailure: false,
+    retryOnFailure: false,
+    deferred: true,
+  }), 'on_hold');
+});

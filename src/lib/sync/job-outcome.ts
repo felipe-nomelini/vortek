@@ -5,8 +5,10 @@ export function resolveMlJobOutcome(input: {
   requestSucceeded: boolean;
   authFailure: boolean;
   retryOnFailure: boolean;
+  deferred?: boolean;
 }): MlJobOutcome {
   if (input.authFailure) return 'failed_auth';
+  if (input.deferred) return 'on_hold';
   if (input.domainLockConflict) return input.retryOnFailure ? 'on_hold' : 'completo';
   if (input.requestSucceeded) return 'completo';
   return input.retryOnFailure ? 'on_hold' : 'erro';

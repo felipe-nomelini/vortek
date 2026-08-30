@@ -5,11 +5,21 @@ import {
   createAccountMoneyReport,
   downloadAccountMoneyReport,
   getAccountMoneyReportTask,
-  parseMercadoPagoAccountMoneyCsv,
   searchAccountMoneyReports,
-  type MercadoPagoMovementRow,
+  type MercadoPagoReportTask,
 } from '@/services/mercadopago';
-import { HAYAMAX_FORNECEDOR_ID, normalizeMoneyAmount } from '@/lib/supplier-balance';
+import {
+  getMercadoPagoReportResumeState,
+  isHayamaxTopupCandidate,
+  isMercadoPagoReportPending,
+  isReviewRequiredCandidate,
+  parseMercadoPagoAccountMoneyCsv,
+} from '@/lib/mercadopago-account-money';
+import {
+  HAYAMAX_FORNECEDOR_ID,
+  HAYAMAX_MIN_TOPUP_AMOUNT,
+  normalizeMoneyAmount,
+} from '@/lib/supplier-balance';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -32,36 +42,18 @@ function hayamaxMatchers() {
     .filter(Boolean);
 }
 
-function rowSearchText(row: MercadoPagoMovementRow) {
-  return [
-    row.description,
-    row.reference,
-    row.movementType,
-    ...Object.values(row.raw),
-  ]
-    .filter(Boolean)
-    .join(' ')
-    .toLowerCase();
-}
+async function getPersistedResumeState(syncJobId: string) {
+  if (!syncJobId) return null;
+  const service = createServiceClient();
+  const { data, error } = await service
+    .from('jobs')
+    .select('log')
+    .eq('id', syncJobId)
+    .eq('tipo', 'sync_mercadopago_account_money')
+    .maybeSingle();
 
-function isHayamaxTopupCandidate(row: MercadoPagoMovementRow) {
-  const text = rowSearchText(row);
-  const digits = text.replace(/\D+/g, '');
-  const matchedByText = hayamaxMatchers().some((token) => {
-    const clean = token.trim().toLowerCase();
-    if (!clean) return false;
-    const tokenDigits = clean.replace(/\D+/g, '');
-    return text.includes(clean) || (tokenDigits.length >= 8 && digits.includes(tokenDigits));
-  });
-  const enoughValue = Math.abs(row.amount) >= 1000;
-  return matchedByText && enoughValue;
-}
-
-function isReviewRequiredCandidate(row: MercadoPagoMovementRow) {
-  const text = rowSearchText(row);
-  const enoughValue = Math.abs(row.amount) >= 1000;
-  const looksLikeOutgoingBill = row.amount < 0 || /boleto|conta|pagamento|bill|invoice/.test(text);
-  return enoughValue && looksLikeOutgoingBill;
+  if (error) throw new Error(`Falha ao recuperar lifecycle Mercado Pago: ${error.message}`);
+  return getMercadoPagoReportResumeState(data?.log);
 }
 
 async function importCsv(fileName: string) {
@@ -71,12 +63,23 @@ async function importCsv(fileName: string) {
 
   let imported = 0;
   let topups = 0;
+  let rejected = 0;
   const errors: string[] = [];
 
   for (const row of rows) {
-    const matchedSupplier = isHayamaxTopupCandidate(row)
+    if (row.validationErrors.length > 0) {
+      rejected += 1;
+      errors.push(`validation:${row.externalId}:${row.validationErrors.join(',')}`);
+      continue;
+    }
+
+    const matchedSupplier = isHayamaxTopupCandidate(
+      row,
+      hayamaxMatchers(),
+      HAYAMAX_MIN_TOPUP_AMOUNT,
+    )
       ? 'HAYAMAX'
-      : isReviewRequiredCandidate(row)
+      : isReviewRequiredCandidate(row, HAYAMAX_MIN_TOPUP_AMOUNT)
         ? 'REVIEW_REQUIRED'
         : null;
     const amount = normalizeMoneyAmount(row.amount);
@@ -136,19 +139,32 @@ async function importCsv(fileName: string) {
         .select('id')
         .maybeSingle();
 
-      if (insertError) {
+      if (insertError?.code === '23505') {
+        const { data: concurrent, error: concurrentError } = await service
+          .from('supplier_balance_movements')
+          .select('id')
+          .eq('movement_key', movementKey)
+          .maybeSingle();
+        if (concurrentError || !concurrent?.id) {
+          errors.push(`balance_conflict:${row.externalId}:${concurrentError?.message || 'movimento não encontrado'}`);
+          continue;
+        }
+        movementId = concurrent.id;
+      } else if (insertError) {
         errors.push(`balance_insert:${row.externalId}:${insertError.message}`);
         continue;
+      } else {
+        movementId = inserted?.id || null;
+        topups += 1;
       }
-      movementId = inserted?.id || null;
-      topups += 1;
     }
 
     if (movementId && rawMovement?.id) {
-      await service
+      const { error: linkError } = await service
         .from('mercadopago_account_movements')
         .update({ supplier_balance_movement_id: movementId, updated_at: new Date().toISOString() })
         .eq('id', rawMovement.id);
+      if (linkError) errors.push(`balance_link:${row.externalId}:${linkError.message}`);
     }
   }
 
@@ -158,8 +174,52 @@ async function importCsv(fileName: string) {
     fileName,
     imported,
     topups,
+    rejected,
     errors,
   };
+}
+
+async function responseForTask(task: MercadoPagoReportTask, beginDate: string | null, endDate: string | null) {
+  const taskId = String(task.id || '').trim();
+  const status = String(task.status || '').trim().toLowerCase();
+
+  if (status === 'processed') {
+    const fileName = String(task.file_name || '').trim();
+    if (!fileName) throw new Error(`Tarefa Mercado Pago ${taskId} processada sem arquivo`);
+    const imported = await importCsv(fileName);
+    return NextResponse.json({
+      ...imported,
+      task,
+      lifecycle: {
+        state: imported.success ? 'complete' : 'import_failed',
+        taskId,
+        beginDate,
+        endDate,
+        stages: imported.success
+          ? ['processed', 'download', 'import', 'complete']
+          : ['processed', 'download', 'import'],
+      },
+    });
+  }
+
+  if (!isMercadoPagoReportPending(status)) {
+    throw new Error(`Status inesperado da tarefa Mercado Pago ${taskId}: ${status || 'ausente'}`);
+  }
+
+  return NextResponse.json({
+    success: true,
+    deferred: true,
+    mode: 'report_processing',
+    message: 'Relatório Mercado Pago ainda está em processamento.',
+    task,
+    lifecycle: {
+      state: 'processing',
+      taskId,
+      beginDate,
+      endDate,
+      stages: ['requested', 'processing'],
+    },
+  }, { status: 202 });
 }
 
 export async function POST(request: Request) {
@@ -172,7 +232,7 @@ export async function POST(request: Request) {
     const bodyRaw = await request.json().catch(() => ({}));
     const body = isRecord(bodyRaw) ? bodyRaw : {};
     const windowDays = parsePositiveInt(body.windowDays, 7);
-    const { beginDate, endDate } = buildUtcRange(
+    const requestedRange = buildUtcRange(
       windowDays,
       typeof body.beginDate === 'string' ? body.beginDate : null,
       typeof body.endDate === 'string' ? body.endDate : null,
@@ -183,18 +243,14 @@ export async function POST(request: Request) {
       return NextResponse.json(await importCsv(directFileName));
     }
 
-    const taskId = String(body.taskId || '').trim();
+    const syncJobId = String(body.syncJobId || '').trim();
+    const resumeState = await getPersistedResumeState(syncJobId);
+    const taskId = String(body.taskId || resumeState?.taskId || '').trim();
+    const beginDate = resumeState?.beginDate || requestedRange.beginDate;
+    const endDate = resumeState?.endDate || requestedRange.endDate;
     if (taskId) {
       const task = await getAccountMoneyReportTask(taskId);
-      if (task.status === 'processed' && task.file_name) {
-        return NextResponse.json({ ...(await importCsv(task.file_name)), task });
-      }
-      return NextResponse.json({
-        success: true,
-        mode: 'task_pending',
-        message: 'Relatório Mercado Pago ainda não processado.',
-        task,
-      });
+      return responseForTask(task, beginDate, endDate);
     }
 
     const search = await searchAccountMoneyReports({ beginDate, endDate });
@@ -206,29 +262,30 @@ export async function POST(request: Request) {
     const matchingReports = (search.results || []).filter(sameRange);
     const ready = matchingReports.find((report) => report.status === 'processed' && report.file_name);
     if (ready?.file_name) {
-      return NextResponse.json({ ...(await importCsv(ready.file_name)), report: ready });
+      return responseForTask(ready, beginDate, endDate);
     }
 
-    const pending = matchingReports.find((report) => report.status && report.status !== 'processed');
+    const pending = matchingReports.find((report) => isMercadoPagoReportPending(report.status));
     if (pending) {
-      return NextResponse.json({
-        success: true,
-        mode: 'report_pending',
-        message: 'Relatório Mercado Pago ainda não processado.',
-        beginDate,
-        endDate,
-        report: pending,
-      }, { status: 202 });
+      return responseForTask(pending, beginDate, endDate);
     }
 
     const task = await createAccountMoneyReport(beginDate, endDate);
     return NextResponse.json({
       success: true,
+      deferred: true,
       mode: 'report_requested',
-      message: 'Relatório Mercado Pago solicitado. Rode novamente após processamento.',
+      message: 'Relatório Mercado Pago solicitado e mantido no mesmo job para processamento.',
       beginDate,
       endDate,
       task,
+      lifecycle: {
+        state: 'requested',
+        taskId: String(task.id),
+        beginDate,
+        endDate,
+        stages: ['requested'],
+      },
     }, { status: 202 });
   } catch (err: any) {
     const message = err?.message || 'Falha ao sincronizar Mercado Pago';

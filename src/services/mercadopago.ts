@@ -1,6 +1,10 @@
-import crypto from 'node:crypto';
 import { MercadoPagoConfig } from 'mercadopago';
 import { createServiceClient } from '@/lib/supabase';
+
+export {
+  parseMercadoPagoAccountMoneyCsv,
+  type MercadoPagoMovementRow,
+} from '@/lib/mercadopago-account-money';
 
 const MP_BASE_URL = 'https://api.mercadopago.com';
 
@@ -10,133 +14,6 @@ export interface MercadoPagoReportTask {
   report_id?: number | null;
   file_name?: string | null;
   [key: string]: unknown;
-}
-
-export interface MercadoPagoMovementRow {
-  externalId: string;
-  movementDate: string | null;
-  description: string | null;
-  reference: string | null;
-  amount: number;
-  movementType: string | null;
-  currency: string | null;
-  raw: Record<string, string>;
-}
-
-function normalizeHeader(value: string) {
-  return value
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '');
-}
-
-function firstValue(row: Record<string, string>, keys: string[]) {
-  for (const key of keys) {
-    const value = row[key];
-    if (value !== undefined && value !== null && String(value).trim() !== '') {
-      return String(value).trim();
-    }
-  }
-  return null;
-}
-
-function parseMoney(value: string | null) {
-  if (!value) return 0;
-  const clean = value
-    .replace(/[^\d,.-]/g, '')
-    .replace(/\.(?=\d{3}(?:\D|$))/g, '')
-    .replace(',', '.');
-  const parsed = Number(clean);
-  return Number.isFinite(parsed) ? Number(parsed.toFixed(2)) : 0;
-}
-
-function parseDate(value: string | null) {
-  if (!value) return null;
-  const direct = new Date(value);
-  if (!Number.isNaN(direct.getTime())) return direct.toISOString();
-
-  const match = value.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2})(?::(\d{2}))?)?$/);
-  if (!match) return null;
-  const [, day, month, year, hour = '00', minute = '00', second = '00'] = match;
-  return new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}-03:00`).toISOString();
-}
-
-function splitCsvLine(line: string, delimiter: string) {
-  const cells: string[] = [];
-  let current = '';
-  let quoted = false;
-
-  for (let i = 0; i < line.length; i += 1) {
-    const char = line[i];
-    const next = line[i + 1];
-    if (char === '"' && quoted && next === '"') {
-      current += '"';
-      i += 1;
-      continue;
-    }
-    if (char === '"') {
-      quoted = !quoted;
-      continue;
-    }
-    if (char === delimiter && !quoted) {
-      cells.push(current.trim());
-      current = '';
-      continue;
-    }
-    current += char;
-  }
-  cells.push(current.trim());
-  return cells;
-}
-
-export function parseMercadoPagoAccountMoneyCsv(csv: string): MercadoPagoMovementRow[] {
-  const lines = csv
-    .replace(/^\uFEFF/, '')
-    .split(/\r?\n/)
-    .filter((line) => line.trim().length > 0);
-  if (lines.length < 2) return [];
-
-  const delimiter = (lines[0].match(/;/g)?.length || 0) > (lines[0].match(/,/g)?.length || 0) ? ';' : ',';
-  const headers = splitCsvLine(lines[0], delimiter).map(normalizeHeader);
-
-  return lines.slice(1).map((line) => {
-    const cells = splitCsvLine(line, delimiter);
-    const raw: Record<string, string> = {};
-    headers.forEach((header, index) => {
-      raw[header || `column_${index}`] = cells[index] || '';
-    });
-
-    const date = parseDate(firstValue(raw, [
-      'date', 'data', 'movement_date', 'transaction_date', 'settlement_date', 'creation_date',
-    ]));
-    const description = firstValue(raw, [
-      'description', 'descricao', 'detail', 'detalhe', 'transaction_detail', 'operation_detail', 'tipo_de_operacao',
-    ]);
-    const reference = firstValue(raw, [
-      'reference', 'referencia', 'external_reference', 'source_id', 'transaction_id', 'payment_id', 'id',
-    ]);
-    const amount = parseMoney(firstValue(raw, [
-      'net_amount', 'gross_amount', 'amount', 'valor', 'transaction_amount', 'money_amount',
-    ]));
-    const currency = firstValue(raw, ['currency', 'currency_id', 'moeda']);
-    const movementType = firstValue(raw, ['type', 'tipo', 'operation_type', 'movement_type']);
-    const hashSource = JSON.stringify({ date, description, reference, amount, raw });
-    const externalId = reference || crypto.createHash('sha256').update(hashSource).digest('hex');
-
-    return {
-      externalId,
-      movementDate: date,
-      description,
-      reference,
-      amount,
-      movementType,
-      currency,
-      raw,
-    };
-  });
 }
 
 export async function getMercadoPagoAccessToken() {

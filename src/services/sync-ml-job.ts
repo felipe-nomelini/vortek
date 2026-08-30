@@ -219,11 +219,13 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     const skippedDueToDomainLock = isDomainLockConflict;
     const requestSucceeded = res.ok && raw?.success !== false && raw?.ok !== false;
     const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
+    const deferred = raw?.deferred === true;
     const statusFinal = resolveMlJobOutcome({
       domainLockConflict: isDomainLockConflict,
       requestSucceeded,
       authFailure,
       retryOnFailure: Boolean(config.retryOnFailure),
+      deferred,
     });
     const ok = statusFinal === 'completo';
     const errorCategory = raw?.category || primaryError?.category || null;
@@ -271,6 +273,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       duration_ms: Date.now() - startedAtMs,
       request_timeout_ms: requestTimeoutMs,
       auth_failure: authFailure,
+      deferred,
       error_code: errorCode,
       error_category: errorCategory,
       upstream_status: upstreamStatus,
