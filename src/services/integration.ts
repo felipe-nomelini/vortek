@@ -1216,12 +1216,7 @@ export async function consultarInvoiceDataPorShipmentML(
 export async function upsertInvoiceDataMLByShipment(input: {
   shipmentId: string;
   fiscalKey: string;
-  invoiceNumber: string | number;
-  invoiceSerie: string | number;
-  invoiceDate: string;
-  invoiceAmount: number;
   nfeXml: string;
-  cfop?: string | number | null;
   siteId?: string;
 }): Promise<{
   ok: boolean;
@@ -1233,7 +1228,7 @@ export async function upsertInvoiceDataMLByShipment(input: {
   error?: string;
   reason?: string;
   errorCode?: string | null;
-  contentMode?: "json" | "xml";
+  contentMode?: "xml";
   attempts?: Array<{
     method: "PUT" | "POST";
     endpoint: string;
@@ -1245,21 +1240,10 @@ export async function upsertInvoiceDataMLByShipment(input: {
 }> {
   const shipmentId = String(input.shipmentId || "").trim();
   const fiscalKey = String(input.fiscalKey || "").trim();
-  const invoiceNumber = String(input.invoiceNumber || "").trim();
-  const invoiceSerie = String(input.invoiceSerie || "").trim();
-  const invoiceDate = String(input.invoiceDate || "").trim();
   const siteId = String(input.siteId || "MLB").trim() || "MLB";
-  const invoiceAmount = Number(input.invoiceAmount || 0);
   const nfeXml = String(input.nfeXml || "").trim();
 
-  if (
-    !shipmentId ||
-    !fiscalKey ||
-    !invoiceNumber ||
-    !invoiceSerie ||
-    !invoiceDate ||
-    !(invoiceAmount > 0)
-  ) {
+  if (!shipmentId || !fiscalKey) {
     return {
       ok: false,
       statusCode: 400,
@@ -1276,29 +1260,11 @@ export async function upsertInvoiceDataMLByShipment(input: {
     };
   }
 
-  const endpointInvoiceDataJson = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data?siteId=${encodeURIComponent(siteId)}`;
-  const endpointInvoiceDataXml = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data/?siteId=${encodeURIComponent(siteId)}`;
-  const payloadJson: Record<string, any> = {
-    fiscal_key: fiscalKey,
-    invoice_number: invoiceNumber,
-    invoice_serie: invoiceSerie,
-    invoice_date: invoiceDate,
-    invoice_amount: invoiceAmount,
-  };
-  if (
-    input.cfop !== null &&
-    input.cfop !== undefined &&
-    String(input.cfop).trim()
-  ) {
-    payloadJson.cfop = String(input.cfop).trim();
-  }
-
+  const invoiceDataEndpoint = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data?siteId=${encodeURIComponent(siteId)}`;
+  const createEndpoint = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data/?siteId=${encodeURIComponent(siteId)}`;
   let lastError = "Falha ao subir invoice_data no ML";
   let lastStatus: number | null = null;
   let lastCode: string | null = null;
-  let lastMethod: "PUT" | "POST" | undefined;
-  let lastEndpoint: string | undefined;
-  let selectedContentMode: "json" | "xml" | undefined;
   const attempts: Array<{
     method: "PUT" | "POST";
     endpoint: string;
@@ -1311,19 +1277,21 @@ export async function upsertInvoiceDataMLByShipment(input: {
   const tryUpload = async (
     method: "PUT" | "POST",
     endpoint: string,
-    contentType: string,
-    body: string,
   ) => {
-    lastMethod = method;
-    lastEndpoint = endpoint;
     const result = await fetchMLResult<any>(endpoint, {
       method,
-      headers: { "Content-Type": contentType },
-      body,
+      headers: { "Content-Type": "application/xml" },
+      body: nfeXml,
     });
     if (result.ok) {
-      return { ok: true as const, result };
+      return {
+        ok: true as const,
+        result,
+        idempotencyConflict: false,
+        authFatal: false,
+      };
     }
+
     lastStatus = result.status;
     const message = result.error?.message || `HTTP ${result.status ?? "n/a"}`;
     lastError = message;
@@ -1331,269 +1299,170 @@ export async function upsertInvoiceDataMLByShipment(input: {
     attempts.push({
       method,
       endpoint,
-      contentType,
+      contentType: "application/xml",
       statusCode: result.status ?? null,
       code: lastCode,
       message,
     });
+
     const code = String(result.error?.code || "").toLowerCase();
-    const lowerMsg = message.toLowerCase();
-    const duplicatedKey =
-      code.includes("duplicated_fiscal_key") ||
-      lowerMsg.includes("duplicated_fiscal_key");
-    const alreadySaved =
-      code.includes("shipment_invoice_already_saved") ||
-      lowerMsg.includes("already saved");
-    const unsupportedJson =
-      result.status === 415 &&
-      (code.includes("unsupported content-type json") ||
-        lowerMsg.includes("unsupported type json"));
+    const lowerMessage = message.toLowerCase();
     return {
       ok: false as const,
       result,
-      duplicatedKey,
-      alreadySaved,
-      unsupportedJson,
+      idempotencyConflict:
+        code.includes("duplicated_fiscal_key") ||
+        lowerMessage.includes("duplicated_fiscal_key") ||
+        code.includes("shipment_invoice_already_saved") ||
+        lowerMessage.includes("already saved"),
       authFatal:
         result.status === 401 || result.error?.category === "auth_fatal",
     };
   };
 
-  // 1) Consulta estado atual do shipment invoice_data
+  const verifyFinalInvoice = async (params: {
+    method: "PUT" | "POST";
+    endpoint: string;
+    successStatus: number | null;
+    successReason: "created_xml" | "updated_xml" | "already_linked";
+  }) => {
+    const verified = await consultarInvoiceDataPorShipmentML(
+      shipmentId,
+      siteId,
+    );
+    const verifiedKey = verified.ok
+      ? String(verified.data?.fiscal_key || "").trim()
+      : "";
+
+    if (verified.ok && verifiedKey === fiscalKey) {
+      return {
+        ok: true as const,
+        statusCode: params.successStatus || verified.statusCode || 200,
+        method: params.method,
+        lastMethodTried: params.method,
+        endpoint: params.endpoint,
+        data: verified.data,
+        reason: params.successReason,
+        contentMode: "xml" as const,
+        attempts,
+      };
+    }
+
+    return {
+      ok: false as const,
+      statusCode: verified.statusCode ?? params.successStatus,
+      method: params.method,
+      lastMethodTried: params.method,
+      endpoint: params.endpoint,
+      data: verified.data,
+      error:
+        verified.error ||
+        `Chave fiscal final no ML (${verifiedKey || "ausente"}) difere da chave enviada`,
+      reason: "invoice_verification_failed",
+      errorCode: null,
+      contentMode: "xml" as const,
+      attempts,
+    };
+  };
+
   const currentInvoiceData = await consultarInvoiceDataPorShipmentML(
     shipmentId,
     siteId,
   );
+
   if (currentInvoiceData.ok && currentInvoiceData.data) {
-    const currentKey = String(currentInvoiceData.data?.fiscal_key || "").trim();
-    if (currentKey && currentKey === fiscalKey) {
+    const currentKey = String(currentInvoiceData.data.fiscal_key || "").trim();
+    if (currentKey === fiscalKey) {
       return {
         ok: true,
         statusCode: currentInvoiceData.statusCode || 200,
-        endpoint: endpointInvoiceDataJson,
+        endpoint: invoiceDataEndpoint,
         data: currentInvoiceData.data,
         reason: "already_linked",
-        contentMode: "json",
-        attempts,
-      };
-    }
-
-    const invoiceId = String(currentInvoiceData.data?.id || "").trim();
-    if (invoiceId) {
-      selectedContentMode = "xml";
-      const updateEndpoint = `/shipment_invoice/${encodeURIComponent(invoiceId)}/?siteId=${encodeURIComponent(siteId)}`;
-      const updateTry = await tryUpload(
-        "PUT",
-        updateEndpoint,
-        "application/xml",
-        nfeXml,
-      );
-      if (updateTry.ok) {
-        return {
-          ok: true,
-          statusCode: updateTry.result.status,
-          method: "PUT",
-          lastMethodTried: "PUT",
-          endpoint: updateEndpoint,
-          data: updateTry.result.data,
-          reason: "updated_xml",
-          contentMode: "xml",
-          attempts,
-        };
-      }
-      if ((updateTry as any).duplicatedKey || (updateTry as any).alreadySaved) {
-        return {
-          ok: true,
-          statusCode: lastStatus,
-          method: "PUT",
-          lastMethodTried: "PUT",
-          endpoint: updateEndpoint,
-          data: null,
-          reason: "updated_xml",
-          contentMode: "xml",
-          attempts,
-        };
-      }
-    }
-  }
-
-  // 2) Criação no shipment invoice_data: PUT JSON -> POST JSON -> POST XML
-  selectedContentMode = "json";
-  const putJson = await tryUpload(
-    "PUT",
-    endpointInvoiceDataJson,
-    "application/json",
-    JSON.stringify(payloadJson),
-  );
-  if (putJson.ok) {
-    return {
-      ok: true,
-      statusCode: putJson.result.status,
-      method: "PUT",
-      lastMethodTried: "PUT",
-      endpoint: endpointInvoiceDataJson,
-      data: putJson.result.data,
-      reason: "created_json",
-      contentMode: "json",
-      attempts,
-    };
-  }
-  if ((putJson as any).duplicatedKey || (putJson as any).alreadySaved) {
-    return {
-      ok: true,
-      statusCode: lastStatus,
-      method: "PUT",
-      lastMethodTried: "PUT",
-      endpoint: endpointInvoiceDataJson,
-      data: null,
-      reason: "already_linked",
-      contentMode: "json",
-      attempts,
-    };
-  }
-  if ((putJson as any).authFatal) {
-    return {
-      ok: false,
-      statusCode: lastStatus,
-      method: "PUT",
-      lastMethodTried: "PUT",
-      endpoint: endpointInvoiceDataJson,
-      error: lastError,
-      reason: "auth_fatal",
-      errorCode: lastCode,
-      contentMode: "json",
-      attempts,
-    };
-  }
-
-  const postJson = await tryUpload(
-    "POST",
-    endpointInvoiceDataJson,
-    "application/json",
-    JSON.stringify(payloadJson),
-  );
-  if (postJson.ok) {
-    return {
-      ok: true,
-      statusCode: postJson.result.status,
-      method: "POST",
-      lastMethodTried: "POST",
-      endpoint: endpointInvoiceDataJson,
-      data: postJson.result.data,
-      reason: "created_json",
-      contentMode: "json",
-      attempts,
-    };
-  }
-  if ((postJson as any).duplicatedKey || (postJson as any).alreadySaved) {
-    return {
-      ok: true,
-      statusCode: lastStatus,
-      method: "POST",
-      lastMethodTried: "POST",
-      endpoint: endpointInvoiceDataJson,
-      data: null,
-      reason: "already_linked",
-      contentMode: "json",
-      attempts,
-    };
-  }
-  if ((postJson as any).authFatal) {
-    return {
-      ok: false,
-      statusCode: lastStatus,
-      method: "POST",
-      lastMethodTried: "POST",
-      endpoint: endpointInvoiceDataJson,
-      error: lastError,
-      reason: "auth_fatal",
-      errorCode: lastCode,
-      contentMode: "json",
-      attempts,
-    };
-  }
-
-  const shouldTryXml = Boolean(
-    (putJson as any).unsupportedJson || (postJson as any).unsupportedJson,
-  );
-  if (shouldTryXml) {
-    selectedContentMode = "xml";
-    const postXml = await tryUpload(
-      "POST",
-      endpointInvoiceDataXml,
-      "application/xml",
-      nfeXml,
-    );
-    if (postXml.ok) {
-      return {
-        ok: true,
-        statusCode: postXml.result.status,
-        method: "POST",
-        lastMethodTried: "POST",
-        endpoint: endpointInvoiceDataXml,
-        data: postXml.result.data,
-        reason: "created_xml",
         contentMode: "xml",
         attempts,
       };
     }
-    if ((postXml as any).duplicatedKey || (postXml as any).alreadySaved) {
+
+    const invoiceId = String(currentInvoiceData.data.id || "").trim();
+    if (!invoiceId) {
       return {
-        ok: true,
-        statusCode: lastStatus,
-        method: "POST",
-        lastMethodTried: "POST",
-        endpoint: endpointInvoiceDataXml,
-        data: null,
-        reason: "already_linked",
+        ok: false,
+        statusCode: currentInvoiceData.statusCode || 200,
+        endpoint: invoiceDataEndpoint,
+        data: currentInvoiceData.data,
+        error: "Invoice existente no ML sem identificador para atualização",
+        reason: "invoice_id_missing",
         contentMode: "xml",
         attempts,
       };
     }
-    if ((postXml as any).authFatal) {
+
+    const updateEndpoint = `/shipment_invoice/${encodeURIComponent(invoiceId)}/?siteId=${encodeURIComponent(siteId)}`;
+    const update = await tryUpload("PUT", updateEndpoint);
+    if (!update.ok && !update.idempotencyConflict) {
       return {
         ok: false,
         statusCode: lastStatus,
-        method: "POST",
-        lastMethodTried: "POST",
-        endpoint: endpointInvoiceDataXml,
+        method: "PUT",
+        lastMethodTried: "PUT",
+        endpoint: updateEndpoint,
         error: lastError,
-        reason: "auth_fatal",
+        reason: update.authFatal
+          ? "auth_fatal"
+          : "ml_invoice_data_upload_failed",
         errorCode: lastCode,
         contentMode: "xml",
         attempts,
       };
     }
+
+    return verifyFinalInvoice({
+      method: "PUT",
+      endpoint: updateEndpoint,
+      successStatus: update.ok ? update.result.status : lastStatus,
+      successReason: "updated_xml",
+    });
   }
 
-  const allShipmentInvoice404 =
-    attempts.length >= 2 &&
-    attempts.every((a) => {
-      const code = String(a.code || "").toLowerCase();
-      const msg = String(a.message || "").toLowerCase();
-      return (
-        a.statusCode === 404 &&
-        (code.includes("not_found_shipment_invoice") ||
-          msg.includes("not found shipment invoice"))
-      );
-    });
+  if (currentInvoiceData.statusCode !== 404) {
+    return {
+      ok: false,
+      statusCode: currentInvoiceData.statusCode,
+      endpoint: invoiceDataEndpoint,
+      error:
+        currentInvoiceData.error ||
+        "Falha ao consultar invoice_data antes do upload",
+      reason: "invoice_lookup_failed",
+      contentMode: "xml",
+      attempts,
+    };
+  }
 
-  return {
-    ok: false,
-    statusCode: lastStatus,
-    method: lastMethod,
-    lastMethodTried: lastMethod,
-    endpoint: lastEndpoint || endpointInvoiceDataJson,
-    error: lastError,
-    reason: allShipmentInvoice404
-      ? "shipment_invoice_not_found_after_all_modes"
-      : shouldTryXml
-        ? "unsupported_content_type"
+  const created = await tryUpload("POST", createEndpoint);
+  if (!created.ok && !created.idempotencyConflict) {
+    return {
+      ok: false,
+      statusCode: lastStatus,
+      method: "POST",
+      lastMethodTried: "POST",
+      endpoint: createEndpoint,
+      error: lastError,
+      reason: created.authFatal
+        ? "auth_fatal"
         : "ml_invoice_data_upload_failed",
-    errorCode: lastCode,
-    contentMode: selectedContentMode,
-    attempts,
-  };
+      errorCode: lastCode,
+      contentMode: "xml",
+      attempts,
+    };
+  }
+
+  return verifyFinalInvoice({
+    method: "POST",
+    endpoint: createEndpoint,
+    successStatus: created.ok ? created.result.status : lastStatus,
+    successReason: created.ok ? "created_xml" : "already_linked",
+  });
 }
 
 export type MlLabelResponseType = "pdf" | "zpl2";

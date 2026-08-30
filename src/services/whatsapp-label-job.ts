@@ -153,18 +153,6 @@ function extractFiscalKey(xml: string): string | null {
   return extractXmlTag(xml, 'chNFe');
 }
 
-function parseInvoiceDateFromXml(xml: string): string | null {
-  const dhEmi = extractXmlTag(xml, 'dhEmi');
-  if (dhEmi) {
-    const parsed = new Date(dhEmi);
-    if (!Number.isNaN(parsed.getTime())) return parsed.toISOString();
-  }
-  const dEmi = extractXmlTag(xml, 'dEmi');
-  if (!dEmi) return null;
-  const parsed = new Date(`${dEmi}T00:00:00-03:00`);
-  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
-}
-
 function parseInvoiceAmountFromXml(xml: string): number | null {
   const value = extractXmlTag(xml, 'vNF');
   if (!value) return null;
@@ -290,10 +278,7 @@ async function ensureInvoiceDataIfNeeded(params: {
 
   const fiscalKey = String(pedido.nfe_chave || '').trim() || extractFiscalKey(xml);
   const invoiceNumber = extractXmlTag(xml, 'nNF') || String(pedido.nota_fiscal_numero || '').trim();
-  const invoiceSerie = extractXmlTag(xml, 'serie') || '1';
-  const invoiceDate = parseInvoiceDateFromXml(xml) || new Date().toISOString();
   const invoiceAmount = parseInvoiceAmountFromXml(xml) || Number(pedido.total || 0);
-  const cfop = extractXmlTag(xml, 'CFOP') || String(pedido.nfe_cfop || '').trim() || undefined;
 
   if (!fiscalKey || !invoiceNumber || !(invoiceAmount > 0)) {
     throw new Error('XML da NF sem chave, número ou valor para upload no ML');
@@ -306,12 +291,7 @@ async function ensureInvoiceDataIfNeeded(params: {
   const upload = await upsertInvoiceDataMLByShipment({
     shipmentId,
     fiscalKey,
-    invoiceNumber,
-    invoiceSerie,
-    invoiceDate,
-    invoiceAmount,
     nfeXml: xml,
-    cfop,
   });
 
   await registrarEventoNfAuditoria({

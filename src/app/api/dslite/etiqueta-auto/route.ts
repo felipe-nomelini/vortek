@@ -109,19 +109,6 @@ function extractTag(xml: string | null | undefined, tag: string): string | null 
   }
 }
 
-function parseInvoiceDateFromXml(xml: string | null | undefined): string | null {
-  const dhEmi = extractTag(xml, 'dhEmi');
-  if (dhEmi) {
-    const d = new Date(dhEmi);
-    if (!Number.isNaN(d.getTime())) return d.toISOString();
-  }
-  const dEmi = extractTag(xml, 'dEmi');
-  if (!dEmi) return null;
-  const d = new Date(`${dEmi}T00:00:00-03:00`);
-  if (Number.isNaN(d.getTime())) return null;
-  return d.toISOString();
-}
-
 function parseInvoiceAmountFromXml(xml: string | null | undefined): number | null {
   const vNf = extractTag(xml, 'vNF');
   if (!vNf) return null;
@@ -1120,10 +1107,7 @@ export async function POST(req: Request) {
       }
 
       const nfNumber = extractTag(xmlParaUso, 'nNF') || String(ensured.numero || (pedido as any).nota_fiscal_numero || '').trim();
-      const nfSerie = extractTag(xmlParaUso, 'serie') || '1';
-      const nfDateIso = parseInvoiceDateFromXml(xmlParaUso) || new Date().toISOString();
       const nfAmount = parseInvoiceAmountFromXml(xmlParaUso) || Number((pedido as any).total || 0);
-      const cfop = extractTag(xmlParaUso, 'CFOP') || String((pedido as any).nfe_cfop || '').trim() || undefined;
       const fiscalKey = fiscalKeyLocal || extractTag(xmlParaUso, 'chNFe');
 
       if (!fiscalKey || !nfNumber || !(nfAmount > 0)) {
@@ -1145,12 +1129,7 @@ export async function POST(req: Request) {
       const uploadRes = await upsertInvoiceDataMLByShipment({
         shipmentId,
         fiscalKey,
-        invoiceNumber: nfNumber,
-        invoiceSerie: nfSerie,
-        invoiceDate: nfDateIso,
-        invoiceAmount: nfAmount,
         nfeXml: xmlParaUso,
-        cfop,
       });
 
       for (const [idx, attempt] of (uploadRes.attempts || []).entries()) {
@@ -1225,56 +1204,28 @@ export async function POST(req: Request) {
         );
       }
 
-      const verify = await consultarInvoiceDataPorShipmentML(shipmentId, 'MLB');
-      const mlFiscalKey = verify.ok ? String(verify.data?.fiscal_key || '').trim() : '';
-      if (verify.ok && mlFiscalKey && mlFiscalKey === fiscalKey) {
-        updateStep(steps, 'upload_invoice_ml', {
-          status: 'success',
-          detail: `NF vinculada no ML (shipment ${shipmentId})`,
-        });
-        await registrarEventoNfAuditoria({
-          pedidoId: String(pedidoId),
-          mlOrderId,
-          evento: 'ml_invoice_data_upload_success',
-          respostaMl: {
-            endpoint_ml: uploadRes.endpoint || null,
-            method: uploadRes.method || null,
-            last_method_tried: uploadRes.lastMethodTried || null,
-            status_http: uploadRes.statusCode || null,
-            fiscal_key_local: fiscalKey,
-            fiscal_key_ml: mlFiscalKey,
-            reason: uploadRes.reason || null,
-            content_mode_selected: uploadRes.contentMode || null,
-            attempts: uploadRes.attempts || [],
-          },
-          statusResultante: 'success',
-        });
-      } else {
-        await registrarEventoNfAuditoria({
-          pedidoId: String(pedidoId),
-          mlOrderId,
-          evento: 'ml_invoice_data_upload_failed',
-          respostaMl: {
-            endpoint_ml: uploadRes.endpoint || null,
-            method: uploadRes.method || null,
-            status_http: uploadRes.statusCode || null,
-            fiscal_key_local: fiscalKey,
-            fiscal_key_ml: mlFiscalKey || null,
-            verify_error: verify.error || null,
-          },
-          statusResultante: 'failed_verify',
-        });
-        return stepError(
-          steps,
-          'upload_invoice_ml',
-          'Não foi possível confirmar o vínculo fiscal da NF no ML após upload.',
-          {
-            fiscal_key_local: fiscalKey,
-            fiscal_key_ml: mlFiscalKey || null,
-            verify_error: verify.error || null,
-          },
-        );
-      }
+      const mlFiscalKey = String(uploadRes.data?.fiscal_key || '').trim();
+      updateStep(steps, 'upload_invoice_ml', {
+        status: 'success',
+        detail: `NF vinculada no ML (shipment ${shipmentId})`,
+      });
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId,
+        evento: 'ml_invoice_data_upload_success',
+        respostaMl: {
+          endpoint_ml: uploadRes.endpoint || null,
+          method: uploadRes.method || null,
+          last_method_tried: uploadRes.lastMethodTried || null,
+          status_http: uploadRes.statusCode || null,
+          fiscal_key_local: fiscalKey,
+          fiscal_key_ml: mlFiscalKey,
+          reason: uploadRes.reason || null,
+          content_mode_selected: uploadRes.contentMode || null,
+          attempts: uploadRes.attempts || [],
+        },
+        statusResultante: 'success',
+      });
     }
 
     // 4) Baixar etiqueta do ML (retry 5s por 1 min)

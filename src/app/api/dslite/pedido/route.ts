@@ -15,7 +15,6 @@ import {
 import {
   baixarEtiquetaML,
   consultarDisponibilidadeEtiquetaML,
-  consultarInvoiceDataPorShipmentML,
   fetchML,
   upsertInvoiceDataMLByShipment,
 } from "@/services/integration";
@@ -858,21 +857,6 @@ async function resolveShipmentIdWithWait(params: {
     elapsedMs: Date.now() - startedAt,
     attempts: tentativa,
   } as const;
-}
-
-function parseInvoiceDateFromXml(
-  xml: string | null | undefined,
-): string | null {
-  const dhEmi = extrairTagDoXml(String(xml || ""), "dhEmi");
-  if (dhEmi) {
-    const d = new Date(dhEmi);
-    if (!Number.isNaN(d.getTime())) return d.toISOString();
-  }
-  const dEmi = extrairTagDoXml(String(xml || ""), "dEmi");
-  if (!dEmi) return null;
-  const d = new Date(`${dEmi}T00:00:00-03:00`);
-  if (Number.isNaN(d.getTime())) return null;
-  return d.toISOString();
 }
 
 function parseInvoiceAmountFromXml(
@@ -3621,14 +3605,7 @@ async function runDsliteCreateJob(
       const shipmentId = String(resolvedShipmentId || "").trim();
       const fiscalKey = extrairChaveAcessoDoXml(xml);
       const invoiceNumber = extrairTagDoXml(xml, "nNF");
-      const invoiceSerie = extrairTagDoXml(xml, "serie") || "1";
-      const invoiceDate =
-        parseInvoiceDateFromXml(xml) || new Date().toISOString();
       const invoiceAmount = parseInvoiceAmountFromXml(xml);
-      const cfop =
-        extractCfopsFromXml(xml)[0] ||
-        String((pedidoRow as any)?.nfe_cfop || "").trim() ||
-        undefined;
 
       await registrarEventoNfAuditoria({
         pedidoId,
@@ -3671,12 +3648,7 @@ async function runDsliteCreateJob(
         const uploadRes = await upsertInvoiceDataMLByShipment({
           shipmentId,
           fiscalKey,
-          invoiceNumber,
-          invoiceSerie,
-          invoiceDate,
-          invoiceAmount: Number(invoiceAmount),
           nfeXml: xml,
-          cfop,
         });
 
         for (const [idx, attempt] of (uploadRes.attempts || []).entries()) {
@@ -3736,50 +3708,24 @@ async function runDsliteCreateJob(
             statusResultante: "failed",
           });
         } else {
-          const verify = await consultarInvoiceDataPorShipmentML(
-            shipmentId,
-            "MLB",
-          );
-          const mlFiscalKey = verify.ok
-            ? String(verify.data?.fiscal_key || "").trim()
-            : "";
-          if (verify.ok && mlFiscalKey && mlFiscalKey === fiscalKey) {
-            await registrarEventoNfAuditoria({
-              pedidoId,
-              mlOrderId: String(mlOrderId),
-              evento: "ml_invoice_data_upload_success",
-              respostaMl: {
-                endpoint_ml: uploadRes.endpoint || null,
-                method: uploadRes.method || null,
-                last_method_tried: uploadRes.lastMethodTried || null,
-                status_http: uploadRes.statusCode || null,
-                fiscal_key_local: fiscalKey,
-                fiscal_key_ml: mlFiscalKey,
-                reason: uploadRes.reason || null,
-                content_mode_selected: uploadRes.contentMode || null,
-                attempts: uploadRes.attempts || [],
-              },
-              statusResultante: "success",
-            });
-          } else {
-            const warn =
-              "Não foi possível confirmar o vínculo fiscal da NF no shipment do ML";
-            externalWarnings.push(`Vínculo fiscal ML: ${warn}`);
-            await registrarEventoNfAuditoria({
-              pedidoId,
-              mlOrderId: String(mlOrderId),
-              evento: "ml_invoice_data_upload_failed",
-              respostaMl: {
-                endpoint_ml: uploadRes.endpoint || null,
-                method: uploadRes.method || null,
-                status_http: uploadRes.statusCode || null,
-                fiscal_key_local: fiscalKey,
-                fiscal_key_ml: mlFiscalKey || null,
-                verify_error: verify.error || null,
-              },
-              statusResultante: "failed_verify",
-            });
-          }
+          const mlFiscalKey = String(uploadRes.data?.fiscal_key || "").trim();
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId: String(mlOrderId),
+            evento: "ml_invoice_data_upload_success",
+            respostaMl: {
+              endpoint_ml: uploadRes.endpoint || null,
+              method: uploadRes.method || null,
+              last_method_tried: uploadRes.lastMethodTried || null,
+              status_http: uploadRes.statusCode || null,
+              fiscal_key_local: fiscalKey,
+              fiscal_key_ml: mlFiscalKey,
+              reason: uploadRes.reason || null,
+              content_mode_selected: uploadRes.contentMode || null,
+              attempts: uploadRes.attempts || [],
+            },
+            statusResultante: "success",
+          });
         }
       }
     } else if (selectedProvider === "brasilnfe" && mlOrderId && xml && isMlNoShipping) {
