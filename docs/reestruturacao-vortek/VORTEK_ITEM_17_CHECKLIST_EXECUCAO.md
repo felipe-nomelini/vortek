@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `DB-03 — Fotografia real do banco`
+**Próxima ação obrigatória:** `RULE-02 — Pricing`
 
 ---
 
@@ -61,10 +61,10 @@ Regras de uso:
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
-| 9 | Plataforma e banco | Em andamento | Executar somente `DB-03` |
-| 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
+| 9 | Plataforma e banco | Concluída em DEV | Corrigir o hardening antes de limpeza e conferir produção somente em release autorizada |
+| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-02` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
-| 12 | Limpeza histórica | Pendente | Somente após estabilidade funcional |
+| 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional, hardening derivado da DB-03 e fotografia autorizada de produção |
 
 ### Próxima ação
 
@@ -104,6 +104,8 @@ Regras de uso:
 - [x] Não avançar para `SEC-07` antes de `SEC-06` estar integralmente validada.
 - [x] Executar somente `SEC-07 — Secrets runtime`.
 - [x] Não avançar para `DB-03` antes de `SEC-07` estar integralmente validada.
+- [x] Executar somente `DB-03 — Fotografia real do banco` no ambiente DEV.
+- [x] Não avançar para `RULE-02` antes de a fotografia DEV estar capturada, validada e documentada.
 
 ---
 
@@ -1240,14 +1242,37 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 ### DB-03 — Fotografia real do banco
 
 **Prioridade:** P2
-**Situação:** pendente.
+**Situação:** fotografia de desenvolvimento concluída e validada; conferência de produção diferida para release autorizada.
 
-- [ ] capturar RLS, grants, policies e constraints no staging;
-- [ ] capturar indexes, default privileges e funções `SECURITY DEFINER` relevantes;
-- [ ] comparar com migrations sem presumir que elas representam todo o runtime;
+- [x] capturar RLS, grants, policies e constraints no staging;
+- [x] capturar indexes, default privileges e funções `SECURITY DEFINER` relevantes;
+- [x] comparar com migrations sem presumir que elas representam todo o runtime;
 - [ ] conferir produção somente na preparação autorizada da mudança;
-- [ ] bloquear limpeza destrutiva sem essa fotografia;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] bloquear limpeza destrutiva sem a fotografia correspondente e sem tratar os achados relevantes;
+- [x] concluir o gate obrigatório da seção 3.
+
+#### Gate e evidências
+
+- branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação e auditoria de banco conferidos antes da implementação;
+- documentação oficial atual do Supabase RLS e dos catálogos, ACLs, default privileges, RLS e `SECURITY DEFINER` do PostgreSQL 17 consultada;
+- coletor reproduzível `scripts/capture-db-03-snapshot.js` criado com confirmação explícita do host, transação `READ ONLY`, ordenação determinística e bloqueio de campos sensíveis;
+- duas capturas consecutivas do `supabase-dev` produziram o mesmo fingerprint estrutural `a2efd12ef5ed7bedac94e8f6f0be24b657fe124d5488e752ba9081d24702e1d3`;
+- snapshot versionado em `reports/db-03/supabase-dev-2026-08-30.json`, sem dados de negócio, credenciais, valores de ambiente ou corpos de funções;
+- relatório completo registrado em `VORTEK_DB_03_FOTOGRAFIA_SUPABASE_DEV.md`;
+- fotografia confirmou PostgreSQL `17.6`, paridade exata de `91/91` migrations, 40 tabelas públicas com chave primária, 136 constraints válidas e 163 índices válidos/prontos;
+- achados confirmados: três tabelas públicas sem RLS, grants/default privileges residuais, três RPCs privilegiadas executáveis por `authenticated`, sete funções `SECURITY DEFINER` com `search_path=public` e policies de kits com escopo nominal impreciso;
+- probe `SET ROLE authenticated` somente leitura confirmou `profiles` protegido sem JWT, view `pedidos_operacionais` bloqueada com `42501` e três RPCs executáveis com total zero no DEV;
+- teste direcionado `tests/db-schema-snapshot.test.js`: 7/7 aprovado;
+- `node --check scripts/capture-db-03-snapshot.js`, `npm run validate` e `git diff --check`: aprovados;
+- commit funcional `6bdef61` criado somente na branch `dev`;
+- build, migration, deploy e smoke web: **N/A**, pois a ação criou somente coletor, teste, fotografia e documentação, sem alterar runtime ou banco;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `6bdef61` na branch `dev`. Não há rollback de banco, aplicação ou dados porque a coleta foi somente leitura.
+
+**Pendências:** planejar separadamente o hardening derivado dos achados antes de limpeza destrutiva; comparar a fotografia com produção somente durante preparação de release explicitamente autorizada.
+
+**Próxima ação liberada:** `RULE-02 — Pricing`.
 
 ---
 
