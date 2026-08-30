@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `FIS-02 — Gate do shipment`
+**Próxima ação obrigatória:** `FIS-03 — not_found Brasil NFe`
 
 ---
 
@@ -56,7 +56,7 @@ Regras de uso:
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
-| 6 | Fiscal | Em andamento | Executar somente `FIS-02` |
+| 6 | Fiscal | Em andamento | Executar somente `FIS-03` |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
@@ -78,8 +78,10 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `INV-02` estar integralmente validada.
 - [x] Executar somente `FIS-01 — Upload XML correto`.
 - [x] Não avançar para a ação seguinte antes de `FIS-01` estar integralmente validada.
-- [ ] Executar somente `FIS-02 — Gate do shipment`.
-- [ ] Não avançar para a ação seguinte antes de `FIS-02` estar integralmente validada.
+- [x] Executar somente `FIS-02 — Gate do shipment`.
+- [x] Não avançar para a ação seguinte antes de `FIS-02` estar integralmente validada.
+- [ ] Executar somente `FIS-03 — not_found Brasil NFe`.
+- [ ] Não avançar para a ação seguinte antes de `FIS-03` estar integralmente validada.
 
 ---
 
@@ -693,14 +695,47 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### FIS-02 — Gate do shipment
 
 **Prioridade:** P1
-**Situação:** pendente; executar separadamente de `FIS-01`.
+**Situação:** concluída e validada.
+**Commit funcional:** `eb94a00` — `fix(fiscal): gate ML invoice upload by shipment state`.
 
-- [ ] exigir `status = ready_to_ship`;
-- [ ] exigir `substatus = invoice_pending`;
-- [ ] não enviar XML quando o shipment não estiver apto;
-- [ ] aguardar o fluxo legítimo já existente;
-- [ ] provar ausência de `invalid_shipment` causado pelo Vortek;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] exigir `status = ready_to_ship`;
+- [x] exigir `substatus = invoice_pending`;
+- [x] não enviar XML quando o shipment não estiver apto;
+- [x] aguardar o fluxo legítimo já existente;
+- [x] provar ausência de `invalid_shipment` causado pelo Vortek;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** após o `GET invoice_data`, o helper central executava `POST/PUT` XML sem consultar imediatamente o shipment. Assim, estados diferentes de `ready_to_ship + invoice_pending` alcançavam uma chamada sem possibilidade de sucesso e podiam retornar `400 invalid_shipment`.
+
+**Mudança executada:**
+
+- a regra fiscal existente passou a reconhecer exclusivamente `ready_to_ship + invoice_pending` como estado apto para upload;
+- a mesma chave já vinculada continua concluindo por idempotência sem exigir gate, pois não existe escrita externa;
+- quando uma criação ou atualização é necessária, o helper reutiliza a consulta existente de `/shipments/{shipment_id}` antes de qualquer `POST/PUT`;
+- falha de consulta retorna `shipment_status_lookup_failed` sem tentativa de upload;
+- estado não apto retorna `shipment_not_ready_for_invoice`, com status e substatus observados, também sem tentativa de upload;
+- shipment apto preserva integralmente o contrato do FIS-01 e a verificação final da chave;
+- nenhum polling, retry, job, tabela, migration, dependência ou fluxo paralelo foi criado.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree, `AGENTS.md`, Item 17, consolidação e auditoria fiscal conferidos antes da alteração;
+- documentação oficial atual do Mercado Livre reconfirmou a exigência de `ready_to_ship + invoice_pending` antes do envio do XML;
+- testes direcionados `tests/ml-fiscal-release.test.js` e `tests/ml-invoice-upload-contract.test.js`: 15/15 aprovados;
+- cobertura provou o único par permitido, o bloqueio das demais combinações, a idempotência da mesma chave e o posicionamento do gate antes de ambos os caminhos `POST/PUT`;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- consulta somente leitura no `supabase-dev` confirmou zero pedidos com `ml_shipment_id` e XML fiscal simultaneamente;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=eb94a00`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e o worker sem chave respondeu `401`;
+- upload real e observação de `invalid_shipment`: **N/A nesta validação**, pois não havia candidato DEV apto; a ausência de chamada inválida foi provada pelo gate e pelos testes sem criar shipment artificial;
+- migration e escrita no Supabase ou Mercado Livre: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado estrutural para desfazer.
+
+**Pendência:** nenhuma para `FIS-02`. A próxima ação obrigatória é `FIS-03`.
 
 ### FIS-03 — `not_found` Brasil NFe
 
