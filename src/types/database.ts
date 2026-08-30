@@ -7,11 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "14.5"
-  }
   public: {
     Tables: {
       anuncios_ml: {
@@ -19,10 +14,10 @@ export type Database = {
           catalogo: boolean
           created_at: string
           id: string
+          ml_item_id: string
           ml_sync_block_reason: string | null
           ml_sync_blocked_until: string | null
           ml_sync_last_error: string | null
-          ml_item_id: string
           permalink: string | null
           preco_ml: number
           produto_id: string | null
@@ -41,10 +36,10 @@ export type Database = {
           catalogo?: boolean
           created_at?: string
           id?: string
+          ml_item_id: string
           ml_sync_block_reason?: string | null
           ml_sync_blocked_until?: string | null
           ml_sync_last_error?: string | null
-          ml_item_id: string
           permalink?: string | null
           preco_ml?: number
           produto_id?: string | null
@@ -63,10 +58,10 @@ export type Database = {
           catalogo?: boolean
           created_at?: string
           id?: string
+          ml_item_id?: string
           ml_sync_block_reason?: string | null
           ml_sync_blocked_until?: string | null
           ml_sync_last_error?: string | null
-          ml_item_id?: string
           permalink?: string | null
           preco_ml?: number
           produto_id?: string | null
@@ -87,6 +82,112 @@ export type Database = {
             columns: ["produto_id"]
             isOneToOne: false
             referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      anuncios_ml_outbox: {
+        Row: {
+          attempts: number
+          available_at: string
+          created_at: string
+          desired_price: number | null
+          desired_quantity: number | null
+          desired_status: Database["public"]["Enums"]["ml_status"] | null
+          id: string
+          last_error: string | null
+          ml_item_id: string
+          payload: Json
+          processed_at: string | null
+          produto_id: string
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          available_at?: string
+          created_at?: string
+          desired_price?: number | null
+          desired_quantity?: number | null
+          desired_status?: Database["public"]["Enums"]["ml_status"] | null
+          id?: string
+          last_error?: string | null
+          ml_item_id: string
+          payload?: Json
+          processed_at?: string | null
+          produto_id: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          available_at?: string
+          created_at?: string
+          desired_price?: number | null
+          desired_quantity?: number | null
+          desired_status?: Database["public"]["Enums"]["ml_status"] | null
+          id?: string
+          last_error?: string | null
+          ml_item_id?: string
+          payload?: Json
+          processed_at?: string | null
+          produto_id?: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anuncios_ml_outbox_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalogo_ml_refresh_items: {
+        Row: {
+          attempts: number
+          created_at: string
+          job_id: string
+          last_error: string | null
+          ml_item_id: string
+          ordinal: number
+          processed_at: string | null
+          seller_id: number
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          created_at?: string
+          job_id: string
+          last_error?: string | null
+          ml_item_id: string
+          ordinal: number
+          processed_at?: string | null
+          seller_id: number
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          created_at?: string
+          job_id?: string
+          last_error?: string | null
+          ml_item_id?: string
+          ordinal?: number
+          processed_at?: string | null
+          seller_id?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalogo_ml_refresh_items_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
             referencedColumns: ["id"]
           },
         ]
@@ -181,46 +282,9 @@ export type Database = {
             referencedRelation: "produtos"
             referencedColumns: ["id"]
           },
-        ]
-      }
-      catalogo_ml_refresh_items: {
-        Row: {
-          attempts: number
-          created_at: string
-          job_id: string
-          last_error: string | null
-          ml_item_id: string
-          ordinal: number
-          processed_at: string | null
-          seller_id: number
-          updated_at: string
-        }
-        Insert: {
-          attempts?: number
-          created_at?: string
-          job_id: string
-          last_error?: string | null
-          ml_item_id: string
-          ordinal: number
-          processed_at?: string | null
-          seller_id: number
-          updated_at?: string
-        }
-        Update: {
-          attempts?: number
-          created_at?: string
-          job_id?: string
-          last_error?: string | null
-          ml_item_id?: string
-          ordinal?: number
-          processed_at?: string | null
-          seller_id?: number
-          updated_at?: string
-        }
-        Relationships: [
           {
-            foreignKeyName: "catalogo_ml_refresh_items_job_id_fkey"
-            columns: ["job_id"]
+            foreignKeyName: "catalogo_ml_snapshot_refresh_job_id_fkey"
+            columns: ["refresh_job_id"]
             isOneToOne: false
             referencedRelation: "jobs"
             referencedColumns: ["id"]
@@ -275,6 +339,113 @@ export type Database = {
         }
         Relationships: []
       }
+      compras: {
+        Row: {
+          created_at: string | null
+          data_criacao: string | null
+          destinatario_documento: string | null
+          destinatario_nome: string | null
+          dsid: string
+          fornecedor_id: string | null
+          fornecedor_nome: string | null
+          id: string
+          nf_chave: string | null
+          nf_numero: string | null
+          nf_serie: string | null
+          produto_descricao: string | null
+          produto_fornecedor_oferta_id: string | null
+          produto_sku: string | null
+          quantidade: number | null
+          rastreio: string | null
+          status: string | null
+          status_dslite: string | null
+          supplier_payment_amount: number | null
+          supplier_payment_confirmed_at: string | null
+          supplier_payment_confirmed_by: string | null
+          supplier_payment_mode: string | null
+          supplier_payment_notes: string | null
+          supplier_payment_receipt_path: string | null
+          supplier_payment_receipt_url: string | null
+          supplier_payment_reference: string | null
+          supplier_payment_status: string | null
+          updated_at: string | null
+          valor_frete: number | null
+          valor_total: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          data_criacao?: string | null
+          destinatario_documento?: string | null
+          destinatario_nome?: string | null
+          dsid: string
+          fornecedor_id?: string | null
+          fornecedor_nome?: string | null
+          id?: string
+          nf_chave?: string | null
+          nf_numero?: string | null
+          nf_serie?: string | null
+          produto_descricao?: string | null
+          produto_fornecedor_oferta_id?: string | null
+          produto_sku?: string | null
+          quantidade?: number | null
+          rastreio?: string | null
+          status?: string | null
+          status_dslite?: string | null
+          supplier_payment_amount?: number | null
+          supplier_payment_confirmed_at?: string | null
+          supplier_payment_confirmed_by?: string | null
+          supplier_payment_mode?: string | null
+          supplier_payment_notes?: string | null
+          supplier_payment_receipt_path?: string | null
+          supplier_payment_receipt_url?: string | null
+          supplier_payment_reference?: string | null
+          supplier_payment_status?: string | null
+          updated_at?: string | null
+          valor_frete?: number | null
+          valor_total?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          data_criacao?: string | null
+          destinatario_documento?: string | null
+          destinatario_nome?: string | null
+          dsid?: string
+          fornecedor_id?: string | null
+          fornecedor_nome?: string | null
+          id?: string
+          nf_chave?: string | null
+          nf_numero?: string | null
+          nf_serie?: string | null
+          produto_descricao?: string | null
+          produto_fornecedor_oferta_id?: string | null
+          produto_sku?: string | null
+          quantidade?: number | null
+          rastreio?: string | null
+          status?: string | null
+          status_dslite?: string | null
+          supplier_payment_amount?: number | null
+          supplier_payment_confirmed_at?: string | null
+          supplier_payment_confirmed_by?: string | null
+          supplier_payment_mode?: string | null
+          supplier_payment_notes?: string | null
+          supplier_payment_receipt_path?: string | null
+          supplier_payment_receipt_url?: string | null
+          supplier_payment_reference?: string | null
+          supplier_payment_status?: string | null
+          updated_at?: string | null
+          valor_frete?: number | null
+          valor_total?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "compras_produto_fornecedor_oferta_id_fkey"
+            columns: ["produto_fornecedor_oferta_id"]
+            isOneToOne: false
+            referencedRelation: "produto_fornecedor_ofertas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       configuracoes: {
         Row: {
           created_at: string
@@ -304,8 +475,8 @@ export type Database = {
       }
       empresa: {
         Row: {
-          cod_municipio_fiscal: string | null
           cnpj: string
+          cod_municipio_fiscal: string | null
           created_at: string
           email: string
           endereco: string
@@ -313,12 +484,12 @@ export type Database = {
           nickname: string
           nome: string
           telefone: string
-          uf_fiscal: string | null
+          uf_fiscal: string
           updated_at: string
         }
         Insert: {
-          cod_municipio_fiscal?: string | null
           cnpj?: string
+          cod_municipio_fiscal?: string | null
           created_at?: string
           email?: string
           endereco?: string
@@ -326,12 +497,12 @@ export type Database = {
           nickname?: string
           nome?: string
           telefone?: string
-          uf_fiscal?: string | null
+          uf_fiscal: string
           updated_at?: string
         }
         Update: {
-          cod_municipio_fiscal?: string | null
           cnpj?: string
+          cod_municipio_fiscal?: string | null
           created_at?: string
           email?: string
           endereco?: string
@@ -339,20 +510,94 @@ export type Database = {
           nickname?: string
           nome?: string
           telefone?: string
-          uf_fiscal?: string | null
+          uf_fiscal?: string
           updated_at?: string
         }
         Relationships: []
       }
+      estoque_interno_movimentacoes: {
+        Row: {
+          created_at: string
+          custo_unitario: number | null
+          disponivel_venda: boolean
+          estornada_em: string | null
+          estorno_motivo: string | null
+          id: string
+          motivo: string
+          origem_entrada: string | null
+          pedido_id: string | null
+          produto_id: string
+          quantidade: number
+          situacao_estoque: string
+          status_devolucao: string
+          tipo: string
+        }
+        Insert: {
+          created_at?: string
+          custo_unitario?: number | null
+          disponivel_venda?: boolean
+          estornada_em?: string | null
+          estorno_motivo?: string | null
+          id?: string
+          motivo: string
+          origem_entrada?: string | null
+          pedido_id?: string | null
+          produto_id: string
+          quantidade: number
+          situacao_estoque?: string
+          status_devolucao?: string
+          tipo: string
+        }
+        Update: {
+          created_at?: string
+          custo_unitario?: number | null
+          disponivel_venda?: boolean
+          estornada_em?: string | null
+          estorno_motivo?: string | null
+          id?: string
+          motivo?: string
+          origem_entrada?: string | null
+          pedido_id?: string | null
+          produto_id?: string
+          quantidade?: number
+          situacao_estoque?: string
+          status_devolucao?: string
+          tipo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "estoque_interno_movimentacoes_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "estoque_interno_movimentacoes_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos_operacionais"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "estoque_interno_movimentacoes_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       fornecedores: {
         Row: {
-          ativo: boolean
           apelido: string
+          ativo: boolean
           cnpj: string
           created_at: string
+          crossdocking: string
+          dropshipping: string
           dslite_id: string | null
           dslite_ultima_sync: string | null
-          dropshipping: string
           email: string
           endereco: string
           id: string
@@ -361,17 +606,17 @@ export type Database = {
           status_dslite: string
           supplier_pix_key: string
           telefone: string
-          crossdocking: string
           updated_at: string
         }
         Insert: {
-          ativo?: boolean
           apelido?: string
+          ativo?: boolean
           cnpj?: string
           created_at?: string
+          crossdocking?: string
+          dropshipping?: string
           dslite_id?: string | null
           dslite_ultima_sync?: string | null
-          dropshipping?: string
           email?: string
           endereco?: string
           id?: string
@@ -380,17 +625,17 @@ export type Database = {
           status_dslite?: string
           supplier_pix_key?: string
           telefone?: string
-          crossdocking?: string
           updated_at?: string
         }
         Update: {
-          ativo?: boolean
           apelido?: string
+          ativo?: boolean
           cnpj?: string
           created_at?: string
+          crossdocking?: string
+          dropshipping?: string
           dslite_id?: string | null
           dslite_ultima_sync?: string | null
-          dropshipping?: string
           email?: string
           endereco?: string
           id?: string
@@ -399,7 +644,6 @@ export type Database = {
           status_dslite?: string
           supplier_pix_key?: string
           telefone?: string
-          crossdocking?: string
           updated_at?: string
         }
         Relationships: []
@@ -464,39 +708,6 @@ export type Database = {
         }
         Relationships: []
       }
-      ml_manual_blocklist: {
-        Row: {
-          ativo: boolean
-          created_at: string
-          created_by: string | null
-          id: string
-          ml_item_id: string | null
-          motivo: string | null
-          sku: string | null
-          updated_at: string
-        }
-        Insert: {
-          ativo?: boolean
-          created_at?: string
-          created_by?: string | null
-          id?: string
-          ml_item_id?: string | null
-          motivo?: string | null
-          sku?: string | null
-          updated_at?: string
-        }
-        Update: {
-          ativo?: boolean
-          created_at?: string
-          created_by?: string | null
-          id?: string
-          ml_item_id?: string | null
-          motivo?: string | null
-          sku?: string | null
-          updated_at?: string
-        }
-        Relationships: []
-      }
       jobs: {
         Row: {
           cancelado: boolean
@@ -542,219 +753,699 @@ export type Database = {
         }
         Relationships: []
       }
-      pedidos: {
+      mercadopago_account_movements: {
         Row: {
-          billing_documento: string | null
-          billing_endereco: Json | null
-          billing_ie: string | null
-          billing_nome: string | null
-          billing_tipo_pessoa: string | null
-          buyer_ml_id: string | null
-          contato_documento: string
-          contato_nome: string
+          amount: number
           created_at: string
-          data: string
-          data_venda: string | null
-          data_venda_source: string | null
-          data_prevista: string | null
-          data_saida: string | null
-          dslite_id: string | null
-          dslite_status: string | null
-          dslite_etiqueta_enviada: boolean
-          dslite_label_source: string | null
-          envio_interno_at: string | null
-          fulfillment_selected_at: string | null
-          fulfillment_source: string | null
-          frete: number
+          currency: string | null
+          description: string | null
+          external_id: string
           id: string
-          lucro: number
-          ml_claim_id: string | null
-          ml_claim_status: string | null
-          ml_invoice_id: string | null
-          ml_invoice_reported: boolean
-          ml_bundle_parent_item_id: string | null
-          ml_bundle_primary: boolean | null
-          ml_bundle_type: string | null
-          ml_order_id: string | null
-          ml_pack_id: string | null
-          ml_fiscal_release_at: string | null
-          ml_fiscal_release_reason: string | null
-          ml_fiscal_release_source: string | null
-          ml_fiscal_release_checked_at: string | null
-          ml_label_bytes: number | null
-          ml_label_downloaded_at: string | null
-          ml_label_storage_path: string | null
-          ml_label_url: string | null
-          ml_thermal_label_bytes: number | null
-          ml_thermal_label_downloaded_at: string | null
-          ml_thermal_label_storage_path: string | null
-          ml_shipment_id: string | null
-          nfe_chave: string | null
-          nfe_cfop: string | null
-          nfe_danfe_url: string | null
-          nfe_external_id: string | null
-          nfe_last_sync_at: string | null
-          nfe_provider: string | null
-          nfe_protocolo: string | null
-          nfe_status: string | null
-          nfe_xml: string | null
-          nota_fiscal_emitida: boolean
-          nota_fiscal_numero: string | null
-          numero: number
-          numero_loja: string | null
-          pagamento_resumo: Json | null
-          rastreio: string | null
-          sincronizado_em: string | null
-          situacao: Database["public"]["Enums"]["pedido_status"]
-          snapshot_incompleto: boolean
-          snapshot_pendencias: Json | null
-          snapshot_source: string | null
-          snapshot_version: number
-          totais_snapshot: Json | null
-          total: number
+          matched_supplier: string | null
+          movement_date: string | null
+          movement_type: string | null
+          raw_payload: Json
+          reference: string | null
+          supplier_balance_movement_id: string | null
           updated_at: string
         }
         Insert: {
-          billing_documento?: string | null
-          billing_endereco?: Json | null
-          billing_ie?: string | null
-          billing_nome?: string | null
-          billing_tipo_pessoa?: string | null
-          buyer_ml_id?: string | null
-          contato_documento?: string
-          contato_nome: string
+          amount?: number
           created_at?: string
-          data?: string
-          data_venda?: string | null
-          data_venda_source?: string | null
-          data_prevista?: string | null
-          data_saida?: string | null
-          dslite_id?: string | null
-          dslite_status?: string | null
-          dslite_etiqueta_enviada?: boolean
-          dslite_label_source?: string | null
-          envio_interno_at?: string | null
-          fulfillment_selected_at?: string | null
-          fulfillment_source?: string | null
-          frete?: number
+          currency?: string | null
+          description?: string | null
+          external_id: string
           id?: string
-          lucro?: number
-          ml_claim_id?: string | null
-          ml_claim_status?: string | null
-          ml_invoice_id?: string | null
-          ml_invoice_reported?: boolean
-          ml_bundle_parent_item_id?: string | null
-          ml_bundle_primary?: boolean | null
-          ml_bundle_type?: string | null
-          ml_order_id?: string | null
-          ml_pack_id?: string | null
-          ml_fiscal_release_at?: string | null
-          ml_fiscal_release_reason?: string | null
-          ml_fiscal_release_source?: string | null
-          ml_fiscal_release_checked_at?: string | null
-          ml_label_bytes?: number | null
-          ml_label_downloaded_at?: string | null
-          ml_label_storage_path?: string | null
-          ml_label_url?: string | null
-          ml_thermal_label_bytes?: number | null
-          ml_thermal_label_downloaded_at?: string | null
-          ml_thermal_label_storage_path?: string | null
-          ml_shipment_id?: string | null
-          nfe_chave?: string | null
-          nfe_cfop?: string | null
-          nfe_danfe_url?: string | null
-          nfe_external_id?: string | null
-          nfe_last_sync_at?: string | null
-          nfe_provider?: string | null
-          nfe_protocolo?: string | null
-          nfe_status?: string | null
-          nfe_xml?: string | null
-          nota_fiscal_emitida?: boolean
-          nota_fiscal_numero?: string | null
-          numero: number
-          numero_loja?: string | null
-          pagamento_resumo?: Json | null
-          rastreio?: string | null
-          sincronizado_em?: string | null
-          situacao?: Database["public"]["Enums"]["pedido_status"]
-          snapshot_incompleto?: boolean
-          snapshot_pendencias?: Json | null
-          snapshot_source?: string | null
-          snapshot_version?: number
-          totais_snapshot?: Json | null
-          total?: number
+          matched_supplier?: string | null
+          movement_date?: string | null
+          movement_type?: string | null
+          raw_payload?: Json
+          reference?: string | null
+          supplier_balance_movement_id?: string | null
           updated_at?: string
         }
         Update: {
-          billing_documento?: string | null
-          billing_endereco?: Json | null
-          billing_ie?: string | null
-          billing_nome?: string | null
-          billing_tipo_pessoa?: string | null
-          buyer_ml_id?: string | null
-          contato_documento?: string
-          contato_nome?: string
+          amount?: number
           created_at?: string
-          data?: string
-          data_venda?: string | null
-          data_venda_source?: string | null
-          data_prevista?: string | null
-          data_saida?: string | null
-          dslite_id?: string | null
-          dslite_status?: string | null
-          dslite_etiqueta_enviada?: boolean
-          dslite_label_source?: string | null
-          envio_interno_at?: string | null
-          fulfillment_selected_at?: string | null
-          fulfillment_source?: string | null
-          frete?: number
+          currency?: string | null
+          description?: string | null
+          external_id?: string
           id?: string
-          lucro?: number
-          ml_claim_id?: string | null
-          ml_claim_status?: string | null
-          ml_invoice_id?: string | null
-          ml_invoice_reported?: boolean
-          ml_bundle_parent_item_id?: string | null
-          ml_bundle_primary?: boolean | null
-          ml_bundle_type?: string | null
+          matched_supplier?: string | null
+          movement_date?: string | null
+          movement_type?: string | null
+          raw_payload?: Json
+          reference?: string | null
+          supplier_balance_movement_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mercadopago_account_movements_supplier_balance_movement_id_fkey"
+            columns: ["supplier_balance_movement_id"]
+            isOneToOne: false
+            referencedRelation: "supplier_balance_movements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_manual_blocklist: {
+        Row: {
+          ativo: boolean
+          created_at: string
+          created_by: string | null
+          id: string
+          ml_item_id: string | null
+          motivo: string | null
+          sku: string | null
+          updated_at: string
+        }
+        Insert: {
+          ativo?: boolean
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          ml_item_id?: string | null
+          motivo?: string | null
+          sku?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ativo?: boolean
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          ml_item_id?: string | null
+          motivo?: string | null
+          sku?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ml_p0_phase3_remote_items: {
+        Row: {
+          confidence: number
+          created_at: string
+          evidence: Json
+          id: string
+          match_type: string
+          ml_item_id: string
+          run_id: string
+          sku: string
+        }
+        Insert: {
+          confidence: number
+          created_at?: string
+          evidence?: Json
+          id?: string
+          match_type: string
+          ml_item_id: string
+          run_id: string
+          sku: string
+        }
+        Update: {
+          confidence?: number
+          created_at?: string
+          evidence?: Json
+          id?: string
+          match_type?: string
+          ml_item_id?: string
+          run_id?: string
+          sku?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_p0_phase3_remote_items_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "ml_p0_phase3_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_p0_phase3_results: {
+        Row: {
+          audit_payload: Json
+          created_at: string
+          documentation_score: number
+          duplicate_risk: number
+          fornecedor_nome: string | null
+          id: string
+          identity_confidence: number
+          produto_id: string
+          publication_readiness: number
+          recommended_action: string
+          remote_match_confidence: number
+          run_id: string
+          sku: string
+        }
+        Insert: {
+          audit_payload?: Json
+          created_at?: string
+          documentation_score: number
+          duplicate_risk: number
+          fornecedor_nome?: string | null
+          id?: string
+          identity_confidence: number
+          produto_id: string
+          publication_readiness: number
+          recommended_action: string
+          remote_match_confidence: number
+          run_id: string
+          sku: string
+        }
+        Update: {
+          audit_payload?: Json
+          created_at?: string
+          documentation_score?: number
+          duplicate_risk?: number
+          fornecedor_nome?: string | null
+          id?: string
+          identity_confidence?: number
+          produto_id?: string
+          publication_readiness?: number
+          recommended_action?: string
+          remote_match_confidence?: number
+          run_id?: string
+          sku?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_p0_phase3_results_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_phase3_results_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "ml_p0_phase3_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_p0_phase3_runs: {
+        Row: {
+          completed_at: string | null
+          id: string
+          infrastructure_metrics: Json
+          mode: string
+          result_summary: Json
+          source_population_hash: string
+          source_sanitize_run_id: string
+          started_at: string
+          status: string
+        }
+        Insert: {
+          completed_at?: string | null
+          id?: string
+          infrastructure_metrics?: Json
+          mode?: string
+          result_summary?: Json
+          source_population_hash: string
+          source_sanitize_run_id: string
+          started_at?: string
+          status?: string
+        }
+        Update: {
+          completed_at?: string | null
+          id?: string
+          infrastructure_metrics?: Json
+          mode?: string
+          result_summary?: Json
+          source_population_hash?: string
+          source_sanitize_run_id?: string
+          started_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_p0_phase3_runs_source_sanitize_run_id_fkey"
+            columns: ["source_sanitize_run_id"]
+            isOneToOne: false
+            referencedRelation: "ml_p0_sanitize_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_p0_population_snapshots: {
+        Row: {
+          captured_at: string
+          fornecedor_id: string
+          fornecedor_nome: string
+          id: string
+          job_id: string
+          oferta_preferencial_id: string
+          produto_id: string
+          sku: string
+          snapshot: Json
+        }
+        Insert: {
+          captured_at?: string
+          fornecedor_id: string
+          fornecedor_nome: string
+          id?: string
+          job_id: string
+          oferta_preferencial_id: string
+          produto_id: string
+          sku: string
+          snapshot: Json
+        }
+        Update: {
+          captured_at?: string
+          fornecedor_id?: string
+          fornecedor_nome?: string
+          id?: string
+          job_id?: string
+          oferta_preferencial_id?: string
+          produto_id?: string
+          sku?: string
+          snapshot?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_p0_population_snapshots_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_population_snapshots_oferta_preferencial_id_fkey"
+            columns: ["oferta_preferencial_id"]
+            isOneToOne: false
+            referencedRelation: "produto_fornecedor_ofertas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_population_snapshots_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_p0_publication_audits: {
+        Row: {
+          audit_status: string | null
+          block_reason: string | null
+          completed_at: string | null
+          confidence_score: number | null
+          content_snapshot: Json
+          created_at: string
+          dslite_raw: Json
+          duplicate_audit: Json
+          eligibility_drift: Json
+          event_log: Json
+          evidence_ledger: Json
+          fornecedor_id: string
+          fornecedor_nome: string
+          id: string
+          image_audit: Json
+          job_id: string
+          level0_snapshot: Json
+          ml_item_id: string | null
+          ml_schema_audit: Json
+          official_sources: Json
+          population_snapshot_id: string
+          pricing_snapshot: Json
+          priority_rank: number | null
+          produto_id: string
+          publication_action: string | null
+          sku: string
+          started_at: string | null
+          updated_at: string
+          validation_status: string | null
+        }
+        Insert: {
+          audit_status?: string | null
+          block_reason?: string | null
+          completed_at?: string | null
+          confidence_score?: number | null
+          content_snapshot?: Json
+          created_at?: string
+          dslite_raw?: Json
+          duplicate_audit?: Json
+          eligibility_drift?: Json
+          event_log?: Json
+          evidence_ledger?: Json
+          fornecedor_id: string
+          fornecedor_nome: string
+          id?: string
+          image_audit?: Json
+          job_id: string
+          level0_snapshot?: Json
+          ml_item_id?: string | null
+          ml_schema_audit?: Json
+          official_sources?: Json
+          population_snapshot_id: string
+          pricing_snapshot?: Json
+          priority_rank?: number | null
+          produto_id: string
+          publication_action?: string | null
+          sku: string
+          started_at?: string | null
+          updated_at?: string
+          validation_status?: string | null
+        }
+        Update: {
+          audit_status?: string | null
+          block_reason?: string | null
+          completed_at?: string | null
+          confidence_score?: number | null
+          content_snapshot?: Json
+          created_at?: string
+          dslite_raw?: Json
+          duplicate_audit?: Json
+          eligibility_drift?: Json
+          event_log?: Json
+          evidence_ledger?: Json
+          fornecedor_id?: string
+          fornecedor_nome?: string
+          id?: string
+          image_audit?: Json
+          job_id?: string
+          level0_snapshot?: Json
+          ml_item_id?: string | null
+          ml_schema_audit?: Json
+          official_sources?: Json
+          population_snapshot_id?: string
+          pricing_snapshot?: Json
+          priority_rank?: number | null
+          produto_id?: string
+          publication_action?: string | null
+          sku?: string
+          started_at?: string | null
+          updated_at?: string
+          validation_status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_p0_publication_audits_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_publication_audits_population_snapshot_id_fkey"
+            columns: ["population_snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "ml_p0_population_snapshots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_publication_audits_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_p0_sanitize_results: {
+        Row: {
+          audit_payload: Json
+          block_reason: string | null
+          created_at: string
+          documentary_score: number | null
+          fornecedor_id: string
+          fornecedor_nome: string
+          gtin_status: string | null
+          id: string
+          new_status: string
+          phase1_audit_id: string
+          population_snapshot_id: string
+          previous_error: string | null
+          previous_status: string
+          produto_id: string
+          publication_score: number
+          remote_listing_found: boolean
+          remote_lookup_status: string
+          run_id: string
+          sku: string
+          source_status: string
+          structural_score: number
+          updated_at: string
+        }
+        Insert: {
+          audit_payload?: Json
+          block_reason?: string | null
+          created_at?: string
+          documentary_score?: number | null
+          fornecedor_id: string
+          fornecedor_nome: string
+          gtin_status?: string | null
+          id?: string
+          new_status: string
+          phase1_audit_id: string
+          population_snapshot_id: string
+          previous_error?: string | null
+          previous_status: string
+          produto_id: string
+          publication_score: number
+          remote_listing_found?: boolean
+          remote_lookup_status: string
+          run_id: string
+          sku: string
+          source_status: string
+          structural_score: number
+          updated_at?: string
+        }
+        Update: {
+          audit_payload?: Json
+          block_reason?: string | null
+          created_at?: string
+          documentary_score?: number | null
+          fornecedor_id?: string
+          fornecedor_nome?: string
+          gtin_status?: string | null
+          id?: string
+          new_status?: string
+          phase1_audit_id?: string
+          population_snapshot_id?: string
+          previous_error?: string | null
+          previous_status?: string
+          produto_id?: string
+          publication_score?: number
+          remote_listing_found?: boolean
+          remote_lookup_status?: string
+          run_id?: string
+          sku?: string
+          source_status?: string
+          structural_score?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_p0_sanitize_results_phase1_audit_id_fkey"
+            columns: ["phase1_audit_id"]
+            isOneToOne: false
+            referencedRelation: "ml_p0_publication_audits"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_sanitize_results_population_snapshot_id_fkey"
+            columns: ["population_snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "ml_p0_population_snapshots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_sanitize_results_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ml_p0_sanitize_results_run_id_fkey"
+            columns: ["run_id"]
+            isOneToOne: false
+            referencedRelation: "ml_p0_sanitize_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ml_p0_sanitize_runs: {
+        Row: {
+          completed_at: string | null
+          expected_reprocess_count: number
+          id: string
+          infrastructure_metrics: Json
+          mode: string
+          result_summary: Json
+          source_job_id: string
+          source_population_hash: string
+          started_at: string
+          status: string
+        }
+        Insert: {
+          completed_at?: string | null
+          expected_reprocess_count?: number
+          id?: string
+          infrastructure_metrics?: Json
+          mode?: string
+          result_summary?: Json
+          source_job_id: string
+          source_population_hash: string
+          started_at?: string
+          status?: string
+        }
+        Update: {
+          completed_at?: string | null
+          expected_reprocess_count?: number
+          id?: string
+          infrastructure_metrics?: Json
+          mode?: string
+          result_summary?: Json
+          source_job_id?: string
+          source_population_hash?: string
+          started_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_p0_sanitize_runs_source_job_id_fkey"
+            columns: ["source_job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      municipios_ibge: {
+        Row: {
+          cep_fim: string | null
+          cep_inicio: string | null
+          codigo_ibge: string
+          created_at: string
+          id: string
+          nome: string
+          nome_normalizado: string
+          uf: string
+          updated_at: string
+        }
+        Insert: {
+          cep_fim?: string | null
+          cep_inicio?: string | null
+          codigo_ibge: string
+          created_at?: string
+          id?: string
+          nome: string
+          nome_normalizado: string
+          uf: string
+          updated_at?: string
+        }
+        Update: {
+          cep_fim?: string | null
+          cep_inicio?: string | null
+          codigo_ibge?: string
+          created_at?: string
+          id?: string
+          nome?: string
+          nome_normalizado?: string
+          uf?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      nf_auditoria_eventos: {
+        Row: {
+          created_at: string
+          evento: string
+          id: string
+          ml_order_id: string | null
+          ml_pack_id: string | null
+          payload_enviado: Json | null
+          pedido_id: string | null
+          resposta_ml: Json | null
+          status_resultante: string | null
+        }
+        Insert: {
+          created_at?: string
+          evento: string
+          id?: string
           ml_order_id?: string | null
           ml_pack_id?: string | null
-          ml_fiscal_release_at?: string | null
-          ml_fiscal_release_reason?: string | null
-          ml_fiscal_release_source?: string | null
-          ml_fiscal_release_checked_at?: string | null
-          ml_label_bytes?: number | null
-          ml_label_downloaded_at?: string | null
-          ml_label_storage_path?: string | null
-          ml_label_url?: string | null
-          ml_thermal_label_bytes?: number | null
-          ml_thermal_label_downloaded_at?: string | null
-          ml_thermal_label_storage_path?: string | null
-          ml_shipment_id?: string | null
-          nfe_chave?: string | null
-          nfe_cfop?: string | null
-          nfe_danfe_url?: string | null
-          nfe_external_id?: string | null
-          nfe_last_sync_at?: string | null
-          nfe_provider?: string | null
-          nfe_protocolo?: string | null
-          nfe_status?: string | null
-          nfe_xml?: string | null
-          nota_fiscal_emitida?: boolean
-          nota_fiscal_numero?: string | null
-          numero?: number
-          numero_loja?: string | null
-          pagamento_resumo?: Json | null
-          rastreio?: string | null
-          sincronizado_em?: string | null
-          situacao?: Database["public"]["Enums"]["pedido_status"]
-          snapshot_incompleto?: boolean
-          snapshot_pendencias?: Json | null
-          snapshot_source?: string | null
-          snapshot_version?: number
-          totais_snapshot?: Json | null
-          total?: number
-          updated_at?: string
+          payload_enviado?: Json | null
+          pedido_id?: string | null
+          resposta_ml?: Json | null
+          status_resultante?: string | null
+        }
+        Update: {
+          created_at?: string
+          evento?: string
+          id?: string
+          ml_order_id?: string | null
+          ml_pack_id?: string | null
+          payload_enviado?: Json | null
+          pedido_id?: string | null
+          resposta_ml?: Json | null
+          status_resultante?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "nf_auditoria_eventos_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "nf_auditoria_eventos_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos_operacionais"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ops_whatsapp_events: {
+        Row: {
+          action: string | null
+          chat_id: string
+          command: string | null
+          created_at: string
+          direction: string
+          error: string | null
+          id: string
+          issue_number: number | null
+          message: string | null
+          payload: Json | null
+          phone: string | null
+          status: string
+        }
+        Insert: {
+          action?: string | null
+          chat_id: string
+          command?: string | null
+          created_at?: string
+          direction: string
+          error?: string | null
+          id?: string
+          issue_number?: number | null
+          message?: string | null
+          payload?: Json | null
+          phone?: string | null
+          status: string
+        }
+        Update: {
+          action?: string | null
+          chat_id?: string
+          command?: string | null
+          created_at?: string
+          direction?: string
+          error?: string | null
+          id?: string
+          issue_number?: number | null
+          message?: string | null
+          payload?: Json | null
+          phone?: string | null
+          status?: string
         }
         Relationships: []
       }
@@ -836,155 +1527,230 @@ export type Database = {
             referencedRelation: "pedidos"
             referencedColumns: ["id"]
           },
-        ]
-      }
-      nf_auditoria_eventos: {
-        Row: {
-          created_at: string
-          evento: string
-          id: string
-          ml_order_id: string | null
-          ml_pack_id: string | null
-          payload_enviado: Json | null
-          pedido_id: string | null
-          resposta_ml: Json | null
-          status_resultante: string | null
-        }
-        Insert: {
-          created_at?: string
-          evento: string
-          id?: string
-          ml_order_id?: string | null
-          ml_pack_id?: string | null
-          payload_enviado?: Json | null
-          pedido_id?: string | null
-          resposta_ml?: Json | null
-          status_resultante?: string | null
-        }
-        Update: {
-          created_at?: string
-          evento?: string
-          id?: string
-          ml_order_id?: string | null
-          ml_pack_id?: string | null
-          payload_enviado?: Json | null
-          pedido_id?: string | null
-          resposta_ml?: Json | null
-          status_resultante?: string | null
-        }
-        Relationships: [
           {
-            foreignKeyName: "nf_auditoria_eventos_pedido_id_fkey"
+            foreignKeyName: "pedido_itens_pedido_id_fkey"
             columns: ["pedido_id"]
             isOneToOne: false
-            referencedRelation: "pedidos"
+            referencedRelation: "pedidos_operacionais"
             referencedColumns: ["id"]
           },
         ]
       }
-      compras: {
+      pedidos: {
         Row: {
-          id: string
-          dsid: string
-          status: string
-          status_dslite: string
-          nf_chave: string | null
-          nf_numero: string | null
-          nf_serie: string | null
-          valor_total: number
-          valor_frete: number
-          data_criacao: string
-          rastreio: string | null
-          fornecedor_id: string | null
-          fornecedor_nome: string | null
-          destinatario_nome: string | null
-          destinatario_documento: string | null
-          produto_descricao: string | null
-          produto_fornecedor_oferta_id: string | null
-          produto_sku: string | null
-          quantidade: number
-          supplier_payment_amount: number | null
-          supplier_payment_confirmed_at: string | null
-          supplier_payment_confirmed_by: string | null
-          supplier_payment_mode: string | null
-          supplier_payment_notes: string | null
-          supplier_payment_receipt_path: string | null
-          supplier_payment_receipt_url: string | null
-          supplier_payment_reference: string | null
-          supplier_payment_status: string | null
+          billing_documento: string | null
+          billing_endereco: Json | null
+          billing_ie: string | null
+          billing_nome: string | null
+          billing_tipo_pessoa: string | null
+          buyer_ml_id: string | null
+          contato_documento: string
+          contato_nome: string
           created_at: string
+          data: string
+          data_prevista: string | null
+          data_saida: string | null
+          data_venda: string | null
+          data_venda_source: string | null
+          dslite_etiqueta_enviada: boolean | null
+          dslite_id: string | null
+          dslite_label_source: string | null
+          dslite_status: string | null
+          envio_interno_at: string | null
+          frete: number
+          fulfillment_selected_at: string | null
+          fulfillment_source: string | null
+          id: string
+          lucro: number
+          ml_bundle_parent_item_id: string | null
+          ml_bundle_primary: boolean | null
+          ml_bundle_type: string | null
+          ml_claim_id: string | null
+          ml_claim_status: string | null
+          ml_fiscal_release_at: string | null
+          ml_fiscal_release_checked_at: string | null
+          ml_fiscal_release_reason: string | null
+          ml_fiscal_release_source: string | null
+          ml_invoice_id: string | null
+          ml_invoice_reported: boolean | null
+          ml_label_bytes: number | null
+          ml_label_downloaded_at: string | null
+          ml_label_storage_path: string | null
+          ml_label_url: string | null
+          ml_order_id: string | null
+          ml_pack_id: string | null
+          ml_shipment_id: string | null
+          ml_thermal_label_bytes: number | null
+          ml_thermal_label_downloaded_at: string | null
+          ml_thermal_label_storage_path: string | null
+          nfe_cfop: string | null
+          nfe_chave: string | null
+          nfe_danfe_url: string | null
+          nfe_external_id: string | null
+          nfe_last_sync_at: string | null
+          nfe_protocolo: string | null
+          nfe_provider: string | null
+          nfe_status: string | null
+          nfe_xml: string | null
+          nota_fiscal_emitida: boolean
+          nota_fiscal_numero: string | null
+          numero: number
+          numero_loja: string | null
+          pagamento_resumo: Json | null
+          rastreio: string | null
+          sincronizado_em: string | null
+          situacao: Database["public"]["Enums"]["pedido_status"]
+          snapshot_incompleto: boolean
+          snapshot_pendencias: Json | null
+          snapshot_source: string | null
+          snapshot_version: number
+          totais_snapshot: Json | null
+          total: number
+          updated_at: string
         }
         Insert: {
-          id?: string
-          dsid: string
-          status?: string
-          status_dslite?: string
-          nf_chave?: string | null
-          nf_numero?: string | null
-          nf_serie?: string | null
-          valor_total?: number
-          valor_frete?: number
-          data_criacao?: string
-          rastreio?: string | null
-          fornecedor_id?: string | null
-          fornecedor_nome?: string | null
-          destinatario_nome?: string | null
-          destinatario_documento?: string | null
-          produto_descricao?: string | null
-          produto_fornecedor_oferta_id?: string | null
-          produto_sku?: string | null
-          quantidade?: number
-          supplier_payment_amount?: number | null
-          supplier_payment_confirmed_at?: string | null
-          supplier_payment_confirmed_by?: string | null
-          supplier_payment_mode?: string | null
-          supplier_payment_notes?: string | null
-          supplier_payment_receipt_path?: string | null
-          supplier_payment_receipt_url?: string | null
-          supplier_payment_reference?: string | null
-          supplier_payment_status?: string | null
+          billing_documento?: string | null
+          billing_endereco?: Json | null
+          billing_ie?: string | null
+          billing_nome?: string | null
+          billing_tipo_pessoa?: string | null
+          buyer_ml_id?: string | null
+          contato_documento?: string
+          contato_nome: string
           created_at?: string
+          data?: string
+          data_prevista?: string | null
+          data_saida?: string | null
+          data_venda?: string | null
+          data_venda_source?: string | null
+          dslite_etiqueta_enviada?: boolean | null
+          dslite_id?: string | null
+          dslite_label_source?: string | null
+          dslite_status?: string | null
+          envio_interno_at?: string | null
+          frete?: number
+          fulfillment_selected_at?: string | null
+          fulfillment_source?: string | null
+          id?: string
+          lucro?: number
+          ml_bundle_parent_item_id?: string | null
+          ml_bundle_primary?: boolean | null
+          ml_bundle_type?: string | null
+          ml_claim_id?: string | null
+          ml_claim_status?: string | null
+          ml_fiscal_release_at?: string | null
+          ml_fiscal_release_checked_at?: string | null
+          ml_fiscal_release_reason?: string | null
+          ml_fiscal_release_source?: string | null
+          ml_invoice_id?: string | null
+          ml_invoice_reported?: boolean | null
+          ml_label_bytes?: number | null
+          ml_label_downloaded_at?: string | null
+          ml_label_storage_path?: string | null
+          ml_label_url?: string | null
+          ml_order_id?: string | null
+          ml_pack_id?: string | null
+          ml_shipment_id?: string | null
+          ml_thermal_label_bytes?: number | null
+          ml_thermal_label_downloaded_at?: string | null
+          ml_thermal_label_storage_path?: string | null
+          nfe_cfop?: string | null
+          nfe_chave?: string | null
+          nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_protocolo?: string | null
+          nfe_provider?: string | null
+          nfe_status?: string | null
+          nfe_xml?: string | null
+          nota_fiscal_emitida?: boolean
+          nota_fiscal_numero?: string | null
+          numero: number
+          numero_loja?: string | null
+          pagamento_resumo?: Json | null
+          rastreio?: string | null
+          sincronizado_em?: string | null
+          situacao?: Database["public"]["Enums"]["pedido_status"]
+          snapshot_incompleto?: boolean
+          snapshot_pendencias?: Json | null
+          snapshot_source?: string | null
+          snapshot_version?: number
+          totais_snapshot?: Json | null
+          total?: number
+          updated_at?: string
         }
         Update: {
-          id?: string
-          dsid?: string
-          status?: string
-          status_dslite?: string
-          nf_chave?: string | null
-          nf_numero?: string | null
-          nf_serie?: string | null
-          valor_total?: number
-          valor_frete?: number
-          data_criacao?: string
-          rastreio?: string | null
-          fornecedor_id?: string | null
-          fornecedor_nome?: string | null
-          destinatario_nome?: string | null
-          destinatario_documento?: string | null
-          produto_descricao?: string | null
-          produto_fornecedor_oferta_id?: string | null
-          produto_sku?: string | null
-          quantidade?: number
-          supplier_payment_amount?: number | null
-          supplier_payment_confirmed_at?: string | null
-          supplier_payment_confirmed_by?: string | null
-          supplier_payment_mode?: string | null
-          supplier_payment_notes?: string | null
-          supplier_payment_receipt_path?: string | null
-          supplier_payment_receipt_url?: string | null
-          supplier_payment_reference?: string | null
-          supplier_payment_status?: string | null
+          billing_documento?: string | null
+          billing_endereco?: Json | null
+          billing_ie?: string | null
+          billing_nome?: string | null
+          billing_tipo_pessoa?: string | null
+          buyer_ml_id?: string | null
+          contato_documento?: string
+          contato_nome?: string
           created_at?: string
+          data?: string
+          data_prevista?: string | null
+          data_saida?: string | null
+          data_venda?: string | null
+          data_venda_source?: string | null
+          dslite_etiqueta_enviada?: boolean | null
+          dslite_id?: string | null
+          dslite_label_source?: string | null
+          dslite_status?: string | null
+          envio_interno_at?: string | null
+          frete?: number
+          fulfillment_selected_at?: string | null
+          fulfillment_source?: string | null
+          id?: string
+          lucro?: number
+          ml_bundle_parent_item_id?: string | null
+          ml_bundle_primary?: boolean | null
+          ml_bundle_type?: string | null
+          ml_claim_id?: string | null
+          ml_claim_status?: string | null
+          ml_fiscal_release_at?: string | null
+          ml_fiscal_release_checked_at?: string | null
+          ml_fiscal_release_reason?: string | null
+          ml_fiscal_release_source?: string | null
+          ml_invoice_id?: string | null
+          ml_invoice_reported?: boolean | null
+          ml_label_bytes?: number | null
+          ml_label_downloaded_at?: string | null
+          ml_label_storage_path?: string | null
+          ml_label_url?: string | null
+          ml_order_id?: string | null
+          ml_pack_id?: string | null
+          ml_shipment_id?: string | null
+          ml_thermal_label_bytes?: number | null
+          ml_thermal_label_downloaded_at?: string | null
+          ml_thermal_label_storage_path?: string | null
+          nfe_cfop?: string | null
+          nfe_chave?: string | null
+          nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_protocolo?: string | null
+          nfe_provider?: string | null
+          nfe_status?: string | null
+          nfe_xml?: string | null
+          nota_fiscal_emitida?: boolean
+          nota_fiscal_numero?: string | null
+          numero?: number
+          numero_loja?: string | null
+          pagamento_resumo?: Json | null
+          rastreio?: string | null
+          sincronizado_em?: string | null
+          situacao?: Database["public"]["Enums"]["pedido_status"]
+          snapshot_incompleto?: boolean
+          snapshot_pendencias?: Json | null
+          snapshot_source?: string | null
+          snapshot_version?: number
+          totais_snapshot?: Json | null
+          total?: number
+          updated_at?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "compras_produto_fornecedor_oferta_id_fkey"
-            columns: ["produto_fornecedor_oferta_id"]
-            isOneToOne: false
-            referencedRelation: "produto_fornecedor_ofertas"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       produto_fornecedor_ofertas: {
         Row: {
@@ -992,7 +1758,7 @@ export type Database = {
           cest: string | null
           created_at: string
           custo: number
-          descricao: string
+          descricao: string | null
           dslite_fornecedor_id: string
           dslite_produto_id: string
           estoque: number
@@ -1003,13 +1769,13 @@ export type Database = {
           last_sync_at: string | null
           lead_time_dias: number | null
           marca: string | null
-          nome: string
           ncm: string | null
+          nome: string
           payment_mode: string
           prioridade: number
           produto_id: string
-          sku_oferta: string
           sku_fornecedor: string | null
+          sku_oferta: string
           updated_at: string
         }
         Insert: {
@@ -1017,7 +1783,7 @@ export type Database = {
           cest?: string | null
           created_at?: string
           custo?: number
-          descricao?: string
+          descricao?: string | null
           dslite_fornecedor_id: string
           dslite_produto_id: string
           estoque?: number
@@ -1028,13 +1794,13 @@ export type Database = {
           last_sync_at?: string | null
           lead_time_dias?: number | null
           marca?: string | null
-          nome: string
           ncm?: string | null
+          nome: string
           payment_mode?: string
           prioridade?: number
           produto_id: string
-          sku_oferta: string
           sku_fornecedor?: string | null
+          sku_oferta: string
           updated_at?: string
         }
         Update: {
@@ -1042,7 +1808,7 @@ export type Database = {
           cest?: string | null
           created_at?: string
           custo?: number
-          descricao?: string
+          descricao?: string | null
           dslite_fornecedor_id?: string
           dslite_produto_id?: string
           estoque?: number
@@ -1053,13 +1819,13 @@ export type Database = {
           last_sync_at?: string | null
           lead_time_dias?: number | null
           marca?: string | null
-          nome?: string
           ncm?: string | null
+          nome?: string
           payment_mode?: string
           prioridade?: number
           produto_id?: string
-          sku_oferta?: string
           sku_fornecedor?: string | null
+          sku_oferta?: string
           updated_at?: string
         }
         Relationships: [
@@ -1072,144 +1838,84 @@ export type Database = {
           },
         ]
       }
-      mercadopago_account_movements: {
+      produto_kit_componentes: {
         Row: {
-          id: string
-          external_id: string
-          movement_date: string | null
-          description: string | null
-          reference: string | null
-          amount: number
-          movement_type: string | null
-          currency: string | null
-          raw_payload: Json
-          matched_supplier: string | null
-          supplier_balance_movement_id: string | null
+          componente_produto_id: string
           created_at: string
+          kit_produto_id: string
+          quantidade: number
           updated_at: string
         }
         Insert: {
-          id?: string
-          external_id: string
-          movement_date?: string | null
-          description?: string | null
-          reference?: string | null
-          amount?: number
-          movement_type?: string | null
-          currency?: string | null
-          raw_payload?: Json
-          matched_supplier?: string | null
-          supplier_balance_movement_id?: string | null
+          componente_produto_id: string
           created_at?: string
+          kit_produto_id: string
+          quantidade: number
           updated_at?: string
         }
         Update: {
-          id?: string
-          external_id?: string
-          movement_date?: string | null
-          description?: string | null
-          reference?: string | null
-          amount?: number
-          movement_type?: string | null
-          currency?: string | null
-          raw_payload?: Json
-          matched_supplier?: string | null
-          supplier_balance_movement_id?: string | null
+          componente_produto_id?: string
           created_at?: string
+          kit_produto_id?: string
+          quantidade?: number
           updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "mercadopago_account_movements_supplier_balance_movement_id_fkey"
-            columns: ["supplier_balance_movement_id"]
+            foreignKeyName: "produto_kit_componentes_componente_produto_id_fkey"
+            columns: ["componente_produto_id"]
             isOneToOne: false
-            referencedRelation: "supplier_balance_movements"
+            referencedRelation: "produtos"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "produto_kit_componentes_kit_produto_id_fkey"
+            columns: ["kit_produto_id"]
+            isOneToOne: false
+            referencedRelation: "produto_kits"
+            referencedColumns: ["produto_id"]
           },
         ]
       }
-      supplier_balance_movements: {
+      produto_kits: {
         Row: {
-          id: string
-          fornecedor_id: string
-          fornecedor_nome: string | null
-          movement_type: string
-          amount: number
-          reference: string | null
-          compra_id: string | null
-          notes: string | null
-          created_by: string | null
-          movement_key: string | null
-          status: string
-          source: string | null
-          pedido_id: string | null
-          ml_order_id: string | null
-          confirmed_at: string | null
-          confirmed_by: string | null
+          ativo: boolean
           created_at: string
+          fornecedor_dslite_id: string
+          produto_id: string
+          sku_origem: string
           updated_at: string
         }
         Insert: {
-          id?: string
-          fornecedor_id: string
-          fornecedor_nome?: string | null
-          movement_type: string
-          amount: number
-          reference?: string | null
-          compra_id?: string | null
-          notes?: string | null
-          created_by?: string | null
-          movement_key?: string | null
-          status?: string
-          source?: string | null
-          pedido_id?: string | null
-          ml_order_id?: string | null
-          confirmed_at?: string | null
-          confirmed_by?: string | null
+          ativo?: boolean
           created_at?: string
+          fornecedor_dslite_id: string
+          produto_id: string
+          sku_origem: string
           updated_at?: string
         }
         Update: {
-          id?: string
-          fornecedor_id?: string
-          fornecedor_nome?: string | null
-          movement_type?: string
-          amount?: number
-          reference?: string | null
-          compra_id?: string | null
-          notes?: string | null
-          created_by?: string | null
-          movement_key?: string | null
-          status?: string
-          source?: string | null
-          pedido_id?: string | null
-          ml_order_id?: string | null
-          confirmed_at?: string | null
-          confirmed_by?: string | null
+          ativo?: boolean
           created_at?: string
+          fornecedor_dslite_id?: string
+          produto_id?: string
+          sku_origem?: string
           updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "supplier_balance_movements_compra_id_fkey"
-            columns: ["compra_id"]
-            isOneToOne: false
-            referencedRelation: "compras"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "supplier_balance_movements_pedido_id_fkey"
-            columns: ["pedido_id"]
-            isOneToOne: false
-            referencedRelation: "pedidos"
+            foreignKeyName: "produto_kits_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: true
+            referencedRelation: "produtos"
             referencedColumns: ["id"]
           },
         ]
       }
       produtos: {
         Row: {
-          ativo: boolean
           altura: number
+          ativo: boolean
           categoria: string | null
           cest: string | null
           created_at: string
@@ -1245,8 +1951,8 @@ export type Database = {
           updated_at: string
         }
         Insert: {
-          ativo?: boolean
           altura?: number
+          ativo?: boolean
           categoria?: string | null
           cest?: string | null
           created_at?: string
@@ -1278,12 +1984,12 @@ export type Database = {
           peso_bruto?: number
           peso_liq?: number
           profundidade?: number
-          sku: string
+          sku?: string
           updated_at?: string
         }
         Update: {
-          ativo?: boolean
           altura?: number
+          ativo?: boolean
           categoria?: string | null
           cest?: string | null
           created_at?: string
@@ -1355,22 +2061,594 @@ export type Database = {
         }
         Relationships: []
       }
+      push_notification_outbox: {
+        Row: {
+          attempts: number
+          available_at: string
+          body: string
+          created_at: string
+          dedupe_key: string
+          event_type: string
+          id: string
+          last_error: string | null
+          payload: Json
+          sent_at: string | null
+          status: string
+          title: string
+          updated_at: string
+          url: string
+          user_id: string
+        }
+        Insert: {
+          attempts?: number
+          available_at?: string
+          body: string
+          created_at?: string
+          dedupe_key: string
+          event_type: string
+          id?: string
+          last_error?: string | null
+          payload?: Json
+          sent_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          url: string
+          user_id: string
+        }
+        Update: {
+          attempts?: number
+          available_at?: string
+          body?: string
+          created_at?: string
+          dedupe_key?: string
+          event_type?: string
+          id?: string
+          last_error?: string | null
+          payload?: Json
+          sent_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          url?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      push_subscriptions: {
+        Row: {
+          auth: string
+          created_at: string
+          endpoint: string
+          id: string
+          last_seen_at: string
+          p256dh: string
+          updated_at: string
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          auth: string
+          created_at?: string
+          endpoint: string
+          id?: string
+          last_seen_at?: string
+          p256dh: string
+          updated_at?: string
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          auth?: string
+          created_at?: string
+          endpoint?: string
+          id?: string
+          last_seen_at?: string
+          p256dh?: string
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      short_links: {
+        Row: {
+          code: string
+          created_at: string
+          expires_at: string | null
+          hit_count: number
+          last_accessed_at: string | null
+          metadata: Json
+          purpose: string | null
+          target_url: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          expires_at?: string | null
+          hit_count?: number
+          last_accessed_at?: string | null
+          metadata?: Json
+          purpose?: string | null
+          target_url: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          expires_at?: string | null
+          hit_count?: number
+          last_accessed_at?: string | null
+          metadata?: Json
+          purpose?: string | null
+          target_url?: string
+        }
+        Relationships: []
+      }
+      supplier_balance_movements: {
+        Row: {
+          amount: number
+          compra_id: string | null
+          confirmed_at: string | null
+          confirmed_by: string | null
+          created_at: string
+          created_by: string | null
+          fornecedor_id: string
+          fornecedor_nome: string | null
+          id: string
+          ml_order_id: string | null
+          movement_key: string | null
+          movement_type: string
+          notes: string | null
+          pedido_id: string | null
+          reference: string | null
+          source: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          compra_id?: string | null
+          confirmed_at?: string | null
+          confirmed_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          fornecedor_id: string
+          fornecedor_nome?: string | null
+          id?: string
+          ml_order_id?: string | null
+          movement_key?: string | null
+          movement_type: string
+          notes?: string | null
+          pedido_id?: string | null
+          reference?: string | null
+          source?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          compra_id?: string | null
+          confirmed_at?: string | null
+          confirmed_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          fornecedor_id?: string
+          fornecedor_nome?: string | null
+          id?: string
+          ml_order_id?: string | null
+          movement_key?: string | null
+          movement_type?: string
+          notes?: string | null
+          pedido_id?: string | null
+          reference?: string | null
+          source?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_balance_movements_compra_id_fkey"
+            columns: ["compra_id"]
+            isOneToOne: false
+            referencedRelation: "compras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "supplier_balance_movements_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "supplier_balance_movements_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos_operacionais"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sync_domain_locks: {
+        Row: {
+          acquired_at: string
+          created_at: string
+          domain: string
+          expires_at: string
+          metadata: Json
+          owner_job_id: string | null
+          owner_task: string
+          owner_token: string
+          updated_at: string
+        }
+        Insert: {
+          acquired_at?: string
+          created_at?: string
+          domain: string
+          expires_at: string
+          metadata?: Json
+          owner_job_id?: string | null
+          owner_task: string
+          owner_token: string
+          updated_at?: string
+        }
+        Update: {
+          acquired_at?: string
+          created_at?: string
+          domain?: string
+          expires_at?: string
+          metadata?: Json
+          owner_job_id?: string | null
+          owner_task?: string
+          owner_token?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sync_domain_locks_owner_job_id_fkey"
+            columns: ["owner_job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sync_runtime_config: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      whatsapp_alert_events: {
+        Row: {
+          alert_type: string
+          created_at: string
+          dedupe_key: string
+          error: string | null
+          id: string
+          payload: Json | null
+          phone: string
+          sent_at: string | null
+          status: string
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string
+          dedupe_key: string
+          error?: string | null
+          id?: string
+          payload?: Json | null
+          phone: string
+          sent_at?: string | null
+          status?: string
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string
+          dedupe_key?: string
+          error?: string | null
+          id?: string
+          payload?: Json | null
+          phone?: string
+          sent_at?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      whatsapp_alert_settings: {
+        Row: {
+          alert_type: string
+          created_at: string
+          enabled: boolean
+          id: string
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          phone: string
+          updated_at?: string
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      pedidos_operacionais: {
+        Row: {
+          billing_documento: string | null
+          billing_endereco: Json | null
+          billing_ie: string | null
+          billing_nome: string | null
+          billing_tipo_pessoa: string | null
+          buyer_ml_id: string | null
+          contato_documento: string | null
+          contato_nome: string | null
+          created_at: string | null
+          data: string | null
+          data_prevista: string | null
+          data_saida: string | null
+          data_venda: string | null
+          data_venda_source: string | null
+          dslite_etiqueta_enviada: boolean | null
+          dslite_id: string | null
+          dslite_label_source: string | null
+          dslite_status: string | null
+          envio_interno_at: string | null
+          frete: number | null
+          id: string | null
+          lucro: number | null
+          ml_bundle_parent_item_id: string | null
+          ml_bundle_primary: boolean | null
+          ml_bundle_type: string | null
+          ml_claim_id: string | null
+          ml_claim_status: string | null
+          ml_fiscal_release_at: string | null
+          ml_fiscal_release_checked_at: string | null
+          ml_fiscal_release_reason: string | null
+          ml_fiscal_release_source: string | null
+          ml_invoice_id: string | null
+          ml_invoice_reported: boolean | null
+          ml_label_bytes: number | null
+          ml_label_downloaded_at: string | null
+          ml_label_storage_path: string | null
+          ml_label_url: string | null
+          ml_order_id: string | null
+          ml_pack_id: string | null
+          ml_shipment_id: string | null
+          ml_thermal_label_bytes: number | null
+          ml_thermal_label_downloaded_at: string | null
+          ml_thermal_label_storage_path: string | null
+          nfe_cfop: string | null
+          nfe_chave: string | null
+          nfe_danfe_url: string | null
+          nfe_external_id: string | null
+          nfe_last_sync_at: string | null
+          nfe_protocolo: string | null
+          nfe_provider: string | null
+          nfe_status: string | null
+          nfe_xml: string | null
+          nota_fiscal_emitida: boolean | null
+          nota_fiscal_numero: string | null
+          numero: number | null
+          numero_loja: string | null
+          operational_dslite_ids: string[] | null
+          operational_invoice_numbers: string[] | null
+          operational_lucro: number | null
+          operational_order_ids: string[] | null
+          operational_pedido_ids: string[] | null
+          operational_profit_pending: boolean | null
+          operational_total: number | null
+          pagamento_resumo: Json | null
+          rastreio: string | null
+          sincronizado_em: string | null
+          situacao: Database["public"]["Enums"]["pedido_status"] | null
+          snapshot_incompleto: boolean | null
+          snapshot_pendencias: Json | null
+          snapshot_source: string | null
+          snapshot_version: number | null
+          totais_snapshot: Json | null
+          total: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          billing_documento?: string | null
+          billing_endereco?: Json | null
+          billing_ie?: string | null
+          billing_nome?: string | null
+          billing_tipo_pessoa?: string | null
+          buyer_ml_id?: string | null
+          contato_documento?: string | null
+          contato_nome?: string | null
+          created_at?: string | null
+          data?: string | null
+          data_prevista?: string | null
+          data_saida?: string | null
+          data_venda?: string | null
+          data_venda_source?: string | null
+          dslite_etiqueta_enviada?: boolean | null
+          dslite_id?: string | null
+          dslite_label_source?: string | null
+          dslite_status?: string | null
+          envio_interno_at?: string | null
+          frete?: number | null
+          id?: string | null
+          lucro?: number | null
+          ml_bundle_parent_item_id?: string | null
+          ml_bundle_primary?: boolean | null
+          ml_bundle_type?: string | null
+          ml_claim_id?: string | null
+          ml_claim_status?: string | null
+          ml_fiscal_release_at?: string | null
+          ml_fiscal_release_checked_at?: string | null
+          ml_fiscal_release_reason?: string | null
+          ml_fiscal_release_source?: string | null
+          ml_invoice_id?: string | null
+          ml_invoice_reported?: boolean | null
+          ml_label_bytes?: number | null
+          ml_label_downloaded_at?: string | null
+          ml_label_storage_path?: string | null
+          ml_label_url?: string | null
+          ml_order_id?: string | null
+          ml_pack_id?: string | null
+          ml_shipment_id?: string | null
+          ml_thermal_label_bytes?: number | null
+          ml_thermal_label_downloaded_at?: string | null
+          ml_thermal_label_storage_path?: string | null
+          nfe_cfop?: string | null
+          nfe_chave?: string | null
+          nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_protocolo?: string | null
+          nfe_provider?: string | null
+          nfe_status?: string | null
+          nfe_xml?: string | null
+          nota_fiscal_emitida?: boolean | null
+          nota_fiscal_numero?: string | null
+          numero?: number | null
+          numero_loja?: string | null
+          operational_dslite_ids?: never
+          operational_invoice_numbers?: never
+          operational_lucro?: never
+          operational_order_ids?: never
+          operational_pedido_ids?: never
+          operational_profit_pending?: never
+          operational_total?: never
+          pagamento_resumo?: Json | null
+          rastreio?: string | null
+          sincronizado_em?: string | null
+          situacao?: Database["public"]["Enums"]["pedido_status"] | null
+          snapshot_incompleto?: boolean | null
+          snapshot_pendencias?: Json | null
+          snapshot_source?: string | null
+          snapshot_version?: number | null
+          totais_snapshot?: Json | null
+          total?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          billing_documento?: string | null
+          billing_endereco?: Json | null
+          billing_ie?: string | null
+          billing_nome?: string | null
+          billing_tipo_pessoa?: string | null
+          buyer_ml_id?: string | null
+          contato_documento?: string | null
+          contato_nome?: string | null
+          created_at?: string | null
+          data?: string | null
+          data_prevista?: string | null
+          data_saida?: string | null
+          data_venda?: string | null
+          data_venda_source?: string | null
+          dslite_etiqueta_enviada?: boolean | null
+          dslite_id?: string | null
+          dslite_label_source?: string | null
+          dslite_status?: string | null
+          envio_interno_at?: string | null
+          frete?: number | null
+          id?: string | null
+          lucro?: number | null
+          ml_bundle_parent_item_id?: string | null
+          ml_bundle_primary?: boolean | null
+          ml_bundle_type?: string | null
+          ml_claim_id?: string | null
+          ml_claim_status?: string | null
+          ml_fiscal_release_at?: string | null
+          ml_fiscal_release_checked_at?: string | null
+          ml_fiscal_release_reason?: string | null
+          ml_fiscal_release_source?: string | null
+          ml_invoice_id?: string | null
+          ml_invoice_reported?: boolean | null
+          ml_label_bytes?: number | null
+          ml_label_downloaded_at?: string | null
+          ml_label_storage_path?: string | null
+          ml_label_url?: string | null
+          ml_order_id?: string | null
+          ml_pack_id?: string | null
+          ml_shipment_id?: string | null
+          ml_thermal_label_bytes?: number | null
+          ml_thermal_label_downloaded_at?: string | null
+          ml_thermal_label_storage_path?: string | null
+          nfe_cfop?: string | null
+          nfe_chave?: string | null
+          nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_protocolo?: string | null
+          nfe_provider?: string | null
+          nfe_status?: string | null
+          nfe_xml?: string | null
+          nota_fiscal_emitida?: boolean | null
+          nota_fiscal_numero?: string | null
+          numero?: number | null
+          numero_loja?: string | null
+          operational_dslite_ids?: never
+          operational_invoice_numbers?: never
+          operational_lucro?: never
+          operational_order_ids?: never
+          operational_pedido_ids?: never
+          operational_profit_pending?: never
+          operational_total?: never
+          pagamento_resumo?: Json | null
+          rastreio?: string | null
+          sincronizado_em?: string | null
+          situacao?: Database["public"]["Enums"]["pedido_status"] | null
+          snapshot_incompleto?: boolean | null
+          snapshot_pendencias?: Json | null
+          snapshot_source?: string | null
+          snapshot_version?: number | null
+          totais_snapshot?: Json | null
+          total?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      select_order_fulfillment: {
+      acquire_integracao_refresh_lock: {
         Args: {
-          p_pedido_id: string
-          p_source: string
+          p_owner: string
+          p_tipo: Database["public"]["Enums"]["integracao_tipo"]
+          p_ttl_seconds?: number
         }
-        Returns: {
-          fulfillment_selected_at: string | null
-          fulfillment_source: string
-          selected_now: boolean
-        }[]
+        Returns: boolean
       }
+      acquire_sync_domain_lock: {
+        Args: {
+          p_domain: string
+          p_metadata?: Json
+          p_owner_job_id?: string
+          p_owner_task: string
+          p_owner_token: string
+          p_ttl_seconds?: number
+        }
+        Returns: boolean
+      }
+      dispatch_sync_cron: { Args: never; Returns: undefined }
       get_fornecedores: {
         Args: never
         Returns: {
@@ -1400,41 +2678,104 @@ export type Database = {
           url: string
         }[]
       }
+      next_vortek_product_sku: { Args: never; Returns: string }
+      release_integracao_refresh_lock: {
+        Args: {
+          p_owner: string
+          p_tipo: Database["public"]["Enums"]["integracao_tipo"]
+        }
+        Returns: boolean
+      }
+      release_sync_domain_lock: {
+        Args: { p_domain: string; p_force?: boolean; p_owner_token: string }
+        Returns: boolean
+      }
+      search_pedidos_paginated: {
+        Args: {
+          p_date_from?: string
+          p_date_to?: string
+          p_page?: number
+          p_page_size?: number
+          p_price_max?: number
+          p_price_min?: number
+          p_search?: string
+          p_sort_by?: string
+          p_sort_order?: string
+          p_status?: Database["public"]["Enums"]["pedido_status"]
+        }
+        Returns: Json
+      }
+      search_pedidos_resumo: {
+        Args: {
+          p_date_from?: string
+          p_date_to?: string
+          p_price_max?: number
+          p_price_min?: number
+          p_search?: string
+          p_status?: Database["public"]["Enums"]["pedido_status"]
+        }
+        Returns: {
+          count: number
+          lucro_sum: number
+          margem: number
+          ml_compatible_count: number
+          ml_compatible_missing_payment_data: number
+          ml_compatible_total: number
+          status_counts: Json
+          ticket: number
+          total: number
+        }[]
+      }
       search_produtos_paginated: {
         Args: {
-          p_search?: string | null
-          p_supplier_dslite_ids?: string[] | null
-          p_include_internal?: boolean | null
-          p_product_active_status?: string | null
-          p_ml_status?: string | null
-          p_estoque?: string | null
-          p_price_min?: number | null
-          p_price_max?: number | null
-          p_price_field?: string | null
-          p_page?: number | null
-          p_page_size?: number | null
-          p_sort_by?: string | null
-          p_sort_order?: string | null
+          p_estoque?: string
+          p_include_internal?: boolean
+          p_ml_status?: string
+          p_page?: number
+          p_page_size?: number
+          p_price_field?: string
+          p_price_max?: number
+          p_price_min?: number
+          p_product_active_status?: string
+          p_search?: string
+          p_sort_by?: string
+          p_sort_order?: string
+          p_supplier_dslite_ids?: string[]
         }
         Returns: Json
       }
       search_produtos_resumo: {
         Args: {
-          p_search?: string | null
-          p_supplier_dslite_ids?: string[] | null
-          p_include_internal?: boolean | null
-          p_product_active_status?: string | null
-          p_ml_status?: string | null
-          p_estoque?: string | null
-          p_price_min?: number | null
-          p_price_max?: number | null
-          p_price_field?: string | null
+          p_estoque?: string
+          p_include_internal?: boolean
+          p_ml_status?: string
+          p_price_field?: string
+          p_price_max?: number
+          p_price_min?: number
+          p_product_active_status?: string
+          p_search?: string
+          p_supplier_dslite_ids?: string[]
         }
         Returns: Json
       }
+      select_order_fulfillment: {
+        Args: { p_pedido_id: string; p_source: string }
+        Returns: {
+          fulfillment_selected_at: string
+          fulfillment_source: string
+          selected_now: boolean
+        }[]
+      }
+      show_limit: { Args: never; Returns: number }
+      show_trgm: { Args: { "": string }; Returns: string[] }
     }
     Enums: {
-      integracao_tipo: "mercadolivre" | "bling" | "dslite" | "brasilnfe" | "mercadopago"
+      integracao_tipo:
+        | "mercadolivre"
+        | "bling"
+        | "dslite"
+        | "brasilnfe"
+        | "mercadopago"
       ml_status: "ativo" | "pausado" | "sem_anuncio"
       pedido_status:
         | "aberto"
@@ -1444,7 +2785,6 @@ export type Database = {
         | "entregue"
         | "pendente"
         | "preparando"
-        | "pronto_envio"
         | "etiqueta_impressa"
         | "coletado"
         | "em_transito"
@@ -1452,6 +2792,7 @@ export type Database = {
         | "dest_ausente"
         | "recusado"
         | "devolvido"
+        | "pronto_envio"
       user_role: "admin" | "gerente" | "operador" | "visualizador"
     }
     CompositeTypes: {
@@ -1580,7 +2921,13 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      integracao_tipo: ["mercadolivre", "bling", "dslite", "brasilnfe"],
+      integracao_tipo: [
+        "mercadolivre",
+        "bling",
+        "dslite",
+        "brasilnfe",
+        "mercadopago",
+      ],
       ml_status: ["ativo", "pausado", "sem_anuncio"],
       pedido_status: [
         "aberto",
@@ -1590,7 +2937,6 @@ export const Constants = {
         "entregue",
         "pendente",
         "preparando",
-        "pronto_envio",
         "etiqueta_impressa",
         "coletado",
         "em_transito",
@@ -1598,6 +2944,7 @@ export const Constants = {
         "dest_ausente",
         "recusado",
         "devolvido",
+        "pronto_envio",
       ],
       user_role: ["admin", "gerente", "operador", "visualizador"],
     },

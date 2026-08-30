@@ -66,14 +66,14 @@ export async function GET(request: Request) {
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
   const { data: rpcResult, error: rpcError } = await serviceClient.rpc('search_produtos_paginated', {
-    p_search: search || null,
+    p_search: search || undefined,
     p_supplier_dslite_ids: supplierFilterDsliteIds,
     p_include_internal: includesInternalSupplierFilter(fornecedorFilterIds),
     p_product_active_status: productActiveStatus,
-    p_ml_status: mlStatus || null,
-    p_estoque: estoque || null,
-    p_price_min: priceMin,
-    p_price_max: priceMax,
+    p_ml_status: mlStatus || undefined,
+    p_estoque: estoque || undefined,
+    p_price_min: priceMin ?? undefined,
+    p_price_max: priceMax ?? undefined,
     p_price_field: priceField,
     p_page: page,
     p_page_size: pageSize,
