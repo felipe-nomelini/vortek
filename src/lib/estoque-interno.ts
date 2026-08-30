@@ -1,7 +1,10 @@
 import { createServiceClient } from '@/lib/supabase';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import {
+  calcularSaldoEstoqueInterno,
+  resolverStatusMlEstoqueInterno,
+} from '@/lib/estoque-interno-saldo';
 import { fetchMLResult } from '@/services/integration';
 import { z } from 'zod';
 import { isModifiableMlListingStatus } from '@/lib/ml/operational-listing';
@@ -203,6 +206,7 @@ export type MlObservedStock = {
 export async function enfileirarSyncMlEstoqueInterno(
   produtoId: string,
   observed?: MlObservedStock,
+  options: { reactivateSupplierPaused?: boolean } = {},
 ) {
   const db = createServiceClient();
   const { data: produto, error: produtoError } = await db
@@ -235,6 +239,33 @@ export async function enfileirarSyncMlEstoqueInterno(
         .in('ml_item_id', candidateItemIds)
     : { data: [], error: null };
   if (observedListingsError) throw new Error(observedListingsError.message);
+
+  const { data: recentOutboxRows, error: recentOutboxError } = options.reactivateSupplierPaused && candidateItemIds.length > 0
+    ? await (db as any)
+        .from('anuncios_ml_outbox')
+        .select('ml_item_id,source,status,desired_status,payload,created_at')
+        .in('ml_item_id', candidateItemIds)
+        .order('created_at', { ascending: false })
+    : { data: [], error: null };
+  if (recentOutboxError) throw new Error(recentOutboxError.message);
+  const latestOutboxByItemId = new Map<string, any>();
+  for (const row of recentOutboxRows || []) {
+    const mlItemId = String((row as any).ml_item_id || '').trim();
+    const payload = (row as any).payload;
+    const changesStatus = Boolean((row as any).desired_status)
+      || (payload && typeof payload === 'object' && (payload as any).apply_status === true);
+    if (mlItemId && changesStatus && !latestOutboxByItemId.has(mlItemId)) {
+      latestOutboxByItemId.set(mlItemId, row);
+    }
+  }
+  const supplierPausedItemIds = new Set(
+    Array.from(latestOutboxByItemId.entries())
+      .filter(([, row]) => (
+        String(row.source || '') === 'fornecedor_inativo_pause'
+        && ['pending', 'retry', 'processing', 'done'].includes(String(row.status || ''))
+      ))
+      .map(([mlItemId]) => mlItemId),
+  );
 
   const observedStatusById = new Map<string, string>(
     (observedListings || []).map((listing: any) => [
@@ -285,11 +316,12 @@ export async function enfileirarSyncMlEstoqueInterno(
     const observedStatus = observed?.mlItemId === mlItemId
       ? observedStatusNormalized
       : observedStatusById.get(mlItemId) || localStatusById.get(mlItemId) || '';
-    const desiredStatus = estoqueDisponivel <= 0
-      ? 'paused'
-      : observedStatus === 'paused'
-        ? 'paused'
-        : 'active';
+    const reactivatedSupplierPause = supplierPausedItemIds.has(mlItemId);
+    const desiredStatus = resolverStatusMlEstoqueInterno({
+      estoqueDisponivel,
+      statusObservado: observedStatus,
+      pausadoPelaInativacaoDoFornecedor: reactivatedSupplierPause,
+    });
     if (
       observed?.mlItemId === mlItemId
       && observed.availableQuantity !== null
@@ -330,9 +362,21 @@ export async function enfileirarSyncMlEstoqueInterno(
         estoque_fornecedor: Number(produto.estoque || 0),
         estoque_interno: saldoInterno,
         estoque_disponivel: estoqueDisponivel,
+        reactivated_supplier_pause: reactivatedSupplierPause,
       },
     });
     if (!result.ok) throw new Error(result.error);
+    if (reactivatedSupplierPause) {
+      const { error: consumeMarkerError } = await (db as any)
+        .from('anuncios_ml_outbox')
+        .update({
+          source: 'fornecedor_inativo_pause_reactivated',
+          updated_at: new Date().toISOString(),
+        })
+        .eq('ml_item_id', mlItemId)
+        .eq('source', 'fornecedor_inativo_pause');
+      if (consumeMarkerError) throw new Error(consumeMarkerError.message);
+    }
     enfileirados += 1;
   }
   return { enfileirados, bloqueadosManualmente, semAlteracao, emProcessamento };
@@ -483,6 +527,7 @@ export async function registrarDevolucaoInterna(
         status_devolucao: statusDevolucao,
         situacao_estoque: 'revisao',
         disponivel_venda: false,
+        origem_entrada: 'devolucao',
       });
     if (error) throw new Error(error.message);
   }

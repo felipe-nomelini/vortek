@@ -5,6 +5,7 @@ import {
   normalizeOfferPriority,
   resolvePreferredOfferForProduct,
 } from '@/lib/preferred-offer';
+import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 
 export {
   choosePreferredOffer,
@@ -85,7 +86,11 @@ export async function syncPreferredProductSnapshot(
   const ids = Array.from(new Set(productIds.map((id) => String(id || '').trim()).filter(Boolean)));
   if (ids.length === 0) return [];
 
-  const [{ data: products, error: productError }, { data: offers, error: offerError }] = await Promise.all([
+  const [
+    { data: products, error: productError },
+    { data: offers, error: offerError },
+    { data: internalMovements, error: internalMovementsError },
+  ] = await Promise.all([
     client
       .from('produtos')
       .select('id,sku,ml_item_id,ml_status,oferta_preferencial_id,fornecedor_preferencial_manual,custo,estoque,fornecedor,dslite_fornecedor_id,dslite_produto_id,dslite_ultima_sync')
@@ -93,6 +98,10 @@ export async function syncPreferredProductSnapshot(
     client
       .from('produto_fornecedor_ofertas')
       .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id,fornecedor_nome,custo,estoque,ativo,prioridade,last_sync_at')
+      .in('produto_id', ids),
+    client
+      .from('estoque_interno_movimentacoes')
+      .select('produto_id,tipo,quantidade,situacao_estoque,estornada_em')
       .in('produto_id', ids),
   ]);
 
@@ -102,6 +111,23 @@ export async function syncPreferredProductSnapshot(
   if (offerError) {
     throw new Error(`Falha ao consultar ofertas para snapshot preferencial: ${offerError.message}`);
   }
+  if (internalMovementsError) {
+    throw new Error(`Falha ao consultar estoque interno do snapshot preferencial: ${internalMovementsError.message}`);
+  }
+
+  const movementsByProductId = new Map<string, any[]>();
+  for (const movement of internalMovements || []) {
+    const productId = String((movement as any).produto_id || '').trim();
+    if (!productId) continue;
+    const list = movementsByProductId.get(productId) || [];
+    list.push(movement);
+    movementsByProductId.set(productId, list);
+  }
+  const internalStockProductIds = new Set(
+    Array.from(movementsByProductId.entries())
+      .filter(([, movements]) => calcularSaldoEstoqueInterno(movements) > 0)
+      .map(([productId]) => productId),
+  );
 
   const offersByProductId = new Map<string, ProdutoFornecedorOfertaRow[]>();
   for (const offer of (offers || []) as ProdutoFornecedorOfertaRow[]) {
@@ -172,7 +198,9 @@ export async function syncPreferredProductSnapshot(
       oferta_preferencial_id: String((preferred as any).id || '').trim() || null,
       fornecedor_preferencial_manual: manualPreferenceRequested
         && String((preferred as any).id || '').trim() === requestedPreferredOfferId,
-      custo: Number(preferred.custo || 0),
+      custo: internalStockProductIds.has(productId)
+        ? previous.custo
+        : Number(preferred.custo || 0),
       estoque: Number(preferred.estoque || 0),
       fornecedor: preferred.fornecedor_nome ? String(preferred.fornecedor_nome) : previous.fornecedor,
       dslite_fornecedor_id: String(preferred.dslite_fornecedor_id || ''),

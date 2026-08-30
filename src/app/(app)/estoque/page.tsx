@@ -7,6 +7,7 @@ type SituacaoEstoque = 'revisao' | 'liberado' | 'nao_aproveitavel';
 type ItemEstoque = {
   id: string; produto_id: string; pedido_id: string; sku: string; nome: string; quantidade: number;
   motivo: string; status_devolucao: string; situacao_estoque: SituacaoEstoque;
+  origem_entrada: 'devolucao' | 'compra' | 'ajuste_manual'; custo_unitario: number | null;
   pedido_ml: string; pedido_ml_link_id: string | null;
 };
 type ItemVendido = { id: string; sku: string; nome: string; quantidade: number; pedido_ml: string; pedido_ml_link_id: string | null; vendido_em: string };
@@ -41,7 +42,7 @@ export default function EstoquePage() {
   const [lookingUpProduct, setLookingUpProduct] = useState(false);
   const [savingManual, setSavingManual] = useState(false);
   const [deletingManualId, setDeletingManualId] = useState<string | null>(null);
-  const [manualForm] = Form.useForm<{ sku: string; quantidade: number }>();
+  const [manualForm] = Form.useForm<{ sku: string; quantidade: number; custo_unitario: number }>();
   const [messageApi, contextHolder] = message.useMessage();
   const load = useCallback(async (showLoading = true) => {
     if (showLoading) setLoading(true);
@@ -77,6 +78,10 @@ export default function EstoquePage() {
       const result = await response.json();
       if (!response.ok) throw new Error(result?.error || 'Falha ao atualizar devolução.');
       messageApi.success(situacao === 'liberado' ? 'Produto liberado para venda.' : 'Produto movido para Não aproveitável.');
+      if (result?.mlSyncWarning) messageApi.warning(result.mlSyncWarning);
+      if (Array.isArray(result?.automaticPricing?.errors) && result.automaticPricing.errors.length > 0) {
+        messageApi.warning('O estoque foi liberado, mas o preço automático precisa ser revisado.');
+      }
       await load();
     } catch (error: any) { messageApi.error(error?.message || 'Falha ao atualizar devolução.'); }
   };
@@ -96,13 +101,17 @@ export default function EstoquePage() {
     finally { setLookingUpProduct(false); }
   };
 
-  const inserirEstoqueManual = async (values: { sku: string; quantidade: number }) => {
+  const inserirEstoqueManual = async (values: { sku: string; quantidade: number; custo_unitario: number }) => {
     setSavingManual(true);
     try {
-      const response = await fetch('/api/estoque', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) });
+      const response = await fetch('/api/estoque', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...values, origem: 'compra' }),
+      });
       const result = await response.json();
       if (!response.ok) throw new Error(result?.error || 'Falha ao inserir estoque interno.');
-      messageApi.success('Estoque interno inserido para revisão.');
+      messageApi.success('Compra inserida para revisão.');
       setManualModalOpen(false);
       setManualProduct(null);
       manualForm.resetFields();
@@ -128,11 +137,12 @@ export default function EstoquePage() {
 
   const columns = [
     { title: 'SKU', dataIndex: 'sku' },
-    { title: 'Venda de origem', render: (_: unknown, item: ItemEstoque) => item.pedido_ml_link_id ? <Typography.Link href={`https://www.mercadolivre.com.br/vendas/${item.pedido_ml_link_id}/detalhe`} target="_blank" rel="noopener noreferrer">#{item.pedido_ml}</Typography.Link> : <Typography.Text type="secondary">—</Typography.Text> },
+    { title: 'Origem', render: (_: unknown, item: ItemEstoque) => item.origem_entrada === 'compra' ? <Tag color="blue">Compra</Tag> : item.pedido_ml_link_id ? <Typography.Link href={`https://www.mercadolivre.com.br/vendas/${item.pedido_ml_link_id}/detalhe`} target="_blank" rel="noopener noreferrer">Devolução #{item.pedido_ml}</Typography.Link> : <Tag>Devolução</Tag> },
     { title: 'Produto', dataIndex: 'nome' }, { title: 'Quantidade', dataIndex: 'quantidade' },
+    { title: 'Custo unitário', render: (_: unknown, item: ItemEstoque) => item.custo_unitario == null ? <Typography.Text type="secondary">—</Typography.Text> : item.custo_unitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) },
     { title: 'Motivo', dataIndex: 'motivo' },
     { title: 'Status', render: (_: unknown, item: ItemEstoque) => {
-      if (item.status_devolucao === 'manual') return <Typography.Text type="secondary">—</Typography.Text>;
+      if (item.status_devolucao === 'manual') return <Tag color={item.origem_entrada === 'compra' ? 'blue' : 'default'}>{item.origem_entrada === 'compra' ? 'Compra recebida' : 'Entrada manual'}</Tag>;
       const status = statusLabels[item.status_devolucao] || { label: item.status_devolucao, color: 'default' };
       return <Tag color={status.color}>{status.label}</Tag>;
     } },
@@ -140,8 +150,8 @@ export default function EstoquePage() {
       const entregue = ['delivered', 'returned', 'manual'].includes(item.status_devolucao);
       const excluirManual = item.status_devolucao === 'manual' ? (
         <Popconfirm
-          title="Excluir inserção manual?"
-          description="O produto será removido do estoque interno."
+          title="Excluir entrada?"
+          description="A entrada será removida do estoque interno."
           okText="Excluir"
           cancelText="Cancelar"
           okButtonProps={{ danger: true }}
@@ -165,10 +175,10 @@ export default function EstoquePage() {
     { title: 'Data do envio', render: (_: unknown, item: ItemVendido) => new Date(item.vendido_em).toLocaleString('pt-BR') },
   ]} />;
 
-  return <>{contextHolder}<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}><div><Typography.Title level={4}>Estoque interno</Typography.Title><Typography.Paragraph type="secondary">Devoluções entram em revisão. Ações liberadas somente após entrega confirmada pelo Mercado Livre.</Typography.Paragraph></div><Button type="primary" onClick={() => setManualModalOpen(true)}>Inserir estoque interno</Button></div>
+  return <>{contextHolder}<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}><div><Typography.Title level={4}>Estoque interno</Typography.Title><Typography.Paragraph type="secondary">Devoluções e compras recebidas entram em revisão antes de ficarem disponíveis para venda.</Typography.Paragraph></div><Button type="primary" onClick={() => setManualModalOpen(true)}>Registrar compra</Button></div>
     <Row gutter={16}><Col xs={24} md={8}><Card><Statistic title="Para revisão" value={data.revisao} valueStyle={{ color: '#faad14' }} /></Card></Col><Col xs={24} md={8}><Card><Statistic title="Liberadas para venda" value={data.liberado} valueStyle={{ color: '#52c41a' }} /></Card></Col><Col xs={24} md={8}><Card><Statistic title="Não aproveitáveis" value={data.nao_aproveitavel} valueStyle={{ color: '#ff4d4f' }} /></Card></Col></Row>
     <Tabs style={{ marginTop: 16 }} items={[{ key: 'revisao', label: `Para revisão (${data.revisao})`, children: tabela('revisao') }, { key: 'liberado', label: `Liberado (${data.liberado})`, children: tabela('liberado') }, { key: 'nao-aproveitavel', label: `Não aproveitável (${data.nao_aproveitavel})`, children: tabela('nao_aproveitavel') }, { key: 'vendidos', label: `Vendidos (${data.vendidosQuantidade})`, children: tabelaVendidos }]} />
-    <Modal title="Inserir estoque interno" open={manualModalOpen} onCancel={() => { setManualModalOpen(false); setManualProduct(null); manualForm.resetFields(); }} onOk={() => manualForm.submit()} confirmLoading={savingManual} okText="Inserir produto">
+    <Modal title="Registrar compra recebida" open={manualModalOpen} onCancel={() => { setManualModalOpen(false); setManualProduct(null); manualForm.resetFields(); }} onOk={() => manualForm.submit()} confirmLoading={savingManual} okText="Registrar compra">
       <Form form={manualForm} layout="vertical" onFinish={inserirEstoqueManual} onValuesChange={(changed) => { if (changed.sku !== undefined) setManualProduct(null); }}>
         <Form.Item label="SKU" name="sku" rules={[{ required: true, message: 'Informe o SKU.' }]}>
           <Input placeholder="Ex.: VTK001030" onBlur={() => void buscarProdutoManual()} onPressEnter={(event) => { event.preventDefault(); void buscarProdutoManual(); }} suffix={lookingUpProduct ? 'Buscando...' : undefined} />
@@ -178,6 +188,16 @@ export default function EstoquePage() {
         </Form.Item>
         <Form.Item label="Quantidade" name="quantidade" rules={[{ required: true, message: 'Informe a quantidade.' }]}>
           <InputNumber min={1} precision={0} style={{ width: '100%' }} />
+        </Form.Item>
+        <Form.Item label="Custo unitário" name="custo_unitario" rules={[{ required: true, message: 'Informe o custo unitário.' }]}>
+          <InputNumber<number>
+            min={0.01}
+            precision={2}
+            step={0.01}
+            prefix="R$"
+            decimalSeparator=","
+            style={{ width: '100%' }}
+          />
         </Form.Item>
       </Form>
     </Modal>

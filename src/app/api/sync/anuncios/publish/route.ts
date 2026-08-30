@@ -11,6 +11,7 @@ import {
   detachDeletedMlListing,
   isMlListingDeletionPayload,
 } from '@/lib/ml/listing-deletion';
+import { isSafeInactiveSupplierPause } from '@/lib/supplier-deactivation';
 
 export const maxDuration = 300;
 
@@ -413,7 +414,22 @@ export async function POST(request: Request) {
       const operations: Array<{ op: string; ok: boolean; error?: string; code?: string | null }> = [];
 
       const rowProductId = String(row.produto_id || '').trim();
-      if (rowProductId && !activeProductIds.has(rowProductId) && !deleteListing) {
+      const outboxSource = String((row as any).source || '').trim().toLowerCase();
+      const applyMode = resolveApplyMode(row);
+      const safeInactiveSupplierPause = isSafeInactiveSupplierPause({
+        source: outboxSource,
+        desiredStatus: row.desired_status,
+        desiredQuantity: row.desired_quantity,
+        appliesPrice: applyMode.applyPrice || applyMode.applyQuantityPricing,
+        appliesQuantity: applyMode.applyQuantity,
+        appliesStatus: applyMode.applyStatus,
+      });
+      if (
+        rowProductId
+        && !activeProductIds.has(rowProductId)
+        && !deleteListing
+        && !safeInactiveSupplierPause
+      ) {
         await (client
           .from('anuncios_ml_outbox' as any)
           .update({
@@ -449,8 +465,6 @@ export async function POST(request: Request) {
           code: deletion.ok ? null : deletion.code,
         });
       } else {
-        const applyMode = resolveApplyMode(row);
-        const outboxSource = String((row as any).source || '').trim().toLowerCase();
         const desiredStatusRaw = String(row.desired_status || '').trim().toLowerCase();
 
         if (outboxSource === 'pricing_strategy_reprice' && desiredStatusRaw === 'sem_anuncio') {

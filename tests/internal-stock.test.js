@@ -4,6 +4,7 @@ const test = require('node:test');
 const {
   calcularSaldoEstoqueInterno,
   calcularEntradasVisiveisEstoqueInterno,
+  resolverStatusMlEstoqueInterno,
 } = require('../src/lib/estoque-interno-saldo.ts');
 
 test('saída estornada não reduz o saldo interno', () => {
@@ -98,4 +99,26 @@ test('saídas não alteram itens em revisão', () => {
     ]),
     [entrada],
   );
+});
+
+test('compra reativa somente anúncio pausado pela inativação do fornecedor', () => {
+  assert.equal(resolverStatusMlEstoqueInterno({
+    estoqueDisponivel: 3,
+    statusObservado: 'paused',
+    pausadoPelaInativacaoDoFornecedor: true,
+  }), 'active');
+
+  assert.equal(resolverStatusMlEstoqueInterno({
+    estoqueDisponivel: 3,
+    statusObservado: 'paused',
+    pausadoPelaInativacaoDoFornecedor: false,
+  }), 'paused');
+});
+
+test('estoque zerado mantém anúncio pausado mesmo com marcador do fornecedor', () => {
+  assert.equal(resolverStatusMlEstoqueInterno({
+    estoqueDisponivel: 0,
+    statusObservado: 'paused',
+    pausadoPelaInativacaoDoFornecedor: true,
+  }), 'paused');
 });

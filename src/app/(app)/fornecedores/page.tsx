@@ -157,15 +157,12 @@ export default function FornecedoresPage() {
           messageApi.success(`Fornecedor ${fornecedorLabel} ativado. Produtos continuam inativos até ativação manual.`);
         } else {
           const records = json?.records || {};
-          const deleted =
-            Number(records.ml_delete_enqueued || 0)
-            + Number(records.ml_delete_updated_existing || 0)
-            + Number(records.ml_delete_reopened_failed || 0);
+          const paused = Number(records.ml_pause_enqueued || 0);
           messageApi.success(
-            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos e ${records.supplier_offers_inactivated || 0} ofertas inativadas; ${deleted} exclusões ML enfileiradas.`,
+            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos sem fonte foram inativados; ${paused} pausas no ML foram enfileiradas.`,
           );
-          if (Number(records.ml_delete_failed || 0) > 0) {
-            messageApi.warning(`${records.ml_delete_failed} anúncios não entraram na fila de exclusão. Verifique logs.`);
+          if (Number(records.ml_pause_failed || 0) > 0) {
+            messageApi.warning(`${records.ml_pause_failed} anúncios não entraram na fila de pausa. Verifique os erros retornados.`);
           }
         }
 
@@ -200,15 +197,18 @@ export default function FornecedoresPage() {
         title: `Inativar fornecedor ${fornecedorLabel}?`,
         content: (
           <div>
-            <p>Isso vai inativar produtos vinculados a este fornecedor.</p>
-            <p><strong>Os anúncios sem outro fornecedor ativo serão excluídos definitivamente do Mercado Livre.</strong></p>
+            <p>As ofertas deste fornecedor serão inativadas e terão o estoque zerado.</p>
+            <p><strong>Os anúncios sem outra fonte de estoque serão pausados, não excluídos.</strong></p>
             <p>
               Produtos encontrados: <strong>{impact.products_found || 0}</strong><br />
               Produtos ativos afetados: <strong>{impact.products_active || 0}</strong><br />
               Ofertas ativas afetadas: <strong>{impact.supplier_offers_active || 0}</strong><br />
-              Anúncios ML que serão excluídos: <strong>{impact.ml_delete_candidates || 0}</strong>
+              Produtos com fornecedor alternativo: <strong>{impact.products_with_alternative_stock || 0}</strong><br />
+              Produtos já cobertos por estoque interno: <strong>{impact.products_with_internal_stock || 0}</strong><br />
+              Produtos sem fonte disponível: <strong>{impact.products_without_available_source || 0}</strong><br />
+              Anúncios ativos que serão pausados: <strong>{impact.ml_pause_candidates || 0}</strong>
             </p>
-            <p>Se o fornecedor voltar, os produtos continuarão inativos até ativação manual.</p>
+            <p>Os anúncios pausados por esta transição poderão ser reativados automaticamente quando uma compra for liberada no estoque interno.</p>
           </div>
         ),
         okText: 'Inativar',

@@ -5,6 +5,12 @@ import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
+import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
+import {
+  classifySupplierDeactivationProducts,
+  isActiveSupplierListingStatus,
+} from '@/lib/supplier-deactivation';
 
 export const maxDuration = 300;
 
@@ -13,11 +19,17 @@ type ImpactProduct = {
   sku: string | null;
   ml_item_id: string | null;
   ativo: boolean | null;
+  ml_status?: string | null;
 };
 
 type ImpactOffer = {
   id: string;
   ativo: boolean | null;
+};
+
+type MlListingTarget = {
+  mlItemId: string;
+  status: string;
 };
 
 const SUPABASE_IN_FILTER_CHUNK_SIZE = 100;
@@ -138,25 +150,58 @@ async function loadProductIdsWithAlternativeStock(
   return alternatives;
 }
 
+async function loadProductIdsWithInternalStock(
+  client: any,
+  productIds: string[],
+): Promise<Set<string>> {
+  if (productIds.length === 0) return new Set();
+  const targetProductIds = new Set(productIds);
+  const movements = await fetchAllRowsPaginated<any>((from, to) => (
+    client
+      .from('estoque_interno_movimentacoes')
+      .select('id,produto_id,tipo,quantidade,situacao_estoque,estornada_em')
+      .order('id', { ascending: true })
+      .range(from, to)
+  ));
+
+  const byProductId = new Map<string, any[]>();
+  for (const movement of movements) {
+    const productId = String(movement.produto_id || '').trim();
+    if (!productId || !targetProductIds.has(productId)) continue;
+    const list = byProductId.get(productId) || [];
+    list.push(movement);
+    byProductId.set(productId, list);
+  }
+
+  return new Set(
+    Array.from(byProductId.entries())
+      .filter(([, productMovements]) => calcularSaldoEstoqueInterno(productMovements) > 0)
+      .map(([productId]) => productId),
+  );
+}
+
 async function loadMlListingTargets(
   client: any,
   products: ImpactProduct[],
-): Promise<Map<string, string[]>> {
-  const targetsByProductId = new Map<string, string[]>();
+): Promise<Map<string, MlListingTarget[]>> {
+  const targetsByProductId = new Map<string, MlListingTarget[]>();
   for (const product of products) {
     const itemId = String(product.ml_item_id || '').trim();
-    targetsByProductId.set(product.id, itemId ? [itemId] : []);
+    targetsByProductId.set(product.id, itemId ? [{
+      mlItemId: itemId,
+      status: String((product as any).ml_status || '') === 'ativo' ? 'active' : 'paused',
+    }] : []);
   }
 
   for (const idsChunk of chunk(products.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
     const [listingResult, snapshotResult] = await Promise.all([
       client
         .from('anuncios_ml')
-        .select('produto_id,ml_item_id')
+        .select('produto_id,ml_item_id,status')
         .in('produto_id', idsChunk),
       client
         .from('catalogo_ml_snapshot')
-        .select('produto_id,ml_item_id')
+        .select('produto_id,ml_item_id,status')
         .in('produto_id', idsChunk),
     ]);
     if (listingResult.error) throw new Error(listingResult.error.message);
@@ -167,7 +212,13 @@ async function loadMlListingTargets(
       const itemId = String((row as any).ml_item_id || '').trim();
       if (!productId || !itemId) continue;
       const targets = targetsByProductId.get(productId) || [];
-      if (!targets.includes(itemId)) targets.push(itemId);
+      const existing = targets.find((target) => target.mlItemId === itemId);
+      const status = String((row as any).status || '').trim().toLowerCase();
+      if (existing) {
+        if (status) existing.status = status === 'ativo' ? 'active' : status === 'pausado' ? 'paused' : status;
+      } else {
+        targets.push({ mlItemId: itemId, status });
+      }
       targetsByProductId.set(productId, targets);
     }
   }
@@ -179,12 +230,17 @@ function buildImpact(
   products: ImpactProduct[],
   offers: ImpactOffer[],
   alternativeProductIds = new Set<string>(),
-  listingTargets = new Map<string, string[]>(),
+  internalStockProductIds = new Set<string>(),
+  listingTargets = new Map<string, MlListingTarget[]>(),
 ) {
   const activeProducts = products.filter((product) => product.ativo !== false);
   const activeOffers = offers.filter((offer) => offer.ativo !== false);
   const productsWithAlternativeStock = activeProducts.filter((product) => alternativeProductIds.has(product.id));
-  const productsWithoutAlternative = products.filter((product) => !alternativeProductIds.has(product.id));
+  const transition = classifySupplierDeactivationProducts(
+    products,
+    alternativeProductIds,
+    internalStockProductIds,
+  );
   return {
     products_found: products.length,
     products_active: activeProducts.length,
@@ -193,8 +249,12 @@ function buildImpact(
     supplier_offers_active: activeOffers.length,
     supplier_offers_already_inactive: offers.length - activeOffers.length,
     products_with_alternative_stock: productsWithAlternativeStock.length,
-    ml_delete_candidates: productsWithoutAlternative.reduce(
-      (total, product) => total + (listingTargets.get(product.id)?.length || 0),
+    products_with_internal_stock: transition.withInternalStock.length,
+    products_without_available_source: transition.withoutAvailableSource.length,
+    ml_pause_candidates: transition.withoutAvailableSource.reduce(
+      (total, product) => total + (listingTargets.get(product.id) || []).filter((target) => (
+        isActiveSupplierListingStatus(target.status)
+      )).length,
       0,
     ),
   };
@@ -218,15 +278,18 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
       loadImpactedProducts(client, dsliteFornecedorId),
       loadImpactedOffers(client, dsliteFornecedorId),
     ]);
-    const alternativeProductIds = await loadProductIdsWithAlternativeStock(
-      client,
-      products.map((product) => product.id),
-      dsliteFornecedorId,
-    );
+    const [alternativeProductIds, internalStockProductIds] = await Promise.all([
+      loadProductIdsWithAlternativeStock(
+        client,
+        products.map((product) => product.id),
+        dsliteFornecedorId,
+      ),
+      loadProductIdsWithInternalStock(client, products.map((product) => product.id)),
+    ]);
     const listingTargets = await loadMlListingTargets(client, products);
     return NextResponse.json({
       fornecedor,
-      impact: buildImpact(products, offers, alternativeProductIds, listingTargets),
+      impact: buildImpact(products, offers, alternativeProductIds, internalStockProductIds, listingTargets),
     });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao calcular impacto do fornecedor') }, { status: 500 });
@@ -281,10 +344,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         records: {
           products_found: 0,
           products_inactivated: 0,
-          ml_delete_enqueued: 0,
-          ml_delete_updated_existing: 0,
-          ml_delete_skipped_no_item: 0,
-          ml_delete_failed: 0,
+          ml_pause_enqueued: 0,
+          ml_pause_skipped_no_item: 0,
+          ml_pause_failed: 0,
           supplier_offers_found: 0,
           supplier_offers_inactivated: 0,
         },
@@ -314,15 +376,24 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       supplierOffersInactivated += idsChunk.length;
     }
 
-    const alternativeProductIds = await loadProductIdsWithAlternativeStock(
-      client,
-      activeProducts.map((product) => product.id),
-      dsliteFornecedorId,
+    const productIds = products.map((product) => product.id);
+    const [alternativeProductIds, internalStockProductIds] = await Promise.all([
+      loadProductIdsWithAlternativeStock(client, productIds, dsliteFornecedorId),
+      loadProductIdsWithInternalStock(client, productIds),
+    ]);
+    const transition = classifySupplierDeactivationProducts(
+      products,
+      alternativeProductIds,
+      internalStockProductIds,
     );
     const productsWithAlternativeStock = activeProducts.filter((product) => alternativeProductIds.has(product.id));
-    const productsToInactivate = activeProducts.filter((product) => !alternativeProductIds.has(product.id));
-    const productsToDelete = products.filter((product) => !alternativeProductIds.has(product.id));
-    const listingTargets = await loadMlListingTargets(client, productsToDelete);
+    const productsWithInternalStock = transition.withInternalStock;
+    const productsKeptOnlyByInternalStock = productsWithInternalStock.filter((product) => (
+      product.ativo !== false && !alternativeProductIds.has(product.id)
+    ));
+    const productsWithoutAvailableSource = transition.withoutAvailableSource;
+    const activeProductsWithoutAvailableSource = transition.activeWithoutAvailableSource;
+    const listingTargets = await loadMlListingTargets(client, productsWithoutAvailableSource);
 
     let productsReassigned = 0;
     const preferredSnapshots: Awaited<ReturnType<typeof syncPreferredProductSnapshot>> = [];
@@ -333,36 +404,54 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     }
 
     let productsInactivated = 0;
-    for (const idsChunk of chunk(productsToInactivate.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+    for (const idsChunk of chunk(productsWithoutAvailableSource.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
       const { error } = await client
         .from('produtos')
-        .update({ ativo: false, estoque: 0 } as any)
+        .update({ ativo: false, estoque: 0, ml_status: 'pausado' } as any)
         .in('id', idsChunk);
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
-      productsInactivated += idsChunk.length;
     }
+    productsInactivated = activeProductsWithoutAvailableSource.length;
 
-    let productsMlMarkedWithoutListing = 0;
-    for (const idsChunk of chunk(productsToDelete.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+    let productsKeptInternal = 0;
+    for (const idsChunk of chunk(productsKeptOnlyByInternalStock.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
       const { error } = await client
         .from('produtos')
-        .update({ ml_status: 'sem_anuncio', estoque: 0 } as any)
+        .update({ ativo: true, estoque: 0 } as any)
         .in('id', idsChunk);
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
-      productsMlMarkedWithoutListing += idsChunk.length;
+      productsKeptInternal += idsChunk.length;
     }
 
-    let mlDeleteEnqueued = 0;
-    let mlDeleteUpdatedExisting = 0;
-    let mlDeleteReopenedFailed = 0;
-    let mlDeleteSkippedNoItem = 0;
-    let mlDeleteFailed = 0;
+    let staleDeleteOutboxCancelled = 0;
+    for (const idsChunk of chunk(products.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+      const { data: cancelled, error } = await (client as any)
+        .from('anuncios_ml_outbox')
+        .update({
+          status: 'cancelled',
+          last_error: 'Cancelado: a inativação do fornecedor agora pausa o anúncio em vez de excluí-lo.',
+          updated_at: new Date().toISOString(),
+        })
+        .in('produto_id', idsChunk)
+        .eq('source', 'fornecedor_inativo_delete')
+        .in('status', ['pending', 'retry', 'processing', 'failed'])
+        .select('id');
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      staleDeleteOutboxCancelled += cancelled?.length || 0;
+    }
+
+    let mlPauseEnqueued = 0;
+    let mlPauseSkippedNoItem = 0;
+    let mlPauseSkippedNonActive = 0;
+    let mlPauseFailed = 0;
     let mlStockEnqueued = 0;
     let mlStockFailed = 0;
     let mlPriceProductsUpdated = 0;
@@ -394,46 +483,48 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       });
     }
 
-    for (const product of productsToDelete) {
+    for (const product of productsWithoutAvailableSource) {
       const sku = String(product.sku || '').trim();
-      const itemIds = listingTargets.get(product.id) || [];
-      if (itemIds.length === 0) {
-        mlDeleteSkippedNoItem += 1;
+      const targets = listingTargets.get(product.id) || [];
+      if (targets.length === 0) {
+        mlPauseSkippedNoItem += 1;
         continue;
       }
 
-      for (const mlItemId of itemIds) {
+      for (const target of targets) {
+        if (!isActiveSupplierListingStatus(target.status)) {
+          mlPauseSkippedNonActive += 1;
+          continue;
+        }
+        const mlItemId = target.mlItemId;
         const outbox = await enqueueMlPublishOutbox(client, {
           produtoId: product.id,
           mlItemId,
-          desiredStatus: null,
-          desiredQuantity: null,
+          desiredStatus: 'pausado',
+          desiredQuantity: 0,
           desiredPrice: null,
-          source: 'fornecedor_inativo_delete',
-          dedupePending: true,
+          source: 'fornecedor_inativo_pause',
           payload: {
-            delete_listing: true,
+            delete_listing: false,
             apply_price: false,
             apply_quantity_pricing: false,
-            apply_quantity: false,
-            apply_status: false,
+            apply_quantity: true,
+            apply_status: true,
             fornecedor_id: params.id,
             fornecedor_dslite_id: String(fornecedor.dslite_id || ''),
             fornecedor_apelido: String(fornecedor.apelido || ''),
             sku,
+            previous_status: target.status,
+            reactivate_on_internal_stock: true,
             origin: 'api/fornecedores/[id]/status',
           },
         });
 
         if (!outbox.ok) {
-          mlDeleteFailed += 1;
+          mlPauseFailed += 1;
           errors.push({ product_id: product.id, sku, ml_item_id: mlItemId, error: outbox.error });
-        } else if (outbox.action === 'updated_existing') {
-          mlDeleteUpdatedExisting += 1;
-        } else if (outbox.action === 'reopened_failed') {
-          mlDeleteReopenedFailed += 1;
         } else {
-          mlDeleteEnqueued += 1;
+          mlPauseEnqueued += 1;
         }
       }
     }
@@ -472,23 +563,40 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       }
     }
 
+    for (const product of productsWithInternalStock) {
+      try {
+        const sync = await enfileirarSyncMlEstoqueInterno(product.id);
+        mlStockEnqueued += sync.enfileirados;
+      } catch (error) {
+        mlStockFailed += 1;
+        errors.push({
+          product_id: product.id,
+          sku: String(product.sku || ''),
+          ml_item_id: String(product.ml_item_id || ''),
+          error: `Estoque interno: ${toPublicError(error, 'falha ao sincronizar estoque')}`,
+        });
+      }
+    }
+
     return NextResponse.json({
-      success: mlDeleteFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
+      success: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
       fornecedor_id: params.id,
       ativo: false,
       records: {
         products_found: products.length,
         products_with_alternative_stock: productsWithAlternativeStock.length,
+        products_with_internal_stock: productsWithInternalStock.length,
         products_reassigned: productsReassigned,
+        products_kept_only_by_internal_stock: productsKeptInternal,
         products_inactivated: productsInactivated,
-        products_ml_marked_without_listing: productsMlMarkedWithoutListing,
+        products_without_available_source: productsWithoutAvailableSource.length,
         supplier_offers_found: offers.length,
         supplier_offers_inactivated: supplierOffersInactivated,
-        ml_delete_enqueued: mlDeleteEnqueued,
-        ml_delete_updated_existing: mlDeleteUpdatedExisting,
-        ml_delete_reopened_failed: mlDeleteReopenedFailed,
-        ml_delete_skipped_no_item: mlDeleteSkippedNoItem,
-        ml_delete_failed: mlDeleteFailed,
+        stale_delete_outbox_cancelled: staleDeleteOutboxCancelled,
+        ml_pause_enqueued: mlPauseEnqueued,
+        ml_pause_skipped_no_item: mlPauseSkippedNoItem,
+        ml_pause_skipped_non_active: mlPauseSkippedNonActive,
+        ml_pause_failed: mlPauseFailed,
         ml_stock_enqueued: mlStockEnqueued,
         ml_stock_failed: mlStockFailed,
         ml_price_products_updated: mlPriceProductsUpdated,
@@ -496,7 +604,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         ml_price_failed: mlPriceFailed,
       },
       errors,
-    }, { status: mlDeleteFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0 ? 200 : 207 });
+    }, { status: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0 ? 200 : 207 });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao atualizar fornecedor') }, { status: 500 });
   }

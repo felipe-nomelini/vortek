@@ -113,8 +113,8 @@ export default function FornecedorDetailPage() {
           throw new Error(statusJson.error || 'Erro ao atualizar status do fornecedor');
         }
         if (statusRes.status === 207 || statusJson?.success === false) {
-          const failed = Number(statusJson?.records?.ml_delete_failed || 0);
-          message.warning(`Fornecedor atualizado, mas ${failed} anúncios não entraram na fila de exclusão.`);
+          const failed = Number(statusJson?.records?.ml_pause_failed || 0);
+          message.warning(`Fornecedor atualizado, mas ${failed} anúncios não entraram na fila de pausa.`);
         }
       }
 
@@ -224,6 +224,15 @@ export default function FornecedorDetailPage() {
           style={{ marginBottom: 16 }}
           message="Chave PIX do fornecedor não cadastrada"
           description="Fornecedores pré-pago precisam da chave PIX cadastrada para liberar o fluxo de confirmação de pagamento."
+        />
+      )}
+      {original?.ativo !== false && fornecedor.ativo === false && (
+        <Alert
+          type="warning"
+          showIcon
+          style={{ marginBottom: 16 }}
+          message="A inativação será aplicada ao salvar"
+          description="Ofertas do fornecedor terão estoque zerado. Produtos sem outra fonte serão inativados e seus anúncios ativos serão pausados, nunca excluídos."
         />
       )}
 

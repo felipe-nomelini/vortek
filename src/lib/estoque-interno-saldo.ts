@@ -18,6 +18,18 @@ export type SaidaAtivaEstoqueInterno = {
   quantidade: number;
 };
 
+export function resolverStatusMlEstoqueInterno(input: {
+  estoqueDisponivel: number;
+  statusObservado: string | null | undefined;
+  pausadoPelaInativacaoDoFornecedor: boolean;
+}): 'active' | 'paused' {
+  if (input.estoqueDisponivel <= 0) return 'paused';
+  if (input.pausadoPelaInativacaoDoFornecedor) return 'active';
+  return String(input.statusObservado || '').trim().toLowerCase() === 'paused'
+    ? 'paused'
+    : 'active';
+}
+
 /** Calcula somente entradas liberadas e saídas ainda ativas. */
 export function calcularSaldoEstoqueInterno(
   movimentos: MovimentoSaldoEstoqueInterno[],

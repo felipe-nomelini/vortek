@@ -10,7 +10,7 @@ export async function GET() {
   const [entradasResult, saidasResult] = await Promise.all([
     (db as any)
       .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,quantidade,motivo,status_devolucao,situacao_estoque,created_at,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id)')
+      .select('id,produto_id,pedido_id,quantidade,motivo,status_devolucao,situacao_estoque,origem_entrada,custo_unitario,created_at,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id)')
       .eq('tipo', 'entrada_devolucao')
       .order('created_at', { ascending: false }),
     (db as any)
@@ -33,6 +33,8 @@ export async function GET() {
     motivo: item.motivo || 'Motivo não informado pelo Mercado Livre',
     status_devolucao: item.status_devolucao || 'aguardando_confirmacao',
     situacao_estoque: item.situacao_estoque || 'revisao',
+    origem_entrada: item.origem_entrada || (item.status_devolucao === 'manual' ? 'ajuste_manual' : 'devolucao'),
+    custo_unitario: item.custo_unitario == null ? null : Number(item.custo_unitario),
     created_at: item.created_at,
     pedido_ml: item.pedidos?.ml_order_id || '-',
     pedido_ml_link_id: item.pedidos?.ml_pack_id || item.pedidos?.ml_order_id || null,
@@ -75,9 +77,17 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const sku = String(body.sku || '').trim().toUpperCase();
   const quantidade = Number(body.quantidade);
+  const origem = String(body.origem || '').trim().toLowerCase();
+  const custoUnitario = Number(body.custo_unitario);
   if (!sku) return NextResponse.json({ error: 'Informe o SKU.' }, { status: 400 });
   if (!Number.isInteger(quantidade) || quantidade <= 0) {
     return NextResponse.json({ error: 'Informe uma quantidade inteira maior que zero.' }, { status: 400 });
+  }
+  if (origem !== 'compra') {
+    return NextResponse.json({ error: 'Origem de entrada inválida.' }, { status: 400 });
+  }
+  if (!Number.isFinite(custoUnitario) || custoUnitario <= 0) {
+    return NextResponse.json({ error: 'Informe um custo unitário maior que zero.' }, { status: 400 });
   }
 
   const db = createServiceClient();
@@ -95,10 +105,12 @@ export async function POST(req: Request) {
       produto_id: produto.id,
       tipo: 'entrada_devolucao',
       quantidade,
-      motivo: 'Inserido manualmente',
+      motivo: 'Compra recebida para estoque interno',
       status_devolucao: 'manual',
       situacao_estoque: 'revisao',
       disponivel_venda: false,
+      origem_entrada: 'compra',
+      custo_unitario: Math.round(custoUnitario * 100) / 100,
     });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
