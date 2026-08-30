@@ -86,7 +86,7 @@ export async function loadDslitePlaceholderLabel(
   fornecedorNome?: string | null,
 ): Promise<Buffer> {
   const config = getDslitePlaceholderLabelConfig(fornecedorId, fornecedorNome);
-  const buffer = await readFile(config.path);
+  const buffer = await readFile(/* turbopackIgnore: true */ config.path);
   if (buffer.length < 4 || buffer.toString('ascii', 0, 4) !== '%PDF') {
     throw new Error('Etiqueta padrão DSLite inválida: arquivo não é PDF.');
   }

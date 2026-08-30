@@ -329,6 +329,8 @@ export default function FornecedoresPage() {
             ],
             onClick: ({ key }) => {
               if (key === 'details') {
+                // Preserva a navegação completa já usada por este menu legado.
+                // eslint-disable-next-line @next/next/no-location-assign-relative-destination
                 window.location.href = `/fornecedores/${record.id}`;
               }
               if (key === 'view') {

@@ -4,7 +4,8 @@ import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 
 const SITUACOES = new Set(['liberado', 'nao_aproveitavel']);
 
-export async function PATCH(req: Request, { params }: { params: { movimentoId: string } }) {
+export async function PATCH(req: Request, props: { params: Promise<{ movimentoId: string }> }) {
+  const params = await props.params;
   const body = await req.json().catch(() => ({}));
   const situacao = String(body.situacao || '');
   if (!SITUACOES.has(situacao)) return NextResponse.json({ error: 'Situação inválida.' }, { status: 400 });
@@ -35,7 +36,8 @@ export async function PATCH(req: Request, { params }: { params: { movimentoId: s
   }
 }
 
-export async function DELETE(_req: Request, { params }: { params: { movimentoId: string } }) {
+export async function DELETE(_req: Request, props: { params: Promise<{ movimentoId: string }> }) {
+  const params = await props.params;
   const db = createServiceClient();
   const { data: movimento, error: consultaError } = await (db as any)
     .from('estoque_interno_movimentacoes')

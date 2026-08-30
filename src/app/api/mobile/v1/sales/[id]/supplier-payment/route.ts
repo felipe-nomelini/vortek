@@ -53,7 +53,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   const response = await confirmSupplierPayment(new Request(
     new URL(`/api/compras/${row.compra_id}/confirmar-pagamento`, request.url),
     { method: "POST", headers, body: form },
-  ), { params: { id: String(row.compra_id) } });
+  ), { params: Promise.resolve({ id: String(row.compra_id) }) });
   const body = await response.json().catch(() => ({}));
   if (!response.ok || !body?.success) {
     return error(requestId, response.status || 502, "PAYMENT_CONFIRMATION_FAILED", body?.error || "Falha ao confirmar PIX");

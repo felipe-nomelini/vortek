@@ -21,7 +21,8 @@ function resolveAppBaseUrl(request: Request): string {
   return `${url.protocol}//${url.host}`;
 }
 
-export async function POST(request: Request, { params }: { params: { id: string } }) {
+export async function POST(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const auth = await authorizeApiRequest(request, 'sales.whatsapp_label.send');
     if (!auth.ok) return auth.response;

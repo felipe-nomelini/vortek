@@ -118,7 +118,8 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
   throw new Error(lastError || 'Etiqueta ainda indisponível no ML');
 }
 
-export async function POST(request: Request, { params }: { params: { id: string } }) {
+export async function POST(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const { phoneNumber } = await request.json().catch(() => ({}));
     const chatId = normalizeWhatsappChatId(String(phoneNumber || process.env.WAHA_TEST_RECIPIENT_PHONE || ''));

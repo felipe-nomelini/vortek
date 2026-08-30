@@ -5,6 +5,7 @@
  */
 'use client';
 
+import '@ant-design/v5-patch-for-react-19';
 import { ConfigProvider, theme } from 'antd';
 import { StyleProvider } from '@ant-design/cssinjs';
 

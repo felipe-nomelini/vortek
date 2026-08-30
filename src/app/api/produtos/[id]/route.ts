@@ -9,10 +9,8 @@ import {
   selectOperationalMlListing,
 } from '@/lib/ml/operational-listing';
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const supabase = createServiceClient();
     const { data, error } = await supabase
@@ -62,10 +60,8 @@ export async function GET(
   }
 }
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const body = await req.json();
     const supabase = createServiceClient();

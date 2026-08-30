@@ -4,8 +4,8 @@ import { verifyPublicSupplierReceiptToken } from '@/lib/public-supplier-receipt-
 
 const RECEIPTS_BUCKET = 'supplier-payment-receipts';
 
-export async function GET(request: Request, context: { params: { id: string } }) {
-  const id = context?.params?.id;
+export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
+  const id = (await context?.params)?.id;
   const token = new URL(request.url).searchParams.get('token');
   if (!id || !verifyPublicSupplierReceiptToken(id, token)) {
     return NextResponse.json({ error: 'Link inválido' }, { status: 403 });

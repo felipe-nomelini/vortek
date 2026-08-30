@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 const PAGE_SIZE = 100;
 
 type PageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     pagina?: string;
     token?: string;
     expires?: string;
-  };
+  }>;
 };
 
 function getPage(value: string | undefined, totalPages: number) {
@@ -44,9 +44,8 @@ function buildPageHref(params: {
   return `?${query.toString()}`;
 }
 
-export default async function EvolusomMissingGtinPage({
-  searchParams,
-}: PageProps) {
+export default async function EvolusomMissingGtinPage(props: PageProps) {
+  const searchParams = await props.searchParams;
   const token = searchParams?.token || "";
   const expiresAt = searchParams?.expires || "";
   const canAccess = verifyPublicEvolusomGtinToken(token, expiresAt);

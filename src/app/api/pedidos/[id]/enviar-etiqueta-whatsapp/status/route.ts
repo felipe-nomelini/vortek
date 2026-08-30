@@ -11,7 +11,8 @@ import {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const { searchParams } = new URL(req.url);
   const jobId = searchParams.get('jobId');
   if (!jobId) return NextResponse.json({ error: 'jobId é obrigatório' }, { status: 400 });

@@ -7,7 +7,7 @@ import {
 } from '@/lib/shipping-label-storage';
 import { normalizeMlShippingLabelPdfForThermalPrint } from '@/lib/shipping-label-pdf';
 
-export async function GET(request: Request, context: { params: { id: string } }) {
+export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   const auth = await authorizeApiRequest(request, 'sales.read');
   if (!auth.ok) return auth.response;
 
@@ -18,7 +18,7 @@ export async function GET(request: Request, context: { params: { id: string } })
   const { data: pedido, error } = await client
     .from('pedidos')
     .select('numero,ml_label_storage_path,ml_thermal_label_storage_path')
-    .eq('id', context.params.id)
+    .eq('id', (await context.params).id)
     .maybeSingle();
   if (error) return NextResponse.json({ error: 'Erro ao localizar etiqueta' }, { status: 500 });
   const storagePath = thermal

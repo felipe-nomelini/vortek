@@ -204,7 +204,8 @@ function buildImpact(
   };
 }
 
-export async function GET(_req: Request, { params }: { params: { id: string } }) {
+export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const user = await requireUser();
   if (!user) {
     return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
@@ -237,7 +238,8 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
   }
 }
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const user = await requireUser();
   if (!user) {
     return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });

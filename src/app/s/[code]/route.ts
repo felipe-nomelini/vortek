@@ -7,8 +7,8 @@ function isExpired(expiresAt: string | null | undefined): boolean {
   return Number.isFinite(parsed) && parsed < Date.now();
 }
 
-export async function GET(_request: Request, context: { params: { code: string } }) {
-  const code = String(context?.params?.code || '').trim();
+export async function GET(_request: Request, context: { params: Promise<{ code: string }> }) {
+  const code = String((await context?.params)?.code || '').trim();
   if (!code) {
     return NextResponse.json({ error: 'Link inválido' }, { status: 404 });
   }

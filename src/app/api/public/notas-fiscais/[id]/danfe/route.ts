@@ -9,8 +9,8 @@ import {
 import { verifyPublicNfeToken } from '@/lib/public-nfe-links';
 import { getFiscalProvider } from '@/services/fiscal-provider';
 
-export async function GET(request: Request, context: { params: { id: string } }) {
-  const id = context?.params?.id;
+export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
+  const id = (await context?.params)?.id;
   const token = new URL(request.url).searchParams.get('token');
   if (!id || !verifyPublicNfeToken(id, 'danfe', token)) {
     return NextResponse.json({ error: 'Link inválido' }, { status: 403 });

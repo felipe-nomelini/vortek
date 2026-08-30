@@ -419,6 +419,8 @@ function ConfiguracoesPageContent() {
       await saveIntegracao("mercadolivre", {
         client_id: ml.clientId,
       });
+      // Navegação completa é necessária para seguir o redirect OAuth da API.
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
       window.location.href = "/api/integracao/ml/connect";
     } catch (err: any) {
       messageApi.error(

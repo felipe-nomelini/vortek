@@ -7,7 +7,8 @@ function checkAuth(request: Request) {
   return false;
 }
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   if (!checkAuth(request)) {
     return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   }
@@ -18,7 +19,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
   return NextResponse.json(job);
 }
 
-export async function POST(request: Request, { params }: { params: { id: string } }) {
+export async function POST(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   if (!checkAuth(request)) {
     return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   }

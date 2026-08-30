@@ -9,7 +9,7 @@ function resolveTipoAmbiente(): 1 | 2 {
   return v === 2 ? 2 : 1;
 }
 
-export async function POST(request: Request, context: { params: { id: string } }) {
+export async function POST(request: Request, context: { params: Promise<{ id: string }> }) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -19,7 +19,7 @@ export async function POST(request: Request, context: { params: { id: string } }
     return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
   }
 
-  const id = context?.params?.id;
+  const id = (await context?.params)?.id;
   if (!id) {
     return NextResponse.json({ error: 'ID da nota fiscal é obrigatório' }, { status: 422 });
   }

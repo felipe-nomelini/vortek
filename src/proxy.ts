@@ -5,7 +5,7 @@ import {
   resolveSupabaseServiceUrl,
 } from "@/lib/supabase-url";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (
     pathname === "/fornecedor/bkr1/kits-sem-anuncio" ||

@@ -29,18 +29,18 @@ test('progresso do lote permanece entre etapas de consulta e finalização', () 
   assert.equal(calculateCatalogRefreshProgress(6000, 5000), 88);
 });
 
-test('middleware permite somente a rota interna exata do worker do catálogo', () => {
-  const middlewareSource = fs.readFileSync(
-    path.join(__dirname, '../src/middleware.ts'),
+test('proxy permite somente a rota interna exata do worker do catálogo', () => {
+  const proxySource = fs.readFileSync(
+    path.join(__dirname, '../src/proxy.ts'),
     'utf8',
   );
 
   assert.match(
-    middlewareSource,
+    proxySource,
     /"\/api\/catalogo\/no-catalogo\/refresh\/job\/worker"/,
   );
   assert.doesNotMatch(
-    middlewareSource,
+    proxySource,
     /pathname\.startsWith\(["']\/api\/catalogo\/no-catalogo\/refresh/,
   );
 });

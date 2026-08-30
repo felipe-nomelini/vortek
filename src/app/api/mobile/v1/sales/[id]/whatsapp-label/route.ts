@@ -90,7 +90,7 @@ export async function POST(
         idempotencyKey,
       }),
     }),
-    { params: { id: String(row.id) } },
+    { params: Promise.resolve({ id: String(row.id) }) },
   );
   const body = await legacyResponse.json();
   if (!legacyResponse.ok) {
@@ -150,7 +150,7 @@ export async function GET(
   statusUrl.searchParams.set("jobId", parsedJobId.data);
   const legacyResponse = await getWhatsappLabelStatus(
     new Request(statusUrl, { headers: request.headers }),
-    { params: { id: String(lookup.row.id) } },
+    { params: Promise.resolve({ id: String(lookup.row.id) }) },
   );
   const body = await legacyResponse.json();
   if (!legacyResponse.ok) {

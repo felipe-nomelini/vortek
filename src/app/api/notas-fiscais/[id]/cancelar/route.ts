@@ -13,7 +13,7 @@ function normalizeJustificativa(value: unknown): string {
 
 export async function POST(
   request: Request,
-  context: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
   const supabase = await createClient();
   const {
@@ -24,7 +24,7 @@ export async function POST(
     return NextResponse.json({ error: "Não autenticado" }, { status: 401 });
   }
 
-  const id = context?.params?.id;
+  const id = (await context?.params)?.id;
   if (!id) {
     return NextResponse.json(
       { error: "ID da nota fiscal é obrigatório" },

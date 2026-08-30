@@ -97,7 +97,7 @@ export async function POST(
         idempotency_key: idempotencyKey,
       }),
     }),
-    { params: { id: String(row.compra_id) } },
+    { params: Promise.resolve({ id: String(row.compra_id) }) },
   );
   const body = await legacyResponse.json();
   if (!legacyResponse.ok || !body?.jobId || body?.resume?.error) {

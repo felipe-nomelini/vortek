@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 
-export async function GET(request: Request, context: { params: { id: string } }) {
+export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   const auth = await authorizeApiRequest(request, 'sales.read');
   if (!auth.ok) return auth.response;
 
-  const id = context?.params?.id;
+  const id = (await context?.params)?.id;
   if (!id) {
     return NextResponse.json({ error: 'ID da nota fiscal é obrigatório' }, { status: 422 });
   }

@@ -12,7 +12,7 @@ const SPECIAL_REQUIREMENTS: Record<string, string> = {
 };
 
 type PageProps = {
-  searchParams?: { pagina?: string; token?: string; expires?: string };
+  searchParams?: Promise<{ pagina?: string; token?: string; expires?: string }>;
 };
 
 type KitRow = { produto_id: string };
@@ -25,7 +25,8 @@ function getPage(value: string | undefined, totalPages: number) {
   return Math.min(Math.max(parsed, 1), Math.max(totalPages, 1));
 }
 
-export default async function KitsSemAnuncioPublicPage({ searchParams }: PageProps) {
+export default async function KitsSemAnuncioPublicPage(props: PageProps) {
+  const searchParams = await props.searchParams;
   const client = createServiceClient();
   const [{ data: kits, error: kitsError }, { data: produtos, error: produtosError }] =
     await Promise.all([

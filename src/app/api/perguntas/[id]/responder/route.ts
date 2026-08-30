@@ -10,7 +10,8 @@ const answerSchema = z.object({
   text: z.string().trim().min(1, 'Resposta obrigatória').max(2000, 'Resposta muito longa'),
 });
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(req: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const questionId = Number(params.id);
     if (!Number.isFinite(questionId) || questionId <= 0) {

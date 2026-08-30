@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import Link from 'next/link';
 import {
   Card, Row, Col, Statistic, Tag, Typography, Table, Progress, Button, Space, message, DatePicker, Spin, Select,
 } from 'antd';
@@ -714,7 +715,7 @@ export default function DashboardPage() {
                     showHeader={false}
                   />
                   <div style={{ marginTop: 8 }}>
-                    <a style={{ color: '#1677ff', fontSize: 12 }} href="/produtos">Ver todos os produtos →</a>
+                    <Link style={{ color: '#1677ff', fontSize: 12 }} href="/produtos">Ver todos os produtos →</Link>
                   </div>
                 </>
               ) : (

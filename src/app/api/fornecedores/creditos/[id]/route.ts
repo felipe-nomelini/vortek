@@ -9,7 +9,8 @@ const UPDATE_SCHEMA = z.object({
   notes: z.string().trim().max(1000).optional().nullable(),
 });
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
+export async function PATCH(request: Request, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const supabase = await createClient();
   const auth = await requireAdminUser(supabase);
   if (!auth.ok) return auth.response;
