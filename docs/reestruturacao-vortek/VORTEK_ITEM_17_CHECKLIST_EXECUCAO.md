@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `ML-01 — Preços por Quantidade`
+**Próxima ação obrigatória:** `STO-01 + STO-02 — Reserva atômica`
 
 ---
 
@@ -52,8 +52,8 @@ Regras de uso:
 |---:|---|---|---|
 | 0 | Homologação isolada | Concluída | Manter isolamento durante todas as ações |
 | 1 | Segurança crítica | Encerrada com risco aceito | Reabrir `SEC-05` se a exigência de links permanentes mudar |
-| 2 | Prazo externo Mercado Livre | Em andamento | Executar somente `ML-01` |
-| 3 | Estoque e fulfillment | Pendente | Aguardar etapas anteriores |
+| 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
+| 3 | Estoque e fulfillment | Próxima ação | Executar somente `STO-01 + STO-02` |
 | 4 | Capacidade e quantidade segura | Pendente | Depende de `STO-01/STO-02` |
 | 5 | Mercado Livre observado e publicação | Pendente | Seguir dependências de cada ação |
 | 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
@@ -66,8 +66,8 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Executar somente `ML-01 — Preços por Quantidade`.
-- [ ] Não avançar para a ação seguinte antes de `ML-01` estar integralmente validada.
+- [ ] Executar somente `STO-01 + STO-02 — Reserva atômica`.
+- [ ] Não avançar para a ação seguinte antes de `STO-01 + STO-02` estar integralmente validada.
 
 ---
 
@@ -249,7 +249,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P1 com prazo
 **Prazo externo:** antes de `26/10/2026`
-**Situação:** implementada e validada tecnicamente em homologação; anúncio externo de teste criado e validado, mas a prova de Preços por Quantidade permanece bloqueada até o Mercado Livre habilitar a tag `business` no seller de teste DEV.
+**Situação:** suspensa com risco aceito; implementação e homologação técnicas concluídas, com anúncio externo de teste validado, mas a prova de Preços por Quantidade permanece pendente até o Mercado Livre habilitar a tag `business` no seller de teste DEV.
 
 - [x] reler `docs/mercado-livre-publicacao-operacional.md`;
 - [x] confirmar o contrato oficial atual de Preços por Quantidade;
@@ -281,7 +281,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Rollback:** reverter o commit `7c31bbb` na branch `dev` e redeployar somente `vortek-erp-dev`.
 
-**Pendência bloqueante:** solicitar ao Mercado Livre a habilitação B2B do seller de teste DEV. A documentação oficial restringe Preços por Quantidade a sellers previamente habilitados e identificados pela tag `business`; o seller DEV atual não possui essa tag. O anúncio único de teste necessário para a prova já está ativo. Após a habilitação, falta provar recomendação, publicação percentual e read-back contra a API externa. A conta real não será usada. Até essa prova, `ML-01` permanece como próxima ação obrigatória e nenhuma ação seguinte do Item 17 está liberada.
+**Pendência externa com risco aceito:** solicitar ao Mercado Livre a habilitação B2B do seller de teste DEV. A documentação oficial restringe Preços por Quantidade a sellers previamente habilitados e identificados pela tag `business`; o seller DEV atual não possui essa tag. O anúncio único de teste necessário para a prova já está ativo. Após a habilitação, falta provar recomendação, publicação percentual e read-back contra a API externa. A conta real não será usada e nenhuma tentativa de contornar a elegibilidade está autorizada.
 
 **Preparação adicional em 29/08/2026:**
 
@@ -309,6 +309,20 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - nenhuma compra, pergunta, pedido, transação, conta real ou ambiente de produção foi usado;
 - a tag `business` continua ausente; permanecem pendentes a habilitação B2B pelo Mercado Livre e, depois dela, a prova externa de recomendação, publicação percentual e read-back de `ML-01`.
 
+**Decisão de sequência em 30/08/2026:**
+
+- o responsável aceitou explicitamente suspender `ML-01` sem tratá-lo como concluído, pois a única validação restante depende de habilitação controlada pelo Mercado Livre e não pode ser resolvida no Vortek;
+- `ML-01` deve ser reaberto quando `GET /users/{id}` apresentar a tag `business`, reutilizando o item `MLB5159583873` para a prova externa pendente;
+- a exceção de sequência vale somente para este bloqueio externo; a próxima ação liberada é `STO-01 + STO-02`, que não depende da habilitação B2B.
+
+**Validação da transição:**
+
+- branch `dev` e working tree limpo confirmados antes da alteração;
+- `git diff --check`: aprovado;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- teste direcionado, build, migration e deploy: **N/A**, pois a mudança é exclusivamente documental;
+- nenhuma integração externa, produção, `main` ou `app.vortek.shop` foi acessada ou alterada.
+
 ---
 
 ## 7. Etapa 3 — Estoque e fulfillment
@@ -316,7 +330,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### STO-01 + STO-02 — Reserva atômica
 
 **Prioridade:** P1
-**Situação:** pendente; os dois identificadores formam o mesmo change-set conceitual.
+**Situação:** próxima ação obrigatória; os dois identificadores formam o mesmo change-set conceitual.
 
 - [ ] confirmar o ponto exato entre seleção `internal` e consumo de estoque;
 - [ ] garantir atomicamente que `internal` significa estoque já reservado;
