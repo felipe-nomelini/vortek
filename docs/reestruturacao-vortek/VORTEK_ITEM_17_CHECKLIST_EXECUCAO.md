@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `HAYA-01 — Bloqueio operacional da Hayamax`
+**Próxima ação obrigatória:** `HAYA-02 — Aposentar conta-saldo`
 
 ---
 
@@ -57,7 +57,7 @@ Regras de uso:
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
-| 7 | Hayamax, Mercado Pago e financeiro | Replanejada | Executar somente `HAYA-01` |
+| 7 | Hayamax, Mercado Pago e financeiro | Em execução | Executar somente `HAYA-02` |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
@@ -84,8 +84,10 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `FIS-03` estar integralmente validada.
 - [x] Executar somente `FIN-01 + FIN-02 — Lifecycle e parser`.
 - [x] Não avançar para a ação seguinte antes de `FIN-01/FIN-02` estar integralmente validada.
-- [ ] Executar somente `HAYA-01 — Bloqueio operacional da Hayamax`.
-- [ ] Não avançar para `HAYA-02` antes de `HAYA-01` estar integralmente validada.
+- [x] Executar somente `HAYA-01 — Bloqueio operacional da Hayamax`.
+- [x] Não avançar para `HAYA-02` antes de `HAYA-01` estar integralmente validada.
+- [ ] Executar somente `HAYA-02 — Aposentar conta-saldo`.
+- [ ] Não avançar para `HAYA-03` antes de `HAYA-02` estar integralmente validada.
 
 ---
 
@@ -807,16 +809,37 @@ As ações abaixo são sequenciais e não podem ser combinadas em uma única tar
 
 **Prioridade:** P1
 
-**Situação:** pendente e próxima ação obrigatória.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `ae14b04`.
 
-- [ ] bloquear o DSLite ID `2` pela política central já existente;
-- [ ] impedir nova ativação, importação, seleção e fulfillment da Hayamax;
-- [ ] usar o fluxo existente de desativação do fornecedor;
-- [ ] manter produto com outra oferta operacional e reatribuir sua oferta preferencial;
-- [ ] inativar produto e retirar anúncio quando a Hayamax for a única capacidade disponível;
-- [ ] validar ausência de oferta Hayamax ativa e de reativação pelo sync;
-- [ ] não acessar nem alterar produção neste worktree;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] bloquear o DSLite ID `2` pela política central já existente;
+- [x] impedir nova ativação, importação, seleção e fulfillment da Hayamax;
+- [x] usar o fluxo existente de desativação do fornecedor;
+- [x] manter produto com outra oferta operacional e reatribuir sua oferta preferencial;
+- [x] inativar produto e retirar anúncio quando a Hayamax for a única capacidade disponível;
+- [x] validar ausência de oferta Hayamax ativa e de reativação pelo sync;
+- [x] não acessar nem alterar produção neste worktree;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Evidências:**
+
+- branch `dev` e working tree inicial limpa confirmados antes da mudança;
+- política central passou a bloquear os IDs DSLite `2` e `134`;
+- sync de fornecedores mantém fornecedor bloqueado inativo; catálogo, preço/estoque e XML ignoram Hayamax;
+- ativação do fornecedor, ativação da oferta e seleção manual de oferta Hayamax retornam bloqueio de regra de negócio;
+- seleção preferencial, prévia e criação de pedido, confirmação de estoque, fulfillment, caminho fiscal e evidências de anúncio ignoram oferta Hayamax, inclusive nos fallbacks legados;
+- fluxo existente de desativação continua responsável por reatribuir produto com oferta permitida e por inativar produto exclusivo antes de enfileirar a exclusão definitiva do anúncio;
+- alternativas de outro fornecedor bloqueado não preservam indevidamente um produto da Hayamax;
+- 55 testes direcionados aprovados, incluindo política DSLite, preferência de oferta, capacidade, seleção de fulfillment, outbox e exclusão de anúncio;
+- `npm run validate` e `npm run build` aprovados;
+- consulta somente leitura no `supabase-dev` confirmou zero fornecedor, zero oferta e zero produto legado com DSLite ID `2`, inclusive ativos;
+- desativação de dado e exclusão de anúncio em homologação: **N/A**, pois não existe dado Hayamax no `supabase-dev`; nenhuma fixture ou chamada externa destrutiva foi criada apenas para testar;
+- migration e escrita no Supabase: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado estrutural criado por esta ação.
+
+**Pendência:** nenhuma para `HAYA-01`. A próxima ação obrigatória é `HAYA-02 — Aposentar conta-saldo`.
 
 ### HAYA-02 — Aposentar conta-saldo
 
