@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `INV-05 — Automação nativa de preço`
+**Próxima ação obrigatória:** `INV-02 — Helpers antigos de estoque`
 
 ---
 
@@ -55,7 +55,7 @@ Regras de uso:
 | 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
-| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `INV-05` |
+| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `INV-02` |
 | 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
@@ -72,8 +72,10 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `ML-02` estar integralmente validada.
 - [x] Executar somente `RULE-06 — Elegibilidade de publicação`.
 - [x] Não avançar para a ação seguinte antes de `RULE-06` estar integralmente validada.
-- [ ] Executar somente `INV-05 — Automação nativa de preço`.
-- [ ] Não avançar para a ação seguinte antes de `INV-05` estar integralmente validada.
+- [x] Executar somente `INV-05 — Automação nativa de preço`.
+- [x] Não avançar para a ação seguinte antes de `INV-05` estar integralmente validada.
+- [ ] Executar somente `INV-02 — Helpers antigos de estoque`.
+- [ ] Não avançar para a ação seguinte antes de `INV-02` estar integralmente validada.
 
 ---
 
@@ -578,13 +580,36 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 ### INV-05 — Automação nativa de preço
 
-**Situação:** pendente de investigação.
+**Situação:** concluída como **N/A no estado operacional atual**, sem alteração funcional.
 
-- [ ] verificar se existem anúncios de teste com automação nativa ativa;
-- [ ] comparar o comportamento com a documentação oficial atual;
-- [ ] implementar pre-check somente se a necessidade operacional for comprovada;
-- [ ] registrar `N/A` com evidência se nenhuma mudança for necessária;
-- [ ] concluir o gate obrigatório da seção 3 se houver implementação.
+- [x] verificar se existem anúncios de teste com automação nativa ativa;
+- [x] comparar o comportamento com a documentação oficial atual;
+- [x] avaliar o pre-check e não implementá-lo sem necessidade operacional comprovada;
+- [x] registrar `N/A` com evidência;
+- [x] registrar o gate de implementação como **N/A**, pois nenhum código foi alterado.
+
+**Estado confirmado em 30/08/2026:** o Vortek publica o preço-base por `PUT /items/{ITEM_ID}` no worker da outbox e não possui pre-check da automação nativa. A blocklist existente protege a automação própria do Vortek por item/SKU e não representa o estado da automação nativa do Mercado Livre.
+
+**Contrato oficial confirmado:** desde 18/03/2026, um `PUT /items/{ITEM_ID}` contendo somente `price` é rejeitado quando a automação nativa está ativa. O Mercado Livre orienta identificar previamente os itens pelo endpoint paginado `/pricing-automation/users/{USER_ID}/items`; a tag `dynamic_standard_price` também identifica a configuração no recurso do item.
+
+**Evidência operacional DEV:** a consulta autenticada e somente leitura ao endpoint oficial respondeu `200`, com total zero e nenhuma página de item automatizado. O `supabase-dev` possuía um snapshot de anúncio; a consulta desse item respondeu normalmente e não continha `dynamic_standard_price`. Nenhum token, identificador de anúncio ou credencial foi registrado.
+
+**Decisão de implementação:** pre-check, teste de regressão, migration, build, escrita no Mercado Livre e deploy são **N/A** porque a necessidade operacional não foi comprovada. Não serão criados helper, persistência, chamada adicional ou fluxo preventivo para uma condição ausente. Reabrir `INV-05` antes de publicar preço caso a conta passe a usar automação nativa.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev` e working tree inicial limpo confirmados;
+- `AGENTS.md`, Item 17, consolidação, auditoria de Mercado Livre, procedimento operacional e código atual de publicação de preço conferidos;
+- documentação oficial atual do Mercado Livre para automação de preços e documentação oficial do Supabase para a leitura REST self-hosted conferidas;
+- endpoint oficial do vendedor respondeu `200`, com zero itens automatizados; o único snapshot DEV foi consultado sem falha e não continha `dynamic_standard_price`;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `git diff --check`: aprovado;
+- teste de regressão, build, migration, escrita no Mercado Livre e deploy: **N/A**, pois a mudança é exclusivamente documental;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter somente o commit documental desta ação em `dev`; não há código, migration, dado operacional ou deploy para desfazer.
+
+**Pendência:** nenhuma para o estado atual de `INV-05`. A próxima ação obrigatória é `INV-02`.
 
 ### INV-02 — Helpers antigos de estoque
 
