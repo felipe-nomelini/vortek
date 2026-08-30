@@ -94,7 +94,6 @@
     "antd": "^5.24.0",
     "brasilnfe": "^1.1.0",
     "dotenv": "^17.4.2",
-    "mercadopago": "^3.1.0",
     "next": "^14.2.0",
     "nodemailer": "^6.10.1",
     "pdf-lib": "^1.17.1",

@@ -1,4 +1,3 @@
-import { MercadoPagoConfig } from 'mercadopago';
 import { createServiceClient } from '@/lib/supabase';
 
 export {
@@ -37,15 +36,6 @@ export async function getMercadoPagoAccessToken() {
   return String(data?.access_token || '').trim();
 }
 
-export async function getMercadoPagoClient() {
-  const accessToken = await getMercadoPagoAccessToken();
-  if (!accessToken) {
-    throw new Error('Mercado Pago não configurado. Informe access_token em integracoes ou MERCADOPAGO_ACCESS_TOKEN.');
-  }
-
-  return new MercadoPagoConfig({ accessToken });
-}
-
 export async function mercadoPagoRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
   const token = await getMercadoPagoAccessToken();
   if (!token) {
@@ -71,14 +61,6 @@ export async function mercadoPagoRequest<T>(path: string, init: RequestInit = {}
     return await res.json() as T;
   }
   return await res.text() as T;
-}
-
-export async function getMercadoPagoPayment(paymentId: string | number) {
-  const cleanId = String(paymentId || '').trim();
-  if (!cleanId) throw new Error('paymentId Mercado Pago ausente');
-  return mercadoPagoRequest<Record<string, unknown>>(`/v1/payments/${encodeURIComponent(cleanId)}`, {
-    method: 'GET',
-  });
 }
 
 export function buildUtcRange(windowDays = 7, beginDate?: string | null, endDate?: string | null) {

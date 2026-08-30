@@ -4,8 +4,6 @@ const test = require('node:test');
 const {
   getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
-  isHayamaxTopupCandidate,
-  isReviewRequiredCandidate,
   isMercadoPagoReportReady,
   parseMercadoPagoAccountMoneyCsv,
   resolveMercadoPagoReportTaskId,
@@ -46,8 +44,8 @@ function parseRow(values) {
 test('parser usa os campos oficiais e o valor líquido em vez do bruto', () => {
   const row = parseRow([
     'mp-source-1',
-    'hayamax-1',
-    'Pagamento Hayamax',
+    'supplier-1',
+    'Pagamento de fornecedor',
     'PAYOUT',
     '-1250.00',
     'BRL',
@@ -65,33 +63,10 @@ test('parser usa os campos oficiais e o valor líquido em vez do bruto', () => {
   assert.deepEqual(row.validationErrors, []);
 });
 
-test('crédito automático exige saída oficial, BRL, líquido negativo e Hayamax', () => {
-  const eligible = parseRow([
-    'mp-source-2',
-    'hayamax-2',
-    'PIX HAYAMAX',
-    'PAYOUT',
-    '-1200.00',
-    'BRL',
-    '-1200.00',
-    'BRL',
-    '2026-08-30T12:00:00Z',
-  ]);
-  const settlement = { ...eligible, movementType: 'SETTLEMENT' };
-  const foreignCurrency = { ...eligible, currency: 'USD' };
-  const incoming = { ...eligible, amount: 1200 };
-
-  assert.equal(isHayamaxTopupCandidate(eligible, ['hayamax'], 1000), true);
-  assert.equal(isHayamaxTopupCandidate(settlement, ['hayamax'], 1000), false);
-  assert.equal(isHayamaxTopupCandidate(foreignCurrency, ['hayamax'], 1000), false);
-  assert.equal(isHayamaxTopupCandidate(incoming, ['hayamax'], 1000), false);
-  assert.equal(isReviewRequiredCandidate(settlement, 1000), true);
-});
-
-test('linha sem campos financeiros oficiais é rejeitada para crédito', () => {
+test('linha sem campos financeiros oficiais é rejeitada para importação', () => {
   const csv = [
     'EXTERNAL_REFERENCE,DESCRIPTION,TRANSACTION_AMOUNT,TRANSACTION_CURRENCY',
-    'hayamax-3,Pagamento Hayamax,-1200.00,BRL',
+    'supplier-3,Pagamento de fornecedor,-1200.00,BRL',
   ].join('\n');
   const row = parseMercadoPagoAccountMoneyCsv(csv)[0];
 
@@ -101,15 +76,13 @@ test('linha sem campos financeiros oficiais é rejeitada para crédito', () => {
     'missing_source_id',
     'missing_transaction_type',
   ]);
-  assert.equal(isHayamaxTopupCandidate(row, ['hayamax'], 1000), false);
-  assert.equal(isReviewRequiredCandidate(row, 1000), false);
 });
 
 test('parser mantém identidade estável para reimportação idempotente', () => {
   const values = [
     'mp-source-4',
-    'hayamax-4',
-    'Pagamento Hayamax',
+    'supplier-4',
+    'Pagamento de fornecedor',
     'WITHDRAWAL',
     '-1500.00',
     'BRL',

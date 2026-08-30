@@ -2,7 +2,6 @@ export const HAYAMAX_FORNECEDOR_ID = '2';
 export const VANRAL_FORNECEDOR_ID = '97';
 export const BKR1_FORNECEDOR_ID = '108';
 export const EVOLUSOM_FORNECEDOR_ID = '133';
-export const HAYAMAX_MIN_TOPUP_AMOUNT = 1000;
 
 export function isBalanceAccountSupplier(fornecedorId: string | number | null | undefined) {
   return String(fornecedorId || '').trim() === HAYAMAX_FORNECEDOR_ID;

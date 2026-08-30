@@ -11,18 +11,11 @@ import {
 import {
   getMercadoPagoReportFileName,
   getMercadoPagoReportResumeState,
-  isHayamaxTopupCandidate,
   isMercadoPagoReportPending,
   isMercadoPagoReportReady,
-  isReviewRequiredCandidate,
   parseMercadoPagoAccountMoneyCsv,
   resolveMercadoPagoReportTaskId,
 } from '@/lib/mercadopago-account-money';
-import {
-  HAYAMAX_FORNECEDOR_ID,
-  HAYAMAX_MIN_TOPUP_AMOUNT,
-  normalizeMoneyAmount,
-} from '@/lib/supplier-balance';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -36,13 +29,6 @@ function parsePositiveInt(value: unknown, fallback: number) {
   const n = Number(value);
   if (!Number.isFinite(n) || n <= 0) return fallback;
   return Math.trunc(n);
-}
-
-function hayamaxMatchers() {
-  return (process.env.MERCADOPAGO_HAYAMAX_MATCHERS || 'hayamax,01.725.627/0001-72,01725627000172,creddropship,credropship,2744298')
-    .split(',')
-    .map((entry) => entry.trim().toLowerCase())
-    .filter(Boolean);
 }
 
 async function getPersistedResumeState(syncJobId: string) {
@@ -65,7 +51,6 @@ async function importCsv(fileName: string) {
   const rows = parseMercadoPagoAccountMoneyCsv(csv);
 
   let imported = 0;
-  let topups = 0;
   let rejected = 0;
   const errors: string[] = [];
 
@@ -75,33 +60,19 @@ async function importCsv(fileName: string) {
       continue;
     }
 
-    const matchedSupplier = isHayamaxTopupCandidate(
-      row,
-      hayamaxMatchers(),
-      HAYAMAX_MIN_TOPUP_AMOUNT,
-    )
-      ? 'HAYAMAX'
-      : isReviewRequiredCandidate(row, HAYAMAX_MIN_TOPUP_AMOUNT)
-        ? 'REVIEW_REQUIRED'
-        : null;
-    const amount = normalizeMoneyAmount(row.amount);
-
-    const { data: rawMovement, error: rawError } = await service
+    const { error: rawError } = await service
       .from('mercadopago_account_movements')
       .upsert({
         external_id: row.externalId,
         movement_date: row.movementDate,
         description: row.description,
         reference: row.reference,
-        amount,
+        amount: row.amount,
         movement_type: row.movementType,
         currency: row.currency,
         raw_payload: { fileName, ...row.raw },
-        matched_supplier: matchedSupplier,
         updated_at: new Date().toISOString(),
-      }, { onConflict: 'external_id' })
-      .select('id, supplier_balance_movement_id')
-      .maybeSingle();
+      }, { onConflict: 'external_id', defaultToNull: false });
 
     if (rawError) {
       errors.push(`raw:${row.externalId}:${rawError.message}`);
@@ -109,65 +80,6 @@ async function importCsv(fileName: string) {
     }
 
     imported += 1;
-    if (matchedSupplier !== 'HAYAMAX' || rawMovement?.supplier_balance_movement_id) continue;
-
-    const topupAmount = Math.abs(amount);
-    const movementKey = `mercadopago:${row.externalId}`;
-    const { data: existing, error: existingError } = await service
-      .from('supplier_balance_movements')
-      .select('id')
-      .eq('movement_key', movementKey)
-      .maybeSingle();
-
-    if (existingError) {
-      errors.push(`balance_lookup:${row.externalId}:${existingError.message}`);
-      continue;
-    }
-
-    let movementId = existing?.id || null;
-    if (!movementId) {
-      const { data: inserted, error: insertError } = await service
-        .from('supplier_balance_movements')
-        .insert({
-          fornecedor_id: HAYAMAX_FORNECEDOR_ID,
-          fornecedor_nome: 'HAYAMAX',
-          movement_type: 'topup',
-          amount: topupAmount,
-          reference: row.reference || row.description || `Mercado Pago ${row.externalId}`,
-          notes: `Baixa automática Mercado Pago. Arquivo: ${fileName}`,
-          created_by: 'mercadopago:account_money',
-          movement_key: movementKey,
-        })
-        .select('id')
-        .maybeSingle();
-
-      if (insertError?.code === '23505') {
-        const { data: concurrent, error: concurrentError } = await service
-          .from('supplier_balance_movements')
-          .select('id')
-          .eq('movement_key', movementKey)
-          .maybeSingle();
-        if (concurrentError || !concurrent?.id) {
-          errors.push(`balance_conflict:${row.externalId}:${concurrentError?.message || 'movimento não encontrado'}`);
-          continue;
-        }
-        movementId = concurrent.id;
-      } else if (insertError) {
-        errors.push(`balance_insert:${row.externalId}:${insertError.message}`);
-        continue;
-      } else {
-        movementId = inserted?.id || null;
-        topups += 1;
-      }
-    }
-
-    if (movementId && rawMovement?.id) {
-      const { error: linkError } = await service
-        .from('mercadopago_account_movements')
-        .update({ supplier_balance_movement_id: movementId, updated_at: new Date().toISOString() })
-        .eq('id', rawMovement.id);
-      if (linkError) errors.push(`balance_link:${row.externalId}:${linkError.message}`);
-    }
   }
 
   return {
@@ -175,7 +87,6 @@ async function importCsv(fileName: string) {
     mode: 'imported_file',
     fileName,
     imported,
-    topups,
     rejected,
     errors,
   };

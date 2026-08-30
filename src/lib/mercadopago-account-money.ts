@@ -193,45 +193,6 @@ export function parseMercadoPagoAccountMoneyCsv(csv: string): MercadoPagoMovemen
   });
 }
 
-function rowSearchText(row: MercadoPagoMovementRow) {
-  return [row.description, row.reference, row.movementType, ...Object.values(row.raw)]
-    .filter(Boolean)
-    .join(' ')
-    .toLowerCase();
-}
-
-function matchesSupplier(row: MercadoPagoMovementRow, matchers: string[]) {
-  const text = rowSearchText(row);
-  const digits = text.replace(/\D+/g, '');
-  return matchers.some((token) => {
-    const clean = token.trim().toLowerCase();
-    if (!clean) return false;
-    const tokenDigits = clean.replace(/\D+/g, '');
-    return text.includes(clean) || (tokenDigits.length >= 8 && digits.includes(tokenDigits));
-  });
-}
-
-export function isHayamaxTopupCandidate(
-  row: MercadoPagoMovementRow,
-  matchers: string[],
-  minimumAmount: number,
-) {
-  return row.validationErrors.length === 0
-    && row.currency === 'BRL'
-    && row.amount < 0
-    && Math.abs(row.amount) >= minimumAmount
-    && (row.movementType === 'PAYOUT' || row.movementType === 'WITHDRAWAL')
-    && matchesSupplier(row, matchers);
-}
-
-export function isReviewRequiredCandidate(row: MercadoPagoMovementRow, minimumAmount: number) {
-  if (row.validationErrors.length > 0) return false;
-  const text = rowSearchText(row);
-  const enoughValue = Math.abs(row.amount) >= minimumAmount;
-  const looksLikeOutgoingBill = row.amount < 0 || /boleto|conta|pagamento|bill|invoice/.test(text);
-  return enoughValue && looksLikeOutgoingBill;
-}
-
 function parseJobLog(log: unknown): unknown[] {
   if (Array.isArray(log)) return log;
   if (typeof log !== 'string') return [];
