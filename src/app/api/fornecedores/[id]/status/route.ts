@@ -367,6 +367,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     let mlDeleteFailed = 0;
     let mlStockEnqueued = 0;
     let mlStockUnchanged = 0;
+    let mlStockSkippedIneligible = 0;
     let mlStockFailed = 0;
     let mlPriceProductsUpdated = 0;
     let mlPriceOutboxEnqueued = 0;
@@ -484,6 +485,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         });
       } else if (outbox.action === 'unchanged') {
         mlStockUnchanged += 1;
+      } else if (outbox.action === 'skipped_ineligible') {
+        mlStockSkippedIneligible += 1;
       } else {
         mlStockEnqueued += 1;
       }
@@ -509,6 +512,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         ml_delete_failed: mlDeleteFailed,
         ml_stock_enqueued: mlStockEnqueued,
         ml_stock_unchanged: mlStockUnchanged,
+        ml_stock_skipped_ineligible: mlStockSkippedIneligible,
         ml_stock_failed: mlStockFailed,
         ml_price_products_updated: mlPriceProductsUpdated,
         ml_price_outbox_enqueued: mlPriceOutboxEnqueued,

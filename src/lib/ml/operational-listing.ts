@@ -1,5 +1,13 @@
 type LocalMlStatus = 'ativo' | 'pausado' | 'sem_anuncio';
 
+export {
+  classifyMlPublishEligibility,
+  classifyMlPublishFailure,
+  isModifiableMlListingStatus,
+  mlNonModifiableBlockReason,
+  resolveMlPublishBlockPatch,
+} from './publish-eligibility.js';
+
 export type OperationalListingCandidate = {
   ml_item_id: string;
   status?: string | null;
@@ -26,11 +34,6 @@ export function selectOperationalMlListing<T extends OperationalListingCandidate
   return [...candidates]
     .filter((candidate) => String(candidate.ml_item_id || '').trim())
     .sort((a, b) => listingRank(a) - listingRank(b))[0] || null;
-}
-
-export function isModifiableMlListingStatus(status: unknown): boolean {
-  const normalized = String(status || '').trim().toLowerCase();
-  return normalized === 'active' || normalized === 'paused';
 }
 
 export function operationalMlStatus(candidate: OperationalListingCandidate | null): LocalMlStatus {

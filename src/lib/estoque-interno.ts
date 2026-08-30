@@ -398,7 +398,7 @@ export async function enfileirarSyncMlEstoqueInterno(
       },
     });
     if (!result.ok) throw new Error(result.error);
-    if (result.action === 'unchanged') semAlteracao += 1;
+    if (result.action === 'unchanged' || result.action === 'skipped_ineligible') semAlteracao += 1;
     else enfileirados += 1;
   }
   return { enfileirados, bloqueadosManualmente, semAlteracao, emProcessamento };

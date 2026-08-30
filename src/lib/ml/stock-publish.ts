@@ -1,4 +1,4 @@
-import { fetchMLResult } from '@/services/integration';
+import { fetchMLResult, type MLFailureCategory } from '@/services/integration';
 
 type MlStockLocation = {
   type?: string;
@@ -16,6 +16,8 @@ export type MlStockPublishResult = {
   method: 'items' | 'seller_warehouse' | 'none';
   code?: string;
   error?: string;
+  status?: number | null;
+  category?: MLFailureCategory | null;
   observedQuantity?: number;
   userProductId?: string;
 };
@@ -46,6 +48,8 @@ async function publishSingleWarehouseStock(
         method: 'seller_warehouse',
         code: current.error?.code || 'ml_stock_read_failed',
         error: current.error?.message || 'Falha ao consultar estoque do User Product',
+        status: current.status,
+        category: current.error?.category,
         userProductId,
       };
     }
@@ -95,6 +99,8 @@ async function publishSingleWarehouseStock(
         method: 'seller_warehouse',
         code: update.error?.code || 'ml_stock_update_failed',
         error: update.error?.message || 'Falha ao atualizar estoque por depósito',
+        status: update.status,
+        category: update.error?.category,
         userProductId,
       };
     }
@@ -137,6 +143,8 @@ export async function publishAndVerifyMlStock(
         method: 'none',
         code: item.error?.code || 'ml_user_product_missing',
         error: item.error?.message || 'Anúncio sem user_product_id para estoque multiorigem',
+        status: item.status,
+        category: item.error?.category,
       };
     }
     return publishSingleWarehouseStock(userProductId, quantity);
@@ -153,6 +161,8 @@ export async function publishAndVerifyMlStock(
       method: 'items',
       code: update.error?.code || 'ml_stock_update_failed',
       error: update.error?.message || 'Falha ao publicar estoque no ML',
+      status: update.status,
+      category: update.error?.category,
     };
   }
 

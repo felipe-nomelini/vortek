@@ -116,6 +116,7 @@ export async function POST(request: Request) {
     let updatedExisting = 0;
     let unchanged = 0;
     let skippedManualBlock = 0;
+    let skippedIneligible = 0;
     let failed = 0;
     const capacitiesByProduct = await loadProductFulfillmentCapacities(
       client,
@@ -174,6 +175,8 @@ export async function POST(request: Request) {
         });
       } else if (outbox.action === 'unchanged') {
         unchanged += 1;
+      } else if (outbox.action === 'skipped_ineligible') {
+        skippedIneligible += 1;
       } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
         updatedExisting += 1;
       } else {
@@ -191,6 +194,7 @@ export async function POST(request: Request) {
         updated_existing: updatedExisting,
         unchanged,
         skipped_manual_block: skippedManualBlock,
+        skipped_ineligible: skippedIneligible,
         failed,
       },
       errors,

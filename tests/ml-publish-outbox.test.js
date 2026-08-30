@@ -228,3 +228,62 @@ test('divergência observada força republicação da quantidade', async () => {
   assert.equal(client.rows[1].payload.apply_quantity, true);
   assert.equal(client.rows[1].payload.apply_status, false);
 });
+
+test('não recria outbox quando anúncio possui bloqueio terminal', async () => {
+  const client = createFakeClient([{
+    id: 'listing',
+    ml_item_id: 'MLB1',
+    status: 'ativo',
+    ml_sync_block_reason: 'non_modifiable_status:under_review',
+    ml_sync_blocked_until: null,
+  }]);
+  const result = await enqueueMlPublishOutbox(client, stockInput());
+  assert.deepEqual(result, {
+    ok: true,
+    outboxId: null,
+    action: 'skipped_ineligible',
+    reason: 'non_modifiable_status:under_review',
+    eligibility: 'terminally_blocked',
+    retryAt: null,
+  });
+  assert.equal(client.rows.length, 1);
+});
+
+test('não recria outbox durante cooldown temporário', async () => {
+  const blockedUntil = new Date(Date.now() + 60 * 60 * 1000).toISOString();
+  const client = createFakeClient([{
+    id: 'listing',
+    ml_item_id: 'MLB1',
+    status: 'ativo',
+    ml_sync_block_reason: 'field_not_updatable',
+    ml_sync_blocked_until: blockedUntil,
+  }]);
+  const result = await enqueueMlPublishOutbox(client, stockInput());
+  assert.equal(result.action, 'skipped_ineligible');
+  assert.equal(result.eligibility, 'temporarily_blocked');
+  assert.equal(result.retryAt, blockedUntil);
+  assert.equal(client.rows.length, 1);
+});
+
+test('exclusão ignora bloqueio de publicação comum', async () => {
+  const client = createFakeClient([{
+    id: 'listing',
+    ml_item_id: 'MLB1',
+    status: 'ativo',
+    ml_sync_block_reason: 'non_modifiable_status:closed',
+    ml_sync_blocked_until: null,
+  }]);
+  const result = await enqueueMlPublishOutbox(client, stockInput({
+    desiredQuantity: null,
+    desiredStatus: null,
+    payload: {
+      apply_price: false,
+      apply_quantity_pricing: false,
+      apply_quantity: false,
+      apply_status: false,
+      delete_listing: true,
+    },
+  }));
+  assert.equal(result.action, 'inserted');
+  assert.equal(client.rows.length, 2);
+});

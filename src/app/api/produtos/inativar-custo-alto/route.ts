@@ -51,6 +51,7 @@ export async function POST(req: Request) {
   let inactivated = 0;
   let mlPauseEnqueued = 0;
   let mlPauseUnchanged = 0;
+  let mlPauseSkippedIneligible = 0;
   let mlPauseSkippedNoItem = 0;
 
   if (!dryRun && ids.length > 0) {
@@ -107,6 +108,8 @@ export async function POST(req: Request) {
         });
       } else if (outbox.action === 'unchanged') {
         mlPauseUnchanged += 1;
+      } else if (outbox.action === 'skipped_ineligible') {
+        mlPauseSkippedIneligible += 1;
       } else {
         mlPauseEnqueued += 1;
       }
@@ -123,6 +126,7 @@ export async function POST(req: Request) {
       already_inactive: 0,
       ml_pause_enqueued: mlPauseEnqueued,
       ml_pause_unchanged: mlPauseUnchanged,
+      ml_pause_skipped_ineligible: mlPauseSkippedIneligible,
       ml_pause_skipped_no_item: mlPauseSkippedNoItem,
       errors: errors.length,
     },

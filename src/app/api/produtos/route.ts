@@ -160,6 +160,8 @@ export async function POST(request: Request) {
     });
     if (!outbox.ok) {
       warning = outbox.error;
+    } else if (outbox.action === 'skipped_ineligible') {
+      warning = `publicação ML não enfileirada: ${outbox.reason}`;
     }
   }
 

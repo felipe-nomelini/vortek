@@ -197,6 +197,8 @@ export async function PATCH(
 
       if (!outbox.ok) {
         outboxWarning = outbox.error;
+      } else if (outbox.action === 'skipped_ineligible') {
+        outboxWarning = `publicação ML não enfileirada: ${outbox.reason}`;
       } else if (outbox.action !== 'unchanged') {
         queuedPublish = true;
         outboxId = outbox.outboxId;

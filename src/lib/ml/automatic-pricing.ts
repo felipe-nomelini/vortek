@@ -133,7 +133,8 @@ export async function enqueueAutomaticPricesForCostChanges(
         },
       });
       if (queued.ok) {
-        if (queued.action !== 'unchanged') result.outboxEnqueued += 1;
+        if (queued.action === 'skipped_ineligible') result.skipped += 1;
+        else if (queued.action !== 'unchanged') result.outboxEnqueued += 1;
       } else {
         result.errors.push({ productId, message: queued.error });
       }

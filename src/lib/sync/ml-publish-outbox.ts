@@ -1,4 +1,5 @@
 import type { Database } from '@/types/database';
+import { classifyMlPublishEligibility } from '../ml/publish-eligibility.js';
 
 type ServiceClientLike = {
   from: (table: string) => any;
@@ -180,6 +181,14 @@ export async function enqueueMlPublishOutbox(
   input: MlPublishOutboxInput,
 ): Promise<
   | { ok: true; outboxId: string; action: 'inserted' | 'updated_existing' | 'reopened_failed' | 'unchanged' }
+  | {
+      ok: true;
+      outboxId: null;
+      action: 'skipped_ineligible';
+      reason: string;
+      eligibility: 'temporarily_blocked' | 'terminally_blocked';
+      retryAt: string | null;
+    }
   | { ok: false; error: string }
 > {
   const produtoId = String(input.produtoId || '').trim();
@@ -194,6 +203,7 @@ export async function enqueueMlPublishOutbox(
   const source = String(input.source || 'produto_update');
   const payload = input.payload || {};
   const dedupePending = input.dedupePending === true;
+  const deleteListing = payload.delete_listing === true;
   const requestedMode = resolveInputOperationMode(
     input,
     payload,
@@ -202,6 +212,34 @@ export async function enqueueMlPublishOutbox(
     desiredStatus,
   );
   let processingHasDifferentState = false;
+
+  if (!deleteListing) {
+    const { data: listingState, error: listingStateError } = await (client
+      .from('anuncios_ml')
+      .select('ml_sync_block_reason,ml_sync_blocked_until')
+      .eq('ml_item_id', mlItemId)
+      .maybeSingle() as any);
+    if (listingStateError) {
+      return { ok: false, error: listingStateError.message };
+    }
+
+    const eligibility = classifyMlPublishEligibility({
+      blockReason: listingState?.ml_sync_block_reason,
+      blockedUntil: listingState?.ml_sync_blocked_until,
+    });
+    if (!eligibility.eligible) {
+      return {
+        ok: true,
+        outboxId: null,
+        action: 'skipped_ineligible',
+        reason: eligibility.reason || 'ml_listing_not_modifiable',
+        eligibility: eligibility.kind === 'temporarily_blocked'
+          ? 'temporarily_blocked'
+          : 'terminally_blocked',
+        retryAt: eligibility.retryAt,
+      };
+    }
+  }
 
   if (dedupePending) {
     const { data: existing, error: existingError } = await (client

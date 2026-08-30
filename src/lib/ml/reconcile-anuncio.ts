@@ -1,4 +1,7 @@
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
+import {
+  resolveMlPublishBlockPatch,
+} from '@/lib/ml/operational-listing';
 import type { Database } from '@/types/database';
 
 type ServiceClientLike = {
@@ -8,7 +11,10 @@ type ServiceClientLike = {
 type ExistingAnuncioRow = Pick<
   Database['public']['Tables']['anuncios_ml']['Row'],
   'id' | 'produto_id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas'
->;
+> & Partial<Pick<
+  Database['public']['Tables']['anuncios_ml']['Row'],
+  'ml_sync_block_reason' | 'ml_sync_blocked_until' | 'ml_sync_last_error'
+>>;
 
 type MlListingLike = {
   id?: string | number | null;
@@ -82,7 +88,7 @@ async function syncProdutoMlStatus(
 export async function reconcileAnuncioMlFromItem(
   client: ServiceClientLike,
   item: MlListingLike,
-  source: 'publish_reconcile' | 'observed_sync' | 'items_webhook',
+  source: 'publish_reconcile' | 'publish_failure_reconcile' | 'observed_sync' | 'items_webhook',
   existingRow?: ExistingAnuncioRow | null,
 ): Promise<
   | { ok: true; found: false; updated: false; mlItemId: string }
@@ -98,7 +104,7 @@ export async function reconcileAnuncioMlFromItem(
   if (!current) {
     const { data, error } = await (client
       .from('anuncios_ml')
-      .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
+      .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
       .eq('ml_item_id', mlItemId)
       .maybeSingle() as any);
 
@@ -130,6 +136,7 @@ export async function reconcileAnuncioMlFromItem(
   if (isDifferentNullableString(current.thumbnail, nextThumbnail)) patch.thumbnail = nextThumbnail;
   if (nextSoldQuantity !== null && Number(current.vendidos || 0) !== nextSoldQuantity) patch.vendidos = nextSoldQuantity;
   if (nextVisits !== null && Number(current.visitas || 0) !== nextVisits) patch.visitas = nextVisits;
+  Object.assign(patch, resolveMlPublishBlockPatch(item?.status, current));
 
   if (Object.keys(patch).length === 0) {
     const produtoSyncError = shouldSyncDesiredProductStatus

@@ -168,7 +168,10 @@ export async function POST(req: Request) {
 
       if (!outbox.ok) {
         errors.push(`Falha ao enfileirar publicação no ML: ${outbox.error}`);
+      } else if (outbox.action === 'skipped_ineligible') {
+        errors.push(`Anúncio não aceita publicação: ${outbox.reason}`);
       }
+      const queuedPublish = outbox.ok && outbox.action !== 'skipped_ineligible';
 
       console.log(JSON.stringify({
         event: 'ml_anuncio_atualizar_preco',
@@ -179,35 +182,35 @@ export async function POST(req: Request) {
         target_price_received: targetPrice,
         base_price: basePrice,
         price_updated: false,
-        queued_publish: outbox.ok,
-        outbox_id: outbox.ok ? outbox.outboxId : null,
+        queued_publish: queuedPublish,
+        outbox_id: queuedPublish ? outbox.outboxId : null,
         fallback_reason: priceResult.error?.code || priceResult.status,
-        success: outbox.ok,
+        success: queuedPublish,
       }));
 
       return NextResponse.json({
-        success: outbox.ok,
+        success: queuedPublish,
         produtoId: produto.id,
         mlItemId: targetMlItemId,
         basePrice,
         source,
         target_price_received: targetPrice,
-        queued_publish: outbox.ok,
+        queued_publish: queuedPublish,
         immediate_publish: {
           ok: false,
           status: priceResult.status,
           error: priceResult.error?.message || 'Falha transitória ao atualizar preço no Mercado Livre',
           code: priceResult.error?.code || null,
         },
-        quantity_pricing_queued: outbox.ok,
-        outboxId: outbox.ok ? outbox.outboxId : null,
+        quantity_pricing_queued: queuedPublish,
+        outboxId: queuedPublish ? outbox.outboxId : null,
         price_updated: false,
         quantity_pricing_updated: false,
-        message: outbox.ok
+        message: queuedPublish
           ? 'Mercado Livre retornou erro transitório; atualização ficou em fila para retry'
-          : 'Mercado Livre retornou erro transitório, mas falhou ao enfileirar retry',
+          : 'Mercado Livre retornou erro, mas o anúncio não foi enfileirado',
         errors,
-      });
+      }, { status: queuedPublish ? 200 : (outbox.ok ? 422 : 500) });
     }
 
     const itemState = await fetchMLResult<any>(`/items/${targetMlItemId}`, { method: 'GET' });
@@ -257,10 +260,14 @@ export async function POST(req: Request) {
             fallback_reason: quantityPricingResult.code || quantityPricingResult.httpStatus || 'quantity_pricing_retry',
           },
         });
-        quantityPricingQueued = quantityOutbox.ok;
-        quantityPricingOutboxId = quantityOutbox.ok ? quantityOutbox.outboxId : null;
+        quantityPricingQueued = quantityOutbox.ok && quantityOutbox.action !== 'skipped_ineligible';
+        quantityPricingOutboxId = quantityOutbox.ok && quantityOutbox.action !== 'skipped_ineligible'
+          ? quantityOutbox.outboxId
+          : null;
         if (!quantityOutbox.ok) {
           warnings.push(`Falha ao enfileirar retry de atacado: ${quantityOutbox.error}`);
+        } else if (quantityOutbox.action === 'skipped_ineligible') {
+          warnings.push(`Retry de atacado não enfileirado: ${quantityOutbox.reason}`);
         }
       }
     }

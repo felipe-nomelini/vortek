@@ -1795,7 +1795,7 @@ export async function POST(req: Request) {
               priceUpdate.error ||
               `HTTP ${priceUpdate.status || ""}`.trim() ||
               "Falha ao atualizar preço no ML";
-            if (outbox.ok) pricingCorrection.outbox_id = outbox.outboxId;
+            if (outbox.ok && outbox.outboxId) pricingCorrection.outbox_id = outbox.outboxId;
             warnings.push(
               `Preço final calculado, mas atualização ficou pendente: ${pricingCorrection.error}`,
             );

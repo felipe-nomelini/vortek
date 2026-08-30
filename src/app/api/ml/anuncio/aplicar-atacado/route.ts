@@ -98,6 +98,16 @@ export async function POST(req: Request) {
         error: outbox.error,
       }, { status: 500 });
     }
+    if (outbox.action === 'skipped_ineligible') {
+      return NextResponse.json({
+        success: false,
+        queued_publish: false,
+        quantity_pricing_queued: false,
+        code: 'ml_listing_not_modifiable',
+        error: `Anúncio não aceita publicação: ${outbox.reason}`,
+        mlItemId,
+      }, { status: 422 });
+    }
 
     return NextResponse.json({
       success: true,

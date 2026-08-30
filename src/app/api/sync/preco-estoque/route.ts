@@ -249,6 +249,7 @@ export async function POST(req: Request) {
     let mlOutboxSkippedNoItem = 0;
     let mlOutboxSkippedManualBlock = 0;
     let mlOutboxSkippedNoListing = 0;
+    let mlOutboxSkippedIneligible = 0;
     let mlOutboxFailed = 0;
     let recordsUpdatedSeen = 0;
     let mlOutboxPausedZeroStock = 0;
@@ -493,6 +494,8 @@ export async function POST(req: Request) {
               });
             } else if (outbox.action === 'unchanged') {
               mlOutboxUnchanged += 1;
+            } else if (outbox.action === 'skipped_ineligible') {
+              mlOutboxSkippedIneligible += 1;
             } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
               mlOutboxUpdatedExisting += 1;
             } else {
@@ -738,6 +741,8 @@ export async function POST(req: Request) {
             });
           } else if (outbox.action === 'unchanged') {
             mlOutboxUnchanged += 1;
+          } else if (outbox.action === 'skipped_ineligible') {
+            mlOutboxSkippedIneligible += 1;
           } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
             mlOutboxUpdatedExisting += 1;
           } else {
@@ -795,6 +800,7 @@ export async function POST(req: Request) {
         ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
         ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
         ml_outbox_skipped_no_listing: mlOutboxSkippedNoListing,
+        ml_outbox_skipped_ineligible: mlOutboxSkippedIneligible,
         ml_outbox_failed: mlOutboxFailed,
         updated_seen: recordsUpdatedSeen,
         paused_zero_stock: mlOutboxPausedZeroStock,
@@ -820,6 +826,7 @@ export async function POST(req: Request) {
       ml_outbox_unchanged: mlOutboxUnchanged,
       ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
       ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
+      ml_outbox_skipped_ineligible: mlOutboxSkippedIneligible,
       ml_outbox_failed: mlOutboxFailed,
       updated_seen: recordsUpdatedSeen,
       paused_zero_stock: mlOutboxPausedZeroStock,

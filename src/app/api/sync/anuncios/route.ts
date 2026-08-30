@@ -1051,7 +1051,7 @@ export async function POST(request: Request) {
         if (missingSnapshots.length > 0) {
           const { data: refreshedAnuncios, error: refreshedAnunciosError } = await (serviceClient
             .from('anuncios_ml')
-            .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, qualidade, qualidade_info')
+            .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, qualidade, qualidade_info, ml_sync_block_reason, ml_sync_blocked_until, ml_sync_last_error')
             .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
           if (refreshedAnunciosError) {
             errors.push({

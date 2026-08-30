@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { fetchMLResult } from '@/services/integration';
+import { fetchMLResult, type MLFailureCategory } from '@/services/integration';
 import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
@@ -13,6 +13,11 @@ import {
   detachDeletedMlListing,
   isMlListingDeletionPayload,
 } from '@/lib/ml/listing-deletion';
+import {
+  classifyMlPublishEligibility,
+  classifyMlPublishFailure,
+  mlNonModifiableBlockReason,
+} from '@/lib/ml/operational-listing';
 
 export const maxDuration = 300;
 
@@ -106,31 +111,14 @@ function withPublishProgress(
   };
 }
 
-function isMlConflictError(operation: { error?: string; code?: string | null }): boolean {
-  const raw = `${operation.code || ''} ${operation.error || ''}`.toLowerCase();
-  return raw.includes('409') || raw.includes('conflict');
-}
-
-function isMlNonPublishableStateError(operation: { error?: string; code?: string | null }): boolean {
-  const raw = `${operation.code || ''} ${operation.error || ''}`.toLowerCase();
-  return raw.includes('cannot update item')
-    && (
-      raw.includes('status:closed')
-      || raw.includes('status:under_review')
-      || raw.includes('status:inactive')
-      || raw.includes('deleted')
-      || raw.includes('forbidden')
-    );
-}
-
-function isMlPermanentAuthorizationError(operation: { error?: string; code?: string | null }): boolean {
-  const raw = `${operation.code || ''} ${operation.error || ''}`.toLowerCase();
-  return raw.includes('not authorized')
-    || raw.includes('unauthorized')
-    || raw.includes('forbidden')
-    || raw.includes('caller is not authorized')
-    || raw.includes('access this resource');
-}
+type PublishOperation = {
+  op: string;
+  ok: boolean;
+  error?: string;
+  code?: string | null;
+  status?: number | null;
+  category?: MLFailureCategory | null;
+};
 
 async function reconcileItemStateAfterPermanentFailure(
   client: ReturnType<typeof createServiceClient>,
@@ -151,35 +139,16 @@ async function reconcileItemStateAfterPermanentFailure(
     return;
   }
 
-  const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
-  const produtoUpdate = params.row.produto_id
-    ? await client
-        .from('produtos')
-        .update({ ml_status: resolvedLocalStatus } as any)
-        .eq('id', String(params.row.produto_id))
-    : await client
-        .from('produtos')
-        .update({ ml_status: resolvedLocalStatus } as any)
-        .eq('ml_item_id', params.mlItemId);
-
-  if (produtoUpdate.error) {
-    params.warnings.push({
-      code: 'ml_publish_permanent_reconcile_produto_update_failed',
-      message: produtoUpdate.error.message,
-      context: { outboxId: params.outboxId, mlItemId: params.mlItemId, localStatus: resolvedLocalStatus },
-    });
-  }
-
   const anuncioReconcile = await reconcileAnuncioMlFromItem(
     client,
     itemStateResult.data,
-    'publish_reconcile',
+    'publish_failure_reconcile',
   );
   if (!anuncioReconcile.ok) {
     params.warnings.push({
       code: 'ml_publish_permanent_reconcile_anuncio_update_failed',
       message: anuncioReconcile.error,
-      context: { outboxId: params.outboxId, mlItemId: params.mlItemId, localStatus: resolvedLocalStatus },
+      context: { outboxId: params.outboxId, mlItemId: params.mlItemId },
     });
   }
 }
@@ -376,7 +345,58 @@ export async function POST(request: Request) {
     let retry = 0;
     let failed = 0;
     let permanentFailed = 0;
-    const requiresStockPublish = rows.some((row) => resolveApplyMode(row).applyQuantity);
+    const mlItemIds = Array.from(new Set(
+      rows.map((row) => String(row.ml_item_id || '').trim()).filter(Boolean),
+    ));
+    const [observedStatesResult, listingBlocksResult] = mlItemIds.length > 0
+      ? await Promise.all([
+          client
+            .from('catalogo_ml_snapshot')
+            .select('ml_item_id,status')
+            .in('ml_item_id', mlItemIds),
+          client
+            .from('anuncios_ml')
+            .select('ml_item_id,ml_sync_block_reason,ml_sync_blocked_until')
+            .in('ml_item_id', mlItemIds),
+        ])
+      : [
+          { data: [], error: null },
+          { data: [], error: null },
+        ];
+    if (observedStatesResult.error) {
+      throw new Error(`Falha ao consultar estado observado dos anúncios: ${observedStatesResult.error.message}`);
+    }
+    if (listingBlocksResult.error) {
+      throw new Error(`Falha ao consultar bloqueios dos anúncios: ${listingBlocksResult.error.message}`);
+    }
+    const observedStatusByItemId = new Map<string, string | null>(
+      (observedStatesResult.data || []).map((entry: any) => [
+        String(entry.ml_item_id || '').trim(),
+        entry.status ? String(entry.status) : null,
+      ]),
+    );
+    const listingBlockByItemId = new Map<string, { reason: string | null; until: string | null }>(
+      (listingBlocksResult.data || []).map((entry: any) => [
+        String(entry.ml_item_id || '').trim(),
+        {
+          reason: entry.ml_sync_block_reason ? String(entry.ml_sync_block_reason) : null,
+          until: entry.ml_sync_blocked_until ? String(entry.ml_sync_blocked_until) : null,
+        },
+      ]),
+    );
+    const eligibilityForRow = (row: any) => {
+      const mlItemId = String(row.ml_item_id || '').trim();
+      const block = listingBlockByItemId.get(mlItemId);
+      return classifyMlPublishEligibility({
+        observedStatus: observedStatusByItemId.get(mlItemId),
+        blockReason: block?.reason,
+        blockedUntil: block?.until,
+        deleteListing: isMlListingDeletionPayload(normalizeOutboxPayload(row.payload)),
+      });
+    };
+    const requiresStockPublish = rows.some((row) => (
+      eligibilityForRow(row).eligible && resolveApplyMode(row).applyQuantity
+    ));
     const mlStockContext = requiresStockPublish ? await loadMlStockContext() : null;
     const productIds = Array.from(new Set(
       rows.map((row) => String(row.produto_id || '').trim()).filter(Boolean),
@@ -401,6 +421,7 @@ export async function POST(request: Request) {
       const attempts = Number(row.attempts || 0) + 1;
       const outboxPayloadBase = normalizeOutboxPayload((row as any).payload);
       const deleteListing = isMlListingDeletionPayload(outboxPayloadBase);
+      const eligibility = eligibilityForRow(row);
       let lastOperationMarker: string | null = null;
       const updateProcessingMarker = async (operation: string) => {
         lastOperationMarker = operation;
@@ -417,6 +438,60 @@ export async function POST(request: Request) {
           .eq('id', outboxId) as any);
       };
 
+      if (!eligibility.eligible && !deleteListing) {
+        const now = new Date().toISOString();
+        const isTemporary = eligibility.kind === 'temporarily_blocked';
+        if (isTemporary) retry += 1;
+        else permanentFailed += 1;
+
+        if (!isTemporary && mlItemId) {
+          const reason = mlNonModifiableBlockReason(eligibility.observedStatus || 'unknown');
+          const lastError = `Estado observado no Mercado Livre não aceita publicação comum: ${eligibility.observedStatus || 'desconhecido'}`;
+          await (client
+            .from('anuncios_ml')
+            .update({
+              ml_sync_block_reason: reason,
+              ml_sync_blocked_until: null,
+              ml_sync_last_error: lastError,
+              updated_at: now,
+            } as any)
+            .eq('ml_item_id', mlItemId) as any);
+        }
+
+        await (client
+          .from('anuncios_ml_outbox' as any)
+          .update({
+            status: isTemporary ? 'retry' : 'cancelled',
+            last_error: isTemporary
+              ? `Adiado por bloqueio temporário do anúncio: ${eligibility.reason || 'ml_sync_cooldown'}`
+              : `Cancelado: anúncio não modificável (${eligibility.observedStatus || eligibility.reason || 'estado desconhecido'})`,
+            payload: withPublishProgress(outboxPayloadBase, {
+              state: isTemporary ? 'retry' : 'cancelled',
+              last_operation: isTemporary ? 'defer_ineligible_listing' : 'skip_ineligible_listing',
+              eligibility,
+              attempts: Number(row.attempts || 0),
+            }) as any,
+            processed_at: isTemporary ? null : now,
+            available_at: eligibility.retryAt || now,
+            updated_at: now,
+          } as any)
+          .eq('id', outboxId) as any);
+        warnings.push({
+          code: isTemporary ? 'ml_publish_listing_temporarily_blocked' : 'ml_publish_listing_not_modifiable',
+          message: isTemporary
+            ? 'Publicação adiada até o fim do bloqueio temporário'
+            : 'Publicação cancelada sem chamar o Mercado Livre porque o anúncio não é modificável',
+          context: {
+            outboxId,
+            mlItemId,
+            observedStatus: eligibility.observedStatus,
+            reason: eligibility.reason,
+            retryAt: eligibility.retryAt,
+          },
+        });
+        continue;
+      }
+
       await (client
         .from('anuncios_ml_outbox' as any)
         .update({
@@ -431,7 +506,7 @@ export async function POST(request: Request) {
         } as any)
         .eq('id', outboxId) as any);
 
-      const operations: Array<{ op: string; ok: boolean; error?: string; code?: string | null }> = [];
+      const operations: PublishOperation[] = [];
 
       const rowProductId = String(row.produto_id || '').trim();
       if (rowProductId && !activeProductIds.has(rowProductId) && !deleteListing) {
@@ -514,6 +589,9 @@ export async function POST(request: Request) {
               op: 'price',
               ok: result.ok,
               error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar preço no ML'),
+              code: result.error?.code,
+              status: result.status,
+              category: result.error?.category,
             });
             pricePublishedOk = result.ok;
             pricePublishedValue = price;
@@ -547,6 +625,7 @@ export async function POST(request: Request) {
                 ? undefined
                 : (quantityPricingResult.error || 'Falha ao publicar preços de atacado no ML'),
               code: quantityPricingResult.code,
+              status: quantityPricingResult.httpStatus,
             });
           }
         }
@@ -560,12 +639,16 @@ export async function POST(request: Request) {
                 ok: false,
                 code: 'ml_stock_context_unavailable',
                 error: 'Falha ao identificar o modo de estoque da conta Mercado Livre',
+                status: null,
+                category: null,
               };
           operations.push({
             op: 'quantity',
             ok: result.ok,
             error: result.ok ? undefined : (result.error || 'Falha ao publicar estoque no ML'),
             code: result.code,
+            status: result.status,
+            category: result.category,
           });
         }
 
@@ -577,11 +660,14 @@ export async function POST(request: Request) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: statusMl }),
           });
-          operations.push({
-            op: 'status',
-            ok: result.ok,
-            error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar status no ML'),
-          });
+            operations.push({
+              op: 'status',
+              ok: result.ok,
+              error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar status no ML'),
+              code: result.error?.code,
+              status: result.status,
+              category: result.error?.category,
+            });
         }
       }
 
@@ -713,21 +799,38 @@ export async function POST(request: Request) {
           }
         }
       } else {
-        const isNonPublishableState = isMlNonPublishableStateError(failedOperation);
-        const isPermanentAuthorization = isMlPermanentAuthorizationError(failedOperation);
-        const isPermanentFailure = isPermanentAuthorization;
-        const isHardFail = isPermanentFailure || attempts >= MAX_RETRY_ATTEMPTS;
-        const isConflictRetry = isMlConflictError(failedOperation);
-        const retryDelayMinutes = isConflictRetry
+        const failure = classifyMlPublishFailure(failedOperation);
+        const isNonPublishableState = failure.kind === 'non_modifiable';
+        const isPermanentAuthorization = failure.kind === 'auth_terminal';
+        const isTerminalFailure = failure.kind === 'terminal';
+        const isHardFail = isPermanentAuthorization
+          || isTerminalFailure
+          || (failure.kind === 'unknown' && attempts >= MAX_RETRY_ATTEMPTS);
+        const shouldRetry = failure.kind === 'retryable'
+          || (failure.kind === 'unknown' && !isHardFail);
+        const retryDelayMinutes = failure.retryConflict
           ? CONFLICT_RETRY_BACKOFF_MINUTES
           : Math.min(15, attempts);
         if (isNonPublishableState) {
           permanentFailed += 1;
-        } else if (isHardFail) failed += 1;
-        else retry += 1;
-        if (isPermanentFailure) permanentFailed += 1;
+        } else if (isHardFail) {
+          failed += 1;
+          if (isPermanentAuthorization) permanentFailed += 1;
+        } else if (shouldRetry) retry += 1;
 
-        if ((isNonPublishableState || isPermanentFailure) && mlItemId) {
+        if ((isNonPublishableState || isPermanentAuthorization) && mlItemId) {
+          if (isNonPublishableState) {
+            const blockedUntil = new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString();
+            await (client
+              .from('anuncios_ml')
+              .update({
+                ml_sync_block_reason: failedOperation.code || 'ml_non_modifiable_state',
+                ml_sync_blocked_until: blockedUntil,
+                ml_sync_last_error: failedOperation.error || 'Anúncio não modificável no Mercado Livre',
+                updated_at: new Date().toISOString(),
+              } as any)
+              .eq('ml_item_id', mlItemId) as any);
+          }
           await reconcileItemStateAfterPermanentFailure(client, {
             row,
             outboxId,
@@ -763,11 +866,12 @@ export async function POST(request: Request) {
             mlItemId,
             operation: failedOperation.op,
             attempts,
-            permanent: isPermanentFailure,
+            permanent: isNonPublishableState || isHardFail,
+            failure_kind: failure.kind,
           },
         };
 
-        if (isNonPublishableState || isPermanentFailure) {
+        if (isNonPublishableState || isPermanentAuthorization) {
           warnings.push(issue);
         } else {
           errors.push(issue);
