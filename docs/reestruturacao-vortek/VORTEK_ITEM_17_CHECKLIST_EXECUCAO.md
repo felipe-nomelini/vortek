@@ -80,8 +80,8 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `FIS-01` estar integralmente validada.
 - [x] Executar somente `FIS-02 — Gate do shipment`.
 - [x] Não avançar para a ação seguinte antes de `FIS-02` estar integralmente validada.
-- [ ] Executar somente `FIS-03 — not_found Brasil NFe`.
-- [ ] Não avançar para a ação seguinte antes de `FIS-03` estar integralmente validada.
+- [x] Executar somente `FIS-03 — not_found Brasil NFe`.
+- [x] Não avançar para a ação seguinte antes de `FIS-03` estar integralmente validada.
 
 ---
 
@@ -740,14 +740,49 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### FIS-03 — `not_found` Brasil NFe
 
 **Prioridade:** P1
-**Situação:** pendente; executar separadamente.
+**Situação:** concluída e validada.
+**Commit funcional:** `028417b` — `fix(fiscal): stop terminal Brasil NFe not-found retries`.
 
-- [ ] distinguir `not_found` transitório e terminal;
-- [ ] reabrir somente quando houver mudança real de estado;
-- [ ] impedir consulta periódica infinita de resultado terminal;
-- [ ] preservar idempotência quando a chave já estiver vinculada;
-- [ ] não criar outro reconciliador;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] distinguir falha transitória e `not_found` terminal;
+- [x] reabrir somente quando houver mudança real de estado;
+- [x] impedir consulta periódica infinita de resultado terminal;
+- [x] preservar idempotência quando a chave já estiver vinculada;
+- [x] não criar outro reconciliador;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** a busca por identificador interno usava o método legado `buscarNotaFiscal` e o campo incorreto `IndentificadorInterno`, divergindo do contrato oficial atual `ObterNotasFiscais + IdentificadorInterno`. Além disso, resposta válida sem correspondência, erro do provedor e exceção eram tratados como o mesmo `not_found`, sem persistir condição terminal; por isso o pedido continuava elegível a cada 2/10 minutos.
+
+**Mudança executada:**
+
+- a busca passou a usar o endpoint oficial já disponível no SDK instalado, sem upgrade de dependência;
+- resposta válida vazia ou sem correspondência exata é classificada como `not_found` terminal;
+- erro declarado pelo provedor, exceção e nota exata sem chave permanecem transitórios e elegíveis para recuperação;
+- o terminal é persistido em `pedidos.nfe_status = not_found` e deixa de ser selecionado pelo reconciliador;
+- qualquer fluxo fiscal real que substitua esse status reabre a elegibilidade;
+- a persistência compara `nfe_status` e `nfe_last_sync_at` carregados, impedindo que uma resposta antiga sobrescreva mudança concorrente;
+- chave, XML, protocolo, número e demais dados fiscais existentes não são apagados;
+- o endpoint contabiliza terminal processado separadamente de falha transitória e retorna sucesso quando não há falha recuperável;
+- nenhum novo reconciliador, retry, job, tabela, migration, dependência ou fluxo paralelo foi criado.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree, `AGENTS.md`, Item 17, consolidação e auditorias aplicáveis conferidos antes da alteração;
+- documentação oficial atual da Brasil NFe confirmou `/ObterNotasFiscais`, o campo `IdentificadorInterno` e a separação entre `Notas` e `Error`;
+- testes direcionados `tests/brasil-nfe-identifier.test.js` e `tests/ml-invoice-upload-contract.test.js`: 17/17 aprovados;
+- cobertura provou contrato correto, terminal, transitório, saída do ciclo, reabertura por mudança real e preservação da chave já vinculada;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=028417b`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e o worker sem chave respondeu `401`;
+- execução autenticada interna do reconciliador respondeu `200`, `success=true`, `total=0`, `terminalNotFound=0`, `transientFailures=0` e `failed=0`;
+- consulta somente leitura confirmou zero pedidos elegíveis, zero pedidos em `not_found` e zero eventos `not_found_terminal` no `supabase-dev`; nenhum candidato artificial ou chamada operacional à Brasil NFe foi criado apenas para testar;
+- migration e escrita de fixture no Supabase: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado estrutural criado por esta ação.
+
+**Pendência:** nenhuma para `FIS-03`. A próxima ação obrigatória do checklist é `FIN-01 + FIN-02 — Lifecycle e parser`.
 
 ---
 
