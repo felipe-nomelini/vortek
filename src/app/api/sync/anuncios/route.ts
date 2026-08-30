@@ -636,7 +636,7 @@ export async function POST(request: Request) {
 
         const { data: identityOffers, error: identityOffersError } = await serviceClient
           .from('produto_fornecedor_ofertas')
-          .select('id, nome, descricao, custo, estoque, prioridade, ativo')
+          .select('id, dslite_fornecedor_id, nome, descricao, custo, estoque, prioridade, ativo')
           .eq('produto_id', produtoId);
         if (identityOffersError) {
           errors.push({

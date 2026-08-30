@@ -1,4 +1,4 @@
-export const BLOCKED_DROPSHIPPING_DSLITE_SUPPLIER_IDS = ['134'] as const;
+export const BLOCKED_DROPSHIPPING_DSLITE_SUPPLIER_IDS = ['2', '134'] as const;
 
 const blockedSupplierIds = new Set<string>(
   BLOCKED_DROPSHIPPING_DSLITE_SUPPLIER_IDS,
@@ -22,6 +22,19 @@ export function filterAllowedDropshippingDsliteSupplierIds(
     );
 }
 
+type DropshippingSupplierOffer = {
+  dslite_fornecedor_id?: unknown;
+};
+
+export function filterAllowedDropshippingSupplierOffers<
+  T extends DropshippingSupplierOffer,
+>(offers: T[]): T[] {
+  return offers.filter(
+    (offer) =>
+      !isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id),
+  );
+}
+
 type SupplierOfferMatch = {
   produto_id?: string | null;
   dslite_fornecedor_id?: string | null;
@@ -41,10 +54,7 @@ type SupplierProductCandidate = {
 export function selectAllowedSupplierProductCandidate<
   T extends SupplierProductCandidate,
 >(products: T[], offers: SupplierOfferMatch[]): T | null {
-  const allowedOffers = offers.filter(
-    (offer) =>
-      !isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id),
-  );
+  const allowedOffers = filterAllowedDropshippingSupplierOffers(offers);
   const offersByProduct = new Map<string, SupplierOfferMatch[]>();
 
   for (const offer of allowedOffers) {

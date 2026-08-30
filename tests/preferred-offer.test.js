@@ -6,14 +6,32 @@ const {
   resolvePreferredOfferForProduct,
   shouldReconcilePreferredOfferCandidate,
 } = require('../src/lib/preferred-offer.ts');
+const {
+  filterAllowedDropshippingSupplierOffers,
+} = require('../src/lib/dslite/supplier-policy.ts');
 
-test('troca fornecedor atual por alternativa ativa mais barata com estoque', () => {
+test('troca Hayamax bloqueada por alternativa operacional', () => {
   const offers = [
-    { id: 'hayamax', ativo: true, estoque: 15, custo: 82.67, prioridade: 100 },
-    { id: 'evolusom', ativo: true, estoque: 7, custo: 77.6, prioridade: 100 },
+    { id: 'hayamax', dslite_fornecedor_id: '2', ativo: true, estoque: 15, custo: 52, prioridade: 1 },
+    { id: 'evolusom', dslite_fornecedor_id: '133', ativo: true, estoque: 7, custo: 77.6, prioridade: 100 },
   ];
 
-  assert.equal(resolvePreferredOfferForProduct(offers, 'hayamax')?.id, 'evolusom');
+  assert.equal(
+    resolvePreferredOfferForProduct(
+      filterAllowedDropshippingSupplierOffers(offers),
+      'hayamax',
+      true,
+    )?.id,
+    'evolusom',
+  );
+});
+
+test('produto somente Hayamax fica sem oferta preferencial operacional', () => {
+  const offers = filterAllowedDropshippingSupplierOffers([
+    { id: 'hayamax', dslite_fornecedor_id: '2', ativo: true, estoque: 15, custo: 52 },
+  ]);
+
+  assert.equal(resolvePreferredOfferForProduct(offers, 'hayamax', true), null);
 });
 
 test('mantém fornecedor manual mesmo quando alternativa possui menor custo', () => {

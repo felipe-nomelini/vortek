@@ -3,17 +3,31 @@ const test = require('node:test');
 
 const {
   filterAllowedDropshippingDsliteSupplierIds,
+  filterAllowedDropshippingSupplierOffers,
   isBlockedDropshippingDsliteSupplier,
   selectAllowedSupplierProductCandidate,
 } = require('../src/lib/dslite/supplier-policy.ts');
 
-test('bloqueia EVOLUSOM-ES e mantém EVOLUSOM-PR', () => {
+test('bloqueia Hayamax e EVOLUSOM-ES e mantém EVOLUSOM-PR', () => {
+  assert.equal(isBlockedDropshippingDsliteSupplier('2'), true);
+  assert.equal(isBlockedDropshippingDsliteSupplier(2), true);
   assert.equal(isBlockedDropshippingDsliteSupplier('134'), true);
   assert.equal(isBlockedDropshippingDsliteSupplier(134), true);
   assert.equal(isBlockedDropshippingDsliteSupplier('133'), false);
   assert.deepEqual(
     filterAllowedDropshippingDsliteSupplierIds(['2', '134', 133]),
-    ['2', '133'],
+    ['133'],
+  );
+});
+
+test('remove ofertas bloqueadas antes da seleção operacional', () => {
+  assert.deepEqual(
+    filterAllowedDropshippingSupplierOffers([
+      { id: 'hayamax', dslite_fornecedor_id: '2' },
+      { id: 'evolusom-es', dslite_fornecedor_id: '134' },
+      { id: 'evolusom-pr', dslite_fornecedor_id: '133' },
+    ]).map((offer) => offer.id),
+    ['evolusom-pr'],
   );
 });
 
@@ -49,6 +63,22 @@ test('não seleciona produto quando só existe oferta EVOLUSOM-ES', () => {
       {
         produto_id: 'es-only',
         dslite_fornecedor_id: '134',
+        ativo: true,
+        estoque: 10,
+      },
+    ],
+  );
+
+  assert.equal(selected, null);
+});
+
+test('não seleciona produto quando só existe oferta Hayamax', () => {
+  const selected = selectAllowedSupplierProductCandidate(
+    [{ id: 'hayamax-only', ativo: true }],
+    [
+      {
+        produto_id: 'hayamax-only',
+        dslite_fornecedor_id: '2',
         ativo: true,
         estoque: 10,
       },

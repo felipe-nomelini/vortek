@@ -351,7 +351,7 @@ export async function POST(req: Request) {
     const { data: supplierOffers } = await supabase
       .from("produto_fornecedor_ofertas")
       .select(
-        "id,produto_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at",
+        "id,produto_id,dslite_fornecedor_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at",
       )
       .eq("produto_id", produtoId);
 

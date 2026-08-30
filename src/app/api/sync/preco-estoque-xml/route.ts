@@ -10,6 +10,7 @@ import {
   type CostSnapshot,
 } from '@/lib/ml/automatic-pricing';
 import { shouldReconcilePreferredOfferCandidate } from '@/lib/preferred-offer';
+import { filterAllowedDropshippingDsliteSupplierIds } from '@/lib/dslite/supplier-policy';
 
 export const maxDuration = 300;
 
@@ -175,10 +176,13 @@ export async function POST(request: Request) {
       .not('dslite_id', 'is', null);
     if (activeSuppliersError) throw new Error(activeSuppliersError.message);
 
-    const activeSupplierIdSet = new Set((activeSuppliers || [])
-      .map((supplier) => String(supplier.dslite_id || '').trim())
-      .filter(Boolean));
-    const supplierIds = Array.from(activeSupplierIdSet)
+    const activeSupplierIds = filterAllowedDropshippingDsliteSupplierIds(
+      (activeSuppliers || [])
+        .map((supplier) => String(supplier.dslite_id || '').trim())
+        .filter(Boolean),
+    );
+    const activeSupplierIdSet = new Set(activeSupplierIds);
+    const supplierIds = activeSupplierIds
       .filter((supplierId) => Boolean(supplierId && configuredFeeds[supplierId]))
       .filter((supplierId) => !selectedSupplierIds || selectedSupplierIds.has(supplierId));
 

@@ -20,6 +20,10 @@ import {
   type ComposicaoKitEstoqueInterno,
 } from '@/lib/estoque-interno-saldo';
 import { calculateInternalFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity';
+import {
+  filterAllowedDropshippingSupplierOffers,
+  isBlockedDropshippingDsliteSupplier,
+} from '@/lib/dslite/supplier-policy';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import {
   includesInternalSupplierFilter,
@@ -284,7 +288,7 @@ async function resolveFornecedorPreviewByPedido(
   }
 
   const offersByProductId = new Map<string, any[]>();
-  for (const offer of offers || []) {
+  for (const offer of filterAllowedDropshippingSupplierOffers(offers || [])) {
     const productId = String((offer as any).produto_id || '');
     const list = offersByProductId.get(productId) || [];
     list.push(offer);
@@ -320,7 +324,13 @@ async function resolveFornecedorPreviewByPedido(
         product.oferta_preferencial_id,
         product.fornecedor_preferencial_manual === true,
       );
-      const fornecedorId = String(preferredOffer?.dslite_fornecedor_id || product.dslite_fornecedor_id || '').trim();
+      const preferredSupplierId = String(preferredOffer?.dslite_fornecedor_id || '').trim();
+      const legacySupplierId = String(product.dslite_fornecedor_id || '').trim();
+      const fornecedorId = preferredSupplierId || (
+        isBlockedDropshippingDsliteSupplier(legacySupplierId)
+          ? ''
+          : legacySupplierId
+      );
       const fornecedorNome = String(preferredOffer?.fornecedor_nome || product.fornecedor || '').trim();
       return {
         produtoId: String(product.id),

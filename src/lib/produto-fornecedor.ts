@@ -5,6 +5,7 @@ import {
   normalizeOfferPriority,
   resolvePreferredOfferForProduct,
 } from '@/lib/preferred-offer';
+import { filterAllowedDropshippingSupplierOffers } from '@/lib/dslite/supplier-policy';
 
 export {
   choosePreferredOffer,
@@ -104,7 +105,9 @@ export async function syncPreferredProductSnapshot(
   }
 
   const offersByProductId = new Map<string, ProdutoFornecedorOfertaRow[]>();
-  for (const offer of (offers || []) as ProdutoFornecedorOfertaRow[]) {
+  for (const offer of filterAllowedDropshippingSupplierOffers(
+    (offers || []) as ProdutoFornecedorOfertaRow[],
+  )) {
     const key = String(offer.produto_id || '').trim();
     if (!key) continue;
     const list = offersByProductId.get(key) || [];

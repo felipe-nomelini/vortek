@@ -123,7 +123,7 @@ async function loadProductIdsWithAlternativeStock(
   for (const idsChunk of chunk(productIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
     const { data, error } = await client
       .from('produto_fornecedor_ofertas')
-      .select('produto_id')
+      .select('produto_id,dslite_fornecedor_id')
       .in('produto_id', idsChunk)
       .neq('dslite_fornecedor_id', disabledFornecedorId)
       .eq('ativo', true)
@@ -131,6 +131,9 @@ async function loadProductIdsWithAlternativeStock(
 
     if (error) throw new Error(error.message);
     for (const offer of data || []) {
+      if (isBlockedDropshippingDsliteSupplier((offer as any).dslite_fornecedor_id)) {
+        continue;
+      }
       const productId = String((offer as any).produto_id || '').trim();
       if (productId) alternatives.add(productId);
     }
@@ -259,7 +262,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       return NextResponse.json(
         {
           error:
-            'EVOLUSOM-ES não trabalha com dropshipping e não pode ser ativado.',
+            'Fornecedor bloqueado pela política de dropshipping e não pode ser ativado.',
         },
         { status: 422 },
       );

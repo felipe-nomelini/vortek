@@ -3,6 +3,7 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
+import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
 
 type KitComponentDetail = {
   sku: string;
@@ -249,6 +250,15 @@ export async function PATCH(
   }
 
   const now = new Date().toISOString();
+  const blockedSupplierOperation = offer &&
+    isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id) &&
+    (selectionMode === 'manual' || ('ativo' in body && Boolean(body.ativo)));
+  if (blockedSupplierOperation) {
+    return NextResponse.json({
+      error: 'Fornecedor bloqueado pela política de dropshipping não pode ser ativado nem selecionado.',
+    }, { status: 422 });
+  }
+
   if (selectionMode === 'manual') {
     if (offer.ativo === false || !(Number(offer.custo) > 0)) {
       return NextResponse.json({

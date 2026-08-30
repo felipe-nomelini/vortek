@@ -9,6 +9,7 @@ import {
   normalizeMlDiameter,
   type MlListingIdentityConflict,
 } from "@/lib/ml-listing-identity";
+import { filterAllowedDropshippingSupplierOffers } from "@/lib/dslite/supplier-policy";
 
 export {
   extractStrictVoltage,
@@ -67,7 +68,9 @@ export function normalizeCriticalAttributeValue(
 }
 
 export function resolveMlCriticalFacts(produto: any, offers: any[] = []) {
-  const safeOffers = Array.isArray(offers) ? offers : [];
+  const safeOffers = filterAllowedDropshippingSupplierOffers(
+    Array.isArray(offers) ? offers : [],
+  );
   const preferredOffer = resolvePreferredOfferForProduct(
     safeOffers,
     produto?.oferta_preferencial_id || null,

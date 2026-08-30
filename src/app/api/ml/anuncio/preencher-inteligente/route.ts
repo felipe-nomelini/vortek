@@ -11,6 +11,7 @@ import {
   type MlProductFacts,
 } from "@/lib/ml-product-facts";
 import { isMlCriticalAttributeId } from "@/lib/ml-critical-attributes";
+import { filterAllowedDropshippingSupplierOffers } from "@/lib/dslite/supplier-policy";
 
 type AttributeInput = {
   id: string;
@@ -692,14 +693,15 @@ export async function POST(req: Request) {
     const categoryAttrsById = new Map(
       categoryAttrs.map((attr: any) => [String(attr.id).toUpperCase(), attr]),
     );
-    const supplierRows =
+    const supplierRows = filterAllowedDropshippingSupplierOffers(
       (
         await supabase
           .from("produto_fornecedor_ofertas")
-          .select("sku_oferta, sku_fornecedor, nome, descricao, marca")
+          .select("dslite_fornecedor_id, sku_oferta, sku_fornecedor, nome, descricao, marca")
           .eq("produto_id", produtoId)
           .limit(5)
-      ).data || [];
+      ).data || [],
+    );
     const supplierEvidence = supplierRows
       .map((row: any) =>
         [row.nome, row.marca, row.descricao].filter(Boolean).join(" "),

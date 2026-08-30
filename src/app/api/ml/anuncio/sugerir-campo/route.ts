@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { predictCategory } from '@/services/mercadolibre';
 import { researchProductAttribute, type ProductAttributeResearchResult } from '@/services/product-attribute-research';
 import { applyProductFactsToMlAttribute, extractMlProductFacts, type MlProductFacts } from '@/lib/ml-product-facts';
+import { filterAllowedDropshippingSupplierOffers } from '@/lib/dslite/supplier-policy';
 
 type AllowedValue = { id: string; name: string };
 type Suggestion = {
@@ -571,10 +572,12 @@ export async function POST(req: Request) {
     const allowed = Array.isArray(field.allowed_values) ? field.allowed_values : [];
     const supplierSkusResult = await supabase
       .from('produto_fornecedor_ofertas')
-      .select('sku_oferta, sku_fornecedor, nome, descricao, marca')
+      .select('dslite_fornecedor_id, sku_oferta, sku_fornecedor, nome, descricao, marca')
       .eq('produto_id', produtoId)
       .limit(5);
-    const supplierRows = supplierSkusResult.data || [];
+    const supplierRows = filterAllowedDropshippingSupplierOffers(
+      supplierSkusResult.data || [],
+    );
     const supplierSkus = supplierRows
       .flatMap((row: any) => [row.sku_oferta, row.sku_fornecedor])
       .filter(Boolean)
