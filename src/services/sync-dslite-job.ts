@@ -90,6 +90,7 @@ async function runStage(baseUrl: string, apiKey: string, stage: StageDef): Promi
       raw?.message ||
       raw?.error ||
       raw?.erro ||
+      raw?.errors?.[0]?.message ||
       (ok ? 'Etapa concluída' : 'Etapa retornou falha');
 
     const stats: Record<string, number> = {};

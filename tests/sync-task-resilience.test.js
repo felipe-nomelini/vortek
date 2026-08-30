@@ -7,6 +7,7 @@ const {
   evaluateScheduledTaskHealth,
   SYNC_TASKS,
 } = require('../src/lib/sync/registry.ts');
+const { resolveMlJobOutcome } = require('../src/lib/sync/job-outcome.ts');
 
 test('jobs lentos usam timeout próprio e retornam para fila após falha transitória', () => {
   const dslite = getSyncTaskByKey('sync_dslite_pedidos_compra');
@@ -20,6 +21,17 @@ test('jobs lentos usam timeout próprio e retornam para fila após falha transit
   assert.equal(mlObserved?.usesOffset, undefined);
   assert.equal(mlPublish?.requestTimeoutMs, 180_000);
   assert.equal(mlPublish?.retryOnFailure, true);
+});
+
+test('falha do sync DSLite permanece em espera para retry seguro', () => {
+  const dslite = getSyncTaskByKey('sync_dslite_pedidos_compra');
+
+  assert.equal(resolveMlJobOutcome({
+    domainLockConflict: false,
+    requestSucceeded: false,
+    authFailure: false,
+    retryOnFailure: Boolean(dslite?.retryOnFailure),
+  }), 'on_hold');
 });
 
 test('publicação ML limita cada execução a vinte itens', () => {

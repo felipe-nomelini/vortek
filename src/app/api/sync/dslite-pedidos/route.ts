@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import { fetchDslite } from '@/services/dslite';
+import { fetchDsliteResult } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, resolveCompraStatus } from '@/lib/produto-fornecedor';
 import { resolveSupplierPurchasePaymentAmount } from '@/lib/supplier-balance';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { resolveDslitePurchasePageResult } from '@/lib/dslite/api-contract';
 import {
   isDsliteRelinkBlockedByManualUnlink,
   resolveSafeDslitePedidoLinks,
@@ -93,7 +94,12 @@ export async function POST(request: Request) {
   let lockOwnerToken = '';
   let lockAcquired = false;
   const domain = 'compras:dslite';
-  const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
+  const errors: Array<{
+    code: string;
+    message: string;
+    upstream_status?: number | null;
+    context?: Record<string, unknown>;
+  }> = [];
   const warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
 
   try {
@@ -160,11 +166,40 @@ export async function POST(request: Request) {
     let linkSkippedManualUnlink = 0;
 
     while (true) {
-      const data = await fetchDslite<DslitePedidosResponse>(
-        buildDslitePurchaseQuery(dataInicial, dataFinal, page),
+      const pageResult = resolveDslitePurchasePageResult(
+        await fetchDsliteResult<DslitePedidosResponse>(
+          buildDslitePurchaseQuery(dataInicial, dataFinal, page),
+        ),
       );
 
-      if (!data?.pedidos?.length) {
+      if (!pageResult.ok) {
+        errors.push({
+          ...pageResult.error,
+          context: { page },
+        });
+        return NextResponse.json({
+          success: false,
+          domain,
+          job: {
+            key: 'sync_dslite_pedidos_compra',
+            started_at: new Date(startedAt).toISOString(),
+            finished_at: new Date().toISOString(),
+            lock_acquired: true,
+          },
+          cursor: null,
+          records: {
+            seen: recordsSeen,
+            inserted,
+            updated,
+            failed,
+          },
+          errors,
+          duration: { ms: Date.now() - startedAt },
+        }, { status: pageResult.httpStatus });
+      }
+
+      const data = pageResult.data;
+      if (data.pedidos.length === 0) {
         break;
       }
 
