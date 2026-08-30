@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `HAYA-02 — Aposentar conta-saldo`
+**Próxima ação obrigatória:** `HAYA-03 — Desacoplar Mercado Pago`
 
 ---
 
@@ -57,7 +57,7 @@ Regras de uso:
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
-| 7 | Hayamax, Mercado Pago e financeiro | Em execução | Executar somente `HAYA-02` |
+| 7 | Hayamax, Mercado Pago e financeiro | Em execução | Executar somente `HAYA-03` |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
@@ -86,8 +86,8 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `FIN-01/FIN-02` estar integralmente validada.
 - [x] Executar somente `HAYA-01 — Bloqueio operacional da Hayamax`.
 - [x] Não avançar para `HAYA-02` antes de `HAYA-01` estar integralmente validada.
-- [ ] Executar somente `HAYA-02 — Aposentar conta-saldo`.
-- [ ] Não avançar para `HAYA-03` antes de `HAYA-02` estar integralmente validada.
+- [x] Executar somente `HAYA-02 — Aposentar conta-saldo`.
+- [x] Não avançar para `HAYA-03` antes de `HAYA-02` estar integralmente validada.
 
 ---
 
@@ -847,14 +847,38 @@ As ações abaixo são sequenciais e não podem ser combinadas em uma única tar
 
 **Dependência:** `HAYA-01`
 
-**Situação:** pendente.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `2f9fe90`.
 
-- [ ] remover APIs e interface exclusivas do saldo Hayamax;
-- [ ] remover importação de extrato, aporte manual e aprovação Mercado Pago;
-- [ ] remover débito automático e novos usos de `balance_account`;
-- [ ] preservar ledger genérico de créditos, registros históricos e migrations;
-- [ ] manter histórico legível sem permitir nova operação;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] remover APIs e interface exclusivas do saldo Hayamax;
+- [x] remover importação de extrato, aporte manual e aprovação Mercado Pago;
+- [x] remover débito automático e novos usos de `balance_account`;
+- [x] preservar ledger genérico de créditos, registros históricos e migrations;
+- [x] manter histórico legível sem permitir nova operação;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Evidências:**
+
+- branch `dev` e working tree inicial limpa confirmados antes da mudança;
+- APIs exclusivas de consulta, importação, aporte manual e aprovação Mercado Pago removidas;
+- painel, alertas e modais da conta-saldo removidos da página de Compras;
+- inferência operacional passou a produzir somente `prepaid_pix`; tentativa explícita de gravar `balance_account` retorna `422`;
+- débito automático `purchase_debit` removido da criação e da sincronização de compras;
+- `balance_account` foi preservado nos tipos, labels, constraints e migrations somente para leitura histórica;
+- ledger genérico de créditos passou a apresentar movimentos Hayamax como conta aposentada e somente leitura, fora dos totais e das ações operacionais;
+- relatório, matching, webhook e escritores automáticos Mercado Pago permaneceram inalterados para execução exclusiva na `HAYA-03`;
+- 35 testes direcionados aprovados, incluindo a nova regressão `tests/hayamax-balance-retirement.test.js`;
+- `npm run validate`, `npm run build` e `git diff --check` aprovados; o build não contém as duas rotas removidas;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação na task `lddq5lh89vs1b0zodo6fnhn7h`, imagem `sha256:1b1c35c1fe20ba33b1357677109b9e2eacdbe26e72a46fc1ddad84ad15689bab`, confirmou rotas ausentes, interface exclusiva ausente, histórico somente leitura e guarda de escrita presentes;
+- `https://dev.vortek.shop/api/ops/health` respondeu `200`, com `success=true` e sem job em execução;
+- consulta somente leitura no `supabase-dev` confirmou zero movimento Hayamax, zero compra Hayamax, zero compra `balance_account` e seis movimentos Mercado Pago classificados para a próxima ação;
+- migration, alteração de schema e escrita no Supabase: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado estrutural criado por esta ação.
+
+**Pendência:** nenhuma para `HAYA-02`. A próxima ação obrigatória é `HAYA-03 — Desacoplar Mercado Pago`.
 
 ### HAYA-03 — Desacoplar Mercado Pago
 
