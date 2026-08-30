@@ -1,4 +1,14 @@
-export const ML_ALLOWED_USER_IDS: readonly string[] = ['3294514937'];
+export const ML_DEFAULT_ALLOWED_USER_IDS: readonly string[] = ['3294514937'];
+
+export function getMercadoLivreAllowedUserIds(): readonly string[] {
+  const configured = process.env.ML_ALLOWED_USER_IDS;
+  if (configured === undefined) return ML_DEFAULT_ALLOWED_USER_IDS;
+
+  return configured
+    .split(',')
+    .map((userId) => userId.trim())
+    .filter(Boolean);
+}
 
 export type MercadoLivreWebhookUserValidation =
   | { allowed: true; userId: string; reason: 'allowed' }
@@ -10,7 +20,7 @@ export function validateMercadoLivreWebhookUser(userId: unknown): MercadoLivreWe
   if (!normalizedUserId) {
     return { allowed: false, userId: null, reason: 'user_id_missing' };
   }
-  if (!ML_ALLOWED_USER_IDS.includes(normalizedUserId)) {
+  if (!getMercadoLivreAllowedUserIds().includes(normalizedUserId)) {
     return { allowed: false, userId: normalizedUserId, reason: 'user_id_not_allowed' };
   }
   return { allowed: true, userId: normalizedUserId, reason: 'allowed' };
@@ -74,7 +84,9 @@ export async function validateMercadoLivreTokenOwner(accessToken: string): Promi
 
   const userId = data?.id ? String(data.id) : null;
   const nickname = data?.nickname ? String(data.nickname) : null;
-  const allowedById = Boolean(userId && ML_ALLOWED_USER_IDS.includes(userId));
+  const allowedById = Boolean(
+    userId && getMercadoLivreAllowedUserIds().includes(userId),
+  );
 
   if (!allowedById) {
     return {
