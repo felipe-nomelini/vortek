@@ -628,6 +628,8 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - [x] `npm run validate`: aprovado, sem warnings ou erros;
 - [x] `npm run build`: aprovado;
 - [x] busca pós-alteração confirmou ausência dos símbolos antigos e `stock-publish.ts` como único escritor de atualização de `available_quantity`;
+- [x] commits enviados para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- [x] container de homologação confirmou `GIT_SHA=c7ac9d3`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e o worker sem chave respondeu `401`;
 - [x] produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
 
 **Teste de regressão novo:** N/A. A ação removeu código inalcançável sem alterar o fluxo retido; a cobertura foi provada pelo grafo de chamadas, teste existente do outbox, typecheck e build.
@@ -636,7 +638,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Rollback:** reverter o commit funcional e republicar somente a homologação; não há dado ou migration para desfazer.
 
-**Pendência:** validar o commit implantado em `dev.vortek.shop`. Depois disso, a próxima ação obrigatória é `FIS-01`.
+**Pendência:** nenhuma para `INV-02`. A próxima ação obrigatória é `FIS-01`.
 
 ---
 
