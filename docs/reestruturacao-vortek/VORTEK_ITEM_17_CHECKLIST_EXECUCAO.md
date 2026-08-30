@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `ML-02 — Scan repetido`
+**Próxima ação obrigatória:** `RULE-06 — Elegibilidade de publicação`
 
 ---
 
@@ -55,7 +55,7 @@ Regras de uso:
 | 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
-| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `ML-02` |
+| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `RULE-06` |
 | 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
@@ -68,8 +68,10 @@ Regras de uso:
 
 - [x] Executar somente `ML-03 — Não publicar estoque igual`.
 - [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
-- [ ] Executar somente `ML-02 — Scan repetido`.
-- [ ] Não avançar para a ação seguinte antes de `ML-02` estar integralmente validada.
+- [x] Executar somente `ML-02 — Scan repetido`.
+- [x] Não avançar para a ação seguinte antes de `ML-02` estar integralmente validada.
+- [ ] Executar somente `RULE-06 — Elegibilidade de publicação`.
+- [ ] Não avançar para a ação seguinte antes de `RULE-06` estar integralmente validada.
 
 ---
 
@@ -484,15 +486,48 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### ML-02 — Scan repetido
 
 **Prioridade:** P1
-**Situação:** pendente.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `0ccbe07` — `fix: persistir manifesto do scan observado ML`
 
-- [ ] medir e confirmar a reconstrução repetida da população;
-- [ ] obter a população uma vez por ciclo;
-- [ ] processar o ciclo de forma retomável usando mecanismo durável existente;
-- [ ] não persistir `scroll_id` como estado durável;
-- [ ] provar cobertura integral sem itens pulados ou duplicados;
-- [ ] provar retomada e abertura correta de um novo ciclo;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] medir e confirmar a reconstrução repetida da população;
+- [x] obter a população uma vez por ciclo;
+- [x] processar o ciclo de forma retomável usando mecanismo durável existente;
+- [x] não persistir `scroll_id` como estado durável;
+- [x] provar cobertura integral sem itens pulados ou duplicados;
+- [x] provar retomada e abertura correta de um novo ciclo;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** cada execução de lote chamava novamente o endpoint `search_type=scan`, reconstruía toda a população de anúncios e somente depois aplicava `slice(offset, offset + 100)`. Com cerca de 5.900 IDs, cada lote repetia aproximadamente 59 páginas de scan antes de processar os seus 100 itens.
+
+**Mudança executada:**
+
+- um único scan cria o manifesto durável do ciclo em `ml_listings_observed_items`;
+- os lotes seguintes processam no máximo 100 IDs exatos do manifesto, sem novo scan e sem offset;
+- o marcador `ml_observed_manifest_completed` só é gravado depois da persistência integral; manifesto parcial sem marcador é reconstruído com novo scan;
+- IDs são normalizados e protegidos por chave primária `(job_id, ml_item_id)`, impedindo duplicação no ciclo;
+- itens individuais podem ser retomados até três vezes; falhas terminais encerram o job como `completo_parcial`;
+- jobs `on_hold` e jobs stale são retomados com o mesmo ID; uma chave de deduplicação impede dois ciclos ativos;
+- `scroll_id` permanece apenas na memória durante o scan e nunca é salvo no manifesto ou no log;
+- manifestos de jobs concluídos são limpos depois do registro terminal; manifestos de erro permanecem disponíveis para diagnóstico;
+- nenhuma fila externa, cron paralelo, dependência ou variável de ambiente foi criada.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree, `AGENTS.md`, Item 17, consolidação e auditorias de ML/jobs conferidos antes da alteração;
+- contrato oficial atual do Mercado Livre para `search_type=scan` e documentação oficial do PostgreSQL/Supabase para índices parciais, RLS e processamento em lote conferidos;
+- 22 testes direcionados aprovados, cobrindo manifesto sem duplicação, cursor único da primeira página, ausência de offset, retomada, três tentativas, progresso, stale jobs e idempotência;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- migration `20260830090000_durable_ml_listings_observed_scan.sql` aplicada e registrada somente no `supabase-dev` (`192.168.1.162`), com tabela, índice parcial e RLS verificados;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=0ccbe07`; healthcheck respondeu `200` e a rota do sync sem chave respondeu `401`;
+- ciclo real DEV concluiu `completo`: um scan, duas páginas até o encerramento do cursor, um anúncio processado em um lote, zero falhas, manifesto limpo e nenhum `scroll_id` persistido;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy de homologação. A migration é aditiva e pode permanecer sem consumidor; não apagar a tabela durante rollback de código.
+
+**Pendência:** nenhuma para `ML-02`. A próxima ação obrigatória é `RULE-06`.
 
 ### RULE-06 — Elegibilidade de publicação
 
