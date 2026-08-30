@@ -17,6 +17,7 @@ test('jobs lentos usam timeout próprio e retornam para fila após falha transit
   assert.equal(dslite?.retryOnFailure, true);
   assert.equal(mlObserved?.requestTimeoutMs, 300_000);
   assert.equal(mlObserved?.retryOnFailure, true);
+  assert.equal(mlObserved?.usesOffset, undefined);
   assert.equal(mlPublish?.requestTimeoutMs, 180_000);
   assert.equal(mlPublish?.retryOnFailure, true);
 });

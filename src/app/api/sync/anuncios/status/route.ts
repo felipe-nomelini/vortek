@@ -31,7 +31,7 @@ export async function GET(request: Request) {
       .select('id, tipo, status, progresso, processados, total, log, finished_at, created_by, created_at')
       .eq('tipo', 'sync_ml_listings_observed')
       .eq('created_by', user.id)
-      .in('status', ['pendente', 'rodando'])
+      .in('status', ['pendente', 'rodando', 'on_hold'])
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();

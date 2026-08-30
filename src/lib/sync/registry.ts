@@ -160,7 +160,6 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     kind: 'ml',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 5, offHoursMinutes: 15 },
-    usesOffset: true,
     runMode: 'inline',
     requestTimeoutMs: 300_000,
     retryOnFailure: true,

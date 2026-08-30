@@ -15,6 +15,11 @@ import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
 import { findMlProductIdentityConflicts } from '@/lib/ml-critical-attributes';
+import {
+  ML_OBSERVED_BATCH_SIZE,
+  normalizeMlObservedItemIds,
+  resolveMlObservedScrollId,
+} from '@/lib/ml/observed-scan-batch';
 
 export const maxDuration = 300;
 
@@ -386,7 +391,9 @@ async function fetchAllMlItemIds(sellerId: string | number): Promise<{
       };
     }
 
-    scrollId = nextScrollId;
+    // O scroll retornado na primeira página identifica toda a varredura.
+    // Não persistimos esse cursor: ele é efêmero e vive somente nesta chamada.
+    scrollId = resolveMlObservedScrollId(scrollId, nextScrollId);
   }
 }
 
@@ -397,9 +404,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Chave de API inválida' }, { status: 401 });
   }
 
-  const { searchParams } = new URL(request.url);
-  const offset = Number(searchParams.get('offset') || 0);
-  const limit = Math.max(1, Math.min(100, Number(searchParams.get('limit') || 100)));
+  const body = await request.json().catch(() => ({}));
+  const action = String(body?.action || '').trim();
+  const syncJobId = String(body?.syncJobId || '').trim() || null;
+  const requestedItemIds = normalizeMlObservedItemIds(body?.itemIds);
+  const total = Math.max(requestedItemIds.length, Math.trunc(Number(body?.totalMl || 0)));
+
+  if (!['manifest', 'batch'].includes(action)) {
+    return NextResponse.json({
+      success: false,
+      error: 'Ação interna inválida. Use manifest ou batch.',
+    }, { status: 400 });
+  }
+  if (action === 'batch' && (requestedItemIds.length === 0 || requestedItemIds.length > ML_OBSERVED_BATCH_SIZE)) {
+    return NextResponse.json({
+      success: false,
+      error: `O lote deve conter entre 1 e ${ML_OBSERVED_BATCH_SIZE} IDs únicos.`,
+    }, { status: 400 });
+  }
 
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
   const warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
@@ -411,8 +433,9 @@ export async function POST(request: Request) {
     const lock = await acquireDomainLock({
       domain,
       ownerTask: 'sync_ml_listings_observed',
+      ownerJobId: syncJobId,
       ttlSeconds: 20 * 60,
-      metadata: { source: 'api/sync/anuncios' },
+      metadata: { source: 'api/sync/anuncios', action },
     });
     lockAcquired = lock.acquired;
     lockOwnerToken = lock.ownerToken;
@@ -456,8 +479,21 @@ export async function POST(request: Request) {
 
     const me = meResult.data;
 
-    const scan = await fetchAllMlItemIds(me.id);
-    if (!scan.ok) {
+    if (action === 'manifest') {
+      const scan = await fetchAllMlItemIds(me.id);
+      if (scan.ok) {
+        return NextResponse.json({
+          success: true,
+          action,
+          seller_id: Number(me.id),
+          item_ids: scan.itemIds,
+          total: scan.itemIds.length,
+          scan_pages_fetched: scan.pagesFetched,
+          retries_transient: scan.retriesTransient,
+          duration: { ms: Date.now() - startedAt },
+        });
+      }
+
       if (scan.error?.category === 'auth_fatal') {
         const auth = await getMLAuthDiagnostics();
         return NextResponse.json({
@@ -483,29 +519,7 @@ export async function POST(request: Request) {
       }, { status: scan.error?.category === 'retryable' ? 424 : 502 });
     }
 
-    const allItemIds = scan.itemIds;
-    const total = allItemIds.length;
-    const itemIds = allItemIds.slice(offset, offset + limit);
-    if (itemIds.length === 0) {
-      return NextResponse.json({
-        success: true,
-        domain,
-        job: {
-          key: 'sync_ml_listings_observed',
-          started_at: new Date(startedAt).toISOString(),
-          finished_at: new Date().toISOString(),
-          lock_acquired: true,
-        },
-        cursor: { offset, limit },
-        records: { seen: 0, snapshot_upserted: 0, failed: 0 },
-        errors,
-        warnings,
-        duration: { ms: Date.now() - startedAt },
-        total,
-        proximo: offset,
-        acabou: true,
-      });
-    }
+    const itemIds = requestedItemIds;
 
     const serviceClient = createServiceClient();
     const sellerZipResult = await resolveSellerZip();
@@ -540,11 +554,13 @@ export async function POST(request: Request) {
     let authoritativeStockEnqueued = 0;
     let authoritativeStockUnchanged = 0;
     let deletedListingsDetached = 0;
+    const failedItemIds = new Set<string>();
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
       const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
       if (!itemResult.ok || !itemResult.data) {
         recordsFailed += 1;
+        failedItemIds.add(itemId);
         errors.push({
           code: 'ml_item_fetch_failed',
           message: itemResult.error?.message || 'Falha ao carregar item do ML',
@@ -560,6 +576,7 @@ export async function POST(request: Request) {
           deletedListingsDetached += 1;
         } catch (error: any) {
           recordsFailed += 1;
+          failedItemIds.add(itemId);
           errors.push({
             code: 'ml_deleted_listing_detach_failed',
             message: error?.message || 'Falha ao remover referências de anúncio excluído',
@@ -1143,8 +1160,6 @@ export async function POST(request: Request) {
       }
     }
 
-    const nextOffset = offset + limit;
-    const done = nextOffset >= total || itemIds.length < limit;
     let catalogRefreshTriggered = false;
 
     try {
@@ -1179,7 +1194,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      success: errors.length === 0,
+      success: true,
+      partial: errors.length > 0 || warnings.length > 0 || failedItemIds.size > 0,
+      action,
       domain,
       job: {
         key: 'sync_ml_listings_observed',
@@ -1187,7 +1204,6 @@ export async function POST(request: Request) {
         finished_at: new Date().toISOString(),
         lock_acquired: true,
       },
-      cursor: done ? null : { offset: nextOffset, limit },
       records: {
         seen: itemIds.length,
         snapshot_upserted: snapshots.length,
@@ -1202,15 +1218,14 @@ export async function POST(request: Request) {
       },
       errors,
       warnings,
+      processed_item_ids: itemIds.filter((itemId) => !failedItemIds.has(itemId)),
+      failed_item_ids: Array.from(failedItemIds),
       duration: { ms: Date.now() - startedAt },
-      scan_pages_fetched: scan.pagesFetched,
-      retries_transient: scan.retriesTransient,
-      // Compatibilidade:
-      ok: errors.length === 0,
+      scan_pages_fetched: 0,
+      retries_transient: 0,
+      ok: failedItemIds.size === 0,
       sincronizados: snapshots.length,
       total,
-      proximo: done ? null : nextOffset,
-      acabou: done,
       catalog_refresh_triggered: catalogRefreshTriggered,
     });
   } catch (err: any) {

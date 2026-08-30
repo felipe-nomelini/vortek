@@ -29,6 +29,7 @@ import {
   parseWhatsappLabelJobLog,
   runWhatsappLabelJob,
 } from '@/services/whatsapp-label-job';
+import { ML_OBSERVED_CYCLE_DEDUPE_KEY } from '@/lib/ml/observed-scan-batch';
 
 export const maxDuration = 300;
 
@@ -350,6 +351,18 @@ export async function POST(request: Request) {
         });
         continue;
       }
+      if (job.tipo === 'sync_ml_listings_observed') {
+        if (job.status !== 'rodando' || !isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
+        const recovery = await requeueStaleJob(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES);
+        results.push({
+          task: job.tipo,
+          action: 'stale_job_queued_for_retry',
+          jobId: job.id,
+          stale_threshold_minutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
+          ...recovery,
+        });
+        continue;
+      }
       if (!isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
       if (job.tipo === 'whatsapp_label_send') {
         const log = parseWhatsappLabelJobLog(job.log);
@@ -446,7 +459,12 @@ export async function POST(request: Request) {
       if (running.status === 'on_hold') {
         resumableJobId = running.id;
       } else if (isJobStale(running, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) {
-        await markJobAsStale(running as any);
+        if (task.key === 'sync_ml_listings_observed') {
+          await requeueStaleJob(running as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES);
+          resumableJobId = running.id;
+        } else {
+          await markJobAsStale(running as any);
+        }
         results.push({
           task: task.key,
           action: 'stale_job_detected',
@@ -542,6 +560,7 @@ export async function POST(request: Request) {
           log: initialLog,
           cancelado: false,
           created_by: null,
+          dedupe_key: task.key === 'sync_ml_listings_observed' ? ML_OBSERVED_CYCLE_DEDUPE_KEY : null,
         })
         .select('id')
         .single();

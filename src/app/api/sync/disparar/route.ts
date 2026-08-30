@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { SYNC_TASKS, getSyncTaskByKey, mapLegacyTipoToTaskKey, type SyncTaskKey } from '@/lib/sync/registry';
+import { ML_OBSERVED_CYCLE_DEDUPE_KEY } from '@/lib/ml/observed-scan-batch';
 
 export const maxDuration = 300;
 
@@ -80,14 +81,6 @@ function buildQuery(taskKey: SyncTaskKey, body: Record<string, unknown>): Record
 
     const limit = parsePositiveInt(body.limit, -1);
     if (limit > 0) query.limit = limit;
-  }
-
-  if (taskKey === 'sync_ml_listings_observed') {
-    const offset = parseOffset(body.offset, -1);
-    if (offset >= 0) query.offset = offset;
-
-    const limit = parsePositiveInt(body.limit, -1);
-    if (limit > 0) query.limit = Math.min(100, limit);
   }
 
   if (taskKey === 'sync_reconcile_fiscal') {
@@ -268,6 +261,7 @@ export async function POST(request: Request) {
           log: initialLog,
           cancelado: false,
           created_by: user.id,
+          dedupe_key: task.key === 'sync_ml_listings_observed' ? ML_OBSERVED_CYCLE_DEDUPE_KEY : null,
         })
         .select('id, status')
         .single();

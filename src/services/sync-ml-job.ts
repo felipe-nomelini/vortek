@@ -1,6 +1,7 @@
 import { createServiceClient } from '@/lib/supabase';
 import { resolveMlJobOutcome, type MlJobOutcome } from '@/lib/sync/job-outcome';
 import type { Database } from '@/types/database';
+import { runMlListingsObservedJobBatch } from '@/services/ml-listings-observed-job';
 
 interface MlJobConfig {
   jobId: string;
@@ -69,6 +70,9 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
   total: number;
 }> {
   const { jobId, tipo, path, label, query, body } = config;
+  if (tipo === 'sync_ml_listings_observed') {
+    return runMlListingsObservedJobBatch(jobId);
+  }
   const serviceClient = createServiceClient();
 
   const { data: job } = await serviceClient

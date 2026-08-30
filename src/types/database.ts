@@ -227,6 +227,50 @@ export type Database = {
           },
         ]
       }
+      ml_listings_observed_items: {
+        Row: {
+          attempts: number
+          created_at: string
+          job_id: string
+          last_error: string | null
+          ml_item_id: string
+          ordinal: number
+          processed_at: string | null
+          seller_id: number
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          created_at?: string
+          job_id: string
+          last_error?: string | null
+          ml_item_id: string
+          ordinal: number
+          processed_at?: string | null
+          seller_id: number
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          created_at?: string
+          job_id?: string
+          last_error?: string | null
+          ml_item_id?: string
+          ordinal?: number
+          processed_at?: string | null
+          seller_id?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ml_listings_observed_items_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       clientes: {
         Row: {
           created_at: string

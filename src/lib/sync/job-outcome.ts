@@ -1,4 +1,4 @@
-export type MlJobOutcome = 'completo' | 'erro' | 'failed_auth' | 'on_hold';
+export type MlJobOutcome = 'completo' | 'completo_parcial' | 'erro' | 'failed_auth' | 'on_hold';
 
 export function resolveMlJobOutcome(input: {
   domainLockConflict: boolean;

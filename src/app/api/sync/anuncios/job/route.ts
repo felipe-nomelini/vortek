@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
-import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale, markJobAsStale } from '@/lib/sync/stale-jobs';
+import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale, requeueStaleJob } from '@/lib/sync/stale-jobs';
+import { ML_OBSERVED_CYCLE_DEDUPE_KEY } from '@/lib/ml/observed-scan-batch';
 
 export const maxDuration = 300;
 
@@ -19,32 +20,50 @@ export async function POST() {
     .select('id, tipo, status, created_at, finished_at, log')
     .eq('tipo', 'sync_ml_listings_observed')
     .eq('created_by', user.id)
-    .in('status', ['pendente', 'rodando'])
+    .in('status', ['pendente', 'rodando', 'on_hold'])
     .order('created_at', { ascending: false })
     .limit(1)
     .maybeSingle();
 
   if (runningJob?.id) {
     if (isJobStale(runningJob as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) {
-      await markJobAsStale(runningJob as any);
-    } else {
+      await requeueStaleJob(runningJob as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES);
+      setTimeout(() => {
+        void runMlSingleStageJob({
+          jobId: runningJob.id,
+          tipo: 'sync_ml_listings_observed',
+          path: '/api/sync/anuncios',
+          label: 'Sync ML Anúncios Observado',
+        }).catch((err: any) => console.error('[sync-anuncios-job] Falha ao retomar job stale:', err?.message || err));
+      }, 0);
       return NextResponse.json({
         success: true,
         reused: true,
+        resumed: true,
+        jobId: runningJob.id,
+        status: 'on_hold',
+      });
+    } else {
+      if (runningJob.status === 'on_hold') {
+        setTimeout(() => {
+          void runMlSingleStageJob({
+            jobId: runningJob.id,
+            tipo: 'sync_ml_listings_observed',
+            path: '/api/sync/anuncios',
+            label: 'Sync ML Anúncios Observado',
+          }).catch((err: any) => console.error('[sync-anuncios-job] Falha ao retomar job em espera:', err?.message || err));
+        }, 0);
+      }
+      return NextResponse.json({
+        success: true,
+        reused: true,
+        resumed: runningJob.status === 'on_hold',
         jobId: runningJob.id,
         status: runningJob.status,
       });
     }
   }
 
-  if (runningJob?.id) {
-    return NextResponse.json({
-      success: true,
-      recoveredStale: true,
-      staleThresholdMinutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
-      previousJobId: runningJob.id,
-    });
-  }
   const { data: insertedJob, error: jobInsertError } = await serviceClient
     .from('jobs')
     .insert({
@@ -56,6 +75,7 @@ export async function POST() {
       log: [],
       cancelado: false,
       created_by: user.id,
+      dedupe_key: ML_OBSERVED_CYCLE_DEDUPE_KEY,
     })
     .select('id, status')
     .single();
