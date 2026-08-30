@@ -21,6 +21,7 @@ import { ensureDanfeStoredForPedido } from "@/lib/fiscal/danfe-storage";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import { ensureRecipientIeFromSefaz } from "@/services/fiscal-recipient-ie";
 import { resolveBrasilNfeInternalIdentifier } from "@/lib/fiscal/brasil-nfe-identifier";
+import { BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS } from "@/lib/fiscal/nfe-status";
 
 const UF_CODES = new Set([
   "AC",
@@ -400,6 +401,7 @@ export type EnsureBrasilNfeInvoiceResult = {
   error?: string;
   errorDetails?: Record<string, any> | null;
   temporary?: boolean;
+  terminal?: boolean;
   identificadorInterno?: string | null;
   existingNfe?: {
     chave: string;
@@ -1144,7 +1146,7 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
   const { data: pedido } = await client
     .from("pedidos")
     .select(
-      "id,numero,ml_order_id,ml_pack_id,ml_bundle_type,nota_fiscal_numero,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nfe_xml,nfe_protocolo,nfe_cfop",
+      "id,numero,ml_order_id,ml_pack_id,ml_bundle_type,nota_fiscal_numero,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nfe_xml,nfe_protocolo,nfe_cfop,nfe_last_sync_at",
     )
     .eq("id", input.pedidoId)
     .maybeSingle();
@@ -1179,7 +1181,73 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
     identificadorInterno,
     preferAuthorized: false,
   });
-  if (!found.ok || !found.nota?.chave) {
+  if (!found.ok && found.terminal) {
+    const terminalAt = nowIso();
+    let terminalUpdate = client
+      .from("pedidos")
+      .update({
+        nfe_status: BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS,
+        nfe_last_sync_at: terminalAt,
+      } as any)
+      .eq("id", input.pedidoId);
+
+    terminalUpdate = (pedido as any).nfe_status == null
+      ? terminalUpdate.is("nfe_status", null)
+      : terminalUpdate.eq("nfe_status", (pedido as any).nfe_status);
+    terminalUpdate = (pedido as any).nfe_last_sync_at == null
+      ? terminalUpdate.is("nfe_last_sync_at", null)
+      : terminalUpdate.eq(
+          "nfe_last_sync_at",
+          (pedido as any).nfe_last_sync_at,
+        );
+
+    const { data: terminalPedido, error: terminalUpdateError } =
+      await terminalUpdate.select("id").maybeSingle();
+
+    if (terminalUpdateError) {
+      await registrarEventoNfAuditoria({
+        pedidoId: input.pedidoId,
+        mlOrderId,
+        evento: "brasilnfe_invoice_ensure_failed",
+        respostaMl: {
+          source: "brasilnfe_existing_invoice_backfill",
+          identificador_interno: identificadorInterno,
+          error: found.error || "NF não encontrada por identificador interno",
+          db_error: terminalUpdateError.message,
+        },
+        statusResultante: "persist_failed",
+      });
+      return {
+        ok: false,
+        status: "persist_failed",
+        error: "Falha ao persistir not_found terminal da Brasil NFe",
+        temporary: true,
+        terminal: false,
+        existingNfe: null,
+      };
+    }
+
+    if (!terminalPedido) {
+      await registrarEventoNfAuditoria({
+        pedidoId: input.pedidoId,
+        mlOrderId,
+        evento: "brasilnfe_invoice_ensure_failed",
+        respostaMl: {
+          source: "brasilnfe_existing_invoice_backfill",
+          identificador_interno: identificadorInterno,
+          error: found.error || "NF não encontrada por identificador interno",
+          motivo: "estado_fiscal_alterado_durante_consulta",
+        },
+        statusResultante: "state_changed_reopened",
+      });
+      return {
+        ok: true,
+        status: "state_changed",
+        terminal: false,
+        existingNfe: null,
+      };
+    }
+
     await registrarEventoNfAuditoria({
       pedidoId: input.pedidoId,
       mlOrderId,
@@ -1189,11 +1257,36 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
         identificador_interno: identificadorInterno,
         error: found.error || "NF não encontrada por identificador interno",
       },
-      statusResultante: "not_found",
+      statusResultante: "not_found_terminal",
     });
     return {
       ok: false,
+      status: BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS,
       error: found.error || "NF não encontrada por identificador interno",
+      temporary: false,
+      terminal: true,
+      existingNfe: null,
+    };
+  }
+
+  if (!found.ok || !found.nota?.chave) {
+    await registrarEventoNfAuditoria({
+      pedidoId: input.pedidoId,
+      mlOrderId,
+      evento: "brasilnfe_invoice_ensure_failed",
+      respostaMl: {
+        source: "brasilnfe_existing_invoice_backfill",
+        identificador_interno: identificadorInterno,
+        error: found.error || "Falha ao consultar NF por identificador interno",
+      },
+      statusResultante: "lookup_transient_error",
+    });
+    return {
+      ok: false,
+      status: "transient_error",
+      error: found.error || "Falha ao consultar NF por identificador interno",
+      temporary: true,
+      terminal: false,
       existingNfe: null,
     };
   }

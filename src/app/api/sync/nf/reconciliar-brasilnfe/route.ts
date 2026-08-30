@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
 import { reconcileBrasilNfeExistingInvoice } from "@/lib/fiscal/ensure-brasilnfe-invoice";
+import { BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS } from "@/lib/fiscal/nfe-status";
 
 const BRASILNFE_LOOKBACK_DAYS = 30;
 
@@ -47,6 +48,9 @@ export async function POST(request: Request) {
       .from("pedidos")
       .select(
         "id,numero,ml_order_id,nfe_status,nota_fiscal_numero,nota_fiscal_emitida,situacao,nfe_last_sync_at,nfe_chave,data,data_venda",
+      )
+      .or(
+        `nfe_status.is.null,nfe_status.neq.${BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS}`,
       )
       .limit(limit);
 
@@ -112,6 +116,8 @@ export async function POST(request: Request) {
       pedidoNumero: pedido.numero,
       mlOrderId: pedido.ml_order_id,
       ok: result.ok,
+      terminal: Boolean(result.terminal),
+      temporary: Boolean(result.temporary),
       status: result.status || null,
       chave: result.chave || null,
       numero: result.numero || null,
@@ -121,14 +127,26 @@ export async function POST(request: Request) {
   }
 
   const reconciled = results.filter((result) => result.ok).length;
-  const failed = results.filter((result) => !result.ok).length;
-  const success = reconciled > 0 || results.length === 0;
+  const terminalNotFound = results.filter(
+    (result) =>
+      result.terminal &&
+      result.status === BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS,
+  ).length;
+  const transientFailures = results.filter(
+    (result) => !result.ok && result.temporary,
+  ).length;
+  const failed = results.filter(
+    (result) => !result.ok && !result.terminal,
+  ).length;
+  const success = failed === 0;
 
   return NextResponse.json(
     {
       success,
       total: results.length,
       reconciled,
+      terminalNotFound,
+      transientFailures,
       failed,
       results,
       ...(success ? {} : { error: "Nenhuma NF foi reconciliada nesta rodada" }),

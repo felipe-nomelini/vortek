@@ -46,6 +46,78 @@ export function selectBrasilNfeNoteByInternalIdentifier(
   })[0] || null;
 }
 
+export type BrasilNfeIdentifierLookupOutcome =
+  | { kind: 'found'; nota: any; error: null }
+  | { kind: 'not_found'; nota: null; error: string }
+  | { kind: 'transient_error'; nota: null; error: string };
+
+export function buildBrasilNfeIdentifierLookupPayload(input: {
+  identificadorInterno: string;
+  dtInicio: string;
+  dtFim: string;
+}) {
+  return {
+    TipoDocumentoFiscal: 1,
+    DtInicio: input.dtInicio,
+    DtFim: input.dtFim,
+    IdentificadorInterno: input.identificadorInterno,
+  };
+}
+
+export function classifyBrasilNfeIdentifierLookupResponse(input: {
+  response: any;
+  identificadorInterno: string;
+  preferAuthorized?: boolean;
+}): BrasilNfeIdentifierLookupOutcome {
+  const providerError = String(input.response?.Error || '').trim();
+  if (providerError) {
+    return {
+      kind: 'transient_error',
+      nota: null,
+      error: providerError,
+    };
+  }
+
+  const notas = Array.isArray(input.response?.Notas)
+    ? input.response.Notas
+    : [];
+  if (!notas.length) {
+    return {
+      kind: 'not_found',
+      nota: null,
+      error: 'NF não encontrada por identificador interno',
+    };
+  }
+
+  const expectedIdentifier = String(input.identificadorInterno || '').trim();
+  const exactMatch = notas.find(
+    (nota: any) =>
+      String(nota?.IdentificadorInterno || '').trim() === expectedIdentifier,
+  );
+  if (!exactMatch) {
+    return {
+      kind: 'not_found',
+      nota: null,
+      error: `Brasil NFe não retornou correspondência exata para o identificador interno ${expectedIdentifier}`,
+    };
+  }
+
+  const selected = selectBrasilNfeNoteByInternalIdentifier(
+    notas,
+    expectedIdentifier,
+    input.preferAuthorized !== false,
+  );
+  if (!selected) {
+    return {
+      kind: 'transient_error',
+      nota: null,
+      error: `Brasil NFe retornou a nota ${expectedIdentifier} sem chave fiscal`,
+    };
+  }
+
+  return { kind: 'found', nota: selected, error: null };
+}
+
 export function resolveBrasilNfeInternalIdentifier(input: {
   identifierOverride?: string | null;
   pedidoNumero?: string | number | null;

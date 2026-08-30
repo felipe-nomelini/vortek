@@ -2,7 +2,10 @@ import { BrasilNFe } from "brasilnfe";
 import { z } from "zod";
 import { createServiceClient } from "@/lib/supabase";
 import { extractCfopsFromXml } from "@/lib/fiscal/cfop";
-import { selectBrasilNfeNoteByInternalIdentifier } from "@/lib/fiscal/brasil-nfe-identifier";
+import {
+  buildBrasilNfeIdentifierLookupPayload,
+  classifyBrasilNfeIdentifierLookupResponse,
+} from "@/lib/fiscal/brasil-nfe-identifier";
 
 export type NfeProvider = "brasilnfe";
 
@@ -408,47 +411,57 @@ export async function buscarNotaBrasilNfePorIdentificadorInterno(input: {
   nota?: BrasilNfeNotaByIdentifier | null;
   error?: string;
   raw?: any;
+  outcome: "found" | "not_found" | "transient_error";
+  terminal: boolean;
+  temporary: boolean;
 }> {
-  const bnfe = await getBrasilNfeClient();
   const dtFim = input.dtFim || new Date().toISOString();
   const dtInicio =
     input.dtInicio ||
     new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-  const resp: any = await withBrasilNfeDnsRetry(() =>
-    bnfe.consultas.buscarNotaFiscal({
-      TipoDocumentoFiscal: 1,
-      DtInicio: dtInicio,
-      DtFim: dtFim,
-      IndentificadorInterno: input.identificadorInterno,
-    } as any),
-  );
+  let resp: any = null;
 
-  const notas = Array.isArray(resp?.Notas) ? resp.Notas : [];
-  if (!notas.length) {
-    return {
-      ok: false,
-      nota: null,
-      error: String(
-        resp?.Error || "NF não encontrada por identificador interno",
+  try {
+    const bnfe = await getBrasilNfeClient();
+    resp = await withBrasilNfeDnsRetry(() =>
+      bnfe.consultas.obterNotasFiscais(
+        buildBrasilNfeIdentifierLookupPayload({
+          identificadorInterno: input.identificadorInterno,
+          dtInicio,
+          dtFim,
+        }) as any,
       ),
-      raw: resp,
-    };
-  }
-
-  const preferAuthorized = input.preferAuthorized !== false;
-  const n = selectBrasilNfeNoteByInternalIdentifier(
-    notas,
-    input.identificadorInterno,
-    preferAuthorized,
-  );
-  if (!n) {
+    );
+  } catch (err: any) {
     return {
       ok: false,
       nota: null,
-      error: `Brasil NFe não retornou correspondência exata para o identificador interno ${input.identificadorInterno}`,
-      raw: resp,
+      error: err?.message || "Falha transitória ao consultar NF na Brasil NFe",
+      raw: err?.response?.data || null,
+      outcome: "transient_error",
+      terminal: false,
+      temporary: true,
     };
   }
+
+  const classified = classifyBrasilNfeIdentifierLookupResponse({
+    response: resp,
+    identificadorInterno: input.identificadorInterno,
+    preferAuthorized: input.preferAuthorized,
+  });
+  if (classified.kind !== "found") {
+    return {
+      ok: false,
+      nota: null,
+      error: classified.error,
+      raw: resp,
+      outcome: classified.kind,
+      terminal: classified.kind === "not_found",
+      temporary: classified.kind === "transient_error",
+    };
+  }
+
+  const n = classified.nota;
   return {
     ok: true,
     nota: {
@@ -461,6 +474,9 @@ export async function buscarNotaBrasilNfePorIdentificadorInterno(input: {
       numeroProtocolo: String(n?.NumeroProtocolo || "").trim() || null,
     },
     raw: resp,
+    outcome: "found",
+    terminal: false,
+    temporary: false,
   };
 }
 

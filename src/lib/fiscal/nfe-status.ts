@@ -7,6 +7,8 @@ export type NfeTechnicalStatus =
   | 'processando'
   | 'outro';
 
+export const BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS = 'not_found';
+
 function normalize(value: string | null | undefined): string {
   return String(value || '')
     .normalize('NFD')
@@ -25,6 +27,12 @@ export function normalizeNfeTechnicalStatus(rawStatus: string | null | undefined
   if (status === 'rejected' || status === 'rejeitada' || status === 'denegada' || status.includes('rejeit') || status.includes('deneg')) return 'rejeitada';
   if (status === 'processing' || status === 'processando' || status.includes('process')) return 'processando';
   return 'outro';
+}
+
+export function isBrasilNfeAutomaticReconciliationEligible(
+  rawStatus: string | null | undefined,
+): boolean {
+  return normalize(rawStatus) !== BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS;
 }
 
 export function nfeTechnicalStatusLabel(status: NfeTechnicalStatus): string {
