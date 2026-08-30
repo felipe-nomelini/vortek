@@ -1190,7 +1190,7 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 - deploy acionado somente no serviço `vortek-erp-dev`; container confirmou `GIT_SHA=ca14933` e Next.js `16.3.3`;
 - homologação: health e login `200`, dashboard sem sessão `307` para `/login` e API protegida `401`;
 - smoke autenticado temporário: login, `/api/auth/me`, dashboard e configurações responderam `200`; usuário temporário removido ao final;
-- smoke visual headless: mensagem estática do Ant Design renderizada corretamente no login com React 19;
+- smoke visual headless: mensagem estática e `Modal.confirm` do Ant Design renderizados corretamente com React 19; o modal foi cancelado sem remover credenciais;
 - rota dinâmica pública inexistente respondeu `404` sem erro de framework; logs do novo container permaneceram sem erros;
 - migration, alteração de schema e nova variável de ambiente: **N/A**;
 - `main`, produção, `app.vortek.shop` e Supabase produção permaneceram intocados.
