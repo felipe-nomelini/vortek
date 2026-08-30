@@ -14,6 +14,7 @@ import {
   isMercadoPagoReportPending,
   isReviewRequiredCandidate,
   parseMercadoPagoAccountMoneyCsv,
+  resolveMercadoPagoReportTaskId,
 } from '@/lib/mercadopago-account-money';
 import {
   HAYAMAX_FORNECEDOR_ID,
@@ -179,8 +180,14 @@ async function importCsv(fileName: string) {
   };
 }
 
-async function responseForTask(task: MercadoPagoReportTask, beginDate: string | null, endDate: string | null) {
-  const taskId = String(task.id || '').trim();
+async function responseForTask(
+  task: MercadoPagoReportTask,
+  beginDate: string | null,
+  endDate: string | null,
+  requestedTaskId?: string,
+) {
+  const taskId = resolveMercadoPagoReportTaskId(requestedTaskId, task.id);
+  if (!taskId) throw new Error('Identificador inteiro da tarefa Mercado Pago ausente');
   const status = String(task.status || '').trim().toLowerCase();
 
   if (status === 'processed') {
@@ -250,7 +257,7 @@ export async function POST(request: Request) {
     const endDate = resumeState?.endDate || requestedRange.endDate;
     if (taskId) {
       const task = await getAccountMoneyReportTask(taskId);
-      return responseForTask(task, beginDate, endDate);
+      return responseForTask(task, beginDate, endDate, taskId);
     }
 
     const search = await searchAccountMoneyReports({ beginDate, endDate });

@@ -6,6 +6,7 @@ const {
   isHayamaxTopupCandidate,
   isReviewRequiredCandidate,
   parseMercadoPagoAccountMoneyCsv,
+  resolveMercadoPagoReportTaskId,
 } = require('../src/lib/mercadopago-account-money.ts');
 
 const headers = [
@@ -121,5 +122,39 @@ test('retomada recupera a mesma task e o intervalo congelado do log', () => {
     taskId: '99336983670',
     beginDate: '2026-08-23T12:00:00.000Z',
     endDate: '2026-08-30T12:00:00.000Z',
+  });
+});
+
+test('retomada preserva o taskId inteiro quando o status TEST devolve UUID interno', () => {
+  const log = [
+    {
+      mode: 'report_requested',
+      lifecycle: {
+        state: 'requested',
+        taskId: '102982627',
+        beginDate: '2026-08-01T00:00:00.000Z',
+        endDate: '2026-08-08T00:00:00.000Z',
+      },
+    },
+    {
+      mode: 'report_processing',
+      task: { id: 'ab9f818d-8208-4d61-a4b0-7565eafd24d9', status: 'pending' },
+      lifecycle: {
+        state: 'processing',
+        taskId: 'ab9f818d-8208-4d61-a4b0-7565eafd24d9',
+        beginDate: '2026-08-01T00:00:00.000Z',
+        endDate: '2026-08-08T00:00:00.000Z',
+      },
+    },
+  ];
+
+  assert.equal(
+    resolveMercadoPagoReportTaskId('102982627', 'ab9f818d-8208-4d61-a4b0-7565eafd24d9'),
+    '102982627',
+  );
+  assert.deepEqual(getMercadoPagoReportResumeState(log), {
+    taskId: '102982627',
+    beginDate: '2026-08-01T00:00:00.000Z',
+    endDate: '2026-08-08T00:00:00.000Z',
   });
 });

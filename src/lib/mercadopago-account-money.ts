@@ -20,6 +20,14 @@ export interface MercadoPagoReportResumeState {
   endDate: string | null;
 }
 
+export function resolveMercadoPagoReportTaskId(preferred: unknown, fallback?: unknown) {
+  for (const value of [preferred, fallback]) {
+    const taskId = String(value || '').trim();
+    if (/^[1-9]\d*$/.test(taskId)) return taskId;
+  }
+  return null;
+}
+
 function normalizeHeader(value: string) {
   return value
     .normalize('NFD')
@@ -216,7 +224,7 @@ export function getMercadoPagoReportResumeState(log: unknown): MercadoPagoReport
     const lifecycle = record.lifecycle && typeof record.lifecycle === 'object' && !Array.isArray(record.lifecycle)
       ? record.lifecycle as Record<string, unknown>
       : null;
-    const taskId = String(lifecycle?.taskId || task?.id || '').trim();
+    const taskId = resolveMercadoPagoReportTaskId(lifecycle?.taskId, task?.id);
     if (!taskId) continue;
     return {
       taskId,
