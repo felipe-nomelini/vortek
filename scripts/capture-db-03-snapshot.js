@@ -124,6 +124,29 @@ const SNAPSHOT_QUERIES = {
       order by n.nspname, c.relname, grantee, a.privilege_type, grantor
     `,
   },
+  column_grants: {
+    scoped: true,
+    sql: `
+      select
+        n.nspname as schema_name,
+        c.relname as relation_name,
+        att.attname as column_name,
+        pg_catalog.pg_get_userbyid(a.grantor) as grantor,
+        case when a.grantee = 0 then 'PUBLIC' else pg_catalog.pg_get_userbyid(a.grantee) end as grantee,
+        a.privilege_type,
+        a.is_grantable
+      from pg_catalog.pg_attribute att
+      join pg_catalog.pg_class c on c.oid = att.attrelid
+      join pg_catalog.pg_namespace n on n.oid = c.relnamespace
+      cross join lateral pg_catalog.aclexplode(att.attacl) a
+      where n.nspname = any($1::text[])
+        and c.relkind in ('r', 'p', 'v', 'm', 'f')
+        and att.attnum > 0
+        and not att.attisdropped
+        and att.attacl is not null
+      order by n.nspname, c.relname, att.attnum, grantee, a.privilege_type, grantor
+    `,
+  },
   sequences: {
     scoped: true,
     sql: `
@@ -482,7 +505,7 @@ async function captureSnapshot({ client, label, rootDirectory, schemas, exposedS
   const comparison = migrationComparison(repository, results.migration_registry);
   const server = results.server[0];
   const snapshot = {
-    format_version: 1,
+    format_version: 2,
     environment: label,
     captured_at: new Date().toISOString(),
     git_sha: gitSha(rootDirectory),
@@ -497,6 +520,7 @@ async function captureSnapshot({ client, label, rootDirectory, schemas, exposedS
     schema_grants: results.schema_grants,
     relations: results.relations,
     relation_grants: results.relation_grants,
+    column_grants: results.column_grants,
     sequences: results.sequences,
     sequence_grants: results.sequence_grants,
     policies: results.policies,
