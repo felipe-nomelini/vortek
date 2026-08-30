@@ -61,10 +61,10 @@ Regras de uso:
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
-| 9 | Plataforma e banco | Concluída em DEV | Corrigir o hardening antes de limpeza e conferir produção somente em release autorizada |
+| 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-02` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
-| 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional, hardening derivado da DB-03 e fotografia autorizada de produção |
+| 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
 
@@ -106,6 +106,8 @@ Regras de uso:
 - [x] Não avançar para `DB-03` antes de `SEC-07` estar integralmente validada.
 - [x] Executar somente `DB-03 — Fotografia real do banco` no ambiente DEV.
 - [x] Não avançar para `RULE-02` antes de a fotografia DEV estar capturada, validada e documentada.
+- [x] Executar somente o hardening derivado da `DB-03` no `supabase-dev`.
+- [x] Não avançar antes de RLS, grants, RPCs, funções privilegiadas e policies de kits estarem validados.
 
 ---
 
@@ -1270,9 +1272,46 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 
 **Rollback:** reverter `6bdef61` na branch `dev`. Não há rollback de banco, aplicação ou dados porque a coleta foi somente leitura.
 
-**Pendências:** planejar separadamente o hardening derivado dos achados antes de limpeza destrutiva; comparar a fotografia com produção somente durante preparação de release explicitamente autorizada.
+**Pendências:** comparar a fotografia com produção somente durante preparação de release explicitamente autorizada. O hardening derivado dos achados foi concluído na ação `DB-03H` abaixo.
 
 **Próxima ação liberada:** `RULE-02 — Pricing`.
+
+### DB-03H — Hardening derivado da fotografia
+
+**Prioridade:** P2
+**Situação:** concluída e validada exclusivamente no DEV.
+
+- [x] habilitar RLS nas três tabelas públicas identificadas;
+- [x] remover grants residuais atuais e corrigir default privileges de `postgres`;
+- [x] preservar somente o acesso direto necessário ao próprio `profiles`;
+- [x] remover `EXECUTE` de `authenticated` das três RPCs sem consumidor direto;
+- [x] endurecer o `search_path` das nove funções `SECURITY DEFINER` divergentes;
+- [x] remover as quatro policies de cliente incompatíveis com o fluxo backend-only dos kits;
+- [x] concluir o gate obrigatório da seção 3.
+
+#### Gate e evidências
+
+- branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação, auditoria de banco e relatório DB-03 conferidos antes da implementação;
+- documentação oficial atual de RLS do Supabase e de `REVOKE`, default privileges e `SECURITY DEFINER` do PostgreSQL 17 consultada;
+- causa confirmada na migration antiga: revogação parcial dos default privileges deixou privilégios introduzidos/retidos no PostgreSQL 17, enquanto tabelas posteriores não receberam RLS;
+- consumidores atuais das três RPCs, kits e push confirmados no backend com `service_role`, sem dependência direta dos grants removidos;
+- migration `20260830220000_harden_public_schema_after_db03.sql` ensaiada integralmente com `ROLLBACK`, depois aplicada e registrada somente no `supabase-dev` (`192.168.1.162`);
+- nenhuma linha de `ops_whatsapp_events`, `whatsapp_alert_events` ou `whatsapp_alert_settings` foi modificada;
+- snapshot pós-hardening reproduzido duas vezes com fingerprint `72eb24ae6e9a4d5f24a61097f97cfd89448ac9c921754e752e2aa26c7b97a7e8` e paridade `92/92` migrations;
+- banco confirmou `40/40` tabelas públicas com RLS, zero grant inesperado para clientes, zero default privilege residual e as 12 funções privilegiadas com search path seguro;
+- `authenticated` manteve somente `SELECT` em `profiles` e `UPDATE(nome, avatar_url)`; `cargo` continuou sem permissão de atualização;
+- probes de `anon`/`authenticated` retornaram `42501` nos caminhos removidos, e probes de `service_role` aprovaram pedidos, produtos, resumos, kits e tabelas WhatsApp;
+- página pública de kits em `dev.vortek.shop`: HTTP `200` e conteúdo esperado;
+- `npm run test:db-schema-snapshot`: `11/11` aprovado;
+- `tests/sec-01-role-control.test.js`: `3/3` aprovado;
+- `node --check scripts/capture-db-03-snapshot.js`, `npm run validate` e `git diff --check`: aprovados;
+- commit funcional `1e91a23` enviado somente para `origin/dev`;
+- build e deploy web: **N/A**, pois a ação não alterou o runtime da aplicação;
+- `main`, produção, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** o rollback exato está documentado na migration e reabre os achados de segurança; executar somente no DEV com autorização explícita e manter a limpeza bloqueada até nova correção.
+
+**Pendência:** comparar a fotografia com produção somente durante uma preparação de release explicitamente autorizada. A próxima ação obrigatória permanece `RULE-02 — Pricing`.
 
 ---
 

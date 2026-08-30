@@ -1,6 +1,6 @@
 # Vortek — DB-03 — Fotografia real do banco
 
-**Situação:** fotografia de desenvolvimento concluída  
+**Situação:** fotografia e hardening de desenvolvimento concluídos; produção diferida para release autorizada
 **Ambiente:** `supabase-dev` em `192.168.1.162`  
 **Captura:** 30/08/2026  
 **PostgreSQL:** `17.6`  
@@ -122,3 +122,48 @@ Antes de qualquer limpeza destrutiva, deve ser planejada separadamente uma açã
 5. alinhar nomes, papéis e intenção das policies de kits.
 
 A conferência de produção permanece adiada para a preparação autorizada da promoção. Esta tarefa não consultou produção, não aplicou migration e não realizou deploy.
+
+## 5. Hardening derivado da fotografia
+
+O hardening foi executado em 30/08/2026 exclusivamente no `supabase-dev`, pela migration:
+
+`20260830220000_harden_public_schema_after_db03.sql`
+
+O snapshot pós-hardening está em:
+
+`reports/db-03/supabase-dev-2026-08-30-post-hardening.json`
+
+Fingerprint estrutural reproduzido em duas capturas consecutivas:
+
+`72eb24ae6e9a4d5f24a61097f97cfd89448ac9c921754e752e2aa26c7b97a7e8`
+
+### Resultado
+
+- migrations do repositório e banco em paridade exata `92/92`;
+- `40/40` tabelas públicas com RLS;
+- nenhum grant de relação ou sequence para `anon`;
+- para `authenticated`, somente `SELECT` em `profiles` e `UPDATE` das colunas `nome` e `avatar_url`;
+- nenhum default privilege de tabela ou sequence de `postgres` para papéis de cliente;
+- `pedidos_operacionais` e as três RPCs privilegiadas deixaram de aceitar acesso direto de `authenticated`;
+- `service_role` permaneceu com acesso às RPCs, kits e tabelas operacionais;
+- todas as 12 funções `SECURITY DEFINER` registradas usam `search_path = pg_catalog, pg_temp`;
+- as quatro policies de cliente dos kits foram removidas, mantendo RLS default-deny;
+- nenhuma linha das três tabelas que receberam RLS foi modificada.
+
+### Validação
+
+- ensaio integral da migration com transação e `ROLLBACK`: aprovado;
+- probes reais de `anon` e `authenticated`: bloqueios esperados com `42501`;
+- probes reais de `service_role`: pedidos, produtos, resumos, kits e tabelas WhatsApp aprovados;
+- página pública de kits em `dev.vortek.shop`: HTTP `200` e conteúdo esperado;
+- `npm run test:db-schema-snapshot`: `11/11` aprovado;
+- `tests/sec-01-role-control.test.js`: `3/3` aprovado;
+- `node --check scripts/capture-db-03-snapshot.js`, `npm run validate` e `git diff --check`: aprovados;
+- commit funcional `1e91a23` enviado somente para `origin/dev`;
+- build e deploy web: **N/A**, pois o runtime da aplicação não foi alterado.
+
+### Rollback e pendência
+
+O rollback exato está registrado na migration e reabre deliberadamente os achados de segurança; ele não deve ser executado automaticamente. Produção, `main`, `app.vortek.shop` e o Supabase de produção permaneceram intocados.
+
+A única pendência remanescente da DB-03 é comparar a fotografia com produção durante uma preparação de release explicitamente autorizada.
