@@ -25,6 +25,8 @@ Antes de executar qualquer ação, consultar nesta ordem:
 6. código, schema, migrations, testes e configuração atuais;
 7. documentação oficial atual de qualquer tecnologia ou integração envolvida.
 
+Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página.
+
 Regras de uso:
 
 - executar somente a **próxima ação obrigatória**;
@@ -61,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Em andamento | Executar somente `DSL-01` |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
-| 11 | Interface | Pendente | Somente após as regras correspondentes |
+| 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Pendente | Somente após estabilidade funcional |
 
 ### Próxima ação
@@ -1235,6 +1237,76 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [ ] separar indicadores independentes;
 - [ ] provar que filtros não repetem chamadas independentes;
 - [ ] concluir o gate obrigatório da seção 3.
+
+### Redesign completo Bentevi
+
+**Documento operacional:** `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md`
+**Situação:** aprovado e registrado; implementação visual ainda não iniciada.
+
+#### Pré-requisitos
+
+- [ ] concluir as Etapas 8, 9 e 10;
+- [ ] concluir `SEC-06 — Next.js`;
+- [ ] concluir `UI-01` a `UI-06`;
+- [ ] executar `BNT-UX-00 — Dossiê completo de interface`;
+- [ ] executar `BNT-BRAND-01 — Assets e tokens Bentevi`;
+- [ ] executar `BNT-SHELL-01 — Shell desktop Bentevi`;
+- [ ] executar `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
+
+#### Desktop — uma página por tarefa
+
+- [ ] `BNT-D01` — Vendas `/pedidos` — piloto;
+- [ ] `BNT-D02` — Dashboard;
+- [ ] `BNT-D03` — Compras;
+- [ ] `BNT-D04` — Notas Fiscais;
+- [ ] `BNT-D05` — Estoque;
+- [ ] `BNT-D06` — Perguntas;
+- [ ] `BNT-D07` — Produtos;
+- [ ] `BNT-D08` — Detalhe do Produto;
+- [ ] `BNT-D09` — Ofertas;
+- [ ] `BNT-D10` — Detalhe da Oferta;
+- [ ] `BNT-D11` — Anúncios;
+- [ ] `BNT-D12` — Catálogo No Catálogo/Elegíveis;
+- [ ] `BNT-D13` — Clientes;
+- [ ] `BNT-D14` — Detalhe do Cliente;
+- [ ] `BNT-D15` — Fornecedores;
+- [ ] `BNT-D16` — Detalhe do Fornecedor;
+- [ ] `BNT-D17` — Créditos de Fornecedores;
+- [ ] `BNT-D18` — Reputação;
+- [ ] `BNT-D19` — Reclamações;
+- [ ] `BNT-D20` — Configurações;
+- [ ] `BNT-D21` — TV ao Vivo;
+- [ ] `BNT-D22` — Login;
+- [ ] `BNT-D23` — Página pública BKR1;
+- [ ] `BNT-D24` — Página pública Evolusom.
+
+Não iniciar web celular antes de `BNT-D01` a `BNT-D24` estarem aprovados.
+
+#### Web celular
+
+- [ ] adaptar as 24 páginas na mesma ordem do desktop;
+- [ ] validar cada página em `390×844` antes da seguinte;
+- [ ] confirmar menu em `Drawer`, ações essenciais e ausência de overflow;
+- [ ] concluir o gate obrigatório da seção 3 para cada página.
+
+#### Aplicativo nativo
+
+- [ ] shell, tabs e tokens Bentevi;
+- [ ] Login;
+- [ ] TV;
+- [ ] lista de Vendas;
+- [ ] detalhe da Venda;
+- [ ] lista de Compras;
+- [ ] detalhe da Compra;
+- [ ] Perfil;
+- [ ] executar typecheck, doctor e smoke Android.
+
+#### Promoção Bentevi
+
+- [ ] revisar identidade visível em metadata, mensagens, e-mails e documentos ativos;
+- [ ] preparar `app.bentevi.shop` em checklist de release separado;
+- [ ] manter Supabase no domínio atual nesta iniciativa;
+- [ ] aguardar autorização explícita antes de qualquer ação em produção.
 
 ---
 
