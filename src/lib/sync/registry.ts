@@ -79,10 +79,13 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
       maxPagesPerRun: 2,
     },
   },
+  // INV-01: a API possui o lifecycle completo da oferta e é a ingestão
+  // principal. O XML só reconcilia custo/estoque de ofertas já vinculadas.
+  // O domínio compartilhado impede que as duas observações escrevam juntas.
   {
     key: 'sync_dslite_preco_estoque',
     jobTipo: 'sync_dslite_preco_estoque',
-    label: 'DSLite Preço/Estoque',
+    label: 'DSLite Preço/Estoque — principal',
     path: '/api/sync/preco-estoque',
     domain: 'produtos:dslite_preco',
     lockTtlSeconds: 15 * 60,
@@ -100,7 +103,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
   {
     key: 'sync_dslite_xml_preco_estoque',
     jobTipo: 'sync_dslite_xml_preco_estoque',
-    label: 'DSLite XML Preço/Estoque',
+    label: 'DSLite XML Preço/Estoque — reconciliação',
     path: '/api/sync/preco-estoque-xml',
     domain: 'produtos:dslite_preco',
     lockTtlSeconds: 15 * 60,

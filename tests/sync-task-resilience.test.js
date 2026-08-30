@@ -40,12 +40,23 @@ test('publicação ML limita cada execução a vinte itens', () => {
   assert.deepEqual(mlPublish?.defaultBody, { limit: 20 });
 });
 
-test('preço e estoque DSLite permanecem agendados a cada dois minutos', () => {
-  const dsliteStock = getSyncTaskByKey('sync_dslite_preco_estoque');
+test('API principal e XML reconciliador preservam cadência e lock compartilhado', () => {
+  const apiStock = getSyncTaskByKey('sync_dslite_preco_estoque');
+  const xmlStock = getSyncTaskByKey('sync_dslite_xml_preco_estoque');
 
-  assert.deepEqual(dsliteStock?.schedule, {
+  assert.equal(apiStock?.label, 'DSLite Preço/Estoque — principal');
+  assert.equal(xmlStock?.label, 'DSLite XML Preço/Estoque — reconciliação');
+  assert.equal(apiStock?.domain, 'produtos:dslite_preco');
+  assert.equal(xmlStock?.domain, apiStock?.domain);
+  assert.equal(apiStock?.usesCursor, true);
+  assert.equal(xmlStock?.usesCursor, undefined);
+  assert.deepEqual(apiStock?.schedule, {
     businessMinutes: 2,
     offHoursMinutes: 2,
+  });
+  assert.deepEqual(xmlStock?.schedule, {
+    businessMinutes: 10,
+    offHoursMinutes: 10,
   });
 });
 
