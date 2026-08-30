@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `INV-02 — Helpers antigos de estoque`
+**Próxima ação obrigatória:** `FIS-01 — Upload XML correto`
 
 ---
 
@@ -55,8 +55,8 @@ Regras de uso:
 | 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
-| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `INV-02` |
-| 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
+| 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
+| 6 | Fiscal | Em andamento | Executar somente `FIS-01` |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
@@ -74,8 +74,10 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `RULE-06` estar integralmente validada.
 - [x] Executar somente `INV-05 — Automação nativa de preço`.
 - [x] Não avançar para a ação seguinte antes de `INV-05` estar integralmente validada.
-- [ ] Executar somente `INV-02 — Helpers antigos de estoque`.
-- [ ] Não avançar para a ação seguinte antes de `INV-02` estar integralmente validada.
+- [x] Executar somente `INV-02 — Helpers antigos de estoque`.
+- [x] Não avançar para a ação seguinte antes de `INV-02` estar integralmente validada.
+- [ ] Executar somente `FIS-01 — Upload XML correto`.
+- [ ] Não avançar para a ação seguinte antes de `FIS-01` estar integralmente validada.
 
 ---
 
@@ -613,13 +615,28 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 ### INV-02 — Helpers antigos de estoque
 
-**Situação:** pendente de investigação.
+**Situação:** concluída e validada.
+**Commit funcional:** `4b81328` — `refactor(ml): remove legacy stock helpers`.
 
-- [ ] localizar todos os chamadores dos helpers antigos;
-- [ ] provar que `stock-publish.ts` cobre integralmente o fluxo atual;
-- [ ] remover somente código sem consumidor e sem função exclusiva;
-- [ ] preservar o código se a cobertura não estiver comprovada;
-- [ ] concluir o gate obrigatório da seção 3 se houver remoção.
+- [x] todos os chamadores dos helpers antigos foram localizados no histórico e confirmados como removidos do código atual;
+- [x] o fluxo atual foi confirmado como `enqueueMlPublishOutbox` → worker de publicação → `publishAndVerifyMlStock`;
+- [x] `stock-publish.ts` foi confirmado como cobertura dos contratos tradicional e multiorigem do Mercado Livre;
+- [x] foram removidos somente exports, helpers privados, retries, cooldown e imports sem consumidores;
+- [x] o restante de `mercadolibre.ts`, o outbox, o worker e os produtores atuais foram preservados;
+- [x] nenhum contrato HTTP, schema, migration, variável de ambiente ou regra de negócio foi alterado;
+- [x] teste direcionado `tests/ml-publish-outbox.test.js`: 15/15 aprovado;
+- [x] `npm run validate`: aprovado, sem warnings ou erros;
+- [x] `npm run build`: aprovado;
+- [x] busca pós-alteração confirmou ausência dos símbolos antigos e `stock-publish.ts` como único escritor de atualização de `available_quantity`;
+- [x] produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Teste de regressão novo:** N/A. A ação removeu código inalcançável sem alterar o fluxo retido; a cobertura foi provada pelo grafo de chamadas, teste existente do outbox, typecheck e build.
+
+**Migration e escrita externa:** N/A. Nenhum dado foi modificado no Supabase ou Mercado Livre.
+
+**Rollback:** reverter o commit funcional e republicar somente a homologação; não há dado ou migration para desfazer.
+
+**Pendência:** validar o commit implantado em `dev.vortek.shop`. Depois disso, a próxima ação obrigatória é `FIS-01`.
 
 ---
 
