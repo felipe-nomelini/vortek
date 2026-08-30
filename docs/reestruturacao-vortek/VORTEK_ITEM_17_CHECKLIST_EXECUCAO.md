@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `ML-03 — Não publicar estoque igual`
+**Próxima ação obrigatória:** `ML-02 — Scan repetido`
 
 ---
 
@@ -55,7 +55,7 @@ Regras de uso:
 | 2 | Prazo externo Mercado Livre | Suspensa com risco aceito | Reabrir `ML-01` quando a tag `business` estiver disponível |
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
-| 5 | Mercado Livre observado e publicação | Próxima ação | Executar somente `ML-03` |
+| 5 | Mercado Livre observado e publicação | Em andamento | Executar somente `ML-02` |
 | 6 | Fiscal | Pendente | Executar uma ação fiscal por vez |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
@@ -66,8 +66,10 @@ Regras de uso:
 
 ### Próxima ação
 
-- [ ] Executar somente `ML-03 — Não publicar estoque igual`.
-- [ ] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
+- [x] Executar somente `ML-03 — Não publicar estoque igual`.
+- [x] Não avançar para a ação seguinte antes de `ML-03` estar integralmente validada.
+- [ ] Executar somente `ML-02 — Scan repetido`.
+- [ ] Não avançar para a ação seguinte antes de `ML-02` estar integralmente validada.
 
 ---
 
@@ -429,20 +431,51 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Rollback:** reverter o commit funcional em `dev` e executar novo deploy de homologação. Não há migration nem dado persistente novo para desfazer.
 
-**Pendência:** nenhuma para `RULE-01`. A próxima ação obrigatória é `ML-03`.
+**Pendência:** nenhuma para `RULE-01`.
 
 ### ML-03 — Não publicar estoque igual
 
 **Prioridade:** P1
 **Dependência:** `STO-01/STO-02` e `RULE-01`
-**Situação:** próxima ação obrigatória.
+**Situação:** concluída e validada em desenvolvimento/homologação.
+**Commit funcional:** `93613f0` — `fix: avoid redundant ML stock publication`
 
-- [ ] comparar quantidade/status relevante na fonte centralizada;
-- [ ] não usar timestamp de sincronização como mudança de estoque;
-- [ ] impedir nova outbox quando a quantidade não mudou;
-- [ ] criar outbox quando a quantidade realmente mudou;
-- [ ] provar ausência de publicação redundante;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] comparar quantidade/status relevante na fonte centralizada;
+- [x] não usar timestamp de sincronização como mudança de estoque;
+- [x] impedir nova outbox quando a quantidade não mudou;
+- [x] criar outbox quando a quantidade realmente mudou;
+- [x] provar ausência de publicação redundante;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** o produtor tratava `dslite_ultima_sync` como mudança no snapshot e a outbox deduplicava somente linhas pendentes. Depois de uma publicação concluída, a mesma quantidade/status gerava outra linha; uma pendência idêntica também tinha tentativas e timestamps reiniciados. O modo `seedFromProducts` ainda inseria diretamente `produtos.estoque`, fora da fonte central de capacidade.
+
+**Mudança executada:**
+
+- a outbox passou a comparar cada operação solicitada com a pendência atual e com a última publicação concluída da mesma operação;
+- quantidade e status iguais retornam `unchanged`, sem insert, update ou reinício de tentativas/timestamps;
+- preço, quantidade e status são preservados como operações independentes, e mudanças reais continuam enfileiradas;
+- uma linha `processing` não é alterada: estado igual é ignorado e estado diferente cria uma sucessora;
+- divergência observada no Mercado Livre força republicação para corrigir drift externo;
+- todos os produtores ajustados contabilizam `unchanged` corretamente;
+- `seedFromProducts` passou a reutilizar a outbox central e `Q_segura`, sem escrita direta de `produtos.estoque`;
+- nenhuma tabela, migration, dependência ou fluxo paralelo foi criado.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree, `AGENTS.md` e documentação aplicável conferidos antes da alteração;
+- contrato operacional do Mercado Livre e contrato atual de consulta JSONB do PostgreSQL/Supabase conferidos para o comportamento usado;
+- 48 testes direcionados aprovados, incluindo quantidade/status iguais, timestamp diferente, mudança real, operação de preço isolada, retry, failed, concorrência com `processing`, ordem da última conclusão e drift observado;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- migration: **N/A**, pois a outbox e o histórico existentes foram reutilizados;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=93613f0`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e `/api/produtos` sem sessão respondeu `401`;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy de homologação. Não há migration nem dado persistente novo para desfazer.
+
+**Pendência:** nenhuma para `ML-03`. A próxima ação obrigatória é `ML-02`.
 
 ---
 
