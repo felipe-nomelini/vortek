@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `FIS-03 — not_found Brasil NFe`
+**Próxima ação obrigatória:** `WEBHOOK-03 — payment_lookup_failed`
 
 ---
 
@@ -56,8 +56,8 @@ Regras de uso:
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
-| 6 | Fiscal | Em andamento | Executar somente `FIS-03` |
-| 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
+| 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
+| 7 | Mercado Pago e financeiro | Em andamento | Executar somente `WEBHOOK-03` |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
@@ -82,6 +82,8 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `FIS-02` estar integralmente validada.
 - [x] Executar somente `FIS-03 — not_found Brasil NFe`.
 - [x] Não avançar para a ação seguinte antes de `FIS-03` estar integralmente validada.
+- [x] Executar somente `FIN-01 + FIN-02 — Lifecycle e parser`.
+- [x] Não avançar para a ação seguinte antes de `FIN-01/FIN-02` estar integralmente validada.
 
 ---
 
@@ -125,7 +127,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - [x] nenhuma credencial produtiva configurada para testes;
 - [x] jobs externos mantidos desabilitados por padrão;
 - **N/A até a etapa exigir:** usuários de teste do Mercado Livre;
-- **N/A até a etapa exigir:** credenciais de teste do Mercado Pago;
+- [x] credencial de teste do Mercado Pago configurada somente no `supabase-dev`;
 - **N/A até a etapa exigir:** Brasil NFe em ambiente de homologação;
 - [x] escrita DSLite mantida desabilitada;
 - [x] WAHA de teste ou integração desabilitada;
@@ -791,8 +793,8 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### FIN-01 + FIN-02 — Lifecycle e parser
 
 **Prioridade:** P1
-**Situação:** implementada e validada tecnicamente em homologação; lifecycle externo pendente por ausência de credencial Mercado Pago de teste.
-**Commit funcional:** `a56fb06` — `fix(finance): complete Mercado Pago report lifecycle`.
+**Situação:** concluída e validada operacionalmente em homologação.
+**Commits funcionais:** `a56fb06`, `d26dffc`, `bc0f591` e `d333ff5`.
 
 - [x] reconfirmar o lifecycle e os campos oficiais atuais do relatório;
 - [x] fazer a mesma tarefa percorrer `requested → processing → processed → download → import → complete`;
@@ -802,16 +804,18 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - [x] provar que resposta `202/requested` não vira `complete`;
 - [x] provar retomada da mesma task;
 - [x] provar importação idempotente e ausência de crédito duplicado;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] concluir o gate obrigatório da seção 3.
 
-**Causa confirmada:** a rota retornava `202` com `success=true`, e o executor genérico classificava qualquer resposta HTTP bem-sucedida como `completo`. O `taskId` retornado pelo Mercado Pago ficava apenas no log do job encerrado; a execução seguinte recalculava outra janela e podia solicitar outro relatório. Em paralelo, o parser não reconhecia diretamente `SETTLEMENT_NET_AMOUNT`, `TRANSACTION_TYPE` e `SETTLEMENT_CURRENCY`, permitindo que valor bruto e campos genéricos participassem da criação de crédito.
+**Causa confirmada:** a rota retornava `202` com `success=true`, e o executor genérico classificava qualquer resposta HTTP bem-sucedida como `completo`. O `taskId` retornado pelo Mercado Pago ficava apenas no log do job encerrado; a execução seguinte recalculava outra janela e podia solicitar outro relatório. Em paralelo, o parser não reconhecia diretamente `SETTLEMENT_NET_AMOUNT`, `TRANSACTION_TYPE` e `SETTLEMENT_CURRENCY`, permitindo que valor bruto e campos genéricos participassem da criação de crédito. A validação com a conta TEST também comprovou que `SOURCE_ID` identifica a transação, mas não cada lançamento: 11 transações possuíam pares financeiros distintos de `SETTLEMENT` com `DISPUTE` ou `REFUND`.
 
 **Mudança executada:**
 
 - resposta `deferred=true` agora mantém o mesmo job em `on_hold`, sem `finished_at`;
-- a rota recupera do próprio log o `taskId` e o intervalo congelado e consulta a mesma tarefa até `processed`;
+- a rota recupera do próprio log o `taskId` inteiro e o intervalo congelado e consulta a mesma tarefa até ficar disponível;
 - o lifecycle fica observável como `requested → processing → processed → download → import → complete`;
+- o contrato oficial (`processed`/`file_name`) e o formato observado na conta TEST (`available`/`files[]`) são normalizados no mesmo fluxo, sem usar a URL retornada pelo provedor;
 - o parser único usa `SOURCE_ID`, `SETTLEMENT_DATE`, `TRANSACTION_TYPE`, `SETTLEMENT_NET_AMOUNT`, `SETTLEMENT_CURRENCY` e valida `TRANSACTION_CURRENCY` quando presente;
+- a identidade idempotente usa um fingerprint estável dos campos oficiais do movimento, preservando lançamentos distintos da mesma transação;
 - linha sem identidade, líquido, tipo ou moeda oficial válida é rejeitada e não gera crédito;
 - `topup` automático exige Hayamax, mínimo vigente, BRL, líquido negativo e tipo oficial `PAYOUT` ou `WITHDRAWAL`; casos válidos, porém ambíguos, permanecem para revisão;
 - conflito concorrente da `movement_key` relê o movimento já criado e preserva o vínculo;
@@ -819,22 +823,26 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Validação executada em 30/08/2026:**
 
-- documentação oficial atual de criação, acompanhamento, download e campos do relatório Mercado Pago reconfirmada;
-- testes direcionados `tests/mercadopago-account-money.test.js` e `tests/ml-order-hydration-queue.test.js`: 11/11 aprovados;
-- cobertura provou líquido sobre bruto, bloqueios de tipo/moeda/sinal, identidade estável, recuperação da mesma task e `deferred → on_hold`;
+- documentação oficial atual de configuração, criação, acompanhamento, download e campos do relatório Mercado Pago reconfirmada;
+- configuração da conta TEST preservada e ampliada somente com `SETTLEMENT_NET_AMOUNT`, `SETTLEMENT_CURRENCY` e `TRANSACTION_CURRENCY`;
+- testes direcionados `tests/mercadopago-account-money.test.js` e `tests/ml-order-hydration-queue.test.js`: 14/14 aprovados;
+- cobertura provou líquido sobre bruto, bloqueios de tipo/moeda/sinal, identidade estável por movimento, preservação de eventos distintos com o mesmo `SOURCE_ID`, recuperação da mesma task e `deferred → on_hold`;
 - `npm run validate`: aprovado, sem warnings ou erros;
 - `npm run build`: aprovado;
 - `git diff --check`: aprovado;
-- transação com rollback no `supabase-dev` provou um único movimento por `external_id` e um único `topup` por `movement_key`; contagens finais `0|0` confirmaram o rollback;
-- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
-- container de homologação confirmou `GIT_SHA=a56fb06`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e a rota sem chave respondeu `401`;
-- a chamada interna autenticada respondeu `500` de configuração ausente, coerente com `integracoes.mercadopago.conectado=false`, token no banco ausente e `MERCADOPAGO_ACCESS_TOKEN` ausente;
+- credencial TEST persistida somente na integração Mercado Pago do `supabase-dev`, sem reprodução do valor;
+- o mesmo job foi criado para uma janela fixa, permaneceu em `on_hold`, retomou a mesma tarefa do provedor e terminou `completo` após download e importação;
+- arquivo TEST: 239 linhas processadas, sendo 238 válidas e 1 rejeitada com segurança; resultado final de 238 movimentos, 6 casos para revisão, zero candidatos Hayamax e zero créditos automáticos;
+- a reimportação do mesmo arquivo respondeu `200/success=true` e manteve exatamente 238 movimentos, 6 revisões e zero créditos, comprovando idempotência;
+- os movimentos intermediários criados com a identidade incompleta foram removidos somente do `supabase-dev`, após confirmar que todos pertenciam ao arquivo TEST e não possuíam vínculo de crédito; os dados foram recuperados pela importação correta;
+- commits funcionais enviados para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=d333ff5`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e a rota sem chave respondeu `401`;
 - migration: **N/A**;
 - produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
 
-**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado persistido pela validação para desfazer.
+**Rollback:** reverter os commits funcionais em `dev`, executar novo deploy somente de homologação, remover os movimentos deste relatório TEST e desconfigurar a credencial TEST no `supabase-dev`; não há migration.
 
-**Pendência:** configurar credencial/conta de teste do Mercado Pago no DEV e observar o mesmo job passar por solicitação, processamento, download e importação. Até essa prova, `FIN-01/FIN-02` permanece como ação atual e não deve avançar para `WEBHOOK-03`.
+**Pendência:** nenhuma para `FIN-01/FIN-02`. A próxima ação obrigatória do checklist é `WEBHOOK-03 — payment_lookup_failed`.
 
 ### WEBHOOK-03 — `payment_lookup_failed`
 
@@ -1171,7 +1179,7 @@ O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tive
 - [ ] quantidade segura possui uma única fonte;
 - [ ] Mercado Livre não executa scans/outboxes desnecessários comprovados;
 - [ ] fluxo fiscal não faz chamadas inválidas;
-- [ ] Mercado Pago conclui todo o lifecycle;
+- [x] Mercado Pago conclui todo o lifecycle;
 - [ ] jobs não escondem falhas críticas;
 - [ ] principais regras duplicadas estão consolidadas;
 - [ ] interface foi simplificada somente onde havia mistura real;
