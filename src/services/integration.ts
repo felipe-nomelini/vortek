@@ -7,7 +7,10 @@ import { randomUUID } from "crypto";
 import { inflateRawSync } from "zlib";
 import { createServiceClient } from "@/lib/supabase";
 import { validateMercadoLivreTokenOwner } from "@/lib/ml-account-guard";
-import { isMlShipmentLabelPrintable } from "@/lib/ml/fiscal-release";
+import {
+  isMlShipmentInvoiceUploadReady,
+  isMlShipmentLabelPrintable,
+} from "@/lib/ml/fiscal-release";
 import { classifyMlLabelHttpFailure } from "@/lib/ml/label-http-failure";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import type { Database } from "@/types/database";
@@ -1229,6 +1232,8 @@ export async function upsertInvoiceDataMLByShipment(input: {
   reason?: string;
   errorCode?: string | null;
   contentMode?: "xml";
+  shipmentStatus?: string | null;
+  shipmentSubstatus?: string | null;
   attempts?: Array<{
     method: "PUT" | "POST";
     endpoint: string;
@@ -1262,6 +1267,7 @@ export async function upsertInvoiceDataMLByShipment(input: {
 
   const invoiceDataEndpoint = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data?siteId=${encodeURIComponent(siteId)}`;
   const createEndpoint = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data/?siteId=${encodeURIComponent(siteId)}`;
+  const shipmentEndpoint = `/shipments/${encodeURIComponent(shipmentId)}`;
   let lastError = "Falha ao subir invoice_data no ML";
   let lastStatus: number | null = null;
   let lastCode: string | null = null;
@@ -1370,6 +1376,8 @@ export async function upsertInvoiceDataMLByShipment(input: {
     siteId,
   );
 
+  let updateEndpoint: string | null = null;
+
   if (currentInvoiceData.ok && currentInvoiceData.data) {
     const currentKey = String(currentInvoiceData.data.fiscal_key || "").trim();
     if (currentKey === fiscalKey) {
@@ -1398,7 +1406,52 @@ export async function upsertInvoiceDataMLByShipment(input: {
       };
     }
 
-    const updateEndpoint = `/shipment_invoice/${encodeURIComponent(invoiceId)}/?siteId=${encodeURIComponent(siteId)}`;
+    updateEndpoint = `/shipment_invoice/${encodeURIComponent(invoiceId)}/?siteId=${encodeURIComponent(siteId)}`;
+  } else if (currentInvoiceData.statusCode !== 404) {
+    return {
+      ok: false,
+      statusCode: currentInvoiceData.statusCode,
+      endpoint: invoiceDataEndpoint,
+      error:
+        currentInvoiceData.error ||
+        "Falha ao consultar invoice_data antes do upload",
+      reason: "invoice_lookup_failed",
+      contentMode: "xml",
+      attempts,
+    };
+  }
+
+  const shipmentAvailability =
+    await consultarDisponibilidadeEtiquetaML(shipmentId);
+  if (!shipmentAvailability.checked) {
+    return {
+      ok: false,
+      endpoint: shipmentEndpoint,
+      error:
+        shipmentAvailability.error ||
+        "Falha ao consultar status do shipment antes do upload fiscal",
+      reason: "shipment_status_lookup_failed",
+      contentMode: "xml",
+      shipmentStatus: shipmentAvailability.status,
+      shipmentSubstatus: shipmentAvailability.substatus,
+      attempts,
+    };
+  }
+
+  if (!isMlShipmentInvoiceUploadReady(shipmentAvailability)) {
+    return {
+      ok: false,
+      endpoint: shipmentEndpoint,
+      error: `Shipment ainda não apto para upload fiscal (status=${shipmentAvailability.status || "ausente"}, substatus=${shipmentAvailability.substatus || "ausente"})`,
+      reason: "shipment_not_ready_for_invoice",
+      contentMode: "xml",
+      shipmentStatus: shipmentAvailability.status,
+      shipmentSubstatus: shipmentAvailability.substatus,
+      attempts,
+    };
+  }
+
+  if (updateEndpoint) {
     const update = await tryUpload("PUT", updateEndpoint);
     if (!update.ok && !update.idempotencyConflict) {
       return {
@@ -1423,20 +1476,6 @@ export async function upsertInvoiceDataMLByShipment(input: {
       successStatus: update.ok ? update.result.status : lastStatus,
       successReason: "updated_xml",
     });
-  }
-
-  if (currentInvoiceData.statusCode !== 404) {
-    return {
-      ok: false,
-      statusCode: currentInvoiceData.statusCode,
-      endpoint: invoiceDataEndpoint,
-      error:
-        currentInvoiceData.error ||
-        "Falha ao consultar invoice_data antes do upload",
-      reason: "invoice_lookup_failed",
-      contentMode: "xml",
-      attempts,
-    };
   }
 
   const created = await tryUpload("POST", createEndpoint);

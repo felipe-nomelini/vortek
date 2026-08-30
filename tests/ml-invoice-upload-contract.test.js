@@ -53,6 +53,27 @@ test('GET decide a operação e falha de consulta não cria invoice', () => {
   assert.match(uploadSource, /reason: "already_linked"/);
 });
 
+test('gate do shipment ocorre depois da idempotência e antes de POST ou PUT', () => {
+  const alreadyLinkedCheck = uploadSource.indexOf('currentKey === fiscalKey');
+  const shipmentGate = uploadSource.indexOf(
+    'const shipmentAvailability =',
+  );
+  const updateCall = uploadSource.indexOf('tryUpload("PUT", updateEndpoint)');
+  const createCall = uploadSource.indexOf('tryUpload("POST", createEndpoint)');
+
+  assert.ok(alreadyLinkedCheck > -1 && alreadyLinkedCheck < shipmentGate);
+  assert.ok(shipmentGate > -1 && shipmentGate < updateCall);
+  assert.ok(shipmentGate < createCall);
+  assert.match(uploadSource, /isMlShipmentInvoiceUploadReady\(shipmentAvailability\)/);
+});
+
+test('falha de consulta ou shipment não apto bloqueiam o upload com estado observável', () => {
+  assert.match(uploadSource, /reason: "shipment_status_lookup_failed"/);
+  assert.match(uploadSource, /reason: "shipment_not_ready_for_invoice"/);
+  assert.match(uploadSource, /shipmentStatus: shipmentAvailability\.status/);
+  assert.match(uploadSource, /shipmentSubstatus: shipmentAvailability\.substatus/);
+});
+
 test('POST e PUT só concluem após GET confirmar a chave fiscal', () => {
   assert.match(
     uploadSource,

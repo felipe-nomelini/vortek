@@ -3,6 +3,7 @@ const test = require('node:test');
 
 const {
   extractMlFiscalReleaseWindow,
+  isMlShipmentInvoiceUploadReady,
   isMlShipmentLabelPrintable,
 } = require('../src/lib/ml/fiscal-release.ts');
 
@@ -57,4 +58,29 @@ test('invoice_pending não é tratado como etiqueta disponível', () => {
   }), false);
   assert.equal(release.isBlockedNow, true);
   assert.ok(release.releaseAt);
+});
+
+test('upload fiscal permite somente ready_to_ship com invoice_pending', () => {
+  assert.equal(isMlShipmentInvoiceUploadReady({
+    status: 'ready_to_ship',
+    substatus: 'invoice_pending',
+  }), true);
+});
+
+test('upload fiscal bloqueia outro substatus mesmo com ready_to_ship', () => {
+  assert.equal(isMlShipmentInvoiceUploadReady({
+    status: 'ready_to_ship',
+    substatus: 'ready_to_print',
+  }), false);
+});
+
+test('upload fiscal bloqueia outro status mesmo com invoice_pending', () => {
+  assert.equal(isMlShipmentInvoiceUploadReady({
+    status: 'pending',
+    substatus: 'invoice_pending',
+  }), false);
+});
+
+test('upload fiscal bloqueia estado ausente', () => {
+  assert.equal(isMlShipmentInvoiceUploadReady({}), false);
 });

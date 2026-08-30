@@ -28,6 +28,12 @@ export function isMlShipmentLabelPrintable(shipment: any): boolean {
     && (substatus === 'ready_to_print' || substatus === 'printed');
 }
 
+export function isMlShipmentInvoiceUploadReady(shipment: any): boolean {
+  const status = String(shipment?.status || '').trim().toLowerCase();
+  const substatus = String(shipment?.substatus || '').trim().toLowerCase();
+  return status === 'ready_to_ship' && substatus === 'invoice_pending';
+}
+
 function normalizeDate(value: unknown): string | null {
   if (!value) return null;
   const parsed = new Date(String(value));
