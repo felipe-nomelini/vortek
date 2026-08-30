@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `WEBHOOK-03 — payment_lookup_failed`
+**Próxima ação obrigatória:** `HAYA-01 — Bloqueio operacional da Hayamax`
 
 ---
 
@@ -57,7 +57,7 @@ Regras de uso:
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
-| 7 | Mercado Pago e financeiro | Em andamento | Executar somente `WEBHOOK-03` |
+| 7 | Hayamax, Mercado Pago e financeiro | Replanejada | Executar somente `HAYA-01` |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
@@ -84,6 +84,8 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `FIS-03` estar integralmente validada.
 - [x] Executar somente `FIN-01 + FIN-02 — Lifecycle e parser`.
 - [x] Não avançar para a ação seguinte antes de `FIN-01/FIN-02` estar integralmente validada.
+- [ ] Executar somente `HAYA-01 — Bloqueio operacional da Hayamax`.
+- [ ] Não avançar para `HAYA-02` antes de `HAYA-01` estar integralmente validada.
 
 ---
 
@@ -790,6 +792,78 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 ## 11. Etapa 7 — Mercado Pago e financeiro
 
+### Replanejamento — saída da Hayamax
+
+**Decisão registrada em 30/08/2026:** a Hayamax deixará de trabalhar com dropshipping e não será mais fornecedora do Vortek.
+
+O estudo e o roadmap específicos do Mercado Pago estão em:
+
+- `docs/mercado-pago-estudo-vortek.md`;
+- `docs/mercado-pago-checklist-implementacao.md`.
+
+As ações abaixo são sequenciais e não podem ser combinadas em uma única tarefa.
+
+### HAYA-01 — Bloqueio operacional da Hayamax
+
+**Prioridade:** P1
+
+**Situação:** pendente e próxima ação obrigatória.
+
+- [ ] bloquear o DSLite ID `2` pela política central já existente;
+- [ ] impedir nova ativação, importação, seleção e fulfillment da Hayamax;
+- [ ] usar o fluxo existente de desativação do fornecedor;
+- [ ] manter produto com outra oferta operacional e reatribuir sua oferta preferencial;
+- [ ] inativar produto e retirar anúncio quando a Hayamax for a única capacidade disponível;
+- [ ] validar ausência de oferta Hayamax ativa e de reativação pelo sync;
+- [ ] não acessar nem alterar produção neste worktree;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HAYA-02 — Aposentar conta-saldo
+
+**Prioridade:** P1
+
+**Dependência:** `HAYA-01`
+
+**Situação:** pendente.
+
+- [ ] remover APIs e interface exclusivas do saldo Hayamax;
+- [ ] remover importação de extrato, aporte manual e aprovação Mercado Pago;
+- [ ] remover débito automático e novos usos de `balance_account`;
+- [ ] preservar ledger genérico de créditos, registros históricos e migrations;
+- [ ] manter histórico legível sem permitir nova operação;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HAYA-03 — Desacoplar Mercado Pago
+
+**Prioridade:** P1
+
+**Dependência:** `HAYA-02`
+
+**Situação:** pendente.
+
+- [ ] executar `MP-RET-01` do checklist específico Mercado Pago;
+- [ ] remover matching, `topup` e revisão exclusiva da Hayamax;
+- [ ] remover o webhook de pagamento e seu secret, pois não restará consumidor ativo;
+- [ ] remover o SDK Mercado Pago se continuar sem uso;
+- [ ] preservar lifecycle, parser, importação genérica, tabela e histórico;
+- [ ] provar que relatório não gera movimento de fornecedor;
+- [ ] concluir o gate obrigatório da seção 3.
+
+### HAYA-04 — Limpeza nominal e histórica
+
+**Prioridade:** P2
+
+**Dependência:** `HAYA-03`
+
+**Situação:** pendente.
+
+- [ ] remover guardas de categoria exclusivamente Hayamax;
+- [ ] retirar o nome Hayamax de textos e eventos que atendem outros fornecedores;
+- [ ] remover scripts operacionais exclusivamente Hayamax;
+- [ ] atualizar guias ativos sem reescrever auditorias históricas;
+- [ ] não apagar schema ou dados históricos sem inventário, backup e autorização em `vortek-prod`;
+- [ ] concluir o gate obrigatório da seção 3.
+
 ### FIN-01 + FIN-02 — Lifecycle e parser
 
 **Prioridade:** P1
@@ -842,18 +916,17 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Rollback:** reverter os commits funcionais em `dev`, executar novo deploy somente de homologação, remover os movimentos deste relatório TEST e desconfigurar a credencial TEST no `supabase-dev`; não há migration.
 
-**Pendência:** nenhuma para `FIN-01/FIN-02`. A próxima ação obrigatória do checklist é `WEBHOOK-03 — payment_lookup_failed`.
+**Reclassificação em 30/08/2026:** o lifecycle, parser e importação idempotente permanecem válidos como base genérica de conciliação. A criação de `topup` Hayamax será removida em `HAYA-03`.
+
+**Pendência:** nenhuma para `FIN-01/FIN-02`. A próxima ação obrigatória do checklist é `HAYA-01 — Bloqueio operacional da Hayamax`.
 
 ### WEBHOOK-03 — `payment_lookup_failed`
 
 **Prioridade:** P2
 **Dependência:** `FIN-01/FIN-02`
-**Situação:** pendente.
+**Situação:** **N/A — cancelado pela saída da Hayamax.**
 
-- [ ] integrar a falha à mesma estratégia de reconciliação financeira;
-- [ ] não criar fila paralela exclusiva para o webhook;
-- [ ] garantir estado observável e reprocessamento seguro;
-- [ ] concluir o gate obrigatório da seção 3.
+O webhook atual consulta pagamentos apenas para classificar movimentos e criar `topup` Hayamax. Como essa consequência de negócio será aposentada, não haverá motivo para criar reconciliação, retry ou fila para `payment_lookup_failed`. A rota completa será removida em `HAYA-03`. Um novo webhook Mercado Pago só poderá ser criado junto de um caso de pagamento independente e aprovado.
 
 ---
 
