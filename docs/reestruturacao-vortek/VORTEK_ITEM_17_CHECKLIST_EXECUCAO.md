@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `FIS-01 — Upload XML correto`
+**Próxima ação obrigatória:** `FIS-02 — Gate do shipment`
 
 ---
 
@@ -56,7 +56,7 @@ Regras de uso:
 | 3 | Estoque e fulfillment | Concluída | Manter a reserva atômica como base do fulfillment interno |
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
-| 6 | Fiscal | Em andamento | Executar somente `FIS-01` |
+| 6 | Fiscal | Em andamento | Executar somente `FIS-02` |
 | 7 | Mercado Pago e financeiro | Pendente | Tratar `FIN-01/FIN-02` de forma coerente |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
@@ -76,8 +76,10 @@ Regras de uso:
 - [x] Não avançar para a ação seguinte antes de `INV-05` estar integralmente validada.
 - [x] Executar somente `INV-02 — Helpers antigos de estoque`.
 - [x] Não avançar para a ação seguinte antes de `INV-02` estar integralmente validada.
-- [ ] Executar somente `FIS-01 — Upload XML correto`.
-- [ ] Não avançar para a ação seguinte antes de `FIS-01` estar integralmente validada.
+- [x] Executar somente `FIS-01 — Upload XML correto`.
+- [x] Não avançar para a ação seguinte antes de `FIS-01` estar integralmente validada.
+- [ ] Executar somente `FIS-02 — Gate do shipment`.
+- [ ] Não avançar para a ação seguinte antes de `FIS-02` estar integralmente validada.
 
 ---
 
@@ -647,15 +649,46 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 ### FIS-01 — Upload XML correto
 
 **Prioridade:** P1
-**Situação:** pendente.
+**Situação:** concluída e validada.
+**Commit funcional:** `8837508` — `fix(fiscal): use XML contract for ML invoices`.
 
-- [ ] reconfirmar o contrato oficial atual de invoice do Mercado Livre;
-- [ ] localizar e remover chamadas comprovadamente inválidas;
-- [ ] usar `GET → POST` para invoice nova;
-- [ ] usar `GET → PUT` somente para atualização válida;
-- [ ] verificar o estado final com `GET`;
-- [ ] provar upload direto correto para invoice nova;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] reconfirmar o contrato oficial atual de invoice do Mercado Livre;
+- [x] localizar e remover chamadas comprovadamente inválidas;
+- [x] usar `GET → POST` para invoice nova;
+- [x] usar `GET → PUT` somente para atualização válida;
+- [x] verificar o estado final com `GET`;
+- [x] provar upload direto correto para invoice nova;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** o helper central consultava o estado e, para invoice nova, tentava `PUT` JSON e `POST` JSON antes do `POST` XML oficial. Isso gerava falhas previsíveis `404/415` antes da operação válida e mantinha um contrato JSON sem suporte para esse upload.
+
+**Mudança executada:**
+
+- o helper central passou a consultar o estado atual uma única vez;
+- ausência confirmada por `404` executa diretamente `POST /shipments/{shipment_id}/invoice_data/` com `Content-Type: application/xml`;
+- invoice existente com chave diferente e identificador válido executa `PUT /shipment_invoice/{invoice_id}/` também em XML;
+- falha de consulta diferente de `404` não cria invoice;
+- sucesso de `POST` ou `PUT`, inclusive conflito idempotente, somente é aceito após novo `GET` confirmar a mesma chave fiscal;
+- os quatro chamadores preservaram suas validações locais e passaram a usar o read-back centralizado;
+- nenhuma fila, tabela, migration, dependência, variável de ambiente ou fluxo paralelo foi criado.
+
+**Validação executada em 30/08/2026:**
+
+- branch `dev`, working tree, `AGENTS.md`, Item 17, consolidação e auditoria fiscal conferidos antes da alteração;
+- contrato oficial atual de importação de nota fiscal do Mercado Livre reconfirmado para `GET`, criação por `POST` XML e atualização por `PUT` XML;
+- teste direcionado `tests/ml-invoice-upload-contract.test.js`: 5/5 aprovado, cobrindo criação direta sem JSON, atualização somente com `invoice_id`, falha segura de consulta e confirmação final da chave;
+- `npm run validate`: aprovado, sem warnings ou erros;
+- `npm run build`: aprovado;
+- `git diff --check`: aprovado;
+- commit funcional enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=8837508`; `https://dev.vortek.shop/api/ops/health` respondeu `200` e o worker sem chave respondeu `401`;
+- upload real no Mercado Livre: **N/A nesta validação**, pois o DEV não possuía pedido com shipment e XML fiscal aptos; nenhum shipment artificial ou escrita externa foi criado apenas para testar;
+- migration e escrita no Supabase: **N/A**;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado estrutural para desfazer.
+
+**Pendência:** nenhuma para `FIS-01`. A próxima ação obrigatória é `FIS-02`.
 
 ### FIS-02 — Gate do shipment
 
