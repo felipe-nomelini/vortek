@@ -55,8 +55,10 @@ test('dispatcher do catálogo usa URL do ambiente sem criar outro cron', () => {
   );
 
   assert.match(migrationSource, /key = 'catalog_refresh_worker_url'/);
+  assert.match(migrationSource, /key = 'catalog_refresh_worker_host'/);
   assert.match(migrationSource, /status in \('pendente', 'on_hold'\)/);
   assert.match(migrationSource, /raise exception 'dispatch_catalog_price_refresh_cron:/);
+  assert.match(migrationSource, /'X-Forwarded-Proto', 'https'/);
   assert.match(migrationSource, /timeout_milliseconds := 300000/);
   assert.doesNotMatch(migrationSource, /https:\/\/app\.vortek\.shop/);
   assert.doesNotMatch(migrationSource, /cron\.(?:schedule|unschedule|alter_job)/);

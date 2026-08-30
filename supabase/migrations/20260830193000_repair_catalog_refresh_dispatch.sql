@@ -11,6 +11,7 @@ declare
   v_api_key text;
   v_job_id uuid;
   v_request_id bigint;
+  v_worker_host text;
   v_worker_url text;
 begin
   select id
@@ -34,8 +35,22 @@ begin
     raise exception 'dispatch_catalog_price_refresh_cron: catalog_refresh_worker_url ausente';
   end if;
 
-  if v_worker_url !~ '^https://[^/?#]+/api/catalogo/no-catalogo/refresh/job/worker$' then
+  if v_worker_url !~ '^https://[^/?#]+/api/catalogo/no-catalogo/refresh/job/worker$'
+    and v_worker_url !~ '^http://(10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|192\.168\.[0-9]{1,3}\.[0-9]{1,3}|172\.(1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3})(:[0-9]+)?/api/catalogo/no-catalogo/refresh/job/worker$'
+  then
     raise exception 'dispatch_catalog_price_refresh_cron: catalog_refresh_worker_url invalida';
+  end if;
+
+  select lower(trim(value))
+    into v_worker_host
+  from public.sync_runtime_config
+  where key = 'catalog_refresh_worker_host';
+
+  if v_worker_host is null
+    or v_worker_host = ''
+    or v_worker_host !~ '(^[a-z0-9]$)|(^[a-z0-9][a-z0-9.-]*[a-z0-9]$)'
+  then
+    raise exception 'dispatch_catalog_price_refresh_cron: catalog_refresh_worker_host ausente ou invalido';
   end if;
 
   select value
@@ -51,6 +66,8 @@ begin
     url := v_worker_url,
     headers := jsonb_build_object(
       'Content-Type', 'application/json',
+      'Host', v_worker_host,
+      'X-Forwarded-Proto', 'https',
       'x-api-key', v_api_key
     ),
     body := jsonb_build_object('jobId', v_job_id),
