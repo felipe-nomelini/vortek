@@ -625,7 +625,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     }
 
     const status = payload.job.status;
-    if (status === 'pendente' || status === 'rodando') {
+    if (status === 'pendente' || status === 'rodando' || status === 'on_hold') {
       setRefreshJobStatus('running');
       return;
     }
@@ -687,7 +687,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         const persistedPayload = await fetchRefreshStatus(persistedJobId);
         if (persistedPayload.success && persistedPayload.job?.id) {
           const status = persistedPayload.job.status;
-          if (status === 'pendente' || status === 'rodando') {
+          if (status === 'pendente' || status === 'rodando' || status === 'on_hold') {
             startRefreshPolling(persistedPayload.job.id);
             await pollRefreshJob(persistedPayload.job.id);
             return;
@@ -712,7 +712,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       }
 
       const status = payload.job.status;
-      if (status === 'pendente' || status === 'rodando') {
+      if (status === 'pendente' || status === 'rodando' || status === 'on_hold') {
         startRefreshPolling(payload.job.id);
         await pollRefreshJob(payload.job.id);
         return;

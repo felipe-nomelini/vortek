@@ -47,8 +47,10 @@ export async function middleware(request: NextRequest) {
   const apiKey = request.headers.get("x-api-key");
   const isSyncRoute = pathname.startsWith("/api/sync/");
   const isInternalJobRoute = pathname === "/api/dslite/pedido";
-  const isInternalCatalogRoute =
-    pathname === "/api/catalogo/no-catalogo/refresh";
+  const isInternalCatalogRoute = [
+    "/api/catalogo/no-catalogo/refresh",
+    "/api/catalogo/no-catalogo/refresh/job/worker",
+  ].includes(pathname);
   const isMlListingFlowRoute = [
     "/api/ml/anuncio/categorias",
     "/api/ml/anuncio/schema",

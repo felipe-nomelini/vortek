@@ -45,7 +45,7 @@ export async function GET(request: Request) {
       .from('jobs')
       .select('id, tipo, status, progresso, processados, total, log, finished_at, created_at')
       .eq('tipo', JOB_TIPO)
-      .in('status', ['pendente', 'rodando'])
+      .in('status', ['pendente', 'rodando', 'on_hold'])
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();
