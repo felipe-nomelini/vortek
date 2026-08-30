@@ -249,7 +249,7 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 
 **Prioridade:** P1 com prazo
 **Prazo externo:** antes de `26/10/2026`
-**Situação:** implementada e validada tecnicamente em homologação; validação externa bloqueada pela ausência de seller de teste.
+**Situação:** implementada e validada tecnicamente em homologação; seller e customer de teste criados, com validação externa ainda pendente da conexão OAuth do seller no runtime DEV.
 
 - [x] reler `docs/mercado-livre-publicacao-operacional.md`;
 - [x] confirmar o contrato oficial atual de Preços por Quantidade;
@@ -290,9 +290,11 @@ Se algum item obrigatório falhar: **não avançar**, corrigir ou reverter e rep
 - 7 testes do guard de conta e os 13 testes de quantity pricing aprovados;
 - `npm run validate` e `npm run build` aprovados, com 122 páginas geradas;
 - placeholder `integracoes/mercadolivre` criado desconectado somente no `supabase-dev`, sem Client ID, secret ou tokens;
-- arquivo local protegido de bootstrap criado fora do repositório com permissão `0600`, ainda sem valores;
+- arquivo local protegido de bootstrap mantido fora do repositório com permissão `0600`, contendo somente as credenciais do app DEV e dos usuários de teste;
+- seller e customer de teste `MLB` criados pelo endpoint oficial `/users/test_user`, validados por read-back e armazenados somente no arquivo local protegido;
+- token temporário da conta administradora removido do arquivo imediatamente após a criação e validação dos dois usuários;
 - deploy do commit foi aceito pelo webhook, mas não entrou em operação: a primeira tentativa falhou no Easypanel durante o download do código por erro transitório de DNS (`curl` exit 6), e as novas tentativas não iniciaram outro rollout;
-- test users não foram criados e nenhuma chamada autenticada ao Mercado Livre foi executada, pois as credenciais exclusivas do app DEV e o token temporário de bootstrap ainda não foram disponibilizados.
+- nenhuma operação de anúncio, pedido ou compra foi executada; permanece pendente autorizar o app DEV com o seller de teste e concluir a prova externa de `ML-01`.
 
 ---
 
