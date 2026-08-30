@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `JOB-01 — Catálogo on_hold`
+**Próxima ação obrigatória:** `DSL-01 — Timeout DSLite`
 
 ---
 
@@ -58,7 +58,7 @@ Regras de uso:
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
-| 8 | Jobs e DSLite | Pendente | Executar somente `JOB-01` |
+| 8 | Jobs e DSLite | Em andamento | Executar somente `DSL-01` |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
 | 11 | Interface | Pendente | Somente após as regras correspondentes |
@@ -92,6 +92,8 @@ Regras de uso:
 - [x] Não avançar para `HAYA-04` antes de `HAYA-03` estar integralmente validada.
 - [x] Executar somente `HAYA-04 — Limpeza nominal e histórica`.
 - [x] Não avançar para `JOB-01` antes de `HAYA-04` estar integralmente validada.
+- [x] Executar somente `JOB-01 — Catálogo on_hold`.
+- [x] Não avançar para `DSL-01` antes de `JOB-01` estar integralmente validada.
 
 ---
 
@@ -1030,13 +1032,41 @@ O webhook removido consultava pagamentos apenas para classificar movimentos e cr
 ### JOB-01 — Catálogo `on_hold`
 
 **Prioridade:** P1
-**Situação:** pendente.
+**Situação:** concluída e validada operacionalmente em homologação.
+**Commits funcionais:** `2edacef`, `b32b1ed` e `4ce9524`.
 
-- [ ] investigar `pg_cron`, `pg_net`, runtime, worker, eligibility e lock;
-- [ ] identificar a causa exata do job órfão;
-- [ ] corrigir o mecanismo atual sem criar outro cron;
-- [ ] provar que `on_hold` é encontrado, retomado e concluído ou volta a estado observável;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] investigar `pg_cron`, `pg_net`, runtime, worker, eligibility e lock;
+- [x] identificar a causa exata do job órfão;
+- [x] corrigir o mecanismo atual sem criar outro cron;
+- [x] provar que `on_hold` é encontrado, retomado e concluído ou volta a estado observável;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Causa confirmada:** o cron já selecionava `on_hold`, mas a rota exata do worker não estava liberada no middleware e a chamada autenticada por `x-api-key` era interceptada com `401` antes de chegar ao handler. Além disso, a função do banco apontava diretamente para `app.vortek.shop`, incompatível com o isolamento de homologação, e usava o timeout padrão do `pg_net`, menor que o limite de 300 segundos do worker. O cron, a elegibilidade e a tomada atômica do job já existiam e não exigiam outro mecanismo.
+
+**Mudança executada:**
+
+- a rota exata `/api/catalogo/no-catalogo/refresh/job/worker` foi incluída na lista interna do middleware, sem liberar um prefixo amplo;
+- a função `private.dispatch_catalog_price_refresh_cron()` passou a obter URL e host do worker na configuração de runtime, validar o destino, enviar os cabeçalhos internos necessários e usar timeout de 300 segundos;
+- ausência ou configuração inválida agora produz falha observável no cron, em vez de retorno silencioso;
+- `on_hold` passou a ser tratado como estado ativo pelo endpoint de status e pela retomada/polling da interface;
+- o cron existente foi preservado com a mesma identidade e periodicidade; nenhum cron, job, fila, tabela ou dependência paralela foi criado.
+
+**Validação executada em 30/08/2026:**
+
+- documentação oficial atual de Supabase Cron, `pg_cron` e `pg_net` consultada;
+- teste direcionado `tests/catalog-refresh-batch.test.js`: 6/6 aprovado;
+- `npm run validate`, `npm run build` e `git diff --check`: aprovados;
+- migration `20260830193000_repair_catalog_refresh_dispatch.sql` aplicada e registrada somente no `supabase-dev`;
+- aplicação enviada para `origin/dev`, implantada somente no serviço `vortek-erp-dev` e confirmada com `GIT_SHA=2edacef`; health check de homologação respondeu `200`;
+- um único job controlado em `on_hold` foi retomado pelo cron existente e terminou `completo`, com progresso 100 e resultado esperado de 0/0 para a conta TEST sem anúncios de catálogo;
+- execução do cron `succeeded` e resposta `pg_net` HTTP `200`, sem timeout ou erro;
+- ao final, havia zero jobs de catálogo ativos, zero itens de manifesto pendentes, zero advisory locks, zero crons ativos e nenhuma chave de API transitória no runtime;
+- a permissão temporária e restrita de rede usada para provar o transporte interno foi removida, restaurando integralmente a política de egress do `supabase-dev`;
+- produção, `main`, Supabase produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** manter o cron inativo, remover `catalog_refresh_worker_url` e `catalog_refresh_worker_host` do runtime, reverter os três commits em `dev` e executar novo deploy somente de homologação. A função falha de forma observável sem a configuração e não ativa cron automaticamente.
+
+**Pendência:** nenhuma para `JOB-01`. A próxima ação obrigatória é `DSL-01 — Timeout DSLite`.
 
 ### DSL-01 — Timeout DSLite
 
