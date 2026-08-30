@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `HAYA-03 — Desacoplar Mercado Pago`
+**Próxima ação obrigatória:** `HAYA-04 — Limpeza nominal e histórica`
 
 ---
 
@@ -57,7 +57,7 @@ Regras de uso:
 | 4 | Capacidade e quantidade segura | Concluída | Manter `Q_segura = max(Q_internal, Q_supplier)` como fonte central |
 | 5 | Mercado Livre observado e publicação | Concluída | Manter outbox e `stock-publish.ts` como fluxo único de estoque |
 | 6 | Fiscal | Concluída | Manter os contratos e gates fiscais validados |
-| 7 | Hayamax, Mercado Pago e financeiro | Em execução | Executar somente `HAYA-03` |
+| 7 | Hayamax, Mercado Pago e financeiro | Em execução | Executar somente `HAYA-04` |
 | 8 | Jobs e DSLite | Pendente | Manter integrações externas seguras |
 | 9 | Plataforma e banco | Pendente | Executar cada mudança isoladamente |
 | 10 | Consolidação de regras P2 | Pendente | Executar uma regra por vez |
@@ -88,6 +88,8 @@ Regras de uso:
 - [x] Não avançar para `HAYA-02` antes de `HAYA-01` estar integralmente validada.
 - [x] Executar somente `HAYA-02 — Aposentar conta-saldo`.
 - [x] Não avançar para `HAYA-03` antes de `HAYA-02` estar integralmente validada.
+- [x] Executar somente `HAYA-03 — Desacoplar Mercado Pago`.
+- [x] Não avançar para `HAYA-04` antes de `HAYA-03` estar integralmente validada.
 
 ---
 
@@ -886,15 +888,38 @@ As ações abaixo são sequenciais e não podem ser combinadas em uma única tar
 
 **Dependência:** `HAYA-02`
 
-**Situação:** pendente.
+**Situação:** concluída e validada operacionalmente em homologação.
+**Commit funcional:** `6888b1b`.
 
-- [ ] executar `MP-RET-01` do checklist específico Mercado Pago;
-- [ ] remover matching, `topup` e revisão exclusiva da Hayamax;
-- [ ] remover o webhook de pagamento e seu secret, pois não restará consumidor ativo;
-- [ ] remover o SDK Mercado Pago se continuar sem uso;
-- [ ] preservar lifecycle, parser, importação genérica, tabela e histórico;
-- [ ] provar que relatório não gera movimento de fornecedor;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] executar `MP-RET-01` do checklist específico Mercado Pago;
+- [x] remover matching, `topup` e revisão exclusiva da Hayamax;
+- [x] remover o webhook de pagamento e seu secret, pois não restará consumidor ativo;
+- [x] remover o SDK Mercado Pago se continuar sem uso;
+- [x] preservar lifecycle, parser, importação genérica, tabela e histórico;
+- [x] provar que relatório não gera movimento de fornecedor;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Evidências:**
+
+- branch `dev` e working tree inicial limpa confirmadas; instruções, Item 17, auditorias, checklist Mercado Pago e contratos oficiais aplicáveis foram consultados;
+- causa confirmada nos dois escritores ativos: o importador do relatório classificava Hayamax/revisão e criava `topup`, enquanto o webhook `payment` repetia a classificação e registrava `payment_lookup_failed`;
+- matching, valor mínimo, revisão exclusiva, criação e vínculo de `topup`, webhook, consulta individual de pagamento e SDK `mercadopago` foram removidos;
+- autenticação, lifecycle, retomada, download, parser, scheduler e importação genérica foram preservados; o `upsert` usa `defaultToNull: false` para não apagar classificações e vínculos históricos omitidos;
+- tabelas, tipos, migrations, `mercadopago_account_movements` e `supplier_balance_movements` foram preservados sem alteração estrutural;
+- 14 testes direcionados aprovados, incluindo a regressão `tests/mercadopago-hayamax-retirement.test.js`;
+- `npm run validate`, `npm run build` e `git diff --check` aprovados; o build não contém a rota removida;
+- commit enviado para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`; task `hymgregdd6km75wamrvcojanp` executou `GIT_SHA=6888b1bc1e861daf78fcfaf147fc2c2241836ff4`;
+- `https://dev.vortek.shop/api/ops/health` respondeu `200` e o webhook removido respondeu `404`;
+- as variáveis `MERCADOPAGO_HAYAMAX_MATCHERS` e `MERCADOPAGO_WEBHOOK_SECRET` não existem no ambiente do serviço de homologação;
+- reimportação do mesmo arquivo TEST respondeu `200/success=true`, importou 238 linhas válidas, rejeitou a mesma linha inválida e não retornou o campo aposentado `topups`;
+- antes e depois da reimportação permaneceram exatamente 238 movimentos Mercado Pago, seis classificações históricas `REVIEW_REQUIRED`, zero vínculo e zero movimento de fornecedor originado pelo Mercado Pago;
+- o usuário confirmou em 30/08/2026 a remoção da configuração que apontava para o webhook aposentado no aplicativo de desenvolvimento **Vortek MP Dev**;
+- migration e exclusão de dados: **N/A**;
+- produção, `main`, Supabase produção, aplicativo produtivo e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter o commit funcional em `dev` e executar novo deploy somente de homologação; não há migration nem dado estrutural a reverter. A configuração externa aposentada somente deve ser restaurada mediante autorização explícita.
+
+**Pendência:** nenhuma para `HAYA-03`. A próxima ação obrigatória é `HAYA-04 — Limpeza nominal e histórica`.
 
 ### HAYA-04 — Limpeza nominal e histórica
 
@@ -963,7 +988,7 @@ As ações abaixo são sequenciais e não podem ser combinadas em uma única tar
 
 **Rollback:** reverter os commits funcionais em `dev`, executar novo deploy somente de homologação, remover os movimentos deste relatório TEST e desconfigurar a credencial TEST no `supabase-dev`; não há migration.
 
-**Reclassificação em 30/08/2026:** o lifecycle, parser e importação idempotente permanecem válidos como base genérica de conciliação. A criação de `topup` Hayamax será removida em `HAYA-03`.
+**Reclassificação em 30/08/2026:** o lifecycle, parser e importação idempotente permanecem válidos como base genérica de conciliação. A criação de `topup` Hayamax foi removida em `HAYA-03`.
 
 **Pendência:** nenhuma para `FIN-01/FIN-02`. A próxima ação obrigatória do checklist é `HAYA-01 — Bloqueio operacional da Hayamax`.
 
@@ -973,7 +998,7 @@ As ações abaixo são sequenciais e não podem ser combinadas em uma única tar
 **Dependência:** `FIN-01/FIN-02`
 **Situação:** **N/A — cancelado pela saída da Hayamax.**
 
-O webhook atual consulta pagamentos apenas para classificar movimentos e criar `topup` Hayamax. Como essa consequência de negócio será aposentada, não haverá motivo para criar reconciliação, retry ou fila para `payment_lookup_failed`. A rota completa será removida em `HAYA-03`. Um novo webhook Mercado Pago só poderá ser criado junto de um caso de pagamento independente e aprovado.
+O webhook removido consultava pagamentos apenas para classificar movimentos e criar `topup` Hayamax. Como essa consequência de negócio foi aposentada, não há motivo para criar reconciliação, retry ou fila para `payment_lookup_failed`. A rota completa foi removida em `HAYA-03`. Um novo webhook Mercado Pago só poderá ser criado junto de um caso de pagamento independente e aprovado.
 
 ---
 

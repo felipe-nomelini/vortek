@@ -28,7 +28,7 @@
 
 | Ordem | Ação | Situação | Resultado esperado |
 |---:|---|---|---|
-| 1 | `MP-RET-01` — Desacoplar Hayamax | Aguardando `HAYA-03` | Relatório sem efeito em fornecedor |
+| 1 | `MP-RET-01` — Desacoplar Hayamax | Concluída em `HAYA-03` | Relatório sem efeito em fornecedor |
 | 2 | `MP-FIN-01` — Conciliação genérica | Pendente | Movimentos oficiais importados como evidência financeira |
 | 3 | `MP-FIN-02` — Vínculo com pagamentos ML | Pendente | Venda e movimentos relacionados consultáveis |
 | 4 | `MP-FIN-03` — Visão financeira | Pendente | Saldo observado e exceções visíveis |
@@ -57,7 +57,7 @@
 
 ## 4. MP-RET-01 — Desacoplar Hayamax
 
-**Situação:** aguardar `HAYA-03` no checklist do Item 17.
+**Situação:** concluída e validada em homologação na `HAYA-03`.
 
 ### Implementar
 
@@ -72,12 +72,22 @@
 
 ### Validar
 
-- [ ] relatório válido continua sendo solicitado, retomado e importado;
-- [ ] nenhum movimento Mercado Pago cria movimento de fornecedor;
-- [ ] reimportação permanece idempotente;
-- [ ] nenhum webhook Mercado Pago permanece configurado para uma rota removida;
-- [ ] nenhum secret Hayamax/Mercado Pago desnecessário permanece no ambiente de homologação;
-- [ ] dados e migrations históricas foram preservados.
+- [x] relatório válido continua sendo solicitado, retomado e importado;
+- [x] nenhum movimento Mercado Pago cria movimento de fornecedor;
+- [x] reimportação permanece idempotente;
+- [x] nenhum webhook Mercado Pago permanece configurado para uma rota removida;
+- [x] nenhum secret Hayamax/Mercado Pago desnecessário permanece no ambiente de homologação;
+- [x] dados e migrations históricas foram preservados.
+
+### Resultado
+
+- commit funcional `6888b1b`, publicado somente em `dev` e no serviço `vortek-erp-dev`;
+- matching, `topup`, revisão Hayamax, webhook `payment`, `payment_lookup_failed` e SDK removidos;
+- lifecycle, parser, importação genérica, autenticação, tabelas e histórico preservados;
+- 14 testes direcionados, `npm run validate` e build aprovados;
+- reimportação manteve 238 movimentos, seis classificações históricas e zero movimento de fornecedor;
+- webhook removido respondeu `404`, secrets aposentados não existem no ambiente e a remoção da configuração externa no aplicativo **Vortek MP Dev** foi confirmada pelo usuário em 30/08/2026;
+- migration e exclusão de dados: **N/A**; produção permaneceu intocada.
 
 ---
 
