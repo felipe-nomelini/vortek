@@ -62,19 +62,12 @@ async function fetchJson(url, init = {}) {
   }
 }
 
-async function getApiKey(supabase) {
-  if (String(process.env.API_SECRET_KEY || '').trim()) {
-    return String(process.env.API_SECRET_KEY).trim();
+async function getApiKey() {
+  const apiKey = String(process.env.API_SECRET_KEY || '').trim();
+  if (!apiKey) {
+    throw new Error('Não foi possível obter API key para sync: API_SECRET_KEY ausente');
   }
-  const { data, error } = await supabase
-    .from('sync_runtime_config')
-    .select('value')
-    .eq('key', 'api_secret_key')
-    .maybeSingle();
-  if (error || !data?.value) {
-    throw new Error(`Não foi possível obter API key para sync: ${error?.message || 'api_secret_key ausente'}`);
-  }
-  return String(data.value);
+  return apiKey;
 }
 
 async function tableCount(supabase, table, filterCb) {
@@ -601,7 +594,7 @@ async function main() {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 
-  const apiKey = await getApiKey(supabase);
+  const apiKey = await getApiKey();
   const baselineBefore = await captureBaseline(supabase);
   const orchestration = await captureOrchestration(BASE_URL);
   let syncRuns = [];
