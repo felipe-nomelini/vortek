@@ -67,6 +67,10 @@ test("cliente não lê secrets existentes e testes usam configuração server-si
     path.join(root, "src/app/(app)/configuracoes/page.tsx"),
     "utf8",
   );
+  const integrationsTab = fs.readFileSync(
+    path.join(root, "src/components/configuracoes/IntegracoesTab.tsx"),
+    "utf8",
+  );
   const dsliteRoute = fs.readFileSync(
     path.join(root, "src/app/api/integracoes/teste/dslite/route.ts"),
     "utf8",
@@ -77,12 +81,13 @@ test("cliente não lê secrets existentes e testes usam configuração server-si
   );
 
   assert.doesNotMatch(
-    page,
-    /(?:^|[^A-Za-z0-9_])i\.(client_secret|access_token|refresh_token)(?!_configurado)/,
+    `${page}\n${integrationsTab}`,
+    /(?:^|[^A-Za-z0-9_])integration\.(client_secret|access_token|refresh_token)(?!_configurado)/,
   );
-  assert.match(page, /client_secret_configurado/);
-  assert.match(page, /access_token_configurado/);
-  assert.match(page, /refresh_token_configurado/);
+  assert.doesNotMatch(page, /client_secret|access_token|refresh_token/);
+  assert.match(integrationsTab, /client_secret_configurado/);
+  assert.match(integrationsTab, /access_token_configurado/);
+  assert.match(integrationsTab, /refresh_token_configurado/);
   for (const source of [dsliteRoute, brasilNfeRoute]) {
     assert.match(source, /createServiceClient\(\)/);
     assert.doesNotMatch(source, /request\.json\(/);
