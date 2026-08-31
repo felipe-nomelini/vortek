@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 30/08/2026
+**Última atualização:** 31/08/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `JOB-02 — Dispatch duplicado`
+**Próxima ação obrigatória:** `JOB-04 — Status de job`
 
 ---
 
@@ -62,7 +62,7 @@ Regras de uso:
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
-| 10 | Consolidação de regras P2 | Em andamento | Executar somente `JOB-02` |
+| 10 | Consolidação de regras P2 | Em andamento | Executar somente `JOB-04` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -118,6 +118,8 @@ Regras de uso:
 - [x] Não avançar para `RULE-07` antes de `RULE-05` estar integralmente validada.
 - [x] Executar somente `RULE-07 — Tipos do ledger`.
 - [x] Não avançar para `JOB-02` antes de `RULE-07` estar integralmente validada.
+- [x] Executar somente `JOB-02 — Dispatch duplicado`.
+- [x] Não avançar para `JOB-04` antes de `JOB-02` estar integralmente validada.
 
 ---
 
@@ -1487,10 +1489,32 @@ Executar **uma regra por tarefa**.
 
 ### JOB-02 — Dispatch duplicado
 
-- [ ] mapear a lógica comum de `/api/sync/run` e `/api/sync/disparar`;
-- [ ] consolidar a lógica interna;
-- [ ] preservar autenticação e origem específicas de cada rota;
-- [ ] concluir o gate obrigatório da seção 3.
+**Prioridade:** P2
+**Situação:** concluída e validada em homologação.
+**Commits funcionais:** `dcab6e4` — `refactor: consolidate sync dispatch routes`; `9bebe07` — `fix: reject invalid explicit sync tasks`.
+
+- [x] mapear a lógica comum de `/api/sync/run` e `/api/sync/disparar`;
+- [x] consolidar a lógica interna;
+- [x] preservar autenticação e origem específicas de cada rota;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Mudança e validação executadas:**
+
+- resolução de task, montagem de query/payload, consulta e retomada de job, preflight da outbox, criação, auditoria e disparo background foram consolidados em uma única implementação interna; nenhuma terceira rota foi criada;
+- `/api/sync/run` manteve API key e origem de sistema/realtime; `/api/sync/disparar` manteve sessão, `created_by`, `actor_user_id` e origem manual da UI;
+- o timer solto foi substituído por `after()` do Next.js 16.3.3, e falha na consulta de job ativo passou a impedir criação cega de outro job;
+- `outboxId`, limite e `seedFromProducts` passaram a obedecer ao mesmo contrato nas duas fronteiras, preservando o seed que cria sua própria outbox;
+- durante a homologação foi identificado e corrigido o fallback legado que transformava `taskKey` explícita inválida em `tipo=todos`; o contrato final responde `400` sem disparar jobs;
+- 5/5 testes direcionados e 13/13 testes combinados de dispatch/resiliência aprovados; `npm run validate`, `npm run build` com 119 páginas e `git diff --check` aprovados;
+- commits enviados somente para `origin/dev`; deploy oficial do Easypanel concluído com sucesso e container `vortek-erp-dev` confirmado no SHA `9bebe07`;
+- homologação em `dev.vortek.shop`: health `200`, fronteiras sem credencial/sessão `401`, task explícita inválida com API key DEV `400`, e as duas rotas reutilizaram o mesmo job controlado com `202`, `reused=true`, `resumed=false`;
+- preflight e fixtures usaram diretamente apenas o `supabase-dev` em `192.168.1.162`; o job e o usuário temporários foram removidos, com zero resíduos confirmados;
+- uma validação intermediária da task inválida, antes da correção, disparou dez jobs agendados somente no DEV; os dois ainda `on_hold` foram cancelados e os dez registros foram removidos. Os syncs concluídos podem ter atualizado dados de homologação, sem acesso ou alteração de produção;
+- nenhuma migration foi necessária; banco de produção `.160`, `main`, serviço de produção e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `9bebe07` e `dcab6e4` somente em `dev` e redeployar `vortek-erp-dev`. Não há rollback de schema. Os registros temporários removidos não são recuperáveis, mas pertenciam exclusivamente à validação em DEV.
+
+**Pendência:** nenhuma para `JOB-02`. A próxima ação obrigatória é `JOB-04 — Status de job`.
 
 ### JOB-04 — Status de job
 
