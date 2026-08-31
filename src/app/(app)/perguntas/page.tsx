@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Alert, Button, Col, DatePicker, Dropdown, Input, Modal, Row, Select, Space, Statistic, Tag, Typography, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
+import { filterQuestionsOnCurrentPage } from '@/lib/ml/questions-page-filter';
 import type { TableProps } from 'antd';
 import { EllipsisOutlined, ReloadOutlined, SearchOutlined, SendOutlined } from '@ant-design/icons';
 
@@ -128,41 +129,10 @@ export default function PerguntasPage() {
   const answeredCount = questions.filter((question) => question.status === 'respondida').length;
 
   const filtered = useMemo(() => {
-    return questions.filter((question) => {
-      if (search) {
-        const q = search.toLowerCase();
-        const fields = [
-          String(question.id),
-          question.itemId,
-          question.anuncio,
-          question.cliente,
-          question.pergunta,
-          question.resposta || '',
-        ];
-        if (!fields.some((field) => field.toLowerCase().includes(q))) return false;
-      }
-
-      const perguntaDate = new Date(question.dataPergunta);
-      if (perguntaRange[0] && perguntaDate < perguntaRange[0]) return false;
-      if (perguntaRange[1]) {
-        const end = new Date(perguntaRange[1]);
-        end.setHours(23, 59, 59, 999);
-        if (perguntaDate > end) return false;
-      }
-
-      if (question.dataResposta) {
-        const respostaDate = new Date(question.dataResposta);
-        if (respostaRange[0] && respostaDate < respostaRange[0]) return false;
-        if (respostaRange[1]) {
-          const end = new Date(respostaRange[1]);
-          end.setHours(23, 59, 59, 999);
-          if (respostaDate > end) return false;
-        }
-      } else if (respostaRange[0] || respostaRange[1]) {
-        return false;
-      }
-
-      return true;
+    return filterQuestionsOnCurrentPage(questions, {
+      search,
+      questionDateRange: perguntaRange,
+      answerDateRange: respostaRange,
     });
   }, [questions, search, perguntaRange, respostaRange]);
 
@@ -340,30 +310,33 @@ export default function PerguntasPage() {
       <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
         <Col xs={24} sm={8}>
           <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Statistic title="Perguntas carregadas" value={filtered.length} suffix={`/ ${total}`} />
+            <Statistic title="Exibidas nesta página" value={filtered.length} suffix={`/ ${questions.length}`} />
           </div>
         </Col>
         <Col xs={24} sm={8}>
           <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Statistic title="Pendentes" value={pendingCount} valueStyle={{ color: pendingCount ? '#faad14' : '#52c41a' }} />
+            <Statistic title="Pendentes nesta página" value={pendingCount} valueStyle={{ color: pendingCount ? '#faad14' : '#52c41a' }} />
           </div>
         </Col>
         <Col xs={24} sm={8}>
           <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Statistic title="Respondidas" value={answeredCount} valueStyle={{ color: '#52c41a' }} />
+            <Statistic title="Respondidas nesta página" value={answeredCount} valueStyle={{ color: '#52c41a' }} />
           </div>
         </Col>
       </Row>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
+        <Text type="secondary" style={{ display: 'block', marginBottom: 12 }}>
+          Status consulta todas as perguntas no Mercado Livre. Busca e datas filtram somente os até {PAGE_SIZE} registros desta página.
+        </Text>
         <Row gutter={[8, 8]} align="middle">
           <Col>
             <Input
-              placeholder="Buscar (ID, anúncio, cliente, pergunta)"
+              placeholder="Buscar nesta página (ID, anúncio, cliente ou texto)"
               prefix={<SearchOutlined />}
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              style={{ width: 300 }}
+              style={{ width: 340 }}
               allowClear
             />
           </Col>
