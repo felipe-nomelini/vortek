@@ -101,6 +101,10 @@ import {
   isJobUniqueViolation,
   normalizeIdempotencyKey,
 } from "@/services/job-idempotency";
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from "@/lib/homologation-fixture";
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -5374,6 +5378,37 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    if (!pedidoId) {
+      return NextResponse.json(
+        { error: "pedidoId é obrigatório" },
+        { status: 400 },
+      );
+    }
+
+    const client = createServiceClient();
+    const fulfillmentRead = await (client as any)
+      .from('pedidos')
+      .select('fulfillment_source,snapshot_source')
+      .eq('id', String(pedidoId))
+      .maybeSingle();
+    if (fulfillmentRead.error) {
+      const migrationMissing = ['42703', 'PGRST204'].includes(String(fulfillmentRead.error.code || ''));
+      return NextResponse.json(
+        {
+          error: migrationMissing
+            ? 'Migration de seleção da origem do pedido ainda não foi aplicada.'
+            : fulfillmentRead.error.message,
+          code: migrationMissing ? 'fulfillment_migration_missing' : 'fulfillment_read_failed',
+        },
+        { status: migrationMissing ? 503 : 500 },
+      );
+    }
+    if (!fulfillmentRead.data) {
+      return NextResponse.json({ error: 'Pedido não encontrado', code: 'order_not_found' }, { status: 404 });
+    }
+    if (isHomologationFixtureSource(fulfillmentRead.data.snapshot_source)) {
+      return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
     if (nfeProvider === "mercadolivre") {
       await registrarEventoNfAuditoria({
         pedidoId: pedidoId ? String(pedidoId) : null,
@@ -5403,13 +5438,6 @@ export async function POST(req: Request) {
     }
     const provider: NfeProvider = "brasilnfe";
 
-    if (!pedidoId) {
-      return NextResponse.json(
-        { error: "pedidoId é obrigatório" },
-        { status: 400 },
-      );
-    }
-
     const suppliedIdempotencyKey = req.headers.get("idempotency-key") || bodyIdempotencyKey;
     const idempotencyKey = suppliedIdempotencyKey
       ? normalizeIdempotencyKey(suppliedIdempotencyKey)
@@ -5419,28 +5447,6 @@ export async function POST(req: Request) {
         { error: "Chave de idempotência inválida" },
         { status: 400 },
       );
-    }
-
-    const client = createServiceClient();
-    const fulfillmentRead = await (client as any)
-      .from('pedidos')
-      .select('fulfillment_source')
-      .eq('id', String(pedidoId))
-      .maybeSingle();
-    if (fulfillmentRead.error) {
-      const migrationMissing = ['42703', 'PGRST204'].includes(String(fulfillmentRead.error.code || ''));
-      return NextResponse.json(
-        {
-          error: migrationMissing
-            ? 'Migration de seleção da origem do pedido ainda não foi aplicada.'
-            : fulfillmentRead.error.message,
-          code: migrationMissing ? 'fulfillment_migration_missing' : 'fulfillment_read_failed',
-        },
-        { status: migrationMissing ? 503 : 500 },
-      );
-    }
-    if (!fulfillmentRead.data) {
-      return NextResponse.json({ error: 'Pedido não encontrado', code: 'order_not_found' }, { status: 404 });
     }
 
     const currentFulfillmentSource = String(fulfillmentRead.data.fulfillment_source || '').trim();

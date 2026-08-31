@@ -23,6 +23,7 @@ import PedidosLabelWhatsappModals from '@/components/pedidos/PedidosLabelWhatsap
 import { isValidDsliteId, usePedidosDsliteFlow } from '@/components/pedidos/usePedidosDsliteFlow';
 import { usePedidosLabelWhatsappFlow } from '@/components/pedidos/usePedidosLabelWhatsappFlow';
 import { formatCurrency } from '@/lib/format';
+import { isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 import {
   PREPARATION_ORDER_STATUSES,
@@ -195,6 +196,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
     dslite_label_operational_status: item.dslite_label_operational_status || 'pending',
     dslite_label_operational_updated_at: item.dslite_label_operational_updated_at || null,
     dslite_label_operational_error: item.dslite_label_operational_error || null,
+    is_homologation_fixture: isHomologationFixtureSource(item.snapshot_source),
   };
 }
 
@@ -422,11 +424,19 @@ export default function PedidosPage() {
   }, [messageApi]);
 
   const handleOpenNotaFiscalPdf = useCallback(async (order: Order) => {
+    if (order.is_homologation_fixture) {
+      messageApi.warning('A DANFE está desabilitada para a amostra protegida de homologação.');
+      return;
+    }
     const url = await resolveNotaFiscalPdfUrl(order);
     if (url) window.open(url, '_blank', 'noopener,noreferrer');
-  }, [resolveNotaFiscalPdfUrl]);
+  }, [messageApi, resolveNotaFiscalPdfUrl]);
 
   const handleDownloadNotaFiscalXml = useCallback((order: Order) => {
+    if (order.is_homologation_fixture) {
+      messageApi.warning('O XML não foi copiado para a amostra de homologação.');
+      return;
+    }
     if (!order.dbId) {
       messageApi.error('Pedido sem referência interna para localizar o XML.');
       return;
@@ -436,6 +446,10 @@ export default function PedidosPage() {
 
   const runOrderAction = useCallback((key: OrderActionKey, order: Order) => {
     if (key === 'view') setDrawerOrder(order);
+    if (key !== 'view' && order.is_homologation_fixture) {
+      messageApi.warning('Ações operacionais estão desabilitadas para esta amostra de homologação.');
+      return;
+    }
     if (key === 'track') openTracking(order);
     if (key === 'dslite') dsliteFlow.confirmSupplierFulfillment(order);
     if (key === 'direct_shipping') labelWhatsappFlow.confirmInternalShipping(order);
@@ -446,7 +460,7 @@ export default function PedidosPage() {
     if (key === 'supplier_payment') dsliteFlow.openSupplierPayment(order);
     if (key === 'send_whatsapp_label') labelWhatsappFlow.openWhatsappLabel(order);
     if (key === 'unlink_dslite') dsliteFlow.unlinkDslitePurchase(order);
-  }, [dsliteFlow, labelWhatsappFlow, openTracking]);
+  }, [dsliteFlow, labelWhatsappFlow, messageApi, openTracking]);
 
   const handleExportPdf = useCallback(async () => {
     setExportingPdf(true);
@@ -502,12 +516,12 @@ export default function PedidosPage() {
     const icon = operational.key === 'view' ? <EyeOutlined /> : operational.key === 'track' ? <CarOutlined /> : <UploadOutlined />;
     return (
       <Space size={4}>
-        <Button size="small" type={operational.key === 'view' ? 'default' : 'primary'} icon={icon} onClick={() => runOrderAction(operational.key, order)}>{operational.label}</Button>
+        <Button size="small" type={operational.key === 'view' ? 'default' : 'primary'} icon={icon} disabled={Boolean(order.is_homologation_fixture && operational.key !== 'view')} onClick={() => runOrderAction(operational.key, order)}>{operational.label}</Button>
         {secondary.length > 0 && (
           <Dropdown
             trigger={['click']}
             menu={{
-              items: secondary.map((action) => ({ key: action.key, label: action.label, icon: action.key === 'unlink_dslite' ? <WarningOutlined /> : undefined })),
+              items: secondary.map((action) => ({ key: action.key, label: action.label, disabled: Boolean(order.is_homologation_fixture && action.key !== 'view'), icon: action.key === 'unlink_dslite' ? <WarningOutlined /> : undefined })),
               onClick: ({ key }) => runOrderAction(key as OrderActionKey, order),
             }}
           >
@@ -583,10 +597,20 @@ export default function PedidosPage() {
     { key: 'all', label: 'Todos', count: summary.count, description: 'Histórico completo' },
   ];
   const datePickerValue: [Dayjs | null, Dayjs | null] = [dateRange[0] ? dayjs(dateRange[0]) : null, dateRange[1] ? dayjs(dateRange[1]) : null];
+  const hasHomologationFixtures = orders.some((order) => order.is_homologation_fixture);
 
   return (
     <div>
       {contextHolder}
+      {hasHomologationFixtures && (
+        <Alert
+          type="info"
+          showIcon
+          message="Amostra real protegida para homologação"
+          description="Estes dados servem apenas para avaliar o layout. Rastreamento, documentos e ações externas estão desabilitados."
+          style={{ marginBottom: 16 }}
+        />
+      )}
       <Row justify="space-between" align="top" gutter={[16, 12]} style={{ marginBottom: 20 }}>
         <Col>
           <Title level={2} style={{ margin: 0 }}>Vendas</Title>

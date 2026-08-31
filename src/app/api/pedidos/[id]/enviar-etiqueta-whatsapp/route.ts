@@ -9,6 +9,10 @@ import {
   isJobUniqueViolation,
   normalizeIdempotencyKey,
 } from '@/services/job-idempotency';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -42,6 +46,17 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     }
 
     const client = createServiceClient();
+    const { data: pedido, error: pedidoError } = await client
+      .from('pedidos')
+      .select('snapshot_source')
+      .eq('id', params.id)
+      .maybeSingle();
+    if (pedidoError) {
+      return NextResponse.json({ error: 'Falha ao validar o pedido' }, { status: 500 });
+    }
+    if (isHomologationFixtureSource((pedido as any)?.snapshot_source)) {
+      return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
     const dedupeKey = `pedido:${params.id}`;
     const reusable = await findReusableJob({
       client,

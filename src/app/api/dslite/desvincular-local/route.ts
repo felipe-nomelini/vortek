@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 export async function POST(req: Request) {
   try {
@@ -12,7 +16,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     let query = client
       .from('pedidos')
-      .select('id,ml_order_id,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source')
+      .select('id,ml_order_id,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,snapshot_source')
       .limit(1);
 
     if (pedidoId) {
@@ -24,6 +28,9 @@ export async function POST(req: Request) {
     const { data: pedido, error: pedidoError } = await query.maybeSingle();
     if (pedidoError || !pedido) {
       return NextResponse.json({ error: 'Pedido não encontrado' }, { status: 404 });
+    }
+    if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+      return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
     }
 
     const dsliteIdAntigo = pedido.dslite_id ? String(pedido.dslite_id) : null;
@@ -67,4 +74,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: err?.message || 'Erro ao desvincular compra DSLite local' }, { status: 500 });
   }
 }
-

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
+import { BNT_D01_FIXTURE_SOURCE } from "@/lib/homologation-fixture";
 import { fetchML } from "@/services/integration";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
@@ -88,6 +89,7 @@ export async function POST(request: Request) {
         .from("pedidos")
         .select("id, ml_order_id, ml_pack_id")
         .is("ml_pack_id", null)
+        .or(`snapshot_source.is.null,snapshot_source.neq.${BNT_D01_FIXTURE_SOURCE}`)
         .not("ml_order_id", "is", null)
         .limit(limit);
 

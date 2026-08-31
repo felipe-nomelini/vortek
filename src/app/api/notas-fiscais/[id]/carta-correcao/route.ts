@@ -3,6 +3,10 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { normalizeNfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
 import { enviarCartaCorrecaoBrasilNfePorChave } from '@/services/fiscal-provider';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 function resolveTipoAmbiente(): 1 | 2 {
   const v = Number(String(process.env.BRASILNFE_TIPO_AMBIENTE || '1').trim());
@@ -34,7 +38,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   const serviceClient = createServiceClient();
   const { data: pedido, error: pedidoError } = await serviceClient
     .from('pedidos')
-    .select('id,ml_order_id,nfe_chave,nfe_status,nota_fiscal_numero')
+    .select('id,ml_order_id,nfe_chave,nfe_status,nota_fiscal_numero,snapshot_source')
     .eq('id', id)
     .maybeSingle();
 
@@ -43,6 +47,9 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   }
   if (!pedido) {
     return NextResponse.json({ error: 'Nota fiscal não encontrada' }, { status: 404 });
+  }
+  if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
   }
   if (!pedido.nfe_chave) {
     return NextResponse.json({ error: 'Nota fiscal sem chave de acesso para Carta de Correção.' }, { status: 422 });

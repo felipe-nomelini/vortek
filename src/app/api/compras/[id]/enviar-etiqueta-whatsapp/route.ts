@@ -8,6 +8,11 @@ import {
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { normalizeWhatsappChatId, sendWahaFile } from '@/services/waha';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureId,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -132,16 +137,22 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
       .maybeSingle();
     if (compraError) return NextResponse.json({ error: compraError.message }, { status: 500 });
     if (!compra) return NextResponse.json({ error: 'Compra não encontrada' }, { status: 404 });
+    if (isHomologationFixtureId(compra.id)) {
+      return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
 
     const dsid = String((compra as any).dsid || '').trim();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,ml_bundle_primary')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,ml_bundle_primary,snapshot_source')
       .eq('dslite_id', dsid)
       .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
       .maybeSingle();
     if (pedidoError) return NextResponse.json({ error: pedidoError.message }, { status: 500 });
     if (!pedido) return NextResponse.json({ error: 'Pedido de venda vinculado à compra não encontrado' }, { status: 404 });
+    if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+      return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
 
     const pedidoId = String((pedido as any).id);
     const mlOrderId = String((pedido as any).ml_order_id || '').trim() || null;

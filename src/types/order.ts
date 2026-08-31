@@ -186,4 +186,5 @@ export interface Order {
   whatsapp_label_updated_at?: string | null;
   whatsapp_label_error?: string | null;
   whatsapp_label_next_retry_at?: string | null;
+  is_homologation_fixture?: boolean;
 }

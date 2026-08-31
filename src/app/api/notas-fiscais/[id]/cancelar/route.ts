@@ -5,6 +5,10 @@ import {
   normalizeNfeTechnicalStatus,
 } from "@/lib/fiscal/nfe-status";
 import { cancelarNotaBrasilNfePorChave } from "@/services/fiscal-provider";
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from "@/lib/homologation-fixture";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 
 const DEFAULT_JUSTIFICATIVA =
@@ -49,7 +53,7 @@ export async function POST(
   const { data: pedido, error: pedidoError } = await serviceClient
     .from("pedidos")
     .select(
-      "id,ml_order_id,nfe_chave,nfe_status,nfe_protocolo,nota_fiscal_numero",
+      "id,ml_order_id,nfe_chave,nfe_status,nfe_protocolo,nota_fiscal_numero,snapshot_source",
     )
     .eq("id", id)
     .maybeSingle();
@@ -65,6 +69,9 @@ export async function POST(
       { error: "Nota fiscal não encontrada" },
       { status: 404 },
     );
+  }
+  if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
   }
 
   const statusNormalizado = normalizeNfeTechnicalStatus(pedido.nfe_status);

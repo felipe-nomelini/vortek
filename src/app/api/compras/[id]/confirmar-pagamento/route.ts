@@ -8,6 +8,11 @@ import { buildPublicSupplierReceiptUrl } from '@/lib/public-supplier-receipt-lin
 import { createShortLink } from '@/lib/short-links';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
 import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureId,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
 import { z } from 'zod';
 
@@ -273,11 +278,14 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
   if (!compra?.id) {
     return NextResponse.json({ error: 'Compra não encontrada' }, { status: 404 });
   }
+  if (isHomologationFixtureId(compra.id)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+  }
   if (compra.supplier_payment_mode !== 'prepaid_pix') {
     return NextResponse.json({ error: 'Esta compra não exige confirmação manual de pagamento' }, { status: 422 });
   }
 
-  const pedidoSelect = 'id,ml_order_id,numero,dslite_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary';
+  const pedidoSelect = 'id,ml_order_id,numero,dslite_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary,snapshot_source';
   let pedidoQuery = service.from('pedidos').select(pedidoSelect);
   const pedidoId = parsed.pedidoId && PEDIDO_ID_SCHEMA.safeParse(parsed.pedidoId).success
     ? parsed.pedidoId
@@ -306,6 +314,9 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
   const pedido = (pedidosVinculados || [])[0] as any;
   if (!pedido?.id || !pedido?.ml_order_id) {
     return NextResponse.json({ error: 'Pedido de venda vinculado não encontrado para retomar o fluxo DSLite' }, { status: 404 });
+  }
+  if (isHomologationFixtureSource(pedido.snapshot_source)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
   }
   if (String(pedido.dslite_id || '').trim() !== String(compra.dsid || '').trim()) {
     return NextResponse.json({

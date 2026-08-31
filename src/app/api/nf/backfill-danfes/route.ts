@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
+import { BNT_D01_FIXTURE_SOURCE } from "@/lib/homologation-fixture";
 import {
   ensureDanfeStoredForPedido,
   resolveDanfeStoragePath,
@@ -42,6 +43,7 @@ export async function POST(request: Request) {
         "id,numero,ml_order_id,nota_fiscal_numero,nota_fiscal_emitida,nfe_status,nfe_external_id,nfe_chave,nfe_danfe_url,nfe_last_sync_at",
       )
       .eq("nfe_status", "authorized")
+      .or(`snapshot_source.is.null,snapshot_source.neq.${BNT_D01_FIXTURE_SOURCE}`)
       .not("nota_fiscal_numero", "is", null)
       .not("nfe_chave", "is", null);
 

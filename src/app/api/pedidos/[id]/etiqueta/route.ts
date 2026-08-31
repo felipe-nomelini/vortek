@@ -6,6 +6,10 @@ import {
   downloadShippingLabelFromStorage,
 } from '@/lib/shipping-label-storage';
 import { normalizeMlShippingLabelPdfForThermalPrint } from '@/lib/shipping-label-pdf';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   const auth = await authorizeApiRequest(request, 'sales.read');
@@ -17,10 +21,13 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   const thermalPdf = format === 'thermal_pdf';
   const { data: pedido, error } = await client
     .from('pedidos')
-    .select('numero,ml_label_storage_path,ml_thermal_label_storage_path')
+    .select('numero,ml_label_storage_path,ml_thermal_label_storage_path,snapshot_source')
     .eq('id', (await context.params).id)
     .maybeSingle();
   if (error) return NextResponse.json({ error: 'Erro ao localizar etiqueta' }, { status: 500 });
+  if (isHomologationFixtureSource((pedido as any)?.snapshot_source)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+  }
   const storagePath = thermal
     ? pedido?.ml_thermal_label_storage_path
     : pedido?.ml_label_storage_path;

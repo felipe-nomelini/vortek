@@ -111,6 +111,15 @@ export default function PedidoDetailsDrawer({
             />
           )}
 
+          {order.is_homologation_fixture && (
+            <Alert
+              type="info"
+              showIcon
+              message="Amostra protegida de homologação"
+              description="Os dados são reais, mas rastreamento, links externos, etiquetas e documentos fiscais estão desabilitados."
+            />
+          )}
+
           <div>
             <Title level={5}>Resumo operacional</Title>
             <Descriptions size="small" column={{ xs: 1, sm: 2 }} bordered>
@@ -188,21 +197,25 @@ export default function PedidoDetailsDrawer({
               </Descriptions.Item>
               <Descriptions.Item label="Rastreio">
                 {order.ml_shipment_id ? (
-                  <Button type="link" size="small" icon={<CarOutlined />} onClick={() => onTrack(order)}>
+                  <Button type="link" size="small" icon={<CarOutlined />} disabled={order.is_homologation_fixture} onClick={() => onTrack(order)}>
                     {order.rastreio || order.ml_shipment_id}
                   </Button>
                 ) : '—'}
               </Descriptions.Item>
               <Descriptions.Item label="Pedido ML">
-                <a href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.ml_order_id || order.numero}/detalhe`} target="_blank" rel="noopener noreferrer">
-                  {order.ml_pack_id || order.ml_order_id || order.numero}
-                </a>
+                {order.is_homologation_fixture
+                  ? <Text>{order.ml_pack_id || order.ml_order_id || order.numero}</Text>
+                  : (
+                    <a href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.ml_order_id || order.numero}/detalhe`} target="_blank" rel="noopener noreferrer">
+                      {order.ml_pack_id || order.ml_order_id || order.numero}
+                    </a>
+                  )}
               </Descriptions.Item>
             </Descriptions>
             {order.notaFiscal?.emitida && (
               <Space style={{ marginTop: 12 }}>
-                <Button size="small" icon={<FilePdfOutlined />} onClick={() => onOpenDanfe(order)}>DANFE</Button>
-                <Button size="small" onClick={() => onDownloadXml(order)}>XML</Button>
+                <Button size="small" icon={<FilePdfOutlined />} disabled={order.is_homologation_fixture} onClick={() => onOpenDanfe(order)}>DANFE</Button>
+                <Button size="small" disabled={order.is_homologation_fixture} onClick={() => onDownloadXml(order)}>XML</Button>
               </Space>
             )}
           </div>

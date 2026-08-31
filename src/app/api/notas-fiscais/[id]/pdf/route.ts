@@ -4,6 +4,10 @@ import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { createDanfeSignedUrl, ensureDanfeStoredForPedido, resolveDanfeStoragePath, DANFE_SIGNED_URL_TTL_SECONDS } from '@/lib/fiscal/danfe-storage';
 import { getFiscalProvider } from '@/services/fiscal-provider';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
   const auth = await authorizeApiRequest(request, 'sales.read');
@@ -17,7 +21,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   const serviceClient = createServiceClient();
   const { data: pedido, error } = await serviceClient
     .from('pedidos')
-    .select('id, numero, nota_fiscal_numero, nfe_external_id, nfe_chave, ml_order_id')
+    .select('id, numero, nota_fiscal_numero, nfe_external_id, nfe_chave, ml_order_id, snapshot_source')
     .eq('id', id)
     .maybeSingle();
 
@@ -27,6 +31,9 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
 
   if (!pedido) {
     return NextResponse.json({ error: 'Nota fiscal não encontrada' }, { status: 404 });
+  }
+  if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
   }
 
   if (!pedido.nota_fiscal_numero) {

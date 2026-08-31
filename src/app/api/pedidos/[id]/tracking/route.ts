@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const auth = await authorizeApiRequest(request, 'sales.track');
@@ -13,12 +17,15 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   // Buscar pedido no banco
   const { data: pedido, error } = await serviceClient
     .from('pedidos')
-    .select('ml_order_id, ml_shipment_id, ml_claim_id, ml_claim_status, rastreio')
+    .select('ml_order_id, ml_shipment_id, ml_claim_id, ml_claim_status, rastreio, snapshot_source')
     .eq('id', id)
     .maybeSingle();
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
   if (!pedido) return NextResponse.json({ erro: 'Pedido não encontrado' }, { status: 404 });
+  if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+  }
 
   const result: {
     currentStatus: string;

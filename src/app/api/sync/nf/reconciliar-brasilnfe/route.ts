@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
+import { BNT_D01_FIXTURE_SOURCE } from "@/lib/homologation-fixture";
 import { reconcileBrasilNfeExistingInvoice } from "@/lib/fiscal/ensure-brasilnfe-invoice";
 import { BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS } from "@/lib/fiscal/nfe-status";
 
@@ -52,6 +53,7 @@ export async function POST(request: Request) {
       .or(
         `nfe_status.is.null,nfe_status.neq.${BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS}`,
       )
+      .or(`snapshot_source.is.null,snapshot_source.neq.${BNT_D01_FIXTURE_SOURCE}`)
       .limit(limit);
 
     if (mlOrderIds.length > 0) {

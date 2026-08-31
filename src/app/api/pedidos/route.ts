@@ -25,6 +25,7 @@ import {
   isBlockedDropshippingDsliteSupplier,
 } from '@/lib/dslite/supplier-policy';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
+import { isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import {
   includesInternalSupplierFilter,
   listActiveSupplierOptions,
@@ -90,7 +91,11 @@ function reconcileNotaFiscalEmitidaRow(row: any) {
 async function persistReconciledPedidos(rows: any[]) {
   const pending = rows
     .map(reconcileNotaFiscalEmitidaRow)
-    .filter((entry) => entry.needsPersistence && entry.row?.id);
+    .filter((entry) => (
+      entry.needsPersistence
+      && entry.row?.id
+      && !isHomologationFixtureSource(entry.row?.snapshot_source)
+    ));
 
   if (!pending.length) return rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
 

@@ -11,6 +11,10 @@ import { createServiceClient } from '@/lib/supabase';
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { calculateOrderProfit } from '@/services/orders';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 const requestSchema = z.object({
   pedidoId: z.string().uuid(),
@@ -28,12 +32,15 @@ export async function POST(req: Request) {
   const client = createServiceClient();
   const { data: pedido, error: pedidoError } = await client
     .from('pedidos')
-    .select('id,numero,ml_order_id,dslite_id,frete,lucro')
+    .select('id,numero,ml_order_id,dslite_id,frete,lucro,snapshot_source')
     .eq('id', pedidoId)
     .maybeSingle();
 
   if (pedidoError || !pedido) {
     return NextResponse.json({ error: 'Pedido não encontrado.' }, { status: 404 });
+  }
+  if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+    return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
   }
   if (String((pedido as any).dslite_id || '').trim() !== dsid) {
     return NextResponse.json({ error: 'DSID não pertence ao pedido informado.' }, { status: 409 });

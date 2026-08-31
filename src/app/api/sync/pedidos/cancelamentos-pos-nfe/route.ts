@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
+import { BNT_D01_FIXTURE_SOURCE } from "@/lib/homologation-fixture";
 import { resolveSafeDslitePedidoMutation } from "@/lib/dslite/purchase-link";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { cancelarNotaBrasilNfePorChave } from "@/services/fiscal-provider";
@@ -510,6 +511,7 @@ export async function POST(request: Request) {
         "id,numero,ml_order_id,dslite_id,situacao,contato_nome,nfe_chave,nfe_protocolo,nfe_status,nota_fiscal_emitida,nota_fiscal_numero",
       )
       .eq("situacao", "cancelado")
+      .or(`snapshot_source.is.null,snapshot_source.neq.${BNT_D01_FIXTURE_SOURCE}`)
       .not("dslite_id", "is", null)
       .not("nfe_chave", "is", null)
       .eq("nota_fiscal_emitida", true)

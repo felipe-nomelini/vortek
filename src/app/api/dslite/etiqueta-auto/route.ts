@@ -40,6 +40,10 @@ import {
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
 import { calculateOrderProfit } from '@/services/orders';
 import { retryMlLabelDownload } from '@/lib/ml/label-download-retry';
+import {
+  HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
+  isHomologationFixtureSource,
+} from '@/lib/homologation-fixture';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -173,7 +177,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id,snapshot_source')
       .eq('id', pedidoId)
       .maybeSingle();
 
@@ -229,6 +233,9 @@ export async function POST(req: Request) {
 
     if (!pedido) {
       return stepError(steps, 'check_ml_invoice_xml', 'Pedido não encontrado', undefined, 404, 'not_found');
+    }
+    if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
+      return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
     }
 
     if (directShipping) {
