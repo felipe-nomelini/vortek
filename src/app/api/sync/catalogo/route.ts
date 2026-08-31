@@ -456,7 +456,7 @@ export async function POST(req: Request) {
             client
               .from("produto_fornecedor_ofertas")
               .select(
-                "id,produto_id,dslite_fornecedor_id,dslite_produto_id,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)",
+                "id,produto_id,dslite_fornecedor_id,dslite_produto_id,payment_mode,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)",
               )
               .eq("dslite_fornecedor_id", String(fornecedorId))
               .in("dslite_produto_id", dsliteProdutoIds),
@@ -604,7 +604,9 @@ export async function POST(req: Request) {
             estoque: Number(row.estoque || 0),
             ativo: !shouldProductBeInactiveByCost(row.custo),
             prioridade: 100,
-            payment_mode: inferSupplierPaymentMode(row.dslite_fornecedor_id),
+            payment_mode:
+              existingOffer?.payment_mode ||
+              inferSupplierPaymentMode(row.dslite_fornecedor_id),
             last_sync_at: row.dslite_ultima_sync,
             updated_at: new Date().toISOString(),
           });

@@ -364,7 +364,7 @@ export async function POST(req: Request) {
       const [existingOffersResp, existingRowsResp] = await Promise.all([
         client
           .from('produto_fornecedor_ofertas')
-          .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo,ml_item_id,sku)')
+          .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id,payment_mode,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo,ml_item_id,sku)')
           .eq('dslite_fornecedor_id', targetFornecedor)
           .in('dslite_produto_id', dsliteProdutoIds),
         client
@@ -439,7 +439,9 @@ export async function POST(req: Request) {
           estoque: normalizeStock(row.estoque),
           ativo: !shouldProductBeInactiveByCost(row.custo),
           prioridade: 100,
-          payment_mode: inferSupplierPaymentMode(targetFornecedor),
+          payment_mode:
+            existingOffer?.payment_mode ||
+            inferSupplierPaymentMode(targetFornecedor),
           last_sync_at: row.dslite_ultima_sync,
           updated_at: new Date().toISOString(),
         });

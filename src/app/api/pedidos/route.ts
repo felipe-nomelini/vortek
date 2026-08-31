@@ -4,7 +4,7 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
-import { inferSupplierPaymentMode, resolvePreferredOfferForProduct } from '@/lib/produto-fornecedor';
+import { resolvePreferredOfferForProduct, resolveSupplierPaymentMode } from '@/lib/produto-fornecedor';
 import { getSkuLookupVariants } from '@/lib/sku';
 import {
   PREPARATION_ORDER_STATUSES,
@@ -230,7 +230,7 @@ async function resolveFornecedorPreviewByPedido(
   for (let index = 0; index < productIds.length; index += 200) {
     const result = await serviceClient
       .from('produto_fornecedor_ofertas')
-      .select('id,produto_id,dslite_fornecedor_id,fornecedor_nome,custo,estoque,ativo,prioridade')
+      .select('id,produto_id,dslite_fornecedor_id,fornecedor_nome,custo,estoque,ativo,prioridade,payment_mode')
       .in('produto_id', productIds.slice(index, index + 200));
     if (result.error) {
       offerError = result.error;
@@ -336,6 +336,7 @@ async function resolveFornecedorPreviewByPedido(
         produtoId: String(product.id),
         fornecedorId: fornecedorId || null,
         fornecedorNome: fornecedorNome || null,
+        paymentMode: preferredOffer?.payment_mode || null,
         custo: Number(preferredOffer?.custo || 0),
         quantidade: Number(item?.quantidade || 1),
         produtoDescricao: product.nome || item?.titulo || null,
@@ -345,6 +346,7 @@ async function resolveFornecedorPreviewByPedido(
       produtoId: string;
       fornecedorId: string | null;
       fornecedorNome: string | null;
+      paymentMode: string | null;
       custo: number;
       quantidade: number;
       produtoDescricao: string | null;
@@ -402,13 +404,15 @@ async function resolveFornecedorPreviewByPedido(
     const first = selected[0];
     const singleSupplier = supplierKeys.length === 1;
     const fornecedor = singleSupplier ? fornecedorByDsliteId.get(String(first.fornecedorId || '')) : null;
-    const paymentMode = first.fornecedorId ? inferSupplierPaymentMode(first.fornecedorId) : null;
+    const paymentMode = singleSupplier && first.fornecedorId
+      ? resolveSupplierPaymentMode(first.paymentMode, first.fornecedorId)
+      : null;
     previews.set(pedidoId, {
       fornecedor_id: singleSupplier ? first.fornecedorId : null,
       fornecedor_nome: singleSupplier ? first.fornecedorNome : 'Múltiplos fornecedores previstos',
       fornecedor_telefone: fornecedor?.telefone || null,
       supplier_pix_key: fornecedor?.supplier_pix_key || null,
-      supplier_payment_mode: singleSupplier ? paymentMode : null,
+      supplier_payment_mode: paymentMode,
       supplier_payment_status: paymentMode === 'prepaid_pix' ? 'pending' : null,
       supplier_payment_amount: selected.reduce((total, item) => total + item.custo * item.quantidade, 0) || null,
       operational_supplier_ids: Array.from(new Set(selected.map((item) => item.fornecedorId).filter(Boolean))),

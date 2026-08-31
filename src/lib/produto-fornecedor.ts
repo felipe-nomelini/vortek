@@ -20,6 +20,17 @@ export function inferSupplierPaymentMode(_fornecedorId: string | number | null |
   return 'prepaid_pix';
 }
 
+export function resolveSupplierPaymentMode(
+  value: unknown,
+  fornecedorId?: string | number | null,
+  allowLegacyBalanceAccount = false,
+): SupplierPaymentMode {
+  const raw = String(value || '').trim();
+  if (raw === 'prepaid_pix' || raw === 'postpaid') return raw;
+  if (allowLegacyBalanceAccount && raw === 'balance_account') return raw;
+  return inferSupplierPaymentMode(fornecedorId);
+}
+
 export function normalizeProductMatchText(value: unknown): string {
   return String(value || '')
     .normalize('NFD')

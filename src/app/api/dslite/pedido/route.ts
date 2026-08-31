@@ -37,6 +37,7 @@ import {
 import {
   choosePreferredOffer,
   inferSupplierPaymentMode,
+  resolveSupplierPaymentMode,
   resolvePreferredOfferForProduct,
   resolveCompraStatus,
   syncPreferredProductSnapshot,
@@ -117,18 +118,6 @@ const ITEM_TOTAL_TOLERANCE = 0.01;
 const STATUS_AGUARDANDO_PAGAMENTO_FORNECEDOR =
   "Aguardando Pagamento Fornecedor";
 const BRASIL_NFE_MAX_CLIENT_NAME_LENGTH = 60;
-
-function normalizeSupplierPaymentMode(
-  value: unknown,
-  fornecedorId?: string | number | null,
-  allowLegacyBalanceAccount = false,
-): SupplierPaymentMode {
-  const raw = String(value || "").trim();
-  if (raw === "prepaid_pix" || raw === "postpaid")
-    return raw;
-  if (allowLegacyBalanceAccount && raw === "balance_account") return raw;
-  return inferSupplierPaymentMode(fornecedorId);
-}
 
 function extractFirstItemQuantityFromXml(
   xml: string | null | undefined,
@@ -3961,7 +3950,7 @@ async function runDsliteCreateJob(
       fornecedorNomeResolved = existingCompra?.fornecedor_nome
         ? String(existingCompra.fornecedor_nome)
         : null;
-      supplierPaymentMode = normalizeSupplierPaymentMode(
+      supplierPaymentMode = resolveSupplierPaymentMode(
         existingCompra?.supplier_payment_mode,
         fornecedorId,
         true,
@@ -4067,7 +4056,7 @@ async function runDsliteCreateJob(
       usePlaceholderLabel =
         isMlLabelReleasePending &&
         allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved);
-      supplierPaymentMode = normalizeSupplierPaymentMode(
+      supplierPaymentMode = resolveSupplierPaymentMode(
         selectedOffer.offer.payment_mode,
         fornecedorId,
       );
