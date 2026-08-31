@@ -78,7 +78,7 @@ GitHub dev
     ↓
 Easypanel (192.168.1.160): serviço vortek-erp-dev
     ↓
-dev.vortek.shop
+dev.bentevi.shop
     ↓
 Supabase self-hosted STAGING
     ↓
@@ -99,7 +99,7 @@ build quando aplicável
     ↓
 commit na dev
     ↓
-deploy em dev.vortek.shop
+deploy em dev.bentevi.shop
     ↓
 validação funcional
 ```
@@ -126,7 +126,7 @@ smoke test seguro
 
 - Não trocar o serviço atual `vortek-erp` do Easypanel para a branch `dev`.
 - Não usar `app.vortek.shop` para homologação.
-- Não apontar `dev.vortek.shop` para o banco de produção.
+- Não apontar `dev.bentevi.shop` para o banco de produção.
 - Não copiar secrets produtivos para o staging por conveniência.
 - Não deixar o scheduler de staging executar contra contas reais.
 - Não testar emissão fiscal em produção.
@@ -143,7 +143,7 @@ smoke test seguro
 |---|---|---|
 | Git | `main` | `dev` |
 | App Easypanel | `vortek-erp` | `vortek-erp-dev` em `192.168.1.160` |
-| Domínio | `app.vortek.shop` | `dev.vortek.shop` |
+| Domínio | `app.vortek.shop` | `dev.bentevi.shop` |
 | Supabase | stack atual de produção | stack staging independente |
 | Banco PostgreSQL | produção | staging |
 | Storage | produção | staging |
@@ -176,7 +176,7 @@ domínio: app.vortek.shop
 ```text
 vortek-erp-dev
 branch: dev
-domínio: dev.vortek.shop
+domínio: dev.bentevi.shop
 ```
 
 O Easypanel permite selecionar uma branch por serviço GitHub/Git. Portanto, os dois serviços podem usar o mesmo repositório e branches diferentes.
@@ -319,7 +319,7 @@ Não deixar staging com scheduler geral ativo enquanto existirem integrações s
 Webhooks devem apontar para:
 
 ```text
-https://dev.vortek.shop/api/webhooks/...
+https://dev.bentevi.shop/api/webhooks/...
 ```
 
 apenas quando a conta/aplicação externa também for de teste.
@@ -388,7 +388,7 @@ Nunca enviar alertas de staging para contatos reais.
 Domínio recomendado:
 
 ```text
-dev.vortek.shop
+dev.bentevi.shop
 ```
 
 Ele deve apontar somente para o serviço `vortek-erp-dev`, no host `192.168.1.160`.
@@ -494,7 +494,7 @@ Objetivo:
 Executar em:
 
 ```text
-https://dev.vortek.shop
+https://dev.bentevi.shop
 ```
 
 com:
@@ -547,7 +547,7 @@ Cada ação do plano segue:
 5. rodar npm run validate
 6. rodar build quando aplicável
 7. aplicar migration somente no staging, se houver
-8. testar em dev.vortek.shop
+8. testar em dev.bentevi.shop
 9. registrar resultado
 10. só então marcar ação concluída
 ```
@@ -577,7 +577,7 @@ Garantir que todas as mudanças futuras possam ser testadas sem risco para `app.
 
 - [ ] Criar serviço `vortek-erp-dev` no Easypanel, no host `192.168.1.160`.
 - [ ] Configurar source GitHub na branch `dev`.
-- [ ] Configurar domínio `dev.vortek.shop`.
+- [ ] Configurar domínio `dev.bentevi.shop`.
 - [ ] Criar deploy webhook separado para staging.
 - [ ] Criar stack Supabase staging independente.
 - [ ] Aplicar migrations atuais no staging.
@@ -1543,7 +1543,7 @@ jobs
 O local de teste funcional do novo Vortek será:
 
 ```text
-https://dev.vortek.shop
+https://dev.bentevi.shop
 ```
 
 ligado a um Supabase staging separado.

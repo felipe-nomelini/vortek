@@ -4,7 +4,7 @@
 **Última atualização:** 31/08/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
-**Aplicação de homologação:** `https://dev.vortek.shop`
+**Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
 **Próxima ação obrigatória:** `BNT-DOM-DEV — dev.bentevi.shop`
@@ -159,7 +159,7 @@ Copiar este gate para o registro da ação e preencher com evidências reais:
 - [ ] `npm run validate` executado e aprovado;
 - [ ] `npm run build` executado quando aplicável;
 - [ ] migration aplicada somente no `supabase-dev`, quando aplicável;
-- [ ] comportamento validado em `dev.vortek.shop`, quando aplicável;
+- [ ] comportamento validado em `dev.bentevi.shop`, quando aplicável;
 - [ ] isolamento de produção reconfirmado;
 - [ ] diff revisado e sem mudanças fora do escopo;
 - [ ] rollback definido;
@@ -1814,7 +1814,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Documento operacional:** `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md`
 **Dossiê de interface:** [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
-**Situação:** dossiê, fundação visual e shell desktop concluídos; domínio DEV pendente.
+**Situação:** dossiê, fundação visual e shell desktop concluídos; domínio DEV novo operacional, com retirada do alias antigo pendente.
 
 #### Pré-requisitos
 
@@ -1880,6 +1880,32 @@ Executar somente depois das regras e correções das quais cada item depende.
 **Rollback:** reverter o commit `acdae58` e reimplantar somente a homologação, se necessário.
 
 **Pendência:** nenhuma para `BNT-SHELL-01`. A próxima ação obrigatória é `BNT-DOM-DEV — dev.bentevi.shop`.
+
+#### Resultado parcial de `BNT-DOM-DEV`
+
+**Status:** domínio novo operacional e validado em `2026-08-31`; fechamento aguardando somente a retirada controlada do alias antigo.
+
+**Escopo executado:**
+
+- `dev.bentevi.shop` cadastrado pelo responsável somente no serviço Easypanel `vortek-erp-dev`, com `NEXT_PUBLIC_APP_URL` atualizado e novo deploy concluído;
+- DNS corrigido para CNAME proxied do mesmo Cloudflare Tunnel já usado pela homologação, sem apontamento ao IP público do webhook de deploy;
+- ingress `dev.bentevi.shop` adicionado somente para `http://local-vortek-erp-dev:80`, preservando integralmente os quatro ingress anteriores e o `catch-all`;
+- TLS público emitido para `bentevi.shop` e `*.bentevi.shop`;
+- configuração Cloudflare anterior preservada em snapshot local protegido antes da mudança;
+- nenhuma alteração de código funcional, banco, migration, produção, `main` ou serviço Easypanel de produção.
+
+**Validação:**
+
+- read-back Cloudflare: tunnel na versão `4`, ingress anteriores preservados e novo CNAME proxied confirmado;
+- resolvedores públicos retornaram os endereços de borda Cloudflare para `dev.bentevi.shop`;
+- `/` respondeu `308` para `/dashboard`, `/login` respondeu `200` e `/api/ops/health` respondeu `200` com `success=true`;
+- callback Mercado Livre respondeu `401` sem sessão e webhook respondeu `405` para `GET`, comprovando as rotas publicadas sem disparar integração;
+- acesso direto com o novo host chegou ao serviço correto em `192.168.1.160` e respondeu `308`;
+- `app.vortek.shop` e `dev.vortek.shop` continuaram respondendo `308` durante a validação.
+
+**Rollback:** restaurar o snapshot local do tunnel, remover o CNAME novo e manter temporariamente `dev.vortek.shop`.
+
+**Pendência:** remover `dev.vortek.shop` do serviço `vortek-erp-dev` no Easypanel. Após a confirmação, remover somente o CNAME antigo e seu ingress DEV no Cloudflare Tunnel, repetir o smoke test e liberar `BNT-D01`.
 
 #### Desktop — uma página por tarefa
 
@@ -2034,7 +2060,7 @@ Esta seção prepara a promoção. Ela não autoriza merge nem deploy.
 - [ ] `npm run validate` aprovado;
 - [ ] build aprovado quando aplicável;
 - [ ] migrations aplicadas e testadas somente em staging;
-- [ ] `dev.vortek.shop` funcional;
+- [ ] `dev.bentevi.shop` funcional;
 - [ ] commits e diff destinados à `main` revisados;
 - [ ] nenhuma secret adicionada ao Git;
 - [ ] migrations da promoção identificadas;
