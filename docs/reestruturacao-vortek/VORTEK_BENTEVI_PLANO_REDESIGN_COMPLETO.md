@@ -3,7 +3,7 @@
 **Função:** especificação operacional da nova identidade e da reestruturação visual
 **Ambientes alvo:** desenvolvimento e homologação
 **Branch de execução:** `dev`
-**Status:** dossiê UX e fundação visual concluídos; shell desktop pendente, uma ação por vez
+**Status:** dossiê UX, fundação visual e shell desktop concluídos; domínio DEV pendente, uma ação por vez
 **Identidade visível:** Bentevi
 **Homologação futura:** `https://dev.bentevi.shop`
 **Produção futura:** `https://app.bentevi.shop`
@@ -59,7 +59,7 @@ correções funcionais
 
 [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
 
-Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. `BNT-BRAND-01 — Assets e tokens Bentevi` foi concluída; a próxima ação do Item 17 é `BNT-SHELL-01 — Shell desktop Bentevi`.
+Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. `BNT-BRAND-01 — Assets e tokens Bentevi` e `BNT-SHELL-01 — Shell desktop Bentevi` foram concluídas; a próxima ação do Item 17 é `BNT-DOM-DEV — dev.bentevi.shop`.
 
 ---
 

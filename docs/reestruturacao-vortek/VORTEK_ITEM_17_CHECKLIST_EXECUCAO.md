@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-SHELL-01 — Shell desktop Bentevi`
+**Próxima ação obrigatória:** `BNT-DOM-DEV — dev.bentevi.shop`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-SHELL-01` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-DOM-DEV` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -136,6 +136,11 @@ Regras de uso:
 - [x] Não avançar para `BNT-UX-00` antes de `UI-06` estar integralmente validada.
 - [x] Executar somente `BNT-UX-00 — Dossiê completo de interface`.
 - [x] Não avançar para `BNT-BRAND-01` antes de `BNT-UX-00` estar integralmente validada.
+- [x] Executar somente `BNT-BRAND-01 — Assets e tokens Bentevi`.
+- [x] Não avançar para `BNT-SHELL-01` antes de `BNT-BRAND-01` estar integralmente validada.
+- [x] Executar somente `BNT-SHELL-01 — Shell desktop Bentevi`.
+- [x] Não avançar para `BNT-DOM-DEV` antes de `BNT-SHELL-01` estar integralmente validada e aprovada em homologação.
+- [ ] Executar somente `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
 
 ---
 
@@ -1809,7 +1814,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Documento operacional:** `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md`
 **Dossiê de interface:** [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
-**Situação:** dossiê concluído; implementação visual ainda não iniciada.
+**Situação:** dossiê, fundação visual e shell desktop concluídos; domínio DEV pendente.
 
 #### Pré-requisitos
 
@@ -1818,7 +1823,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] concluir `UI-01` a `UI-06`;
 - [x] executar `BNT-UX-00 — Dossiê completo de interface`;
 - [x] executar `BNT-BRAND-01 — Assets e tokens Bentevi`;
-- [ ] executar `BNT-SHELL-01 — Shell desktop Bentevi`;
+- [x] executar `BNT-SHELL-01 — Shell desktop Bentevi`;
 - [ ] executar `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
 
 #### Resultado de `BNT-BRAND-01`
@@ -1847,6 +1852,34 @@ Executar somente depois das regras e correções das quais cada item depende.
 - deploy, migration, banco e integração externa: **N/A**.
 
 **Próxima ação:** `BNT-SHELL-01 — Shell desktop Bentevi`. `BNT-DOM-DEV` permanece separada e usará exclusivamente `dev.bentevi.shop`.
+
+#### Resultado de `BNT-SHELL-01`
+
+**Status:** concluída e aprovada em homologação em `2026-08-31`, na branch `dev`.
+
+**Escopo executado:**
+
+- shell desktop Bentevi implementado com sidebar expandida e recolhida, cabeçalho, breadcrumb, perfil e logout;
+- itens, grupos, ordem, URLs e aliases da navegação preservados;
+- restrições administrativas existentes refletidas no menu sem criar nova fonte de autorização;
+- saúde das integrações ligada ao endpoint autenticado existente;
+- perfil e logout ligados às APIs autenticadas existentes, sem recuperar identidade do `localStorage`;
+- páginas internas e regras de negócio preservadas; domínio, banco e integrações externas não foram alterados.
+
+**Validação:**
+
+- teste direcionado `tests/bentevi-shell.test.js`: aprovado;
+- `npm run validate`: aprovado;
+- `npm run build`: aprovado;
+- deploy separado no serviço de homologação `vortek-erp-dev`: concluído;
+- smoke HTTP de login, assets Bentevi, redirecionamento de rota protegida e proteção das APIs autenticadas: aprovado;
+- inspeção visual em `dev.vortek.shop`: aprovada pelo usuário em `2026-08-31`;
+- commit `acdae58` confirmado em `dev` e em `origin/dev`;
+- migration, banco, produção e `main`: **N/A** e intocados.
+
+**Rollback:** reverter o commit `acdae58` e reimplantar somente a homologação, se necessário.
+
+**Pendência:** nenhuma para `BNT-SHELL-01`. A próxima ação obrigatória é `BNT-DOM-DEV — dev.bentevi.shop`.
 
 #### Desktop — uma página por tarefa
 
