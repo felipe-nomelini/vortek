@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `UI-04 — DTO Pedidos`
+**Próxima ação obrigatória:** `UI-06 — Compras`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-01` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-06` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -128,6 +128,10 @@ Regras de uso:
 - [x] Não avançar para `UI-01` antes de `UI-02` estar integralmente validada.
 - [x] Executar somente `UI-01 — Pedidos`.
 - [x] Não avançar para `UI-03` antes de `UI-01` estar integralmente validada.
+- [x] Executar somente `UI-03 — Configurações`.
+- [x] Não avançar para `UI-04` antes de `UI-03` estar integralmente validada.
+- [x] Executar somente `UI-04 — DTO Pedidos`.
+- [x] Não avançar para `UI-06` antes de `UI-04` estar integralmente validada.
 
 ---
 
@@ -1692,11 +1696,48 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 ### UI-04 — DTO Pedidos
 
-- [ ] mapear a resposta operacional real da API;
-- [ ] criar o tipo específico dessa resposta;
-- [ ] substituir apenas os `any` do fluxo afetado;
-- [ ] não iniciar campanha genérica de tipagem;
-- [ ] concluir o gate obrigatório da seção 3.
+**Prioridade:** P2
+**Situação:** concluída e homologada em DEV em 31/08/2026.
+**Commit funcional:** `74928af` — `refactor(ui): type operational orders DTO`.
+
+- [x] mapear a resposta operacional real da API;
+- [x] criar o tipo específico dessa resposta;
+- [x] substituir apenas os `any` do fluxo afetado;
+- [x] não iniciar campanha genérica de tipagem;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Estado/causa confirmados:** `/api/pedidos` devolvia a row de `pedidos` enriquecida com agregações operacionais, itens, cliente, compra, fornecedor, fulfillment, pagamento e estados de etiqueta. A página declarava `mapDBtoOrder` como se recebesse somente a row bruta e compensava a divergência com casts `as any` em todos esses campos.
+
+**Mudança:** `PedidoOperacionalApiDto` passou a representar a row com os enriquecimentos reais e `PedidosOperacionaisApiResponse` passou a tipar a lista, paginação e fornecedores. A rota tipa o payload produzido e a página tipa a resposta consumida. O mapper usa o DTO diretamente e remove somente os casts compensatórios desse fluxo, incluindo o cast redundante de `ml_claim_id`. Tipos já existentes de fornecedor, pagamento e estados operacionais foram reutilizados; o JSON, a lógica e a interface permaneceram inalterados.
+
+**Gate obrigatório:**
+
+- [x] branch confirmada como `dev` e working tree inspecionada;
+- [x] `AGENTS.md` e documentação aplicável lidos;
+- [x] estado atual e causa confirmados na rota, DTO, mapper e teste existentes;
+- [x] documentação oficial atual do TypeScript e documentação local do Next.js 16.3.3 consultadas;
+- [x] menor mudança correta e reversível definida;
+- [x] teste de regressão estrutural adicionado;
+- [x] implementação limitada à ação `UI-04`;
+- [x] teste direcionado executado e aprovado;
+- [x] `npm run validate` executado e aprovado;
+- [x] `npm run build` executado e aprovado;
+- **N/A:** nenhuma migration ou escrita em banco foi necessária;
+- [x] comportamento e artefato validados em `dev.vortek.shop`;
+- [x] isolamento de produção reconfirmado;
+- [x] diff revisado e sem mudanças fora do escopo;
+- [x] rollback definido;
+- [x] resultado e pendências registrados neste documento.
+
+**Validação:** 5/5 testes direcionados aprovados em `tests/orders-ui-responsibilities.test.js`; o teste exige o DTO em produtor e consumidor e impede o retorno dos casts compensatórios. `npm run validate`, `npm run build` com 119 páginas e `git diff --check` foram aprovados.
+
+**Homologação:** commit funcional enviado somente para `origin/dev`. Os webhooks iniciais foram aceitos enquanto o controlador Easypanel se recuperava e não criaram tarefa; após confirmar o container anterior saudável e o controlador estável, o reenvio oficial concluiu. `vortek-erp-dev` confirmou `GIT_SHA=74928af`; health respondeu HTTP `200`, `/pedidos` preservou o redirect autenticado `307` e `/api/pedidos` respondeu `401` sem sessão.
+
+**Isolamento:** nenhuma migration, escrita em banco ou chamada de escrita ao Mercado Livre, DSLite, Brasil NFe ou WhatsApp foi executada. Banco/Supabase de produção `.160`, banco DEV `.162`, serviço de produção, `main` e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `74928af` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `UI-04`. A próxima ação obrigatória é `UI-06 — Compras`.
 
 ### UI-06 — Compras
 
