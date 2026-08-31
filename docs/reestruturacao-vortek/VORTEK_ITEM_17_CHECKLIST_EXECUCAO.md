@@ -1472,7 +1472,7 @@ Executar **uma regra por tarefa**.
 - `topup` e `purchase_debit` permanecem somente como tipos históricos legíveis, sem restaurar writers da conta-saldo Hayamax;
 - 8/8 testes direcionados aprovados, incluindo os testes de aposentadoria da Hayamax; `npm run validate`, `npm run build` com 119 páginas estáticas e `git diff --check`: aprovados;
 - commit funcional `e5b8c98` enviado somente para `origin/dev`;
-- dois acionamentos do webhook oficial retornaram HTTP `200`; o primeiro build compilou com sucesso, mas foi cancelado ao final pelo segundo acionamento, e a segunda action permaneceu sem execução/log durante a janela observada;
+- três acionamentos controlados do webhook oficial retornaram HTTP `200`; o primeiro build compilou com sucesso, mas foi cancelado ao final pelo segundo acionamento, e as duas actions seguintes permaneceram sem execução/log durante as janelas observadas;
 - o container `vortek-erp-dev` permaneceu no SHA anterior `502cab6`; portanto a homologação da versão nova ainda não foi declarada concluída;
 - nenhuma migration, escrita em banco ou chamada externa financeira foi executada; `main`, banco de produção `.160`, deploy de produção e `app.vortek.shop` permaneceram intocados.
 
