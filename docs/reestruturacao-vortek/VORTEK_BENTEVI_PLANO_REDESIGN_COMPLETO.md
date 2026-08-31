@@ -3,7 +3,7 @@
 **Função:** especificação operacional da nova identidade e da reestruturação visual
 **Ambientes alvo:** desenvolvimento e homologação
 **Branch de execução:** `dev`
-**Status:** aprovado; execução futura, uma ação por vez
+**Status:** dossiê UX concluído; execução visual pendente, uma ação por vez
 **Identidade visível:** Bentevi
 **Homologação futura:** `https://dev.bentevi.shop`
 **Produção futura:** `https://app.bentevi.shop`
@@ -55,7 +55,11 @@ correções funcionais
 → preparação controlada de produção
 ```
 
-A próxima ação do Item 17 é `BNT-UX-00 — Dossiê completo de interface`.
+`BNT-UX-00 — Dossiê completo de interface` foi concluído em:
+
+[VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
+
+Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. A próxima ação do Item 17 é `BNT-BRAND-01 — Assets e tokens Bentevi`.
 
 ---
 
@@ -244,9 +248,9 @@ Nenhuma validação visual deve disparar escrita externa ou operação destrutiv
 
 ## 11. Fontes oficiais da fundação
 
-- Ant Design — tema e tokens: <https://ant.design/docs/react/customize-theme/>
-- Ant Design — Layout responsivo: <https://ant.design/components/layout/>
-- Ant Design — tabelas: <https://ant.design/components/table/>
+- Ant Design 5 — tema e tokens: <https://5x.ant.design/docs/react/customize-theme/>
+- Ant Design 5 — Layout responsivo: <https://5x.ant.design/components/layout/>
+- Ant Design 5 — tabelas: <https://5x.ant.design/components/table/>
 - Next.js — metadata: <https://nextjs.org/docs/app/api-reference/functions/generate-metadata>
 - Next.js — ícones: <https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons>
 - Expo — app config: <https://docs.expo.dev/versions/latest/config/app/>

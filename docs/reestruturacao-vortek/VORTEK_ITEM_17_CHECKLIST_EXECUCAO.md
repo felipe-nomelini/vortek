@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-UX-00 — Dossiê completo de interface`
+**Próxima ação obrigatória:** `BNT-BRAND-01 — Assets e tokens Bentevi`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-UX-00` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-BRAND-01` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -134,6 +134,8 @@ Regras de uso:
 - [x] Não avançar para `UI-06` antes de `UI-04` estar integralmente validada.
 - [x] Executar somente `UI-06 — Compras`.
 - [x] Não avançar para `BNT-UX-00` antes de `UI-06` estar integralmente validada.
+- [x] Executar somente `BNT-UX-00 — Dossiê completo de interface`.
+- [x] Não avançar para `BNT-BRAND-01` antes de `BNT-UX-00` estar integralmente validada.
 
 ---
 
@@ -1772,17 +1774,49 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Pendência:** nenhuma para `UI-06`. A próxima ação obrigatória é `BNT-UX-00 — Dossiê completo de interface`.
 
+### BNT-UX-00 — Dossiê completo de interface
+
+**Situação:** concluída e validada em 31/08/2026.
+
+**Documento criado:** [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md).
+
+**Escopo executado:**
+
+- inventário funcional e visual das 24 superfícies web canônicas;
+- aliases, wrappers e visões compartilhadas registrados sem criar especificações paralelas;
+- shell, navegação, públicos, permissões e padrões transversais documentados;
+- dados, ações, filtros, estados, hierarquia, wireframe desktop, direção `390×844`, dependências e aceite definidos por página;
+- oito superfícies do aplicativo nativo especificadas;
+- quatro lacunas funcionais registradas como `BNT-GAP`, sem implementação silenciosa;
+- referências oficiais atuais de Ant Design 5, WCAG, Expo, Shopify, Odoo, Grafana e Mercado Livre confrontadas com o estado atual.
+
+**Evidências e validação:**
+
+- branch `dev`, working tree inicial limpa e snapshot `080500a899e52b10d4ae8f67de8a0fd7201fc944` confirmados;
+- `AGENTS.md`, instruções da reestruturação, plano/checklist do Item 17, plano Bentevi, auditorias de interface/domínios e arquivos atuais das rotas, shell, permissões e mobile conferidos;
+- validação estrutural: 24/24 superfícies web, 8/8 superfícies mobile, aliases/wrappers, quatro `BNT-GAP` únicos e links internos aprovados;
+- `npm run validate`: aprovado;
+- `git diff --check`: aprovado;
+- `npm run build`: **N/A**, porque a ação alterou somente documentação e não código/configuração de runtime;
+- teste visual, deploy, migration, banco e chamada de escrita a integração externa: **N/A**;
+- produção, `main`, `app.vortek.shop`, Supabase `.160` e Supabase DEV `.162` permaneceram intocados.
+
+**Rollback:** reverter somente os três documentos desta ação. Não há rollback de código, banco, domínio ou integração.
+
+**Pendência:** nenhuma para `BNT-UX-00`. A próxima ação obrigatória é `BNT-BRAND-01 — Assets e tokens Bentevi`.
+
 ### Redesign completo Bentevi
 
 **Documento operacional:** `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md`
-**Situação:** aprovado e registrado; implementação visual ainda não iniciada.
+**Dossiê de interface:** [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
+**Situação:** dossiê concluído; implementação visual ainda não iniciada.
 
 #### Pré-requisitos
 
 - [x] concluir as Etapas 8, 9 e 10;
 - [x] concluir `SEC-06 — Next.js`;
 - [x] concluir `UI-01` a `UI-06`;
-- [ ] executar `BNT-UX-00 — Dossiê completo de interface`;
+- [x] executar `BNT-UX-00 — Dossiê completo de interface`;
 - [ ] executar `BNT-BRAND-01 — Assets e tokens Bentevi`;
 - [ ] executar `BNT-SHELL-01 — Shell desktop Bentevi`;
 - [ ] executar `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
