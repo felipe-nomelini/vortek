@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `RULE-03 — Payment mode`
+**Próxima ação obrigatória:** `RULE-04 — Threshold de custo`
 
 ---
 
@@ -62,7 +62,7 @@ Regras de uso:
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
-| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-03` |
+| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-04` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -110,6 +110,8 @@ Regras de uso:
 - [x] Não avançar antes de RLS, grants, RPCs, funções privilegiadas e policies de kits estarem validados.
 - [x] Executar somente `RULE-02 — Pricing`.
 - [x] Não avançar para `RULE-03` antes de `RULE-02` estar integralmente validada.
+- [x] Executar somente `RULE-03 — Payment mode`.
+- [x] Não avançar para `RULE-04` antes de `RULE-03` estar integralmente validada.
 
 ---
 
@@ -1356,10 +1358,38 @@ Executar **uma regra por tarefa**.
 
 ### RULE-03 — Payment mode
 
-- [ ] usar `offer.payment_mode` como fonte;
-- [ ] reutilizar a inferência compartilhada somente como fallback;
-- [ ] provar que preview e execução produzem o mesmo resultado;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] usar `offer.payment_mode` como fonte;
+- [x] reutilizar a inferência compartilhada somente como fallback;
+- [x] provar que preview e execução produzem o mesmo resultado;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Prioridade:** P2
+**Situação:** concluída e validada exclusivamente em desenvolvimento/homologação.
+
+#### Gate e evidências
+
+- branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação e auditoria de regras compartilhadas conferidos antes da implementação;
+- causa confirmada: o preview selecionava a oferta preferencial, mas não carregava `payment_mode` e aplicava diretamente a inferência por fornecedor; a execução DSLite priorizava o modo persistido da oferta e podia divergir;
+- documentação pública atual da DSLite conferida; o contrato externo de pedidos não fornece `payment_mode`, portanto essa classificação permaneceu uma regra interna do Vortek;
+- inspeção somente leitura do `supabase-dev` (`192.168.1.162`, PostgreSQL `17.6`) confirmou constraints compatíveis e ausência de ofertas/compras no DEV; nenhuma escrita ou migration foi necessária;
+- `resolveSupplierPaymentMode()` foi centralizado em `src/lib/produto-fornecedor.ts`: `postpaid` e `prepaid_pix` persistidos prevalecem, inferência é fallback e `balance_account` só é preservado na retomada histórica explícita;
+- preview de Pedidos passou a carregar o modo da oferta selecionada e deixa modo/status nulos para estoque interno ou múltiplos fornecedores;
+- execução DSLite passou a usar o mesmo resolvedor e continua recalculando a partir da oferta realmente confirmada quando há troca por estoque;
+- syncs de catálogo e preço/estoque preservam `payment_mode` de ofertas existentes e inferem somente na criação de nova oferta;
+- regressão `tests/supplier-payment-mode.test.js` adicionada com fixtures de modo explícito, fallback, histórico, preview, execução e preservação pelos syncs;
+- testes direcionados de payment mode, ofertas, DSLite, Hayamax e fulfillment: `43/43` aprovados;
+- `npm run validate`, `npm run build` com 119 páginas estáticas e `git diff --check`: aprovados;
+- commit funcional `893b124` enviado somente para `origin/dev`;
+- o primeiro webhook foi interrompido por reinício do controlador Easypanel; após confirmação somente leitura de que nenhuma tarefa DEV havia sido criada, um único reenvio concluiu o deploy de `vortek-erp-dev`;
+- container de homologação reiniciado; health e login em `dev.vortek.shop` responderam HTTP `200`, e `/api/pedidos` e `/api/sync/catalogo` permaneceram protegidas com HTTP `401` sem sessão;
+- a inspeção no host Easypanel `.160` foi somente leitura e limitada ao estado dos containers para diagnosticar o deploy DEV; nenhuma variável, secret, log, banco, Supabase ou configuração foi consultada ou modificada;
+- `main`, deploy de produção, `app.vortek.shop` e banco de produção permaneceram intocados.
+
+**Migration:** N/A; a correção reutiliza a coluna e as constraints existentes.
+
+**Rollback:** reverter `893b124` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `RULE-03`. A próxima ação obrigatória é `RULE-04 — Threshold de custo`.
 
 ### RULE-04 — Threshold de custo
 
