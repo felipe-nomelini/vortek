@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-DOM-DEV — dev.bentevi.shop`
+**Próxima ação obrigatória:** `BNT-D01 — Vendas /pedidos — piloto`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-DOM-DEV` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-D01` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -140,7 +140,9 @@ Regras de uso:
 - [x] Não avançar para `BNT-SHELL-01` antes de `BNT-BRAND-01` estar integralmente validada.
 - [x] Executar somente `BNT-SHELL-01 — Shell desktop Bentevi`.
 - [x] Não avançar para `BNT-DOM-DEV` antes de `BNT-SHELL-01` estar integralmente validada e aprovada em homologação.
-- [ ] Executar somente `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
+- [x] Executar somente `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
+- [x] Não avançar para `BNT-D01` antes de `BNT-DOM-DEV` estar integralmente validada.
+- [ ] Executar somente `BNT-D01 — Vendas /pedidos — piloto`.
 
 ---
 
@@ -1814,7 +1816,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Documento operacional:** `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md`
 **Dossiê de interface:** [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
-**Situação:** dossiê, fundação visual e shell desktop concluídos; domínio DEV novo operacional, com retirada do alias antigo pendente.
+**Situação:** dossiê, fundação visual, shell desktop e domínio DEV concluídos; piloto de Vendas liberado.
 
 #### Pré-requisitos
 
@@ -1824,7 +1826,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] executar `BNT-UX-00 — Dossiê completo de interface`;
 - [x] executar `BNT-BRAND-01 — Assets e tokens Bentevi`;
 - [x] executar `BNT-SHELL-01 — Shell desktop Bentevi`;
-- [ ] executar `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
+- [x] executar `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
 
 #### Resultado de `BNT-BRAND-01`
 
@@ -1881,9 +1883,9 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Pendência:** nenhuma para `BNT-SHELL-01`. A próxima ação obrigatória é `BNT-DOM-DEV — dev.bentevi.shop`.
 
-#### Resultado parcial de `BNT-DOM-DEV`
+#### Resultado de `BNT-DOM-DEV`
 
-**Status:** domínio novo operacional e validado em `2026-08-31`; fechamento aguardando somente a retirada controlada do alias antigo.
+**Status:** concluída e validada em `2026-08-31`, na branch `dev`.
 
 **Escopo executado:**
 
@@ -1892,6 +1894,9 @@ Executar somente depois das regras e correções das quais cada item depende.
 - ingress `dev.bentevi.shop` adicionado somente para `http://local-vortek-erp-dev:80`, preservando integralmente os quatro ingress anteriores e o `catch-all`;
 - TLS público emitido para `bentevi.shop` e `*.bentevi.shop`;
 - configuração Cloudflare anterior preservada em snapshot local protegido antes da mudança;
+- alias `dev.vortek.shop` retirado pelo responsável do serviço DEV no Easypanel;
+- CNAME antigo `dev.vortek.shop` removido da zona Cloudflare;
+- ingress antigo `dev.vortek.shop → http://local-vortek-erp-dev:80` removido do tunnel compartilhado;
 - nenhuma alteração de código funcional, banco, migration, produção, `main` ou serviço Easypanel de produção.
 
 **Validação:**
@@ -1902,10 +1907,15 @@ Executar somente depois das regras e correções das quais cada item depende.
 - callback Mercado Livre respondeu `401` sem sessão e webhook respondeu `405` para `GET`, comprovando as rotas publicadas sem disparar integração;
 - acesso direto com o novo host chegou ao serviço correto em `192.168.1.160` e respondeu `308`;
 - `app.vortek.shop` e `dev.vortek.shop` continuaram respondendo `308` durante a validação.
+- read-back final Cloudflare: tunnel na versão `5`, com ingress de produção, Easypanel, WAHA, `dev.bentevi.shop` e `catch-all` preservados;
+- consulta final da zona antiga retornou zero registros para `dev.vortek.shop`, e o resolvedor autoritativo não retornou endereço para o alias removido;
+- smoke final em `dev.bentevi.shop`: `/` respondeu `308` para `/dashboard`, `/login` respondeu `200` e `/api/ops/health` respondeu `200` com `success=true`;
+- login final pela API da aplicação respondeu `200` para a conta DEV com cargo `admin`;
+- callback Mercado Livre respondeu `401` sem sessão e `/api/webhooks/ml/notifications` respondeu `405` para `GET`, sem disparar integração.
 
-**Rollback:** restaurar o snapshot local do tunnel, remover o CNAME novo e manter temporariamente `dev.vortek.shop`.
+**Rollback:** recriar o CNAME antigo e restaurar o snapshot local `BNT-DOM-DEV-cleanup-before-2026-08-31T22-05-09Z.json`; a reativação completa também exigiria recolocar manualmente o alias antigo no serviço DEV do Easypanel.
 
-**Pendência:** remover `dev.vortek.shop` do serviço `vortek-erp-dev` no Easypanel. Após a confirmação, remover somente o CNAME antigo e seu ingress DEV no Cloudflare Tunnel, repetir o smoke test e liberar `BNT-D01`.
+**Pendência:** nenhuma para `BNT-DOM-DEV`. A próxima ação obrigatória é `BNT-D01 — Vendas /pedidos — piloto`.
 
 #### Desktop — uma página por tarefa
 
