@@ -1,6 +1,7 @@
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { resolveAutomaticPricingProductIds } from '@/lib/ml/automatic-pricing-selection';
+import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 type ServiceClientLike = { from: (table: string) => any };
@@ -85,7 +86,7 @@ export async function enqueueAutomaticPricesForCostChanges(
     const cost = Number(product.custo || 0);
     const warning = String(product.ml_shipping_warning || '').trim();
     const publishable = product.ativo !== false && ['ativo', 'pausado'].includes(String(product.ml_status || ''));
-    if (!publishable || targets.length === 0 || cost <= 0 || cost > 2_000 || warning) {
+    if (!publishable || targets.length === 0 || cost <= 0 || shouldProductBeInactiveByCost(cost) || warning) {
       result.skipped += 1;
       continue;
     }

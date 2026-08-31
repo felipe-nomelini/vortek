@@ -5,7 +5,7 @@ import { buildCanonicalDsliteSku } from '@/lib/sku';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
+import { PRODUCT_COST_INACTIVE_THRESHOLD, shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 import { filterAllowedDropshippingDsliteSupplierIds } from '@/lib/dslite/supplier-policy';
@@ -484,7 +484,7 @@ export async function POST(req: Request) {
                 apply_status: true,
                 sku: product.sku,
                 origin: 'api/sync/preco-estoque',
-                threshold: 2000,
+                threshold: PRODUCT_COST_INACTIVE_THRESHOLD,
               },
             });
             if (!outbox.ok) {
