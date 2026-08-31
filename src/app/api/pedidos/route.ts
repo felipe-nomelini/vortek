@@ -31,6 +31,10 @@ import {
   mapSupplierFilterIdsToDsliteIds,
   matchesOrderSupplierFilter,
 } from '@/lib/produto-filtering';
+import type {
+  PedidoOperacionalApiDto,
+  PedidosOperacionaisApiResponse,
+} from '@/types/order';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -898,13 +902,16 @@ export async function GET(request: Request) {
   }
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
   const includeInternalSupplier = includesInternalSupplierFilter(fornecedorFilterIds);
-  const listResponse = (data: any[], total: number) => NextResponse.json({
-    data,
-    total,
-    page,
-    pageSize,
-    fornecedores: supplierOptions,
-  });
+  const listResponse = (data: PedidoOperacionalApiDto[], total: number) => {
+    const payload: PedidosOperacionaisApiResponse = {
+      data,
+      total,
+      page,
+      pageSize,
+      fornecedores: supplierOptions,
+    };
+    return NextResponse.json(payload);
+  };
 
   if (fornecedorFilterIds.length > 0) {
     async function loadSupplierCandidates(useSaleDate: boolean) {

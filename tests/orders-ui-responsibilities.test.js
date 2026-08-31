@@ -7,6 +7,8 @@ const root = path.resolve(__dirname, '..');
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
 const page = read('src/app/(app)/pedidos/page.tsx');
+const orderTypes = read('src/types/order.ts');
+const pedidosRoute = read('src/app/api/pedidos/route.ts');
 const dsliteFlow = read('src/components/pedidos/usePedidosDsliteFlow.ts');
 const dsliteModals = read('src/components/pedidos/PedidosDsliteModals.tsx');
 const labelWhatsappFlow = read('src/components/pedidos/usePedidosLabelWhatsappFlow.ts');
@@ -23,6 +25,16 @@ test('Pedidos permanece como orquestradora de lista, filtros, DTO e tracking', (
   assert.match(page, /openShippingSelection: dsliteFlow\.openShippingSelection/);
   assert.match(page, /<PedidosDsliteModals flow=\{dsliteFlow\}/);
   assert.match(page, /<PedidosLabelWhatsappModals flow=\{labelWhatsappFlow\}/);
+});
+
+test('DTO operacional representa a resposta real de Pedidos sem casts compensatórios', () => {
+  assert.match(orderTypes, /export type PedidoOperacionalApiDto =/);
+  assert.match(orderTypes, /export type PedidosOperacionaisApiResponse =/);
+  assert.match(page, /function mapDBtoOrder\(item: PedidoOperacionalApiDto\): Order/);
+  assert.match(page, /const json: PedidosOperacionaisApiResponse = await listRes\.json\(\)/);
+  assert.match(pedidosRoute, /const payload: PedidosOperacionaisApiResponse =/);
+  assert.doesNotMatch(page, /\(item as any\)/);
+  assert.doesNotMatch(page, /\(record as any\)\.ml_claim_id/);
 });
 
 test('Pedidos não mantém endpoints, timers ou modais dos fluxos extraídos', () => {

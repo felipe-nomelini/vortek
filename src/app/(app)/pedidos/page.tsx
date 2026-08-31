@@ -14,8 +14,13 @@ import PedidosLabelWhatsappModals from '@/components/pedidos/PedidosLabelWhatsap
 import { isValidDsliteId, usePedidosDsliteFlow } from '@/components/pedidos/usePedidosDsliteFlow';
 import { usePedidosLabelWhatsappFlow } from '@/components/pedidos/usePedidosLabelWhatsappFlow';
 import { formatCurrency } from '@/lib/format';
-import type { Database } from '@/types/database';
-import type { Order, OrderStatus } from '@/types/order';
+import type { SupplierFilterOption } from '@/lib/produto-filtering';
+import type {
+  Order,
+  OrderStatus,
+  PedidoOperacionalApiDto,
+  PedidosOperacionaisApiResponse,
+} from '@/types/order';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 import { getSkuLookupVariants } from '@/lib/sku';
@@ -256,7 +261,7 @@ function getSupplierSetupWarning(order: Order): string | null {
   return null;
 }
 
-function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Order {
+function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
   return {
     id: item.numero,
     dbId: item.id,
@@ -281,7 +286,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     nfe_danfe_url: item.nfe_danfe_url,
     rastreio: item.rastreio,
     lucro: item.lucro ?? null,
-    profit_pending: Boolean((item as any).operational_profit_pending)
+    profit_pending: Boolean(item.operational_profit_pending)
       || (
         Array.isArray(item.snapshot_pendencias)
         && item.snapshot_pendencias.some((value) => (
@@ -293,38 +298,38 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     dslite_status: item.dslite_status,
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
     dslite_label_source: item.dslite_label_source || null,
-    compra_id: (item as any).compra_id || null,
-    fornecedor_nome: (item as any).fornecedor_nome || null,
-    fornecedor_id: (item as any).fornecedor_id || null,
-    fornecedor_telefone: (item as any).fornecedor_telefone || null,
-    internal_stock_available: Boolean((item as any).internal_stock_available),
-    envio_interno_at: (item as any).envio_interno_at || null,
-    fulfillment_source: (item as any).fulfillment_source || null,
-    fulfillment_selected_at: (item as any).fulfillment_selected_at || null,
-    supplier_payment_mode: (item as any).supplier_payment_mode || null,
-    supplier_payment_status: (item as any).supplier_payment_status || null,
-    supplier_payment_amount: (item as any).supplier_payment_amount ?? null,
-    supplier_payment_receipt_path: (item as any).supplier_payment_receipt_path || null,
-    supplier_payment_reference: (item as any).supplier_payment_reference || null,
-    supplier_payment_notes: (item as any).supplier_payment_notes || null,
-    supplier_pix_key: (item as any).supplier_pix_key || null,
-    dslite_next_action: (item as any).dslite_next_action || undefined,
-    dslite_next_action_label: (item as any).dslite_next_action_label || null,
+    compra_id: item.compra_id || null,
+    fornecedor_nome: item.fornecedor_nome || null,
+    fornecedor_id: item.fornecedor_id || null,
+    fornecedor_telefone: item.fornecedor_telefone || null,
+    internal_stock_available: Boolean(item.internal_stock_available),
+    envio_interno_at: item.envio_interno_at || null,
+    fulfillment_source: item.fulfillment_source || null,
+    fulfillment_selected_at: item.fulfillment_selected_at || null,
+    supplier_payment_mode: item.supplier_payment_mode || null,
+    supplier_payment_status: item.supplier_payment_status || null,
+    supplier_payment_amount: item.supplier_payment_amount ?? null,
+    supplier_payment_receipt_path: item.supplier_payment_receipt_path || null,
+    supplier_payment_reference: item.supplier_payment_reference || null,
+    supplier_payment_notes: item.supplier_payment_notes || null,
+    supplier_pix_key: item.supplier_pix_key || null,
+    dslite_next_action: item.dslite_next_action || undefined,
+    dslite_next_action_label: item.dslite_next_action_label || null,
     ml_claim_id: item.ml_claim_id,
     ml_shipment_id: item.ml_shipment_id,
     ml_invoice_reported: item.ml_invoice_reported || false,
     ml_order_id: item.ml_order_id,
     ml_pack_id: item.ml_pack_id,
-    is_virtual_kit: Boolean((item as any).is_virtual_kit),
-    is_cart: Boolean((item as any).is_cart),
-    kit_order_ids: Array.isArray((item as any).kit_order_ids) ? (item as any).kit_order_ids : [],
-    operational_dslite_ids: Array.isArray((item as any).operational_dslite_ids)
-      ? (item as any).operational_dslite_ids
+    is_virtual_kit: Boolean(item.is_virtual_kit),
+    is_cart: Boolean(item.is_cart),
+    kit_order_ids: Array.isArray(item.kit_order_ids) ? item.kit_order_ids : [],
+    operational_dslite_ids: Array.isArray(item.operational_dslite_ids)
+      ? item.operational_dslite_ids
       : [],
-    operational_invoice_numbers: Array.isArray((item as any).operational_invoice_numbers)
-      ? (item as any).operational_invoice_numbers
+    operational_invoice_numbers: Array.isArray(item.operational_invoice_numbers)
+      ? item.operational_invoice_numbers
       : [],
-    has_split_fulfillment: Boolean((item as any).has_split_fulfillment),
+    has_split_fulfillment: Boolean(item.has_split_fulfillment),
     billing_nome: item.billing_nome,
     billing_endereco: item.billing_endereco as Record<string, unknown> | null,
     ml_fiscal_release_at: item.ml_fiscal_release_at,
@@ -335,18 +340,18 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_thermal_label_storage_path: item.ml_thermal_label_storage_path,
     nfe_chave: item.nfe_chave,
     nfe_status: item.nfe_status,
-    pedido_itens: (item as any).pedido_itens || [],
-    compra_produto_descricao: (item as any).compra_produto_descricao || null,
-    compra_produto_sku: (item as any).compra_produto_sku || null,
-    compra_quantidade: (item as any).compra_quantidade ?? null,
-    cliente_id: (item as any).cliente_id || null,
-    whatsapp_label_status: (item as any).whatsapp_label_status || 'not_sent',
-    whatsapp_label_updated_at: (item as any).whatsapp_label_updated_at || null,
-    whatsapp_label_error: (item as any).whatsapp_label_error || null,
-    whatsapp_label_next_retry_at: (item as any).whatsapp_label_next_retry_at || null,
-    dslite_label_operational_status: (item as any).dslite_label_operational_status || 'pending',
-    dslite_label_operational_updated_at: (item as any).dslite_label_operational_updated_at || null,
-    dslite_label_operational_error: (item as any).dslite_label_operational_error || null,
+    pedido_itens: item.pedido_itens || [],
+    compra_produto_descricao: item.compra_produto_descricao || null,
+    compra_produto_sku: item.compra_produto_sku || null,
+    compra_quantidade: item.compra_quantidade ?? null,
+    cliente_id: item.cliente_id || null,
+    whatsapp_label_status: item.whatsapp_label_status || 'not_sent',
+    whatsapp_label_updated_at: item.whatsapp_label_updated_at || null,
+    whatsapp_label_error: item.whatsapp_label_error || null,
+    whatsapp_label_next_retry_at: item.whatsapp_label_next_retry_at || null,
+    dslite_label_operational_status: item.dslite_label_operational_status || 'pending',
+    dslite_label_operational_updated_at: item.dslite_label_operational_updated_at || null,
+    dslite_label_operational_error: item.dslite_label_operational_error || null,
   };
 }
 
@@ -362,11 +367,6 @@ interface SummaryData {
   mlCompatibleMissingPaymentData: number;
   urgentCount: number;
 }
-
-type SupplierFilterOption = {
-  id: string;
-  label: string;
-};
 
 export default function PedidosPage() {
   const [loading, setLoading] = useState(true);
@@ -448,7 +448,7 @@ export default function PedidosPage() {
       ]);
 
       if (listRes.ok) {
-        const json = await listRes.json();
+        const json: PedidosOperacionaisApiResponse = await listRes.json();
         setOrders((json.data || []).map(mapDBtoOrder));
         setTotal(json.total || 0);
         if (Array.isArray(json.fornecedores)) setSupplierOptions(json.fornecedores);
@@ -906,7 +906,7 @@ export default function PedidosPage() {
                   {statusTag}
                 </Tooltip>
               ) : statusTag}
-              {(record as any).ml_claim_id && (
+              {record.ml_claim_id && (
                 <WarningOutlined style={{ color: '#faad14', fontSize: 14 }} title="Reclamação em andamento" />
               )}
             </div>
