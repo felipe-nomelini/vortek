@@ -10,6 +10,8 @@ import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import {
   classifySupplierDeactivationProducts,
   isActiveSupplierListingStatus,
+  shouldSkipExistingSupplierPause,
+  supplierPauseOperationKey,
 } from '@/lib/supplier-deactivation';
 
 export const maxDuration = 300;
@@ -25,6 +27,7 @@ type ImpactProduct = {
 type ImpactOffer = {
   id: string;
   ativo: boolean | null;
+  estoque: number | null;
 };
 
 type MlListingTarget = {
@@ -73,6 +76,7 @@ async function loadImpactedProducts(client: any, dsliteFornecedorId: string): Pr
       .select('produto_id')
       .eq('dslite_fornecedor_id', dsliteFornecedorId)
       .not('produto_id', 'is', null)
+      .order('id', { ascending: true })
       .range(from, to)
   ));
 
@@ -87,6 +91,7 @@ async function loadImpactedProducts(client: any, dsliteFornecedorId: string): Pr
       .from('produtos')
       .select('id,sku,ml_item_id,ativo,ml_status')
       .eq('dslite_fornecedor_id', dsliteFornecedorId)
+      .order('id', { ascending: true })
       .range(from, to)
   ));
 
@@ -118,8 +123,9 @@ async function loadImpactedOffers(client: any, dsliteFornecedorId: string): Prom
   return fetchAllRowsPaginated<ImpactOffer>((from, to) => (
     client
       .from('produto_fornecedor_ofertas')
-      .select('id,ativo')
+      .select('id,ativo,estoque')
       .eq('dslite_fornecedor_id', dsliteFornecedorId)
+      .order('id', { ascending: true })
       .range(from, to)
   ));
 }
@@ -132,16 +138,19 @@ async function loadProductIdsWithAlternativeStock(
   const alternatives = new Set<string>();
 
   for (const idsChunk of chunk(productIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
-    const { data, error } = await client
-      .from('produto_fornecedor_ofertas')
-      .select('produto_id')
-      .in('produto_id', idsChunk)
-      .neq('dslite_fornecedor_id', disabledFornecedorId)
-      .eq('ativo', true)
-      .gt('estoque', 0);
+    const offers = await fetchAllRowsPaginated<{ id: string; produto_id: string | null }>((from, to) => (
+      client
+        .from('produto_fornecedor_ofertas')
+        .select('id,produto_id')
+        .in('produto_id', idsChunk)
+        .neq('dslite_fornecedor_id', disabledFornecedorId)
+        .eq('ativo', true)
+        .gt('estoque', 0)
+        .order('id', { ascending: true })
+        .range(from, to)
+    ));
 
-    if (error) throw new Error(error.message);
-    for (const offer of data || []) {
+    for (const offer of offers) {
       const productId = String((offer as any).produto_id || '').trim();
       if (productId) alternatives.add(productId);
     }
@@ -226,6 +235,49 @@ async function loadMlListingTargets(
   return targetsByProductId;
 }
 
+async function loadExistingSupplierPauseKeys(
+  client: any,
+  products: ImpactProduct[],
+  dsliteFornecedorId: string,
+  reprocess: boolean,
+): Promise<Set<string>> {
+  const keys = new Set<string>();
+  const productIds = products.map((product) => product.id);
+  if (productIds.length === 0) return keys;
+
+  const statuses = reprocess
+    ? ['pending', 'retry', 'processing', 'done']
+    : ['pending', 'retry', 'processing'];
+
+  for (const idsChunk of chunk(productIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+    const rows = await fetchAllRowsPaginated<{
+      id: string;
+      produto_id: string;
+      ml_item_id: string;
+      payload: Record<string, unknown> | null;
+      status: string;
+    }>((from, to) => (
+      client
+        .from('anuncios_ml_outbox')
+        .select('id,produto_id,ml_item_id,payload,status')
+        .in('produto_id', idsChunk)
+        .eq('source', 'fornecedor_inativo_pause')
+        .in('status', statuses)
+        .order('id', { ascending: true })
+        .range(from, to)
+    ));
+
+    for (const row of rows) {
+      const rowSupplierId = String(row.payload?.fornecedor_dslite_id || '').trim();
+      if (rowSupplierId !== dsliteFornecedorId) continue;
+      if (!shouldSkipExistingSupplierPause(row.status, reprocess)) continue;
+      keys.add(supplierPauseOperationKey(row.produto_id, row.ml_item_id));
+    }
+  }
+
+  return keys;
+}
+
 function buildImpact(
   products: ImpactProduct[],
   offers: ImpactOffer[],
@@ -307,11 +359,29 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     if (typeof body?.ativo !== 'boolean') {
       return NextResponse.json({ error: 'Campo ativo deve ser booleano' }, { status: 422 });
     }
+    if (body?.reprocess !== undefined && typeof body.reprocess !== 'boolean') {
+      return NextResponse.json({ error: 'Campo reprocess deve ser booleano' }, { status: 422 });
+    }
+    const reprocess = body.reprocess === true;
 
     const client = createServiceClient();
     const fornecedor = await loadFornecedor(client, params.id);
     if (!fornecedor) {
       return NextResponse.json({ error: 'Fornecedor não encontrado' }, { status: 404 });
+    }
+
+    if (reprocess && (body.ativo || fornecedor.ativo !== false)) {
+      return NextResponse.json(
+        { error: 'O reprocessamento só é permitido para fornecedor já inativo, com ativo=false.' },
+        { status: 422 },
+      );
+    }
+
+    if (!reprocess && !body.ativo && fornecedor.ativo === false) {
+      return NextResponse.json(
+        { error: 'Fornecedor já está inativo. Use reprocess=true para executar novamente a transição.' },
+        { status: 409 },
+      );
     }
 
     if (
@@ -327,13 +397,15 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       );
     }
 
-    const { error: updateFornecedorError } = await client
-      .from('fornecedores')
-      .update({ ativo: body.ativo } as any)
-      .eq('id', params.id);
+    if (!reprocess) {
+      const { error: updateFornecedorError } = await client
+        .from('fornecedores')
+        .update({ ativo: body.ativo } as any)
+        .eq('id', params.id);
 
-    if (updateFornecedorError) {
-      return NextResponse.json({ error: updateFornecedorError.message }, { status: 500 });
+      if (updateFornecedorError) {
+        return NextResponse.json({ error: updateFornecedorError.message }, { status: 500 });
+      }
     }
 
     if (body.ativo) {
@@ -359,21 +431,40 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       loadImpactedOffers(client, dsliteFornecedorId),
     ]);
     const activeProducts = products.filter((product) => product.ativo !== false);
-    const activeOfferIds = offers
-      .filter((offer) => offer.ativo !== false)
-      .map((offer) => offer.id);
+    const supplierOffersInactivated = offers.filter((offer) => (
+      offer.ativo !== false || Number(offer.estoque || 0) !== 0
+    )).length;
 
-    let supplierOffersInactivated = 0;
-    for (const idsChunk of chunk(activeOfferIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
-      const { error } = await client
+    const { error: updateOffersError } = await client
+      .from('produto_fornecedor_ofertas')
+      .update({ ativo: false, estoque: 0 } as any)
+      .eq('dslite_fornecedor_id', dsliteFornecedorId);
+
+    if (updateOffersError) {
+      return NextResponse.json({ error: updateOffersError.message }, { status: 500 });
+    }
+
+    const [activeOffersVerification, stockedOffersVerification] = await Promise.all([
+      client
         .from('produto_fornecedor_ofertas')
-        .update({ ativo: false, estoque: 0 } as any)
-        .in('id', idsChunk);
+        .select('id', { count: 'exact', head: true })
+        .eq('dslite_fornecedor_id', dsliteFornecedorId)
+        .eq('ativo', true),
+      client
+        .from('produto_fornecedor_ofertas')
+        .select('id', { count: 'exact', head: true })
+        .eq('dslite_fornecedor_id', dsliteFornecedorId)
+        .gt('estoque', 0),
+    ]);
+    if (activeOffersVerification.error) throw new Error(activeOffersVerification.error.message);
+    if (stockedOffersVerification.error) throw new Error(stockedOffersVerification.error.message);
 
-      if (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
-      }
-      supplierOffersInactivated += idsChunk.length;
+    const supplierOffersStillActive = Number(activeOffersVerification.count || 0);
+    const supplierOffersStillStocked = Number(stockedOffersVerification.count || 0);
+    if (supplierOffersStillActive > 0 || supplierOffersStillStocked > 0) {
+      throw new Error(
+        `Falha ao confirmar inativação das ofertas: ${supplierOffersStillActive} ativas e ${supplierOffersStillStocked} com estoque.`,
+      );
     }
 
     const productIds = products.map((product) => product.id);
@@ -394,6 +485,12 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     const productsWithoutAvailableSource = transition.withoutAvailableSource;
     const activeProductsWithoutAvailableSource = transition.activeWithoutAvailableSource;
     const listingTargets = await loadMlListingTargets(client, productsWithoutAvailableSource);
+    const existingSupplierPauseKeys = await loadExistingSupplierPauseKeys(
+      client,
+      productsWithoutAvailableSource,
+      dsliteFornecedorId,
+      reprocess,
+    );
 
     let productsReassigned = 0;
     const preferredSnapshots: Awaited<ReturnType<typeof syncPreferredProductSnapshot>> = [];
@@ -451,6 +548,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     let mlPauseEnqueued = 0;
     let mlPauseSkippedNoItem = 0;
     let mlPauseSkippedNonActive = 0;
+    let mlPauseSkippedExisting = 0;
     let mlPauseFailed = 0;
     let mlStockEnqueued = 0;
     let mlStockFailed = 0;
@@ -497,6 +595,11 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
           continue;
         }
         const mlItemId = target.mlItemId;
+        const operationKey = supplierPauseOperationKey(product.id, mlItemId);
+        if (existingSupplierPauseKeys.has(operationKey)) {
+          mlPauseSkippedExisting += 1;
+          continue;
+        }
         const outbox = await enqueueMlPublishOutbox(client, {
           produtoId: product.id,
           mlItemId,
@@ -525,6 +628,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
           errors.push({ product_id: product.id, sku, ml_item_id: mlItemId, error: outbox.error });
         } else {
           mlPauseEnqueued += 1;
+          existingSupplierPauseKeys.add(operationKey);
         }
       }
     }
@@ -582,6 +686,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       success: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
       fornecedor_id: params.id,
       ativo: false,
+      reprocessed: reprocess,
       records: {
         products_found: products.length,
         products_with_alternative_stock: productsWithAlternativeStock.length,
@@ -592,10 +697,13 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         products_without_available_source: productsWithoutAvailableSource.length,
         supplier_offers_found: offers.length,
         supplier_offers_inactivated: supplierOffersInactivated,
+        supplier_offers_verified_inactive: supplierOffersStillActive === 0,
+        supplier_offers_verified_zero_stock: supplierOffersStillStocked === 0,
         stale_delete_outbox_cancelled: staleDeleteOutboxCancelled,
         ml_pause_enqueued: mlPauseEnqueued,
         ml_pause_skipped_no_item: mlPauseSkippedNoItem,
         ml_pause_skipped_non_active: mlPauseSkippedNonActive,
+        ml_pause_skipped_existing: mlPauseSkippedExisting,
         ml_pause_failed: mlPauseFailed,
         ml_stock_enqueued: mlStockEnqueued,
         ml_stock_failed: mlStockFailed,

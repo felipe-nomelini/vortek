@@ -137,7 +137,11 @@ export default function FornecedoresPage() {
     }
   }, [fetchFornecedores, messageApi]);
 
-  const toggleFornecedorStatus = useCallback(async (record: FornecedorRow, ativo: boolean) => {
+  const toggleFornecedorStatus = useCallback(async (
+    record: FornecedorRow,
+    ativo: boolean,
+    reprocess = false,
+  ) => {
     const fornecedorLabel = record.apelido || record.nome || record.dslite_id || 'fornecedor';
 
     const executeToggle = async () => {
@@ -146,14 +150,22 @@ export default function FornecedoresPage() {
         const res = await fetch(`/api/fornecedores/${record.id}/status`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ativo }),
+          body: JSON.stringify({ ativo, reprocess }),
         });
         const json = await res.json().catch(() => ({}));
         if (!res.ok && res.status !== 207) {
           throw new Error(json?.error || 'Falha ao atualizar fornecedor');
         }
 
-        if (ativo) {
+        if (reprocess) {
+          const records = json?.records || {};
+          messageApi.success(
+            `Inativação de ${fornecedorLabel} reprocessada. ${records.supplier_offers_inactivated || 0} ofertas corrigidas; ${records.ml_pause_enqueued || 0} novas pausas enfileiradas.`,
+          );
+          if (Number(records.ml_pause_failed || 0) > 0) {
+            messageApi.warning(`${records.ml_pause_failed} anúncios não entraram na fila de pausa. Verifique os erros retornados.`);
+          }
+        } else if (ativo) {
           messageApi.success(`Fornecedor ${fornecedorLabel} ativado. Produtos continuam inativos até ativação manual.`);
         } else {
           const records = json?.records || {};
@@ -194,10 +206,16 @@ export default function FornecedoresPage() {
       }
       const impact = impactJson?.impact || {};
       Modal.confirm({
-        title: `Inativar fornecedor ${fornecedorLabel}?`,
+        title: reprocess
+          ? `Reprocessar inativação de ${fornecedorLabel}?`
+          : `Inativar fornecedor ${fornecedorLabel}?`,
         content: (
           <div>
-            <p>As ofertas deste fornecedor serão inativadas e terão o estoque zerado.</p>
+            <p>
+              {reprocess
+                ? 'A correção será executada novamente sem reativar o fornecedor.'
+                : 'As ofertas deste fornecedor serão inativadas e terão o estoque zerado.'}
+            </p>
             <p><strong>Os anúncios sem outra fonte de estoque serão pausados, não excluídos.</strong></p>
             <p>
               Produtos encontrados: <strong>{impact.products_found || 0}</strong><br />
@@ -211,7 +229,7 @@ export default function FornecedoresPage() {
             <p>Os anúncios pausados por esta transição poderão ser reativados automaticamente quando uma compra for liberada no estoque interno.</p>
           </div>
         ),
-        okText: 'Inativar',
+        okText: reprocess ? 'Reprocessar' : 'Inativar',
         okButtonProps: { danger: true },
         cancelText: 'Cancelar',
         onOk: executeToggle,
@@ -326,6 +344,10 @@ export default function FornecedoresPage() {
                 label: record.ativo === false ? 'Ativar fornecedor' : 'Inativar fornecedor',
                 danger: record.ativo !== false,
               },
+              ...(record.ativo === false ? [{
+                key: 'reprocess',
+                label: 'Reprocessar inativação',
+              }] : []),
             ],
             onClick: ({ key }) => {
               if (key === 'details') {
@@ -339,6 +361,9 @@ export default function FornecedoresPage() {
               }
               if (key === 'deactivate') {
                 toggleFornecedorStatus(record, false);
+              }
+              if (key === 'reprocess') {
+                toggleFornecedorStatus(record, false, true);
               }
             },
           }}

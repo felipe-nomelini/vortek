@@ -30,6 +30,16 @@ export function isActiveSupplierListingStatus(status: unknown): boolean {
   return String(status || '').trim().toLowerCase() === 'active';
 }
 
+export function supplierPauseOperationKey(productId: unknown, mlItemId: unknown): string {
+  return `${String(productId || '').trim()}::${String(mlItemId || '').trim()}`;
+}
+
+export function shouldSkipExistingSupplierPause(status: unknown, reprocess: boolean): boolean {
+  const normalized = String(status || '').trim().toLowerCase();
+  if (['pending', 'retry', 'processing'].includes(normalized)) return true;
+  return reprocess && normalized === 'done';
+}
+
 export function isSafeInactiveSupplierPause(input: {
   source: unknown;
   desiredStatus: unknown;

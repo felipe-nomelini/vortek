@@ -3,9 +3,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
-  Alert, Breadcrumb, Button, Card, Col, Input, Row, Space, Spin, Switch, Tag, Typography, message,
+  Alert, Breadcrumb, Button, Card, Col, Input, Modal, Row, Space, Spin, Switch, Tag, Typography, message,
 } from 'antd';
-import { ArrowLeftOutlined, LoadingOutlined, SaveOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, LoadingOutlined, ReloadOutlined, SaveOutlined } from '@ant-design/icons';
 import type { Database } from '@/types/database';
 
 const { Title, Text } = Typography;
@@ -69,6 +69,7 @@ export default function FornecedorDetailPage() {
   const [original, setOriginal] = useState<FornecedorRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [reprocessing, setReprocessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchFornecedor = useCallback(async () => {
@@ -145,6 +146,67 @@ export default function FornecedorDetailPage() {
     }
   };
 
+  const handleReprocess = async () => {
+    if (!fornecedor || fornecedor.ativo !== false) return;
+
+    try {
+      const impactRes = await fetch(`/api/fornecedores/${id}/status`);
+      const impactJson = await impactRes.json().catch(() => ({}));
+      if (!impactRes.ok) {
+        throw new Error(impactJson.error || 'Erro ao calcular impacto do fornecedor');
+      }
+      const impact = impactJson?.impact || {};
+
+      Modal.confirm({
+        title: 'Reprocessar inativação do fornecedor?',
+        content: (
+          <div>
+            <p>A correção será executada sem reativar o fornecedor.</p>
+            <p><strong>Anúncios sem outra fonte serão pausados, nunca excluídos.</strong></p>
+            <p>
+              Produtos encontrados: <strong>{impact.products_found || 0}</strong><br />
+              Ofertas ativas a corrigir: <strong>{impact.supplier_offers_active || 0}</strong><br />
+              Produtos sem fonte disponível: <strong>{impact.products_without_available_source || 0}</strong><br />
+              Anúncios ativos candidatos à pausa: <strong>{impact.ml_pause_candidates || 0}</strong>
+            </p>
+          </div>
+        ),
+        okText: 'Reprocessar',
+        okButtonProps: { danger: true },
+        cancelText: 'Cancelar',
+        onOk: async () => {
+          setReprocessing(true);
+          try {
+            const res = await fetch(`/api/fornecedores/${id}/status`, {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ativo: false, reprocess: true }),
+            });
+            const json = await res.json().catch(() => ({}));
+            if (!res.ok && res.status !== 207) {
+              throw new Error(json.error || 'Erro ao reprocessar inativação');
+            }
+            const records = json?.records || {};
+            message.success(
+              `Inativação reprocessada: ${records.supplier_offers_inactivated || 0} ofertas corrigidas e ${records.ml_pause_enqueued || 0} novas pausas enfileiradas.`,
+            );
+            if (res.status === 207 || json?.success === false) {
+              message.warning(`${records.ml_pause_failed || 0} anúncios não entraram na fila de pausa.`);
+            }
+            await fetchFornecedor();
+          } catch (err: any) {
+            message.error(err.message || 'Erro ao reprocessar inativação');
+            throw err;
+          } finally {
+            setReprocessing(false);
+          }
+        },
+      });
+    } catch (err: any) {
+      message.error(err.message || 'Erro ao reprocessar inativação');
+    }
+  };
+
   if (loading) {
     return (
       <div style={{ textAlign: 'center', padding: 80 }}>
@@ -197,15 +259,27 @@ export default function FornecedorDetailPage() {
             <Tag color={statusColor(fornecedor.dropshipping)}>Drop: {fornecedor.dropshipping || '—'}</Tag>
           </Space>
         </div>
-        <Button
-          type="primary"
-          icon={<SaveOutlined />}
-          onClick={handleSave}
-          loading={saving}
-          disabled={!hasChanges}
-        >
-          Salvar Alterações
-        </Button>
+        <Space>
+          {original?.ativo === false && (
+            <Button
+              danger
+              icon={<ReloadOutlined />}
+              onClick={handleReprocess}
+              loading={reprocessing}
+            >
+              Reprocessar inativação
+            </Button>
+          )}
+          <Button
+            type="primary"
+            icon={<SaveOutlined />}
+            onClick={handleSave}
+            loading={saving}
+            disabled={!hasChanges}
+          >
+            Salvar Alterações
+          </Button>
+        </Space>
       </div>
 
       {!telefoneDigits && (

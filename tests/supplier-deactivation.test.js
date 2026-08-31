@@ -5,6 +5,8 @@ const {
   classifySupplierDeactivationProducts,
   isActiveSupplierListingStatus,
   isSafeInactiveSupplierPause,
+  shouldSkipExistingSupplierPause,
+  supplierPauseOperationKey,
 } = require('../src/lib/supplier-deactivation.ts');
 
 test('inativação separa fontes alternativas, estoque interno e produtos sem fonte', () => {
@@ -33,6 +35,24 @@ test('somente status ativo do Mercado Livre é candidato à pausa', () => {
   assert.equal(isActiveSupplierListingStatus(' ACTIVE '), true);
   assert.equal(isActiveSupplierListingStatus('paused'), false);
   assert.equal(isActiveSupplierListingStatus('closed'), false);
+});
+
+test('reprocessamento não duplica pausas da mesma transição', () => {
+  assert.equal(shouldSkipExistingSupplierPause('pending', false), true);
+  assert.equal(shouldSkipExistingSupplierPause('retry', false), true);
+  assert.equal(shouldSkipExistingSupplierPause('processing', false), true);
+  assert.equal(shouldSkipExistingSupplierPause('done', false), false);
+  assert.equal(shouldSkipExistingSupplierPause('done', true), true);
+  assert.equal(shouldSkipExistingSupplierPause('failed', true), false);
+  assert.equal(shouldSkipExistingSupplierPause('cancelled', true), false);
+});
+
+test('chave de pausa diferencia produto e anúncio sem depender de outras operações', () => {
+  assert.equal(supplierPauseOperationKey(' produto-1 ', ' MLB123 '), 'produto-1::MLB123');
+  assert.notEqual(
+    supplierPauseOperationKey('produto-1', 'MLB123'),
+    supplierPauseOperationKey('produto-1', 'MLB456'),
+  );
 });
 
 test('produto inativo só pode publicar a pausa segura da transição', () => {
