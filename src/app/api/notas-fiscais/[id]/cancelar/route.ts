@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
-import { normalizeNfeTechnicalStatus } from "@/lib/fiscal/nfe-status";
+import {
+  isNfeCancelRejectedDeadlineStatus,
+  normalizeNfeTechnicalStatus,
+} from "@/lib/fiscal/nfe-status";
 import { cancelarNotaBrasilNfePorChave } from "@/services/fiscal-provider";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 
@@ -72,6 +75,15 @@ export async function POST(
       message: "Nota fiscal já está cancelada.",
     });
   }
+  if (isNfeCancelRejectedDeadlineStatus(pedido.nfe_status)) {
+    return NextResponse.json(
+      {
+        error:
+          "O prazo legal de cancelamento desta NF-e já foi excedido. Use o procedimento fiscal aplicável.",
+      },
+      { status: 409 },
+    );
+  }
   if (!pedido.nfe_chave) {
     return NextResponse.json(
       { error: "Nota fiscal sem chave de acesso para cancelamento." },
@@ -121,7 +133,7 @@ export async function POST(
   const { error: updateError } = await serviceClient
     .from("pedidos")
     .update({
-      nfe_status: "cancelada",
+      nfe_status: "cancelled",
       nfe_last_sync_at: new Date().toISOString(),
     } as any)
     .eq("id", pedido.id);

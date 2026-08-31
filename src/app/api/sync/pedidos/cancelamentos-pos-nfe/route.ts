@@ -5,6 +5,11 @@ import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { cancelarNotaBrasilNfePorChave } from "@/services/fiscal-provider";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import { normalizeWhatsappChatId, sendWahaText } from "@/services/waha";
+import {
+  isNfeCancelledStatus,
+  isNfeCancelRejectedDeadlineStatus,
+  NFE_CANCEL_REJECTED_DEADLINE_STATUS,
+} from "@/lib/fiscal/nfe-status";
 
 export const maxDuration = 300;
 
@@ -17,29 +22,6 @@ const NFE_CANCEL_JUSTIFICATIVA =
 
 const NFE_CANCEL_SUCCESS_EVENT = "ml_cancel_auto_nfe_cancel_success";
 const WHATSAPP_SENT_EVENT = "ml_cancel_auto_supplier_whatsapp_sent";
-
-function normalizeNfeStatus(status: unknown): string {
-  return String(status || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim()
-    .toLowerCase();
-}
-
-function isNfeAlreadyCancelled(status: unknown): boolean {
-  const normalized = normalizeNfeStatus(status);
-  return (
-    normalized === "cancelled" ||
-    normalized === "canceled" ||
-    normalized === "cancelada" ||
-    normalized === "cancelado"
-  );
-}
-
-function isTerminalNfeCancelRejection(status: unknown): boolean {
-  const normalized = normalizeNfeStatus(status);
-  return normalized === "cancel_rejected_deadline";
-}
 
 function isDeadlineCancelRejection(result: {
   error?: string;
@@ -204,8 +186,8 @@ async function processPedido(input: {
   });
 
   const nfeAlreadyCancelled =
-    isNfeAlreadyCancelled(pedido.nfe_status) || cancelAlreadyDone;
-  const nfeCancelTerminalRejected = isTerminalNfeCancelRejection(
+    isNfeCancelledStatus(pedido.nfe_status) || cancelAlreadyDone;
+  const nfeCancelTerminalRejected = isNfeCancelRejectedDeadlineStatus(
     pedido.nfe_status,
   );
   let cancelledNow = false;
@@ -253,7 +235,7 @@ async function processPedido(input: {
         const { error: deadlineUpdateError } = await client
           .from("pedidos")
           .update({
-            nfe_status: "cancel_rejected_deadline",
+            nfe_status: NFE_CANCEL_REJECTED_DEADLINE_STATUS,
             nfe_last_sync_at: now,
             updated_at: now,
           } as any)

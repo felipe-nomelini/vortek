@@ -16,6 +16,7 @@ import type { Order, OrderStatus } from '@/types/order';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 import { getSkuLookupVariants } from '@/lib/sku';
+import { normalizeNfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
 import {
   PREPARATION_ORDER_STATUSES,
   SHIPPING_ORDER_STATUSES,
@@ -1856,8 +1857,8 @@ export default function PedidosPage() {
           );
         }
         if (!nf) {
-          const nfeStatus = String(record.nfe_status || '').toLowerCase();
-          if (nfeExpectedStatuses.has(record.situacao.valor) && (!nfeStatus || nfeStatus === 'pendente')) {
+          const nfeStatus = normalizeNfeTechnicalStatus(record.nfe_status);
+          if (nfeExpectedStatuses.has(record.situacao.valor) && nfeStatus === 'pendente') {
             return (
               <Tooltip title="Pedido já avançou, mas o snapshot local da NF ainda não foi reconciliado com a Brasil NFe.">
                 <Tag color="orange">NF pendente sync</Tag>

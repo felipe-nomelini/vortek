@@ -11,14 +11,7 @@
 
 const { createClient } = require('@supabase/supabase-js');
 const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
-
-function normalizeNfeStatus(status) {
-  const normalized = String(status || '').toLowerCase();
-  if (normalized === 'authorized' || normalized === 'autorizada') return 'autorizada';
-  if (normalized === 'cancelled' || normalized === 'canceled' || normalized === 'cancelada') return 'cancelada';
-  if (!normalized) return 'pendente';
-  return normalized;
-}
+const { normalizeNfePersistedStatus } = require('../src/lib/fiscal/nfe-status.ts');
 
 async function getValidMLToken(sb, force = false) {
   const { data: integracao } = await sb.from('integracoes').select('*').eq('tipo', 'mercadolivre').maybeSingle();
@@ -130,7 +123,7 @@ async function main() {
       notFound += 1;
       const { error: upErr } = await sb
         .from('pedidos')
-        .update({ nota_fiscal_emitida: false, nfe_status: 'pendente' })
+        .update({ nota_fiscal_emitida: false, nfe_status: 'pending' })
         .eq('id', p.id);
       if (!upErr) updated += 1;
       continue;
@@ -142,10 +135,10 @@ async function main() {
     }
 
     const invoice = inv.data;
-    const nextStatus = normalizeNfeStatus(invoice.status);
+    const nextStatus = normalizeNfePersistedStatus(invoice.status) || 'pending';
     const nextNumero = invoice.invoice_number ? String(invoice.invoice_number) : (invoice.number ? String(invoice.number) : null);
     const nextChave = invoice.attributes?.invoice_key || invoice.key || null;
-    const emitidaStrict = nextStatus === 'autorizada' && !!nextChave && (!!p.nfe_xml || !!p.nfe_danfe_url);
+    const emitidaStrict = nextStatus === 'authorized' && !!nextChave && (!!p.nfe_xml || !!p.nfe_danfe_url);
 
     const { error: upErr } = await sb
       .from('pedidos')

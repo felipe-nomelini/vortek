@@ -6,6 +6,10 @@ import {
   buildBrasilNfeIdentifierLookupPayload,
   classifyBrasilNfeIdentifierLookupResponse,
 } from "@/lib/fiscal/brasil-nfe-identifier";
+import {
+  mapBrasilNfeSearchStatusToPersistedStatus,
+  normalizeNfePersistedStatus,
+} from "@/lib/fiscal/nfe-status";
 
 export type NfeProvider = "brasilnfe";
 
@@ -391,16 +395,6 @@ export function parseBrasilNfeDuplicateIdentifier(
   };
 }
 
-export function mapBrasilNfeSearchStatusToLocal(
-  value: number | null | undefined,
-): string | null {
-  const status = Number(value);
-  if (status === 1) return "authorized";
-  if (status === 2) return "cancelada";
-  if (status === 3) return "denegada";
-  return null;
-}
-
 export async function buscarNotaBrasilNfePorIdentificadorInterno(input: {
   identificadorInterno: string;
   dtInicio?: string;
@@ -749,11 +743,13 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
           error: "NF não encontrada no Brasil NFe",
           temporary: true,
         };
+      const rawStatus = found?.Situacao ?? found?.Status ?? "processing";
       return {
         ok: true,
-        status: String(
-          found?.Situacao || found?.Status || "processing",
-        ).toLowerCase(),
+        status:
+          mapBrasilNfeSearchStatusToPersistedStatus(Number(rawStatus))
+          || normalizeNfePersistedStatus(String(rawStatus))
+          || "processing",
         externalId: String(found?.Id || found?.Numero || externalIdOrOrderId),
       };
     } catch (err: any) {

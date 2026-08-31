@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
 import { saoPauloDateParamToUtcIso } from "@/lib/timezone";
 import {
+  nfePersistedStatusesForTechnicalStatus,
   normalizeNfeTechnicalStatus,
   type NfeTechnicalStatus,
 } from "@/lib/fiscal/nfe-status";
@@ -44,25 +45,11 @@ function mapStatus(row: { nfe_status: string | null }): NFStatus {
 }
 
 function applyStatusFilter(query: any, status: NFStatus): any {
-  if (status === "autorizada")
-    return query.or("nfe_status.eq.authorized,nfe_status.eq.autorizada");
-  if (status === "cancelada")
-    return query.or(
-      "nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled",
-    );
-  if (status === "pendente")
-    return query.or(
-      "nfe_status.eq.pendente,nfe_status.eq.pending,nfe_status.is.null",
-    );
-  if (status === "interrompida")
-    return query.or("nfe_status.eq.interrupted,nfe_status.eq.interrompida");
-  if (status === "rejeitada")
-    return query.or(
-      "nfe_status.eq.rejected,nfe_status.eq.rejeitada,nfe_status.eq.denegada",
-    );
-  if (status === "processando")
-    return query.or("nfe_status.eq.processing,nfe_status.eq.processando");
-  return query;
+  const persistedStatuses = nfePersistedStatusesForTechnicalStatus(status);
+  if (status === "pendente") {
+    return query.or("nfe_status.eq.pending,nfe_status.is.null");
+  }
+  return query.in("nfe_status", [...persistedStatuses]);
 }
 
 function applyCommonFilters(

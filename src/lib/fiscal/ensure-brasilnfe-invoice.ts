@@ -13,7 +13,6 @@ import {
 import {
   buscarNotaBrasilNfePorIdentificadorInterno,
   getFiscalProvider,
-  mapBrasilNfeSearchStatusToLocal,
   obterXmlBrasilNfePorChave,
   parseBrasilNfeDuplicateIdentifier,
 } from "@/services/fiscal-provider";
@@ -21,7 +20,14 @@ import { ensureDanfeStoredForPedido } from "@/lib/fiscal/danfe-storage";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import { ensureRecipientIeFromSefaz } from "@/services/fiscal-recipient-ie";
 import { resolveBrasilNfeInternalIdentifier } from "@/lib/fiscal/brasil-nfe-identifier";
-import { BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS } from "@/lib/fiscal/nfe-status";
+import {
+  BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS,
+  isNfeAuthorizedStatus,
+  isNfeFinalPersistedStatus,
+  mapBrasilNfeSearchStatusToPersistedStatus,
+  normalizeNfePersistedStatus,
+  resolveReconciledNfePersistedStatus,
+} from "@/lib/fiscal/nfe-status";
 
 const UF_CODES = new Set([
   "AC",
@@ -418,27 +424,6 @@ export type EnsureBrasilNfeInvoiceResult = {
   };
 };
 
-function normalizeLocalNfeStatus(status: string | null | undefined): string {
-  return String(status || "")
-    .trim()
-    .toLowerCase();
-}
-
-function isAuthorizedStatus(status: string | null | undefined): boolean {
-  const normalized = normalizeLocalNfeStatus(status);
-  return normalized === "authorized" || normalized === "autorizada";
-}
-
-function isFinalExternalStatus(status: string | null | undefined): boolean {
-  const normalized = normalizeLocalNfeStatus(status);
-  return normalized === "cancelada"
-    || normalized === "cancelled"
-    || normalized === "canceled"
-    || normalized === "rejeitada"
-    || normalized === "rejected"
-    || normalized === "denegada";
-}
-
 async function cleanupGhostNfeSnapshot(
   client: ReturnType<typeof createServiceClient>,
   pedidoId: string,
@@ -480,7 +465,9 @@ export async function ensureBrasilNfeInvoice(input: {
       error: "Pedido não encontrado para garantir NF Brasil NFe.",
     };
 
-  let statusAtual = String((pedido as any).nfe_status || "").toLowerCase();
+  let statusAtual: string | null = normalizeNfePersistedStatus(
+    (pedido as any).nfe_status,
+  );
   const xmlAtual = String((pedido as any).nfe_xml || "");
   const providerAtual = String(
     (pedido as any).nfe_provider || "",
@@ -563,7 +550,7 @@ export async function ensureBrasilNfeInvoice(input: {
     mlOrderId,
     evento: "nfe_local_consistencia_check_start",
     payloadEnviado: {
-      nfe_status_local_antes: statusAtual || null,
+      nfe_status_local_antes: statusAtual,
       nfe_external_id_local: externalAtual || null,
       xml_local_present: Boolean(xmlAtual),
       chave_local_present: Boolean(chaveAtual),
@@ -673,7 +660,7 @@ export async function ensureBrasilNfeInvoice(input: {
   const shouldCheckGhost = Boolean(
     providerAtual === "brasilnfe" &&
     externalAtual &&
-    !isAuthorizedStatus(statusAtual) &&
+    !isNfeAuthorizedStatus(statusAtual) &&
     (!xmlAtual || !chaveAtual),
   );
 
@@ -692,7 +679,7 @@ export async function ensureBrasilNfeInvoice(input: {
         .from("pedidos")
         .update({
           nfe_xml: xmlFetch.xml,
-          nfe_status: isFinalExternalStatus(statusAtual)
+          nfe_status: isNfeFinalPersistedStatus(statusAtual)
             ? statusAtual
             : "authorized",
           nfe_provider: "brasilnfe",
@@ -938,7 +925,7 @@ export async function ensureBrasilNfeInvoice(input: {
             const numeroXml = extractTag(xmlByKey.xml, "nNF");
             const cfopXml = extractCfop(xmlByKey.xml);
             const existingStatus =
-              mapBrasilNfeSearchStatusToLocal(found.nota.status) || "authorized";
+              mapBrasilNfeSearchStatusToPersistedStatus(found.nota.status) || "authorized";
             await client
               .from("pedidos")
               .update({
@@ -1291,8 +1278,12 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
     };
   }
 
-  const externalStatus =
-    mapBrasilNfeSearchStatusToLocal(found.nota.status) || "outro";
+  const providerStatus =
+    mapBrasilNfeSearchStatusToPersistedStatus(found.nota.status) || "other";
+  const persistedStatus = resolveReconciledNfePersistedStatus(
+    (pedido as any).nfe_status,
+    providerStatus,
+  );
   const baseExistingNfe = {
     chave: found.nota.chave,
     numero: found.nota.numero,
@@ -1301,12 +1292,12 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
     numeroProtocolo: found.nota.numeroProtocolo || null,
   };
 
-  if (!isAuthorizedStatus(externalStatus)) {
+  if (!isNfeAuthorizedStatus(persistedStatus)) {
     const { error: updateError } = await client
       .from("pedidos")
       .update({
         nfe_provider: "brasilnfe",
-        nfe_status: externalStatus,
+        nfe_status: persistedStatus,
         nfe_chave: found.nota.chave || undefined,
         nfe_protocolo: found.nota.numeroProtocolo || undefined,
         nota_fiscal_numero: found.nota.numero
@@ -1328,7 +1319,8 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
           source: "brasilnfe_existing_invoice_backfill",
           identificador_interno: identificadorInterno,
           nfe_chave_encontrada: found.nota.chave,
-          status_externo: externalStatus,
+          status_externo: found.nota.status,
+          status_persistido: persistedStatus,
           db_error: updateError.message,
         },
         statusResultante: "persist_failed",
@@ -1352,15 +1344,16 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
         identificador_interno: identificadorInterno,
         nfe_chave_encontrada: found.nota.chave,
         nfe_numero_encontrado: found.nota.numero,
-        status_externo: externalStatus,
+        status_externo: found.nota.status,
+        status_persistido: persistedStatus,
       },
-      statusResultante: `reconciled_existing_${externalStatus}`,
+      statusResultante: `reconciled_existing_${persistedStatus}`,
     });
 
     return {
       ok: true,
       alreadyExisted: true,
-      status: externalStatus,
+      status: persistedStatus,
       chave: found.nota.chave,
       numero: found.nota.numero ? String(found.nota.numero) : null,
       externalId: null,
@@ -1446,7 +1439,7 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
     .update({
       nfe_provider: "brasilnfe",
       nfe_external_id: null,
-      nfe_status: externalStatus,
+      nfe_status: persistedStatus,
       nfe_chave: chave || undefined,
       nfe_protocolo: protocolo || undefined,
       nota_fiscal_numero: numero || undefined,
@@ -1467,7 +1460,8 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
         source: "brasilnfe_existing_invoice_backfill",
         identificador_interno: identificadorInterno,
         nfe_chave_encontrada: chave,
-        status_externo: externalStatus,
+        status_externo: found.nota.status,
+        status_persistido: persistedStatus,
         db_error: updateError.message,
       },
       statusResultante: "persist_failed",
@@ -1493,7 +1487,8 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
       nfe_numero_encontrado: numero,
       danfe_recovered: Boolean(danfeResult.signedUrl),
       danfe_error: danfeResult.error || null,
-      status_externo: externalStatus,
+      status_externo: found.nota.status,
+      status_persistido: persistedStatus,
     },
     statusResultante: "reconciled_existing",
   });
@@ -1501,7 +1496,7 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
   return {
     ok: true,
     alreadyExisted: true,
-    status: externalStatus,
+    status: persistedStatus,
     xml: xmlByKey.xml,
     chave,
     numero,

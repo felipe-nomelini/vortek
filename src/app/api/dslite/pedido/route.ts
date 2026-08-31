@@ -62,6 +62,7 @@ import {
   reconcileLocalNfeSnapshotFromXml,
   validateXmlNfeProducao as validateXmlNfeProducaoShared,
 } from "@/lib/fiscal/nfe-local-reconciliation";
+import { isNfeAuthorizedStatus } from "@/lib/fiscal/nfe-status";
 import { ensureDanfeStoredForPedido } from "@/lib/fiscal/danfe-storage";
 import {
   DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
@@ -1026,11 +1027,6 @@ function validarXmlNfeProducao(xml: string): {
   message?: string;
 } {
   return validateXmlNfeProducaoShared(xml);
-}
-
-function isNfeAuthorizedStatus(status: string | null | undefined): boolean {
-  const normalized = String(status || "").toLowerCase();
-  return normalized === "authorized" || normalized === "autorizada";
 }
 
 function normalizeDocument(value: string | null | undefined): string {
@@ -3404,9 +3400,7 @@ async function runDsliteCreateJob(
           if (
             invoice.ok &&
             invoice.externalId &&
-            String(invoice.status || "")
-              .toLowerCase()
-              .includes("author")
+            isNfeAuthorizedStatus(invoice.status)
           ) {
             invoiceId = invoice.externalId;
             await setStep(

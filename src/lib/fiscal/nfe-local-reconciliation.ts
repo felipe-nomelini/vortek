@@ -1,3 +1,8 @@
+import {
+  isNfeFinalPersistedStatus,
+  normalizeNfePersistedStatus,
+} from '@/lib/fiscal/nfe-status';
+
 const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
 
 type NfeAuthorizedSnapshotFields = {
@@ -55,20 +60,6 @@ function normalizeForCompare(value: string | null | undefined): string {
 function normalizeNullableText(value: string | null | undefined): string | null {
   const text = String(value || '').trim();
   return text || null;
-}
-
-function normalizeStatus(value: string | null | undefined): string | null {
-  const status = String(value || '').trim().toLowerCase();
-  return status || null;
-}
-
-function isFinalExternalStatus(status: string | null): boolean {
-  return status === 'cancelada'
-    || status === 'cancelled'
-    || status === 'canceled'
-    || status === 'rejeitada'
-    || status === 'rejected'
-    || status === 'denegada';
 }
 
 export function extractXmlTag(xml: string | null | undefined, tag: string): string | null {
@@ -129,7 +120,7 @@ export function validateXmlNfeProducao(xml: string | null | undefined): XmlNfePr
 
 export function reconcileLocalNfeSnapshotFromXml(input: NfeAuthorizedSnapshotFields): NfeLocalReconciliationResult {
   const xml = normalizeNullableText(input.nfe_xml);
-  const statusAnterior = normalizeStatus(input.nfe_status);
+  const statusAnterior = normalizeNfePersistedStatus(input.nfe_status);
 
   if (!xml) {
     return {
@@ -163,7 +154,7 @@ export function reconcileLocalNfeSnapshotFromXml(input: NfeAuthorizedSnapshotFie
 
   const updates: NfeLocalReconciliationResult['updates'] = {};
   if (xmlAuthorizedProduction) {
-    if (!isFinalExternalStatus(statusAnterior) && statusAnterior !== 'authorized') {
+    if (!isNfeFinalPersistedStatus(statusAnterior) && statusAnterior !== 'authorized') {
       updates.nfe_status = 'authorized';
     }
     if (chNFe && normalizeNullableText(input.nfe_chave) !== chNFe) updates.nfe_chave = chNFe;

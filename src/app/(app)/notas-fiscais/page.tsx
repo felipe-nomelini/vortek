@@ -251,7 +251,7 @@ export default function NotasFiscaisPage() {
           ? {
               ...row,
               status: 'cancelada',
-              nfe_status: 'cancelada',
+              nfe_status: 'cancelled',
             }
           : row
       )));

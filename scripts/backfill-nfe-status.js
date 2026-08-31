@@ -11,14 +11,7 @@
 
 const { createClient } = require('@supabase/supabase-js');
 const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
-
-function normalizeNfeStatus(status) {
-  const normalized = String(status || '').toLowerCase();
-  if (normalized === 'authorized' || normalized === 'autorizada') return 'autorizada';
-  if (normalized === 'cancelled' || normalized === 'canceled' || normalized === 'cancelada') return 'cancelada';
-  if (!normalized) return 'pendente';
-  return normalized;
-}
+const { normalizeNfePersistedStatus } = require('../src/lib/fiscal/nfe-status.ts');
 
 async function getValidMLToken(sb, force = false) {
   const { data: integracao, error } = await sb
@@ -175,10 +168,10 @@ async function main() {
       }
 
       const invoice = invResult.data;
-      const nextNfeStatus = normalizeNfeStatus(invoice?.status);
-      const currentNfeStatus = String(p.nfe_status || '').toLowerCase();
+      const nextNfeStatus = normalizeNfePersistedStatus(invoice?.status) || 'pending';
+      const currentNfeStatus = normalizeNfePersistedStatus(p.nfe_status);
 
-      if (currentNfeStatus === nextNfeStatus.toLowerCase()) {
+      if (currentNfeStatus === nextNfeStatus) {
         unchanged += 1;
         continue;
       }
