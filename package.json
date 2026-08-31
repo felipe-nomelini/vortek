@@ -85,6 +85,7 @@
     "test:integration-config": "node --test tests/integration-config-secrets.test.js",
     "test:runtime-secrets": "node --test tests/sec-07-runtime-secrets.test.js",
     "test:db-schema-snapshot": "node --test tests/db-schema-snapshot.test.js",
+    "test:sync-dispatch": "node --test tests/sync-dispatch.test.js",
     "test:internal-stock-reservation:dev": "node --test tests/internal-stock-reservation.integration.test.js"
   },
   "dependencies": {
