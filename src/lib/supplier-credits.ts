@@ -1,8 +1,13 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from '@/types/database';
 import { HAYAMAX_FORNECEDOR_ID, normalizeMoneyAmount } from '@/lib/supplier-balance';
+import type { SupplierLedgerMovementType } from '@/lib/supplier-ledger';
 
 type DbClient = SupabaseClient<Database>;
+type SupplierLedgerMovementInsert = Omit<
+  Database['public']['Tables']['supplier_balance_movements']['Insert'],
+  'movement_type'
+> & { movement_type: SupplierLedgerMovementType };
 
 type CancellationCandidateResult = {
   created: boolean;
@@ -68,23 +73,25 @@ export async function createSupplierCancellationCreditCandidate(
   if (existingError) throw new Error(existingError.message);
   if (existing?.id) return { created: false, skipped: 'already_recorded', movementId: existing.id };
 
+  const movement = {
+    fornecedor_id: String(compra.fornecedor_id),
+    fornecedor_nome: compra.fornecedor_nome || null,
+    movement_type: 'cancellation_credit',
+    amount,
+    reference: `Venda ML #${pedido.ml_order_id || pedido.numero} · Pedido DSLite #${compra.dsid}`,
+    compra_id: String(compra.id),
+    notes: 'Detectado automaticamente: venda cancelada após pagamento ao fornecedor. Confirmar crédito com o fornecedor.',
+    created_by: source,
+    movement_key: movementKey,
+    status: 'pending',
+    source: 'ml_cancellation',
+    pedido_id: String(pedido.id),
+    ml_order_id: pedido.ml_order_id || null,
+  } satisfies SupplierLedgerMovementInsert;
+
   const { data, error } = await client
     .from('supplier_balance_movements')
-    .insert({
-      fornecedor_id: String(compra.fornecedor_id),
-      fornecedor_nome: compra.fornecedor_nome || null,
-      movement_type: 'cancellation_credit',
-      amount,
-      reference: `Venda ML #${pedido.ml_order_id || pedido.numero} · Pedido DSLite #${compra.dsid}`,
-      compra_id: String(compra.id),
-      notes: 'Detectado automaticamente: venda cancelada após pagamento ao fornecedor. Confirmar crédito com o fornecedor.',
-      created_by: source,
-      movement_key: movementKey,
-      status: 'pending',
-      source: 'ml_cancellation',
-      pedido_id: String(pedido.id),
-      ml_order_id: pedido.ml_order_id || null,
-    })
+    .insert(movement)
     .select('id')
     .maybeSingle();
 
@@ -134,28 +141,27 @@ export async function reconcileSupplierCancellationCredits(client: DbClient) {
       compras.push(...(data || []));
     }
 
-    const candidates = compras
-      .filter((compra) => compra.fornecedor_id && String(compra.fornecedor_id) !== HAYAMAX_FORNECEDOR_ID)
-      .map((compra) => {
-        const pedido = pedidoByDslite.get(String(compra.dsid));
-        if (!pedido) return null;
-        return {
-          fornecedor_id: String(compra.fornecedor_id),
-          fornecedor_nome: compra.fornecedor_nome || null,
-          movement_type: 'cancellation_credit',
-          amount: normalizeMoneyAmount(compra.supplier_payment_amount),
-          reference: `Venda ML #${pedido.ml_order_id || pedido.numero} · Pedido DSLite #${compra.dsid}`,
-          compra_id: String(compra.id),
-          notes: 'Detectado automaticamente: venda cancelada após pagamento ao fornecedor. Confirmar crédito com o fornecedor.',
-          created_by: 'historical_reconciliation',
-          movement_key: buildMovementKey(String(compra.id)),
-          status: 'pending',
-          source: 'ml_cancellation',
-          pedido_id: String(pedido.id),
-          ml_order_id: pedido.ml_order_id || null,
-        };
-      })
-      .filter(Boolean) as Database['public']['Tables']['supplier_balance_movements']['Insert'][];
+    const candidates: SupplierLedgerMovementInsert[] = compras.flatMap((compra) => {
+      if (!compra.fornecedor_id || String(compra.fornecedor_id) === HAYAMAX_FORNECEDOR_ID) return [];
+      const pedido = pedidoByDslite.get(String(compra.dsid));
+      if (!pedido) return [];
+      const movement = {
+        fornecedor_id: String(compra.fornecedor_id),
+        fornecedor_nome: compra.fornecedor_nome || null,
+        movement_type: 'cancellation_credit',
+        amount: normalizeMoneyAmount(compra.supplier_payment_amount),
+        reference: `Venda ML #${pedido.ml_order_id || pedido.numero} · Pedido DSLite #${compra.dsid}`,
+        compra_id: String(compra.id),
+        notes: 'Detectado automaticamente: venda cancelada após pagamento ao fornecedor. Confirmar crédito com o fornecedor.',
+        created_by: 'historical_reconciliation',
+        movement_key: buildMovementKey(String(compra.id)),
+        status: 'pending',
+        source: 'ml_cancellation',
+        pedido_id: String(pedido.id),
+        ml_order_id: pedido.ml_order_id || null,
+      } satisfies SupplierLedgerMovementInsert;
+      return [movement];
+    });
 
     const movementKeys = candidates.map((item) => String(item.movement_key));
     const existingKeys = new Set<string>();

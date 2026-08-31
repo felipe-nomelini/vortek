@@ -31,6 +31,10 @@ import {
   ReloadOutlined,
   SearchOutlined,
 } from '@ant-design/icons';
+import type {
+  ManualSupplierLedgerAction,
+  SupplierLedgerMovementType,
+} from '@/lib/supplier-ledger';
 
 const { Title, Text, Link } = Typography;
 
@@ -58,7 +62,7 @@ type Movement = {
   id: string;
   fornecedor_id: string;
   fornecedor_nome: string | null;
-  movement_type: string;
+  movement_type: SupplierLedgerMovementType;
   amount: number;
   reference: string | null;
   notes: string | null;
@@ -68,6 +72,14 @@ type Movement = {
   created_at: string;
   confirmed_at: string | null;
   confirmed_by: string | null;
+};
+
+type ManualMovementForm = {
+  fornecedor_id: string;
+  movement_type: ManualSupplierLedgerAction;
+  amount: number;
+  reference?: string | null;
+  notes: string;
 };
 
 const emptySummary: Summary = {
@@ -81,16 +93,17 @@ function formatCurrency(value: number): string {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(value || 0));
 }
 
-function movementLabel(type: string): string {
-  const labels: Record<string, string> = {
-    cancellation_credit: 'Crédito por cancelamento',
-    manual_credit: 'Crédito manual',
-    credit_usage: 'Crédito utilizado',
-    adjustment: 'Ajuste',
-    topup: 'Crédito da antiga conta-saldo',
-    purchase_debit: 'Débito de compra da antiga conta-saldo',
-  };
-  return labels[type] || type;
+const MOVEMENT_LABELS: Record<SupplierLedgerMovementType, string> = {
+  cancellation_credit: 'Crédito por cancelamento',
+  manual_credit: 'Crédito manual',
+  credit_usage: 'Crédito utilizado',
+  adjustment: 'Ajuste',
+  topup: 'Crédito da antiga conta-saldo',
+  purchase_debit: 'Débito de compra da antiga conta-saldo',
+};
+
+function movementLabel(type: SupplierLedgerMovementType): string {
+  return MOVEMENT_LABELS[type];
 }
 
 function statusTag(status: string) {
@@ -113,7 +126,7 @@ export default function SupplierCreditsPage() {
   const [movementModalOpen, setMovementModalOpen] = useState(false);
   const [savingMovement, setSavingMovement] = useState(false);
   const [decisionId, setDecisionId] = useState<string | null>(null);
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<ManualMovementForm>();
 
   const fetchSummary = useCallback(async () => {
     setLoading(true);

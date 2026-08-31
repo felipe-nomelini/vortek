@@ -3,6 +3,12 @@ import { z } from 'zod';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
 import { HAYAMAX_FORNECEDOR_ID, normalizeMoneyAmount } from '@/lib/supplier-balance';
+import {
+  MANUAL_SUPPLIER_LEDGER_ACTIONS,
+  requireSupplierLedgerMovementType,
+  resolveManualSupplierLedgerAction,
+  type SupplierLedgerMovementType,
+} from '@/lib/supplier-ledger';
 import type { Database } from '@/types/database';
 
 export const dynamic = 'force-dynamic';
@@ -10,13 +16,23 @@ export const revalidate = 0;
 
 const MANUAL_MOVEMENT_SCHEMA = z.object({
   fornecedor_id: z.string().trim().min(1),
-  movement_type: z.enum(['manual_credit', 'credit_usage', 'adjustment_credit', 'adjustment_debit']),
+  movement_type: z.enum(MANUAL_SUPPLIER_LEDGER_ACTIONS),
   amount: z.coerce.number().positive().max(10_000_000),
   reference: z.string().trim().max(200).optional().nullable(),
   notes: z.string().trim().min(3).max(1000),
 });
 
-type Movement = Database['public']['Tables']['supplier_balance_movements']['Row'];
+type DatabaseMovement = Database['public']['Tables']['supplier_balance_movements']['Row'];
+type Movement = Omit<DatabaseMovement, 'movement_type'> & {
+  movement_type: SupplierLedgerMovementType;
+};
+
+function parseMovement(row: DatabaseMovement): Movement {
+  return {
+    ...row,
+    movement_type: requireSupplierLedgerMovementType(row.movement_type),
+  };
+}
 
 async function requireAdmin() {
   const supabase = await createClient();
@@ -39,7 +55,7 @@ async function fetchAllMovements(fornecedorId?: string | null): Promise<Movement
     if (fornecedorId) query = query.eq('fornecedor_id', fornecedorId);
     const { data, error } = await query;
     if (error) throw new Error(error.message);
-    rows.push(...(data || []));
+    rows.push(...(data || []).map(parseMovement));
     if (!data || data.length < pageSize) break;
     offset += pageSize;
   }
@@ -186,9 +202,8 @@ export async function POST(request: Request) {
   if (fornecedorError) return NextResponse.json({ error: fornecedorError.message }, { status: 500 });
   if (!fornecedor?.dslite_id) return NextResponse.json({ error: 'Fornecedor não encontrado.' }, { status: 404 });
 
-  const isDebit = parsed.data.movement_type === 'credit_usage' || parsed.data.movement_type === 'adjustment_debit';
-  const movementType = parsed.data.movement_type.startsWith('adjustment') ? 'adjustment' : parsed.data.movement_type;
-  const amount = normalizeMoneyAmount(parsed.data.amount) * (isDebit ? -1 : 1);
+  const { movementType, amountSign } = resolveManualSupplierLedgerAction(parsed.data.movement_type);
+  const amount = normalizeMoneyAmount(parsed.data.amount) * amountSign;
   const now = new Date().toISOString();
   const { data, error } = await service
     .from('supplier_balance_movements')
