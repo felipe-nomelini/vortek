@@ -1,3 +1,5 @@
+import type { JobProgressUnit } from '@/lib/jobs/contract';
+
 export type SyncTaskKey =
   | 'sync_dslite_fornecedores'
   | 'sync_dslite_catalogo'
@@ -36,6 +38,7 @@ export interface SyncTaskDefinition {
   domain: string;
   lockTtlSeconds: number;
   kind: SyncTaskKind;
+  progressUnit: JobProgressUnit;
   dispatchMode: SyncTaskDispatchMode;
   schedule?: {
     businessMinutes: number;
@@ -60,6 +63,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'fornecedores:dslite',
     lockTtlSeconds: 20 * 60,
     kind: 'dslite',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 30, offHoursMinutes: 120 },
   },
@@ -71,6 +75,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'produtos:dslite_catalogo',
     lockTtlSeconds: 45 * 60,
     kind: 'dslite',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 360, offHoursMinutes: 720 },
     usesCursor: true,
@@ -90,6 +95,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'produtos:dslite_preco',
     lockTtlSeconds: 15 * 60,
     kind: 'dslite',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     usesCursor: true,
@@ -108,6 +114,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'produtos:dslite_preco',
     lockTtlSeconds: 15 * 60,
     kind: 'dslite',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 10, offHoursMinutes: 10 },
     runMode: 'inline',
@@ -120,6 +127,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'compras:dslite',
     lockTtlSeconds: 20 * 60,
     kind: 'dslite',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     defaultBody: { windowDays: 2 },
@@ -135,6 +143,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:ml_ingest',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 5 },
     usesOffset: true,
@@ -148,6 +157,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:cancelamentos_pos_nfe',
     lockTtlSeconds: 20 * 60,
     kind: 'fiscal',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 5 },
     defaultBody: { limit: 10 },
@@ -161,6 +171,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'anuncios:ml_pull',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    progressUnit: 'itens',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 5, offHoursMinutes: 15 },
     runMode: 'inline',
@@ -175,6 +186,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'anuncios:ml_push',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    progressUnit: 'execucao',
     dispatchMode: 'realtime',
     defaultBody: { limit: 20 },
     runMode: 'inline',
@@ -189,6 +201,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:fiscal',
     lockTtlSeconds: 25 * 60,
     kind: 'fiscal',
+    progressUnit: 'execucao',
     dispatchMode: 'manual',
   },
   {
@@ -199,6 +212,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:brasilnfe',
     lockTtlSeconds: 15 * 60,
     kind: 'fiscal',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 10 },
     defaultBody: { limit: 10 },
@@ -212,6 +226,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'financeiro:mercadopago',
     lockTtlSeconds: 20 * 60,
     kind: 'finance',
+    progressUnit: 'execucao',
     dispatchMode: 'scheduled',
     schedule: { businessMinutes: 180, offHoursMinutes: 360 },
     defaultBody: { windowDays: 7 },
@@ -224,6 +239,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:pack',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    progressUnit: 'execucao',
     dispatchMode: 'manual',
   },
   {
@@ -234,6 +250,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'municipios:seed',
     lockTtlSeconds: 30 * 60,
     kind: 'infra',
+    progressUnit: 'execucao',
     dispatchMode: 'manual',
   },
 ];

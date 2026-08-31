@@ -5514,7 +5514,7 @@ export async function POST(req: Request) {
       progresso: 0,
       total: STEP_DEFS.length,
       processados: 0,
-      cancelado: false,
+      unidade_progresso: 'etapas',
       dedupe_key: dedupeKey,
       log: JSON.parse(
         JSON.stringify([

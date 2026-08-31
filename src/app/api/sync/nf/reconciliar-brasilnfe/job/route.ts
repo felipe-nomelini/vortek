@@ -73,6 +73,7 @@ export async function POST() {
       progresso: 0,
       total: 1,
       processados: 0,
+      unidade_progresso: 'execucao',
       log: [
         {
           event_type: 'job_queued',
@@ -82,7 +83,6 @@ export async function POST() {
           limit: DEFAULT_LIMIT,
         },
       ],
-      cancelado: false,
       created_by: user.id,
     })
     .select('id, status')

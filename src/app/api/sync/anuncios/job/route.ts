@@ -72,8 +72,8 @@ export async function POST() {
       progresso: 0,
       total: 1,
       processados: 0,
+      unidade_progresso: 'itens',
       log: [],
-      cancelado: false,
       created_by: user.id,
       dedupe_key: ML_OBSERVED_CYCLE_DEDUPE_KEY,
     })

@@ -33,7 +33,7 @@ export async function GET(request: Request) {
   if (jobId) {
     const result = await serviceClient
       .from('jobs')
-      .select('id, tipo, status, progresso, processados, total, log, finished_at, created_at')
+      .select('id, tipo, status, progresso, processados, total, unidade_progresso, log, finished_at, created_at')
       .eq('id', jobId)
       .eq('tipo', JOB_TIPO)
       .single();
@@ -43,7 +43,7 @@ export async function GET(request: Request) {
   } else {
     const runningResult = await serviceClient
       .from('jobs')
-      .select('id, tipo, status, progresso, processados, total, log, finished_at, created_at')
+      .select('id, tipo, status, progresso, processados, total, unidade_progresso, log, finished_at, created_at')
       .eq('tipo', JOB_TIPO)
       .in('status', ['pendente', 'rodando', 'on_hold'])
       .order('created_at', { ascending: false })
@@ -56,7 +56,7 @@ export async function GET(request: Request) {
     } else {
       const lastResult = await serviceClient
         .from('jobs')
-        .select('id, tipo, status, progresso, processados, total, log, finished_at, created_at')
+        .select('id, tipo, status, progresso, processados, total, unidade_progresso, log, finished_at, created_at')
         .eq('tipo', JOB_TIPO)
         .order('created_at', { ascending: false })
         .limit(1)
@@ -93,6 +93,7 @@ export async function GET(request: Request) {
       progresso: job.progresso ?? 0,
       processados: job.processados ?? 0,
       total: job.total ?? 0,
+      progressUnit: job.unidade_progresso,
       finished_at: job.finished_at,
       last_event: lastEvent ? {
         event_type: lastEvent.event_type || null,

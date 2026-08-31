@@ -18,7 +18,7 @@ export async function GET(request: Request) {
   if (jobId) {
     const result = await serviceClient
       .from('jobs')
-      .select('id, tipo, status, progresso, processados, total, log, finished_at, created_by, created_at')
+      .select('id, tipo, status, progresso, processados, total, unidade_progresso, log, finished_at, created_by, created_at')
       .eq('id', jobId)
       .eq('tipo', 'sync_ml_orders_ingest')
       .eq('created_by', user.id)
@@ -28,7 +28,7 @@ export async function GET(request: Request) {
   } else {
     const result = await serviceClient
       .from('jobs')
-      .select('id, tipo, status, progresso, processados, total, log, finished_at, created_by, created_at')
+      .select('id, tipo, status, progresso, processados, total, unidade_progresso, log, finished_at, created_by, created_at')
       .eq('tipo', 'sync_ml_orders_ingest')
       .eq('created_by', user.id)
       .in('status', ['pendente', 'rodando'])
@@ -74,6 +74,7 @@ export async function GET(request: Request) {
       progresso: job.progresso ?? 0,
       processados: job.processados ?? 0,
       total: job.total ?? 0,
+      progressUnit: job.unidade_progresso,
       finished_at: job.finished_at,
       last_event: lastEvent ? {
         event_type: lastEvent.event_type || null,

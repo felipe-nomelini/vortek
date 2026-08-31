@@ -40,8 +40,8 @@ export async function POST() {
       progresso: 0,
       total: 4,
       processados: 0,
+      unidade_progresso: 'etapas',
       log: [],
-      cancelado: false,
       created_by: user.id,
     })
     .select('id, status')

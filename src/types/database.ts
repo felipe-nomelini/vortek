@@ -552,7 +552,6 @@ export type Database = {
       }
       jobs: {
         Row: {
-          cancelado: boolean
           created_at: string
           created_by: string | null
           dedupe_key: string | null
@@ -564,9 +563,9 @@ export type Database = {
           status: string
           tipo: string
           total: number
+          unidade_progresso: string
         }
         Insert: {
-          cancelado?: boolean
           created_at?: string
           created_by?: string | null
           dedupe_key?: string | null
@@ -578,9 +577,9 @@ export type Database = {
           status?: string
           tipo: string
           total?: number
+          unidade_progresso?: string
         }
         Update: {
-          cancelado?: boolean
           created_at?: string
           created_by?: string | null
           dedupe_key?: string | null
@@ -592,6 +591,7 @@ export type Database = {
           status?: string
           tipo?: string
           total?: number
+          unidade_progresso?: string
         }
         Relationships: []
       }

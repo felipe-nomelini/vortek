@@ -20,7 +20,7 @@ export async function GET(req: Request, props: { params: Promise<{ id: string }>
   const client = createServiceClient();
   const { data, error } = await client
     .from('jobs')
-    .select('id,tipo,status,progresso,total,processados,log,finished_at')
+    .select('id,tipo,status,progresso,total,processados,unidade_progresso,log,finished_at')
     .eq('id', jobId)
     .maybeSingle();
 
@@ -69,6 +69,7 @@ export async function GET(req: Request, props: { params: Promise<{ id: string }>
     progress: data.progresso ?? 0,
     total: data.total ?? 0,
     processed: data.processados ?? 0,
+    progressUnit: data.unidade_progresso,
     finishedAt: data.finished_at,
     nextRetryAt: retry.nextRetryAt,
     retryAttempt: retry.attempt,

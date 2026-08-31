@@ -1,6 +1,5 @@
 import type { createServiceClient } from "@/lib/supabase";
-
-const ACTIVE_JOB_STATUSES = new Set(["pendente", "rodando", "on_hold"]);
+import { isActiveJobStatus } from "@/lib/jobs/contract";
 const IDEMPOTENCY_KEY_PATTERN = /^[A-Za-z0-9._:-]{8,120}$/;
 
 type ServiceClient = ReturnType<typeof createServiceClient>;
@@ -90,6 +89,6 @@ export async function findReusableJob(input: {
   ));
   if (sameRequest) return { job: sameRequest, reason: "same_request" };
 
-  const activeJob = rows.find((job) => ACTIVE_JOB_STATUSES.has(String(job.status || "")));
+  const activeJob = rows.find((job) => isActiveJobStatus(job.status));
   return activeJob ? { job: activeJob, reason: "active_job" } : null;
 }

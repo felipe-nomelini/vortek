@@ -224,8 +224,8 @@ async function queueOrderHydrationJob(params: {
       progresso: 0,
       total: 1,
       processados: 0,
+      unidade_progresso: 'itens',
       log: initialLog,
-      cancelado: false,
       created_by: null,
     })
     .select('id, status')

@@ -84,6 +84,7 @@ export async function GET() {
       label: task.label,
       domain: task.domain,
       kind: task.kind,
+      progress_unit: task.progressUnit,
       dispatch_mode: task.dispatchMode,
       scheduled: Boolean(task.schedule),
       misconfigured,

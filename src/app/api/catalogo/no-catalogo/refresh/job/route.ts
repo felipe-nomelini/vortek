@@ -44,8 +44,8 @@ export async function POST(request: Request) {
       progresso: 0,
       total: 1,
       processados: 0,
+      unidade_progresso: 'itens',
       log: [],
-      cancelado: false,
       created_by: user.id,
       dedupe_key: mode,
     })

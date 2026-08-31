@@ -7,8 +7,7 @@
  * - Persistência na tabela `jobs` do Supabase
  */
 import { createServiceClient } from '@/lib/supabase';
-
-export type JobStatus = 'pendente' | 'rodando' | 'completo' | 'completo_parcial' | 'erro' | 'cancelado';
+import type { JobProgressUnit, JobStatus } from '@/lib/jobs/contract';
 
 export interface JobLogEntry {
   type: 'success' | 'error' | 'info';
@@ -23,8 +22,8 @@ export interface JobData {
   progresso: number;
   total: number;
   processados: number;
+  progressUnit: JobProgressUnit;
   log: JobLogEntry[];
-  cancelado: boolean;
   created_at: string;
   finished_at: string | null;
 }
@@ -47,18 +46,23 @@ export function registerJobHandler(tipo: string, handler: JobHandler) {
   handlers.set(tipo, handler);
 }
 
-export async function createJob(tipo: string, total: number, createdBy: string | null = null): Promise<JobData> {
+export async function createJob(
+  tipo: string,
+  total: number,
+  progressUnit: JobProgressUnit,
+  createdBy: string | null = null,
+): Promise<JobData> {
   const id = makeId();
   const job: JobData = {
     id, tipo, status: 'pendente', progresso: 0,
-    total, processados: 0, log: [], cancelado: false,
+    total, processados: 0, progressUnit, log: [],
     created_at: now(), finished_at: null,
   };
 
   const serviceClient = createServiceClient();
   await serviceClient.from('jobs').insert({
     id, tipo, status: 'pendente', progresso: 0, total,
-    log: [], cancelado: false, created_by: createdBy,
+    unidade_progresso: progressUnit, log: [], created_by: createdBy,
   });
 
   runJob(id, tipo, total);
@@ -105,8 +109,9 @@ export async function getJob(jobId: string): Promise<JobData | null> {
   return {
     id: data.id, tipo: data.tipo, status: data.status as JobStatus,
     progresso: data.progresso, total: data.total, processados: data.processados || 0,
+    progressUnit: data.unidade_progresso as JobProgressUnit,
     log: typeof data.log === 'string' ? JSON.parse(data.log) : (data.log || []),
-    cancelado: data.cancelado, created_at: data.created_at, finished_at: data.finished_at,
+    created_at: data.created_at, finished_at: data.finished_at,
   };
 }
 
@@ -123,8 +128,9 @@ export async function listJobs(): Promise<JobData[]> {
   return (data || []).map((d: any) => ({
     id: d.id, tipo: d.tipo, status: d.status,
     progresso: d.progresso, total: d.total, processados: d.processados || 0,
+    progressUnit: d.unidade_progresso as JobProgressUnit,
     log: typeof d.log === 'string' ? JSON.parse(d.log) : (d.log || []),
-    cancelado: d.cancelado, created_at: d.created_at, finished_at: d.finished_at,
+    created_at: d.created_at, finished_at: d.finished_at,
   }));
 }
 

@@ -182,8 +182,8 @@ export async function dispatchSyncTasks(params: {
       progresso: 0,
       total: 1,
       processados: 0,
+      unidade_progresso: task.progressUnit,
       log: initialLog as JobsInsert['log'],
-      cancelado: false,
       created_by: params.origin.kind === 'manual_ui' ? params.origin.actorUserId : null,
       dedupe_key: task.key === 'sync_ml_listings_observed' ? ML_OBSERVED_CYCLE_DEDUPE_KEY : null,
     };

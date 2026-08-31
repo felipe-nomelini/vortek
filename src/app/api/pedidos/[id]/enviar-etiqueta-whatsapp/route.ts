@@ -82,7 +82,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
         progresso: 0,
         total: steps.length,
         processados: 0,
-        cancelado: false,
+        unidade_progresso: 'etapas',
         created_by: auth.userId,
         dedupe_key: dedupeKey,
         log: JSON.parse(JSON.stringify([
