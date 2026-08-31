@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `UI-03 — Configurações`
+**Próxima ação obrigatória:** `UI-04 — DTO Pedidos`
 
 ---
 
@@ -1667,10 +1667,28 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Dependências:** `SEC-01`, `SEC-03` e `SEC-04`.
 
-- [ ] confirmar todas as dependências concluídas;
-- [ ] separar tabs em componentes mantendo a mesma rota;
-- [ ] não duplicar autorização nem manipulação de secrets;
-- [ ] concluir o gate obrigatório da seção 3.
+**Prioridade:** P2
+**Situação:** concluída e validada em homologação.
+**Commit funcional:** `85caad2` — `refactor: separate settings tabs`.
+
+- [x] confirmar todas as dependências concluídas;
+- [x] separar tabs em componentes mantendo a mesma rota;
+- [x] não duplicar autorização nem manipulação de secrets;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Estado confirmado:** `src/app/(app)/configuracoes/page.tsx` concentrava em aproximadamente 1.600 linhas o carregamento, estado, mutações e renderização de Empresa, Integrações, Usuários e Preferências. As quatro áreas já possuíam endpoints e estados independentes, mas permaneciam acopladas à mesma implementação de página.
+
+**Mudança:** a rota `/configuracoes`, o `Suspense`, a seleção por `?tab=` e a instância de mensagens permaneceram na página. Empresa, Integrações, Usuários e Preferências foram movidas para componentes próprios, cada um como único responsável pelo respectivo estado e operações. As quatro tabs usam `forceRender` para preservar o carregamento inicial existente. Autorização continua exclusivamente no proxy e nas APIs administrativas; flags e gravação/remoção de credenciais continuam exclusivamente no fluxo seguro de Integrações.
+
+**Validação:** 16/16 testes direcionados aprovados, cobrindo separação estrutural, contrato seguro de secrets, controle de cargo e matriz de permissões. `npm run check:build-secrets`, `npm run validate`, `npm run build` com 119 páginas e `git diff --check` foram aprovados.
+
+**Homologação:** o commit funcional foi enviado somente para `origin/dev`. Os primeiros webhooks foram aceitos enquanto o controlador Easypanel reiniciava e não concluíram uma tarefa; após confirmar o container anterior saudável e o controlador estável, o reenvio oficial concluiu com sucesso. `vortek-erp-dev` confirmou `GIT_SHA=85caad2`; health respondeu HTTP `200` com `success=true`, login respondeu `200`, `/configuracoes` e `?tab=integracoes` preservaram o redirect autenticado `307`, e as três APIs administrativas verificadas responderam `401` sem sessão. O artefato publicado contém as quatro seções extraídas.
+
+**Isolamento:** nenhuma migration, escrita em banco ou chamada de escrita ao Mercado Livre, DSLite, Brasil NFe ou Push foi executada. Banco/Supabase de produção `.160`, banco DEV `.162`, serviço de produção, `main` e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `85caad2` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `UI-03`. A próxima ação obrigatória é `UI-04 — DTO Pedidos`.
 
 ### UI-04 — DTO Pedidos
 
