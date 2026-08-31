@@ -1456,10 +1456,31 @@ Executar **uma regra por tarefa**.
 
 ### RULE-07 — Tipos do ledger
 
-- [ ] mapear tipos realmente aceitos e operados no banco;
-- [ ] alinhar TypeScript com o contrato real;
-- [ ] remover casts dispersos somente no fluxo afetado;
+- [x] mapear tipos realmente aceitos e operados no banco;
+- [x] alinhar TypeScript com o contrato real;
+- [x] remover casts dispersos somente no fluxo afetado;
 - [ ] concluir o gate obrigatório da seção 3.
+
+**Registro parcial da execução — 30/08/2026:**
+
+- branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação e auditorias de compras/financeiro, banco e regras compartilhadas conferidos antes da implementação;
+- causa confirmada: a constraint do ledger aceitava seis tipos, mas os tipos gerados e a interface expunham `movement_type` como `string`; a entrada manual ainda misturava as ações de UI `adjustment_credit`/`adjustment_debit` com o tipo persistido `adjustment`, e a reconciliação removia `null` com cast sobre o lote;
+- contrato ao vivo conferido somente no `supabase-dev` (`192.168.1.162`): `topup`, `purchase_debit`, `adjustment`, `manual_credit`, `cancellation_credit` e `credit_usage`, com zero movimentos no DEV; nenhuma consulta ao banco de produção foi realizada;
+- documentação oficial atual de TypeScript, Supabase e PostgreSQL conferida para unions literais, complementação dos tipos gerados e enforcement por `CHECK`;
+- `src/lib/supplier-ledger.ts` passou a concentrar os seis tipos persistidos, as quatro ações manuais, o narrowing de leituras e a conversão explícita para tipo/sinal do banco;
+- API, reconciliação e interface de créditos passaram a reutilizar o contrato; o cast após `filter(Boolean)` e a conversão implícita por `startsWith('adjustment')` foram removidos;
+- `topup` e `purchase_debit` permanecem somente como tipos históricos legíveis, sem restaurar writers da conta-saldo Hayamax;
+- 8/8 testes direcionados aprovados, incluindo os testes de aposentadoria da Hayamax; `npm run validate`, `npm run build` com 119 páginas estáticas e `git diff --check`: aprovados;
+- commit funcional `e5b8c98` enviado somente para `origin/dev`;
+- dois acionamentos do webhook oficial retornaram HTTP `200`; o primeiro build compilou com sucesso, mas foi cancelado ao final pelo segundo acionamento, e a segunda action permaneceu sem execução/log durante a janela observada;
+- o container `vortek-erp-dev` permaneceu no SHA anterior `502cab6`; portanto a homologação da versão nova ainda não foi declarada concluída;
+- nenhuma migration, escrita em banco ou chamada externa financeira foi executada; `main`, banco de produção `.160`, deploy de produção e `app.vortek.shop` permaneceram intocados.
+
+**Migration:** N/A; schema e constraints existentes já representam o contrato correto.
+
+**Rollback:** reverter `e5b8c98` somente em `dev` caso a regressão seja observada após o deploy. Não há rollback de banco ou dados.
+
+**Pendência:** concluir o deploy do commit funcional no `vortek-erp-dev`, confirmar o SHA novo, health e proteção da API de créditos sem sessão. A próxima ação obrigatória continua sendo `RULE-07` até este gate ser fechado.
 
 ### JOB-02 — Dispatch duplicado
 
