@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `UI-05 — Perguntas`
+**Próxima ação obrigatória:** `UI-02 — Tracking Mercado Livre`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-05` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-02` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -122,6 +122,8 @@ Regras de uso:
 - [x] Não avançar para `JOB-04` antes de `JOB-02` estar integralmente validada.
 - [x] Executar somente `JOB-04 — Status de job`.
 - [x] Não avançar para `UI-05` antes de `JOB-04` estar integralmente validada.
+- [x] Executar somente `UI-05 — Perguntas`.
+- [x] Não avançar para `UI-02` antes de `UI-05` estar integralmente validada.
 
 ---
 
@@ -1551,10 +1553,26 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 ### UI-05 — Perguntas
 
-- [ ] confirmar que busca/filtro opera somente sobre a página carregada;
-- [ ] alinhar semântica entre UI e API;
-- [ ] provar busca e filtros sobre o conjunto esperado;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] confirmar que busca/filtro opera somente sobre a página carregada;
+- [x] alinhar semântica entre UI e API;
+- [x] provar busca e filtros sobre o conjunto esperado;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Situação:** concluída e homologada em DEV em 31/08/2026.
+
+**Estado/causa confirmados:** `/api/perguntas` já aplicava `limit`, `offset` e `status` no Mercado Livre, mas texto e datas eram filtrados apenas sobre as até 100 perguntas carregadas no navegador. A interface e os cards não informavam essa diferença de escopo, permitindo interpretar zero resultados e contagens da página como resultados globais.
+
+**Mudança realizada:** busca e datas permaneceram deliberadamente locais, agora com semântica explícita na tela; status continua global no provedor. Os cards passaram a identificar a página atual e o total global permaneceu na paginação. A regra local foi extraída somente para uma função pura testável; API, paginação e fluxo de resposta não foram alterados.
+
+**Validação:** 5/5 testes direcionados aprovados, cobrindo todos os campos pesquisáveis, caixa, datas inclusivas, perguntas sem resposta e isolamento entre páginas. `npm run validate`, `npm run build` com 119 páginas e `git diff --check` foram aprovados.
+
+**Homologação:** commit funcional `40e1f34` enviado somente para `origin/dev`. O primeiro build foi cancelado por um reinício do controlador Easypanel; após confirmar que o container anterior seguia saudável, um reenvio pelo caminho oficial concluiu com sucesso. `vortek-erp-dev` confirmou `GIT_SHA=40e1f34`; health respondeu HTTP `200`, `/perguntas` preservou o redirect autenticado `307`, `/api/perguntas` sem sessão respondeu `401` e o artefato publicado contém a indicação dos escopos global e local.
+
+**Isolamento:** nenhuma migration, escrita em banco ou alteração externa foi necessária. Banco/Supabase de produção `.160`, banco DEV `.162`, serviço de produção, `main` e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `40e1f34` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `UI-05`. A próxima ação obrigatória é `UI-02 — Tracking Mercado Livre`.
 
 ### UI-02 — Tracking Mercado Livre
 
