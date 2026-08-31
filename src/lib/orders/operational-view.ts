@@ -51,6 +51,25 @@ export const POST_DISPATCH_ORDER_STATUSES = [
   'devolvido',
 ] as const;
 
+export const SALES_PROGRESS_STAGES = [
+  'Venda',
+  'Preparação',
+  'Fiscal',
+  'Etiqueta',
+  'Envio',
+  'Entrega',
+] as const;
+
+export type SalesProgressTone = 'normal' | 'error' | 'success';
+
+export interface OrderSalesProgress {
+  completedSteps: number;
+  currentStep: number;
+  currentLabel: (typeof SALES_PROGRESS_STAGES)[number];
+  nextLabel: string;
+  tone: SalesProgressTone;
+}
+
 const OPERATION_DELAY_MS = 60 * 60 * 1000;
 
 export interface OperationalOrderLike {
@@ -65,8 +84,16 @@ export interface OperationalOrderLike {
   internal_stock_available?: boolean | null;
   envio_interno_at?: string | null;
   dslite_next_action?: string | null;
+  dslite_next_action_label?: string | null;
   dslite_label_operational_status?: DsliteLabelOperationalStatus | null;
   whatsapp_label_status?: WhatsappLabelOperationalStatus | null;
+  fulfillment_source?: 'internal' | 'supplier' | null;
+  has_split_fulfillment?: boolean | null;
+  notaFiscal?: { emitida?: boolean | null } | null;
+  nota_fiscal_emitida?: boolean | null;
+  nfe_status?: string | null;
+  ml_label_storage_path?: string | null;
+  ml_thermal_label_storage_path?: string | null;
 }
 
 function normalizeOrderStatus(order: OperationalOrderLike): string {
@@ -143,6 +170,131 @@ export function getOperationalUrgencyReasons(
   }
 
   return Array.from(new Set(reasons));
+}
+
+function isDsliteLabelConfirmed(order: OperationalOrderLike): boolean {
+  const status = String(order.dslite_label_operational_status || '');
+  if (status) {
+    return status === 'real_sent'
+      || status === 'generic_sent'
+      || status === 'provider_shipping';
+  }
+  return Boolean(order.dslite_etiqueta_enviada);
+}
+
+function isPreparationComplete(order: OperationalOrderLike): boolean {
+  const internal = order.fulfillment_source === 'internal'
+    || Boolean(order.envio_interno_at)
+    || order.dslite_next_action === 'internal_shipping';
+
+  if (internal) return Boolean(order.envio_interno_at);
+
+  const dsliteId = String(order.dslite_id || '').trim();
+  const nextAction = String(order.dslite_next_action || '');
+  const blockedActions = [
+    'create_dslite_order',
+    'confirm_supplier_payment',
+    'send_supplier_receipt',
+    'resume_dslite_flow',
+    'blocked',
+  ];
+
+  return Boolean(dsliteId)
+    && !blockedActions.includes(nextAction)
+    && !String(order.dslite_status || '').toLowerCase().includes('rejeitado');
+}
+
+function isFiscalComplete(order: OperationalOrderLike, status: string): boolean {
+  return status === 'faturado'
+    || Boolean(order.notaFiscal?.emitida)
+    || Boolean(order.nota_fiscal_emitida)
+    || String(order.nfe_status || '').toLowerCase() === 'authorized';
+}
+
+function isLabelComplete(order: OperationalOrderLike, status: string): boolean {
+  return status === 'etiqueta_impressa'
+    || isDsliteLabelConfirmed(order)
+    || Boolean(order.ml_label_storage_path)
+    || Boolean(order.ml_thermal_label_storage_path);
+}
+
+function resolvePreparationNextLabel(order: OperationalOrderLike): string {
+  const nextAction = String(order.dslite_next_action || '');
+  const label = String(order.dslite_next_action_label || '').trim();
+
+  if (nextAction === 'internal_shipping' || order.internal_stock_available) return 'Processar envio interno';
+  if (label && label !== 'OK') return label;
+  if (nextAction === 'confirm_supplier_payment') return 'Confirmar PIX';
+  if (nextAction === 'send_supplier_receipt') return 'Anexar comprovante';
+  if (nextAction === 'resume_dslite_flow') return 'Retomar fluxo';
+  if (nextAction === 'blocked') return 'Revisar bloqueio do fulfillment';
+  return 'Criar pedido no fornecedor';
+}
+
+function inferCompletedSalesSteps(order: OperationalOrderLike, status: string): number {
+  if (status === 'entregue') return SALES_PROGRESS_STAGES.length;
+  if (SHIPPING_ORDER_STATUSES.includes(status as any)) return 5;
+  if (status === 'recusado' || status === 'devolvido') return 5;
+
+  let completed = 1;
+  if (!isPreparationComplete(order)) return completed;
+  completed = 2;
+  if (!isFiscalComplete(order, status)) return completed;
+  completed = 3;
+  if (!isLabelComplete(order, status)) return completed;
+  return 4;
+}
+
+export function getOrderSalesProgress(
+  order: OperationalOrderLike,
+  at = Date.now(),
+): OrderSalesProgress {
+  const status = normalizeOrderStatus(order);
+  const completedSteps = inferCompletedSalesSteps(order, status);
+  const currentStep = Math.min(completedSteps + 1, SALES_PROGRESS_STAGES.length);
+  const rejected = String(order.dslite_status || '').toLowerCase().includes('rejeitado');
+  const failed = order.dslite_label_operational_status === 'failed'
+    || order.whatsapp_label_status === 'failed';
+  const interrupted = status === 'cancelado' || status === 'recusado' || status === 'devolvido';
+  const hasOperationalError = interrupted
+    || Boolean(order.has_split_fulfillment)
+    || Boolean(order.ml_claim_id)
+    || rejected
+    || failed;
+
+  let nextLabel: string;
+  if (status === 'entregue') nextLabel = 'Concluída';
+  else if (status === 'cancelado') nextLabel = 'Fluxo encerrado: venda cancelada';
+  else if (status === 'recusado') nextLabel = 'Entrega recusada';
+  else if (status === 'devolvido') nextLabel = 'Venda devolvida';
+  else if (order.has_split_fulfillment) nextLabel = 'Revisar fluxo dividido';
+  else if (order.ml_claim_id) nextLabel = 'Tratar reclamação no Mercado Livre';
+  else {
+    const urgency = getOperationalUrgencyReasons(order, at);
+    if (urgency.length > 0) nextLabel = urgency[0];
+    else if (currentStep === 2) nextLabel = resolvePreparationNextLabel(order);
+    else if (currentStep === 3) {
+      nextLabel = order.dslite_next_action === 'complete_dslite_label'
+        ? 'Emitir fiscal e completar etiqueta'
+        : 'Emitir nota fiscal';
+    } else if (currentStep === 4) {
+      nextLabel = order.dslite_next_action === 'wait_ml_label'
+        ? 'Aguardar liberação da etiqueta'
+        : order.dslite_next_action === 'complete_dslite_label'
+          ? 'Completar etiqueta'
+          : 'Gerar etiqueta de envio';
+    } else if (currentStep === 5) nextLabel = 'Despachar pedido';
+    else if (status === 'dest_ausente') nextLabel = 'Acompanhar nova tentativa de entrega';
+    else nextLabel = 'Acompanhar entrega';
+  }
+
+  return {
+    completedSteps,
+    currentStep,
+    currentLabel: SALES_PROGRESS_STAGES[currentStep - 1],
+    nextLabel,
+    tone: status === 'entregue' ? 'success' : hasOperationalError ? 'error' : 'normal',
+  };
 }
 
 export function matchesOrdersOperationalView(

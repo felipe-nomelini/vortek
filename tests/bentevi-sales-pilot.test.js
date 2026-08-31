@@ -38,6 +38,17 @@ test('BNT-D01 apresenta somente ações autorizadas para o cargo atual', () => {
   }
 });
 
+test('BNT-D01 exibe venda e pack separadamente e reduz ruído visual da tabela', () => {
+  assert.match(page, /Venda #\{saleId\}/);
+  assert.match(page, /Pack #\{packId\}/);
+  assert.match(page, /order\.lucro > 0 \? token\.colorSuccess : token\.colorError/);
+  assert.match(page, /title: 'Status'/);
+  assert.match(page, /title: 'Progresso'/);
+  assert.doesNotMatch(page, /<Tag color="purple">KIT<\/Tag>/);
+  assert.doesNotMatch(page, /<Tag color="blue">CARRINHO<\/Tag>/);
+  assert.doesNotMatch(page, /title: 'Idade'/);
+});
+
 test('BNT-D01 mantém lista e resumo independentes e preserva dados em falha de refresh', () => {
   assert.match(page, /listLoading/);
   assert.match(page, /summaryLoading/);

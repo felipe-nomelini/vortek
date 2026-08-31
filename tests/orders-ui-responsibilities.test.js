@@ -39,15 +39,23 @@ test('DTO operacional representa a resposta real de Pedidos sem casts compensat�
 });
 
 test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
-  for (const label of ['Pedido', 'Cliente', 'Valor', 'Etapa', 'Pendência', 'Idade', 'Próxima ação']) {
+  for (const label of ['Pedido', 'Cliente', 'Valor', 'Status', 'Progresso', 'Próxima ação']) {
     assert.match(page, new RegExp(`title: '${label}'`));
   }
+  assert.doesNotMatch(page, /title: 'Pendência'/);
+  assert.doesNotMatch(page, /title: 'Idade'/);
+  assert.match(page, /Venda #\{saleId\}/);
+  assert.match(page, /Pack #\{packId\}/);
+  assert.match(page, /getOrderSalesProgress\(order\)/);
+  assert.match(page, /steps=\{SALES_PROGRESS_STAGES\.length\}/);
   assert.match(page, /function getOrderActions/);
   assert.match(page, /hasPermission\(role, permission\)/);
   assert.match(page, /window\.history\.replaceState/);
   assert.match(page, /Promise\.allSettled/);
   assert.match(page, /Os dados anteriores foram preservados/);
-  assert.match(page, /storageKey="pedidos-bentevi-v1"/);
+  assert.match(page, /storageKey="pedidos-bentevi-v2"/);
+  assert.match(page, /operational\.shortLabel/);
+  assert.match(page, /title=\{operational\.label\}/);
   assert.doesNotMatch(page, /rowSelection=/);
   assert.doesNotMatch(page, /expandable=/);
   assert.match(detailsDrawer, /<Drawer/);

@@ -73,6 +73,9 @@ export default function PedidoDetailsDrawer({
   onDownloadXml,
   actions,
 }: PedidoDetailsDrawerProps) {
+  const mlSaleId = order ? String(order.ml_order_id || order.numero) : '';
+  const mlPackId = order ? String(order.ml_pack_id || '').trim() : '';
+  const mlDetailReference = mlPackId || mlSaleId;
   const address = (order?.billing_endereco || {}) as {
     street_name?: string;
     street_number?: string;
@@ -92,7 +95,7 @@ export default function PedidoDetailsDrawer({
 
   return (
     <Drawer
-      title={order ? `Pedido #${order.ml_pack_id || order.numero}` : 'Detalhes do pedido'}
+      title={order ? `Venda #${mlSaleId}` : 'Detalhes do pedido'}
       open={open}
       onClose={onClose}
       width={760}
@@ -131,6 +134,8 @@ export default function PedidoDetailsDrawer({
               <Descriptions.Item label="Documento">{order.contato.numeroDocumento || '—'}</Descriptions.Item>
               <Descriptions.Item label="Venda">{formatDateTime(order.data)}</Descriptions.Item>
               <Descriptions.Item label="Status">{order.situacao.valor.replaceAll('_', ' ')}</Descriptions.Item>
+              <Descriptions.Item label="Venda ML">{mlSaleId}</Descriptions.Item>
+              <Descriptions.Item label="Pack ML">{mlPackId || '—'}</Descriptions.Item>
               <Descriptions.Item label="Fulfillment">{order.envio_interno_at ? 'Estoque interno' : order.fornecedor_nome || 'Fornecedor não definido'}</Descriptions.Item>
               <Descriptions.Item label="Lucro">{order.lucro === null ? (order.profit_pending ? 'Calculando' : '—') : formatCurrency(order.lucro)}</Descriptions.Item>
             </Descriptions>
@@ -202,12 +207,12 @@ export default function PedidoDetailsDrawer({
                   </Button>
                 ) : '—'}
               </Descriptions.Item>
-              <Descriptions.Item label="Pedido ML">
+              <Descriptions.Item label="Abrir no Mercado Livre">
                 {order.is_homologation_fixture
-                  ? <Text>{order.ml_pack_id || order.ml_order_id || order.numero}</Text>
+                  ? <Text>Indisponível na amostra protegida</Text>
                   : (
-                    <a href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.ml_order_id || order.numero}/detalhe`} target="_blank" rel="noopener noreferrer">
-                      {order.ml_pack_id || order.ml_order_id || order.numero}
+                    <a href={`https://www.mercadolivre.com.br/vendas/${mlDetailReference}/detalhe`} target="_blank" rel="noopener noreferrer">
+                      Ver venda{mlPackId ? ` / pack ${mlPackId}` : ''}
                     </a>
                   )}
               </Descriptions.Item>
