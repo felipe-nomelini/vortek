@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `RULE-02 — Pricing`
+**Próxima ação obrigatória:** `RULE-03 — Payment mode`
 
 ---
 
@@ -62,7 +62,7 @@ Regras de uso:
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
-| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-02` |
+| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-03` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -108,6 +108,8 @@ Regras de uso:
 - [x] Não avançar para `RULE-02` antes de a fotografia DEV estar capturada, validada e documentada.
 - [x] Executar somente o hardening derivado da `DB-03` no `supabase-dev`.
 - [x] Não avançar antes de RLS, grants, RPCs, funções privilegiadas e policies de kits estarem validados.
+- [x] Executar somente `RULE-02 — Pricing`.
+- [x] Não avançar para `RULE-03` antes de `RULE-02` estar integralmente validada.
 
 ---
 
@@ -1321,11 +1323,36 @@ Executar **uma regra por tarefa**.
 
 ### RULE-02 — Pricing
 
-- [ ] manter `services/pricing.ts` como fonte;
-- [ ] definir os contextos reais de 4% e 5%;
-- [ ] remover fórmulas locais somente depois da equivalência comprovada;
-- [ ] não alterar taxa por suposição;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] manter `services/pricing.ts` como fonte;
+- [x] substituir a divergência fixa de 4% e 5% pelo contexto tributário real e explícito;
+- [x] remover fórmulas locais somente depois da equivalência comprovada;
+- [x] não alterar taxa por suposição;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Prioridade:** P2
+**Situação:** concluída e validada exclusivamente em desenvolvimento/homologação.
+
+#### Gate e evidências
+
+- branch `dev`, working tree inicial inspecionada, `AGENTS.md`, Item 17, consolidação e auditoria de regras compartilhadas conferidos antes da implementação;
+- contratos oficiais atuais do Simples Nacional, PostgreSQL e Supabase consultados para o cálculo da alíquota efetiva, faturamento acumulado e funções de banco;
+- causa confirmada: o serviço central aceitava contextos fixos de 4% e 5%, enquanto rotas, telas e scripts repetiam fórmulas e taxas locais sem uma fonte explícita para o contexto fiscal vigente;
+- `src/services/pricing.ts` permaneceu como fonte central e passou a exigir a taxa tributária resolvida pelo contexto compartilhado;
+- contexto tributário passou a usar início de atividade, faturamento mensal operacional e alíquota confirmada do PGDAS, aplicando piso conservador de 4% e bloqueando estimativa automática acima do limite validado;
+- rotas, telas, fluxos Mercado Livre e scripts operacionais ativos passaram a consumir o mesmo cálculo; scripts históricos de campanhas encerradas permaneceram fora do escopo;
+- migration `20260830233000_rule_02_dynamic_pricing.sql` ensaiada integralmente com `ROLLBACK`, depois aplicada de forma transacional e registrada somente no `supabase-dev` (`192.168.1.162`, PostgreSQL `17.6`);
+- banco DEV validado com `93/93` migrations, registro único da RULE-02, novas assinaturas das RPCs de produtos, constraint da alíquota e execução da leitura de faturamento restrita a `service_role`;
+- endpoint `supabase-dev.vortek.shop` respondeu HTTP `200` usando a nova assinatura com `p_tax_rate`, confirmando o contrato público do banco DEV;
+- testes direcionados de pricing, scripts ativos, catálogo, estado operacional, SEO e lucro-alvo: `40/40` aprovados;
+- `npm run validate`, `npm run build` com 119 páginas estáticas e `git diff --check`: aprovados;
+- commit funcional `1e53613` enviado somente para `origin/dev` e deploy acionado somente no serviço de homologação `vortek-erp-dev`;
+- container de homologação reiniciado; health e login em `dev.vortek.shop` responderam HTTP `200`, e as APIs de configurações e produtos permaneceram protegidas com HTTP `401` sem sessão;
+- a execução final foi limitada ao `.162`; `main`, deploy de produção, `app.vortek.shop` e banco de produção não foram acessados ou modificados;
+- isolamento reforçado no commit `6422f11`: `.160` é produção e somente leitura neste worktree; `.162` é o único Supabase gravável.
+
+**Rollback:** reverter `1e53613` em `dev`, restaurar no banco DEV as assinaturas anteriores das RPCs a partir da migration `20260812153000_add_internal_supplier_product_filters.sql` preservando o hardening de `20260830220000_harden_public_schema_after_db03.sql`, remover os objetos exclusivos da RULE-02 após confirmar ausência de dados dependentes e redeployar somente a homologação.
+
+**Pendência:** nenhuma para `RULE-02`. A próxima ação obrigatória é `RULE-03 — Payment mode`.
 
 ### RULE-03 — Payment mode
 
