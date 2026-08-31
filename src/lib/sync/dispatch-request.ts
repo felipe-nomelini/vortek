@@ -24,18 +24,18 @@ function sanitizeTaskKey(value: unknown): SyncTaskKey | null {
 }
 
 export function resolveSyncTaskKeys(body: SyncDispatchBody): SyncTaskKey[] {
-  const directTaskKeys = Array.isArray(body.taskKeys)
-    ? body.taskKeys
+  if (Array.isArray(body.taskKeys)) {
+    return Array.from(new Set(
+      body.taskKeys
         .map((entry) => sanitizeTaskKey(entry))
-        .filter((entry): entry is SyncTaskKey => Boolean(entry))
-    : [];
-
-  if (directTaskKeys.length > 0) {
-    return Array.from(new Set(directTaskKeys));
+        .filter((entry): entry is SyncTaskKey => Boolean(entry)),
+    ));
   }
 
-  const directTaskKey = sanitizeTaskKey(body.taskKey);
-  if (directTaskKey) return [directTaskKey];
+  if (body.taskKey !== undefined) {
+    const directTaskKey = sanitizeTaskKey(body.taskKey);
+    return directTaskKey ? [directTaskKey] : [];
+  }
 
   const tipoRaw = String(body.tipo || 'todos').trim();
   const tipoAsTask = sanitizeTaskKey(tipoRaw);

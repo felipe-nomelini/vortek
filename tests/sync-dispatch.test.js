@@ -49,6 +49,8 @@ test('resolve tasks diretas, legadas e todos sem duplicar chaves', () => {
     dispatchRequest.resolveSyncTaskKeys({ tipo: 'todos' }),
     registry.SYNC_TASKS.filter((task) => task.schedule).map((task) => task.key),
   );
+  assert.deepEqual(dispatchRequest.resolveSyncTaskKeys({ taskKey: 'inválida' }), []);
+  assert.deepEqual(dispatchRequest.resolveSyncTaskKeys({ taskKeys: ['inválida'] }), []);
   assert.deepEqual(dispatchRequest.resolveSyncTaskKeys({ tipo: 'inválida' }), []);
 });
 
