@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `UI-01 — Pedidos`
+**Próxima ação obrigatória:** `UI-03 — Configurações`
 
 ---
 
@@ -126,6 +126,8 @@ Regras de uso:
 - [x] Não avançar para `UI-02` antes de `UI-05` estar integralmente validada.
 - [x] Executar somente `UI-02 — Tracking Mercado Livre`.
 - [x] Não avançar para `UI-01` antes de `UI-02` estar integralmente validada.
+- [x] Executar somente `UI-01 — Pedidos`.
+- [x] Não avançar para `UI-03` antes de `UI-01` estar integralmente validada.
 
 ---
 
@@ -1620,11 +1622,46 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 ### UI-01 — Pedidos
 
-- [ ] separar somente blocos funcionais reais de DSLite;
-- [ ] separar pagamento de fornecedor quando independente;
-- [ ] separar etiqueta/WhatsApp quando independente;
-- [ ] preservar regras de negócio nas fontes existentes;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] separar somente blocos funcionais reais de DSLite;
+- [x] separar pagamento de fornecedor quando independente;
+- [x] separar etiqueta/WhatsApp quando independente;
+- [x] preservar regras de negócio nas fontes existentes;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Situação:** concluída e homologada em DEV em 31/08/2026.
+
+**Estado/causa confirmados:** `/pedidos` concentrava em 2.625 linhas a listagem e seus filtros junto aos estados, timers, chamadas e modais de criação/retomada DSLite, pagamento do fornecedor, escolha de frete, etiqueta, envio interno e WhatsApp. Os contratos de fulfillment, pagamento, fiscal, jobs e tracking já estavam centralizados fora da página e foram preservados.
+
+**Mudança realizada:** a página permaneceu responsável por listagem, resumo, filtros, paginação, exportação, DTO, tracking e regras de elegibilidade. O fluxo DSLite passou a concentrar somente criação/retomada do job, pagamento, frete e desvinculação; etiqueta e WhatsApp passaram a um segundo fluxo específico. Os modais correspondentes foram extraídos como componentes próprios. URLs, payloads, intervalos, mensagens e regras existentes foram mantidos; nenhum polling genérico, serviço, dependência ou fonte de verdade adicional foi criado.
+
+**Gate obrigatório:**
+
+- [x] branch confirmada como `dev` e working tree inspecionada;
+- [x] `AGENTS.md` e documentação aplicável lidos;
+- [x] estado atual e fronteiras funcionais confirmados no código;
+- [x] documentação oficial atual de React, Next.js e Ant Design consultada;
+- [x] menor mudança correta e reversível definida;
+- [x] teste de regressão estrutural adicionado;
+- [x] implementação limitada à ação `UI-01`;
+- [x] testes direcionados executados e aprovados;
+- [x] `npm run validate` executado e aprovado;
+- [x] `npm run build` executado e aprovado;
+- **N/A:** nenhuma migration ou escrita em banco foi necessária;
+- [x] comportamento e artefato validados em `dev.vortek.shop`;
+- [x] isolamento de produção reconfirmado;
+- [x] diff revisado e sem mudanças fora do escopo;
+- [x] rollback definido;
+- [x] resultado e pendências registrados neste documento.
+
+**Validação:** 79/79 testes direcionados aprovados, cobrindo a separação estrutural e os contratos existentes de DSLite, fulfillment, pagamento do fornecedor, fiscal, etiqueta, WhatsApp e jobs. `npm run validate`, `npm run build` com 119 páginas e `git diff --check` foram aprovados.
+
+**Homologação:** commit funcional `1a7c6cc` enviado somente para `origin/dev`. Os primeiros webhooks foram aceitos durante uma reinicialização do controlador Easypanel e não criaram tarefa; após confirmar ausência de build DEV e estabilidade do controlador, o reenvio pelo caminho oficial concluiu com sucesso. `vortek-erp-dev` confirmou `GIT_SHA=1a7c6cc`; health respondeu HTTP `200` com `success=true`, `/pedidos` preservou o redirect autenticado `307`, as APIs de pedidos, status DSLite e status WhatsApp responderam `401` sem sessão, e o artefato publicado contém os dois fluxos extraídos.
+
+**Isolamento:** nenhuma migration, escrita em banco ou chamada de escrita à DSLite, Mercado Livre, Brasil NFe ou WhatsApp foi executada. Banco/Supabase de produção `.160`, banco DEV `.162`, serviço de produção, `main` e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `1a7c6cc` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `UI-01`. A próxima ação obrigatória é `UI-03 — Configurações`.
 
 ### UI-03 — Configurações
 
