@@ -30,6 +30,21 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             borderRadius: 8,
           },
           components: {
+            Layout: {
+              bodyBg: benteviColors.background,
+              headerBg: benteviColors.surface,
+              siderBg: benteviColors.surface,
+            },
+            Menu: {
+              darkItemBg: benteviColors.surface,
+              darkPopupBg: benteviColors.surfaceElevated,
+              darkSubMenuItemBg: benteviColors.background,
+              darkItemColor: benteviColors.textSecondary,
+              darkItemHoverColor: benteviColors.text,
+              darkItemHoverBg: benteviColors.surfaceElevated,
+              darkItemSelectedBg: benteviColors.primary,
+              darkItemSelectedColor: benteviColors.textOnPrimary,
+            },
             Input: { controlHeight: 32 },
             InputNumber: { controlHeight: 32 },
             Select: { controlHeight: 32 },
