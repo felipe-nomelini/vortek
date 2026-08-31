@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `RULE-04 — Threshold de custo`
+**Próxima ação obrigatória:** `RULE-05 — Status fiscal`
 
 ---
 
@@ -62,7 +62,7 @@ Regras de uso:
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
-| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-04` |
+| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-05` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -112,6 +112,8 @@ Regras de uso:
 - [x] Não avançar para `RULE-03` antes de `RULE-02` estar integralmente validada.
 - [x] Executar somente `RULE-03 — Payment mode`.
 - [x] Não avançar para `RULE-04` antes de `RULE-03` estar integralmente validada.
+- [x] Executar somente `RULE-04 — Threshold de custo`.
+- [x] Não avançar para `RULE-05` antes de `RULE-04` estar integralmente validada.
 
 ---
 
@@ -1393,9 +1395,30 @@ Executar **uma regra por tarefa**.
 
 ### RULE-04 — Threshold de custo
 
-- [ ] reutilizar `product-activity.ts`;
-- [ ] remover repetição local de `cost > 2000` somente após equivalência;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] reutilizar `product-activity.ts`;
+- [x] remover repetição local de `cost > 2000` somente após equivalência;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Registro da execução — 30/08/2026:**
+
+- branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação e auditoria de regras compartilhadas conferidos antes da implementação;
+- causa confirmada: `src/lib/product-activity.ts` já era a fonte central do limite estrito `> 2000`, mas `automatic-pricing.ts` repetia `cost > 2_000` e o sync de preço/estoque ainda registrava `threshold: 2000` literalmente no metadado do outbox;
+- documentação oficial externa: N/A; a ação consolida uma regra interna existente sem alterar contrato de Next.js, banco, DSLite ou Mercado Livre;
+- precificação automática passou a usar `shouldProductBeInactiveByCost(cost)`, preservando separadamente a rejeição de custo inválido ou não positivo;
+- metadado do outbox no sync de preço/estoque passou a usar `PRODUCT_COST_INACTIVE_THRESHOLD`;
+- regressão `tests/product-activity.test.js` adicionada para a fronteira exata, strings numéricas, entradas inválidas e wiring dos dois consumidores;
+- testes direcionados de product activity e seleção de pricing automático: `6/6` aprovados;
+- `npm run validate`, `npm run build` com 119 páginas estáticas e `git diff --check`: aprovados;
+- commit funcional `a8b10db` enviado somente para `origin/dev` e deploy acionado somente no serviço `vortek-erp-dev`;
+- container de homologação confirmou `GIT_SHA=a8b10db`; health e login em `dev.vortek.shop` responderam HTTP `200`, e `/api/sync/preco-estoque` permaneceu protegida com HTTP `401` sem autenticação;
+- a inspeção no host Easypanel `.160` foi somente leitura e limitada ao container da aplicação DEV; nenhum banco, Supabase, secret ou configuração foi consultado ou modificado;
+- nenhuma migration, escrita em banco ou chamada externa de publicação foi executada; `.162`, `main`, produção e `app.vortek.shop` permaneceram intocados.
+
+**Migration:** N/A; nenhuma alteração de schema ou dados é necessária.
+
+**Rollback:** reverter `a8b10db` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `RULE-04`. A próxima ação obrigatória é `RULE-05 — Status fiscal`.
 
 ### RULE-05 — Status fiscal
 
