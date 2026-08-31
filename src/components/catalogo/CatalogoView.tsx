@@ -7,6 +7,7 @@ import type { MenuProps, TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined, ReloadOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressModal';
+import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 
 const { Title } = Typography;
 const PAGE_SIZE = 100;
@@ -156,47 +157,12 @@ type AnalisePrecoResponse = {
   erro?: string;
 };
 
-type MlPublishStatusResponse = {
-  success: boolean;
-  status?: 'pending' | 'processing' | 'retry' | 'failed' | 'done';
-  phase?: 'enfileirado' | 'processando' | 'erro' | 'concluido';
-  last_error?: string | null;
-  outboxId?: string;
-  result?: {
-    item_price?: number | null;
-    has_quantity_pricing?: boolean;
-    quantity_pricing_state?: 'active' | 'absent' | 'failed_validation' | 'provider_rejected';
-    quantity_pricing_last_error?: string | null;
-    quantity_pricing?: Array<{
-      min_purchase_unit: number;
-      discount_percent: number;
-      amount: number;
-      currency_id: string;
-      pricing_model: 'percentage' | 'absolute';
-    }>;
-    suggested_quantity_pricing?: Array<{
-      min_purchase_unit: number;
-      discount_percent: number;
-      amount: number;
-      currency_id: string;
-      pricing_model: 'percentage' | 'absolute';
-    }>;
-    warnings?: string[];
-  } | null;
-  progress?: {
-    last_operation?: string | null;
-  } | null;
-  error?: string;
-};
-
 type PublishActionContext = {
   produtoId: string;
   targetPrice: number;
   source: 'catalog_price_to_win';
   itemKey: string;
 };
-
-const ML_PUBLISH_POLLING_INTERVAL_MS = 2000;
 
 function mapStatusMlToPt(status: string | null | undefined): string {
   const normalized = String(status || '').toLowerCase();
@@ -257,91 +223,6 @@ function compareNumberNullable(left: unknown, right: unknown): number {
   return leftNumber - rightNumber;
 }
 
-function parseOutboxStepLabel(operation: string | null | undefined): string {
-  const op = String(operation || '').trim().toLowerCase();
-  if (!op) return 'Aguardando worker';
-  if (op === 'processing_start') return 'Iniciando publicação';
-  if (op === 'validate') return 'Validando item no outbox';
-  if (op === 'price') return 'Publicando preço base';
-  if (op === 'quantity_pricing') return 'Publicando preços de atacado';
-  if (op === 'quantity') return 'Publicando estoque';
-  if (op === 'status') return 'Publicando status do anúncio';
-  return op;
-}
-
-function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): ProgressStep[] {
-  const currentStatus = statusPayload?.status || 'pending';
-  const lastError = statusPayload?.last_error || null;
-  const phase = statusPayload?.phase || 'enfileirado';
-  const lastOperation = statusPayload?.progress?.last_operation || null;
-  const result = statusPayload?.result || null;
-  const quantityPricing = Array.isArray(result?.quantity_pricing) ? result?.quantity_pricing : [];
-  const hasQuantityPricing = quantityPricing.length > 0;
-  const quantityPricingState = String(result?.quantity_pricing_state || (hasQuantityPricing ? 'active' : 'absent'));
-  const quantityPricingLastError = String(result?.quantity_pricing_last_error || '').trim();
-  const suggestedQuantityPricing = Array.isArray(result?.suggested_quantity_pricing) ? result.suggested_quantity_pricing : [];
-  const warnings = Array.isArray(result?.warnings) ? result.warnings : [];
-
-  const atacadoAtivoDetail = quantityPricing.length > 0
-    ? quantityPricing.map((tier) => tier.pricing_model === 'percentage'
-      ? `${tier.min_purchase_unit}+ (-${tier.discount_percent}%)`
-      : `${tier.min_purchase_unit}+ = ${formatCurrency(Number(tier.amount || 0))} (legado)`).join(' | ')
-    : 'Sem preços de atacado ativos no anúncio.';
-  const atacadoSugeridoDetail = suggestedQuantityPricing.length > 0
-    ? `Sugestão: ${suggestedQuantityPricing.map((tier) => `${tier.min_purchase_unit}+ (-${tier.discount_percent}%) = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')}`
-    : 'Sem sugestões disponíveis.';
-  const diagnosticReason = quantityPricingState === 'failed_validation'
-    ? 'Diagnóstico: o ML aceitou a chamada, mas as faixas não ficaram ativas.'
-    : quantityPricingState === 'provider_rejected'
-      ? 'Diagnóstico: o ML rejeitou a aplicação de atacado para este anúncio.'
-      : quantityPricingState === 'absent' && !hasQuantityPricing
-        ? 'Diagnóstico: anúncio sem faixas de atacado ativas no momento.'
-        : '';
-  const technicalReason = quantityPricingLastError ? ` Detalhe técnico: ${quantityPricingLastError}` : '';
-
-  return [
-    {
-      label: 'Enfileirado',
-      status: phase === 'enfileirado' ? 'loading' : 'success',
-      detail: currentStatus === 'pending' ? 'Aguardando início do processamento no worker.' : 'Publicação recebida na fila.',
-    },
-    {
-      label: 'Processando publicação no ML',
-      status: currentStatus === 'failed'
-        ? 'error'
-        : currentStatus === 'done'
-          ? 'success'
-          : 'loading',
-      detail: currentStatus === 'done'
-        ? 'Preço base e atacado processados pelo worker.'
-        : parseOutboxStepLabel(lastOperation),
-      error: currentStatus === 'failed' ? (lastError || 'Falha ao processar publicação no ML.') : undefined,
-    },
-    {
-      label: 'Preço final do anúncio',
-      status: currentStatus === 'done'
-        ? 'success'
-        : currentStatus === 'failed'
-          ? 'warning'
-          : 'pending',
-      detail: currentStatus === 'done'
-        ? `Preço atual no ML: ${result?.item_price !== null && result?.item_price !== undefined ? formatCurrency(Number(result.item_price)) : 'não disponível'}`
-        : 'Aguardando confirmação final do ML.',
-    },
-    {
-      label: 'Preços de atacado',
-      status: currentStatus === 'done'
-        ? (hasQuantityPricing ? 'success' : 'warning')
-        : currentStatus === 'failed'
-          ? 'warning'
-          : 'pending',
-      detail: currentStatus === 'done'
-        ? `${atacadoAtivoDetail} ${atacadoSugeridoDetail}${diagnosticReason ? ` ${diagnosticReason}` : ''}${technicalReason}${warnings.length > 0 ? ` | Aviso: ${warnings.join(' | ')}` : ''}`
-        : 'Aguardando confirmação final do ML.',
-    },
-  ];
-}
-
 function buildAnaliseRefreshSteps(payload: RefreshStatusPayload | null, calculating = false): ProgressStep[] {
   const job = payload?.job;
   const events = payload?.events || [];
@@ -395,6 +276,11 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [loading, setLoading] = useState(true);
   const [exportingPdf, setExportingPdf] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const {
+    hasOpenTracking: hasOpenMlPublishTracking,
+    startTracking: startMlPublishTracking,
+    progressModalProps: mlPublishProgressModalProps,
+  } = useMlPricePublishTracking(messageApi);
 
   const [search, setSearch] = useState('');
   const [statusMl, setStatusMl] = useState('all');
@@ -427,13 +313,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [analiseSnapshotAgeSeconds, setAnaliseSnapshotAgeSeconds] = useState<number | null>(null);
   const [analiseUltimaExecucao, setAnaliseUltimaExecucao] = useState<string | null>(null);
   const [updatingPriceByItem, setUpdatingPriceByItem] = useState<Record<string, boolean>>({});
-  const [mlPublishModalOpen, setMlPublishModalOpen] = useState(false);
-  const [mlPublishModalSteps, setMlPublishModalSteps] = useState<ProgressStep[]>(buildMlPublishSteps(null));
-  const [mlPublishOutboxId, setMlPublishOutboxId] = useState<string | null>(null);
-  const [mlPublishLastStatus, setMlPublishLastStatus] = useState<MlPublishStatusResponse | null>(null);
-  const [mlPublishRetryContext, setMlPublishRetryContext] = useState<PublishActionContext | null>(null);
-  const [mlPublishApplyingWholesale, setMlPublishApplyingWholesale] = useState(false);
-  const mlPublishPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [resumoNoCatalogo, setResumoNoCatalogo] = useState<NoCatalogoResumo>({
     total: 0,
     ativos: 0,
@@ -739,84 +618,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     };
   }, [clearRefreshPolling]);
 
-  const clearMlPublishPolling = useCallback(() => {
-    if (mlPublishPollingRef.current) {
-      clearTimeout(mlPublishPollingRef.current);
-      mlPublishPollingRef.current = null;
-    }
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      clearMlPublishPolling();
-    };
-  }, [clearMlPublishPolling]);
-
-  const pollMlPublishStatus = useCallback(async (outboxId: string) => {
-    const response = await fetch(`/api/ml/anuncio/atualizar-preco/status?outboxId=${encodeURIComponent(outboxId)}`);
-    const payload = await response.json().catch(() => ({})) as MlPublishStatusResponse;
-    if (!response.ok) {
-      throw new Error(payload?.error || 'Falha ao consultar status da publicação.');
-    }
-    return payload;
-  }, []);
-
-  const scheduleMlPublishPolling = useCallback((outboxId: string) => {
-    clearMlPublishPolling();
-    mlPublishPollingRef.current = setTimeout(async () => {
-      try {
-        const payload = await pollMlPublishStatus(outboxId);
-        setMlPublishLastStatus(payload);
-        setMlPublishModalSteps(buildMlPublishSteps(payload));
-        if (payload.status === 'done' || payload.status === 'failed') {
-          clearMlPublishPolling();
-          return;
-        }
-        scheduleMlPublishPolling(outboxId);
-      } catch (error: any) {
-        const mensagem = error?.message || 'Erro ao consultar status da publicação no ML.';
-        setMlPublishLastStatus({
-          success: false,
-          status: 'failed',
-          phase: 'erro',
-          last_error: mensagem,
-          error: mensagem,
-          outboxId,
-          result: null,
-        });
-        setMlPublishModalSteps(buildMlPublishSteps({
-          success: false,
-          status: 'failed',
-          phase: 'erro',
-          last_error: mensagem,
-          outboxId,
-          result: null,
-        }));
-        clearMlPublishPolling();
-      }
-    }, ML_PUBLISH_POLLING_INTERVAL_MS);
-  }, [clearMlPublishPolling, pollMlPublishStatus]);
-
-  const startMlPublishTracking = useCallback((outboxId: string) => {
-    setMlPublishOutboxId(outboxId);
-    setMlPublishLastStatus({
-      success: true,
-      status: 'pending',
-      phase: 'enfileirado',
-      outboxId,
-      result: null,
-    });
-    setMlPublishModalSteps(buildMlPublishSteps({
-      success: true,
-      status: 'pending',
-      phase: 'enfileirado',
-      outboxId,
-      result: null,
-    }));
-    setMlPublishModalOpen(true);
-    scheduleMlPublishPolling(outboxId);
-  }, [scheduleMlPublishPolling]);
-
   const refreshNoCatalogoSnapshot = useCallback(async () => {
     if (mode !== 'no_catalogo' || refreshJobStatus === 'running') return;
     try {
@@ -991,7 +792,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
   const executeMlPriceUpdate = useCallback(async (context: PublishActionContext) => {
     if (mode !== 'no_catalogo') return;
-    if (mlPublishModalOpen && mlPublishOutboxId) {
+    if (hasOpenMlPublishTracking) {
       messageApi.warning('Já existe uma publicação em acompanhamento. Aguarde finalizar para iniciar outra.');
       return;
     }
@@ -1038,8 +839,11 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         return;
       }
 
-      setMlPublishRetryContext(context);
-      startMlPublishTracking(outboxId);
+      startMlPublishTracking({
+        outboxId,
+        produtoId: context.produtoId,
+        retry: () => { void executeMlPriceUpdate(context); },
+      });
       messageApi.success('Atualização enfileirada. Acompanhe o processamento no modal.');
       fetchData();
     } catch {
@@ -1047,7 +851,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     } finally {
       setUpdatingPriceByItem((prev) => ({ ...prev, [context.itemKey]: false }));
     }
-  }, [fetchData, messageApi, mlPublishModalOpen, mlPublishOutboxId, mode, startMlPublishTracking]);
+  }, [fetchData, hasOpenMlPublishTracking, messageApi, mode, startMlPublishTracking]);
 
   const runAnalisePreco = useCallback(async () => {
     if (mode !== 'no_catalogo' || analiseLoading) return;
@@ -1155,91 +959,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       itemKey,
     });
   }, [executeMlPriceUpdate, messageApi, mode]);
-
-  const closeMlPublishModal = useCallback(() => {
-    clearMlPublishPolling();
-    setMlPublishModalOpen(false);
-    setMlPublishOutboxId(null);
-    setMlPublishLastStatus(null);
-    setMlPublishApplyingWholesale(false);
-    setMlPublishModalSteps(buildMlPublishSteps(null));
-  }, [clearMlPublishPolling]);
-
-  const retryMlPublish = useCallback(() => {
-    const retry = mlPublishRetryContext;
-    closeMlPublishModal();
-    if (!retry) return;
-    void executeMlPriceUpdate(retry);
-  }, [closeMlPublishModal, executeMlPriceUpdate, mlPublishRetryContext]);
-
-  const applyWholesaleFromModal = useCallback(async () => {
-    if (mlPublishApplyingWholesale) return;
-    if (mode !== 'no_catalogo') return;
-    const produtoId = mlPublishRetryContext?.produtoId;
-    const itemPrice = Number(mlPublishLastStatus?.result?.item_price);
-    const outboxProcessing = Boolean(
-      mlPublishModalOpen
-      && mlPublishOutboxId
-      && mlPublishLastStatus?.status !== 'done'
-      && mlPublishLastStatus?.status !== 'failed',
-    );
-    if (outboxProcessing) {
-      messageApi.warning('Já existe uma publicação em acompanhamento. Aguarde finalizar.');
-      return;
-    }
-    if (!produtoId || !Number.isFinite(itemPrice) || itemPrice <= 0) {
-      messageApi.error('Não foi possível identificar preço base válido para aplicar atacado.');
-      return;
-    }
-
-    setMlPublishApplyingWholesale(true);
-    try {
-      const response = await fetch('/api/ml/anuncio/aplicar-atacado', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          produtoId,
-          basePrice: itemPrice,
-          source: 'modal_result_sem_atacado',
-        }),
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        messageApi.error(payload?.error || 'Falha ao enfileirar aplicação de atacado.');
-        return;
-      }
-      const outboxId = String(payload?.outboxId || '').trim();
-      if (!payload?.queued_publish || !outboxId) {
-        messageApi.error('Não foi possível enfileirar aplicação de atacado.');
-        return;
-      }
-
-      startMlPublishTracking(outboxId);
-      messageApi.success('Aplicação de atacado enfileirada. Acompanhe no modal.');
-    } catch {
-      messageApi.error('Erro de conexão ao aplicar atacado.');
-    } finally {
-      setMlPublishApplyingWholesale(false);
-    }
-  }, [
-    messageApi,
-    mlPublishApplyingWholesale,
-    mlPublishLastStatus?.result?.item_price,
-    mlPublishLastStatus?.status,
-    mlPublishModalOpen,
-    mlPublishOutboxId,
-    mlPublishRetryContext?.produtoId,
-    mode,
-    startMlPublishTracking,
-  ]);
-
-  const canApplyWholesaleFromModal = Boolean(
-    mlPublishLastStatus?.status === 'done'
-    && !mlPublishApplyingWholesale
-    && !(mlPublishLastStatus?.result?.has_quantity_pricing)
-    && Number(mlPublishLastStatus?.result?.item_price || 0) > 0
-    && mlPublishRetryContext?.produtoId,
-  );
 
   const columnsAnalisePreco: TableProps<AnalisePrecoRow>['columns'] = useMemo(() => ([
     {
@@ -1785,20 +1504,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         }] : []}
       />
 
-      <ProgressModal
-        open={mlPublishModalOpen}
-        title="Atualizando preço no Mercado Livre"
-        steps={mlPublishModalSteps}
-        onClose={closeMlPublishModal}
-        onCancel={retryMlPublish}
-        showCloseButton={mlPublishLastStatus?.status === 'failed' || mlPublishLastStatus?.status === 'done'}
-        customActions={canApplyWholesaleFromModal ? [{
-          key: 'apply_wholesale',
-          label: mlPublishApplyingWholesale ? 'Criando atacado...' : 'Criar preços de atacado',
-          onClick: () => { void applyWholesaleFromModal(); },
-          primary: true,
-        }] : []}
-      />
+      <ProgressModal {...mlPublishProgressModalProps} />
 
       <ProgressModal
         open={analiseRefreshModalOpen}
