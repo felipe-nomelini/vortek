@@ -139,13 +139,12 @@ export default function ComprasPage() {
     return params;
   }, [search, statusFilter, dateRange]);
 
-  const fetchData = useCallback(async () => {
+  const fetchFilteredPurchases = useCallback(async () => {
     setLoading(true);
     try {
-      const [listRes, summaryRes, mlAlertsRes] = await Promise.all([
+      const [listRes, summaryRes] = await Promise.all([
         fetch(`/api/compras?${buildParams()}`),
         fetch(`/api/compras/resumo?${buildSummaryParams()}`),
-        fetch('/api/ml/anuncios/alertas'),
       ]);
 
       if (listRes.ok) {
@@ -171,15 +170,24 @@ export default function ComprasPage() {
         messageApi.error('Erro ao carregar resumo de compras');
       }
 
-      if (mlAlertsRes.ok) {
-        setMlAnunciosAlertas(await mlAlertsRes.json());
-      }
-
     } catch {
       messageApi.error('Erro ao conectar');
     }
     setLoading(false);
   }, [buildParams, buildSummaryParams, messageApi]);
+
+  const fetchIndependentIndicators = useCallback(async () => {
+    try {
+      const response = await fetch('/api/ml/anuncios/alertas');
+      if (response.ok) {
+        setMlAnunciosAlertas(await response.json());
+      } else {
+        messageApi.error('Erro ao carregar alertas de anúncios ML');
+      }
+    } catch {
+      messageApi.error('Erro ao carregar alertas de anúncios ML');
+    }
+  }, [messageApi]);
 
   useEffect(() => {
     const urlSearch = new URLSearchParams(window.location.search).get('search')?.trim();
@@ -189,8 +197,13 @@ export default function ComprasPage() {
 
   useEffect(() => {
     if (!urlSearchReady) return;
-    fetchData();
-  }, [fetchData, urlSearchReady]);
+    fetchFilteredPurchases();
+  }, [fetchFilteredPurchases, urlSearchReady]);
+
+  useEffect(() => {
+    if (!urlSearchReady) return;
+    fetchIndependentIndicators();
+  }, [fetchIndependentIndicators, urlSearchReady]);
 
   useEffect(() => {
     setPage(1);
@@ -284,7 +297,7 @@ export default function ComprasPage() {
         : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(json.whatsapp.reason)}` : ''}.`;
       messageApi.success(`Comprovante processado. ${whatsappDetail}`);
       closePaymentModal();
-      await fetchData();
+      await fetchFilteredPurchases();
     } catch (err: any) {
       messageApi.error(err.message || 'Erro ao confirmar pagamento do fornecedor');
     } finally {
