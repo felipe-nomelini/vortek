@@ -255,16 +255,18 @@ function parseEditablePriceText(input: string): number | null {
   return Number.isFinite(parsed) ? Math.round(parsed * 100) / 100 : null;
 }
 
-function computeDerived(item: Product | ProductMasterListItem): { displayPrice: number; profit: number | null } {
+function computeDerived(item: Product | ProductMasterListItem, taxRate: number | null): { displayPrice: number; profit: number | null } {
   const product = 'product' in item ? item.product : item;
   const cost = 'preferredOffer' in item
     ? Number(item.preferredOffer?.custo ?? item.product.cost)
     : item.cost;
   try {
+    if (taxRate === null) throw new Error('Alíquota tributária indisponível');
     const result = calculateSuggestedPrice({
       cost,
       shipping: product.mlShipping,
       mlFee: product.mlFee,
+      taxRate,
     });
     const displayPrice = Math.round((product.customPrice ?? result.suggestedPrice) * 100) / 100;
 
@@ -278,6 +280,7 @@ function computeDerived(item: Product | ProductMasterListItem): { displayPrice: 
       cost,
       shipping: product.mlShipping,
       mlFee: product.mlFee,
+      taxRate,
     });
 
     return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
@@ -411,6 +414,7 @@ function renderMlShipping(shipping: number, mlStatus: MLStatus) {
 export default function ProductsPage() {
   const router = useRouter();
   const [products, setProducts] = useState<ProductMasterListItem[]>([]);
+  const [pricingTaxRate, setPricingTaxRate] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [listError, setListError] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
@@ -541,7 +545,7 @@ export default function ProductsPage() {
   }, []);
 
   const abrirCriarAnuncioML = async (product: Product) => {
-    const derived = computeDerived(product);
+    const derived = computeDerived(product, pricingTaxRate);
     const basePrice = product.customPrice ?? derived.displayPrice;
     setMlModal({
       open: true,
@@ -1302,6 +1306,11 @@ export default function ProductsPage() {
         mapped.map((item) => [item.product.id, item.product.customPrice ?? null])
       ));
       setTotal(json.total || 0);
+      setPricingTaxRate(
+        typeof json?.pricingTaxContext?.appliedRate === 'number'
+          ? json.pricingTaxContext.appliedRate
+          : null,
+      );
       setFornecedorOptions(
         Array.isArray(json.fornecedores)
           ? json.fornecedores.map((item: any) => ({
@@ -1473,7 +1482,7 @@ export default function ProductsPage() {
 
   const rows: ProductRow[] = useMemo(() => {
     return products.map(item => {
-      const { displayPrice, profit } = computeDerived(item);
+      const { displayPrice, profit } = computeDerived(item, pricingTaxRate);
       return {
         key: item.product.id,
         product: item.product,
@@ -1483,7 +1492,7 @@ export default function ProductsPage() {
         profit,
       };
     });
-  }, [products]);
+  }, [pricingTaxRate, products]);
 
   const handleExportPdf = useCallback(async () => {
     setExportingPdf(true);
@@ -2053,7 +2062,7 @@ export default function ProductsPage() {
             {/* Resumo do Produto */}
             {mlModal.product && (() => {
               const p = mlModal.product;
-              const derived = computeDerived(p);
+              const derived = computeDerived(p, pricingTaxRate);
               const price = mlModal.editablePrice ?? p.customPrice ?? derived.displayPrice;
               const profit = derived.profit;
               return (

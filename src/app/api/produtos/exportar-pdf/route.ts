@@ -7,7 +7,8 @@ import {
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
-import { calculateSuggestedPrice } from '@/services/pricing';
+import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 type ExportRow = {
   sku: string;
@@ -79,7 +80,7 @@ function normalizeMlStatus(value: unknown): string {
   return 'Sem anúncio';
 }
 
-function computeDerived(product: Record<string, any>, preferredOffer: Record<string, any> | null): {
+function computeDerived(product: Record<string, any>, preferredOffer: Record<string, any> | null, taxRate: number): {
   suggestedPrice: number;
   profit: number | null;
 } {
@@ -88,13 +89,13 @@ function computeDerived(product: Record<string, any>, preferredOffer: Record<str
   const mlFee = Number(product.ml_fee ?? 0.15);
 
   try {
-    const calculated = calculateSuggestedPrice({ cost, shipping, mlFee });
+    const calculated = calculateSuggestedPrice({ cost, shipping, mlFee, taxRate });
     const suggestedPrice = Math.round(Number(product.custom_price ?? calculated.suggestedPrice) * 100) / 100;
     if (String(product.ml_status || '') === 'sem_anuncio') {
       return { suggestedPrice, profit: null };
     }
-    const profit = suggestedPrice - cost - shipping - (suggestedPrice * 0.04) - (suggestedPrice * mlFee);
-    return { suggestedPrice, profit: Math.round(profit * 100) / 100 };
+    const profit = calculateNetProfitAtPrice({ price: suggestedPrice, cost, shipping, mlFee, taxRate });
+    return { suggestedPrice, profit };
   } catch {
     return {
       suggestedPrice: Math.round(Number(product.custom_price ?? cost) * 100) / 100,
@@ -103,10 +104,10 @@ function computeDerived(product: Record<string, any>, preferredOffer: Record<str
   }
 }
 
-function mapRpcRow(item: RpcPage['data'][number]): ExportRow {
+function mapRpcRow(item: RpcPage['data'][number], taxRate: number): ExportRow {
   const product = item.product || {};
   const preferredOffer = item.preferredOffer || null;
-  const derived = computeDerived(product, preferredOffer);
+  const derived = computeDerived(product, preferredOffer, taxRate);
   return {
     sku: String(product.sku || ''),
     nome: String(product.nome || ''),
@@ -319,6 +320,8 @@ export async function GET(request: Request) {
     const sortBy = allowedSort.has(rawSortBy) ? rawSortBy : 'sku';
     const sortOrder = searchParams.get('sortOrder') === 'desc' ? 'desc' : 'asc';
     const serviceClient = createServiceClient();
+    const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+    const taxRate = requirePricingTaxRate(pricingTaxContext);
 
     let supplierOptions: SupplierFilterOption[] = [];
     try {
@@ -340,11 +343,12 @@ export async function GET(request: Request) {
       p_price_field: priceField,
       p_sort_by: sortBy,
       p_sort_order: sortOrder,
+      p_tax_rate: taxRate,
     };
 
     const firstPage = await fetchRpcPage(serviceClient, rpcArgs, 1);
     const totalPages = Math.max(1, Math.ceil(firstPage.total / firstPage.pageSize));
-    const rows = firstPage.data.map(mapRpcRow);
+    const rows = firstPage.data.map((row) => mapRpcRow(row, taxRate));
 
     for (let pageStart = 2; pageStart <= totalPages; pageStart += RPC_CONCURRENCY) {
       const pageNumbers = Array.from(
@@ -354,7 +358,7 @@ export async function GET(request: Request) {
       const pages = await Promise.all(
         pageNumbers.map((pageNumber) => fetchRpcPage(serviceClient, rpcArgs, pageNumber)),
       );
-      for (const page of pages) rows.push(...page.data.map(mapRpcRow));
+      for (const page of pages) rows.push(...page.data.map((row) => mapRpcRow(row, taxRate)));
     }
 
     const selectedSuppliers = supplierOptions

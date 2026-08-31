@@ -9,12 +9,15 @@ import {
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   const serviceClient = createServiceClient();
+  const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+  const taxRate = requirePricingTaxRate(pricingTaxContext);
 
   const { searchParams } = new URL(request.url);
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
@@ -80,6 +83,7 @@ export async function GET(request: Request) {
     p_page_size: pageSize,
     p_sort_by: sortBy,
     p_sort_order: sortOrder,
+    p_tax_rate: taxRate,
   });
 
   if (rpcError) {
@@ -95,6 +99,7 @@ export async function GET(request: Request) {
     page: Number(result.page || page),
     pageSize: Number(result.pageSize || pageSize),
     fornecedores: supplierOptions,
+    pricingTaxContext,
   });
 }
 

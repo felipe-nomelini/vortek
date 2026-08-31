@@ -12,12 +12,13 @@ const {
   validateSeoTitle,
 } = require('../src/lib/ml/seo-reactivation.ts');
 
-test('calcula lucro com imposto operacional de 4%', () => {
+test('calcula lucro com a alíquota explícita informada', () => {
   assert.equal(calculateSeoReactivationProfit({
     price: 100,
     cost: 50,
     shipping: 10,
     mlFee: 0.15,
+    taxRate: 0.04,
   }), 21);
 });
 

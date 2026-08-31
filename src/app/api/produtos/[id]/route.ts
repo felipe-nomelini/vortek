@@ -8,6 +8,7 @@ import {
   operationalMlStatus,
   selectOperationalMlListing,
 } from '@/lib/ml/operational-listing';
+import { loadPricingTaxContext } from '@/services/pricing-tax-context';
 
 export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -54,7 +55,8 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
         : data.ml_status,
     };
 
-    return NextResponse.json({ data: resolvedData });
+    const pricingTaxContext = await loadPricingTaxContext(supabase);
+    return NextResponse.json({ data: resolvedData, pricingTaxContext });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

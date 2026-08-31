@@ -4,6 +4,8 @@ const os = require('os');
 const { spawnSync } = require('child_process');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
+const { calculateExactMarginPrice } = require('../src/services/pricing.ts');
+const { loadPricingTaxRate } = require('./lib/pricing-tax-context');
 
 dotenv.config({ path: '.env.local' });
 
@@ -41,6 +43,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
   { auth: { persistSession: false, autoRefreshToken: false } },
 );
+let pricingTaxRate = null;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -73,9 +76,14 @@ async function profitableShelfPricing(product, categoryId, listingType) {
   const margin = cost + shipping.value < 50 ? 0.08 : 0.25;
   let mlFee = Number(product?.ml_fee || 0.15);
   const calculate = () => {
-    const denominator = 1 - mlFee - 0.05 - margin;
-    if (denominator <= 0) throw new Error('Taxa ML, DAS e margem invalidam o preço');
-    return Math.round(((cost + shipping.value) / denominator) * 100) / 100;
+    if (pricingTaxRate === null) throw new Error('Alíquota tributária indisponível');
+    return calculateExactMarginPrice({
+      cost,
+      shipping: shipping.value,
+      mlFee,
+      margin,
+      taxRate: pricingTaxRate,
+    });
   };
   let price = calculate();
   const liveFee = await percentageFee(categoryId, listingType, price);
@@ -86,7 +94,7 @@ async function profitableShelfPricing(product, categoryId, listingType) {
     shipping: shipping.value,
     shippingSource: shipping.source,
     mlFee,
-    das: 0.05,
+    taxRate: pricingTaxRate,
     margin,
     price,
   };
@@ -98,7 +106,7 @@ async function chooseListingType(product, categoryId, requested) {
   const shipping = heuristicFreight(product).value;
   const cost = Number(product?.custo || 0);
   const margin = cost + shipping < 50 ? 0.08 : 0.25;
-  const denominator = 1 - expectedFee - 0.05 - margin;
+  const denominator = 1 - expectedFee - Number(pricingTaxRate) - margin;
   const probePrice = denominator > 0 ? (cost + shipping) / denominator : cost + shipping;
   const candidates = [];
   for (const listingType of ['gold_special', 'gold_pro']) {
@@ -935,6 +943,8 @@ async function createOne(item) {
 }
 
 (async () => {
+  const pricingTax = await loadPricingTaxRate(supabase);
+  pricingTaxRate = pricingTax.taxRate;
   const manifest = JSON.parse(fs.readFileSync(path.resolve(MANIFEST_PATH), 'utf8'));
   const items = Array.isArray(manifest.items) ? manifest.items : [];
   const result = {

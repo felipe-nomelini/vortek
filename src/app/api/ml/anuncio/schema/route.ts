@@ -6,6 +6,7 @@ import {
   predictCategory,
 } from "@/services/mercadolibre";
 import { calculateSuggestedPrice } from "@/services/pricing";
+import { loadPricingTaxContext, requirePricingTaxRate } from "@/services/pricing-tax-context";
 import {
   DEFAULT_ML_WARRANTY_TIME,
   DEFAULT_ML_WARRANTY_TYPE_ID,
@@ -328,6 +329,8 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
+    const pricingTaxContext = await loadPricingTaxContext(supabase);
+    const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto, error } = await supabase
       .from("produtos")
       .select("*")
@@ -378,12 +381,13 @@ export async function POST(req: Request) {
         cost,
         shipping,
         mlFee,
+        taxRate,
       });
       const listingPrices = await fetchML<any>(
         `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${categoriaId}&listing_type_id=${listingType}`,
       );
       mlFee = extractMlFee(listingPrices) ?? mlFee;
-      const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
+      const pricing = calculateSuggestedPrice({ cost, shipping, mlFee, taxRate });
       suggestedPrice = Number(produto.custom_price ?? pricing.suggestedPrice);
     } catch {
       suggestedPrice = Number(produto.custom_price ?? produto.custo ?? 0);

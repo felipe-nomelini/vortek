@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
+const { calculateSuggestedPrice } = require('../src/services/pricing.ts');
+const { loadPricingTaxRate } = require('./lib/pricing-tax-context');
 
 dotenv.config({ path: '.env.local' });
 
@@ -14,6 +16,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
   { auth: { persistSession: false, autoRefreshToken: false } },
 );
+let pricingTaxRate = null;
 
 function hasText(value) {
   return String(value || '').trim().length > 0;
@@ -44,22 +47,12 @@ function round2(value) {
   return Math.round(Number(value || 0) * 100) / 100;
 }
 
-function getPricingStrategy(cost) {
-  if (cost <= 400) return { margin: 0.15, minProfit: 20 };
-  if (cost <= 1000) return { margin: 0.2, minProfit: 60 };
-  return { margin: 0.25, minProfit: 150 };
-}
-
 function calculateSuggestedPricePreview(product) {
   const cost = Number(product.custo || 0);
   const shipping = Number(product.ml_shipping || 0);
   const mlFee = Number(product.ml_fee || 0.15);
-  const strategy = getPricingStrategy(cost);
-  const denominator = 1 - (0.04 + mlFee);
-  if (!Number.isFinite(cost) || cost <= 0 || denominator <= 0) return null;
-  const priceByMargin = (cost + shipping + (cost * strategy.margin)) / denominator;
-  const priceByMinProfit = (cost + shipping + strategy.minProfit) / denominator;
-  return round2(Math.max(priceByMargin, priceByMinProfit));
+  if (!Number.isFinite(cost) || cost <= 0 || pricingTaxRate === null) return null;
+  return calculateSuggestedPrice({ cost, shipping, mlFee, taxRate: pricingTaxRate }).suggestedPrice;
 }
 
 function getBlockReason(product) {
@@ -96,6 +89,7 @@ async function loadCandidates() {
       p_page_size: 100,
       p_sort_by: 'sku',
       p_sort_order: 'asc',
+      p_tax_rate: pricingTaxRate,
     });
     if (error) throw new Error(error.message);
     const pageRows = data?.data || [];
@@ -144,6 +138,8 @@ async function loadActiveKitProductIds() {
 }
 
 (async () => {
+  const pricingTax = await loadPricingTaxRate(supabase);
+  pricingTaxRate = pricingTax.taxRate;
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const reportDir = path.join(REPORT_ROOT, stamp);
   fs.mkdirSync(reportDir, { recursive: true });
@@ -210,7 +206,6 @@ async function loadActiveKitProductIds() {
       customPrice: product.custom_price === null || product.custom_price === undefined ? null : round2(product.custom_price),
       suggestedPricePreview,
       priceSource: product.custom_price === null || product.custom_price === undefined ? 'pricing_strategy_preview' : 'custom_price',
-      pricingStrategy: getPricingStrategy(Number(product.custo || 0)),
       strategyNotes: 'Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir.',
     });
   }
@@ -248,7 +243,7 @@ async function loadActiveKitProductIds() {
       upto400: { margin: 0.15, minProfit: 20 },
       upto1000: { margin: 0.2, minProfit: 60 },
       above1000: { margin: 0.25, minProfit: 150 },
-      taxRate: 0.04,
+      taxRate: pricingTaxRate,
       runtimeSourceOfTruth: 'src/services/pricing.ts + /api/ml/anuncio/schema',
     },
     blockedReasonCounts: reasonCounts,

@@ -3,16 +3,15 @@ const test = require('node:test');
 
 const {
   calculateTargetNetProfitPrice,
-  TARGET_NET_PROFIT_TAX_RATE,
 } = require('../src/services/pricing.ts');
 
-test('calcula preço para lucro líquido nominal com imposto de 4%', () => {
-  assert.equal(TARGET_NET_PROFIT_TAX_RATE, 0.04);
+test('calcula preço para lucro líquido nominal com alíquota explícita', () => {
   assert.equal(calculateTargetNetProfitPrice({
     cost: 28.1,
     shipping: 6.5,
     mlFee: 0.165,
     targetNetProfit: 60.13,
+    taxRate: 0.04,
   }), 119.16);
 });
 
@@ -23,6 +22,7 @@ test('inclui tarifa fixa no preço do lucro alvo', () => {
     mlFee: 0.15,
     fixedFee: 6,
     targetNetProfit: 20,
+    taxRate: 0.04,
   }), 106.17);
 });
 
@@ -32,12 +32,14 @@ test('rejeita taxa ou valores inválidos', () => {
     shipping: 0,
     mlFee: 0.15,
     targetNetProfit: 20,
+    taxRate: 0.04,
   }), /Dados inválidos/);
   assert.throws(() => calculateTargetNetProfitPrice({
     cost: 1,
     shipping: 0,
     mlFee: 0.97,
     targetNetProfit: 20,
+    taxRate: 0.04,
   }), /inferior a 100%/);
 });
 

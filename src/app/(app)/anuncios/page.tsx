@@ -46,7 +46,7 @@ type PricingDetails = {
   currentProfit: number;
   quantityPricing: QuantityPricingTier[];
   quantityPricingWarning: string | null;
-  calculator: { cost: number; shipping: number; mlFee: number };
+  calculator: { cost: number; shipping: number; mlFee: number; taxRate: number };
   catalog: {
     status: CatalogStatus;
     rawStatus: string | null;
@@ -72,7 +72,7 @@ const statusOptions = [
 ];
 
 function calculateProfit(price: number, calculator: PricingDetails['calculator']) {
-  return Math.round((price - calculator.cost - calculator.shipping - (price * 0.04) - (price * calculator.mlFee)) * 100) / 100;
+  return Math.round((price - calculator.cost - calculator.shipping - (price * calculator.taxRate) - (price * calculator.mlFee)) * 100) / 100;
 }
 
 function formatDiscountPercentage(value: number): string {

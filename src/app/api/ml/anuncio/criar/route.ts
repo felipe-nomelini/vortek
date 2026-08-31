@@ -17,6 +17,7 @@ import {
   calculateTargetNetProfitPrice,
 } from "@/services/pricing";
 import { createServiceClient } from "@/lib/supabase";
+import { loadPricingTaxContext, requirePricingTaxRate } from "@/services/pricing-tax-context";
 import {
   fiscalStrictSchema,
   mapOriginType,
@@ -466,6 +467,7 @@ async function calculateSafeListingPrice(params: {
   requestedPrice?: number;
   pricingMode?: string;
   targetNetProfit?: number;
+  taxRate: number;
 }) {
   const cost = Number(params.produto.custo || 0);
   const storedShipping = Number(params.produto.ml_shipping || 0);
@@ -510,6 +512,7 @@ async function calculateSafeListingPrice(params: {
       mlFee,
       targetNetProfit,
       fixedFee,
+      taxRate: params.taxRate,
     });
     for (let attempt = 0; attempt < 2; attempt += 1) {
       const listingPrices = await fetchML<any>(
@@ -523,6 +526,7 @@ async function calculateSafeListingPrice(params: {
         mlFee,
         targetNetProfit,
         fixedFee,
+        taxRate: params.taxRate,
       });
     }
     return {
@@ -535,18 +539,18 @@ async function calculateSafeListingPrice(params: {
       shipping,
       shippingSource: storedShipping > 0 ? "erp" : "heuristic",
       targetNetProfit,
-      taxRate: 0.04,
+      taxRate: params.taxRate,
     };
   }
   if (params.pricingMode === "profitable_shelf_2") {
     const costTotal = cost + shipping;
     const margin = costTotal < 50 ? 0.08 : 0.25;
-    let price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
+    let price = calculateExactMarginPrice({ cost, shipping, mlFee, margin, taxRate: params.taxRate });
     const listingPrices = await fetchML<any>(
       `/sites/MLB/listing_prices?price=${price}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
     );
     mlFee = extractMlFee(listingPrices) ?? mlFee;
-    price = calculateExactMarginPrice({ cost, shipping, mlFee, margin });
+    price = calculateExactMarginPrice({ cost, shipping, mlFee, margin, taxRate: params.taxRate });
     return {
       price,
       mlFee,
@@ -556,15 +560,15 @@ async function calculateSafeListingPrice(params: {
       shipping,
       shippingSource: storedShipping > 0 ? "erp" : "heuristic",
       margin,
-      taxRate: 0.05,
+      taxRate: params.taxRate,
     };
   }
-  const provisional = calculateSuggestedPrice({ cost, shipping, mlFee });
+  const provisional = calculateSuggestedPrice({ cost, shipping, mlFee, taxRate: params.taxRate });
   const listingPrices = await fetchML<any>(
     `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
   );
   mlFee = extractMlFee(listingPrices) ?? mlFee;
-  const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
+  const pricing = calculateSuggestedPrice({ cost, shipping, mlFee, taxRate: params.taxRate });
   const suggestedPrice = Math.round(pricing.suggestedPrice * 100) / 100;
   const requestedPrice = Number(params.requestedPrice || 0);
   const hasRequestedPrice =
@@ -580,6 +584,7 @@ async function calculateSafeListingPrice(params: {
     mlFee,
     suggestedPrice,
     adjusted: hasRequestedPrice && roundedRequested < suggestedPrice,
+    taxRate: params.taxRate,
   };
 }
 
@@ -814,6 +819,8 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
+    const pricingTaxContext = await loadPricingTaxContext(supabase);
+    const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto } = await supabase
       .from("produtos")
       .select("*")
@@ -916,6 +923,7 @@ export async function POST(req: Request) {
       listingType: listingType || "gold_pro",
       pricingMode,
       targetNetProfit,
+      taxRate,
       requestedPrice:
         typeof basePrice === "number" &&
         Number.isFinite(basePrice) &&
@@ -934,12 +942,12 @@ export async function POST(req: Request) {
     }
     if (pricingMode === "profitable_shelf_2") {
       warnings.push(
-        `Preço calculado pela Prateleira Lucrativa 2.0: frete ${safePrice.shippingSource}, DAS 5% e margem ${(Number(safePrice.margin || 0) * 100).toFixed(0)}%.`,
+        `Preço calculado pela Prateleira Lucrativa 2.0: frete ${safePrice.shippingSource}, imposto projetado ${(taxRate * 100).toFixed(4)}% e margem ${(Number(safePrice.margin || 0) * 100).toFixed(0)}%.`,
       );
     }
     if (pricingMode === "target_net_profit") {
       warnings.push(
-        `Preço calculado para lucro líquido alvo de R$ ${Number(targetNetProfit).toFixed(2)}: imposto 4%, frete ${safePrice.shippingSource} e tarifa ML vigente.`,
+        `Preço calculado para lucro líquido alvo de R$ ${Number(targetNetProfit).toFixed(2)}: imposto projetado ${(taxRate * 100).toFixed(4)}%, frete ${safePrice.shippingSource} e tarifa ML vigente.`,
       );
     }
 
@@ -1727,6 +1735,7 @@ export async function POST(req: Request) {
             mlFee: liveFee,
             targetNetProfit: Number(targetNetProfit),
             fixedFee,
+            taxRate,
           });
           pricingCorrection.final_price = finalSuggestedPrice;
           pricingCorrection.ml_fee = roundMoney(liveFee);
@@ -1750,6 +1759,7 @@ export async function POST(req: Request) {
           cost: Number(produto.custo || 0),
           shipping: Number(mlShipping || 0),
           mlFee: Number(mlFee || 0.15),
+          taxRate,
         });
         finalSuggestedPrice = roundMoney(finalPricing.suggestedPrice);
         pricingCorrection.final_price = finalSuggestedPrice;
@@ -1951,7 +1961,7 @@ export async function POST(req: Request) {
         pricingMode === "profitable_shelf_2"
           ? {
               mode: pricingMode,
-              das: 0.05,
+              tax_rate: taxRate,
               margin: safePrice.margin,
               shipping: safePrice.shipping,
               shipping_source: safePrice.shippingSource,
@@ -1961,7 +1971,7 @@ export async function POST(req: Request) {
           : pricingMode === "target_net_profit"
             ? {
                 mode: pricingMode,
-                tax_rate: 0.04,
+                tax_rate: taxRate,
                 target_net_profit: Number(targetNetProfit),
                 shipping: mlShipping,
                 shipping_source: shippingResolution.mlShipping > 0 ? "mercado_livre" : safePrice.shippingSource,

@@ -1,4 +1,4 @@
-export const CATALOG_CLEANUP_TAX_RATE = 0.04;
+import { calculateNetProfitAtPrice } from '../../services/pricing-core.js';
 
 export type CleanupCandidateInput = {
   localStatus: string;
@@ -11,30 +11,27 @@ export type CleanupEligibility =
   | { eligible: true; reason: 'eligible' }
   | { eligible: false; reason: string };
 
-function round2(value: number): number {
-  return Math.round(value * 100) / 100;
-}
-
 export function calculateCatalogCleanupProfit(input: {
   price: number;
   cost: number;
   shipping: number;
   mlFee: number;
+  taxRate: number;
 }): number | null {
   const price = Number(input.price);
   const cost = Number(input.cost);
   const shipping = Number(input.shipping);
   const mlFee = Number(input.mlFee);
+  const taxRate = Number(input.taxRate);
   if (
     !Number.isFinite(price) || price <= 0
     || !Number.isFinite(cost)
     || !Number.isFinite(shipping)
     || !Number.isFinite(mlFee)
+    || !Number.isFinite(taxRate)
   ) return null;
 
-  return round2(
-    price - cost - shipping - (price * CATALOG_CLEANUP_TAX_RATE) - (price * mlFee),
-  );
+  return calculateNetProfitAtPrice({ price, cost, shipping, mlFee, taxRate });
 }
 
 export function evaluateCatalogCleanupCandidate(

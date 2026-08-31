@@ -2,6 +2,7 @@ export interface PricingParams {
   cost: number;
   shipping: number;
   mlFee: number;
+  taxRate: number;
   margin?: number;
 }
 

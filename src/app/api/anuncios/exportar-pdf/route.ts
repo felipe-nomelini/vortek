@@ -1,6 +1,8 @@
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from 'pdf-lib';
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { calculateNetProfitAtPrice } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 type AnuncioSortKey =
   | 'sku'
@@ -53,24 +55,20 @@ const columns: Array<{
   { key: 'catalogo', label: 'Catálogo', width: 47, align: 'center', format: (row) => row.catalogo ? 'Sim' : 'Não' },
 ];
 
-function round2(value: number): number {
-  return Math.round(value * 100) / 100;
-}
-
-function computeListingProfit(item: any): number | null {
+function computeListingProfit(item: any, taxRate: number): number | null {
   const precoMl = Number(item?.preco_ml ?? 0);
   const custo = Number(item?.produtos?.custo ?? Number.NaN);
   if (!Number.isFinite(precoMl) || precoMl <= 0 || !Number.isFinite(custo)) return null;
 
   const mlFeeRate = Number(item?.produtos?.ml_fee ?? 0.15);
   const shipping = Number(item?.produtos?.ml_shipping ?? 0);
-  return round2(
-    precoMl
-      - custo
-      - shipping
-      - (precoMl * 0.04)
-      - (precoMl * (Number.isFinite(mlFeeRate) ? mlFeeRate : 0.15)),
-  );
+  return calculateNetProfitAtPrice({
+    price: precoMl,
+    cost: custo,
+    shipping,
+    mlFee: Number.isFinite(mlFeeRate) ? mlFeeRate : 0.15,
+    taxRate,
+  });
 }
 
 function compareNullableNumber(left: number | null, right: number | null): number {
@@ -269,6 +267,8 @@ export async function GET(request: Request) {
   const priceMax = searchParams.get('priceMax') ? Number(searchParams.get('priceMax')) : null;
   const { sortBy, sortOrder } = parseSort(searchParams);
   const serviceClient = createServiceClient();
+  const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+  const taxRate = requirePricingTaxRate(pricingTaxContext);
 
   function applyFilters(query: any) {
     if (search) query = query.or(`titulo.ilike.%${search}%,sku.ilike.%${search}%`);
@@ -307,7 +307,7 @@ export async function GET(request: Request) {
       sku: String(item.sku || ''),
       titulo: String(item.titulo || ''),
       preco_ml: Number(item.preco_ml || 0),
-      lucro: computeListingProfit(item),
+      lucro: computeListingProfit(item, taxRate),
       vendidos: Number(item.vendidos || 0),
       visitas: Number(item.visitas || 0),
       qualidade: Number(item.qualidade || 0),

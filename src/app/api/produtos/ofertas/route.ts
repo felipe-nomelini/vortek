@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
+import { calculateNetProfitAtPrice } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { loadProdutoOfertaRows, type ProdutoOfertaListRow } from '@/lib/produto-ofertas';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import {
@@ -16,6 +18,8 @@ export async function GET(request: Request) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   const serviceClient = createServiceClient();
+  const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+  const taxRate = requirePricingTaxRate(pricingTaxContext);
 
   const { searchParams } = new URL(request.url);
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
@@ -40,6 +44,7 @@ export async function GET(request: Request) {
         cost: item.custo || 0,
         shipping: item.product.ml_shipping || 0,
         mlFee: item.product.ml_fee || 0.15,
+        taxRate,
       });
       const displayPrice = Math.round((item.product.custom_price ?? result.suggestedPrice) * 100) / 100;
 
@@ -47,9 +52,13 @@ export async function GET(request: Request) {
         return { displayPrice, profit: null };
       }
 
-      const tax = displayPrice * 0.04;
-      const mlFeeAmount = displayPrice * (item.product.ml_fee || 0.15);
-      const netProfit = displayPrice - (item.custo || 0) - (item.product.ml_shipping || 0) - tax - mlFeeAmount;
+      const netProfit = calculateNetProfitAtPrice({
+        price: displayPrice,
+        cost: item.custo || 0,
+        shipping: item.product.ml_shipping || 0,
+        mlFee: item.product.ml_fee || 0.15,
+        taxRate,
+      });
       return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
     } catch {
       return {

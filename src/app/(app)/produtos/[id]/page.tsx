@@ -93,6 +93,7 @@ export default function ProductDetailPage() {
   const id = params?.id as string;
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [pricingTaxRate, setPricingTaxRate] = useState<number | null>(null);
   const [original, setOriginal] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -117,6 +118,11 @@ export default function ProductDetailPage() {
       const mapped = mapDBtoProduct(json.data);
       setProduct(mapped);
       setOriginal(mapped);
+      setPricingTaxRate(
+        typeof json?.pricingTaxContext?.appliedRate === 'number'
+          ? json.pricingTaxContext.appliedRate
+          : null,
+      );
       setHasChanges(false);
     } catch (err: any) {
       setError(err.message || 'Erro ao carregar produto');
@@ -294,10 +300,19 @@ export default function ProductDetailPage() {
     );
   }
 
+  if (pricingTaxRate === null) {
+    return (
+      <div style={{ textAlign: 'center', padding: 80 }}>
+        <Title level={4} style={{ color: '#e0e0e0' }}>Alíquota tributária indisponível para precificação</Title>
+      </div>
+    );
+  }
+
   const displayPrice = product.customPrice ?? calculateSuggestedPrice({
     cost: product.cost,
     shipping: product.mlShipping,
     mlFee: product.mlFee,
+    taxRate: pricingTaxRate,
   }).suggestedPrice;
 
   const profit = calculateNetProfitAtPrice({
@@ -305,6 +320,7 @@ export default function ProductDetailPage() {
     cost: product.cost,
     shipping: product.mlShipping,
     mlFee: product.mlFee,
+    taxRate: pricingTaxRate,
   });
 
   const categoryItems = product.category

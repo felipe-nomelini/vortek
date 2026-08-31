@@ -11,24 +11,11 @@ import {
   extractQuantityPricingTiers,
   serializeQuantityPricingTiers,
 } from '@/lib/ml/quantity-pricing';
+import { calculateNetProfitAtPrice } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 function round2(value: number) {
   return Math.round(value * 100) / 100;
-}
-
-function calculateProfit(input: {
-  price: number;
-  cost: number;
-  shipping: number;
-  mlFee: number;
-}) {
-  return round2(
-    input.price
-      - input.cost
-      - input.shipping
-      - (input.price * 0.04)
-      - (input.price * input.mlFee),
-  );
 }
 
 function normalizeReasons(payload: any): string[] {
@@ -65,6 +52,8 @@ export async function GET(request: Request) {
   if (!produtoId) return NextResponse.json({ error: 'produtoId é obrigatório' }, { status: 422 });
 
   const service = createServiceClient();
+  const pricingTaxContext = await loadPricingTaxContext(service);
+  const taxRate = requirePricingTaxRate(pricingTaxContext);
   const { data: produto, error } = await service
     .from('produtos')
     .select('id,ml_item_id,custo,ml_fee,ml_shipping')
@@ -186,12 +175,12 @@ export async function GET(request: Request) {
     success: true,
     mlItemId,
     currentPrice: round2(price),
-    currentProfit: calculateProfit({ price, cost, shipping, mlFee }),
+    currentProfit: calculateNetProfitAtPrice({ price, cost, shipping, mlFee, taxRate }),
     quantityPricing: quantityResult.ok
       ? serializeQuantityPricingTiers(extractQuantityPricingTiers(quantityResult.data, price))
       : [],
     quantityPricingWarning: quantityResult.ok ? null : (quantityResult.error?.message || 'Não foi possível consultar preços de atacado no ML.'),
-    calculator: { cost, shipping, mlFee },
+    calculator: { cost, shipping, mlFee, taxRate },
     catalog,
   });
 }

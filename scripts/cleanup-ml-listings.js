@@ -4,6 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
+const { loadPricingTaxRate } = require('./lib/pricing-tax-context');
 const {
   calculateCatalogCleanupProfit,
   evaluateCatalogCleanupCandidate,
@@ -33,6 +34,7 @@ if (!supabaseUrl || !serviceRole) {
 const supabase = createClient(supabaseUrl, serviceRole, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
+let pricingTaxRate = null;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -76,6 +78,7 @@ function listingProfit(listing, livePrice = listing?.preco_ml) {
     cost: Number(product.custo),
     shipping: Number(product.ml_shipping || 0),
     mlFee: Number(product.ml_fee ?? 0.15),
+    taxRate: pricingTaxRate,
   });
 }
 
@@ -280,6 +283,8 @@ async function verifyLocalDetach(itemId) {
 
 async function main() {
   const startedAt = new Date();
+  const pricingTax = await loadPricingTaxRate(supabase, startedAt);
+  pricingTaxRate = pricingTax.taxRate;
   const report = {
     schema_version: 1,
     generated_at: startedAt.toISOString(),
@@ -287,7 +292,7 @@ async function main() {
     criteria: {
       local_status: 'pausado',
       profit: 'less_than_zero',
-      tax_rate: 0.04,
+      tax_rate: pricingTaxRate,
       applies_to: ['catalog', 'standard'],
       healthy_mirror_required: false,
       accepted_live_statuses: ['paused', 'closed', 'under_review/forbidden'],

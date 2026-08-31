@@ -326,6 +326,9 @@ export type Database = {
           margem_lucro: number
           nfe_provider_default: string
           notificacoes_push: boolean
+          simples_aliquota_confirmada: number | null
+          simples_aliquota_confirmada_em: string | null
+          simples_inicio_atividade: string
           updated_at: string
         }
         Insert: {
@@ -334,6 +337,9 @@ export type Database = {
           margem_lucro?: number
           nfe_provider_default?: string
           notificacoes_push?: boolean
+          simples_aliquota_confirmada?: number | null
+          simples_aliquota_confirmada_em?: string | null
+          simples_inicio_atividade?: string
           updated_at?: string
         }
         Update: {
@@ -342,6 +348,9 @@ export type Database = {
           margem_lucro?: number
           nfe_provider_default?: string
           notificacoes_push?: boolean
+          simples_aliquota_confirmada?: number | null
+          simples_aliquota_confirmada_em?: string | null
+          simples_inicio_atividade?: string
           updated_at?: string
         }
         Relationships: []
@@ -1404,6 +1413,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_pricing_monthly_revenue: {
+        Args: { p_period_end: string; p_period_start: string }
+        Returns: {
+          gross_revenue: number
+          revenue_month: string
+        }[]
+      }
       select_order_fulfillment: {
         Args: {
           p_items: Json | null
@@ -1474,6 +1490,7 @@ export type Database = {
           p_page_size?: number | null
           p_sort_by?: string | null
           p_sort_order?: string | null
+          p_tax_rate: number
         }
         Returns: Json
       }
@@ -1488,6 +1505,7 @@ export type Database = {
           p_price_min?: number | null
           p_price_max?: number | null
           p_price_field?: string | null
+          p_tax_rate: number
         }
         Returns: Json
       }

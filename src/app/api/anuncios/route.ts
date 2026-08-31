@@ -4,6 +4,8 @@ import {
   resolveCatalogCompetitionStatus,
   type CatalogCompetitionStatus,
 } from '@/lib/catalogo/no-catalogo';
+import { calculateNetProfitAtPrice } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 type AnuncioSortKey =
   | 'sku'
@@ -21,20 +23,20 @@ const DEFAULT_SORT: { sortBy: AnuncioSortKey; sortOrder: 'asc' | 'desc' } = {
   sortOrder: 'asc',
 };
 
-function round2(value: number): number {
-  return Math.round(value * 100) / 100;
-}
-
-function computeListingProfit(item: any): number | null {
+function computeListingProfit(item: any, taxRate: number): number | null {
   const precoMl = Number(item?.preco_ml ?? 0);
   const custo = Number(item?.produtos?.custo ?? NaN);
   if (!Number.isFinite(precoMl) || precoMl <= 0 || !Number.isFinite(custo)) return null;
 
   const mlFeeRate = Number(item?.produtos?.ml_fee ?? 0.15);
   const shipping = Number(item?.produtos?.ml_shipping ?? 0);
-  const imposto = precoMl * 0.04;
-  const taxaMl = precoMl * (Number.isFinite(mlFeeRate) ? mlFeeRate : 0.15);
-  return round2(precoMl - custo - shipping - imposto - taxaMl);
+  return calculateNetProfitAtPrice({
+    price: precoMl,
+    cost: custo,
+    shipping,
+    mlFee: Number.isFinite(mlFeeRate) ? mlFeeRate : 0.15,
+    taxRate,
+  });
 }
 
 function compareNullableNumber(a: number | null, b: number | null) {
@@ -156,6 +158,8 @@ export async function GET(request: Request) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   const serviceClient = createServiceClient();
+  const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+  const taxRate = requirePricingTaxRate(pricingTaxContext);
 
   const { searchParams } = new URL(request.url);
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
@@ -213,7 +217,7 @@ export async function GET(request: Request) {
 
     const chunk = (data || []).map((item: any) => ({
       ...item,
-      lucro: computeListingProfit(item),
+      lucro: computeListingProfit(item, taxRate),
     }));
     rows.push(...chunk);
 
@@ -243,5 +247,6 @@ export async function GET(request: Request) {
     total: rows.length,
     page,
     pageSize,
+    pricingTaxContext,
   });
 }

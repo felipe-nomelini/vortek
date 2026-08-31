@@ -4,6 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
+const { loadPricingTaxRate } = require('./lib/pricing-tax-context');
 const {
   buildSeoTitle,
   calculateSeoReactivationProfit,
@@ -32,6 +33,7 @@ if (!supabaseUrl || !serviceRole) throw new Error('Configuração do Supabase in
 const supabase = createClient(supabaseUrl, serviceRole, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
+let pricingTaxRate = null;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -91,6 +93,7 @@ function listingProfit(listing, livePrice = listing?.preco_ml, costOverride = nu
     cost: costOverride === null ? Number(product.custo) : Number(costOverride),
     shipping: Number(product.ml_shipping || 0),
     mlFee: Number(product.ml_fee ?? 0.15),
+    taxRate: pricingTaxRate,
   });
 }
 
@@ -841,6 +844,8 @@ async function runApply(dryReport) {
 }
 
 async function main() {
+  const pricingTax = await loadPricingTaxRate(supabase);
+  pricingTaxRate = pricingTax.taxRate;
   let report;
   if (APPLY) {
     if (!fs.existsSync(REPORT_PATH)) throw new Error(`Dry-run ausente: ${REPORT_PATH}`);

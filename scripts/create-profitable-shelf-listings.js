@@ -6,13 +6,14 @@ const dotenv = require('dotenv');
 const sharp = require('sharp');
 const { createClient } = require('@supabase/supabase-js');
 const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
+const { calculateExactMarginPrice } = require('../src/services/pricing.ts');
+const { loadPricingTaxRate } = require('./lib/pricing-tax-context');
 
 dotenv.config({ path: '.env.local', quiet: true });
 
 const APPLY = process.argv.includes('--apply');
 const AUDIT = process.argv.includes('--audit');
 const ONLY_SKU = String(process.argv.find((arg) => arg.startsWith('--sku=')) || '').slice(6).trim();
-const DAS_RATE = 0.05;
 const LISTING_TYPE = 'gold_pro';
 const REPORT_DIR = path.resolve('reports/ml-profitable-shelf-2026-08-10');
 const PREFLIGHT_PATH = path.join(REPORT_DIR, 'dry-run.json');
@@ -102,6 +103,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
   { auth: { persistSession: false, autoRefreshToken: false } },
 );
+let pricingTaxRate = null;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -112,9 +114,15 @@ function roundMoney(value) {
 }
 
 function calculatePrice({ cost, freight, fixedFee, fee, margin }) {
-  const denominator = 1 - fee - DAS_RATE - margin;
-  if (!(denominator > 0)) throw new Error('Divisor de preço inválido');
-  return roundMoney((cost + freight + fixedFee) / denominator);
+  if (pricingTaxRate === null) throw new Error('Alíquota tributária indisponível');
+  return calculateExactMarginPrice({
+    cost,
+    shipping: freight,
+    fixedFee,
+    mlFee: fee,
+    margin,
+    taxRate: pricingTaxRate,
+  });
 }
 
 function hasText(value) {
@@ -562,7 +570,7 @@ async function createOne(config, prepared, userId) {
     frete_estimado: config.freight,
     taxa_ml: preflight.price.percentageFee,
     custo_fixo_ml: preflight.price.fixedFee,
-    das: DAS_RATE,
+    das: pricingTaxRate,
     margem: config.margin,
     preco: preflight.price.price,
   };
@@ -689,6 +697,7 @@ async function auditAll() {
 }
 
 async function main() {
+  ({ taxRate: pricingTaxRate } = await loadPricingTaxRate(supabase));
   if (!fs.existsSync(PREFLIGHT_PATH)) throw new Error('Pré-validação não encontrada');
   const dryRun = JSON.parse(fs.readFileSync(PREFLIGHT_PATH, 'utf8'));
   if (Number(dryRun.selected) !== CONFIG.length || (dryRun.failed || []).length > 0) throw new Error('Pré-validação incompleta');

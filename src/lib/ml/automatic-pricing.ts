@@ -1,6 +1,7 @@
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { resolveAutomaticPricingProductIds } from '@/lib/ml/automatic-pricing-selection';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 type ServiceClientLike = { from: (table: string) => any };
 
@@ -26,6 +27,8 @@ export async function enqueueAutomaticPricesForCostChanges(
   const result: AutomaticPricingResult = { productsUpdated: 0, outboxEnqueued: 0, skipped: 0, errors: [] };
   const productIds = resolveAutomaticPricingProductIds(snapshots, options.forceProductIds);
   if (productIds.length === 0) return result;
+  const pricingTaxContext = await loadPricingTaxContext(client as any);
+  const taxRate = requirePricingTaxRate(pricingTaxContext);
 
   const [{ data: products, error: productsError }, { data: listings, error: listingsError }] = await Promise.all([
     client
@@ -93,6 +96,7 @@ export async function enqueueAutomaticPricesForCostChanges(
         cost,
         shipping: Number(product.ml_shipping || 0),
         mlFee: Number(product.ml_fee || 0.15),
+        taxRate,
       }).suggestedPrice;
     } catch (error: any) {
       result.errors.push({ productId, message: error?.message || 'Falha ao calcular preço automático' });

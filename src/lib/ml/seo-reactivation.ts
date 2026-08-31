@@ -1,10 +1,11 @@
-export const SEO_REACTIVATION_TAX_RATE = 0.04;
+import { calculateNetProfitAtPrice } from '../../services/pricing-core.js';
 
 export type ListingEconomics = {
   price: number;
   cost: number;
   shipping: number;
   mlFee: number;
+  taxRate: number;
 };
 
 export type ReactivationInput = {
@@ -65,25 +66,21 @@ const BLOCKED_TITLE_PHRASES = [
 
 const REPEATED_TECHNICAL_WORDS = new Set(['p2', 'p10', 'rca', 'xlr']);
 
-function round2(value: number): number {
-  return Math.round(value * 100) / 100;
-}
-
 export function calculateSeoReactivationProfit(input: ListingEconomics): number | null {
   const price = Number(input.price);
   const cost = Number(input.cost);
   const shipping = Number(input.shipping);
   const mlFee = Number(input.mlFee);
+  const taxRate = Number(input.taxRate);
   if (
     !Number.isFinite(price) || price <= 0
     || !Number.isFinite(cost) || cost < 0
     || !Number.isFinite(shipping) || shipping < 0
     || !Number.isFinite(mlFee) || mlFee < 0
+    || !Number.isFinite(taxRate) || taxRate < 0
   ) return null;
 
-  return round2(
-    price - cost - shipping - (price * SEO_REACTIVATION_TAX_RATE) - (price * mlFee),
-  );
+  return calculateNetProfitAtPrice({ price, cost, shipping, mlFee, taxRate });
 }
 
 export function evaluateReactivationCandidate(input: ReactivationInput) {

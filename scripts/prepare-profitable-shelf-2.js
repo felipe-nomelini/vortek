@@ -4,6 +4,8 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
+const { calculateExactMarginPrice } = require('../src/services/pricing.ts');
+const { loadPricingTaxRate } = require('./lib/pricing-tax-context');
 
 dotenv.config({ path: '.env.local', quiet: true });
 
@@ -19,6 +21,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
   { auth: { persistSession: false, autoRefreshToken: false } },
 );
+let pricingTaxRate = null;
 
 function text(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
@@ -60,16 +63,21 @@ function formulaPreview(product) {
   const shipping = freight(product);
   const mlFee = Number(product.ml_fee || 0.15);
   const margin = cost + shipping.value < 50 ? 0.08 : 0.25;
-  const denominator = 1 - mlFee - 0.05 - margin;
-  if (denominator <= 0) return null;
+  if (pricingTaxRate === null) return null;
   return {
     cost,
     shipping: shipping.value,
     shippingSource: shipping.source,
     mlFee,
-    das: 0.05,
+    taxRate: pricingTaxRate,
     margin,
-    price: Math.round(((cost + shipping.value) / denominator) * 100) / 100,
+    price: calculateExactMarginPrice({
+      cost,
+      shipping: shipping.value,
+      mlFee,
+      margin,
+      taxRate: pricingTaxRate,
+    }),
   };
 }
 
@@ -151,6 +159,7 @@ async function loadCandidates() {
       p_page_size: 100,
       p_sort_by: 'sku',
       p_sort_order: 'asc',
+      p_tax_rate: pricingTaxRate,
     });
     if (error) throw new Error(error.message);
     const pageRows = data?.data || [];
@@ -174,6 +183,8 @@ async function linkedProductIds(productIds) {
 }
 
 async function main() {
+  const pricingTax = await loadPricingTaxRate(supabase);
+  pricingTaxRate = pricingTax.taxRate;
   const skus = pdfSkus();
   if (skus.length !== 689) throw new Error(`PDF deveria ter 689 SKUs únicos, mas contém ${skus.length}`);
   const candidates = await loadCandidates();
@@ -253,7 +264,8 @@ async function main() {
     batchSize: BATCH_SIZE,
     batchCount: batches.length,
     priceRule: {
-      formula: '(custo + frete) / (1 - taxa_ml - 0.05 - margem)',
+      formula: '(custo + frete) / (1 - taxa_ml - taxa_tributaria - margem)',
+      taxRate: pricingTaxRate,
       offensive: 'custo + frete < 50 => 8%',
       defensive: 'custo + frete >= 50 => 25%',
     },

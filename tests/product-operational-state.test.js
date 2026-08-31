@@ -97,11 +97,12 @@ test('reconciliação persiste bloqueio terminal e limpa quando volta a ser modi
   });
 });
 
-test('lucro inclui imposto operacional de cinco por cento', () => {
+test('lucro usa a alíquota explícita informada pelo contexto tributário', () => {
   assert.equal(calculateNetProfitAtPrice({
     price: 364.13,
     cost: 215,
     shipping: 44.05,
     mlFee: 0.16,
+    taxRate: 0.05,
   }), 28.61);
 });

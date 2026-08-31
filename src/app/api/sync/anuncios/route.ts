@@ -9,6 +9,7 @@ import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { getConfiguredMlShippingCost } from '@/lib/ml/shipping-cost';
 import { calculateSuggestedPrice } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
@@ -522,6 +523,8 @@ export async function POST(request: Request) {
     const itemIds = requestedItemIds;
 
     const serviceClient = createServiceClient();
+    const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+    const taxRate = requirePricingTaxRate(pricingTaxContext);
     const sellerZipResult = await resolveSellerZip();
     if (sellerZipResult.warning) warnings.push({ code: 'ml_seller_zip_unavailable', message: sellerZipResult.warning });
 
@@ -736,6 +739,7 @@ export async function POST(request: Request) {
                 cost: Number(produto.custo || 0),
                 shipping: configuredShipping,
                 mlFee: Number(pricing.mlFee ?? produto.ml_fee ?? 0.15),
+                taxRate,
               }).suggestedPrice;
               productPatch.custom_price = configuredShippingPrice;
             } catch (error: any) {

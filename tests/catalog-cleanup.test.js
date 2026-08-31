@@ -19,6 +19,7 @@ test('calcula lucro com mesma regra da página ANÚNCIOS', () => {
     cost: 15,
     shipping: 12.35,
     mlFee: 0.13,
+    taxRate: 0.04,
   }), -3.24);
 });
 

@@ -4,13 +4,15 @@ const path = require('path');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
+const { calculateExactMarginPrice } = require('../src/services/pricing.ts');
+const { loadPricingTaxRate } = require('./lib/pricing-tax-context');
 
 dotenv.config({ path: '.env.local', quiet: true });
 
-const DAS_RATE = 0.05;
 const DEFENSIVE_MARGIN = 0.25;
 const OFFENSIVE_MARGIN = 0.08;
 const PAGE_SIZE = 1000;
+let pricingTaxRate = null;
 const BKR1_CRITICAL_SKUS = [
   'VTK000411',
   'VTK012247',
@@ -112,13 +114,15 @@ function roundMoney(value) {
 }
 
 function calculateTarget({ cost, shipping, fixedFee, mlFee, margin }) {
-  const denominator = 1 - Number(mlFee) - DAS_RATE - Number(margin);
-  if (!Number.isFinite(denominator) || denominator <= 0) {
-    throw new Error(`Denominador inválido: ${denominator}`);
-  }
-  return roundMoney(
-    (Number(cost) + Number(shipping) + Number(fixedFee || 0)) / denominator,
-  );
+  if (pricingTaxRate === null) throw new Error('Alíquota tributária indisponível');
+  return calculateExactMarginPrice({
+    cost: Number(cost),
+    shipping: Number(shipping),
+    fixedFee: Number(fixedFee || 0),
+    mlFee: Number(mlFee),
+    margin: Number(margin),
+    taxRate: pricingTaxRate,
+  });
 }
 
 function normalizeMlStatus(status) {
@@ -329,6 +333,7 @@ async function main() {
   const supabase = createClient(supabaseUrl, serviceRole, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
+  ({ taxRate: pricingTaxRate } = await loadPricingTaxRate(supabase));
 
   fs.mkdirSync(outputDir, { recursive: true });
   const eventsPath = path.join(outputDir, 'events.ndjson');
@@ -1071,9 +1076,9 @@ async function main() {
       shipping: Number(product.ml_shipping),
       fixed_cost: fixedFee,
       ml_fee: percentageFee,
-      das: DAS_RATE,
+      das: pricingTaxRate,
       desired_margin: margin,
-      denominator: 1 - percentageFee - DAS_RATE - margin,
+      denominator: 1 - percentageFee - pricingTaxRate - margin,
       required_price: selectedFees.requiredPrice,
       target_price: targetPrice,
       fee_tier_guard_applied: feeTierGuardApplied,

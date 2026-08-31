@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { fetchMLResult } from '@/services/integration';
@@ -38,6 +39,8 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
+    const pricingTaxContext = await loadPricingTaxContext(supabase);
+    const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto, error } = await supabase
       .from('produtos')
       .select('id, ml_item_id, ml_status, custom_price, custo, ml_fee, ml_shipping, estoque')
@@ -88,6 +91,7 @@ export async function POST(req: Request) {
           cost: Number(produto.custo || 0),
           shipping: Number(produto.ml_shipping || 0),
           mlFee: Number(produto.ml_fee || 0.15),
+          taxRate,
         });
         basePrice = calc.suggestedPrice;
       }

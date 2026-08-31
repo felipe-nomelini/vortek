@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import type { Database } from '@/types/database';
 import { POST as refreshNoCatalogSnapshot } from '@/app/api/catalogo/no-catalogo/refresh/route';
-import { calculateBreakEvenPrice, calculateSuggestedPrice, getPricingStrategy } from '@/services/pricing';
+import { calculateBreakEvenPrice, calculateNetProfitAtPrice, calculateSuggestedPrice, getPricingStrategy } from '@/services/pricing';
+import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
 type SnapshotRow = Pick<
   Database['public']['Tables']['catalogo_ml_snapshot']['Row'],
@@ -125,6 +126,8 @@ export async function POST(request: Request) {
   }
 
   const service = createServiceClient();
+  const pricingTaxContext = await loadPricingTaxContext(service);
+  const taxRate = requirePricingTaxRate(pricingTaxContext);
   const snapshotRows: SnapshotRow[] = [];
   let snapshotMaxSyncedAt: string | null = null;
   let from = 0;
@@ -235,12 +238,14 @@ export async function POST(request: Request) {
         cost: custoAplicado,
         shipping: freteAplicado,
         mlFee: taxaMlAplicada,
+        taxRate,
       });
       estrategia = getPricingStrategy(custoAplicado);
       precoEstrategicoMinimo = calculateSuggestedPrice({
         cost: custoAplicado,
         shipping: freteAplicado,
         mlFee: taxaMlAplicada,
+        taxRate,
       }).suggestedPrice;
     } catch {
       pisoSemPrejuizo = null;
@@ -269,9 +274,13 @@ export async function POST(request: Request) {
     const priceToWinRounded = round2(priceToWin);
 
     const deltaPriceToWin = round2(priceToWinRounded - precoAtual);
-    const lucroNoPriceToWin = round2(
-      priceToWinRounded - custoAplicado - freteAplicado - (priceToWinRounded * 0.04) - (priceToWinRounded * taxaMlAplicada),
-    );
+    const lucroNoPriceToWin = calculateNetProfitAtPrice({
+      price: priceToWinRounded,
+      cost: custoAplicado,
+      shipping: freteAplicado,
+      mlFee: taxaMlAplicada,
+      taxRate,
+    });
 
     if (priceToWinRounded >= precoEstrategicoMinimo) {
       const recomendado = priceToWinRounded;
