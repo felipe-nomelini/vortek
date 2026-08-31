@@ -55,7 +55,7 @@ correções funcionais
 → preparação controlada de produção
 ```
 
-A próxima ação do Item 17 continua sendo `DSL-01 — Timeout DSLite`.
+A próxima ação do Item 17 é `BNT-UX-00 — Dossiê completo de interface`.
 
 ---
 

@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `UI-06 — Compras`
+**Próxima ação obrigatória:** `BNT-UX-00 — Dossiê completo de interface`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-06` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-UX-00` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -132,6 +132,8 @@ Regras de uso:
 - [x] Não avançar para `UI-04` antes de `UI-03` estar integralmente validada.
 - [x] Executar somente `UI-04 — DTO Pedidos`.
 - [x] Não avançar para `UI-06` antes de `UI-04` estar integralmente validada.
+- [x] Executar somente `UI-06 — Compras`.
+- [x] Não avançar para `BNT-UX-00` antes de `UI-06` estar integralmente validada.
 
 ---
 
@@ -1741,10 +1743,34 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 ### UI-06 — Compras
 
-- [ ] separar fetch dependente de filtros;
-- [ ] separar indicadores independentes;
-- [ ] provar que filtros não repetem chamadas independentes;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] separar fetch dependente de filtros;
+- [x] separar indicadores independentes;
+- [x] provar que filtros não repetem chamadas independentes;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Situação:** concluída e homologada em DEV em 31/08/2026.
+**Commit funcional:** `35d5e03` — `perf(compras): separar indicadores independentes`.
+
+**Causa confirmada:** a página agrupava `/api/compras`, `/api/compras/resumo` e `/api/ml/anuncios/alertas` no mesmo callback dependente de busca, status, datas, página e ordenação. Cada mudança desses parâmetros recriava o callback e repetia também o indicador ML, embora ele não dependa dos filtros de compras.
+
+**Mudança executada:** lista e resumo permanecem juntos em `fetchFilteredPurchases`; alertas ML passaram para `fetchIndependentIndicators`, com efeito e erro próprios. A confirmação de pagamento atualiza somente os dados filtrados. Nenhum cache, hook, componente, endpoint, dependência ou fluxo Hayamax foi criado.
+
+**Validação:**
+
+- branch `dev`, working tree inicial limpa, `AGENTS.md`, Item 17, consolidação e auditoria de interface conferidos antes da alteração;
+- documentação oficial do React e guia local do Next.js `16.3.3` conferidos para dependências de efeitos e fetch em Client Components;
+- `tests/purchases-ui-fetch-scope.test.js` e `tests/hayamax-balance-retirement.test.js`: 8/8 testes aprovados;
+- a regressão prova carregadores e efeitos separados, ausência dos filtros no indicador, refresh pós-pagamento restrito e permanência da aposentadoria Hayamax;
+- `npm run validate`, `npm run build` com 119 páginas e `git diff --check`: aprovados;
+- commit enviado somente para `origin/dev`; após o controlador Easypanel reiniciar durante os webhooks iniciais, o reenvio pós-recuperação concluiu a action `cmtgtch5w000007lddrso1nab` com sucesso;
+- `vortek-erp-dev` confirmou `GIT_SHA=35d5e03` na task `hzmt8ptz7x54xobha60pdrn5s`; health respondeu `200`, `/compras` preservou o redirect autenticado `307` e as APIs de lista, resumo e alertas responderam `401` sem sessão;
+- o artefato publicado contém o tratamento independente de alertas ML;
+- migration, escrita em banco e chamada de escrita a integração externa: **N/A**;
+- banco/Supabase de produção `.160`, banco DEV `.162`, serviço de produção, `main` e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `35d5e03` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `UI-06`. A próxima ação obrigatória é `BNT-UX-00 — Dossiê completo de interface`.
 
 ### Redesign completo Bentevi
 
@@ -1753,9 +1779,9 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 #### Pré-requisitos
 
-- [ ] concluir as Etapas 8, 9 e 10;
-- [ ] concluir `SEC-06 — Next.js`;
-- [ ] concluir `UI-01` a `UI-06`;
+- [x] concluir as Etapas 8, 9 e 10;
+- [x] concluir `SEC-06 — Next.js`;
+- [x] concluir `UI-01` a `UI-06`;
 - [ ] executar `BNT-UX-00 — Dossiê completo de interface`;
 - [ ] executar `BNT-BRAND-01 — Assets e tokens Bentevi`;
 - [ ] executar `BNT-SHELL-01 — Shell desktop Bentevi`;
