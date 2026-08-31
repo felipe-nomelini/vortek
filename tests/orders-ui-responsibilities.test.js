@@ -13,11 +13,12 @@ const dsliteFlow = read('src/components/pedidos/usePedidosDsliteFlow.ts');
 const dsliteModals = read('src/components/pedidos/PedidosDsliteModals.tsx');
 const labelWhatsappFlow = read('src/components/pedidos/usePedidosLabelWhatsappFlow.ts');
 const labelWhatsappModals = read('src/components/pedidos/PedidosLabelWhatsappModals.tsx');
+const detailsDrawer = read('src/components/pedidos/PedidoDetailsDrawer.tsx');
 
 test('Pedidos permanece como orquestradora de lista, filtros, DTO e tracking', () => {
   assert.match(page, /function mapDBtoOrder/);
-  assert.match(page, /fetch\(`\/api\/pedidos\?\$\{listParams\}`\)/);
-  assert.match(page, /fetch\(`\/api\/pedidos\/resumo\?\$\{filterParams\}`\)/);
+  assert.match(page, /fetch\(`\/api\/pedidos\?\$\{listParams\.toString\(\)\}`/);
+  assert.match(page, /fetch\(`\/api\/pedidos\/resumo\?\$\{filterParams\.toString\(\)\}`/);
   assert.match(page, /<ResizableTable<Order>/);
   assert.match(page, /<TrackingModal/);
   assert.match(page, /usePedidosDsliteFlow\(\{/);
@@ -31,10 +32,28 @@ test('DTO operacional representa a resposta real de Pedidos sem casts compensat�
   assert.match(orderTypes, /export type PedidoOperacionalApiDto =/);
   assert.match(orderTypes, /export type PedidosOperacionaisApiResponse =/);
   assert.match(page, /function mapDBtoOrder\(item: PedidoOperacionalApiDto\): Order/);
-  assert.match(page, /const json: PedidosOperacionaisApiResponse = await listRes\.json\(\)/);
+  assert.match(page, /response\.json\(\) as Promise<PedidosOperacionaisApiResponse>/);
   assert.match(pedidosRoute, /const payload: PedidosOperacionaisApiResponse =/);
   assert.doesNotMatch(page, /\(item as any\)/);
   assert.doesNotMatch(page, /\(record as any\)\.ml_claim_id/);
+});
+
+test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
+  for (const label of ['Pedido', 'Cliente', 'Valor', 'Etapa', 'Pendência', 'Idade', 'Próxima ação']) {
+    assert.match(page, new RegExp(`title: '${label}'`));
+  }
+  assert.match(page, /function getOrderActions/);
+  assert.match(page, /hasPermission\(role, permission\)/);
+  assert.match(page, /window\.history\.replaceState/);
+  assert.match(page, /Promise\.allSettled/);
+  assert.match(page, /Os dados anteriores foram preservados/);
+  assert.match(page, /storageKey="pedidos-bentevi-v1"/);
+  assert.doesNotMatch(page, /rowSelection=/);
+  assert.doesNotMatch(page, /expandable=/);
+  assert.match(detailsDrawer, /<Drawer/);
+  assert.match(detailsDrawer, /Linha do tempo/);
+  assert.match(detailsDrawer, /Fulfillment e pagamento/);
+  assert.match(detailsDrawer, /Fiscal e rastreio/);
 });
 
 test('Pedidos não mantém endpoints, timers ou modais dos fluxos extraídos', () => {
