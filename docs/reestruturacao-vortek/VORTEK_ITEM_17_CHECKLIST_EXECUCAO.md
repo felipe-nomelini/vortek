@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `JOB-04 — Status de job`
+**Próxima ação obrigatória:** `UI-05 — Perguntas`
 
 ---
 
@@ -62,8 +62,8 @@ Regras de uso:
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
-| 10 | Consolidação de regras P2 | Em andamento | Executar somente `JOB-04` |
-| 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
+| 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-05` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -120,6 +120,8 @@ Regras de uso:
 - [x] Não avançar para `JOB-02` antes de `RULE-07` estar integralmente validada.
 - [x] Executar somente `JOB-02 — Dispatch duplicado`.
 - [x] Não avançar para `JOB-04` antes de `JOB-02` estar integralmente validada.
+- [x] Executar somente `JOB-04 — Status de job`.
+- [x] Não avançar para `UI-05` antes de `JOB-04` estar integralmente validada.
 
 ---
 
@@ -1518,10 +1520,28 @@ Executar **uma regra por tarefa**.
 
 ### JOB-04 — Status de job
 
-- [ ] localizar writers e significados divergentes;
-- [ ] normalizar writers antes de criar constraint;
-- [ ] provar que estados e métricas ficaram inequívocos;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] localizar writers e significados divergentes;
+- [x] normalizar writers antes de criar constraint;
+- [x] provar que estados e métricas ficaram inequívocos;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Situação:** concluída e homologada em DEV em 31/08/2026.
+
+**Estado/causa confirmados:** o achado histórico `concluido` já não possuía writer atual, mas `jobs.status` permanecia sem constraint; `processados/total` significava execução, itens ou etapas sem declarar a unidade. O booleano `cancelado` também duplicava o status e permanecia falso quando `status=cancelado`.
+
+**Mudança realizada:** `src/lib/jobs/contract.ts` passou a ser a fonte dos oito estados canônicos e das três unidades (`execucao`, `itens`, `etapas`). Todas as criações de job declaram a unidade, o registry exige esse contrato e as APIs de status o expõem. O campo legado `cancelado` foi removido depois do deploy compatível.
+
+**Banco DEV:** migrations `20260831110000_job_progress_unit.sql` e `20260831113000_job_status_constraints.sql` aplicadas exclusivamente no `supabase-dev` em `192.168.1.162`. As constraints `jobs_status_check`, `jobs_unidade_progresso_check` e `jobs_metricas_check` estão validadas; nenhuma linha inválida permaneceu.
+
+**Validação:** 31/31 testes direcionados e relacionados aprovados; `npm run validate`, `npm run build` com 119 páginas e `git diff --check` aprovados. Em transação no DEV, 24 combinações canônicas foram aceitas e status, unidade, progresso e contagem inválidos foram rejeitados; rollback deixou zero fixtures.
+
+**Homologação:** commit `0546d38` enviado somente para `origin/dev`; build oficial do Easypanel concluído com sucesso e `vortek-erp-dev` confirmado com o novo contrato. `dev.vortek.shop/api/ops/health` respondeu `200` e leu uma fixture temporária diretamente do `.162`, removida em seguida. PostgREST reconheceu `unidade_progresso` e deixou de reconhecer o campo removido.
+
+**Isolamento:** banco/Supabase de produção `.160`, serviço de produção, `main` e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** restaurar primeiro o aplicativo anterior em DEV; recriar `cancelado` derivado de `status`, remover as três constraints e, por último, remover `unidade_progresso`, conforme comentários das migrations. Não reverter `completo` para `concluido`.
+
+**Pendência:** nenhuma para `JOB-04`. A próxima ação obrigatória é `UI-05 — Perguntas`.
 
 ---
 
