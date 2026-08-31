@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `RULE-05 — Status fiscal`
+**Próxima ação obrigatória:** `RULE-07 — Tipos do ledger`
 
 ---
 
@@ -62,7 +62,7 @@ Regras de uso:
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
-| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-05` |
+| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-07` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -114,6 +114,8 @@ Regras de uso:
 - [x] Não avançar para `RULE-04` antes de `RULE-03` estar integralmente validada.
 - [x] Executar somente `RULE-04 — Threshold de custo`.
 - [x] Não avançar para `RULE-05` antes de `RULE-04` estar integralmente validada.
+- [x] Executar somente `RULE-05 — Status fiscal`.
+- [x] Não avançar para `RULE-07` antes de `RULE-05` estar integralmente validada.
 
 ---
 
@@ -1422,10 +1424,35 @@ Executar **uma regra por tarefa**.
 
 ### RULE-05 — Status fiscal
 
-- [ ] distinguir estado externo bruto, normalizado técnico e persistido canônico;
-- [ ] consolidar somente dentro do domínio correto;
-- [ ] não criar enum global entre domínios;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] distinguir estado externo bruto, normalizado técnico e persistido canônico;
+- [x] consolidar somente dentro do domínio correto;
+- [x] não criar enum global entre domínios;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Registro da execução — 30/08/2026:**
+
+- branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação e auditorias fiscal/banco/regras compartilhadas conferidos antes da implementação;
+- causa confirmada: `nfe_status` misturava aliases em português e inglês, código bruto da Brasil NFe e marcadores operacionais; normalizadores equivalentes estavam distribuídos entre emissão, reconciliação, cancelamento, DSLite, filtros e scripts legados;
+- divergência operacional corrigida: a comparação genérica por `includes("cancel")` classificava `cancel_rejected_deadline` como cancelada, embora a documentação oficial determine que o documento continua autorizado quando o cancelamento não ocorre no prazo;
+- documentação oficial atual da Brasil NFe confirmou os estados brutos `1 = autorizada`, `2 = cancelada` e `3 = denegada`, e a documentação PostgreSQL 17 confirmou a aplicação segura de `CHECK` com `NOT VALID` seguida de `VALIDATE CONSTRAINT`;
+- `src/lib/fiscal/nfe-status.ts` passou a ser a fonte única do domínio para status persistido canônico, tradução técnica, códigos brutos da Brasil NFe, filtros e predicados fiscais, sem enum ou abstração global entre domínios;
+- persistência canônica definida como `authorized`, `cancelled`, `pending`, `interrupted`, `rejected`, `denied`, `processing`, `not_found`, `cancel_rejected_deadline` e `other`; respostas técnicas da web continuam em português;
+- emissão, reconciliação local/remota, cancelamento manual/automático, DSLite, telas fiscais e scripts de manutenção passaram a reutilizar a fonte central; auditoria separa `status_externo` bruto de `status_persistido`;
+- `cancel_rejected_deadline` permanece persistido para impedir novas tentativas automáticas, é exibido tecnicamente como NF-e autorizada e bloqueia uma nova tentativa manual com mensagem específica; uma observação externa autorizada não apaga esse marcador, enquanto cancelamento ou denegação reais podem substituí-lo;
+- migration `20260830235900_rule_05_canonical_nfe_status.sql` converte somente aliases conhecidos, define default `pending` e adiciona constraint canônica, sem coerção silenciosa de valores desconhecidos;
+- preflight confirmou o destino real `192.168.1.162`, hostname `supabase-dev`, PostgreSQL `17.6`, 93 migrations, default legado `pendente`, ausência da constraint e zero pedidos no DEV;
+- migration ensaiada integralmente com `ROLLBACK`; a verificação posterior confirmou restauração do default, zero constraint e zero registro antes da aplicação definitiva;
+- migration aplicada e registrada somente no `supabase-dev`: 94/94 migrations, registro único da RULE-05, default `pending`, constraint validada e zero status inválido;
+- `node --check` nos dois scripts fiscais, 20 testes direcionados, `npm run validate`, `npm run build` com 119 páginas estáticas e `git diff --check`: aprovados;
+- commit funcional `502cab6` enviado somente para `origin/dev`; o primeiro webhook não criou tarefa durante a janela observada e, após um único reenvio, duas tarefas apareceram, com o Swarm mantendo uma em execução e encerrando a substituída;
+- container de homologação confirmou `GIT_SHA=502cab6`; health e login em `dev.vortek.shop` responderam HTTP `200`, e listagem, resumo e cancelamento fiscal permaneceram protegidos com HTTP `401` sem sessão;
+- nenhuma emissão, consulta, cancelamento ou outra chamada operacional à Brasil NFe/Mercado Livre foi realizada; `main`, banco de produção `.160`, deploy de produção e `app.vortek.shop` permaneceram intocados.
+
+**Migration:** `20260830235900_rule_05_canonical_nfe_status.sql`, aplicada e registrada somente no `supabase-dev` (`192.168.1.162`).
+
+**Rollback:** reverter `502cab6` em `dev`, remover a constraint e restaurar o default `pendente` somente no banco DEV mediante migration corretiva, e redeployar apenas `vortek-erp-dev`. Os valores canônicos podem permanecer porque o código anterior já reconhecia os aliases em inglês.
+
+**Pendência:** nenhuma para `RULE-05`. A próxima ação obrigatória é `RULE-07 — Tipos do ledger`.
 
 ### RULE-07 — Tipos do ledger
 
