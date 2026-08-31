@@ -2,7 +2,7 @@
 
 **Always-on engineering rules for every agent working in this repository.**
 
-_Last reviewed: 2026-08-27_
+_Last reviewed: 2026-08-30_
 
 ---
 
@@ -490,12 +490,37 @@ For a Supabase/database task:
 4. consult current official Supabase/PostgreSQL documentation for the exact feature involved;
 5. verify the self-hosted environment before assuming cloud behavior.
 
-Current known self-hosted infrastructure:
+## Environment identity — non-negotiable
 
-- host: `192.168.1.160`;
-- stack directory: `/opt/supabase-vortek/supabase-project`;
-- stack env: `/opt/supabase-vortek/supabase-project/.env`;
-- Studio/public endpoint configuration is self-hosted.
+For every database or Supabase operation in this `vortek-dev` worktree, the environments are:
+
+### Production — read only
+
+- `192.168.1.160` is **PRODUCTION** for database/Supabase purposes.
+- Access to the Supabase/PostgreSQL stack on `192.168.1.160` from this worktree is restricted to necessary **READ ONLY** diagnostics.
+- Never execute migrations, DDL, DML, RPC/function changes, grants, secret changes, configuration changes, administrative writes, test writes, or any other mutation on `192.168.1.160`.
+- A container name, Docker label, directory, DNS name, endpoint, application environment variable, or service name containing `dev` or `supabase-dev` on `192.168.1.160` does **not** change its classification as production and does **not** authorize writes.
+- The homologation web service may run on the Easypanel host `192.168.1.160`; this does not make the Supabase/PostgreSQL stack on that host a development database.
+- If the user requests an urgent production correction while working in this directory, stop and state that it must be executed from the dedicated `vortek-prod` workspace.
+
+### Development and homologation — writable
+
+- `192.168.1.162` is the **only** `supabase-dev` authorized for development/homologation writes.
+- Apply migrations, DDL, DML, test data, function/RPC changes, grants, configuration changes, and every other database mutation only to `192.168.1.162`.
+- Do not infer the target environment from a public URL, container location, label, hostname, runtime variable, or previously opened connection. Confirm the network destination itself.
+
+### Mandatory preflight before every database write
+
+Before opening a writable transaction or executing any mutating command:
+
+1. resolve and display the actual destination host without printing credentials;
+2. confirm that the destination is exactly `192.168.1.162`;
+3. confirm that the environment is the independent `supabase-dev`;
+4. inspect the migration history and current affected schema on that same destination;
+5. rehearse the migration with `ROLLBACK` when applicable;
+6. stop immediately if the destination is `192.168.1.160`, differs from `192.168.1.162`, or remains ambiguous.
+
+Never treat indirect runtime evidence as authorization to override this environment map.
 
 Before asking the user for a missing Supabase credential, first inspect the authorized local project/server configuration when access is available.
 
@@ -738,6 +763,8 @@ A skill must not override:
 Generic skills often contain generic assumptions. Verify those assumptions against Vortek before following them.
 
 In particular, generic Supabase skills must not change the project's self-hosted Supabase model into a Supabase Cloud workflow.
+
+Any skill or cached instruction that identifies `192.168.1.160` as the writable Vortek Supabase environment is stale for this worktree. `AGENTS.md` and the explicit environment map in section 8 take precedence: `.160` is production/read-only and `.162` is the only writable `supabase-dev`.
 
 Caveman or other response-compression skills are not required. Follow the communication rules in this file directly.
 
