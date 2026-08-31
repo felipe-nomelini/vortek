@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `RULE-07 — Tipos do ledger`
+**Próxima ação obrigatória:** `JOB-02 — Dispatch duplicado`
 
 ---
 
@@ -62,7 +62,7 @@ Regras de uso:
 | 7 | Hayamax, Mercado Pago e financeiro | Concluída | Manter Hayamax bloqueada e o histórico somente leitura |
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
-| 10 | Consolidação de regras P2 | Em andamento | Executar somente `RULE-07` |
+| 10 | Consolidação de regras P2 | Em andamento | Executar somente `JOB-02` |
 | 11 | Interface e redesign Bentevi | Pendente | Correções UI → desktop completo → web celular → app nativo |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -116,6 +116,8 @@ Regras de uso:
 - [x] Não avançar para `RULE-05` antes de `RULE-04` estar integralmente validada.
 - [x] Executar somente `RULE-05 — Status fiscal`.
 - [x] Não avançar para `RULE-07` antes de `RULE-05` estar integralmente validada.
+- [x] Executar somente `RULE-07 — Tipos do ledger`.
+- [x] Não avançar para `JOB-02` antes de `RULE-07` estar integralmente validada.
 
 ---
 
@@ -1459,9 +1461,9 @@ Executar **uma regra por tarefa**.
 - [x] mapear tipos realmente aceitos e operados no banco;
 - [x] alinhar TypeScript com o contrato real;
 - [x] remover casts dispersos somente no fluxo afetado;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] concluir o gate obrigatório da seção 3.
 
-**Registro parcial da execução — 30/08/2026:**
+**Registro da execução — 30/08/2026:**
 
 - branch `dev`, working tree inicial limpo, `AGENTS.md`, Item 17, consolidação e auditorias de compras/financeiro, banco e regras compartilhadas conferidos antes da implementação;
 - causa confirmada: a constraint do ledger aceitava seis tipos, mas os tipos gerados e a interface expunham `movement_type` como `string`; a entrada manual ainda misturava as ações de UI `adjustment_credit`/`adjustment_debit` com o tipo persistido `adjustment`, e a reconciliação removia `null` com cast sobre o lote;
@@ -1472,15 +1474,16 @@ Executar **uma regra por tarefa**.
 - `topup` e `purchase_debit` permanecem somente como tipos históricos legíveis, sem restaurar writers da conta-saldo Hayamax;
 - 8/8 testes direcionados aprovados, incluindo os testes de aposentadoria da Hayamax; `npm run validate`, `npm run build` com 119 páginas estáticas e `git diff --check`: aprovados;
 - commit funcional `e5b8c98` enviado somente para `origin/dev`;
-- três acionamentos controlados do webhook oficial retornaram HTTP `200`; o primeiro build compilou com sucesso, mas foi cancelado ao final pelo segundo acionamento, e as duas actions seguintes permaneceram sem execução/log durante as janelas observadas;
-- o container `vortek-erp-dev` permaneceu no SHA anterior `502cab6`; portanto a homologação da versão nova ainda não foi declarada concluída;
+- três acionamentos controlados do webhook oficial retornaram HTTP `200`; o primeiro build compilou com sucesso, mas foi cancelado durante a publicação da imagem quando o segundo acionamento se sobrepôs; a action final iniciou às `02:42:10 UTC` e terminou com `Success` às `02:44:28 UTC`;
+- durante a execução final, o arquivo da action permaneceu vazio e só recebeu o log completo ao terminar; por isso, o deploy foi inicialmente registrado como pendente antes da confirmação posterior;
+- container `vortek-erp-dev` confirmado no SHA `5a48cc9`, que contém o commit funcional `e5b8c98`; health em `dev.vortek.shop` respondeu HTTP `200` e a API de créditos permaneceu protegida com HTTP `401` sem sessão;
 - nenhuma migration, escrita em banco ou chamada externa financeira foi executada; `main`, banco de produção `.160`, deploy de produção e `app.vortek.shop` permaneceram intocados.
 
 **Migration:** N/A; schema e constraints existentes já representam o contrato correto.
 
 **Rollback:** reverter `e5b8c98` somente em `dev` caso a regressão seja observada após o deploy. Não há rollback de banco ou dados.
 
-**Pendência:** concluir o deploy do commit funcional no `vortek-erp-dev`, confirmar o SHA novo, health e proteção da API de créditos sem sessão. A próxima ação obrigatória continua sendo `RULE-07` até este gate ser fechado.
+**Pendência:** nenhuma para `RULE-07`. A próxima ação obrigatória é `JOB-02 — Dispatch duplicado`.
 
 ### JOB-02 — Dispatch duplicado
 
