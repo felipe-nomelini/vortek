@@ -1,15 +1,21 @@
 {
   "expo": {
-    "name": "Vortek",
+    "name": "Bentevi",
     "slug": "vortek-mobile",
     "owner": "vortek-tecnologia",
     "scheme": "vortek",
     "version": "0.1.0",
     "orientation": "default",
     "userInterfaceStyle": "dark",
+    "icon": "./assets/images/icon.png",
     "android": {
       "package": "shop.vortek.erp",
-      "versionCode": 1
+      "versionCode": 1,
+      "icon": "./assets/images/icon.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#09090B"
+      }
     },
     "plugins": [
       "expo-router",
@@ -19,7 +25,16 @@
           "configureAndroidBackup": true
         }
       ],
-      "expo-sharing"
+      "expo-sharing",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#09090B",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 240,
+          "resizeMode": "contain"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

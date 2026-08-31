@@ -7,7 +7,7 @@
 **Data da fotografia:** 31/08/2026
 **Base de código inspecionada:** `080500a899e52b10d4ae8f67de8a0fd7201fc944`
 **Status:** concluído; nenhuma interface foi alterada nesta ação
-**Próxima ação:** `BNT-BRAND-01 — Assets e tokens Bentevi`
+**Próxima ação:** `BNT-SHELL-01 — Shell desktop Bentevi`
 
 ---
 

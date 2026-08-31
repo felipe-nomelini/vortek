@@ -126,7 +126,13 @@ export default function Sidebar() {
           flexShrink: 0,
         }}
       >
-        <Image src="/logo.png" alt="Vortek" width={190} height={51} style={{ objectFit: 'contain' }} />
+        <Image
+          src="/branding/bentevi/bentevi-wordmark.png"
+          alt="Bentevi"
+          width={190}
+          height={40}
+          style={{ objectFit: 'contain' }}
+        />
       </div>
       <Menu
         theme="dark"

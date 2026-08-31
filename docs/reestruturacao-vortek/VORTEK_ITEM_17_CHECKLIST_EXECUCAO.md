@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-BRAND-01 — Assets e tokens Bentevi`
+**Próxima ação obrigatória:** `BNT-SHELL-01 — Shell desktop Bentevi`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-BRAND-01` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-SHELL-01` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -1817,9 +1817,36 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] concluir `SEC-06 — Next.js`;
 - [x] concluir `UI-01` a `UI-06`;
 - [x] executar `BNT-UX-00 — Dossiê completo de interface`;
-- [ ] executar `BNT-BRAND-01 — Assets e tokens Bentevi`;
+- [x] executar `BNT-BRAND-01 — Assets e tokens Bentevi`;
 - [ ] executar `BNT-SHELL-01 — Shell desktop Bentevi`;
 - [ ] executar `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
+
+#### Resultado de `BNT-BRAND-01`
+
+**Status:** concluída em `2026-08-31` na branch `dev`.
+
+**Escopo executado:**
+
+- master canônico Bentevi preservado e wordmark otimizado derivado sem redesenho;
+- marca compacta, favicon, Apple icon, ícones PWA, ícone mobile, adaptive icon e splash gerados;
+- tokens Bentevi centralizados no web e refletidos no adaptador mobile;
+- metadata, manifest PWA, sidebar, TV, notificações push e nome visível do aplicativo atualizados;
+- `slug`, scheme, package Android, owner, projeto EAS, APIs, banco, regras e integrações preservados;
+- nenhuma URL, configuração de DNS/TLS, callback ou ambiente alterado.
+
+**Validação:**
+
+- inspeção visual e estrutural dos assets: aprovada;
+- contraste WCAG 2.2 AA: aprovado nos seis pares essenciais, com menor relação de `8,58:1`;
+- `npm run validate`: aprovado;
+- `npm run build`: aprovado, incluindo `/icon.png`, `/apple-icon.png` e `/manifest.webmanifest`;
+- mobile `npm run typecheck`: aprovado;
+- `npx expo config --type public`: aprovado com identidade Bentevi e identificadores técnicos preservados;
+- mobile `npm run doctor`: `20/21`; a única falha aponta nove versões patch Expo preexistentes e fora do escopo desta ação;
+- smoke HTTP local: não executável sem a configuração runtime ausente neste worktree; o build e os artefatos compilados foram verificados diretamente;
+- deploy, migration, banco e integração externa: **N/A**.
+
+**Próxima ação:** `BNT-SHELL-01 — Shell desktop Bentevi`. `BNT-DOM-DEV` permanece separada e usará exclusivamente `dev.bentevi.shop`.
 
 #### Desktop — uma página por tarefa
 

@@ -7,7 +7,6 @@ import {
   Button,
   Card,
   Col,
-  ConfigProvider,
   Empty,
   Flex,
   Progress,
@@ -18,7 +17,6 @@ import {
   Table,
   Tag,
   Typography,
-  theme,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import {
@@ -651,18 +649,7 @@ export default function TvDashboardPage() {
   ];
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.darkAlgorithm,
-        token: {
-          colorBgBase: "#000000",
-          colorBgContainer: "#141414",
-          colorPrimary: "#1677ff",
-          borderRadius: 8,
-        },
-      }}
-    >
-      <main ref={tvShellRef} className="tv-shell">
+    <main ref={tvShellRef} className="tv-shell">
         <audio ref={audioRef} src={SALE_SOUND_SRC} preload="auto" />
         <audio ref={questionAudioRef} src={QUESTION_SOUND_SRC} preload="auto" />
 
@@ -675,10 +662,10 @@ export default function TvDashboardPage() {
           <Space size={18} align="center">
             <div className="logo-card">
               <Image
-                src="/logo.png"
-                alt="Vortek"
+                src="/branding/bentevi/bentevi-wordmark.png"
+                alt="Bentevi"
                 width={220}
-                height={31}
+                height={46}
                 priority
                 style={{ width: 220, height: "auto" }}
               />
@@ -1383,7 +1370,6 @@ export default function TvDashboardPage() {
             }
           }
         `}</style>
-      </main>
-    </ConfigProvider>
+    </main>
   );
 }

@@ -83,7 +83,7 @@ export default function LoginScreen() {
             ]}
           >
             {submitting ? (
-              <ActivityIndicator color={colors.text} />
+              <ActivityIndicator color={colors.textOnPrimary} />
             ) : (
               <Text style={styles.buttonText}>Entrar</Text>
             )}
@@ -127,5 +127,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonPressed: { opacity: 0.7 },
-  buttonText: { color: colors.text, fontSize: 16, fontWeight: "700" },
+  buttonText: { color: colors.textOnPrimary, fontSize: 16, fontWeight: "700" },
 });

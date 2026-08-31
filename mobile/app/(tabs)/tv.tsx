@@ -443,5 +443,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
   },
-  primaryButtonText: { color: colors.text, fontWeight: "700" },
+  primaryButtonText: { color: colors.textOnPrimary, fontWeight: "700" },
 });

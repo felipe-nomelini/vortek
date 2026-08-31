@@ -8,6 +8,7 @@
 import '@ant-design/v5-patch-for-react-19';
 import { ConfigProvider, theme } from 'antd';
 import { StyleProvider } from '@ant-design/cssinjs';
+import { benteviColors } from '@/theme/bentevi';
 
 const { darkAlgorithm } = theme;
 
@@ -18,9 +19,14 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         theme={{
           algorithm: darkAlgorithm,
           token: {
-            colorBgBase: '#000000',
-            colorBgContainer: '#141414',
-            colorPrimary: '#1677ff',
+            colorBgBase: benteviColors.background,
+            colorBgContainer: benteviColors.surface,
+            colorBgElevated: benteviColors.surfaceElevated,
+            colorBorder: benteviColors.border,
+            colorPrimary: benteviColors.primary,
+            colorText: benteviColors.text,
+            colorTextSecondary: benteviColors.textSecondary,
+            colorTextLightSolid: benteviColors.textOnPrimary,
             borderRadius: 8,
           },
           components: {

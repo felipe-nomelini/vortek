@@ -1,12 +1,19 @@
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import Providers from '@/lib/Providers';
+import { benteviColors } from '@/theme/bentevi';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
-export const metadata = {
-  title: 'Vortek',
-  description: 'Sistema de gestão e precificação inteligente para dropshipping',
+export const metadata: Metadata = {
+  title: 'Bentevi',
+  description: 'Sistema de gestão operacional da Bentevi',
+};
+
+export const viewport: Viewport = {
+  colorScheme: 'dark',
+  themeColor: benteviColors.background,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

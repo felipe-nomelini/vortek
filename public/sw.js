@@ -8,12 +8,12 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
-  const notification = self.registration.showNotification(data.title || 'Vortek', {
+  const notification = self.registration.showNotification(data.title || 'Bentevi', {
     body: data.body || '',
     tag: data.tag || 'vortek-notification',
     data: { url: data.url || '/' },
-    icon: '/logo.png',
-    badge: '/logo.png',
+    icon: '/branding/bentevi/icon-192.png',
+    badge: '/branding/bentevi/icon-192.png',
   });
   const notifyOpenPages = self.clients.matchAll({ type: 'window', includeUncontrolled: true })
     .then((pages) => pages.forEach((page) => page.postMessage({

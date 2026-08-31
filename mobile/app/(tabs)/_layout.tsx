@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 13,
   },
-  retryText: { color: colors.text, fontWeight: "700" },
+  retryText: { color: colors.textOnPrimary, fontWeight: "700" },
   exitButton: {
     alignItems: "center",
     borderColor: colors.border,

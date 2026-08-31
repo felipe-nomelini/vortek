@@ -657,7 +657,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 11,
   },
-  applyFiltersText: { color: colors.text, fontWeight: "700" },
+  applyFiltersText: { color: colors.textOnPrimary, fontWeight: "700" },
   summaryRow: { flexDirection: "row", gap: 10 },
   summaryCard: {
     backgroundColor: colors.surface,
@@ -750,6 +750,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
-  retryText: { color: colors.text, fontWeight: "700" },
+  retryText: { color: colors.textOnPrimary, fontWeight: "700" },
   footerLoader: { padding: 18 },
 });
