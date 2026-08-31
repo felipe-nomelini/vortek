@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.vortek.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `UI-02 — Tracking Mercado Livre`
+**Próxima ação obrigatória:** `UI-01 — Pedidos`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-02` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `UI-01` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -124,6 +124,8 @@ Regras de uso:
 - [x] Não avançar para `UI-05` antes de `JOB-04` estar integralmente validada.
 - [x] Executar somente `UI-05 — Perguntas`.
 - [x] Não avançar para `UI-02` antes de `UI-05` estar integralmente validada.
+- [x] Executar somente `UI-02 — Tracking Mercado Livre`.
+- [x] Não avançar para `UI-01` antes de `UI-02` estar integralmente validada.
 
 ---
 
@@ -1576,10 +1578,45 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 ### UI-02 — Tracking Mercado Livre
 
-- [ ] localizar o fluxo compartilhável entre Produtos e Catálogo;
-- [ ] compartilhar somente o acompanhamento de publicação;
-- [ ] não criar framework genérico de polling;
-- [ ] concluir o gate obrigatório da seção 3.
+- [x] localizar o fluxo compartilhável entre Produtos e Catálogo;
+- [x] compartilhar somente o acompanhamento de publicação;
+- [x] não criar framework genérico de polling;
+- [x] concluir o gate obrigatório da seção 3.
+
+**Situação:** concluída e homologada em DEV em 31/08/2026.
+
+**Estado/causa confirmados:** Produtos e Catálogo mantinham cópias independentes dos mesmos tipos de status, tradução de operação, montagem das etapas, estado do modal, timer de dois segundos, consulta do outbox, retry e aplicação de atacado. Os pedidos iniciais de atualização eram diferentes e permaneceram sob responsabilidade de cada tela.
+
+**Mudança realizada:** o acompanhamento foi consolidado no hook cliente específico `useMlPricePublishTracking`, com limpeza do timer e descarte de respostas após fechamento ou troca de outbox. A tradução e a montagem das etapas ficaram em uma função pura compartilhada. Produtos e Catálogo preservaram seus payloads, loading, refresh e mensagens de início; endpoints, worker, outbox, regras de preço e o polling próprio do Catálogo não foram alterados.
+
+**Gate obrigatório:**
+
+- [x] branch confirmada como `dev` e working tree inspecionada;
+- [x] `AGENTS.md` e documentação aplicável lidos;
+- [x] estado atual e causa confirmados no código e nos contratos das rotas;
+- [x] documentação oficial atual de React, Next.js e Mercado Livre consultada;
+- [x] menor mudança correta e reversível definida;
+- [x] teste de regressão adicionado;
+- [x] implementação limitada à ação `UI-02`;
+- [x] teste direcionado executado e aprovado;
+- [x] `npm run validate` executado e aprovado;
+- [x] `npm run build` executado e aprovado;
+- **N/A:** nenhuma migration ou escrita em banco foi necessária;
+- [x] comportamento e artefato validados em `dev.vortek.shop`;
+- [x] isolamento de produção reconfirmado;
+- [x] diff revisado e sem mudanças fora do escopo;
+- [x] rollback definido;
+- [x] resultado e pendências registrados neste documento.
+
+**Validação:** 34/34 testes direcionados aprovados, cobrindo estados pendente, processamento, conclusão, falha, diagnóstico de atacado e o uso de uma única implementação pelas duas telas, além dos testes existentes de outbox e preço por quantidade. `npm run validate`, `npm run build` com 119 páginas e `git diff --check` foram aprovados.
+
+**Homologação:** commit funcional `d0b5a29` enviado somente para `origin/dev`; build oficial do Easypanel concluído com sucesso e `vortek-erp-dev` confirmado com `GIT_SHA=d0b5a29`. Health respondeu HTTP `200`, `/produtos` e `/catalogo/no-catalogo` preservaram o redirect autenticado `307`, os endpoints de status e aplicação de atacado responderam `401` sem sessão, e o artefato publicado contém o acompanhamento compartilhado.
+
+**Isolamento:** nenhuma migration, escrita em banco ou chamada de escrita ao Mercado Livre foi executada. Banco/Supabase de produção `.160`, banco DEV `.162`, serviço de produção, `main` e `app.vortek.shop` permaneceram intocados.
+
+**Rollback:** reverter `d0b5a29` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** nenhuma para `UI-02`. A próxima ação obrigatória é `UI-01 — Pedidos`.
 
 ### UI-01 — Pedidos
 
