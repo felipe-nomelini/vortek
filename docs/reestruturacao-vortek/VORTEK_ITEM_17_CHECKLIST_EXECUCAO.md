@@ -154,8 +154,8 @@ Regras de uso:
 - [x] Aprovar visualmente `BNT-D01-PDF` em homologação.
 - [x] Não avançar para `BNT-D04` antes de `BNT-D01-PDF` estar aprovado.
 - [x] Executar somente `BNT-D04 — Notas Fiscais`.
-- [ ] Aprovar visualmente `BNT-D04` em homologação.
-- [ ] Não avançar para `BNT-D05` antes de `BNT-D04` estar integralmente validada e aprovada em homologação.
+- [x] Aprovar visualmente `BNT-D04` em homologação.
+- [x] Não avançar para `BNT-D05` antes de `BNT-D04` estar integralmente validada e aprovada em homologação.
 
 ---
 
@@ -1935,7 +1935,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D01` — Vendas `/pedidos` — piloto;
 - [x] `BNT-D02` — Dashboard;
 - [x] `BNT-D03` — Compras;
-- [ ] `BNT-D04` — Notas Fiscais;
+- [x] `BNT-D04` — Notas Fiscais;
 - [ ] `BNT-D05` — Estoque;
 - [ ] `BNT-D06` — Perguntas;
 - [ ] `BNT-D07` — Produtos;
@@ -2059,7 +2059,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D04 — Notas Fiscais`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aprovação visual pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-01`.
 
 **Estado/causa confirmados:** a página fiscal ainda usava a identidade Vortek azul e uma hierarquia antiga, com seleção de linhas sem ação, cinco blocos de resumo — incluindo o cálculo artificial `Imposto Total (4%)` —, emissão confundida com a data da venda, todas as operações reunidas em um menu e ausência de detalhe/histórico fiscal. Além disso, a própria tela disparava o job externo de reconciliação ao abrir e a cada 30 segundos, embora `sync_reconcile_brasilnfe` já pertença ao scheduler canônico de 2/10 minutos.
 
@@ -2083,11 +2083,13 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Ajuste visual de `2026-09-01`:** a coluna `Venda ML` deixou de repetir o nome do cliente e passou a apresentar somente os identificadores distintos de Pack e Venda. O nome e o documento permanecem exclusivamente na coluna `Cliente`. O commit `c64d6c8` foi enviado somente para `origin/dev`; 10 cenários direcionados, `npm run validate`, `npm run build` com 122 páginas e `git diff --check` foram aprovados. A action `cmtj2qm75000107o16lkv8xd5` concluiu com `Success`, e a task `wfdb9zv74cg7mvp4cuds0titr` ativou `GIT_SHA=c64d6c8fd2426c3a6b9a75b94d38fcdbdd5920f2`. Health e login responderam `200`, `/notas-fiscais` respondeu `307` sem sessão e a API de lista respondeu `401` sem sessão.
 
+**Runtime DEV e aceite final em `2026-09-01`:** após aprovação visual do usuário, `BRASILNFE_RETURN_TIPO_AMBIENTE=2` foi acrescentada pelo endpoint oficial do Easypanel exclusivamente ao serviço `local/vortek-erp-dev`, cuja origem foi reconfirmada como `ref=dev`. O read-back da configuração preservou as demais variáveis e a task `i7tbm9cxqc3gbamovzd5j2q2n` confirmou o valor efetivo `2` no container com `GIT_SHA=0221ef97a97fc76c926b5560c9b05f2d371cab16`. A action `cmtj3469y000307o19v8x1df3` concluiu com `Success`; health e login responderam `200`, `/notas-fiscais` respondeu `307` sem sessão e a API de retornos respondeu `401` sem sessão. Nenhuma chamada à Brasil NFe ou alteração de banco foi executada nesta configuração.
+
 **Migration/banco:** `20260901160000_bnt_d04_fiscal_returns.sql`, aplicada e registrada exclusivamente no `supabase-dev` em `192.168.1.162`. A tabela está com RLS habilitada, acesso direto revogado de `anon`/`authenticated`, função de reserva exclusiva de `service_role`, vínculo de auditoria e zero retornos criados. Nenhum acesso ao banco de produção foi realizado.
 
-**Rollback:** para desfazer somente a exposição visual protegida das ações, reverter `3428796`; para retirar toda a revisão funcional, reverter também `e9a1c83` e `59e0e11` em `dev`, redeployar somente `vortek-erp-dev` e, mediante migration corretiva exclusivamente no `.162`, remover a função, o vínculo de auditoria e a tabela de retornos enquanto ela permanecer vazia. Não há rollback ou ação em produção.
+**Rollback:** para desfazer somente a configuração runtime, remover `BRASILNFE_RETURN_TIPO_AMBIENTE` de `local/vortek-erp-dev` pelo endpoint oficial do Easypanel e redeployar o serviço DEV; para desfazer somente a exposição visual protegida das ações, reverter `3428796`; para retirar toda a revisão funcional, reverter também `e9a1c83` e `59e0e11` em `dev`, redeployar somente `vortek-erp-dev` e, mediante migration corretiva exclusivamente no `.162`, remover a função, o vínculo de auditoria e a tabela de retornos enquanto ela permanecer vazia. Não há rollback ou ação em produção.
 
-**Pendência:** configurar `BRASILNFE_RETURN_TIPO_AMBIENTE=2` somente no runtime de `vortek-erp-dev`; até isso ocorrer, a emissão de retorno permanece bloqueada de forma segura. Depois, aprovar visualmente `dev.bentevi.shop/notas-fiscais`. A amostra read-only não possui XML fiscal e não pode ser usada para emitir retornos. Não iniciar `BNT-D05` antes do aceite.
+**Pendência:** nenhuma para `BNT-D04`. A amostra read-only continua sem XML fiscal e não pode ser usada para emitir retornos. A próxima ação permitida é `BNT-D05 — Estoque`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
