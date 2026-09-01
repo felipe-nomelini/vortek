@@ -151,8 +151,11 @@ Regras de uso:
 - [x] Aprovar visualmente `BNT-D03-PDF` em homologação.
 - [x] Não avançar para `BNT-D01-PDF` antes de `BNT-D03-PDF` estar aprovado.
 - [x] Atualizar retroativamente `BNT-D01-PDF — Relatório de Vendas` antes de iniciar `BNT-D04`.
-- [ ] Aprovar visualmente `BNT-D01-PDF` em homologação.
-- [ ] Não avançar para `BNT-D04` antes de `BNT-D01-PDF` estar aprovado.
+- [x] Aprovar visualmente `BNT-D01-PDF` em homologação.
+- [x] Não avançar para `BNT-D04` antes de `BNT-D01-PDF` estar aprovado.
+- [x] Executar somente `BNT-D04 — Notas Fiscais`.
+- [ ] Aprovar visualmente `BNT-D04` em homologação.
+- [ ] Não avançar para `BNT-D05` antes de `BNT-D04` estar integralmente validada e aprovada em homologação.
 
 ---
 
@@ -2036,7 +2039,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D01-PDF — Relatório de Vendas`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aprovação visual pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente pelo usuário em homologação em `2026-09-01`.
 
 **Estado/causa confirmados:** o exportador de Vendas ainda usava a identidade Vortek azul, linhas de altura fixa, onze colunas estreitas e truncamento por reticências. O documento não refletia a página aprovada: omitia produtos, SKUs, Pack, tracking, shipment, reclamação e a sequência operacional de seis etapas.
 
@@ -2052,7 +2055,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `05d29d5` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
 
-**Pendência:** aprovação visual do PDF gerado por `Exportar PDF` em `dev.bentevi.shop/pedidos`. Não iniciar `BNT-D04` antes desse aceite.
+**Pendência:** nenhuma para `BNT-D01-PDF`; o aceite visual do usuário desbloqueou `BNT-D04`.
+
+#### Resultado técnico de `BNT-D04 — Notas Fiscais`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aprovação visual pendente.
+
+**Estado/causa confirmados:** a página fiscal ainda usava a identidade Vortek azul e uma hierarquia antiga, com seleção de linhas sem ação, cinco blocos de resumo — incluindo o cálculo artificial `Imposto Total (4%)` —, emissão confundida com a data da venda, todas as operações reunidas em um menu e ausência de detalhe/histórico fiscal. Além disso, a própria tela disparava o job externo de reconciliação ao abrir e a cada 30 segundos, embora `sync_reconcile_brasilnfe` já pertença ao scheduler canônico de 2/10 minutos.
+
+**Mudança realizada:** `/notas-fiscais` passou a ser um cockpit fiscal Bentevi com cabeçalho operacional, indicadores de pendentes, emitidas, erros e valor autorizado, filtros persistidos na URL e tabela organizada em `Emissão`, `Venda`, `NF-e`, `Cliente`, `Valor`, `Estado fiscal` e `Próxima ação`. Pack ML, Venda ML e pedido interno aparecem separadamente; a emissão é derivada de `dhEmi`/`dEmi` do XML existente; `not_found` e `cancel_rejected_deadline` recebem apresentação e orientação próprias. Foi criado um Drawer com visão geral, documentos/eventos e histórico fiscal reutilizado de `/api/pedidos/[id]`, além de modais distintos para e-mail, cancelamento e CC-e. A listagem apenas passou a devolver campos fiscais já selecionados; o resumo deixou de fabricar imposto e passou a somar somente notas autorizadas. O disparo automático de reconciliação da página foi removido, mantendo o polling de leitura e uma ação manual explícita que reutiliza o job existente. Remetente e mensagem fiscal visíveis foram atualizados para Bentevi.
+
+**Commit funcional:** `59e0e11` — `feat(fiscal): redesenhar cockpit de notas Bentevi`, enviado somente para `origin/dev`.
+
+**Validação:** 8 cenários novos de `tests/bentevi-invoices.test.js`, dentro de uma suíte combinada de 48 cenários direcionados de fiscal, jobs, permissões, shell e proteção da amostra, foram aprovados; `npm run validate`, `npm run build` com 122 páginas e `git diff --check` aprovados. O deploy oficial criou a task `u0mtf3xuovcp4ma5h4t68bc6v` no serviço `vortek-erp-dev`, que confirmou `GIT_SHA=59e0e11a8c7b53968f0c54080d692b278a670730`. `dev.bentevi.shop` respondeu `200` em health e login, `307` em `/notas-fiscais` sem sessão e `401` nas APIs de lista, resumo e reconciliação sem sessão. O artefato publicado contém o novo cockpit. Nenhum e-mail, cancelamento, CC-e ou job fiscal autenticado foi executado durante a validação.
+
+**Migration/banco:** N/A; nenhuma migration, DDL, DML ou escrita direta em banco foi executada.
+
+**Rollback:** reverter `59e0e11` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** aprovação visual do usuário em `dev.bentevi.shop/notas-fiscais`. Não iniciar `BNT-D05` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
