@@ -2091,6 +2091,24 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Pendência:** nenhuma para `BNT-D04`. A amostra read-only continua sem XML fiscal e não pode ser usada para emitir retornos. A próxima ação permitida é `BNT-D05 — Estoque`.
 
+#### Resultado técnico de `BNT-D05 — Estoque`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aguardando aprovação visual do usuário.
+
+**Estado/causa confirmados:** a página ainda usava a apresentação antiga, sem filtros persistentes, detalhe contextual ou separação clara entre quantidade, origem e situação. Além disso, `/api/estoque` carregava somente saídas `despachado` para calcular as entradas disponíveis, embora o ledger e o saldo canônico já descontem toda saída ativa. Assim, uma unidade `reservado` podia continuar aparecendo como disponível na interface.
+
+**Mudança realizada:** `/estoque` passou a ser um cockpit Bentevi com indicadores e filas de revisão, disponibilidade, reserva, não aproveitável e despacho; busca por produto/SKU/Pack/Venda, filtros contextuais e período persistidos na URL; tabela redimensionável com Pack e Venda separados; Drawer de visão geral e rastreabilidade; estados permanentes de carregamento, vazio e erro; e modal de entrada manual sempre direcionado à revisão. Reservas ativas agora aparecem em fila própria e participam do mesmo cálculo canônico de disponibilidade. O despacho permanece automático pelo fluxo da venda, sem ação manual na tela. A API também passou a impedir nova decisão fora de `revisao` e a permitir exclusão somente de entrada manual ainda em revisão; avisos de falha ao enfileirar a sincronização ML deixaram de ser ocultados.
+
+**Commit funcional:** `45f9ba7` — `feat(estoque): redesenhar cockpit Bentevi`, enviado somente para `origin/dev`.
+
+**Validação:** 30 testes direcionados de cockpit, saldo, reserva, fulfillment, capacidade segura e filtros internos aprovados; o teste de integração destrutivo permaneceu corretamente ignorado porque nenhuma escrita em banco era necessária. `npm run validate`, `npm run build` com 122 páginas e `git diff --check` foram aprovados. Após o controlador Easypanel reiniciar durante os primeiros webhooks, um reenvio oficial pós-estabilização criou a task `iifmvbeoxo8t2wcscpg5fm0m0`, que ativou `GIT_SHA=45f9ba732b9b87de0fbcf124867e7076aaf25c8c`. Health e login responderam `200`, `/estoque` respondeu `307` sem sessão e `/api/estoque` respondeu `401` sem sessão. Nenhuma inserção, liberação, inutilização, exclusão, migration, escrita em banco ou chamada autenticada ao Mercado Livre foi executada durante a homologação.
+
+**Migration/banco:** N/A. Supabase DEV `.162`, Supabase produção `.160`, `main` e produção permaneceram intocados.
+
+**Rollback:** reverter `45f9ba7` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração.
+
+**Pendência:** aprovação visual em `https://dev.bentevi.shop/estoque`. Não marcar `BNT-D05` como concluída nem iniciar `BNT-D06` antes desse aceite.
+
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
 Não iniciar web celular antes de `BNT-D01` a `BNT-D24` estarem aprovados.
