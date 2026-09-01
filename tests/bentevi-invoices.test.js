@@ -85,6 +85,30 @@ test('mantém ações externas explícitas, separadas e protegidas', () => {
   assert.match(page, /Criar devolução\/retorno/);
 });
 
+test('mostra ações fiscais bloqueadas nas amostras sem permitir execução', () => {
+  assert.match(page, /Amostra protegida — ações apenas para demonstração/);
+  assert.match(page, /disabled: Boolean\(fixtureReason/);
+  assert.match(page, /note\.is_homologation_fixture && key !== 'details'/);
+  assert.match(page, /Amostra protegida: ações fiscais estão disponíveis apenas para demonstração/);
+  for (const label of [
+    'Abrir DANFE',
+    'Baixar DANFE',
+    'Baixar XML',
+    'Enviar por e-mail',
+    'Emitir CC-e',
+    'Cancelar NF-e',
+    'Criar devolução/retorno',
+  ]) {
+    assert.match(page, new RegExp(label.replace('/', '\\/')));
+  }
+  assert.match(drawer, /showManagedEvents/);
+  assert.match(drawer, /As ações aparecem para avaliação do layout/);
+  assert.match(drawer, /disabled=\{!canCancel\}/);
+  assert.match(drawer, /disabled=\{!canCce\}/);
+  assert.match(drawer, /disabled=\{!canReturn\}/);
+  assert.match(drawer, /onReturn\(note\)/);
+});
+
 test('separa vendas de devoluções sem criar uma segunda página fiscal', () => {
   assert.match(page, /label: `NF-e de vendas/);
   assert.match(page, /label: 'Devoluções e retornos'/);

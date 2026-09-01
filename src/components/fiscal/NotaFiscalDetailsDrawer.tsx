@@ -137,6 +137,7 @@ type NotaFiscalDetailsDrawerProps = {
   onEmail: (note: NotaFiscalRow) => void;
   onCancel: (note: NotaFiscalRow) => void;
   onCce: (note: NotaFiscalRow) => void;
+  onReturn: (note: NotaFiscalRow) => void;
   canManage: boolean;
 };
 
@@ -153,10 +154,16 @@ export default function NotaFiscalDetailsDrawer({
   onEmail,
   onCancel,
   onCce,
+  onReturn,
   canManage,
 }: NotaFiscalDetailsDrawerProps) {
   const { token } = theme.useToken();
   const presentation = note ? getFiscalStatusPresentation(note) : null;
+  const isAuthorized = Boolean(note && note.status === 'autorizada');
+  const fixtureReason = note?.is_homologation_fixture
+    ? 'Amostra protegida — ação disponível apenas para demonstração.'
+    : null;
+  const documentReason = fixtureReason || (note?.numero === '—' ? 'Documento fiscal ainda não emitido.' : null);
   const canUseDocuments = Boolean(note && !note.is_homologation_fixture && note.numero !== '—');
   const canCancel = Boolean(
     note
@@ -173,6 +180,12 @@ export default function NotaFiscalDetailsDrawer({
       && note.status === 'autorizada'
       && note.nfe_chave,
   );
+  const canReturn = Boolean(canCce && note?.xml_available);
+  const showManagedEvents = Boolean(note && canManage && isAuthorized);
+  const cceReason = fixtureReason || (!note?.nfe_chave ? 'Chave de acesso não disponível.' : null);
+  const cancelReason = cceReason
+    || (isNfeCancelRejectedDeadlineStatus(note?.nfe_status) ? 'Prazo de cancelamento excedido.' : null);
+  const returnReason = cceReason || (!note?.xml_available ? 'XML autorizado ainda não disponível.' : null);
 
   const overview = note ? (
     <Space direction="vertical" size={18} style={{ width: '100%' }}>
@@ -237,8 +250,8 @@ export default function NotaFiscalDetailsDrawer({
           Consulte ou baixe a representação da NF-e quando o documento estiver disponível.
         </Text>
         <Space wrap>
-          <Button icon={<FilePdfOutlined />} disabled={!canUseDocuments} onClick={() => onViewDanfe(note)}>Abrir DANFE</Button>
-          <Button icon={<DownloadOutlined />} disabled={!canUseDocuments} onClick={() => onDownloadDanfe(note)}>Baixar DANFE</Button>
+          <Button title={documentReason || undefined} icon={<FilePdfOutlined />} disabled={!canUseDocuments} onClick={() => onViewDanfe(note)}>Abrir DANFE</Button>
+          <Button title={documentReason || undefined} icon={<DownloadOutlined />} disabled={!canUseDocuments} onClick={() => onDownloadDanfe(note)}>Baixar DANFE</Button>
         </Space>
       </div>
       <div style={{
@@ -250,7 +263,7 @@ export default function NotaFiscalDetailsDrawer({
         <Text type="secondary" style={{ display: 'block', marginBottom: 12 }}>
           {note.xml_available ? 'Arquivo XML disponível na Bentevi.' : 'XML ainda não disponível na Bentevi.'}
         </Text>
-        <Button icon={<DownloadOutlined />} disabled={!canUseDocuments || !note.xml_available} onClick={() => onDownloadXml(note)}>Baixar XML</Button>
+        <Button title={fixtureReason || (!note.xml_available ? 'XML ainda não disponível na Bentevi.' : undefined)} icon={<DownloadOutlined />} disabled={!canUseDocuments || !note.xml_available} onClick={() => onDownloadXml(note)}>Baixar XML</Button>
       </div>
       <div style={{
         border: `1px solid ${token.colorBorderSecondary}`,
@@ -261,9 +274,9 @@ export default function NotaFiscalDetailsDrawer({
         <Text type="secondary" style={{ display: 'block', marginBottom: 12 }}>
           Envie a DANFE anexada ao destinatário informado.
         </Text>
-        <Button icon={<MailOutlined />} disabled={!canManage || !canUseDocuments} onClick={() => onEmail(note)}>Enviar por e-mail</Button>
+        <Button title={fixtureReason || (!canManage ? 'Seu perfil possui somente leitura fiscal.' : documentReason || undefined)} icon={<MailOutlined />} disabled={!canManage || !canUseDocuments} onClick={() => onEmail(note)}>Enviar por e-mail</Button>
       </div>
-      {(canCancel || canCce) && (
+      {showManagedEvents && (
         <div style={{
           border: `1px solid ${token.colorBorderSecondary}`,
           borderRadius: token.borderRadiusLG,
@@ -271,11 +284,14 @@ export default function NotaFiscalDetailsDrawer({
         }}>
           <Text strong style={{ display: 'block', marginBottom: 4 }}>Eventos fiscais</Text>
           <Text type="secondary" style={{ display: 'block', marginBottom: 12 }}>
-            Estas ações alteram o documento no provedor fiscal e exigem revisão antes do envio.
+            {fixtureReason
+              ? 'As ações aparecem para avaliação do layout, mas permanecem bloqueadas nesta amostra.'
+              : 'Estas ações alteram o documento no provedor fiscal e exigem revisão antes do envio.'}
           </Text>
           <Space wrap>
-            {canCce && <Button onClick={() => onCce(note)}>Emitir CC-e</Button>}
-            {canCancel && <Button danger onClick={() => onCancel(note)}>Cancelar NF-e</Button>}
+            <Button title={cceReason || undefined} disabled={!canCce} onClick={() => onCce(note)}>Emitir CC-e</Button>
+            <Button title={cancelReason || undefined} disabled={!canCancel} danger onClick={() => onCancel(note)}>Cancelar NF-e</Button>
+            <Button title={returnReason || undefined} disabled={!canReturn} onClick={() => onReturn(note)}>Criar devolução/retorno</Button>
           </Space>
         </div>
       )}

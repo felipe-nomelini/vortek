@@ -521,6 +521,10 @@ export default function NotasFiscaisPage() {
   }, [fetchNotas, messageApi]);
 
   const runAction = useCallback((key: string, note: NotaFiscalRow) => {
+    if (note.is_homologation_fixture && key !== 'details') {
+      messageApi.info('Amostra protegida: ações fiscais estão disponíveis apenas para demonstração.');
+      return;
+    }
     if (key === 'details') void openDrawer(note);
     if (key === 'view') void handleViewDanfe(note);
     if (key === 'download') void handleDownloadDanfe(note);
@@ -530,7 +534,7 @@ export default function NotasFiscaisPage() {
     if (key === 'cce') openCceModal(note);
     if (key === 'return') setReturnModalOpen(true);
     if (key === 'reconcile') void reconcileNow();
-  }, [handleDownloadDanfe, handleDownloadXml, handleViewDanfe, openCancelModal, openCceModal, openDrawer, openEmailModal, reconcileNow]);
+  }, [handleDownloadDanfe, handleDownloadXml, handleViewDanfe, messageApi, openCancelModal, openCceModal, openDrawer, openEmailModal, reconcileNow]);
 
   const columns: TableProps<NotaFiscalRow>['columns'] = [
     {
@@ -587,25 +591,66 @@ export default function NotasFiscaisPage() {
       title: 'Ações', key: 'actions', width: 180, fixed: 'right',
       render: (_value, note) => {
         const primary = primaryAction(note);
+        const authorized = note.status === 'autorizada';
+        const fixtureReason = note.is_homologation_fixture
+          ? 'Amostra protegida — ação disponível apenas para demonstração.'
+          : undefined;
         const secondary = [
+          note.is_homologation_fixture && authorized
+            ? { key: 'fixture-info', label: 'Amostra protegida — ações apenas para demonstração', disabled: true }
+            : null,
           primary !== 'details' ? { key: 'details', label: 'Ver detalhes', icon: <EyeOutlined /> } : null,
-          primary !== 'danfe' && note.status === 'autorizada' && !note.is_homologation_fixture
-            ? { key: 'view', label: 'Abrir DANFE', icon: <FilePdfOutlined /> } : null,
-          note.status === 'autorizada' && !note.is_homologation_fixture
-            ? { key: 'download', label: 'Baixar DANFE', icon: <DownloadOutlined /> } : null,
-          note.xml_available && !note.is_homologation_fixture
-            ? { key: 'xml', label: 'Baixar XML', icon: <DownloadOutlined /> } : null,
-          canManageFiscal && note.status === 'autorizada' && !note.is_homologation_fixture
-            ? { key: 'email', label: 'Enviar por e-mail', icon: <MailOutlined /> } : null,
-          canManageFiscal && note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture
-            ? { key: 'cce', label: 'Emitir CC-e' } : null,
-          canManageFiscal && note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture && !isNfeCancelRejectedDeadlineStatus(note.nfe_status)
-            ? { key: 'cancel', label: 'Cancelar NF-e', danger: true } : null,
-          canManageFiscal && note.status === 'autorizada' && note.nfe_chave && note.xml_available && !note.is_homologation_fixture
-            ? { key: 'return', label: 'Criar devolução/retorno' } : null,
+          primary !== 'danfe' && authorized
+            ? { key: 'view', label: 'Abrir DANFE', icon: <FilePdfOutlined />, disabled: Boolean(fixtureReason), title: fixtureReason }
+            : null,
+          authorized
+            ? { key: 'download', label: 'Baixar DANFE', icon: <DownloadOutlined />, disabled: Boolean(fixtureReason), title: fixtureReason }
+            : null,
+          authorized
+            ? {
+                key: 'xml', label: 'Baixar XML', icon: <DownloadOutlined />,
+                disabled: Boolean(fixtureReason || !note.xml_available),
+                title: fixtureReason || (!note.xml_available ? 'XML ainda não disponível na Bentevi.' : undefined),
+              }
+            : null,
+          canManageFiscal && authorized
+            ? { key: 'email', label: 'Enviar por e-mail', icon: <MailOutlined />, disabled: Boolean(fixtureReason), title: fixtureReason }
+            : null,
+          canManageFiscal && authorized
+            ? {
+                key: 'cce', label: 'Emitir CC-e',
+                disabled: Boolean(fixtureReason || !note.nfe_chave),
+                title: fixtureReason || (!note.nfe_chave ? 'Chave de acesso não disponível.' : undefined),
+              }
+            : null,
+          canManageFiscal && authorized
+            ? {
+                key: 'cancel', label: 'Cancelar NF-e', danger: true,
+                disabled: Boolean(fixtureReason || !note.nfe_chave || isNfeCancelRejectedDeadlineStatus(note.nfe_status)),
+                title: fixtureReason
+                  || (!note.nfe_chave ? 'Chave de acesso não disponível.' : undefined)
+                  || (isNfeCancelRejectedDeadlineStatus(note.nfe_status) ? 'Prazo de cancelamento excedido.' : undefined),
+              }
+            : null,
+          canManageFiscal && authorized
+            ? {
+                key: 'return', label: 'Criar devolução/retorno',
+                disabled: Boolean(fixtureReason || !note.nfe_chave || !note.xml_available),
+                title: fixtureReason
+                  || (!note.nfe_chave ? 'Chave de acesso não disponível.' : undefined)
+                  || (!note.xml_available ? 'XML autorizado ainda não disponível.' : undefined),
+              }
+            : null,
           canManageFiscal && note.nfe_external_id && !['autorizada', 'cancelada'].includes(note.status) && !note.is_homologation_fixture
             ? { key: 'reconcile', label: 'Atualizar status', icon: <SyncOutlined /> } : null,
-        ].filter(Boolean) as Array<{ key: string; label: string; icon?: React.ReactNode; danger?: boolean }>;
+        ].filter(Boolean) as Array<{
+          key: string;
+          label: string;
+          icon?: React.ReactNode;
+          danger?: boolean;
+          disabled?: boolean;
+          title?: string;
+        }>;
         const primaryLabel = primary === 'danfe' ? 'Abrir DANFE' : 'Ver detalhes';
         return <div className={styles.actionCell}>
           <Space.Compact>
@@ -743,6 +788,7 @@ export default function NotasFiscaisPage() {
       historyLoading={drawerHistoryLoading} historyError={drawerHistoryError} onClose={closeDrawer}
       onViewDanfe={(note) => void handleViewDanfe(note)} onDownloadDanfe={(note) => void handleDownloadDanfe(note)}
       onDownloadXml={handleDownloadXml} onEmail={openEmailModal} onCancel={openCancelModal} onCce={openCceModal}
+      onReturn={() => setReturnModalOpen(true)}
       canManage={canManageFiscal}
     />
 
