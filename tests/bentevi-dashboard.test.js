@@ -65,6 +65,7 @@ test('resumo reutiliza filas operacionais e agrega produtos vendidos no período
   assert.match(route, /from\("pedido_itens"\)/);
   assert.match(route, /valor_total_liquido/);
   assert.doesNotMatch(route, /from\("anuncios_ml"\)/);
+  assert.doesNotMatch(route, /fulfillment_source/);
 });
 
 test('layout evita grade de cards pequenos e possui adaptação desktop', () => {

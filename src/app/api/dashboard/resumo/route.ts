@@ -31,7 +31,6 @@ type OrderRow = {
   dslite_etiqueta_enviada?: boolean | null;
   dslite_label_source?: string | null;
   envio_interno_at?: string | null;
-  fulfillment_source?: "internal" | "supplier" | null;
   ml_fiscal_release_at?: string | null;
   ml_claim_id?: string | null;
   nota_fiscal_emitida?: boolean | null;
@@ -244,7 +243,6 @@ async function loadOperationalRows(
     "dslite_etiqueta_enviada",
     "dslite_label_source",
     "envio_interno_at",
-    "fulfillment_source",
     "ml_fiscal_release_at",
     "ml_claim_id",
     "nota_fiscal_emitida",
