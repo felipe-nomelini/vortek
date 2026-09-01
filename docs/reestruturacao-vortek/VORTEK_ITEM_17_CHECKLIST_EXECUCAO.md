@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-D03-PDF — aprovação visual do Relatório de Compras`
+**Próxima ação obrigatória:** `BNT-D01-PDF — aprovação visual do Relatório de Vendas`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D03-PDF` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D01-PDF` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -146,11 +146,13 @@ Regras de uso:
 - [x] Não avançar para `BNT-D02` antes de `BNT-D01` estar integralmente validada e aprovada em homologação.
 - [x] Executar somente `BNT-D02 — Dashboard`.
 - [x] Não avançar para `BNT-D03` antes de `BNT-D02` estar integralmente validada e aprovada em homologação.
-- [ ] Executar somente `BNT-D03 — Compras`.
+- [x] Executar somente `BNT-D03 — Compras`.
 - [x] Implementar e publicar `BNT-D03-PDF — Relatório de Compras`.
-- [ ] Aprovar visualmente `BNT-D03-PDF` em homologação.
-- [ ] Não avançar para `BNT-D01-PDF` antes de `BNT-D03-PDF` estar aprovado.
-- [ ] Atualizar retroativamente `BNT-D01-PDF — Relatório de Vendas` antes de iniciar `BNT-D04`.
+- [x] Aprovar visualmente `BNT-D03-PDF` em homologação.
+- [x] Não avançar para `BNT-D01-PDF` antes de `BNT-D03-PDF` estar aprovado.
+- [x] Atualizar retroativamente `BNT-D01-PDF — Relatório de Vendas` antes de iniciar `BNT-D04`.
+- [ ] Aprovar visualmente `BNT-D01-PDF` em homologação.
+- [ ] Não avançar para `BNT-D04` antes de `BNT-D01-PDF` estar aprovado.
 
 ---
 
@@ -1929,7 +1931,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 - [x] `BNT-D01` — Vendas `/pedidos` — piloto;
 - [x] `BNT-D02` — Dashboard;
-- [ ] `BNT-D03` — Compras;
+- [x] `BNT-D03` — Compras;
 - [ ] `BNT-D04` — Notas Fiscais;
 - [ ] `BNT-D05` — Estoque;
 - [ ] `BNT-D06` — Perguntas;
@@ -1956,8 +1958,8 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 Uma página que expõe `Exportar PDF` somente pode ser encerrada depois de o documento usar a identidade Bentevi, refletir os dados e a hierarquia aprovados e receber aprovação visual em homologação. A atualização deve ocorrer junto da própria página, sem agrupar relatórios de etapas futuras.
 
-- [ ] `BNT-D01-PDF` — Relatório de Vendas; atualização retroativa obrigatória depois da aprovação de `BNT-D03-PDF` e antes de `BNT-D04`;
-- [ ] `BNT-D03-PDF` — Relatório de Compras; implementado e publicado, com aprovação visual pendente;
+- [ ] `BNT-D01-PDF` — Relatório de Vendas; implementado e publicado, com aprovação visual pendente;
+- [x] `BNT-D03-PDF` — Relatório de Compras; aprovado visualmente em homologação em `2026-09-01`;
 - [ ] `BNT-D07-PDF` — Relatório de Produtos, se o exportador continuar presente na página aprovada;
 - [ ] `BNT-D11-PDF` — Relatório de Anúncios, se o exportador continuar presente na página aprovada;
 - [ ] `BNT-D12-PDF` — Relatório de Catálogo, se o exportador continuar presente na página aprovada.
@@ -1994,7 +1996,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D03 — Compras`
 
-**Situação:** implementada, validada tecnicamente e publicada em homologação em `2026-09-01`; aprovação visual pendente.
+**Situação:** implementada, validada tecnicamente, publicada e aprovada visualmente em homologação em `2026-09-01`.
 
 **Estado/causa confirmados:** a página anterior distribuía resumo, filtros e operações em uma tabela extensa, sem contexto detalhado da compra e sem filtro por fornecedor. O total financeiro disponível também não distinguia o valor da venda do valor efetivamente devido ao fornecedor.
 
@@ -2030,7 +2032,27 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** para desfazer somente o PDF, reverter `33d8bbb`; para desfazer também a segunda revisão visual, reverter `47c0494`; para desfazer a revisão anterior, reverter `5838581`; para retirar integralmente `BNT-D03`, reverter também `7da856b`. Reimplantar somente `vortek-erp-dev`.
 
-**Pendência:** aprovação visual do relatório pelo usuário em `dev.bentevi.shop`. Depois dela, executar `BNT-D01-PDF`; `BNT-D04` permanece bloqueado até o PDF de Vendas ser aprovado.
+**Pendência:** nenhuma para `BNT-D03`; o relatório foi aprovado visualmente pelo usuário em `2026-09-01`. `BNT-D04` permanece bloqueado até a aprovação de `BNT-D01-PDF`.
+
+#### Resultado técnico de `BNT-D01-PDF — Relatório de Vendas`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aprovação visual pendente.
+
+**Estado/causa confirmados:** o exportador de Vendas ainda usava a identidade Vortek azul, linhas de altura fixa, onze colunas estreitas e truncamento por reticências. O documento não refletia a página aprovada: omitia produtos, SKUs, Pack, tracking, shipment, reclamação e a sequência operacional de seis etapas.
+
+**Mudança realizada:** o mesmo endpoint passou a gerar um relatório Bentevi em A4 paisagem e dark mode, com logotipo, filtros, cinco indicadores e oito grupos de informação: `Data`, `Venda ML`, `Cliente`, `Produtos e SKUs`, `Valores`, `Origem`, `Andamento` e `Fiscal e entrega`. Venda e Pack permanecem distintos; lucro recebe semântica positiva, negativa ou pendente; o andamento reutiliza o contrato canônico de seis etapas; conteúdo longo quebra em múltiplas linhas e vendas com muitos itens continuam em fragmentos numerados sem eliminar dados. Cabeçalho, cabeçalho da tabela e rodapé numerado são repetidos em todas as páginas. A rota, autenticação, filtros, paginação e fonte da listagem foram preservados, sem consulta ou persistência nova.
+
+**Arquivos alterados:** exportador de Vendas e teste direcionado do documento.
+
+**Commit funcional:** `05d29d5`, enviado somente para `origin/dev`.
+
+**Validação:** 30 cenários direcionados de PDF, piloto de Vendas, andamento, responsabilidades e permissões aprovados; `npm run validate`, `npm run build` com 122 páginas e `git diff --check` aprovados. Uma prévia produzida pelo mesmo gerador com 24 vendas, um cliente extenso e uma venda com 20 produtos resultou em sete páginas A4 paisagem; as páginas inicial e de continuação foram inspecionadas em alta resolução, com identidade, cabeçalho de tabela e rodapé repetidos e sem corte de itens. A action Easypanel `cmtipfyc2000007okbkl7d972` concluiu com `Success`, e a task `8v3n6tv3h537evpkd6jyawk1y` ativou `GIT_SHA=05d29d5963468e3cbf05fc05c8d3501cf31f03d0`. Health e login responderam `200`, `/pedidos` respondeu `307` sem sessão e o exportador respondeu `401` sem sessão.
+
+**Migration/banco:** N/A; nenhuma escrita ou migration de banco foi executada.
+
+**Rollback:** reverter `05d29d5` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** aprovação visual do PDF gerado por `Exportar PDF` em `dev.bentevi.shop/pedidos`. Não iniciar `BNT-D04` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

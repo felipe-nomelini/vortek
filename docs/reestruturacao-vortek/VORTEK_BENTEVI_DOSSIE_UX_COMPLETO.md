@@ -187,6 +187,8 @@ No desktop, o shell mantém navegação lateral e passa a aceitar estado expandi
 
 **Web celular.** Filas em rolagem horizontal controlada; cada pedido vira cartão com pedido/cliente/valor, estágio, pendência e ação primária; detalhe ocupa `Drawer` de tela inteira.
 
+**Documento exportado.** O relatório de Vendas é uma visão operacional detalhada em A4 paisagem e dark mode Bentevi. Reproduz filtros e indicadores do conjunto exportado e organiza `Data`, `Venda ML`, `Cliente`, `Produtos e SKUs`, `Valores`, `Origem`, `Andamento` e `Fiscal e entrega`. Venda e Pack são identificadores distintos; lucro usa semântica positiva, negativa ou pendente; andamento reutiliza as seis etapas da página; produtos extensos continuam em fragmentos numerados sem truncamento. O documento não contém ações e preserva autenticação e fonte da listagem.
+
 **Dependências e aceite.** `UI-01` e `UI-04` concluídos. Preservar DTO, permissões e todos os efeitos; validar cada estágio e perfil; nenhum dado novo é requisito do piloto.
 
 ### BNT-D02 — Dashboard (`/dashboard`)

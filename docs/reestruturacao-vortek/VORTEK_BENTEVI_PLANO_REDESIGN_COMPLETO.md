@@ -59,7 +59,7 @@ correções funcionais
 
 [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
 
-Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. `BNT-BRAND-01 — Assets e tokens Bentevi`, `BNT-SHELL-01 — Shell desktop Bentevi`, `BNT-DOM-DEV — dev.bentevi.shop`, `BNT-D01 — Vendas /pedidos — piloto` e `BNT-D02 — Dashboard` foram concluídas. A ação atual é a aprovação de `BNT-D03-PDF — Relatório de Compras`; `BNT-D03` permanece aberto até esse aceite.
+Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. `BNT-BRAND-01 — Assets e tokens Bentevi`, `BNT-SHELL-01 — Shell desktop Bentevi`, `BNT-DOM-DEV — dev.bentevi.shop`, `BNT-D01 — Vendas /pedidos — piloto`, `BNT-D02 — Dashboard` e `BNT-D03 — Compras` foram concluídas. A ação atual é a aprovação de `BNT-D01-PDF — Relatório de Vendas`; `BNT-D04` permanece bloqueado até esse aceite.
 
 ---
 
@@ -221,7 +221,7 @@ Depois da fundação visual e antes da aprovação do piloto:
 5. tornar o domínio novo canônico após os readbacks;
 6. remover o alias antigo somente quando nenhum consumidor depender dele.
 
-Estado em `2026-09-01`: DNS, Cloudflare Tunnel, TLS, login, health, callback e webhook do domínio novo foram validados. O alias `dev.vortek.shop` foi retirado do serviço DEV no Easypanel e seus DNS e ingress antigos foram removidos. `BNT-D01` e `BNT-D02` foram aprovados em homologação; `BNT-D03` é a ação desktop corrente e aguarda aprovação visual do relatório exportado.
+Estado em `2026-09-01`: DNS, Cloudflare Tunnel, TLS, login, health, callback e webhook do domínio novo foram validados. O alias `dev.vortek.shop` foi retirado do serviço DEV no Easypanel e seus DNS e ingress antigos foram removidos. `BNT-D01`, `BNT-D02` e `BNT-D03` foram aprovados em homologação. A atualização retroativa de `BNT-D01-PDF` foi publicada e aguarda aprovação visual antes de `BNT-D04`.
 
 ### Produção
 
@@ -242,7 +242,7 @@ Cada página desktop deve comprovar:
 - teste direcionado, `npm run validate` e `npm run build`;
 - homologação e aprovação antes da página seguinte.
 
-Quando a página possui um exportador operacional próprio, o PDF faz parte do aceite: deve usar a identidade Bentevi, refletir a hierarquia e os dados aprovados e ser validado antes da próxima página. Não agrupar PDFs de páginas futuras. Como `BNT-D01` foi aprovado antes desta regra, seu relatório será atualizado retroativamente logo após `BNT-D03-PDF` e antes de `BNT-D04`. DANFE, etiquetas de envio e PDFs produzidos por terceiros permanecem fora deste fluxo.
+Quando a página possui um exportador operacional próprio, o PDF faz parte do aceite: deve usar a identidade Bentevi, refletir a hierarquia e os dados aprovados e ser validado antes da próxima página. Não agrupar PDFs de páginas futuras. Como `BNT-D01` foi aprovado antes desta regra, seu relatório foi atualizado retroativamente depois de `BNT-D03-PDF` e aguarda aceite antes de `BNT-D04`. DANFE, etiquetas de envio e PDFs produzidos por terceiros permanecem fora deste fluxo.
 
 Para web celular, validar também em `390×844`. Para mobile nativo, executar `npm run typecheck`, `npm run doctor` e smoke test Android.
 
