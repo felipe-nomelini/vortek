@@ -59,7 +59,7 @@ correções funcionais
 
 [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
 
-Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. `BNT-BRAND-01 — Assets e tokens Bentevi`, `BNT-SHELL-01 — Shell desktop Bentevi` e `BNT-DOM-DEV — dev.bentevi.shop` foram concluídas. A ação atual é `BNT-D01 — Vendas /pedidos — piloto`.
+Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. `BNT-BRAND-01 — Assets e tokens Bentevi`, `BNT-SHELL-01 — Shell desktop Bentevi`, `BNT-DOM-DEV — dev.bentevi.shop` e `BNT-D01 — Vendas /pedidos — piloto` foram concluídas. A ação atual é `BNT-D02 — Dashboard`.
 
 ---
 
@@ -221,7 +221,7 @@ Depois da fundação visual e antes da aprovação do piloto:
 5. tornar o domínio novo canônico após os readbacks;
 6. remover o alias antigo somente quando nenhum consumidor depender dele.
 
-Estado em `2026-08-31`: DNS, Cloudflare Tunnel, TLS, login, health, callback e webhook do domínio novo foram validados. O alias `dev.vortek.shop` foi retirado do serviço DEV no Easypanel e seus DNS e ingress antigos foram removidos. `BNT-D01` está liberado como próximo piloto.
+Estado em `2026-08-31`: DNS, Cloudflare Tunnel, TLS, login, health, callback e webhook do domínio novo foram validados. O alias `dev.vortek.shop` foi retirado do serviço DEV no Easypanel e seus DNS e ingress antigos foram removidos. `BNT-D01` foi aprovado em homologação e `BNT-D02` é a ação desktop corrente.
 
 ### Produção
 

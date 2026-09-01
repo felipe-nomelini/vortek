@@ -174,6 +174,7 @@ export async function GET(request: Request) {
 
   // 5. Pedidos recentes (últimos 5)
   const pedidosRecentes = recentRows.map((p: any) => ({
+    id: p.id,
     numero: p.numero,
     cliente: p.contato_nome,
     total: p.total,

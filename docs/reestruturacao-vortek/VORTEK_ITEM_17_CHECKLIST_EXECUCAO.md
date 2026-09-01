@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-D01 — Vendas /pedidos — piloto`
+**Próxima ação obrigatória:** `BNT-D02 — Dashboard`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-D01` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-D02` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -142,7 +142,9 @@ Regras de uso:
 - [x] Não avançar para `BNT-DOM-DEV` antes de `BNT-SHELL-01` estar integralmente validada e aprovada em homologação.
 - [x] Executar somente `BNT-DOM-DEV — dev.bentevi.shop`, sem alterar produção.
 - [x] Não avançar para `BNT-D01` antes de `BNT-DOM-DEV` estar integralmente validada.
-- [ ] Executar somente `BNT-D01 — Vendas /pedidos — piloto`.
+- [x] Executar somente `BNT-D01 — Vendas /pedidos — piloto`.
+- [x] Não avançar para `BNT-D02` antes de `BNT-D01` estar integralmente validada e aprovada em homologação.
+- [ ] Executar somente `BNT-D02 — Dashboard`.
 
 ---
 
@@ -1919,7 +1921,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 #### Desktop — uma página por tarefa
 
-- [ ] `BNT-D01` — Vendas `/pedidos` — piloto;
+- [x] `BNT-D01` — Vendas `/pedidos` — piloto;
 - [ ] `BNT-D02` — Dashboard;
 - [ ] `BNT-D03` — Compras;
 - [ ] `BNT-D04` — Notas Fiscais;
@@ -1944,7 +1946,9 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [ ] `BNT-D23` — Página pública BKR1;
 - [ ] `BNT-D24` — Página pública Evolusom.
 
-**Estado de `BNT-D01`:** tabela, carga visual, detalhe completo em `Drawer` e acompanhamento de entrega compartilhado entre aba e modal concluídos; aguardando aprovação visual do usuário para fechar o item.
+**Estado de `BNT-D01`:** concluído e aprovado visualmente pelo usuário em homologação em `2026-08-31`. Tabela operacional, carga visual protegida, detalhe completo em `Drawer` e acompanhamento de entrega compartilhado entre aba e modal permanecem como contrato aprovado.
+
+**Estado de `BNT-D02`:** implementação do Dashboard Bentevi em andamento. `BNT-D03` permanece bloqueado até validação técnica, deploy e aprovação visual do usuário em homologação.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

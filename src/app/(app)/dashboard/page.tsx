@@ -1,58 +1,23 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import dayjs, { type Dayjs } from 'dayjs';
 import {
-  Card, Row, Col, Statistic, Tag, Typography, Table, Progress, Button, Space, message, DatePicker, Spin, Select,
+  Alert, Button, Card, Col, DatePicker, Empty, Progress, Row, Skeleton, Space,
+  Statistic, Table, Tag, Typography, message, theme,
 } from 'antd';
 import {
-  ArrowUpOutlined, ArrowDownOutlined, LoadingOutlined, TrophyFilled, SyncOutlined,
+  ArrowRightOutlined, ReloadOutlined, SyncOutlined, TrophyFilled,
 } from '@ant-design/icons';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { formatCurrency } from '@/lib/format';
-import dayjs, { Dayjs } from 'dayjs';
+import {
+  PREPARATION_ORDER_STATUSES, SHIPPING_ORDER_STATUSES,
+} from '@/lib/orders/operational-view';
 
-
-const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
-
-const cardBg = { background: '#141414', border: '1px solid #303030', borderRadius: 8 };
-
-const statusLabel: Record<string, string> = {
-  aberto: 'Aberto',
-  pendente: 'Pendente',
-  preparando: 'Preparando',
-  pronto_envio: 'Pronto p/ envio',
-  etiqueta_impressa: 'Etiqueta Impressa',
-  coletado: 'Coletado',
-  em_transito: 'Em Trânsito',
-  saiu_entrega: 'Saiu para Entrega',
-  dest_ausente: 'Dest. Ausente',
-  atendido: 'Atendido',
-  faturado: 'Faturado',
-  entregue: 'Entregue',
-  recusado: 'Recusado',
-  devolvido: 'Devolvido',
-  cancelado: 'Cancelado',
-};
-
-const statusColor: Record<string, string> = {
-  aberto: '#1677ff',
-  pendente: '#fa8c16',
-  preparando: '#1677ff',
-  pronto_envio: '#13c2c2',
-  etiqueta_impressa: '#1677ff',
-  coletado: '#2f54eb',
-  em_transito: '#722ed1',
-  saiu_entrega: '#13c2c2',
-  dest_ausente: '#ff4d4f',
-  atendido: '#1677ff',
-  faturado: '#722ed1',
-  entregue: '#52c41a',
-  recusado: '#ff4d4f',
-  devolvido: '#eb2f96',
-  cancelado: '#888',
-};
+const { Text, Title } = Typography;
 
 const datePresets: { label: string; value: [Dayjs, Dayjs] }[] = [
   { label: 'Últimos 7 dias', value: [dayjs().subtract(6, 'day'), dayjs()] },
@@ -61,6 +26,21 @@ const datePresets: { label: string; value: [Dayjs, Dayjs] }[] = [
   { label: 'Mês passado', value: [dayjs().subtract(1, 'month').startOf('month'), dayjs().subtract(1, 'month').endOf('month')] },
 ];
 
+const statusLabel: Record<string, string> = {
+  aberto: 'Aberto', pendente: 'Pendente', preparando: 'Preparando',
+  pronto_envio: 'Pronto p/ envio', etiqueta_impressa: 'Etiqueta impressa',
+  coletado: 'Coletado', em_transito: 'Em trânsito', saiu_entrega: 'Saiu para entrega',
+  dest_ausente: 'Destinatário ausente', atendido: 'Atendido', faturado: 'Faturado',
+  entregue: 'Entregue', recusado: 'Recusado', devolvido: 'Devolvido', cancelado: 'Cancelado',
+};
+
+const statusColor: Record<string, string> = {
+  aberto: 'blue', pendente: 'orange', preparando: 'processing', pronto_envio: 'cyan',
+  etiqueta_impressa: 'blue', coletado: 'geekblue', em_transito: 'purple',
+  saiu_entrega: 'cyan', dest_ausente: 'red', atendido: 'processing', faturado: 'purple',
+  entregue: 'green', recusado: 'red', devolvido: 'magenta', cancelado: 'default',
+};
+
 interface DashboardData {
   faturamento: number;
   lucro: number;
@@ -68,7 +48,14 @@ interface DashboardData {
   ticketMedio: number;
   vendasDiarias: { dia: string; receita: number }[];
   statusCounts: Record<string, number>;
-  pedidosRecentes: { numero: number; cliente: string; total: number; situacao: string; data: string }[];
+  pedidosRecentes: {
+    id?: string;
+    numero: number;
+    cliente: string;
+    total: number;
+    situacao: string;
+    data: string;
+  }[];
   topProdutos: { nome: string; vendas: number; receita: number }[];
   produtosAtivos: number;
   totalProdutos: number;
@@ -82,6 +69,8 @@ interface ReputacaoData {
   nivel: string;
   nivelCor: string;
   nivelKey: string;
+  conectado?: boolean;
+  indisponivel?: boolean;
 }
 
 interface IntegracaoData {
@@ -91,6 +80,7 @@ interface IntegracaoData {
 }
 
 type SyncJobStatus = 'pendente' | 'rodando' | 'completo' | 'completo_parcial' | 'erro' | 'cancelado';
+type SyncVisualStatus = 'idle' | 'running' | 'done' | 'partial' | 'error';
 type MlSyncTipo = 'anuncios' | 'pedidos';
 
 interface SyncJobStatusResponse {
@@ -102,56 +92,51 @@ interface SyncJobStatusResponse {
     processados: number;
     total: number;
     finished_at: string | null;
-    last_event?: {
-      event_type: string | null;
-      message: string | null;
-      timestamp: string | null;
-    } | null;
+    last_event?: { event_type: string | null; message: string | null; timestamp: string | null } | null;
     updated_at?: string | null;
   };
   failures?: string[];
   error?: string;
 }
 
-const topColumns = [
-  {
-    title: '', dataIndex: 'rank', key: 'rank', width: 36,
-    render: (r: number) => r <= 3
-      ? <TrophyFilled style={{ color: ['#ffd700', '#c0c0c0', '#cd7f32'][r - 1], fontSize: 16 }} />
-      : <span style={{ color: '#666', fontSize: 13 }}>{r}º</span>,
-  },
-  { title: 'Produto', dataIndex: 'nome', key: 'nome', render: (n: string) => <span style={{ color: '#c0c0c0', fontSize: 13 }}>{n}</span> },
-  { title: 'Vendas', dataIndex: 'vendas', key: 'vendas', width: 60, render: (v: number) => <span style={{ color: '#e0e0e0', fontWeight: 600 }}>{v || '—'}</span> },
-  { title: 'Receita', dataIndex: 'receita', key: 'receita', width: 90, render: (r: number) => <span style={{ color: '#e0e0e0', fontWeight: 600 }}>{r ? formatCurrency(r) : '—'}</span> },
-];
+function errorMessage(error: unknown, fallback: string): string {
+  return error instanceof Error && error.message ? error.message : fallback;
+}
 
-const recentColumns = [
-  { title: 'Pedido', dataIndex: 'num', key: 'num', width: 85, render: (n: string) => <span style={{ fontFamily: 'monospace', fontSize: 12 }}>{n}</span> },
-  { title: 'Cliente', dataIndex: 'cliente', key: 'cliente', render: (c: string) => <span style={{ fontSize: 13 }}>{c}</span> },
-  { title: 'Total', dataIndex: 'total', key: 'total', width: 90, render: (t: number) => <span style={{ fontSize: 13 }}>{t ? formatCurrency(t) : '—'}</span> },
-  { title: 'Status', dataIndex: 'status', key: 'status', width: 100, render: (s: string, r: any) => <Tag color={r.cor || '#888'} style={{ margin: 0 }}>{s}</Tag> },
-  { title: 'Data', dataIndex: 'data', key: 'data', width: 100, render: (d: string) => <span style={{ color: '#a0a0a0', fontSize: 12 }}>{d}</span> },
-];
+async function responseError(response: Response, fallback: string): Promise<Error> {
+  const payload = await response.json().catch(() => null) as { erro?: string; error?: string } | null;
+  return new Error(payload?.erro || payload?.error || fallback);
+}
 
-function Trend({ value, label }: { value: number; label: string }) {
-  const up = value >= 0;
-  return (
-    <span style={{ color: up ? '#52c41a' : '#ff4d4f', fontSize: 12, display: 'flex', alignItems: 'center', gap: 2 }}>
-      {up ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-      {Math.abs(value)}% {label}
-    </span>
-  );
+function sumStatuses(statusCounts: Record<string, number>, statuses: readonly string[]): number {
+  return statuses.reduce((total, status) => total + Number(statusCounts[status] || 0), 0);
+}
+
+function syncFeedback(status: SyncVisualStatus | undefined): { label: string; color?: string } | null {
+  if (status === 'running') return { label: 'Em andamento', color: 'processing' };
+  if (status === 'done') return { label: 'Concluída', color: 'success' };
+  if (status === 'partial') return { label: 'Com alertas', color: 'warning' };
+  if (status === 'error') return { label: 'Falhou', color: 'error' };
+  return null;
 }
 
 export default function DashboardPage() {
+  const { token } = theme.useToken();
   const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([dayjs().subtract(6, 'day'), dayjs()]);
+  const dateRangeRef = useRef(dateRange);
   const [dashboard, setDashboard] = useState<DashboardData | null>(null);
   const [reputacao, setReputacao] = useState<ReputacaoData | null>(null);
   const [integracoes, setIntegracoes] = useState<IntegracaoData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [syncStatus, setSyncStatus] = useState<Record<string, 'idle' | 'running' | 'done'>>({});
-  const [redirecting, setRedirecting] = useState(false);
+  const [summaryLoading, setSummaryLoading] = useState(true);
+  const [reputationLoading, setReputationLoading] = useState(true);
+  const [integrationsLoading, setIntegrationsLoading] = useState(true);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
+  const [reputationError, setReputationError] = useState<string | null>(null);
+  const [integrationsError, setIntegrationsError] = useState<string | null>(null);
+  const [lastUpdatedAt, setLastUpdatedAt] = useState<Date | null>(null);
+  const [syncStatus, setSyncStatus] = useState<Record<string, SyncVisualStatus>>({});
   const [messageApi, contextHolder] = message.useMessage();
+  const summaryRequestSequence = useRef(0);
   const dslitePollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dsliteJobRef = useRef<string | null>(null);
   const dslitePollingInFlightRef = useRef(false);
@@ -161,90 +146,97 @@ export default function DashboardPage() {
   const mlPollingInFlightRefs = useRef<Record<MlSyncTipo, boolean>>({ anuncios: false, pedidos: false });
   const mlPollingStartedAtRefs = useRef<Record<MlSyncTipo, number | null>>({ anuncios: null, pedidos: null });
 
-
-  const fetchData = useCallback(async () => {
-    setLoading(true);
+  const fetchSummary = useCallback(async (range: [Dayjs, Dayjs] = dateRangeRef.current) => {
+    const sequence = ++summaryRequestSequence.current;
+    setSummaryLoading(true);
+    setSummaryError(null);
     try {
-      const [from, to] = dateRange;
       const params = new URLSearchParams({
-        dateFrom: from.format('YYYY-MM-DD'),
-        dateTo: to.format('YYYY-MM-DD'),
+        dateFrom: range[0].format('YYYY-MM-DD'), dateTo: range[1].format('YYYY-MM-DD'),
       });
-
-      const [dashRes, repRes, intRes] = await Promise.all([
-        fetch(`/api/dashboard/resumo?${params}`),
-        fetch('/api/ml/reputacao'),
-        fetch('/api/integracoes/status'),
-      ]);
-
-      if (dashRes.ok) setDashboard(await dashRes.json());
-      if (repRes.ok) setReputacao(await repRes.json());
-      if (intRes.ok) {
-        const json = await intRes.json();
-        setIntegracoes(json.integracoes || []);
-      }
-    } catch (err) {
-      messageApi.error('Erro ao carregar dados do dashboard');
+      const response = await fetch(`/api/dashboard/resumo?${params}`, { cache: 'no-store' });
+      if (!response.ok) throw await responseError(response, 'Falha ao carregar o resumo');
+      const payload = await response.json() as DashboardData;
+      if (sequence !== summaryRequestSequence.current) return;
+      setDashboard(payload);
+      setLastUpdatedAt(new Date());
+    } catch (error) {
+      if (sequence !== summaryRequestSequence.current) return;
+      setSummaryError(errorMessage(error, 'Erro ao carregar o resumo do dashboard'));
     } finally {
-      setLoading(false);
+      if (sequence === summaryRequestSequence.current) setSummaryLoading(false);
     }
-  }, [dateRange, messageApi]);
+  }, []);
+
+  const fetchReputation = useCallback(async () => {
+    setReputationLoading(true);
+    setReputationError(null);
+    try {
+      const response = await fetch('/api/ml/reputacao', { cache: 'no-store' });
+      if (!response.ok) throw await responseError(response, 'Falha ao carregar a reputação');
+      setReputacao(await response.json() as ReputacaoData);
+    } catch (error) {
+      setReputationError(errorMessage(error, 'Erro ao carregar a reputação do Mercado Livre'));
+    } finally {
+      setReputationLoading(false);
+    }
+  }, []);
+
+  const fetchIntegrations = useCallback(async () => {
+    setIntegrationsLoading(true);
+    setIntegrationsError(null);
+    try {
+      const response = await fetch('/api/integracoes/status', { cache: 'no-store' });
+      if (!response.ok) throw await responseError(response, 'Falha ao carregar as integrações');
+      const payload = await response.json() as { integracoes?: IntegracaoData[] };
+      setIntegracoes(Array.isArray(payload.integracoes) ? payload.integracoes : []);
+    } catch (error) {
+      setIntegrationsError(errorMessage(error, 'Erro ao carregar o estado das integrações'));
+    } finally {
+      setIntegrationsLoading(false);
+    }
+  }, []);
+
+  const refreshAll = useCallback(async () => {
+    await Promise.all([fetchSummary(), fetchReputation(), fetchIntegrations()]);
+  }, [fetchIntegrations, fetchReputation, fetchSummary]);
 
   const clearDslitePolling = useCallback(() => {
-    if (dslitePollRef.current) {
-      clearTimeout(dslitePollRef.current);
-      dslitePollRef.current = null;
-    }
+    if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
+    dslitePollRef.current = null;
     dsliteJobRef.current = null;
     dslitePollingInFlightRef.current = false;
     dslitePollingStartedAtRef.current = null;
   }, []);
 
-  const finalizeDsliteSync = useCallback((shouldReloadDashboard: boolean) => {
+  const finalizeDsliteSync = useCallback((outcome: Exclude<SyncVisualStatus, 'idle' | 'running'>, reloadSummary: boolean) => {
     clearDslitePolling();
-    setSyncStatus(prev => ({ ...prev, dslite: 'done' }));
-    if (shouldReloadDashboard) {
-      fetchData();
-    }
-    setTimeout(() => {
-      setSyncStatus(prev => ({ ...prev, dslite: 'idle' }));
-    }, 3000);
-  }, [clearDslitePolling, fetchData]);
+    setSyncStatus((previous) => ({ ...previous, dslite: outcome }));
+    if (reloadSummary) void fetchSummary();
+    setTimeout(() => setSyncStatus((previous) => ({ ...previous, dslite: 'idle' })), 4000);
+  }, [clearDslitePolling, fetchSummary]);
 
   const pollDsliteJob = useCallback(async (jobId: string) => {
-    const res = await fetch(`/api/sync/dslite/status?jobId=${encodeURIComponent(jobId)}`);
-    const payload: SyncJobStatusResponse = await res.json().catch(() => ({ success: false }));
-
-    if (!res.ok || !payload.success || !payload.job) {
+    const response = await fetch(`/api/sync/dslite/status?jobId=${encodeURIComponent(jobId)}`, { cache: 'no-store' });
+    const payload = await response.json().catch(() => ({ success: false })) as SyncJobStatusResponse;
+    if (!response.ok || !payload.success || !payload.job) {
       throw new Error(payload.error || 'Não foi possível consultar o status da sincronização');
     }
-
-    const currentStatus = payload.job.status;
-    if (currentStatus === 'pendente' || currentStatus === 'rodando') {
+    if (payload.job.status === 'pendente' || payload.job.status === 'rodando') return;
+    if (payload.job.status === 'completo') {
+      messageApi.success('Sincronização DSLite concluída.');
+      finalizeDsliteSync('done', true);
       return;
     }
-
-    if (currentStatus === 'completo') {
-      messageApi.success('Sync DSLite concluído com sucesso!');
-      finalizeDsliteSync(true);
+    if (payload.job.status === 'completo_parcial') {
+      const details = (payload.failures || []).slice(0, 2).join(' | ');
+      messageApi.warning(details ? `Sincronização DSLite concluída com alertas: ${details}` : 'Sincronização DSLite concluída com alertas.');
+      finalizeDsliteSync('partial', true);
       return;
     }
-
-    if (currentStatus === 'completo_parcial') {
-      const detalhes = (payload.failures || []).slice(0, 2).join(' | ');
-      const msg = detalhes
-        ? `Sync DSLite concluído com alertas: ${detalhes}`
-        : 'Sync DSLite concluído com alertas';
-      messageApi.warning(msg);
-      finalizeDsliteSync(true);
-      return;
-    }
-
-    if (currentStatus === 'erro' || currentStatus === 'cancelado') {
-      const detalheErro = payload.failures?.[0] || 'Falha na sincronização DSLite';
-      messageApi.error(detalheErro);
-      finalizeDsliteSync(false);
-      return;
+    if (payload.job.status === 'erro' || payload.job.status === 'cancelado') {
+      messageApi.error(payload.failures?.[0] || 'Falha na sincronização DSLite.');
+      finalizeDsliteSync('error', false);
     }
   }, [finalizeDsliteSync, messageApi]);
 
@@ -260,8 +252,6 @@ export default function DashboardPage() {
   const scheduleNextDslitePoll = useCallback(() => {
     const currentJobId = dsliteJobRef.current;
     if (!currentJobId) return;
-
-    const delay = getAdaptiveDslitePollingInterval();
     dslitePollRef.current = setTimeout(() => {
       const runningJobId = dsliteJobRef.current;
       if (!runningJobId) return;
@@ -269,20 +259,15 @@ export default function DashboardPage() {
         scheduleNextDslitePoll();
         return;
       }
-
       dslitePollingInFlightRef.current = true;
-      pollDsliteJob(runningJobId)
-        .catch((err: any) => {
-          messageApi.error(err?.message || 'Erro ao consultar status da sincronização DSLite');
-          finalizeDsliteSync(false);
-        })
-        .finally(() => {
-          dslitePollingInFlightRef.current = false;
-          if (dsliteJobRef.current === runningJobId) {
-            scheduleNextDslitePoll();
-          }
-        });
-    }, delay);
+      void pollDsliteJob(runningJobId).catch((error) => {
+        messageApi.error(errorMessage(error, 'Erro ao consultar o status da sincronização DSLite'));
+        finalizeDsliteSync('error', false);
+      }).finally(() => {
+        dslitePollingInFlightRef.current = false;
+        if (dsliteJobRef.current === runningJobId) scheduleNextDslitePoll();
+      });
+    }, getAdaptiveDslitePollingInterval());
   }, [finalizeDsliteSync, getAdaptiveDslitePollingInterval, messageApi, pollDsliteJob]);
 
   const startDslitePolling = useCallback((jobId: string) => {
@@ -294,47 +279,37 @@ export default function DashboardPage() {
 
   const resumeDsliteSyncIfRunning = useCallback(async () => {
     try {
-      const res = await fetch('/api/sync/dslite/status');
-      const payload: SyncJobStatusResponse = await res.json().catch(() => ({ success: false }));
-
-      if (!res.ok || !payload.success || !payload.job) {
-        return;
-      }
-
+      const response = await fetch('/api/sync/dslite/status', { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({ success: false })) as SyncJobStatusResponse;
+      if (!response.ok || !payload.success || !payload.job) return;
       if (payload.job.status === 'pendente' || payload.job.status === 'rodando') {
-        setSyncStatus(prev => ({ ...prev, dslite: 'running' }));
+        setSyncStatus((previous) => ({ ...previous, dslite: 'running' }));
         startDslitePolling(payload.job.id);
         await pollDsliteJob(payload.job.id);
       }
     } catch {
-      // Retomada silenciosa: ignora erros de reattach no mount.
+      // O dashboard continua disponível quando não é possível retomar um job antigo.
     }
   }, [pollDsliteJob, startDslitePolling]);
 
-  const clearMlPolling = useCallback((tipo: MlSyncTipo) => {
-    const timer = mlPollRefs.current[tipo];
-    if (timer) {
-      clearTimeout(timer);
-      mlPollRefs.current[tipo] = null;
-    }
-    mlJobRefs.current[tipo] = null;
-    mlPollingInFlightRefs.current[tipo] = false;
-    mlPollingStartedAtRefs.current[tipo] = null;
+  const clearMlPolling = useCallback((type: MlSyncTipo) => {
+    const timer = mlPollRefs.current[type];
+    if (timer) clearTimeout(timer);
+    mlPollRefs.current[type] = null;
+    mlJobRefs.current[type] = null;
+    mlPollingInFlightRefs.current[type] = false;
+    mlPollingStartedAtRefs.current[type] = null;
   }, []);
 
-  const finalizeMlSync = useCallback((tipo: MlSyncTipo, shouldReloadDashboard: boolean) => {
-    clearMlPolling(tipo);
-    setSyncStatus(prev => ({ ...prev, [tipo]: 'done' }));
-    if (shouldReloadDashboard) {
-      fetchData();
-    }
-    setTimeout(() => {
-      setSyncStatus(prev => ({ ...prev, [tipo]: 'idle' }));
-    }, 3000);
-  }, [clearMlPolling, fetchData]);
+  const finalizeMlSync = useCallback((type: MlSyncTipo, outcome: Exclude<SyncVisualStatus, 'idle' | 'running'>, reloadSummary: boolean) => {
+    clearMlPolling(type);
+    setSyncStatus((previous) => ({ ...previous, [type]: outcome }));
+    if (reloadSummary) void fetchSummary();
+    setTimeout(() => setSyncStatus((previous) => ({ ...previous, [type]: 'idle' })), 4000);
+  }, [clearMlPolling, fetchSummary]);
 
-  const getAdaptiveMlPollingInterval = useCallback((tipo: MlSyncTipo) => {
-    const startedAt = mlPollingStartedAtRefs.current[tipo];
+  const getAdaptiveMlPollingInterval = useCallback((type: MlSyncTipo) => {
+    const startedAt = mlPollingStartedAtRefs.current[type];
     if (!startedAt) return 2000;
     const elapsed = Date.now() - startedAt;
     if (elapsed > 180000) return 5000;
@@ -342,537 +317,335 @@ export default function DashboardPage() {
     return 2000;
   }, []);
 
-  const pollMlJob = useCallback(async (tipo: MlSyncTipo, jobId: string) => {
-    const res = await fetch(`/api/sync/${tipo}/status?jobId=${encodeURIComponent(jobId)}`);
-    const payload: SyncJobStatusResponse = await res.json().catch(() => ({ success: false }));
-
-    if (!res.ok || !payload.success || !payload.job) {
-      throw new Error(payload.error || `Não foi possível consultar o status do sync de ${tipo}`);
+  const pollMlJob = useCallback(async (type: MlSyncTipo, jobId: string) => {
+    const response = await fetch(`/api/sync/${type}/status?jobId=${encodeURIComponent(jobId)}`, { cache: 'no-store' });
+    const payload = await response.json().catch(() => ({ success: false })) as SyncJobStatusResponse;
+    if (!response.ok || !payload.success || !payload.job) {
+      throw new Error(payload.error || `Não foi possível consultar o sync de ${type}`);
     }
-
-    const currentStatus = payload.job.status;
-    if (currentStatus === 'pendente' || currentStatus === 'rodando') {
+    if (payload.job.status === 'pendente' || payload.job.status === 'rodando') return;
+    const label = type === 'anuncios' ? 'anúncios ML' : 'pedidos ML';
+    if (payload.job.status === 'completo') {
+      messageApi.success(`Sincronização de ${label} concluída.`);
+      finalizeMlSync(type, 'done', true);
       return;
     }
-
-    const tipoLabel = tipo === 'anuncios' ? 'Anúncios ML' : 'Pedidos ML';
-
-    if (currentStatus === 'completo') {
-      messageApi.success(`Sync ${tipoLabel} concluído com sucesso!`);
-      finalizeMlSync(tipo, true);
+    if (payload.job.status === 'completo_parcial') {
+      const details = (payload.failures || []).slice(0, 2).join(' | ');
+      messageApi.warning(details ? `Sincronização de ${label} concluída com alertas: ${details}` : `Sincronização de ${label} concluída com alertas.`);
+      finalizeMlSync(type, 'partial', true);
       return;
     }
-
-    if (currentStatus === 'completo_parcial') {
-      const detalhes = (payload.failures || []).slice(0, 2).join(' | ');
-      const msg = detalhes
-        ? `Sync ${tipoLabel} concluído com alertas: ${detalhes}`
-        : `Sync ${tipoLabel} concluído com alertas`;
-      messageApi.warning(msg);
-      finalizeMlSync(tipo, true);
-      return;
-    }
-
-    if (currentStatus === 'erro' || currentStatus === 'cancelado') {
-      const detalheErro = payload.failures?.[0] || `Falha na sincronização de ${tipoLabel}`;
-      messageApi.error(detalheErro);
-      finalizeMlSync(tipo, false);
+    if (payload.job.status === 'erro' || payload.job.status === 'cancelado') {
+      messageApi.error(payload.failures?.[0] || `Falha na sincronização de ${label}.`);
+      finalizeMlSync(type, 'error', false);
     }
   }, [finalizeMlSync, messageApi]);
 
-  const scheduleNextMlPoll = useCallback((tipo: MlSyncTipo) => {
-    const currentJobId = mlJobRefs.current[tipo];
+  const scheduleNextMlPoll = useCallback((type: MlSyncTipo) => {
+    const currentJobId = mlJobRefs.current[type];
     if (!currentJobId) return;
-
-    const delay = getAdaptiveMlPollingInterval(tipo);
-    mlPollRefs.current[tipo] = setTimeout(() => {
-      const runningJobId = mlJobRefs.current[tipo];
+    mlPollRefs.current[type] = setTimeout(() => {
+      const runningJobId = mlJobRefs.current[type];
       if (!runningJobId) return;
-      if (mlPollingInFlightRefs.current[tipo]) {
-        scheduleNextMlPoll(tipo);
+      if (mlPollingInFlightRefs.current[type]) {
+        scheduleNextMlPoll(type);
         return;
       }
-
-      mlPollingInFlightRefs.current[tipo] = true;
-      pollMlJob(tipo, runningJobId)
-        .catch((err: any) => {
-          messageApi.error(err?.message || `Erro ao consultar status do sync de ${tipo}`);
-          finalizeMlSync(tipo, false);
-        })
-        .finally(() => {
-          mlPollingInFlightRefs.current[tipo] = false;
-          if (mlJobRefs.current[tipo] === runningJobId) {
-            scheduleNextMlPoll(tipo);
-          }
-        });
-    }, delay);
+      mlPollingInFlightRefs.current[type] = true;
+      void pollMlJob(type, runningJobId).catch((error) => {
+        messageApi.error(errorMessage(error, `Erro ao consultar o sync de ${type}`));
+        finalizeMlSync(type, 'error', false);
+      }).finally(() => {
+        mlPollingInFlightRefs.current[type] = false;
+        if (mlJobRefs.current[type] === runningJobId) scheduleNextMlPoll(type);
+      });
+    }, getAdaptiveMlPollingInterval(type));
   }, [finalizeMlSync, getAdaptiveMlPollingInterval, messageApi, pollMlJob]);
 
-  const startMlPolling = useCallback((tipo: MlSyncTipo, jobId: string) => {
-    clearMlPolling(tipo);
-    mlJobRefs.current[tipo] = jobId;
-    mlPollingStartedAtRefs.current[tipo] = Date.now();
-    scheduleNextMlPoll(tipo);
+  const startMlPolling = useCallback((type: MlSyncTipo, jobId: string) => {
+    clearMlPolling(type);
+    mlJobRefs.current[type] = jobId;
+    mlPollingStartedAtRefs.current[type] = Date.now();
+    scheduleNextMlPoll(type);
   }, [clearMlPolling, scheduleNextMlPoll]);
 
-  const resumeMlSyncIfRunning = useCallback(async (tipo: MlSyncTipo) => {
+  const resumeMlSyncIfRunning = useCallback(async (type: MlSyncTipo) => {
     try {
-      const res = await fetch(`/api/sync/${tipo}/status`);
-      const payload: SyncJobStatusResponse = await res.json().catch(() => ({ success: false }));
-
-      if (!res.ok || !payload.success || !payload.job) {
-        return;
-      }
-
+      const response = await fetch(`/api/sync/${type}/status`, { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({ success: false })) as SyncJobStatusResponse;
+      if (!response.ok || !payload.success || !payload.job) return;
       if (payload.job.status === 'pendente' || payload.job.status === 'rodando') {
-        setSyncStatus(prev => ({ ...prev, [tipo]: 'running' }));
-        startMlPolling(tipo, payload.job.id);
-        await pollMlJob(tipo, payload.job.id);
+        setSyncStatus((previous) => ({ ...previous, [type]: 'running' }));
+        startMlPolling(type, payload.job.id);
+        await pollMlJob(type, payload.job.id);
       }
     } catch {
-      // Retomada silenciosa
+      // O dashboard continua disponível quando não é possível retomar um job antigo.
     }
   }, [pollMlJob, startMlPolling]);
 
   useEffect(() => {
-    fetch('/api/ml/estado')
-      .then(r => r.json())
-      .then(({ conectado, precisaReconectar, erro, reason }) => {
-        if (precisaReconectar) {
-          if (reason === 'account_not_allowed') {
-            messageApi.error(erro || 'Conta Mercado Livre não permitida. Conecte a conta Vortek em Configurações.');
-          } else if (reason === 'not_connected') {
-            messageApi.warning('Mercado Livre desconectado. Conecte em Configurações > Integrações.');
-          } else {
-            messageApi.warning('Mercado Livre precisa de reconexão. Conecte em Configurações > Integrações.');
-          }
-          fetchData();
-        } else {
-          if (erro && conectado) {
-            messageApi.warning('Mercado Livre instável no momento. Tentando novamente em background.');
-          }
-          fetchData();
-          void Promise.all([
-            resumeDsliteSyncIfRunning(),
-            resumeMlSyncIfRunning('anuncios'),
-            resumeMlSyncIfRunning('pedidos'),
-          ]);
-        }
-      })
-      .catch(() => {
-        fetchData();
-        void Promise.all([
-          resumeDsliteSyncIfRunning(),
-          resumeMlSyncIfRunning('anuncios'),
-          resumeMlSyncIfRunning('pedidos'),
-        ]);
-      });
-  }, [fetchData, messageApi, resumeDsliteSyncIfRunning, resumeMlSyncIfRunning]);
+    dateRangeRef.current = dateRange;
+    void fetchSummary(dateRange);
+  }, [dateRange, fetchSummary]);
 
   useEffect(() => {
-    return () => {
-      clearDslitePolling();
-      clearMlPolling('anuncios');
-      clearMlPolling('pedidos');
+    let active = true;
+    const initializeOperationalContext = async () => {
+      try {
+        const response = await fetch('/api/ml/estado', { cache: 'no-store' });
+        const state = await response.json().catch(() => ({})) as {
+          conectado?: boolean; precisaReconectar?: boolean; erro?: string; reason?: string;
+        };
+        if (!active) return;
+        if (state.precisaReconectar && state.reason === 'account_not_allowed') {
+          messageApi.error(state.erro || 'Conta Mercado Livre não permitida. Revise a integração em Configurações.');
+        } else if (state.precisaReconectar) {
+          messageApi.warning('Mercado Livre desconectado. Revise a integração em Configurações.');
+        } else if (state.erro && state.conectado) {
+          messageApi.warning('Mercado Livre instável no momento.');
+        }
+      } catch {
+        // Os blocos independentes abaixo informam seus próprios erros.
+      }
+      if (!active) return;
+      await Promise.all([fetchReputation(), fetchIntegrations()]);
+      if (!active) return;
+      await Promise.all([
+        resumeDsliteSyncIfRunning(), resumeMlSyncIfRunning('anuncios'), resumeMlSyncIfRunning('pedidos'),
+      ]);
     };
+    void initializeOperationalContext();
+    return () => { active = false; };
+  }, [fetchIntegrations, fetchReputation, messageApi, resumeDsliteSyncIfRunning, resumeMlSyncIfRunning]);
+
+  useEffect(() => () => {
+    clearDslitePolling();
+    clearMlPolling('anuncios');
+    clearMlPolling('pedidos');
   }, [clearDslitePolling, clearMlPolling]);
 
-  const triggerSyncMl = useCallback(async (tipo: MlSyncTipo) => {
-    setSyncStatus(prev => ({ ...prev, [tipo]: 'running' }));
-    const tipoLabel = tipo === 'anuncios' ? 'Anúncios ML' : 'Pedidos ML';
-
+  const triggerMlSync = useCallback(async (type: MlSyncTipo) => {
+    setSyncStatus((previous) => ({ ...previous, [type]: 'running' }));
+    const label = type === 'anuncios' ? 'anúncios ML' : 'pedidos ML';
     try {
-      const res = await fetch(`/api/sync/${tipo}/job`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok || !data?.success || !data?.jobId) {
-        messageApi.error(data?.error || `Erro ao iniciar sync de ${tipoLabel}`);
-        setSyncStatus(prev => ({ ...prev, [tipo]: 'idle' }));
+      const response = await fetch(`/api/sync/${type}/job`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+      const payload = await response.json().catch(() => ({})) as {
+        success?: boolean; jobId?: string; reused?: boolean; error?: string;
+      };
+      if (!response.ok || !payload.success || !payload.jobId) {
+        messageApi.error(payload.error || `Erro ao iniciar a sincronização de ${label}.`);
+        setSyncStatus((previous) => ({ ...previous, [type]: 'error' }));
         return;
       }
-
-      if (data.reused) {
-        messageApi.info(`Já existe um sync ${tipoLabel} em andamento. Acompanhando progresso atual.`);
-      } else {
-        messageApi.info(`Sync ${tipoLabel} iniciado.`);
-      }
-
-      startMlPolling(tipo, String(data.jobId));
-      await pollMlJob(tipo, String(data.jobId));
-    } catch (err: any) {
-      messageApi.error(err?.message || `Erro ao iniciar sync de ${tipoLabel}`);
-      finalizeMlSync(tipo, false);
-      setSyncStatus(prev => ({ ...prev, [tipo]: 'idle' }));
+      messageApi.info(payload.reused ? `Acompanhando a sincronização de ${label} já em andamento.` : `Sincronização de ${label} iniciada.`);
+      startMlPolling(type, String(payload.jobId));
+      await pollMlJob(type, String(payload.jobId));
+    } catch (error) {
+      messageApi.error(errorMessage(error, `Erro ao iniciar a sincronização de ${label}.`));
+      finalizeMlSync(type, 'error', false);
     }
   }, [finalizeMlSync, messageApi, pollMlJob, startMlPolling]);
 
-  const triggerSyncDslite = async () => {
-    setSyncStatus(prev => ({ ...prev, dslite: 'running' }));
-    messageApi.info('Sync DSLite iniciado, isso pode levar alguns minutos.');
-
+  const triggerDsliteSync = useCallback(async () => {
+    setSyncStatus((previous) => ({ ...previous, dslite: 'running' }));
+    messageApi.info('Sincronização DSLite iniciada.');
     try {
-      const res = await fetch('/api/sync/dslite', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok || !data?.success || !data?.jobId) {
-        messageApi.error(data?.error || 'Falha ao iniciar sincronização DSLite');
-        setSyncStatus(prev => ({ ...prev, dslite: 'idle' }));
+      const response = await fetch('/api/sync/dslite', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+      const payload = await response.json().catch(() => ({})) as {
+        success?: boolean; jobId?: string; reused?: boolean; error?: string;
+      };
+      if (!response.ok || !payload.success || !payload.jobId) {
+        messageApi.error(payload.error || 'Falha ao iniciar a sincronização DSLite.');
+        setSyncStatus((previous) => ({ ...previous, dslite: 'error' }));
         return;
       }
-
-      if (data.reused) {
-        messageApi.info('Já existe uma sincronização DSLite em andamento. Acompanhando progresso atual.');
-      }
-
-      startDslitePolling(String(data.jobId));
-      await pollDsliteJob(String(data.jobId));
-    } catch (err: any) {
-      messageApi.error(err?.message || 'Erro ao iniciar sync DSLite');
-      finalizeDsliteSync(false);
+      if (payload.reused) messageApi.info('Acompanhando a sincronização DSLite já em andamento.');
+      startDslitePolling(String(payload.jobId));
+      await pollDsliteJob(String(payload.jobId));
+    } catch (error) {
+      messageApi.error(errorMessage(error, 'Erro ao iniciar a sincronização DSLite.'));
+      finalizeDsliteSync('error', false);
     }
-  };
+  }, [finalizeDsliteSync, messageApi, pollDsliteJob, startDslitePolling]);
 
-  const totalStatus = useMemo(() => {
-    if (!dashboard) return [];
-    const entries = Object.entries(dashboard.statusCounts);
-    const total = entries.reduce((sum, [, c]) => sum + c, 0);
-    return entries.map(([status, count]) => ({
-      status: statusLabel[status] || status,
-      qtd: count,
-      pct: total > 0 ? Math.round((count / total) * 100) : 0,
-      cor: statusColor[status] || '#888',
-    })).sort((a, b) => b.qtd - a.qtd);
-  }, [dashboard]);
+  const preparationCount = useMemo(() => sumStatuses(dashboard?.statusCounts || {}, PREPARATION_ORDER_STATUSES), [dashboard]);
+  const shippingCount = useMemo(() => sumStatuses(dashboard?.statusCounts || {}, SHIPPING_ORDER_STATUSES), [dashboard]);
+  const disconnectedIntegrations = useMemo(() => integracoes.filter((integration) => !integration.on).length, [integracoes]);
 
-  const pedidosRecentesData = useMemo(() => {
-    if (!dashboard) return [];
-    return dashboard.pedidosRecentes.map((p, i) => ({
-      key: String(i),
-      num: `#${String(p.numero).padStart(6, '0')}`,
-      cliente: p.cliente,
-      total: p.total,
-      status: statusLabel[p.situacao] || p.situacao,
-      cor: statusColor[p.situacao] || '#888',
-      data: dayjs(p.data).format('DD/MM HH:mm'),
-    }));
-  }, [dashboard]);
+  const recentOrders = useMemo(() => (dashboard?.pedidosRecentes || []).map((order) => ({
+    key: order.id || String(order.numero),
+    href: order.id ? `/pedidos?view=all&venda=${encodeURIComponent(order.id)}` : `/pedidos?view=all&search=${encodeURIComponent(String(order.numero))}`,
+    order: `#${String(order.numero).padStart(6, '0')}`,
+    client: order.cliente || 'Cliente não informado', total: order.total,
+    status: statusLabel[order.situacao] || order.situacao,
+    color: statusColor[order.situacao] || 'default',
+    date: order.data ? dayjs(order.data).format('DD/MM/YYYY HH:mm') : '—',
+  })), [dashboard]);
 
-  const topProdutosData = useMemo(() => {
-    if (!dashboard) return [];
-    return dashboard.topProdutos.map((p, i) => ({ ...p, rank: i + 1 }));
-  }, [dashboard]);
+  const topProducts = useMemo(() => (dashboard?.topProdutos || []).map((product, index) => ({ ...product, rank: index + 1 })), [dashboard]);
 
-  const handleDateChange = (dates: any) => {
-    if (dates && dates[0] && dates[1]) {
-      setDateRange([dates[0], dates[1]]);
-    }
-  };
+  const recentColumns = useMemo(() => [
+    { title: 'Venda', dataIndex: 'order', key: 'order', width: 120, render: (value: string, row: { href: string }) => <Link href={row.href}>{value}</Link> },
+    { title: 'Cliente', dataIndex: 'client', key: 'client', ellipsis: true },
+    { title: 'Valor', dataIndex: 'total', key: 'total', width: 120, render: (value: number) => <Text strong>{formatCurrency(value)}</Text> },
+    { title: 'Status', dataIndex: 'status', key: 'status', width: 130, render: (value: string, row: { color: string }) => <Tag color={row.color}>{value}</Tag> },
+    { title: 'Data', dataIndex: 'date', key: 'date', width: 150 },
+  ], []);
+
+  const topColumns = useMemo(() => [
+    { title: 'Posição', dataIndex: 'rank', key: 'rank', width: 44, render: (rank: number) => rank <= 3 ? <TrophyFilled style={{ color: ['#FFBD0E', '#B3AFB7', '#B46B36'][rank - 1] }} /> : <Text type="secondary">{rank}º</Text> },
+    { title: 'Produto', dataIndex: 'nome', key: 'nome', ellipsis: true },
+    { title: 'Vendas', dataIndex: 'vendas', key: 'vendas', width: 72 },
+    { title: 'Receita', dataIndex: 'receita', key: 'receita', width: 118, render: (value: number) => formatCurrency(value) },
+  ], []);
+
+  const operationItems = [
+    { key: 'preparation', label: 'Em preparação', description: 'Compra, fiscal e etiqueta', count: preparationCount, href: '/pedidos?view=preparation', color: preparationCount > 0 ? token.colorWarning : token.colorSuccess },
+    { key: 'shipping', label: 'Em transporte', description: 'Acompanhar até a entrega', count: shippingCount, href: '/pedidos?view=shipping', color: token.colorInfo },
+    { key: 'integrations', label: 'Integrações desconectadas', description: integrationsError ? 'Estado parcialmente indisponível' : 'Revisar conexões externas', count: integrationsLoading && integracoes.length === 0 ? null : disconnectedIntegrations, href: '/configuracoes', color: disconnectedIntegrations > 0 || integrationsError ? token.colorError : token.colorSuccess },
+  ];
+
+  const refreshLoading = summaryLoading || reputationLoading || integrationsLoading;
+  const periodLabel = `${dateRange[0].format('DD/MM')} a ${dateRange[1].format('DD/MM/YYYY')}`;
+  const dsliteFeedback = syncFeedback(syncStatus.dslite || 'idle');
+  const anunciosFeedback = syncFeedback(syncStatus.anuncios || 'idle');
+  const pedidosFeedback = syncFeedback(syncStatus.pedidos || 'idle');
 
   return (
     <div>
       {contextHolder}
-      {redirecting ? (
-        <div style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          height: '60vh', gap: 16,
-        }}>
-          <Spin indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />} />
-          <Text style={{ color: '#e0e0e0', fontSize: 16 }}>Mercado Livre precisa de reconexão</Text>
-          <Text style={{ color: '#888', fontSize: 13 }}>Acesse Configurações &gt; Integrações para conectar novamente.</Text>
-        </div>
-      ) : (
-        <>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
-          <Title level={4} style={{ color: '#e0e0e0', margin: 0 }}>Dashboard</Title>
-          <Space>
-            <Select
-              size="small"
-              style={{ width: 140 }}
-              placeholder="Período"
-              options={datePresets.map(p => ({ label: p.label, value: p.label }))}
-              onChange={(val) => {
-                const preset = datePresets.find(p => p.label === val);
-                if (preset) setDateRange(preset.value);
-              }}
-              defaultValue="Últimos 7 dias"
-            />
-            <RangePicker
-              size="small"
-              value={dateRange}
-              onChange={handleDateChange}
-              presets={datePresets.map(p => ({ label: p.label, value: p.value }))}
-              style={{ background: '#141414', borderColor: '#303030' }}
-            />
+      <Row justify="space-between" align="top" gutter={[16, 12]} style={{ marginBottom: 20 }}>
+        <Col>
+          <Title level={2} style={{ margin: 0 }}>Dashboard</Title>
+          <Text type="secondary">Visão executiva do período e do que precisa de atenção agora.</Text>
+          <Text type="secondary" style={{ display: 'block', fontSize: 12, marginTop: 4 }}>
+            {lastUpdatedAt ? `Atualizado às ${lastUpdatedAt.toLocaleTimeString('pt-BR')}` : 'Aguardando primeira atualização'}
+          </Text>
+        </Col>
+        <Col>
+          <Space wrap>
+            <RangePicker value={dateRange} format="DD/MM/YYYY" allowClear={false} presets={datePresets} onChange={(dates) => { if (dates?.[0] && dates[1]) setDateRange([dates[0], dates[1]]); }} />
+            <Button type="primary" icon={<ReloadOutlined />} loading={refreshLoading} onClick={() => void refreshAll()}>Atualizar</Button>
           </Space>
-        </div>
+        </Col>
+      </Row>
 
-      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-        <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
-          {[
-            { title: 'Faturamento', value: dashboard?.faturamento ?? 0, prefix: 'R$', color: '#1677ff' },
-            { title: 'Pedidos', value: dashboard?.totalPedidos ?? 0, color: '#52c41a' },
-            { title: 'Ticket Médio', value: dashboard?.ticketMedio ?? 0, prefix: 'R$', color: '#faad14' },
-            { title: 'Lucro', value: dashboard?.lucro ?? 0, prefix: 'R$', color: '#722ed1' },
-          ].map(card => (
-            <Col xs={12} lg={6} key={card.title}>
-              <Card styles={{ body: { padding: '16px 20px' } }} style={cardBg}>
-                <Statistic
-                  title={<span style={{ color: '#a0a0a0', fontSize: 12 }}>{card.title}</span>}
-                  value={card.value}
-                  precision={card.prefix ? 2 : 0}
-                  prefix={card.prefix ? <span style={{ fontSize: 16 }}>{card.prefix}</span> : undefined}
-                  valueStyle={{ color: '#e0e0e0', fontSize: 26, fontWeight: 700 }}
-                  suffix={card.value === 0 && loading ? null : undefined}
-                />
-                {card.value === 0 && !loading && (
-                  <Text style={{ color: '#666', fontSize: 12 }}>—</Text>
-                )}
-              </Card>
-            </Col>
-          ))}
-        </Row>
-
-        <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
-          <Col xs={24} lg={14}>
-            <Card styles={{ body: { padding: 20 } }} style={{ ...cardBg, height: '100%' }}>
-              <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-                Vendas - Período
-              </Title>
-              {dashboard?.vendasDiarias && dashboard.vendasDiarias.length > 0 ? (
-                <ResponsiveContainer width="100%" height={220}>
-                  <BarChart data={dashboard.vendasDiarias} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
-                    <XAxis dataKey="dia" tick={{ fill: '#666', fontSize: 10 }} axisLine={false} tickLine={false} interval={Math.floor(dashboard.vendasDiarias.length / 6)} />
-                    <YAxis tick={{ fill: '#666', fontSize: 10 }} axisLine={false} tickLine={false} tickFormatter={v => v >= 1000 ? `R$${(v / 1000).toFixed(0)}k` : `R$${v}`} />
-                    <Tooltip
-                      contentStyle={{ background: '#1f1f1f', border: '1px solid #303030', borderRadius: 6 }}
-                      labelStyle={{ color: '#a0a0a0' }}
-                      formatter={(val: any) => formatCurrency(Number(val))}
-                    />
-                    <Bar dataKey="receita" fill="#5aab2c" radius={[4, 4, 0, 0]} maxBarSize={20} />
-                  </BarChart>
-                </ResponsiveContainer>
-              ) : (
-                <div style={{ height: 220, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ color: '#666' }}>Sem dados de vendas no período</Text>
-                </div>
-              )}
-            </Card>
-          </Col>
-
-          <Col xs={24} lg={10}>
-            <Card styles={{ body: { padding: 20 } }} style={{ ...cardBg, height: '100%' }}>
-              <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-                Status dos Pedidos
-              </Title>
-              {totalStatus.length > 0 ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                  {totalStatus.map(s => (
-                    <div key={s.status}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <div style={{ width: 10, height: 10, borderRadius: 5, background: s.cor }} />
-                          <Text style={{ color: '#c0c0c0', fontSize: 13 }}>{s.status}</Text>
-                        </div>
-                        <div style={{ display: 'flex', gap: 12 }}>
-                          <Text style={{ color: '#e0e0e0', fontWeight: 600, fontSize: 13 }}>{s.qtd}</Text>
-                          <Text style={{ color: '#666', fontSize: 13 }}>{s.pct}%</Text>
-                        </div>
-                      </div>
-                      <Progress percent={s.pct} strokeColor={s.cor} trailColor="#303030" size="small" showInfo={false} />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div style={{ height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ color: '#666' }}>Sem dados de pedidos no período</Text>
-                </div>
-              )}
-            </Card>
-          </Col>
-        </Row>
-
-        <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
-          <Col xs={24} lg={8}>
-            <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-              <Title level={5} style={{ color: '#a0a0a0', marginBottom: 12, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-                Top Produtos
-              </Title>
-              {topProdutosData.length > 0 ? (
-                <>
-                  <Table
-                    dataSource={topProdutosData}
-                    columns={topColumns}
-                    rowKey="rank"
-                    pagination={false}
-                    size="small"
-                    style={{ background: 'transparent' }}
-                    showHeader={false}
-                  />
-                  <div style={{ marginTop: 8 }}>
-                    <Link style={{ color: '#1677ff', fontSize: 12 }} href="/produtos">Ver todos os produtos →</Link>
-                  </div>
-                </>
-              ) : (
-                <div style={{ height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ color: '#666' }}>Sem dados de produtos</Text>
-                </div>
-              )}
-            </Card>
-          </Col>
-
-          <Col xs={24} lg={8}>
-            <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-              <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-                Saúde do Negócio
-              </Title>
-              {reputacao && reputacao.nivel !== 'Desconectado' ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  {[
-                    { label: 'Reclamações', rate: reputacao.reclamacoes, max: 2 },
-                    { label: 'Atraso na Entrega', rate: reputacao.atrasos, max: 10 },
-                    { label: 'Cancelamentos', rate: reputacao.cancelamentos, max: 1.5 },
-                  ].map(m => {
-                    const rate = m.rate ?? 0;
-                    const good = m.rate !== null && rate <= m.max;
-                    return (
-                      <div key={m.label}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                          <Text style={{ color: '#c0c0c0', fontSize: 13 }}>{m.label}</Text>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <Text style={{ color: '#e0e0e0', fontWeight: 600, fontSize: 13 }}>
-                              {m.rate !== null ? `${rate}%` : '—'}
-                            </Text>
-                            {m.rate !== null && (
-                              <div style={{ width: 8, height: 8, borderRadius: 4, background: good ? '#52c41a' : '#ff4d4f' }} />
-                            )}
-                          </div>
-                        </div>
-                        {m.rate !== null && (
-                          <Progress
-                            percent={(rate / (m.max * 2)) * 100}
-                            strokeColor={good ? '#5aab2c' : '#ff4d4f'}
-                            trailColor="#303030"
-                            size="small"
-                            showInfo={false}
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
-                  <div style={{ borderTop: '1px solid #303030', paddingTop: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ fontSize: 22, color: reputacao.nivelCor }}>🏆</span>
-                    <div>
-                      <Text style={{ color: '#e0e0e0', fontWeight: 600, fontSize: 13 }}>{reputacao.nivel}</Text>
-                      <br />
-                      <Text style={{ color: '#808080', fontSize: 12 }}>
-                        {reputacao.positivas !== null ? `Reputação ${reputacao.nivelKey} · ${reputacao.positivas}% positivas` : 'Reputação em análise'}
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-              ) : reputacao?.nivel === 'Desconectado' ? (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, padding: '40px 0' }}>
-                  <Text style={{ color: '#888', fontSize: 14 }}>Mercado Livre Desconectado</Text>
-                  <Text style={{ color: '#666', fontSize: 12 }}>Reconecte para ver métricas de reputação</Text>
-                  <Button type="primary" href="/api/integracao/ml/connect" size="small">
-                    Reconectar ML
-                  </Button>
-                </div>
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 0' }}>
-                  <Text style={{ color: '#666' }}>Carregando...</Text>
-                </div>
-              )}
-            </Card>
-          </Col>
-
-          <Col xs={24} lg={8}>
-            <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-              <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-                Integrações
-              </Title>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                {integracoes.map(i => (
-                  <div key={i.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', borderRadius: 6, background: i.on ? '#111d2e' : '#1a1a1a', border: `1px solid ${i.on ? '#1677ff' : '#303030'}` }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: 5, background: i.on ? '#1677ff' : '#555' }} />
-                      <Text style={{ color: '#c0c0c0', fontSize: 13 }}>{i.label}</Text>
-                    </div>
-                    <Tag color={i.on ? 'green' : 'default'} style={{ margin: 0, fontSize: 11 }}>{i.status}</Tag>
-                  </div>
-                ))}
-              </div>
-              <div style={{ marginTop: 12 }}>
-                <a style={{ color: '#1677ff', fontSize: 12 }} href="/configuracoes">Gerenciar integrações →</a>
-              </div>
-              <div style={{ borderTop: '1px solid #303030', marginTop: 16, paddingTop: 16 }}>
-                <Text style={{ color: '#a0a0a0', fontSize: 12, display: 'block', marginBottom: 10 }}>Sincronizações</Text>
-                <Space direction="vertical" style={{ width: '100%' }} size={6}>
-                  <Button
-                    size="small"
-                    block
-                    type="primary"
-                    icon={<SyncOutlined spin={syncStatus['dslite'] === 'running'} />}
-                    loading={syncStatus['dslite'] === 'running'}
-                    onClick={triggerSyncDslite}
-                    style={{ textAlign: 'left', height: 32 }}
-                  >
-                    {syncStatus['dslite'] === 'done' ? '✅' : ''} Sync DSLite
-                  </Button>
-                  <Button
-                    size="small"
-                    block
-                    icon={<SyncOutlined spin={syncStatus['anuncios'] === 'running'} />}
-                    loading={syncStatus['anuncios'] === 'running'}
-                    onClick={() => triggerSyncMl('anuncios')}
-                    style={{ textAlign: 'left', height: 32 }}
-                  >
-                    {syncStatus['anuncios'] === 'done' ? '✅' : ''} Sync Anúncios ML
-                  </Button>
-                  <Button
-                    size="small"
-                    block
-                    icon={<SyncOutlined spin={syncStatus['pedidos'] === 'running'} />}
-                    loading={syncStatus['pedidos'] === 'running'}
-                    onClick={() => triggerSyncMl('pedidos')}
-                    style={{ textAlign: 'left', height: 32 }}
-                  >
-                    {syncStatus['pedidos'] === 'done' ? '✅' : ''} Sync Pedidos ML
-                  </Button>
-                </Space>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-
-        <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-          <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-            Pedidos Recentes
-          </Title>
-          {pedidosRecentesData.length > 0 ? (
-            <Table
-              dataSource={pedidosRecentesData}
-              columns={recentColumns}
-              rowKey="key"
-              pagination={false}
-              size="small"
-              style={{ background: 'transparent' }}
-            />
-          ) : (
-            <div style={{ height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ color: '#666' }}>Sem pedidos no período</Text>
-            </div>
-          )}
-        </Card>
-      </Spin>
-        </>
+      {summaryError && (
+        <Alert type="error" showIcon message="Resumo parcialmente indisponível" description={`${summaryError}${dashboard ? ' Os dados anteriores foram preservados.' : ''}`} action={<Button size="small" onClick={() => void fetchSummary()}>Tentar novamente</Button>} style={{ marginBottom: 16 }} />
       )}
+
+      <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
+        {[
+          { title: 'Receita', value: dashboard?.faturamento, money: true },
+          { title: 'Pedidos', value: dashboard?.totalPedidos, money: false },
+          { title: 'Ticket médio', value: dashboard?.ticketMedio, money: true },
+          { title: 'Lucro', value: dashboard?.lucro, money: true, profit: true },
+        ].map((item) => (
+          <Col xs={12} lg={6} key={item.title}>
+            <Card loading={summaryLoading && !dashboard} styles={{ body: { padding: '18px 20px' } }}>
+              <Statistic title={item.title} value={item.value ?? 0} precision={item.money ? 2 : 0} prefix={item.money ? 'R$' : undefined} valueStyle={{ fontSize: 28, fontWeight: 700, color: item.profit && item.value !== undefined ? item.value > 0 ? token.colorSuccess : item.value < 0 ? token.colorError : token.colorText : token.colorText }} />
+              <Text type="secondary" style={{ fontSize: 11 }}>{periodLabel}</Text>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+
+      <Row gutter={[16, 16]} style={{ marginBottom: 16 }}>
+        <Col xs={24} lg={8}>
+          <Card title="Operação agora" extra={<Text type="secondary">Ações diretas</Text>} style={{ height: '100%' }}>
+            <Space direction="vertical" size={10} style={{ width: '100%' }}>
+              {operationItems.map((item) => (
+                <Link key={item.key} href={item.href} style={{ color: 'inherit' }}>
+                  <Card size="small" hoverable styles={{ body: { padding: 12 } }} style={{ borderLeft: `3px solid ${item.color}` }}>
+                    <Row justify="space-between" align="middle" wrap={false}>
+                      <Col style={{ minWidth: 0 }}><Text strong>{item.label}</Text><Text type="secondary" ellipsis style={{ display: 'block', fontSize: 11 }}>{item.description}</Text></Col>
+                      <Col><Space size={8}><Title level={3} style={{ margin: 0, color: item.color }}>{item.count === null ? '—' : item.count}</Title><ArrowRightOutlined style={{ color: token.colorTextSecondary }} /></Space></Col>
+                    </Row>
+                  </Card>
+                </Link>
+              ))}
+            </Space>
+          </Card>
+        </Col>
+
+        <Col xs={24} lg={16}>
+          <Card title="Receita diária" extra={<Text type="secondary">Dados reais · {periodLabel}</Text>} style={{ height: '100%' }}>
+            {summaryLoading && !dashboard ? <Skeleton active paragraph={{ rows: 7 }} title={false} /> : dashboard?.vendasDiarias.length ? (
+              <ResponsiveContainer width="100%" height={265} initialDimension={{ width: 720, height: 265 }}>
+                <BarChart data={dashboard.vendasDiarias} margin={{ top: 8, right: 8, left: -12, bottom: 0 }}>
+                  <XAxis dataKey="dia" tick={{ fill: token.colorTextSecondary, fontSize: 11 }} axisLine={false} tickLine={false} interval={Math.max(0, Math.floor(dashboard.vendasDiarias.length / 7))} />
+                  <YAxis tick={{ fill: token.colorTextSecondary, fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(value) => value >= 1000 ? `R$ ${(value / 1000).toFixed(0)} mil` : `R$ ${value}`} />
+                  <Tooltip cursor={{ fill: token.colorFillSecondary }} contentStyle={{ background: token.colorBgElevated, border: `1px solid ${token.colorBorder}`, borderRadius: token.borderRadius }} labelStyle={{ color: token.colorTextSecondary }} formatter={(value) => [formatCurrency(Number(value)), 'Receita']} />
+                  <Bar dataKey="receita" fill={token.colorPrimary} radius={[5, 5, 0, 0]} maxBarSize={28} />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Sem vendas no período selecionado." />}
+          </Card>
+        </Col>
+      </Row>
+
+      <Row gutter={[16, 16]} style={{ marginBottom: 16 }}>
+        <Col xs={24} lg={14}>
+          <Card title="Vendas recentes" extra={<Link href="/pedidos?view=all">Ver todas <ArrowRightOutlined /></Link>} style={{ height: '100%' }}>
+            {summaryLoading && !dashboard ? <Skeleton active paragraph={{ rows: 6 }} title={false} /> : recentOrders.length ? <Table dataSource={recentOrders} columns={recentColumns} pagination={false} size="small" scroll={{ x: 700 }} /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Sem vendas recentes no período." />}
+          </Card>
+        </Col>
+        <Col xs={24} lg={10}>
+          <Card title="Produtos com mais vendas" extra={<Link href="/produtos">Ver produtos <ArrowRightOutlined /></Link>} style={{ height: '100%' }}>
+            <Text type="secondary" style={{ display: 'block', fontSize: 12, marginBottom: 12 }}>Acumulado dos anúncios no Mercado Livre · {dashboard ? `${dashboard.produtosAtivos} de ${dashboard.totalProdutos} produtos ativos` : 'carregando catálogo'}</Text>
+            {summaryLoading && !dashboard ? <Skeleton active paragraph={{ rows: 6 }} title={false} /> : topProducts.length ? <Table dataSource={topProducts} columns={topColumns} rowKey="rank" pagination={false} size="small" showHeader={false} /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhuma venda acumulada por produto." />}
+          </Card>
+        </Col>
+      </Row>
+
+      <Row gutter={[16, 16]}>
+        <Col xs={24} lg={12}>
+          <Card title="Reputação no Mercado Livre" extra={<Link href="/reputacao">Ver detalhes <ArrowRightOutlined /></Link>} style={{ height: '100%' }}>
+            {reputationError && <Alert type="warning" showIcon message="Reputação indisponível" description={reputationError} action={<Button size="small" onClick={() => void fetchReputation()}>Tentar novamente</Button>} style={{ marginBottom: 12 }} />}
+            {reputationLoading && !reputacao ? <Skeleton active paragraph={{ rows: 5 }} /> : reputacao?.nivel === 'Desconectado' || reputacao?.conectado === false ? (
+              <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={<Space direction="vertical"><Text>Mercado Livre desconectado.</Text><Button href="/configuracoes" type="primary" size="small">Revisar integração</Button></Space>} />
+            ) : reputacao ? (
+              <>
+                <Row justify="space-between" align="middle" style={{ marginBottom: 18 }}><Col><Text type="secondary">Nível atual</Text><Title level={3} style={{ color: reputacao.nivelCor, margin: '2px 0 0' }}>{reputacao.nivel}</Title></Col><Col><Text type="secondary">{reputacao.positivas === null ? 'Avaliação em andamento' : `${reputacao.positivas.toFixed(1)}% positivas`}</Text></Col></Row>
+                <Space direction="vertical" size={14} style={{ width: '100%' }}>
+                  {[{ label: 'Reclamações', value: reputacao.reclamacoes, limit: 2 }, { label: 'Atrasos no envio', value: reputacao.atrasos, limit: 10 }, { label: 'Cancelamentos', value: reputacao.cancelamentos, limit: 1.5 }].map((metric) => {
+                    const healthy = metric.value !== null && metric.value <= metric.limit;
+                    return <div key={metric.label}><Row justify="space-between"><Text>{metric.label}</Text><Text strong>{metric.value === null ? '—' : `${metric.value.toFixed(2)}%`}</Text></Row>{metric.value !== null && <Progress percent={Math.min(100, (metric.value / (metric.limit * 2)) * 100)} strokeColor={healthy ? token.colorSuccess : token.colorError} showInfo={false} size="small" />}</div>;
+                  })}
+                </Space>
+              </>
+            ) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Reputação não disponível." />}
+          </Card>
+        </Col>
+
+        <Col xs={24} lg={12}>
+          <Card title="Integrações e sincronização" extra={<Link href="/configuracoes">Gerenciar <ArrowRightOutlined /></Link>} style={{ height: '100%' }}>
+            {integrationsError && <Alert type="warning" showIcon message="Estado das integrações parcialmente indisponível" description={integrationsError} action={<Button size="small" onClick={() => void fetchIntegrations()}>Tentar novamente</Button>} style={{ marginBottom: 12 }} />}
+            {integrationsLoading && integracoes.length === 0 ? <Skeleton active paragraph={{ rows: 4 }} title={false} /> : (
+              <Row gutter={[8, 8]}>{integracoes.map((integration) => <Col xs={12} key={integration.label}><Card size="small" styles={{ body: { padding: 10 } }}><Text strong ellipsis style={{ display: 'block' }}>{integration.label}</Text><Tag color={integration.on ? 'success' : 'error'} style={{ marginTop: 6, marginInlineEnd: 0 }}>{integration.status}</Tag></Card></Col>)}</Row>
+            )}
+            <div style={{ borderTop: `1px solid ${token.colorBorder}`, marginTop: 16, paddingTop: 16 }}>
+              <Text strong style={{ display: 'block', marginBottom: 10 }}>Sincronizações manuais</Text>
+              <Space direction="vertical" size={8} style={{ width: '100%' }}>
+                <Row gutter={8} align="middle" wrap={false}>
+                  <Col flex="auto"><Button block icon={<SyncOutlined spin={syncStatus.dslite === 'running'} />} loading={syncStatus.dslite === 'running'} danger={syncStatus.dslite === 'error'} onClick={() => void triggerDsliteSync()} style={{ textAlign: 'left' }}>Sincronizar DSLite</Button></Col>
+                  <Col flex="88px">{dsliteFeedback ? <Tag color={dsliteFeedback.color} style={{ margin: 0 }}>{dsliteFeedback.label}</Tag> : <Text type="secondary">Pronta</Text>}</Col>
+                </Row>
+                <Row gutter={8} align="middle" wrap={false}>
+                  <Col flex="auto"><Button block icon={<SyncOutlined spin={syncStatus.anuncios === 'running'} />} loading={syncStatus.anuncios === 'running'} danger={syncStatus.anuncios === 'error'} onClick={() => void triggerMlSync('anuncios')} style={{ textAlign: 'left' }}>Sincronizar anúncios ML</Button></Col>
+                  <Col flex="88px">{anunciosFeedback ? <Tag color={anunciosFeedback.color} style={{ margin: 0 }}>{anunciosFeedback.label}</Tag> : <Text type="secondary">Pronta</Text>}</Col>
+                </Row>
+                <Row gutter={8} align="middle" wrap={false}>
+                  <Col flex="auto"><Button block icon={<SyncOutlined spin={syncStatus.pedidos === 'running'} />} loading={syncStatus.pedidos === 'running'} danger={syncStatus.pedidos === 'error'} onClick={() => void triggerMlSync('pedidos')} style={{ textAlign: 'left' }}>Sincronizar pedidos ML</Button></Col>
+                  <Col flex="88px">{pedidosFeedback ? <Tag color={pedidosFeedback.color} style={{ margin: 0 }}>{pedidosFeedback.label}</Tag> : <Text type="secondary">Pronta</Text>}</Col>
+                </Row>
+              </Space>
+            </div>
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 }
