@@ -39,6 +39,23 @@ test('saída ativa continua reduzindo o saldo interno', () => {
   ]), 0);
 });
 
+test('reserva ativa reduz o saldo disponível antes do despacho', () => {
+  assert.equal(calcularSaldoEstoqueInterno([
+    {
+      tipo: 'entrada_devolucao',
+      quantidade: 2,
+      situacao_estoque: 'liberado',
+      estornada_em: null,
+    },
+    {
+      tipo: 'saida_envio_interno',
+      quantidade: 1,
+      estado_envio_interno: 'reservado',
+      estornada_em: null,
+    },
+  ]), 1);
+});
+
 test('saída consumida remove produto da lista de liberados', () => {
   const entradas = calcularEntradasVisiveisEstoqueInterno([
     {

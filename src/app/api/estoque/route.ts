@@ -15,9 +15,9 @@ export async function GET() {
       .order('created_at', { ascending: false }),
     (db as any)
       .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,quantidade,motivo,created_at,despachado_em,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id,envio_interno_at)')
+      .select('id,produto_id,pedido_id,quantidade,motivo,created_at,estado_envio_interno,despachado_em,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id,envio_interno_at)')
       .eq('tipo', 'saida_envio_interno')
-      .eq('estado_envio_interno', 'despachado')
+      .in('estado_envio_interno', ['reservado', 'despachado'])
       .is('estornada_em', null)
       .order('created_at', { ascending: false }),
   ]);
@@ -35,13 +35,28 @@ export async function GET() {
     status_devolucao: item.status_devolucao || 'aguardando_confirmacao',
     situacao_estoque: item.situacao_estoque || 'revisao',
     created_at: item.created_at,
-    pedido_ml: item.pedidos?.ml_order_id || '-',
-    pedido_ml_link_id: item.pedidos?.ml_pack_id || item.pedidos?.ml_order_id || null,
+    ml_order_id: item.pedidos?.ml_order_id || null,
+    ml_pack_id: item.pedidos?.ml_pack_id || null,
+  }));
+
+  const saidasAtivas = (saidasResult.data || []).map((item: any) => ({
+    id: item.id,
+    produto_id: item.produto_id,
+    pedido_id: item.pedido_id,
+    sku: item.produtos?.sku || '-',
+    nome: item.produtos?.nome || 'Produto não encontrado',
+    quantidade: Number(item.quantidade || 0),
+    motivo: item.motivo || 'Movimento de estoque interno',
+    estado_envio_interno: item.estado_envio_interno,
+    reservado_em: item.created_at,
+    despachado_em: item.despachado_em || item.pedidos?.envio_interno_at || null,
+    ml_order_id: item.pedidos?.ml_order_id || null,
+    ml_pack_id: item.pedidos?.ml_pack_id || null,
   }));
 
   const rows = calcularEntradasVisiveisEstoqueInterno(
     entradas,
-    (saidasResult.data || []).map((item: any) => ({
+    saidasAtivas.map((item: any) => ({
       produto_id: String(item.produto_id),
       quantidade: Number(item.quantidade || 0),
     })),
@@ -52,21 +67,18 @@ export async function GET() {
     return total;
   }, {});
 
-  const vendidos = (saidasResult.data || []).map((item: any) => ({
-    id: item.id,
-    sku: item.produtos?.sku || '-',
-    nome: item.produtos?.nome || 'Produto não encontrado',
-    quantidade: Number(item.quantidade || 0),
-    pedido_ml: item.pedidos?.ml_order_id || '-',
-    pedido_ml_link_id: item.pedidos?.ml_pack_id || item.pedidos?.ml_order_id || null,
-    vendido_em: item.despachado_em || item.pedidos?.envio_interno_at || item.created_at,
-  }));
+  const reservados = saidasAtivas.filter((item: any) => item.estado_envio_interno === 'reservado');
+  const vendidos = saidasAtivas
+    .filter((item: any) => item.estado_envio_interno === 'despachado')
+    .map((item: any) => ({ ...item, vendido_em: item.despachado_em || item.reservado_em }));
 
   return NextResponse.json({
     data: rows,
     revisao: resumo.revisao || 0,
     liberado: resumo.liberado || 0,
     nao_aproveitavel: resumo.nao_aproveitavel || 0,
+    reservados,
+    reservadosQuantidade: reservados.reduce((total: number, item: any) => total + item.quantidade, 0),
     vendidos,
     vendidosQuantidade: vendidos.reduce((total: number, item: any) => total + item.quantidade, 0),
   });

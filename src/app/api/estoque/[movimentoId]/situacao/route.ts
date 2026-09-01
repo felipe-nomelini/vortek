@@ -13,20 +13,27 @@ export async function PATCH(req: Request, props: { params: Promise<{ movimentoId
   const db = createServiceClient();
   const { data: movimento, error: consultaError } = await (db as any)
     .from('estoque_interno_movimentacoes')
-    .select('status_devolucao,produto_id')
+    .select('status_devolucao,produto_id,situacao_estoque')
     .eq('id', params.movimentoId)
     .eq('tipo', 'entrada_devolucao')
     .maybeSingle();
   if (consultaError || !movimento) return NextResponse.json({ error: 'Movimento de estoque não encontrado.' }, { status: 404 });
+  if (String(movimento.situacao_estoque || '') !== 'revisao') {
+    return NextResponse.json({ error: 'Somente itens em revisão podem ter a situação alterada.' }, { status: 409 });
+  }
   if (!['delivered', 'returned', 'manual'].includes(String(movimento.status_devolucao || ''))) {
     return NextResponse.json({ error: 'Ações liberadas somente após entrega da devolução.' }, { status: 409 });
   }
 
-  const { error } = await (db as any)
+  const { data: atualizado, error } = await (db as any)
     .from('estoque_interno_movimentacoes')
     .update({ situacao_estoque: situacao, disponivel_venda: situacao === 'liberado' })
-    .eq('id', params.movimentoId);
+    .eq('id', params.movimentoId)
+    .eq('situacao_estoque', 'revisao')
+    .select('id')
+    .maybeSingle();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (!atualizado) return NextResponse.json({ error: 'A situação do item já foi alterada.' }, { status: 409 });
   try {
     const mlSync = await enfileirarSyncMlEstoqueInterno(String(movimento.produto_id));
     return NextResponse.json({ success: true, mlSync });
@@ -41,7 +48,7 @@ export async function DELETE(_req: Request, props: { params: Promise<{ movimento
   const db = createServiceClient();
   const { data: movimento, error: consultaError } = await (db as any)
     .from('estoque_interno_movimentacoes')
-    .select('id,status_devolucao,produto_id')
+    .select('id,status_devolucao,produto_id,situacao_estoque')
     .eq('id', params.movimentoId)
     .eq('tipo', 'entrada_devolucao')
     .maybeSingle();
@@ -51,12 +58,16 @@ export async function DELETE(_req: Request, props: { params: Promise<{ movimento
   if (String(movimento.status_devolucao || '') !== 'manual') {
     return NextResponse.json({ error: 'Somente inserções manuais podem ser excluídas.' }, { status: 409 });
   }
+  if (String(movimento.situacao_estoque || '') !== 'revisao') {
+    return NextResponse.json({ error: 'Somente inserções manuais ainda em revisão podem ser excluídas.' }, { status: 409 });
+  }
 
   const { data: excluido, error } = await (db as any)
     .from('estoque_interno_movimentacoes')
     .delete()
     .eq('id', params.movimentoId)
     .eq('status_devolucao', 'manual')
+    .eq('situacao_estoque', 'revisao')
     .select('id')
     .maybeSingle();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
