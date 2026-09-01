@@ -1998,9 +1998,15 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Validação da revisão:** 30 cenários direcionados aprovados, incluindo seis estados do andamento; `npm run validate` e `npm run build` aprovados. O deploy oficial concluiu no serviço `vortek-erp-dev`, que confirmou `GIT_SHA=5838581f33480908afb42fe2f728de8ac5457ce3`. `dev.bentevi.shop` respondeu `200` em health e login, `307` em `/compras` sem sessão e `401` nas APIs de lista e resumo sem sessão. O artefato publicado contém o novo indicador “Valor aguardando confirmação”.
 
+**Segunda revisão visual em `2026-09-01`:** a tabela passou a usar o apelido canônico de `fornecedores` como nome principal, mantendo a razão social somente como fallback; a coluna Valores removeu o prefixo redundante “Fornecedor” do custo; e Produto passou a exibir o nome completo com quebra de linha e quantidade. Os SKUs foram retirados exclusivamente da tabela e permanecem no Drawer, identificados como SKU Bentevi e SKU do fornecedor. O PDF também usa o apelido do fornecedor, mas conserva os SKUs necessários ao documento exportado.
+
+**Commit da segunda revisão:** `47c0494`, enviado somente para `origin/dev`.
+
+**Validação da segunda revisão:** 31 cenários direcionados de Compras, andamento, permissões, mobile e aposentadoria Hayamax aprovados; `npm run validate`, `npm run build` com 122 páginas e `git diff --check` aprovados. A action Easypanel `cmtilcb8g000107o0cfrnca6c` concluiu com sucesso e a task `i9c3in8e20uufctolnu8h38na` confirmou `GIT_SHA=47c049401e3e4756cd355a117645528d0b1f9009`. `dev.bentevi.shop` respondeu `200` em health e login, `307` em `/compras` sem sessão e `401` nas APIs de lista e resumo sem sessão.
+
 **Migration/banco:** N/A; nenhuma escrita ou migration de banco foi executada.
 
-**Rollback:** para desfazer somente a revisão, reverter `5838581`; para retirar integralmente `BNT-D03`, reverter também `7da856b`. Reimplantar somente `vortek-erp-dev`.
+**Rollback:** para desfazer somente a segunda revisão, reverter `47c0494`; para desfazer também a revisão anterior, reverter `5838581`; para retirar integralmente `BNT-D03`, reverter também `7da856b`. Reimplantar somente `vortek-erp-dev`.
 
 **Pendência:** aprovação visual da revisão pelo usuário em `dev.bentevi.shop`. `BNT-D04` permanece bloqueado.
 
