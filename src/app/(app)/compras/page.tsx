@@ -1,59 +1,69 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import dayjs, { type Dayjs } from 'dayjs';
 import {
-  Alert, Input, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Upload,
+  Alert, Button, Card, Col, DatePicker, Dropdown, Empty, Input, Modal,
+  Row, Select, Space, Tag, Typography, Upload, message,
 } from 'antd';
-import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined, UploadOutlined, FilePdfOutlined } from '@ant-design/icons';
+import {
+  EllipsisOutlined, EyeOutlined, FilePdfOutlined, ReloadOutlined,
+  SearchOutlined, TruckOutlined, UploadOutlined,
+} from '@ant-design/icons';
+import ResizableTable from '@/components/ResizableTable';
+import CompraDetailsDrawer, {
+  getPurchaseSaleReference,
+  type CompraOperacional,
+} from '@/components/compras/CompraDetailsDrawer';
 import { formatCurrency } from '@/lib/format';
-import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
+import { hasPermission, type VortekRole } from '@/lib/permissions';
+import {
+  appendRemoteSortParams, getRemoteSortOrder, resolveRemoteSortState,
+  type RemoteSortState,
+} from '@/lib/remote-sort';
+import styles from './compras.module.css';
 
-const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
-
-interface Compra {
-  id: string;
-  dsid: string;
-  pedido_vendas_numero: number | null;
-  status: string;
-  status_dslite: string;
-  nf_chave: string | null;
-  nf_numero: string | null;
-  valor_total: number;
-  valor_frete: number;
-  data_criacao: string;
-  rastreio: string | null;
-  fornecedor_nome: string | null;
-  fornecedor_id: string | null;
-  destinatario_nome: string | null;
-  destinatario_documento: string | null;
-  produto_descricao: string | null;
-  produto_sku: string | null;
-  quantidade: number;
-  supplier_payment_mode: 'postpaid' | 'prepaid_pix' | 'balance_account' | null;
-  supplier_payment_status: 'pending' | 'paid' | 'failed' | 'cancelled' | null;
-  supplier_payment_amount: number | null;
-  supplier_payment_reference: string | null;
-  supplier_payment_receipt_url: string | null;
-  supplier_payment_receipt_path: string | null;
-  supplier_payment_notes: string | null;
-  supplier_pix_key: string | null;
-  bkr1_pix_deferred: boolean;
-}
+const { Text, Title } = Typography;
+const PAGE_SIZE = 50;
+const VALID_ROLES: VortekRole[] = ['admin', 'gerente', 'operador', 'visualizador'];
 
 interface MlAnunciosAlertas {
   activeZeroStock: { count: number; items: Array<{ sku: string; nome: string; ml_item_id: string }> };
   mlPublishAuthFailures: { count: number; items: Array<{ ml_item_id: string; last_error: string | null }> };
 }
 
+interface SupplierOption {
+  value: string;
+  label: string;
+}
+
+interface PurchaseSummary {
+  total: number;
+  pendentes: number;
+  faturado: number;
+  aguardando_informacoes: number;
+  cancelado: number;
+  revisao: number;
+  valor_total: number;
+  supplier_payment_total: number;
+  supplier_payment_missing_count: number;
+}
+
+type PurchaseActionKey = 'details' | 'payment' | 'track' | 'sale';
+
+const EMPTY_SUMMARY: PurchaseSummary = {
+  total: 0, pendentes: 0, faturado: 0, aguardando_informacoes: 0,
+  cancelado: 0, revisao: 0, valor_total: 0,
+  supplier_payment_total: 0, supplier_payment_missing_count: 0,
+};
+
 const statusOptions = [
-  { value: '', label: 'Todos' },
-  { value: 'Aguardando Informações', label: 'Aguardando Informações' },
-  { value: 'Aguardando Pagamento Fornecedor', label: 'Aguardando Pagamento Fornecedor' },
+  { value: 'Aguardando Informações', label: 'Aguardando informações' },
+  { value: 'Aguardando Pagamento Fornecedor', label: 'Aguardando pagamento' },
   { value: 'Iniciado', label: 'Iniciado' },
-  { value: 'Aguardando Etiqueta', label: 'Aguardando Etiqueta' },
+  { value: 'Aguardando Etiqueta', label: 'Aguardando etiqueta' },
   { value: 'Solicitado', label: 'Solicitado' },
   { value: 'Confirmado', label: 'Confirmado' },
   { value: 'Faturado', label: 'Faturado' },
@@ -64,168 +74,255 @@ const statusOptions = [
 const statusColor: Record<string, string> = {
   'Aguardando Informações': 'orange',
   'Aguardando Pagamento Fornecedor': 'gold',
-  'Iniciado': 'blue',
+  Iniciado: 'blue',
   'Aguardando Etiqueta': 'cyan',
-  'Solicitado': 'geekblue',
-  'Confirmado': 'green',
-  'Faturado': 'purple',
-  'Cancelado': 'default',
-  'Revisão': 'magenta',
+  Solicitado: 'geekblue',
+  Confirmado: 'green',
+  Faturado: 'purple',
+  Cancelado: 'default',
+  Revisão: 'magenta',
 };
+
+function parsePositiveInteger(value: string | null, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function formatDateTime(value: string | null | undefined): string {
+  if (!value) return '—';
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString('pt-BR');
+}
+
+function formatStatus(value: string | null | undefined): string {
+  const normalized = String(value || '').trim();
+  if (!normalized) return '—';
+  return normalized.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
 
 function formatSupplierWhatsappReason(reason: unknown): string {
   switch (String(reason || '')) {
-    case 'supplier_phone_missing':
-      return 'WhatsApp do fornecedor não cadastrado';
-    case 'receipt_missing':
-      return 'Comprovante não encontrado';
-    case 'supplier_not_found':
-      return 'Fornecedor não encontrado';
-    default:
-      return String(reason || 'motivo não informado');
+    case 'supplier_phone_missing': return 'WhatsApp do fornecedor não cadastrado';
+    case 'receipt_missing': return 'Comprovante não encontrado';
+    case 'supplier_not_found': return 'Fornecedor não encontrado';
+    default: return String(reason || 'motivo não informado');
   }
 }
 
+function renderPaymentTag(purchase: CompraOperacional) {
+  if (purchase.supplier_payment_mode === 'balance_account') return <Tag>Saldo Hayamax (histórico)</Tag>;
+  if (purchase.supplier_payment_mode !== 'prepaid_pix') return <Text type="secondary">Não aplicável</Text>;
+  if (purchase.supplier_payment_status === 'paid') return <Tag color="green">PIX pago</Tag>;
+  if (purchase.supplier_payment_status === 'failed') return <Tag color="red">PIX falhou</Tag>;
+  if (purchase.supplier_payment_status === 'cancelled') return <Tag>PIX cancelado</Tag>;
+  return <Tag color="gold">PIX pendente</Tag>;
+}
+
+function paymentActionLabel(purchase: CompraOperacional): string {
+  if (purchase.supplier_payment_status !== 'paid') return 'Confirmar PIX';
+  return purchase.supplier_payment_receipt_path ? 'Reenviar comprovante' : 'Anexar comprovante';
+}
+
+function hasPaymentAction(purchase: CompraOperacional, canConfirmPayment: boolean): boolean {
+  return Boolean(
+    canConfirmPayment
+      && !purchase.is_homologation_fixture
+      && purchase.supplier_payment_mode === 'prepaid_pix'
+      && purchase.supplier_payment_status !== 'cancelled'
+      && !purchase.bkr1_pix_deferred,
+  );
+}
+
+function primaryAction(purchase: CompraOperacional, canConfirmPayment: boolean): { key: PurchaseActionKey; label: string } {
+  if (hasPaymentAction(purchase, canConfirmPayment)) return { key: 'payment', label: paymentActionLabel(purchase) };
+  if (!purchase.is_homologation_fixture && purchase.rastreio) return { key: 'track', label: 'Rastrear' };
+  return { key: 'details', label: 'Ver detalhes' };
+}
+
 export default function ComprasPage() {
-  const [loading, setLoading] = useState(true);
-  const [exportingPdf, setExportingPdf] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const [compras, setCompras] = useState<Compra[]>([]);
+  const [compras, setCompras] = useState<CompraOperacional[]>([]);
+  const [summary, setSummary] = useState<PurchaseSummary>(EMPTY_SUMMARY);
   const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'data_criacao', sortOrder: 'desc' });
-
   const [search, setSearch] = useState('');
-  const [urlSearchReady, setUrlSearchReady] = useState(false);
   const [statusFilter, setStatusFilter] = useState('');
+  const [supplierFilter, setSupplierFilter] = useState('');
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
-
-  const [messageApi, contextHolder] = message.useMessage();
+  const [filtersHydrated, setFiltersHydrated] = useState(false);
+  const [listLoading, setListLoading] = useState(true);
+  const [summaryLoading, setSummaryLoading] = useState(true);
+  const [independentLoading, setIndependentLoading] = useState(true);
+  const [listError, setListError] = useState<string | null>(null);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
+  const [independentError, setIndependentError] = useState<string | null>(null);
+  const [lastUpdatedAt, setLastUpdatedAt] = useState<Date | null>(null);
+  const [exportingPdf, setExportingPdf] = useState(false);
+  const [role, setRole] = useState<VortekRole | null>(null);
+  const [supplierOptions, setSupplierOptions] = useState<SupplierOption[]>([]);
+  const [mlAnunciosAlertas, setMlAnunciosAlertas] = useState<MlAnunciosAlertas | null>(null);
+  const [drawerPurchase, setDrawerPurchase] = useState<CompraOperacional | null>(null);
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
-  const [selectedCompra, setSelectedCompra] = useState<Compra | null>(null);
+  const [selectedCompra, setSelectedCompra] = useState<CompraOperacional | null>(null);
   const [confirmingPayment, setConfirmingPayment] = useState(false);
   const [paymentReference, setPaymentReference] = useState('');
   const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
   const [paymentReceiptFile, setPaymentReceiptFile] = useState<File | null>(null);
   const [paymentNotes, setPaymentNotes] = useState('');
-  const [mlAnunciosAlertas, setMlAnunciosAlertas] = useState<MlAnunciosAlertas | null>(null);
-  const [summary, setSummary] = useState({
-    total: 0,
-    pendentes: 0,
-    faturado: 0,
-    aguardando_informacoes: 0,
-    cancelado: 0,
-    revisao: 0,
-    valor_total: 0,
-  });
+  const [messageApi, contextHolder] = message.useMessage();
+  const requestSequence = useRef(0);
 
-  const buildParams = useCallback(() => {
-    const params = new URLSearchParams();
-    params.set('page', String(page));
-    params.set('limit', '50');
-    appendRemoteSortParams(params, sort);
-    if (search) params.set('search', search);
-    if (statusFilter) params.set('status', statusFilter);
-    if (dateRange[0]) params.set('dateFrom', dateRange[0]);
-    if (dateRange[1]) params.set('dateTo', dateRange[1]);
-    return params;
-  }, [page, sort, search, statusFilter, dateRange]);
-
-  const buildSummaryParams = useCallback(() => {
-    const params = new URLSearchParams();
-    if (search) params.set('search', search);
-    if (statusFilter) params.set('status', statusFilter);
-    if (dateRange[0]) params.set('dateFrom', dateRange[0]);
-    if (dateRange[1]) params.set('dateTo', dateRange[1]);
-    return params;
-  }, [search, statusFilter, dateRange]);
-
-  const fetchFilteredPurchases = useCallback(async () => {
-    setLoading(true);
-    try {
-      const [listRes, summaryRes] = await Promise.all([
-        fetch(`/api/compras?${buildParams()}`),
-        fetch(`/api/compras/resumo?${buildSummaryParams()}`),
-      ]);
-
-      if (listRes.ok) {
-        const json = await listRes.json();
-        setCompras(json.data || []);
-        setTotal(json.total || 0);
-      } else {
-        messageApi.error('Erro ao carregar compras');
-      }
-
-      if (summaryRes.ok) {
-        const json = await summaryRes.json();
-        setSummary({
-          total: Number(json.total || 0),
-          pendentes: Number(json.pendentes || 0),
-          faturado: Number(json.faturado || 0),
-          aguardando_informacoes: Number(json.aguardando_informacoes || 0),
-          cancelado: Number(json.cancelado || 0),
-          revisao: Number(json.revisao || 0),
-          valor_total: Number(json.valor_total || 0),
-        });
-      } else {
-        messageApi.error('Erro ao carregar resumo de compras');
-      }
-
-    } catch {
-      messageApi.error('Erro ao conectar');
-    }
-    setLoading(false);
-  }, [buildParams, buildSummaryParams, messageApi]);
-
-  const fetchIndependentIndicators = useCallback(async () => {
-    try {
-      const response = await fetch('/api/ml/anuncios/alertas');
-      if (response.ok) {
-        setMlAnunciosAlertas(await response.json());
-      } else {
-        messageApi.error('Erro ao carregar alertas de anúncios ML');
-      }
-    } catch {
-      messageApi.error('Erro ao carregar alertas de anúncios ML');
-    }
-  }, [messageApi]);
+  const canConfirmPayment = Boolean(role && hasPermission(role, 'purchases.payment.confirm'));
 
   useEffect(() => {
-    const urlSearch = new URLSearchParams(window.location.search).get('search')?.trim();
-    if (urlSearch) setSearch(urlSearch);
-    setUrlSearchReady(true);
+    const params = new URLSearchParams(window.location.search);
+    setSearch(params.get('search')?.trim() || '');
+    const initialStatus = params.get('status') || '';
+    setStatusFilter(statusOptions.some((option) => option.value === initialStatus) ? initialStatus : '');
+    setSupplierFilter(params.get('fornecedorId')?.trim() || '');
+    setDateRange([params.get('dateFrom'), params.get('dateTo')]);
+    setPage(parsePositiveInteger(params.get('page'), 1));
+    setSort({ sortBy: params.get('sortBy') || 'data_criacao', sortOrder: params.get('sortOrder') === 'asc' ? 'asc' : 'desc' });
+    setFiltersHydrated(true);
   }, []);
 
   useEffect(() => {
-    if (!urlSearchReady) return;
-    fetchFilteredPurchases();
-  }, [fetchFilteredPurchases, urlSearchReady]);
+    fetch('/api/auth/me', { cache: 'no-store' })
+      .then((response) => response.ok ? response.json() : null)
+      .then((profile) => {
+        const cargo = profile?.cargo as VortekRole | undefined;
+        setRole(cargo && VALID_ROLES.includes(cargo) ? cargo : null);
+      })
+      .catch(() => setRole(null));
+  }, []);
+
+  const buildFilterParams = useCallback(() => {
+    const params = new URLSearchParams();
+    if (search.trim()) params.set('search', search.trim());
+    if (statusFilter) params.set('status', statusFilter);
+    if (supplierFilter) params.set('fornecedorId', supplierFilter);
+    if (dateRange[0]) params.set('dateFrom', dateRange[0]);
+    if (dateRange[1]) params.set('dateTo', dateRange[1]);
+    return params;
+  }, [dateRange, search, statusFilter, supplierFilter]);
+
+  const buildListParams = useCallback(() => {
+    const params = buildFilterParams();
+    params.set('page', String(page));
+    params.set('limit', String(PAGE_SIZE));
+    appendRemoteSortParams(params, sort);
+    return params;
+  }, [buildFilterParams, page, sort]);
 
   useEffect(() => {
-    if (!urlSearchReady) return;
-    fetchIndependentIndicators();
-  }, [fetchIndependentIndicators, urlSearchReady]);
+    if (!filtersHydrated) return;
+    const params = buildListParams();
+    if (page === 1) params.delete('page');
+    params.delete('limit');
+    const query = params.toString();
+    window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
+  }, [buildListParams, filtersHydrated, page]);
+
+  const fetchFilteredPurchases = useCallback(async () => {
+    const sequence = ++requestSequence.current;
+    setListLoading(true);
+    setSummaryLoading(true);
+    setListError(null);
+    setSummaryError(null);
+
+    const listRequest = fetch(`/api/compras?${buildListParams().toString()}`, { cache: 'no-store' }).then(async (response) => {
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível carregar as compras.');
+      return payload;
+    });
+    const summaryRequest = fetch(`/api/compras/resumo?${buildFilterParams().toString()}`, { cache: 'no-store' }).then(async (response) => {
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível carregar o resumo.');
+      return payload;
+    });
+
+    const [listResult, summaryResult] = await Promise.allSettled([listRequest, summaryRequest]);
+    if (sequence !== requestSequence.current) return;
+
+    if (listResult.status === 'fulfilled') {
+      const nextPurchases = (listResult.value.data || []) as CompraOperacional[];
+      setCompras(nextPurchases);
+      setTotal(Number(listResult.value.total || 0));
+      setDrawerPurchase((current) => current ? nextPurchases.find((item) => item.id === current.id) || current : null);
+      setLastUpdatedAt(new Date());
+    } else {
+      setListError(listResult.reason instanceof Error ? listResult.reason.message : 'Não foi possível carregar as compras.');
+    }
+
+    if (summaryResult.status === 'fulfilled') {
+      const value = summaryResult.value;
+      setSummary({
+        total: Number(value.total || 0), pendentes: Number(value.pendentes || 0),
+        faturado: Number(value.faturado || 0), aguardando_informacoes: Number(value.aguardando_informacoes || 0),
+        cancelado: Number(value.cancelado || 0), revisao: Number(value.revisao || 0),
+        valor_total: Number(value.valor_total || 0), supplier_payment_total: Number(value.supplier_payment_total || 0),
+        supplier_payment_missing_count: Number(value.supplier_payment_missing_count || 0),
+      });
+    } else {
+      setSummaryError(summaryResult.reason instanceof Error ? summaryResult.reason.message : 'Não foi possível carregar o resumo.');
+    }
+    setListLoading(false);
+    setSummaryLoading(false);
+  }, [buildFilterParams, buildListParams]);
+
+  const fetchIndependentIndicators = useCallback(async () => {
+    setIndependentLoading(true);
+    setIndependentError(null);
+    const [alertsResult, suppliersResult] = await Promise.allSettled([
+      fetch('/api/ml/anuncios/alertas', { cache: 'no-store' }).then(async (response) => {
+        if (!response.ok) throw new Error('Alertas ML indisponíveis');
+        return response.json();
+      }),
+      fetch('/api/fornecedores?limit=100&sortBy=apelido&sortOrder=asc', { cache: 'no-store' }).then(async (response) => {
+        if (!response.ok) throw new Error('Fornecedores indisponíveis');
+        return response.json();
+      }),
+    ]);
+    const errors: string[] = [];
+    if (alertsResult.status === 'fulfilled') setMlAnunciosAlertas(alertsResult.value);
+    else errors.push('alertas ML');
+    if (suppliersResult.status === 'fulfilled') {
+      const options = (suppliersResult.value.data || []).map((supplier: any) => ({
+        value: String(supplier.dslite_id || '').trim(),
+        label: String(supplier.apelido || supplier.nome || supplier.dslite_id || '').trim(),
+      })).filter((option: SupplierOption) => option.value && option.label);
+      setSupplierOptions(options);
+    } else errors.push('lista de fornecedores');
+    setIndependentError(errors.length ? `Não foi possível atualizar: ${errors.join(' e ')}.` : null);
+    setIndependentLoading(false);
+  }, []);
 
   useEffect(() => {
-    setPage(1);
-  }, [search, statusFilter, dateRange]);
+    if (filtersHydrated) void fetchFilteredPurchases();
+  }, [fetchFilteredPurchases, filtersHydrated]);
+
+  useEffect(() => {
+    if (filtersHydrated) void fetchIndependentIndicators();
+  }, [fetchIndependentIndicators, filtersHydrated]);
+
+  const refreshAll = useCallback(async () => {
+    await Promise.all([fetchFilteredPurchases(), fetchIndependentIndicators()]);
+  }, [fetchFilteredPurchases, fetchIndependentIndicators]);
 
   const handleExportPdf = useCallback(async () => {
     setExportingPdf(true);
     try {
-      const params = buildParams();
+      const params = buildListParams();
       params.delete('page');
       params.delete('limit');
-      const response = await fetch(`/api/compras/exportar-pdf?${params.toString()}`, {
-        cache: 'no-store',
-      });
+      const response = await fetch(`/api/compras/exportar-pdf?${params.toString()}`, { cache: 'no-store' });
       if (!response.ok) {
         const payload = await response.json().catch(() => ({}));
         throw new Error(payload?.erro || 'Falha ao gerar PDF das compras.');
       }
-
       const blob = await response.blob();
-      const contentDisposition = response.headers.get('content-disposition') || '';
-      const fileName = contentDisposition.match(/filename="([^"]+)"/i)?.[1] || 'compras.pdf';
+      const disposition = response.headers.get('content-disposition') || '';
+      const fileName = disposition.match(/filename="([^"]+)"/i)?.[1] || 'compras.pdf';
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement('a');
       anchor.href = url;
@@ -235,42 +332,38 @@ export default function ComprasPage() {
       anchor.remove();
       URL.revokeObjectURL(url);
       messageApi.success('PDF das compras exportado.');
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao exportar PDF das compras.');
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Falha ao exportar PDF das compras.');
     } finally {
       setExportingPdf(false);
     }
-  }, [buildParams, messageApi]);
+  }, [buildListParams, messageApi]);
 
-  const openPaymentModal = (compra: Compra) => {
-    setSelectedCompra(compra);
-    setPaymentReference(compra.supplier_payment_reference || '');
-    setPaymentReceiptUrl(compra.supplier_payment_receipt_url || '');
-    setPaymentReceiptFile(null);
-    setPaymentNotes(compra.supplier_payment_notes || '');
-    setPaymentModalOpen(true);
-  };
-
-  const closePaymentModal = () => {
-    if (confirmingPayment) return;
+  const resetPaymentModal = useCallback(() => {
     setPaymentModalOpen(false);
     setSelectedCompra(null);
     setPaymentReference('');
     setPaymentReceiptUrl('');
     setPaymentReceiptFile(null);
     setPaymentNotes('');
-  };
+  }, []);
 
-  const copyToClipboard = async (value: string, successMessage: string) => {
-    try {
-      await navigator.clipboard?.writeText(value);
-      messageApi.success(successMessage);
-    } catch {
-      messageApi.error('Não foi possível copiar automaticamente');
+  const openPaymentModal = useCallback((purchase: CompraOperacional) => {
+    if (!hasPaymentAction(purchase, canConfirmPayment)) {
+      messageApi.warning(purchase.is_homologation_fixture
+        ? 'Ações estão desabilitadas para a amostra protegida.'
+        : 'Seu cargo ou o estado da compra não permite esta operação.');
+      return;
     }
-  };
+    setSelectedCompra(purchase);
+    setPaymentReference(purchase.supplier_payment_reference || '');
+    setPaymentReceiptUrl(purchase.supplier_payment_receipt_url || '');
+    setPaymentReceiptFile(null);
+    setPaymentNotes(purchase.supplier_payment_notes || '');
+    setPaymentModalOpen(true);
+  }, [canConfirmPayment, messageApi]);
 
-  const handleConfirmSupplierPayment = async () => {
+  const handleConfirmSupplierPayment = useCallback(async () => {
     if (!selectedCompra) return;
     if (!paymentReceiptFile && !selectedCompra.supplier_payment_receipt_path) {
       messageApi.warning('Anexe o comprovante do PIX antes de enviar ao fornecedor.');
@@ -283,476 +376,269 @@ export default function ComprasPage() {
       formData.append('supplier_payment_receipt_url', paymentReceiptUrl);
       formData.append('supplier_payment_notes', paymentNotes);
       if (paymentReceiptFile) formData.append('receipt', paymentReceiptFile);
-
-      const res = await fetch(`/api/compras/${selectedCompra.id}/confirmar-pagamento`, {
-        method: 'POST',
-        body: formData,
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(json.error || 'Erro ao confirmar pagamento do fornecedor');
-      }
-      const whatsappDetail = json.whatsapp?.sent
+      const response = await fetch(`/api/compras/${selectedCompra.id}/confirmar-pagamento`, { method: 'POST', body: formData });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.error || 'Erro ao confirmar pagamento do fornecedor');
+      const whatsappDetail = payload.whatsapp?.sent
         ? 'WhatsApp enviado.'
-        : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(json.whatsapp.reason)}` : ''}.`;
+        : `WhatsApp não enviado${payload.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(payload.whatsapp.reason)}` : ''}.`;
       messageApi.success(`Comprovante processado. ${whatsappDetail}`);
-      closePaymentModal();
+      resetPaymentModal();
       await fetchFilteredPurchases();
-    } catch (err: any) {
-      messageApi.error(err.message || 'Erro ao confirmar pagamento do fornecedor');
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Erro ao confirmar pagamento do fornecedor');
     } finally {
       setConfirmingPayment(false);
     }
-  };
+  }, [fetchFilteredPurchases, messageApi, paymentNotes, paymentReceiptFile, paymentReceiptUrl, paymentReference, resetPaymentModal, selectedCompra]);
 
-  const renderSupplierPaymentTag = (record: Compra) => {
-    if (record.supplier_payment_mode === 'balance_account') {
-      return <Tag color="blue">Saldo Hayamax</Tag>;
+  const copyToClipboard = useCallback(async (value: string, successMessage: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      messageApi.success(successMessage);
+    } catch {
+      messageApi.error('Não foi possível copiar automaticamente.');
     }
-    if (record.supplier_payment_mode !== 'prepaid_pix') {
-      return <span style={{ color: '#666' }}>—</span>;
-    }
-    if (record.supplier_payment_status === 'paid') {
-      return <Tag color="green">PIX pago</Tag>;
-    }
-    if (record.supplier_payment_status === 'failed') {
-      return <Tag color="red">PIX falhou</Tag>;
-    }
-    if (record.supplier_payment_status === 'cancelled') {
-      return <Tag color="default">PIX cancelado</Tag>;
-    }
-    return <Tag color="gold">PIX pendente</Tag>;
-  };
+  }, [messageApi]);
 
-  const columns: TableProps<Compra>['columns'] = [
+  const openSale = useCallback((purchase: CompraOperacional) => {
+    const reference = getPurchaseSaleReference(purchase);
+    if (!reference || purchase.is_homologation_fixture) return;
+    window.open(`https://www.mercadolivre.com.br/vendas/${encodeURIComponent(reference)}/detalhe`, '_blank', 'noopener,noreferrer');
+  }, []);
+
+  const trackPurchase = useCallback((purchase: CompraOperacional) => {
+    if (purchase.rastreio) window.open(`https://www.linkcorreios.com.br/?id=${encodeURIComponent(purchase.rastreio)}`, '_blank', 'noopener,noreferrer');
+  }, []);
+
+  const openDanfe = useCallback(async (purchase: CompraOperacional) => {
+    if (!purchase.pedido_vendas_id || purchase.is_homologation_fixture) return;
+    const response = await fetch(`/api/notas-fiscais/${purchase.pedido_vendas_id}/pdf`, { cache: 'no-store' });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload?.url) {
+      messageApi.error(payload?.error || 'Não foi possível localizar a DANFE.');
+      return;
+    }
+    window.open(String(payload.url), '_blank', 'noopener,noreferrer');
+  }, [messageApi]);
+
+  const runAction = useCallback((key: PurchaseActionKey, purchase: CompraOperacional) => {
+    if (key === 'details') setDrawerPurchase(purchase);
+    if (key === 'payment') openPaymentModal(purchase);
+    if (key === 'track') trackPurchase(purchase);
+    if (key === 'sale') openSale(purchase);
+  }, [openPaymentModal, openSale, trackPurchase]);
+
+  const columns: TableProps<CompraOperacional>['columns'] = [
     {
-      title: 'Número', dataIndex: 'dsid', key: 'dsid', width: 100,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('dsid', sort),
-      render: (dsid: string) => (
-        <span style={{ fontFamily: 'monospace', color: '#1677ff' }}>
-          #{String(dsid).padStart(6, '0')}
-        </span>
-      ),
+      title: 'Compra', dataIndex: 'dsid', key: 'dsid', width: 155,
+      sorter: true, sortOrder: getRemoteSortOrder('dsid', sort),
+      render: (_value, purchase) => <div className={styles.purchaseCell}>
+        <button type="button" className={styles.purchaseLink} onClick={() => setDrawerPurchase(purchase)}>DSLite #{purchase.dsid}</button>
+        <span className={styles.secondaryText}>{formatDateTime(purchase.data_criacao)}</span>
+        <span><Tag color={statusColor[purchase.status] || 'default'}>{purchase.status || 'Sem status'}</Tag></span>
+      </div>,
     },
     {
-      title: 'Pedido (vendas)', dataIndex: 'pedido_vendas_numero', key: 'pedido_vendas_numero', width: 140,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('pedido_vendas_numero', sort),
-      render: (numero: number | null) => numero ? (
-        <a
-          href={`https://www.mercadolivre.com.br/vendas/${numero}/detalhe`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontFamily: 'monospace', color: '#1677ff', fontWeight: 600, textDecoration: 'none' }}
-        >
-          #{String(numero).padStart(6, '0')}
-        </a>
-      ) : (
-        <span style={{ color: '#666' }}>—</span>
-      ),
+      title: 'Venda', dataIndex: 'pedido_vendas_numero', key: 'pedido_vendas_numero', width: 190,
+      sorter: true, sortOrder: getRemoteSortOrder('pedido_vendas_numero', sort),
+      render: (_value, purchase) => {
+        const reference = getPurchaseSaleReference(purchase);
+        return <div className={styles.stackedCell}>
+          <span className={styles.primaryText}>{reference ? `${purchase.pedido_ml_pack_id ? 'Pack' : 'Venda'} #${reference}` : 'Venda não vinculada'}</span>
+          <span className={styles.secondaryText}>{purchase.destinatario_nome || 'Destinatário não informado'}</span>
+        </div>;
+      },
     },
     {
-      title: 'Data', dataIndex: 'data_criacao', key: 'data_criacao', width: 160,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('data_criacao', sort),
-      render: (d: string) => d ? new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—',
+      title: 'Fornecedor', dataIndex: 'fornecedor_nome', key: 'fornecedor_nome', width: 165,
+      render: (value: string | null, purchase) => <div className={styles.stackedCell}>
+        <span className={styles.primaryText}>{value || 'Não informado'}</span>
+        <span className={styles.secondaryText}>{purchase.fornecedor_id ? `DSLite ${purchase.fornecedor_id}` : 'Sem identificador'}</span>
+      </div>,
     },
     {
-      title: 'Destinatário', dataIndex: 'destinatario_nome', key: 'destinatario_nome',
-      sorter: true,
-      sortOrder: getRemoteSortOrder('destinatario_nome', sort),
-      render: (nome: string, record: Compra) => (
-        <div>
-          <div style={{ color: '#e0e0e0', fontSize: 13 }}>{nome || '—'}</div>
-          {record.destinatario_documento && (
-            <div style={{ color: '#888', fontSize: 11 }}>{record.destinatario_documento}</div>
-          )}
-        </div>
-      ),
+      title: 'Produto', dataIndex: 'produto_descricao', key: 'produto_descricao', width: 235,
+      sorter: true, sortOrder: getRemoteSortOrder('produto_descricao', sort),
+      render: (value: string | null, purchase) => <div className={styles.stackedCell}>
+        <span className={styles.primaryText}>{value || 'Produto não informado'}</span>
+        <span className={styles.secondaryText}>{purchase.produto_sku ? `SKU ${purchase.produto_sku}` : 'Sem SKU'} · Qtd. {purchase.quantidade || 1}</span>
+      </div>,
     },
     {
-      title: 'Fornecedor', dataIndex: 'fornecedor_nome', key: 'fornecedor_nome', width: 180,
-      render: (fornecedorNome: string | null, record: Compra) => (
-        <div>
-          <div style={{ color: '#e0e0e0', fontSize: 13 }}>{fornecedorNome || '—'}</div>
-          {record.fornecedor_id && (
-            <div style={{ color: '#888', fontSize: 11, fontFamily: 'monospace' }}>
-              fornecedor {record.fornecedor_id}
-            </div>
-          )}
-        </div>
-      ),
+      title: 'Valores', dataIndex: 'supplier_payment_amount', key: 'valor_total', width: 145,
+      sorter: true, sortOrder: getRemoteSortOrder('valor_total', sort),
+      render: (_value, purchase) => <div className={styles.valueCell}>
+        {purchase.supplier_payment_amount == null
+          ? <span className={styles.missingAmount}>A pagar: a definir</span>
+          : <span className={styles.supplierAmount}>{formatCurrency(purchase.supplier_payment_amount)}</span>}
+        <span className={styles.secondaryText}>Venda {formatCurrency(purchase.valor_total || 0)}</span>
+        {purchase.valor_frete > 0 && <span className={styles.secondaryText}>Frete {formatCurrency(purchase.valor_frete)}</span>}
+      </div>,
     },
     {
-      title: 'Produto', dataIndex: 'produto_descricao', key: 'produto_descricao',
-      sorter: true,
-      sortOrder: getRemoteSortOrder('produto_descricao', sort),
-      render: (desc: string, record: Compra) => (
-        <div>
-          <div style={{ color: '#e0e0e0', fontSize: 13 }}>{desc || '—'}</div>
-          {record.produto_sku && (
-            <div style={{ color: '#888', fontSize: 11, fontFamily: 'monospace' }}>{record.produto_sku}</div>
-          )}
-        </div>
-      ),
+      title: 'Pagamento', dataIndex: 'supplier_payment_status', key: 'supplier_payment_status', width: 145,
+      render: (_value, purchase) => <div className={styles.stackedCell}>
+        <span>{renderPaymentTag(purchase)}</span>
+        {purchase.bkr1_pix_deferred && <span className={styles.secondaryText}>Após etiqueta real do ML</span>}
+        {(purchase.supplier_payment_receipt_path || purchase.supplier_payment_receipt_url) && <span className={styles.secondaryText}>Comprovante anexado</span>}
+      </div>,
     },
     {
-      title: 'Qtd', dataIndex: 'quantidade', key: 'quantidade', width: 60,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('quantidade', sort),
-      render: (v: number) => <span style={{ color: '#e0e0e0' }}>{v || 1}</span>,
+      title: 'Fiscal e envio', dataIndex: 'nf_numero', key: 'nf_numero', width: 145,
+      sorter: true, sortOrder: getRemoteSortOrder('nf_numero', sort),
+      render: (_value, purchase) => <div className={styles.stackedCell}>
+        <span>{purchase.nf_numero ? <Tag color="green">NF {purchase.nf_numero}</Tag> : <Tag color="gold">NF pendente</Tag>}</span>
+        <span className={styles.secondaryText}>{purchase.rastreio ? `Rastreio ${purchase.rastreio}` : formatStatus(purchase.status_dslite)}</span>
+      </div>,
     },
     {
-      title: 'Total', dataIndex: 'valor_total', key: 'valor_total', width: 110,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('valor_total', sort),
-      render: (v: number) => formatCurrency(v || 0),
-    },
-    {
-      title: 'Pagto. Fornecedor', dataIndex: 'supplier_payment_status', key: 'supplier_payment_status', width: 170,
-      render: (_: string | null, record: Compra) => (
-        <div>
-          {renderSupplierPaymentTag(record)}
-          {(record.supplier_payment_mode === 'prepaid_pix' || record.supplier_payment_mode === 'balance_account') && (
-            <div style={{ color: '#888', fontSize: 11 }}>
-              {record.supplier_payment_amount ? formatCurrency(record.supplier_payment_amount) : 'Valor não informado'}
-            </div>
-          )}
-          {record.bkr1_pix_deferred ? (
-            <Tag color="blue" style={{ marginTop: 6 }}>Aguardando etiqueta ML</Tag>
-          ) : null}
-          {record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending' && !record.bkr1_pix_deferred && (
-            <Button
-              size="small"
-              type="primary"
-              ghost
-              style={{ marginTop: 6 }}
-              onClick={() => openPaymentModal(record)}
-            >
-              Confirmar PIX
-            </Button>
-          )}
-          {record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'paid' && (
-            <Button
-              size="small"
-              type="primary"
-              ghost
-              style={{ marginTop: 6 }}
-              onClick={() => openPaymentModal(record)}
-            >
-              {record.supplier_payment_receipt_path ? 'Reenviar comprovante' : 'Anexar comprovante'}
-            </Button>
-          )}
-        </div>
-      ),
-    },
-    {
-      title: 'Status', dataIndex: 'status', key: 'status', width: 140,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('status', sort),
-      render: (status: string) => (
-        <Tag color={statusColor[status] || 'default'} style={{ fontSize: 12 }}>
-          {status || '—'}
-        </Tag>
-      ),
-    },
-    {
-      title: 'NF', dataIndex: 'nf_numero', key: 'nf_numero', width: 100,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('nf_numero', sort),
-      render: (nf: string | null) => nf ? (
-        <Tag color="green" style={{ fontFamily: 'monospace', fontSize: 12 }}>{nf}</Tag>
-      ) : (
-        <span style={{ color: '#666' }}>—</span>
-      ),
-    },
-    {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => {
-        const items = [
-          { key: 'view', label: 'Ver Detalhes' },
-          { key: 'track', label: 'Rastrear' },
-          ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status !== 'cancelled' && !record.bkr1_pix_deferred
-            ? [{
-              key: 'confirm_supplier_payment',
-              label: record.supplier_payment_status === 'paid'
-                ? (record.supplier_payment_receipt_path ? 'Reenviar comprovante' : 'Anexar comprovante')
-                : 'Confirmar pagamento do fornecedor',
-            }]
-            : []),
-        ];
-        return (
-          <Dropdown
-            menu={{ items, onClick: ({ key }) => {
-              if (key === 'track' && record.rastreio) {
-                window.open(`https://www.linkcorreios.com.br/?id=${record.rastreio}`, '_blank');
-              }
-              if (key === 'confirm_supplier_payment') {
-                openPaymentModal(record);
-              }
-            }}}
+      title: 'Próxima ação', key: 'actions', width: 185, fixed: 'right',
+      render: (_value, purchase) => {
+        const primary = primaryAction(purchase, canConfirmPayment);
+        const secondary = [
+          primary.key !== 'details' ? { key: 'details', label: 'Ver detalhes', icon: <EyeOutlined /> } : null,
+          primary.key !== 'track' && purchase.rastreio ? { key: 'track', label: 'Rastrear', icon: <TruckOutlined /> } : null,
+          primary.key !== 'sale' && getPurchaseSaleReference(purchase) && !purchase.is_homologation_fixture ? { key: 'sale', label: 'Abrir venda no ML' } : null,
+          primary.key !== 'payment' && hasPaymentAction(purchase, canConfirmPayment) ? { key: 'payment', label: paymentActionLabel(purchase) } : null,
+        ].filter(Boolean) as Array<{ key: PurchaseActionKey; label: string; icon?: React.ReactNode }>;
+        return <Space.Compact>
+          <Button
+            className={styles.primaryAction}
+            type={primary.key === 'payment' ? 'primary' : 'default'}
+            size="small"
+            icon={primary.key === 'details' ? <EyeOutlined /> : primary.key === 'track' ? <TruckOutlined /> : undefined}
+            onClick={() => runAction(primary.key, purchase)}
+          >{primary.label}</Button>
+          {secondary.length > 0 && <Dropdown
             trigger={['click']}
-          >
-            <Button type="text" size="small" icon={<EllipsisOutlined />} />
-          </Dropdown>
-        );
+            menu={{ items: secondary, onClick: ({ key }) => runAction(key as PurchaseActionKey, purchase) }}
+          ><Button size="small" aria-label={`Mais ações da compra ${purchase.dsid}`} icon={<EllipsisOutlined />} /></Dropdown>}
+        </Space.Compact>;
       },
     },
   ];
 
-  const handleTableChange: TableProps<Compra>['onChange'] = (pagination, _filters, sorter) => {
+  const handleTableChange: TableProps<CompraOperacional>['onChange'] = (pagination, _filters, sorter) => {
     const nextSort = resolveRemoteSortState(sorter, { sortBy: 'data_criacao', sortOrder: 'desc' });
-    const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
+    const changed = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
     setSort(nextSort);
-    setPage(sortChanged ? 1 : (pagination.current || 1));
+    setPage(changed ? 1 : pagination.current || 1);
   };
 
-  return (
-    <div>
-      {contextHolder}
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Compras DSLite</Title>
+  const supplierLabel = supplierOptions.find((option) => option.value === supplierFilter)?.label || supplierFilter;
+  const activeFilters = useMemo(() => [
+    search ? { key: 'search', label: `Busca: ${search}`, clear: () => { setSearch(''); setPage(1); } } : null,
+    statusFilter ? { key: 'status', label: `Status: ${statusFilter}`, clear: () => { setStatusFilter(''); setPage(1); } } : null,
+    supplierFilter ? { key: 'supplier', label: `Fornecedor: ${supplierLabel}`, clear: () => { setSupplierFilter(''); setPage(1); } } : null,
+    dateRange[0] || dateRange[1] ? { key: 'date', label: `Período: ${dateRange[0] || 'início'} — ${dateRange[1] || 'hoje'}`, clear: () => { setDateRange([null, null]); setPage(1); } } : null,
+  ].filter(Boolean) as Array<{ key: string; label: string; clear: () => void }>, [dateRange, search, statusFilter, supplierFilter, supplierLabel]);
 
-      {mlAnunciosAlertas && (mlAnunciosAlertas.activeZeroStock.count > 0 || mlAnunciosAlertas.mlPublishAuthFailures.count > 0) && (
-        <Alert
-          type="warning"
-          showIcon
-          style={{ marginBottom: 16 }}
-          message="Atenção em anúncios ML"
-          description={[
-            mlAnunciosAlertas.activeZeroStock.count > 0
-              ? `${mlAnunciosAlertas.activeZeroStock.count} anúncio(s) ativo(s) com estoque local zero.`
-              : null,
-            mlAnunciosAlertas.mlPublishAuthFailures.count > 0
-              ? `${mlAnunciosAlertas.mlPublishAuthFailures.count} publicação(ões) ML com falha de autorização.`
-              : null,
-          ].filter(Boolean).join(' ')}
-        />
-      )}
+  const datePickerValue: [Dayjs | null, Dayjs | null] = [dateRange[0] ? dayjs(dateRange[0]) : null, dateRange[1] ? dayjs(dateRange[1]) : null];
+  const hasHomologationFixtures = compras.some((purchase) => purchase.is_homologation_fixture);
+  const alertCount = Number(mlAnunciosAlertas?.activeZeroStock.count || 0) + Number(mlAnunciosAlertas?.mlPublishAuthFailures.count || 0);
+  const drawerActions = drawerPurchase && hasPaymentAction(drawerPurchase, canConfirmPayment)
+    ? <Button type="primary" size="small" onClick={() => openPaymentModal(drawerPurchase)}>{paymentActionLabel(drawerPurchase)}</Button>
+    : null;
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[16, 16]}>
-          <Col xs={12} md={8} lg={6} xl={3}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Total</span>}
-              value={summary.total}
-              valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={6} xl={3}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Pendentes</span>}
-              value={summary.pendentes}
-              valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={6} xl={3}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Faturado</span>}
-              value={summary.faturado}
-              valueStyle={{ color: '#722ed1', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={6} xl={3}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Aguard. Informações</span>}
-              value={summary.aguardando_informacoes}
-              valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={6} xl={3}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Cancelado</span>}
-              value={summary.cancelado}
-              valueStyle={{ color: '#8c8c8c', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={6} xl={3}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Revisão</span>}
-              value={summary.revisao}
-              valueStyle={{ color: '#eb2f96', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={6} xl={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Valor Total</span>}
-              value={formatCurrency(summary.valor_total)}
-              valueStyle={{ color: '#73d13d', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-        </Row>
+  return <div className={styles.page}>
+    {contextHolder}
+    <header className={styles.header}>
+      <div>
+        <Title level={2} className={styles.title}>Compras</Title>
+        <Text type="secondary">Acompanhe a compra DSLite, o fornecedor, o pagamento e a nota fiscal ligados a cada venda.</Text>
+        <Text type="secondary" className={styles.updatedAt}>{lastUpdatedAt ? `Atualizado às ${lastUpdatedAt.toLocaleTimeString('pt-BR')}` : 'Aguardando primeira atualização'}</Text>
       </div>
+      <Space wrap>
+        <Button icon={<FilePdfOutlined />} loading={exportingPdf} onClick={() => void handleExportPdf()}>Exportar PDF</Button>
+        <Button type="primary" icon={<ReloadOutlined />} loading={listLoading || summaryLoading || independentLoading} onClick={() => void refreshAll()}>Atualizar</Button>
+      </Space>
+    </header>
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
-            <Input
-              placeholder="Buscar por número, cliente ou produto"
-              prefix={<SearchOutlined />}
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{ width: 280 }}
-              allowClear
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Status"
-              value={statusFilter || undefined}
-              onChange={v => setStatusFilter(v)}
-              options={statusOptions}
-              style={{ width: 180 }}
-              allowClear
-              onClear={() => setStatusFilter('')}
-            />
-          </Col>
-          <Col>
-            <RangePicker
-              onChange={(dates) => setDateRange([
-                dates?.[0]?.format('YYYY-MM-DD') || null,
-                dates?.[1]?.format('YYYY-MM-DD') || null,
-              ])}
-              format="DD/MM/YYYY"
-              style={{ width: 240 }}
-            />
-          </Col>
-          <Col>
-            <Button
-              icon={<FilePdfOutlined />}
-              onClick={() => void handleExportPdf()}
-              loading={exportingPdf}
-            >
-              Exportar PDF
-            </Button>
-          </Col>
-        </Row>
-      </div>
+    {hasHomologationFixtures && <Alert type="info" showIcon message="Amostra real protegida para homologação" description="Os dados servem para avaliar o layout. Pagamentos, documentos e ações externas estão desabilitados." />}
+    {alertCount > 0 && mlAnunciosAlertas && <Alert type="warning" showIcon message="Atenção em anúncios do Mercado Livre" description={[
+      mlAnunciosAlertas.activeZeroStock.count > 0 ? `${mlAnunciosAlertas.activeZeroStock.count} anúncio(s) ativo(s) com estoque local zero.` : null,
+      mlAnunciosAlertas.mlPublishAuthFailures.count > 0 ? `${mlAnunciosAlertas.mlPublishAuthFailures.count} publicação(ões) com falha de autorização.` : null,
+    ].filter(Boolean).join(' ')} />}
+    {independentError && <Alert type="warning" showIcon message="Indicadores independentes parcialmente indisponíveis" description={independentError} />}
+    {summaryError && <Alert type="warning" showIcon message="Resumo parcialmente indisponível" description={summaryError} action={<Button size="small" onClick={() => void fetchFilteredPurchases()}>Tentar novamente</Button>} />}
 
-      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-          <ResizableTable<Compra>
-            storageKey="compras"
-            dataSource={compras}
-            columns={columns}
-            rowKey="id"
-            pagination={{
-              current: page,
-              pageSize: 50,
-              total,
-              showSizeChanger: false,
-              showTotal: (t) => `${t} compras`,
-            }}
-            onChange={handleTableChange}
-            scroll={{ x: 910 }}
-            style={{ background: 'transparent' }}
-            size="small"
-          />
+    <section className={styles.summaryBand} aria-label="Resumo das compras">
+      {[
+        ['Total', summary.total, 'Compras nos filtros atuais'],
+        ['Pendentes', summary.pendentes, 'Ainda exigem acompanhamento'],
+        ['Em revisão', summary.revisao, 'Precisam de conferência'],
+        ['Faturadas', summary.faturado, 'Nota registrada pelo fornecedor'],
+        ['Valor comprometido', formatCurrency(summary.supplier_payment_total), summary.supplier_payment_missing_count > 0 ? `${summary.supplier_payment_missing_count} compra(s) ainda sem valor devido` : 'Valor conhecido devido aos fornecedores'],
+      ].map(([label, value, hint]) => <div className={styles.summaryItem} key={String(label)} aria-busy={summaryLoading}>
+        <span className={styles.summaryLabel}>{label}</span>
+        <strong className={styles.summaryValue}>{summaryLoading && !lastUpdatedAt ? '—' : value}</strong>
+        <span className={styles.summaryHint}>{hint}</span>
+      </div>)}
+    </section>
+
+    <Card size="small" className={styles.filterCard}>
+      <Row gutter={[8, 8]} align="middle" className={styles.filterRow}>
+        <Col flex="1 1 320px"><Input aria-label="Buscar compras" placeholder="Compra DSLite, cliente, fornecedor, produto ou SKU" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => { setSearch(event.target.value); setPage(1); }} /></Col>
+        <Col flex="0 1 210px"><Select placeholder="Status" value={statusFilter || undefined} options={statusOptions} allowClear style={{ width: '100%' }} onChange={(value) => { setStatusFilter(value || ''); setPage(1); }} /></Col>
+        <Col flex="0 1 230px"><Select showSearch optionFilterProp="label" placeholder="Fornecedor" value={supplierFilter || undefined} options={supplierOptions} allowClear loading={independentLoading} style={{ width: '100%' }} onChange={(value) => { setSupplierFilter(value || ''); setPage(1); }} /></Col>
+        <Col flex="0 1 260px"><RangePicker value={datePickerValue} format="DD/MM/YYYY" style={{ width: '100%' }} onChange={(dates) => { setDateRange([dates?.[0]?.format('YYYY-MM-DD') || null, dates?.[1]?.format('YYYY-MM-DD') || null]); setPage(1); }} /></Col>
+      </Row>
+      {activeFilters.length > 0 && <Space wrap className={styles.activeFilters}>
+        <Text type="secondary">Filtros ativos:</Text>
+        {activeFilters.map((filter) => <Tag key={filter.key} closable onClose={filter.clear}>{filter.label}</Tag>)}
+        <Button type="link" size="small" onClick={() => { setSearch(''); setStatusFilter(''); setSupplierFilter(''); setDateRange([null, null]); setPage(1); }}>Limpar filtros</Button>
+      </Space>}
+    </Card>
+
+    {listError && <Alert type="error" showIcon message="Falha ao atualizar as compras" description={`${listError}${compras.length > 0 ? ' Os dados anteriores foram preservados.' : ''}`} action={<Button size="small" onClick={() => void fetchFilteredPurchases()}>Tentar novamente</Button>} />}
+    <Card size="small" className={styles.tableCard}>
+      {!listLoading && !listError && compras.length === 0 ? <Empty description="Nenhuma compra encontrada com os filtros atuais." image={Empty.PRESENTED_IMAGE_SIMPLE} /> : <ResizableTable<CompraOperacional>
+        storageKey="compras-bentevi-v1" dataSource={compras} columns={columns} rowKey="id" loading={listLoading}
+        pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} compras` }}
+        onChange={handleTableChange} scroll={{ x: 1365 }} size="small"
+      />}
+    </Card>
+
+    <CompraDetailsDrawer purchase={drawerPurchase} open={Boolean(drawerPurchase)} onClose={() => setDrawerPurchase(null)} actions={drawerActions} onTrack={trackPurchase} onOpenSale={openSale} onOpenDanfe={(purchase) => void openDanfe(purchase)} />
+
+    <Modal
+      title={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante ao fornecedor' : 'Confirmar pagamento do fornecedor'}
+      open={paymentModalOpen} closable={!confirmingPayment} maskClosable={!confirmingPayment}
+      onCancel={() => { if (!confirmingPayment) resetPaymentModal(); }} onOk={() => void handleConfirmSupplierPayment()}
+      okText={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante' : 'Confirmar pagamento'} cancelText="Cancelar"
+      cancelButtonProps={{ disabled: confirmingPayment }} confirmLoading={confirmingPayment}
+    >
+      <Space direction="vertical" size={12} style={{ width: '100%' }}>
+        <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Compra</Text><Text strong>{selectedCompra ? `DSLite #${selectedCompra.dsid}` : '—'}</Text></div>
+        <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Fornecedor</Text><Text>{selectedCompra?.fornecedor_nome || '—'}</Text></div>
+        <div>
+          <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Valor devido ao fornecedor</Text>
+          <Space.Compact style={{ width: '100%' }}>
+            <Input readOnly value={selectedCompra?.supplier_payment_amount == null ? 'A definir' : formatCurrency(selectedCompra.supplier_payment_amount)} />
+            {selectedCompra?.supplier_payment_amount != null && <Button onClick={() => void copyToClipboard(String(selectedCompra.supplier_payment_amount), 'Valor do PIX copiado')}>Copiar</Button>}
+          </Space.Compact>
         </div>
-      </Spin>
-
-      <Modal
-        title={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante ao fornecedor' : 'Confirmar pagamento do fornecedor'}
-        open={paymentModalOpen}
-        onCancel={closePaymentModal}
-        onOk={() => void handleConfirmSupplierPayment()}
-        okText={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante' : 'Confirmar pagamento'}
-        cancelText="Cancelar"
-        confirmLoading={confirmingPayment}
-      >
-        <Space direction="vertical" size={12} style={{ width: '100%' }}>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Compra</div>
-            <div style={{ color: '#e0e0e0' }}>
-              {selectedCompra ? `#${String(selectedCompra.dsid).padStart(6, '0')}` : '—'}
-            </div>
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Fornecedor</div>
-            <div style={{ color: '#e0e0e0' }}>{selectedCompra?.fornecedor_nome || '—'}</div>
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Valor esperado</div>
-            <Space.Compact style={{ width: '100%' }}>
-              <Input
-                readOnly
-                value={selectedCompra?.supplier_payment_amount ? formatCurrency(selectedCompra.supplier_payment_amount) : '—'}
-              />
-              {selectedCompra?.supplier_payment_amount ? (
-                <Button
-                  onClick={() => void copyToClipboard(String(selectedCompra.supplier_payment_amount), 'Valor do PIX copiado')}
-                >
-                  Copiar
-                </Button>
-              ) : null}
-            </Space.Compact>
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Chave PIX do fornecedor</div>
-            <Space.Compact style={{ width: '100%' }}>
-              <Input
-                readOnly
-                value={selectedCompra?.supplier_pix_key || 'Chave PIX não cadastrada'}
-              />
-              {selectedCompra?.supplier_pix_key ? (
-                <Button
-                  onClick={() => void copyToClipboard(String(selectedCompra.supplier_pix_key), 'Chave PIX copiada')}
-                >
-                  Copiar
-                </Button>
-              ) : null}
-            </Space.Compact>
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Referência do pagamento</div>
-            <Input
-              value={paymentReference}
-              onChange={(e) => setPaymentReference(e.target.value)}
-              placeholder="Ex.: PIX 123456 / ID da transação"
-            />
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Comprovante do PIX</div>
-            <Upload
-              maxCount={1}
-              fileList={paymentReceiptFile ? [{
-                uid: 'supplier-payment-receipt',
-                name: paymentReceiptFile.name,
-                status: 'done',
-              }] as any : []}
-              accept="application/pdf,image/jpeg,image/png,image/webp"
-              beforeUpload={(file) => {
-                if (file.size > 10 * 1024 * 1024) {
-                  messageApi.error('Comprovante maior que 10MB.');
-                  return Upload.LIST_IGNORE;
-                }
-                setPaymentReceiptFile(file as File);
-                return false;
-              }}
-              onRemove={() => {
-                setPaymentReceiptFile(null);
-              }}
-            >
-              <Button icon={<UploadOutlined />}>Selecionar comprovante</Button>
-            </Upload>
-            {(selectedCompra?.supplier_payment_receipt_path || selectedCompra?.supplier_payment_receipt_url) && !paymentReceiptFile ? (
-              <Text style={{ color: '#8c8c8c', fontSize: 12 }}>
-                Comprovante já anexado. Envie outro arquivo apenas se quiser substituir.
-              </Text>
-            ) : null}
-          </div>
-          <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Observações</div>
-            <Input.TextArea
-              rows={3}
-              value={paymentNotes}
-              onChange={(e) => setPaymentNotes(e.target.value)}
-              placeholder="Observações internas do pagamento"
-            />
-          </div>
-        </Space>
-      </Modal>
-
-    </div>
-  );
+        <div>
+          <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Chave PIX do fornecedor</Text>
+          <Space.Compact style={{ width: '100%' }}>
+            <Input readOnly value={selectedCompra?.supplier_pix_key || 'Chave PIX não cadastrada'} />
+            {selectedCompra?.supplier_pix_key && <Button onClick={() => void copyToClipboard(selectedCompra.supplier_pix_key || '', 'Chave PIX copiada')}>Copiar</Button>}
+          </Space.Compact>
+        </div>
+        <div><Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Referência do pagamento</Text><Input value={paymentReference} onChange={(event) => setPaymentReference(event.target.value)} placeholder="Ex.: PIX 123456 / ID da transação" /></div>
+        <div>
+          <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Comprovante do PIX</Text>
+          <Upload
+            maxCount={1} fileList={paymentReceiptFile ? [{ uid: 'supplier-payment-receipt', name: paymentReceiptFile.name, status: 'done' }] as any : []}
+            accept="application/pdf,image/jpeg,image/png,image/webp"
+            beforeUpload={(file) => { if (file.size > 10 * 1024 * 1024) { messageApi.error('Comprovante maior que 10MB.'); return Upload.LIST_IGNORE; } setPaymentReceiptFile(file as File); return false; }}
+            onRemove={() => { setPaymentReceiptFile(null); }}
+          ><Button icon={<UploadOutlined />}>Selecionar comprovante</Button></Upload>
+          {(selectedCompra?.supplier_payment_receipt_path || selectedCompra?.supplier_payment_receipt_url) && !paymentReceiptFile && <Text type="secondary" style={{ display: 'block', marginTop: 6, fontSize: 12 }}>Comprovante já anexado. Selecione outro somente para substituir.</Text>}
+        </div>
+        <div><Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Observações</Text><Input.TextArea rows={3} value={paymentNotes} onChange={(event) => setPaymentNotes(event.target.value)} placeholder="Observações internas do pagamento" /></div>
+      </Space>
+    </Modal>
+  </div>;
 }

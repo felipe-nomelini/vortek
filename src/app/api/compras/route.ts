@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
+import { isHomologationFixtureId, isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 
@@ -98,6 +99,7 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '50', 10);
     const status = searchParams.get('status') || '';
     const search = searchParams.get('search') || '';
+    const fornecedorId = searchParams.get('fornecedorId') || '';
     const dateFrom = searchParams.get('dateFrom') || '';
     const dateTo = searchParams.get('dateTo') || '';
     const { sortBy, sortOrder } = parseSort(searchParams);
@@ -111,7 +113,8 @@ export async function GET(request: Request) {
 
     function applyFilters(query: any) {
       if (status) query = query.eq('status', status);
-      if (search) query = query.or(`destinatario_nome.ilike.%${search}%,produto_descricao.ilike.%${search}%,dsid.ilike.%${search}%`);
+      if (fornecedorId) query = query.eq('fornecedor_id', fornecedorId);
+      if (search) query = query.or(`destinatario_nome.ilike.%${search}%,fornecedor_nome.ilike.%${search}%,produto_descricao.ilike.%${search}%,produto_sku.ilike.%${search}%,dsid.ilike.%${search}%`);
       if (startDateIso) query = query.gte('data_criacao', startDateIso);
       if (endDateIso) query = query.lte('data_criacao', endDateIso);
       return query;
@@ -144,7 +147,7 @@ export async function GET(request: Request) {
         const chunk = dsids.slice(index, index + 500);
         const { data, error } = await client
           .from('pedidos')
-          .select('dslite_id,numero,ml_fiscal_release_at,dslite_label_source')
+          .select('id,dslite_id,numero,ml_order_id,ml_pack_id,ml_fiscal_release_at,dslite_label_source,snapshot_source,nota_fiscal_emitida,nfe_status')
           .in('dslite_id', chunk);
 
         if (error) {
@@ -197,9 +200,15 @@ export async function GET(request: Request) {
       );
       return {
         ...item,
+        pedido_vendas_id: pedido?.id ?? null,
         pedido_vendas_numero: pedido?.numero ?? null,
+        pedido_ml_order_id: pedido?.ml_order_id ?? null,
+        pedido_ml_pack_id: pedido?.ml_pack_id ?? null,
+        pedido_nfe_status: pedido?.nfe_status ?? null,
+        pedido_nota_fiscal_emitida: Boolean(pedido?.nota_fiscal_emitida),
         supplier_pix_key: fornecedorByDsliteId.get(String(item.fornecedor_id || ''))?.supplier_pix_key || null,
         bkr1_pix_deferred: bkr1PixDeferred,
+        is_homologation_fixture: isHomologationFixtureId(item.id) || isHomologationFixtureSource(pedido?.snapshot_source),
       };
     });
 

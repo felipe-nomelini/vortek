@@ -22,44 +22,33 @@ const filteredLoader = section(
 );
 const independentLoader = section(
   'const fetchIndependentIndicators',
-  'useEffect(() => {\n    const urlSearch',
+  'useEffect(() => {\n    if (filtersHydrated) void fetchFilteredPurchases()',
 );
 const loadingEffects = section(
-  'useEffect(() => {\n    if (!urlSearchReady)',
-  'useEffect(() => {\n    setPage(1)',
+  'useEffect(() => {\n    if (filtersHydrated) void fetchFilteredPurchases()',
+  'const refreshAll',
 );
 const paymentHandler = section(
   'const handleConfirmSupplierPayment',
-  'const renderSupplierPaymentTag',
+  'const copyToClipboard',
 );
 
 test('separa compras filtradas dos indicadores independentes', () => {
-  assert.match(filteredLoader, /fetch\(`\/api\/compras\?\$\{buildParams\(\)\}`\)/);
-  assert.match(filteredLoader, /fetch\(`\/api\/compras\/resumo\?\$\{buildSummaryParams\(\)\}`\)/);
+  assert.match(filteredLoader, /fetch\(`\/api\/compras\?\$\{buildListParams\(\)\.toString\(\)\}`/);
+  assert.match(filteredLoader, /fetch\(`\/api\/compras\/resumo\?\$\{buildFilterParams\(\)\.toString\(\)\}`/);
   assert.doesNotMatch(filteredLoader, /\/api\/ml\/anuncios\/alertas/);
 
-  assert.match(independentLoader, /fetch\('\/api\/ml\/anuncios\/alertas'\)/);
-  assert.doesNotMatch(independentLoader, /buildParams|buildSummaryParams|\/api\/compras\?/);
+  assert.match(independentLoader, /fetch\('\/api\/ml\/anuncios\/alertas'/);
+  assert.match(independentLoader, /fetch\('\/api\/fornecedores\?/);
+  assert.doesNotMatch(independentLoader, /buildListParams|buildFilterParams|\/api\/compras\?/);
 });
 
 test('filtros não fazem o efeito independente depender do carregamento filtrado', () => {
-  assert.equal(
-    loadingEffects.match(/fetchFilteredPurchases\(\)/g)?.length,
-    1,
-  );
-  assert.equal(
-    loadingEffects.match(/fetchIndependentIndicators\(\)/g)?.length,
-    1,
-  );
-  assert.match(
-    loadingEffects,
-    /\[fetchFilteredPurchases, urlSearchReady\]/,
-  );
-  assert.match(
-    loadingEffects,
-    /\[fetchIndependentIndicators, urlSearchReady\]/,
-  );
-  assert.doesNotMatch(independentLoader, /search|statusFilter|dateRange|page|sort/);
+  assert.equal(loadingEffects.match(/fetchFilteredPurchases\(\)/g)?.length, 1);
+  assert.equal(loadingEffects.match(/fetchIndependentIndicators\(\)/g)?.length, 1);
+  assert.match(loadingEffects, /\[fetchFilteredPurchases, filtersHydrated\]/);
+  assert.match(loadingEffects, /\[fetchIndependentIndicators, filtersHydrated\]/);
+  assert.doesNotMatch(independentLoader, /search\.trim|statusFilter|dateRange|buildListParams|buildFilterParams/);
 });
 
 test('confirmação de pagamento atualiza somente os dados de compras', () => {

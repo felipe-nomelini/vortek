@@ -30,6 +30,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status') || '';
     const search = searchParams.get('search') || '';
+    const fornecedorId = searchParams.get('fornecedorId') || '';
     const dateFrom = searchParams.get('dateFrom') || '';
     const dateTo = searchParams.get('dateTo') || '';
 
@@ -39,10 +40,11 @@ export async function GET(request: Request) {
     const client = createServiceClient();
     let query = client
       .from('compras')
-      .select('status, valor_total, valor_frete');
+      .select('status, valor_total, valor_frete, supplier_payment_amount');
 
     if (status) query = query.eq('status', status);
-    if (search) query = query.or(`destinatario_nome.ilike.%${search}%,produto_descricao.ilike.%${search}%,dsid.ilike.%${search}%`);
+    if (fornecedorId) query = query.eq('fornecedor_id', fornecedorId);
+    if (search) query = query.or(`destinatario_nome.ilike.%${search}%,fornecedor_nome.ilike.%${search}%,produto_descricao.ilike.%${search}%,produto_sku.ilike.%${search}%,dsid.ilike.%${search}%`);
     if (startDateIso) query = query.gte('data_criacao', startDateIso);
     if (endDateIso) query = query.lte('data_criacao', endDateIso);
 
@@ -60,6 +62,8 @@ export async function GET(request: Request) {
     let cancelado = 0;
     let revisao = 0;
     let valorTotal = 0;
+    let supplierPaymentTotal = 0;
+    let supplierPaymentMissingCount = 0;
 
     for (const row of rows) {
       const rowStatus = String(row.status || '');
@@ -71,6 +75,11 @@ export async function GET(request: Request) {
       if (normalizedStatus === 'revisao') revisao++;
       if (rowStatus === 'Cancelado') continue;
       valorTotal += Number(row.valor_total || 0);
+      if (row.supplier_payment_amount == null) {
+        supplierPaymentMissingCount++;
+      } else {
+        supplierPaymentTotal += Number(row.supplier_payment_amount || 0);
+      }
     }
 
     return NextResponse.json({
@@ -81,6 +90,8 @@ export async function GET(request: Request) {
       cancelado,
       revisao,
       valor_total: valorTotal,
+      supplier_payment_total: supplierPaymentTotal,
+      supplier_payment_missing_count: supplierPaymentMissingCount,
     });
   } catch (err: any) {
     console.error('[api/compras/resumo] Erro geral:', err);

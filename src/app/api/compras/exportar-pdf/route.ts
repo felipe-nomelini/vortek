@@ -238,7 +238,7 @@ export async function GET(request: Request) {
   try {
     const sourceUrl = new URL(request.url);
     const listUrl = new URL('/api/compras', request.url);
-    for (const key of ['search', 'status', 'dateFrom', 'dateTo', 'sortBy', 'sortOrder']) {
+    for (const key of ['search', 'status', 'fornecedorId', 'dateFrom', 'dateTo', 'sortBy', 'sortOrder']) {
       const value = sourceUrl.searchParams.get(key);
       if (value) listUrl.searchParams.set(key, value);
     }
@@ -258,6 +258,7 @@ export async function GET(request: Request) {
     const activeFilters = [
       sourceUrl.searchParams.get('search') ? `Busca: ${sourceUrl.searchParams.get('search')}` : null,
       sourceUrl.searchParams.get('status') ? `Status: ${sourceUrl.searchParams.get('status')}` : null,
+      sourceUrl.searchParams.get('fornecedorId') ? `Fornecedor: ${sourceUrl.searchParams.get('fornecedorId')}` : null,
       sourceUrl.searchParams.get('dateFrom') ? `Data inicial: ${sourceUrl.searchParams.get('dateFrom')}` : null,
       sourceUrl.searchParams.get('dateTo') ? `Data final: ${sourceUrl.searchParams.get('dateTo')}` : null,
     ].filter(Boolean);
