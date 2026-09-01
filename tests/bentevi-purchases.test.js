@@ -85,13 +85,51 @@ test('deixa explícito que registrar PIX não transfere dinheiro', () => {
   assert.doesNotMatch(page, /Confirmar pagamento do fornecedor/);
 });
 
-test('exporta as identidades e valores com semântica explícita', () => {
-  for (const field of ['compra_dslite', 'pack_ml', 'venda_ml', 'sku_bentevi', 'sku_fornecedor', 'valor_fornecedor', 'valor_venda', 'nf_dslite', 'rastreio']) {
+test('exporta relatório detalhado com a semântica atual de Compras', () => {
+  for (const field of ['compraDslite', 'packMl', 'vendaMl', 'skuBentevi', 'skuFornecedor', 'valorFornecedor', 'valorVenda', 'valorFrete', 'nfDslite', 'rastreio']) {
     assert.match(exportRoute, new RegExp(field));
   }
-  assert.match(exportRoute, /PIX no Vortek/);
+  for (const column of ['Data', 'Compra DSLite', 'Venda ML', 'Produto e SKUs', 'Fornecedor', 'Valores', 'Andamento', 'Fiscal e envio']) {
+    assert.match(exportRoute, new RegExp(`label: '${column}'`));
+  }
+  assert.match(exportRoute, /resolvePurchaseProgress\(row\)/);
   assert.match(exportRoute, /row\.fornecedor_apelido \|\| row\.fornecedor_nome/);
   assert.doesNotMatch(exportRoute, /row\.pedido_vendas_numero \?/);
+  assert.doesNotMatch(exportRoute, /label: 'Ação'/);
+});
+
+test('aplica identidade dark Bentevi em todas as páginas do relatório', () => {
+  assert.match(exportRoute, /import \{ benteviColors \} from '@\/theme\/bentevi'/);
+  assert.match(exportRoute, /public', 'branding', 'bentevi', 'bentevi-wordmark\.png'/);
+  assert.match(exportRoute, /document\.embedPng\(logoBytes\)/);
+  assert.match(exportRoute, /width: PAGE_WIDTH, height: PAGE_HEIGHT, color: colors\.background/);
+  assert.match(exportRoute, /Relatório de compras/);
+  assert.match(exportRoute, /Bentevi · Documento operacional interno/);
+  assert.match(exportRoute, /document\.setAuthor\('Bentevi'\)/);
+  assert.doesNotMatch(exportRoute, /Lista de compras DSLite/);
+  assert.doesNotMatch(exportRoute, /rgb\(0\.08, 0\.35, 0\.68\)/);
+});
+
+test('resume os filtros e indicadores sem criar nova consulta', () => {
+  for (const label of ['COMPRAS', 'PIX A CONFIRMAR', 'EM REVISÃO', 'FATURADAS', 'VALOR PIX PENDENTE']) {
+    assert.match(exportRoute, new RegExp(label));
+  }
+  assert.match(exportRoute, /row\.supplierPaymentMode === 'prepaid_pix'/);
+  assert.match(exportRoute, /row\.supplierPaymentStatus === 'pending'/);
+  assert.match(exportRoute, /sem valor informado/);
+  assert.match(exportRoute, /Nenhum filtro — todas as compras/);
+  assert.doesNotMatch(exportRoute, /from\('compras'\)/);
+});
+
+test('quebra conteúdo, repete cabeçalho e preserva o contrato de download', () => {
+  assert.match(exportRoute, /function wrapText\(/);
+  assert.match(exportRoute, /height: Math\.max\(MIN_ROW_HEIGHT, standardCellHeight, progressHeight\)/);
+  assert.match(exportRoute, /if \(current\.cursor - prepared\.height < TABLE_BOTTOM\)/);
+  assert.match(exportRoute, /current = addPage\(false\)/);
+  assert.match(exportRoute, /drawTableHeader\(page, tableTop, fonts\)/);
+  assert.match(exportRoute, /Nenhuma compra encontrada/);
+  assert.match(exportRoute, /'Content-Type': 'application\/pdf'/);
+  assert.match(exportRoute, /filename="compras-\$\{date\}\.pdf"/);
 });
 
 test('simplifica fornecedor e valores somente na tabela', () => {
