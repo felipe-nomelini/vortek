@@ -77,20 +77,20 @@ export function expandirItensReservaEstoqueInterno(
   return [...expandidos.values()];
 }
 
-/** Calcula somente entradas liberadas e saídas ainda ativas. */
+/** Calcula o saldo disponível canônico: entradas utilizáveis menos baixas e compromissos ativos. */
 export function calcularSaldoEstoqueInterno(
   movimentos: MovimentoSaldoEstoqueInterno[],
 ): number {
   return movimentos.reduce((saldo, movimento) => (
     saldo
       + (
-        movimento.tipo === 'entrada_devolucao'
+        ['entrada_devolucao', 'entrada_compra', 'ajuste_positivo'].includes(String(movimento.tipo))
         && movimento.situacao_estoque === 'liberado'
           ? Number(movimento.quantidade)
           : 0
       )
       - (
-        movimento.tipo === 'saida_envio_interno'
+        ['saida_envio_interno', 'ajuste_negativo'].includes(String(movimento.tipo))
         && !movimento.estornada_em
           ? Number(movimento.quantidade)
           : 0

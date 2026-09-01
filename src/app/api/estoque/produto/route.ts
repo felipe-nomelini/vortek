@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 export async function GET(req: NextRequest) {
+  const auth = await authorizeApiRequest(req, 'inventory.read');
+  if (!auth.ok) return auth.response;
   const sku = String(req.nextUrl.searchParams.get('sku') || '').trim().toUpperCase();
   if (!sku) return NextResponse.json({ error: 'Informe o SKU.' }, { status: 400 });
 

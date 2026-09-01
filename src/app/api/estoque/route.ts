@@ -1,119 +1,112 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
+import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { createServiceClient } from '@/lib/supabase';
-import { calcularEntradasVisiveisEstoqueInterno } from '@/lib/estoque-interno-saldo';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export async function GET() {
+const adjustmentSchema = z.object({
+  produtoId: z.string().uuid(),
+  quantidade: z.number().int().refine((value) => value !== 0),
+  motivo: z.string().trim().min(5).max(500),
+  idempotencyKey: z.string().trim().min(8).max(200),
+});
+
+export async function GET(request: Request) {
+  const auth = await authorizeApiRequest(request, 'inventory.read');
+  if (!auth.ok) return auth.response;
   const db = createServiceClient();
-  const [entradasResult, saidasResult] = await Promise.all([
+  const [positionsResult, receiptsResult, receiptItemsResult, movementsResult] = await Promise.all([
+    (db as any)
+      .from('estoque_interno_posicoes')
+      .select('produto_id,sku,nome,fisico_util,reservado,disponivel,em_revisao,nao_aproveitavel,ultima_movimentacao_em')
+      .or('fisico_util.gt.0,reservado.gt.0,em_revisao.gt.0,nao_aproveitavel.gt.0')
+      .order('nome')
+      .limit(1000),
+    (db as any)
+      .from('estoque_recebimentos_nfe')
+      .select('id,chave_nfe,numero,serie,emitente_nome,emitente_cnpj,emitida_em,valor_total,origem_xml,status,created_at,confirmado_em')
+      .order('created_at', { ascending: false })
+      .limit(200),
+    (db as any)
+      .from('estoque_recebimento_itens')
+      .select('recebimento_id,quantidade_esperada,quantidade_liberada,quantidade_nao_aproveitavel'),
     (db as any)
       .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,quantidade,motivo,status_devolucao,situacao_estoque,created_at,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id)')
-      .eq('tipo', 'entrada_devolucao')
-      .order('created_at', { ascending: false }),
-    (db as any)
-      .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,quantidade,motivo,created_at,estado_envio_interno,despachado_em,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id,envio_interno_at)')
-      .eq('tipo', 'saida_envio_interno')
-      .in('estado_envio_interno', ['reservado', 'despachado'])
-      .is('estornada_em', null)
-      .order('created_at', { ascending: false }),
+      .select('id,produto_id,pedido_id,tipo,quantidade,motivo,situacao_estoque,status_devolucao,estado_envio_interno,created_at,despachado_em,estornada_em,estorno_motivo,recebimento_id,created_by,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id),estoque_recebimentos_nfe(chave_nfe,numero,serie,emitente_nome)')
+      .order('created_at', { ascending: false })
+      .limit(500),
   ]);
-  if (entradasResult.error) return NextResponse.json({ error: entradasResult.error.message }, { status: 500 });
-  if (saidasResult.error) return NextResponse.json({ error: saidasResult.error.message }, { status: 500 });
-
-  const entradas = (entradasResult.data || []).map((item: any) => ({
-    id: item.id,
-    produto_id: item.produto_id,
-    pedido_id: item.pedido_id,
-    sku: item.produtos?.sku || '-',
-    nome: item.produtos?.nome || 'Produto não encontrado',
-    quantidade: Number(item.quantidade || 0),
-    motivo: item.motivo || 'Motivo não informado pelo Mercado Livre',
-    status_devolucao: item.status_devolucao || 'aguardando_confirmacao',
-    situacao_estoque: item.situacao_estoque || 'revisao',
-    created_at: item.created_at,
-    ml_order_id: item.pedidos?.ml_order_id || null,
-    ml_pack_id: item.pedidos?.ml_pack_id || null,
-  }));
-
-  const saidasAtivas = (saidasResult.data || []).map((item: any) => ({
-    id: item.id,
-    produto_id: item.produto_id,
-    pedido_id: item.pedido_id,
-    sku: item.produtos?.sku || '-',
-    nome: item.produtos?.nome || 'Produto não encontrado',
-    quantidade: Number(item.quantidade || 0),
-    motivo: item.motivo || 'Movimento de estoque interno',
-    estado_envio_interno: item.estado_envio_interno,
-    reservado_em: item.created_at,
-    despachado_em: item.despachado_em || item.pedidos?.envio_interno_at || null,
-    ml_order_id: item.pedidos?.ml_order_id || null,
-    ml_pack_id: item.pedidos?.ml_pack_id || null,
-  }));
-
-  const rows = calcularEntradasVisiveisEstoqueInterno(
-    entradas,
-    saidasAtivas.map((item: any) => ({
-      produto_id: String(item.produto_id),
-      quantidade: Number(item.quantidade || 0),
-    })),
-  );
-
-  const resumo = rows.reduce((total: Record<string, number>, item: any) => {
-    total[item.situacao_estoque] = (total[item.situacao_estoque] || 0) + item.quantidade;
-    return total;
-  }, {});
-
-  const reservados = saidasAtivas.filter((item: any) => item.estado_envio_interno === 'reservado');
-  const vendidos = saidasAtivas
-    .filter((item: any) => item.estado_envio_interno === 'despachado')
-    .map((item: any) => ({ ...item, vendido_em: item.despachado_em || item.reservado_em }));
-
-  return NextResponse.json({
-    data: rows,
-    revisao: resumo.revisao || 0,
-    liberado: resumo.liberado || 0,
-    nao_aproveitavel: resumo.nao_aproveitavel || 0,
-    reservados,
-    reservadosQuantidade: reservados.reduce((total: number, item: any) => total + item.quantidade, 0),
-    vendidos,
-    vendidosQuantidade: vendidos.reduce((total: number, item: any) => total + item.quantidade, 0),
-  });
-}
-
-export async function POST(req: Request) {
-  const body = await req.json().catch(() => ({}));
-  const sku = String(body.sku || '').trim().toUpperCase();
-  const quantidade = Number(body.quantidade);
-  if (!sku) return NextResponse.json({ error: 'Informe o SKU.' }, { status: 400 });
-  if (!Number.isInteger(quantidade) || quantidade <= 0) {
-    return NextResponse.json({ error: 'Informe uma quantidade inteira maior que zero.' }, { status: 400 });
+  for (const result of [positionsResult, receiptsResult, receiptItemsResult, movementsResult]) {
+    if (result.error) return NextResponse.json({ error: result.error.message }, { status: 500 });
   }
 
+  const receiptTotals = new Map<string, { expected: number; received: number }>();
+  for (const item of receiptItemsResult.data || []) {
+    const id = String(item.recebimento_id);
+    const current = receiptTotals.get(id) || { expected: 0, received: 0 };
+    current.expected += Number(item.quantidade_esperada || 0);
+    current.received += Number(item.quantidade_liberada || 0) + Number(item.quantidade_nao_aproveitavel || 0);
+    receiptTotals.set(id, current);
+  }
+  const receipts = (receiptsResult.data || []).map((receipt: any) => ({
+    ...receipt,
+    itens_esperados: receiptTotals.get(String(receipt.id))?.expected || 0,
+    itens_conferidos: receiptTotals.get(String(receipt.id))?.received || 0,
+  }));
+  const positions = positionsResult.data || [];
+  const inConference = receipts
+    .filter((receipt: any) => receipt.status !== 'conferido')
+    .reduce((total: number, receipt: any) => total + Math.max(0, receipt.itens_esperados - receipt.itens_conferidos), 0);
+
+  return NextResponse.json({
+    positions,
+    receipts,
+    movements: movementsResult.data || [],
+    summary: {
+      skus: positions.length,
+      fisico: positions.reduce((total: number, row: any) => total + Number(row.fisico_util || 0), 0),
+      disponivel: positions.reduce((total: number, row: any) => total + Number(row.disponivel || 0), 0),
+      reservado: positions.reduce((total: number, row: any) => total + Number(row.reservado || 0), 0),
+      emConferencia: inConference,
+    },
+  }, { headers: { 'Cache-Control': 'no-store' } });
+}
+
+export async function POST(request: Request) {
+  const auth = await authorizeApiRequest(request, 'inventory.manage');
+  if (!auth.ok) return auth.response;
+  const parsed = adjustmentSchema.safeParse(await request.json().catch(() => null));
+  if (!parsed.success) return NextResponse.json({ error: 'Ajuste de estoque inválido.' }, { status: 400 });
+
   const db = createServiceClient();
-  const { data: produto, error: produtoError } = await db
-    .from('produtos')
-    .select('id,sku,nome')
-    .eq('sku', sku)
-    .maybeSingle();
-  if (produtoError) return NextResponse.json({ error: produtoError.message }, { status: 500 });
-  if (!produto) return NextResponse.json({ error: 'Produto não encontrado para este SKU.' }, { status: 404 });
+  const { data, error } = await (db as any).rpc('adjust_internal_stock', {
+    p_product_id: parsed.data.produtoId,
+    p_quantity: parsed.data.quantidade,
+    p_reason: parsed.data.motivo,
+    p_idempotency_key: parsed.data.idempotencyKey,
+    p_user_id: auth.userId,
+  });
+  if (error) {
+    const conflict = String(error.message || '').includes('stock_adjustment_invades_reservations');
+    return NextResponse.json({
+      error: conflict
+        ? 'O ajuste reduziria unidades já reservadas para vendas.'
+        : error.message,
+    }, { status: conflict ? 409 : 500 });
+  }
 
-  const { error } = await (db as any)
-    .from('estoque_interno_movimentacoes')
-    .insert({
-      produto_id: produto.id,
-      tipo: 'entrada_devolucao',
-      quantidade,
-      motivo: 'Inserido manualmente',
-      status_devolucao: 'manual',
-      situacao_estoque: 'revisao',
-      disponivel_venda: false,
-    });
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  return NextResponse.json({ success: true, produto: { sku: produto.sku, nome: produto.nome } }, { status: 201 });
+  try {
+    const mlSync = await enfileirarSyncMlEstoqueInterno(parsed.data.produtoId);
+    return NextResponse.json({ success: true, movimentoId: data, mlSync }, { status: 201 });
+  } catch (syncError: any) {
+    console.error('[stock_adjustment_ml_sync_failed]', { produtoId: parsed.data.produtoId, error: syncError?.message || syncError });
+    return NextResponse.json({
+      success: true,
+      movimentoId: data,
+      mlSyncWarning: 'Ajuste salvo, mas a atualização do anúncio não foi enfileirada.',
+    }, { status: 201 });
+  }
 }

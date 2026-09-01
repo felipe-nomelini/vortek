@@ -147,7 +147,7 @@ export interface FiscalProvider {
   ): Promise<{ url: string | null; path?: string | null; error?: string }>;
 }
 
-async function getBrasilNfeClient() {
+export async function getBrasilNfeClient() {
   const client = createServiceClient();
   const { data } = await client
     .from("integracoes")
@@ -170,6 +170,82 @@ async function getBrasilNfeClient() {
   }
 
   return new BrasilNFe(token, userToken, baseUrl);
+}
+
+export type BrasilNfeIncomingDocument = {
+  chave: string;
+  status: number | null;
+  emitenteCnpj: string | null;
+  destinatarioCnpj: string | null;
+};
+
+function incomingNfePeriod(chave: string): { start: string; end: string } {
+  const year = 2000 + Number(chave.slice(2, 4));
+  const month = Number(chave.slice(4, 6));
+  if (!Number.isInteger(year) || month < 1 || month > 12) {
+    throw new Error("Chave de NF-e com período inválido");
+  }
+  const start = new Date(Date.UTC(year, month - 1, 1, 0, 0, 0));
+  const end = new Date(Date.UTC(year, month, 0, 23, 59, 59));
+  const format = (value: Date) => value.toISOString().slice(0, 19);
+  return { start: format(start), end: format(end) };
+}
+
+/** Consulta uma NF-e de entrada no período codificado na própria chave. */
+export async function buscarNotaEntradaBrasilNfe(
+  chave: string,
+): Promise<BrasilNfeIncomingDocument | null> {
+  const bnfe = await getBrasilNfeClient();
+  const period = incomingNfePeriod(chave);
+  const response: any = await withBrasilNfeDnsRetry(() =>
+    bnfe.consultas.obterNotasFiscais({
+      TipoDocumentoFiscal: 0,
+      DtInicio: period.start,
+      DtFim: period.end,
+    } as any),
+  );
+  const providerError = String(response?.Error || response?.Message || "").trim();
+  if (providerError) throw new Error(providerError);
+  const notes = Array.isArray(response?.Notas) ? response.Notas : [];
+  const note = notes.find((candidate: any) => String(candidate?.Chave || "").replace(/\D/g, "") === chave);
+  if (!note) return null;
+  return {
+    chave,
+    status: Number.isFinite(Number(note.Status)) ? Number(note.Status) : null,
+    emitenteCnpj: String(note.CnpjEmissor || "").replace(/\D/g, "") || null,
+    destinatarioCnpj: String(note.CnpjDestinatario || "").replace(/\D/g, "") || null,
+  };
+}
+
+export async function obterXmlEntradaBrasilNfe(chave: string): Promise<string | null> {
+  const bnfe = await getBrasilNfeClient();
+  const buffer = await withBrasilNfeDnsRetry(() =>
+    bnfe.arquivos.pegarArquivo({
+      ChaveNF: chave,
+      FileType: 1,
+      TipoDocumentoFiscal: 0,
+    }),
+  );
+  return buffer?.length ? buffer.toString("utf-8") : null;
+}
+
+export async function manifestarCienciaNotaEntradaBrasilNfe(input: {
+  chave: string;
+  tipoAmbiente: 1 | 2;
+}): Promise<{ status: number | null; protocolo: string | null; motivo: string | null }> {
+  const bnfe = await getBrasilNfeClient();
+  const response: any = await withBrasilNfeDnsRetry(() =>
+    bnfe.eventos.manifestarNotaFiscal({
+      Chave: input.chave,
+      TipoAmbiente: input.tipoAmbiente,
+      TipoManifestacao: 2,
+    }),
+  );
+  return {
+    status: Number.isFinite(Number(response?.Status)) ? Number(response.Status) : null,
+    protocolo: String(response?.NuProtocolo || "").trim() || null,
+    motivo: String(response?.DsMotivo || response?.Error || "").trim() || null,
+  };
 }
 
 /**

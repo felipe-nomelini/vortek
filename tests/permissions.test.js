@@ -50,6 +50,7 @@ test("visualizador permanece somente leitura", () => {
     "tv.read",
     "sales.read",
     "purchases.read",
+    "inventory.read",
     "fiscal.read",
     "sales.track",
   ]);

@@ -4,6 +4,8 @@ export const VORTEK_PERMISSIONS = [
   "tv.read",
   "sales.read",
   "purchases.read",
+  "inventory.read",
+  "inventory.manage",
   "fiscal.read",
   "fiscal.manage",
   "sales.track",
@@ -24,6 +26,7 @@ const READ_ONLY_PERMISSIONS: VortekPermission[] = [
   "tv.read",
   "sales.read",
   "purchases.read",
+  "inventory.read",
   "fiscal.read",
   "sales.track",
 ];
@@ -36,6 +39,7 @@ const OPERATIONAL_PERMISSIONS: VortekPermission[] = [
   "sales.dslite.label.complete",
   "sales.dslite.shipping.select",
   "sales.internal_shipping.process",
+  "inventory.manage",
 ];
 
 const ROLE_PERMISSIONS: Record<VortekRole, VortekPermission[]> = {

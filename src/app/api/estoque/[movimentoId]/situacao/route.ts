@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 const SITUACOES = new Set(['liberado', 'nao_aproveitavel']);
 
 export async function PATCH(req: Request, props: { params: Promise<{ movimentoId: string }> }) {
+  const auth = await authorizeApiRequest(req, 'inventory.manage');
+  if (!auth.ok) return auth.response;
   const params = await props.params;
   const body = await req.json().catch(() => ({}));
   const situacao = String(body.situacao || '');
@@ -44,6 +47,8 @@ export async function PATCH(req: Request, props: { params: Promise<{ movimentoId
 }
 
 export async function DELETE(_req: Request, props: { params: Promise<{ movimentoId: string }> }) {
+  const auth = await authorizeApiRequest(_req, 'inventory.manage');
+  if (!auth.ok) return auth.response;
   const params = await props.params;
   const db = createServiceClient();
   const { data: movimento, error: consultaError } = await (db as any)
@@ -64,7 +69,10 @@ export async function DELETE(_req: Request, props: { params: Promise<{ movimento
 
   const { data: excluido, error } = await (db as any)
     .from('estoque_interno_movimentacoes')
-    .delete()
+    .update({
+      estornada_em: new Date().toISOString(),
+      estorno_motivo: 'Entrada manual anulada antes da conferência',
+    })
     .eq('id', params.movimentoId)
     .eq('status_devolucao', 'manual')
     .eq('situacao_estoque', 'revisao')
@@ -72,7 +80,7 @@ export async function DELETE(_req: Request, props: { params: Promise<{ movimento
     .maybeSingle();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   if (!excluido) {
-    return NextResponse.json({ error: 'Inserção manual não foi excluída.' }, { status: 409 });
+    return NextResponse.json({ error: 'Inserção manual não foi anulada.' }, { status: 409 });
   }
 
   try {
@@ -82,7 +90,7 @@ export async function DELETE(_req: Request, props: { params: Promise<{ movimento
     console.error('[estoque_interno_ml_sync_failed]', syncError?.message || syncError);
     return NextResponse.json({
       success: true,
-      mlSyncWarning: 'Inserção excluída, mas não foi possível enfileirar a atualização do anúncio.',
+      mlSyncWarning: 'Inserção anulada, mas não foi possível enfileirar a atualização do anúncio.',
     });
   }
 }

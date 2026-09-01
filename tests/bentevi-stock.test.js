@@ -5,100 +5,78 @@ const test = require('node:test');
 
 const root = process.cwd();
 const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'utf8');
-
 const page = read('src/app/(app)/estoque/page.tsx');
-const styles = read('src/app/(app)/estoque/estoque.module.css');
-const drawer = read('src/components/estoque/EstoqueDetailsDrawer.tsx');
+const scanner = read('src/components/estoque/ReceiveNfeModal.tsx');
 const stockRoute = read('src/app/api/estoque/route.ts');
-const situationRoute = read('src/app/api/estoque/[movimentoId]/situacao/route.ts');
+const importRoute = read('src/app/api/estoque/recebimentos/importar/route.ts');
+const confirmRoute = read('src/app/api/estoque/recebimentos/[id]/confirmar/route.ts');
+const manifestRoute = read('src/app/api/estoque/recebimentos/manifestar/route.ts');
+const migration = read('supabase/migrations/20260901190000_bnt_d05_owned_inventory.sql');
 
-test('organiza o estoque interno em cinco filas operacionais', () => {
-  for (const label of ['Em revisão', 'Disponíveis', 'Reservadas', 'Não aproveitáveis', 'Saídas despachadas']) {
-    assert.match(page, new RegExp(`label: '${label}'`));
-  }
-  for (const queue of ['revisao', 'disponivel', 'reservado', 'nao_aproveitavel', 'despachado']) {
-    assert.match(page, new RegExp(`queue: '${queue}'`));
-  }
-  assert.match(page, /Estoque interno, reservas e decisões/);
-  assert.match(page, /un\./);
+test('organiza estoque próprio em posição, recebimentos e movimentações', () => {
+  for (const label of ['Estoque próprio', 'Físico utilizável', 'Disponível', 'Reservado', 'Em conferência']) assert.match(page, new RegExp(label));
+  for (const tab of ["key: 'estoque'", "key: 'recebimentos'", "key: 'movimentos'"]) assert.match(page, new RegExp(tab));
+  assert.doesNotMatch(page, /cinco filas|Entrada manual/);
 });
 
-test('separa produto, origem, quantidade, condição e ações', () => {
-  for (const title of ['Produto', 'Quantidade', 'Condição', 'Ações']) {
-    assert.match(page, new RegExp(`title: '${title}'`));
-  }
-  assert.match(page, /activeQueue === 'reservado'.*'Reserva'/s);
-  assert.match(page, /activeQueue === 'despachado'.*'Despacho'/s);
-  assert.match(page, /activeQueue === 'reservado'.*'Venda'.*'Origem'/s);
-  assert.match(page, /className=\{styles\.productName\}/);
-  assert.match(styles, /\.productName[\s\S]*?overflow-wrap: anywhere;[\s\S]*?white-space: normal;/);
+test('expõe posição canônica por produto e histórico auditável', () => {
+  assert.match(stockRoute, /from\('estoque_interno_posicoes'\)/);
+  assert.match(stockRoute, /inventory\.read/);
+  assert.match(stockRoute, /inventory\.manage/);
+  assert.match(page, /Último movimento/);
+  assert.match(page, /Histórico/);
+  assert.match(page, /Ajustar estoque/);
+  assert.match(migration, /stock_adjustment_invades_reservations/);
+  assert.match(migration, /idempotency_key/);
 });
 
-test('mantém Pack e Venda distintos e abre a venda interna', () => {
-  assert.match(stockRoute, /ml_order_id: item\.pedidos\?\.ml_order_id/);
-  assert.match(stockRoute, /ml_pack_id: item\.pedidos\?\.ml_pack_id/);
-  assert.doesNotMatch(stockRoute, /pedido_ml_link_id/);
-  assert.match(page, /<b>Pack<\/b>/);
-  assert.match(page, /<b>Venda<\/b>/);
-  assert.match(page, /href=\{`\/pedidos\?venda=/);
+test('recebimento por NF-e exige conferência física antes de liberar saldo', () => {
+  assert.match(page, /Receber NF-e/);
+  assert.match(scanner, /O saldo só fica disponível depois da conferência física/);
+  assert.match(scanner, /Confirmar recebimento/);
+  assert.match(confirmRoute, /confirm_internal_stock_receipt/);
+  assert.match(migration, /'entrada_compra'/);
+  assert.match(migration, /'aguardando_conferencia', 'parcial', 'conferido'/);
 });
 
-test('expõe reservas ativas e as desconta da disponibilidade', () => {
-  assert.match(stockRoute, /\.in\('estado_envio_interno', \['reservado', 'despachado'\]\)/);
-  assert.match(stockRoute, /\.is\('estornada_em', null\)/);
-  assert.match(stockRoute, /calcularEntradasVisiveisEstoqueInterno\(\s*entradas,\s*saidasAtivas\.map/s);
-  assert.match(stockRoute, /estado_envio_interno === 'reservado'/);
-  assert.match(stockRoute, /estado_envio_interno === 'despachado'/);
-  assert.match(stockRoute, /reservadosQuantidade:/);
-  assert.match(page, /indisponível para outra reserva/);
-  assert.doesNotMatch(page, /Q_segura|estoque_fornecedor/);
+test('suporta câmera móvel, leitor HID, chave manual e upload XML', () => {
+  assert.match(scanner, /BrowserMultiFormatReader/);
+  assert.match(scanner, /facingMode: \{ ideal: 'environment' \}/);
+  assert.match(scanner, /controlsRef\.current\?\.stop\(\)/);
+  assert.match(scanner, /getTracks\(\)\.forEach\(\(track\) => track\.stop\(\)\)/);
+  assert.match(scanner, /Leitores USB ou Bluetooth/);
+  assert.match(scanner, /Enviar XML do fornecedor/);
+  assert.match(importRoute, /obterXmlEntradaBrasilNfe/);
 });
 
-test('preserva as transições válidas e restringe a exclusão manual', () => {
-  assert.match(situationRoute, /situacao_estoque[^\n]*revisao|movimento\.situacao_estoque/s);
-  assert.match(situationRoute, /Somente itens em revisão podem ter a situação alterada/);
-  assert.match(situationRoute, /\['delivered', 'returned', 'manual'\]/);
-  assert.match(situationRoute, /Somente inserções manuais ainda em revisão podem ser excluídas/);
-  assert.match(situationRoute, /\.eq\('status_devolucao', 'manual'\)[\s\S]*?\.eq\('situacao_estoque', 'revisao'\)/);
-  assert.match(page, /Marcar não aproveitável/);
-  assert.match(page, /Excluir entrada manual/);
-  assert.match(page, /result\?\.mlSyncWarning/);
+test('manifestação fiscal é explícita e não acontece durante a importação', () => {
+  assert.doesNotMatch(importRoute, /manifestarCiencia/);
+  assert.match(manifestRoute, /confirmar: z\.literal\(true\)/);
+  assert.match(manifestRoute, /manifestarCienciaNotaEntradaBrasilNfe/);
+  assert.match(manifestRoute, /estoque_manifestacoes_nfe/);
+  assert.match(scanner, /Manifestar ciência e obter XML/);
 });
 
-test('usa filtros persistentes, erros visíveis e atualização preservada', () => {
-  for (const filter of ['fila', 'busca', 'origem', 'condicao', 'dataDe', 'dataAte', 'pagina']) {
-    assert.match(page, new RegExp(`params\\.set\\('${filter}'`));
-  }
-  assert.match(page, /Os dados anteriores foram preservados/);
-  assert.match(page, /Nenhum item encontrado com os filtros atuais/);
-  assert.match(page, /window\.setInterval\(refresh, 30_000\)/);
-  assert.match(page, /storageKey=\{`estoque-bentevi-/);
+test('itens sem correspondência exigem produto Bentevi existente', () => {
+  assert.match(scanner, /Vincule todos os itens/);
+  assert.match(scanner, /Crie o produto na tela Produtos/);
+  assert.match(confirmRoute, /produtoId: z\.string\(\)\.uuid\(\)/);
+  assert.match(migration, /stock_receipt_unmapped_items/);
+  assert.match(migration, /estoque_mapeamentos_fornecedor/);
 });
 
-test('mantém inserção manual simples e sempre em revisão', () => {
-  assert.match(page, /Adicionar item ao estoque interno/);
-  assert.match(page, /Busque e confirme o produto antes de inserir/);
-  assert.match(page, /A entrada não ficará disponível imediatamente/);
-  assert.match(page, /Adicionar para revisão/);
-  assert.match(stockRoute, /status_devolucao: 'manual'/);
-  assert.match(stockRoute, /situacao_estoque: 'revisao'/);
-  assert.match(stockRoute, /disponivel_venda: false/);
+test('ledger mantém entradas, reservas, saídas, ajustes e reversões na mesma fonte', () => {
+  for (const type of ['entrada_devolucao', 'entrada_compra', 'ajuste_positivo', 'ajuste_negativo', 'saida_envio_interno']) assert.match(migration, new RegExp(`'${type}'`));
+  assert.match(migration, /create or replace view public\.estoque_interno_posicoes/);
+  assert.match(migration, /create or replace function public\.select_order_fulfillment/);
+  assert.match(page, /Recebimento de compra/);
+  assert.match(page, /Ajuste negativo/);
 });
 
-test('fornece Drawer de detalhes sem fabricar histórico', () => {
-  for (const label of ['Visão geral', 'Rastreabilidade', 'Produto e quantidade', 'Origem e venda', 'Estado atual']) {
-    assert.match(drawer, new RegExp(label));
-  }
-  assert.match(drawer, /somente marcos com data registrada no ledger/i);
-  assert.match(drawer, /Pack ML/);
-  assert.match(drawer, /Venda ML/);
-  assert.match(drawer, /Abrir venda na Bentevi/);
-});
-
-test('aplica identidade dark Bentevi sem criar novo sistema visual', () => {
+test('preserva identidade dark Bentevi e tratamento de erro', () => {
+  const styles = read('src/app/(app)/estoque/estoque.module.css');
   assert.match(styles, /var\(--bentevi-primary/);
   assert.match(styles, /var\(--bentevi-surface/);
-  assert.match(styles, /var\(--bentevi-border/);
-  assert.match(styles, /\.summaryBand/);
-  assert.match(styles, /@media \(max-width: 1180px\)/);
+  assert.match(styles, /\.positiveValue/);
+  assert.match(page, /Os dados anteriores foram preservados/);
 });

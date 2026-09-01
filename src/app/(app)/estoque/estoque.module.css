@@ -105,6 +105,36 @@
   border-radius: 16px !important;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search {
+  width: min(100%, 520px);
+}
+
+.positiveValue {
+  color: #34c759;
+}
+
+.negativeValue {
+  color: #ff4d6d;
+}
+
+.warningValue {
+  color: var(--bentevi-primary, #ffbd0e);
+  font-weight: 700;
+}
+
+.mutedValue {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.adjustForm {
+  margin-top: 20px;
+}
+
 .filterRow {
   width: 100%;
 }
