@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
+import { BNT_D05_INVENTORY_FIXTURE_SOURCE } from '@/lib/homologation-fixture';
 import { createServiceClient } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
@@ -27,7 +28,7 @@ export async function GET(request: Request) {
       .limit(1000),
     (db as any)
       .from('estoque_recebimentos_nfe')
-      .select('id,chave_nfe,numero,serie,emitente_nome,emitente_cnpj,emitida_em,valor_total,origem_xml,status,created_at,confirmado_em')
+      .select('id,chave_nfe,numero,serie,emitente_nome,emitente_cnpj,emitida_em,valor_total,origem_xml,status,created_at,confirmado_em,snapshot_source')
       .order('created_at', { ascending: false })
       .limit(200),
     (db as any)
@@ -35,7 +36,7 @@ export async function GET(request: Request) {
       .select('recebimento_id,quantidade_esperada,quantidade_liberada,quantidade_nao_aproveitavel'),
     (db as any)
       .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,tipo,quantidade,motivo,situacao_estoque,status_devolucao,estado_envio_interno,created_at,despachado_em,estornada_em,estorno_motivo,recebimento_id,created_by,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id),estoque_recebimentos_nfe(chave_nfe,numero,serie,emitente_nome)')
+      .select('id,produto_id,pedido_id,tipo,quantidade,motivo,situacao_estoque,status_devolucao,estado_envio_interno,created_at,despachado_em,estornada_em,estorno_motivo,recebimento_id,created_by,snapshot_source,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id),estoque_recebimentos_nfe(chave_nfe,numero,serie,emitente_nome)')
       .order('created_at', { ascending: false })
       .limit(500),
   ]);
@@ -56,7 +57,37 @@ export async function GET(request: Request) {
     itens_esperados: receiptTotals.get(String(receipt.id))?.expected || 0,
     itens_conferidos: receiptTotals.get(String(receipt.id))?.received || 0,
   }));
-  const positions = positionsResult.data || [];
+  const fixtureByProduct = new Map<string, any>();
+  for (const movement of (movementsResult.data || []).filter((row: any) => row.snapshot_source === BNT_D05_INVENTORY_FIXTURE_SOURCE)) {
+    const productId = String(movement.produto_id);
+    const current = fixtureByProduct.get(productId) || {
+      produto_id: `fixture:${productId}`,
+      fixture_produto_id: productId,
+      sku: movement.produtos?.sku || '—',
+      nome: movement.produtos?.nome || 'Produto de demonstração',
+      fisico_util: 0,
+      reservado: 0,
+      disponivel: 0,
+      em_revisao: 0,
+      nao_aproveitavel: 0,
+      ultima_movimentacao_em: null,
+      is_homologation_fixture: true,
+    };
+    const quantity = Number(movement.quantidade || 0);
+    if (['entrada_devolucao', 'entrada_compra', 'ajuste_positivo'].includes(movement.tipo) && movement.situacao_estoque === 'liberado') current.fisico_util += quantity;
+    if (movement.tipo === 'ajuste_negativo') current.fisico_util -= quantity;
+    if (movement.tipo === 'saida_envio_interno' && movement.estado_envio_interno === 'despachado') current.fisico_util -= quantity;
+    if (movement.tipo === 'saida_envio_interno' && movement.estado_envio_interno === 'reservado') current.reservado += quantity;
+    if (['entrada_devolucao', 'entrada_compra'].includes(movement.tipo) && movement.situacao_estoque === 'revisao') current.em_revisao += quantity;
+    if (['entrada_devolucao', 'entrada_compra'].includes(movement.tipo) && movement.situacao_estoque === 'nao_aproveitavel') current.nao_aproveitavel += quantity;
+    if (!current.ultima_movimentacao_em || movement.created_at > current.ultima_movimentacao_em) current.ultima_movimentacao_em = movement.created_at;
+    fixtureByProduct.set(productId, current);
+  }
+  for (const position of fixtureByProduct.values()) {
+    position.fisico_util = Math.max(0, position.fisico_util);
+    position.disponivel = Math.max(0, position.fisico_util - position.reservado);
+  }
+  const positions = [...(positionsResult.data || []), ...fixtureByProduct.values()];
   const inConference = receipts
     .filter((receipt: any) => receipt.status !== 'conferido')
     .reduce((total: number, receipt: any) => total + Math.max(0, receipt.itens_esperados - receipt.itens_conferidos), 0);
@@ -65,6 +96,7 @@ export async function GET(request: Request) {
     positions,
     receipts,
     movements: movementsResult.data || [],
+    hasHomologationFixtures: fixtureByProduct.size > 0 || receipts.some((receipt: any) => receipt.snapshot_source === BNT_D05_INVENTORY_FIXTURE_SOURCE),
     summary: {
       skus: positions.length,
       fisico: positions.reduce((total: number, row: any) => total + Number(row.fisico_util || 0), 0),

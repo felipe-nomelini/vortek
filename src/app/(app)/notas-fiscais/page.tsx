@@ -26,6 +26,7 @@ import {
 import type { PedidoVendaDetalheApiResponse, PedidoVendaHistoricoApiDto } from '@/types/order';
 import FiscalReturnModal from '@/components/fiscal/FiscalReturnModal';
 import FiscalReturnsPanel from '@/components/fiscal/FiscalReturnsPanel';
+import IncomingInvoicesPanel from '@/components/fiscal/IncomingInvoicesPanel';
 import { hasPermission, type VortekRole } from '@/lib/permissions';
 import styles from './notas-fiscais.module.css';
 
@@ -156,7 +157,7 @@ export default function NotasFiscaisPage() {
   const [cceText, setCceText] = useState('');
   const [cceSeq, setCceSeq] = useState(1);
   const [role, setRole] = useState<VortekRole | null>(null);
-  const [activeTab, setActiveTab] = useState<'sales' | 'returns'>('sales');
+  const [activeTab, setActiveTab] = useState<'sales' | 'incoming' | 'returns'>('sales');
   const [returnModalOpen, setReturnModalOpen] = useState(false);
   const [returnsRefreshToken, setReturnsRefreshToken] = useState(0);
   const [messageApi, contextHolder] = message.useMessage();
@@ -706,16 +707,16 @@ export default function NotasFiscaisPage() {
         <Text type="secondary" className={styles.updatedAt}>{lastUpdatedAt ? `Atualizado às ${lastUpdatedAt.toLocaleTimeString('pt-BR')}` : 'Aguardando primeira atualização'}</Text>
       </div>
       <Space wrap>
-        {canManageFiscal && <Button type="primary" icon={<PlusOutlined />} onClick={() => setReturnModalOpen(true)}>Criar devolução/retorno</Button>}
-        {canManageFiscal && <Button icon={<SyncOutlined />} loading={reconciling} onClick={() => void reconcileNow()}>Reconciliar agora</Button>}
-        <Button type="primary" icon={<ReloadOutlined />} loading={listLoading || summaryLoading} onClick={() => void fetchNotas()}>Atualizar</Button>
+        {activeTab !== 'incoming' && canManageFiscal && <Button type="primary" icon={<PlusOutlined />} onClick={() => setReturnModalOpen(true)}>Criar devolução/retorno</Button>}
+        {activeTab === 'sales' && canManageFiscal && <Button icon={<SyncOutlined />} loading={reconciling} onClick={() => void reconcileNow()}>Reconciliar agora</Button>}
+        {activeTab === 'sales' && <Button type="primary" icon={<ReloadOutlined />} loading={listLoading || summaryLoading} onClick={() => void fetchNotas()}>Atualizar</Button>}
       </Space>
     </header>
 
-    {hasHomologationFixtures && <Alert type="info" showIcon message="Amostra real protegida para homologação" description="Os registros servem para avaliar o layout. Documentos, e-mails e eventos fiscais estão desabilitados nessa amostra." />}
-    {summaryError && <Alert type="warning" showIcon message="Resumo fiscal parcialmente indisponível" description={summaryError} action={<Button size="small" onClick={() => void fetchNotas()}>Tentar novamente</Button>} />}
+    {activeTab === 'sales' && hasHomologationFixtures && <Alert type="info" showIcon message="Amostra real protegida para homologação" description="Os registros servem para avaliar o layout. Documentos, e-mails e eventos fiscais estão desabilitados nessa amostra." />}
+    {activeTab === 'sales' && summaryError && <Alert type="warning" showIcon message="Resumo fiscal parcialmente indisponível" description={summaryError} action={<Button size="small" onClick={() => void fetchNotas()}>Tentar novamente</Button>} />}
 
-    <section className={styles.summaryBand} aria-label="Resumo fiscal">
+    {activeTab === 'sales' && <section className={styles.summaryBand} aria-label="Resumo fiscal">
       {[
         ['Pendentes', summary.pendentes, 'Aguardando emissão ou processamento'],
         ['Emitidas', summary.emitidas, 'NF-e autorizadas nos filtros atuais'],
@@ -735,11 +736,11 @@ export default function NotasFiscaisPage() {
         <strong className={styles.summaryValue}>{summaryLoading && !lastUpdatedAt ? '—' : value}</strong>
         <span className={styles.summaryHint}>{hint}</span>
       </div>)}
-    </section>
+    </section>}
 
     <Tabs
       activeKey={activeTab}
-      onChange={(key) => setActiveTab(key as 'sales' | 'returns')}
+      onChange={(key) => setActiveTab(key as 'sales' | 'incoming' | 'returns')}
       items={[
         {
           key: 'sales',
@@ -773,6 +774,11 @@ export default function NotasFiscaisPage() {
     </Card>
 
           </>,
+        },
+        {
+          key: 'incoming',
+          label: 'NF-e de entrada',
+          children: <IncomingInvoicesPanel canManage={canManageFiscal} />,
         },
         {
           key: 'returns',

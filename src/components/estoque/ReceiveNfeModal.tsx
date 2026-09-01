@@ -36,10 +36,11 @@ type Conference = { produtoId: string | null; good: number; damaged: number };
 export default function ReceiveNfeModal(props: {
   open: boolean;
   initialReceiptId?: string | null;
+  initialKey?: string | null;
   onClose: () => void;
   onChanged: () => void;
 }) {
-  const { open, initialReceiptId, onClose, onChanged } = props;
+  const { open, initialReceiptId, initialKey, onClose, onChanged } = props;
   const [keyInput, setKeyInput] = useState('');
   const [receipt, setReceipt] = useState<Receipt | null>(null);
   const [conference, setConference] = useState<Record<string, Conference>>({});
@@ -51,6 +52,7 @@ export default function ReceiveNfeModal(props: {
   const [searchingProducts, setSearchingProducts] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const controlsRef = useRef<IScannerControls | null>(null);
+  const bootstrappedKeyRef = useRef<string | null>(null);
   const [messageApi, contextHolder] = message.useMessage();
 
   const stopCamera = useCallback(() => {
@@ -121,6 +123,12 @@ export default function ReceiveNfeModal(props: {
       setLoading(false);
     }
   }, [applyReceipt, keyInput, messageApi, stopCamera]);
+
+  useEffect(() => {
+    if (!open || initialReceiptId || !initialKey || bootstrappedKeyRef.current === initialKey) return;
+    bootstrappedKeyRef.current = initialKey;
+    void importNfe(undefined, initialKey);
+  }, [importNfe, initialKey, initialReceiptId, open]);
 
   const startCamera = async () => {
     stopCamera();
@@ -220,6 +228,7 @@ export default function ReceiveNfeModal(props: {
     setReceipt(null);
     setKeyInput('');
     setCanManifest(false);
+    bootstrappedKeyRef.current = null;
     onClose();
   };
 

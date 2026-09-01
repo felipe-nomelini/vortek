@@ -87,7 +87,9 @@
     "test:db-schema-snapshot": "node --test tests/db-schema-snapshot.test.js",
     "test:sync-dispatch": "node --test tests/sync-dispatch.test.js",
     "test:job-contract": "node --test tests/job-contract.test.js",
-    "test:internal-stock-reservation:dev": "node --test tests/internal-stock-reservation.integration.test.js"
+    "test:internal-stock-reservation:dev": "node --test tests/internal-stock-reservation.integration.test.js",
+    "fixtures:bnt-d05:apply": "node scripts/seed-bnt-d05-inventory-fixtures.js --apply",
+    "fixtures:bnt-d05:cleanup": "node scripts/seed-bnt-d05-inventory-fixtures.js --apply --cleanup"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",

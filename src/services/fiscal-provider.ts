@@ -174,10 +174,62 @@ export async function getBrasilNfeClient() {
 
 export type BrasilNfeIncomingDocument = {
   chave: string;
+  numero: string | null;
+  modeloDocumento: number | null;
+  valor: number;
+  valorIcms: number | null;
   status: number | null;
   emitenteCnpj: string | null;
+  emitenteNome: string | null;
+  emitenteIe: string | null;
   destinatarioCnpj: string | null;
+  destinatarioNome: string | null;
+  numeroProtocolo: string | null;
+  cfops: string | null;
+  digestValue: string | null;
+  emitidaEm: string | null;
+  recebidaEm: string | null;
 };
+
+function mapBrasilNfeIncomingDocument(note: any): BrasilNfeIncomingDocument {
+  return {
+    chave: String(note?.Chave || '').replace(/\D/g, ''),
+    numero: String(note?.Numero || '').trim() || null,
+    modeloDocumento: Number.isFinite(Number(note?.ModeloDocumento)) ? Number(note.ModeloDocumento) : null,
+    valor: Number(note?.Valor || 0),
+    valorIcms: Number.isFinite(Number(note?.ValorIcms)) ? Number(note.ValorIcms) : null,
+    status: Number.isFinite(Number(note?.Status)) ? Number(note.Status) : null,
+    emitenteCnpj: String(note?.CnpjEmissor || '').replace(/\D/g, '') || null,
+    emitenteNome: String(note?.NomeEmissor || '').trim() || null,
+    emitenteIe: String(note?.IeEmissor || '').trim() || null,
+    destinatarioCnpj: String(note?.CnpjDestinatario || '').replace(/\D/g, '') || null,
+    destinatarioNome: String(note?.NomeDestinatario || '').trim() || null,
+    numeroProtocolo: String(note?.NumeroProtocolo || '').trim() || null,
+    cfops: String(note?.Cfops || '').trim() || null,
+    digestValue: String(note?.DigestValue || '').trim() || null,
+    emitidaEm: String(note?.DtEmissao || '').trim() || null,
+    recebidaEm: String(note?.DtRecebimento || '').trim() || null,
+  };
+}
+
+export async function listarNotasEntradaBrasilNfe(input: {
+  inicio: string;
+  fim: string;
+}): Promise<BrasilNfeIncomingDocument[]> {
+  const bnfe = await getBrasilNfeClient();
+  const response: any = await withBrasilNfeDnsRetry(() =>
+    bnfe.consultas.obterNotasFiscais({
+      TipoDocumentoFiscal: 0,
+      DtInicio: input.inicio,
+      DtFim: input.fim,
+    }),
+  );
+  const providerError = String(response?.Error || response?.Message || '').trim();
+  if (providerError) throw new Error(providerError);
+  return (Array.isArray(response?.Notas) ? response.Notas : [])
+    .map(mapBrasilNfeIncomingDocument)
+    .filter((note: BrasilNfeIncomingDocument) => note.chave.length === 44);
+}
 
 function incomingNfePeriod(chave: string): { start: string; end: string } {
   const year = 2000 + Number(chave.slice(2, 4));
@@ -195,26 +247,9 @@ function incomingNfePeriod(chave: string): { start: string; end: string } {
 export async function buscarNotaEntradaBrasilNfe(
   chave: string,
 ): Promise<BrasilNfeIncomingDocument | null> {
-  const bnfe = await getBrasilNfeClient();
   const period = incomingNfePeriod(chave);
-  const response: any = await withBrasilNfeDnsRetry(() =>
-    bnfe.consultas.obterNotasFiscais({
-      TipoDocumentoFiscal: 0,
-      DtInicio: period.start,
-      DtFim: period.end,
-    } as any),
-  );
-  const providerError = String(response?.Error || response?.Message || "").trim();
-  if (providerError) throw new Error(providerError);
-  const notes = Array.isArray(response?.Notas) ? response.Notas : [];
-  const note = notes.find((candidate: any) => String(candidate?.Chave || "").replace(/\D/g, "") === chave);
-  if (!note) return null;
-  return {
-    chave,
-    status: Number.isFinite(Number(note.Status)) ? Number(note.Status) : null,
-    emitenteCnpj: String(note.CnpjEmissor || "").replace(/\D/g, "") || null,
-    destinatarioCnpj: String(note.CnpjDestinatario || "").replace(/\D/g, "") || null,
-  };
+  const notes = await listarNotasEntradaBrasilNfe({ inicio: period.start, fim: period.end });
+  return notes.find((note) => note.chave === chave) || null;
 }
 
 export async function obterXmlEntradaBrasilNfe(chave: string): Promise<string | null> {
@@ -229,23 +264,54 @@ export async function obterXmlEntradaBrasilNfe(chave: string): Promise<string | 
   return buffer?.length ? buffer.toString("utf-8") : null;
 }
 
-export async function manifestarCienciaNotaEntradaBrasilNfe(input: {
+export async function manifestarNotaEntradaBrasilNfe(input: {
   chave: string;
   tipoAmbiente: 1 | 2;
-}): Promise<{ status: number | null; protocolo: string | null; motivo: string | null }> {
+  tipoManifestacao: 1 | 2 | 3 | 4;
+  justificativa?: string;
+}): Promise<{
+  status: number | null;
+  protocolo: string | null;
+  motivo: string | null;
+  numeroSequencial: number | null;
+  codigoSefaz: number | null;
+  evento: string | null;
+}> {
   const bnfe = await getBrasilNfeClient();
   const response: any = await withBrasilNfeDnsRetry(() =>
     bnfe.eventos.manifestarNotaFiscal({
       Chave: input.chave,
       TipoAmbiente: input.tipoAmbiente,
-      TipoManifestacao: 2,
-    }),
+      TipoManifestacao: input.tipoManifestacao,
+      ...(input.justificativa ? { Justificativa: input.justificativa } : {}),
+    } as any),
   );
   return {
     status: Number.isFinite(Number(response?.Status)) ? Number(response.Status) : null,
     protocolo: String(response?.NuProtocolo || "").trim() || null,
     motivo: String(response?.DsMotivo || response?.Error || "").trim() || null,
+    numeroSequencial: Number.isFinite(Number(response?.NumeroSequencial)) ? Number(response.NumeroSequencial) : null,
+    codigoSefaz: Number.isFinite(Number(response?.CodStatusRespostaSefaz)) ? Number(response.CodStatusRespostaSefaz) : null,
+    evento: String(response?.DsEvento || '').trim() || null,
   };
+}
+
+export async function manifestarCienciaNotaEntradaBrasilNfe(input: {
+  chave: string;
+  tipoAmbiente: 1 | 2;
+}) {
+  return manifestarNotaEntradaBrasilNfe({ ...input, tipoManifestacao: 2 });
+}
+
+export async function obterDocumentoEntradaBrasilNfe(
+  chave: string,
+  fileType: 1 | 2,
+): Promise<Buffer | null> {
+  const bnfe = await getBrasilNfeClient();
+  const buffer = await withBrasilNfeDnsRetry(() =>
+    bnfe.arquivos.pegarArquivo({ ChaveNF: chave, FileType: fileType, TipoDocumentoFiscal: 0 }),
+  );
+  return buffer?.length ? buffer : null;
 }
 
 /**

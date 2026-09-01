@@ -11,6 +11,7 @@ const stockRoute = read('src/app/api/estoque/route.ts');
 const importRoute = read('src/app/api/estoque/recebimentos/importar/route.ts');
 const confirmRoute = read('src/app/api/estoque/recebimentos/[id]/confirmar/route.ts');
 const manifestRoute = read('src/app/api/estoque/recebimentos/manifestar/route.ts');
+const incomingManifestation = read('src/lib/fiscal/incoming-nfe.ts');
 const migration = read('supabase/migrations/20260901190000_bnt_d05_owned_inventory.sql');
 
 test('organiza estoque próprio em posição, recebimentos e movimentações', () => {
@@ -52,8 +53,9 @@ test('suporta câmera móvel, leitor HID, chave manual e upload XML', () => {
 test('manifestação fiscal é explícita e não acontece durante a importação', () => {
   assert.doesNotMatch(importRoute, /manifestarCiencia/);
   assert.match(manifestRoute, /confirmar: z\.literal\(true\)/);
-  assert.match(manifestRoute, /manifestarCienciaNotaEntradaBrasilNfe/);
-  assert.match(manifestRoute, /estoque_manifestacoes_nfe/);
+  assert.match(manifestRoute, /requestIncomingNfeManifestation/);
+  assert.match(incomingManifestation, /manifestarNotaEntradaBrasilNfe/);
+  assert.match(incomingManifestation, /estoque_manifestacoes_nfe/);
   assert.match(scanner, /Manifestar ciência e obter XML/);
 });
 

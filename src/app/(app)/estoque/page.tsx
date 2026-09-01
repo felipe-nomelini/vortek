@@ -17,18 +17,21 @@ const { Text, Title } = Typography;
 type Position = {
   produto_id: string; sku: string; nome: string; fisico_util: number; reservado: number;
   disponivel: number; em_revisao: number; nao_aproveitavel: number; ultima_movimentacao_em: string | null;
+  fixture_produto_id?: string; is_homologation_fixture?: boolean;
 };
 type Receipt = {
   id: string; chave_nfe: string; numero: string | null; serie: string | null;
   emitente_nome: string; emitente_cnpj: string; emitida_em: string | null; valor_total: number;
-  origem_xml: string; status: 'aguardando_conferencia' | 'parcial' | 'conferido';
+  origem_xml: string | null; status: 'identificada' | 'aguardando_conferencia' | 'parcial' | 'conferido';
   created_at: string; confirmado_em: string | null; itens_esperados: number; itens_conferidos: number;
+  snapshot_source: string;
 };
 type Movement = {
   id: string; produto_id: string; pedido_id: string | null; tipo: string; quantidade: number;
   motivo: string; situacao_estoque: string; status_devolucao: string; estado_envio_interno: string | null;
   created_at: string; despachado_em: string | null; estornada_em: string | null; estorno_motivo: string | null;
   recebimento_id: string | null; created_by: string | null;
+  snapshot_source: string;
   produtos: { sku: string; nome: string } | null;
   pedidos: { ml_order_id: string | null; ml_pack_id: string | null } | null;
   estoque_recebimentos_nfe: { chave_nfe: string; numero: string | null; serie: string | null; emitente_nome: string } | null;
@@ -36,6 +39,7 @@ type Movement = {
 type StockData = {
   positions: Position[]; receipts: Receipt[]; movements: Movement[];
   summary: { skus: number; fisico: number; disponivel: number; reservado: number; emConferencia: number };
+  hasHomologationFixtures?: boolean;
 };
 type ProductOption = { id: string; sku: string; nome: string };
 
@@ -52,6 +56,7 @@ function formatDate(value: string | null, includeTime = true) {
 function receiptStatus(status: Receipt['status']) {
   if (status === 'conferido') return <Tag color="green">Conferido</Tag>;
   if (status === 'parcial') return <Tag color="blue">Conferência parcial</Tag>;
+  if (status === 'identificada') return <Tag color="cyan">Detectada</Tag>;
   return <Tag color="gold">Aguardando conferência</Tag>;
 }
 
@@ -117,7 +122,7 @@ export default function EstoquePage() {
   )), [data.movements, normalizedSearch]);
 
   const productMovements = selectedProduct
-    ? data.movements.filter((movement) => movement.produto_id === selectedProduct.produto_id)
+    ? data.movements.filter((movement) => movement.produto_id === (selectedProduct.fixture_produto_id || selectedProduct.produto_id))
     : [];
 
   const searchProducts = async (value: string) => {
@@ -173,6 +178,7 @@ export default function EstoquePage() {
       </header>
 
       {error && <Alert showIcon type="error" message="Não foi possível atualizar o estoque" description={`${error} Os dados anteriores foram preservados.`} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}
+      {data.hasHomologationFixtures && <Alert showIcon type="info" message="Amostra protegida de homologação" description="Os registros marcados como amostra permitem avaliar todos os estados da tela. Eles estão estornados no ledger, não alteram o saldo operacional e não aceitam ações." />}
 
       <section className={styles.summaryBand} aria-label="Resumo do estoque próprio">
         {[
@@ -195,7 +201,7 @@ export default function EstoquePage() {
             rowKey="produto_id" loading={loading} dataSource={positions} pagination={{ pageSize: 50, showSizeChanger: false }} scroll={{ x: 980 }}
             locale={{ emptyText: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhum produto com posição de estoque" /> }}
             columns={[
-              { title: 'Produto', key: 'produto', width: 390, render: (_, row) => <button className={styles.productButton} onClick={() => setSelectedProduct(row)}><strong>{row.nome}</strong><span>SKU {row.sku}</span></button> },
+              { title: 'Produto', key: 'produto', width: 390, render: (_, row) => <button className={styles.productButton} onClick={() => setSelectedProduct(row)}><strong>{row.nome} {row.is_homologation_fixture && <Tag color="blue">Amostra</Tag>}</strong><span>SKU {row.sku}</span></button> },
               { title: 'Físico', dataIndex: 'fisico_util', width: 110, render: (value) => <strong>{value} un.</strong> },
               { title: 'Reservado', dataIndex: 'reservado', width: 120, render: (value) => <span className={value ? styles.warningValue : undefined}>{value} un.</span> },
               { title: 'Disponível', dataIndex: 'disponivel', width: 120, render: (value) => <strong className={value > 0 ? styles.positiveValue : styles.mutedValue}>{value} un.</strong> },
@@ -213,10 +219,10 @@ export default function EstoquePage() {
             locale={{ emptyText: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhuma NF-e recebida" /> }}
             columns={[
               { title: 'NF-e', width: 190, render: (_, row) => <Space direction="vertical" size={1}><strong>NF-e {row.numero || '—'}{row.serie ? ` · Série ${row.serie}` : ''}</strong><Text type="secondary">Chave …{row.chave_nfe.slice(-10)}</Text></Space> },
-              { title: 'Fornecedor', dataIndex: 'emitente_nome', width: 260, render: (value, row) => <Space direction="vertical" size={1}><strong>{value}</strong><Text type="secondary">CNPJ {row.emitente_cnpj}</Text></Space> },
+              { title: 'Fornecedor', dataIndex: 'emitente_nome', width: 260, render: (value, row) => <Space direction="vertical" size={1}><strong>{value} {row.snapshot_source === 'bnt_d05_inventory_mock' && <Tag color="blue">Amostra</Tag>}</strong><Text type="secondary">CNPJ {row.emitente_cnpj}</Text></Space> },
               { title: 'Emissão', dataIndex: 'emitida_em', width: 130, render: (value) => formatDate(value, false) },
               { title: 'Conferência', width: 230, render: (_, row) => { const percent = row.itens_esperados ? Math.round((row.itens_conferidos / row.itens_esperados) * 100) : 0; return <Space direction="vertical" size={3} style={{ width: '100%' }}>{receiptStatus(row.status)}<Progress percent={percent} size="small" format={() => `${row.itens_conferidos}/${row.itens_esperados} un.`} /></Space>; } },
-              { title: 'Ação', width: 150, render: (_, row) => <Button icon={<InboxOutlined />} disabled={row.status === 'conferido'} onClick={() => { setReceiptId(row.id); setReceiveOpen(true); }}>{row.status === 'parcial' ? 'Continuar' : 'Conferir itens'}</Button> },
+              { title: 'Ação', width: 150, render: (_, row) => <Button icon={<InboxOutlined />} disabled={row.status === 'conferido' || row.status === 'identificada' || row.snapshot_source === 'bnt_d05_inventory_mock'} title={row.snapshot_source === 'bnt_d05_inventory_mock' ? 'Amostra protegida de homologação' : undefined} onClick={() => { setReceiptId(row.id); setReceiveOpen(true); }}>{row.status === 'parcial' ? 'Continuar' : row.status === 'identificada' ? 'Obter XML' : 'Conferir itens'}</Button> },
             ]}
           />,
         },
@@ -231,7 +237,7 @@ export default function EstoquePage() {
               { title: 'Movimento', width: 180, render: (_, row) => <Space direction="vertical" size={2}><strong className={positiveTypes.has(row.tipo) ? styles.positiveValue : styles.negativeValue}>{signedQuantity(row)}</strong><Text type="secondary">{movementLabel(row.tipo, row.estado_envio_interno)}</Text></Space> },
               { title: 'Origem', width: 220, render: (_, row) => row.estoque_recebimentos_nfe ? `NF-e ${row.estoque_recebimentos_nfe.numero || `…${row.estoque_recebimentos_nfe.chave_nfe.slice(-8)}`}` : row.pedidos ? `Venda #${row.pedidos.ml_pack_id || row.pedidos.ml_order_id || '—'}` : 'Ajuste operacional' },
               { title: 'Motivo', dataIndex: 'motivo', width: 300 },
-              { title: 'Estado', width: 120, render: (_, row) => row.estornada_em ? <Tag>Estornado</Tag> : <Tag color="green">Ativo</Tag> },
+              { title: 'Estado', width: 120, render: (_, row) => row.snapshot_source === 'bnt_d05_inventory_mock' ? <Tag color="blue">Amostra inerte</Tag> : row.estornada_em ? <Tag>Estornado</Tag> : <Tag color="green">Ativo</Tag> },
             ]}
           />,
         },
