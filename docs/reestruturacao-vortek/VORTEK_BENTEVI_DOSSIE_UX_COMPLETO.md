@@ -223,15 +223,18 @@ No desktop, o shell mantém navegação lateral e passa a aceitar estado expandi
 
 **Análise.** A ligação venda → compra → fornecedor → pagamento → NF deve ser legível em uma sequência. Históricos Hayamax aposentados não voltam como interface ativa.
 
-**Hierarquia alvo.** Cards de total, pendentes, faturadas, revisão e valor; filtros; tabela com compra, venda, fornecedor, produto, total, pagamento, fiscal e ação; detalhe/comprovante no contexto.
+**Hierarquia alvo revisada.** Indicadores de compras, PIX aguardando confirmação, revisão, faturamento e valor de PIX ainda não confirmado; filtros; tabela que separa data, compra DSLite, Pack/Venda ML, produto, fornecedor, valores, andamento e ação. O detalhe concentra identificadores internos, todos os itens da venda, SKUs e as fontes fiscal/logística sem poluir a tabela.
 
 ```text
 ┌ Compras ───────────────────────────────────── [Exportar] [Atualizar]┐
-│ [Pendentes] [Em revisão] [Faturadas] [Valor comprometido]           │
+│ [Compras] [PIX a confirmar] [Em revisão] [Faturadas] [Valor PIX]    │
 │ [Busca] [Status] [Fornecedor] [Período]                              │
-│ Compra | Venda | Fornecedor | Total | Pagamento | NF | Próxima ação │
+│ Data | DSLite | Pack + Venda ML | Produto | Fornecedor | Valores    │
+│                         | DSLite → PIX → NF → Envio | Ação           │
 └─────────────────────────────────────────────────────────────────────┘
 ```
+
+**Semântica obrigatória.** Pack e Order são identificadores distintos e aparecem simultaneamente quando disponíveis. O SKU Bentevi vem do produto mestre; o SKU do fornecedor vem da oferta vinculada. “Valor aguardando confirmação” soma somente compras PIX pré-pago ainda pendentes no Vortek e não representa saldo bancário. “Registrar PIX” registra comprovante e referência depois da transferência feita no banco; o Vortek não transfere dinheiro. Fiscal e entrega distinguem a nota/rastreio do fornecedor via DSLite da nota da venda emitida por Vortek/Brasil NFe. Rastreio disponível significa acompanhamento em curso, nunca entrega concluída.
 
 **Web celular e aceite.** Cartão exibe relação com a venda, fornecedor, total e dois estados; ação financeira só aparece para perfil autorizado. Preservar fetch independente implementado em `UI-06`.
 

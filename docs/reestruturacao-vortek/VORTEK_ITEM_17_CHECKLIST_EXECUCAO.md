@@ -1990,11 +1990,19 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Validação:** 19 cenários direcionados de Compras, permissões e aposentadoria Hayamax aprovados; `npm run validate` e `npm run build` aprovados. O deploy oficial foi aceito somente para `vortek-erp-dev`; o novo processo iniciou e `dev.bentevi.shop` respondeu `200` em health e login, `307` em `/compras` sem sessão e `401` nas APIs de lista e resumo sem sessão.
 
+**Revisão após avaliação visual em `2026-09-01`:** a primeira proposta misturava o identificador da compra, data e status; escolhia entre Pack e Order; apresentava um SKU sem origem explícita; somava pagamentos pagos e pendentes sob o rótulo ambíguo “Valor comprometido”; e reunia pagamento, fiscal e envio em colunas sem sequência operacional clara. A correção manteve o mesmo escopo e não criou schema ou fonte persistente nova.
+
+**Mudança da revisão:** a tabela agora usa `Data | Compra DSLite | Venda ML | Produto | Fornecedor | Valores | Andamento | Ação`; Pack e Order aparecem em linhas independentes; o produto identifica SKU Bentevi e SKU do fornecedor a partir das relações existentes; o andamento usa `DSLite → PIX → NF → Envio` e informa a próxima ação; e o Drawer separa a nota/rastreio do fornecedor via DSLite da nota da venda via Vortek-Brasil NFe. O resumo passou a contar e somar apenas PIX pré-pago com estado `pending`. A ação financeira foi renomeada para “Registrar PIX” e explica que a transferência ocorre fora do Vortek.
+
+**Commit da revisão:** `5838581`, enviado somente para `origin/dev`.
+
+**Validação da revisão:** 30 cenários direcionados aprovados, incluindo seis estados do andamento; `npm run validate` e `npm run build` aprovados. O deploy oficial concluiu no serviço `vortek-erp-dev`, que confirmou `GIT_SHA=5838581f33480908afb42fe2f728de8ac5457ce3`. `dev.bentevi.shop` respondeu `200` em health e login, `307` em `/compras` sem sessão e `401` nas APIs de lista e resumo sem sessão. O artefato publicado contém o novo indicador “Valor aguardando confirmação”.
+
 **Migration/banco:** N/A; nenhuma escrita ou migration de banco foi executada.
 
-**Rollback:** reverter o commit `7da856b` em `dev` e reimplantar somente `vortek-erp-dev`.
+**Rollback:** para desfazer somente a revisão, reverter `5838581`; para retirar integralmente `BNT-D03`, reverter também `7da856b`. Reimplantar somente `vortek-erp-dev`.
 
-**Pendência:** aprovação visual do usuário em `dev.bentevi.shop`. `BNT-D04` permanece bloqueado.
+**Pendência:** aprovação visual da revisão pelo usuário em `dev.bentevi.shop`. `BNT-D04` permanece bloqueado.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
