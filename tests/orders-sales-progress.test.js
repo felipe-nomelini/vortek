@@ -29,11 +29,11 @@ test('progresso mantém a venda na preparação enquanto o fulfillment está pen
 
   assert.deepEqual(
     [initial.completedSteps, initial.currentStep, initial.currentLabel, initial.nextLabel],
-    [1, 2, 'Preparação', 'Criar pedido no fornecedor'],
+    [1, 2, 'Preparação', 'Crie o pedido DSLite'],
   );
   assert.deepEqual(
     [payment.completedSteps, payment.currentStep, payment.currentLabel, payment.nextLabel],
-    [1, 2, 'Preparação', 'Confirmar PIX'],
+    [1, 2, 'Preparação', 'Confirme o PIX'],
   );
 });
 
@@ -79,8 +79,27 @@ test('progresso cobre envio interno e interrupções sem criar um status persist
   }));
   const cancelled = getOrderSalesProgress(baseOrder({ situacao: { valor: 'cancelado' } }));
 
-  assert.deepEqual([pendingInternal.currentStep, pendingInternal.nextLabel], [2, 'Processar envio interno']);
+  assert.deepEqual([pendingInternal.currentStep, pendingInternal.nextLabel], [2, 'Processe o envio interno']);
   assert.deepEqual([readyInternal.completedSteps, readyInternal.currentLabel], [4, 'Envio']);
   assert.equal(cancelled.tone, 'error');
   assert.equal(cancelled.nextLabel, 'Fluxo encerrado: venda cancelada');
+});
+
+test('progresso prioriza a ação executável em vez da descrição de urgência', async () => {
+  const { getOrderSalesProgress } = await modulePromise;
+  const createDslite = getOrderSalesProgress(baseOrder({
+    data: '2026-01-01T10:00:00.000Z',
+    dslite_next_action: 'create_dslite_order',
+    dslite_next_action_label: 'Pedido de compra DSLite não criado',
+    internal_stock_available: true,
+  }));
+  const confirmPayment = getOrderSalesProgress(baseOrder({
+    data: '2026-01-01T10:00:00.000Z',
+    dslite_id: 'DSL-1',
+    dslite_next_action: 'confirm_supplier_payment',
+    dslite_next_action_label: 'Pagamento PIX do fornecedor pendente',
+  }));
+
+  assert.equal(createDslite.nextLabel, 'Crie o pedido DSLite');
+  assert.equal(confirmPayment.nextLabel, 'Confirme o PIX');
 });

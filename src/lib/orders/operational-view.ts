@@ -222,13 +222,15 @@ function resolvePreparationNextLabel(order: OperationalOrderLike): string {
   const nextAction = String(order.dslite_next_action || '');
   const label = String(order.dslite_next_action_label || '').trim();
 
-  if (nextAction === 'internal_shipping' || order.internal_stock_available) return 'Processar envio interno';
+  if (nextAction === 'internal_shipping') return 'Processe o envio interno';
+  if (nextAction === 'create_dslite_order') return 'Crie o pedido DSLite';
+  if (nextAction === 'confirm_supplier_payment') return 'Confirme o PIX';
+  if (nextAction === 'send_supplier_receipt') return 'Anexe o comprovante';
+  if (nextAction === 'resume_dslite_flow') return 'Retome o fluxo DSLite';
+  if (nextAction === 'blocked') return 'Revise o bloqueio do fulfillment';
+  if (!nextAction && order.internal_stock_available) return 'Processe o envio interno';
   if (label && label !== 'OK') return label;
-  if (nextAction === 'confirm_supplier_payment') return 'Confirmar PIX';
-  if (nextAction === 'send_supplier_receipt') return 'Anexar comprovante';
-  if (nextAction === 'resume_dslite_flow') return 'Retomar fluxo';
-  if (nextAction === 'blocked') return 'Revisar bloqueio do fulfillment';
-  return 'Criar pedido no fornecedor';
+  return 'Crie o pedido DSLite';
 }
 
 function inferCompletedSalesSteps(order: OperationalOrderLike, status: string): number {
@@ -247,7 +249,7 @@ function inferCompletedSalesSteps(order: OperationalOrderLike, status: string): 
 
 export function getOrderSalesProgress(
   order: OperationalOrderLike,
-  at = Date.now(),
+  _at = Date.now(),
 ): OrderSalesProgress {
   const status = normalizeOrderStatus(order);
   const completedSteps = inferCompletedSalesSteps(order, status);
@@ -267,25 +269,27 @@ export function getOrderSalesProgress(
   else if (status === 'cancelado') nextLabel = 'Fluxo encerrado: venda cancelada';
   else if (status === 'recusado') nextLabel = 'Entrega recusada';
   else if (status === 'devolvido') nextLabel = 'Venda devolvida';
-  else if (order.has_split_fulfillment) nextLabel = 'Revisar fluxo dividido';
-  else if (order.ml_claim_id) nextLabel = 'Tratar reclamação no Mercado Livre';
+  else if (order.has_split_fulfillment) nextLabel = 'Revise o fluxo dividido';
+  else if (order.ml_claim_id) nextLabel = 'Trate a reclamação no Mercado Livre';
+  else if (rejected) nextLabel = 'Desvincule a compra DSLite rejeitada';
+  else if (order.dslite_label_operational_status === 'failed') nextLabel = 'Revise o envio da etiqueta para a DSLite';
+  else if (order.whatsapp_label_status === 'failed') nextLabel = 'Revise o envio da etiqueta por WhatsApp';
+  else if (order.whatsapp_label_status === 'on_hold') nextLabel = 'Aguarde a nova tentativa do WhatsApp';
   else {
-    const urgency = getOperationalUrgencyReasons(order, at);
-    if (urgency.length > 0) nextLabel = urgency[0];
-    else if (currentStep === 2) nextLabel = resolvePreparationNextLabel(order);
+    if (currentStep === 2) nextLabel = resolvePreparationNextLabel(order);
     else if (currentStep === 3) {
       nextLabel = order.dslite_next_action === 'complete_dslite_label'
-        ? 'Emitir fiscal e completar etiqueta'
-        : 'Emitir nota fiscal';
+        ? 'Emita a nota fiscal e complete a etiqueta'
+        : 'Emita a nota fiscal';
     } else if (currentStep === 4) {
       nextLabel = order.dslite_next_action === 'wait_ml_label'
-        ? 'Aguardar liberação da etiqueta'
+        ? 'Aguarde a liberação da etiqueta'
         : order.dslite_next_action === 'complete_dslite_label'
-          ? 'Completar etiqueta'
-          : 'Gerar etiqueta de envio';
-    } else if (currentStep === 5) nextLabel = 'Despachar pedido';
-    else if (status === 'dest_ausente') nextLabel = 'Acompanhar nova tentativa de entrega';
-    else nextLabel = 'Acompanhar entrega';
+          ? 'Complete a etiqueta'
+          : 'Gere a etiqueta de envio';
+    } else if (currentStep === 5) nextLabel = 'Despache o pedido';
+    else if (status === 'dest_ausente') nextLabel = 'Acompanhe a nova tentativa de entrega';
+    else nextLabel = 'Acompanhe a entrega';
   }
 
   return {

@@ -39,6 +39,9 @@ test('BNT-D01 apresenta somente ações autorizadas para o cargo atual', () => {
 });
 
 test('BNT-D01 exibe venda e pack separadamente e reduz ruído visual da tabela', () => {
+  assert.match(page, /title: 'Data'/);
+  assert.match(page, /date\.format\('DD\/MM\/YYYY'\)/);
+  assert.match(page, /date\.format\('HH:mm'\)/);
   assert.match(page, /Venda #\{saleId\}/);
   assert.match(page, /Pack #\{packId\}/);
   assert.match(page, /order\.lucro > 0 \? token\.colorSuccess : token\.colorError/);
@@ -47,6 +50,8 @@ test('BNT-D01 exibe venda e pack separadamente e reduz ruído visual da tabela',
   assert.doesNotMatch(page, /<Tag color="purple">KIT<\/Tag>/);
   assert.doesNotMatch(page, /<Tag color="blue">CARRINHO<\/Tag>/);
   assert.doesNotMatch(page, /title: 'Idade'/);
+  assert.match(page, /label: 'Criar pedido DSLite'/);
+  assert.match(page, /label: 'Processar envio interno'/);
 });
 
 test('BNT-D01 mantém lista e resumo independentes e preserva dados em falha de refresh', () => {

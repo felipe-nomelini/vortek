@@ -101,7 +101,7 @@ type OrderActionKey =
   | 'download_thermal_label' | 'download_label' | 'complete_label' | 'supplier_payment'
   | 'send_whatsapp_label' | 'unlink_dslite';
 
-type OrderAction = { key: OrderActionKey; label: string; shortLabel: string; permission?: VortekPermission };
+type OrderAction = { key: OrderActionKey; label: string; permission?: VortekPermission };
 
 function parseOperationalView(value: string | null): OrdersOperationalView {
   return OPERATIONAL_VIEW_KEYS.includes(value as OrdersOperationalView) ? value as OrdersOperationalView : 'urgent';
@@ -203,7 +203,7 @@ function mapDBtoOrder(item: PedidoOperacionalApiDto): Order {
 
 function getOrderActions(order: Order, role: VortekRole | null, now: number): OrderAction[] {
   const can = (permission?: VortekPermission) => !permission || (role ? hasPermission(role, permission) : false);
-  const actions: OrderAction[] = [{ key: 'view', label: 'Ver detalhes', shortLabel: 'Detalhes' }];
+  const actions: OrderAction[] = [{ key: 'view', label: 'Ver detalhes' }];
   const hasDsliteId = Boolean(isValidDsliteId(order.dslite_id));
   const internalShipping = Boolean(order.envio_interno_at);
   const postDispatch = isPostDispatchOrder(order);
@@ -213,32 +213,31 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
   const releaseAt = order.ml_fiscal_release_at ? getMlReleaseComparableDate(order.ml_fiscal_release_at) : null;
   const labelBlocked = Boolean(order.situacao.valor !== 'etiqueta_impressa' && releaseAt && releaseAt.getTime() > now);
 
-  if (order.ml_shipment_id) actions.push({ key: 'track', label: 'Rastrear envio', shortLabel: 'Rastrear', permission: 'sales.track' });
+  if (order.ml_shipment_id) actions.push({ key: 'track', label: 'Rastrear envio', permission: 'sales.track' });
   if (!split && !internalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && order.fulfillment_source !== 'internal' && active) {
-    actions.push({ key: 'dslite', label: 'Enviar pelo fornecedor', shortLabel: 'Fornecedor', permission: 'sales.dslite.create' });
+    actions.push({ key: 'dslite', label: 'Criar pedido DSLite', permission: 'sales.dslite.create' });
   }
   if (!split && !internalShipping && !postDispatch && !hasDsliteId && order.fulfillment_source !== 'supplier' && order.internal_stock_available && order.ml_shipment_id && active) {
-    actions.push({ key: 'direct_shipping', label: 'Enviar pelo estoque interno', shortLabel: 'Envio interno', permission: 'sales.internal_shipping.process' });
+    actions.push({ key: 'direct_shipping', label: 'Processar envio interno', permission: 'sales.internal_shipping.process' });
   }
-  if (order.ml_label_storage_path && nextAction === 'internal_shipping') actions.push({ key: 'download_thermal_pdf', label: 'Baixar térmica PDF', shortLabel: 'PDF térmico' });
-  else if (order.ml_label_storage_path) actions.push({ key: 'download_label', label: 'Baixar etiqueta PDF', shortLabel: 'PDF' });
-  if (order.ml_thermal_label_storage_path) actions.push({ key: 'download_thermal_label', label: 'Baixar etiqueta ZPL', shortLabel: 'ZPL' });
+  if (order.ml_label_storage_path && nextAction === 'internal_shipping') actions.push({ key: 'download_thermal_pdf', label: 'Baixar térmica PDF' });
+  else if (order.ml_label_storage_path) actions.push({ key: 'download_label', label: 'Baixar etiqueta PDF' });
+  if (order.ml_thermal_label_storage_path) actions.push({ key: 'download_thermal_label', label: 'Baixar etiqueta ZPL' });
   if (!split && !internalShipping && !postDispatch && hasDsliteId && nextAction === 'complete_dslite_label') {
-    actions.push({ key: 'complete_label', label: 'Completar etiqueta DSLite', shortLabel: 'Completar', permission: 'sales.dslite.label.complete' });
+    actions.push({ key: 'complete_label', label: 'Completar etiqueta', permission: 'sales.dslite.label.complete' });
   }
   if (!split && !internalShipping && !postDispatch && hasDsliteId && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(nextAction || '')) {
     actions.push({
       key: 'supplier_payment',
       label: nextAction === 'resume_dslite_flow' ? 'Retomar fluxo DSLite' : nextAction === 'send_supplier_receipt' ? 'Anexar comprovante PIX' : 'Confirmar PIX do fornecedor',
-      shortLabel: nextAction === 'resume_dslite_flow' ? 'Retomar' : nextAction === 'send_supplier_receipt' ? 'Anexar PIX' : 'Confirmar PIX',
       permission: nextAction === 'resume_dslite_flow' ? 'sales.dslite.resume' : 'purchases.payment.confirm',
     });
   }
   if (!labelBlocked && (order.ml_shipment_id || order.ml_order_id || order.ml_label_storage_path)) {
-    actions.push({ key: 'send_whatsapp_label', label: 'Enviar etiqueta por WhatsApp', shortLabel: 'WhatsApp', permission: 'sales.whatsapp_label.send' });
+    actions.push({ key: 'send_whatsapp_label', label: 'Enviar etiqueta por WhatsApp', permission: 'sales.whatsapp_label.send' });
   }
   if (hasDsliteId && isDsliteRejected(order.dslite_status)) {
-    actions.push({ key: 'unlink_dslite', label: 'Desvincular compra DSLite', shortLabel: 'Desvincular', permission: 'sales.dslite.unlink' });
+    actions.push({ key: 'unlink_dslite', label: 'Desvincular compra DSLite', permission: 'sales.dslite.unlink' });
   }
   return actions.filter((action) => can(action.permission));
 }
@@ -523,9 +522,7 @@ export default function PedidosPage() {
     const icon = operational.key === 'view' ? <EyeOutlined /> : operational.key === 'track' ? <CarOutlined /> : <UploadOutlined />;
     return (
       <Space size={4}>
-        <Tooltip title={operational.label}>
-          <Button size="small" type={operational.key === 'view' ? 'default' : 'primary'} icon={icon} disabled={Boolean(order.is_homologation_fixture && operational.key !== 'view')} onClick={() => runOrderAction(operational.key, order)}>{operational.shortLabel}</Button>
-        </Tooltip>
+        <Button size="small" type={operational.key === 'view' ? 'default' : 'primary'} icon={icon} disabled={Boolean(order.is_homologation_fixture && operational.key !== 'view')} onClick={() => runOrderAction(operational.key, order)}>{operational.label}</Button>
         {secondary.length > 0 && (
           <Dropdown
             trigger={['click']}
@@ -543,7 +540,15 @@ export default function PedidosPage() {
 
   const columns: TableProps<Order>['columns'] = useMemo(() => [
     {
-      title: 'Pedido', dataIndex: 'numero', key: 'numero', width: 225, sorter: true, sortOrder: getRemoteSortOrder('numero', sort),
+      title: 'Data', dataIndex: 'data', key: 'data', width: 112, sorter: true, sortOrder: getRemoteSortOrder('data', sort),
+      render: (value: string) => {
+        const date = dayjs(value);
+        if (!date.isValid()) return <Text type="secondary">—</Text>;
+        return <div><Text strong>{date.format('DD/MM/YYYY')}</Text><Text type="secondary" style={{ display: 'block', fontSize: 11 }}>{date.format('HH:mm')}</Text></div>;
+      },
+    },
+    {
+      title: 'Pedido', dataIndex: 'numero', key: 'numero', width: 220, sorter: true, sortOrder: getRemoteSortOrder('numero', sort),
       render: (number: number, order: Order) => {
         const saleId = String(order.ml_order_id || number);
         const packId = String(order.ml_pack_id || '').trim();
@@ -553,7 +558,6 @@ export default function PedidosPage() {
             <Button type="link" size="small" style={{ padding: 0, fontFamily: 'monospace', fontWeight: 700 }} onClick={() => setDrawerOrder(order)}>Venda #{saleId}</Button>
             {packId && packId !== saleId && <Text type="secondary" style={{ display: 'block', fontSize: 11 }}>Pack #{packId}</Text>}
             {kinds && <Text type="secondary" style={{ display: 'block', fontSize: 11 }}>{kinds}</Text>}
-            <Text type="secondary" style={{ display: 'block', fontSize: 11 }}>{new Date(order.data).toLocaleString('pt-BR')}</Text>
           </div>
         );
       },
@@ -584,32 +588,34 @@ export default function PedidosPage() {
       },
     },
     {
-      title: 'Progresso', key: 'progress', width: 285,
+      title: 'Progresso', key: 'progress', width: 310,
       render: (_: unknown, order: Order) => {
         const progress = getOrderSalesProgress(order);
         const strokeColor = progress.tone === 'success' ? token.colorSuccess : progress.tone === 'error' ? token.colorError : token.colorPrimary;
         return (
-          <div>
-            <Text strong style={{ fontSize: 12 }}>Etapa {progress.currentStep} de {SALES_PROGRESS_STAGES.length} · {progress.currentLabel}</Text>
-            <Tooltip title={SALES_PROGRESS_STAGES.join(' → ')}>
-              <Progress
-                aria-label={`Progresso da venda: ${progress.completedSteps} de ${SALES_PROGRESS_STAGES.length} etapas concluídas`}
-                percent={(progress.completedSteps / SALES_PROGRESS_STAGES.length) * 100}
-                steps={SALES_PROGRESS_STAGES.length}
-                showInfo={false}
-                size="small"
-                status={progress.tone === 'success' ? 'success' : progress.tone === 'error' ? 'exception' : 'normal'}
-                strokeColor={strokeColor}
-                trailColor={token.colorFillSecondary}
-                style={{ margin: '2px 0' }}
-              />
-            </Tooltip>
-            <Text type={progress.tone === 'error' ? undefined : 'secondary'} style={{ display: 'block', color: progress.tone === 'error' ? token.colorError : undefined, fontSize: 11, lineHeight: 1.25 }}>Próximo: {progress.nextLabel}</Text>
+          <div style={{ width: '100%' }}>
+            <Text strong style={{ display: 'block', fontSize: 12 }}>Etapa {progress.currentStep}/{SALES_PROGRESS_STAGES.length} - {progress.currentLabel}</Text>
+            <div style={{ display: 'block', width: '100%', margin: '6px 0' }}>
+              <Tooltip title={SALES_PROGRESS_STAGES.join(' → ')}>
+                <Progress
+                  aria-label={`Progresso da venda: ${progress.completedSteps} de ${SALES_PROGRESS_STAGES.length} etapas concluídas`}
+                  percent={(progress.completedSteps / SALES_PROGRESS_STAGES.length) * 100}
+                  steps={SALES_PROGRESS_STAGES.length}
+                  showInfo={false}
+                  size={{ height: 8 }}
+                  status={progress.tone === 'success' ? 'success' : progress.tone === 'error' ? 'exception' : 'normal'}
+                  strokeColor={strokeColor}
+                  trailColor={token.colorFillSecondary}
+                  style={{ display: 'block', width: '100%', margin: 0 }}
+                />
+              </Tooltip>
+            </div>
+            <Text type={progress.tone === 'error' ? undefined : 'secondary'} style={{ display: 'block', color: progress.tone === 'error' ? token.colorError : undefined, fontSize: 11, lineHeight: 1.25 }}>Próxima: {progress.nextLabel}</Text>
           </div>
         );
       },
     },
-    { title: 'Próxima ação', key: 'next_action', width: 180, fixed: 'right', render: (_: unknown, order: Order) => renderActions(order) },
+    { title: 'Próxima ação', key: 'next_action', width: 220, fixed: 'right', render: (_: unknown, order: Order) => renderActions(order) },
   ], [renderActions, sort, token]);
 
   const handleTableChange: TableProps<Order>['onChange'] = (pagination, _filters, sorter) => {
@@ -698,9 +704,9 @@ export default function PedidosPage() {
       <Card size="small">
         {!listLoading && !listError && orders.length === 0 ? <Empty description="Nenhum pedido encontrado nesta fila e filtros." image={Empty.PRESENTED_IMAGE_SIMPLE} /> : (
           <ResizableTable<Order>
-            storageKey="pedidos-bentevi-v2" dataSource={orders} columns={columns} rowKey="id" loading={listLoading}
+            storageKey="pedidos-bentevi-v3" dataSource={orders} columns={columns} rowKey="id" loading={listLoading}
             pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} pedidos` }}
-            onChange={handleTableChange} scroll={{ x: 1220 }} size="small"
+            onChange={handleTableChange} scroll={{ x: 1385 }} size="small"
           />
         )}
       </Card>
