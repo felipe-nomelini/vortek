@@ -19,8 +19,9 @@ test('organiza a tabela de compras por identidade, contexto e andamento', () => 
   }
   assert.match(page, /purchase\.pedido_ml_pack_id.*<b>Pack<\/b>/s);
   assert.match(page, /purchase\.pedido_ml_order_id.*<b>Venda<\/b>/s);
-  assert.match(page, /Bentevi: \{purchase\.produto_sku_bentevi/);
-  assert.match(page, /Fornecedor: \{purchase\.produto_sku_fornecedor/);
+  assert.doesNotMatch(page, /styles\.skuText/);
+  assert.match(page, /className=\{styles\.productName\}/);
+  assert.match(styles, /\.productName[\s\S]*?overflow-wrap: anywhere;[\s\S]*?white-space: normal;/);
   assert.match(page, /<Steps type="inline"/);
   assert.match(page, /Próximo: \{progress\.nextLabel\}/);
   assert.match(styles, /\.progressCell/);
@@ -52,6 +53,8 @@ test('enriquece a compra sem criar uma segunda fonte de verdade', () => {
   assert.match(listRoute, /produto_sku_bentevi:/);
   assert.match(listRoute, /produto_sku_fornecedor:/);
   assert.match(listRoute, /itens_venda:/);
+  assert.match(listRoute, /select\('dslite_id,apelido,supplier_pix_key'\)/);
+  assert.match(listRoute, /fornecedor_apelido:/);
 });
 
 test('separa as fontes e todos os identificadores no detalhe', () => {
@@ -65,6 +68,7 @@ test('separa as fontes e todos os identificadores no detalhe', () => {
   assert.match(drawer, /Fornecedor \/ DSLite/);
   assert.match(drawer, /Venda \/ Vortek-Brasil NFe/);
   assert.match(drawer, /Fiscal e entrega/);
+  assert.match(drawer, /purchase\.fornecedor_apelido \|\| purchase\.fornecedor_nome/);
   assert.doesNotMatch(
     drawer.slice(drawer.indexOf('export function getPurchaseSaleReference'), drawer.indexOf('export default function')),
     /pedido_vendas_numero/,
@@ -86,7 +90,18 @@ test('exporta as identidades e valores com semântica explícita', () => {
     assert.match(exportRoute, new RegExp(field));
   }
   assert.match(exportRoute, /PIX no Vortek/);
+  assert.match(exportRoute, /row\.fornecedor_apelido \|\| row\.fornecedor_nome/);
   assert.doesNotMatch(exportRoute, /row\.pedido_vendas_numero \?/);
+});
+
+test('simplifica fornecedor e valores somente na tabela', () => {
+  assert.match(page, /purchase\.fornecedor_apelido \|\| purchase\.fornecedor_nome/);
+  assert.doesNotMatch(page, />Fornecedor \{formatCurrency\(purchase\.supplier_payment_amount\)\}/);
+  assert.doesNotMatch(page, />Fornecedor: a definir</);
+  assert.match(page, /<span className=\{styles\.supplierAmount\}>\{formatCurrency\(purchase\.supplier_payment_amount\)\}<\/span>/);
+  assert.match(page, /<span className=\{styles\.missingAmount\}>A definir<\/span>/);
+  assert.match(drawer, /SKU Bentevi/);
+  assert.match(drawer, /SKU do fornecedor/);
 });
 
 test('preserva filtros, proteção de homologação e permissão financeira', () => {

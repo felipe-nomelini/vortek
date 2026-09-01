@@ -175,7 +175,7 @@ export async function GET(request: Request) {
       const chunk = fornecedorIds.slice(index, index + 500);
       const { data, error } = await client
         .from('fornecedores')
-        .select('dslite_id,supplier_pix_key')
+        .select('dslite_id,apelido,supplier_pix_key')
         .in('dslite_id', chunk);
 
       if (error) {
@@ -281,6 +281,7 @@ export async function GET(request: Request) {
         produto_sku_fornecedor: oferta?.sku_fornecedor || oferta?.sku_oferta || null,
         produto_dslite_id: oferta?.dslite_produto_id ?? null,
         itens_venda: pedido?.id ? itensPorPedidoId.get(String(pedido.id)) || [] : [],
+        fornecedor_apelido: fornecedorByDsliteId.get(String(item.fornecedor_id || ''))?.apelido || null,
         supplier_pix_key: fornecedorByDsliteId.get(String(item.fornecedor_id || ''))?.supplier_pix_key || null,
         bkr1_pix_deferred: bkr1PixDeferred,
         is_homologation_fixture: isHomologationFixtureId(item.id) || isHomologationFixtureSource(pedido?.snapshot_source),

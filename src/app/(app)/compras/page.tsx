@@ -454,25 +454,23 @@ export default function ComprasPage() {
       title: 'Produto', dataIndex: 'produto_descricao', key: 'produto_descricao', width: 270,
       sorter: true, sortOrder: getRemoteSortOrder('produto_descricao', sort),
       render: (value: string | null, purchase) => <div className={styles.stackedCell}>
-        <span className={styles.primaryText}>{value || 'Produto não informado'}</span>
+        <span className={styles.productName}>{value || 'Produto não informado'}</span>
         <span className={styles.secondaryText}>
           Qtd. {purchase.quantidade || 1}{purchase.itens_venda.length > 1 ? ` · venda com ${purchase.itens_venda.length} itens` : ''}
         </span>
-        <span className={styles.skuText}>Bentevi: {purchase.produto_sku_bentevi || 'não vinculado'}</span>
-        <span className={styles.skuText}>Fornecedor: {purchase.produto_sku_fornecedor || 'não vinculado'}</span>
       </div>,
     },
     {
       title: 'Fornecedor', dataIndex: 'fornecedor_nome', key: 'fornecedor_nome', width: 155,
-      render: (value: string | null) => <span className={styles.primaryText}>{value || 'Não informado'}</span>,
+      render: (_value, purchase) => <span className={styles.primaryText}>{purchase.fornecedor_apelido || purchase.fornecedor_nome || 'Não informado'}</span>,
     },
     {
       title: 'Valores', dataIndex: 'supplier_payment_amount', key: 'valor_total', width: 155,
       sorter: true, sortOrder: getRemoteSortOrder('valor_total', sort),
       render: (_value, purchase) => <div className={styles.valueCell}>
         {purchase.supplier_payment_amount == null
-          ? <span className={styles.missingAmount}>Fornecedor: a definir</span>
-          : <span className={styles.supplierAmount}>Fornecedor {formatCurrency(purchase.supplier_payment_amount)}</span>}
+          ? <span className={styles.missingAmount}>A definir</span>
+          : <span className={styles.supplierAmount}>{formatCurrency(purchase.supplier_payment_amount)}</span>}
         <span className={styles.secondaryText}>Venda {formatCurrency(purchase.valor_total || 0)}</span>
       </div>,
     },
@@ -630,7 +628,7 @@ export default function ComprasPage() {
           description="Faça o PIX no banco e, depois, anexe o comprovante aqui para registrar a operação."
         />
         <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Compra</Text><Text strong>{selectedCompra ? `DSLite #${selectedCompra.dsid}` : '—'}</Text></div>
-        <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Fornecedor</Text><Text>{selectedCompra?.fornecedor_nome || '—'}</Text></div>
+        <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Fornecedor</Text><Text>{selectedCompra?.fornecedor_apelido || selectedCompra?.fornecedor_nome || '—'}</Text></div>
         <div>
           <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Valor informado pelo fornecedor</Text>
           <Space.Compact style={{ width: '100%' }}>

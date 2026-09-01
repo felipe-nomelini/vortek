@@ -231,7 +231,7 @@ function mapExportRow(row: Record<string, any>): ExportRow {
     compra_dslite: row.dsid ? `#${String(row.dsid)}` : '—',
     pack_ml: row.pedido_ml_pack_id ? `#${String(row.pedido_ml_pack_id)}` : '—',
     venda_ml: row.pedido_ml_order_id ? `#${String(row.pedido_ml_order_id)}` : '—',
-    fornecedor: String(row.fornecedor_nome || '—'),
+    fornecedor: String(row.fornecedor_apelido || row.fornecedor_nome || '—'),
     produto,
     sku_bentevi: String(row.produto_sku_bentevi || '—'),
     sku_fornecedor: String(row.produto_sku_fornecedor || '—'),

@@ -50,6 +50,7 @@ export interface CompraOperacional {
   data_criacao: string;
   rastreio: string | null;
   fornecedor_nome: string | null;
+  fornecedor_apelido: string | null;
   fornecedor_id: string | null;
   destinatario_nome: string | null;
   destinatario_documento: string | null;
@@ -145,7 +146,7 @@ export default function CompraDetailsDrawer({
       }}>
         {[
           ['Compra DSLite', `#${purchase.dsid}`],
-          ['Fornecedor', purchase.fornecedor_nome || 'Não informado'],
+          ['Fornecedor', purchase.fornecedor_apelido || purchase.fornecedor_nome || 'Não informado'],
           ['Situação', purchase.status || 'Sem status'],
         ].map(([label, value]) => (
           <div key={label} style={{ minWidth: 0, padding: 16, background: token.colorBgContainer }}>
