@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 31/08/2026
+**Última atualização:** 01/09/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-D02 — Dashboard`
+**Próxima ação obrigatória:** `BNT-D03 — Compras`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-D02` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-D03` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -144,7 +144,9 @@ Regras de uso:
 - [x] Não avançar para `BNT-D01` antes de `BNT-DOM-DEV` estar integralmente validada.
 - [x] Executar somente `BNT-D01 — Vendas /pedidos — piloto`.
 - [x] Não avançar para `BNT-D02` antes de `BNT-D01` estar integralmente validada e aprovada em homologação.
-- [ ] Executar somente `BNT-D02 — Dashboard`.
+- [x] Executar somente `BNT-D02 — Dashboard`.
+- [x] Não avançar para `BNT-D03` antes de `BNT-D02` estar integralmente validada e aprovada em homologação.
+- [ ] Executar somente `BNT-D03 — Compras`.
 
 ---
 
@@ -1922,7 +1924,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 #### Desktop — uma página por tarefa
 
 - [x] `BNT-D01` — Vendas `/pedidos` — piloto;
-- [ ] `BNT-D02` — Dashboard;
+- [x] `BNT-D02` — Dashboard;
 - [ ] `BNT-D03` — Compras;
 - [ ] `BNT-D04` — Notas Fiscais;
 - [ ] `BNT-D05` — Estoque;
@@ -1948,11 +1950,11 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Estado de `BNT-D01`:** concluído e aprovado visualmente pelo usuário em homologação em `2026-08-31`. Tabela operacional, carga visual protegida, detalhe completo em `Drawer` e acompanhamento de entrega compartilhado entre aba e modal permanecem como contrato aprovado.
 
-**Estado de `BNT-D02`:** proposta inicial rejeitada e substituída por um cockpit comercial gamificado; revisão concluída tecnicamente e publicada em homologação, aguardando nova aprovação visual do usuário. `BNT-D03` permanece bloqueado.
+**Estado de `BNT-D02`:** proposta inicial rejeitada e substituída por um cockpit comercial gamificado; revisão aprovada visualmente pelo usuário em homologação em `2026-09-01`. `BNT-D03` foi liberado.
 
 #### Resultado técnico de `BNT-D02 — Dashboard`
 
-**Situação:** revisão implementada e validada tecnicamente em `2026-09-01`; aprovação visual pendente.
+**Situação:** revisão implementada, validada tecnicamente e aprovada visualmente em `2026-09-01`.
 
 **Estado/causa confirmados:** a primeira proposta ainda reproduzia a aparência antiga em uma grade extensa de cards e mantinha dashboard, reputação, integrações e três sincronizações no mesmo componente. O resumo também usava pedidos brutos e ranking acumulado de anúncios, fontes inadequadas para representar vendas operacionais e produtos do período.
 
@@ -1968,11 +1970,31 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Validação da correção:** 5 cenários de `tests/bentevi-dashboard.test.js`, `npm run validate` e `npm run build` aprovados. O deploy oficial de `0cec141` foi aceito pelo Easypanel e o novo processo de `vortek-erp-dev` iniciou; health e login responderam `200`, `/dashboard` sem sessão respondeu `307` e o resumo sem sessão respondeu `401`. A resposta autenticada e a aprovação visual permanecem para conferência do usuário no navegador.
 
-**Migration/banco:** N/A; nenhuma escrita, migration ou conexão de banco foi executada.
+**Migration/banco:** N/A; nenhuma escrita ou migration de banco foi executada.
 
 **Rollback:** reverter `5e59786` em `dev` e redeployar somente `vortek-erp-dev`.
 
-**Pendência:** aprovação visual do usuário em `dev.bentevi.shop`. `BNT-D03` não está liberado.
+**Pendência:** nenhuma para `BNT-D02`. A ação seguinte é `BNT-D03 — Compras`.
+
+#### Resultado técnico de `BNT-D03 — Compras`
+
+**Situação:** implementada, validada tecnicamente e publicada em homologação em `2026-09-01`; aprovação visual pendente.
+
+**Estado/causa confirmados:** a página anterior distribuía resumo, filtros e operações em uma tabela extensa, sem contexto detalhado da compra e sem filtro por fornecedor. O total financeiro disponível também não distinguia o valor da venda do valor efetivamente devido ao fornecedor.
+
+**Mudança realizada:** Compras passou a ter cabeçalho operacional, faixa única de indicadores, filtros persistidos na URL, tabela contextual e `Drawer` com abas de visão geral, pagamento e fiscal/envio. A ação principal respeita o estado da compra e a permissão do usuário. O resumo financeiro usa exclusivamente `supplier_payment_amount` e sinaliza compras sem valor devido conhecido. Lista, resumo e PDF compartilham o filtro por fornecedor. A Hayamax permanece apenas como histórico de conta-saldo, e a amostra de homologação continua protegida contra ações externas.
+
+**Arquivos alterados:** página e estilo local de Compras, `CompraDetailsDrawer`, rotas de lista/resumo/PDF e testes direcionados.
+
+**Commit funcional:** `7da856b`, enviado somente para `origin/dev`.
+
+**Validação:** 19 cenários direcionados de Compras, permissões e aposentadoria Hayamax aprovados; `npm run validate` e `npm run build` aprovados. O deploy oficial foi aceito somente para `vortek-erp-dev`; o novo processo iniciou e `dev.bentevi.shop` respondeu `200` em health e login, `307` em `/compras` sem sessão e `401` nas APIs de lista e resumo sem sessão.
+
+**Migration/banco:** N/A; nenhuma escrita ou migration de banco foi executada.
+
+**Rollback:** reverter o commit `7da856b` em `dev` e reimplantar somente `vortek-erp-dev`.
+
+**Pendência:** aprovação visual do usuário em `dev.bentevi.shop`. `BNT-D04` permanece bloqueado.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
