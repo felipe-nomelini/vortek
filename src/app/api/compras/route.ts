@@ -186,8 +186,79 @@ export async function GET(request: Request) {
     }
     const fornecedorByDsliteId = new Map(fornecedores.map((fornecedor: any) => [String(fornecedor.dslite_id), fornecedor]));
 
+    const ofertaIds = Array.from(new Set(
+      allCompras
+        .map((item: any) => String(item.produto_fornecedor_oferta_id || '').trim())
+        .filter(Boolean),
+    ));
+    const ofertas: any[] = [];
+    for (let index = 0; index < ofertaIds.length; index += 500) {
+      const chunk = ofertaIds.slice(index, index + 500);
+      const { data, error } = await client
+        .from('produto_fornecedor_ofertas')
+        .select('id,produto_id,sku_fornecedor,sku_oferta,dslite_produto_id')
+        .in('id', chunk);
+
+      if (error) {
+        console.error('[api/compras] Erro ao buscar ofertas vinculadas:', error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      ofertas.push(...(data || []));
+    }
+    const ofertaPorId = new Map(ofertas.map((oferta: any) => [String(oferta.id), oferta]));
+
+    const produtoIds = Array.from(new Set(
+      ofertas
+        .map((oferta: any) => String(oferta.produto_id || '').trim())
+        .filter(Boolean),
+    ));
+    const produtos: any[] = [];
+    for (let index = 0; index < produtoIds.length; index += 500) {
+      const chunk = produtoIds.slice(index, index + 500);
+      const { data, error } = await client
+        .from('produtos')
+        .select('id,sku')
+        .in('id', chunk);
+
+      if (error) {
+        console.error('[api/compras] Erro ao buscar produtos vinculados:', error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      produtos.push(...(data || []));
+    }
+    const produtoPorId = new Map(produtos.map((produto: any) => [String(produto.id), produto]));
+
+    const pedidoIds = Array.from(new Set(
+      Array.from(pedidoPorDsliteId.values())
+        .map((pedido: any) => String(pedido.id || '').trim())
+        .filter(Boolean),
+    ));
+    const pedidoItens: any[] = [];
+    for (let index = 0; index < pedidoIds.length; index += 500) {
+      const chunk = pedidoIds.slice(index, index + 500);
+      const { data, error } = await client
+        .from('pedido_itens')
+        .select('pedido_id,titulo,quantidade,seller_sku,ml_item_id')
+        .in('pedido_id', chunk);
+
+      if (error) {
+        console.error('[api/compras] Erro ao buscar itens das vendas vinculadas:', error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      pedidoItens.push(...(data || []));
+    }
+    const itensPorPedidoId = new Map<string, any[]>();
+    for (const item of pedidoItens) {
+      const pedidoId = String(item.pedido_id || '');
+      const current = itensPorPedidoId.get(pedidoId) || [];
+      current.push(item);
+      itensPorPedidoId.set(pedidoId, current);
+    }
+
     const comprasEnriquecidas = allCompras.map((item: any) => {
       const pedido = pedidoPorDsliteId.get(String(item.dsid));
+      const oferta = ofertaPorId.get(String(item.produto_fornecedor_oferta_id || ''));
+      const produto = oferta ? produtoPorId.get(String(oferta.produto_id || '')) : null;
       const releaseAt = pedido?.ml_fiscal_release_at ? new Date(pedido.ml_fiscal_release_at) : null;
       const bkr1PixDeferred = Boolean(
         isBkr1Supplier(item.fornecedor_id, item.fornecedor_nome)
@@ -206,6 +277,10 @@ export async function GET(request: Request) {
         pedido_ml_pack_id: pedido?.ml_pack_id ?? null,
         pedido_nfe_status: pedido?.nfe_status ?? null,
         pedido_nota_fiscal_emitida: Boolean(pedido?.nota_fiscal_emitida),
+        produto_sku_bentevi: produto?.sku ?? null,
+        produto_sku_fornecedor: oferta?.sku_fornecedor || oferta?.sku_oferta || null,
+        produto_dslite_id: oferta?.dslite_produto_id ?? null,
+        itens_venda: pedido?.id ? itensPorPedidoId.get(String(pedido.id)) || [] : [],
         supplier_pix_key: fornecedorByDsliteId.get(String(item.fornecedor_id || ''))?.supplier_pix_key || null,
         bkr1_pix_deferred: bkr1PixDeferred,
         is_homologation_fixture: isHomologationFixtureId(item.id) || isHomologationFixtureSource(pedido?.snapshot_source),

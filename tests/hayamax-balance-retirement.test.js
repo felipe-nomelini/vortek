@@ -34,12 +34,12 @@ test('não gera novos balance_account nem débito automático', () => {
 test('recusa balance_account ativo e preserva sua leitura histórica', () => {
   const offerRoute = read('src/app/api/produtos/[id]/fornecedores/route.ts');
   const offerPage = read('src/app/(app)/produtos/ofertas/[id]/page.tsx');
-  const purchasesPage = read('src/app/(app)/compras/page.tsx');
+  const purchasesDrawer = read('src/components/compras/CompraDetailsDrawer.tsx');
 
   assert.match(offerRoute, /value === 'balance_account'/);
   assert.match(offerRoute, /status: 422/);
   assert.match(offerPage, /Saldo Hayamax \(histórico\).*disabled: true/s);
-  assert.match(purchasesPage, /Saldo Hayamax/);
+  assert.match(purchasesDrawer, /Conta-saldo aposentada/);
 });
 
 test('expõe o ledger aposentado somente para leitura e fora dos totais ativos', () => {

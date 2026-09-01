@@ -85,13 +85,31 @@
   margin-top: 12px;
 }
 
-.purchaseCell,
+.dateCell,
+.identifiersCell,
 .stackedCell,
 .valueCell {
   display: flex;
   flex-direction: column;
   gap: 3px;
   min-width: 0;
+}
+
+.dateCell {
+  gap: 2px;
+}
+
+.identifiersCell {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+}
+
+.identifiersCell b {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .purchaseLink {
@@ -121,6 +139,14 @@
   white-space: nowrap;
 }
 
+.skuText {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.57);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .supplierAmount {
   color: rgba(255, 255, 255, 0.92);
   font-weight: 750;
@@ -130,6 +156,41 @@
   color: #faad14;
   font-size: 12px;
   font-weight: 650;
+}
+
+.progressCell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.progressCell :global(.ant-steps-inline) {
+  display: flex;
+  width: 100%;
+}
+
+.progressCell :global(.ant-steps-item) {
+  flex: 1;
+  min-width: 0;
+}
+
+.progressCell :global(.ant-steps-item-container) {
+  width: 100%;
+  padding-inline: 2px;
+}
+
+.progressCell :global(.ant-steps-item-title) {
+  font-size: 10px !important;
+}
+
+.nextStep {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 11px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .primaryAction {

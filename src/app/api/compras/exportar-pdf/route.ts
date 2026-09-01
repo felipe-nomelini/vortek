@@ -7,17 +7,19 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 type ExportRow = {
-  compra: string;
-  venda: string;
   data: string;
-  destinatario: string;
+  compra_dslite: string;
+  pack_ml: string;
+  venda_ml: string;
   fornecedor: string;
   produto: string;
-  quantidade: number;
-  total: number;
+  sku_bentevi: string;
+  sku_fornecedor: string;
+  valor_fornecedor: number | null;
+  valor_venda: number;
   pagamento: string;
-  status: string;
-  nota_fiscal: string;
+  nf_dslite: string;
+  rastreio: string;
 };
 
 const PAGE_WIDTH = 841.89;
@@ -35,17 +37,25 @@ const columns: Array<{
   align?: 'left' | 'right' | 'center';
   format?: (row: ExportRow) => string;
 }> = [
-  { key: 'compra', label: 'Compra', width: 58 },
-  { key: 'venda', label: 'Venda', width: 60 },
-  { key: 'data', label: 'Data', width: 68 },
-  { key: 'destinatario', label: 'Destinatário', width: 90 },
-  { key: 'fornecedor', label: 'Fornecedor', width: 80 },
-  { key: 'produto', label: 'Produto / SKU', width: 145 },
-  { key: 'quantidade', label: 'Qtd', width: 28, align: 'right' },
-  { key: 'total', label: 'Total', width: 58, align: 'right', format: (row) => formatCurrency(row.total) },
-  { key: 'pagamento', label: 'Pagto. fornecedor', width: 78 },
-  { key: 'status', label: 'Status', width: 70 },
-  { key: 'nota_fiscal', label: 'NF', width: 48 },
+  { key: 'data', label: 'Data', width: 63 },
+  { key: 'compra_dslite', label: 'Compra DSLite', width: 52 },
+  { key: 'pack_ml', label: 'Pack ML', width: 66 },
+  { key: 'venda_ml', label: 'Venda ML', width: 62 },
+  { key: 'fornecedor', label: 'Fornecedor', width: 74 },
+  { key: 'produto', label: 'Produto', width: 96 },
+  { key: 'sku_bentevi', label: 'SKU Bentevi', width: 48 },
+  { key: 'sku_fornecedor', label: 'SKU fornecedor', width: 56 },
+  {
+    key: 'valor_fornecedor',
+    label: 'Fornecedor R$',
+    width: 55,
+    align: 'right',
+    format: (row) => row.valor_fornecedor == null ? 'A definir' : formatCurrency(row.valor_fornecedor),
+  },
+  { key: 'valor_venda', label: 'Venda R$', width: 55, align: 'right', format: (row) => formatCurrency(row.valor_venda) },
+  { key: 'pagamento', label: 'PIX no Vortek', width: 52 },
+  { key: 'nf_dslite', label: 'NF DSLite', width: 45 },
+  { key: 'rastreio', label: 'Rastreio', width: 60 },
 ];
 
 function formatCurrency(value: number): string {
@@ -70,11 +80,11 @@ function formatDate(value: unknown): string {
 function formatSupplierPayment(row: Record<string, any>): string {
   if (row.supplier_payment_mode === 'balance_account') return 'Saldo Hayamax';
   if (row.supplier_payment_mode !== 'prepaid_pix') return '—';
-  if (row.bkr1_pix_deferred) return 'PIX após etiqueta';
-  if (row.supplier_payment_status === 'paid') return 'PIX pago';
-  if (row.supplier_payment_status === 'failed') return 'PIX falhou';
-  if (row.supplier_payment_status === 'cancelled') return 'PIX cancelado';
-  return 'PIX pendente';
+  if (row.bkr1_pix_deferred) return 'Após etiqueta ML';
+  if (row.supplier_payment_status === 'paid') return 'Registrado';
+  if (row.supplier_payment_status === 'failed') return 'Falha';
+  if (row.supplier_payment_status === 'cancelled') return 'Cancelado';
+  return 'Aguardando';
 }
 
 function sanitizeText(value: unknown, supportedCharacters: Set<number>): string {
@@ -207,27 +217,29 @@ async function buildPdf(rows: ExportRow[], filterDescription: string): Promise<U
   }
 
   document.setTitle('Lista de compras DSLite');
-  document.setProducer('Vortek');
+  document.setProducer('Bentevi');
   return document.save({ useObjectStreams: false });
 }
 
 function mapExportRow(row: Record<string, any>): ExportRow {
   const description = String(row.produto_descricao || '').trim();
-  const sku = String(row.produto_sku || '').trim();
-  const produto = [description, sku ? `SKU ${sku}` : null].filter(Boolean).join(' | ') || '—';
+  const quantity = Number(row.quantidade || 1);
+  const produto = description ? `${description} | Qtd. ${quantity}` : `Produto não informado | Qtd. ${quantity}`;
 
   return {
-    compra: row.dsid ? `#${String(row.dsid).padStart(6, '0')}` : '—',
-    venda: row.pedido_vendas_numero ? `#${String(row.pedido_vendas_numero).padStart(6, '0')}` : '—',
     data: formatDate(row.data_criacao),
-    destinatario: String(row.destinatario_nome || '—'),
+    compra_dslite: row.dsid ? `#${String(row.dsid)}` : '—',
+    pack_ml: row.pedido_ml_pack_id ? `#${String(row.pedido_ml_pack_id)}` : '—',
+    venda_ml: row.pedido_ml_order_id ? `#${String(row.pedido_ml_order_id)}` : '—',
     fornecedor: String(row.fornecedor_nome || '—'),
     produto,
-    quantidade: Number(row.quantidade || 1),
-    total: Number(row.valor_total || 0),
+    sku_bentevi: String(row.produto_sku_bentevi || '—'),
+    sku_fornecedor: String(row.produto_sku_fornecedor || '—'),
+    valor_fornecedor: row.supplier_payment_amount == null ? null : Number(row.supplier_payment_amount),
+    valor_venda: Number(row.valor_total || 0),
     pagamento: formatSupplierPayment(row),
-    status: String(row.status || '—'),
-    nota_fiscal: String(row.nf_numero || '—'),
+    nf_dslite: String(row.nf_numero || '—'),
+    rastreio: String(row.rastreio || '—'),
   };
 }
 

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
 import {
   Alert, Button, Card, Col, DatePicker, Dropdown, Empty, Input, Modal,
-  Row, Select, Space, Tag, Typography, Upload, message,
+  Row, Select, Space, Steps, Tag, Typography, Upload, message,
 } from 'antd';
 import type { TableProps } from 'antd';
 import {
@@ -14,10 +14,12 @@ import {
 import ResizableTable from '@/components/ResizableTable';
 import CompraDetailsDrawer, {
   getPurchaseSaleReference,
+  type CompraDrawerTab,
   type CompraOperacional,
 } from '@/components/compras/CompraDetailsDrawer';
 import { formatCurrency } from '@/lib/format';
 import { hasPermission, type VortekRole } from '@/lib/permissions';
+import { resolvePurchaseProgress } from '@/lib/purchase-progress';
 import {
   appendRemoteSortParams, getRemoteSortOrder, resolveRemoteSortState,
   type RemoteSortState,
@@ -47,16 +49,18 @@ interface PurchaseSummary {
   cancelado: number;
   revisao: number;
   valor_total: number;
-  supplier_payment_total: number;
-  supplier_payment_missing_count: number;
+  supplier_payment_pending_count: number;
+  supplier_payment_pending_total: number;
+  supplier_payment_pending_missing_amount_count: number;
 }
 
-type PurchaseActionKey = 'details' | 'payment' | 'track' | 'sale';
+type PurchaseActionKey = 'details' | 'payment' | 'payment_details' | 'track' | 'sale';
 
 const EMPTY_SUMMARY: PurchaseSummary = {
   total: 0, pendentes: 0, faturado: 0, aguardando_informacoes: 0,
   cancelado: 0, revisao: 0, valor_total: 0,
-  supplier_payment_total: 0, supplier_payment_missing_count: 0,
+  supplier_payment_pending_count: 0, supplier_payment_pending_total: 0,
+  supplier_payment_pending_missing_amount_count: 0,
 };
 
 const statusOptions = [
@@ -71,33 +75,19 @@ const statusOptions = [
   { value: 'Revisão', label: 'Revisão' },
 ];
 
-const statusColor: Record<string, string> = {
-  'Aguardando Informações': 'orange',
-  'Aguardando Pagamento Fornecedor': 'gold',
-  Iniciado: 'blue',
-  'Aguardando Etiqueta': 'cyan',
-  Solicitado: 'geekblue',
-  Confirmado: 'green',
-  Faturado: 'purple',
-  Cancelado: 'default',
-  Revisão: 'magenta',
-};
-
 function parsePositiveInteger(value: string | null, fallback: number): number {
   const parsed = Number(value);
   return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
 }
 
-function formatDateTime(value: string | null | undefined): string {
-  if (!value) return '—';
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? '—' : date.toLocaleString('pt-BR');
-}
-
-function formatStatus(value: string | null | undefined): string {
-  const normalized = String(value || '').trim();
-  if (!normalized) return '—';
-  return normalized.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+function formatDateParts(value: string | null | undefined): { date: string; time: string } {
+  if (!value) return { date: '—', time: '—' };
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return { date: '—', time: '—' };
+  return {
+    date: parsed.toLocaleDateString('pt-BR'),
+    time: parsed.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+  };
 }
 
 function formatSupplierWhatsappReason(reason: unknown): string {
@@ -109,18 +99,8 @@ function formatSupplierWhatsappReason(reason: unknown): string {
   }
 }
 
-function renderPaymentTag(purchase: CompraOperacional) {
-  if (purchase.supplier_payment_mode === 'balance_account') return <Tag>Saldo Hayamax (histórico)</Tag>;
-  if (purchase.supplier_payment_mode !== 'prepaid_pix') return <Text type="secondary">Não aplicável</Text>;
-  if (purchase.supplier_payment_status === 'paid') return <Tag color="green">PIX pago</Tag>;
-  if (purchase.supplier_payment_status === 'failed') return <Tag color="red">PIX falhou</Tag>;
-  if (purchase.supplier_payment_status === 'cancelled') return <Tag>PIX cancelado</Tag>;
-  return <Tag color="gold">PIX pendente</Tag>;
-}
-
 function paymentActionLabel(purchase: CompraOperacional): string {
-  if (purchase.supplier_payment_status !== 'paid') return 'Confirmar PIX';
-  return purchase.supplier_payment_receipt_path ? 'Reenviar comprovante' : 'Anexar comprovante';
+  return purchase.supplier_payment_status === 'failed' ? 'Revisar PIX' : 'Registrar PIX';
 }
 
 function hasPaymentAction(purchase: CompraOperacional, canConfirmPayment: boolean): boolean {
@@ -128,14 +108,18 @@ function hasPaymentAction(purchase: CompraOperacional, canConfirmPayment: boolea
     canConfirmPayment
       && !purchase.is_homologation_fixture
       && purchase.supplier_payment_mode === 'prepaid_pix'
-      && purchase.supplier_payment_status !== 'cancelled'
+      && (purchase.supplier_payment_status === 'pending' || purchase.supplier_payment_status === 'failed')
       && !purchase.bkr1_pix_deferred,
   );
 }
 
 function primaryAction(purchase: CompraOperacional, canConfirmPayment: boolean): { key: PurchaseActionKey; label: string } {
+  if (purchase.status === 'Cancelado' || purchase.status === 'Revisão' || purchase.status === 'Aguardando Informações') {
+    return { key: 'details', label: 'Ver detalhes' };
+  }
   if (hasPaymentAction(purchase, canConfirmPayment)) return { key: 'payment', label: paymentActionLabel(purchase) };
   if (!purchase.is_homologation_fixture && purchase.rastreio) return { key: 'track', label: 'Rastrear' };
+  if (purchase.supplier_payment_status === 'paid') return { key: 'payment_details', label: 'Ver pagamento' };
   return { key: 'details', label: 'Ver detalhes' };
 }
 
@@ -162,6 +146,7 @@ export default function ComprasPage() {
   const [supplierOptions, setSupplierOptions] = useState<SupplierOption[]>([]);
   const [mlAnunciosAlertas, setMlAnunciosAlertas] = useState<MlAnunciosAlertas | null>(null);
   const [drawerPurchase, setDrawerPurchase] = useState<CompraOperacional | null>(null);
+  const [drawerTab, setDrawerTab] = useState<CompraDrawerTab>('overview');
   const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [selectedCompra, setSelectedCompra] = useState<CompraOperacional | null>(null);
   const [confirmingPayment, setConfirmingPayment] = useState(false);
@@ -260,8 +245,10 @@ export default function ComprasPage() {
         total: Number(value.total || 0), pendentes: Number(value.pendentes || 0),
         faturado: Number(value.faturado || 0), aguardando_informacoes: Number(value.aguardando_informacoes || 0),
         cancelado: Number(value.cancelado || 0), revisao: Number(value.revisao || 0),
-        valor_total: Number(value.valor_total || 0), supplier_payment_total: Number(value.supplier_payment_total || 0),
-        supplier_payment_missing_count: Number(value.supplier_payment_missing_count || 0),
+        valor_total: Number(value.valor_total || 0),
+        supplier_payment_pending_count: Number(value.supplier_payment_pending_count || 0),
+        supplier_payment_pending_total: Number(value.supplier_payment_pending_total || 0),
+        supplier_payment_pending_missing_amount_count: Number(value.supplier_payment_pending_missing_amount_count || 0),
       });
     } else {
       setSummaryError(summaryResult.reason instanceof Error ? summaryResult.reason.message : 'Não foi possível carregar o resumo.');
@@ -366,7 +353,7 @@ export default function ComprasPage() {
   const handleConfirmSupplierPayment = useCallback(async () => {
     if (!selectedCompra) return;
     if (!paymentReceiptFile && !selectedCompra.supplier_payment_receipt_path) {
-      messageApi.warning('Anexe o comprovante do PIX antes de enviar ao fornecedor.');
+      messageApi.warning('Anexe o comprovante do PIX antes de registrar o pagamento.');
       return;
     }
     setConfirmingPayment(true);
@@ -382,7 +369,7 @@ export default function ComprasPage() {
       const whatsappDetail = payload.whatsapp?.sent
         ? 'WhatsApp enviado.'
         : `WhatsApp não enviado${payload.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(payload.whatsapp.reason)}` : ''}.`;
-      messageApi.success(`Comprovante processado. ${whatsappDetail}`);
+      messageApi.success(`PIX registrado no Vortek. ${whatsappDetail}`);
       resetPaymentModal();
       await fetchFilteredPurchases();
     } catch (error) {
@@ -400,6 +387,11 @@ export default function ComprasPage() {
       messageApi.error('Não foi possível copiar automaticamente.');
     }
   }, [messageApi]);
+
+  const openDrawer = useCallback((purchase: CompraOperacional, tab: CompraDrawerTab = 'overview') => {
+    setDrawerPurchase(purchase);
+    setDrawerTab(tab);
+  }, []);
 
   const openSale = useCallback((purchase: CompraOperacional) => {
     const reference = getPurchaseSaleReference(purchase);
@@ -423,81 +415,86 @@ export default function ComprasPage() {
   }, [messageApi]);
 
   const runAction = useCallback((key: PurchaseActionKey, purchase: CompraOperacional) => {
-    if (key === 'details') setDrawerPurchase(purchase);
+    if (key === 'details') openDrawer(purchase);
     if (key === 'payment') openPaymentModal(purchase);
+    if (key === 'payment_details') openDrawer(purchase, 'payment');
     if (key === 'track') trackPurchase(purchase);
     if (key === 'sale') openSale(purchase);
-  }, [openPaymentModal, openSale, trackPurchase]);
+  }, [openDrawer, openPaymentModal, openSale, trackPurchase]);
 
   const columns: TableProps<CompraOperacional>['columns'] = [
     {
-      title: 'Compra', dataIndex: 'dsid', key: 'dsid', width: 155,
-      sorter: true, sortOrder: getRemoteSortOrder('dsid', sort),
-      render: (_value, purchase) => <div className={styles.purchaseCell}>
-        <button type="button" className={styles.purchaseLink} onClick={() => setDrawerPurchase(purchase)}>DSLite #{purchase.dsid}</button>
-        <span className={styles.secondaryText}>{formatDateTime(purchase.data_criacao)}</span>
-        <span><Tag color={statusColor[purchase.status] || 'default'}>{purchase.status || 'Sem status'}</Tag></span>
-      </div>,
-    },
-    {
-      title: 'Venda', dataIndex: 'pedido_vendas_numero', key: 'pedido_vendas_numero', width: 190,
-      sorter: true, sortOrder: getRemoteSortOrder('pedido_vendas_numero', sort),
-      render: (_value, purchase) => {
-        const reference = getPurchaseSaleReference(purchase);
-        return <div className={styles.stackedCell}>
-          <span className={styles.primaryText}>{reference ? `${purchase.pedido_ml_pack_id ? 'Pack' : 'Venda'} #${reference}` : 'Venda não vinculada'}</span>
-          <span className={styles.secondaryText}>{purchase.destinatario_nome || 'Destinatário não informado'}</span>
+      title: 'Data', dataIndex: 'data_criacao', key: 'data_criacao', width: 105,
+      sorter: true, sortOrder: getRemoteSortOrder('data_criacao', sort),
+      render: (value: string | null) => {
+        const parts = formatDateParts(value);
+        return <div className={styles.dateCell}>
+          <span className={styles.primaryText}>{parts.date}</span>
+          <span className={styles.secondaryText}>{parts.time}</span>
         </div>;
       },
     },
     {
-      title: 'Fornecedor', dataIndex: 'fornecedor_nome', key: 'fornecedor_nome', width: 165,
-      render: (value: string | null, purchase) => <div className={styles.stackedCell}>
-        <span className={styles.primaryText}>{value || 'Não informado'}</span>
-        <span className={styles.secondaryText}>{purchase.fornecedor_id ? `DSLite ${purchase.fornecedor_id}` : 'Sem identificador'}</span>
+      title: 'Compra DSLite', dataIndex: 'dsid', key: 'dsid', width: 135,
+      sorter: true, sortOrder: getRemoteSortOrder('dsid', sort),
+      render: (_value, purchase) => (
+        <button type="button" className={styles.purchaseLink} onClick={() => openDrawer(purchase)}>#{purchase.dsid}</button>
+      ),
+    },
+    {
+      title: 'Venda ML', dataIndex: 'pedido_vendas_numero', key: 'pedido_vendas_numero', width: 195,
+      sorter: true, sortOrder: getRemoteSortOrder('pedido_vendas_numero', sort),
+      render: (_value, purchase) => <div className={styles.identifiersCell}>
+        {purchase.pedido_ml_pack_id && <span><b>Pack</b> #{purchase.pedido_ml_pack_id}</span>}
+        {purchase.pedido_ml_order_id && <span><b>Venda</b> #{purchase.pedido_ml_order_id}</span>}
+        {!purchase.pedido_ml_pack_id && !purchase.pedido_ml_order_id && <span className={styles.secondaryText}>Não vinculada</span>}
       </div>,
     },
     {
-      title: 'Produto', dataIndex: 'produto_descricao', key: 'produto_descricao', width: 235,
+      title: 'Produto', dataIndex: 'produto_descricao', key: 'produto_descricao', width: 270,
       sorter: true, sortOrder: getRemoteSortOrder('produto_descricao', sort),
       render: (value: string | null, purchase) => <div className={styles.stackedCell}>
         <span className={styles.primaryText}>{value || 'Produto não informado'}</span>
-        <span className={styles.secondaryText}>{purchase.produto_sku ? `SKU ${purchase.produto_sku}` : 'Sem SKU'} · Qtd. {purchase.quantidade || 1}</span>
+        <span className={styles.secondaryText}>
+          Qtd. {purchase.quantidade || 1}{purchase.itens_venda.length > 1 ? ` · venda com ${purchase.itens_venda.length} itens` : ''}
+        </span>
+        <span className={styles.skuText}>Bentevi: {purchase.produto_sku_bentevi || 'não vinculado'}</span>
+        <span className={styles.skuText}>Fornecedor: {purchase.produto_sku_fornecedor || 'não vinculado'}</span>
       </div>,
     },
     {
-      title: 'Valores', dataIndex: 'supplier_payment_amount', key: 'valor_total', width: 145,
+      title: 'Fornecedor', dataIndex: 'fornecedor_nome', key: 'fornecedor_nome', width: 155,
+      render: (value: string | null) => <span className={styles.primaryText}>{value || 'Não informado'}</span>,
+    },
+    {
+      title: 'Valores', dataIndex: 'supplier_payment_amount', key: 'valor_total', width: 155,
       sorter: true, sortOrder: getRemoteSortOrder('valor_total', sort),
       render: (_value, purchase) => <div className={styles.valueCell}>
         {purchase.supplier_payment_amount == null
-          ? <span className={styles.missingAmount}>A pagar: a definir</span>
-          : <span className={styles.supplierAmount}>{formatCurrency(purchase.supplier_payment_amount)}</span>}
+          ? <span className={styles.missingAmount}>Fornecedor: a definir</span>
+          : <span className={styles.supplierAmount}>Fornecedor {formatCurrency(purchase.supplier_payment_amount)}</span>}
         <span className={styles.secondaryText}>Venda {formatCurrency(purchase.valor_total || 0)}</span>
-        {purchase.valor_frete > 0 && <span className={styles.secondaryText}>Frete {formatCurrency(purchase.valor_frete)}</span>}
       </div>,
     },
     {
-      title: 'Pagamento', dataIndex: 'supplier_payment_status', key: 'supplier_payment_status', width: 145,
-      render: (_value, purchase) => <div className={styles.stackedCell}>
-        <span>{renderPaymentTag(purchase)}</span>
-        {purchase.bkr1_pix_deferred && <span className={styles.secondaryText}>Após etiqueta real do ML</span>}
-        {(purchase.supplier_payment_receipt_path || purchase.supplier_payment_receipt_url) && <span className={styles.secondaryText}>Comprovante anexado</span>}
-      </div>,
+      title: 'Andamento', key: 'progress', width: 285,
+      render: (_value, purchase) => {
+        const progress = resolvePurchaseProgress(purchase);
+        return <div className={styles.progressCell}>
+          <Steps type="inline" size="small" responsive={false} items={progress.items} />
+          <span className={styles.nextStep}>Próximo: {progress.nextLabel}</span>
+        </div>;
+      },
     },
     {
-      title: 'Fiscal e envio', dataIndex: 'nf_numero', key: 'nf_numero', width: 145,
-      sorter: true, sortOrder: getRemoteSortOrder('nf_numero', sort),
-      render: (_value, purchase) => <div className={styles.stackedCell}>
-        <span>{purchase.nf_numero ? <Tag color="green">NF {purchase.nf_numero}</Tag> : <Tag color="gold">NF pendente</Tag>}</span>
-        <span className={styles.secondaryText}>{purchase.rastreio ? `Rastreio ${purchase.rastreio}` : formatStatus(purchase.status_dslite)}</span>
-      </div>,
-    },
-    {
-      title: 'Próxima ação', key: 'actions', width: 185, fixed: 'right',
+      title: 'Ação', key: 'actions', width: 155, fixed: 'right',
       render: (_value, purchase) => {
         const primary = primaryAction(purchase, canConfirmPayment);
         const secondary = [
           primary.key !== 'details' ? { key: 'details', label: 'Ver detalhes', icon: <EyeOutlined /> } : null,
+          primary.key !== 'payment_details' && purchase.supplier_payment_status === 'paid'
+            ? { key: 'payment_details', label: 'Ver pagamento', icon: <EyeOutlined /> }
+            : null,
           primary.key !== 'track' && purchase.rastreio ? { key: 'track', label: 'Rastrear', icon: <TruckOutlined /> } : null,
           primary.key !== 'sale' && getPurchaseSaleReference(purchase) && !purchase.is_homologation_fixture ? { key: 'sale', label: 'Abrir venda no ML' } : null,
           primary.key !== 'payment' && hasPaymentAction(purchase, canConfirmPayment) ? { key: 'payment', label: paymentActionLabel(purchase) } : null,
@@ -507,7 +504,7 @@ export default function ComprasPage() {
             className={styles.primaryAction}
             type={primary.key === 'payment' ? 'primary' : 'default'}
             size="small"
-            icon={primary.key === 'details' ? <EyeOutlined /> : primary.key === 'track' ? <TruckOutlined /> : undefined}
+            icon={primary.key === 'details' || primary.key === 'payment_details' ? <EyeOutlined /> : primary.key === 'track' ? <TruckOutlined /> : undefined}
             onClick={() => runAction(primary.key, purchase)}
           >{primary.label}</Button>
           {secondary.length > 0 && <Dropdown
@@ -565,11 +562,17 @@ export default function ComprasPage() {
 
     <section className={styles.summaryBand} aria-label="Resumo das compras">
       {[
-        ['Total', summary.total, 'Compras nos filtros atuais'],
-        ['Pendentes', summary.pendentes, 'Ainda exigem acompanhamento'],
+        ['Compras', summary.total, 'Registros nos filtros atuais'],
+        ['PIX aguardando confirmação', summary.supplier_payment_pending_count, 'Pagamentos ainda não registrados no Vortek'],
         ['Em revisão', summary.revisao, 'Precisam de conferência'],
         ['Faturadas', summary.faturado, 'Nota registrada pelo fornecedor'],
-        ['Valor comprometido', formatCurrency(summary.supplier_payment_total), summary.supplier_payment_missing_count > 0 ? `${summary.supplier_payment_missing_count} compra(s) ainda sem valor devido` : 'Valor conhecido devido aos fornecedores'],
+        [
+          'Valor aguardando confirmação',
+          formatCurrency(summary.supplier_payment_pending_total),
+          summary.supplier_payment_pending_missing_amount_count > 0
+            ? `Soma dos PIX pendentes; ${summary.supplier_payment_pending_missing_amount_count} sem valor informado`
+            : 'Soma dos PIX pendentes no Vortek; não é saldo bancário',
+        ],
       ].map(([label, value, hint]) => <div className={styles.summaryItem} key={String(label)} aria-busy={summaryLoading}>
         <span className={styles.summaryLabel}>{label}</span>
         <strong className={styles.summaryValue}>{summaryLoading && !lastUpdatedAt ? '—' : value}</strong>
@@ -579,7 +582,7 @@ export default function ComprasPage() {
 
     <Card size="small" className={styles.filterCard}>
       <Row gutter={[8, 8]} align="middle" className={styles.filterRow}>
-        <Col flex="1 1 320px"><Input aria-label="Buscar compras" placeholder="Compra DSLite, cliente, fornecedor, produto ou SKU" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => { setSearch(event.target.value); setPage(1); }} /></Col>
+        <Col flex="1 1 320px"><Input aria-label="Buscar compras" placeholder="Compra DSLite, cliente, fornecedor, produto ou SKU DSLite" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => { setSearch(event.target.value); setPage(1); }} /></Col>
         <Col flex="0 1 210px"><Select placeholder="Status" value={statusFilter || undefined} options={statusOptions} allowClear style={{ width: '100%' }} onChange={(value) => { setStatusFilter(value || ''); setPage(1); }} /></Col>
         <Col flex="0 1 230px"><Select showSearch optionFilterProp="label" placeholder="Fornecedor" value={supplierFilter || undefined} options={supplierOptions} allowClear loading={independentLoading} style={{ width: '100%' }} onChange={(value) => { setSupplierFilter(value || ''); setPage(1); }} /></Col>
         <Col flex="0 1 260px"><RangePicker value={datePickerValue} format="DD/MM/YYYY" style={{ width: '100%' }} onChange={(dates) => { setDateRange([dates?.[0]?.format('YYYY-MM-DD') || null, dates?.[1]?.format('YYYY-MM-DD') || null]); setPage(1); }} /></Col>
@@ -594,26 +597,42 @@ export default function ComprasPage() {
     {listError && <Alert type="error" showIcon message="Falha ao atualizar as compras" description={`${listError}${compras.length > 0 ? ' Os dados anteriores foram preservados.' : ''}`} action={<Button size="small" onClick={() => void fetchFilteredPurchases()}>Tentar novamente</Button>} />}
     <Card size="small" className={styles.tableCard}>
       {!listLoading && !listError && compras.length === 0 ? <Empty description="Nenhuma compra encontrada com os filtros atuais." image={Empty.PRESENTED_IMAGE_SIMPLE} /> : <ResizableTable<CompraOperacional>
-        storageKey="compras-bentevi-v1" dataSource={compras} columns={columns} rowKey="id" loading={listLoading}
+        storageKey="compras-bentevi-v2" dataSource={compras} columns={columns} rowKey="id" loading={listLoading}
         pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} compras` }}
-        onChange={handleTableChange} scroll={{ x: 1365 }} size="small"
+        onChange={handleTableChange} scroll={{ x: 1455 }} size="small"
       />}
     </Card>
 
-    <CompraDetailsDrawer purchase={drawerPurchase} open={Boolean(drawerPurchase)} onClose={() => setDrawerPurchase(null)} actions={drawerActions} onTrack={trackPurchase} onOpenSale={openSale} onOpenDanfe={(purchase) => void openDanfe(purchase)} />
+    <CompraDetailsDrawer
+      purchase={drawerPurchase}
+      open={Boolean(drawerPurchase)}
+      activeTab={drawerTab}
+      onTabChange={setDrawerTab}
+      onClose={() => { setDrawerPurchase(null); setDrawerTab('overview'); }}
+      actions={drawerActions}
+      onTrack={trackPurchase}
+      onOpenSale={openSale}
+      onOpenDanfe={(purchase) => void openDanfe(purchase)}
+    />
 
     <Modal
-      title={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante ao fornecedor' : 'Confirmar pagamento do fornecedor'}
+      title={selectedCompra?.supplier_payment_status === 'failed' ? 'Revisar registro do PIX' : 'Registrar PIX do fornecedor'}
       open={paymentModalOpen} closable={!confirmingPayment} maskClosable={!confirmingPayment}
       onCancel={() => { if (!confirmingPayment) resetPaymentModal(); }} onOk={() => void handleConfirmSupplierPayment()}
-      okText={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante' : 'Confirmar pagamento'} cancelText="Cancelar"
+      okText="Registrar PIX" cancelText="Cancelar"
       cancelButtonProps={{ disabled: confirmingPayment }} confirmLoading={confirmingPayment}
     >
       <Space direction="vertical" size={12} style={{ width: '100%' }}>
+        <Alert
+          type="warning"
+          showIcon
+          message="O Vortek não realiza o pagamento"
+          description="Faça o PIX no banco e, depois, anexe o comprovante aqui para registrar a operação."
+        />
         <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Compra</Text><Text strong>{selectedCompra ? `DSLite #${selectedCompra.dsid}` : '—'}</Text></div>
         <div><Text type="secondary" style={{ display: 'block', fontSize: 12 }}>Fornecedor</Text><Text>{selectedCompra?.fornecedor_nome || '—'}</Text></div>
         <div>
-          <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Valor devido ao fornecedor</Text>
+          <Text type="secondary" style={{ display: 'block', marginBottom: 4, fontSize: 12 }}>Valor informado pelo fornecedor</Text>
           <Space.Compact style={{ width: '100%' }}>
             <Input readOnly value={selectedCompra?.supplier_payment_amount == null ? 'A definir' : formatCurrency(selectedCompra.supplier_payment_amount)} />
             {selectedCompra?.supplier_payment_amount != null && <Button onClick={() => void copyToClipboard(String(selectedCompra.supplier_payment_amount), 'Valor do PIX copiado')}>Copiar</Button>}

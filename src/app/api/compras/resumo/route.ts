@@ -40,7 +40,7 @@ export async function GET(request: Request) {
     const client = createServiceClient();
     let query = client
       .from('compras')
-      .select('status, valor_total, valor_frete, supplier_payment_amount');
+      .select('status, valor_total, valor_frete, supplier_payment_mode, supplier_payment_status, supplier_payment_amount');
 
     if (status) query = query.eq('status', status);
     if (fornecedorId) query = query.eq('fornecedor_id', fornecedorId);
@@ -62,8 +62,9 @@ export async function GET(request: Request) {
     let cancelado = 0;
     let revisao = 0;
     let valorTotal = 0;
-    let supplierPaymentTotal = 0;
-    let supplierPaymentMissingCount = 0;
+    let supplierPaymentPendingCount = 0;
+    let supplierPaymentPendingTotal = 0;
+    let supplierPaymentPendingMissingAmountCount = 0;
 
     for (const row of rows) {
       const rowStatus = String(row.status || '');
@@ -75,10 +76,13 @@ export async function GET(request: Request) {
       if (normalizedStatus === 'revisao') revisao++;
       if (rowStatus === 'Cancelado') continue;
       valorTotal += Number(row.valor_total || 0);
-      if (row.supplier_payment_amount == null) {
-        supplierPaymentMissingCount++;
-      } else {
-        supplierPaymentTotal += Number(row.supplier_payment_amount || 0);
+      if (row.supplier_payment_mode === 'prepaid_pix' && row.supplier_payment_status === 'pending') {
+        supplierPaymentPendingCount++;
+        if (row.supplier_payment_amount == null) {
+          supplierPaymentPendingMissingAmountCount++;
+        } else {
+          supplierPaymentPendingTotal += Number(row.supplier_payment_amount || 0);
+        }
       }
     }
 
@@ -90,8 +94,9 @@ export async function GET(request: Request) {
       cancelado,
       revisao,
       valor_total: valorTotal,
-      supplier_payment_total: supplierPaymentTotal,
-      supplier_payment_missing_count: supplierPaymentMissingCount,
+      supplier_payment_pending_count: supplierPaymentPendingCount,
+      supplier_payment_pending_total: supplierPaymentPendingTotal,
+      supplier_payment_pending_missing_amount_count: supplierPaymentPendingMissingAmountCount,
     });
   } catch (err: any) {
     console.error('[api/compras/resumo] Erro geral:', err);
