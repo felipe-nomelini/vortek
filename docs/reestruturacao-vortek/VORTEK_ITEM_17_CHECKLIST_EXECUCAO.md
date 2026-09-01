@@ -1964,6 +1964,10 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Validação:** `tests/bentevi-dashboard.test.js` com 5 cenários, `npm run validate` e `npm run build` aprovados. Deploy oficial acionado somente para `vortek-erp-dev`; o novo container iniciou, `dev.bentevi.shop` respondeu `200` em health e login, `307` na rota autenticada `/dashboard` sem sessão e `401` no resumo sem sessão. O chunk publicado contém a meta, o pulso operacional e o ranking novo, sem os blocos antigos.
 
+**Correção pós-publicação em `2026-09-01`:** o resumo autenticado falhava porque `loadOperationalRows` selecionava `fulfillment_source`, coluna adicionada a `pedidos` depois da criação da view `pedidos_operacionais` com `p.*` e, portanto, ausente da lista fixa de colunas da view. A projeção e o tipo local deixaram de exigir esse campo; o cálculo operacional preserva o contrato compartilhado já usado em Vendas. O teste direcionado agora impede que o dashboard volte a selecionar `fulfillment_source`. Commit funcional `0cec141`, enviado somente para `origin/dev`.
+
+**Validação da correção:** 5 cenários de `tests/bentevi-dashboard.test.js`, `npm run validate` e `npm run build` aprovados. O deploy oficial de `0cec141` foi aceito pelo Easypanel e o novo processo de `vortek-erp-dev` iniciou; health e login responderam `200`, `/dashboard` sem sessão respondeu `307` e o resumo sem sessão respondeu `401`. A resposta autenticada e a aprovação visual permanecem para conferência do usuário no navegador.
+
 **Migration/banco:** N/A; nenhuma escrita, migration ou conexão de banco foi executada.
 
 **Rollback:** reverter `5e59786` em `dev` e redeployar somente `vortek-erp-dev`.
