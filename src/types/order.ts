@@ -97,6 +97,59 @@ export type PedidosOperacionaisApiResponse = {
   fornecedores: SupplierFilterOption[];
 };
 
+export type PedidoVendaCompraDetalheApiDto = {
+  id: string;
+  dslite_id: string;
+  status: string | null;
+  status_dslite: string | null;
+  fornecedor_id: string | null;
+  fornecedor_nome: string | null;
+  produto_descricao: string | null;
+  produto_sku: string | null;
+  quantidade: number | null;
+  valor_total: number | null;
+  valor_frete: number | null;
+  supplier_payment_mode: string | null;
+  supplier_payment_status: string | null;
+  supplier_payment_amount: number | null;
+  supplier_payment_reference: string | null;
+  supplier_payment_notes: string | null;
+  nf_numero: string | null;
+  nf_chave: string | null;
+  rastreio: string | null;
+};
+
+export type PedidoVendaGrupoDetalheApiDto = {
+  pedido_id: string;
+  ml_order_id: string | null;
+  numero: string | null;
+  fulfillment_source: 'internal' | 'supplier' | null;
+  envio_interno_at: string | null;
+  dslite_status: string | null;
+  items: PedidoOperacionalItemApiDto[];
+  purchase: PedidoVendaCompraDetalheApiDto | null;
+};
+
+export type PedidoVendaHistoricoApiDto = {
+  id: string;
+  event: string;
+  label: string;
+  level: 'success' | 'warning' | 'error' | 'info';
+  result: string | null;
+  date: string | null;
+};
+
+export type PedidoVendaDetalheApiResponse = {
+  data: {
+    order: PedidoOperacionalApiDto;
+    groups: PedidoVendaGrupoDetalheApiDto[];
+    unmatchedPurchases: PedidoVendaCompraDetalheApiDto[];
+    history: PedidoVendaHistoricoApiDto[];
+  };
+  error: null;
+  meta: { requestId: string };
+};
+
 export interface Order {
   id: number;
   dbId: string;

@@ -43,6 +43,7 @@ import {
 } from '@/lib/remote-sort';
 import type {
   Order, OrderStatus, PedidoOperacionalApiDto, PedidosOperacionaisApiResponse,
+  PedidoVendaDetalheApiResponse,
 } from '@/types/order';
 
 const { RangePicker } = DatePicker;
@@ -288,11 +289,17 @@ export default function PedidosPage() {
   const [priceMax, setPriceMax] = useState<number | null>(null);
   const [role, setRole] = useState<VortekRole | null>(null);
   const [drawerOrder, setDrawerOrder] = useState<Order | null>(null);
+  const [drawerOrderId, setDrawerOrderId] = useState<string | null>(null);
+  const [drawerDetail, setDrawerDetail] = useState<PedidoVendaDetalheApiResponse['data'] | null>(null);
+  const [drawerLoading, setDrawerLoading] = useState(false);
+  const [drawerError, setDrawerError] = useState<string | null>(null);
+  const [drawerRetry, setDrawerRetry] = useState(0);
   const [trackingModalOpen, setTrackingModalOpen] = useState(false);
   const [trackingOrderId, setTrackingOrderId] = useState('');
   const [trackingOrderStatus, setTrackingOrderStatus] = useState<OrderStatus>('aberto');
   const [messageApi, contextHolder] = message.useMessage();
   const requestSequence = useRef(0);
+  const drawerHistoryEntry = useRef(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -306,7 +313,24 @@ export default function PedidosPage() {
     setPriceMax(parseOptionalNumber(params.get('priceMax')));
     setPage(parsePositiveInteger(params.get('page'), 1));
     setSort({ sortBy: params.get('sortBy') || 'data', sortOrder: params.get('sortOrder') === 'asc' ? 'asc' : 'desc' });
+    setDrawerOrderId(params.get('venda')?.trim() || null);
     setFiltersHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const saleId = new URLSearchParams(window.location.search).get('venda')?.trim() || null;
+      drawerHistoryEntry.current = false;
+      setDrawerOrderId(saleId);
+      if (!saleId) {
+        setDrawerOrder(null);
+        setDrawerDetail(null);
+        setDrawerError(null);
+        setDrawerLoading(false);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   useEffect(() => {
@@ -337,9 +361,10 @@ export default function PedidosPage() {
     params.set('view', operationalView);
     if (page > 1) params.set('page', String(page));
     appendRemoteSortParams(params, sort);
+    if (drawerOrderId) params.set('venda', drawerOrderId);
     const query = params.toString();
     window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
-  }, [buildFilterParams, filtersHydrated, operationalView, page, sort]);
+  }, [buildFilterParams, drawerOrderId, filtersHydrated, operationalView, page, sort]);
 
   const fetchData = useCallback(async () => {
     const sequence = ++requestSequence.current;
@@ -449,8 +474,74 @@ export default function PedidosPage() {
     window.open(`/api/notas-fiscais/${order.dbId}/xml`, '_blank', 'noopener,noreferrer');
   }, [messageApi]);
 
+  const openOrderDetails = useCallback((order: Order) => {
+    const params = new URLSearchParams(window.location.search);
+    const hasOpenDrawer = Boolean(params.get('venda'));
+    params.set('venda', order.dbId);
+    const targetUrl = `${window.location.pathname}?${params.toString()}`;
+    if (hasOpenDrawer) {
+      window.history.replaceState(null, '', targetUrl);
+    } else {
+      window.history.pushState(null, '', targetUrl);
+      drawerHistoryEntry.current = true;
+    }
+    setDrawerOrder(order);
+    setDrawerOrderId(order.dbId);
+    setDrawerDetail(null);
+    setDrawerError(null);
+  }, []);
+
+  const closeOrderDetails = useCallback(() => {
+    setDrawerOrder(null);
+    setDrawerOrderId(null);
+    setDrawerDetail(null);
+    setDrawerError(null);
+    setDrawerLoading(false);
+    if (drawerHistoryEntry.current) {
+      drawerHistoryEntry.current = false;
+      window.history.back();
+      return;
+    }
+    const params = new URLSearchParams(window.location.search);
+    params.delete('venda');
+    const query = params.toString();
+    window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
+  }, []);
+
+  useEffect(() => {
+    if (!drawerOrderId) return;
+    const controller = new AbortController();
+    setDrawerLoading(true);
+    setDrawerError(null);
+    void fetch(`/api/pedidos/${encodeURIComponent(drawerOrderId)}`, {
+      cache: 'no-store',
+      signal: controller.signal,
+    })
+      .then(async (response) => {
+        const payload = await response.json().catch(() => null) as {
+          data?: PedidoVendaDetalheApiResponse['data'] | null;
+          error?: { message?: string } | null;
+          erro?: string;
+        } | null;
+        if (!response.ok || !payload?.data) {
+          throw new Error(payload?.error?.message || payload?.erro || 'Não foi possível carregar os detalhes da venda.');
+        }
+        setDrawerDetail(payload.data);
+        setDrawerOrder(mapDBtoOrder(payload.data.order));
+      })
+      .catch((error) => {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+        setDrawerDetail(null);
+        setDrawerError(error instanceof Error ? error.message : 'Não foi possível carregar os detalhes da venda.');
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setDrawerLoading(false);
+      });
+    return () => controller.abort();
+  }, [drawerOrderId, drawerRetry]);
+
   const runOrderAction = useCallback((key: OrderActionKey, order: Order) => {
-    if (key === 'view') setDrawerOrder(order);
+    if (key === 'view') openOrderDetails(order);
     if (key !== 'view' && order.is_homologation_fixture) {
       messageApi.warning('Ações operacionais estão desabilitadas para esta amostra de homologação.');
       return;
@@ -465,7 +556,7 @@ export default function PedidosPage() {
     if (key === 'supplier_payment') dsliteFlow.openSupplierPayment(order);
     if (key === 'send_whatsapp_label') labelWhatsappFlow.openWhatsappLabel(order);
     if (key === 'unlink_dslite') dsliteFlow.unlinkDslitePurchase(order);
-  }, [dsliteFlow, labelWhatsappFlow, messageApi, openTracking]);
+  }, [dsliteFlow, labelWhatsappFlow, messageApi, openOrderDetails, openTracking]);
 
   const handleExportPdf = useCallback(async () => {
     setExportingPdf(true);
@@ -555,7 +646,7 @@ export default function PedidosPage() {
         const kinds = [order.is_virtual_kit ? 'Kit' : '', order.is_cart ? 'Carrinho' : ''].filter(Boolean).join(' · ');
         return (
           <div>
-            <Button type="link" size="small" style={{ padding: 0, fontFamily: 'monospace', fontWeight: 700 }} onClick={() => setDrawerOrder(order)}>Venda #{saleId}</Button>
+            <Button type="link" size="small" style={{ padding: 0, fontFamily: 'monospace', fontWeight: 700 }} onClick={() => openOrderDetails(order)}>Venda #{saleId}</Button>
             {packId && packId !== saleId && <Text type="secondary" style={{ display: 'block', fontSize: 11 }}>Pack #{packId}</Text>}
             {kinds && <Text type="secondary" style={{ display: 'block', fontSize: 11 }}>{kinds}</Text>}
           </div>
@@ -616,7 +707,7 @@ export default function PedidosPage() {
       },
     },
     { title: 'Próxima ação', key: 'next_action', width: 220, fixed: 'right', render: (_: unknown, order: Order) => renderActions(order) },
-  ], [renderActions, sort, token]);
+  ], [openOrderDetails, renderActions, sort, token]);
 
   const handleTableChange: TableProps<Order>['onChange'] = (pagination, _filters, sorter) => {
     const nextSort = resolveRemoteSortState(sorter, { sortBy: 'data', sortOrder: 'desc' });
@@ -712,7 +803,8 @@ export default function PedidosPage() {
       </Card>
 
       <PedidoDetailsDrawer
-        order={drawerOrder} open={Boolean(drawerOrder)} onClose={() => setDrawerOrder(null)}
+        order={drawerOrder} detail={drawerDetail} open={Boolean(drawerOrderId)} loading={drawerLoading}
+        error={drawerError} onRetry={() => setDrawerRetry((value) => value + 1)} onClose={closeOrderDetails}
         onTrack={openTracking} onOpenDanfe={(order) => void handleOpenNotaFiscalPdf(order)}
         onDownloadXml={handleDownloadNotaFiscalXml} actions={drawerOrder ? renderActions(drawerOrder) : null}
       />

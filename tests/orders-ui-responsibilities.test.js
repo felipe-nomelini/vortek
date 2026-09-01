@@ -63,9 +63,11 @@ test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
   assert.doesNotMatch(page, /rowSelection=/);
   assert.doesNotMatch(page, /expandable=/);
   assert.match(detailsDrawer, /<Drawer/);
-  assert.match(detailsDrawer, /Linha do tempo/);
-  assert.match(detailsDrawer, /Fulfillment e pagamento/);
-  assert.match(detailsDrawer, /Fiscal e rastreio/);
+  assert.match(detailsDrawer, /Produtos e compras/);
+  assert.match(detailsDrawer, /Cliente, fiscal e entrega/);
+  assert.match(detailsDrawer, /Histórico/);
+  assert.match(detailsDrawer, /Pedido DSLite/);
+  assert.match(detailsDrawer, /width="min\(960px, 100vw\)"/);
 });
 
 test('Pedidos não mantém endpoints, timers ou modais dos fluxos extraídos', () => {

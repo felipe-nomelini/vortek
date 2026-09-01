@@ -239,6 +239,8 @@ export function mapMobileSaleHistoryEvent(row: any) {
   };
 }
 
+export const mapSaleHistoryEvent = mapMobileSaleHistoryEvent;
+
 export function mapMobileSalesSummary(raw: any) {
   const statusCounts = raw?.statusCounts && typeof raw.statusCounts === "object"
     ? raw.statusCounts as Record<string, unknown>

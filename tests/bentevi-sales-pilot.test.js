@@ -14,11 +14,26 @@ function source(relativePath) {
 test('BNT-D01 persiste o estado operacional relevante na URL', () => {
   for (const key of [
     'view', 'search', 'status', 'fornecedores', 'dateFrom', 'dateTo',
-    'priceMin', 'priceMax', 'page', 'sortBy', 'sortOrder',
+    'priceMin', 'priceMax', 'page', 'sortBy', 'sortOrder', 'venda',
   ]) {
     assert.match(page, new RegExp(`['\"]${key}['\"]`), `parâmetro ${key} deve ser persistido`);
   }
   assert.match(page, /window\.history\.replaceState/);
+});
+
+test('BNT-D01 abre o detalhe completo em Drawer navegável e somente leitura', () => {
+  const detailRoute = source('src/app/api/pedidos/[id]/route.ts');
+  assert.match(page, /fetch\(`\/api\/pedidos\/\$\{encodeURIComponent\(drawerOrderId\)\}`/);
+  assert.match(page, /window\.history\.pushState/);
+  assert.match(page, /params\.set\('venda', order\.dbId\)/);
+  assert.match(drawer, /width="min\(960px, 100vw\)"/);
+  for (const label of ['Produtos e compras', 'Cliente, fiscal e entrega', 'Histórico']) {
+    assert.match(drawer, new RegExp(label));
+  }
+  assert.match(drawer, /Tentar novamente/);
+  assert.match(detailRoute, /authorizeApiRequest\(request, 'sales\.read'\)/);
+  assert.match(detailRoute, /readOnlyHeaders\.set\('x-vortek-read-only', '1'\)/);
+  assert.match(detailRoute, /buildSaleDetailGroups/);
 });
 
 test('BNT-D01 apresenta somente ações autorizadas para o cargo atual', () => {

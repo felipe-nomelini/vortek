@@ -116,3 +116,5 @@ export async function loadMobileOperationalSale(request: Request, id: string) {
 
   return { ok: true as const, row, requestId };
 }
+
+export const loadOperationalSale = loadMobileOperationalSale;
