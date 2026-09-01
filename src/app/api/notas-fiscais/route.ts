@@ -7,6 +7,8 @@ import {
   type NfeTechnicalStatus,
 } from "@/lib/fiscal/nfe-status";
 import { reconcileRowsBestEffort } from "@/lib/fiscal/nfe-live-sync";
+import { extractXmlTag } from "@/lib/fiscal/nfe-local-reconciliation";
+import { isHomologationFixtureSource } from "@/lib/homologation-fixture";
 
 type NFStatus = NfeTechnicalStatus;
 type SortOrder = "asc" | "desc";
@@ -42,6 +44,20 @@ function normalizeSearch(value: string): string {
 
 function mapStatus(row: { nfe_status: string | null }): NFStatus {
   return normalizeNfeTechnicalStatus(row.nfe_status);
+}
+
+function resolveSerie(row: { nfe_xml?: string | null; nfe_chave?: string | null }): string | null {
+  const xmlSerie = extractXmlTag(row.nfe_xml, "serie");
+  if (xmlSerie && /^\d+$/.test(xmlSerie)) return String(Number(xmlSerie));
+
+  const chave = String(row.nfe_chave || "").replace(/\D/g, "");
+  if (chave.length !== 44) return null;
+  const chaveSerie = chave.slice(22, 25);
+  return /^\d{3}$/.test(chaveSerie) ? String(Number(chaveSerie)) : null;
+}
+
+function resolveEmissionDate(row: { nfe_xml?: string | null }): string | null {
+  return extractXmlTag(row.nfe_xml, "dhEmi") || extractXmlTag(row.nfe_xml, "dEmi");
 }
 
 function applyStatusFilter(query: any, status: NFStatus): any {
@@ -149,7 +165,7 @@ export async function GET(request: Request) {
     const to = from + pageSize - 1;
 
     async function runQueries(useSaleDate: boolean) {
-      const baseSelect = `id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, ${useSaleDate ? "data_venda," : ""} nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, nfe_last_sync_at, total`;
+      const baseSelect = `id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, ${useSaleDate ? "data_venda," : ""} nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, nfe_last_sync_at, nfe_provider, nfe_external_id, snapshot_source, total`;
       const sortColumn =
         sortBy === "data_venda"
           ? useSaleDate
@@ -289,7 +305,16 @@ export async function GET(request: Request) {
       nfe_chave: row.nfe_chave || null,
       nfe_danfe_url: row.nfe_danfe_url || null,
       nfe_status: row.nfe_status || null,
+      nfe_protocolo: row.nfe_protocolo || null,
+      nfe_cfop: row.nfe_cfop || null,
+      nfe_provider: row.nfe_provider || null,
+      nfe_external_id: row.nfe_external_id || null,
+      nfe_last_sync_at: row.nfe_last_sync_at || null,
+      emissao: resolveEmissionDate(row),
+      serie: resolveSerie(row),
       danfe_available: !!row.nfe_danfe_url,
+      xml_available: Boolean(String(row.nfe_xml || "").trim()),
+      is_homologation_fixture: isHomologationFixtureSource(row.snapshot_source),
     }));
 
     return NextResponse.json({

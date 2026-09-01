@@ -1,98 +1,133 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, message, Modal, Statistic } from 'antd';
-import ResizableTable from '@/components/ResizableTable';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import dayjs, { type Dayjs } from 'dayjs';
+import {
+  Alert, Button, Card, Col, DatePicker, Dropdown, Empty, Input, InputNumber,
+  Modal, Row, Select, Space, Tag, Typography, message,
+} from 'antd';
 import type { TablePaginationConfig, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
+import {
+  DownloadOutlined, EllipsisOutlined, EyeOutlined, FilePdfOutlined,
+  MailOutlined, ReloadOutlined, SearchOutlined, SyncOutlined,
+} from '@ant-design/icons';
+import ResizableTable from '@/components/ResizableTable';
+import NotaFiscalDetailsDrawer, {
+  getFiscalStatusPresentation,
+  type NotaFiscalRow,
+} from '@/components/fiscal/NotaFiscalDetailsDrawer';
 import { formatCurrency } from '@/lib/format';
-import { nfeTechnicalStatusLabel, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
+import {
+  BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS,
+  isNfeCancelRejectedDeadlineStatus,
+  type NfeTechnicalStatus,
+} from '@/lib/fiscal/nfe-status';
+import type { PedidoVendaDetalheApiResponse, PedidoVendaHistoricoApiDto } from '@/types/order';
+import styles from './notas-fiscais.module.css';
 
-const { Title } = Typography;
 const { RangePicker } = DatePicker;
+const { Text, Title } = Typography;
+const PAGE_SIZE = 100;
+const POLLING_INTERVAL_MS = 5000;
 
-type NFStatus = NfeTechnicalStatus;
 type SortOrder = 'asc' | 'desc';
 
-interface NotaFiscalRow {
-  id: string;
-  pedido: number;
-  cliente: string;
-  data: string;
-  numero: string;
-  valor: number;
-  status: NFStatus;
-  ml_order_id: string | null;
-  ml_pack_id: string | null;
-  nfe_status?: string | null;
-  contato_documento?: string | null;
-  nfe_chave?: string | null;
-  nfe_danfe_url?: string | null;
-  danfe_available?: boolean;
+interface FiscalSummary {
+  total: number;
+  emitidas: number;
+  pendentes: number;
+  com_erro: number;
+  valor_autorizado: number;
 }
 
-const statusOptions = [
-  { value: '', label: 'Todos os status' },
+const EMPTY_SUMMARY: FiscalSummary = {
+  total: 0,
+  emitidas: 0,
+  pendentes: 0,
+  com_erro: 0,
+  valor_autorizado: 0,
+};
+
+const statusOptions: Array<{ value: NfeTechnicalStatus; label: string }> = [
   { value: 'autorizada', label: 'Autorizada' },
   { value: 'cancelada', label: 'Cancelada' },
   { value: 'pendente', label: 'Pendente' },
   { value: 'interrompida', label: 'Interrompida' },
   { value: 'rejeitada', label: 'Rejeitada' },
   { value: 'processando', label: 'Processando' },
-  { value: 'outro', label: 'Outro' },
+  { value: 'outro', label: 'Outro / não encontrada' },
 ];
 
-const statusColor: Record<NFStatus, string> = {
-  autorizada: 'green',
-  cancelada: 'red',
-  pendente: 'orange',
-  interrompida: 'gold',
-  rejeitada: 'volcano',
-  processando: 'blue',
-  outro: 'default',
-};
-
-function resolveSerieFromNfeChave(chave: string | null | undefined): string | null {
-  const normalized = String(chave || '').replace(/\D/g, '');
-  if (normalized.length !== 44) return null;
-  const serieRaw = normalized.slice(22, 25);
-  if (!/^\d{3}$/.test(serieRaw)) return null;
-  return String(Number(serieRaw));
+function parsePositiveInteger(value: string | null, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
 }
 
-function formatNumeroWithSerie(numero: string, nfeChave: string | null | undefined): string {
-  const serie = resolveSerieFromNfeChave(nfeChave);
-  return serie ? `NF ${numero} • Série ${serie}` : `NF ${numero}`;
+function formatDateParts(value: string | null | undefined): { date: string; time: string } {
+  if (!value) return { date: 'Ainda não emitida', time: '' };
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return { date: value, time: '' };
+  return {
+    date: parsed.toLocaleDateString('pt-BR'),
+    time: parsed.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+  };
+}
+
+function formatDocument(value: string | null | undefined): string {
+  const document = String(value || '').replace(/\D/g, '');
+  if (document.length === 11) {
+    return `${document.slice(0, 3)}.${document.slice(3, 6)}.${document.slice(6, 9)}-${document.slice(9)}`;
+  }
+  if (document.length === 14) {
+    return `${document.slice(0, 2)}.${document.slice(2, 5)}.${document.slice(5, 8)}/${document.slice(8, 12)}-${document.slice(12)}`;
+  }
+  return value || 'Documento não informado';
+}
+
+function nextActionLabel(note: NotaFiscalRow): string {
+  if (note.nfe_status === BRASIL_NFE_TERMINAL_NOT_FOUND_STATUS) return 'Revisar a emissão antes de reconciliar';
+  if (isNfeCancelRejectedDeadlineStatus(note.nfe_status)) return 'Seguir o procedimento fiscal fora do prazo';
+  if (note.status === 'cancelada') return 'Fluxo fiscal encerrado';
+  if (note.status === 'autorizada') return 'Consultar ou enviar os documentos';
+  if (note.status === 'processando') return 'Aguardar processamento e reconciliação';
+  if (note.status === 'pendente') return 'Aguardar emissão da NF-e';
+  if (note.status === 'interrompida' || note.status === 'rejeitada') return 'Revisar a falha no histórico fiscal';
+  return 'Revisar o estado fiscal';
+}
+
+function primaryAction(note: NotaFiscalRow): 'danfe' | 'details' {
+  return note.status === 'autorizada' && note.numero !== '—' && !note.is_homologation_fixture
+    ? 'danfe'
+    : 'details';
 }
 
 export default function NotasFiscaisPage() {
-  const PAGE_SIZE = 100;
-  const POLLING_INTERVAL_MS = 5000;
-  const BACKGROUND_SYNC_INTERVAL_MS = 30000;
   const [rows, setRows] = useState<NotaFiscalRow[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [summary, setSummary] = useState<FiscalSummary>(EMPTY_SUMMARY);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
-
   const [search, setSearch] = useState('');
   const [lastSearch, setLastSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState<NFStatus | ''>('');
+  const [statusFilter, setStatusFilter] = useState<NfeTechnicalStatus | ''>('');
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
   const [valorMin, setValorMin] = useState<number | null>(null);
   const [valorMax, setValorMax] = useState<number | null>(null);
-
-  const [sortBy, setSortBy] = useState<string>('data');
+  const [sortBy, setSortBy] = useState('data');
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
-
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [messageApi, contextHolder] = message.useMessage();
-  const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const backgroundSyncRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pollingInFlightRef = useRef(false);
-  const backgroundSyncInFlightRef = useRef(false);
+  const [filtersHydrated, setFiltersHydrated] = useState(false);
+  const [listLoading, setListLoading] = useState(true);
+  const [summaryLoading, setSummaryLoading] = useState(true);
+  const [listError, setListError] = useState<string | null>(null);
+  const [summaryError, setSummaryError] = useState<string | null>(null);
+  const [lastUpdatedAt, setLastUpdatedAt] = useState<Date | null>(null);
+  const [reconciling, setReconciling] = useState(false);
   const [sendingRowId, setSendingRowId] = useState<string | null>(null);
   const [actionRowId, setActionRowId] = useState<string | null>(null);
+  const [drawerNote, setDrawerNote] = useState<NotaFiscalRow | null>(null);
+  const [drawerHistory, setDrawerHistory] = useState<PedidoVendaHistoricoApiDto[]>([]);
+  const [drawerHistoryLoading, setDrawerHistoryLoading] = useState(false);
+  const [drawerHistoryError, setDrawerHistoryError] = useState<string | null>(null);
   const [emailModalOpen, setEmailModalOpen] = useState(false);
   const [emailTarget, setEmailTarget] = useState<NotaFiscalRow | null>(null);
   const [emailTo, setEmailTo] = useState('');
@@ -106,215 +141,123 @@ export default function NotasFiscaisPage() {
   const [cceTarget, setCceTarget] = useState<NotaFiscalRow | null>(null);
   const [cceText, setCceText] = useState('');
   const [cceSeq, setCceSeq] = useState(1);
-  const [summary, setSummary] = useState({
-    total: 0,
-    emitidas: 0,
-    pendentes: 0,
-    valor_total: 0,
-    imposto_total: 0,
-  });
+  const [messageApi, contextHolder] = message.useMessage();
+  const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pollingInFlightRef = useRef(false);
+  const requestSequence = useRef(0);
+  const historyRequestSequence = useRef(0);
 
-  const resolvePdfUrl = useCallback(async (row: NotaFiscalRow): Promise<string | null> => {
-    const res = await fetch(`/api/notas-fiscais/${row.id}/pdf`);
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok || !json?.url) {
-      messageApi.error(json?.error || 'Não foi possível localizar o PDF da nota fiscal');
-      return null;
-    }
-    return String(json.url);
-  }, [messageApi]);
-
-  const handleViewPdf = useCallback(async (row: NotaFiscalRow) => {
-    const url = await resolvePdfUrl(row);
-    if (!url) return;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  }, [resolvePdfUrl]);
-
-  const handleDownloadPdf = useCallback(async (row: NotaFiscalRow) => {
-    const url = await resolvePdfUrl(row);
-    if (!url) return;
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `danfe_${row.numero || row.pedido}.pdf`;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }, [resolvePdfUrl]);
-
-  const openEmailModal = useCallback((row: NotaFiscalRow) => {
-    setEmailTarget(row);
-    const pedidoFmt = String(row.pedido).padStart(6, '0');
-    setEmailTo('');
-    setEmailSubject(`NF-e ${row.numero} - Pedido #${pedidoFmt}`);
-    setEmailBody(`Olá ${row.cliente},\n\nSegue em anexo a DANFE da NF-e ${row.numero}.\n\nMensagem automática Vortek.`);
-    setEmailModalOpen(true);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const initialSearch = params.get('search')?.trim() || '';
+    const initialStatus = params.get('status') || '';
+    setSearch(initialSearch);
+    setLastSearch(initialSearch);
+    setStatusFilter(statusOptions.some((option) => option.value === initialStatus) ? initialStatus as NfeTechnicalStatus : '');
+    setDateRange([params.get('dateFrom'), params.get('dateTo')]);
+    const initialMin = params.get('valorMin');
+    const initialMax = params.get('valorMax');
+    setValorMin(initialMin === null || initialMin === '' ? null : Number(initialMin));
+    setValorMax(initialMax === null || initialMax === '' ? null : Number(initialMax));
+    setPage(parsePositiveInteger(params.get('page'), 1));
+    setSortBy(params.get('sortBy') || 'data');
+    setSortOrder(params.get('sortOrder') === 'asc' ? 'asc' : 'desc');
+    setFiltersHydrated(true);
   }, []);
-
-  const handleSendEmail = useCallback(async () => {
-    if (!emailTarget) return;
-    setSendingRowId(emailTarget.id);
-    try {
-      const res = await fetch(`/api/notas-fiscais/${emailTarget.id}/enviar-email`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: emailTo || undefined,
-          subject: emailSubject || undefined,
-          message: emailBody || undefined,
-        }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        messageApi.error(json?.error || 'Falha ao enviar e-mail da nota fiscal');
-        return;
-      }
-      messageApi.success(`NF enviada para ${json.to}`);
-      setEmailModalOpen(false);
-      setEmailTarget(null);
-    } finally {
-      setSendingRowId(null);
-    }
-  }, [emailTarget, emailTo, emailSubject, emailBody, messageApi]);
-
-  const fetchNotas = useCallback(async (options?: { background?: boolean }) => {
-    const background = options?.background === true;
-    if (!background) setLoading(true);
-    try {
-      const params = new URLSearchParams({
-        page: String(page),
-        pageSize: String(PAGE_SIZE),
-        sortBy,
-        sortOrder,
-      });
-
-      if (lastSearch) params.set('search', lastSearch);
-      if (statusFilter) params.set('status', statusFilter);
-      if (dateRange[0]) params.set('dateFrom', dateRange[0]);
-      if (dateRange[1]) params.set('dateTo', dateRange[1]);
-      if (valorMin !== null) params.set('valorMin', String(valorMin));
-      if (valorMax !== null) params.set('valorMax', String(valorMax));
-
-      const serialized = params.toString();
-      const listRes = await fetch(`/api/notas-fiscais?${serialized}`, { cache: 'no-store' });
-
-      if (listRes.ok) {
-        const json = await listRes.json();
-        setRows(json.data || []);
-        setTotal(json.total || 0);
-      }
-
-      const summaryRes = await fetch(`/api/notas-fiscais/resumo?${serialized}`, { cache: 'no-store' });
-      if (summaryRes.ok) {
-        const json = await summaryRes.json();
-        setSummary({
-          total: json.total || 0,
-          emitidas: json.emitidas || 0,
-          pendentes: json.pendentes || 0,
-          valor_total: Number(json.valor_total || 0),
-          imposto_total: Number(json.imposto_total || 0),
-        });
-      }
-    } finally {
-      if (!background) setLoading(false);
-    }
-  }, [page, sortBy, sortOrder, lastSearch, statusFilter, dateRange, valorMin, valorMax]);
-
-  const openCancelModal = useCallback((row: NotaFiscalRow) => {
-    setCancelTarget(row);
-    setCancelReason('Cancelamento operacional da NF-e solicitada pelo usuário');
-    setCancelConfirmText('');
-    setCancelModalOpen(true);
-  }, []);
-
-  const submitCancelNfe = useCallback(async () => {
-    if (!cancelTarget) return;
-    if (cancelConfirmText.trim().toUpperCase() !== 'CANCELAR') {
-      messageApi.error('Digite CANCELAR para confirmar.');
-      return;
-    }
-    setActionRowId(cancelTarget.id);
-    try {
-      const res = await fetch(`/api/notas-fiscais/${cancelTarget.id}/cancelar`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ justificativa: cancelReason }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        messageApi.error(json?.error || 'Falha ao cancelar nota fiscal');
-        return;
-      }
-      setRows((prev) => prev.map((row) => (
-        row.id === cancelTarget.id
-          ? {
-              ...row,
-              status: 'cancelada',
-              nfe_status: 'cancelled',
-            }
-          : row
-      )));
-      setSummary((prev) => ({
-        ...prev,
-        emitidas: Math.max(0, prev.emitidas - 1),
-      }));
-      messageApi.success(json?.alreadyCanceled ? 'Nota já estava cancelada.' : 'Nota fiscal cancelada com sucesso.');
-      setCancelModalOpen(false);
-      setCancelTarget(null);
-      await fetchNotas({ background: true });
-    } finally {
-      setActionRowId(null);
-    }
-  }, [cancelTarget, cancelReason, cancelConfirmText, fetchNotas, messageApi]);
-
-  const openCceModal = useCallback((row: NotaFiscalRow) => {
-    setCceTarget(row);
-    setCceText('');
-    setCceSeq(1);
-    setCceModalOpen(true);
-  }, []);
-
-  const submitCartaCorrecao = useCallback(async () => {
-    if (!cceTarget) return;
-    if (cceText.trim().length < 15) {
-      messageApi.error('A correção deve ter no mínimo 15 caracteres.');
-      return;
-    }
-    setActionRowId(cceTarget.id);
-    try {
-      const res = await fetch(`/api/notas-fiscais/${cceTarget.id}/carta-correcao`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          correcao: cceText,
-          numeroSequencial: cceSeq,
-        }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        messageApi.error(json?.error || 'Falha ao enviar carta de correção');
-        return;
-      }
-      messageApi.success(`Carta de correção enviada${json?.protocolo ? ` (protocolo ${json.protocolo})` : ''}.`);
-      setCceModalOpen(false);
-      setCceTarget(null);
-      await fetchNotas();
-    } finally {
-      setActionRowId(null);
-    }
-  }, [cceTarget, cceText, cceSeq, fetchNotas, messageApi]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (search !== lastSearch) {
         setPage(1);
-        setLastSearch(search);
+        setLastSearch(search.trim());
       }
     }, 350);
-
     return () => clearTimeout(timer);
-  }, [search, lastSearch]);
+  }, [lastSearch, search]);
+
+  const buildFilterParams = useCallback(() => {
+    const params = new URLSearchParams();
+    if (lastSearch) params.set('search', lastSearch);
+    if (statusFilter) params.set('status', statusFilter);
+    if (dateRange[0]) params.set('dateFrom', dateRange[0]);
+    if (dateRange[1]) params.set('dateTo', dateRange[1]);
+    if (valorMin !== null && Number.isFinite(valorMin)) params.set('valorMin', String(valorMin));
+    if (valorMax !== null && Number.isFinite(valorMax)) params.set('valorMax', String(valorMax));
+    return params;
+  }, [dateRange, lastSearch, statusFilter, valorMax, valorMin]);
+
+  const buildListParams = useCallback(() => {
+    const params = buildFilterParams();
+    params.set('page', String(page));
+    params.set('pageSize', String(PAGE_SIZE));
+    params.set('sortBy', sortBy);
+    params.set('sortOrder', sortOrder);
+    return params;
+  }, [buildFilterParams, page, sortBy, sortOrder]);
+
+  useEffect(() => {
+    if (!filtersHydrated) return;
+    const params = buildListParams();
+    if (page === 1) params.delete('page');
+    params.delete('pageSize');
+    if (sortBy === 'data') params.delete('sortBy');
+    if (sortOrder === 'desc') params.delete('sortOrder');
+    const query = params.toString();
+    window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
+  }, [buildListParams, filtersHydrated, page, sortBy, sortOrder]);
+
+  const fetchNotas = useCallback(async (options?: { background?: boolean }) => {
+    const background = options?.background === true;
+    const sequence = ++requestSequence.current;
+    if (!background) {
+      setListLoading(true);
+      setSummaryLoading(true);
+    }
+    setListError(null);
+    setSummaryError(null);
+
+    const parseResponse = async (response: Response, fallback: string) => {
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.erro || payload?.error || fallback);
+      return payload;
+    };
+    const listRequest = fetch(`/api/notas-fiscais?${buildListParams().toString()}`, { cache: 'no-store' })
+      .then((response) => parseResponse(response, 'Não foi possível carregar as notas fiscais.'));
+    const summaryRequest = fetch(`/api/notas-fiscais/resumo?${buildFilterParams().toString()}`, { cache: 'no-store' })
+      .then((response) => parseResponse(response, 'Não foi possível carregar o resumo fiscal.'));
+    const [listResult, summaryResult] = await Promise.allSettled([listRequest, summaryRequest]);
+
+    if (sequence !== requestSequence.current) return;
+    if (listResult.status === 'fulfilled') {
+      setRows((listResult.value.data || []) as NotaFiscalRow[]);
+      setTotal(Number(listResult.value.total || 0));
+      setDrawerNote((current) => current
+        ? (listResult.value.data || []).find((note: NotaFiscalRow) => note.id === current.id) || current
+        : null);
+      setLastUpdatedAt(new Date());
+    } else {
+      setListError(listResult.reason instanceof Error ? listResult.reason.message : 'Não foi possível carregar as notas fiscais.');
+    }
+    if (summaryResult.status === 'fulfilled') {
+      setSummary({
+        total: Number(summaryResult.value.total || 0),
+        emitidas: Number(summaryResult.value.emitidas || 0),
+        pendentes: Number(summaryResult.value.pendentes || 0),
+        com_erro: Number(summaryResult.value.com_erro || 0),
+        valor_autorizado: Number(summaryResult.value.valor_autorizado || 0),
+      });
+    } else {
+      setSummaryError(summaryResult.reason instanceof Error ? summaryResult.reason.message : 'Não foi possível carregar o resumo fiscal.');
+    }
+    if (!background) {
+      setListLoading(false);
+      setSummaryLoading(false);
+    }
+  }, [buildFilterParams, buildListParams]);
+
+  useEffect(() => {
+    if (filtersHydrated) void fetchNotas();
+  }, [fetchNotas, filtersHydrated]);
 
   const clearPolling = useCallback(() => {
     if (pollingRef.current) {
@@ -322,38 +265,6 @@ export default function NotasFiscaisPage() {
       pollingRef.current = null;
     }
   }, []);
-
-  const clearBackgroundSync = useCallback(() => {
-    if (backgroundSyncRef.current) {
-      clearTimeout(backgroundSyncRef.current);
-      backgroundSyncRef.current = null;
-    }
-  }, []);
-
-  const triggerBackgroundSync = useCallback(async () => {
-    if (backgroundSyncInFlightRef.current) return;
-    backgroundSyncInFlightRef.current = true;
-    try {
-      await fetch('/api/sync/nf/reconciliar-brasilnfe/job', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
-    } finally {
-      backgroundSyncInFlightRef.current = false;
-    }
-  }, []);
-
-  const scheduleNextBackgroundSync = useCallback(() => {
-    clearBackgroundSync();
-    backgroundSyncRef.current = setTimeout(async () => {
-      if (typeof document !== 'undefined' && document.visibilityState !== 'visible') {
-        scheduleNextBackgroundSync();
-        return;
-      }
-      await triggerBackgroundSync();
-      scheduleNextBackgroundSync();
-    }, BACKGROUND_SYNC_INTERVAL_MS);
-  }, [clearBackgroundSync, triggerBackgroundSync]);
 
   const scheduleNextPoll = useCallback(() => {
     clearPolling();
@@ -377,128 +288,294 @@ export default function NotasFiscaisPage() {
   }, [clearPolling, fetchNotas]);
 
   useEffect(() => {
-    fetchNotas();
-    void triggerBackgroundSync();
+    if (!filtersHydrated) return;
     scheduleNextPoll();
-    scheduleNextBackgroundSync();
-    return () => {
-      clearPolling();
-      clearBackgroundSync();
-    };
-  }, [clearBackgroundSync, clearPolling, fetchNotas, scheduleNextBackgroundSync, scheduleNextPoll, triggerBackgroundSync]);
+    return clearPolling;
+  }, [clearPolling, filtersHydrated, scheduleNextPoll]);
+
+  const resolvePdfUrl = useCallback(async (note: NotaFiscalRow): Promise<string | null> => {
+    const response = await fetch(`/api/notas-fiscais/${note.id}/pdf`, { cache: 'no-store' });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload?.url) {
+      messageApi.error(payload?.error || 'Não foi possível localizar a DANFE.');
+      return null;
+    }
+    return String(payload.url);
+  }, [messageApi]);
+
+  const handleViewDanfe = useCallback(async (note: NotaFiscalRow) => {
+    const url = await resolvePdfUrl(note);
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  }, [resolvePdfUrl]);
+
+  const handleDownloadDanfe = useCallback(async (note: NotaFiscalRow) => {
+    const url = await resolvePdfUrl(note);
+    if (!url) return;
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `danfe_${note.numero || note.pedido}.pdf`;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+  }, [resolvePdfUrl]);
+
+  const handleDownloadXml = useCallback((note: NotaFiscalRow) => {
+    const anchor = document.createElement('a');
+    anchor.href = `/api/notas-fiscais/${note.id}/xml`;
+    anchor.download = `nfe_${note.numero || note.pedido}.xml`;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+  }, []);
+
+  const openDrawer = useCallback(async (note: NotaFiscalRow) => {
+    const sequence = ++historyRequestSequence.current;
+    setDrawerNote(note);
+    setDrawerHistory([]);
+    setDrawerHistoryError(null);
+    setDrawerHistoryLoading(true);
+    try {
+      const response = await fetch(`/api/pedidos/${note.id}`, { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({})) as {
+        data?: PedidoVendaDetalheApiResponse['data'] | null;
+        error?: { message?: string } | null;
+      };
+      if (sequence !== historyRequestSequence.current) return;
+      if (!response.ok || !payload.data) throw new Error(payload.error?.message || 'Não foi possível carregar o histórico fiscal.');
+      setDrawerHistory(payload.data.history || []);
+    } catch (error) {
+      if (sequence === historyRequestSequence.current) {
+        setDrawerHistoryError(error instanceof Error ? error.message : 'Não foi possível carregar o histórico fiscal.');
+      }
+    } finally {
+      if (sequence === historyRequestSequence.current) setDrawerHistoryLoading(false);
+    }
+  }, []);
+
+  const closeDrawer = useCallback(() => {
+    historyRequestSequence.current += 1;
+    setDrawerNote(null);
+    setDrawerHistory([]);
+    setDrawerHistoryError(null);
+    setDrawerHistoryLoading(false);
+  }, []);
+
+  const openEmailModal = useCallback((note: NotaFiscalRow) => {
+    setEmailTarget(note);
+    setEmailTo('');
+    setEmailSubject(`NF-e ${note.numero} - Pedido #${String(note.pedido).padStart(6, '0')}`);
+    setEmailBody(`Olá ${note.cliente},\n\nSegue em anexo a DANFE da NF-e ${note.numero}.\n\nMensagem automática Bentevi.`);
+    setEmailModalOpen(true);
+  }, []);
+
+  const handleSendEmail = useCallback(async () => {
+    if (!emailTarget) return;
+    setSendingRowId(emailTarget.id);
+    try {
+      const response = await fetch(`/api/notas-fiscais/${emailTarget.id}/enviar-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to: emailTo || undefined, subject: emailSubject || undefined, message: emailBody || undefined }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Falha ao enviar a nota fiscal por e-mail.');
+      messageApi.success(`NF-e enviada para ${payload.to}.`);
+      setEmailModalOpen(false);
+      setEmailTarget(null);
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Falha ao enviar a nota fiscal por e-mail.');
+    } finally {
+      setSendingRowId(null);
+    }
+  }, [emailBody, emailSubject, emailTarget, emailTo, messageApi]);
+
+  const openCancelModal = useCallback((note: NotaFiscalRow) => {
+    setCancelTarget(note);
+    setCancelReason('Cancelamento operacional da NF-e solicitada pelo usuário');
+    setCancelConfirmText('');
+    setCancelModalOpen(true);
+  }, []);
+
+  const submitCancelNfe = useCallback(async () => {
+    if (!cancelTarget) return;
+    if (cancelConfirmText.trim().toUpperCase() !== 'CANCELAR') {
+      messageApi.error('Digite CANCELAR para confirmar.');
+      return;
+    }
+    setActionRowId(cancelTarget.id);
+    try {
+      const response = await fetch(`/api/notas-fiscais/${cancelTarget.id}/cancelar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ justificativa: cancelReason }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Falha ao cancelar a nota fiscal.');
+      messageApi.success(payload?.alreadyCanceled ? 'A nota fiscal já estava cancelada.' : 'Nota fiscal cancelada com sucesso.');
+      setCancelModalOpen(false);
+      setCancelTarget(null);
+      await fetchNotas({ background: true });
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Falha ao cancelar a nota fiscal.');
+    } finally {
+      setActionRowId(null);
+    }
+  }, [cancelConfirmText, cancelReason, cancelTarget, fetchNotas, messageApi]);
+
+  const openCceModal = useCallback((note: NotaFiscalRow) => {
+    setCceTarget(note);
+    setCceText('');
+    setCceSeq(1);
+    setCceModalOpen(true);
+  }, []);
+
+  const submitCartaCorrecao = useCallback(async () => {
+    if (!cceTarget) return;
+    if (cceText.trim().length < 15) {
+      messageApi.error('A correção deve ter no mínimo 15 caracteres.');
+      return;
+    }
+    setActionRowId(cceTarget.id);
+    try {
+      const response = await fetch(`/api/notas-fiscais/${cceTarget.id}/carta-correcao`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ correcao: cceText, numeroSequencial: cceSeq }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Falha ao enviar a carta de correção.');
+      messageApi.success(`Carta de correção enviada${payload?.protocolo ? ` (protocolo ${payload.protocolo})` : ''}.`);
+      setCceModalOpen(false);
+      setCceTarget(null);
+      await fetchNotas({ background: true });
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Falha ao enviar a carta de correção.');
+    } finally {
+      setActionRowId(null);
+    }
+  }, [cceSeq, cceTarget, cceText, fetchNotas, messageApi]);
+
+  const reconcileNow = useCallback(async () => {
+    setReconciling(true);
+    try {
+      const response = await fetch('/api/sync/nf/reconciliar-brasilnfe/job', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível iniciar a reconciliação.');
+      if (payload?.throttled) messageApi.info('A reconciliação foi executada há pouco. Aguarde a próxima janela.');
+      else if (payload?.reused) messageApi.info('Já existe uma reconciliação fiscal em andamento.');
+      else messageApi.success('Reconciliação fiscal iniciada em segundo plano.');
+      await fetchNotas({ background: true });
+    } catch (error) {
+      messageApi.error(error instanceof Error ? error.message : 'Não foi possível iniciar a reconciliação.');
+    } finally {
+      setReconciling(false);
+    }
+  }, [fetchNotas, messageApi]);
+
+  const runAction = useCallback((key: string, note: NotaFiscalRow) => {
+    if (key === 'details') void openDrawer(note);
+    if (key === 'view') void handleViewDanfe(note);
+    if (key === 'download') void handleDownloadDanfe(note);
+    if (key === 'xml') handleDownloadXml(note);
+    if (key === 'email') openEmailModal(note);
+    if (key === 'cancel') openCancelModal(note);
+    if (key === 'cce') openCceModal(note);
+  }, [handleDownloadDanfe, handleDownloadXml, handleViewDanfe, openCancelModal, openCceModal, openDrawer, openEmailModal]);
 
   const columns: TableProps<NotaFiscalRow>['columns'] = [
     {
-      title: 'Pedido',
-      dataIndex: 'pedido',
-      key: 'pedido',
-      width: 110,
-      sorter: true,
-      render: (v: number, row: NotaFiscalRow) => (
-        <a
-          href={`https://www.mercadolivre.com.br/vendas/${row.ml_pack_id || v}/detalhe`}
-          target="_blank"
-          rel="noopener noreferrer"
-          title={`Order ID: ${row.ml_order_id || '—'} | Pack ID: ${row.ml_pack_id || '—'}`}
-          style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
-        >
-          #{String(v).padStart(6, '0')}
-        </a>
-      ),
-    },
-    {
-      title: 'Número',
-      dataIndex: 'numero',
-      key: 'numero',
-      width: 130,
-      sorter: true,
-      render: (v: string, row: NotaFiscalRow) => {
-        if (!v || v === '—' || row.status === 'pendente' || row.status === 'processando') {
-          return <span style={{ fontFamily: 'monospace' }}>—</span>;
-        }
-        const label = formatNumeroWithSerie(v, row.nfe_chave);
-        return (
-          <Button
-            type="link"
-            size="small"
-            style={{ padding: 0, fontFamily: 'monospace' }}
-            onClick={() => handleViewPdf(row)}
-          >
-            {label}
-          </Button>
-        );
+      title: 'Emissão', dataIndex: 'emissao', key: 'emissao', width: 125,
+      render: (value: string | null) => {
+        const parts = formatDateParts(value);
+        return <div className={styles.dateCell}>
+          <span className={value ? styles.primaryText : styles.missingText}>{parts.date}</span>
+          {parts.time && <span className={styles.secondaryText}>{parts.time}</span>}
+        </div>;
       },
     },
     {
-      title: 'Cliente',
-      dataIndex: 'cliente',
-      key: 'cliente',
-      sorter: true,
+      title: 'Venda', dataIndex: 'pedido', key: 'pedido', width: 210, sorter: true,
+      sortOrder: sortBy === 'pedido' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
+      render: (_value, note) => <div className={styles.identifiersCell}>
+        <button type="button" className={styles.orderLink} onClick={() => void openDrawer(note)}>Pedido #{String(note.pedido).padStart(6, '0')}</button>
+        <span>{note.ml_pack_id ? <><b>Pack ML</b> #{note.ml_pack_id}</> : <><b>Pack ML</b> —</>}</span>
+        <span>{note.ml_order_id ? <><b>Venda ML</b> #{note.ml_order_id}</> : <><b>Venda ML</b> —</>}</span>
+      </div>,
     },
     {
-      title: 'Data',
-      dataIndex: 'data',
-      key: 'data',
-      width: 170,
-      sorter: true,
-      render: (d: string) => {
-        if (!d) return <span style={{ color: '#666' }}>—</span>;
-        const dt = new Date(d);
-        if (Number.isNaN(dt.getTime())) return <span style={{ color: '#666' }}>—</span>;
-        return dt.toLocaleDateString('pt-BR', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        });
+      title: 'NF-e', dataIndex: 'numero', key: 'numero', width: 170, sorter: true,
+      sortOrder: sortBy === 'numero' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
+      render: (value: string, note) => value && value !== '—' ? <div className={styles.invoiceCell}>
+        <button type="button" className={styles.invoiceLink} onClick={() => primaryAction(note) === 'danfe' ? void handleViewDanfe(note) : void openDrawer(note)}>NF-e {value}</button>
+        <span className={styles.secondaryText}>{note.serie ? `Série ${note.serie}` : 'Série não informada'}</span>
+      </div> : <span className={styles.missingText}>Ainda não emitida</span>,
+    },
+    {
+      title: 'Cliente', dataIndex: 'cliente', key: 'cliente', width: 240, sorter: true,
+      sortOrder: sortBy === 'cliente' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
+      render: (value: string, note) => <div className={styles.clientCell}>
+        <span className={styles.clientName}>{value || 'Cliente não informado'}</span>
+        <span className={styles.secondaryText}>{formatDocument(note.contato_documento)}</span>
+      </div>,
+    },
+    {
+      title: 'Valor', dataIndex: 'valor', key: 'valor', width: 120, sorter: true,
+      sortOrder: sortBy === 'valor' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
+      render: (value: number) => <span className={styles.valueText}>{formatCurrency(value)}</span>,
+    },
+    {
+      title: 'Estado fiscal', dataIndex: 'status', key: 'status', width: 205, sorter: true,
+      sortOrder: sortBy === 'status' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
+      render: (_value, note) => {
+        const presentation = getFiscalStatusPresentation(note);
+        return <div className={styles.statusCell}>
+          <Tag color={presentation.color}>{presentation.label}</Tag>
+          {presentation.hint && <span className={styles.statusHint}>{presentation.hint}</span>}
+        </div>;
       },
     },
     {
-      title: 'Valor',
-      dataIndex: 'valor',
-      key: 'valor',
-      width: 120,
-      sorter: true,
-      render: (v: number) => formatCurrency(v),
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      width: 120,
-      sorter: true,
-      render: (s: NFStatus) => <Tag color={statusColor[s]}>{nfeTechnicalStatusLabel(s)}</Tag>,
-    },
-    {
-      title: 'Ações',
-      key: 'actions',
-      width: 60,
-      fixed: 'right',
-      render: (_, record: NotaFiscalRow) => (
-        <Dropdown
-          menu={{
-            items: [
-              { key: 'view', label: 'Visualizar' },
-              { key: 'download', label: 'Baixar PDF' },
-              { key: 'email', label: 'Enviar por e-mail' },
-              { type: 'divider' },
-              { key: 'cancel', label: 'Cancelar NF-e', disabled: record.status === 'cancelada' || !record.nfe_chave },
-              { key: 'cce', label: 'Enviar Carta de Correção', disabled: record.status !== 'autorizada' || !record.nfe_chave },
-            ],
-            onClick: ({ key }) => {
-              if (key === 'view') handleViewPdf(record);
-              if (key === 'download') handleDownloadPdf(record);
-              if (key === 'email') openEmailModal(record);
-              if (key === 'cancel') openCancelModal(record);
-              if (key === 'cce') openCceModal(record);
-            },
-          }}
-          trigger={['click']}
-        >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} loading={sendingRowId === record.id || actionRowId === record.id} />
-        </Dropdown>
-      ),
+      title: 'Próxima ação', key: 'actions', width: 295, fixed: 'right',
+      render: (_value, note) => {
+        const primary = primaryAction(note);
+        const secondary = [
+          primary !== 'details' ? { key: 'details', label: 'Ver detalhes', icon: <EyeOutlined /> } : null,
+          primary !== 'danfe' && note.status === 'autorizada' && !note.is_homologation_fixture
+            ? { key: 'view', label: 'Abrir DANFE', icon: <FilePdfOutlined /> } : null,
+          note.status === 'autorizada' && !note.is_homologation_fixture
+            ? { key: 'download', label: 'Baixar DANFE', icon: <DownloadOutlined /> } : null,
+          note.xml_available && !note.is_homologation_fixture
+            ? { key: 'xml', label: 'Baixar XML', icon: <DownloadOutlined /> } : null,
+          note.status === 'autorizada' && !note.is_homologation_fixture
+            ? { key: 'email', label: 'Enviar por e-mail', icon: <MailOutlined /> } : null,
+          note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture
+            ? { key: 'cce', label: 'Emitir CC-e' } : null,
+          note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture && !isNfeCancelRejectedDeadlineStatus(note.nfe_status)
+            ? { key: 'cancel', label: 'Cancelar NF-e', danger: true } : null,
+        ].filter(Boolean) as Array<{ key: string; label: string; icon?: React.ReactNode; danger?: boolean }>;
+        const primaryLabel = primary === 'danfe' ? 'Abrir DANFE' : 'Ver detalhes';
+        return <div className={styles.actionCell}>
+          <span className={styles.nextAction}>{nextActionLabel(note)}</span>
+          <Space.Compact>
+            <Button
+              className={styles.primaryAction}
+              type={primary === 'danfe' ? 'primary' : 'default'}
+              size="small"
+              icon={primary === 'danfe' ? <FilePdfOutlined /> : <EyeOutlined />}
+              loading={sendingRowId === note.id || actionRowId === note.id}
+              onClick={() => runAction(primary === 'danfe' ? 'view' : 'details', note)}
+            >{primaryLabel}</Button>
+            {secondary.length > 0 && <Dropdown trigger={['click']} menu={{ items: secondary, onClick: ({ key }) => runAction(key, note) }}>
+              <Button size="small" aria-label={`Mais ações da nota ${note.numero}`} icon={<EllipsisOutlined />} />
+            </Dropdown>}
+          </Space.Compact>
+        </div>;
+      },
     },
   ];
 
@@ -507,239 +584,131 @@ export default function NotasFiscaisPage() {
     _filters: Record<string, (React.Key | boolean)[] | null>,
     sorter: SorterResult<NotaFiscalRow> | SorterResult<NotaFiscalRow>[],
   ) => {
-    if (pagination.current) setPage(pagination.current);
-
     if (Array.isArray(sorter)) return;
-    if (!sorter.order || !sorter.field) return;
-
-    setSortBy(String(sorter.field));
-    setSortOrder(sorter.order === 'ascend' ? 'asc' : 'desc');
+    const nextSortBy = sorter.order && sorter.field ? String(sorter.field) : 'data';
+    const nextSortOrder: SortOrder = sorter.order === 'ascend' ? 'asc' : 'desc';
+    const sortChanged = nextSortBy !== sortBy || nextSortOrder !== sortOrder;
+    setSortBy(nextSortBy);
+    setSortOrder(nextSortOrder);
+    setPage(sortChanged ? 1 : pagination.current || 1);
   };
 
-  return (
-    <div>
-      {contextHolder}
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Notas Fiscais</Title>
+  const activeFilters = useMemo(() => [
+    lastSearch ? { key: 'search', label: `Busca: ${lastSearch}`, clear: () => { setSearch(''); setLastSearch(''); setPage(1); } } : null,
+    statusFilter ? { key: 'status', label: `Status: ${statusOptions.find((item) => item.value === statusFilter)?.label || statusFilter}`, clear: () => { setStatusFilter(''); setPage(1); } } : null,
+    dateRange[0] || dateRange[1] ? { key: 'date', label: `Venda: ${dateRange[0] || 'início'} — ${dateRange[1] || 'hoje'}`, clear: () => { setDateRange([null, null]); setPage(1); } } : null,
+    valorMin !== null || valorMax !== null ? { key: 'value', label: `Valor: ${valorMin === null ? 'mínimo' : formatCurrency(valorMin)} — ${valorMax === null ? 'máximo' : formatCurrency(valorMax)}`, clear: () => { setValorMin(null); setValorMax(null); setPage(1); } } : null,
+  ].filter(Boolean) as Array<{ key: string; label: string; clear: () => void }>, [dateRange, lastSearch, statusFilter, valorMax, valorMin]);
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[16, 16]}>
-          <Col xs={12} md={8} lg={4}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Total</span>}
-              value={summary.total}
-              valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={4}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Emitidas</span>}
-              value={summary.emitidas}
-              valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={8} lg={4}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Pendentes</span>}
-              value={summary.pendentes}
-              valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={12} lg={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Valor Total</span>}
-              value={formatCurrency(summary.valor_total)}
-              valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={12} lg={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Imposto Total (4%)</span>}
-              value={formatCurrency(summary.imposto_total)}
-              valueStyle={{ color: '#cf1322', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-        </Row>
+  const datePickerValue: [Dayjs | null, Dayjs | null] = [
+    dateRange[0] ? dayjs(dateRange[0]) : null,
+    dateRange[1] ? dayjs(dateRange[1]) : null,
+  ];
+  const hasHomologationFixtures = rows.some((note) => note.is_homologation_fixture);
+
+  return <div className={styles.page}>
+    {contextHolder}
+    <header className={styles.header}>
+      <div>
+        <Title level={2} className={styles.title}>Notas fiscais</Title>
+        <Text type="secondary">Acompanhe a emissão, localize documentos e execute somente os eventos fiscais permitidos.</Text>
+        <Text type="secondary" className={styles.updatedAt}>{lastUpdatedAt ? `Atualizado às ${lastUpdatedAt.toLocaleTimeString('pt-BR')}` : 'Aguardando primeira atualização'}</Text>
       </div>
+      <Space wrap>
+        <Button icon={<SyncOutlined />} loading={reconciling} onClick={() => void reconcileNow()}>Reconciliar agora</Button>
+        <Button type="primary" icon={<ReloadOutlined />} loading={listLoading || summaryLoading} onClick={() => void fetchNotas()}>Atualizar</Button>
+      </Space>
+    </header>
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
-            <Input
-              placeholder="Buscar (pedido, cliente, número NF ou ID ML)"
-              prefix={<SearchOutlined />}
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{ width: 320 }}
-              allowClear
-              onClear={() => {
-                setSearch('');
-                setLastSearch('');
-                setPage(1);
-              }}
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Status"
-              value={statusFilter || undefined}
-              onChange={v => {
-                setStatusFilter((v as NFStatus) || '');
-                setPage(1);
-              }}
-              options={statusOptions}
-              style={{ width: 150 }}
-              allowClear
-            />
-          </Col>
-          <Col>
-            <RangePicker
-              onChange={(dates) => {
-                setDateRange([
-                  dates?.[0]?.format('YYYY-MM-DD') || null,
-                  dates?.[1]?.format('YYYY-MM-DD') || null,
-                ]);
-                setPage(1);
-              }}
-              format="DD/MM/YYYY"
-              style={{ width: 240 }}
-            />
-          </Col>
-          <Col>
-            <Space.Compact>
-              <InputNumber
-                placeholder="Valor mín"
-                value={valorMin}
-                onChange={v => {
-                  setValorMin(v ?? null);
-                  setPage(1);
-                }}
-                style={{ width: 110 }}
-              />
-              <InputNumber
-                placeholder="Valor máx"
-                value={valorMax}
-                onChange={v => {
-                  setValorMax(v ?? null);
-                  setPage(1);
-                }}
-                style={{ width: 110 }}
-              />
-            </Space.Compact>
-          </Col>
-        </Row>
-      </div>
+    {hasHomologationFixtures && <Alert type="info" showIcon message="Amostra real protegida para homologação" description="Os registros servem para avaliar o layout. Documentos, e-mails e eventos fiscais estão desabilitados nessa amostra." />}
+    {summaryError && <Alert type="warning" showIcon message="Resumo fiscal parcialmente indisponível" description={summaryError} action={<Button size="small" onClick={() => void fetchNotas()}>Tentar novamente</Button>} />}
 
-      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-          <ResizableTable<NotaFiscalRow>
-            storageKey="notas-fiscais"
-            dataSource={rows}
-            columns={columns}
-            rowKey="id"
-            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-            onChange={handleTableChange}
-            pagination={{
-              current: page,
-              pageSize: PAGE_SIZE,
-              total,
-              showSizeChanger: false,
-              showTotal: (t) => `${t} notas fiscais`,
-            }}
-            scroll={{ x: 920 }}
-            style={{ background: 'transparent' }}
-            size="small"
-          />
-        </div>
-      </Spin>
-      <Modal
-        open={emailModalOpen}
-        title="Enviar Nota Fiscal por e-mail"
-        onCancel={() => {
-          setEmailModalOpen(false);
-          setEmailTarget(null);
-        }}
-        onOk={handleSendEmail}
-        okText="Enviar"
-        confirmLoading={!!sendingRowId}
-        destroyOnClose
-      >
-        <Space direction="vertical" style={{ width: '100%' }} size={10}>
-          <Input
-            placeholder="E-mail destinatário (fallback manual)"
-            value={emailTo}
-            onChange={(e) => setEmailTo(e.target.value)}
-          />
-          <Input
-            placeholder="Assunto"
-            value={emailSubject}
-            onChange={(e) => setEmailSubject(e.target.value)}
-          />
-          <Input.TextArea
-            rows={6}
-            placeholder="Mensagem"
-            value={emailBody}
-            onChange={(e) => setEmailBody(e.target.value)}
-          />
-        </Space>
-      </Modal>
-      <Modal
-        open={cancelModalOpen}
-        title="Cancelar NF-e"
-        onCancel={() => {
-          setCancelModalOpen(false);
-          setCancelTarget(null);
-        }}
-        onOk={submitCancelNfe}
-        okText="Confirmar cancelamento"
-        okButtonProps={{ danger: true }}
-        confirmLoading={actionRowId === cancelTarget?.id}
-        destroyOnClose
-      >
-        <Space direction="vertical" style={{ width: '100%' }} size={10}>
-          <Typography.Text type="danger">
-            Esta ação é irreversível. Digite <b>CANCELAR</b> para confirmar.
-          </Typography.Text>
-          <Input.TextArea
-            rows={4}
-            placeholder="Justificativa do cancelamento"
-            value={cancelReason}
-            onChange={(e) => setCancelReason(e.target.value)}
-          />
-          <Input
-            placeholder='Digite "CANCELAR"'
-            value={cancelConfirmText}
-            onChange={(e) => setCancelConfirmText(e.target.value)}
-          />
-        </Space>
-      </Modal>
-      <Modal
-        open={cceModalOpen}
-        title="Enviar Carta de Correção"
-        onCancel={() => {
-          setCceModalOpen(false);
-          setCceTarget(null);
-        }}
-        onOk={submitCartaCorrecao}
-        okText="Enviar CC-e"
-        confirmLoading={actionRowId === cceTarget?.id}
-        destroyOnClose
-      >
-        <Space direction="vertical" style={{ width: '100%' }} size={10}>
-          <InputNumber
-            min={1}
-            value={cceSeq}
-            onChange={(v) => setCceSeq(Math.max(1, Number(v || 1)))}
-            style={{ width: 160 }}
-            placeholder="Seq. evento"
-          />
-          <Input.TextArea
-            rows={6}
-            placeholder="Descreva a correção (mínimo 15 caracteres)"
-            value={cceText}
-            onChange={(e) => setCceText(e.target.value)}
-          />
-        </Space>
-      </Modal>
-    </div>
-  );
+    <section className={styles.summaryBand} aria-label="Resumo fiscal">
+      {[
+        ['Pendentes', summary.pendentes, 'Aguardando emissão ou processamento'],
+        ['Emitidas', summary.emitidas, 'NF-e autorizadas nos filtros atuais'],
+        ['Com erro', summary.com_erro, 'Interrompidas, rejeitadas ou não encontradas'],
+        ['Valor autorizado', formatCurrency(summary.valor_autorizado), 'Somente vendas com NF-e autorizada'],
+      ].map(([label, value, hint]) => <div className={styles.summaryItem} key={String(label)} aria-busy={summaryLoading}>
+        <span className={styles.summaryLabel}>{label}</span>
+        <strong className={styles.summaryValue}>{summaryLoading && !lastUpdatedAt ? '—' : value}</strong>
+        <span className={styles.summaryHint}>{hint}</span>
+      </div>)}
+    </section>
+
+    <Card size="small" className={styles.filterCard}>
+      <Row gutter={[8, 8]} align="middle" className={styles.filterRow}>
+        <Col flex="1 1 330px"><Input aria-label="Buscar notas fiscais" placeholder="Pedido, NF-e, cliente, Pack ou Venda ML" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => setSearch(event.target.value)} /></Col>
+        <Col flex="0 1 210px"><Select aria-label="Filtrar status fiscal" placeholder="Status fiscal" value={statusFilter || undefined} options={statusOptions} allowClear style={{ width: '100%' }} onChange={(value) => { setStatusFilter(value || ''); setPage(1); }} /></Col>
+        <Col flex="0 1 260px"><RangePicker aria-label="Filtrar período da venda" value={datePickerValue} format="DD/MM/YYYY" style={{ width: '100%' }} onChange={(dates) => { setDateRange([dates?.[0]?.format('YYYY-MM-DD') || null, dates?.[1]?.format('YYYY-MM-DD') || null]); setPage(1); }} /></Col>
+        <Col flex="0 1 230px"><Space.Compact block>
+          <InputNumber aria-label="Valor mínimo" placeholder="Valor mín." min={0} value={valorMin} style={{ width: '50%' }} onChange={(value) => { setValorMin(value ?? null); setPage(1); }} />
+          <InputNumber aria-label="Valor máximo" placeholder="Valor máx." min={0} value={valorMax} style={{ width: '50%' }} onChange={(value) => { setValorMax(value ?? null); setPage(1); }} />
+        </Space.Compact></Col>
+      </Row>
+      {activeFilters.length > 0 && <Space wrap className={styles.activeFilters}>
+        <Text type="secondary">Filtros ativos:</Text>
+        {activeFilters.map((filter) => <Tag key={filter.key} closable onClose={filter.clear}>{filter.label}</Tag>)}
+        <Button type="link" size="small" onClick={() => { setSearch(''); setLastSearch(''); setStatusFilter(''); setDateRange([null, null]); setValorMin(null); setValorMax(null); setPage(1); }}>Limpar filtros</Button>
+      </Space>}
+    </Card>
+
+    {listError && <Alert type="error" showIcon message="Falha ao atualizar as notas fiscais" description={`${listError}${rows.length > 0 ? ' Os dados anteriores foram preservados.' : ''}`} action={<Button size="small" onClick={() => void fetchNotas()}>Tentar novamente</Button>} />}
+    <Card size="small" className={styles.tableCard}>
+      {!listLoading && !listError && rows.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhuma nota fiscal encontrada com os filtros atuais." /> : <ResizableTable<NotaFiscalRow>
+        storageKey="notas-fiscais-bentevi-v2" dataSource={rows} columns={columns} rowKey="id" loading={listLoading}
+        onChange={handleTableChange}
+        pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, showTotal: (count) => `${count} notas fiscais` }}
+        scroll={{ x: 1365 }} size="small"
+      />}
+    </Card>
+
+    <NotaFiscalDetailsDrawer
+      note={drawerNote} open={Boolean(drawerNote)} history={drawerHistory}
+      historyLoading={drawerHistoryLoading} historyError={drawerHistoryError} onClose={closeDrawer}
+      onViewDanfe={(note) => void handleViewDanfe(note)} onDownloadDanfe={(note) => void handleDownloadDanfe(note)}
+      onDownloadXml={handleDownloadXml} onEmail={openEmailModal} onCancel={openCancelModal} onCce={openCceModal}
+    />
+
+    <Modal
+      title={emailTarget ? `Enviar NF-e ${emailTarget.numero} por e-mail` : 'Enviar nota fiscal por e-mail'}
+      open={emailModalOpen} onCancel={() => { setEmailModalOpen(false); setEmailTarget(null); }}
+      onOk={() => void handleSendEmail()} okText="Enviar e-mail" cancelText="Cancelar"
+      confirmLoading={Boolean(sendingRowId)} destroyOnHidden
+    >
+      <Space direction="vertical" size={12} style={{ width: '100%' }}>
+        <Alert type="info" showIcon message="A DANFE será anexada ao e-mail enviado pela Bentevi." />
+        <Input type="email" placeholder="E-mail do destinatário (opcional se já cadastrado)" value={emailTo} onChange={(event) => setEmailTo(event.target.value)} />
+        <Input placeholder="Assunto" value={emailSubject} onChange={(event) => setEmailSubject(event.target.value)} />
+        <Input.TextArea rows={6} placeholder="Mensagem" value={emailBody} onChange={(event) => setEmailBody(event.target.value)} />
+      </Space>
+    </Modal>
+
+    <Modal
+      title={cancelTarget ? `Cancelar NF-e ${cancelTarget.numero}` : 'Cancelar NF-e'}
+      open={cancelModalOpen} onCancel={() => { setCancelModalOpen(false); setCancelTarget(null); }}
+      onOk={() => void submitCancelNfe()} okText="Cancelar NF-e" cancelText="Voltar"
+      okButtonProps={{ danger: true, disabled: cancelConfirmText.trim().toUpperCase() !== 'CANCELAR' }}
+      confirmLoading={actionRowId === cancelTarget?.id} destroyOnHidden
+    >
+      <Space direction="vertical" size={12} style={{ width: '100%' }}>
+        <Alert type="error" showIcon message="Esta ação será enviada ao provedor fiscal e não pode ser desfeita pela Bentevi." description="Revise a nota e a justificativa. Digite CANCELAR somente quando tiver certeza." />
+        <Input.TextArea rows={4} placeholder="Justificativa do cancelamento" value={cancelReason} onChange={(event) => setCancelReason(event.target.value)} />
+        <Input placeholder='Digite "CANCELAR"' value={cancelConfirmText} onChange={(event) => setCancelConfirmText(event.target.value)} />
+      </Space>
+    </Modal>
+
+    <Modal
+      title={cceTarget ? `Emitir CC-e da NF-e ${cceTarget.numero}` : 'Emitir carta de correção'}
+      open={cceModalOpen} onCancel={() => { setCceModalOpen(false); setCceTarget(null); }}
+      onOk={() => void submitCartaCorrecao()} okText="Enviar CC-e" cancelText="Cancelar"
+      okButtonProps={{ disabled: cceText.trim().length < 15 }} confirmLoading={actionRowId === cceTarget?.id} destroyOnHidden
+    >
+      <Space direction="vertical" size={12} style={{ width: '100%' }}>
+        <Alert type="warning" showIcon message="O texto será enviado como evento fiscal ao provedor." description="Revise o conteúdo antes do envio. Esta ação não edita diretamente a NF-e original." />
+        <InputNumber min={1} value={cceSeq} onChange={(value) => setCceSeq(Math.max(1, Number(value || 1)))} style={{ width: 180 }} addonBefore="Sequência" />
+        <Input.TextArea rows={6} placeholder="Descreva a correção (mínimo 15 caracteres)" value={cceText} onChange={(event) => setCceText(event.target.value)} />
+      </Space>
+    </Modal>
+  </div>;
 }

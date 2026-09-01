@@ -114,22 +114,25 @@ export async function GET(request: Request) {
     }
     let emitidas = 0;
     let pendentes = 0;
-    let valorTotal = 0;
+    let comErro = 0;
+    let valorAutorizado = 0;
 
     for (const row of rows) {
       const mapped = mapStatus(row);
-      if (mapped === "autorizada") emitidas++;
+      if (mapped === "autorizada") {
+        emitidas++;
+        valorAutorizado += Number(row.total || 0);
+      }
       if (mapped === "pendente" || mapped === "processando") pendentes++;
-      if (mapped === "cancelada") continue;
-      valorTotal += Number(row.total || 0);
+      if (mapped === "interrompida" || mapped === "rejeitada" || mapped === "outro") comErro++;
     }
 
     return NextResponse.json({
       total: rows.length,
       emitidas,
       pendentes,
-      valor_total: valorTotal,
-      imposto_total: valorTotal * 0.04,
+      com_erro: comErro,
+      valor_autorizado: valorAutorizado,
     });
   } catch (error: any) {
     return NextResponse.json(

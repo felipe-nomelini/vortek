@@ -51,7 +51,7 @@ export async function sendEmail(input: SendMailInput) {
   if (!fromAddress) {
     throw new Error('Missing required env: EMAIL_FROM_NFE or SMTP_USER');
   }
-  const from = `Felipe (Vortek) <${fromAddress}>`;
+  const from = `Bentevi <${fromAddress}>`;
   const transport = createTransport();
   try {
     return await transport.sendMail({

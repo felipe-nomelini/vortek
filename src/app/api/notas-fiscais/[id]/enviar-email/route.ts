@@ -110,7 +110,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       `Segue em anexo a DANFE da NF-e ${pedido.nota_fiscal_numero}.`,
       `Você também pode acessar pelo link temporário: ${signedUrl}`,
       '',
-      'Mensagem automática Vortek.',
+      'Mensagem automática Bentevi.',
     ].join('\n');
 
   try {
