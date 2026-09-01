@@ -2111,6 +2111,18 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Pendência:** aprovação visual em `https://dev.bentevi.shop/estoque`. Não marcar `BNT-D05` como concluída nem iniciar `BNT-D06` antes desse aceite.
 
+**Complemento de homologação em `2026-09-01`:** foram persistidas no `supabase-dev` nove NF-e modelo 55 e cinco posições visuais de estoque com `snapshot_source = bnt_d05_inventory_mock`. Os nove movimentos da amostra estão obrigatoriamente estornados por constraint e a visão canônica confirmou zero saldo decorrente deles. A interface marca esses registros como amostra, bloqueia recebimento, documentos e eventos externos e os utiliza somente para demonstrar estados de autorização, cancelamento, denegação, manifestação, conferência parcial/concluída, reserva, indisponibilidade e avaria.
+
+**NF-e de entrada:** `Notas fiscais` ganhou a aba `NF-e de entrada`, com indicadores próprios, filtros, lista, Drawer de itens/documentos/eventos, recebimento por NF-e, sincronização manual de até 31 dias e as quatro manifestações do destinatário. O endpoint público `POST /api/webhooks/brasilnfe` valida HMAC-SHA256 sobre o corpo bruto, headers, janela de duas horas, modelo 55, CNPJ destinatário e idempotência por `deliveryId`; nenhum payload bruto é persistido. A sincronização manual permanece fallback do webhook.
+
+**Commit do complemento:** `23a4333` — `feat(fiscal): gerenciar nfe de entrada em homologacao`, enviado somente para `origin/dev`.
+
+**Validação do complemento:** 25 cenários direcionados aprovados; `npm run validate`, `npm run build` com 126 páginas/rotas e `git diff --check` aprovados. A migration e a carga visual foram ensaiadas com `ROLLBACK` e aplicadas somente no `.162`; o read-back confirmou nove NF-e, cinco produtos de demonstração, nove movimentos todos estornados, RLS no log de entregas, migration `99/99` e zero alteração na posição canônica. O deploy oficial de `dev@23a4333` foi aceito, o processo do `vortek-erp-dev` reiniciou saudável, health e login responderam `200`, as páginas protegidas responderam `307` e as APIs de entrada/estoque responderam `401` sem sessão. Nenhuma manifestação, consulta fiscal ou outro evento externo real foi executado.
+
+**Migration do complemento:** `20260901213000_bnt_d05_incoming_invoices.sql`, aplicada e registrada exclusivamente no `supabase-dev` em `192.168.1.162`. O banco de produção não foi acessado.
+
+**Pendência operacional externa:** cadastrar `https://dev.bentevi.shop/api/webhooks/brasilnfe` no painel Brasil NFe, vincular o webhook à empresa DEV, configurar o secret gerado como `BRASILNFE_WEBHOOK_SECRET` somente no runtime `vortek-erp-dev` e cadastrar o CNPJ da empresa no banco DEV. Até isso ocorrer, o endpoint responde `503` sem processar eventos e a sincronização manual não deve ser usada. A aprovação visual das amostras não depende dessa configuração.
+
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
 Não iniciar web celular antes de `BNT-D01` a `BNT-D24` estarem aprovados.
