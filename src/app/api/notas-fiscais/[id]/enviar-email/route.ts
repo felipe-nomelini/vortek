@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { sendEmail } from '@/services/email';
 import { createDanfeSignedUrl, resolveDanfeStoragePath, DANFE_BUCKET, DANFE_SIGNED_URL_TTL_SECONDS } from '@/lib/fiscal/danfe-storage';
 import {
@@ -24,14 +25,8 @@ function formatCpfCnpj(doc: string): string[] {
 }
 
 export async function POST(request: Request, context: { params: Promise<{ id: string }> }) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+  const auth = await authorizeApiRequest(request, 'fiscal.manage');
+  if (!auth.ok) return auth.response;
 
   const id = (await context?.params)?.id;
   if (!id) {
@@ -132,7 +127,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       nota_fiscal_numero: pedido.nota_fiscal_numero,
       pedido_numero: pedido.numero,
       to,
-      user_id: user.id,
+      user_id: auth.userId,
       timestamp_utc: new Date().toISOString(),
     }));
 
@@ -149,7 +144,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
       nota_fiscal_numero: pedido.nota_fiscal_numero,
       pedido_numero: pedido.numero,
       to,
-      user_id: user.id,
+      user_id: auth.userId,
       error: rawMessage,
       timestamp_utc: new Date().toISOString(),
     }));

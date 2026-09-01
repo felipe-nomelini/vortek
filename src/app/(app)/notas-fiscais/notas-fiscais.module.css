@@ -24,7 +24,7 @@
 
 .summaryBand {
   display: grid;
-  grid-template-columns: repeat(3, minmax(140px, 0.8fr)) minmax(230px, 1.35fr);
+  grid-template-columns: repeat(4, minmax(135px, 0.8fr)) minmax(270px, 1.55fr);
   overflow: hidden;
   border: 1px solid var(--bentevi-border, #34313a);
   border-radius: 16px;

@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
-import { createClient, createServiceClient } from "@/lib/supabase";
+import { createServiceClient } from "@/lib/supabase";
+import { authorizeApiRequest } from "@/lib/api-request-auth";
 import { saoPauloDateParamToUtcIso } from "@/lib/timezone";
 import {
   normalizeNfeTechnicalStatus,
   type NfeTechnicalStatus,
 } from "@/lib/fiscal/nfe-status";
 import { reconcileRowsBestEffort } from "@/lib/fiscal/nfe-live-sync";
+import { loadPricingTaxProjection } from "@/services/pricing-tax-context";
 
 type NFStatus = NfeTechnicalStatus;
 
@@ -27,14 +29,8 @@ function mapStatus(row: { nfe_status: string | null }): NFStatus {
 }
 
 export async function GET(request: Request) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ erro: "Não autenticado" }, { status: 401 });
-  }
+  const auth = await authorizeApiRequest(request, "fiscal.read");
+  if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
 
   try {
@@ -127,12 +123,22 @@ export async function GET(request: Request) {
       if (mapped === "interrompida" || mapped === "rejeitada" || mapped === "outro") comErro++;
     }
 
+    let impostoEstimadoMes: Awaited<ReturnType<typeof loadPricingTaxProjection>> | null = null;
+    try {
+      impostoEstimadoMes = await loadPricingTaxProjection(serviceClient);
+    } catch (error) {
+      console.error('[fiscal-summary] Projeção tributária indisponível', {
+        message: error instanceof Error ? error.message : 'unknown_error',
+      });
+    }
+
     return NextResponse.json({
       total: rows.length,
       emitidas,
       pendentes,
       com_erro: comErro,
       valor_autorizado: valorAutorizado,
+      imposto_estimado_mes: impostoEstimadoMes,
     });
   } catch (error: any) {
     return NextResponse.json(

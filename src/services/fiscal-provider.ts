@@ -96,6 +96,39 @@ export interface BrasilNfeDuplicateParseResult {
   message: string | null;
 }
 
+export async function preVisualizarNotaBrasilNfe(
+  payload: Record<string, any>,
+): Promise<{ ok: boolean; error?: string; base64File?: string | null }> {
+  try {
+    const bnfe = await getBrasilNfeClient();
+    const response: any = await withBrasilNfeDnsRetry(() =>
+      bnfe.consultas.preVisualizarNotaFiscal({
+        notaFiscal: {
+          TipoAmbiente: Number(payload.TipoAmbiente),
+          ModeloDocumento: Number(payload.ModeloDocumento || 55),
+          nFInfos: [payload],
+        },
+        TipoArquivo: 0,
+        TipoEnvio: 1,
+        mostrarTarjaPreVisualizacao: true,
+      } as any),
+    );
+    const ok = response?.Status === true || response?.status === true;
+    return {
+      ok,
+      base64File: String(response?.Base64File || "").trim() || null,
+      error: ok
+        ? undefined
+        : String(response?.Error || response?.Message || response?.DsMotivo || "Pré-visualização fiscal rejeitada"),
+    };
+  } catch (error: any) {
+    return {
+      ok: false,
+      error: error?.message || "Falha ao pré-visualizar a nota na Brasil NFe",
+    };
+  }
+}
+
 export interface FiscalProvider {
   type: NfeProvider;
   emitirNota(ctx: FiscalEmitContext): Promise<EmitResult>;

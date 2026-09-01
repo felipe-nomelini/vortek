@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 import {
   createDanfeSignedUrl,
   ensureDanfeStoredForPedido,
@@ -12,15 +13,9 @@ import {
   isHomologationFixtureSource,
 } from '@/lib/homologation-fixture';
 
-export async function GET(_request: Request, context: { params: Promise<{ id: string }> }) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
+  const auth = await authorizeApiRequest(request, 'fiscal.read');
+  if (!auth.ok) return auth.response;
 
   const id = (await context?.params)?.id;
   if (!id) {

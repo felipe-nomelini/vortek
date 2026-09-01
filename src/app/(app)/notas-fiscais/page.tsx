@@ -4,13 +4,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dayjs, { type Dayjs } from 'dayjs';
 import {
   Alert, Button, Card, Col, DatePicker, Dropdown, Empty, Input, InputNumber,
-  Modal, Row, Select, Space, Tag, Typography, message,
+  Modal, Row, Select, Space, Tabs, Tag, Typography, message,
 } from 'antd';
 import type { TablePaginationConfig, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import {
   DownloadOutlined, EllipsisOutlined, EyeOutlined, FilePdfOutlined,
-  MailOutlined, ReloadOutlined, SearchOutlined, SyncOutlined,
+  MailOutlined, PlusOutlined, ReloadOutlined, SearchOutlined, SyncOutlined,
 } from '@ant-design/icons';
 import ResizableTable from '@/components/ResizableTable';
 import NotaFiscalDetailsDrawer, {
@@ -24,6 +24,9 @@ import {
   type NfeTechnicalStatus,
 } from '@/lib/fiscal/nfe-status';
 import type { PedidoVendaDetalheApiResponse, PedidoVendaHistoricoApiDto } from '@/types/order';
+import FiscalReturnModal from '@/components/fiscal/FiscalReturnModal';
+import FiscalReturnsPanel from '@/components/fiscal/FiscalReturnsPanel';
+import { hasPermission, type VortekRole } from '@/lib/permissions';
 import styles from './notas-fiscais.module.css';
 
 const { RangePicker } = DatePicker;
@@ -39,6 +42,14 @@ interface FiscalSummary {
   pendentes: number;
   com_erro: number;
   valor_autorizado: number;
+  imposto_estimado_mes: {
+    competence: string;
+    grossRevenue: number;
+    rate: number | null;
+    estimatedAmount: number | null;
+    source: string;
+    warning: string;
+  } | null;
 }
 
 const EMPTY_SUMMARY: FiscalSummary = {
@@ -47,7 +58,10 @@ const EMPTY_SUMMARY: FiscalSummary = {
   pendentes: 0,
   com_erro: 0,
   valor_autorizado: 0,
+  imposto_estimado_mes: null,
 };
+
+const VALID_ROLES: VortekRole[] = ['admin', 'gerente', 'operador', 'visualizador'];
 
 const statusOptions: Array<{ value: NfeTechnicalStatus; label: string }> = [
   { value: 'autorizada', label: 'Autorizada' },
@@ -141,11 +155,26 @@ export default function NotasFiscaisPage() {
   const [cceTarget, setCceTarget] = useState<NotaFiscalRow | null>(null);
   const [cceText, setCceText] = useState('');
   const [cceSeq, setCceSeq] = useState(1);
+  const [role, setRole] = useState<VortekRole | null>(null);
+  const [activeTab, setActiveTab] = useState<'sales' | 'returns'>('sales');
+  const [returnModalOpen, setReturnModalOpen] = useState(false);
+  const [returnsRefreshToken, setReturnsRefreshToken] = useState(0);
   const [messageApi, contextHolder] = message.useMessage();
   const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pollingInFlightRef = useRef(false);
   const requestSequence = useRef(0);
   const historyRequestSequence = useRef(0);
+  const canManageFiscal = Boolean(role && hasPermission(role, 'fiscal.manage'));
+
+  useEffect(() => {
+    fetch('/api/auth/me', { cache: 'no-store' })
+      .then((response) => response.ok ? response.json() : null)
+      .then((profile) => {
+        const cargo = profile?.cargo as VortekRole | undefined;
+        setRole(cargo && VALID_ROLES.includes(cargo) ? cargo : null);
+      })
+      .catch(() => setRole(null));
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -245,6 +274,20 @@ export default function NotasFiscaisPage() {
         pendentes: Number(summaryResult.value.pendentes || 0),
         com_erro: Number(summaryResult.value.com_erro || 0),
         valor_autorizado: Number(summaryResult.value.valor_autorizado || 0),
+        imposto_estimado_mes: summaryResult.value.imposto_estimado_mes
+          ? {
+              competence: String(summaryResult.value.imposto_estimado_mes.competence || ''),
+              grossRevenue: Number(summaryResult.value.imposto_estimado_mes.grossRevenue || 0),
+              rate: summaryResult.value.imposto_estimado_mes.rate == null
+                ? null
+                : Number(summaryResult.value.imposto_estimado_mes.rate),
+              estimatedAmount: summaryResult.value.imposto_estimado_mes.estimatedAmount == null
+                ? null
+                : Number(summaryResult.value.imposto_estimado_mes.estimatedAmount),
+              source: String(summaryResult.value.imposto_estimado_mes.source || ''),
+              warning: String(summaryResult.value.imposto_estimado_mes.warning || ''),
+            }
+          : null,
       });
     } else {
       setSummaryError(summaryResult.reason instanceof Error ? summaryResult.reason.message : 'Não foi possível carregar o resumo fiscal.');
@@ -485,35 +528,35 @@ export default function NotasFiscaisPage() {
     if (key === 'email') openEmailModal(note);
     if (key === 'cancel') openCancelModal(note);
     if (key === 'cce') openCceModal(note);
-  }, [handleDownloadDanfe, handleDownloadXml, handleViewDanfe, openCancelModal, openCceModal, openDrawer, openEmailModal]);
+    if (key === 'return') setReturnModalOpen(true);
+    if (key === 'reconcile') void reconcileNow();
+  }, [handleDownloadDanfe, handleDownloadXml, handleViewDanfe, openCancelModal, openCceModal, openDrawer, openEmailModal, reconcileNow]);
 
   const columns: TableProps<NotaFiscalRow>['columns'] = [
     {
-      title: 'Emissão', dataIndex: 'emissao', key: 'emissao', width: 125,
-      render: (value: string | null) => {
-        const parts = formatDateParts(value);
-        return <div className={styles.dateCell}>
-          <span className={value ? styles.primaryText : styles.missingText}>{parts.date}</span>
-          {parts.time && <span className={styles.secondaryText}>{parts.time}</span>}
-        </div>;
+      title: 'NF-e', dataIndex: 'numero', key: 'numero', width: 205, sorter: true,
+      sortOrder: sortBy === 'numero' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
+      render: (value: string, note) => {
+        const emitted = formatDateParts(note.emissao);
+        return value && value !== '—' ? <div className={styles.invoiceCell}>
+          <button type="button" className={styles.invoiceLink} onClick={() => primaryAction(note) === 'danfe' ? void handleViewDanfe(note) : void openDrawer(note)}>NF-e {value}</button>
+          <span className={styles.secondaryText}>{note.serie ? `Série ${note.serie}` : 'Série não informada'}{note.emissao ? ` · ${emitted.date} ${emitted.time}` : ''}</span>
+        </div> : <div className={styles.invoiceCell}><span className={styles.missingText}>Ainda não emitida</span><span className={styles.secondaryText}>Sem data de emissão</span></div>;
       },
     },
     {
-      title: 'Venda', dataIndex: 'pedido', key: 'pedido', width: 210, sorter: true,
+      title: 'Venda ML', dataIndex: 'pedido', key: 'pedido', width: 215, sorter: true,
       sortOrder: sortBy === 'pedido' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
-      render: (_value, note) => <div className={styles.identifiersCell}>
-        <button type="button" className={styles.orderLink} onClick={() => void openDrawer(note)}>Pedido #{String(note.pedido).padStart(6, '0')}</button>
-        <span>{note.ml_pack_id ? <><b>Pack ML</b> #{note.ml_pack_id}</> : <><b>Pack ML</b> —</>}</span>
-        <span>{note.ml_order_id ? <><b>Venda ML</b> #{note.ml_order_id}</> : <><b>Venda ML</b> —</>}</span>
-      </div>,
-    },
-    {
-      title: 'NF-e', dataIndex: 'numero', key: 'numero', width: 170, sorter: true,
-      sortOrder: sortBy === 'numero' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
-      render: (value: string, note) => value && value !== '—' ? <div className={styles.invoiceCell}>
-        <button type="button" className={styles.invoiceLink} onClick={() => primaryAction(note) === 'danfe' ? void handleViewDanfe(note) : void openDrawer(note)}>NF-e {value}</button>
-        <span className={styles.secondaryText}>{note.serie ? `Série ${note.serie}` : 'Série não informada'}</span>
-      </div> : <span className={styles.missingText}>Ainda não emitida</span>,
+      render: (_value, note) => {
+        const primaryId = note.ml_pack_id || note.ml_order_id || String(note.pedido);
+        const primaryLabel = note.ml_pack_id ? 'Pack' : 'Venda';
+        const distinctOrder = note.ml_pack_id && note.ml_order_id && note.ml_pack_id !== note.ml_order_id;
+        return <div className={styles.identifiersCell}>
+          <button type="button" className={styles.orderLink} onClick={() => void openDrawer(note)}>{primaryLabel} #{primaryId}</button>
+          {distinctOrder && <span>Venda #{note.ml_order_id}</span>}
+          <span className={styles.secondaryText}>{note.cliente}</span>
+        </div>;
+      },
     },
     {
       title: 'Cliente', dataIndex: 'cliente', key: 'cliente', width: 240, sorter: true,
@@ -529,18 +572,19 @@ export default function NotasFiscaisPage() {
       render: (value: number) => <span className={styles.valueText}>{formatCurrency(value)}</span>,
     },
     {
-      title: 'Estado fiscal', dataIndex: 'status', key: 'status', width: 205, sorter: true,
+      title: 'Estado fiscal', dataIndex: 'status', key: 'status', width: 260, sorter: true,
       sortOrder: sortBy === 'status' ? (sortOrder === 'asc' ? 'ascend' : 'descend') : null,
       render: (_value, note) => {
         const presentation = getFiscalStatusPresentation(note);
         return <div className={styles.statusCell}>
           <Tag color={presentation.color}>{presentation.label}</Tag>
           {presentation.hint && <span className={styles.statusHint}>{presentation.hint}</span>}
+          <span className={styles.nextAction}>{nextActionLabel(note)}</span>
         </div>;
       },
     },
     {
-      title: 'Próxima ação', key: 'actions', width: 295, fixed: 'right',
+      title: 'Ações', key: 'actions', width: 180, fixed: 'right',
       render: (_value, note) => {
         const primary = primaryAction(note);
         const secondary = [
@@ -551,16 +595,19 @@ export default function NotasFiscaisPage() {
             ? { key: 'download', label: 'Baixar DANFE', icon: <DownloadOutlined /> } : null,
           note.xml_available && !note.is_homologation_fixture
             ? { key: 'xml', label: 'Baixar XML', icon: <DownloadOutlined /> } : null,
-          note.status === 'autorizada' && !note.is_homologation_fixture
+          canManageFiscal && note.status === 'autorizada' && !note.is_homologation_fixture
             ? { key: 'email', label: 'Enviar por e-mail', icon: <MailOutlined /> } : null,
-          note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture
+          canManageFiscal && note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture
             ? { key: 'cce', label: 'Emitir CC-e' } : null,
-          note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture && !isNfeCancelRejectedDeadlineStatus(note.nfe_status)
+          canManageFiscal && note.status === 'autorizada' && note.nfe_chave && !note.is_homologation_fixture && !isNfeCancelRejectedDeadlineStatus(note.nfe_status)
             ? { key: 'cancel', label: 'Cancelar NF-e', danger: true } : null,
+          canManageFiscal && note.status === 'autorizada' && note.nfe_chave && note.xml_available && !note.is_homologation_fixture
+            ? { key: 'return', label: 'Criar devolução/retorno' } : null,
+          canManageFiscal && note.nfe_external_id && !['autorizada', 'cancelada'].includes(note.status) && !note.is_homologation_fixture
+            ? { key: 'reconcile', label: 'Atualizar status', icon: <SyncOutlined /> } : null,
         ].filter(Boolean) as Array<{ key: string; label: string; icon?: React.ReactNode; danger?: boolean }>;
         const primaryLabel = primary === 'danfe' ? 'Abrir DANFE' : 'Ver detalhes';
         return <div className={styles.actionCell}>
-          <span className={styles.nextAction}>{nextActionLabel(note)}</span>
           <Space.Compact>
             <Button
               className={styles.primaryAction}
@@ -615,7 +662,8 @@ export default function NotasFiscaisPage() {
         <Text type="secondary" className={styles.updatedAt}>{lastUpdatedAt ? `Atualizado às ${lastUpdatedAt.toLocaleTimeString('pt-BR')}` : 'Aguardando primeira atualização'}</Text>
       </div>
       <Space wrap>
-        <Button icon={<SyncOutlined />} loading={reconciling} onClick={() => void reconcileNow()}>Reconciliar agora</Button>
+        {canManageFiscal && <Button type="primary" icon={<PlusOutlined />} onClick={() => setReturnModalOpen(true)}>Criar devolução/retorno</Button>}
+        {canManageFiscal && <Button icon={<SyncOutlined />} loading={reconciling} onClick={() => void reconcileNow()}>Reconciliar agora</Button>}
         <Button type="primary" icon={<ReloadOutlined />} loading={listLoading || summaryLoading} onClick={() => void fetchNotas()}>Atualizar</Button>
       </Space>
     </header>
@@ -629,6 +677,15 @@ export default function NotasFiscaisPage() {
         ['Emitidas', summary.emitidas, 'NF-e autorizadas nos filtros atuais'],
         ['Com erro', summary.com_erro, 'Interrompidas, rejeitadas ou não encontradas'],
         ['Valor autorizado', formatCurrency(summary.valor_autorizado), 'Somente vendas com NF-e autorizada'],
+        [
+          'Imposto estimado do mês',
+          summary.imposto_estimado_mes?.estimatedAmount == null
+            ? 'Indisponível'
+            : formatCurrency(summary.imposto_estimado_mes.estimatedAmount),
+          summary.imposto_estimado_mes
+            ? `${summary.imposto_estimado_mes.competence} · base ${formatCurrency(summary.imposto_estimado_mes.grossRevenue)} · ${summary.imposto_estimado_mes.rate == null ? 'sem alíquota' : `${(summary.imposto_estimado_mes.rate * 100).toFixed(2)}%`} · confirmar no PGDAS-D`
+            : 'Contexto tributário indisponível; nenhum percentual foi presumido',
+        ],
       ].map(([label, value, hint]) => <div className={styles.summaryItem} key={String(label)} aria-busy={summaryLoading}>
         <span className={styles.summaryLabel}>{label}</span>
         <strong className={styles.summaryValue}>{summaryLoading && !lastUpdatedAt ? '—' : value}</strong>
@@ -636,6 +693,14 @@ export default function NotasFiscaisPage() {
       </div>)}
     </section>
 
+    <Tabs
+      activeKey={activeTab}
+      onChange={(key) => setActiveTab(key as 'sales' | 'returns')}
+      items={[
+        {
+          key: 'sales',
+          label: `NF-e de vendas (${summary.total})`,
+          children: <>
     <Card size="small" className={styles.filterCard}>
       <Row gutter={[8, 8]} align="middle" className={styles.filterRow}>
         <Col flex="1 1 330px"><Input aria-label="Buscar notas fiscais" placeholder="Pedido, NF-e, cliente, Pack ou Venda ML" prefix={<SearchOutlined />} value={search} allowClear onChange={(event) => setSearch(event.target.value)} /></Col>
@@ -663,11 +728,22 @@ export default function NotasFiscaisPage() {
       />}
     </Card>
 
+          </>,
+        },
+        {
+          key: 'returns',
+          label: 'Devoluções e retornos',
+          children: <FiscalReturnsPanel canManage={canManageFiscal} refreshToken={returnsRefreshToken} />,
+        },
+      ]}
+    />
+
     <NotaFiscalDetailsDrawer
       note={drawerNote} open={Boolean(drawerNote)} history={drawerHistory}
       historyLoading={drawerHistoryLoading} historyError={drawerHistoryError} onClose={closeDrawer}
       onViewDanfe={(note) => void handleViewDanfe(note)} onDownloadDanfe={(note) => void handleDownloadDanfe(note)}
       onDownloadXml={handleDownloadXml} onEmail={openEmailModal} onCancel={openCancelModal} onCce={openCceModal}
+      canManage={canManageFiscal}
     />
 
     <Modal
@@ -710,5 +786,15 @@ export default function NotasFiscaisPage() {
         <Input.TextArea rows={6} placeholder="Descreva a correção (mínimo 15 caracteres)" value={cceText} onChange={(event) => setCceText(event.target.value)} />
       </Space>
     </Modal>
+
+    <FiscalReturnModal
+      open={returnModalOpen}
+      onClose={() => setReturnModalOpen(false)}
+      onCreated={async () => {
+        setActiveTab('returns');
+        setReturnsRefreshToken((current) => current + 1);
+        await fetchNotas({ background: true });
+      }}
+    />
   </div>;
 }

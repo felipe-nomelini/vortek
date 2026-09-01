@@ -13,6 +13,17 @@ test("administrador e gerente podem confirmar pagamento", () => {
   assert.equal(hasPermission("gerente", "purchases.payment.confirm"), true);
 });
 
+test("gestão executa eventos fiscais e os demais perfis ficam em leitura", () => {
+  for (const role of ["admin", "gerente"]) {
+    assert.equal(hasPermission(role, "fiscal.read"), true);
+    assert.equal(hasPermission(role, "fiscal.manage"), true);
+  }
+  for (const role of ["operador", "visualizador"]) {
+    assert.equal(hasPermission(role, "fiscal.read"), true);
+    assert.equal(hasPermission(role, "fiscal.manage"), false);
+  }
+});
+
 test("operador executa fluxo, mas não confirma pagamento", () => {
   assert.equal(hasPermission("operador", "sales.dslite.resume"), true);
   assert.equal(hasPermission("operador", "sales.whatsapp_label.send"), true);
@@ -39,6 +50,7 @@ test("visualizador permanece somente leitura", () => {
     "tv.read",
     "sales.read",
     "purchases.read",
+    "fiscal.read",
     "sales.track",
   ]);
 });

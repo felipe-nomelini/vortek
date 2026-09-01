@@ -10,7 +10,7 @@ import {
 } from '@/lib/homologation-fixture';
 
 export async function GET(request: Request, context: { params: Promise<{ id: string }> }) {
-  const auth = await authorizeApiRequest(request, 'sales.read');
+  const auth = await authorizeApiRequest(request, 'fiscal.read');
   if (!auth.ok) return auth.response;
 
   const id = (await context?.params)?.id;

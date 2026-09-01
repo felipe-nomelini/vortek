@@ -137,6 +137,7 @@ type NotaFiscalDetailsDrawerProps = {
   onEmail: (note: NotaFiscalRow) => void;
   onCancel: (note: NotaFiscalRow) => void;
   onCce: (note: NotaFiscalRow) => void;
+  canManage: boolean;
 };
 
 export default function NotaFiscalDetailsDrawer({
@@ -152,12 +153,14 @@ export default function NotaFiscalDetailsDrawer({
   onEmail,
   onCancel,
   onCce,
+  canManage,
 }: NotaFiscalDetailsDrawerProps) {
   const { token } = theme.useToken();
   const presentation = note ? getFiscalStatusPresentation(note) : null;
   const canUseDocuments = Boolean(note && !note.is_homologation_fixture && note.numero !== '—');
   const canCancel = Boolean(
     note
+      && canManage
       && !note.is_homologation_fixture
       && note.status === 'autorizada'
       && note.nfe_chave
@@ -165,6 +168,7 @@ export default function NotaFiscalDetailsDrawer({
   );
   const canCce = Boolean(
     note
+      && canManage
       && !note.is_homologation_fixture
       && note.status === 'autorizada'
       && note.nfe_chave,
@@ -257,7 +261,7 @@ export default function NotaFiscalDetailsDrawer({
         <Text type="secondary" style={{ display: 'block', marginBottom: 12 }}>
           Envie a DANFE anexada ao destinatário informado.
         </Text>
-        <Button icon={<MailOutlined />} disabled={!canUseDocuments} onClick={() => onEmail(note)}>Enviar por e-mail</Button>
+        <Button icon={<MailOutlined />} disabled={!canManage || !canUseDocuments} onClick={() => onEmail(note)}>Enviar por e-mail</Button>
       </div>
       {(canCancel || canCce) && (
         <div style={{

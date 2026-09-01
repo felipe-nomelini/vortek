@@ -14,13 +14,14 @@ const summaryRoute = read('src/app/api/notas-fiscais/resumo/route.ts');
 const emailRoute = read('src/app/api/notas-fiscais/[id]/enviar-email/route.ts');
 const emailService = read('src/services/email.ts');
 
-test('organiza o cockpit fiscal pela emissão, venda, estado e próxima ação', () => {
-  for (const title of ['Emissão', 'Venda', 'NF-e', 'Cliente', 'Valor', 'Estado fiscal', 'Próxima ação']) {
+test('organiza o cockpit fiscal sem coluna de emissão ou identificadores duplicados', () => {
+  for (const title of ['NF-e', 'Venda ML', 'Cliente', 'Valor', 'Estado fiscal', 'Ações']) {
     assert.match(page, new RegExp(`title: '${title}'`));
   }
-  assert.match(page, /<b>Pack ML<\/b>/);
-  assert.match(page, /<b>Venda ML<\/b>/);
-  assert.match(page, /Pedido #\{String\(note\.pedido\)\.padStart\(6, '0'\)\}/);
+  assert.doesNotMatch(page, /title: 'Emissão'/);
+  assert.match(page, /note\.ml_pack_id \|\| note\.ml_order_id/);
+  assert.match(page, /note\.ml_pack_id !== note\.ml_order_id/);
+  assert.match(page, /Série \$\{note\.serie\}.*emitted\.date/);
   assert.match(page, /nextActionLabel\(note\)/);
   assert.doesNotMatch(page, /rowSelection=/);
 });
@@ -33,6 +34,9 @@ test('substitui métricas antigas por indicadores fiscais reais', () => {
   assert.match(summaryRoute, /valorAutorizado \+= Number\(row\.total \|\| 0\)/);
   assert.match(summaryRoute, /com_erro: comErro/);
   assert.match(summaryRoute, /valor_autorizado: valorAutorizado/);
+  assert.match(page, /Imposto estimado do mês/);
+  assert.match(summaryRoute, /loadPricingTaxProjection/);
+  assert.match(summaryRoute, /imposto_estimado_mes: impostoEstimadoMes/);
   assert.doesNotMatch(page, /Imposto Total|imposto_total/);
   assert.doesNotMatch(summaryRoute, /\* 0\.04|imposto_total/);
 });
@@ -77,6 +81,15 @@ test('mantém ações externas explícitas, separadas e protegidas', () => {
   assert.match(page, /cceText\.trim\(\)\.length < 15/);
   assert.match(page, /note\.is_homologation_fixture/);
   assert.match(drawer, /Amostra real protegida para homologação/);
+  assert.match(page, /hasPermission\(role, 'fiscal\.manage'\)/);
+  assert.match(page, /Criar devolução\/retorno/);
+});
+
+test('separa vendas de devoluções sem criar uma segunda página fiscal', () => {
+  assert.match(page, /label: `NF-e de vendas/);
+  assert.match(page, /label: 'Devoluções e retornos'/);
+  assert.match(page, /<FiscalReturnsPanel/);
+  assert.match(page, /<FiscalReturnModal/);
 });
 
 test('deixa a reconciliação externa sob ação manual e preserva apenas o polling de leitura', () => {

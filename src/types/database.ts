@@ -900,6 +900,7 @@ export type Database = {
           ml_pack_id: string | null
           payload_enviado: Json | null
           pedido_id: string | null
+          nota_retorno_id: string | null
           resposta_ml: Json | null
           status_resultante: string | null
         }
@@ -911,6 +912,7 @@ export type Database = {
           ml_pack_id?: string | null
           payload_enviado?: Json | null
           pedido_id?: string | null
+          nota_retorno_id?: string | null
           resposta_ml?: Json | null
           status_resultante?: string | null
         }
@@ -922,12 +924,115 @@ export type Database = {
           ml_pack_id?: string | null
           payload_enviado?: Json | null
           pedido_id?: string | null
+          nota_retorno_id?: string | null
           resposta_ml?: Json | null
           status_resultante?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "nf_auditoria_eventos_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "nf_auditoria_eventos_nota_retorno_id_fkey"
+            columns: ["nota_retorno_id"]
+            isOneToOne: false
+            referencedRelation: "notas_fiscais_retorno"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notas_fiscais_retorno: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          erro: string | null
+          escopo: string
+          id: string
+          identificador_interno: string
+          itens_snapshot: Json
+          motivo: string
+          nfe_chave: string | null
+          nfe_danfe_url: string | null
+          nfe_external_id: string | null
+          nfe_last_sync_at: string | null
+          nfe_numero: string | null
+          nfe_original_chave: string
+          nfe_original_numero: string | null
+          nfe_protocolo: string | null
+          nfe_provider: string
+          nfe_serie: string | null
+          nfe_xml: string | null
+          pedido_id: string
+          previsualizacao_validada_em: string | null
+          status: string
+          tipo_ambiente: number
+          tipo_retorno: string
+          updated_at: string
+          valor_total: number
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          erro?: string | null
+          escopo: string
+          id?: string
+          identificador_interno: string
+          itens_snapshot?: Json
+          motivo: string
+          nfe_chave?: string | null
+          nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_numero?: string | null
+          nfe_original_chave: string
+          nfe_original_numero?: string | null
+          nfe_protocolo?: string | null
+          nfe_provider?: string
+          nfe_serie?: string | null
+          nfe_xml?: string | null
+          pedido_id: string
+          previsualizacao_validada_em?: string | null
+          status?: string
+          tipo_ambiente: number
+          tipo_retorno: string
+          updated_at?: string
+          valor_total?: number
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          erro?: string | null
+          escopo?: string
+          id?: string
+          identificador_interno?: string
+          itens_snapshot?: Json
+          motivo?: string
+          nfe_chave?: string | null
+          nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_numero?: string | null
+          nfe_original_chave?: string
+          nfe_original_numero?: string | null
+          nfe_protocolo?: string | null
+          nfe_provider?: string
+          nfe_serie?: string | null
+          nfe_xml?: string | null
+          pedido_id?: string
+          previsualizacao_validada_em?: string | null
+          status?: string
+          tipo_ambiente?: number
+          tipo_retorno?: string
+          updated_at?: string
+          valor_total?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notas_fiscais_retorno_pedido_id_fkey"
             columns: ["pedido_id"]
             isOneToOne: false
             referencedRelation: "pedidos"
@@ -1413,6 +1518,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      reserve_nota_fiscal_retorno: {
+        Args: {
+          p_created_by: string
+          p_identificador_interno: string
+          p_itens: Json
+          p_motivo: string
+          p_pedido_id: string
+          p_tipo_ambiente: number
+          p_tipo_retorno: string
+        }
+        Returns: Database["public"]["Tables"]["notas_fiscais_retorno"]["Row"]
+      }
       get_pricing_monthly_revenue: {
         Args: { p_period_end: string; p_period_start: string }
         Returns: {

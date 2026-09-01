@@ -4,6 +4,8 @@ export const VORTEK_PERMISSIONS = [
   "tv.read",
   "sales.read",
   "purchases.read",
+  "fiscal.read",
+  "fiscal.manage",
   "sales.track",
   "sales.whatsapp_label.send",
   "sales.dslite.resume",
@@ -22,6 +24,7 @@ const READ_ONLY_PERMISSIONS: VortekPermission[] = [
   "tv.read",
   "sales.read",
   "purchases.read",
+  "fiscal.read",
   "sales.track",
 ];
 

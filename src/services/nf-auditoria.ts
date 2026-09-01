@@ -134,6 +134,17 @@ type AuditEvent =
   | 'nota_fiscal_carta_correcao_start'
   | 'nota_fiscal_carta_correcao_success'
   | 'nota_fiscal_carta_correcao_failed'
+  | 'nota_fiscal_retorno_reservado'
+  | 'nota_fiscal_retorno_previsualizacao_success'
+  | 'nota_fiscal_retorno_previsualizacao_failed'
+  | 'nota_fiscal_retorno_envio_start'
+  | 'nota_fiscal_retorno_envio_success'
+  | 'nota_fiscal_retorno_envio_failed'
+  | 'nota_fiscal_retorno_cancelamento_success'
+  | 'nota_fiscal_retorno_cancelamento_failed'
+  | 'nota_fiscal_retorno_carta_correcao_success'
+  | 'nota_fiscal_retorno_carta_correcao_failed'
+  | 'nota_fiscal_retorno_reconciliado'
   | 'nfe_danfe_persistencia'
   | 'ml_account_not_allowed'
   | 'ml_token_mutation_blocked_build'
@@ -152,6 +163,7 @@ type AuditEvent =
 
 export async function registrarEventoNfAuditoria(input: {
   pedidoId?: string | null;
+  notaRetornoId?: string | null;
   mlOrderId?: string | null;
   mlPackId?: string | null;
   evento: AuditEvent;
@@ -163,6 +175,7 @@ export async function registrarEventoNfAuditoria(input: {
     const client = createServiceClient();
     await client.from('nf_auditoria_eventos').insert({
       pedido_id: input.pedidoId || null,
+      nota_retorno_id: input.notaRetornoId || null,
       ml_order_id: input.mlOrderId || null,
       ml_pack_id: input.mlPackId || null,
       evento: input.evento,

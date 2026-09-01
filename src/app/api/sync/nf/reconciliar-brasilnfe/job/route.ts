@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 
 const JOB_TIPO = 'sync_reconcile_brasilnfe';
@@ -12,15 +13,9 @@ function nowIso() {
 
 export const maxDuration = 300;
 
-export async function POST() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+export async function POST(request: Request) {
+  const auth = await authorizeApiRequest(request, 'fiscal.manage');
+  if (!auth.ok) return auth.response;
 
   const serviceClient = createServiceClient();
 
@@ -83,7 +78,7 @@ export async function POST() {
           limit: DEFAULT_LIMIT,
         },
       ],
-      created_by: user.id,
+      created_by: auth.userId,
     })
     .select('id, status')
     .single();
