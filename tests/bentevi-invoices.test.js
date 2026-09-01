@@ -21,6 +21,8 @@ test('organiza o cockpit fiscal sem coluna de emissão ou identificadores duplic
   assert.doesNotMatch(page, /title: 'Emissão'/);
   assert.match(page, /note\.ml_pack_id \|\| note\.ml_order_id/);
   assert.match(page, /note\.ml_pack_id !== note\.ml_order_id/);
+  const saleColumn = page.slice(page.indexOf("title: 'Venda ML'"), page.indexOf("title: 'Cliente'"));
+  assert.doesNotMatch(saleColumn, /note\.cliente/);
   assert.match(page, /Série \$\{note\.serie\}.*emitted\.date/);
   assert.match(page, /nextActionLabel\(note\)/);
   assert.doesNotMatch(page, /rowSelection=/);

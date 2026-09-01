@@ -558,7 +558,6 @@ export default function NotasFiscaisPage() {
         return <div className={styles.identifiersCell}>
           <button type="button" className={styles.orderLink} onClick={() => void openDrawer(note)}>{primaryLabel} #{primaryId}</button>
           {distinctOrder && <span>Venda #{note.ml_order_id}</span>}
-          <span className={styles.secondaryText}>{note.cliente}</span>
         </div>;
       },
     },
