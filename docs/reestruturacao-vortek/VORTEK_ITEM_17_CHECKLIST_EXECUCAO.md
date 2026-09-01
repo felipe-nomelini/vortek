@@ -1948,25 +1948,25 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 **Estado de `BNT-D01`:** concluído e aprovado visualmente pelo usuário em homologação em `2026-08-31`. Tabela operacional, carga visual protegida, detalhe completo em `Drawer` e acompanhamento de entrega compartilhado entre aba e modal permanecem como contrato aprovado.
 
-**Estado de `BNT-D02`:** implementação concluída tecnicamente e publicada em homologação; aguardando aprovação visual do usuário. `BNT-D03` permanece bloqueado.
+**Estado de `BNT-D02`:** proposta inicial rejeitada e substituída por um cockpit comercial gamificado; revisão concluída tecnicamente e publicada em homologação, aguardando nova aprovação visual do usuário. `BNT-D03` permanece bloqueado.
 
 #### Resultado técnico de `BNT-D02 — Dashboard`
 
-**Situação:** implementada e validada tecnicamente em `2026-08-31`; aprovação visual pendente.
+**Situação:** revisão implementada e validada tecnicamente em `2026-09-01`; aprovação visual pendente.
 
-**Estado/causa confirmados:** o dashboard anterior misturava resumo, diagnóstico e comandos sem hierarquia Bentevi. O efeito de inicialização dependia da função vinculada ao período e repetia consultas ao estado ML, reputação e integrações a cada troca de datas. Falhas de sincronização também recebiam o mesmo estado visual de conclusão.
+**Estado/causa confirmados:** a primeira proposta ainda reproduzia a aparência antiga em uma grade extensa de cards e mantinha dashboard, reputação, integrações e três sincronizações no mesmo componente. O resumo também usava pedidos brutos e ranking acumulado de anúncios, fontes inadequadas para representar vendas operacionais e produtos do período.
 
-**Mudança realizada:** KPIs, operação imediata, série real, vendas recentes, ranking acumulado, reputação, integrações e sincronizações foram reorganizados em leitura progressiva. As cargas passaram a ter estados e erros independentes; período atualiza somente o resumo, atualização manual consulta cada fonte uma vez e sync concluída recarrega somente o resumo. Vendas recentes abrem o `Drawer` aprovado de Vendas por identificador interno.
+**Mudança realizada:** o dashboard virou um cockpit comercial sem reputação, integrações ou sincronizações. Lucro e meta configurada formam a superfície dominante; faturamento, pedidos, ticket e margem possuem comparação equivalente; gráfico alterna faturamento/lucro/pedidos; pulso operacional reutiliza as filas de Vendas; ranking usa `pedido_itens` do período e vendas recentes continuam abrindo o `Drawer` aprovado. O resumo passou a usar `pedidos_operacionais`, exclui cancelamentos dos resultados e sinaliza lucros pendentes.
 
-**Arquivos alterados:** página e rota de resumo do dashboard, teste direcionado e documentação de acompanhamento do redesign.
+**Arquivos alterados:** página, estilo local, rota de resumo, teste direcionado e documentação de acompanhamento do redesign.
 
-**Commit:** `d8d4cf1`, enviado somente para `origin/dev`.
+**Commit funcional da revisão:** `5e59786`, enviado somente para `origin/dev`.
 
-**Validação:** `tests/bentevi-dashboard.test.js` com 4 cenários, `npm run validate` e `npm run build` aprovados. Deploy oficial acionado somente para `vortek-erp-dev`; o novo container iniciou e `dev.bentevi.shop` respondeu `200` em health e login, `307` na rota autenticada `/dashboard` sem sessão e `401` no resumo sem sessão.
+**Validação:** `tests/bentevi-dashboard.test.js` com 5 cenários, `npm run validate` e `npm run build` aprovados. Deploy oficial acionado somente para `vortek-erp-dev`; o novo container iniciou, `dev.bentevi.shop` respondeu `200` em health e login, `307` na rota autenticada `/dashboard` sem sessão e `401` no resumo sem sessão. O chunk publicado contém a meta, o pulso operacional e o ranking novo, sem os blocos antigos.
 
 **Migration/banco:** N/A; nenhuma escrita, migration ou conexão de banco foi executada.
 
-**Rollback:** reverter `d8d4cf1` em `dev` e redeployar somente `vortek-erp-dev`.
+**Rollback:** reverter `5e59786` em `dev` e redeployar somente `vortek-erp-dev`.
 
 **Pendência:** aprovação visual do usuário em `dev.bentevi.shop`. `BNT-D03` não está liberado.
 

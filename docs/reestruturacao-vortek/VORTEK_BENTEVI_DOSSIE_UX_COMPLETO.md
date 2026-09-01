@@ -193,26 +193,25 @@ No desktop, o shell mantém navegação lateral e passa a aceitar estado expandi
 
 **Objetivo e público.** Dar visão executiva e operacional do período sem duplicar todas as áreas. Todos os usuários autenticados visualizam conforme os dados permitidos.
 
-**Dados e fontes atuais.** Resumo do dashboard, reputação ML, estado das integrações e status do job/sincronização. O filtro de período controla somente dados que suportam período.
+**Dados e fontes atuais.** Vendas operacionais, lucro conhecido, faturamento, pedidos, ticket, margem, itens vendidos e filas compartilhadas com Vendas. O período selecionado possui comparação real com a janela anterior equivalente.
 
-**Ações e estados.** Alterar período, atualizar e acionar sincronização já suportada. Distinguir loading geral, integração desconectada, bloco parcialmente indisponível e sincronização em curso/erro/sucesso.
+**Ações e estados.** Alterar entre hoje, 7 e 30 dias; escolher a métrica do gráfico; atualizar; abrir a fila operacional ou o detalhe da venda. Distinguir loading, vazio, erro preservando dados anteriores e lucro ainda pendente.
 
-**Análise.** Receita, pedidos, ticket e lucro formam o resumo; produtos, ranking, vendas recentes, reputação e integrações precisam seguir da decisão geral ao diagnóstico, sem competir em peso.
+**Análise.** O dashboard é um cockpit comercial, não uma central de integrações. Lucro é o indicador dominante e a meta é gamificada sem criar dados fictícios ou persistência paralela. Reputação, integrações, sincronizações e comandos administrativos permanecem nas páginas responsáveis.
 
-**Hierarquia alvo.** KPIs principais; pendências acionáveis; tendência somente com série real; duas colunas para desempenho e operação; integrações/status em bloco secundário.
+**Hierarquia alvo.** Superfície dominante de lucro/meta; métricas secundárias em linha; tendência comparada; pulso da operação; produtos do período e vendas recentes.
 
 ```text
-┌ Dashboard ─ [Período ▾] [Atualizar] ─────────────────────────────┐
-│ [Receita] [Pedidos] [Ticket] [Lucro]                              │ 1
-│ Pendências acionáveis             Desempenho / tendência          │ 2
-│ • fiscal • estoque • perguntas    [gráfico com dados reais]       │
-│ Vendas recentes                   Produtos / ranking              │ 3
-│ Reputação ML                      Integrações e sincronização      │
-└───────────────────────────────────────────────────────────────────┘
-1. Resumo. 2. Decisão. 3. Diagnóstico progressivo.
+┌ Dashboard ─ [Hoje | 7 dias | 30 dias] [Atualizar] ────────────────┐
+│ Lucro + comparação + métricas              Meta de lucro          │ 1
+│ Ritmo comercial: [Faturamento | Lucro | Pedidos]                  │ 2
+│ Exigem ação → Preparação → Transporte → Entregues                 │ 3
+│ Produtos que puxaram o resultado       Vendas recentes            │ 4
+└────────────────────────────────────────────────────────────────────┘
+1. Resultado e objetivo. 2. Tendência real. 3. Operação. 4. Detalhe.
 ```
 
-**Web celular e aceite.** KPIs em grade 2×2, pendências antes de gráficos, seções empilhadas. Não inventar tendências ou comparações ausentes; atualização não deve multiplicar chamadas desnecessárias.
+**Web celular e aceite.** Fora do escopo da etapa desktop. No desktop, evitar grade de cards pequenos; comparação usa período equivalente, cancelamentos não compõem resultado, lucro pendente é explícito e produtos derivam dos itens realmente vendidos no período. Atualização faz uma única chamada ao resumo.
 
 ### BNT-D03 — Compras (`/compras`)
 

@@ -146,7 +146,7 @@ Padrões compartilhados só serão criados quando tiverem consumidores reais: ca
 | ID | Página/rota | Direção aprovada |
 |---|---|---|
 | `BNT-D01` | Vendas — `/pedidos` | Filas operacionais, KPIs essenciais, filtros persistentes, tabela orientada à decisão, detalhe em `Drawer` e ações agrupadas por etapa. Requer `UI-04` e `UI-01`. |
-| `BNT-D02` | Dashboard — `/dashboard` | Indicadores principais, tendências, pendências acionáveis, vendas recentes, reputação e integrações com hierarquia única. |
+| `BNT-D02` | Dashboard — `/dashboard` | Cockpit comercial com lucro/meta gamificada, comparação real, ritmo, filas operacionais, produtos do período e vendas recentes; sem reputação ou integrações. |
 | `BNT-D03` | Compras — `/compras` | Resumo, filtros, tabela e pagamento/comprovante no contexto da compra. Nenhuma interface Hayamax ativa. Requer `UI-06`. |
 | `BNT-D04` | Notas Fiscais — `/notas-fiscais` | Estados fiscais, documentos e ações por nota; detalhe lateral e modais específicos para e-mail, cancelamento e CCe. |
 | `BNT-D05` | Estoque — `/estoque` | KPIs por situação, filas de revisão/liberação e inserção manual simples. |
