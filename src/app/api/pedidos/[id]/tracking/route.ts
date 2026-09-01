@@ -6,6 +6,20 @@ import {
   HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
   isHomologationFixtureSource,
 } from '@/lib/homologation-fixture';
+import type { PedidoTrackingApiDto } from '@/types/order';
+
+const ML_NEW_FORMAT_HEADERS = { 'x-format-new': 'true' } as const;
+
+function safeWebUrl(value: unknown): string | null {
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+  try {
+    const url = new URL(raw);
+    return url.protocol === 'https:' || url.protocol === 'http:' ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const auth = await authorizeApiRequest(request, 'sales.track');
@@ -27,16 +41,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
   }
 
-  const result: {
-    currentStatus: string;
-    currentSubstatus: string | null;
-    carrier: { name: string; trackingUrl: string | null } | null;
-    history: Array<{ status: string; substatus: string; date: string; description: string }>;
-    returnHistory: Array<{ status: string; substatus: string; date: string; description: string; shipmentId: string }>;
-    returnShipments: Array<{ shipmentId: string; status: string; trackingNumber: string | null; type: string; destination: string }>;
-    claim: { id: string; status: string; type: string; stage: string; reason: string } | null;
-    rastreio: string | null;
-  } = {
+  const result: PedidoTrackingApiDto = {
     currentStatus: 'desconhecido',
     currentSubstatus: null,
     carrier: null,
@@ -45,17 +50,23 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     returnShipments: [],
     claim: null,
     rastreio: pedido.rastreio,
+    warnings: [],
   };
+  let requestedExternalResources = 0;
+  let successfulExternalResources = 0;
 
   // 1. Buscar dados do shipment original (forward)
   if (pedido.ml_shipment_id) {
-    try {
-      const [current, historyData, carrier] = await Promise.all([
-        fetchML<any>(`/shipments/${pedido.ml_shipment_id}`),
-        fetchML<any[]>(`/shipments/${pedido.ml_shipment_id}/history`, { headers: { 'x-format-new': 'true' } }),
-        fetchML<any>(`/shipments/${pedido.ml_shipment_id}/carrier`),
-      ]);
+    requestedExternalResources += 3;
+    const [currentResult, historyResult, carrierResult] = await Promise.allSettled([
+      fetchML<any>(`/shipments/${pedido.ml_shipment_id}`, { headers: ML_NEW_FORMAT_HEADERS }),
+      fetchML<any[]>(`/shipments/${pedido.ml_shipment_id}/history`, { headers: ML_NEW_FORMAT_HEADERS }),
+      fetchML<any>(`/shipments/${pedido.ml_shipment_id}/carrier`, { headers: ML_NEW_FORMAT_HEADERS }),
+    ]);
 
+    if (currentResult.status === 'fulfilled') {
+      successfulExternalResources += 1;
+      const current = currentResult.value;
       if (current) {
         result.currentStatus = current.status || 'desconhecido';
         result.currentSubstatus = current.substatus || null;
@@ -63,7 +74,14 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
           result.rastreio = current.tracking_number;
         }
       }
+    } else {
+      result.warnings.push('Não foi possível carregar o estado atual do envio.');
+      console.error(`[tracking][${id}] Erro ao buscar shipment atual:`, currentResult.reason instanceof Error ? currentResult.reason.message : 'unknown');
+    }
 
+    if (historyResult.status === 'fulfilled') {
+      successfulExternalResources += 1;
+      const historyData = historyResult.value;
       if (historyData && Array.isArray(historyData)) {
         result.history = historyData.map((h: any) => ({
           status: h.status || '',
@@ -71,24 +89,39 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
           date: h.date || '',
           description: traduzirSubstatus(h.substatus || h.status),
         })).filter((h: any) => h.date || h.status);
+        result.history.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
       }
+    } else {
+      result.warnings.push('Não foi possível carregar o histórico do envio.');
+      console.error(`[tracking][${id}] Erro ao buscar histórico do shipment:`, historyResult.reason instanceof Error ? historyResult.reason.message : 'unknown');
+    }
 
+    if (carrierResult.status === 'fulfilled') {
+      successfulExternalResources += 1;
+      const carrier = carrierResult.value;
       if (carrier) {
         result.carrier = {
           name: carrier.name || carrier.company || carrier.tracking_method || 'Transportadora',
-          trackingUrl: carrier.tracking_url || carrier.url || null,
+          trackingUrl: safeWebUrl(carrier.tracking_url || carrier.url),
         };
       }
-    } catch (err: any) {
-      console.error(`[tracking][${id}] Erro ao buscar forward tracking:`, err?.message);
+    } else {
+      result.warnings.push('Não foi possível carregar os dados da transportadora.');
+      console.error(`[tracking][${id}] Erro ao buscar transportadora:`, carrierResult.reason instanceof Error ? carrierResult.reason.message : 'unknown');
     }
   }
 
   // 2. Buscar dados da devolução (return)
   if (pedido.ml_claim_id) {
-    try {
-      // Buscar detalhes da claim
-      const claim = await fetchML<any>(`/post-purchase/v1/claims/${pedido.ml_claim_id}`);
+    requestedExternalResources += 2;
+    const [claimResult, returnResult] = await Promise.allSettled([
+      fetchML<any>(`/post-purchase/v1/claims/${pedido.ml_claim_id}`),
+      fetchML<any>(`/post-purchase/v2/claims/${pedido.ml_claim_id}/returns`),
+    ]);
+
+    if (claimResult.status === 'fulfilled') {
+      successfulExternalResources += 1;
+      const claim = claimResult.value;
       if (claim) {
         result.claim = {
           id: String(pedido.ml_claim_id),
@@ -98,9 +131,14 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
           reason: traduzirMotivoClaim(claim.reason_id),
         };
       }
+    } else {
+      result.warnings.push('Não foi possível carregar os dados da reclamação.');
+      console.error(`[tracking][${id}] Erro ao buscar claim:`, claimResult.reason instanceof Error ? claimResult.reason.message : 'unknown');
+    }
 
-      // Buscar detalhes da devolução
-      const returnData = await fetchML<any>(`/post-purchase/v2/claims/${pedido.ml_claim_id}/returns`);
+    if (returnResult.status === 'fulfilled') {
+      successfulExternalResources += 1;
+      const returnData = returnResult.value;
       console.log(`[tracking][${id}] return data:`, returnData ? 'found' : 'null');
 
       if (returnData?.shipments && Array.isArray(returnData.shipments)) {
@@ -119,9 +157,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
           if (!shipId) continue;
 
           try {
+            requestedExternalResources += 1;
             const returnHistoryData = await fetchML<any[]>(`/shipments/${shipId}/history`, {
-              headers: { 'x-format-new': 'true' }
+              headers: ML_NEW_FORMAT_HEADERS,
             });
+            successfulExternalResources += 1;
 
             if (returnHistoryData && Array.isArray(returnHistoryData)) {
               const mapped = returnHistoryData.map((h: any) => ({
@@ -135,6 +175,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
               result.returnHistory.push(...mapped);
             }
           } catch (err: any) {
+            result.warnings.push(`Não foi possível carregar o histórico da devolução ${String(shipId)}.`);
             console.error(`[tracking][${id}] Erro ao buscar return history para shipment ${shipId}:`, err?.message);
           }
         }
@@ -142,13 +183,21 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
         // Ordenar returnHistory por data
         result.returnHistory.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
       }
-    } catch (err: any) {
-      console.error(`[tracking][${id}] Erro ao buscar return data:`, err?.message);
+    } else {
+      result.warnings.push('Não foi possível carregar os dados da devolução.');
+      console.error(`[tracking][${id}] Erro ao buscar return data:`, returnResult.reason instanceof Error ? returnResult.reason.message : 'unknown');
     }
   }
 
+  if (requestedExternalResources > 0 && successfulExternalResources === 0) {
+    return NextResponse.json(
+      { erro: 'Não foi possível consultar o acompanhamento no Mercado Livre.' },
+      { status: 502, headers: { 'Cache-Control': 'no-store' } },
+    );
+  }
+
   console.log(`[tracking][${id}] returning: forward=${result.history.length}, return=${result.returnHistory.length}, returnShipments=${result.returnShipments.length}`);
-  return NextResponse.json(result);
+  return NextResponse.json(result, { headers: { 'Cache-Control': 'no-store' } });
 }
 
 function traduzirSubstatus(substatus: string): string {

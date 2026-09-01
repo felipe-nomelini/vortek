@@ -65,7 +65,8 @@ test('piloto Bentevi concentra decisão na tabela e detalhes no Drawer', () => {
   assert.match(detailsDrawer, /<Drawer/);
   assert.match(detailsDrawer, /Produtos e compras/);
   assert.match(detailsDrawer, /Cliente, fiscal e entrega/);
-  assert.match(detailsDrawer, /Histórico/);
+  assert.match(detailsDrawer, /Acompanhamento/);
+  assert.match(detailsDrawer, /Histórico operacional/);
   assert.match(detailsDrawer, /Pedido DSLite/);
   assert.match(detailsDrawer, /width="min\(960px, 100vw\)"/);
 });

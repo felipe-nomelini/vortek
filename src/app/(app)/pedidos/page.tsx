@@ -675,7 +675,35 @@ export default function PedidosPage() {
       render: (status: OrderStatus, order: Order) => {
         const releaseAt = order.ml_fiscal_release_at ? getMlReleaseComparableDate(order.ml_fiscal_release_at) : null;
         const release = releaseAt && releaseAt.getTime() > Date.now() ? formatMlReleaseWindow(order.ml_fiscal_release_at!) : null;
-        return <Space direction="vertical" size={3}><Tag color={statusColor[status]}>{statusLabel[status]}</Tag>{order.ml_claim_id && <Text style={{ color: token.colorWarning, fontSize: 11 }}><WarningOutlined /> Reclamação</Text>}{release && <Tooltip title={release.remaining || undefined}><Text style={{ color: token.colorWarning, fontSize: 11 }}>Etiqueta libera em {release.when}</Text></Tooltip>}</Space>;
+        const canOpenTracking = Boolean(
+          order.ml_shipment_id
+          && !order.is_homologation_fixture
+          && role
+          && hasPermission(role, 'sales.track'),
+        );
+        const statusTag = (
+          <Tag color={statusColor[status]} style={{ marginInlineEnd: 0 }}>
+            {statusLabel[status]}
+          </Tag>
+        );
+        return (
+          <Space direction="vertical" size={3}>
+            {canOpenTracking ? (
+              <Tooltip title="Abrir acompanhamento da entrega">
+                <button
+                  type="button"
+                  aria-label={`Acompanhar entrega da venda ${order.ml_order_id || order.numero}`}
+                  onClick={() => openTracking(order)}
+                  style={{ border: 0, padding: 0, background: 'transparent', cursor: 'pointer' }}
+                >
+                  {statusTag}
+                </button>
+              </Tooltip>
+            ) : statusTag}
+            {order.ml_claim_id && <Text style={{ color: token.colorWarning, fontSize: 11 }}><WarningOutlined /> Reclamação</Text>}
+            {release && <Tooltip title={release.remaining || undefined}><Text style={{ color: token.colorWarning, fontSize: 11 }}>Etiqueta libera em {release.when}</Text></Tooltip>}
+          </Space>
+        );
       },
     },
     {
@@ -707,7 +735,7 @@ export default function PedidosPage() {
       },
     },
     { title: 'Próxima ação', key: 'next_action', width: 220, fixed: 'right', render: (_: unknown, order: Order) => renderActions(order) },
-  ], [openOrderDetails, renderActions, sort, token]);
+  ], [openOrderDetails, openTracking, renderActions, role, sort, token]);
 
   const handleTableChange: TableProps<Order>['onChange'] = (pagination, _filters, sorter) => {
     const nextSort = resolveRemoteSortState(sorter, { sortBy: 'data', sortOrder: 'desc' });
@@ -805,7 +833,7 @@ export default function PedidosPage() {
       <PedidoDetailsDrawer
         order={drawerOrder} detail={drawerDetail} open={Boolean(drawerOrderId)} loading={drawerLoading}
         error={drawerError} onRetry={() => setDrawerRetry((value) => value + 1)} onClose={closeOrderDetails}
-        onTrack={openTracking} onOpenDanfe={(order) => void handleOpenNotaFiscalPdf(order)}
+        canTrack={Boolean(role && hasPermission(role, 'sales.track'))} onOpenDanfe={(order) => void handleOpenNotaFiscalPdf(order)}
         onDownloadXml={handleDownloadNotaFiscalXml} actions={drawerOrder ? renderActions(drawerOrder) : null}
       />
       <TrackingModal open={trackingModalOpen} onClose={() => setTrackingModalOpen(false)} orderId={trackingOrderId} orderStatus={trackingOrderStatus} />

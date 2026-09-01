@@ -6,7 +6,8 @@ import {
   Alert, Button, Descriptions, Drawer, Empty, Progress, Skeleton, Space, Table,
   Tabs, Tag, Timeline, Typography, theme,
 } from 'antd';
-import { CarOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { FilePdfOutlined } from '@ant-design/icons';
+import OrderTrackingDetails from '@/components/pedidos/OrderTrackingDetails';
 import { formatCurrency } from '@/lib/format';
 import { SALES_PROGRESS_STAGES, getOrderSalesProgress } from '@/lib/orders/operational-view';
 import { getSkuLookupVariants } from '@/lib/sku';
@@ -79,14 +80,14 @@ type PedidoDetailsDrawerProps = {
   error: string | null;
   onRetry: () => void;
   onClose: () => void;
-  onTrack: (order: Order) => void;
+  canTrack: boolean;
   onOpenDanfe: (order: Order) => void;
   onDownloadXml: (order: Order) => void;
   actions?: ReactNode;
 };
 
 export default function PedidoDetailsDrawer({
-  order, detail, open, loading, error, onRetry, onClose, onTrack,
+  order, detail, open, loading, error, onRetry, onClose, canTrack,
   onOpenDanfe, onDownloadXml, actions,
 }: PedidoDetailsDrawerProps) {
   const { token } = theme.useToken();
@@ -216,13 +217,7 @@ export default function PedidoDetailsDrawer({
           <Descriptions.Item label="Status NFe">{formatStatus(order.nfe_status)}</Descriptions.Item>
           <Descriptions.Item label="Chave NFe" span={2}>{order.nfe_chave || '—'}</Descriptions.Item>
           <Descriptions.Item label="Shipment ML">{order.ml_shipment_id || '—'}</Descriptions.Item>
-          <Descriptions.Item label="Rastreio">
-            {order.ml_shipment_id ? (
-              <Button type="link" size="small" icon={<CarOutlined />} disabled={order.is_homologation_fixture} onClick={() => onTrack(order)} style={{ padding: 0 }}>
-                {order.rastreio || 'Acompanhar entrega'}
-              </Button>
-            ) : '—'}
-          </Descriptions.Item>
+          <Descriptions.Item label="Código de rastreio">{order.rastreio || '—'}</Descriptions.Item>
           <Descriptions.Item label="Mercado Livre" span={2}>
             {order.is_homologation_fixture
               ? 'Indisponível na amostra protegida'
@@ -316,7 +311,23 @@ export default function PedidoDetailsDrawer({
             <Tabs items={[
               { key: 'products', label: 'Produtos e compras', children: productContent },
               { key: 'client', label: 'Cliente, fiscal e entrega', children: clientContent },
-              { key: 'history', label: 'Histórico', children: historyContent },
+              {
+                key: 'tracking',
+                label: 'Acompanhamento',
+                children: (
+                  <OrderTrackingDetails
+                    orderId={order.dbId}
+                    orderStatus={order.situacao.valor}
+                    enabled={canTrack && Boolean(order.ml_shipment_id) && !order.is_homologation_fixture}
+                    disabledReason={order.is_homologation_fixture
+                      ? 'A consulta ao Mercado Livre está desabilitada para a amostra protegida de homologação.'
+                      : !order.ml_shipment_id
+                        ? 'Esta venda ainda não possui um shipment do Mercado Livre.'
+                        : 'Seu perfil não possui permissão para acompanhar esta entrega.'}
+                  />
+                ),
+              },
+              { key: 'history', label: 'Histórico operacional', children: historyContent },
             ]} />
           </>
         ) : null}

@@ -150,6 +150,37 @@ export type PedidoVendaDetalheApiResponse = {
   meta: { requestId: string };
 };
 
+export type PedidoTrackingHistoryItemApiDto = {
+  status: string;
+  substatus: string;
+  date: string;
+  description: string;
+};
+
+export type PedidoTrackingApiDto = {
+  currentStatus: string;
+  currentSubstatus: string | null;
+  carrier: { name: string; trackingUrl: string | null } | null;
+  history: PedidoTrackingHistoryItemApiDto[];
+  returnHistory: Array<PedidoTrackingHistoryItemApiDto & { shipmentId: string }>;
+  returnShipments: Array<{
+    shipmentId: string;
+    status: string;
+    trackingNumber: string | null;
+    type: string;
+    destination: string;
+  }>;
+  claim: {
+    id: string;
+    status: string;
+    type: string;
+    stage: string;
+    reason: string;
+  } | null;
+  rastreio: string | null;
+  warnings: string[];
+};
+
 export interface Order {
   id: number;
   dbId: string;

@@ -1944,7 +1944,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [ ] `BNT-D23` — Página pública BKR1;
 - [ ] `BNT-D24` — Página pública Evolusom.
 
-**Estado de `BNT-D01`:** tabela, carga visual e detalhe completo em `Drawer` concluídos; aguardando aprovação visual do usuário para fechar o item.
+**Estado de `BNT-D01`:** tabela, carga visual, detalhe completo em `Drawer` e acompanhamento de entrega compartilhado entre aba e modal concluídos; aguardando aprovação visual do usuário para fechar o item.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
