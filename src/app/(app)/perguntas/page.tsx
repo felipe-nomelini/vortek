@@ -31,10 +31,6 @@ import {
 } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { filterQuestionsOnCurrentPage } from '@/lib/ml/questions-page-filter';
-import {
-  BNT_D06_VISUAL_REVIEW,
-  createQuestionHomologationFixtures,
-} from '@/lib/ml/questions-homologation-fixtures';
 import styles from './perguntas.module.css';
 
 const { Text, Title } = Typography;
@@ -62,7 +58,6 @@ interface Pergunta {
   removidaDoAnuncio: boolean;
   tags: string[];
   categoriasIa: string[];
-  isHomologationFixture?: boolean;
 }
 
 interface PerguntasResponse {
@@ -132,7 +127,7 @@ function questionState(question: Pergunta) {
   return { label: question.status || 'Desconhecido', color: 'default' as const, kind: 'unavailable' as const };
 }
 
-function isOpenForAnswer(question: Pergunta) {
+function isAnswerable(question: Pergunta) {
   return questionState(question).kind === 'pending' && question.mlStatus.toUpperCase() === 'UNANSWERED';
 }
 
@@ -156,25 +151,6 @@ export default function PerguntasPage() {
   const loadQuestions = useCallback(async (page: number) => {
     setLoading(true);
     setError(null);
-
-    if (BNT_D06_VISUAL_REVIEW) {
-      const fixtures = createQuestionHomologationFixtures();
-      const items = (statusFilter
-        ? fixtures.filter((question) => question.status === statusFilter)
-        : fixtures)
-        .sort((left, right) => {
-          const difference = new Date(left.dataPergunta).getTime() - new Date(right.dataPergunta).getTime();
-          return statusFilter === 'pendente' ? difference : -difference;
-        });
-      setQuestions(items);
-      setTotal(items.length);
-      setAccount(null);
-      setUpdatedAt(new Date().toISOString());
-      setCurrentPage(1);
-      setLoading(false);
-      return;
-    }
-
     try {
       const params = new URLSearchParams({
         limit: String(PAGE_SIZE),
@@ -233,10 +209,10 @@ export default function PerguntasPage() {
   const periodFilterCount = Number(Boolean(perguntaRange[0] || perguntaRange[1])) + Number(Boolean(respostaRange[0] || respostaRange[1]));
 
   const totalLabel = statusFilter === 'pendente'
-    ? BNT_D06_VISUAL_REVIEW ? 'Não respondidas na amostra' : 'Não respondidas no Mercado Livre'
+    ? 'Não respondidas no Mercado Livre'
     : statusFilter === 'respondida'
-      ? BNT_D06_VISUAL_REVIEW ? 'Respondidas na amostra' : 'Respondidas no Mercado Livre'
-      : BNT_D06_VISUAL_REVIEW ? 'Total na amostra' : 'Total no Mercado Livre';
+      ? 'Respondidas no Mercado Livre'
+      : 'Total no Mercado Livre';
 
   const changePage = (page: number) => {
     setSelectedQuestionId(null);
@@ -253,11 +229,7 @@ export default function PerguntasPage() {
   };
 
   const submitAnswer = async () => {
-    if (!activeQuestion || !isOpenForAnswer(activeQuestion)) return;
-    if (activeQuestion.isHomologationFixture) {
-      messageApi.warning('A amostra de homologação não envia respostas ao Mercado Livre.');
-      return;
-    }
+    if (!activeQuestion || !isAnswerable(activeQuestion)) return;
     const text = answerText.trim();
     if (!text) {
       messageApi.warning('Digite a resposta antes de enviar.');
@@ -296,9 +268,7 @@ export default function PerguntasPage() {
           <Title level={2} className={styles.title}>Perguntas</Title>
           <Text type="secondary">Responda dúvidas pré-venda com o anúncio sempre em contexto.</Text>
           <Text type="secondary" className={styles.accountLine}>
-            {BNT_D06_VISUAL_REVIEW
-              ? 'Amostra sintética · nenhuma conta externa conectada'
-              : account ? `${account.nickname} · conta ${account.id}` : 'Conta Mercado Livre'}
+            {account ? `${account.nickname} · conta ${account.id}` : 'Conta Mercado Livre'}
             {updatedAt ? ` · atualizado em ${formatDate(updatedAt)}` : ''}
           </Text>
         </div>
@@ -306,15 +276,6 @@ export default function PerguntasPage() {
           Atualizar
         </Button>
       </header>
-
-      {BNT_D06_VISUAL_REVIEW ? (
-        <Alert
-          showIcon
-          type="info"
-          message="Amostra protegida de homologação"
-          description="Todos os dados desta página são sintéticos. A consulta e o envio ao Mercado Livre estão desabilitados durante a aprovação visual."
-        />
-      ) : null}
 
       {error ? (
         <Alert
@@ -330,7 +291,7 @@ export default function PerguntasPage() {
         <div className={styles.summaryItem}>
           <span className={styles.summaryLabel}>{totalLabel}</span>
           <strong className={styles.summaryValue}>{total}</strong>
-          <span className={styles.summaryHint}>{BNT_D06_VISUAL_REVIEW ? 'Total do filtro na amostra' : 'Total global do filtro de status'}</span>
+          <span className={styles.summaryHint}>Total global do filtro de status</span>
         </div>
         <div className={styles.summaryItem}>
           <span className={styles.summaryLabel}>Exibidas nesta página</span>
@@ -408,9 +369,7 @@ export default function PerguntasPage() {
           <Button icon={<FilterOutlined />}>Períodos{periodFilterCount ? ` (${periodFilterCount})` : ''}</Button>
         </Popover>
         <Text type="secondary" className={styles.scopeHint}>
-          {BNT_D06_VISUAL_REVIEW
-            ? 'Status, busca e períodos filtram somente os registros sintéticos desta amostra.'
-            : <>Status consulta todas as perguntas no Mercado Livre. Busca e períodos filtram somente os até {PAGE_SIZE} registros desta página.</>}
+          Status consulta todas as perguntas no Mercado Livre. Busca e períodos filtram somente os até {PAGE_SIZE} registros desta página.
         </Text>
       </section>
 
@@ -467,7 +426,7 @@ export default function PerguntasPage() {
               hideOnSinglePage={false}
               disabled={loading}
               onChange={changePage}
-              showTotal={(count) => `${count} ${BNT_D06_VISUAL_REVIEW ? 'na amostra' : 'no filtro global'}`}
+              showTotal={(count) => `${count} no filtro global`}
             />
           </div>
         </aside>
@@ -482,7 +441,7 @@ export default function PerguntasPage() {
             />
           ) : (() => {
             const state = questionState(activeQuestion);
-            const answerable = isOpenForAnswer(activeQuestion);
+            const answerable = isAnswerable(activeQuestion);
             return (
               <>
                 <div className={styles.itemContext}>
@@ -536,11 +495,7 @@ export default function PerguntasPage() {
                       <div className={styles.composerHeading}>
                         <div>
                           <Text strong>Sua resposta</Text>
-                          <Text type="secondary">
-                            {activeQuestion.isHomologationFixture
-                              ? 'Digite para avaliar o compositor. Nenhum conteúdo será enviado.'
-                              : 'Será enviada diretamente ao Mercado Livre.'}
-                          </Text>
+                          <Text type="secondary">Será enviada diretamente ao Mercado Livre.</Text>
                         </div>
                       </div>
                       <Input.TextArea
@@ -559,8 +514,7 @@ export default function PerguntasPage() {
                           type="primary"
                           icon={<SendOutlined />}
                           loading={answering}
-                          disabled={Boolean(activeQuestion.isHomologationFixture || !answerText.trim())}
-                          title={activeQuestion.isHomologationFixture ? 'Envio desabilitado na amostra protegida' : undefined}
+                          disabled={!answerText.trim()}
                           onClick={() => void submitAnswer()}
                         >
                           Enviar resposta
