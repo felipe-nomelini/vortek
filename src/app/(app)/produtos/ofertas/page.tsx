@@ -1,57 +1,129 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Button, Col, Input, Row, Select, Space, Spin, Statistic, Tag, Typography } from 'antd';
+import {
+  Alert,
+  Button,
+  Empty,
+  Input,
+  Segmented,
+  Select,
+  Spin,
+  Tag,
+  Tooltip,
+  Typography,
+} from 'antd';
 import type { TableProps } from 'antd';
-import { LoadingOutlined, SearchOutlined, StarOutlined } from '@ant-design/icons';
+import {
+  ArrowLeftOutlined,
+  EyeOutlined,
+  LoadingOutlined,
+  ReloadOutlined,
+  SearchOutlined,
+  StarFilled,
+} from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 import ResizableTable from '@/components/ResizableTable';
 import { formatCurrency } from '@/lib/format';
-import { appendRemoteSortParams, getRemoteSortOrder, resolveRemoteSortState, type RemoteSortState } from '@/lib/remote-sort';
+import {
+  appendRemoteSortParams,
+  getRemoteSortOrder,
+  resolveRemoteSortState,
+  type RemoteSortState,
+} from '@/lib/remote-sort';
+import type {
+  SupplierOfferListRow,
+  SupplierOfferMetrics,
+  SupplierOfferOption,
+  SupplierOfferQueueCounts,
+  SupplierOffersView,
+} from '@/lib/products/supplier-offers';
+import styles from './ofertas.module.css';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
-type OfferListRow = {
-  offerId: string;
-  productId: string;
-  productSku: string;
-  productName: string;
-  preferred: boolean;
-  skuOferta: string;
-  fornecedor: string | null;
-  nome: string;
-  custo: number;
-  estoque: number;
-  paymentMode: string;
-  ativo: boolean;
+type VisualReviewMetadata = {
+  enabled: true;
+  source: 'production-read-only';
+  capturedAt: string;
+  expiresAt: string;
+  itemCount: number;
 };
 
-type SupplierOption = {
-  id: string;
-  label: string;
-  apelido: string;
+const EMPTY_METRICS: SupplierOfferMetrics = {
+  totalLinked: 0,
+  eligible: 0,
+  problems: 0,
+  historical: 0,
+  productsWithAlternatives: 0,
 };
 
-const estoqueOptions = [
-  { value: 'todos', label: 'Todos' },
-  { value: 'com_estoque', label: 'Com Estoque' },
-  { value: 'sem_estoque', label: 'Sem Estoque' },
+const EMPTY_QUEUES: SupplierOfferQueueCounts = {
+  operational: 0,
+  alternatives: 0,
+  problems: 0,
+  historical: 0,
+  all: 0,
+};
+
+const statusPresentation = {
+  eligible: { label: 'Elegível', color: 'success' },
+  out_of_stock: { label: 'Sem estoque', color: 'warning' },
+  invalid_cost: { label: 'Custo inválido', color: 'error' },
+  product_inactive: { label: 'Produto inativo', color: 'default' },
+  offer_inactive: { label: 'Oferta inativa', color: 'default' },
+  historical: { label: 'Histórica', color: 'default' },
+} as const;
+
+const paymentLabels: Record<string, string> = {
+  prepaid_pix: 'PIX antecipado',
+  postpaid: 'Pós-pago',
+  balance_account: 'Conta-saldo aposentada',
+};
+
+const stockOptions = [
+  { value: 'todos', label: 'Qualquer estoque' },
+  { value: 'com_estoque', label: 'Com estoque' },
+  { value: 'sem_estoque', label: 'Sem estoque' },
 ];
+
+const preferenceOptions = [
+  { value: 'todos', label: 'Todas as preferências' },
+  { value: 'preferenciais', label: 'Somente preferenciais' },
+  { value: 'alternativas', label: 'Somente alternativas' },
+];
+
+function formatDateTime(value: string | null) {
+  if (!value) return 'Não sincronizada';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Data indisponível';
+  return new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date);
+}
 
 export default function ProductOffersPage() {
   const router = useRouter();
-  const [rows, setRows] = useState<OfferListRow[]>([]);
+  const [rows, setRows] = useState<SupplierOfferListRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'sku', sortOrder: 'asc' });
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'cost', sortOrder: 'asc' });
   const [search, setSearch] = useState('');
-  const [lastSearch, setLastSearch] = useState('');
-  const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
-  const [fornecedorOptions, setFornecedorOptions] = useState<SupplierOption[]>([]);
-  const [filterEstoque, setFilterEstoque] = useState('todos');
-  const [metrics, setMetrics] = useState({ comEstoque: 0, semAnuncio: 0, receitaPotencial: 0, lucroSomado: 0, lucroCount: 0 });
+  const [committedSearch, setCommittedSearch] = useState('');
+  const [view, setView] = useState<SupplierOffersView>('operational');
+  const [supplierIds, setSupplierIds] = useState<string[]>([]);
+  const [supplierOptions, setSupplierOptions] = useState<SupplierOfferOption[]>([]);
+  const [stockStatus, setStockStatus] = useState('todos');
+  const [preference, setPreference] = useState('todos');
+  const [metrics, setMetrics] = useState<SupplierOfferMetrics>(EMPTY_METRICS);
+  const [queueCounts, setQueueCounts] = useState<SupplierOfferQueueCounts>(EMPTY_QUEUES);
+  const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const requestRef = useRef(0);
 
   const fetchOffers = useCallback(async () => {
@@ -60,236 +132,288 @@ export default function ProductOffersPage() {
     setLoading(true);
     setError(null);
     try {
-      const params = new URLSearchParams({ page: String(page) });
+      const params = new URLSearchParams({ page: String(page), view, estoque: stockStatus, preferencia: preference });
       appendRemoteSortParams(params, sort);
-      if (lastSearch) params.set('search', lastSearch);
-      if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
-      if (filterEstoque !== 'todos') params.set('estoque', filterEstoque);
+      if (committedSearch) params.set('search', committedSearch);
+      if (supplierIds.length > 0) params.set('fornecedores', supplierIds.join(','));
 
-      const response = await fetch(`/api/produtos/ofertas?${params}`);
+      const response = await fetch(`/api/produtos/ofertas?${params}`, { cache: 'no-store' });
       const json = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(json?.erro || json?.error || 'Falha ao carregar ofertas');
-
-      const data = Array.isArray(json.data) ? json.data : [];
       if (requestRef.current !== requestId) return;
-      setRows(data.map((item: any) => ({
-        offerId: String(item.offerId || item.id),
-        productId: String(item.productId || item.product?.id || ''),
-        productSku: String(item.product?.sku || ''),
-        productName: String(item.product?.nome || ''),
-        preferred: Boolean(item.preferred),
-        skuOferta: String(item.skuOferta || ''),
-        fornecedor: item.fornecedor ? String(item.fornecedor) : null,
-        nome: String(item.nome || ''),
-        custo: Number(item.custo || 0),
-        estoque: Number(item.estoque || 0),
-        paymentMode: String(item.paymentMode || 'postpaid'),
-        ativo: Boolean(item.ativo),
-      })));
+
+      setRows(Array.isArray(json.data) ? json.data : []);
       setTotal(Number(json.total || 0));
-      setFornecedorOptions(
-        Array.isArray(json.fornecedores)
-          ? json.fornecedores.map((item: any) => ({
-            id: String(item?.id || ''),
-            label: String(item?.label || item?.apelido || ''),
-            apelido: String(item?.apelido || item?.label || ''),
-          })).filter((item: SupplierOption) => item.id && item.label)
-          : [],
-      );
-      if (json.metrics) setMetrics(json.metrics);
-    } catch (err: any) {
+      setMetrics({ ...EMPTY_METRICS, ...(json.metrics || {}) });
+      setQueueCounts({ ...EMPTY_QUEUES, ...(json.queueCounts || {}) });
+      setSupplierOptions(Array.isArray(json.suppliers) ? json.suppliers : []);
+      setVisualReview(json?.visualReview?.enabled === true ? json.visualReview : null);
+    } catch (fetchError: any) {
       if (requestRef.current !== requestId) return;
       setRows([]);
       setTotal(0);
-      setError(err.message || 'Falha ao carregar ofertas');
+      setError(fetchError?.message || 'Falha ao carregar ofertas');
     } finally {
-      if (requestRef.current !== requestId) return;
-      setLoading(false);
+      if (requestRef.current === requestId) setLoading(false);
     }
-  }, [page, sort, lastSearch, filterFornecedores, filterEstoque]);
+  }, [committedSearch, page, preference, sort, stockStatus, supplierIds, view]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (search !== lastSearch) {
+    const timer = window.setTimeout(() => {
+      const next = search.trim();
+      if (next !== committedSearch) {
         setPage(1);
-        setLastSearch(search);
+        setCommittedSearch(next);
       }
     }, 300);
-    return () => clearTimeout(timer);
-  }, [search, lastSearch]);
+    return () => window.clearTimeout(timer);
+  }, [committedSearch, search]);
 
   useEffect(() => {
     setPage(1);
-  }, [filterFornecedores, filterEstoque]);
+  }, [preference, stockStatus, supplierIds, view]);
 
   useEffect(() => {
     fetchOffers();
   }, [fetchOffers]);
 
-  const lucroMedio = useMemo(() => (
-    metrics.lucroCount > 0 ? metrics.lucroSomado / metrics.lucroCount : 0
-  ), [metrics]);
+  const queueOptions = useMemo(() => ([
+    { value: 'operational', label: `Operacionais ${queueCounts.operational}` },
+    { value: 'alternatives', label: `Alternativas ${queueCounts.alternatives}` },
+    { value: 'problems', label: `Com problema ${queueCounts.problems}` },
+    { value: 'historical', label: `Históricas ${queueCounts.historical}` },
+    { value: 'all', label: `Todas ${queueCounts.all}` },
+  ]), [queueCounts]);
 
-  const columns: TableProps<OfferListRow>['columns'] = [
+  const clearFilters = () => {
+    setSearch('');
+    setCommittedSearch('');
+    setSupplierIds([]);
+    setStockStatus('todos');
+    setPreference('todos');
+    setView('operational');
+    setSort({ sortBy: 'cost', sortOrder: 'asc' });
+    setPage(1);
+  };
+
+  const openOffer = (row: SupplierOfferListRow) => {
+    if (!row.isHomologationFixture) router.push(`/produtos/ofertas/${row.offerId}`);
+  };
+
+  const columns: TableProps<SupplierOfferListRow>['columns'] = [
     {
-      title: 'SKU Fornecedor',
-      dataIndex: 'skuOferta',
-      key: 'sku',
-      width: 150,
+      title: 'Oferta do fornecedor',
+      key: 'offer',
+      width: 300,
       sorter: true,
-      sortOrder: getRemoteSortOrder('sku', sort),
-    },
-    {
-      title: 'Oferta',
-      dataIndex: 'nome',
-      key: 'nome',
-      sorter: true,
-      sortOrder: getRemoteSortOrder('nome', sort),
-      render: (_value, record) => (
-        <div>
-          <a onClick={() => router.push(`/produtos/ofertas/${record.offerId}`)} style={{ color: '#1677ff' }}>
-            {record.nome}
-          </a>
-          <div style={{ marginTop: 4 }}>
-            <Space size={6} wrap>
-              {record.preferred && <Tag color="green" icon={<StarOutlined />}>Preferencial</Tag>}
-              {!record.ativo && <Tag>Inativa</Tag>}
-              <Tag color={record.paymentMode === 'balance_account' ? 'blue' : record.paymentMode === 'prepaid_pix' ? 'orange' : 'default'}>
-                {record.paymentMode === 'balance_account' ? 'Saldo Hayamax' : record.paymentMode === 'prepaid_pix' ? 'PIX antecipado' : 'Pós-pago'}
-              </Tag>
-            </Space>
-          </div>
+      sortOrder: getRemoteSortOrder('offer', sort),
+      render: (_value, row) => (
+        <div className={styles.primaryCell}>
+          <strong>{row.offerName || 'Oferta sem nome'}</strong>
+          <span>SKU externo {row.supplierSku || 'não informado'}</span>
         </div>
       ),
     },
     {
-      title: 'Produto Mestre',
-      key: 'produto',
-      width: 190,
-      render: (_value, record) => (
-        <div>
-          <a onClick={() => router.push(`/produtos/${record.productId}`)} style={{ color: '#1677ff' }}>
-            {record.productSku || 'Abrir produto'}
-          </a>
-          <div style={{ color: '#888', marginTop: 4 }}>{record.productName || 'Produto mestre'}</div>
-        </div>
+      title: 'Produto Bentevi',
+      key: 'product',
+      width: 270,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('product', sort),
+      render: (_value, row) => (
+        <button className={styles.productLink} type="button" onClick={() => router.push(`/produtos/${row.productId}`)}>
+          <strong>{row.productName || 'Produto sem nome'}</strong>
+          <span>{row.productSku || 'SKU Bentevi não informado'}</span>
+        </button>
       ),
     },
     {
       title: 'Fornecedor',
-      dataIndex: 'fornecedor',
-      key: 'fornecedor',
-      width: 150,
+      key: 'supplier',
+      width: 170,
       sorter: true,
-      sortOrder: getRemoteSortOrder('fornecedor', sort),
-      render: (value: string | null) => value ? <Tag>{value}</Tag> : <span style={{ color: '#666' }}>—</span>,
+      sortOrder: getRemoteSortOrder('supplier', sort),
+      render: (_value, row) => (
+        <div className={styles.compactCell}>
+          <strong>{row.supplierName}</strong>
+          <span>{paymentLabels[row.paymentMode] || row.paymentMode}</span>
+        </div>
+      ),
     },
     {
-      title: 'Estoque',
-      dataIndex: 'estoque',
-      key: 'estoque',
-      width: 90,
+      title: 'Disponibilidade',
+      key: 'stock',
+      width: 145,
       sorter: true,
-      sortOrder: getRemoteSortOrder('estoque', sort),
-      render: (value: number) => <span style={{ color: value > 0 ? '#e0e0e0' : '#ff4d4f' }}>{value}</span>,
+      sortOrder: getRemoteSortOrder('stock', sort),
+      render: (_value, row) => (
+        <div className={styles.compactCell}>
+          <strong className={row.stock > 0 ? styles.positive : styles.negative}>{row.stock} un.</strong>
+          <span>{row.leadTimeDays == null ? 'Prazo não informado' : `${row.leadTimeDays} ${row.leadTimeDays === 1 ? 'dia' : 'dias'} de prazo`}</span>
+        </div>
+      ),
     },
     {
-      title: 'Custo',
-      dataIndex: 'custo',
-      key: 'custo',
-      width: 120,
+      title: 'Custo comparado',
+      key: 'cost',
+      width: 165,
       sorter: true,
-      sortOrder: getRemoteSortOrder('custo', sort),
-      render: (value: number) => formatCurrency(value),
+      sortOrder: getRemoteSortOrder('cost', sort),
+      render: (_value, row) => (
+        <div className={styles.compactCell}>
+          <strong>{formatCurrency(row.cost)}</strong>
+          {row.lowestEligibleCost == null ? (
+            <span>Sem base elegível</span>
+          ) : Number(row.costDeltaAmount || 0) <= 0 ? (
+            <span className={styles.positive}>Menor custo elegível</span>
+          ) : (
+            <span className={styles.negative}>+{formatCurrency(row.costDeltaAmount || 0)} · {Number(row.costDeltaPercent || 0).toLocaleString('pt-BR')}%</span>
+          )}
+        </div>
+      ),
+    },
+    {
+      title: 'Situação',
+      key: 'status',
+      width: 185,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('status', sort),
+      render: (_value, row) => {
+        const status = statusPresentation[row.status];
+        return (
+          <div className={styles.statusCell}>
+            <Tag color={status.color}>{status.label}</Tag>
+            <span className={row.preferred ? styles.preferred : styles.secondaryStatus}>
+              {row.preferred && <StarFilled />} {row.preferred ? `Preferencial ${row.preferenceMode === 'manual' ? 'manual' : 'automática'}` : 'Oferta alternativa'}
+            </span>
+            <small>Sync {formatDateTime(row.lastSyncAt)}</small>
+          </div>
+        );
+      },
+    },
+    {
+      title: 'Ações',
+      key: 'actions',
+      width: 118,
+      fixed: 'right',
+      render: (_value, row) => row.isHomologationFixture ? (
+        <Tooltip title="O detalhe da oferta será redesenhado na BNT-D10; a amostra é somente leitura.">
+          <Button icon={<EyeOutlined />} disabled>Ver oferta</Button>
+        </Tooltip>
+      ) : (
+        <Button icon={<EyeOutlined />} onClick={() => openOffer(row)}>Ver oferta</Button>
+      ),
     },
   ];
 
-  const handleTableChange: TableProps<OfferListRow>['onChange'] = (pagination, _filters, sorter) => {
-    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'sku', sortOrder: 'asc' });
+  const handleTableChange: TableProps<SupplierOfferListRow>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'cost', sortOrder: 'asc' });
     const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
     setSort(nextSort);
-    setPage(sortChanged ? 1 : (pagination.current || 1));
+    setPage(sortChanged ? 1 : pagination.current || 1);
   };
 
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <Title level={4} style={{ color: '#e0e0e0', marginBottom: 0 }}>Ofertas de Fornecedor</Title>
-        <Button onClick={() => router.push('/produtos')}>Voltar para Produtos</Button>
-      </div>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <div>
+          <Button className={styles.backButton} type="text" icon={<ArrowLeftOutlined />} onClick={() => router.push('/produtos')}>Produtos</Button>
+          <Title level={2} className={styles.title}>Ofertas de fornecedores</Title>
+          <Text type="secondary">Compare disponibilidade, custo e preferência antes de decidir a fonte de compra.</Text>
+        </div>
+        <Button icon={<ReloadOutlined />} onClick={fetchOffers} loading={loading}>Atualizar</Button>
+      </header>
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[16, 16]}>
-          <Col xs={12} md={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Ofertas</span>} value={total} valueStyle={{ color: '#1677ff' }} />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Com Estoque</span>} value={metrics.comEstoque} valueStyle={{ color: '#52c41a' }} />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Sem Anúncio ML</span>} value={metrics.semAnuncio} valueStyle={{ color: '#faad14' }} />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Lucro Médio</span>} value={formatCurrency(lucroMedio)} valueStyle={{ color: lucroMedio >= 0 ? '#52c41a' : '#ff4d4f' }} />
-          </Col>
-        </Row>
-      </div>
+      {visualReview && (
+        <Alert
+          className={styles.visualReviewAlert}
+          type="warning"
+          showIcon
+          message="Amostra real protegida para homologação"
+          description="As ofertas refletem um recorte somente leitura da produção. Produto mestre pode ser consultado; detalhe e ações da oferta permanecem desabilitados até a BNT-D10."
+        />
+      )}
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Space wrap style={{ marginBottom: 16 }}>
-          <Input
-            allowClear
-            prefix={<SearchOutlined />}
-            placeholder="Buscar oferta, produto ou SKU"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{ width: 280 }}
-          />
-          <Select
-            mode="multiple"
-            allowClear
-            placeholder="Fornecedores"
-            value={filterFornecedores}
-            onChange={setFilterFornecedores}
-            options={fornecedorOptions.map((fornecedor) => ({ value: fornecedor.id, label: fornecedor.label }))}
-            style={{ width: 260 }}
-          />
-          <Select
-            value={filterEstoque}
-            onChange={setFilterEstoque}
-            options={estoqueOptions}
-            style={{ width: 180 }}
-          />
-        </Space>
+      <section className={styles.summaryBand} aria-label="Resumo das ofertas">
+        <div><span>Ofertas vinculadas</span><strong>{metrics.totalLinked.toLocaleString('pt-BR')}</strong><small>fontes externas encontradas</small></div>
+        <div className={styles.summaryPositive}><span>Elegíveis agora</span><strong>{metrics.eligible.toLocaleString('pt-BR')}</strong><small>custo e estoque válidos</small></div>
+        <div className={styles.summaryDanger}><span>Com problema</span><strong>{metrics.problems.toLocaleString('pt-BR')}</strong><small>exigem revisão operacional</small></div>
+        <div className={styles.summaryHighlight}><span>Produtos com alternativas</span><strong>{metrics.productsWithAlternatives.toLocaleString('pt-BR')}</strong><small>mais de uma oferta elegível</small></div>
+      </section>
 
+      <Segmented
+        className={styles.quickViews}
+        options={queueOptions}
+        value={view}
+        onChange={(value) => setView(value as SupplierOffersView)}
+      />
+
+      <section className={styles.filterBar} aria-label="Filtros de ofertas">
+        <Input
+          className={styles.searchInput}
+          allowClear
+          prefix={<SearchOutlined />}
+          placeholder="Buscar oferta, produto ou SKU"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        <Select
+          className={styles.supplierFilter}
+          mode="multiple"
+          maxTagCount="responsive"
+          allowClear
+          placeholder="Fornecedores"
+          value={supplierIds}
+          onChange={setSupplierIds}
+          options={supplierOptions.map((supplier) => ({
+            value: supplier.dsliteId || supplier.id,
+            label: supplier.active ? supplier.label : `${supplier.label} · histórico`,
+          }))}
+        />
+        <Select value={stockStatus} onChange={setStockStatus} options={stockOptions} />
+        <Select value={preference} onChange={setPreference} options={preferenceOptions} />
+        <Button onClick={clearFilters}>Limpar</Button>
+      </section>
+
+      <section className={styles.tableCard}>
         {error && (
           <Alert
             type="error"
             showIcon
-            message="Falha ao carregar as ofertas"
+            message="Não foi possível carregar as ofertas"
             description={error}
-            style={{ marginBottom: 16 }}
+            action={<Button size="small" onClick={fetchOffers}>Tentar novamente</Button>}
           />
         )}
-
-        <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-          <ResizableTable
-            storageKey="produtos-ofertas"
-            columns={columns}
-            dataSource={rows}
-            rowKey="offerId"
-            pagination={{
-              current: page,
-              pageSize: 100,
-              total,
-              onChange: setPage,
-              showSizeChanger: false,
-            }}
-            onChange={handleTableChange}
-            scroll={{ x: 1100 }}
-          />
+        <Spin spinning={loading} indicator={<LoadingOutlined className={styles.loadingIcon} spin />}>
+          {!error && !loading && rows.length === 0 ? (
+            <Empty
+              className={styles.emptyState}
+              description="Nenhuma oferta corresponde a esta fila e aos filtros aplicados."
+            >
+              <Button onClick={clearFilters}>Limpar filtros</Button>
+            </Empty>
+          ) : (
+            <div className={styles.desktopTable}>
+              <ResizableTable
+                storageKey="bentevi-produtos-ofertas"
+                columns={columns}
+                dataSource={rows}
+                rowKey="offerId"
+                pagination={{
+                  current: page,
+                  pageSize: 100,
+                  total,
+                  showSizeChanger: false,
+                  showTotal: (value) => `${value.toLocaleString('pt-BR')} ofertas`,
+                }}
+                onChange={handleTableChange}
+                scroll={{ x: 1380 }}
+              />
+            </div>
+          )}
         </Spin>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

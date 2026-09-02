@@ -1,0 +1,246 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.backButton {
+  height: auto;
+  margin: 0 0 8px -12px;
+  padding-block: 0;
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.title {
+  margin: 0 0 4px !important;
+}
+
+.visualReviewAlert {
+  border-color: rgba(255, 189, 14, 0.35);
+  background: rgba(255, 189, 14, 0.07);
+}
+
+.summaryBand {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 16px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.summaryBand > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 18px 20px;
+  border-right: 1px solid var(--bentevi-border, #34313a);
+}
+
+.summaryBand > div:last-child {
+  border-right: 0;
+}
+
+.summaryBand span {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.summaryBand strong {
+  color: var(--bentevi-text, #f7f7f8);
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.summaryBand small {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 11px;
+}
+
+.summaryPositive strong {
+  color: #21d482;
+}
+
+.summaryDanger strong {
+  color: #ff5b6e;
+}
+
+.summaryHighlight {
+  background: linear-gradient(135deg, rgba(255, 189, 14, 0.14), rgba(255, 189, 14, 0.02));
+}
+
+.summaryHighlight strong {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
+.quickViews {
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 4px;
+  overflow-x: auto;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.filterBar {
+  display: grid;
+  grid-template-columns: minmax(250px, 1.6fr) minmax(220px, 1fr) 165px 205px auto;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 14px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.searchInput,
+.supplierFilter {
+  width: 100%;
+}
+
+.tableCard {
+  min-width: 0;
+  padding: 8px 10px 12px;
+  overflow: hidden;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 18px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.tableCard > :global(.ant-alert) {
+  margin: 8px 6px 12px;
+}
+
+.loadingIcon {
+  color: var(--bentevi-primary, #ffbd0e);
+  font-size: 32px;
+}
+
+.desktopTable :global(.ant-table),
+.desktopTable :global(.ant-table-container) {
+  background: transparent;
+}
+
+.desktopTable :global(.ant-table-thead > tr > th) {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.primaryCell,
+.compactCell,
+.statusCell,
+.productLink {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.primaryCell strong,
+.productLink strong {
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.primaryCell span,
+.compactCell span,
+.productLink span,
+.statusCell small {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.compactCell strong {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.productLink {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+}
+
+.productLink:hover strong {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
+.statusCell {
+  align-items: flex-start;
+}
+
+.statusCell :global(.ant-tag) {
+  width: fit-content;
+  margin: 0;
+}
+
+.preferred {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--bentevi-primary, #ffbd0e) !important;
+}
+
+.secondaryStatus {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.positive {
+  color: #21d482 !important;
+}
+
+.negative {
+  color: #ff5b6e !important;
+}
+
+.emptyState {
+  padding: 70px 20px;
+}
+
+@media (max-width: 1180px) {
+  .filterBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filterBar > :last-child {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 820px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .summaryBand {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summaryBand > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .summaryBand > div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--bentevi-border, #34313a);
+  }
+
+  .filterBar {
+    grid-template-columns: 1fr;
+  }
+}

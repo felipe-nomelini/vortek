@@ -1592,6 +1592,20 @@ export type Database = {
           url: string
         }[]
       }
+      search_supplier_offers_paginated: {
+        Args: {
+          p_page?: number | null
+          p_page_size?: number | null
+          p_search?: string | null
+          p_supplier_dslite_ids?: string[] | null
+          p_view?: string | null
+          p_stock_status?: string | null
+          p_preference?: string | null
+          p_sort_by?: string | null
+          p_sort_order?: string | null
+        }
+        Returns: Json
+      }
       search_produtos_paginated: {
         Args: {
           p_search?: string | null
