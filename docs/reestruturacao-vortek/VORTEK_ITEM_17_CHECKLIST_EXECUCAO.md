@@ -1964,7 +1964,7 @@ Uma página que expõe `Exportar PDF` somente pode ser encerrada depois de o doc
 - [ ] `BNT-D01-PDF` — Relatório de Vendas; implementado e publicado, com aprovação visual pendente;
 - [x] `BNT-D03-PDF` — Relatório de Compras; aprovado visualmente em homologação em `2026-09-01`;
 - [x] `BNT-D07-PDF` — Relatório de Produtos; aprovado visualmente em homologação em `2026-09-02`;
-- [ ] `BNT-D11-PDF` — Relatório de Anúncios; implementado e publicado, com aprovação visual pendente;
+- [x] `BNT-D11-PDF` — Relatório de Anúncios; aprovado visualmente em homologação em `2026-09-02`;
 - [ ] `BNT-D12-PDF` — Relatório de Catálogo, se o exportador continuar presente na página aprovada.
 
 DANFE, etiquetas de envio e documentos fornecidos por integrações externas não são redesignados por este fluxo.
@@ -2233,7 +2233,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D11 — Anúncios`
 
-**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente pelo usuário em homologação em `2026-09-02`. O relatório `BNT-D11-PDF` está publicado e aguarda aprovação visual.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente pelo usuário em homologação em `2026-09-02`. O relatório `BNT-D11-PDF` também foi aprovado visualmente em `2026-09-02`.
 
 **Estado/causa confirmados:** `/anuncios` fazia duas varreduras integrais e independentes para lista e resumo, calculava e ordenava parte do resultado em memória, tratava score ausente como qualidade baixa, misturava qualidade, status, catálogo e preço na linha e mantinha polling próprio sem apresentar o resultado por anúncio. A ação de status de uma linha também alterava o produto mestre mesmo quando a linha exibida era o irmão de catálogo, tornando a ação visualmente ambígua.
 
@@ -2249,7 +2249,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `c1d0f63` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover `search_ml_listings_paginated`. Restaurar o valor anterior da chave temporária `bnt_d07_visual_review_products` apenas se for necessário retirar o enriquecimento antes da expiração da amostra. Não há ação de rollback em produção.
 
-**Pendência:** aprovação visual autenticada do PDF `BNT-D11-PDF`; não marcar o relatório como concluído nem avançar para `BNT-D12` antes do aceite.
+**Pendência:** nenhuma para `BNT-D11` ou `BNT-D11-PDF`; `BNT-D12` foi liberada e executada.
+
+#### Resultado técnico de `BNT-D12 — Catálogo`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** a rota `/catalogo/no-catalogo` listava anúncios com `catalog_listing=true`, apesar do nome sugerir o contrário, e a interface reduzia os estados oficiais de competição a “ganhando” ou “perdendo”. O mesmo componente misturava listagem, reanálise, refresh, preço e opt-in. Em elegibilidade, a API removia os candidatos bloqueados antes de apresentá-los e o processamento selecionava silenciosamente apenas a primeira variação `READY_FOR_OPTIN`.
+
+**Mudança realizada:** as rotas foram preservadas e receberam os nomes inequívocos “Anúncios de catálogo” e “Elegíveis ao catálogo”, com seletor compartilhado e explicação visual da relação `anúncio padrão → produto de catálogo → anúncio de catálogo`. A primeira visão agora separa anúncio, produto Bentevi, anúncio padrão relacionado, estado oficial de competição, preço e ação; seu `Drawer` reúne relação, disputa, preço, rentabilidade e sincronização. A segunda visão mantém candidatos bloqueados em filas explícitas, apresenta produto sugerido, elegibilidade e próxima ação e explica o resultado do opt-in no `Drawer`.
+
+**Contrato e segurança:** `winning`, `sharing_first_place`, `competing`, `listed` e o legado observado `not_listed` são apresentados sem colapsar significados. Cada variação `READY_FOR_OPTIN` gera uma operação própria com seu `variation_id` e `catalog_product_id`; a rota existente continua revalidando a elegibilidade antes da mutação. A amostra temporária de produtos/anúncios é reutilizada somente para leitura; na visão de elegibilidade, os estados simulados estão identificados como tal e todas as ações externas permanecem bloqueadas. Não houve migration, mudança de banco ou chamada autenticada de escrita ao Mercado Livre.
+
+**Commit e validação:** `e378173` — `feat(catalogo): separar fluxos de catalogo Bentevi`, enviado somente para `origin/dev`. Foram aprovados 26 cenários direcionados de Catálogo, refresh, compatibilidade e acompanhamento de preço; `npm run validate`, `npm run build` com Next.js `16.3.3`, 123 páginas/rotas e `git diff --check` passaram. Após uma reinicialização do controlador Easypanel interromper os webhooks iniciais, o reenvio oficial criou o task `j1qj4r1kmbc5`, que ativou `GIT_SHA=e378173f17b94c40b2d1283da5fc1df0c9be3350` somente em `vortek-erp-dev`. Health e login responderam `200`, as duas páginas responderam `307` sem sessão e suas APIs responderam `401` sem sessão.
+
+**Rollback:** reverter `e378173` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, alteração de banco, dado operacional ou integração externa a reverter.
+
+**Pendência:** aprovação visual autenticada de `/catalogo/no-catalogo` e `/catalogo/elegiveis`. Como o exportador foi preservado, depois do aceite da página executar `BNT-D12-PDF` antes de liberar `BNT-D13`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

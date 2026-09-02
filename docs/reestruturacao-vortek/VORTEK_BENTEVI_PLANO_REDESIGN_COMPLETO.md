@@ -59,7 +59,7 @@ correções funcionais
 
 [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
 
-Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. Fundação, shell, domínio DEV e `BNT-D01` a `BNT-D11` foram concluídos e aprovados. `BNT-D11-PDF — Relatório de Anúncios` foi implementado e publicado em homologação e aguarda aprovação visual antes da liberação de `BNT-D12`.
+Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. Fundação, shell, domínio DEV e `BNT-D01` a `BNT-D11`, incluindo `BNT-D11-PDF`, foram concluídos e aprovados. `BNT-D12 — Catálogo` foi implementado e publicado em homologação e aguarda aprovação visual antes do relatório `BNT-D12-PDF`.
 
 ---
 
