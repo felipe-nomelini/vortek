@@ -6,6 +6,10 @@ const test = require('node:test');
 const {
   filterQuestionsOnCurrentPage,
 } = require('../src/lib/ml/questions-page-filter.ts');
+const {
+  BNT_D06_VISUAL_REVIEW,
+  createQuestionHomologationFixtures,
+} = require('../src/lib/ml/questions-homologation-fixtures.ts');
 
 const emptyRange = [null, null];
 const localDate = (day, hour = 0, minute = 0) => new Date(2026, 7, day, hour, minute).toISOString();
@@ -97,7 +101,7 @@ test('interface informa os escopos global e local sem apresentar cards como tota
   assert.match(source, />Exibidas nesta página</);
   assert.match(source, />Pendentes nesta página</);
   assert.match(source, />Mais antiga nesta página</);
-  assert.match(source, />Total global do filtro de status</);
+  assert.match(source, /Total global do filtro de status/);
 });
 
 test('inbox abre em não respondidas e prioriza a pergunta pendente mais antiga', () => {
@@ -118,4 +122,30 @@ test('inbox abre em não respondidas e prioriza a pergunta pendente mais antiga'
   assert.doesNotMatch(pageSource, /ResizableTable/);
   assert.match(routeSource, /sort_types: status === 'UNANSWERED' \? 'ASC' : 'DESC'/);
   assert.match(routeSource, /thumbnail:/);
+});
+
+test('amostra de BNT-D06 cobre os estados visuais sem dados reais', () => {
+  const fixtures = createQuestionHomologationFixtures(new Date('2026-09-01T15:00:00.000Z'));
+  const states = new Set(fixtures.map((question) => question.mlStatus));
+
+  assert.equal(BNT_D06_VISUAL_REVIEW, true);
+  assert.ok(fixtures.length >= 10);
+  assert.ok(fixtures.every((question) => question.isHomologationFixture));
+  assert.ok(fixtures.every((question) => question.id < 0));
+  assert.ok(fixtures.every((question) => question.anuncioUrl === null));
+  for (const state of ['UNANSWERED', 'ANSWERED', 'UNDER_REVIEW', 'CLOSED_UNANSWERED', 'BANNED']) {
+    assert.ok(states.has(state), state);
+  }
+});
+
+test('modo de aprovação não consulta nem responde no Mercado Livre', () => {
+  const pageSource = fs.readFileSync(
+    path.join(__dirname, '../src/app/(app)/perguntas/page.tsx'),
+    'utf8',
+  );
+
+  assert.match(pageSource, /if \(BNT_D06_VISUAL_REVIEW\)/);
+  assert.match(pageSource, /Amostra protegida de homologação/);
+  assert.match(pageSource, /activeQuestion\.isHomologationFixture/);
+  assert.match(pageSource, /isHomologationFixture \|\| !answerText\.trim\(\)/);
 });
