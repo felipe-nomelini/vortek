@@ -1938,7 +1938,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D04` — Notas Fiscais;
 - [x] `BNT-D05` — Estoque;
 - [x] `BNT-D06` — Perguntas;
-- [ ] `BNT-D07` — Produtos;
+- [x] `BNT-D07` — Produtos;
 - [ ] `BNT-D08` — Detalhe do Produto;
 - [ ] `BNT-D09` — Ofertas;
 - [ ] `BNT-D10` — Detalhe da Oferta;
@@ -2149,7 +2149,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D07 — Produtos`
 
-**Situação:** implementado e publicado em homologação em `2026-09-01`; aprovação visual do usuário e `BNT-D07-PDF` permanecem pendentes, portanto a ação ainda não está encerrada.
+**Situação:** página implementada, publicada e aprovada visualmente pelo usuário em homologação; `BNT-D07-PDF` foi implementado e publicado em `2026-09-02`, mas permanece aguardando aprovação visual.
 
 **Estado/causa confirmados:** `/produtos` misturava uma grade cadastral extensa, edição de preço dentro da célula e o fluxo completo de publicação do Mercado Livre no mesmo contexto visual. Estoque, fornecedor, custo, preço, lucro e anúncio estavam distribuídos em colunas isoladas, enquanto a lista reutilizava o saldo agregado legado e não expunha a capacidade canônica de fulfillment (`Q segura`).
 
@@ -2157,7 +2157,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Commit funcional:** `ed183b2` — `feat(produtos): criar central operacional Bentevi`, enviado somente para `origin/dev`.
 
-**Complemento de validação visual:** `8518ec2` — `feat(produtos): habilitar amostra real protegida`, enviado somente para `origin/dev`. Os endpoints de lista e resumo passaram a reconhecer uma configuração temporária no servidor, preservar busca, filtros, ordenação, paginação, indicadores e precificação e sinalizar cada registro como fixture. Enquanto a amostra estiver ativa, navegação para o detalhe, publicação, atualização de preço, edição e exportação ficam desabilitadas na interface; IDs internos são substituídos por identificadores determinísticos de homologação e IDs ML permanecem apenas como texto.
+**Complemento de validação visual:** `8518ec2` — `feat(produtos): habilitar amostra real protegida`, enviado somente para `origin/dev`. Os endpoints de lista e resumo passaram a reconhecer uma configuração temporária no servidor, preservar busca, filtros, ordenação, paginação, indicadores e precificação e sinalizar cada registro como fixture. Enquanto a amostra estiver ativa, navegação para o detalhe, publicação, atualização de preço e edição ficam desabilitadas; IDs internos são substituídos por identificadores determinísticos de homologação e IDs ML permanecem apenas como texto. A exportação foi posteriormente liberada exclusivamente como leitura por `BNT-D07-PDF`, sem reabilitar ações operacionais.
 
 **Validação:** 53/53 cenários direcionados aprovados, incluindo seis novos cenários de `BNT-D07`; `npm run validate`, `npm run build` com Next.js `16.3.3`, 126 páginas/rotas e `git diff --check` aprovados. Depois de confirmar que os webhooks iniciais não haviam criado nova action após a reinicialização do controlador, o reenvio oficial criou a action `cmtjfnqgb000007l8bfcvefc2`, concluída com `Success`; a task `3k6qms98vpsbhhbegvsv1935o` ativou `GIT_SHA=ed183b27cce98e76a3acb26a020495a444cf783f` somente em `vortek-erp-dev`. Health e login responderam `200`, `/produtos` respondeu `307` sem sessão e as APIs de lista e resumo responderam `401` sem sessão.
 
@@ -2175,9 +2175,13 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Validação da revisão:** o commit `81ebd39` foi enviado somente para `origin/dev`. Os 31 cenários direcionados de Produtos, publicação acompanhada e preço por quantidade foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 126 páginas/rotas e `git diff --check` passaram. A action Easypanel `cmtjiaio6000207l8gv5x3b65` concluiu com `Success` somente em `vortek-erp-dev`; o novo processo respondeu `200` em health e login, `/produtos` respondeu `307` sem sessão e lista, resumo e alteração de preço responderam `401` sem sessão. O artefato publicado contém o modal `Aplicar nos anúncios`, `scope = linked` e o bloqueio `dynamic_standard_price`. Nenhum preço real foi alterado e nenhuma chamada autenticada de escrita foi enviada ao Mercado Livre durante a validação.
 
+**Relatório Bentevi em `2026-09-02`:** o exportador deixou de consultar diretamente o RPC legado e passou a reutilizar a listagem canônica de Produtos, preservando filtros, ordenação, `Q segura`, fornecedor preferencial, preço efetivo e todos os anúncios padrão e de catálogo vinculados. O PDF A4 paisagem recebeu identidade visual dark Bentevi, filtros aplicados, indicadores consolidados, colunas operacionais, quebra dinâmica de conteúdo, repetição de cabeçalho e continuação de anúncios entre páginas. A amostra protegida permite somente esta exportação de leitura; ações e navegação operacionais continuam bloqueadas.
+
+**Validação do relatório:** o commit `ec3f1ba` foi enviado somente para `origin/dev`. Os 18 cenários direcionados foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 125 páginas/rotas e `git diff --check` passaram. A action Easypanel `cmtjjf3aa000307l872d861wu` concluiu com `Success` e ativou `GIT_SHA=ec3f1ba86666ce859bb207f865508b830b7c8d4e` somente em `vortek-erp-dev`. Health e login responderam `200`, `/produtos` respondeu `307` sem sessão e o exportador respondeu `401` sem sessão. O artefato publicado contém o novo relatório. Nenhuma migration, escrita de banco ou operação autenticada no Mercado Livre foi executada.
+
 **Rollback:** remover as duas chaves temporárias somente do `sync_runtime_config` em `192.168.1.162`; para desfazer também o suporte à amostra, reverter `8518ec2` e redeployar somente `vortek-erp-dev`. O rollback do redesign original continua sendo reverter `ed183b2`. Não há migration ou integração externa a reverter e produção não deve ser alterada.
 
-**Pendência:** validar visualmente a revisão de `/produtos` em homologação e decidir/implementar `BNT-D07-PDF` antes de marcar `BNT-D07` como concluída. Não iniciar `BNT-D08` antes desse aceite.
+**Pendência:** validar visualmente o PDF exportado em homologação antes de marcar `BNT-D07-PDF` como concluído e liberar `BNT-D08`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
