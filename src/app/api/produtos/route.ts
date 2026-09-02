@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { assertVortekSku } from '@/lib/product-master-sku';
-import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
+import {
+  loadProductFulfillmentCapacities,
+  loadProductFulfillmentCapacity,
+} from '@/lib/orders/fulfillment-capacity-loader';
 import {
   includesInternalSupplierFilter,
   listActiveSupplierOptions,
@@ -92,9 +95,43 @@ export async function GET(request: Request) {
   }
 
   const result = (rpcResult || {}) as Record<string, any>;
+  const rows = Array.isArray(result.data) ? result.data : [];
+  const productIds = rows
+    .map((item: any) => String(item?.product?.id || '').trim())
+    .filter(Boolean);
+
+  let fulfillmentCapacities;
+  let kitProductIds = new Set<string>();
+  try {
+    const [capacities, kitsResult] = await Promise.all([
+      loadProductFulfillmentCapacities(serviceClient, productIds),
+      productIds.length > 0
+        ? (serviceClient as any)
+          .from('produto_kits')
+          .select('produto_id')
+          .in('produto_id', productIds)
+        : Promise.resolve({ data: [], error: null }),
+    ]);
+    if (kitsResult.error) throw new Error(kitsResult.error.message);
+    fulfillmentCapacities = capacities;
+    kitProductIds = new Set((kitsResult.data || []).map((kit: any) => String(kit.produto_id)));
+  } catch (error: any) {
+    console.error('[api/produtos] Falha ao carregar capacidade operacional:', error?.message || error);
+    return NextResponse.json(
+      { erro: error?.message || 'Falha ao carregar capacidade operacional dos produtos' },
+      { status: 500 },
+    );
+  }
 
   return NextResponse.json({
-    data: result.data || [],
+    data: rows.map((item: any) => {
+      const productId = String(item?.product?.id || '');
+      return {
+        ...item,
+        fulfillmentCapacity: fulfillmentCapacities.get(productId) || { internal: 0, supplier: 0, safe: 0 },
+        isKit: kitProductIds.has(productId),
+      };
+    }),
     total: Number(result.total || 0),
     page: Number(result.page || page),
     pageSize: Number(result.pageSize || pageSize),

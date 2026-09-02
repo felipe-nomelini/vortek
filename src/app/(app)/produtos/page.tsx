@@ -2,10 +2,10 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
-  Input, Select, InputNumber, Tag, Typography, Space, Spin, Modal, Button, message, Dropdown, Row, Col, Statistic, Divider, Radio, Alert, Tooltip,
+  Input, Select, InputNumber, Tag, Typography, Space, Spin, Drawer, Button, message, Dropdown, Row, Col, Radio, Alert, Tooltip, Segmented, Collapse, Image as AntImage, Steps,
 } from 'antd';
 import type { TableProps } from 'antd';
-import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined } from '@ant-design/icons';
+import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined, ReloadOutlined, FilterOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
@@ -15,6 +15,7 @@ import ResizableTable from '@/components/ResizableTable';
 import ProgressModal from '@/components/modals/ProgressModal';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
+import styles from './produtos.module.css';
 
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
 type ProdutoOfertaRow = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'];
@@ -50,6 +51,12 @@ interface ProductMasterListItem {
   product: Product;
   preferredOffer: ProdutoOfertaRow | null;
   offersCount: number;
+  fulfillmentCapacity: {
+    internal: number;
+    supplier: number;
+    safe: number;
+  };
+  isKit: boolean;
 }
 
 interface ProductRow {
@@ -57,15 +64,22 @@ interface ProductRow {
   product: Product;
   preferredOffer: ProdutoOfertaRow | null;
   offersCount: number;
+  fulfillmentCapacity: ProductMasterListItem['fulfillmentCapacity'];
+  isKit: boolean;
+  effectiveCost: number;
   displayPrice: number;
   profit: number | null;
+  margin: number | null;
 }
 
 interface SupplierOption {
   id: string;
   label: string;
   apelido: string;
+  dsliteId: string;
 }
+
+type ProductQuickView = 'ativos' | 'com_estoque' | 'sem_anuncio' | 'margem_risco' | 'inativos';
 
 type MlPublishContext = {
   produtoId: string;
@@ -266,12 +280,16 @@ function mapDBtoProduct(item: ProdutoRow): Product {
     name: item.nome,
     brand: item.marca || '',
     fornecedor: item.fornecedor || null,
+    supplierId: item.dslite_fornecedor_id || null,
+    supplierProductId: item.dslite_produto_id || null,
+    preferredSupplierManual: item.fornecedor_preferencial_manual === true,
     stock: item.estoque || 0,
     cost: item.custo || 0,
     mlFee: item.ml_fee || 0.15,
     mlShipping: Number(item.ml_shipping ?? 0),
     customPrice: item.custom_price,
     mlStatus: item.ml_status || 'sem_anuncio',
+    mlItemId: item.ml_item_id || null,
     netWeight: item.peso_liq || 0,
     grossWeight: item.peso_bruto || 0,
     width: item.largura || 0,
@@ -307,13 +325,13 @@ export default function ProductsPage() {
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
   const [fornecedorOptions, setFornecedorOptions] = useState<SupplierOption[]>([]);
-  const [filterProductActive, setFilterProductActive] = useState<string>('');
+  const [filterProductActive, setFilterProductActive] = useState<string>('ativo');
   const [filterEstoque, setFilterEstoque] = useState<string>('');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
   const [exportingPdf, setExportingPdf] = useState(false);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [filtersDrawerOpen, setFiltersDrawerOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const {
     hasOpenTracking: hasOpenMlPublishTracking,
@@ -323,9 +341,6 @@ export default function ProductsPage() {
   const [updatingPriceProductId, setUpdatingPriceProductId] = useState<string | null>(null);
   const productsRequestRef = useRef(0);
   const statsRequestRef = useRef(0);
-  const [savingCustomPriceById, setSavingCustomPriceById] = useState<Record<string, boolean>>({});
-  const [persistedCustomPriceById, setPersistedCustomPriceById] = useState<Record<string, number | null>>({});
-  const [editingPriceTextById, setEditingPriceTextById] = useState<Record<string, string>>({});
   const [mlModalPriceText, setMlModalPriceText] = useState('');
   const [mlModal, setMlModal] = useState<{
     open: boolean;
@@ -1035,12 +1050,15 @@ export default function ProductsPage() {
           ativo: Boolean(item.preferredOffer.ativo),
         } : null,
         offersCount: Number(item.offersCount || 0),
+        fulfillmentCapacity: {
+          internal: Number(item?.fulfillmentCapacity?.internal || 0),
+          supplier: Number(item?.fulfillmentCapacity?.supplier || 0),
+          safe: Number(item?.fulfillmentCapacity?.safe || 0),
+        },
+        isKit: Boolean(item.isKit),
       }));
       if (productsRequestRef.current !== requestId) return;
       setProducts(mapped);
-      setPersistedCustomPriceById(Object.fromEntries(
-        mapped.map((item) => [item.product.id, item.product.customPrice ?? null])
-      ));
       setTotal(json.total || 0);
       setPricingTaxRate(
         typeof json?.pricingTaxContext?.appliedRate === 'number'
@@ -1053,13 +1071,12 @@ export default function ProductsPage() {
             id: String(item?.id || ''),
             label: String(item?.label || item?.apelido || ''),
             apelido: String(item?.apelido || item?.label || ''),
+            dsliteId: String(item?.dsliteId || ''),
           })).filter((item: SupplierOption) => item.id && item.label)
           : [],
       );
     } catch (error: any) {
       if (productsRequestRef.current !== requestId) return;
-      setProducts([]);
-      setTotal(0);
       setListError(error?.message || 'Erro ao carregar produtos');
       messageApi.error(error?.message || 'Erro ao carregar produtos');
     } finally {
@@ -1119,107 +1136,23 @@ export default function ProductsPage() {
     fetchStats();
   }, [fetchProducts, fetchStats]);
 
-  const persistCustomPrice = useCallback(async (productId: string, customPrice: number | null) => {
-    const normalized = customPrice === null ? null : Math.round(customPrice * 100) / 100;
-    const persistedRaw = persistedCustomPriceById[productId] ?? null;
-    const persisted = persistedRaw === null ? null : Math.round(persistedRaw * 100) / 100;
-    if (normalized === persisted) return;
-
-    if (normalized !== null && normalized < 0) {
-      messageApi.warning('Preço sugerido não pode ser negativo.');
-      setProducts((prev) => prev.map((item) => (
-        item.product.id === productId
-          ? { ...item, product: { ...item.product, customPrice: persisted } }
-          : item
-      )));
-      return;
-    }
-
-    const previousPersisted = persistedRaw;
-    setSavingCustomPriceById((prev) => ({ ...prev, [productId]: true }));
-
-    try {
-      const res = await fetch(`/api/produtos/${productId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ custom_price: normalized }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(json?.error || json?.erro || 'Falha ao salvar preço sugerido');
-      }
-      setProducts((prev) => prev.map((item) => (
-        item.product.id === productId
-          ? { ...item, product: { ...item.product, customPrice: normalized } }
-          : item
-      )));
-      setPersistedCustomPriceById((prev) => ({ ...prev, [productId]: normalized }));
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Erro ao salvar preço sugerido');
-      setProducts((prev) => prev.map((item) => (
-        item.product.id === productId
-          ? { ...item, product: { ...item.product, customPrice: previousPersisted } }
-          : item
-      )));
-    } finally {
-      setSavingCustomPriceById((prev) => ({ ...prev, [productId]: false }));
-    }
-  }, [messageApi, persistedCustomPriceById]);
-
-  const commitCustomPriceText = useCallback((productId: string) => {
-    const text = editingPriceTextById[productId];
-    if (text === undefined) return;
-    const parsed = parseEditablePriceText(text);
-    if (text.trim() && parsed === null) {
-      messageApi.warning('Preço sugerido inválido.');
-      setEditingPriceTextById((prev) => {
-        const next = { ...prev };
-        delete next[productId];
-        return next;
-      });
-      return;
-    }
-    if (parsed !== null && parsed < 0) {
-      messageApi.warning('Preço sugerido não pode ser negativo.');
-      setEditingPriceTextById((prev) => {
-        const next = { ...prev };
-        delete next[productId];
-        return next;
-      });
-      return;
-    }
-    const nextPrice = text.trim() ? parsed : null;
-    setProducts((prev) => prev.map((item) => (
-      item.product.id === productId
-        ? { ...item, product: { ...item.product, customPrice: nextPrice } }
-        : item
-    )));
-    setEditingPriceTextById((prev) => {
-      const next = { ...prev };
-      delete next[productId];
-      return next;
-    });
-    void persistCustomPrice(productId, nextPrice ?? null);
-  }, [editingPriceTextById, messageApi, persistCustomPrice]);
-
-  const cancelCustomPriceText = useCallback((productId: string) => {
-    setEditingPriceTextById((prev) => {
-      const next = { ...prev };
-      delete next[productId];
-      return next;
-    });
-  }, []);
-
   const rows: ProductRow[] = useMemo(() => {
     return products.map(item => {
       const { displayPrice, profit } = computeDerived(item, pricingTaxRate);
+      const effectiveCost = Number(item.preferredOffer?.custo ?? item.product.cost ?? 0);
       return {
         key: item.product.id,
         product: item.product,
         preferredOffer: item.preferredOffer,
         offersCount: item.offersCount,
+        fulfillmentCapacity: item.fulfillmentCapacity,
+        isKit: item.isKit,
+        effectiveCost,
         displayPrice,
         profit,
+        margin: profit === null || displayPrice <= 0
+          ? null
+          : Math.round((profit / displayPrice) * 10000) / 100,
       };
     });
   }, [pricingTaxRate, products]);
@@ -1285,193 +1218,156 @@ export default function ProductsPage() {
     priceMin,
     sort,
   ]);
+  const supplierLabelByDsliteId = useMemo(
+    () => new Map(fornecedorOptions.map((supplier) => [supplier.dsliteId, supplier.apelido])),
+    [fornecedorOptions],
+  );
 
+  const getSupplierLabel = (record: ProductRow) => {
+    const supplierId = String(record.product.supplierId || record.preferredOffer?.dslite_fornecedor_id || '');
+    return supplierLabelByDsliteId.get(supplierId)
+      || record.preferredOffer?.fornecedor_nome
+      || record.product.fornecedor
+      || 'Sem fornecedor';
+  };
 
+  const canPublish = (record: ProductRow) => record.product.active
+    && record.product.mlStatus === 'sem_anuncio'
+    && record.fulfillmentCapacity.safe > 0;
+
+  const renderProductActions = (record: ProductRow) => {
+    const isUpdatingCurrent = updatingPriceProductId === record.product.id;
+    const primary = canPublish(record)
+      ? { key: 'publish', label: 'Publicar', icon: <PlusOutlined /> }
+      : record.product.active && record.product.mlStatus === 'ativo'
+        ? { key: 'price', label: 'Atualizar preço', icon: isUpdatingCurrent ? <LoadingOutlined spin /> : <ReloadOutlined /> }
+        : { key: 'open', label: 'Ver produto', icon: <ArrowRightOutlined /> };
+    const runAction = (key: string) => {
+      if (key === 'publish') void abrirCriarAnuncioML(record.product);
+      if (key === 'price') void atualizarPrecoMl(record.product);
+      if (key === 'open' || key === 'edit') router.push(`/produtos/${record.product.id}`);
+    };
+    return (
+      <div className={styles.actionCell}>
+        <Button
+          size="small"
+          type={primary.key === 'open' ? 'default' : 'primary'}
+          icon={primary.icon}
+          loading={isUpdatingCurrent}
+          disabled={Boolean(updatingPriceProductId && !isUpdatingCurrent)}
+          onClick={() => runAction(primary.key)}
+        >
+          {primary.label}
+        </Button>
+        <Dropdown
+          menu={{
+            items: [{ key: 'edit', label: 'Editar produto', icon: <EditOutlined /> }],
+            onClick: ({ key }) => runAction(key),
+          }}
+          trigger={['click']}
+        >
+          <Button aria-label="Mais ações do produto" size="small" icon={<EllipsisOutlined />} />
+        </Dropdown>
+      </div>
+    );
+  };
 
   const columns: TableProps<ProductRow>['columns'] = [
     {
-      title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 150,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('sku', sort),
-    },
-    {
-      title: 'Produto', dataIndex: ['product', 'name'], key: 'nome',
-      sorter: true,
+      title: 'Produto', key: 'nome', width: 350, fixed: 'left', sorter: true,
       sortOrder: getRemoteSortOrder('nome', sort),
-      render: (_: string, record) => (
-        <div>
-          <a
-            onClick={() => router.push(`/produtos/${record.product.id}`)}
-            style={{ color: '#1677ff', cursor: 'pointer' }}
-          >
-            {record.product.name}
-          </a>
-          <div style={{ marginTop: 5, color: '#8c8c8c', fontSize: 12, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-              <span
-                aria-hidden
-                style={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: '50%',
-                  background: record.product.active ? '#52c41a' : '#ff4d4f',
-                  display: 'inline-block',
-                }}
-              />
-              {record.product.active ? 'Ativo' : 'Inativo'}
+      render: (_, record) => (
+        <div className={styles.productCell}>
+          <AntImage
+            className={styles.productImage}
+            width={54}
+            height={54}
+            src={record.product.images[0]}
+            fallback="/branding/bentevi/bentevi-mark.png"
+            preview={false}
+          />
+          <div className={styles.productIdentity}>
+            <button className={styles.productLink} onClick={() => router.push(`/produtos/${record.product.id}`)}>
+              {record.product.name}
+            </button>
+            <div className={styles.productMeta}>
+              <span>SKU {record.product.sku}</span>
+              {record.product.brand && <span>{record.product.brand}</span>}
+              {record.isKit && <span className={styles.kitLabel}>Kit</span>}
+            </div>
+            <span className={record.product.active ? styles.activeState : styles.inactiveState}>
+              <i aria-hidden />{record.product.active ? 'Ativo' : 'Inativo'}
             </span>
-            <span>{record.offersCount} fornecedor{record.offersCount === 1 ? '' : 'es'}</span>
           </div>
         </div>
       ),
     },
     {
-      title: 'Fornecedor Atual', dataIndex: ['product', 'fornecedor'], key: 'fornecedor', width: 170,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('fornecedor', sort),
-      render: (v: string | null, record) => v
-        ? <Tag color="default">{v}</Tag>
-        : (
-          <span style={{ color: '#666' }}>
-            {record.preferredOffer?.fornecedor_nome || '—'}
-          </span>
-        ),
-    },
-    {
-      title: 'Estoque', dataIndex: ['product', 'stock'], key: 'estoque', width: 90,
-      sorter: true,
+      title: 'Disponibilidade', key: 'estoque', width: 175, sorter: true,
       sortOrder: getRemoteSortOrder('estoque', sort),
-      render: (stock: number) => (
-        <span style={{ color: stock === 0 ? '#ff4d4f' : undefined }}>{stock}</span>
-      ),
-    },
-    {
-      title: 'Custo Atual', dataIndex: ['product', 'cost'], key: 'custo', width: 120,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('custo', sort),
-      render: (v: number) => formatCurrency(v),
-    },
-    {
-      title: 'Taxa ML', dataIndex: ['product', 'mlFee'], key: 'ml_fee', width: 90,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('ml_fee', sort),
-      render: (v: number) => formatPercent(v),
-    },
-    {
-      title: 'Frete ML', dataIndex: ['product', 'mlShipping'], key: 'ml_shipping', width: 110,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('ml_shipping', sort),
-      render: (_: number, record) => renderMlShipping(record.product.mlShipping, record.product.mlStatus),
-    },
-    {
-      title: 'Sugerido', key: 'suggested_price', width: 160,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('suggested_price', sort),
-      render: (_, record) => {
-        const val = record.product.customPrice;
-        const isSaving = Boolean(savingCustomPriceById[record.product.id]);
-        const productId = record.product.id;
-        const editingValue = editingPriceTextById[productId];
-        const displayValue = editingValue ?? formatCurrency(val ?? record.displayPrice);
-        return (
-          <div>
-            <Input
-              size="small"
-              style={{ width: 140 }}
-              disabled={isSaving}
-              status={isSaving ? 'warning' : undefined}
-              value={displayValue}
-              onFocus={() => {
-                setEditingPriceTextById((prev) => ({
-                  ...prev,
-                  [productId]: priceToEditableText(val ?? record.displayPrice),
-                }));
-              }}
-              onChange={(event) => {
-                const value = event.target.value;
-                setEditingPriceTextById((prev) => ({ ...prev, [productId]: value }));
-              }}
-              onBlur={() => {
-                commitCustomPriceText(productId);
-              }}
-              onPressEnter={(event) => {
-                event.currentTarget.blur();
-              }}
-              onKeyDown={(event) => {
-                if (event.key === 'Escape') {
-                  event.preventDefault();
-                  cancelCustomPriceText(productId);
-                  event.currentTarget.blur();
-                }
-              }}
-            />
+      render: (_, record) => (
+        <div className={styles.availabilityCell}>
+          <strong className={record.fulfillmentCapacity.safe > 0 ? styles.safePositive : styles.safeZero}>
+            {record.fulfillmentCapacity.safe} un.
+          </strong>
+          <span>Q segura</span>
+          <div className={styles.capacitySplit}>
+            <span>Interno <b>{record.fulfillmentCapacity.internal}</b></span>
+            <span>Fornecedor <b>{record.fulfillmentCapacity.supplier}</b></span>
           </div>
-        );
-      },
-    },
-    {
-      title: 'Lucro', key: 'profit', width: 130,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('profit', sort),
-      render: (_, record) => {
-        if (record.profit === null) {
-          return <span style={{ color: '#666' }}>—</span>;
-        }
-        return (
-          <span style={{ color: record.profit >= 0 ? '#52c41a' : '#ff4d4f' }}>
-            {formatCurrency(record.profit)}
-          </span>
-        );
-      },
-    },
-    {
-      title: 'Status ML', dataIndex: ['product', 'mlStatus'], key: 'ml_status', width: 130,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('ml_status', sort),
-      render: (status: MLStatus) => (
-        <Tag color={mlStatusColor[status]}>{mlStatusLabel[status]}</Tag>
+        </div>
       ),
     },
     {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => {
-        const isUpdatingCurrent = updatingPriceProductId === record.product.id;
-        const items: { key: string; label: React.ReactNode; icon?: React.ReactNode }[] = [
-          { key: 'edit', label: 'Editar', icon: <EditOutlined /> },
-        ];
-        if (record.product.active && record.product.mlStatus === 'sem_anuncio' && record.product.stock > 0) {
-          items.push({ key: 'criarAnuncio', label: 'Criar Anúncio ML', icon: <PlusOutlined /> });
-        }
-        if (record.product.active && record.product.mlStatus === 'ativo') {
-          items.push({
-            key: 'atualizarPrecoMl',
-            label: isUpdatingCurrent ? 'Atualizando preço...' : 'Atualizar Preço ML',
-            icon: isUpdatingCurrent ? <LoadingOutlined spin /> : undefined,
-          });
-        }
-        return (
-          <Dropdown
-            menu={{
-              items,
-              selectable: false,
-              onClick: ({ key }) => {
-                if (key === 'edit') router.push(`/produtos/${record.product.id}`);
-                if (key === 'criarAnuncio') abrirCriarAnuncioML(record.product);
-                if (key === 'atualizarPrecoMl') atualizarPrecoMl(record.product);
-              },
-            }}
-            trigger={['click']}
-          >
-            <Button
-              type="text"
-              size="small"
-              icon={<EllipsisOutlined />}
-              loading={isUpdatingCurrent}
-              disabled={Boolean(updatingPriceProductId && !isUpdatingCurrent)}
-            />
-          </Dropdown>
-        );
-      },
+      title: 'Fornecimento', key: 'fornecedor', width: 190, sorter: true,
+      sortOrder: getRemoteSortOrder('fornecedor', sort),
+      render: (_, record) => (
+        <div className={styles.stackedCell}>
+          <strong>{getSupplierLabel(record)}</strong>
+          <span>{record.offersCount} oferta{record.offersCount === 1 ? '' : 's'}</span>
+          <span>{record.product.preferredSupplierManual ? 'Preferência manual' : 'Melhor oferta automática'}</span>
+        </div>
+      ),
+    },
+    {
+      title: 'Comercial', key: 'suggested_price', width: 175, sorter: true,
+      sortOrder: getRemoteSortOrder('suggested_price', sort),
+      render: (_, record) => (
+        <div className={styles.commercialCell}>
+          <strong>{formatCurrency(record.displayPrice)}</strong>
+          <span>Preço {record.product.customPrice === null ? 'calculado' : 'personalizado'}</span>
+          <span>Custo {formatCurrency(record.effectiveCost)}</span>
+        </div>
+      ),
+    },
+    {
+      title: 'Rentabilidade', key: 'profit', width: 155, sorter: true,
+      sortOrder: getRemoteSortOrder('profit', sort),
+      render: (_, record) => record.profit === null ? (
+        <div className={styles.stackedCell}><strong>—</strong><span>Após publicação</span></div>
+      ) : (
+        <div className={record.profit >= 0 ? styles.profitPositive : styles.profitNegative}>
+          <strong>{formatCurrency(record.profit)}</strong>
+          <span>{record.margin === null ? '—' : `${record.margin.toFixed(2).replace('.', ',')}% de margem`}</span>
+        </div>
+      ),
+    },
+    {
+      title: 'Mercado Livre', key: 'ml_status', width: 170, sorter: true,
+      sortOrder: getRemoteSortOrder('ml_status', sort),
+      render: (_, record) => (
+        <div className={styles.mlCell}>
+          <Tag color={mlStatusColor[record.product.mlStatus]}>{mlStatusLabel[record.product.mlStatus]}</Tag>
+          {record.product.mlItemId && <span>{record.product.mlItemId}</span>}
+          {record.product.mlStatus !== 'sem_anuncio' && record.product.mlShipping <= 0 && (
+            <span className={styles.warningText}>Frete precisa de revisão</span>
+          )}
+        </div>
+      ),
+    },
+    {
+      title: 'Ação', key: 'actions', width: 190, fixed: 'right',
+      render: (_, record) => renderProductActions(record),
     },
   ];
 
@@ -1482,167 +1378,241 @@ export default function ProductsPage() {
     setPage(sortChanged ? 1 : (pagination.current || 1));
   };
 
+  const activeQuickView: ProductQuickView | 'personalizado' = filterProductActive === 'inativo'
+    && !filterMLStatus && !filterEstoque && priceMin === null && priceMax === null
+    ? 'inativos'
+    : filterProductActive === 'ativo' && filterMLStatus === 'sem_anuncio'
+      && !filterEstoque && priceMin === null && priceMax === null
+      ? 'sem_anuncio'
+      : filterProductActive === 'ativo' && !filterMLStatus && filterEstoque === 'com_estoque'
+        && priceMin === null && priceMax === null
+        ? 'com_estoque'
+        : filterProductActive === 'ativo' && !filterMLStatus && !filterEstoque
+          && priceField === 'profit' && priceMin === null && priceMax === 0
+          ? 'margem_risco'
+          : filterProductActive === 'ativo' && !filterMLStatus && !filterEstoque
+            && priceField === 'cost' && priceMin === null && priceMax === null
+            ? 'ativos'
+            : 'personalizado';
+
+  const applyQuickView = (view: ProductQuickView) => {
+    setFilterProductActive(view === 'inativos' ? 'inativo' : 'ativo');
+    setFilterMLStatus(view === 'sem_anuncio' ? 'sem_anuncio' : '');
+    setFilterEstoque(view === 'com_estoque' ? 'com_estoque' : '');
+    setPriceField(view === 'margem_risco' ? 'profit' : 'cost');
+    setPriceMin(null);
+    setPriceMax(view === 'margem_risco' ? 0 : null);
+    setPage(1);
+  };
+
+  const clearAdvancedFilters = () => {
+    setFilterFornecedores([]);
+    setFilterProductActive('ativo');
+    setFilterMLStatus('');
+    setFilterEstoque('');
+    setPriceField('cost');
+    setPriceMin(null);
+    setPriceMax(null);
+    setPage(1);
+  };
+
+  const advancedFilterCount = filterFornecedores.length
+    + (filterProductActive !== 'ativo' ? 1 : 0)
+    + (filterMLStatus ? 1 : 0)
+    + (filterEstoque ? 1 : 0)
+    + (priceMin !== null || priceMax !== null ? 1 : 0);
+
+  const renderAdvancedFilters = () => (
+    <div className={styles.advancedFilters}>
+      <label>
+        <span>Situação do produto</span>
+        <Select value={filterProductActive} onChange={setFilterProductActive} options={productActiveOptions} />
+      </label>
+      <label>
+        <span>Mercado Livre</span>
+        <Select value={filterMLStatus} onChange={value => setFilterMLStatus(value as MLStatus | '')} options={mlStatusOptions} />
+      </label>
+      <label>
+        <span>Fornecedor</span>
+        <Select
+          mode="multiple"
+          value={filterFornecedores}
+          onChange={setFilterFornecedores}
+          options={fornecedorOptions.map((supplier) => ({ value: supplier.id, label: supplier.label }))}
+          maxTagCount="responsive"
+          allowClear
+          placeholder="Todos"
+        />
+      </label>
+      <label>
+        <span>Saldo operacional</span>
+        <Select value={filterEstoque || 'todos'} onChange={value => setFilterEstoque(value === 'todos' ? '' : value)} options={estoqueOptions} />
+      </label>
+      <label className={styles.rangeFilter}>
+        <span>Faixa de valor</span>
+        <Space.Compact block>
+          <Select value={priceField} onChange={setPriceField} options={priceFieldOptions} />
+          <InputNumber placeholder="Mínimo" value={priceMin} onChange={value => setPriceMin(value ?? null)} />
+          <InputNumber placeholder="Máximo" value={priceMax} onChange={value => setPriceMax(value ?? null)} />
+        </Space.Compact>
+      </label>
+      <Button onClick={clearAdvancedFilters}>Limpar filtros</Button>
+    </div>
+  );
+
   return (
-    <div>
+    <div className={styles.page}>
       {contextHolder}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <Title level={4} style={{ color: '#e0e0e0', marginBottom: 0 }}>Produtos</Title>
-      </div>
-
-      {/* Mini Dashboard */}
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[16, 16]}>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Produtos</span>}
-              value={stats.total}
-              valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Com Estoque</span>}
-              value={stats.comEstoque}
-              valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Sem Anúncio ML</span>}
-              value={stats.semAnuncio}
-              valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Receita Potencial</span>}
-              value={formatCurrency(stats.receitaPotencial)}
-              valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-        </Row>
-        <Divider style={{ borderColor: '#303030', margin: '12px 0' }} />
-        <Row gutter={[16, 16]}>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Lucro Médio</span>}
-              value={formatCurrency(stats.lucroMedio)}
-              valueStyle={{ color: stats.lucroMedio >= 0 ? '#52c41a' : '#ff4d4f', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-        </Row>
-      </div>
-
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <Input
-            placeholder="Buscar por nome ou SKU"
-            prefix={<SearchOutlined />}
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            style={{ width: 220 }}
-            allowClear
-            onClear={() => { setSearch(''); setLastSearch(''); setPage(1); }}
-          />
-          <Select
-            placeholder="Status Produto"
-            value={filterProductActive || undefined}
-            onChange={setFilterProductActive}
-            options={productActiveOptions}
-            style={{ width: 150 }}
-            allowClear
-            onClear={() => setFilterProductActive('')}
-          />
-          <Select
-            placeholder="Status ML"
-            value={filterMLStatus || undefined}
-            onChange={v => setFilterMLStatus(v as MLStatus | '')}
-            options={mlStatusOptions}
-            style={{ width: 150 }}
-            allowClear
-            onClear={() => setFilterMLStatus('')}
-          />
-          <Select
-            mode="multiple"
-            placeholder="Fornecedor"
-            value={filterFornecedores}
-            onChange={v => {
-              if (v.includes('__all__')) setFilterFornecedores([]);
-              else setFilterFornecedores(v);
-            }}
-            options={[
-              ...(filterFornecedores.length === 0 ? [{ value: '__all__', label: 'Todos' }] : []),
-              ...fornecedorOptions.map((fornecedor) => ({ value: fornecedor.id, label: fornecedor.label })),
-            ]}
-            style={{ minWidth: 180, maxWidth: 250 }}
-            maxTagCount={2}
-            allowClear
-            onClear={() => setFilterFornecedores([])}
-          />
-          <Select
-            placeholder="Estoque"
-            value={filterEstoque || undefined}
-            onChange={v => setFilterEstoque(v)}
-            options={estoqueOptions}
-            style={{ width: 150 }}
-            allowClear
-            onClear={() => setFilterEstoque('')}
-          />
-          <Space.Compact>
-            <Select value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />
-            <InputNumber placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
-            <InputNumber placeholder="Máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 100 }} />
-          </Space.Compact>
-          <Button
-            icon={<FilePdfOutlined />}
-            onClick={() => void handleExportPdf()}
-            loading={exportingPdf}
-          >
+      <header className={styles.header}>
+        <div>
+          <Title level={2} className={styles.title}>Produtos</Title>
+          <Text type="secondary">Compare disponibilidade, fornecedor, preço, rentabilidade e publicação em uma única leitura.</Text>
+        </div>
+        <Space>
+          <Button icon={<ReloadOutlined />} loading={loading} onClick={() => { void fetchProducts(); void fetchStats(); }}>
+            Atualizar
+          </Button>
+          <Button icon={<FilePdfOutlined />} loading={exportingPdf} onClick={() => void handleExportPdf()}>
             Exportar PDF
           </Button>
+        </Space>
+      </header>
+
+      <Segmented<ProductQuickView | 'personalizado'>
+        className={styles.quickViews}
+        block
+        value={activeQuickView}
+        onChange={view => { if (view !== 'personalizado') applyQuickView(view); }}
+        options={[
+          { value: 'ativos', label: 'Ativos' },
+          { value: 'com_estoque', label: 'Com estoque' },
+          { value: 'sem_anuncio', label: 'Sem anúncio' },
+          { value: 'margem_risco', label: 'Margem em risco' },
+          { value: 'inativos', label: 'Inativos' },
+        ]}
+      />
+
+      <section className={styles.summaryBand} aria-label="Resumo dos produtos filtrados">
+        <div className={styles.summaryItem}><span>Produtos</span><strong>{stats.total}</strong><small>no conjunto atual</small></div>
+        <div className={styles.summaryItem}><span>Com estoque</span><strong>{stats.comEstoque}</strong><small>saldo operacional</small></div>
+        <div className={styles.summaryItem}><span>Sem anúncio ML</span><strong>{stats.semAnuncio}</strong><small>aguardando publicação</small></div>
+        <div className={stats.lucroMedio >= 0 ? styles.summaryItem : styles.summaryDanger}>
+          <span>Lucro médio</span><strong>{formatCurrency(stats.lucroMedio)}</strong><small>anúncios com cálculo</small>
         </div>
-      </div>
-      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+        <div className={styles.summaryHighlight}><span>Receita potencial</span><strong>{formatCurrency(stats.receitaPotencial)}</strong><small>preço × saldo operacional</small></div>
+      </section>
+
+      <section className={styles.filterBar}>
+        <Input
+          className={styles.searchInput}
+          placeholder="Buscar por produto, SKU, GTIN ou fornecedor"
+          prefix={<SearchOutlined />}
+          value={search}
+          onChange={event => setSearch(event.target.value)}
+          allowClear
+          onClear={() => { setSearch(''); setLastSearch(''); setPage(1); }}
+        />
+        <Button className={styles.mobileFilterButton} icon={<FilterOutlined />} onClick={() => setFiltersDrawerOpen(true)}>
+          Filtros{advancedFilterCount > 0 ? ` (${advancedFilterCount})` : ''}
+        </Button>
+      </section>
+
+      <Collapse
+        className={styles.desktopFilters}
+        ghost
+        items={[{
+          key: 'filters',
+          label: `Mais filtros${advancedFilterCount > 0 ? ` · ${advancedFilterCount} aplicado${advancedFilterCount === 1 ? '' : 's'}` : ''}`,
+          children: renderAdvancedFilters(),
+        }]}
+      />
+
+      <Spin spinning={loading} indicator={<LoadingOutlined className={styles.loadingIcon} spin />}>
+        <section className={styles.tableCard}>
           {listError && (
             <Alert
               type="error"
               showIcon
               message="Falha ao carregar a lista de produtos"
-              description={listError}
-              style={{ marginBottom: 16, background: '#2a1215', borderColor: '#ff4d4f' }}
+              description={`${listError}. Os dados anteriores foram preservados quando disponíveis.`}
             />
           )}
-          <ResizableTable<ProductRow>
-            storageKey="produtos"
-            dataSource={rows}
-            columns={columns}
-            rowKey="key"
-            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-            pagination={{
-              current: page,
-              pageSize: 100,
-              total,
-              showSizeChanger: false,
-              showTotal: (t) => `${t} produtos`,
-            }}
-            onChange={handleTableChange}
-            scroll={{ x: 1200 }}
-            style={{ background: 'transparent' }}
-            size="small"
-          />
-        </div>
+          <div className={styles.desktopTable}>
+            <ResizableTable<ProductRow>
+              storageKey="produtos-bentevi"
+              dataSource={rows}
+              columns={columns}
+              rowKey="key"
+              pagination={{
+                current: page,
+                pageSize: 100,
+                total,
+                showSizeChanger: false,
+                showTotal: (count) => `${count} produtos`,
+              }}
+              onChange={handleTableChange}
+              scroll={{ x: 1405 }}
+              size="middle"
+            />
+          </div>
+          <div className={styles.mobileList}>
+            {rows.map((record) => (
+              <article className={styles.productCard} key={record.key}>
+                <div className={styles.cardHeader}>
+                  <AntImage width={52} height={52} src={record.product.images[0]} fallback="/branding/bentevi/bentevi-mark.png" preview={false} />
+                  <div>
+                    <button onClick={() => router.push(`/produtos/${record.product.id}`)}>{record.product.name}</button>
+                    <span>SKU {record.product.sku}{record.isKit ? ' · Kit' : ''}</span>
+                  </div>
+                  <Tag color={mlStatusColor[record.product.mlStatus]}>{mlStatusLabel[record.product.mlStatus]}</Tag>
+                </div>
+                <div className={styles.cardMetrics}>
+                  <div><span>Q segura</span><strong>{record.fulfillmentCapacity.safe}</strong><small>I {record.fulfillmentCapacity.internal} · F {record.fulfillmentCapacity.supplier}</small></div>
+                  <div><span>Fornecedor</span><strong>{getSupplierLabel(record)}</strong><small>{record.offersCount} oferta{record.offersCount === 1 ? '' : 's'}</small></div>
+                  <div><span>Preço</span><strong>{formatCurrency(record.displayPrice)}</strong><small>Custo {formatCurrency(record.effectiveCost)}</small></div>
+                  <div><span>Lucro</span><strong className={record.profit !== null && record.profit < 0 ? styles.negativeText : styles.positiveText}>{record.profit === null ? '—' : formatCurrency(record.profit)}</strong><small>{record.margin === null ? 'Após publicação' : `${record.margin.toFixed(2).replace('.', ',')}%`}</small></div>
+                </div>
+                {renderProductActions(record)}
+              </article>
+            ))}
+            {!loading && rows.length === 0 && <Text type="secondary">Nenhum produto encontrado.</Text>}
+          </div>
+        </section>
       </Spin>
+
+      <Drawer
+        title="Filtros de produtos"
+        open={filtersDrawerOpen}
+        onClose={() => setFiltersDrawerOpen(false)}
+        width="min(92vw, 460px)"
+        footer={<Button type="primary" block onClick={() => setFiltersDrawerOpen(false)}>Ver produtos</Button>}
+      >
+        {renderAdvancedFilters()}
+      </Drawer>
 
       <ProgressModal {...mlPublishProgressModalProps} />
 
-      <Modal
-        title={`Criar Anúncio no ML — ${mlModal.nome}`}
+      <Drawer
+        title={`Publicar no Mercado Livre — ${mlModal.nome}`}
         open={mlModal.open}
-        onCancel={() => setMlModal(prev => ({ ...prev, open: false }))}
+        onClose={() => setMlModal(prev => ({ ...prev, open: false }))}
         footer={null}
-        width={560}
+        width="min(96vw, 960px)"
+        destroyOnClose={false}
       >
+        {!mlModal.result && (
+          <Steps
+            className={styles.publishSteps}
+            size="small"
+            current={!mlModal.selectedCategory ? 0 : mlModal.editableAttributes.some(attribute => !attribute.value_id && !attribute.value_name?.trim()) ? 1 : 2}
+            items={[
+              { title: 'Categoria' },
+              { title: 'Atributos' },
+              { title: 'Conteúdo e fiscal' },
+              { title: 'Revisão' },
+            ]}
+          />
+        )}
         {mlModal.result ? (() => {
           const result = mlModal.result;
           const anuncio = result.anuncio || {};
@@ -2232,7 +2202,7 @@ export default function ProductsPage() {
             </div>
           </div>
         )}
-      </Modal>
+      </Drawer>
     </div>
   );
 }

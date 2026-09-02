@@ -7,6 +7,9 @@ export interface Product {
   name: string;
   brand: string;
   fornecedor: string | null;
+  supplierId?: string | null;
+  supplierProductId?: string | null;
+  preferredSupplierManual?: boolean;
   stock: number;
   supplierStock?: number;
   internalStock?: number;
@@ -15,6 +18,7 @@ export interface Product {
   mlShipping: number;
   customPrice: number | null;
   mlStatus: MLStatus;
+  mlItemId?: string | null;
   netWeight: number;
   grossWeight: number;
   width: number;
