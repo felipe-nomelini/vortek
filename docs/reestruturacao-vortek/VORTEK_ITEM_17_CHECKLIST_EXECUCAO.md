@@ -1943,7 +1943,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D09` — Ofertas;
 - [x] `BNT-D10` — Detalhe da Oferta;
 - [x] `BNT-D11` — Anúncios;
-- [ ] `BNT-D12` — Catálogo No Catálogo/Elegíveis;
+- [x] `BNT-D12` — Catálogo No Catálogo/Elegíveis;
 - [ ] `BNT-D13` — Clientes;
 - [ ] `BNT-D14` — Detalhe do Cliente;
 - [ ] `BNT-D15` — Fornecedores;
@@ -2253,7 +2253,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D12 — Catálogo`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente pelo usuário em homologação em `2026-09-02`.
 
 **Estado/causa confirmados:** a rota `/catalogo/no-catalogo` listava anúncios com `catalog_listing=true`, apesar do nome sugerir o contrário, e a interface reduzia os estados oficiais de competição a “ganhando” ou “perdendo”. O mesmo componente misturava listagem, reanálise, refresh, preço e opt-in. Em elegibilidade, a API removia os candidatos bloqueados antes de apresentá-los e o processamento selecionava silenciosamente apenas a primeira variação `READY_FOR_OPTIN`.
 
@@ -2265,7 +2265,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `e378173` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, alteração de banco, dado operacional ou integração externa a reverter.
 
-**Pendência:** aprovação visual autenticada de `/catalogo/no-catalogo` e `/catalogo/elegiveis`. Como o exportador foi preservado, depois do aceite da página executar `BNT-D12-PDF` antes de liberar `BNT-D13`.
+**Pendência:** nenhuma para `BNT-D12`. Como o exportador foi preservado, `BNT-D12-PDF` foi executado antes de liberar `BNT-D13`.
+
+#### Resultado técnico de `BNT-D12-PDF — Relatório de Catálogo`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual autenticada do documento pendente.
+
+**Estado/causa confirmados:** o exportador preservado em Catálogo ainda gerava um documento claro com identidade Vortek, consultava `catalogo_ml_snapshot` diretamente, ignorava a ordenação da tela e reduzia todos os estados de competição a “Ganhando” ou “Perdendo”. A visão temporária de oportunidades também não integrava o contrato do relatório.
+
+**Mudança realizada:** o relatório passou a usar a identidade dark Bentevi, o logotipo oficial e a mesma hierarquia aprovada na página: anúncio de catálogo, produto Bentevi, relação explícita com produto de catálogo e anúncio padrão, competição e preço/resultado. A primeira página apresenta o fluxo `anúncio padrão → produto de catálogo → anúncio de catálogo`, filtros, ordenação, última análise e métricas do conjunto exportado. O exportador pagina a API canônica `/api/catalogo/no-catalogo`, preserva a amostra protegida e recebe somente os IDs da visão temporária de oportunidades; não consulta tabelas paralelamente nem chama o Mercado Livre.
+
+**Contrato:** a rota interna de download passou de `GET` para `POST` somente leitura, com os filtros na query e `opportunityIds` opcionais no corpo. O retorno continua sendo `application/pdf`, agora com nome `catalogo-mercado-livre-AAAA-MM-DD.pdf`, `Cache-Control: no-store`, metadados Bentevi, quebra de conteúdo longo, continuação de linhas, cabeçalho repetido e paginação. `winning`, `sharing_first_place`, `competing`, `listed` e o legado observado `not_listed` permanecem distinguíveis no documento. “Elegíveis ao catálogo” continua sem exportador e fora desta ação.
+
+**Commit e validação:** `3c16bcb` — `feat(catalogo): redesenhar relatorio Bentevi`, enviado somente para `origin/dev`. Foram aprovados 11 cenários direcionados de Catálogo e PDF; `npm run validate`, `npm run build` com Next.js `16.3.3`, 122 páginas/rotas e `git diff --check` passaram. Depois de reinicializações do controlador cancelarem duas tentativas sem substituir o serviço saudável, o reenvio oficial estável concluiu a action `cmtk5fuub000007rufbpmh65b` com `Success`; a task `npql7pyb1ojsyf8r2vm9dha94` ativou `GIT_SHA=3c16bcbbc15415511c4837c2f04d07067cfa02ba` somente em `vortek-erp-dev`. Health e login responderam `200`, `/catalogo/no-catalogo` respondeu `307` sem sessão e o novo `POST` do exportador respondeu `401` sem sessão. Não houve migration, escrita de banco nem operação autenticada no Mercado Livre.
+
+**Rollback:** reverter `3c16bcb` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, alteração de banco, dado operacional ou integração externa a reverter.
+
+**Pendência:** baixar e aprovar visualmente o PDF autenticado em `/catalogo/no-catalogo`. `BNT-D13` permanece bloqueado até esse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
