@@ -595,11 +595,11 @@ export default function AnunciosPage() {
   };
 
   const queueOptions = useMemo(() => ([
-    { value: 'all', label: `Todos ${queueCounts.total}` },
-    { value: 'active', label: `Ativos ${queueCounts.active}` },
-    { value: 'paused', label: `Pausados ${queueCounts.paused}` },
-    { value: 'quality_risk', label: `Qualidade em risco ${queueCounts.qualityRisk}` },
-    { value: 'price_review', label: `Preço em revisão ${queueCounts.priceReview}` },
+    { value: 'all', label: <span className={styles.quickViewLabel}>Todos <strong className={styles.quickViewCount}>{queueCounts.total}</strong></span> },
+    { value: 'active', label: <span className={styles.quickViewLabel}>Ativos <strong className={styles.quickViewCount}>{queueCounts.active}</strong></span> },
+    { value: 'paused', label: <span className={styles.quickViewLabel}>Pausados <strong className={styles.quickViewCount}>{queueCounts.paused}</strong></span> },
+    { value: 'quality_risk', label: <span className={styles.quickViewLabel}>Qualidade em risco <strong className={styles.quickViewCount}>{queueCounts.qualityRisk}</strong></span> },
+    { value: 'price_review', label: <span className={styles.quickViewLabel}>Preço em revisão <strong className={styles.quickViewCount}>{queueCounts.priceReview}</strong></span> },
   ]), [queueCounts]);
 
   const columns: TableProps<ListingRow>['columns'] = [

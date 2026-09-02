@@ -27,6 +27,13 @@ test('BNT-D11 organiza anúncios por decisão operacional', () => {
   assert.match(styles, /var\(--bentevi-primary/);
 });
 
+test('BNT-D11 separa as contagens dos rótulos nas filas rápidas', () => {
+  assert.match(page, /styles\.quickViewLabel/);
+  assert.equal((page.match(/styles\.quickViewCount/g) || []).length, 5);
+  assert.match(styles, /\.quickViewCount[\s\S]*linear-gradient\(135deg, rgba\(255, 189, 14, 0\.14\), rgba\(255, 189, 14, 0\.02\)\)/);
+  assert.match(styles, /font-variant-numeric: tabular-nums/);
+});
+
 test('BNT-D11 pagina, filtra, resume e ordena em uma única RPC', () => {
   assert.match(route, /rpc\('search_ml_listings_paginated'/);
   assert.doesNotMatch(route, /\.from\('anuncios_ml'\)/);
