@@ -167,11 +167,11 @@ export default function ProductOffersPage() {
   }, [fetchOffers]);
 
   const queueOptions = useMemo(() => ([
-    { value: 'operational', label: `Operacionais ${queueCounts.operational}` },
-    { value: 'alternatives', label: `Alternativas ${queueCounts.alternatives}` },
-    { value: 'problems', label: `Com problema ${queueCounts.problems}` },
-    { value: 'historical', label: `Históricas ${queueCounts.historical}` },
-    { value: 'all', label: `Todas ${queueCounts.all}` },
+    { value: 'operational', label: <span className={styles.quickViewLabel}>Operacionais <strong className={styles.quickViewCount}>{queueCounts.operational}</strong></span> },
+    { value: 'alternatives', label: <span className={styles.quickViewLabel}>Alternativas <strong className={styles.quickViewCount}>{queueCounts.alternatives}</strong></span> },
+    { value: 'problems', label: <span className={styles.quickViewLabel}>Com problema <strong className={styles.quickViewCount}>{queueCounts.problems}</strong></span> },
+    { value: 'historical', label: <span className={styles.quickViewLabel}>Históricas <strong className={styles.quickViewCount}>{queueCounts.historical}</strong></span> },
+    { value: 'all', label: <span className={styles.quickViewLabel}>Todas <strong className={styles.quickViewCount}>{queueCounts.all}</strong></span> },
   ]), [queueCounts]);
 
   const clearFilters = () => {
