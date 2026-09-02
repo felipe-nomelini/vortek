@@ -15,6 +15,7 @@ import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
 import { findMlProductIdentityConflicts } from '@/lib/ml-critical-attributes';
+import { shouldPauseMlListingForIdentityConflicts } from '@/lib/ml-listing-identity';
 
 export const maxDuration = 300;
 
@@ -661,6 +662,23 @@ export async function POST(request: Request) {
                 conflicts: identityConflicts,
               },
             });
+            if (shouldPauseMlListingForIdentityConflicts(item, identityConflicts)) {
+              const identityPauseResult = await pauseListing(String(item.id));
+              if (identityPauseResult.ok) {
+                item = { ...item, status: 'paused' };
+                warnings.push({
+                  code: 'ml_listing_identity_mismatch_paused',
+                  message: `Anúncio ${String(item.id)} pausado automaticamente por divergência material de identidade.`,
+                  context: { mlItemId: String(item.id), produtoId },
+                });
+              } else {
+                warnings.push({
+                  code: 'ml_listing_identity_pause_failed',
+                  message: `Falha ao pausar anúncio ${String(item.id)} após divergência material de identidade: ${identityPauseResult.error || 'erro desconhecido'}`,
+                  context: { mlItemId: String(item.id), produtoId },
+                });
+              }
+            }
             produtoId = null;
             skuLocal = null;
             produto = null;

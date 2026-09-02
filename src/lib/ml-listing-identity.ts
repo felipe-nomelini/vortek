@@ -135,3 +135,11 @@ export function findMlListingIdentityConflicts(
   );
   return conflicts;
 }
+
+export function shouldPauseMlListingForIdentityConflicts(
+  item: any,
+  conflicts: MlListingIdentityConflict[],
+): boolean {
+  return String(item?.status || "").trim().toLowerCase() === "active"
+    && conflicts.length > 0;
+}

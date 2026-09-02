@@ -9,6 +9,7 @@ const {
   extractStrictProductDiameter,
   findMlListingIdentityConflicts,
   mergeMlAttributePrefill,
+  shouldPauseMlListingForIdentityConflicts,
 } = require("../src/lib/ml-listing-identity.ts");
 const {
   applyProductFactsToMlAttribute,
@@ -106,5 +107,26 @@ test("predição ML de 50 cm não sobrescreve evidência local de 30 cm", () => 
       ruleBased: { value_id: "124571", value_name: "30 cm" },
     }),
     { value_id: "124571", value_name: "30 cm" },
+  );
+});
+
+test("pausa anúncio ativo quando existe divergência material de identidade", () => {
+  assert.equal(
+    shouldPauseMlListingForIdentityConflicts(
+      { status: "active" },
+      [{ field: "GTIN", expected: "1", remote: "2" }],
+    ),
+    true,
+  );
+  assert.equal(
+    shouldPauseMlListingForIdentityConflicts(
+      { status: "paused" },
+      [{ field: "GTIN", expected: "1", remote: "2" }],
+    ),
+    false,
+  );
+  assert.equal(
+    shouldPauseMlListingForIdentityConflicts({ status: "active" }, []),
+    false,
   );
 });

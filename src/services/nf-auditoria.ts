@@ -83,6 +83,8 @@ type AuditEvent =
   | 'ml_invoice_data_upload_failed'
   | 'ml_invoice_data_upload_skipped'
   | 'ml_no_shipping_detected'
+  | 'ml_listing_identity_blocked'
+  | 'ml_listing_identity_check_failed'
   | 'ml_fiscal_emission_blocked'
   | 'ml_fiscal_emission_skipped_policy'
   | 'ml_fiscal_sync_ignored'

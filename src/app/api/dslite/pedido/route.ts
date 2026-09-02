@@ -82,6 +82,10 @@ import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
 import {
+  findMlOrderIdentityBlockMatches,
+  type MlOrderIdentityBlockMatch,
+} from "@/lib/ml/order-identity-block";
+import {
   filterPackOrdersBySeller,
   parseMlPackOrderGroup,
   parseMlVirtualKitOrderGroup,
@@ -118,6 +122,38 @@ const ITEM_TOTAL_TOLERANCE = 0.01;
 const STATUS_AGUARDANDO_PAGAMENTO_FORNECEDOR =
   "Aguardando Pagamento Fornecedor";
 const BRASIL_NFE_MAX_CLIENT_NAME_LENGTH = 60;
+
+async function findActiveMlIdentityBlocksForPedidos(
+  client: ReturnType<typeof createServiceClient>,
+  pedidoIds: string[],
+): Promise<
+  | { ok: true; matches: MlOrderIdentityBlockMatch[] }
+  | { ok: false; error: string }
+> {
+  const normalizedPedidoIds = Array.from(
+    new Set(pedidoIds.map(String).map((value) => value.trim()).filter(Boolean)),
+  );
+  if (normalizedPedidoIds.length === 0) return { ok: true, matches: [] };
+
+  const [{ data: items, error: itemsError }, { data: blocks, error: blocksError }] =
+    await Promise.all([
+      client
+        .from("pedido_itens")
+        .select("ml_item_id,seller_sku")
+        .in("pedido_id", normalizedPedidoIds),
+      client
+        .from("ml_manual_blocklist")
+        .select("ml_item_id,sku")
+        .eq("ativo", true),
+    ]);
+
+  if (itemsError) return { ok: false, error: itemsError.message };
+  if (blocksError) return { ok: false, error: blocksError.message };
+  return {
+    ok: true,
+    matches: findMlOrderIdentityBlockMatches(items || [], blocks || []),
+  };
+}
 
 function normalizeSupplierPaymentMode(
   value: unknown,
@@ -2274,6 +2310,48 @@ async function runDsliteCreateJob(
         "success",
         `${operationalOrderGroup.type === "virtual_kit" ? "Kit" : "Carrinho"} sincronizado com ${operationalOrderGroup.orderIds.length} orders`,
       );
+    }
+
+    const identityBlockCheck = await findActiveMlIdentityBlocksForPedidos(
+      client,
+      operationalPedidoIds,
+    );
+    if (!identityBlockCheck.ok || identityBlockCheck.matches.length > 0) {
+      const lookupFailed = !identityBlockCheck.ok;
+      const message = lookupFailed
+        ? "Não foi possível validar o bloqueio de identidade do pedido."
+        : "Pedido bloqueado por divergência de identidade do anúncio.";
+      const matches = identityBlockCheck.ok ? identityBlockCheck.matches : [];
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: syncMlOrderId,
+        evento: lookupFailed
+          ? "ml_listing_identity_check_failed"
+          : "ml_listing_identity_blocked",
+        respostaMl: {
+          pedido_ids: operationalPedidoIds,
+          matches,
+          error: lookupFailed ? identityBlockCheck.error : null,
+        },
+        statusResultante: lookupFailed ? "failed_closed" : "blocked",
+      });
+      await setStep(
+        "validate_fiscal_prechecks",
+        "error",
+        undefined,
+        message,
+      );
+      state = "error";
+      result = {
+        stage: "ml_listing_identity_block",
+        code: lookupFailed
+          ? "ml_listing_identity_check_failed"
+          : "ml_listing_identity_blocked",
+        message,
+        matches,
+      };
+      await syncJob();
+      return;
     }
 
     const mlShippingMode = parseMlOrderShippingMode(mlOrderForShipping);
@@ -5506,6 +5584,36 @@ export async function POST(req: Request) {
     }
 
     const client = createServiceClient();
+    const identityPreflight = await findActiveMlIdentityBlocksForPedidos(
+      client,
+      [String(pedidoId)],
+    );
+    if (!identityPreflight.ok) {
+      return NextResponse.json(
+        {
+          error: "Não foi possível validar o bloqueio de identidade do pedido.",
+          code: "ml_listing_identity_check_failed",
+        },
+        { status: 503 },
+      );
+    }
+    if (identityPreflight.matches.length > 0) {
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        evento: "ml_listing_identity_blocked",
+        respostaMl: { matches: identityPreflight.matches },
+        statusResultante: "blocked",
+      });
+      return NextResponse.json(
+        {
+          error: "Pedido bloqueado por divergência de identidade do anúncio.",
+          code: "ml_listing_identity_blocked",
+          matches: identityPreflight.matches,
+        },
+        { status: 409 },
+      );
+    }
     const fulfillmentRead = await (client as any)
       .from('pedidos')
       .select('fulfillment_source')
