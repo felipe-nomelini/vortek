@@ -2147,6 +2147,24 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Fechamento pós-aprovação em `2026-09-01`:** o commit `b899f18` removeu integralmente o módulo de amostra, o desvio que evitava `/api/perguntas` e todas as condições específicas de fixture. A página voltou a consultar exclusivamente a API real do Mercado Livre e o envio permanece disponível somente para perguntas reais elegíveis. O teste direcionado aprovou 7/7 cenários; `npm run validate`, `npm run build` com 126 páginas/rotas e `git diff --check` foram aprovados. Os dois primeiros webhooks se sobrepuseram durante uma reinicialização do controlador Easypanel e cancelaram o build na exportação da imagem; após confirmar por leitura que não havia build ativo, a action oficial `cmtjep0nk000007nz1sek758k` concluiu com sucesso e a task `iewuvv43ppzc` ativou `GIT_SHA=b899f18329d72b8dec90a21883c0fbad33d19e82` somente em `vortek-erp-dev`. O artefato publicado não contém `BNT_D06_VISUAL_REVIEW`, contém a indicação da fonte real, health e login responderam `200`, `/perguntas` respondeu `307` sem sessão e `/api/perguntas` respondeu `401`. Nenhuma pergunta ou resposta autenticada foi enviada ao Mercado Livre.
 
+#### Resultado técnico de `BNT-D07 — Produtos`
+
+**Situação:** implementado e publicado em homologação em `2026-09-01`; aprovação visual do usuário e `BNT-D07-PDF` permanecem pendentes, portanto a ação ainda não está encerrada.
+
+**Estado/causa confirmados:** `/produtos` misturava uma grade cadastral extensa, edição de preço dentro da célula e o fluxo completo de publicação do Mercado Livre no mesmo contexto visual. Estoque, fornecedor, custo, preço, lucro e anúncio estavam distribuídos em colunas isoladas, enquanto a lista reutilizava o saldo agregado legado e não expunha a capacidade canônica de fulfillment (`Q segura`).
+
+**Mudança realizada:** a página passou a ser uma central operacional Bentevi, com filas rápidas, busca, filtros remotos avançados, resumo compacto, tabela orientada à decisão e cartões responsivos. Cada produto reúne identidade, SKU, marca, kit e situação; disponibilidade com `Q segura` e separação interno/fornecedor; fornecedor preferencial e ofertas; preço, custo efetivo, lucro e margem; estado e ID do anúncio ML; e uma ação primária contextual. A listagem agora recebe do backend a capacidade canônica em lote por meio de `loadProductFulfillmentCapacities`, sem recalcular estoque no navegador. A edição cadastral continua no detalhe do produto e a publicação foi retirada do contexto da tabela para um `Drawer` amplo com estágios explícitos, preservando os contratos e chamadas existentes.
+
+**Commit funcional:** `ed183b2` — `feat(produtos): criar central operacional Bentevi`, enviado somente para `origin/dev`.
+
+**Validação:** 53/53 cenários direcionados aprovados, incluindo seis novos cenários de `BNT-D07`; `npm run validate`, `npm run build` com Next.js `16.3.3`, 126 páginas/rotas e `git diff --check` aprovados. Depois de confirmar que os webhooks iniciais não haviam criado nova action após a reinicialização do controlador, o reenvio oficial criou a action `cmtjfnqgb000007l8bfcvefc2`, concluída com `Success`; a task `3k6qms98vpsbhhbegvsv1935o` ativou `GIT_SHA=ed183b27cce98e76a3acb26a020495a444cf783f` somente em `vortek-erp-dev`. Health e login responderam `200`, `/produtos` respondeu `307` sem sessão e as APIs de lista e resumo responderam `401` sem sessão.
+
+**Migration/banco:** N/A; nenhuma consulta, escrita ou migration de banco foi executada.
+
+**Rollback:** reverter `ed183b2` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** validar visualmente `/produtos` em homologação e decidir/implementar `BNT-D07-PDF` antes de marcar `BNT-D07` como concluída. Não iniciar `BNT-D08` antes desse aceite.
+
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
 Não iniciar web celular antes de `BNT-D01` a `BNT-D24` estarem aprovados.
