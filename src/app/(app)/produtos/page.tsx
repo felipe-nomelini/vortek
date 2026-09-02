@@ -1598,18 +1598,13 @@ export default function ProductsPage() {
           <Button icon={<ReloadOutlined />} loading={loading} onClick={() => { void fetchProducts(); void fetchStats(); }}>
             Atualizar
           </Button>
-          <Tooltip title={visualReview ? 'Exportação desabilitada para a amostra protegida' : undefined}>
-            <span>
-              <Button
-                icon={<FilePdfOutlined />}
-                loading={exportingPdf}
-                disabled={Boolean(visualReview)}
-                onClick={() => void handleExportPdf()}
-              >
-                Exportar PDF
-              </Button>
-            </span>
-          </Tooltip>
+          <Button
+            icon={<FilePdfOutlined />}
+            loading={exportingPdf}
+            onClick={() => void handleExportPdf()}
+          >
+            Exportar PDF
+          </Button>
         </Space>
       </header>
 
@@ -1619,7 +1614,7 @@ export default function ProductsPage() {
           type="warning"
           showIcon
           message="Amostra real de produção, somente leitura"
-          description={`Recorte protegido com ${visualReview.itemCount} produtos para validação visual. Ações, navegação e exportação estão desabilitadas.`}
+          description={`Recorte protegido com ${visualReview.itemCount} produtos para validação visual. Ações e navegação estão desabilitadas; o relatório PDF permanece disponível em modo somente leitura.`}
         />
       )}
 

@@ -96,8 +96,8 @@ test('BNT-D07 usa amostra real temporária sem criar produtos operacionais', () 
 
 test('BNT-D07 bloqueia ações e navegação durante a revisão protegida', () => {
   assert.match(page, /Amostra real de produção, somente leitura/);
-  assert.match(page, /Ações, navegação e exportação estão desabilitadas/);
-  assert.match(page, /disabled=\{Boolean\(visualReview\)\}/);
+  assert.match(page, /Ações e navegação estão desabilitadas; o relatório PDF permanece disponível em modo somente leitura/);
+  assert.match(page, /if \(visualReview\) \{[\s\S]*?<Button size="small" disabled/);
   assert.match(page, /if \(visualReview\) \{[\s\S]*?primary\.label/);
   assert.match(page, /Ação desabilitada na amostra protegida/);
   assert.match(page, /visualReview \? \([\s\S]*?productNameReadonly/);
