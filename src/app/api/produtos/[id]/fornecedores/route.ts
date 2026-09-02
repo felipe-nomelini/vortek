@@ -4,6 +4,10 @@ import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/pr
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
+import {
+  findBntD07VisualReviewItem,
+  loadBntD07VisualReview,
+} from '@/lib/products/bnt-d07-visual-review';
 
 type KitComponentDetail = {
   sku: string;
@@ -20,6 +24,32 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+
+  const visualReview = await loadBntD07VisualReview();
+  const fixture = visualReview
+    ? findBntD07VisualReviewItem(visualReview, params.id)
+    : null;
+  if (fixture) {
+    const offers = Array.isArray(fixture.supplierOffers) && fixture.supplierOffers.length > 0
+      ? fixture.supplierOffers
+      : fixture.preferredOffer
+        ? [fixture.preferredOffer]
+        : [];
+    const preferredOffer = offers.find((offer) => offer.preferred) || fixture.preferredOffer;
+    const manualSelection = Boolean(
+      fixture.product.fornecedor_preferencial_manual
+      || preferredOffer?.preferred_manual,
+    );
+    return NextResponse.json({
+      data: offers,
+      selection_mode: manualSelection ? 'manual' : 'automatic',
+      preferred_offer_id: preferredOffer?.id || null,
+      visualReview: visualReview?.metadata,
+    });
+  }
+  if (params.id.startsWith('bnt-d07-review-')) {
+    return NextResponse.json({ error: 'Produto da amostra não encontrado' }, { status: 404 });
+  }
 
   const service = createServiceClient();
   const [{ data: product, error: productError }, { data: offers, error: offersError }] = await Promise.all([
@@ -200,6 +230,12 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+  if (params.id.startsWith('bnt-d07-review-')) {
+    return NextResponse.json({
+      error: 'A amostra de homologação é somente leitura.',
+      code: 'homologation_fixture_read_only',
+    }, { status: 403 });
+  }
 
   const body = await request.json().catch(() => ({}));
   const offerId = String(body?.offerId || '').trim();

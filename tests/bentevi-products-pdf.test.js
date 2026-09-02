@@ -79,7 +79,7 @@ test('BNT-D07-PDF preserva filtros, conteúdo longo, continuação e download', 
 });
 
 test('BNT-D07-PDF permite somente o relatório da amostra protegida', () => {
-  assert.match(page, /o relatório PDF permanece disponível em modo somente leitura/);
+  assert.match(page, /O detalhe e o relatório PDF estão disponíveis somente para leitura/);
   assert.match(page, /onClick=\{\(\) => void handleExportPdf\(\)\}/);
   const pdfButtonStart = page.indexOf('icon={<FilePdfOutlined />}');
   const pdfButtonEnd = page.indexOf('</Button>', pdfButtonStart);
@@ -88,5 +88,5 @@ test('BNT-D07-PDF permite somente o relatório da amostra protegida', () => {
     page.slice(pdfButtonStart, pdfButtonEnd),
     /disabled=/,
   );
-  assert.match(page, /Ação desabilitada na amostra protegida de homologação/);
+  assert.match(page, /Demais ações desabilitadas na amostra protegida/);
 });

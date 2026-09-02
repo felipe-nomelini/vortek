@@ -7,10 +7,11 @@ const PRODUCTS_KEY = 'bnt_d07_visual_review_products';
 const EXPECTED_SOURCE = 'production-read-only';
 const EXPECTED_VERSION = 1;
 
-type VisualReviewItem = {
+export type VisualReviewItem = {
   product: Record<string, any>;
   mlListings?: Array<Record<string, any>>;
   preferredOffer: Record<string, any> | null;
+  supplierOffers?: Array<Record<string, any>>;
   offersCount: number;
   fulfillmentCapacity: {
     internal: number;
@@ -126,6 +127,13 @@ export async function loadBntD07VisualReview(): Promise<BntD07VisualReview | nul
     suppliers,
     items: payload.items,
   };
+}
+
+export function findBntD07VisualReviewItem(
+  review: BntD07VisualReview,
+  productId: string,
+) {
+  return review.items.find((item) => String(item.product.id || '') === productId) || null;
 }
 
 function pricingFor(item: VisualReviewItem, taxRate: number) {

@@ -12,6 +12,7 @@ const listRoute = read('src/app/api/produtos/route.ts');
 const summaryRoute = read('src/app/api/produtos/resumo/route.ts');
 const visualReview = read('src/lib/products/bnt-d07-visual-review.ts');
 const priceRoute = read('src/app/api/ml/anuncio/atualizar-preco/route.ts');
+const listingLoader = read('src/lib/ml/product-listings.ts');
 
 test('BNT-D07 organiza produtos por decisão operacional', () => {
   for (const title of ['Produto', 'Disponibilidade', 'Fornecimento', 'Comercial', 'Rentabilidade', 'Mercado Livre', 'Ações']) {
@@ -94,20 +95,20 @@ test('BNT-D07 usa amostra real temporária sem criar produtos operacionais', () 
   assert.doesNotMatch(visualReview, /\.upsert\(/);
 });
 
-test('BNT-D07 bloqueia ações e navegação durante a revisão protegida', () => {
+test('BNT-D07 permite somente detalhe e PDF durante a revisão protegida', () => {
   assert.match(page, /Amostra real de produção, somente leitura/);
-  assert.match(page, /Ações e navegação estão desabilitadas; o relatório PDF permanece disponível em modo somente leitura/);
-  assert.match(page, /if \(visualReview\) \{[\s\S]*?<Button size="small" disabled/);
-  assert.match(page, /if \(visualReview\) \{[\s\S]*?primary\.label/);
-  assert.match(page, /Ação desabilitada na amostra protegida/);
-  assert.match(page, /visualReview \? \([\s\S]*?productNameReadonly/);
-  assert.match(page, /visualReview \? \([\s\S]*?mobileProductNameReadonly/);
+  assert.match(page, /O detalhe e o relatório PDF estão disponíveis somente para leitura/);
+  assert.match(page, /if \(visualReview\) \{[\s\S]*?router\.push\(`\/produtos\/\$\{record\.product\.id\}`\)/);
+  assert.match(page, /Demais ações desabilitadas na amostra protegida/);
+  assert.doesNotMatch(page, /visualReview \? \([\s\S]*?productNameReadonly/);
+  assert.doesNotMatch(page, /visualReview \? \([\s\S]*?mobileProductNameReadonly/);
   assert.match(page, /if \(visualReview\) \{[\s\S]*?amostra de homologação é somente leitura/);
 });
 
 test('BNT-D07 representa anúncios padrão e catálogo sem multiplicar tags', () => {
-  assert.match(listRoute, /from\('anuncios_ml'\)/);
-  assert.match(listRoute, /from\('catalogo_ml_snapshot'\)/);
+  assert.match(listRoute, /loadProductMlListings/);
+  assert.match(listingLoader, /from\('anuncios_ml'\)/);
+  assert.match(listingLoader, /from\('catalogo_ml_snapshot'\)/);
   assert.match(listRoute, /mlListings: mlListingsByProductId\.get\(productId\) \|\| \[\]/);
   assert.match(page, /listing\.type === 'catalog' \? 'Catálogo' : 'Padrão'/);
   assert.match(page, /listing\.catalogStatus === 'ganhando'/);

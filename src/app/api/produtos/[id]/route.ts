@@ -1,19 +1,43 @@
 import { NextResponse } from 'next/server';
-import { createServiceClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { assertVortekSku } from '@/lib/product-master-sku';
-import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import { loadProductFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity-loader';
-import {
-  operationalMlStatus,
-  selectOperationalMlListing,
-} from '@/lib/ml/operational-listing';
 import { loadPricingTaxContext } from '@/services/pricing-tax-context';
+import { loadProductMlListings } from '@/lib/ml/product-listings';
+import {
+  findBntD07VisualReviewItem,
+  loadBntD07VisualReview,
+} from '@/lib/products/bnt-d07-visual-review';
 
 export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   try {
+    const auth = await createClient();
+    const { data: { user } } = await auth.auth.getUser();
+    if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+
     const supabase = createServiceClient();
+    const pricingTaxContext = await loadPricingTaxContext(supabase);
+    const visualReview = await loadBntD07VisualReview();
+    const fixture = visualReview
+      ? findBntD07VisualReviewItem(visualReview, params.id)
+      : null;
+
+    if (fixture) {
+      return NextResponse.json({
+        data: fixture.product,
+        pricingTaxContext,
+        fulfillmentCapacity: fixture.fulfillmentCapacity,
+        mlListings: Array.isArray(fixture.mlListings) ? fixture.mlListings : [],
+        isKit: fixture.isKit,
+        visualReview: visualReview?.metadata,
+      });
+    }
+    if (params.id.startsWith('bnt-d07-review-')) {
+      return NextResponse.json({ error: 'Produto da amostra não encontrado' }, { status: 404 });
+    }
+
     const { data, error } = await supabase
       .from('produtos')
       .select('*')
@@ -27,36 +51,39 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
       );
     }
 
-    const [movementsResult, listingsResult] = await Promise.all([
+    const [capacity, listingsByProductId, kitResult] = await Promise.all([
+      loadProductFulfillmentCapacity(supabase, String(data.id)),
+      loadProductMlListings(supabase, [String(data.id)]),
       (supabase as any)
-        .from('estoque_interno_movimentacoes')
-        .select('tipo,quantidade,situacao_estoque,estornada_em')
-        .eq('produto_id', data.id),
-      supabase
-        .from('catalogo_ml_snapshot')
-        .select('ml_item_id,status,catalog_listing')
-        .eq('produto_id', data.id),
+        .from('produto_kits')
+        .select('produto_id')
+        .eq('produto_id', data.id)
+        .maybeSingle(),
     ]);
-    if (movementsResult.error) throw new Error(movementsResult.error.message);
-    if (listingsResult.error) throw new Error(listingsResult.error.message);
+    if (kitResult.error) throw new Error(kitResult.error.message);
 
-    const internalStock = Math.max(0, calcularSaldoEstoqueInterno(movementsResult.data || []));
-    const supplierStock = Number(data.estoque || 0);
-    const operationalListing = selectOperationalMlListing(listingsResult.data || []);
+    const listings = listingsByProductId.get(String(data.id)) || [];
+    const operationalListing = listings[0] || null;
     const resolvedData: any = {
       ...data,
-      estoque_operacional: Math.max(supplierStock, internalStock),
-      estoque_fornecedor: supplierStock,
-      estoque_interno: internalStock,
-      fornecedor_operacional: internalStock > 0 ? 'Estoque Interno' : data.fornecedor,
-      ml_item_id_operacional: operationalListing?.ml_item_id || data.ml_item_id,
+      estoque_operacional: capacity.safe,
+      estoque_fornecedor: capacity.supplier,
+      estoque_interno: capacity.internal,
+      fornecedor_operacional: capacity.internal > 0 ? 'Estoque Interno' : data.fornecedor,
+      ml_item_id_operacional: operationalListing?.itemId || data.ml_item_id,
       ml_status_operacional: operationalListing
-        ? operationalMlStatus(operationalListing)
+        ? (operationalListing.status === 'ativo' ? 'ativo' : 'pausado')
         : data.ml_status,
     };
 
-    const pricingTaxContext = await loadPricingTaxContext(supabase);
-    return NextResponse.json({ data: resolvedData, pricingTaxContext });
+    return NextResponse.json({
+      data: resolvedData,
+      pricingTaxContext,
+      fulfillmentCapacity: capacity,
+      mlListings: listings,
+      isKit: Boolean(kitResult.data?.produto_id),
+      visualReview: null,
+    });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
@@ -65,6 +92,16 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
 export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   try {
+    const auth = await createClient();
+    const { data: { user } } = await auth.auth.getUser();
+    if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
+    if (params.id.startsWith('bnt-d07-review-')) {
+      return NextResponse.json({
+        error: 'A amostra de homologação é somente leitura.',
+        code: 'homologation_fixture_read_only',
+      }, { status: 403 });
+    }
+
     const body = await req.json();
     const supabase = createServiceClient();
 

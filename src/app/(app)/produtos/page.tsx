@@ -1324,9 +1324,9 @@ export default function ProductsPage() {
     if (visualReview) {
       return (
         <div className={styles.actionCell}>
-          <Tooltip title="Ação desabilitada na amostra protegida de homologação">
-            <Button size="small" disabled icon={primary.icon}>{primary.label}</Button>
-          </Tooltip>
+          <Button size="small" icon={<ArrowRightOutlined />} onClick={() => router.push(`/produtos/${record.product.id}`)}>
+            Ver produto
+          </Button>
           <Tooltip title="Demais ações desabilitadas na amostra protegida">
             <Button aria-label="Mais ações do produto" size="small" disabled icon={<EllipsisOutlined />} />
           </Tooltip>
@@ -1398,13 +1398,9 @@ export default function ProductsPage() {
             preview={false}
           />
           <div className={styles.productIdentity}>
-            {visualReview ? (
-              <span className={styles.productNameReadonly}>{record.product.name}</span>
-            ) : (
-              <button className={styles.productLink} onClick={() => router.push(`/produtos/${record.product.id}`)}>
-                {record.product.name}
-              </button>
-            )}
+            <button className={styles.productLink} onClick={() => router.push(`/produtos/${record.product.id}`)}>
+              {record.product.name}
+            </button>
             <div className={styles.productMeta}>
               <span>SKU {record.product.sku}</span>
               {record.product.brand && <span>{record.product.brand}</span>}
@@ -1614,7 +1610,7 @@ export default function ProductsPage() {
           type="warning"
           showIcon
           message="Amostra real de produção, somente leitura"
-          description={`Recorte protegido com ${visualReview.itemCount} produtos para validação visual. Ações e navegação estão desabilitadas; o relatório PDF permanece disponível em modo somente leitura.`}
+          description={`Recorte protegido com ${visualReview.itemCount} produtos para validação visual. O detalhe e o relatório PDF estão disponíveis somente para leitura; ações operacionais permanecem desabilitadas.`}
         />
       )}
 
@@ -1701,11 +1697,7 @@ export default function ProductsPage() {
                 <div className={styles.cardHeader}>
                   <AntImage width={52} height={52} src={record.product.images[0]} fallback="/branding/bentevi/bentevi-mark.png" preview={false} />
                   <div>
-                    {visualReview ? (
-                      <span className={styles.mobileProductNameReadonly}>{record.product.name}</span>
-                    ) : (
-                      <button onClick={() => router.push(`/produtos/${record.product.id}`)}>{record.product.name}</button>
-                    )}
+                    <button onClick={() => router.push(`/produtos/${record.product.id}`)}>{record.product.name}</button>
                     <span>SKU {record.product.sku}{record.isKit ? ' · Kit' : ''}</span>
                   </div>
                   <Tag color={mlStatusColor[record.product.mlStatus]}>{mlStatusLabel[record.product.mlStatus]}</Tag>
