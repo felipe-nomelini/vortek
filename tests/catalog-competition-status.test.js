@@ -12,7 +12,7 @@ test("mostra sem catálogo quando o anúncio não pertence ao catálogo", () => 
   );
 });
 
-test("considera winning e sharing_first_place como ganhando", () => {
+test("mantém o resumo legado de vitória para consumidores existentes", () => {
   assert.equal(
     resolveCatalogCompetitionStatus({ catalogListing: true, buyBoxStatus: "winning" }),
     "ganhando",
@@ -23,7 +23,7 @@ test("considera winning e sharing_first_place como ganhando", () => {
   );
 });
 
-test("distingue competindo dos demais estados perdedores", () => {
+test("mantém o resumo legado de competição para consumidores existentes", () => {
   assert.equal(
     resolveCatalogCompetitionStatus({
       catalogListing: true,

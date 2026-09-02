@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { applyNoCatalogFilters, parseNoCatalogFilters, resolveCatalogDisplaySku } from '@/lib/catalogo/no-catalogo';
+import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
+import { listBntD12CatalogVisualReview } from '@/lib/catalogo/visual-review';
 import type { Database } from '@/types/database';
 
 type SnapshotRow = Database['public']['Tables']['catalogo_ml_snapshot']['Row'];
@@ -18,8 +20,26 @@ export async function GET(request: Request) {
   const to = from + pageSize - 1;
   const sellerIdParam = searchParams.get('sellerId');
   const sellerId = sellerIdParam !== null ? Number(sellerIdParam) : null;
-
   const filters = parseNoCatalogFilters(searchParams);
+  const sortByParam = String(searchParams.get('sortBy') || 'ml_item_id');
+  const sortBy = new Set(['ml_item_id', 'title', 'status', 'price', 'price_to_win', 'buy_box_status']).has(sortByParam)
+    ? sortByParam
+    : 'ml_item_id';
+  const ascending = searchParams.get('sortOrder') === 'asc';
+
+  const visualReview = await loadBntD07VisualReview();
+  if (visualReview) {
+    return NextResponse.json(listBntD12CatalogVisualReview({
+      review: visualReview,
+      search: filters.search,
+      statusMl: filters.statusMl,
+      competition: filters.buyBox,
+      priceMin: filters.priceMin,
+      priceMax: filters.priceMax,
+      page,
+      pageSize,
+    }));
+  }
 
   let countQuery: any = service
     .from('catalogo_ml_snapshot')
@@ -29,10 +49,34 @@ export async function GET(request: Request) {
     countQuery = countQuery.eq('seller_id', sellerId);
   }
   countQuery = applyNoCatalogFilters(countQuery, filters);
-  const { count, error: countError } = await countQuery.range(0, 0);
+  const metricsFilters = { ...filters, buyBox: 'all' as const };
+  const metricsQuery = (competition?: string) => {
+    let query: any = service
+      .from('catalogo_ml_snapshot')
+      .select('id', { count: 'exact', head: false })
+      .eq('catalog_listing', true);
+    if (sellerId !== null && Number.isFinite(sellerId)) query = query.eq('seller_id', sellerId);
+    query = applyNoCatalogFilters(query, metricsFilters);
+    if (competition === 'winning') query = query.eq('buy_box_status', 'winning');
+    if (competition === 'sharing_first_place') query = query.eq('buy_box_status', 'sharing_first_place');
+    if (competition === 'competing') query = query.eq('buy_box_status', 'competing');
+    if (competition === 'outside') query = query.in('buy_box_status', ['listed', 'not_listed']);
+    return query.range(0, 0);
+  };
+  const [countResult, totalMetric, winningMetric, sharingMetric, competingMetric, outsideMetric] = await Promise.all([
+    countQuery.range(0, 0),
+    metricsQuery(),
+    metricsQuery('winning'),
+    metricsQuery('sharing_first_place'),
+    metricsQuery('competing'),
+    metricsQuery('outside'),
+  ]);
+  const { count, error: countError } = countResult;
   if (countError) {
     return NextResponse.json({ erro: countError.message }, { status: 500 });
   }
+  const metricsError = totalMetric.error || winningMetric.error || sharingMetric.error || competingMetric.error || outsideMetric.error;
+  if (metricsError) return NextResponse.json({ erro: metricsError.message }, { status: 500 });
 
   let dataQuery: any = service
     .from('catalogo_ml_snapshot')
@@ -43,14 +87,28 @@ export async function GET(request: Request) {
   }
   dataQuery = applyNoCatalogFilters(dataQuery, filters);
   const { data, error } = await dataQuery
-    .order('ml_item_id', { ascending: false })
+    .order(sortBy, { ascending, nullsFirst: false })
     .range(from, to);
 
   if (error) {
     return NextResponse.json({ erro: error.message }, { status: 500 });
   }
 
-  const rows = ((data || []) as SnapshotRow[]).map((row) => ({
+  const snapshotRows = (data || []) as SnapshotRow[];
+  const productIds = Array.from(new Set(snapshotRows.map((row) => row.produto_id).filter(Boolean))) as string[];
+  const relatedIds = Array.from(new Set(snapshotRows.map((row) => row.related_item_id).filter(Boolean))) as string[];
+  const [{ data: products }, { data: relatedListings }] = await Promise.all([
+    productIds.length
+      ? service.from('produtos').select('id,sku,nome').in('id', productIds)
+      : Promise.resolve({ data: [] }),
+    relatedIds.length
+      ? service.from('anuncios_ml').select('ml_item_id,status').in('ml_item_id', relatedIds)
+      : Promise.resolve({ data: [] }),
+  ]);
+  const productsById = new Map((products || []).map((product: any) => [String(product.id), product]));
+  const relatedById = new Map((relatedListings || []).map((listing: any) => [String(listing.ml_item_id), listing]));
+
+  const rows = snapshotRows.map((row) => ({
     anuncio_id: row.ml_item_id,
     ml_item_id: row.ml_item_id,
     relacionado_id: row.related_item_id,
@@ -59,6 +117,8 @@ export async function GET(request: Request) {
     seller_sku: row.seller_sku,
     sku_local: resolveCatalogDisplaySku({ skuLocal: row.sku_local, sellerSku: row.seller_sku }),
     produto_id: row.produto_id,
+    produto_nome: productsById.get(String(row.produto_id || ''))?.nome || row.title || '',
+    related_status: relatedById.get(String(row.related_item_id || ''))?.status || null,
     catalog_product_id: row.catalog_product_id,
     status: row.status,
     buy_box_status: row.buy_box_status,
@@ -90,5 +150,14 @@ export async function GET(request: Request) {
     total: count || 0,
     page,
     pageSize,
+    metrics: {
+      total: totalMetric.count || 0,
+      winning: winningMetric.count || 0,
+      sharingFirstPlace: sharingMetric.count || 0,
+      competing: competingMetric.count || 0,
+      outside: outsideMetric.count || 0,
+    },
+    lastSyncedAt: snapshotRows.map((row) => row.synced_at).filter(Boolean).sort().at(-1) || null,
+    visualReview: null,
   });
 }

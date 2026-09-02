@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
+import { classifyCatalogEligibility } from '@/lib/catalogo/dashboard';
+import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
+import { listBntD12EligibleVisualReview } from '@/lib/catalogo/visual-review';
 
 const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
@@ -61,19 +64,6 @@ function hasReadyForOptInVariation(variations: unknown): boolean {
 function isReadyForCatalogOptIn(row: any): boolean {
   return String(row?.eligibility_status || '').toUpperCase() === 'READY_FOR_OPTIN'
     || hasReadyForOptInVariation(row?.variation_eligibility);
-}
-
-function hasReliableSuggestedCatalogProduct(row: any): boolean {
-  return Boolean(row?.catalog_product_id_sugerido)
-    && String(row?.catalog_product_match_source || '') === 'attributes_search'
-    && Number(row?.catalog_product_match_score || 0) >= MIN_RELIABLE_CATALOG_MATCH_SCORE;
-}
-
-function isActionableForCatalogOptIn(row: any): boolean {
-  if (!isReadyForCatalogOptIn(row)) return false;
-  if (String(row?.catalog_product_status || '').toLowerCase() !== 'active') return false;
-  if (row?.catalog_product_warning) return hasReliableSuggestedCatalogProduct(row);
-  return Boolean(row?.catalog_product_id);
 }
 
 function getEligibilityItemId(row: any): string {
@@ -267,7 +257,7 @@ async function fetchItemsMap(itemIds: string[]): Promise<Map<string, any>> {
 
   await runPool(chunk(uniqueIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
     const result = await fetchMLResult<Array<{ code: number; body?: any }>>(
-      `/items?ids=${itemIdChunk.map(encodeURIComponent).join(',')}&attributes=id,title,seller_custom_field,attributes,status,price,permalink,thumbnail,category_id,domain_id,catalog_product_id,last_updated`,
+      `/items?ids=${itemIdChunk.map(encodeURIComponent).join(',')}&attributes=id,title,seller_custom_field,attributes,status,price,permalink,thumbnail,category_id,domain_id,catalog_product_id,variations,last_updated`,
     );
     if (!result.ok || !Array.isArray(result.data)) return;
 
@@ -343,8 +333,25 @@ export async function GET(request: Request) {
   const pageSize = Math.min(100, Math.max(1, Number(searchParams.get('pageSize') || 50)));
   const search = (searchParams.get('search') || '').trim().toLowerCase();
   const statusMl = (searchParams.get('statusMl') || 'all').trim().toLowerCase();
+  const actionState = (searchParams.get('actionState') || 'all').trim().toLowerCase();
   const priceMin = searchParams.get('priceMin');
   const priceMax = searchParams.get('priceMax');
+
+  const parsedMin = priceMin !== null && Number.isFinite(Number(priceMin)) ? Number(priceMin) : null;
+  const parsedMax = priceMax !== null && Number.isFinite(Number(priceMax)) ? Number(priceMax) : null;
+  const visualReview = await loadBntD07VisualReview();
+  if (visualReview) {
+    return NextResponse.json(listBntD12EligibleVisualReview({
+      review: visualReview,
+      search,
+      statusMl,
+      actionState,
+      priceMin: parsedMin,
+      priceMax: parsedMax,
+      page,
+      pageSize,
+    }));
+  }
 
   const meResult = await fetchMLResult<{ id: number }>('/users/me');
   if (!meResult.ok || !meResult.data?.id) {
@@ -398,7 +405,7 @@ export async function GET(request: Request) {
     const service = createServiceClient();
     const { data } = await service
       .from('produtos')
-      .select('sku,nome,descricao,gtin')
+      .select('id,sku,nome,descricao,gtin')
       .in('sku', Array.from(new Set(localSkuMap.values())));
     for (const product of data || []) {
       const sku = String(product?.sku || '').trim();
@@ -412,7 +419,14 @@ export async function GET(request: Request) {
       if (!item) return null;
       const el = eligibilityMap.get(itemId) || {};
       const rowStatus = String(el.status || '').toUpperCase();
-      const variations = Array.isArray(el.variations) ? el.variations : [];
+      const itemVariations = Array.isArray(item.variations) ? item.variations : [];
+      const variations = (Array.isArray(el.variations) ? el.variations : []).map((variation: any) => {
+        const itemVariation = itemVariations.find((candidate: any) => String(candidate?.id) === String(variation?.id));
+        return {
+          ...variation,
+          catalog_product_id: itemVariation?.catalog_product_id || variation?.catalog_product_id || null,
+        };
+      });
       const isVariationReady = hasReadyForOptInVariation(variations);
       const hasCatalogLink = Boolean(item.catalog_product_id || rowStatus);
       const sellerSku = getSellerSkuFromItem(item) || localSkuMap.get(itemId) || null;
@@ -422,6 +436,8 @@ export async function GET(request: Request) {
         ml_item_id: String(item.id),
         title: item.title || '',
         seller_sku: sellerSku,
+        local_product_id: localProductsBySku.get(String(sellerSku || '').trim())?.id || null,
+        local_product_name: localProductsBySku.get(String(sellerSku || '').trim())?.nome || null,
         status: item.status || null,
         status_label: getStatusLabel(item.status || null, hasCatalogLink),
         price: Number(item.price || 0),
@@ -429,7 +445,9 @@ export async function GET(request: Request) {
         thumbnail: item.thumbnail || null,
         category_id: item.category_id || null,
         domain_id: item.domain_id || null,
-        catalog_product_id: item.catalog_product_id || null,
+        catalog_product_id: item.catalog_product_id
+          || variations.find((variation: any) => variation.catalog_product_id)?.catalog_product_id
+          || null,
         eligibility_status: effectiveEligibilityStatus,
         eligibility_label: getEligibilityLabel(effectiveEligibilityStatus),
         buy_box_eligible: Boolean(el.buy_box_eligible),
@@ -441,17 +459,16 @@ export async function GET(request: Request) {
     .filter(Boolean) as any[];
 
   const readyForOptInBeforeFilters = rows.filter(isReadyForCatalogOptIn).length;
-  rows = rows.filter(isReadyForCatalogOptIn);
 
-  const catalogProducts = await fetchCatalogProducts(
-    rows.map((row) => row.catalog_product_id).filter(Boolean),
-  );
-  rows = rows
-    .map((row) => ({
-      ...row,
-      catalog_product_status: String(catalogProducts.get(String(row.catalog_product_id || ''))?.status || '').toLowerCase() || null,
-    }))
-    .filter((row) => row.catalog_product_status === 'active');
+  const catalogProducts = await fetchCatalogProducts(rows.flatMap((row) => [
+    row.catalog_product_id,
+    ...(row.variation_eligibility || []).map((variation: any) => variation.catalog_product_id),
+  ]).filter(Boolean));
+  rows = rows.map((row) => ({
+    ...row,
+    catalog_product_name: catalogProducts.get(String(row.catalog_product_id || ''))?.name || null,
+    catalog_product_status: String(catalogProducts.get(String(row.catalog_product_id || ''))?.status || '').toLowerCase() || null,
+  }));
 
   await runPool(rows, CATALOG_FALLBACK_CONCURRENCY, async (row) => {
     const item = rowsById.get(row.ml_item_id);
@@ -473,9 +490,9 @@ export async function GET(request: Request) {
     row.catalog_product_warning = suggestion.warning;
   });
 
-  const activeCatalogProductsBeforeActionableFilter = rows.length;
+  const activeCatalogProductsBeforeActionableFilter = rows.filter((row) => row.catalog_product_status === 'active').length;
   const suggestedCatalogProductsBeforeFilters = rows.filter((row) => row.catalog_product_id_sugerido).length;
-  rows = rows.filter(isActionableForCatalogOptIn);
+  rows = rows.map((row) => ({ ...row, ...classifyCatalogEligibility(row) }));
 
   if (search) {
     rows = rows.filter((row) => {
@@ -496,10 +513,17 @@ export async function GET(request: Request) {
     });
   }
 
-  const min = priceMin !== null ? Number(priceMin) : null;
-  const max = priceMax !== null ? Number(priceMax) : null;
-  if (min !== null && !Number.isNaN(min)) rows = rows.filter((r) => Number(r.price || 0) >= min);
-  if (max !== null && !Number.isNaN(max)) rows = rows.filter((r) => Number(r.price || 0) <= max);
+  if (parsedMin !== null) rows = rows.filter((r) => Number(r.price || 0) >= parsedMin);
+  if (parsedMax !== null) rows = rows.filter((r) => Number(r.price || 0) <= parsedMax);
+
+  const metrics = {
+    total: rows.length,
+    ready: rows.filter((row) => row.state === 'ready').length,
+    reviewRequired: rows.filter((row) => row.state === 'review_required').length,
+    catalogProductUnavailable: rows.filter((row) => row.state === 'catalog_product_unavailable').length,
+    localProductMissing: rows.filter((row) => row.state === 'local_product_missing').length,
+  };
+  if (actionState !== 'all') rows = rows.filter((row) => row.state === actionState);
 
   const filteredTotal = rows.length;
   const pagedRows = rows.slice(offset, offset + pageSize);
@@ -520,5 +544,12 @@ export async function GET(request: Request) {
     timestamp_utc: new Date().toISOString(),
   }));
 
-  return NextResponse.json({ data: pagedRows, total: filteredTotal, page, pageSize });
+  return NextResponse.json({
+    data: pagedRows,
+    total: filteredTotal,
+    page,
+    pageSize,
+    metrics,
+    visualReview: null,
+  });
 }

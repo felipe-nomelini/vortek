@@ -1,4 +1,11 @@
-export type BuyBoxFilter = 'all' | 'ganhando' | 'perdendo';
+export type BuyBoxFilter =
+  | 'all'
+  | 'winning'
+  | 'sharing_first_place'
+  | 'competing'
+  | 'outside'
+  | 'ganhando'
+  | 'perdendo';
 export type CatalogCompetitionStatus = 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
 
 export interface NoCatalogFilters {
@@ -51,8 +58,17 @@ export function parseNoCatalogFilters(searchParams: URLSearchParams): NoCatalogF
   const search = (searchParams.get('search') || '').trim().toLowerCase();
   const statusMl = (searchParams.get('statusMl') || 'all').trim().toLowerCase();
   const rawBuyBox = (searchParams.get('buyBox') || 'all').trim().toLowerCase();
-  const buyBox: BuyBoxFilter =
-    rawBuyBox === 'ganhando' || rawBuyBox === 'perdendo' ? rawBuyBox : 'all';
+  const validBuyBoxFilters: BuyBoxFilter[] = [
+    'winning',
+    'sharing_first_place',
+    'competing',
+    'outside',
+    'ganhando',
+    'perdendo',
+  ];
+  const buyBox: BuyBoxFilter = validBuyBoxFilters.includes(rawBuyBox as BuyBoxFilter)
+    ? rawBuyBox as BuyBoxFilter
+    : 'all';
 
   const minRaw = searchParams.get('priceMin');
   const maxRaw = searchParams.get('priceMax');
@@ -174,6 +190,14 @@ export function applyNoCatalogFilters<T>(query: T, filters: NoCatalogFilters): T
     q = q.eq('buy_box_winning', true);
   } else if (filters.buyBox === 'perdendo') {
     q = q.eq('buy_box_winning', false);
+  } else if (filters.buyBox === 'winning') {
+    q = q.eq('buy_box_status', 'winning');
+  } else if (filters.buyBox === 'sharing_first_place') {
+    q = q.eq('buy_box_status', 'sharing_first_place');
+  } else if (filters.buyBox === 'competing') {
+    q = q.eq('buy_box_status', 'competing');
+  } else if (filters.buyBox === 'outside') {
+    q = q.in('buy_box_status', ['listed', 'not_listed']);
   }
 
   if (filters.priceMin !== null) {

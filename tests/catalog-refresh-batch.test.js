@@ -79,7 +79,7 @@ test('status e tela preservam acompanhamento de job on_hold', () => {
     /\.in\('status', \['pendente', 'rodando', 'on_hold'\]\)/,
   );
   assert.ok(
-    catalogViewSource.match(/status === 'on_hold'/g)?.length >= 3,
+    catalogViewSource.match(/\['pendente', 'rodando', 'on_hold'\]\.includes/g)?.length >= 2,
     'polling e retomada devem tratar on_hold como ativo',
   );
 });

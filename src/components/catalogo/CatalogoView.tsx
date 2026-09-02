@@ -1,1518 +1,273 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, message, Spin, Statistic, Tabs } from 'antd';
+import { useRouter } from 'next/navigation';
+import { Alert, Button, Descriptions, Drawer, Dropdown, Empty, Image, Input, InputNumber, Modal, Progress, Segmented, Select, Space, Spin, Tabs, Tag, Typography, message } from 'antd';
+import type { TableProps } from 'antd';
+import { ArrowRightOutlined, EllipsisOutlined, EyeOutlined, FilePdfOutlined, LoadingOutlined, ReloadOutlined, SearchOutlined, ShopOutlined } from '@ant-design/icons';
 import ResizableTable from '@/components/ResizableTable';
-import type { MenuProps, TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined, ReloadOutlined, FilePdfOutlined } from '@ant-design/icons';
-import { formatCurrency } from '@/lib/format';
 import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressModal';
 import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
+import { formatCurrency } from '@/lib/format';
+import { buildCatalogOptinTargets, catalogCompetitionPresentation, type CatalogEligibilityActionState, type CatalogOptinTarget, type CatalogVariationEligibility } from '@/lib/catalogo/dashboard';
+import styles from './CatalogoView.module.css';
 
-const { Title } = Typography;
+const { Text, Title } = Typography;
 const PAGE_SIZE = 100;
-const NO_CATALOGO_REFRESH_JOB_STORAGE_KEY = 'catalogo_no_catalogo_refresh_job_id';
-
+const REFRESH_JOB_STORAGE_KEY = 'catalogo_no_catalogo_refresh_job_id';
 export type CatalogoMode = 'no_catalogo' | 'elegiveis';
 
-type NoCatalogoRow = {
-  anuncio_id: string;
-  ml_item_id: string;
-  relacionado_id: string | null;
-  related_permalink?: string | null;
-  title: string;
-  seller_sku: string | null;
-  sku_local: string | null;
-  produto_id: string | null;
-  catalog_product_id: string | null;
-  status: string | null;
-  buy_box_status: string | null;
-  price_to_win: number | null;
-  price: number;
-  permalink: string | null;
-  thumbnail: string | null;
-  category_id: string | null;
-  domain_id: string | null;
-  catalog_listing: boolean;
-  item_relations: any[] | null;
-  last_updated: string | null;
-};
+type VisualReviewMetadata = { enabled: true; source: string; capturedAt: string; expiresAt: string; itemCount: number; simulatedEligibility?: boolean };
+type NoCatalogoRow = { anuncio_id: string; ml_item_id: string; relacionado_id: string | null; related_permalink?: string | null; related_status?: string | null; title: string; seller_sku: string | null; sku_local: string | null; produto_id: string | null; produto_nome?: string | null; catalog_product_id: string | null; status: string | null; buy_box_status: string | null; price_to_win: number | null; price: number; permalink: string | null; thumbnail: string | null; last_updated: string | null; isHomologationFixture?: boolean };
+type ElegivelRow = { ml_item_id: string; title: string; seller_sku: string | null; local_product_id?: string | null; local_product_name?: string | null; status: string | null; status_label?: string | null; price: number; permalink: string | null; thumbnail: string | null; catalog_product_id: string | null; catalog_product_name?: string | null; catalog_product_id_sugerido?: string | null; catalog_product_name_sugerido?: string | null; catalog_product_warning?: string | null; catalog_product_status?: string | null; eligibility_status: string | null; eligibility_label?: string | null; buy_box_eligible: boolean; eligibility_reason: string | null; variation_eligibility: CatalogVariationEligibility[]; state: CatalogEligibilityActionState; reason: string; last_updated: string | null; isHomologationFixture?: boolean };
+type CatalogMetrics = { total: number; winning: number; sharingFirstPlace: number; competing: number; outside: number };
+type EligibleMetrics = { total: number; ready: number; reviewRequired: number; catalogProductUnavailable: number; localProductMissing: number };
+type RefreshStatusPayload = { success?: boolean; error?: string; job?: { id: string; status: string; progresso?: number; processados?: number; total?: number; last_event?: { message?: string | null } | null } | null; events?: Array<{ stage?: string | null; message?: string | null; progress?: number | null }>; failures?: string[] };
+type AnalisePrecoRow = { ml_item_id: string; classe: 'ajustar_para_ganhar_sem_prejuizo' | 'nao_viavel_ganhar_sem_prejuizo' | 'dados_insuficientes' };
+type PriceDetail = { currentPrice?: number; currentProfit?: number | null; automaticPricing?: { active?: boolean }; catalog?: { rawStatus?: string | null; priceToWin?: number | null; winner?: { itemId?: string | null; price?: number | null } | null; boosts?: Array<{ id: string; status: string; description: string }>; reasons?: string[]; warning?: string | null; syncedAt?: string | null } | null };
 
-type ElegivelRow = {
-  ml_item_id: string;
-  title: string;
-  seller_sku: string | null;
-  status: string | null;
-  status_label?: string | null;
-  price: number;
-  permalink: string | null;
-  thumbnail: string | null;
-  category_id: string | null;
-  domain_id: string | null;
-  catalog_product_id: string | null;
-  catalog_product_id_sugerido?: string | null;
-  catalog_product_name_sugerido?: string | null;
-  catalog_product_match_source?: string | null;
-  catalog_product_match_score?: number | null;
-  catalog_product_warning?: string | null;
-  catalog_product_status?: string | null;
-  eligibility_status: string | null;
-  eligibility_label?: string | null;
-  buy_box_eligible: boolean;
-  eligibility_reason: string | null;
-  variation_eligibility: Array<{ id?: number; status?: string; buy_box_eligible?: boolean }>;
-  last_updated: string | null;
-};
+const statusOptions = [{ value: 'all', label: 'Todos os status' }, { value: 'active', label: 'Ativos' }, { value: 'paused', label: 'Pausados' }, { value: 'closed', label: 'Encerrados' }];
+const competitionOptions = [{ value: 'all', label: 'Toda competição' }, { value: 'winning', label: 'Ganhando' }, { value: 'sharing_first_place', label: 'Dividindo 1º lugar' }, { value: 'competing', label: 'Competindo' }, { value: 'outside', label: 'Fora da competição' }];
+const eligibilityOptions = [{ value: 'all', label: 'Todas as situações' }, { value: 'ready', label: 'Prontos para criar' }, { value: 'review_required', label: 'Revisão necessária' }, { value: 'catalog_product_unavailable', label: 'Produto indisponível' }, { value: 'local_product_missing', label: 'Sem vínculo Bentevi' }];
 
-const statusMlOptions = [
-  { value: 'all', label: 'Todos os status ML' },
-  { value: 'active', label: 'Ativo' },
-  { value: 'paused', label: 'Pausado' },
-  { value: 'closed', label: 'Fechado' },
-];
-
-const buyBoxOptions = [
-  { value: 'all', label: 'Todos' },
-  { value: 'ganhando', label: 'Ganhando' },
-  { value: 'perdendo', label: 'Perdendo' },
-];
-
-interface CatalogoViewProps {
-  mode: CatalogoMode;
+function statusPresentation(status: unknown) {
+  const value = String(status || '').toLowerCase();
+  if (value === 'active' || value === 'ativo') return { label: 'Ativo', color: 'green' };
+  if (value === 'paused' || value === 'pausado') return { label: 'Pausado', color: 'orange' };
+  if (value === 'closed' || value === 'encerrado') return { label: 'Encerrado', color: 'default' };
+  if (value === 'under_review') return { label: 'Em revisão', color: 'blue' };
+  return { label: String(status || 'Não informado'), color: 'default' };
 }
-
-interface NoCatalogoResumo {
-  total: number;
-  ativos: number;
-  pausados: number;
-  ganhando: number;
-  perdendo: number;
+function eligibilityPresentation(state: CatalogEligibilityActionState) {
+  if (state === 'ready') return { label: 'Pronto para criar', color: 'green', action: 'Criar anúncio' };
+  if (state === 'review_required') return { label: 'Revisão necessária', color: 'orange', action: 'Revisar vínculo' };
+  if (state === 'catalog_product_unavailable') return { label: 'Produto indisponível', color: 'red', action: 'Ver impedimento' };
+  return { label: 'Sem vínculo Bentevi', color: 'default', action: 'Ver vínculo' };
 }
-
-interface ElegiveisResumo {
-  totalMl: number;
-  carregados: number;
-  ativos: number;
-  pendentesCatalogo: number;
-  semSku: number;
-}
-
-type RefreshJobStatus = 'idle' | 'running' | 'done' | 'error';
-
-type RefreshStatusPayload = {
-  success?: boolean;
-  error?: string;
-  job?: {
-    id: string;
-    status: string;
-    progresso?: number;
-    processados?: number;
-    total?: number;
-    last_event?: {
-      message?: string | null;
-    } | null;
-  } | null;
-  events?: Array<{
-    stage?: string | null;
-    message?: string | null;
-    processed?: number | null;
-    total?: number | null;
-    progress?: number | null;
-    timestamp?: string | null;
-  }>;
-  failures?: string[];
-};
-
-type AnaliseClasse =
-  | 'ajustar_para_ganhar_sem_prejuizo'
-  | 'nao_viavel_ganhar_sem_prejuizo'
-  | 'dados_insuficientes';
-
-type AnalisePrecoRow = {
-  ml_item_id: string;
-  permalink?: string | null;
-  titulo: string;
-  sku_local: string | null;
-  produto_id?: string | null;
-  preco_atual: number;
-  price_to_win: number | null;
-  preco_piso_sem_prejuizo: number | null;
-  preco_recomendado: number | null;
-  delta_preco: number | null;
-  lucro_unitario_estimado: number | null;
-  classe: AnaliseClasse;
-  motivo: string;
-};
-
-type AnalisePrecoResponse = {
-  success: boolean;
-  total_analisado?: number;
-  classes?: Partial<Record<AnaliseClasse, number>>;
-  refresh?: {
-    status?: string;
-  };
-  snapshot_max_synced_at?: string | null;
-  snapshot_age_seconds?: number | null;
-  data?: AnalisePrecoRow[];
-  erro?: string;
-};
-
-type PublishActionContext = {
-  produtoId: string;
-  targetPrice: number;
-  source: 'catalog_price_to_win';
-  itemKey: string;
-};
-
-function mapStatusMlToPt(status: string | null | undefined): string {
-  const normalized = String(status || '').toLowerCase();
-  if (normalized === 'active') return 'Ativo';
-  if (normalized === 'paused') return 'Pausado';
-  if (normalized === 'closed') return 'Encerrado';
-  if (normalized === 'under_review') return 'Em revisão';
-  if (normalized === 'inactive') return 'Inativo';
-  return status || '—';
-}
-
-function canCreateCatalogOptin(row: ElegivelRow): boolean {
-  const variationReady = Array.isArray(row.variation_eligibility)
-    && row.variation_eligibility.some((variation) => String(variation.status || '').toUpperCase() === 'READY_FOR_OPTIN');
-  const readyForOptin = String(row.eligibility_status || '').toUpperCase() === 'READY_FOR_OPTIN' || variationReady;
-  const catalogProductId = row.catalog_product_id_sugerido || row.catalog_product_id;
-  const reliableSuggestion = Boolean(row.catalog_product_id_sugerido)
-    && row.catalog_product_match_source === 'attributes_search'
-    && Number(row.catalog_product_match_score || 0) >= 100;
-
-  return readyForOptin
-    && Boolean(catalogProductId)
-    && row.catalog_product_status === 'active'
-    && (!row.catalog_product_warning || reliableSuggestion);
-}
-
-function classLabel(classe: AnaliseClasse): string {
-  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 'Ajustar para ganhar';
-  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 'Não viável sem prejuízo';
-  return 'Dados insuficientes';
-}
-
-function classColor(classe: AnaliseClasse): string {
-  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 'green';
-  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 'orange';
-  return 'default';
-}
-
-function classPriority(classe: AnaliseClasse): number {
-  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 0;
-  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 1;
-  return 2;
-}
-
-function compareText(left: unknown, right: unknown): number {
-  return String(left || '').localeCompare(String(right || ''), 'pt-BR', { numeric: true, sensitivity: 'base' });
-}
-
-function compareNumberNullable(left: unknown, right: unknown): number {
-  const leftNumber = Number(left);
-  const rightNumber = Number(right);
-  const leftValid = Number.isFinite(leftNumber);
-  const rightValid = Number.isFinite(rightNumber);
-
-  if (!leftValid && !rightValid) return 0;
-  if (!leftValid) return 1;
-  if (!rightValid) return -1;
-  return leftNumber - rightNumber;
-}
-
-function buildAnaliseRefreshSteps(payload: RefreshStatusPayload | null, calculating = false): ProgressStep[] {
-  const job = payload?.job;
+function formatDate(value?: string | null) { return value && Number.isFinite(Date.parse(value)) ? new Date(value).toLocaleString('pt-BR') : 'Não informado'; }
+function buildRefreshSteps(payload: RefreshStatusPayload | null, calculating = false): ProgressStep[] {
+  const stages = [['scan_catalog', 'Listando anúncios de catálogo'], ['fetch_details', 'Consultando detalhes'], ['fetch_price_to_win', 'Consultando competição'], ['fetch_related', 'Relacionando anúncios padrão'], ['match_products', 'Vinculando produtos Bentevi'], ['save_snapshot', 'Salvando a análise']];
   const events = payload?.events || [];
-  const failures = payload?.failures || [];
-  const hasError = job?.status === 'erro' || job?.status === 'failed_auth' || job?.status === 'cancelado';
-  const stages = [
-    { key: 'scan_catalog', label: 'Listando anúncios de catálogo' },
-    { key: 'fetch_details', label: 'Consultando detalhes dos anúncios' },
-    { key: 'fetch_price_to_win', label: 'Consultando preço para ganhar' },
-    { key: 'fetch_related', label: 'Carregando anúncios relacionados' },
-    { key: 'match_products', label: 'Vinculando produtos locais' },
-    { key: 'save_snapshot', label: 'Salvando snapshot atualizado' },
-  ];
-  const indexByStage = new Map(stages.map((stage, index) => [stage.key, index]));
-  const latestByStage = new Map<string, NonNullable<RefreshStatusPayload['events']>[number]>();
-  for (const event of events) {
-    if (event.stage) latestByStage.set(event.stage, event);
-  }
-  const activeStage = events.at(-1)?.stage || null;
-  const activeIndex = activeStage === 'completed'
-    ? stages.length
-    : activeStage ? (indexByStage.get(activeStage) ?? -1) : -1;
-  const done = job?.status === 'completo' || job?.status === 'completo_parcial';
-
-  const refreshSteps = stages.map((stage, index): ProgressStep => {
-    const event = latestByStage.get(stage.key);
-    const detail = event?.message || (index === 0 ? 'Aguardando job iniciar.' : 'Aguardando etapa anterior.');
-    if (hasError && (index === Math.max(activeIndex, 0))) {
-      return { label: stage.label, status: 'error', detail, error: failures[0] || job?.last_event?.message || 'Falha no refresh.' };
-    }
-    if (done || index < activeIndex) return { label: stage.label, status: 'success', detail };
-    if (index === activeIndex || (!activeStage && index === 0)) return { label: stage.label, status: 'loading', detail };
-    return { label: stage.label, status: 'pending', detail };
+  const active = events.at(-1)?.stage || null;
+  const activeIndex = active === 'completed' ? stages.length : stages.findIndex(([key]) => key === active);
+  const jobStatus = payload?.job?.status;
+  const done = jobStatus === 'completo' || jobStatus === 'completo_parcial';
+  const failed = ['erro', 'failed_auth', 'cancelado'].includes(String(jobStatus));
+  const steps = stages.map(([key, label], index): ProgressStep => {
+    const event = [...events].reverse().find((entry) => entry.stage === key);
+    if (failed && index === Math.max(activeIndex, 0)) return { label, status: 'error', error: payload?.failures?.[0] || payload?.job?.last_event?.message || 'Falha na atualização.' };
+    if (done || index < activeIndex) return { label, status: 'success', detail: event?.message || 'Concluído.' };
+    if (index === activeIndex || (activeIndex < 0 && index === 0)) return { label, status: 'loading', detail: event?.message || 'Em execução.' };
+    return { label, status: 'pending', detail: 'Aguardando etapa anterior.' };
   });
-
-  refreshSteps.push({
-    label: 'Calculando oportunidades de preço',
-    status: hasError ? 'pending' : calculating ? 'loading' : done ? 'success' : 'pending',
-    detail: hasError
-      ? 'Não executado porque o refresh falhou.'
-      : calculating
-        ? 'Analisando snapshot atualizado.'
-        : done
-          ? 'Reanálise concluída.'
-          : 'Aguardando refresh completo.',
-  });
-  return refreshSteps;
+  steps.push({ label: 'Calculando oportunidades de preço', status: calculating ? 'loading' : done ? 'success' : failed ? 'warning' : 'pending', detail: calculating ? 'Comparando preço e rentabilidade.' : done ? 'Análise concluída.' : 'Aguardando atualização.' });
+  return steps;
 }
 
-export default function CatalogoView({ mode }: CatalogoViewProps) {
+export default function CatalogoView({ mode }: { mode: CatalogoMode }) {
+  const router = useRouter();
+  const [messageApi, messageContext] = message.useMessage();
+  const [modalApi, modalContext] = Modal.useModal();
+  const { hasOpenTracking, startTracking, progressModalProps } = useMlPricePublishTracking(messageApi);
   const [loading, setLoading] = useState(true);
-  const [exportingPdf, setExportingPdf] = useState(false);
-  const [messageApi, contextHolder] = message.useMessage();
-  const {
-    hasOpenTracking: hasOpenMlPublishTracking,
-    startTracking: startMlPublishTracking,
-    progressModalProps: mlPublishProgressModalProps,
-  } = useMlPricePublishTracking(messageApi);
-
+  const [rows, setRows] = useState<NoCatalogoRow[]>([]);
+  const [eligibleRows, setEligibleRows] = useState<ElegivelRow[]>([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [statusMl, setStatusMl] = useState('all');
-  const [buyBoxFilter, setBuyBoxFilter] = useState('all');
+  const [competition, setCompetition] = useState('all');
+  const [actionState, setActionState] = useState('all');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
+  const [sortBy, setSortBy] = useState('ml_item_id');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [catalogMetrics, setCatalogMetrics] = useState<CatalogMetrics>({ total: 0, winning: 0, sharingFirstPlace: 0, competing: 0, outside: 0 });
+  const [eligibleMetrics, setEligibleMetrics] = useState<EligibleMetrics>({ total: 0, ready: 0, reviewRequired: 0, catalogProductUnavailable: 0, localProductMissing: 0 });
+  const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
+  const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(null);
+  const requestSequence = useRef(0);
+  const [activeCatalog, setActiveCatalog] = useState<NoCatalogoRow | null>(null);
+  const [activeEligible, setActiveEligible] = useState<ElegivelRow | null>(null);
+  const [priceDetail, setPriceDetail] = useState<PriceDetail | null>(null);
+  const [priceDetailLoading, setPriceDetailLoading] = useState(false);
+  const [newPrice, setNewPrice] = useState<number | null>(null);
+  const [updatingPrice, setUpdatingPrice] = useState(false);
+  const [opportunityIds, setOpportunityIds] = useState<Set<string> | null>(null);
+  const [refreshPayload, setRefreshPayload] = useState<RefreshStatusPayload | null>(null);
+  const [refreshRunning, setRefreshRunning] = useState(false);
+  const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [analysisModalOpen, setAnalysisModalOpen] = useState(false);
+  const [analysisSteps, setAnalysisSteps] = useState<ProgressStep[]>(buildRefreshSteps(null));
+  const [analysisRunning, setAnalysisRunning] = useState(false);
+  const [selectedEligibleKeys, setSelectedEligibleKeys] = useState<React.Key[]>([]);
+  const [batchOpen, setBatchOpen] = useState(false);
+  const [batchRunning, setBatchRunning] = useState(false);
+  const [batchSteps, setBatchSteps] = useState<ProgressStep[]>([]);
+  const batchCancelled = useRef(false);
+  const batchAbort = useRef<AbortController | null>(null);
+  const [exportingPdf, setExportingPdf] = useState(false);
 
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [refreshJobStatus, setRefreshJobStatus] = useState<RefreshJobStatus>('idle');
-  const [activeNoCatalogTab, setActiveNoCatalogTab] = useState<'anuncios' | 'reanalisar'>('anuncios');
-
-  const [noCatalogoData, setNoCatalogoData] = useState<NoCatalogoRow[]>([]);
-  const [elegiveisData, setElegiveisData] = useState<ElegivelRow[]>([]);
-  const [selectedElegivelKeys, setSelectedElegivelKeys] = useState<string[]>([]);
-  const [catalogBatchModalOpen, setCatalogBatchModalOpen] = useState(false);
-  const [catalogBatchSteps, setCatalogBatchSteps] = useState<ProgressStep[]>([]);
-  const [catalogBatchRunning, setCatalogBatchRunning] = useState(false);
-  const catalogBatchAbortRef = useRef<AbortController | null>(null);
-  const catalogBatchCancelRef = useRef(false);
-  const [analiseData, setAnaliseData] = useState<AnalisePrecoRow[]>([]);
-  const [analiseLoading, setAnaliseLoading] = useState(false);
-  const [analiseRefreshModalOpen, setAnaliseRefreshModalOpen] = useState(false);
-  const [analiseRefreshSteps, setAnaliseRefreshSteps] = useState<ProgressStep[]>(buildAnaliseRefreshSteps(null));
-  const [analiseErro, setAnaliseErro] = useState<string | null>(null);
-  const [analiseTotal, setAnaliseTotal] = useState(0);
-  const [analiseClasses, setAnaliseClasses] = useState<Partial<Record<AnaliseClasse, number>>>({});
-  const [analiseRefreshStatus, setAnaliseRefreshStatus] = useState<string | null>(null);
-  const [analiseSnapshotSyncedAt, setAnaliseSnapshotSyncedAt] = useState<string | null>(null);
-  const [analiseSnapshotAgeSeconds, setAnaliseSnapshotAgeSeconds] = useState<number | null>(null);
-  const [analiseUltimaExecucao, setAnaliseUltimaExecucao] = useState<string | null>(null);
-  const [updatingPriceByItem, setUpdatingPriceByItem] = useState<Record<string, boolean>>({});
-  const [resumoNoCatalogo, setResumoNoCatalogo] = useState<NoCatalogoResumo>({
-    total: 0,
-    ativos: 0,
-    pausados: 0,
-    ganhando: 0,
-    perdendo: 0,
-  });
-  const [loadingResumoNoCatalogo, setLoadingResumoNoCatalogo] = useState(false);
-  const refreshPollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const refreshTerminalResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const refreshPollingInFlightRef = useRef(false);
-  const refreshPollingStartedAtRef = useRef<number | null>(null);
-  const refreshJobIdRef = useRef<string | null>(null);
-
-  const buildParams = useCallback(() => {
-    const params = new URLSearchParams();
-    params.set('page', String(page));
-    params.set('pageSize', String(PAGE_SIZE));
+  const queryString = useMemo(() => {
+    const params = new URLSearchParams({ page: String(page), pageSize: String(PAGE_SIZE) });
     if (search.trim()) params.set('search', search.trim());
     if (statusMl !== 'all') params.set('statusMl', statusMl);
-    if (mode === 'no_catalogo' && buyBoxFilter !== 'all') params.set('buyBox', buyBoxFilter);
     if (priceMin !== null) params.set('priceMin', String(priceMin));
     if (priceMax !== null) params.set('priceMax', String(priceMax));
+    if (mode === 'no_catalogo') { if (competition !== 'all') params.set('buyBox', competition); params.set('sortBy', sortBy); params.set('sortOrder', sortOrder); }
+    else if (actionState !== 'all') params.set('actionState', actionState);
     return params.toString();
-  }, [buyBoxFilter, mode, page, priceMax, priceMin, search, statusMl]);
-
-  const handleExportPdf = useCallback(async () => {
-    setExportingPdf(true);
-    try {
-      const params = new URLSearchParams(buildParams());
-      params.delete('page');
-      params.delete('pageSize');
-      const response = await fetch(`/api/catalogo/no-catalogo/exportar-pdf?${params.toString()}`, { cache: 'no-store' });
-      if (!response.ok) {
-        const payload = await response.json().catch(() => ({}));
-        throw new Error(payload?.erro || 'Falha ao gerar PDF do catálogo.');
-      }
-      const blob = await response.blob();
-      const disposition = response.headers.get('content-disposition') || '';
-      const fileName = disposition.match(/filename="([^"]+)"/i)?.[1] || 'catalogo-no-catalogo.pdf';
-      const url = URL.createObjectURL(blob);
-      const anchor = document.createElement('a');
-      anchor.href = url;
-      anchor.download = fileName;
-      document.body.appendChild(anchor);
-      anchor.click();
-      anchor.remove();
-      URL.revokeObjectURL(url);
-      messageApi.success('PDF do catálogo exportado.');
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao exportar PDF do catálogo.');
-    } finally {
-      setExportingPdf(false);
-    }
-  }, [buildParams, messageApi]);
+  }, [actionState, competition, mode, page, priceMax, priceMin, search, sortBy, sortOrder, statusMl]);
 
   const fetchData = useCallback(async () => {
+    const sequence = ++requestSequence.current;
     setLoading(true);
-    if (mode === 'no_catalogo') setLoadingResumoNoCatalogo(true);
     try {
       const endpoint = mode === 'no_catalogo' ? '/api/catalogo/no-catalogo' : '/api/catalogo/elegiveis';
-      const params = buildParams();
-      const requests: Promise<Response>[] = [fetch(`${endpoint}?${params}`)];
+      const response = await fetch(`${endpoint}?${queryString}`, { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({}));
+      if (sequence !== requestSequence.current) return;
+      if (!response.ok) throw new Error(payload?.erro || 'Falha ao carregar o catálogo.');
+      setTotal(Number(payload.total || 0));
+      setVisualReview(payload?.visualReview?.enabled === true ? payload.visualReview : null);
       if (mode === 'no_catalogo') {
-        requests.push(fetch(`/api/catalogo/no-catalogo/resumo?${params}`));
+        setRows(Array.isArray(payload.data) ? payload.data : []);
+        setCatalogMetrics({ total: Number(payload.metrics?.total || 0), winning: Number(payload.metrics?.winning || 0), sharingFirstPlace: Number(payload.metrics?.sharingFirstPlace || 0), competing: Number(payload.metrics?.competing || 0), outside: Number(payload.metrics?.outside || 0) });
+        setLastSyncedAt(payload.lastSyncedAt || null);
+      } else {
+        setEligibleRows(Array.isArray(payload.data) ? payload.data : []);
+        setEligibleMetrics({ total: Number(payload.metrics?.total || 0), ready: Number(payload.metrics?.ready || 0), reviewRequired: Number(payload.metrics?.reviewRequired || 0), catalogProductUnavailable: Number(payload.metrics?.catalogProductUnavailable || 0), localProductMissing: Number(payload.metrics?.localProductMissing || 0) });
+        setSelectedEligibleKeys([]);
       }
-      const [res, resumoRes] = await Promise.all(requests);
-      const json = await res.json().catch(() => ({}));
+    } catch (error: any) {
+      if (sequence === requestSequence.current) { setRows([]); setEligibleRows([]); setTotal(0); messageApi.error(error?.message || 'Erro de conexão ao carregar o catálogo.'); }
+    } finally { if (sequence === requestSequence.current) setLoading(false); }
+  }, [messageApi, mode, queryString]);
+  useEffect(() => { void fetchData(); }, [fetchData]);
+  useEffect(() => { setPage(1); }, [actionState, competition, mode, priceMax, priceMin, search, statusMl]);
 
-      if (!res.ok) {
-        messageApi.error(json?.erro || 'Falha ao carregar catálogo');
-        if (mode === 'no_catalogo') setNoCatalogoData([]);
-        else setElegiveisData([]);
-        setTotal(0);
-        return;
-      }
-
-      if (mode === 'no_catalogo') setNoCatalogoData(json.data || []);
-      else {
-        setElegiveisData(json.data || []);
-        setSelectedElegivelKeys([]);
-      }
-
-      setTotal(Number(json.total || 0));
-
-      if (mode === 'no_catalogo' && resumoRes) {
-        const resumoJson = await resumoRes.json().catch(() => ({}));
-        if (resumoRes.ok) {
-          setResumoNoCatalogo({
-            total: Number(resumoJson.total || 0),
-            ativos: Number(resumoJson.ativos || 0),
-            pausados: Number(resumoJson.pausados || 0),
-            ganhando: Number(resumoJson.ganhando || 0),
-            perdendo: Number(resumoJson.perdendo || 0),
-          });
-        } else {
-          messageApi.warning(resumoJson?.erro || 'Falha ao carregar resumo do catálogo');
-        }
-      }
-    } catch {
-      messageApi.error('Erro de conexão ao carregar catálogo');
-    } finally {
-      setLoading(false);
-      if (mode === 'no_catalogo') setLoadingResumoNoCatalogo(false);
-    }
-  }, [buildParams, messageApi, mode]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [mode, search, statusMl, buyBoxFilter, priceMin, priceMax]);
-
-  const resumoElegiveis = useMemo<ElegiveisResumo>(() => {
-    const carregados = elegiveisData.length;
-    return {
-      totalMl: total,
-      carregados,
-      ativos: elegiveisData.filter((row) => row.status === 'active').length,
-      pendentesCatalogo: elegiveisData.filter((row) => row.status_label === 'Pendente de catálogo').length,
-      semSku: elegiveisData.filter((row) => !String(row.seller_sku || '').trim()).length,
-    };
-  }, [elegiveisData, total]);
-
-  const clearRefreshPolling = useCallback(() => {
-    if (refreshPollTimeoutRef.current) {
-      clearTimeout(refreshPollTimeoutRef.current);
-      refreshPollTimeoutRef.current = null;
-    }
-    if (refreshTerminalResetTimeoutRef.current) {
-      clearTimeout(refreshTerminalResetTimeoutRef.current);
-      refreshTerminalResetTimeoutRef.current = null;
-    }
-    refreshPollingInFlightRef.current = false;
-    refreshPollingStartedAtRef.current = null;
-    refreshJobIdRef.current = null;
-  }, []);
-
-  const clearRefreshTracking = useCallback(() => {
-    clearRefreshPolling();
-    refreshJobIdRef.current = null;
-    if (typeof window !== 'undefined') {
-      window.localStorage.removeItem(NO_CATALOGO_REFRESH_JOB_STORAGE_KEY);
-    }
-  }, [clearRefreshPolling]);
-
-  const getAdaptiveRefreshPollingInterval = useCallback(() => {
-    const startedAt = refreshPollingStartedAtRef.current;
-    if (!startedAt) return 2000;
-    const elapsed = Date.now() - startedAt;
-    if (elapsed > 180000) return 5000;
-    if (elapsed > 60000) return 4000;
-    return 2000;
-  }, []);
-
-  const fetchRefreshStatus = useCallback(async (jobId?: string): Promise<RefreshStatusPayload> => {
-    const url = jobId
-      ? `/api/catalogo/no-catalogo/refresh/status?jobId=${encodeURIComponent(jobId)}`
-      : '/api/catalogo/no-catalogo/refresh/status';
-    const res = await fetch(url);
-    const payload = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      throw new Error(payload?.error || 'Falha ao consultar status do refresh do catálogo.');
-    }
+  const fetchRefreshStatus = useCallback(async (jobId?: string) => {
+    const url = jobId ? `/api/catalogo/no-catalogo/refresh/status?jobId=${encodeURIComponent(jobId)}` : '/api/catalogo/no-catalogo/refresh/status';
+    const response = await fetch(url, { cache: 'no-store' });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload?.error || 'Falha ao consultar a atualização.');
     return payload as RefreshStatusPayload;
   }, []);
-
-  const concludeRefreshTracking = useCallback((status: RefreshJobStatus, errorMessage?: string) => {
-    clearRefreshTracking();
-    setRefreshJobStatus(status);
-    if (status === 'error') {
-      messageApi.error(errorMessage || 'Falha ao atualizar snapshot do catálogo.');
-    }
-    if (status === 'done') {
-      void fetchData();
-    }
-    refreshTerminalResetTimeoutRef.current = setTimeout(() => {
-      setRefreshJobStatus('idle');
-      refreshTerminalResetTimeoutRef.current = null;
-    }, 800);
-  }, [clearRefreshTracking, fetchData, messageApi]);
-
-  const pollRefreshJob = useCallback(async (jobId: string) => {
-    const payload = await fetchRefreshStatus(jobId);
-    if (!payload.success || !payload.job?.id) {
-      throw new Error(payload.error || 'Job de refresh não encontrado.');
-    }
-
-    const status = payload.job.status;
-    if (status === 'pendente' || status === 'rodando' || status === 'on_hold') {
-      setRefreshJobStatus('running');
-      return;
-    }
-
-    if (status === 'completo' || status === 'completo_parcial') {
-      concludeRefreshTracking('done');
-      return;
-    }
-
-    const errorMessage = payload.failures?.[0] || payload.job.last_event?.message || 'Falha ao atualizar snapshot do catálogo.';
-    concludeRefreshTracking('error', errorMessage);
-  }, [concludeRefreshTracking, fetchRefreshStatus]);
-
-  const scheduleNextRefreshPoll = useCallback(() => {
-    const jobId = refreshJobIdRef.current;
-    if (!jobId) return;
-    const delay = getAdaptiveRefreshPollingInterval();
-    refreshPollTimeoutRef.current = setTimeout(() => {
-      const runningJobId = refreshJobIdRef.current;
-      if (!runningJobId) return;
-      if (refreshPollingInFlightRef.current) {
-        scheduleNextRefreshPoll();
-        return;
-      }
-
-      refreshPollingInFlightRef.current = true;
-      pollRefreshJob(runningJobId)
-        .catch((err: any) => {
-          concludeRefreshTracking('error', err?.message || 'Erro ao consultar refresh do catálogo.');
-        })
-        .finally(() => {
-          refreshPollingInFlightRef.current = false;
-          if (refreshJobIdRef.current === runningJobId) {
-            scheduleNextRefreshPoll();
-          }
-        });
-    }, delay);
-  }, [concludeRefreshTracking, getAdaptiveRefreshPollingInterval, pollRefreshJob]);
-
-  const startRefreshPolling = useCallback((jobId: string) => {
-    clearRefreshPolling();
-    refreshJobIdRef.current = jobId;
-    refreshPollingStartedAtRef.current = Date.now();
-    setRefreshJobStatus('running');
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem(NO_CATALOGO_REFRESH_JOB_STORAGE_KEY, jobId);
-    }
-    scheduleNextRefreshPoll();
-  }, [clearRefreshPolling, scheduleNextRefreshPoll]);
-
-  const resumeRefreshIfRunning = useCallback(async () => {
-    if (mode !== 'no_catalogo') return;
+  const stopRefreshPolling = useCallback(() => { if (refreshTimer.current) clearTimeout(refreshTimer.current); refreshTimer.current = null; if (typeof window !== 'undefined') window.localStorage.removeItem(REFRESH_JOB_STORAGE_KEY); }, []);
+  const pollRefresh = useCallback(async function poll(jobId: string) {
     try {
-      const persistedJobId = typeof window !== 'undefined'
-        ? window.localStorage.getItem(NO_CATALOGO_REFRESH_JOB_STORAGE_KEY)
-        : null;
-
-      if (persistedJobId) {
-        const persistedPayload = await fetchRefreshStatus(persistedJobId);
-        if (persistedPayload.success && persistedPayload.job?.id) {
-          const status = persistedPayload.job.status;
-          if (status === 'pendente' || status === 'rodando' || status === 'on_hold') {
-            startRefreshPolling(persistedPayload.job.id);
-            await pollRefreshJob(persistedPayload.job.id);
-            return;
-          }
-          if (status === 'erro' || status === 'cancelado' || status === 'failed_auth') {
-            const errorMessage = persistedPayload.failures?.[0]
-              || persistedPayload.job.last_event?.message
-              || 'Falha ao atualizar snapshot do catálogo.';
-            concludeRefreshTracking('error', errorMessage);
-            return;
-          }
-          clearRefreshTracking();
-          setRefreshJobStatus('idle');
-          return;
-        }
-      }
-
-      const payload = await fetchRefreshStatus();
-      if (!payload.success || !payload.job?.id) {
-        setRefreshJobStatus('idle');
-        return;
-      }
-
-      const status = payload.job.status;
-      if (status === 'pendente' || status === 'rodando' || status === 'on_hold') {
-        startRefreshPolling(payload.job.id);
-        await pollRefreshJob(payload.job.id);
-        return;
-      }
-
-      setRefreshJobStatus('idle');
-    } catch {
-      setRefreshJobStatus('idle');
-    }
-  }, [clearRefreshTracking, concludeRefreshTracking, fetchRefreshStatus, mode, pollRefreshJob, startRefreshPolling]);
-
+      const payload = await fetchRefreshStatus(jobId); setRefreshPayload(payload);
+      const status = payload.job?.status;
+      if (['pendente', 'rodando', 'on_hold'].includes(String(status))) { setRefreshRunning(true); refreshTimer.current = setTimeout(() => void poll(jobId), 2500); return; }
+      stopRefreshPolling(); setRefreshRunning(false);
+      if (status === 'completo' || status === 'completo_parcial') void fetchData();
+      if (['erro', 'failed_auth', 'cancelado'].includes(String(status))) messageApi.error(payload.failures?.[0] || payload.job?.last_event?.message || 'A atualização falhou.');
+    } catch (error: any) { stopRefreshPolling(); setRefreshRunning(false); messageApi.error(error?.message || 'Falha ao acompanhar a atualização.'); }
+  }, [fetchData, fetchRefreshStatus, messageApi, stopRefreshPolling]);
+  const trackRefresh = useCallback((jobId: string) => { stopRefreshPolling(); setRefreshRunning(true); if (typeof window !== 'undefined') window.localStorage.setItem(REFRESH_JOB_STORAGE_KEY, jobId); void pollRefresh(jobId); }, [pollRefresh, stopRefreshPolling]);
   useEffect(() => {
-    if (mode !== 'no_catalogo') {
-      clearRefreshPolling();
-      setRefreshJobStatus('idle');
-      return;
-    }
-    void resumeRefreshIfRunning();
-  }, [clearRefreshPolling, mode, resumeRefreshIfRunning]);
-
-  useEffect(() => {
-    return () => {
-      clearRefreshPolling();
-    };
-  }, [clearRefreshPolling]);
-
-  const refreshNoCatalogoSnapshot = useCallback(async () => {
-    if (mode !== 'no_catalogo' || refreshJobStatus === 'running') return;
-    try {
-      const res = await fetch('/api/catalogo/no-catalogo/refresh/job', {
-        method: 'POST',
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.success || !json?.jobId) {
-        messageApi.error(json?.error || json?.erro || 'Falha ao iniciar atualização do snapshot.');
-        return;
-      }
-      startRefreshPolling(String(json.jobId));
-      await pollRefreshJob(String(json.jobId));
-    } catch {
-      messageApi.error('Erro de conexão ao iniciar atualização do snapshot.');
-    }
-  }, [messageApi, mode, pollRefreshJob, refreshJobStatus, startRefreshPolling]);
-
-  const getCatalogOptinPayload = useCallback((row: ElegivelRow) => {
-    const catalogProductId = row.catalog_product_id_sugerido || row.catalog_product_id || '';
-    const variationId = Array.isArray(row.variation_eligibility)
-      ? row.variation_eligibility.find((v) => String(v.status || '').toUpperCase() === 'READY_FOR_OPTIN')?.id
-      : undefined;
-    return { itemId: row.ml_item_id, catalogProductId, variationId };
-  }, []);
-
-  const handleOptin = useCallback(async (row: ElegivelRow) => {
-    const payload = getCatalogOptinPayload(row);
-    if (!canCreateCatalogOptin(row)) {
-      messageApi.error('Item não está pronto para criar anúncio de catálogo.');
-      return;
-    }
-
-    const res = await fetch('/api/catalogo/optin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    const json = await res.json().catch(() => ({}));
-
-    if (!res.ok) {
-      messageApi.error(json?.erro || 'Falha ao criar anúncio de catálogo');
-      return;
-    }
-
-    messageApi.success('Opt-in de catálogo executado com sucesso');
-    fetchData();
-  }, [fetchData, getCatalogOptinPayload, messageApi]);
-
-  const selectedElegivelRows = useMemo(() => {
-    const selected = new Set(selectedElegivelKeys.map(String));
-    return elegiveisData.filter((row) => selected.has(String(row.ml_item_id)));
-  }, [elegiveisData, selectedElegivelKeys]);
-
-  const updateCatalogBatchStep = useCallback((index: number, patch: Partial<ProgressStep>) => {
-    setCatalogBatchSteps((prev) => prev.map((step, stepIndex) => (
-      stepIndex === index ? { ...step, ...patch } : step
-    )));
-  }, []);
-
-  const cancelCatalogBatch = useCallback(() => {
-    catalogBatchCancelRef.current = true;
-    catalogBatchAbortRef.current?.abort();
-    setCatalogBatchRunning(false);
-    setCatalogBatchSteps((prev) => prev.map((step) => (
-      step.status === 'pending' || step.status === 'loading'
-        ? { ...step, status: 'warning', detail: step.status === 'loading' ? 'Cancelado pelo usuário.' : 'Não executado: lote cancelado.' }
-        : step
-    )));
-  }, []);
-
-  const closeCatalogBatchModal = useCallback(() => {
-    if (catalogBatchRunning) return;
-    setCatalogBatchModalOpen(false);
-    setCatalogBatchSteps([]);
-    catalogBatchAbortRef.current = null;
-    catalogBatchCancelRef.current = false;
-  }, [catalogBatchRunning]);
-
-  const runCatalogBatchOptin = useCallback(async () => {
-    if (mode !== 'elegiveis') return;
-    if (catalogBatchRunning) {
-      messageApi.warning('Já existe criação em massa em andamento.');
-      return;
-    }
-    if (selectedElegivelRows.length === 0) {
-      messageApi.warning('Selecione pelo menos um anúncio elegível.');
-      return;
-    }
-
-    catalogBatchCancelRef.current = false;
-    setCatalogBatchRunning(true);
-    setCatalogBatchModalOpen(true);
-    setCatalogBatchSteps(selectedElegivelRows.map((row) => {
-      const payload = getCatalogOptinPayload(row);
-      return {
-        label: `${row.seller_sku || row.ml_item_id} → catálogo`,
-        status: 'pending' as const,
-        detail: payload.catalogProductId ? `Anúncio ${row.ml_item_id} · catálogo ${payload.catalogProductId}` : 'Sem catalog_product_id',
-      };
-    }));
-
-    let successCount = 0;
-    let errorCount = 0;
-    let skippedCount = 0;
-
-    for (let index = 0; index < selectedElegivelRows.length; index += 1) {
-      if (catalogBatchCancelRef.current) {
-        skippedCount += selectedElegivelRows.length - index;
-        break;
-      }
-
-      const row = selectedElegivelRows[index];
-      const payload = getCatalogOptinPayload(row);
-      if (!canCreateCatalogOptin(row)) {
-        skippedCount += 1;
-        updateCatalogBatchStep(index, { status: 'warning', error: 'Item não está pronto para criar anúncio de catálogo.' });
-        continue;
-      }
-
-      updateCatalogBatchStep(index, { status: 'loading', detail: `Criando catálogo ${payload.catalogProductId} para ${row.ml_item_id}` });
-      const controller = new AbortController();
-      catalogBatchAbortRef.current = controller;
-
-      try {
-        const res = await fetch('/api/catalogo/optin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          signal: controller.signal,
-        });
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok) {
-          errorCount += 1;
-          updateCatalogBatchStep(index, {
-            status: 'error',
-            error: json?.erro || 'Falha ao criar anúncio de catálogo.',
-            detail: `Anúncio ${row.ml_item_id} · catálogo ${payload.catalogProductId}`,
-          });
-          continue;
-        }
-
-        successCount += 1;
-        updateCatalogBatchStep(index, {
-          status: 'success',
-          detail: `Criado: ${json?.catalog_item_id || json?.data?.id || 'ID não retornado'}${Array.isArray(json?.warnings) && json.warnings.length ? ` · Avisos: ${json.warnings.join(' | ')}` : ''}`,
-        });
-      } catch (error: any) {
-        if (catalogBatchCancelRef.current || error?.name === 'AbortError') {
-          skippedCount += 1;
-          updateCatalogBatchStep(index, { status: 'warning', detail: 'Cancelado pelo usuário.' });
-          break;
-        }
-        errorCount += 1;
-        updateCatalogBatchStep(index, { status: 'error', error: error?.message || 'Erro de conexão.' });
-      } finally {
-        catalogBatchAbortRef.current = null;
-      }
-    }
-
-    setCatalogBatchRunning(false);
-    setSelectedElegivelKeys([]);
-    void fetchData();
-    if (catalogBatchCancelRef.current) {
-      messageApi.warning(`Criação em massa cancelada. Criados: ${successCount}; erros: ${errorCount}; ignorados: ${skippedCount}.`);
-    } else if (errorCount > 0 || skippedCount > 0) {
-      messageApi.warning(`Criação em massa concluída com pendências. Criados: ${successCount}; erros: ${errorCount}; ignorados: ${skippedCount}.`);
-    } else {
-      messageApi.success(`Criação em massa concluída. Criados: ${successCount}.`);
-    }
-  }, [catalogBatchRunning, fetchData, getCatalogOptinPayload, messageApi, mode, selectedElegivelRows, updateCatalogBatchStep]);
-
-  const executeMlPriceUpdate = useCallback(async (context: PublishActionContext) => {
     if (mode !== 'no_catalogo') return;
-    if (hasOpenMlPublishTracking) {
-      messageApi.warning('Já existe uma publicação em acompanhamento. Aguarde finalizar para iniciar outra.');
-      return;
-    }
-
-    setUpdatingPriceByItem((prev) => ({ ...prev, [context.itemKey]: true }));
+    const persisted = typeof window !== 'undefined' ? window.localStorage.getItem(REFRESH_JOB_STORAGE_KEY) : null;
+    void (async () => { try { const payload = await fetchRefreshStatus(persisted || undefined); if (!payload.job?.id) return; setRefreshPayload(payload); if (['pendente', 'rodando', 'on_hold'].includes(payload.job.status)) trackRefresh(payload.job.id); } catch { /* não há job anterior */ } })();
+    return stopRefreshPolling;
+  }, [fetchRefreshStatus, mode, stopRefreshPolling, trackRefresh]);
+  const startRefresh = useCallback(async () => {
+    if (visualReview) return void messageApi.info('A amostra protegida não executa sincronizações externas.');
+    const response = await fetch('/api/catalogo/no-catalogo/refresh/job', { method: 'POST' }); const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload?.jobId) return void messageApi.error(payload?.error || 'Falha ao iniciar a atualização.');
+    trackRefresh(String(payload.jobId));
+  }, [messageApi, trackRefresh, visualReview]);
+  const runAnalysis = useCallback(async () => {
+    if (analysisRunning || visualReview) { if (visualReview) messageApi.info('A reanálise externa está desabilitada na amostra protegida.'); return; }
+    setAnalysisRunning(true); setAnalysisModalOpen(true); setAnalysisSteps(buildRefreshSteps(null));
     try {
-      const res = await fetch('/api/ml/anuncio/atualizar-preco', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          produtoId: context.produtoId,
-          targetPrice: context.targetPrice,
-          source: context.source,
-        }),
-      });
-      const data = await res.json().catch(() => ({}));
+      const startResponse = await fetch('/api/catalogo/no-catalogo/refresh/job', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: 'full' }) });
+      const startPayload = await startResponse.json().catch(() => ({})); if (!startResponse.ok || !startPayload?.jobId) throw new Error(startPayload?.error || 'Falha ao iniciar a análise.');
+      let statusPayload: RefreshStatusPayload;
+      do { statusPayload = await fetchRefreshStatus(String(startPayload.jobId)); setAnalysisSteps(buildRefreshSteps(statusPayload)); if (['erro', 'failed_auth', 'cancelado'].includes(String(statusPayload.job?.status))) throw new Error(statusPayload.failures?.[0] || statusPayload.job?.last_event?.message || 'A atualização falhou.'); if (!['completo', 'completo_parcial'].includes(String(statusPayload.job?.status))) await new Promise((resolve) => setTimeout(resolve, 1500)); } while (!['completo', 'completo_parcial'].includes(String(statusPayload.job?.status)));
+      setAnalysisSteps(buildRefreshSteps(statusPayload, true));
+      const response = await fetch('/api/catalogo/no-catalogo/analise-preco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ refreshMode: 'none' }) });
+      const payload = await response.json().catch(() => ({})); if (!response.ok || !payload?.success) throw new Error(payload?.erro || 'Falha ao calcular as oportunidades.');
+      const analysis = (Array.isArray(payload.data) ? payload.data : []) as AnalisePrecoRow[];
+      setOpportunityIds(new Set(analysis.filter((row) => row.classe === 'ajustar_para_ganhar_sem_prejuizo').map((row) => row.ml_item_id))); setCompetition('all'); setPage(1); setAnalysisSteps(buildRefreshSteps(statusPayload)); await fetchData(); messageApi.success(`${analysis.length} anúncio(s) analisado(s).`);
+    } catch (error: any) { setAnalysisSteps((current) => current.map((step) => step.status === 'loading' ? { ...step, status: 'error', error: error?.message || 'Falha na análise.' } : step)); messageApi.error(error?.message || 'Falha na análise.'); }
+    finally { setAnalysisRunning(false); }
+  }, [analysisRunning, fetchData, fetchRefreshStatus, messageApi, visualReview]);
 
-      if (!res.ok) {
-        messageApi.error(data?.error || 'Falha ao atualizar preço do anúncio no ML.');
-        return;
-      }
+  const loadPriceDetail = useCallback(async (row: NoCatalogoRow) => {
+    setActiveCatalog(row); setPriceDetail(null); setNewPrice(row.price_to_win || row.price);
+    if (visualReview || !row.produto_id) return;
+    setPriceDetailLoading(true);
+    try { const params = new URLSearchParams({ produtoId: row.produto_id, mlItemId: row.ml_item_id }); const response = await fetch(`/api/ml/anuncio/preco-detalhe?${params}`, { cache: 'no-store' }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload?.error || 'Falha ao carregar a disputa.'); setPriceDetail(payload); setNewPrice(payload?.catalog?.priceToWin || payload?.currentPrice || row.price); }
+    catch (error: any) { messageApi.error(error?.message || 'Falha ao carregar a disputa.'); } finally { setPriceDetailLoading(false); }
+  }, [messageApi, visualReview]);
+  const savePrice = useCallback(async () => {
+    if (!activeCatalog?.produto_id || !newPrice || visualReview) return;
+    if (hasOpenTracking) return void messageApi.warning('Já existe uma publicação de preço em acompanhamento.');
+    setUpdatingPrice(true);
+    try { const response = await fetch('/api/ml/anuncio/atualizar-preco', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ produtoId: activeCatalog.produto_id, targetPrice: newPrice, source: 'catalog_price_to_win' }) }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload?.error || 'Falha ao atualizar o preço.'); if (payload?.price_updated) { messageApi.success('Preço atualizado no Mercado Livre.'); void fetchData(); return; } const outboxId = String(payload?.outboxId || '').trim(); if (!payload?.queued_publish || !outboxId) throw new Error('A atualização não foi confirmada nem enfileirada.'); startTracking({ outboxId, produtoId: activeCatalog.produto_id, retry: () => void savePrice() }); messageApi.success('Atualização enfileirada para publicação.'); }
+    catch (error: any) { messageApi.error(error?.message || 'Falha ao atualizar o preço.'); } finally { setUpdatingPrice(false); }
+  }, [activeCatalog, fetchData, hasOpenTracking, messageApi, newPrice, startTracking, visualReview]);
 
-      if (data?.price_updated) {
-        const warnings = Array.isArray(data?.warnings) ? data.warnings.filter(Boolean) : [];
-        if (data?.quantity_pricing_updated) {
-          messageApi.success('Preço e atacado atualizados no Mercado Livre.');
-        } else if (data?.quantity_pricing_queued || data?.quantity_pricing_outbox_id) {
-          messageApi.warning('Preço atualizado no Mercado Livre. Atacado ficou em fila para retry.');
-        } else {
-          messageApi.success('Preço atualizado no Mercado Livre.');
-        }
-        if (warnings.length > 0) {
-          messageApi.warning(warnings.join(' | '));
-        }
-        fetchData();
-        return;
-      }
-
-      const queued = Boolean(data?.queued_publish);
-      const outboxId = String(data?.outboxId || '').trim();
-      if (!queued || !outboxId) {
-        const errors = Array.isArray(data?.errors) ? data.errors.filter(Boolean).join(' | ') : '';
-        messageApi.error(errors || 'Não foi possível enfileirar a atualização de preço do anúncio.');
-        return;
-      }
-
-      startMlPublishTracking({
-        outboxId,
-        produtoId: context.produtoId,
-        retry: () => { void executeMlPriceUpdate(context); },
-      });
-      messageApi.success('Atualização enfileirada. Acompanhe o processamento no modal.');
-      fetchData();
-    } catch {
-      messageApi.error('Erro de conexão ao atualizar preço do anúncio.');
-    } finally {
-      setUpdatingPriceByItem((prev) => ({ ...prev, [context.itemKey]: false }));
+  const executeOptinTargets = useCallback(async (targets: CatalogOptinTarget[]) => {
+    if (!targets.length || visualReview) return;
+    batchCancelled.current = false; setBatchRunning(true); setBatchOpen(true); setBatchSteps(targets.map((target) => ({ label: target.variationId ? `Variação ${target.variationId}` : `Anúncio ${target.itemId}`, status: 'pending', detail: `${target.itemId} → produto ${target.catalogProductId}` })));
+    let successes = 0;
+    for (let index = 0; index < targets.length; index += 1) {
+      if (batchCancelled.current) break;
+      const target = targets[index]; setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: 'loading' } : step)); const controller = new AbortController(); batchAbort.current = controller;
+      try { const response = await fetch('/api/catalogo/optin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(target), signal: controller.signal }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload?.erro || 'Falha ao criar o anúncio.'); successes += 1; setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: 'success', detail: `Criado: ${payload?.catalog_item_id || payload?.data?.id || 'ID não retornado'}` } : step)); }
+      catch (error: any) { const cancelled = batchCancelled.current || error?.name === 'AbortError'; setBatchSteps((current) => current.map((step, i) => i === index ? { ...step, status: cancelled ? 'warning' : 'error', error: cancelled ? undefined : error?.message, detail: cancelled ? 'Cancelado pelo usuário.' : step.detail } : step)); if (cancelled) break; }
     }
-  }, [fetchData, hasOpenMlPublishTracking, messageApi, mode, startMlPublishTracking]);
+    setBatchRunning(false); setSelectedEligibleKeys([]); batchAbort.current = null; if (successes) { messageApi.success(`${successes} anúncio(s) de catálogo criado(s).`); void fetchData(); }
+  }, [fetchData, messageApi, visualReview]);
+  const confirmOptin = useCallback((selected: ElegivelRow[]) => {
+    const targets = selected.flatMap((row) => buildCatalogOptinTargets(row));
+    if (visualReview) return void messageApi.info('A criação está desabilitada na amostra protegida.');
+    if (!targets.length) return void messageApi.warning('Nenhum item ou variação está pronto para criação.');
+    modalApi.confirm({ title: targets.length === 1 ? 'Criar anúncio de catálogo?' : `Criar ${targets.length} anúncios de catálogo?`, content: 'Cada variação gera um anúncio separado. Em domínios obrigatórios ou exclusivos, o Mercado Livre pode moderar ou inativar o anúncio padrão.', okText: 'Confirmar criação', cancelText: 'Cancelar', onOk: () => executeOptinTargets(targets) });
+  }, [executeOptinTargets, messageApi, modalApi, visualReview]);
+  const selectedEligibleRows = useMemo(() => { const selected = new Set(selectedEligibleKeys.map(String)); return eligibleRows.filter((row) => selected.has(row.ml_item_id)); }, [eligibleRows, selectedEligibleKeys]);
+  const visibleCatalogRows = useMemo(() => opportunityIds ? rows.filter((row) => opportunityIds.has(row.ml_item_id)) : rows, [opportunityIds, rows]);
 
-  const runAnalisePreco = useCallback(async () => {
-    if (mode !== 'no_catalogo' || analiseLoading) return;
-    setAnaliseLoading(true);
-    setAnaliseErro(null);
-    setAnaliseRefreshModalOpen(true);
-    setAnaliseRefreshSteps(buildAnaliseRefreshSteps(null));
-    try {
-      const refreshStart = await fetch('/api/catalogo/no-catalogo/refresh/job', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: 'full' }),
-      });
-      const refreshStartJson = await refreshStart.json().catch(() => ({}));
-      if (!refreshStart.ok || !refreshStartJson?.success || !refreshStartJson?.jobId) {
-        throw new Error(refreshStartJson?.error || 'Falha ao iniciar refresh completo do catálogo.');
-      }
+  const catalogColumns: TableProps<NoCatalogoRow>['columns'] = useMemo(() => [
+    { title: 'Anúncio de catálogo', key: 'listing', width: 285, sorter: true, render: (_, row) => { const status = statusPresentation(row.status); return <div className={styles.listingCell}>{row.thumbnail ? <Image src={row.thumbnail} alt="" width={46} height={46} preview={false} className={styles.thumbnail} /> : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}<div><strong>{row.title || 'Título não informado'}</strong><span className={styles.identifier}>{row.ml_item_id}</span><Tag color={status.color}>{status.label}</Tag></div></div>; } },
+    { title: 'Produto Bentevi', key: 'product', width: 220, render: (_, row) => <div className={styles.stackCell}><strong>{row.produto_nome || row.title || 'Produto não vinculado'}</strong><span>SKU {row.sku_local || 'não informado'}</span></div> },
+    { title: 'Anúncio padrão relacionado', key: 'related', width: 205, render: (_, row) => <div className={styles.stackCell}><strong className={styles.identifier}>{row.relacionado_id || 'Não localizado'}</strong><span>{row.relacionado_id ? `Publicação padrão · ${statusPresentation(row.related_status).label}` : 'Relação ainda não informada pelo ML'}</span></div> },
+    { title: 'Competição', key: 'competition', width: 230, sorter: true, render: (_, row) => { const state = catalogCompetitionPresentation(row.buy_box_status); return <div className={styles.competitionCell}><span className={`${styles.competitionDot} ${styles[state.tone]}`} /><div><strong>{state.label}</strong><span>{state.description}</span></div></div>; } },
+    { title: 'Preço e resultado', key: 'price', width: 190, sorter: true, render: (_, row) => { const target = Number(row.price_to_win); const delta = Number.isFinite(target) && target > 0 ? target - Number(row.price || 0) : null; return <div className={styles.valueCell}><strong>{formatCurrency(row.price)}</strong><span>Para ganhar: {target > 0 ? formatCurrency(target) : 'não informado'}</span>{delta !== null && <small className={delta < 0 ? styles.negative : styles.positive}>{delta === 0 ? 'Preço já alinhado' : `${delta > 0 ? '+' : ''}${formatCurrency(delta)}`}</small>}</div>; } },
+    { title: 'Ação', key: 'action', width: 165, fixed: 'right', render: (_, row) => <Space.Compact><Button icon={<EyeOutlined />} onClick={() => void loadPriceDetail(row)}>Analisar disputa</Button><Dropdown menu={{ items: [{ key: 'ml', label: 'Abrir no Mercado Livre', disabled: !row.permalink || Boolean(visualReview) }], onClick: ({ key }) => { if (key === 'ml' && row.permalink) window.open(row.permalink, '_blank', 'noopener,noreferrer'); } }}><Button icon={<EllipsisOutlined />} /></Dropdown></Space.Compact> },
+  ], [loadPriceDetail, visualReview]);
+  const eligibleColumns: TableProps<ElegivelRow>['columns'] = useMemo(() => [
+    { title: 'Anúncio padrão', key: 'listing', width: 300, render: (_, row) => { const status = statusPresentation(row.status); return <div className={styles.listingCell}>{row.thumbnail ? <Image src={row.thumbnail} alt="" width={46} height={46} preview={false} className={styles.thumbnail} /> : <span className={styles.thumbnailFallback}><ShopOutlined /></span>}<div><strong>{row.title || 'Título não informado'}</strong><span className={styles.identifier}>{row.ml_item_id} · Padrão</span><Tag color={status.color}>{status.label}</Tag></div></div>; } },
+    { title: 'Produto Bentevi', key: 'product', width: 220, render: (_, row) => <div className={styles.stackCell}><strong>{row.local_product_name || 'Produto não vinculado'}</strong><span>SKU {row.seller_sku || 'não informado'}</span></div> },
+    { title: 'Produto de catálogo sugerido', key: 'catalogProduct', width: 275, render: (_, row) => <div className={styles.stackCell}><strong>{row.catalog_product_name_sugerido || row.catalog_product_name || row.title || 'Produto não identificado'}</strong><span className={styles.identifier}>{row.catalog_product_id_sugerido || row.catalog_product_id || 'ID não informado'}</span><small>Página de produto do Mercado Livre</small></div> },
+    { title: 'Elegibilidade', key: 'eligibility', width: 250, render: (_, row) => { const presentation = eligibilityPresentation(row.state); const ready = (row.variation_eligibility || []).filter((variation) => String(variation.status || '').toUpperCase() === 'READY_FOR_OPTIN').length; return <div className={styles.stackCell}><Tag color={presentation.color}>{presentation.label}</Tag><span>{ready ? `${ready} variação(ões) pronta(s)` : row.eligibility_label || 'Situação não informada'}</span><small>{row.reason}</small></div>; } },
+    { title: 'Próxima ação', key: 'action', width: 180, fixed: 'right', render: (_, row) => { const presentation = eligibilityPresentation(row.state); return <Button type={row.state === 'ready' ? 'primary' : 'default'} icon={row.state === 'ready' ? <ArrowRightOutlined /> : <EyeOutlined />} onClick={() => setActiveEligible(row)}>{presentation.action}</Button>; } },
+  ], []);
+  const handleCatalogTableChange: TableProps<NoCatalogoRow>['onChange'] = (pagination, _filters, sorter) => { setPage(Number(pagination.current || 1)); const current = Array.isArray(sorter) ? sorter[0] : sorter; if (!current?.order) return; const mapping: Record<string, string> = { listing: 'ml_item_id', competition: 'buy_box_status', price: 'price' }; setSortBy(mapping[String(current.columnKey)] || 'ml_item_id'); setSortOrder(current.order === 'ascend' ? 'asc' : 'desc'); };
+  const exportPdf = useCallback(async () => { setExportingPdf(true); try { const params = new URLSearchParams(queryString); params.delete('page'); params.delete('pageSize'); const response = await fetch(`/api/catalogo/no-catalogo/exportar-pdf?${params}`, { cache: 'no-store' }); if (!response.ok) throw new Error((await response.json().catch(() => ({})))?.erro || 'Falha ao gerar o PDF.'); const blob = await response.blob(); const url = URL.createObjectURL(blob); const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'catalogo-bentevi.pdf'; anchor.click(); URL.revokeObjectURL(url); } catch (error: any) { messageApi.error(error?.message || 'Falha ao exportar o PDF.'); } finally { setExportingPdf(false); } }, [messageApi, queryString]);
+  const queueItems = mode === 'no_catalogo' ? [['all', 'Todos', catalogMetrics.total], ['winning', 'Ganhando', catalogMetrics.winning], ['sharing_first_place', 'Dividindo 1º lugar', catalogMetrics.sharingFirstPlace], ['competing', 'Competindo', catalogMetrics.competing], ['outside', 'Fora da competição', catalogMetrics.outside]] as const : [['all', 'Todos', eligibleMetrics.total], ['ready', 'Prontos para criar', eligibleMetrics.ready], ['review_required', 'Revisão necessária', eligibleMetrics.reviewRequired], ['catalog_product_unavailable', 'Produto indisponível', eligibleMetrics.catalogProductUnavailable], ['local_product_missing', 'Sem vínculo Bentevi', eligibleMetrics.localProductMissing]] as const;
 
-      const jobId = String(refreshStartJson.jobId);
-      let refreshPayload: RefreshStatusPayload | null = null;
-      while (true) {
-        refreshPayload = await fetchRefreshStatus(jobId);
-        setAnaliseRefreshSteps(buildAnaliseRefreshSteps(refreshPayload));
-        const refreshStatus = refreshPayload.job?.status;
-        if (refreshStatus === 'completo' || refreshStatus === 'completo_parcial') break;
-        if (refreshStatus === 'erro' || refreshStatus === 'failed_auth' || refreshStatus === 'cancelado') {
-          throw new Error(refreshPayload.failures?.[0] || refreshPayload.job?.last_event?.message || 'Refresh completo falhou.');
-        }
-        await new Promise<void>((resolve) => setTimeout(resolve, 1500));
-      }
+  return <div className={styles.page}>
+    {messageContext}{modalContext}
+    <header className={styles.header}><div><Title level={2} className={styles.title}>Catálogo</Title><Text type="secondary">Entenda a origem, o vínculo e a próxima decisão de cada publicação.</Text>{mode === 'no_catalogo' && <small className={styles.lastSync}>Última análise: {formatDate(lastSyncedAt)}</small>}</div><Space wrap>{mode === 'no_catalogo' && <Button icon={<FilePdfOutlined />} loading={exportingPdf} onClick={() => void exportPdf()}>Exportar PDF</Button>}{mode === 'no_catalogo' && <Button icon={<ReloadOutlined spin={refreshRunning} />} disabled={Boolean(visualReview)} loading={refreshRunning} onClick={() => void startRefresh()}>Atualizar dados</Button>}{mode === 'no_catalogo' && <Button type="primary" disabled={Boolean(visualReview)} loading={analysisRunning} onClick={() => void runAnalysis()}>Reanalisar oportunidades</Button>}{mode === 'elegiveis' && <Button type="primary" disabled={!selectedEligibleRows.length || Boolean(visualReview)} onClick={() => confirmOptin(selectedEligibleRows)}>Criar selecionados ({selectedEligibleRows.length})</Button>}</Space></header>
+    {visualReview && <Alert className={styles.visualAlert} type="warning" showIcon message="Amostra real protegida para homologação" description={visualReview.simulatedEligibility ? 'Produtos e anúncios vêm da amostra real somente leitura; as situações de elegibilidade são simuladas apenas para avaliação deste fluxo. Nenhuma ação externa está habilitada.' : 'Os anúncios vêm da amostra real somente leitura. Sincronização, preço, criação e links externos permanecem desabilitados.'} />}
+    <section className={styles.domainGuide}><Segmented block value={mode} options={[{ label: 'Anúncios de catálogo', value: 'no_catalogo' }, { label: 'Elegíveis ao catálogo', value: 'elegiveis' }]} onChange={(value) => router.push(value === 'no_catalogo' ? '/catalogo/no-catalogo' : '/catalogo/elegiveis')} /><div className={styles.relationshipGuide}><span><b>Anúncio padrão</b><small>publicação original da loja</small></span><ArrowRightOutlined /><span><b>Produto de catálogo</b><small>página de produto do ML</small></span><ArrowRightOutlined /><span><b>Anúncio de catálogo</b><small>publicação que disputa vendas</small></span></div></section>
+    {refreshPayload?.job && mode === 'no_catalogo' && <Alert className={styles.jobAlert} type={refreshPayload.failures?.length ? 'error' : refreshRunning ? 'info' : 'success'} showIcon message={`Atualização do catálogo · ${refreshPayload.job.status === 'on_hold' ? 'aguardando continuação' : refreshPayload.job.status}`} description={<div className={styles.jobDescription}><span>{refreshPayload.job.last_event?.message || 'Acompanhando o processamento.'}</span><Progress percent={Number(refreshPayload.job.progresso || 0)} status={refreshPayload.failures?.length ? 'exception' : refreshRunning ? 'active' : 'success'} size="small" />{refreshPayload.failures?.[0] && <small>{refreshPayload.failures[0]}</small>}</div>} />}
+    <Segmented className={styles.quickViews} value={mode === 'no_catalogo' ? competition : actionState} onChange={(value) => mode === 'no_catalogo' ? setCompetition(String(value)) : setActionState(String(value))} options={queueItems.map(([value, label, count]) => ({ value, label: <span className={styles.quickViewLabel}>{label}<b>{count.toLocaleString('pt-BR')}</b></span> }))} />
+    <section className={styles.filterBar}><Input className={styles.search} prefix={<SearchOutlined />} placeholder="Buscar por produto, SKU ou ID" allowClear value={search} onChange={(event) => setSearch(event.target.value)} /><Select value={statusMl} options={statusOptions} onChange={setStatusMl} /><Select value={mode === 'no_catalogo' ? competition : actionState} options={mode === 'no_catalogo' ? competitionOptions : eligibilityOptions} onChange={(value) => mode === 'no_catalogo' ? setCompetition(value) : setActionState(value)} /><Space.Compact className={styles.priceRange}><InputNumber prefix="R$" placeholder="Preço mín." value={priceMin} onChange={(value) => setPriceMin(value ?? null)} /><InputNumber prefix="R$" placeholder="Preço máx." value={priceMax} onChange={(value) => setPriceMax(value ?? null)} /></Space.Compact>{mode === 'no_catalogo' && opportunityIds && <Button onClick={() => setOpportunityIds(null)}>Exibindo {visibleCatalogRows.length} oportunidades · Limpar</Button>}</section>
+    <section className={styles.tableCard}><Spin spinning={loading} indicator={<LoadingOutlined className={styles.loadingIcon} spin />}>{!loading && total === 0 ? <Empty description="Nenhum anúncio encontrado com estes filtros" /> : mode === 'no_catalogo' ? <ResizableTable<NoCatalogoRow> className={styles.table} storageKey="bnt-d12-catalog-listings" rowKey="ml_item_id" dataSource={visibleCatalogRows} columns={catalogColumns} onChange={handleCatalogTableChange} pagination={{ current: page, pageSize: PAGE_SIZE, total: opportunityIds ? visibleCatalogRows.length : total, showSizeChanger: false, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} de catálogo` }} scroll={{ x: 1300 }} size="small" /> : <ResizableTable<ElegivelRow> className={styles.table} storageKey="bnt-d12-catalog-eligible" rowKey="ml_item_id" dataSource={eligibleRows} columns={eligibleColumns} rowSelection={{ selectedRowKeys: selectedEligibleKeys, onChange: setSelectedEligibleKeys, getCheckboxProps: (row) => ({ disabled: row.state !== 'ready' || Boolean(visualReview) }) }} pagination={{ current: page, pageSize: PAGE_SIZE, total, showSizeChanger: false, onChange: setPage, showTotal: (count) => `${count} anúncio${count === 1 ? '' : 's'} padrão` }} scroll={{ x: 1300 }} size="small" />}</Spin></section>
 
-      setAnaliseRefreshSteps(buildAnaliseRefreshSteps(refreshPayload, true));
-      const res = await fetch('/api/catalogo/no-catalogo/analise-preco', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          refreshMode: 'none',
-        }),
-      });
-      const json = await res.json().catch(() => ({})) as AnalisePrecoResponse;
-      if (!res.ok || !json?.success) {
-        const erro = json?.erro || 'Falha ao executar reanálise de preço.';
-        setAnaliseErro(erro);
-        messageApi.error(erro);
-        return;
-      }
+    <Drawer open={Boolean(activeCatalog)} onClose={() => setActiveCatalog(null)} width="min(96vw, 900px)" title={activeCatalog ? <div className={styles.drawerTitle}><span>Análise do anúncio de catálogo</span><strong>{activeCatalog.ml_item_id}</strong></div> : undefined} extra={activeCatalog?.permalink && !visualReview ? <Button icon={<EyeOutlined />} onClick={() => window.open(activeCatalog.permalink || '', '_blank', 'noopener,noreferrer')}>Abrir no ML</Button> : null}>{activeCatalog && <Spin spinning={priceDetailLoading}><Tabs items={[
+      { key: 'relation', label: 'Relação', children: <div className={styles.drawerSection}><div className={styles.relationFlow}><span><small>Anúncio padrão</small><strong>{activeCatalog.relacionado_id || 'Não localizado'}</strong></span><ArrowRightOutlined /><span><small>Produto de catálogo</small><strong>{activeCatalog.catalog_product_id || 'Não informado'}</strong></span><ArrowRightOutlined /><span><small>Anúncio de catálogo</small><strong>{activeCatalog.ml_item_id}</strong></span></div><Alert type="info" showIcon message="Três identificadores diferentes" description="O produto de catálogo identifica a página do Mercado Livre. Os outros dois IDs identificam publicações da loja." /><Descriptions column={2} size="small" items={[{ key: 'product', label: 'Produto Bentevi', children: activeCatalog.produto_nome || activeCatalog.title }, { key: 'sku', label: 'SKU Bentevi', children: activeCatalog.sku_local || 'Não informado' }, { key: 'catalogStatus', label: 'Anúncio de catálogo', children: statusPresentation(activeCatalog.status).label }, { key: 'standardStatus', label: 'Anúncio padrão', children: statusPresentation(activeCatalog.related_status).label }]} /></div> },
+      { key: 'competition', label: 'Competição', children: <div className={styles.drawerSection}><div className={styles.competitionHero}>{(() => { const state = catalogCompetitionPresentation(priceDetail?.catalog?.rawStatus || activeCatalog.buy_box_status); return <><span className={`${styles.competitionDot} ${styles[state.tone]}`} /><div><small>Estado atual</small><strong>{state.label}</strong><p>{state.description}</p></div></>; })()}</div><Descriptions column={2} size="small" items={[{ key: 'current', label: 'Preço atual', children: formatCurrency(priceDetail?.currentPrice ?? activeCatalog.price) }, { key: 'target', label: 'Preço para ganhar', children: priceDetail?.catalog?.priceToWin || activeCatalog.price_to_win ? formatCurrency(Number(priceDetail?.catalog?.priceToWin || activeCatalog.price_to_win)) : 'Não informado' }, { key: 'winner', label: 'Anúncio vencedor', children: priceDetail?.catalog?.winner?.itemId || 'Não informado' }, { key: 'winnerPrice', label: 'Preço vencedor', children: priceDetail?.catalog?.winner?.price ? formatCurrency(priceDetail.catalog.winner.price) : 'Não informado' }]} />{priceDetail?.catalog?.reasons?.length ? <Alert type="warning" showIcon message="Motivos que impedem vencer" description={priceDetail.catalog.reasons.join(' · ')} /> : null}{priceDetail?.catalog?.boosts?.length ? <div className={styles.boostList}>{priceDetail.catalog.boosts.map((boost) => <span key={boost.id}><b>{boost.description || boost.id}</b><small>{boost.status}</small></span>)}</div> : null}{priceDetail?.catalog?.warning && <Alert type="warning" showIcon message={priceDetail.catalog.warning} />}</div> },
+      { key: 'price', label: 'Preço e sincronização', children: <div className={styles.drawerSection}><Descriptions column={2} size="small" items={[{ key: 'price', label: 'Preço atual', children: formatCurrency(priceDetail?.currentPrice ?? activeCatalog.price) }, { key: 'profit', label: 'Lucro atual', children: priceDetail?.currentProfit == null ? 'Não calculado' : formatCurrency(priceDetail.currentProfit) }, { key: 'sync', label: 'Última análise', children: formatDate(priceDetail?.catalog?.syncedAt || activeCatalog.last_updated) }, { key: 'automatic', label: 'Preço automático ML', children: priceDetail?.automaticPricing?.active ? 'Ativo — edição bloqueada' : 'Não detectado' }]} /><div className={styles.priceEditor}><div><label>Novo preço</label><InputNumber prefix="R$" min={0.01} precision={2} value={newPrice} onChange={(value) => setNewPrice(value ?? null)} disabled={Boolean(visualReview) || priceDetail?.automaticPricing?.active} /></div>{(priceDetail?.catalog?.priceToWin || activeCatalog.price_to_win) && <Button onClick={() => setNewPrice(Number(priceDetail?.catalog?.priceToWin || activeCatalog.price_to_win))}>Usar preço para ganhar</Button>}<Button type="primary" loading={updatingPrice} disabled={!activeCatalog.produto_id || !newPrice || Boolean(visualReview) || priceDetail?.automaticPricing?.active} onClick={() => modalApi.confirm({ title: 'Aplicar este preço nos anúncios vinculados?', content: 'A publicação será acompanhada pelo fluxo único do Mercado Livre.', okText: 'Aplicar preço', cancelText: 'Cancelar', onOk: savePrice })}>Aplicar preço</Button></div></div> },
+    ]} /></Spin>}</Drawer>
 
-      setAnaliseData(Array.isArray(json.data) ? json.data : []);
-      setAnaliseTotal(Number(json.total_analisado || 0));
-      setAnaliseClasses(json.classes || {});
-      setAnaliseRefreshStatus(json.refresh?.status || null);
-      setAnaliseSnapshotSyncedAt(json.snapshot_max_synced_at || null);
-      setAnaliseSnapshotAgeSeconds(typeof json.snapshot_age_seconds === 'number' ? json.snapshot_age_seconds : null);
-      setAnaliseUltimaExecucao(new Date().toISOString());
-      setAnaliseRefreshSteps(buildAnaliseRefreshSteps(refreshPayload));
-      messageApi.success('Reanálise de preço concluída.');
-    } catch (error: any) {
-      const erro = error?.message || 'Erro de conexão ao executar reanálise de preço.';
-      setAnaliseErro(erro);
-      setAnaliseRefreshSteps((current) => current.map((step) => (
-        step.status === 'loading' ? { ...step, status: 'error', error: erro } : step
-      )));
-      messageApi.error(erro);
-    } finally {
-      setAnaliseLoading(false);
-    }
-  }, [analiseLoading, fetchRefreshStatus, messageApi, mode]);
-
-  const handleAtualizarPrecoParaGanhar = useCallback(async (row: NoCatalogoRow) => {
-    if (mode !== 'no_catalogo') return;
-    if (!row.produto_id) {
-      messageApi.error('Anúncio sem vínculo com produto local. Vincule o produto para atualizar preço.');
-      return;
-    }
-    const targetPrice = Number(row.price_to_win);
-    if (!Number.isFinite(targetPrice) || targetPrice <= 0) {
-      messageApi.error('ML não retornou preço para ganhar Buy Box nesse anúncio.');
-      return;
-    }
-    const itemKey = String(row.ml_item_id || row.anuncio_id || row.produto_id);
-    await executeMlPriceUpdate({
-      produtoId: row.produto_id,
-      targetPrice,
-      source: 'catalog_price_to_win',
-      itemKey,
-    });
-  }, [executeMlPriceUpdate, messageApi, mode]);
-
-  const handleAtualizarPrecoReanalise = useCallback(async (row: AnalisePrecoRow) => {
-    if (mode !== 'no_catalogo') return;
-    if (!row.produto_id) {
-      messageApi.error('Anúncio sem vínculo com produto local. Vincule o produto para atualizar preço.');
-      return;
-    }
-    const targetPrice = Number(row.price_to_win);
-    if (!Number.isFinite(targetPrice) || targetPrice <= 0) {
-      messageApi.error('ML não retornou preço para ganhar Buy Box nesse anúncio.');
-      return;
-    }
-    const itemKey = String(row.ml_item_id || row.produto_id || '');
-    await executeMlPriceUpdate({
-      produtoId: row.produto_id,
-      targetPrice,
-      source: 'catalog_price_to_win',
-      itemKey,
-    });
-  }, [executeMlPriceUpdate, messageApi, mode]);
-
-  const columnsAnalisePreco: TableProps<AnalisePrecoRow>['columns'] = useMemo(() => ([
-    {
-      title: 'Anúncio',
-      dataIndex: 'ml_item_id',
-      key: 'ml_item_id',
-      width: 140,
-      sorter: (a, b) => compareText(a.ml_item_id, b.ml_item_id),
-      render: (v, record) => record.permalink
-        ? <a href={record.permalink} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'monospace' }}>{v || '—'}</a>
-        : <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
-    },
-    { title: 'Título', dataIndex: 'titulo', key: 'titulo', width: 280, sorter: (a, b) => compareText(a.titulo, b.titulo), render: (v) => v || '—' },
-    { title: 'SKU', dataIndex: 'sku_local', key: 'sku_local', width: 120, sorter: (a, b) => compareText(a.sku_local, b.sku_local), render: (v) => v || '—' },
-    { title: 'Preço Atual', dataIndex: 'preco_atual', key: 'preco_atual', width: 120, sorter: (a, b) => compareNumberNullable(a.preco_atual, b.preco_atual), render: (v) => formatCurrency(Number(v || 0)) },
-    { title: 'Preço p/ Ganhar', dataIndex: 'price_to_win', key: 'price_to_win', width: 130, sorter: (a, b) => compareNumberNullable(a.price_to_win, b.price_to_win), render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
-    {
-      title: 'Diferença',
-      dataIndex: 'delta_preco',
-      key: 'delta_preco',
-      width: 120,
-      sorter: (a, b) => compareNumberNullable(a.delta_preco, b.delta_preco),
-      render: (v) => {
-        if (v === null) return '—';
-        const n = Number(v || 0);
-        const color = n > 0 ? '#faad14' : n < 0 ? '#52c41a' : '#a0a0a0';
-        return <span style={{ color }}>{formatCurrency(n)}</span>;
-      },
-    },
-    {
-      title: 'Lucro/Prejuízo Estimado',
-      dataIndex: 'lucro_unitario_estimado',
-      key: 'lucro_unitario_estimado',
-      width: 170,
-      sorter: (a, b) => compareNumberNullable(a.lucro_unitario_estimado, b.lucro_unitario_estimado),
-      render: (v) => {
-        if (v === null) return '—';
-        const n = Number(v);
-        const color = n > 0 ? '#52c41a' : n < 0 ? '#ff4d4f' : '#a0a0a0';
-        return <span style={{ color }}>{formatCurrency(n)}</span>;
-      },
-    },
-    {
-      title: 'Classe',
-      dataIndex: 'classe',
-      key: 'classe',
-      width: 200,
-      sorter: (a, b) => classPriority(a.classe) - classPriority(b.classe),
-      render: (v) => <Tag color={classColor(v)}>{classLabel(v)}</Tag>,
-    },
-    {
-      title: 'Ações',
-      key: 'actions',
-      width: 70,
-      fixed: 'right',
-      render: (_, record) => {
-        const itemKey = String(record.ml_item_id || record.produto_id || '');
-        const updating = Boolean(updatingPriceByItem[itemKey]);
-        const noPriceToWin = !(Number.isFinite(Number(record.price_to_win)) && Number(record.price_to_win) > 0);
-        const noProduto = !record.produto_id;
-        const updateDisabled = updating || noPriceToWin || noProduto;
-        return (
-          <Dropdown
-            menu={{
-              items: [
-                {
-                  key: 'updatePriceToWin',
-                  disabled: updateDisabled,
-                  label: updating
-                    ? 'Atualizando...'
-                    : noPriceToWin
-                      ? 'Atualizar preço p/ ganhar (sem preço sugerido)'
-                      : noProduto
-                        ? 'Atualizar preço p/ ganhar (sem produto vinculado)'
-                        : 'Atualizar preço p/ ganhar',
-                },
-              ],
-              onClick: ({ key }) => {
-                if (key === 'updatePriceToWin') handleAtualizarPrecoReanalise(record);
-              },
-            }}
-            trigger={['click']}
-          >
-            <Button type="text" size="small" icon={<EllipsisOutlined />} />
-          </Dropdown>
-        );
-      },
-    },
-  ]), [handleAtualizarPrecoReanalise, updatingPriceByItem]);
-
-  const columnsNoCatalogo: TableProps<NoCatalogoRow>['columns'] = useMemo(() => ([
-    { title: 'SKU', dataIndex: 'sku_local', key: 'sku_local', width: 130, render: (v) => v || '—' },
-    {
-      title: 'Anúncio',
-      dataIndex: 'anuncio_id',
-      key: 'anuncio_id',
-      width: 140,
-      render: (v, record) => record.permalink
-        ? <a href={record.permalink} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'monospace' }}>{v}</a>
-        : <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
-    },
-    {
-      title: 'Relacionado',
-      dataIndex: 'relacionado_id',
-      key: 'relacionado_id',
-      width: 140,
-      render: (v, record) => {
-        if (!v) return '—';
-        if (record.related_permalink) {
-          return <a href={record.related_permalink} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'monospace' }}>{v}</a>;
-        }
-        return <span style={{ fontFamily: 'monospace' }}>{v}</span>;
-      },
-    },
-    { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      width: 120,
-      render: (v) => <Tag color={v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default'}>{mapStatusMlToPt(v)}</Tag>,
-    },
-    {
-      title: 'Buy Box?',
-      dataIndex: 'buy_box_status',
-      key: 'buy_box_status',
-      width: 120,
-      render: (v) => {
-        if (!v) return '—';
-        const normalized = String(v).toLowerCase();
-        const ganhando = normalized === 'winning' || normalized === 'sharing_first_place';
-        return <Tag color={ganhando ? 'green' : 'red'}>{ganhando ? 'Ganhando' : 'Perdendo'}</Tag>;
-      },
-    },
-    { title: 'Preço', dataIndex: 'price', key: 'price', width: 110, render: (v) => formatCurrency(Number(v || 0)) },
-    { title: 'Preço p/ Ganhar', dataIndex: 'price_to_win', key: 'price_to_win', width: 140, render: (v) => (v === null || v === undefined ? '—' : formatCurrency(Number(v))) },
-    {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => {
-        const itemKey = String(record.ml_item_id || record.anuncio_id || record.produto_id || '');
-        const updating = Boolean(updatingPriceByItem[itemKey]);
-        const noPriceToWin = !(Number.isFinite(Number(record.price_to_win)) && Number(record.price_to_win) > 0);
-        const noProduto = !record.produto_id;
-        const updateDisabled = updating || noPriceToWin || noProduto;
-
-        const menuItems: MenuProps['items'] = [
-          {
-            key: 'updatePriceToWin',
-            disabled: updateDisabled,
-            label: updating
-              ? 'Atualizando...'
-              : noPriceToWin
-                ? 'Atualizar preço p/ ganhar (sem preço sugerido)'
-                : noProduto
-                  ? 'Atualizar preço p/ ganhar (sem produto vinculado)'
-                  : 'Atualizar preço p/ ganhar',
-          },
-        ];
-
-        return (
-          <Dropdown
-            menu={{
-              items: menuItems,
-              onClick: ({ key }) => {
-                if (key === 'updatePriceToWin') handleAtualizarPrecoParaGanhar(record);
-              },
-            }}
-            trigger={['click']}
-          >
-            <Button type="text" size="small" icon={<EllipsisOutlined />} />
-          </Dropdown>
-        );
-      },
-    },
-  ]), [handleAtualizarPrecoParaGanhar, updatingPriceByItem]);
-
-  const columnsElegiveis: TableProps<ElegivelRow>['columns'] = useMemo(() => ([
-    { title: 'SKU', dataIndex: 'seller_sku', key: 'seller_sku', width: 130, render: (v) => v || '—' },
-    {
-      title: 'Anúncio',
-      dataIndex: 'ml_item_id',
-      key: 'ml_item_id',
-      width: 140,
-      render: (v, record) => record.permalink
-        ? <a href={record.permalink} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'monospace' }}>{v}</a>
-        : <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
-    },
-    {
-      title: 'Produto Catálogo',
-      dataIndex: 'catalog_product_id',
-      key: 'catalog_product_id',
-      width: 220,
-      render: (v, record) => {
-        const suggested = record.catalog_product_id_sugerido || null;
-        const isSuggested = Boolean(suggested && suggested !== v);
-        const value = suggested || v;
-        if (!value) return '—';
-        return (
-          <div>
-            <span style={{ fontFamily: 'monospace' }}>{value}</span>
-            {isSuggested && <Tag color="blue" style={{ marginLeft: 6 }}>Sugerido</Tag>}
-            {record.catalog_product_warning && (
-              <div style={{ color: '#faad14', fontSize: 11, marginTop: 2 }}>
-                {record.catalog_product_warning}
-              </div>
-            )}
-          </div>
-        );
-      },
-    },
-    { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      width: 120,
-      render: (v, record) => {
-        const label = record.status_label || mapStatusMlToPt(v);
-        const color = label === 'Pendente de catálogo' ? 'orange' : v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default';
-        return <Tag color={color}>{label}</Tag>;
-      },
-    },
-    { title: 'Preço', dataIndex: 'price', key: 'price', width: 110, render: (v) => formatCurrency(Number(v || 0)) },
-    {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => (
-        <Dropdown
-          menu={{
-            items: [
-              { key: 'view', label: 'Ver no ML' },
-              { key: 'optin', label: 'Criar anúncio de catálogo', disabled: !canCreateCatalogOptin(record) },
-            ],
-            onClick: ({ key }) => {
-              if (key === 'view' && record.permalink) window.open(record.permalink, '_blank');
-              if (key === 'optin') handleOptin(record);
-            },
-          }}
-          trigger={['click']}
-        >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} />
-        </Dropdown>
-      ),
-    },
-  ]), [handleOptin]);
-
-  const anunciosTabContent = (
-    <>
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Spin spinning={loadingResumoNoCatalogo} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-          <Row gutter={[16, 16]}>
-            <Col xs={24} sm={12} md={8} lg={4}>
-              <Statistic title={<span style={{ color: '#a0a0a0' }}>Total</span>} value={resumoNoCatalogo.total} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
-            </Col>
-            <Col xs={24} sm={12} md={8} lg={4}>
-              <Statistic title={<span style={{ color: '#a0a0a0' }}>Ativos</span>} value={resumoNoCatalogo.ativos} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
-            </Col>
-            <Col xs={24} sm={12} md={8} lg={4}>
-              <Statistic title={<span style={{ color: '#a0a0a0' }}>Pausados</span>} value={resumoNoCatalogo.pausados} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
-            </Col>
-            <Col xs={24} sm={12} md={8} lg={4}>
-              <Statistic title={<span style={{ color: '#a0a0a0' }}>Ganhando</span>} value={resumoNoCatalogo.ganhando} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
-            </Col>
-            <Col xs={24} sm={12} md={8} lg={4}>
-              <Statistic title={<span style={{ color: '#a0a0a0' }}>Perdendo</span>} value={resumoNoCatalogo.perdendo} valueStyle={{ color: '#ff4d4f', fontWeight: 700, fontSize: 24 }} />
-            </Col>
-          </Row>
-        </Spin>
-      </div>
-
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
-            <Input
-              placeholder="Buscar (SKU, título, IDs)"
-              prefix={<SearchOutlined />}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              style={{ width: 280 }}
-              allowClear
-            />
-          </Col>
-          <Col>
-            <Select
-              value={statusMl}
-              onChange={setStatusMl}
-              options={statusMlOptions}
-              style={{ width: 180 }}
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Buy Box"
-              value={buyBoxFilter === 'all' ? undefined : buyBoxFilter}
-              onChange={setBuyBoxFilter}
-              options={buyBoxOptions}
-              style={{ width: 140 }}
-              allowClear
-              onClear={() => setBuyBoxFilter('all')}
-            />
-          </Col>
-          <Col>
-            <Space.Compact>
-              <InputNumber placeholder="Preço mín" value={priceMin} onChange={(v) => setPriceMin(v ?? null)} style={{ width: 120 }} />
-              <InputNumber placeholder="Preço máx" value={priceMax} onChange={(v) => setPriceMax(v ?? null)} style={{ width: 120 }} />
-            </Space.Compact>
-          </Col>
-          <Col>
-            <Button
-              icon={refreshJobStatus === 'running' ? <LoadingOutlined spin /> : <ReloadOutlined />}
-              onClick={refreshNoCatalogoSnapshot}
-              loading={refreshJobStatus === 'running'}
-            >
-              Atualizar agora
-            </Button>
-          </Col>
-          <Col>
-            <Button
-              icon={<FilePdfOutlined />}
-              onClick={() => void handleExportPdf()}
-              loading={exportingPdf}
-            >
-              Exportar PDF
-            </Button>
-          </Col>
-        </Row>
-      </div>
-
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-          <ResizableTable<NoCatalogoRow>
-            storageKey="catalogo-no-catalogo"
-            rowKey="ml_item_id"
-            dataSource={noCatalogoData}
-            columns={columnsNoCatalogo}
-            pagination={{
-              current: page,
-              pageSize: PAGE_SIZE,
-              total,
-              showSizeChanger: false,
-              onChange: (p) => {
-                setPage(p);
-              },
-              showTotal: (t) => `${t} anúncios`,
-            }}
-            scroll={{ x: 1400 }}
-            size="small"
-            style={{ background: 'transparent' }}
-          />
-        </Spin>
-      </div>
-    </>
-  );
-
-  const reanaliseTabContent = (
-    <>
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[12, 12]} align="middle">
-          <Col>
-            <Button type="primary" onClick={runAnalisePreco} loading={analiseLoading}>
-              Reanalisar
-            </Button>
-          </Col>
-          <Col>
-            <span style={{ color: '#a0a0a0', fontSize: 12 }}>
-              {analiseUltimaExecucao ? `Última execução: ${new Date(analiseUltimaExecucao).toLocaleString('pt-BR')}` : 'Ainda não executado'}
-            </span>
-          </Col>
-          <Col>
-            <span style={{ color: '#a0a0a0', fontSize: 12 }}>
-              Fonte: {analiseRefreshStatus === 'skipped' ? 'snapshot local' : (analiseRefreshStatus || '—')}
-            </span>
-          </Col>
-          <Col>
-            <span style={{ color: '#a0a0a0', fontSize: 12 }}>
-              Snapshot: {analiseSnapshotSyncedAt
-                ? `${new Date(analiseSnapshotSyncedAt).toLocaleString('pt-BR')}${analiseSnapshotAgeSeconds !== null ? ` (${Math.floor(analiseSnapshotAgeSeconds / 60)} min)` : ''}`
-                : '—'}
-            </span>
-          </Col>
-        </Row>
-        {analiseErro && (
-          <div style={{ marginTop: 12 }}>
-            <Tag color="red">{analiseErro}</Tag>
-          </div>
-        )}
-      </div>
-
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={8} lg={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Total analisado</span>} value={analiseTotal} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
-          </Col>
-          <Col xs={24} sm={12} md={8} lg={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Ajustar para ganhar</span>} value={Number(analiseClasses.ajustar_para_ganhar_sem_prejuizo || 0)} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
-          </Col>
-          <Col xs={24} sm={12} md={8} lg={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Não viável sem prejuízo</span>} value={Number(analiseClasses.nao_viavel_ganhar_sem_prejuizo || 0)} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
-          </Col>
-          <Col xs={24} sm={12} md={8} lg={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Dados insuficientes</span>} value={Number(analiseClasses.dados_insuficientes || 0)} valueStyle={{ color: '#d9d9d9', fontWeight: 700, fontSize: 24 }} />
-          </Col>
-        </Row>
-      </div>
-
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Spin spinning={analiseLoading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-          <ResizableTable<AnalisePrecoRow>
-            storageKey="catalogo-no-catalogo-reanalise"
-            rowKey="ml_item_id"
-            dataSource={analiseData}
-            columns={columnsAnalisePreco}
-            pagination={false}
-            scroll={{ x: 1900 }}
-            size="small"
-            style={{ background: 'transparent' }}
-          />
-        </Spin>
-      </div>
-    </>
-  );
-
-  return (
-    <div>
-      {contextHolder}
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Catálogo - Mercado Livre</Title>
-
-      {mode === 'no_catalogo' ? (
-        <Tabs
-          activeKey={activeNoCatalogTab}
-          onChange={(key) => setActiveNoCatalogTab(key as 'anuncios' | 'reanalisar')}
-          items={[
-            { key: 'anuncios', label: 'Anúncios', children: anunciosTabContent },
-            { key: 'reanalisar', label: 'Reanálise de Preço', children: reanaliseTabContent },
-          ]}
-        />
-      ) : (
-        <>
-          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-            <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-              <Row gutter={[16, 16]}>
-                <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Total ML</span>} value={resumoElegiveis.totalMl} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Carregados</span>} value={resumoElegiveis.carregados} valueStyle={{ color: '#d9d9d9', fontWeight: 700, fontSize: 24 }} />
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Ativos</span>} value={resumoElegiveis.ativos} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Pendentes Catálogo</span>} value={resumoElegiveis.pendentesCatalogo} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Sem SKU</span>} value={resumoElegiveis.semSku} valueStyle={{ color: '#ff4d4f', fontWeight: 700, fontSize: 24 }} />
-                </Col>
-              </Row>
-            </Spin>
-          </div>
-
-          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-            <Row gutter={[8, 8]} align="middle">
-              <Col>
-                <Input
-                  placeholder="Buscar (SKU, título, IDs)"
-                  prefix={<SearchOutlined />}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  style={{ width: 280 }}
-                  allowClear
-                />
-              </Col>
-              <Col>
-                <Select
-                  value={statusMl}
-                  onChange={setStatusMl}
-                  options={statusMlOptions}
-                  style={{ width: 180 }}
-                />
-              </Col>
-              <Col>
-                <Space.Compact>
-                  <InputNumber placeholder="Preço mín" value={priceMin} onChange={(v) => setPriceMin(v ?? null)} style={{ width: 120 }} />
-                  <InputNumber placeholder="Preço máx" value={priceMax} onChange={(v) => setPriceMax(v ?? null)} style={{ width: 120 }} />
-                </Space.Compact>
-              </Col>
-              <Col>
-                <Button
-                  type="primary"
-                  onClick={runCatalogBatchOptin}
-                  disabled={selectedElegivelKeys.length === 0 || catalogBatchRunning}
-                  loading={catalogBatchRunning}
-                >
-                  Criar catálogo em massa ({selectedElegivelKeys.length})
-                </Button>
-              </Col>
-            </Row>
-          </div>
-
-          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-              <ResizableTable<ElegivelRow>
-                storageKey="catalogo-elegiveis"
-                rowKey="ml_item_id"
-                dataSource={elegiveisData}
-                columns={columnsElegiveis}
-                rowSelection={{
-                  selectedRowKeys: selectedElegivelKeys,
-                  onChange: (keys) => setSelectedElegivelKeys(keys.map(String)),
-                  getCheckboxProps: (record) => ({
-                    disabled: !canCreateCatalogOptin(record) || catalogBatchRunning,
-                  }),
-                }}
-                pagination={{
-                  current: page,
-                  pageSize: PAGE_SIZE,
-                  total,
-                  showSizeChanger: false,
-                  onChange: (p) => {
-                    setPage(p);
-                  },
-                  showTotal: (t) => `${t} anúncios`,
-                }}
-                scroll={{ x: 1360 }}
-                size="small"
-                style={{ background: 'transparent' }}
-              />
-            </Spin>
-          </div>
-        </>
-      )}
-
-      <ProgressModal
-        open={catalogBatchModalOpen}
-        title="Criando anúncios de catálogo em massa"
-        steps={catalogBatchSteps}
-        onClose={closeCatalogBatchModal}
-        showCloseButton={!catalogBatchRunning}
-        customActions={catalogBatchRunning ? [{
-          key: 'cancel_catalog_batch',
-          label: 'Cancelar',
-          danger: true,
-          onClick: cancelCatalogBatch,
-        }] : []}
-      />
-
-      <ProgressModal {...mlPublishProgressModalProps} />
-
-      <ProgressModal
-        open={analiseRefreshModalOpen}
-        title="Atualizando reanálise de preço"
-        steps={analiseRefreshSteps}
-        onClose={() => setAnaliseRefreshModalOpen(false)}
-        showCloseButton={analiseRefreshSteps.every((step) => step.status === 'success' || step.status === 'warning') || analiseRefreshSteps.some((step) => step.status === 'error')}
-      />
-    </div>
-  );
+    <Drawer open={Boolean(activeEligible)} onClose={() => setActiveEligible(null)} width="min(96vw, 820px)" title={activeEligible ? <div className={styles.drawerTitle}><span>Elegibilidade ao catálogo</span><strong>{activeEligible.ml_item_id}</strong></div> : undefined}>{activeEligible && <div className={styles.drawerSection}><div className={styles.relationFlow}><span><small>Anúncio padrão</small><strong>{activeEligible.ml_item_id}</strong></span><ArrowRightOutlined /><span><small>Produto de catálogo</small><strong>{activeEligible.catalog_product_id_sugerido || activeEligible.catalog_product_id || 'Não informado'}</strong></span><ArrowRightOutlined /><span><small>Resultado</small><strong>Novo anúncio de catálogo</strong></span></div><Alert type={activeEligible.state === 'ready' ? 'success' : 'warning'} showIcon message={eligibilityPresentation(activeEligible.state).label} description={activeEligible.reason} /><Descriptions column={2} size="small" items={[{ key: 'product', label: 'Produto Bentevi', children: activeEligible.local_product_name || 'Não vinculado' }, { key: 'sku', label: 'SKU', children: activeEligible.seller_sku || 'Não informado' }, { key: 'catalog', label: 'Produto de catálogo', children: activeEligible.catalog_product_name_sugerido || activeEligible.catalog_product_name || 'Não informado' }, { key: 'status', label: 'Estado no ML', children: activeEligible.eligibility_label || activeEligible.eligibility_status || 'Não informado' }]} />{activeEligible.variation_eligibility?.length > 0 && <div className={styles.variationList}>{activeEligible.variation_eligibility.map((variation) => <span key={String(variation.id)}><b>Variação {variation.id}</b><small>{String(variation.status || 'Não informada')} · produto {variation.catalog_product_id || activeEligible.catalog_product_id || 'não informado'}</small></span>)}</div>}{activeEligible.catalog_product_warning && <Alert type="warning" showIcon message="Compatibilidade precisa de atenção" description={activeEligible.catalog_product_warning} />}<Alert type="info" showIcon message="O anúncio padrão não será transformado" description="O opt-in cria uma publicação de catálogo separada. Para anúncios com variações, será criada uma publicação por variação elegível." /><Button type="primary" size="large" disabled={activeEligible.state !== 'ready' || Boolean(visualReview)} onClick={() => confirmOptin([activeEligible])}>Criar anúncio de catálogo</Button></div>}</Drawer>
+    <ProgressModal open={batchOpen} title="Criando anúncios de catálogo" steps={batchSteps} onClose={() => { if (!batchRunning) setBatchOpen(false); }} showCloseButton={!batchRunning} customActions={batchRunning ? [{ key: 'cancel', label: 'Cancelar', danger: true, onClick: () => { batchCancelled.current = true; batchAbort.current?.abort(); setBatchRunning(false); } }] : []} />
+    <ProgressModal open={analysisModalOpen} title="Reanalisando oportunidades de catálogo" steps={analysisSteps} onClose={() => setAnalysisModalOpen(false)} showCloseButton={!analysisRunning} />
+    <ProgressModal {...progressModalProps} />
+  </div>;
 }
