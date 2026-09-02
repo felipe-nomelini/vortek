@@ -1939,7 +1939,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D05` — Estoque;
 - [x] `BNT-D06` — Perguntas;
 - [x] `BNT-D07` — Produtos;
-- [ ] `BNT-D08` — Detalhe do Produto;
+- [x] `BNT-D08` — Detalhe do Produto;
 - [ ] `BNT-D09` — Ofertas;
 - [ ] `BNT-D10` — Detalhe da Oferta;
 - [ ] `BNT-D11` — Anúncios;
@@ -2149,7 +2149,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D07 — Produtos`
 
-**Situação:** página e relatório PDF implementados, publicados e aprovados visualmente pelo usuário em homologação. `BNT-D08 — Detalhe do Produto` foi implementado e publicado em `2026-09-02` e aguarda somente aprovação visual.
+**Situação:** página, relatório PDF e detalhe implementados, publicados e aprovados visualmente pelo usuário em homologação. `BNT-D09 — Ofertas` foi implementada e publicada em `2026-09-02` e aguarda aprovação visual.
 
 **Estado/causa confirmados:** `/produtos` misturava uma grade cadastral extensa, edição de preço dentro da célula e o fluxo completo de publicação do Mercado Livre no mesmo contexto visual. Estoque, fornecedor, custo, preço, lucro e anúncio estavam distribuídos em colunas isoladas, enquanto a lista reutilizava o saldo agregado legado e não expunha a capacidade canônica de fulfillment (`Q segura`).
 
@@ -2181,7 +2181,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D08 — Detalhe do Produto`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente pelo usuário em homologação em `2026-09-02`.
 
 **Estado/causa confirmados:** o detalhe anterior abria diretamente como um formulário longo e não preservava a hierarquia operacional aprovada em Produtos. Capacidade de fulfillment, múltiplas ofertas, composição de kit e anúncios padrão/catálogo não eram apresentados pelo mesmo contrato canônico da listagem, o que dificultava consultar o produto antes de decidir por uma edição.
 
@@ -2193,7 +2193,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** para desfazer apenas o detalhe, reverter `d9ca164` em `dev` e redeployar somente `vortek-erp-dev`; os campos adicionais do recorte temporário podem permanecer porque o código anterior os ignora. Para remover a amostra inteira, apagar as duas chaves temporárias somente do `sync_runtime_config` em `192.168.1.162`; para desfazer também o suporte à amostra, reverter `8518ec2`. O rollback do redesign da lista continua sendo reverter `ed183b2`. Não há migration ou integração externa a reverter e produção não deve ser alterada.
 
-**Pendência:** validar visualmente o detalhe em homologação antes de marcar `BNT-D08` como concluído e liberar `BNT-D09`.
+**Pendência:** nenhuma para `BNT-D08`; `BNT-D09` foi liberada e executada.
+
+#### Resultado técnico de `BNT-D09 — Ofertas`
+
+**Situação:** implementada, validada tecnicamente e publicada em homologação em `2026-09-02`; aprovação visual pendente.
+
+**Estado/causa confirmados:** `/produtos/ofertas` carregava as ofertas em lotes de mil e filtrava, ordenava e paginava em memória, gerando aproximadamente 26 leituras para o volume atual. A página também repetia preço, lucro e estado do Mercado Livre por oferta, embora esses dados pertençam ao produto mestre, e apresentava preferências, pagamento e atividade como várias tags sem uma decisão operacional clara.
+
+**Mudança realizada:** a tela passou a ser uma comparação de fontes externas com filas `Operacionais`, `Alternativas`, `Com problema`, `Históricas` e `Todas`; resumo de vínculos, elegibilidade, problemas e produtos com alternativas; busca e filtros; custo comparado ao menor custo elegível do mesmo produto; estoque, prazo, pagamento, preferência e última sincronização. Cada oferta recebe no backend exatamente um estado, com precedência para fornecedor histórico, oferta inativa, produto inativo, custo inválido, falta de estoque e elegibilidade. Estoque interno e fontes sintéticas de kits não são tratados como ofertas. Hayamax e `balance_account` permanecem somente na fila histórica, sem ação operacional.
+
+**Banco DEV:** depois do preflight confirmar o destino `192.168.1.162`, o ambiente independente `supabase-dev`, PostgreSQL `17.6`, a migration mais recente `20260901213000` e o schema afetado, a função `search_supplier_offers_paginated` foi ensaiada em transação e revertida com `ROLLBACK`. Seis ofertas temporárias validaram todos os estados relevantes, comparação de custo, preferência, métricas e filas sem deixar resíduos. A migration `20260902110000_bnt_d09_supplier_offers_search` foi então aplicada transacionalmente somente no `.162`; a RPC é `SECURITY INVOKER`, possui `search_path` vazio e execução exclusiva do `service_role`. Nenhuma escrita ou migration foi realizada em `192.168.1.160`.
+
+**Amostra protegida:** a tela reutiliza os mesmos 40 produtos e 76 ofertas externas do recorte temporário de produção já armazenado no runtime do DEV, sem copiar dados para as tabelas operacionais. Produto mestre permanece consultável; o detalhe da oferta e suas ações ficam desabilitados até `BNT-D10`.
+
+**Commit e validação:** `146724f` — `feat(produtos): redesenhar ofertas Bentevi`, enviado somente para `origin/dev`. Os 50 cenários direcionados de Produtos, ofertas, preferência, pagamento e aposentadoria Hayamax foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 125 páginas/rotas e `git diff --check` passaram. A action Easypanel `cmtjmygep000107po2i7v232f` concluiu com `Success`; a task `cvt9tuzl7nolu7h2wbgtlj5ut` ativou `GIT_SHA=146724f4c91499e576e0b512eb5dfeb4f6cf62cb` somente em `vortek-erp-dev`. Health e login responderam `200`, `/produtos/ofertas` respondeu `307` sem sessão e a API respondeu `401` sem sessão. O artefato publicado contém a nova interface e a RPC paginada.
+
+**Rollback:** reverter `146724f` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover `search_supplier_offers_paginated`. A amostra existente não precisa ser alterada. Não há ação em produção.
+
+**Pendência:** validar visualmente `/produtos/ofertas` em homologação antes de marcar `BNT-D09` como concluída e liberar `BNT-D10`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
