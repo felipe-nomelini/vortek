@@ -1936,7 +1936,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D02` — Dashboard;
 - [x] `BNT-D03` — Compras;
 - [x] `BNT-D04` — Notas Fiscais;
-- [ ] `BNT-D05` — Estoque;
+- [x] `BNT-D05` — Estoque;
 - [ ] `BNT-D06` — Perguntas;
 - [ ] `BNT-D07` — Produtos;
 - [ ] `BNT-D08` — Detalhe do Produto;
@@ -2093,7 +2093,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D05 — Estoque`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aguardando aprovação visual do usuário.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente pelo usuário em homologação em `2026-09-01`.
 
 **Estado/causa confirmados:** o primeiro redesign ainda representava o ledger manual antigo e não o estoque próprio solicitado. Faltavam recebimento por NF-e, leitura de chave pela câmera ou leitor, obtenção segura do XML, conferência física, vínculo dos itens com o catálogo e separação entre estoque físico, disponível, reservado e não aproveitável. Além disso, `/api/estoque` carregava somente saídas `despachado`, embora o saldo canônico desconte toda saída ativa; uma unidade `reservado` podia continuar aparecendo como disponível.
 
@@ -2109,7 +2109,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `2599a7d` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover os objetos novos enquanto não houver recebimentos reais. Não há ação em `main` ou produção.
 
-**Pendência:** aprovação visual em `https://dev.bentevi.shop/estoque`. Não marcar `BNT-D05` como concluída nem iniciar `BNT-D06` antes desse aceite.
+**Aceite visual:** o usuário aprovou `/estoque` e a aba de NF-e de entrada em `2026-09-01` após a inclusão das amostras protegidas. `BNT-D05` está concluída e `BNT-D06` foi desbloqueada.
 
 **Complemento de homologação em `2026-09-01`:** foram persistidas no `supabase-dev` nove NF-e modelo 55 e cinco posições visuais de estoque com `snapshot_source = bnt_d05_inventory_mock`. Os nove movimentos da amostra estão obrigatoriamente estornados por constraint e a visão canônica confirmou zero saldo decorrente deles. A interface marca esses registros como amostra, bloqueia recebimento, documentos e eventos externos e os utiliza somente para demonstrar estados de autorização, cancelamento, denegação, manifestação, conferência parcial/concluída, reserva, indisponibilidade e avaria.
 
@@ -2122,6 +2122,24 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Migration do complemento:** `20260901213000_bnt_d05_incoming_invoices.sql`, aplicada e registrada exclusivamente no `supabase-dev` em `192.168.1.162`. O banco de produção não foi acessado.
 
 **Pendência operacional externa:** cadastrar `https://dev.bentevi.shop/api/webhooks/brasilnfe` no painel Brasil NFe, vincular o webhook à empresa DEV, configurar o secret gerado como `BRASILNFE_WEBHOOK_SECRET` somente no runtime `vortek-erp-dev` e cadastrar o CNPJ da empresa no banco DEV. Até isso ocorrer, o endpoint responde `503` sem processar eventos e a sincronização manual não deve ser usada. A aprovação visual das amostras não depende dessa configuração.
+
+#### Resultado técnico de `BNT-D06 — Perguntas`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aguardando aprovação visual do usuário.
+
+**Estado/causa confirmados:** apesar da correção funcional de `UI-05`, `/perguntas` continuava sendo uma tabela de oito colunas com seleção em massa sem ação correspondente, resposta escondida em linha expansível/modal e contexto do anúncio disperso. O operador precisava alternar entre linha, menu e modal para compreender e responder uma dúvida pré-venda.
+
+**Mudança realizada:** a página passou a ser uma caixa de entrada Bentevi em duas áreas: fila à esquerda e contexto/resposta à direita. O estado inicial consulta globalmente as não respondidas e o backend solicita ao Mercado Livre as mais antigas primeiro; busca e períodos continuam limitados aos 100 registros da página, com essa fronteira explícita. A fila mostra idade, estado, pergunta e anúncio; o painel selecionado mostra imagem, anúncio, cliente, datas, resposta existente ou compositor contínuo de até 2.000 caracteres. Perguntas respondidas, em revisão e indisponíveis possuem estados próprios; somente `UNANSWERED` sem bloqueio habilita envio. Falha de atualização preserva a fila anterior e falha de envio preserva o texto digitado. A miniatura já consultada no lote de itens passou apenas a integrar o DTO, sem nova chamada externa.
+
+**Commit funcional:** `d6fd829` — `feat(perguntas): criar inbox operacional Bentevi`, enviado somente para `origin/dev`.
+
+**Validação:** 6/6 cenários direcionados de filtros, escopo, inbox e prioridade aprovados; `npm run validate`, `npm run build` com 126 páginas/rotas e `git diff --check` aprovados. O deploy oficial foi aceito pelo webhook com HTTP `200`; a task do `vortek-erp-dev` reiniciou, health e login responderam `200`, `/perguntas` respondeu `307` sem sessão e `/api/perguntas` respondeu `401` sem sessão. Nenhuma resposta, pergunta ou outra ação autenticada foi enviada ao Mercado Livre durante a homologação.
+
+**Migration/banco:** N/A; nenhuma consulta, escrita ou migration de banco foi executada.
+
+**Rollback:** reverter `d6fd829` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
+
+**Pendência:** aprovação visual em `https://dev.bentevi.shop/perguntas`. Não marcar `BNT-D06` como concluída nem iniciar `BNT-D07` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

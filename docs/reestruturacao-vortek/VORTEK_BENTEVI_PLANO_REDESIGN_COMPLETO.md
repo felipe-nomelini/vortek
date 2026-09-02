@@ -59,7 +59,7 @@ correções funcionais
 
 [VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md](./VORTEK_BENTEVI_DOSSIE_UX_COMPLETO.md)
 
-Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. `BNT-BRAND-01 — Assets e tokens Bentevi`, `BNT-SHELL-01 — Shell desktop Bentevi`, `BNT-DOM-DEV — dev.bentevi.shop`, `BNT-D01 — Vendas /pedidos — piloto`, `BNT-D02 — Dashboard` e `BNT-D03 — Compras` foram concluídas. A ação atual é a aprovação de `BNT-D01-PDF — Relatório de Vendas`; `BNT-D04` permanece bloqueado até esse aceite.
+Esse documento é a especificação obrigatória de cada superfície, dos aliases, do web celular, do aplicativo nativo e das lacunas funcionais. Fundação, shell, domínio DEV e `BNT-D01` a `BNT-D05` foram concluídos. A ação atual é a aprovação visual de `BNT-D06 — Perguntas`; `BNT-D07` permanece bloqueado até esse aceite.
 
 ---
 
