@@ -2141,6 +2141,10 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Pendência:** aprovação visual em `https://dev.bentevi.shop/perguntas`. Não marcar `BNT-D06` como concluída nem iniciar `BNT-D07` antes desse aceite.
 
+**Amostra visual temporária em `2026-09-01`:** como Perguntas não possui fonte no Supabase e consulta exclusivamente o Mercado Livre, a página foi publicada com dez registros totalmente sintéticos e sem mistura com dados reais. O modo `BNT_D06_VISUAL_REVIEW` substitui a consulta externa durante a aprovação, cobre perguntas não respondidas, respondidas, em revisão, encerradas e removidas, preserva busca/filtros e mantém o compositor visível, mas bloqueia o envio e não fornece links externos. Nenhum banco, migration, credencial ou integração foi acessado. Antes de concluir `BNT-D06`, remover esse modo e reconfirmar que a página voltou a usar exclusivamente a API do Mercado Livre.
+
+**Validação da amostra:** 8/8 cenários direcionados aprovados; `npm run validate`, `npm run build` com 126 páginas/rotas e `git diff --check` aprovados. O commit `d0dc91d` foi enviado somente para `origin/dev`; após o controlador Easypanel reiniciar durante os webhooks iniciais, o reenvio oficial criou a task `kyj4fab2m0uuwaaw0zdkz32ai`, que ativou `GIT_SHA=d0dc91d7ba6b9f44c69611149e33a41462f2f9d2` exclusivamente em `vortek-erp-dev`. Health e login responderam `200`, `/perguntas` respondeu `307` sem sessão, `/api/perguntas` respondeu `401` e o artefato publicado contém o aviso de amostra protegida.
+
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
 Não iniciar web celular antes de `BNT-D01` a `BNT-D24` estarem aprovados.
