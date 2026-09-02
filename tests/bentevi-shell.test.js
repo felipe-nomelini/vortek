@@ -26,6 +26,7 @@ test('preserva ordem, grupos e URLs da navegação desktop', async () => {
   assert.deepEqual(itemKeys(APP_NAVIGATION), [
     '/dashboard',
     '/tv',
+    '/produtos/ofertas',
     '/produtos',
     '/estoque',
     '/clientes',
@@ -51,11 +52,13 @@ test('reflete no menu as restrições administrativas já existentes', async () 
   const { navigationForRole } = await loadNavigation();
 
   const adminKeys = itemKeys(navigationForRole('admin'));
+  assert.ok(adminKeys.includes('/produtos/ofertas'));
   assert.ok(adminKeys.includes('/configuracoes'));
   assert.ok(adminKeys.includes('/fornecedores/creditos'));
 
   for (const role of ['gerente', 'operador', 'visualizador', null]) {
     const keys = itemKeys(navigationForRole(role));
+    assert.ok(keys.includes('/produtos/ofertas'));
     assert.ok(!keys.includes('/configuracoes'));
     assert.ok(!keys.includes('/fornecedores/creditos'));
   }
@@ -67,7 +70,8 @@ test('resolve aliases, rotas aninhadas e detalhes pelo item responsável', async
   assert.equal(resolveNavigation('/catalogo')?.key, '/catalogo/no-catalogo');
   assert.equal(resolveNavigation('/catalogo/elegiveis')?.key, '/catalogo/elegiveis');
   assert.equal(resolveNavigation('/produtos/123')?.key, '/produtos');
-  assert.equal(resolveNavigation('/produtos/ofertas/123')?.key, '/produtos');
+  assert.equal(resolveNavigation('/produtos/ofertas')?.key, '/produtos/ofertas');
+  assert.equal(resolveNavigation('/produtos/ofertas/123')?.key, '/produtos/ofertas');
   assert.equal(resolveNavigation('/clientes/123')?.key, '/clientes');
   assert.equal(resolveNavigation('/fornecedores/123')?.key, '/fornecedores/cadastros');
   assert.equal(resolveNavigation('/fornecedores/creditos')?.key, '/fornecedores/creditos');

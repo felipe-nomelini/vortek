@@ -18,6 +18,7 @@ import {
   ShopOutlined,
   ShoppingCartOutlined,
   StarOutlined,
+  TagsOutlined,
   TeamOutlined,
   TruckOutlined,
   UserOutlined,
@@ -62,6 +63,7 @@ const COLLAPSED_WIDTH = 80;
 const navigationIcons: Record<AppNavigationIcon, React.ReactNode> = {
   dashboard: <DashboardOutlined />,
   tv: <FundProjectionScreenOutlined />,
+  offers: <TagsOutlined />,
   products: <ShoppingCartOutlined />,
   stock: <AppstoreOutlined />,
   customers: <TeamOutlined />,

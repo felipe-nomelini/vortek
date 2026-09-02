@@ -3,6 +3,7 @@ import type { VortekRole } from './permissions';
 export type AppNavigationIcon =
   | 'dashboard'
   | 'tv'
+  | 'offers'
   | 'products'
   | 'stock'
   | 'customers'
@@ -49,6 +50,7 @@ export interface ResolvedNavigation {
 export const APP_NAVIGATION: AppNavigationEntry[] = [
   { type: 'item', key: '/dashboard', href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { type: 'item', key: '/tv', href: '/tv', label: 'TV ao Vivo', icon: 'tv' },
+  { type: 'item', key: '/produtos/ofertas', href: '/produtos/ofertas', label: 'Ofertas', icon: 'offers' },
   { type: 'item', key: '/produtos', href: '/produtos', label: 'Produtos', icon: 'products' },
   { type: 'item', key: '/estoque', href: '/estoque', label: 'Estoque', icon: 'stock' },
   { type: 'item', key: '/clientes', href: '/clientes', label: 'Clientes', icon: 'customers' },
