@@ -1963,7 +1963,7 @@ Uma página que expõe `Exportar PDF` somente pode ser encerrada depois de o doc
 
 - [ ] `BNT-D01-PDF` — Relatório de Vendas; implementado e publicado, com aprovação visual pendente;
 - [x] `BNT-D03-PDF` — Relatório de Compras; aprovado visualmente em homologação em `2026-09-01`;
-- [ ] `BNT-D07-PDF` — Relatório de Produtos, se o exportador continuar presente na página aprovada;
+- [x] `BNT-D07-PDF` — Relatório de Produtos; aprovado visualmente em homologação em `2026-09-02`;
 - [ ] `BNT-D11-PDF` — Relatório de Anúncios, se o exportador continuar presente na página aprovada;
 - [ ] `BNT-D12-PDF` — Relatório de Catálogo, se o exportador continuar presente na página aprovada.
 
@@ -2149,7 +2149,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D07 — Produtos`
 
-**Situação:** página implementada, publicada e aprovada visualmente pelo usuário em homologação; `BNT-D07-PDF` foi implementado e publicado em `2026-09-02`, mas permanece aguardando aprovação visual.
+**Situação:** página e relatório PDF implementados, publicados e aprovados visualmente pelo usuário em homologação. `BNT-D08 — Detalhe do Produto` foi implementado e publicado em `2026-09-02` e aguarda somente aprovação visual.
 
 **Estado/causa confirmados:** `/produtos` misturava uma grade cadastral extensa, edição de preço dentro da célula e o fluxo completo de publicação do Mercado Livre no mesmo contexto visual. Estoque, fornecedor, custo, preço, lucro e anúncio estavam distribuídos em colunas isoladas, enquanto a lista reutilizava o saldo agregado legado e não expunha a capacidade canônica de fulfillment (`Q segura`).
 
@@ -2179,9 +2179,21 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Validação do relatório:** o commit `ec3f1ba` foi enviado somente para `origin/dev`. Os 18 cenários direcionados foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 125 páginas/rotas e `git diff --check` passaram. A action Easypanel `cmtjjf3aa000307l872d861wu` concluiu com `Success` e ativou `GIT_SHA=ec3f1ba86666ce859bb207f865508b830b7c8d4e` somente em `vortek-erp-dev`. Health e login responderam `200`, `/produtos` respondeu `307` sem sessão e o exportador respondeu `401` sem sessão. O artefato publicado contém o novo relatório. Nenhuma migration, escrita de banco ou operação autenticada no Mercado Livre foi executada.
 
-**Rollback:** remover as duas chaves temporárias somente do `sync_runtime_config` em `192.168.1.162`; para desfazer também o suporte à amostra, reverter `8518ec2` e redeployar somente `vortek-erp-dev`. O rollback do redesign original continua sendo reverter `ed183b2`. Não há migration ou integração externa a reverter e produção não deve ser alterada.
+#### Resultado técnico de `BNT-D08 — Detalhe do Produto`
 
-**Pendência:** validar visualmente o PDF exportado em homologação antes de marcar `BNT-D07-PDF` como concluído e liberar `BNT-D08`.
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual pendente.
+
+**Estado/causa confirmados:** o detalhe anterior abria diretamente como um formulário longo e não preservava a hierarquia operacional aprovada em Produtos. Capacidade de fulfillment, múltiplas ofertas, composição de kit e anúncios padrão/catálogo não eram apresentados pelo mesmo contrato canônico da listagem, o que dificultava consultar o produto antes de decidir por uma edição.
+
+**Mudança realizada:** `/produtos/[id]` passou a abrir em consulta, com cabeçalho fixo, galeria, resumo comercial e abas de Cadastro, Fornecimento, Comercial e estoque, Logística e fiscal, Mercado Livre e Descrição. A edição é explícita, possui barra fixa de salvar/cancelar, confirmação de descarte e informa os efeitos de preço, estoque e status no Mercado Livre. O backend entrega a `Q segura` canônica, separa estoque interno e fornecedor, reutiliza a mesma leitura de anúncios padrão/catálogo da lista e expõe ofertas e componentes de kit. Os endpoints de detalhe agora exigem sessão antes do uso do cliente de serviço. A amostra protegida permite navegar e consultar os 40 produtos, mas bloqueia alterações, seleção de fornecedor e links externos.
+
+**Amostra DEV:** o preflight reconfirmou o destino gravável `192.168.1.162`, o ambiente independente `supabase-dev`, a migration mais recente `20260901213000` e o schema existente. A produção `192.168.1.160` foi consultada exclusivamente em uma transação `READ ONLY` para relacionar as ofertas e kits dos mesmos 40 SKUs já protegidos. A única atualização no `sync_runtime_config` DEV foi ensaiada e desfeita com `ROLLBACK` antes do commit; o recorte passou a conter 80 fontes de fornecimento e quatro kits. As tabelas operacionais permaneceram com `5 produtos / 0 ofertas / 0 kits`. Não houve migration, DDL, escrita em produção ou chamada externa de mutação.
+
+**Commit e validação:** `d9ca164` — `feat(produtos): redesenhar detalhe Bentevi`, enviado somente para `origin/dev`. Os 26 cenários direcionados de Produtos, relatório e detalhe foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 125 páginas/rotas e `git diff --check` passaram. Depois que dois webhooks sobrepostos foram marcados como `killed`, um único reenvio após a estabilização concluiu a action `cmtjllsza000007po5fubcr03` com `Success`; a task `l926tn56qlvckl66mw92ordxz` ativou `GIT_SHA=d9ca164fd79f2fcb994b3f0a905b3cbc10da978d` somente em `vortek-erp-dev`. Health e login responderam `200`, `/produtos` e o detalhe responderam `307` sem sessão, e as duas APIs do detalhe responderam `401` sem sessão. O artefato publicado contém a nova interface.
+
+**Rollback:** para desfazer apenas o detalhe, reverter `d9ca164` em `dev` e redeployar somente `vortek-erp-dev`; os campos adicionais do recorte temporário podem permanecer porque o código anterior os ignora. Para remover a amostra inteira, apagar as duas chaves temporárias somente do `sync_runtime_config` em `192.168.1.162`; para desfazer também o suporte à amostra, reverter `8518ec2`. O rollback do redesign da lista continua sendo reverter `ed183b2`. Não há migration ou integração externa a reverter e produção não deve ser alterada.
+
+**Pendência:** validar visualmente o detalhe em homologação antes de marcar `BNT-D08` como concluído e liberar `BNT-D09`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
