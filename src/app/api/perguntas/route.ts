@@ -97,7 +97,7 @@ export async function GET(req: NextRequest) {
       offset: String(offset),
       api_version: '4',
       sort_fields: 'date_created',
-      sort_types: 'DESC',
+      sort_types: status === 'UNANSWERED' ? 'ASC' : 'DESC',
     });
     if (status) params.set('status', status);
 
@@ -134,6 +134,7 @@ export async function GET(req: NextRequest) {
           anuncio: item?.title || question.item_id,
           anuncioUrl: item?.permalink || null,
           anuncioStatus: item?.status || null,
+          thumbnail: item?.thumbnail ? String(item.thumbnail).replace(/^http:\/\//, 'https://') : null,
           cliente: question.from?.id ? `Usuário ${question.from.id}` : 'Cliente ML',
           clienteId: question.from?.id || null,
           pergunta: question.text,

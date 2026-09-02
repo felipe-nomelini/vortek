@@ -1,13 +1,39 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
-import { Alert, Button, Col, DatePicker, Dropdown, Input, Modal, Row, Select, Space, Statistic, Tag, Typography, message } from 'antd';
-import ResizableTable from '@/components/ResizableTable';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  Alert,
+  Button,
+  DatePicker,
+  Empty,
+  Image,
+  Input,
+  Pagination,
+  Popover,
+  Select,
+  Skeleton,
+  Space,
+  Tag,
+  Tooltip,
+  Typography,
+  message,
+} from 'antd';
+import {
+  CheckCircleOutlined,
+  ClockCircleOutlined,
+  CopyOutlined,
+  FilterOutlined,
+  LinkOutlined,
+  QuestionCircleOutlined,
+  ReloadOutlined,
+  SearchOutlined,
+  SendOutlined,
+} from '@ant-design/icons';
+import dayjs from 'dayjs';
 import { filterQuestionsOnCurrentPage } from '@/lib/ml/questions-page-filter';
-import type { TableProps } from 'antd';
-import { EllipsisOutlined, ReloadOutlined, SearchOutlined, SendOutlined } from '@ant-design/icons';
+import styles from './perguntas.module.css';
 
-const { Title, Text } = Typography;
+const { Text, Title } = Typography;
 const { RangePicker } = DatePicker;
 
 type QuestionStatus = 'respondida' | 'pendente' | string;
@@ -18,6 +44,7 @@ interface Pergunta {
   anuncio: string;
   anuncioUrl: string | null;
   anuncioStatus: string | null;
+  thumbnail: string | null;
   cliente: string;
   clienteId: number | null;
   pergunta: string;
@@ -45,16 +72,16 @@ interface PerguntasResponse {
 }
 
 const statusOptions = [
-  { value: '', label: 'Todos os status' },
-  { value: 'pendente', label: 'Pendente' },
-  { value: 'respondida', label: 'Respondida' },
+  { value: 'pendente', label: 'Não respondidas' },
+  { value: 'respondida', label: 'Respondidas' },
+  { value: '', label: 'Todos os estados' },
 ];
 const PAGE_SIZE = 100;
 
 function formatDate(value: string | null) {
-  if (!value) return null;
+  if (!value) return '—';
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return null;
+  if (Number.isNaN(date.getTime())) return '—';
   return date.toLocaleString('pt-BR', {
     day: '2-digit',
     month: '2-digit',
@@ -64,36 +91,64 @@ function formatDate(value: string | null) {
   });
 }
 
-function statusTag(status: QuestionStatus) {
-  if (status === 'respondida') return <Tag color="green">Respondida</Tag>;
-  if (status === 'pendente') return <Tag color="orange">Pendente</Tag>;
-  return <Tag color="blue">{String(status || 'desconhecido')}</Tag>;
+function formatElapsed(startValue: string, endValue?: string | null) {
+  const start = new Date(startValue).getTime();
+  const end = endValue ? new Date(endValue).getTime() : Date.now();
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return '—';
+  const minutes = Math.max(0, Math.floor((end - start) / 60_000));
+  if (minutes < 1) return 'agora';
+  if (minutes < 60) return `${minutes} min`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours} h`;
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `${days} d`;
+  return `${Math.floor(days / 30)} m`;
 }
 
 function releaseText(text: string, max = 120) {
   if (text.length <= max) return text;
-  return `${text.slice(0, max).trim()}...`;
+  return `${text.slice(0, max).trim()}…`;
+}
+
+function questionState(question: Pergunta) {
+  const mlStatus = question.mlStatus.toUpperCase();
+  if (question.removidaDoAnuncio || ['CLOSED_UNANSWERED', 'DELETED', 'DISABLED', 'BANNED'].includes(mlStatus)) {
+    return { label: 'Indisponível', color: 'default' as const, kind: 'unavailable' as const };
+  }
+  if (question.hold || mlStatus === 'UNDER_REVIEW') {
+    return { label: 'Em revisão', color: 'blue' as const, kind: 'review' as const };
+  }
+  if (question.status === 'respondida') {
+    return { label: 'Respondida', color: 'green' as const, kind: 'answered' as const };
+  }
+  if (question.status === 'pendente') {
+    return { label: 'Não respondida', color: 'gold' as const, kind: 'pending' as const };
+  }
+  return { label: question.status || 'Desconhecido', color: 'default' as const, kind: 'unavailable' as const };
+}
+
+function isAnswerable(question: Pergunta) {
+  return questionState(question).kind === 'pending' && question.mlStatus.toUpperCase() === 'UNANSWERED';
 }
 
 export default function PerguntasPage() {
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState<QuestionStatus | ''>('');
+  const [statusFilter, setStatusFilter] = useState<QuestionStatus | ''>('pendente');
   const [perguntaRange, setPerguntaRange] = useState<[Date | null, Date | null]>([null, null]);
   const [respostaRange, setRespostaRange] = useState<[Date | null, Date | null]>([null, null]);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [questions, setQuestions] = useState<Pergunta[]>([]);
   const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [account, setAccount] = useState<{ id: string; nickname: string } | null>(null);
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
-  const [answerModalOpen, setAnswerModalOpen] = useState(false);
+  const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(null);
   const [answering, setAnswering] = useState(false);
-  const [activeQuestion, setActiveQuestion] = useState<Pergunta | null>(null);
   const [answerText, setAnswerText] = useState('');
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const loadQuestions = async (page = currentPage) => {
+  const loadQuestions = useCallback(async (page: number) => {
     setLoading(true);
     setError(null);
     try {
@@ -110,43 +165,74 @@ export default function PerguntasPage() {
       setAccount(data.account || null);
       setUpdatedAt(data.updatedAt || new Date().toISOString());
       setCurrentPage(page);
-    } catch (err: any) {
-      setError(err?.message || 'Erro ao carregar perguntas');
-      setQuestions([]);
-      setTotal(0);
+    } catch (loadError: any) {
+      setError(loadError?.message || 'Erro ao carregar perguntas');
     } finally {
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    setCurrentPage(1);
-    loadQuestions(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusFilter]);
 
-  const pendingCount = questions.filter((question) => question.status === 'pendente').length;
-  const answeredCount = questions.filter((question) => question.status === 'respondida').length;
+  useEffect(() => {
+    setQuestions([]);
+    setTotal(0);
+    setCurrentPage(1);
+    setSelectedQuestionId(null);
+    void loadQuestions(1);
+  }, [loadQuestions]);
 
-  const filtered = useMemo(() => {
-    return filterQuestionsOnCurrentPage(questions, {
-      search,
-      questionDateRange: perguntaRange,
-      answerDateRange: respostaRange,
-    });
-  }, [questions, search, perguntaRange, respostaRange]);
+  const filtered = useMemo(() => filterQuestionsOnCurrentPage(questions, {
+    search,
+    questionDateRange: perguntaRange,
+    answerDateRange: respostaRange,
+  }), [questions, search, perguntaRange, respostaRange]);
 
-  const openAnswerModal = (question: Pergunta) => {
-    setActiveQuestion(question);
+  useEffect(() => {
+    if (filtered.length === 0) {
+      setSelectedQuestionId(null);
+      return;
+    }
+    if (!selectedQuestionId || !filtered.some((question) => question.id === selectedQuestionId)) {
+      setSelectedQuestionId(filtered[0].id);
+    }
+  }, [filtered, selectedQuestionId]);
+
+  useEffect(() => {
     setAnswerText('');
-    setAnswerModalOpen(true);
+  }, [selectedQuestionId]);
+
+  const activeQuestion = filtered.find((question) => question.id === selectedQuestionId) || null;
+  const pendingOnPage = filtered.filter((question) => questionState(question).kind === 'pending');
+  const oldestPending = pendingOnPage.reduce<Pergunta | null>((oldest, question) => {
+    if (!oldest) return question;
+    return new Date(question.dataPergunta).getTime() < new Date(oldest.dataPergunta).getTime() ? question : oldest;
+  }, null);
+  const periodFilterCount = Number(Boolean(perguntaRange[0] || perguntaRange[1])) + Number(Boolean(respostaRange[0] || respostaRange[1]));
+
+  const totalLabel = statusFilter === 'pendente'
+    ? 'Não respondidas no Mercado Livre'
+    : statusFilter === 'respondida'
+      ? 'Respondidas no Mercado Livre'
+      : 'Total no Mercado Livre';
+
+  const changePage = (page: number) => {
+    setSelectedQuestionId(null);
+    void loadQuestions(page);
+  };
+
+  const copyQuestion = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      messageApi.success('Pergunta copiada.');
+    } catch {
+      messageApi.error('Não foi possível copiar a pergunta.');
+    }
   };
 
   const submitAnswer = async () => {
-    if (!activeQuestion) return;
+    if (!activeQuestion || !isAnswerable(activeQuestion)) return;
     const text = answerText.trim();
     if (!text) {
-      message.warning('Digite a resposta antes de enviar.');
+      messageApi.warning('Digite a resposta antes de enviar.');
       return;
     }
 
@@ -159,312 +245,298 @@ export default function PerguntasPage() {
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.error || 'Falha ao responder pergunta');
-      message.success('Resposta enviada ao Mercado Livre.');
-      setAnswerModalOpen(false);
-      setActiveQuestion(null);
+      messageApi.success('Resposta enviada ao Mercado Livre.');
       setAnswerText('');
       await loadQuestions(currentPage);
-    } catch (err: any) {
-      message.error(err?.message || 'Erro ao responder pergunta');
+    } catch (submitError: any) {
+      messageApi.error(submitError?.message || 'Erro ao responder pergunta');
     } finally {
       setAnswering(false);
     }
   };
 
-  const columns: TableProps<Pergunta>['columns'] = [
-    {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-      width: 110,
-      sorter: (a, b) => a.id - b.id,
-      render: (id: number) => <Text copyable style={{ color: '#1677ff' }}>{id}</Text>,
-    },
-    {
-      title: 'Anúncio',
-      dataIndex: 'anuncio',
-      key: 'anuncio',
-      width: 280,
-      sorter: (a, b) => a.anuncio.localeCompare(b.anuncio),
-      render: (text: string, record) => (
-        <div>
-          {record.anuncioUrl ? (
-            <a href={record.anuncioUrl} target="_blank" rel="noreferrer">{releaseText(text, 75)}</a>
-          ) : (
-            <Text style={{ color: '#e0e0e0' }}>{releaseText(text, 75)}</Text>
-          )}
-          <div style={{ color: '#8c8c8c', fontSize: 12 }}>{record.itemId}</div>
-        </div>
-      ),
-    },
-    {
-      title: 'Cliente',
-      dataIndex: 'cliente',
-      key: 'cliente',
-      width: 130,
-      sorter: (a, b) => a.cliente.localeCompare(b.cliente),
-      render: (cliente: string, record) => (
-        <div>
-          <Text style={{ color: '#e0e0e0' }}>{cliente}</Text>
-          {record.clienteId ? <div style={{ color: '#8c8c8c', fontSize: 12 }}>{record.clienteId}</div> : null}
-        </div>
-      ),
-    },
-    {
-      title: 'Pergunta',
-      dataIndex: 'pergunta',
-      key: 'pergunta',
-      width: 340,
-      sorter: (a, b) => a.pergunta.localeCompare(b.pergunta),
-      render: (text: string) => (
-        <div style={{ whiteSpace: 'normal', lineHeight: 1.4 }}>
-          {releaseText(text, 180)}
-        </div>
-      ),
-    },
-    {
-      title: 'Data/Pergunta',
-      dataIndex: 'dataPergunta',
-      key: 'dataPergunta',
-      width: 155,
-      sorter: (a, b) => new Date(a.dataPergunta).getTime() - new Date(b.dataPergunta).getTime(),
-      render: (date: string) => formatDate(date) || '—',
-    },
-    {
-      title: 'Data/Resposta',
-      dataIndex: 'dataResposta',
-      key: 'dataResposta',
-      width: 155,
-      sorter: (a, b) => {
-        const ta = a.dataResposta ? new Date(a.dataResposta).getTime() : Infinity;
-        const tb = b.dataResposta ? new Date(b.dataResposta).getTime() : Infinity;
-        return ta - tb;
-      },
-      render: (date: string | null) => formatDate(date) || <span style={{ color: '#666' }}>—</span>,
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      width: 120,
-      sorter: (a, b) => String(a.status).localeCompare(String(b.status)),
-      render: statusTag,
-    },
-    {
-      title: 'Velocidade',
-      key: 'velocidade',
-      width: 110,
-      sorter: (a, b) => {
-        const ta = a.dataResposta ? new Date(a.dataResposta).getTime() - new Date(a.dataPergunta).getTime() : Infinity;
-        const tb = b.dataResposta ? new Date(b.dataResposta).getTime() - new Date(b.dataPergunta).getTime() : Infinity;
-        return ta - tb;
-      },
-      render: (_, record) => {
-        if (!record.dataResposta) return <span style={{ color: '#666' }}>—</span>;
-        const diffMin = (new Date(record.dataResposta).getTime() - new Date(record.dataPergunta).getTime()) / 60000;
-        if (diffMin <= 60) return <Tag color="green">Rápido</Tag>;
-        if (diffMin <= 240) return <Tag color="gold">Normal</Tag>;
-        return <Tag color="red">Lento</Tag>;
-      },
-    },
-    {
-      title: 'Ações',
-      key: 'actions',
-      width: 70,
-      fixed: 'right',
-      render: (_, record) => (
-        <Dropdown
-          menu={{
-            items: [
-              record.status === 'pendente'
-                ? { key: 'answer', label: 'Responder' }
-                : { key: 'viewAnswer', label: 'Ver resposta' },
-              record.anuncioUrl ? { key: 'viewItem', label: 'Ver anúncio' } : null,
-              { key: 'copyQuestion', label: 'Copiar pergunta' },
-            ].filter(Boolean) as any,
-            onClick: ({ key }) => {
-              if (key === 'answer') openAnswerModal(record);
-              if (key === 'viewItem' && record.anuncioUrl) window.open(record.anuncioUrl, '_blank', 'noopener,noreferrer');
-              if (key === 'copyQuestion') {
-                navigator.clipboard?.writeText(record.pergunta);
-                message.success('Pergunta copiada.');
-              }
-            },
-          }}
-          trigger={['click']}
-        >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} />
-        </Dropdown>
-      ),
-    },
-  ];
+  const clearPeriods = () => {
+    setPerguntaRange([null, null]);
+    setRespostaRange([null, null]);
+  };
 
   return (
-    <div>
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 4 }}>Perguntas - Mercado Livre</Title>
-      <Text type="secondary" style={{ display: 'block', marginBottom: 16 }}>
-        Conta: {account ? `${account.nickname} (${account.id})` : 'carregando'}
-        {updatedAt ? ` · Atualizado em ${formatDate(updatedAt)}` : ''}
-      </Text>
-
-      <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
-        <Col xs={24} sm={8}>
-          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Statistic title="Exibidas nesta página" value={filtered.length} suffix={`/ ${questions.length}`} />
-          </div>
-        </Col>
-        <Col xs={24} sm={8}>
-          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Statistic title="Pendentes nesta página" value={pendingCount} valueStyle={{ color: pendingCount ? '#faad14' : '#52c41a' }} />
-          </div>
-        </Col>
-        <Col xs={24} sm={8}>
-          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Statistic title="Respondidas nesta página" value={answeredCount} valueStyle={{ color: '#52c41a' }} />
-          </div>
-        </Col>
-      </Row>
-
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Text type="secondary" style={{ display: 'block', marginBottom: 12 }}>
-          Status consulta todas as perguntas no Mercado Livre. Busca e datas filtram somente os até {PAGE_SIZE} registros desta página.
-        </Text>
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
-            <Input
-              placeholder="Buscar nesta página (ID, anúncio, cliente ou texto)"
-              prefix={<SearchOutlined />}
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              style={{ width: 340 }}
-              allowClear
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Status"
-              value={statusFilter || undefined}
-              onChange={(value) => setStatusFilter(value as QuestionStatus | '')}
-              options={statusOptions}
-              style={{ width: 160 }}
-              allowClear
-              onClear={() => setStatusFilter('')}
-            />
-          </Col>
-          <Col>
-            <RangePicker
-              onChange={(dates) => setPerguntaRange([
-                dates?.[0]?.toDate?.() || null,
-                dates?.[1]?.toDate?.() || null,
-              ])}
-              format="DD/MM/YYYY"
-              style={{ width: 250 }}
-              placeholder={['Pergunta início', 'Pergunta fim']}
-            />
-          </Col>
-          <Col>
-            <RangePicker
-              onChange={(dates) => setRespostaRange([
-                dates?.[0]?.toDate?.() || null,
-                dates?.[1]?.toDate?.() || null,
-              ])}
-              format="DD/MM/YYYY"
-              style={{ width: 250 }}
-              placeholder={['Resposta início', 'Resposta fim']}
-            />
-          </Col>
-          <Col flex="auto" />
-          <Col>
-            <Button icon={<ReloadOutlined />} onClick={() => loadQuestions(currentPage)} loading={loading}>
-              Atualizar
-            </Button>
-          </Col>
-        </Row>
-      </div>
+    <div className={styles.page}>
+      {contextHolder}
+      <header className={styles.header}>
+        <div>
+          <Title level={2} className={styles.title}>Perguntas</Title>
+          <Text type="secondary">Responda dúvidas pré-venda com o anúncio sempre em contexto.</Text>
+          <Text type="secondary" className={styles.accountLine}>
+            {account ? `${account.nickname} · conta ${account.id}` : 'Conta Mercado Livre'}
+            {updatedAt ? ` · atualizado em ${formatDate(updatedAt)}` : ''}
+          </Text>
+        </div>
+        <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void loadQuestions(currentPage)}>
+          Atualizar
+        </Button>
+      </header>
 
       {error ? (
         <Alert
-          type="error"
           showIcon
-          message="Falha ao carregar perguntas"
-          description={error}
-          style={{ marginBottom: 16 }}
+          type="error"
+          message="Não foi possível atualizar as perguntas"
+          description={`${error}${questions.length ? ' A fila anterior foi preservada.' : ''}`}
+          action={<Button onClick={() => void loadQuestions(currentPage)}>Tentar novamente</Button>}
         />
       ) : null}
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <ResizableTable<Pergunta>
-          storageKey="perguntas"
-          dataSource={filtered}
-          columns={columns}
-          rowKey="id"
-          loading={loading}
-          rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-          expandable={{
-            expandedRowRender: (record) => (
-              <div style={{ padding: '8px 0', color: '#c0c0c0', lineHeight: 1.7 }}>
-                <Text strong style={{ color: '#e0e0e0' }}>Pergunta:</Text>
-                <div style={{ marginBottom: 8 }}>{record.pergunta}</div>
-                <Text strong style={{ color: '#e0e0e0' }}>Resposta:</Text>
-                {record.resposta ? (
-                  <div>{record.resposta}</div>
-                ) : (
-                  <Space direction="vertical" style={{ width: '100%' }}>
-                    <Text type="secondary">Ainda sem resposta no Mercado Livre.</Text>
-                    <Button type="primary" size="small" icon={<SendOutlined />} onClick={() => openAnswerModal(record)}>
-                      Responder agora
-                    </Button>
-                  </Space>
-                )}
-              </div>
-            ),
-            rowExpandable: () => true,
-          }}
-          pagination={{
-            current: currentPage,
-            pageSize: PAGE_SIZE,
-            total,
-            showSizeChanger: false,
-            onChange: (page) => loadQuestions(page),
-            showTotal: (count) => `${count} perguntas`,
-          }}
-          scroll={{ x: 1350 }}
-          style={{ background: 'transparent' }}
-          size="small"
-        />
-      </div>
+      <section className={styles.summaryBand} aria-label="Resumo das perguntas">
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>{totalLabel}</span>
+          <strong className={styles.summaryValue}>{total}</strong>
+          <span className={styles.summaryHint}>Total global do filtro de status</span>
+        </div>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>Exibidas nesta página</span>
+          <strong className={styles.summaryValue}>{filtered.length}<small> / {questions.length}</small></strong>
+          <span className={styles.summaryHint}>Após busca e períodos locais</span>
+        </div>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>Pendentes nesta página</span>
+          <strong className={styles.summaryValue}>{pendingOnPage.length}</strong>
+          <span className={styles.summaryHint}>Disponíveis para responder</span>
+        </div>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>Mais antiga nesta página</span>
+          <strong className={styles.summaryValue}>{oldestPending ? formatElapsed(oldestPending.dataPergunta) : '—'}</strong>
+          <span className={styles.summaryHint}>Entre as pendentes exibidas</span>
+        </div>
+      </section>
 
-      <Modal
-        title="Responder pergunta no Mercado Livre"
-        open={answerModalOpen}
-        onCancel={() => setAnswerModalOpen(false)}
-        onOk={submitAnswer}
-        okText="Enviar resposta"
-        cancelText="Cancelar"
-        confirmLoading={answering}
-        okButtonProps={{ icon: <SendOutlined /> }}
-      >
-        {activeQuestion ? (
-          <Space direction="vertical" size={12} style={{ width: '100%' }}>
-            <div>
-              <Text type="secondary">Anúncio</Text>
-              <div>{activeQuestion.anuncio}</div>
+      <section className={styles.filters} aria-label="Filtros de perguntas">
+        <Select
+          value={statusFilter}
+          onChange={(value) => setStatusFilter(value as QuestionStatus | '')}
+          options={statusOptions}
+          className={styles.statusSelect}
+          aria-label="Status global das perguntas"
+        />
+        <Input
+          allowClear
+          prefix={<SearchOutlined />}
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Buscar nesta página por pergunta, anúncio, cliente ou ID"
+          className={styles.search}
+        />
+        <Popover
+          trigger="click"
+          placement="bottomRight"
+          content={(
+            <div className={styles.periodPopover}>
+              <Text strong>Períodos nesta página</Text>
+              <label>
+                <Text type="secondary">Data da pergunta</Text>
+                <RangePicker
+                  value={perguntaRange[0] || perguntaRange[1] ? [
+                    perguntaRange[0] ? dayjs(perguntaRange[0]) : null,
+                    perguntaRange[1] ? dayjs(perguntaRange[1]) : null,
+                  ] : null}
+                  onChange={(dates) => setPerguntaRange([
+                    dates?.[0]?.toDate?.() || null,
+                    dates?.[1]?.toDate?.() || null,
+                  ])}
+                  format="DD/MM/YYYY"
+                  placeholder={['Início', 'Fim']}
+                />
+              </label>
+              <label>
+                <Text type="secondary">Data da resposta</Text>
+                <RangePicker
+                  value={respostaRange[0] || respostaRange[1] ? [
+                    respostaRange[0] ? dayjs(respostaRange[0]) : null,
+                    respostaRange[1] ? dayjs(respostaRange[1]) : null,
+                  ] : null}
+                  onChange={(dates) => setRespostaRange([
+                    dates?.[0]?.toDate?.() || null,
+                    dates?.[1]?.toDate?.() || null,
+                  ])}
+                  format="DD/MM/YYYY"
+                  placeholder={['Início', 'Fim']}
+                />
+              </label>
+              <Button size="small" disabled={!periodFilterCount} onClick={clearPeriods}>Limpar períodos</Button>
             </div>
+          )}
+        >
+          <Button icon={<FilterOutlined />}>Períodos{periodFilterCount ? ` (${periodFilterCount})` : ''}</Button>
+        </Popover>
+        <Text type="secondary" className={styles.scopeHint}>
+          Status consulta todas as perguntas no Mercado Livre. Busca e períodos filtram somente os até {PAGE_SIZE} registros desta página.
+        </Text>
+      </section>
+
+      <section className={styles.workspace} aria-label="Caixa de entrada de perguntas">
+        <aside className={styles.queuePanel}>
+          <div className={styles.panelHeader}>
             <div>
-              <Text type="secondary">Pergunta</Text>
-              <div style={{ color: '#e0e0e0' }}>{activeQuestion.pergunta}</div>
+              <Text strong>Fila desta página</Text>
+              <Text type="secondary">Selecione uma pergunta para responder</Text>
             </div>
-            <Input.TextArea
-              rows={5}
-              value={answerText}
-              onChange={(event) => setAnswerText(event.target.value)}
-              placeholder="Digite a resposta que será enviada ao Mercado Livre..."
-              maxLength={2000}
-              showCount
+            <span className={styles.queueCount}>{filtered.length}</span>
+          </div>
+
+          <div className={styles.queueList}>
+            {loading && questions.length === 0 ? (
+              <div className={styles.queueLoading}>
+                {[1, 2, 3, 4].map((item) => <Skeleton key={item} active avatar paragraph={{ rows: 2 }} />)}
+              </div>
+            ) : filtered.length === 0 ? (
+              <Empty
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+                description={search || periodFilterCount ? 'Nenhuma pergunta nesta página corresponde aos filtros' : 'Nenhuma pergunta neste estado'}
+              />
+            ) : filtered.map((question) => {
+              const state = questionState(question);
+              const selected = question.id === selectedQuestionId;
+              return (
+                <button
+                  type="button"
+                  key={question.id}
+                  className={`${styles.queueItem} ${selected ? styles.queueItemSelected : ''}`}
+                  aria-pressed={selected}
+                  onClick={() => setSelectedQuestionId(question.id)}
+                >
+                  <div className={styles.queueItemTop}>
+                    <span className={styles.age}><ClockCircleOutlined /> {formatElapsed(question.dataPergunta)}</span>
+                    <Tag color={state.color}>{state.label}</Tag>
+                  </div>
+                  <strong className={styles.questionPreview}>{releaseText(question.pergunta, 145) || 'Texto indisponível no Mercado Livre'}</strong>
+                  <span className={styles.itemPreview}>{releaseText(question.anuncio, 80)}</span>
+                  <span className={styles.queueMeta}>{question.itemId} · {formatDate(question.dataPergunta)}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className={styles.pagination}>
+            <Pagination
+              current={currentPage}
+              pageSize={PAGE_SIZE}
+              total={total}
+              showSizeChanger={false}
+              showLessItems
+              hideOnSinglePage={false}
+              disabled={loading}
+              onChange={changePage}
+              showTotal={(count) => `${count} no filtro global`}
             />
-          </Space>
-        ) : null}
-      </Modal>
+          </div>
+        </aside>
+
+        <article className={styles.detailPanel}>
+          {loading && questions.length === 0 ? (
+            <div className={styles.detailLoading}><Skeleton active avatar paragraph={{ rows: 8 }} /></div>
+          ) : !activeQuestion ? (
+            <Empty
+              image={<QuestionCircleOutlined className={styles.emptyIcon} />}
+              description="Selecione uma pergunta para ver o contexto"
+            />
+          ) : (() => {
+            const state = questionState(activeQuestion);
+            const answerable = isAnswerable(activeQuestion);
+            return (
+              <>
+                <div className={styles.itemContext}>
+                  <div className={styles.thumbnail}>
+                    {activeQuestion.thumbnail ? (
+                      <Image src={activeQuestion.thumbnail} alt={activeQuestion.anuncio} preview={false} />
+                    ) : <QuestionCircleOutlined />}
+                  </div>
+                  <div className={styles.itemIdentity}>
+                    <Text type="secondary">Anúncio</Text>
+                    <strong>{activeQuestion.anuncio}</strong>
+                    <span>{activeQuestion.itemId}{activeQuestion.anuncioStatus ? ` · ${activeQuestion.anuncioStatus}` : ''}</span>
+                  </div>
+                  <Space>
+                    <Tooltip title="Copiar pergunta">
+                      <Button aria-label="Copiar pergunta" icon={<CopyOutlined />} onClick={() => void copyQuestion(activeQuestion.pergunta)} />
+                    </Tooltip>
+                    {activeQuestion.anuncioUrl ? (
+                      <Button icon={<LinkOutlined />} href={activeQuestion.anuncioUrl} target="_blank" rel="noreferrer">Abrir anúncio</Button>
+                    ) : null}
+                  </Space>
+                </div>
+
+                <div className={styles.detailBody}>
+                  <div className={styles.questionHeader}>
+                    <div>
+                      <span className={styles.eyebrow}>Pergunta do cliente</span>
+                      <Title level={4} className={styles.questionTitle}>{activeQuestion.pergunta || 'Texto indisponível no Mercado Livre'}</Title>
+                    </div>
+                    <Tag color={state.color}>{state.label}</Tag>
+                  </div>
+
+                  <div className={styles.metadata}>
+                    <div><span>Cliente</span><strong>{activeQuestion.cliente}</strong></div>
+                    <div><span>ID do cliente</span><strong>{activeQuestion.clienteId || 'Não informado'}</strong></div>
+                    <div><span>Recebida em</span><strong>{formatDate(activeQuestion.dataPergunta)}</strong></div>
+                    <div><span>Aguardando</span><strong>{formatElapsed(activeQuestion.dataPergunta, activeQuestion.dataResposta)}</strong></div>
+                  </div>
+
+                  {state.kind === 'answered' ? (
+                    <section className={styles.answerCard}>
+                      <div className={styles.answerHeading}>
+                        <span><CheckCircleOutlined /> Resposta enviada</span>
+                        <Text type="secondary">{formatDate(activeQuestion.dataResposta)}</Text>
+                      </div>
+                      <p>{activeQuestion.resposta || 'O Mercado Livre não disponibilizou o texto desta resposta.'}</p>
+                      {activeQuestion.respostaStatus && <Text type="secondary">Estado no Mercado Livre: {activeQuestion.respostaStatus}</Text>}
+                    </section>
+                  ) : answerable ? (
+                    <section className={styles.composer}>
+                      <div className={styles.composerHeading}>
+                        <div>
+                          <Text strong>Sua resposta</Text>
+                          <Text type="secondary">Será enviada diretamente ao Mercado Livre.</Text>
+                        </div>
+                      </div>
+                      <Input.TextArea
+                        autoFocus
+                        autoSize={{ minRows: 7, maxRows: 12 }}
+                        value={answerText}
+                        onChange={(event) => setAnswerText(event.target.value)}
+                        placeholder="Digite uma resposta clara e objetiva para o cliente…"
+                        maxLength={2000}
+                        showCount
+                        disabled={answering}
+                      />
+                      <div className={styles.composerActions}>
+                        <Text type="secondary">Revise antes de enviar. A resposta ficará pública no anúncio.</Text>
+                        <Button
+                          type="primary"
+                          icon={<SendOutlined />}
+                          loading={answering}
+                          disabled={!answerText.trim()}
+                          onClick={() => void submitAnswer()}
+                        >
+                          Enviar resposta
+                        </Button>
+                      </div>
+                    </section>
+                  ) : (
+                    <Alert
+                      showIcon
+                      type={state.kind === 'review' ? 'info' : 'warning'}
+                      message={state.kind === 'review' ? 'Pergunta em revisão no Mercado Livre' : 'Pergunta indisponível para resposta'}
+                      description={state.kind === 'review'
+                        ? 'O campo de resposta será liberado somente se o Mercado Livre devolver a pergunta ao estado não respondido.'
+                        : 'O anúncio ou a pergunta não aceita resposta neste estado. Consulte o anúncio para mais detalhes.'}
+                    />
+                  )}
+                </div>
+              </>
+            );
+          })()}
+        </article>
+      </section>
     </div>
   );
 }

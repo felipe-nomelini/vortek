@@ -93,9 +93,29 @@ test('interface informa os escopos global e local sem apresentar cards como tota
   );
 
   assert.match(source, /Status consulta todas as perguntas no Mercado Livre/);
-  assert.match(source, /Busca e datas filtram somente os até \{PAGE_SIZE\} registros desta página/);
-  assert.match(source, /title="Exibidas nesta página"/);
-  assert.match(source, /title="Pendentes nesta página"/);
-  assert.match(source, /title="Respondidas nesta página"/);
-  assert.doesNotMatch(source, /title="Perguntas carregadas"/);
+  assert.match(source, /Busca e períodos filtram somente os até \{PAGE_SIZE\} registros desta página/);
+  assert.match(source, />Exibidas nesta página</);
+  assert.match(source, />Pendentes nesta página</);
+  assert.match(source, />Mais antiga nesta página</);
+  assert.match(source, />Total global do filtro de status</);
+});
+
+test('inbox abre em não respondidas e prioriza a pergunta pendente mais antiga', () => {
+  const pageSource = fs.readFileSync(
+    path.join(__dirname, '../src/app/(app)/perguntas/page.tsx'),
+    'utf8',
+  );
+  const routeSource = fs.readFileSync(
+    path.join(__dirname, '../src/app/api/perguntas/route.ts'),
+    'utf8',
+  );
+
+  assert.match(pageSource, /useState<QuestionStatus \| ''>\('pendente'\)/);
+  assert.match(pageSource, /Caixa de entrada de perguntas/);
+  assert.match(pageSource, /Enviar resposta/);
+  assert.match(pageSource, /Pergunta em revisão no Mercado Livre/);
+  assert.match(pageSource, /Pergunta indisponível para resposta/);
+  assert.doesNotMatch(pageSource, /ResizableTable/);
+  assert.match(routeSource, /sort_types: status === 'UNANSWERED' \? 'ASC' : 'DESC'/);
+  assert.match(routeSource, /thumbnail:/);
 });
