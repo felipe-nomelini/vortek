@@ -1965,7 +1965,7 @@ Uma página que expõe `Exportar PDF` somente pode ser encerrada depois de o doc
 - [x] `BNT-D03-PDF` — Relatório de Compras; aprovado visualmente em homologação em `2026-09-01`;
 - [x] `BNT-D07-PDF` — Relatório de Produtos; aprovado visualmente em homologação em `2026-09-02`;
 - [x] `BNT-D11-PDF` — Relatório de Anúncios; aprovado visualmente em homologação em `2026-09-02`;
-- [ ] `BNT-D12-PDF` — Relatório de Catálogo, se o exportador continuar presente na página aprovada.
+- [x] `BNT-D12-PDF` — Relatório de Catálogo; aprovado visualmente em homologação em `2026-09-02`.
 
 DANFE, etiquetas de envio e documentos fornecidos por integrações externas não são redesignados por este fluxo.
 
@@ -2269,7 +2269,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D12-PDF — Relatório de Catálogo`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual autenticada do documento pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-02`.
 
 **Estado/causa confirmados:** o exportador preservado em Catálogo ainda gerava um documento claro com identidade Vortek, consultava `catalogo_ml_snapshot` diretamente, ignorava a ordenação da tela e reduzia todos os estados de competição a “Ganhando” ou “Perdendo”. A visão temporária de oportunidades também não integrava o contrato do relatório.
 
@@ -2281,7 +2281,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `3c16bcb` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, alteração de banco, dado operacional ou integração externa a reverter.
 
-**Pendência:** baixar e aprovar visualmente o PDF autenticado em `/catalogo/no-catalogo`. `BNT-D13` permanece bloqueado até esse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente o documento e liberou `BNT-D13`.
+
+#### Resultado técnico de `BNT-D13 — Clientes`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** a listagem carregava todos os clientes e todos os pedidos para calcular a quantidade em memória, ligando as entidades pelo nickname extraído de `pedidos.contato_nome`. O schema já possuía o vínculo autoritativo `clientes.ml_id → pedidos.buyer_ml_id`, mas não havia índice no lado dos pedidos. A página ainda fazia duas requisições, expunha nove colunas sem hierarquia, oferecia seleção sem ação coletiva e mantinha um item “Editar” sem implementação.
+
+**Mudança realizada:** `/clientes` tornou-se um diretório Bentevi com cabeçalho, atualização explícita, resumo global clicável de total/PF/PJ, busca, filtro por tipo e tabela organizada em Cliente, Tipo, Documento, Localização, Contato, Pedidos e Ações. Documento, e-mail e telefone permanecem completos conforme decisão explícita do usuário; ausências são apresentadas como estado, não erro. A ação única abre `/clientes/[id]`, cujo redesign permanece reservado ao `BNT-D14`.
+
+**Contrato e banco:** `GET /api/clientes` passou a exigir `sales.read` e concentra página e resumo em uma resposta sem cache; o endpoint redundante `/api/clientes/resumo` foi removido. A RPC `search_clientes_paginated` pagina, busca, filtra e ordena no banco, conta pedidos pelo `buyer_ml_id` e usa o endereço estruturado da venda mais recente para cidade/UF. A migration aditiva `20260902200000_bnt_d13_client_search.sql` criou também o índice `idx_pedidos_buyer_ml_id_sale_date`, com execução da RPC restrita a `service_role`.
+
+**Dados e validação:** a fotografia prévia no `supabase-dev` confirmou 92 clientes (77 PF e 15 PJ), 100 pedidos, todos os 92 compradores vinculados e nenhum e-mail ou telefone preenchido. A migration foi ensaiada integralmente com `ROLLBACK` e aplicada transacionalmente somente em `192.168.1.162`. O read-back confirmou 92 linhas, os mesmos totais PF/PJ, busca individual, maior contagem de seis pedidos, cidade/UF nos 92 registros, índice presente e privilégios negados a `public`, `anon` e `authenticated` e concedidos somente a `service_role`.
+
+**Commit e homologação:** `afbbff7` — `feat(clientes): redesenhar diretorio Bentevi`, enviado somente para `origin/dev`. Os 6 cenários de `tests/bentevi-clients.test.js`, `npm run validate`, `npm run build` com Next.js `16.3.3`, 121 páginas/rotas e `git diff --check` foram aprovados. Webhooks sobrepostos durante reinícios do controlador cancelaram os primeiros builds sem substituir o serviço saudável; após estabilização, um único build isolado criou a task `ai80vueu1cp5dwbq6eharvhu2`, que ativou `GIT_SHA=afbbff79e6c77a6c196904ad982798ef2aef7dac` somente em `vortek-erp-dev`. Health e login responderam `200`, `/clientes` respondeu `307` sem sessão e `/api/clientes` respondeu `401` sem sessão.
+
+**Rollback:** reverter `afbbff7` em `dev` e redeployar somente `vortek-erp-dev`; a migration é aditiva e pode permanecer porque o código anterior a ignora. Se for necessário retirar também os objetos de banco, usar uma migration corretiva exclusivamente no `.162` para remover a RPC e o índice.
+
+**Pendência:** aprovar visualmente `/clientes` com sessão. `BNT-D14` permanece bloqueado até esse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
