@@ -113,7 +113,11 @@ test('RPC BNT-D11 aplica privilégio mínimo e search_path seguro', () => {
   assert.match(migration, /grant execute[\s\S]*to service_role/);
 });
 
-test('BNT-D11 preserva relatório existente como etapa separada', () => {
-  assert.match(page, /Relatório atual; o redesign do PDF será feito em BNT-D11-PDF/);
+test('BNT-D11 exporta o conjunto filtrado pelo relatório redesenhado', () => {
+  assert.match(page, /Exportar o conjunto filtrado em PDF/);
   assert.match(page, /\/api\/anuncios\/exportar-pdf/);
+  for (const filter of ['focus', 'quality', 'catalog', 'profitability', 'search', 'priceMin', 'priceMax']) {
+    assert.match(page, new RegExp(filter));
+  }
+  assert.match(page, /appendRemoteSortParams\(params, sort\)/);
 });

@@ -568,8 +568,11 @@ export default function AnunciosPage() {
   const exportPdf = async () => {
     setExporting(true);
     try {
-      const params = new URLSearchParams();
+      const params = new URLSearchParams({ focus, quality, catalog, profitability });
+      appendRemoteSortParams(params, sort);
       if (committedSearch) params.set('search', committedSearch);
+      if (priceMin !== null) params.set('priceMin', String(priceMin));
+      if (priceMax !== null) params.set('priceMax', String(priceMax));
       const response = await fetch(`/api/anuncios/exportar-pdf?${params}`);
       if (!response.ok) {
         const payload = await response.json().catch(() => ({}));
@@ -685,7 +688,7 @@ export default function AnunciosPage() {
     <header className={styles.header}>
       <div><Title level={2} className={styles.title}>Anúncios</Title><Text type="secondary">Preço, qualidade, estado e competição no Mercado Livre em uma leitura operacional.</Text><small className={styles.lastSync}>Última leitura: {formatDateTime(lastSyncedAt)}</small></div>
       <Space wrap>
-        <Button icon={<FilePdfOutlined />} loading={exporting} onClick={() => void exportPdf()} title="Relatório atual; o redesign do PDF será feito em BNT-D11-PDF">Exportar PDF</Button>
+        <Button icon={<FilePdfOutlined />} loading={exporting} onClick={() => void exportPdf()} title="Exportar o conjunto filtrado em PDF">Exportar PDF</Button>
         <Button type="primary" icon={<ReloadOutlined />} loading={syncStarting || syncing} disabled={Boolean(visualReview)} onClick={() => void startSync()}>Atualizar dados</Button>
       </Space>
     </header>
