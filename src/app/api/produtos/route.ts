@@ -14,10 +14,93 @@ import {
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import { resolveCatalogCompetitionStatus } from '@/lib/catalogo/no-catalogo';
 import {
   listBntD07VisualReview,
   loadBntD07VisualReview,
 } from '@/lib/products/bnt-d07-visual-review';
+
+function normalizeListingStatus(status: unknown) {
+  const normalized = String(status || '').trim().toLowerCase();
+  if (normalized === 'active') return 'ativo';
+  if (normalized === 'paused') return 'pausado';
+  if (normalized === 'closed') return 'encerrado';
+  return normalized;
+}
+
+async function loadProductMlListings(
+  serviceClient: ReturnType<typeof createServiceClient>,
+  productIds: string[],
+) {
+  const listingsByProductId = new Map<string, Map<string, Record<string, any>>>();
+  if (productIds.length === 0) return new Map<string, Record<string, any>[]>();
+
+  const [listingsResult, snapshotsResult] = await Promise.all([
+    serviceClient
+      .from('anuncios_ml')
+      .select('produto_id,ml_item_id,status,catalogo,preco_ml,permalink')
+      .in('produto_id', productIds),
+    serviceClient
+      .from('catalogo_ml_snapshot')
+      .select('produto_id,ml_item_id,status,catalog_listing,price,permalink,catalog_product_id,buy_box_status,buy_box_winning,price_to_win,related_item_id')
+      .in('produto_id', productIds),
+  ]);
+
+  if (listingsResult.error) throw listingsResult.error;
+  if (snapshotsResult.error) throw snapshotsResult.error;
+
+  const upsert = (productId: string, itemId: string, patch: Record<string, any>) => {
+    if (!productId || !itemId) return;
+    const productListings = listingsByProductId.get(productId) || new Map<string, Record<string, any>>();
+    productListings.set(itemId, { ...(productListings.get(itemId) || {}), ...patch, itemId });
+    listingsByProductId.set(productId, productListings);
+  };
+
+  for (const snapshot of snapshotsResult.data || []) {
+    const productId = String(snapshot.produto_id || '').trim();
+    const itemId = String(snapshot.ml_item_id || '').trim().toUpperCase();
+    const catalog = Boolean(snapshot.catalog_listing);
+    upsert(productId, itemId, {
+      type: catalog ? 'catalog' : 'standard',
+      status: normalizeListingStatus(snapshot.status),
+      price: Number(snapshot.price || 0),
+      permalink: snapshot.permalink || null,
+      catalogProductId: snapshot.catalog_product_id || null,
+      catalogStatus: resolveCatalogCompetitionStatus({
+        catalogListing: catalog,
+        buyBoxStatus: snapshot.buy_box_status,
+        buyBoxWinning: snapshot.buy_box_winning,
+      }),
+      priceToWin: snapshot.price_to_win === null ? null : Number(snapshot.price_to_win),
+      relatedItemId: snapshot.related_item_id || null,
+    });
+  }
+
+  for (const listing of listingsResult.data || []) {
+    const productId = String(listing.produto_id || '').trim();
+    const itemId = String(listing.ml_item_id || '').trim().toUpperCase();
+    const catalog = Boolean(listing.catalogo);
+    upsert(productId, itemId, {
+      type: catalog ? 'catalog' : 'standard',
+      status: normalizeListingStatus(listing.status),
+      price: Number(listing.preco_ml || 0),
+      permalink: listing.permalink || null,
+      catalogStatus: catalog
+        ? (listingsByProductId.get(productId)?.get(itemId)?.catalogStatus || 'perdendo')
+        : 'sem_catalogo',
+    });
+  }
+
+  return new Map(
+    [...listingsByProductId.entries()].map(([productId, listings]) => [
+      productId,
+      [...listings.values()].sort((left, right) => {
+        if (left.type !== right.type) return left.type === 'standard' ? -1 : 1;
+        return String(left.itemId).localeCompare(String(right.itemId));
+      }),
+    ]),
+  );
+}
 
 export async function GET(request: Request) {
   const supabase = await createClient();
@@ -139,9 +222,10 @@ export async function GET(request: Request) {
     .filter(Boolean);
 
   let fulfillmentCapacities;
+  let mlListingsByProductId = new Map<string, Record<string, any>[]>();
   let kitProductIds = new Set<string>();
   try {
-    const [capacities, kitsResult] = await Promise.all([
+    const [capacities, kitsResult, listings] = await Promise.all([
       loadProductFulfillmentCapacities(serviceClient, productIds),
       productIds.length > 0
         ? (serviceClient as any)
@@ -149,9 +233,11 @@ export async function GET(request: Request) {
           .select('produto_id')
           .in('produto_id', productIds)
         : Promise.resolve({ data: [], error: null }),
+      loadProductMlListings(serviceClient, productIds),
     ]);
     if (kitsResult.error) throw new Error(kitsResult.error.message);
     fulfillmentCapacities = capacities;
+    mlListingsByProductId = listings;
     kitProductIds = new Set((kitsResult.data || []).map((kit: any) => String(kit.produto_id)));
   } catch (error: any) {
     console.error('[api/produtos] Falha ao carregar capacidade operacional:', error?.message || error);
@@ -167,6 +253,7 @@ export async function GET(request: Request) {
       return {
         ...item,
         fulfillmentCapacity: fulfillmentCapacities.get(productId) || { internal: 0, supplier: 0, safe: 0 },
+        mlListings: mlListingsByProductId.get(productId) || [],
         isKit: kitProductIds.has(productId),
       };
     }),

@@ -11,9 +11,10 @@ const styles = read('src/app/(app)/produtos/produtos.module.css');
 const listRoute = read('src/app/api/produtos/route.ts');
 const summaryRoute = read('src/app/api/produtos/resumo/route.ts');
 const visualReview = read('src/lib/products/bnt-d07-visual-review.ts');
+const priceRoute = read('src/app/api/ml/anuncio/atualizar-preco/route.ts');
 
 test('BNT-D07 organiza produtos por decisão operacional', () => {
-  for (const title of ['Produto', 'Disponibilidade', 'Fornecimento', 'Comercial', 'Rentabilidade', 'Mercado Livre', 'Ação']) {
+  for (const title of ['Produto', 'Disponibilidade', 'Fornecimento', 'Comercial', 'Rentabilidade', 'Mercado Livre', 'Ações']) {
     assert.match(page, new RegExp(`title: '${title}'`));
   }
   assert.match(page, /record\.product\.images\[0\]/);
@@ -97,10 +98,44 @@ test('BNT-D07 bloqueia ações e navegação durante a revisão protegida', () =
   assert.match(page, /Amostra real de produção, somente leitura/);
   assert.match(page, /Ações, navegação e exportação estão desabilitadas/);
   assert.match(page, /disabled=\{Boolean\(visualReview\)\}/);
-  assert.match(page, /if \(visualReview\) \{[\s\S]*?Somente leitura/);
+  assert.match(page, /if \(visualReview\) \{[\s\S]*?primary\.label/);
+  assert.match(page, /Ação desabilitada na amostra protegida/);
   assert.match(page, /visualReview \? \([\s\S]*?productNameReadonly/);
   assert.match(page, /visualReview \? \([\s\S]*?mobileProductNameReadonly/);
-  assert.match(page, /&& !visualReview/);
+  assert.match(page, /if \(visualReview\) \{[\s\S]*?amostra de homologação é somente leitura/);
+});
+
+test('BNT-D07 representa anúncios padrão e catálogo sem multiplicar tags', () => {
+  assert.match(listRoute, /from\('anuncios_ml'\)/);
+  assert.match(listRoute, /from\('catalogo_ml_snapshot'\)/);
+  assert.match(listRoute, /mlListings: mlListingsByProductId\.get\(productId\) \|\| \[\]/);
+  assert.match(page, /listing\.type === 'catalog' \? 'Catálogo' : 'Padrão'/);
+  assert.match(page, /listing\.catalogStatus === 'ganhando'/);
+  assert.match(styles, /\.mlOverallStatus[\s\S]*?width: fit-content/);
+  assert.match(styles, /\.mlListingLine/);
+});
+
+test('BNT-D07 permite definir um preço único para todos os anúncios vinculados', () => {
+  assert.match(page, /Novo preço de venda/);
+  assert.match(page, /scope: 'linked'/);
+  assert.match(page, /Este preço gera prejuízo/);
+  assert.match(page, /Aplicar nos anúncios/);
+  assert.match(priceRoute, /body\?\.scope === 'linked'/);
+  assert.match(priceRoute, /\.in\('status', \['ativo', 'pausado'\]\)/);
+  assert.match(priceRoute, /JSON\.stringify\(\{ price: basePrice \}\)/);
+  assert.match(priceRoute, /custom_price: basePrice/);
+  assert.match(priceRoute, /results\.map/);
+});
+
+test('BNT-D07 bloqueia preço automatizado antes de persistir o valor desejado', () => {
+  assert.match(priceRoute, /dynamic_standard_price/);
+  assert.match(priceRoute, /const targets = await resolveTargets/);
+  assert.match(priceRoute, /const \{ error: persistError \}/);
+  assert.ok(
+    priceRoute.indexOf('const targets = await resolveTargets') < priceRoute.indexOf('const { error: persistError }'),
+    'preflight dos anúncios deve ocorrer antes da persistência local',
+  );
+  assert.match(priceRoute, /if \(!user\).*status: 401/);
 });
 
 test('BNT-D07 filtra a amostra por capacidade segura e preserva filtros remotos', () => {

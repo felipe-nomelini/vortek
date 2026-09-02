@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
-  Input, Select, InputNumber, Tag, Typography, Space, Spin, Drawer, Button, message, Dropdown, Row, Col, Radio, Alert, Tooltip, Segmented, Collapse, Image as AntImage, Steps,
+  Input, Select, InputNumber, Tag, Typography, Space, Spin, Drawer, Button, message, Dropdown, Row, Col, Radio, Alert, Tooltip, Segmented, Collapse, Image as AntImage, Steps, Modal,
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined, ReloadOutlined, FilterOutlined, ArrowRightOutlined } from '@ant-design/icons';
@@ -49,6 +49,7 @@ const priceFieldOptions = [
 
 interface ProductMasterListItem {
   product: Product;
+  mlListings: ProductMlListing[];
   preferredOffer: ProdutoOfertaRow | null;
   offersCount: number;
   fulfillmentCapacity: {
@@ -58,6 +59,27 @@ interface ProductMasterListItem {
   };
   isKit: boolean;
   isHomologationFixture?: boolean;
+}
+
+interface ProductMlListing {
+  itemId: string;
+  type: 'standard' | 'catalog';
+  status: string;
+  price: number;
+  permalink: string | null;
+  catalogProductId?: string | null;
+  catalogStatus?: 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
+  priceToWin?: number | null;
+  relatedItemId?: string | null;
+}
+
+interface PriceUpdateResult {
+  mlItemId: string;
+  type: 'standard' | 'catalog';
+  price_updated: boolean;
+  queued_publish: boolean;
+  outboxId?: string | null;
+  error?: string | null;
 }
 
 interface VisualReviewMetadata {
@@ -71,6 +93,7 @@ interface VisualReviewMetadata {
 interface ProductRow {
   key: string;
   product: Product;
+  mlListings: ProductMlListing[];
   preferredOffer: ProdutoOfertaRow | null;
   offersCount: number;
   fulfillmentCapacity: ProductMasterListItem['fulfillmentCapacity'];
@@ -89,10 +112,6 @@ interface SupplierOption {
 }
 
 type ProductQuickView = 'ativos' | 'com_estoque' | 'sem_anuncio' | 'margem_risco' | 'inativos';
-
-type MlPublishContext = {
-  produtoId: string;
-};
 
 interface MlCategoryAttributeOption {
   id: string;
@@ -349,6 +368,14 @@ export default function ProductsPage() {
     progressModalProps: mlPublishProgressModalProps,
   } = useMlPricePublishTracking(messageApi);
   const [updatingPriceProductId, setUpdatingPriceProductId] = useState<string | null>(null);
+  const [priceModal, setPriceModal] = useState<{
+    open: boolean;
+    record: ProductRow | null;
+    value: number | null;
+    saving: boolean;
+    results: PriceUpdateResult[];
+    error: string | null;
+  }>({ open: false, record: null, value: null, saving: false, results: [], error: null });
   const productsRequestRef = useRef(0);
   const statsRequestRef = useRef(0);
   const [mlModalPriceText, setMlModalPriceText] = useState('');
@@ -963,70 +990,80 @@ export default function ProductsPage() {
     }
   };
 
-  const startMlPublishUpdate = async (context: MlPublishContext) => {
-    if (updatingPriceProductId) return;
-    if (hasOpenMlPublishTracking) {
-      messageApi.warning('Já existe uma publicação em acompanhamento. Aguarde finalizar para iniciar outra.');
+  const openPriceEditor = (record: ProductRow) => {
+    setPriceModal({
+      open: true,
+      record,
+      value: record.displayPrice,
+      saving: false,
+      results: [],
+      error: null,
+    });
+  };
+
+  const submitPriceChange = async () => {
+    const record = priceModal.record;
+    const targetPrice = Number(priceModal.value);
+    if (!record || !Number.isFinite(targetPrice) || targetPrice <= 0) {
+      setPriceModal(prev => ({ ...prev, error: 'Informe um preço maior que zero.' }));
+      return;
+    }
+    if (visualReview) {
+      setPriceModal(prev => ({ ...prev, error: 'A amostra de homologação é somente leitura.' }));
+      return;
+    }
+    if (updatingPriceProductId || hasOpenMlPublishTracking) {
+      messageApi.warning('Já existe uma publicação de preço em acompanhamento.');
       return;
     }
 
-    setUpdatingPriceProductId(context.produtoId);
+    setUpdatingPriceProductId(record.product.id);
+    setPriceModal(prev => ({ ...prev, saving: true, results: [], error: null }));
     try {
-      const res = await fetch('/api/ml/anuncio/atualizar-preco', {
+      const response = await fetch('/api/ml/anuncio/atualizar-preco', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ produtoId: context.produtoId }),
+        body: JSON.stringify({
+          produtoId: record.product.id,
+          targetPrice,
+          scope: 'linked',
+        }),
       });
+      const payload = await response.json().catch(() => ({}));
+      const results: PriceUpdateResult[] = Array.isArray(payload?.results) ? payload.results : [];
+      const error = response.ok ? null : (payload?.error || 'Falha ao alterar o preço no Mercado Livre.');
+      setPriceModal(prev => ({ ...prev, saving: false, results, error }));
 
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        messageApi.error(data?.error || 'Falha ao atualizar preço no ML');
-        return;
+      const updated = results.filter(result => result.price_updated).length;
+      const queued = results.filter(result => result.queued_publish).length;
+      const failed = results.length - updated - queued;
+      if (updated > 0 && failed === 0 && queued === 0) {
+        messageApi.success(`Preço alterado em ${updated} anúncio${updated === 1 ? '' : 's'}.`);
+      } else if (updated > 0 || queued > 0) {
+        messageApi.warning(`Preço processado: ${updated} atualizado${updated === 1 ? '' : 's'}, ${queued} em fila e ${failed} com falha.`);
+      } else {
+        messageApi.error(error || 'Nenhum anúncio teve o preço alterado.');
       }
 
-      if (data?.price_updated) {
-        const warnings = Array.isArray(data?.warnings) ? data.warnings.filter(Boolean) : [];
-        if (data?.quantity_pricing_updated) {
-          messageApi.success('Preço e atacado atualizados no Mercado Livre.');
-        } else if (data?.quantity_pricing_queued || data?.quantity_pricing_outbox_id) {
-          messageApi.warning('Preço atualizado no Mercado Livre. Atacado ficou em fila para retry.');
-        } else {
-          messageApi.success('Preço atualizado no Mercado Livre.');
-        }
-        if (warnings.length > 0) {
-          messageApi.warning(warnings.join(' | '));
-        }
-        await fetchProducts();
-        return;
+      const queuedResult = results.length === 1 && results[0]?.queued_publish
+        ? results[0]
+        : null;
+      if (queuedResult?.outboxId) {
+        startMlPublishTracking({
+          outboxId: queuedResult.outboxId,
+          produtoId: record.product.id,
+          retry: () => { void submitPriceChange(); },
+          onTerminal: () => { void fetchProducts(); },
+        });
       }
-
-      const queued = Boolean(data?.queued_publish);
-      const outboxId = String(data?.outboxId || '').trim();
-      if (!queued || !outboxId) {
-        messageApi.error(
-          `Falha ao enfileirar atualização: ${Array.isArray(data.errors) && data.errors.length > 0 ? data.errors.join(' | ') : 'nenhuma etapa concluída'}`
-        );
-        return;
-      }
-
-      startMlPublishTracking({
-        outboxId,
-        produtoId: context.produtoId,
-        retry: () => { void startMlPublishUpdate(context); },
-        onTerminal: () => { void fetchProducts(); },
-      });
-      messageApi.success('Atualização enfileirada. Acompanhe o processamento no modal.');
       await fetchProducts();
     } catch {
-      messageApi.error('Erro ao conectar com a API de atualização de preço');
+      const error = 'Erro ao conectar com a API de atualização de preço.';
+      setPriceModal(prev => ({ ...prev, saving: false, error }));
+      messageApi.error(error);
     } finally {
       setUpdatingPriceProductId(null);
     }
-  };
-
-  const atualizarPrecoMl = async (product: Product) => {
-    await startMlPublishUpdate({ produtoId: product.id });
   };
 
   const fetchProducts = useCallback(async () => {
@@ -1053,6 +1090,19 @@ export default function ProductsPage() {
       const data = json.data || [];
       const mapped: ProductMasterListItem[] = data.map((item: any) => ({
         product: mapDBtoProduct(item.product),
+        mlListings: Array.isArray(item.mlListings)
+          ? item.mlListings.map((listing: any) => ({
+              itemId: String(listing?.itemId || '').trim().toUpperCase(),
+              type: listing?.type === 'catalog' ? 'catalog' : 'standard',
+              status: String(listing?.status || ''),
+              price: Number(listing?.price || 0),
+              permalink: String(listing?.permalink || '').trim() || null,
+              catalogProductId: String(listing?.catalogProductId || '').trim() || null,
+              catalogStatus: listing?.catalogStatus || 'sem_catalogo',
+              priceToWin: listing?.priceToWin === null ? null : Number(listing?.priceToWin || 0),
+              relatedItemId: String(listing?.relatedItemId || '').trim() || null,
+            })).filter((listing: ProductMlListing) => Boolean(listing.itemId))
+          : [],
         preferredOffer: item.preferredOffer ? {
           ...item.preferredOffer,
           custo: Number(item.preferredOffer.custo || 0),
@@ -1155,6 +1205,7 @@ export default function ProductsPage() {
       return {
         key: item.product.id,
         product: item.product,
+        mlListings: item.mlListings,
         preferredOffer: item.preferredOffer,
         offersCount: item.offersCount,
         fulfillmentCapacity: item.fulfillmentCapacity,
@@ -1243,37 +1294,73 @@ export default function ProductsPage() {
       || 'Sem fornecedor';
   };
 
-  const canPublish = (record: ProductRow) => record.product.active
-    && !visualReview
+  const isPublishEligible = (record: ProductRow) => record.product.active
     && record.product.mlStatus === 'sem_anuncio'
     && record.fulfillmentCapacity.safe > 0;
 
+  const displayMlListings = (record: ProductRow): ProductMlListing[] => {
+    if (record.mlListings.length > 0) return record.mlListings;
+    if (!record.product.mlItemId) return [];
+    return [{
+      itemId: record.product.mlItemId,
+      type: 'standard',
+      status: record.product.mlStatus,
+      price: record.displayPrice,
+      permalink: null,
+      catalogStatus: 'sem_catalogo',
+    }];
+  };
+
+  const primaryProductAction = (record: ProductRow) => {
+    const hasListing = displayMlListings(record).some(listing => ['ativo', 'pausado'].includes(listing.status))
+      || record.product.mlStatus !== 'sem_anuncio';
+    if (isPublishEligible(record)) return { key: 'publish', label: 'Publicar no ML', icon: <PlusOutlined /> };
+    if (hasListing) return { key: 'price', label: 'Alterar preço', icon: <EditOutlined /> };
+    return { key: 'open', label: 'Ver produto', icon: <ArrowRightOutlined /> };
+  };
+
   const renderProductActions = (record: ProductRow) => {
+    const primary = primaryProductAction(record);
     if (visualReview) {
       return (
-        <Tooltip title="Ações desabilitadas na amostra protegida de homologação">
-          <Button size="small" disabled>Somente leitura</Button>
-        </Tooltip>
+        <div className={styles.actionCell}>
+          <Tooltip title="Ação desabilitada na amostra protegida de homologação">
+            <Button size="small" disabled icon={primary.icon}>{primary.label}</Button>
+          </Tooltip>
+          <Tooltip title="Demais ações desabilitadas na amostra protegida">
+            <Button aria-label="Mais ações do produto" size="small" disabled icon={<EllipsisOutlined />} />
+          </Tooltip>
+        </div>
       );
     }
 
     const isUpdatingCurrent = updatingPriceProductId === record.product.id;
-    const primary = canPublish(record)
-      ? { key: 'publish', label: 'Publicar', icon: <PlusOutlined /> }
-      : record.product.active && record.product.mlStatus === 'ativo'
-        ? { key: 'price', label: 'Atualizar preço', icon: isUpdatingCurrent ? <LoadingOutlined spin /> : <ReloadOutlined /> }
-        : { key: 'open', label: 'Ver produto', icon: <ArrowRightOutlined /> };
+    const primaryIcon = primary.key === 'price' && isUpdatingCurrent
+      ? <LoadingOutlined spin />
+      : primary.icon;
     const runAction = (key: string) => {
       if (key === 'publish') void abrirCriarAnuncioML(record.product);
-      if (key === 'price') void atualizarPrecoMl(record.product);
+      if (key === 'price') openPriceEditor(record);
       if (key === 'open' || key === 'edit') router.push(`/produtos/${record.product.id}`);
+      if (key.startsWith('listing:')) {
+        const itemId = key.slice('listing:'.length);
+        const listing = displayMlListings(record).find(item => item.itemId === itemId);
+        if (listing?.permalink) window.open(listing.permalink, '_blank', 'noopener,noreferrer');
+      }
     };
+    const listingActions = displayMlListings(record)
+      .filter(listing => Boolean(listing.permalink))
+      .map(listing => ({
+        key: `listing:${listing.itemId}`,
+        label: `Abrir anúncio ${listing.type === 'catalog' ? 'catálogo' : 'padrão'}`,
+        icon: <LinkOutlined />,
+      }));
     return (
       <div className={styles.actionCell}>
         <Button
           size="small"
           type={primary.key === 'open' ? 'default' : 'primary'}
-          icon={primary.icon}
+          icon={primaryIcon}
           loading={isUpdatingCurrent}
           disabled={Boolean(updatingPriceProductId && !isUpdatingCurrent)}
           onClick={() => runAction(primary.key)}
@@ -1282,7 +1369,10 @@ export default function ProductsPage() {
         </Button>
         <Dropdown
           menu={{
-            items: [{ key: 'edit', label: 'Editar produto', icon: <EditOutlined /> }],
+            items: [
+              { key: 'edit', label: 'Editar produto', icon: <EditOutlined /> },
+              ...listingActions,
+            ],
             onClick: ({ key }) => runAction(key),
           }}
           trigger={['click']}
@@ -1378,12 +1468,23 @@ export default function ProductsPage() {
       ),
     },
     {
-      title: 'Mercado Livre', key: 'ml_status', width: 170, sorter: true,
+      title: 'Mercado Livre', key: 'ml_status', width: 215, sorter: true,
       sortOrder: getRemoteSortOrder('ml_status', sort),
       render: (_, record) => (
         <div className={styles.mlCell}>
-          <Tag color={mlStatusColor[record.product.mlStatus]}>{mlStatusLabel[record.product.mlStatus]}</Tag>
-          {record.product.mlItemId && <span>{record.product.mlItemId}</span>}
+          <Tag className={styles.mlOverallStatus} color={mlStatusColor[record.product.mlStatus]}>{mlStatusLabel[record.product.mlStatus]}</Tag>
+          {displayMlListings(record).map(listing => (
+            <div className={styles.mlListingLine} key={listing.itemId}>
+              <i className={listing.status === 'ativo' ? styles.mlListingActive : styles.mlListingPaused} />
+              <span className={styles.mlListingType}>{listing.type === 'catalog' ? 'Catálogo' : 'Padrão'}</span>
+              <span className={styles.mlListingId}>{listing.itemId}</span>
+              {listing.type === 'catalog' && listing.catalogStatus && listing.catalogStatus !== 'sem_catalogo' && (
+                <small className={styles[`catalog_${listing.catalogStatus}`]}>
+                  {listing.catalogStatus === 'ganhando' ? 'Ganhando' : listing.catalogStatus === 'competindo' ? 'Competindo' : 'Fora da disputa'}
+                </small>
+              )}
+            </div>
+          ))}
           {record.product.mlStatus !== 'sem_anuncio' && record.product.mlShipping <= 0 && (
             <span className={styles.warningText}>Frete precisa de revisão</span>
           )}
@@ -1391,7 +1492,7 @@ export default function ProductsPage() {
       ),
     },
     {
-      title: 'Ação', key: 'actions', width: 190, fixed: 'right',
+      title: 'Ações', key: 'actions', width: 205, fixed: 'right',
       render: (_, record) => renderProductActions(record),
     },
   ];
@@ -1595,7 +1696,7 @@ export default function ProductsPage() {
                 showTotal: (count) => `${count} produtos`,
               }}
               onChange={handleTableChange}
-              scroll={{ x: 1405 }}
+              scroll={{ x: 1450 }}
               size="middle"
             />
           </div>
@@ -1620,6 +1721,15 @@ export default function ProductsPage() {
                   <div><span>Preço</span><strong>{formatCurrency(record.displayPrice)}</strong><small>Custo {formatCurrency(record.effectiveCost)}</small></div>
                   <div><span>Lucro</span><strong className={record.profit !== null && record.profit < 0 ? styles.negativeText : styles.positiveText}>{record.profit === null ? '—' : formatCurrency(record.profit)}</strong><small>{record.margin === null ? 'Após publicação' : `${record.margin.toFixed(2).replace('.', ',')}%`}</small></div>
                 </div>
+                {displayMlListings(record).length > 0 && (
+                  <div className={styles.mobileMlListings}>
+                    {displayMlListings(record).map(listing => (
+                      <span key={listing.itemId}>
+                        {listing.type === 'catalog' ? 'Catálogo' : 'Padrão'} · {listing.itemId}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 {renderProductActions(record)}
               </article>
             ))}
@@ -1639,6 +1749,102 @@ export default function ProductsPage() {
       </Drawer>
 
       <ProgressModal {...mlPublishProgressModalProps} />
+
+      <Modal
+        title={priceModal.record ? `Alterar preço — ${priceModal.record.product.sku}` : 'Alterar preço'}
+        open={priceModal.open}
+        onCancel={() => setPriceModal(prev => ({ ...prev, open: false }))}
+        onOk={() => { void submitPriceChange(); }}
+        okText={priceModal.results.length > 0 ? 'Aplicar novamente' : 'Aplicar nos anúncios'}
+        cancelText="Fechar"
+        confirmLoading={priceModal.saving}
+        okButtonProps={{ disabled: Boolean(visualReview) }}
+        destroyOnClose
+      >
+        {priceModal.record && (() => {
+          const record = priceModal.record;
+          const value = Number(priceModal.value || 0);
+          const previewProfit = pricingTaxRate === null || value <= 0
+            ? null
+            : calculateNetProfitAtPrice({
+                price: value,
+                cost: record.effectiveCost,
+                shipping: record.product.mlShipping,
+                mlFee: record.product.mlFee,
+                taxRate: pricingTaxRate,
+              });
+          const previewMargin = previewProfit === null || value <= 0
+            ? null
+            : Math.round((previewProfit / value) * 10000) / 100;
+          const suggestedPrice = pricingTaxRate === null
+            ? record.displayPrice
+            : calculateSuggestedPrice({
+                cost: record.effectiveCost,
+                shipping: record.product.mlShipping,
+                mlFee: record.product.mlFee,
+                taxRate: pricingTaxRate,
+              }).suggestedPrice;
+          const listings = displayMlListings(record).filter(listing => ['ativo', 'pausado'].includes(listing.status));
+          return (
+            <div className={styles.priceModalContent}>
+              <div className={styles.priceModalProduct}>
+                <strong>{record.product.name}</strong>
+                <span>Um único preço será aplicado a todos os anúncios vinculados.</span>
+              </div>
+              <label className={styles.priceInputLabel}>
+                <span>Novo preço de venda</span>
+                <InputNumber
+                  value={priceModal.value}
+                  onChange={value => setPriceModal(prev => ({ ...prev, value: value ?? null, results: [], error: null }))}
+                  min={0.01}
+                  precision={2}
+                  decimalSeparator=","
+                  prefix="R$"
+                  autoFocus
+                  className={styles.priceInput}
+                />
+              </label>
+              <div className={styles.pricePreview}>
+                <div><span>Custo</span><strong>{formatCurrency(record.effectiveCost)}</strong></div>
+                <div><span>Preço sugerido</span><strong>{formatCurrency(suggestedPrice)}</strong></div>
+                <div>
+                  <span>Lucro estimado</span>
+                  <strong className={previewProfit !== null && previewProfit < 0 ? styles.negativeText : styles.positiveText}>
+                    {previewProfit === null ? '—' : formatCurrency(previewProfit)}
+                  </strong>
+                </div>
+                <div><span>Margem</span><strong>{previewMargin === null ? '—' : `${previewMargin.toFixed(2).replace('.', ',')}%`}</strong></div>
+              </div>
+              {previewProfit !== null && previewProfit < 0 && (
+                <Alert type="warning" showIcon message="Este preço gera prejuízo" description="A alteração continua permitida, mas revise custo, frete e taxas antes de confirmar." />
+              )}
+              <div className={styles.priceListingTargets}>
+                <strong>Anúncios que receberão o preço</strong>
+                {listings.map(listing => (
+                  <div key={listing.itemId}>
+                    <span>{listing.type === 'catalog' ? 'Catálogo' : 'Padrão'} · {listing.itemId}</span>
+                    <small>Atual {formatCurrency(listing.price)}</small>
+                  </div>
+                ))}
+              </div>
+              {priceModal.error && <Alert type="error" showIcon message="Preço não aplicado" description={priceModal.error} />}
+              {priceModal.results.length > 0 && (
+                <div className={styles.priceResults}>
+                  {priceModal.results.map(result => (
+                    <div key={result.mlItemId}>
+                      <span>{result.type === 'catalog' ? 'Catálogo' : 'Padrão'} · {result.mlItemId}</span>
+                      <strong className={result.price_updated ? styles.positiveText : result.queued_publish ? styles.pendingText : styles.negativeText}>
+                        {result.price_updated ? 'Atualizado' : result.queued_publish ? 'Em fila' : 'Falhou'}
+                      </strong>
+                      {result.error && <small>{result.error}</small>}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })()}
+      </Modal>
 
       <Drawer
         title={`Publicar no Mercado Livre — ${mlModal.nome}`}

@@ -9,6 +9,7 @@ const EXPECTED_VERSION = 1;
 
 type VisualReviewItem = {
   product: Record<string, any>;
+  mlListings?: Array<Record<string, any>>;
   preferredOffer: Record<string, any> | null;
   offersCount: number;
   fulfillmentCapacity: {
@@ -237,6 +238,7 @@ export function listBntD07VisualReview(params: {
       preferredOffer: item.preferredOffer,
       offersCount: item.offersCount,
       fulfillmentCapacity: item.fulfillmentCapacity,
+      mlListings: Array.isArray(item.mlListings) ? item.mlListings : [],
       isKit: item.isKit,
       isHomologationFixture: item.isHomologationFixture,
     })),

@@ -253,8 +253,71 @@
 .mlCell {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 3px;
   min-width: 0;
+}
+
+.mlOverallStatus {
+  width: fit-content;
+  margin-inline-end: 0;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.mlListingLine {
+  display: grid;
+  grid-template-columns: 7px auto minmax(0, 1fr);
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 2px;
+}
+
+.mlListingLine i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.mlListingActive {
+  background: #21d482;
+}
+
+.mlListingPaused {
+  background: #faad14;
+}
+
+.mlListingType {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+}
+
+.mlListingId {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.46);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mlListingLine small {
+  grid-column: 2 / -1;
+  font-size: 10px;
+}
+
+.catalog_ganhando {
+  color: #21d482;
+}
+
+.catalog_competindo {
+  color: #58c7ff;
+}
+
+.catalog_perdendo {
+  color: #faad14;
 }
 
 .availabilityCell > span,
@@ -262,7 +325,7 @@
 .commercialCell span,
 .profitPositive span,
 .profitNegative span,
-.mlCell > span {
+.mlCell > span:not(.mlOverallStatus) {
   color: rgba(255, 255, 255, 0.42);
   font-size: 11px;
 }
@@ -331,6 +394,73 @@
 
 .actionCell > :global(.ant-btn:first-child) {
   min-width: 120px;
+}
+
+.priceModalContent,
+.priceModalProduct,
+.priceInputLabel,
+.priceListingTargets,
+.priceResults {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.priceModalProduct span,
+.priceInputLabel > span,
+.pricePreview span,
+.priceListingTargets small,
+.priceResults small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+}
+
+.priceInput {
+  width: 100%;
+}
+
+.pricePreview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pricePreview > div,
+.priceListingTargets > div,
+.priceResults > div {
+  padding: 10px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.pricePreview > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.priceListingTargets > div,
+.priceResults > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3px 10px;
+}
+
+.priceResults small {
+  grid-column: 1 / -1;
+}
+
+.pendingText {
+  color: #faad14;
+}
+
+.mobileMlListings {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
 }
 
 .mobileList {
@@ -426,6 +556,10 @@
   .desktopFilters,
   .desktopTable {
     display: none;
+  }
+
+  .pricePreview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .mobileList {
