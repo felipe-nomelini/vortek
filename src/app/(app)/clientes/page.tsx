@@ -133,7 +133,7 @@ export default function ClientesPage() {
     {
       title: 'Cliente',
       key: 'name',
-      width: 270,
+      width: 320,
       sorter: true,
       sortOrder: getRemoteSortOrder('name', sort),
       render: (_, client) => (
@@ -150,7 +150,7 @@ export default function ClientesPage() {
       title: 'Tipo',
       dataIndex: 'personType',
       key: 'person_type',
-      width: 130,
+      width: 105,
       sorter: true,
       sortOrder: getRemoteSortOrder('person_type', sort),
       render: (value: string) => <span className={styles.personType}>{personTypeLabel(value)}</span>,
@@ -159,7 +159,7 @@ export default function ClientesPage() {
       title: 'Documento',
       dataIndex: 'document',
       key: 'document',
-      width: 160,
+      width: 150,
       sorter: true,
       sortOrder: getRemoteSortOrder('document', sort),
       render: (value: string) => <span className={styles.document}>{formatDocument(value)}</span>,
@@ -167,7 +167,7 @@ export default function ClientesPage() {
     {
       title: 'Localização',
       key: 'location',
-      width: 230,
+      width: 300,
       sorter: true,
       sortOrder: getRemoteSortOrder('location', sort),
       render: (_, client) => {
@@ -183,7 +183,7 @@ export default function ClientesPage() {
     {
       title: 'Contato',
       key: 'contact',
-      width: 245,
+      width: 180,
       render: (_, client) => client.email || client.phone ? (
         <div className={styles.contactCell}>
           {client.email && <span><MailOutlined />{client.email}</span>}
@@ -195,8 +195,8 @@ export default function ClientesPage() {
       title: 'Pedidos',
       dataIndex: 'orderCount',
       key: 'orders',
-      width: 105,
-      align: 'right',
+      width: 90,
+      align: 'left',
       sorter: true,
       sortOrder: getRemoteSortOrder('orders', sort),
       render: (value: number, client) => client.mlId ? (
@@ -209,7 +209,7 @@ export default function ClientesPage() {
     {
       title: 'Ações',
       key: 'actions',
-      width: 125,
+      width: 120,
       fixed: 'right',
       render: (_, client) => (
         <Link href={`/clientes/${client.id}`}>
@@ -305,7 +305,7 @@ export default function ClientesPage() {
       <section className={styles.tableCard}>
         <Spin spinning={loading}>
           <ResizableTable<ClienteListItem>
-            storageKey="clientes-bentevi"
+            storageKey="clientes-bentevi-v2"
             rowKey="id"
             dataSource={clients}
             columns={columns}

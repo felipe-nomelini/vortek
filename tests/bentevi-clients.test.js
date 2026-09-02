@@ -41,6 +41,16 @@ test('BNT-D13 possui busca, filtro rápido e estados explícitos', () => {
   assert.match(styles, /\.summaryActive/);
 });
 
+test('BNT-D13 mantém as colunas densas e alinhadas', () => {
+  assert.match(page, /title: 'Cliente',[\s\S]*?width: 320/);
+  assert.match(page, /title: 'Localização',[\s\S]*?width: 300/);
+  assert.match(page, /title: 'Contato',[\s\S]*?width: 180/);
+  assert.match(page, /title: 'Pedidos',[\s\S]*?width: 90,[\s\S]*?align: 'left'/);
+  assert.match(page, /title: 'Ações',[\s\S]*?width: 120/);
+  assert.match(page, /storageKey="clientes-bentevi-v2"/);
+  assert.match(styles, /\.ordersCell\s*{[\s\S]*?align-items: flex-start/);
+});
+
 test('BNT-D13 usa contrato agregado único e autorização de vendas', () => {
   assert.match(route, /authorizeApiRequest\(request, 'sales\.read'\)/);
   assert.match(route, /rpc\('search_clientes_paginated'/);
