@@ -9,6 +9,8 @@ const read = (relativePath) => fs.readFileSync(path.join(root, relativePath), 'u
 const page = read('src/app/(app)/produtos/page.tsx');
 const styles = read('src/app/(app)/produtos/produtos.module.css');
 const listRoute = read('src/app/api/produtos/route.ts');
+const summaryRoute = read('src/app/api/produtos/resumo/route.ts');
+const visualReview = read('src/lib/products/bnt-d07-visual-review.ts');
 
 test('BNT-D07 organiza produtos por decisão operacional', () => {
   for (const title of ['Produto', 'Disponibilidade', 'Fornecimento', 'Comercial', 'Rentabilidade', 'Mercado Livre', 'Ação']) {
@@ -75,4 +77,38 @@ test('BNT-D07 possui lista móvel e identidade Bentevi sem comprimir a tabela', 
   assert.match(styles, /@media \(max-width: 820px\)[\s\S]*?\.desktopTable[\s\S]*?display: none;/);
   assert.match(styles, /@media \(max-width: 820px\)[\s\S]*?\.mobileList[\s\S]*?display: flex;/);
   assert.match(styles, /\.productLink[\s\S]*?overflow-wrap: anywhere;/);
+});
+
+test('BNT-D07 usa amostra real temporária sem criar produtos operacionais', () => {
+  assert.match(visualReview, /bnt_d07_visual_review_enabled/);
+  assert.match(visualReview, /bnt_d07_visual_review_products/);
+  assert.match(visualReview, /EXPECTED_SOURCE = 'production-read-only'/);
+  assert.match(visualReview, /Date\.parse\(payload\.expiresAt\) <= Date\.now\(\)/);
+  assert.match(visualReview, /startsWith\('bnt-d07-review-'\)/);
+  assert.match(listRoute, /loadBntD07VisualReview\(\)/);
+  assert.match(listRoute, /listBntD07VisualReview/);
+  assert.match(summaryRoute, /summarizeBntD07VisualReview/);
+  assert.doesNotMatch(visualReview, /\.from\('produtos'\)/);
+  assert.doesNotMatch(visualReview, /\.insert\(/);
+  assert.doesNotMatch(visualReview, /\.upsert\(/);
+});
+
+test('BNT-D07 bloqueia ações e navegação durante a revisão protegida', () => {
+  assert.match(page, /Amostra real de produção, somente leitura/);
+  assert.match(page, /Ações, navegação e exportação estão desabilitadas/);
+  assert.match(page, /disabled=\{Boolean\(visualReview\)\}/);
+  assert.match(page, /if \(visualReview\) \{[\s\S]*?Somente leitura/);
+  assert.match(page, /visualReview \? \([\s\S]*?productNameReadonly/);
+  assert.match(page, /visualReview \? \([\s\S]*?mobileProductNameReadonly/);
+  assert.match(page, /&& !visualReview/);
+});
+
+test('BNT-D07 filtra a amostra por capacidade segura e preserva filtros remotos', () => {
+  assert.match(visualReview, /item\.fulfillmentCapacity\.safe <= 0/);
+  assert.match(visualReview, /item\.fulfillmentCapacity\.safe !== 0/);
+  assert.match(visualReview, /filters\.supplierDsliteIds/);
+  assert.match(visualReview, /filters\.productActiveStatus/);
+  assert.match(visualReview, /filters\.mlStatus/);
+  assert.match(visualReview, /filters\.priceField/);
+  assert.match(visualReview, /localeCompare/);
 });

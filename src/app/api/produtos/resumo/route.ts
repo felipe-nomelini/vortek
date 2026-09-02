@@ -1,12 +1,17 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import {
+  INTERNAL_SUPPLIER_FILTER_OPTION,
   includesInternalSupplierFilter,
   listActiveSupplierOptions,
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import {
+  loadBntD07VisualReview,
+  summarizeBntD07VisualReview,
+} from '@/lib/products/bnt-d07-visual-review';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
@@ -37,14 +42,37 @@ export async function GET(request: Request) {
   const priceMin = parsedPriceMin !== null && Number.isFinite(parsedPriceMin) ? parsedPriceMin : null;
   const priceMax = parsedPriceMax !== null && Number.isFinite(parsedPriceMax) ? parsedPriceMax : null;
   let supplierOptions: SupplierFilterOption[] = [];
+  let visualReview;
   try {
-    supplierOptions = await listActiveSupplierOptions(serviceClient);
+    visualReview = await loadBntD07VisualReview();
+    supplierOptions = visualReview
+      ? [INTERNAL_SUPPLIER_FILTER_OPTION, ...visualReview.suppliers]
+      : await listActiveSupplierOptions(serviceClient);
   } catch (error: any) {
-    console.error('[api/produtos/resumo] Falha ao carregar fornecedores:', error?.message || error);
-    return NextResponse.json({ erro: error?.message || 'Falha ao carregar fornecedores' }, { status: 500 });
+    console.error('[api/produtos/resumo] Falha ao carregar contexto do resumo:', error?.message || error);
+    return NextResponse.json({ erro: error?.message || 'Falha ao carregar contexto do resumo' }, { status: 500 });
   }
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
+  if (visualReview) {
+    return NextResponse.json({
+      ...summarizeBntD07VisualReview(visualReview, {
+        search,
+        supplierDsliteIds: supplierFilterDsliteIds,
+        includeInternal: includesInternalSupplierFilter(fornecedorFilterIds),
+        productActiveStatus,
+        mlStatus,
+        stockStatus: estoque,
+        priceField,
+        priceMin,
+        priceMax,
+        taxRate,
+      }),
+      pricingTaxContext,
+      visualReview: visualReview.metadata,
+    });
+  }
+
   const { data: rpcResult, error: rpcError } = await serviceClient.rpc('search_produtos_resumo', {
     p_search: search || null,
     p_supplier_dslite_ids: supplierFilterDsliteIds,

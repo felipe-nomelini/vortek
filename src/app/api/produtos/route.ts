@@ -7,12 +7,17 @@ import {
   loadProductFulfillmentCapacity,
 } from '@/lib/orders/fulfillment-capacity-loader';
 import {
+  INTERNAL_SUPPLIER_FILTER_OPTION,
   includesInternalSupplierFilter,
   listActiveSupplierOptions,
   mapSupplierFilterIdsToDsliteIds,
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import {
+  listBntD07VisualReview,
+  loadBntD07VisualReview,
+} from '@/lib/products/bnt-d07-visual-review';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
@@ -64,14 +69,47 @@ export async function GET(request: Request) {
   const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
 
   let supplierOptions: SupplierFilterOption[] = [];
+  let visualReview;
   try {
-    supplierOptions = await listActiveSupplierOptions(serviceClient);
+    visualReview = await loadBntD07VisualReview();
+    supplierOptions = visualReview
+      ? [INTERNAL_SUPPLIER_FILTER_OPTION, ...visualReview.suppliers]
+      : await listActiveSupplierOptions(serviceClient);
   } catch (error: any) {
-    console.error('[api/produtos] Falha ao carregar fornecedores:', error?.message || error);
-    return NextResponse.json({ erro: error?.message || 'Falha ao carregar fornecedores' }, { status: 500 });
+    console.error('[api/produtos] Falha ao carregar contexto da lista:', error?.message || error);
+    return NextResponse.json({ erro: error?.message || 'Falha ao carregar contexto da lista' }, { status: 500 });
   }
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
+  if (visualReview) {
+    const fixtureResult = listBntD07VisualReview({
+      review: visualReview,
+      filters: {
+        search,
+        supplierDsliteIds: supplierFilterDsliteIds,
+        includeInternal: includesInternalSupplierFilter(fornecedorFilterIds),
+        productActiveStatus,
+        mlStatus,
+        stockStatus: estoque,
+        priceField,
+        priceMin,
+        priceMax,
+        taxRate,
+      },
+      page,
+      pageSize,
+      sortBy,
+      sortOrder,
+    });
+
+    return NextResponse.json({
+      ...fixtureResult,
+      fornecedores: supplierOptions,
+      pricingTaxContext,
+      visualReview: visualReview.metadata,
+    });
+  }
+
   const { data: rpcResult, error: rpcError } = await serviceClient.rpc('search_produtos_paginated', {
     p_search: search || null,
     p_supplier_dslite_ids: supplierFilterDsliteIds,

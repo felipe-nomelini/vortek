@@ -16,6 +16,11 @@
   margin: 0 0 4px !important;
 }
 
+.visualReviewAlert {
+  border-color: rgba(255, 189, 14, 0.35);
+  background: rgba(255, 189, 14, 0.07);
+}
+
 .quickViews {
   max-width: 760px;
   padding: 4px;
@@ -189,6 +194,14 @@
 
 .productLink:hover {
   color: var(--bentevi-primary, #ffbd0e);
+}
+
+.productNameReadonly {
+  max-width: 100%;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .productMeta {
@@ -461,6 +474,14 @@
   .cardHeader span {
     color: rgba(255, 255, 255, 0.42);
     font-size: 11px;
+  }
+
+  .cardHeader .mobileProductNameReadonly {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
   }
 
   .cardMetrics {

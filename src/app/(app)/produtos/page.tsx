@@ -57,6 +57,15 @@ interface ProductMasterListItem {
     safe: number;
   };
   isKit: boolean;
+  isHomologationFixture?: boolean;
+}
+
+interface VisualReviewMetadata {
+  enabled: true;
+  source: 'production-read-only';
+  capturedAt: string;
+  expiresAt: string;
+  itemCount: number;
 }
 
 interface ProductRow {
@@ -331,6 +340,7 @@ export default function ProductsPage() {
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
   const [exportingPdf, setExportingPdf] = useState(false);
+  const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [filtersDrawerOpen, setFiltersDrawerOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const {
@@ -1056,10 +1066,12 @@ export default function ProductsPage() {
           safe: Number(item?.fulfillmentCapacity?.safe || 0),
         },
         isKit: Boolean(item.isKit),
+        isHomologationFixture: item.isHomologationFixture === true,
       }));
       if (productsRequestRef.current !== requestId) return;
       setProducts(mapped);
       setTotal(json.total || 0);
+      setVisualReview(json?.visualReview?.enabled === true ? json.visualReview : null);
       setPricingTaxRate(
         typeof json?.pricingTaxContext?.appliedRate === 'number'
           ? json.pricingTaxContext.appliedRate
@@ -1232,10 +1244,19 @@ export default function ProductsPage() {
   };
 
   const canPublish = (record: ProductRow) => record.product.active
+    && !visualReview
     && record.product.mlStatus === 'sem_anuncio'
     && record.fulfillmentCapacity.safe > 0;
 
   const renderProductActions = (record: ProductRow) => {
+    if (visualReview) {
+      return (
+        <Tooltip title="Ações desabilitadas na amostra protegida de homologação">
+          <Button size="small" disabled>Somente leitura</Button>
+        </Tooltip>
+      );
+    }
+
     const isUpdatingCurrent = updatingPriceProductId === record.product.id;
     const primary = canPublish(record)
       ? { key: 'publish', label: 'Publicar', icon: <PlusOutlined /> }
@@ -1287,9 +1308,13 @@ export default function ProductsPage() {
             preview={false}
           />
           <div className={styles.productIdentity}>
-            <button className={styles.productLink} onClick={() => router.push(`/produtos/${record.product.id}`)}>
-              {record.product.name}
-            </button>
+            {visualReview ? (
+              <span className={styles.productNameReadonly}>{record.product.name}</span>
+            ) : (
+              <button className={styles.productLink} onClick={() => router.push(`/produtos/${record.product.id}`)}>
+                {record.product.name}
+              </button>
+            )}
             <div className={styles.productMeta}>
               <span>SKU {record.product.sku}</span>
               {record.product.brand && <span>{record.product.brand}</span>}
@@ -1472,11 +1497,30 @@ export default function ProductsPage() {
           <Button icon={<ReloadOutlined />} loading={loading} onClick={() => { void fetchProducts(); void fetchStats(); }}>
             Atualizar
           </Button>
-          <Button icon={<FilePdfOutlined />} loading={exportingPdf} onClick={() => void handleExportPdf()}>
-            Exportar PDF
-          </Button>
+          <Tooltip title={visualReview ? 'Exportação desabilitada para a amostra protegida' : undefined}>
+            <span>
+              <Button
+                icon={<FilePdfOutlined />}
+                loading={exportingPdf}
+                disabled={Boolean(visualReview)}
+                onClick={() => void handleExportPdf()}
+              >
+                Exportar PDF
+              </Button>
+            </span>
+          </Tooltip>
         </Space>
       </header>
+
+      {visualReview && (
+        <Alert
+          className={styles.visualReviewAlert}
+          type="warning"
+          showIcon
+          message="Amostra real de produção, somente leitura"
+          description={`Recorte protegido com ${visualReview.itemCount} produtos para validação visual. Ações, navegação e exportação estão desabilitadas.`}
+        />
+      )}
 
       <Segmented<ProductQuickView | 'personalizado'>
         className={styles.quickViews}
@@ -1561,7 +1605,11 @@ export default function ProductsPage() {
                 <div className={styles.cardHeader}>
                   <AntImage width={52} height={52} src={record.product.images[0]} fallback="/branding/bentevi/bentevi-mark.png" preview={false} />
                   <div>
-                    <button onClick={() => router.push(`/produtos/${record.product.id}`)}>{record.product.name}</button>
+                    {visualReview ? (
+                      <span className={styles.mobileProductNameReadonly}>{record.product.name}</span>
+                    ) : (
+                      <button onClick={() => router.push(`/produtos/${record.product.id}`)}>{record.product.name}</button>
+                    )}
                     <span>SKU {record.product.sku}{record.isKit ? ' · Kit' : ''}</span>
                   </div>
                   <Tag color={mlStatusColor[record.product.mlStatus]}>{mlStatusLabel[record.product.mlStatus]}</Tag>
