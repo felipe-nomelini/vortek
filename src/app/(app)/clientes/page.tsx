@@ -1,271 +1,337 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
-import { Input, Select, Tag, Typography, Row, Col, Button, Dropdown, Spin, Statistic, Divider } from 'antd';
-import ResizableTable from '@/components/ResizableTable';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import {
+  Alert,
+  Button,
+  Empty,
+  Input,
+  Select,
+  Spin,
+  Typography,
+} from 'antd';
 import type { TableProps } from 'antd';
-import { useRouter } from 'next/navigation';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
-import type { Database } from '@/types/database';
-import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
+import {
+  MailOutlined,
+  PhoneOutlined,
+  ReloadOutlined,
+  RightOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
+import ResizableTable from '@/components/ResizableTable';
+import {
+  appendRemoteSortParams,
+  getRemoteSortOrder,
+  resolveRemoteSortState,
+  type RemoteSortState,
+} from '@/lib/remote-sort';
+import type { ClienteListItem, ClientesListResponse, ClientesSummary } from '@/types/clientes';
+import styles from './clientes.module.css';
 
-const { Title } = Typography;
+const { Text, Title } = Typography;
 
-const tipoOptions = [
-  { value: '', label: 'Todos os tipos' },
-  { value: 'F', label: 'Pessoa Física' },
-  { value: 'J', label: 'Pessoa Jurídica' },
+const EMPTY_SUMMARY: ClientesSummary = { total: 0, pf: 0, pj: 0 };
+
+const typeOptions = [
+  { value: 'all', label: 'Todos os tipos' },
+  { value: 'F', label: 'Pessoa física' },
+  { value: 'J', label: 'Pessoa jurídica' },
 ];
 
-type ClienteRow = Database['public']['Tables']['clientes']['Row'];
+function formatDocument(value: string): string {
+  const digits = value.replace(/\D/g, '');
+  if (digits.length === 11) {
+    return digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+  if (digits.length === 14) {
+    return digits.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+  }
+  return value.trim() || 'Não informado';
+}
 
-function formatDoc(doc: string): string {
-  if (!doc) return '—';
-  if (doc.length === 11) {
-    return doc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-  }
-  if (doc.length === 14) {
-    return doc.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
-  }
-  return doc;
+function personTypeLabel(value: string): string {
+  if (value === 'F') return 'Pessoa física';
+  if (value === 'J') return 'Pessoa jurídica';
+  return 'Não informado';
+}
+
+function updatedAtLabel(value: Date | null): string {
+  if (!value) return 'Aguardando primeira atualização';
+  return `Atualizado às ${value.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
 }
 
 export default function ClientesPage() {
-  const router = useRouter();
-  const [clients, setClients] = useState<ClienteRow[]>([]);
+  const [clients, setClients] = useState<ClienteListItem[]>([]);
+  const [summary, setSummary] = useState<ClientesSummary>(EMPTY_SUMMARY);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'nome', sortOrder: 'asc' });
-
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'name', sortOrder: 'asc' });
   const [search, setSearch] = useState('');
-  const [lastSearch, setLastSearch] = useState('');
-  const [tipoFilter, setTipoFilter] = useState<string>('');
-
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [stats, setStats] = useState({ total: 0, pf: 0, pj: 0 });
+  const [committedSearch, setCommittedSearch] = useState('');
+  const [personType, setPersonType] = useState('');
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+  const requestSequence = useRef(0);
 
   const fetchClients = useCallback(async () => {
+    const requestId = ++requestSequence.current;
     setLoading(true);
-    try {
-      const params = new URLSearchParams({ page: String(page) });
-      appendRemoteSortParams(params, sort);
-      if (lastSearch) params.set('search', lastSearch);
-      if (tipoFilter) params.set('tipo', tipoFilter);
-      const res = await fetch(`/api/clientes?${params}`);
-      if (res.ok) {
-        const json = await res.json();
-        setClients(json.data || []);
-        setTotal(json.total || 0);
-      }
-    } catch {}
-    setLoading(false);
-  }, [page, sort, lastSearch, tipoFilter]);
+    setError(null);
 
-  const fetchStats = useCallback(async () => {
     try {
-      const params = new URLSearchParams();
-      if (lastSearch) params.set('search', lastSearch);
-      if (tipoFilter) params.set('tipo', tipoFilter);
-      const res = await fetch(`/api/clientes/resumo?${params}`);
-      if (res.ok) {
-        const json = await res.json();
-        setStats({
-          total: json.total || 0,
-          pf: json.pf || 0,
-          pj: json.pj || 0,
-        });
+      const params = new URLSearchParams({ page: String(page), pageSize: '100' });
+      appendRemoteSortParams(params, sort);
+      if (committedSearch) params.set('search', committedSearch);
+      if (personType) params.set('tipo', personType);
+
+      const response = await fetch(`/api/clientes?${params.toString()}`, { cache: 'no-store' });
+      const payload = await response.json() as Partial<ClientesListResponse> & { error?: string };
+      if (!response.ok) throw new Error(payload.error || 'Não foi possível carregar os clientes');
+      if (!Array.isArray(payload.data) || !payload.summary) {
+        throw new Error('A consulta de clientes retornou um formato inválido');
       }
-    } catch {}
-  }, [lastSearch, tipoFilter]);
+
+      if (requestId !== requestSequence.current) return;
+      setClients(payload.data);
+      setTotal(Number(payload.total || 0));
+      setSummary({
+        total: Number(payload.summary.total || 0),
+        pf: Number(payload.summary.pf || 0),
+        pj: Number(payload.summary.pj || 0),
+      });
+      setUpdatedAt(new Date());
+    } catch (cause) {
+      if (requestId !== requestSequence.current) return;
+      setError(cause instanceof Error ? cause.message : 'Não foi possível carregar os clientes');
+    } finally {
+      if (requestId === requestSequence.current) setLoading(false);
+    }
+  }, [committedSearch, page, personType, sort]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (search !== lastSearch) {
+    const timer = window.setTimeout(() => {
+      if (search !== committedSearch) {
         setPage(1);
-        setLastSearch(search);
+        setCommittedSearch(search.trim());
       }
     }, 300);
-    return () => clearTimeout(timer);
-  }, [search, lastSearch]);
+    return () => window.clearTimeout(timer);
+  }, [committedSearch, search]);
 
   useEffect(() => {
+    void fetchClients();
+  }, [fetchClients]);
+
+  const selectPersonType = (value: string) => {
+    setPersonType(value === 'all' ? '' : value);
     setPage(1);
-  }, [tipoFilter]);
+  };
 
-  useEffect(() => {
-    fetchClients();
-    fetchStats();
-  }, [fetchClients, fetchStats]);
-
-  const columns: TableProps<ClienteRow>['columns'] = [
+  const columns: TableProps<ClienteListItem>['columns'] = [
     {
-      title: 'ID ML', dataIndex: 'ml_id', key: 'ml_id', width: 100,
+      title: 'Cliente',
+      key: 'name',
+      width: 270,
       sorter: true,
-      sortOrder: getRemoteSortOrder('ml_id', sort),
-      render: (v: string | null) => v || <span style={{ color: '#666' }}>—</span>,
-    },
-    {
-      title: 'Nome', dataIndex: 'nome', key: 'nome',
-      sorter: true,
-      sortOrder: getRemoteSortOrder('nome', sort),
-      render: (nome: string, record) => (
-        <a onClick={() => router.push(`/clientes/${record.id}`)} style={{ color: '#1677ff', cursor: 'pointer' }}>
-          {nome}
-        </a>
+      sortOrder: getRemoteSortOrder('name', sort),
+      render: (_, client) => (
+        <div className={styles.clientCell}>
+          <Link href={`/clientes/${client.id}`}>{client.name}</Link>
+          <span>
+            {client.mlNickname ? `@${client.mlNickname}` : 'Nickname não informado'}
+            {client.mlId ? ` · ML ${client.mlId}` : ' · ID ML não informado'}
+          </span>
+        </div>
       ),
     },
     {
-      title: 'Tipo', dataIndex: 'tipo_pessoa', key: 'tipo_pessoa', width: 90,
+      title: 'Tipo',
+      dataIndex: 'personType',
+      key: 'person_type',
+      width: 130,
       sorter: true,
-      sortOrder: getRemoteSortOrder('tipo_pessoa', sort),
-      render: (t: string | null) => (
-        <Tag color={t === 'J' ? 'purple' : 'blue'}>{t === 'J' ? 'PJ' : t === 'F' ? 'PF' : '—'}</Tag>
-      ),
+      sortOrder: getRemoteSortOrder('person_type', sort),
+      render: (value: string) => <span className={styles.personType}>{personTypeLabel(value)}</span>,
     },
     {
-      title: 'Documento', dataIndex: 'documento', key: 'documento', width: 160,
+      title: 'Documento',
+      dataIndex: 'document',
+      key: 'document',
+      width: 160,
       sorter: true,
-      sortOrder: getRemoteSortOrder('documento', sort),
-      render: (doc: string) => (
-        <span style={{ fontFamily: 'monospace' }}>{formatDoc(doc)}</span>
-      ),
+      sortOrder: getRemoteSortOrder('document', sort),
+      render: (value: string) => <span className={styles.document}>{formatDocument(value)}</span>,
     },
     {
-      title: 'Endereço', dataIndex: 'endereco', key: 'endereco',
+      title: 'Localização',
+      key: 'location',
+      width: 230,
       sorter: true,
-      sortOrder: getRemoteSortOrder('endereco', sort),
-      render: (end: string) => (
-        <span style={{ fontSize: 13 }}>{end || '—'}</span>
-      ),
+      sortOrder: getRemoteSortOrder('location', sort),
+      render: (_, client) => {
+        const structuredLocation = [client.city, client.state].filter(Boolean).join(' - ');
+        return (
+          <div className={styles.locationCell}>
+            <strong>{structuredLocation || 'Localização não estruturada'}</strong>
+            <span>{structuredLocation ? client.address : client.address || 'Endereço não informado'}</span>
+          </div>
+        );
+      },
     },
     {
-      title: 'E-mail', dataIndex: 'email', key: 'email',
-      sorter: true,
-      sortOrder: getRemoteSortOrder('email', sort),
-      render: (v: string) => <span>{v || '—'}</span>,
+      title: 'Contato',
+      key: 'contact',
+      width: 245,
+      render: (_, client) => client.email || client.phone ? (
+        <div className={styles.contactCell}>
+          {client.email && <span><MailOutlined />{client.email}</span>}
+          {client.phone && <span><PhoneOutlined />{client.phone}</span>}
+        </div>
+      ) : <span className={styles.missing}>Não informado</span>,
     },
     {
-      title: 'Telefone', dataIndex: 'telefone', key: 'telefone', width: 180,
+      title: 'Pedidos',
+      dataIndex: 'orderCount',
+      key: 'orders',
+      width: 105,
+      align: 'right',
       sorter: true,
-      sortOrder: getRemoteSortOrder('telefone', sort),
-      render: (v: string) => <span>{v || '—'}</span>,
+      sortOrder: getRemoteSortOrder('orders', sort),
+      render: (value: number, client) => client.mlId ? (
+        <div className={styles.ordersCell}>
+          <strong>{value.toLocaleString('pt-BR')}</strong>
+          <span>{value === 1 ? 'pedido' : 'pedidos'}</span>
+        </div>
+      ) : <span className={styles.missing}>Não vinculado</span>,
     },
     {
-      title: 'Pedidos', dataIndex: 'total_vendas', key: 'total_vendas', width: 90,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('total_vendas', sort),
-      render: (v: number | null) => <span style={{ fontWeight: 600, color: '#1677ff' }}>{v ?? 0}</span>,
-    },
-    {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => (
-        <Dropdown
-          menu={{
-            items: [
-              { key: 'view', label: 'Visualizar' },
-              { key: 'edit', label: 'Editar' },
-            ],
-            onClick: ({ key }) => {
-              if (key === 'view') router.push(`/clientes/${record.id}`);
-              // TODO: editar
-            },
-          }}
-          trigger={['click']}
-        >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} />
-        </Dropdown>
+      title: 'Ações',
+      key: 'actions',
+      width: 125,
+      fixed: 'right',
+      render: (_, client) => (
+        <Link href={`/clientes/${client.id}`}>
+          <Button size="small" icon={<RightOutlined />} iconPosition="end">Ver cliente</Button>
+        </Link>
       ),
     },
   ];
 
-  const handleTableChange: TableProps<ClienteRow>['onChange'] = (pagination, _filters, sorter) => {
-    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'nome', sortOrder: 'asc' });
+  const handleTableChange: TableProps<ClienteListItem>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'name', sortOrder: 'asc' });
     const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
     setSort(nextSort);
     setPage(sortChanged ? 1 : (pagination.current || 1));
   };
 
+  const activeType = personType || 'all';
+
   return (
-    <div>
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Clientes</Title>
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <div>
+          <Title level={2}>Clientes</Title>
+          <Text>Compradores, identidade e relacionamento em uma única visão.</Text>
+          <small>{updatedAtLabel(updatedAt)}</small>
+        </div>
+        <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchClients()}>
+          Atualizar
+        </Button>
+      </header>
 
-      {/* Mini Dashboard */}
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[16, 16]}>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Clientes</span>}
-              value={stats.total}
-              valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Pessoa Física</span>}
-              value={stats.pf}
-              valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-          <Col xs={12} md={6}>
-            <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Pessoa Jurídica</span>}
-              value={stats.pj}
-              valueStyle={{ color: '#722ed1', fontWeight: 700, fontSize: 24 }}
-            />
-          </Col>
-        </Row>
-      </div>
+      <section className={styles.summary} aria-label="Resumo de clientes">
+        {[
+          { key: 'all', label: 'Total de clientes', value: summary.total, hint: 'cadastros sincronizados' },
+          { key: 'F', label: 'Pessoa física', value: summary.pf, hint: 'compradores CPF' },
+          { key: 'J', label: 'Pessoa jurídica', value: summary.pj, hint: 'compradores CNPJ' },
+        ].map((item) => (
+          <button
+            key={item.key}
+            type="button"
+            className={activeType === item.key ? styles.summaryActive : undefined}
+            aria-pressed={activeType === item.key}
+            onClick={() => selectPersonType(item.key)}
+          >
+            <span>{item.label}</span>
+            <strong>{item.value.toLocaleString('pt-BR')}</strong>
+            <small>{item.hint}</small>
+          </button>
+        ))}
+      </section>
 
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
-            <Input
-              placeholder="Buscar (nome, documento ou endereço)"
-              prefix={<SearchOutlined />}
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{ width: 400 }}
-              allowClear
-              onClear={() => { setSearch(''); setLastSearch(''); setPage(1); }}
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Tipo"
-              value={tipoFilter || undefined}
-              onChange={v => setTipoFilter(v as string)}
-              options={tipoOptions}
-              style={{ width: 160 }}
-              allowClear
-              onClear={() => setTipoFilter('')}
-            />
-          </Col>
-        </Row>
-      </div>
+      <section className={styles.filterBar} aria-label="Filtros de clientes">
+        <Input
+          allowClear
+          prefix={<SearchOutlined />}
+          placeholder="Buscar por nome, documento, ID ML, e-mail ou telefone"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          onClear={() => {
+            setSearch('');
+            setCommittedSearch('');
+            setPage(1);
+          }}
+        />
+        <Select
+          value={activeType}
+          options={typeOptions}
+          onChange={selectPersonType}
+          aria-label="Filtrar por tipo de pessoa"
+        />
+        {(committedSearch || personType) && (
+          <Button onClick={() => {
+            setSearch('');
+            setCommittedSearch('');
+            setPersonType('');
+            setPage(1);
+          }}>
+            Limpar filtros
+          </Button>
+        )}
+      </section>
 
-      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-          <ResizableTable<ClienteRow>
-            storageKey="clientes"
+      {error && (
+        <Alert
+          type="error"
+          showIcon
+          message="Não foi possível carregar os clientes"
+          description={error}
+          action={<Button size="small" onClick={() => void fetchClients()}>Tentar novamente</Button>}
+        />
+      )}
+
+      <section className={styles.tableCard}>
+        <Spin spinning={loading}>
+          <ResizableTable<ClienteListItem>
+            storageKey="clientes-bentevi"
+            rowKey="id"
             dataSource={clients}
             columns={columns}
-            rowKey="id"
-            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
             pagination={{
               current: page,
               pageSize: 100,
               total,
               showSizeChanger: false,
-              showTotal: (t) => `${t} clientes`,
+              showTotal: (value) => `${value.toLocaleString('pt-BR')} cliente${value === 1 ? '' : 's'}`,
+            }}
+            locale={{
+              emptyText: (
+                <Empty
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  description={committedSearch || personType
+                    ? 'Nenhum cliente corresponde aos filtros'
+                    : 'Nenhum cliente cadastrado'}
+                />
+              ),
             }}
             onChange={handleTableChange}
-            scroll={{ x: 1200 }}
-            style={{ background: 'transparent' }}
-            size="small"
+            scroll={{ x: 1260 }}
+            size="middle"
           />
-        </div>
-      </Spin>
+        </Spin>
+      </section>
     </div>
   );
 }

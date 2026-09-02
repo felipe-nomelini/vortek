@@ -1518,6 +1518,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      search_clientes_paginated: {
+        Args: {
+          p_page?: number | null
+          p_page_size?: number | null
+          p_search?: string | null
+          p_person_type?: string | null
+          p_sort_by?: string | null
+          p_sort_order?: string | null
+        }
+        Returns: Json
+      }
       reserve_nota_fiscal_retorno: {
         Args: {
           p_created_by: string
