@@ -73,9 +73,9 @@ test('BNT-D09 mantém histórico sem ação e não converte estoque interno em o
   assert.match(domain, /offer\?\.is_internal_stock !== true/);
   assert.match(domain, /offer\?\.is_kit_supplier !== true/);
   assert.match(page, /Conta-saldo aposentada/);
-  assert.match(page, /detalhe e ações da oferta permanecem desabilitados até a BNT-D10/);
-  assert.match(page, /row\.isHomologationFixture/);
-  assert.match(page, /disabled>Ver oferta/);
+  assert.match(page, /detalhe da oferta podem ser consultados/);
+  assert.match(page, /alterações e links externos permanecem bloqueados/);
+  assert.doesNotMatch(page, /disabled>Ver oferta/);
 });
 
 test('RPC BNT-D09 aplica privilégio mínimo e search_path seguro', () => {
@@ -89,5 +89,6 @@ test('BNT-D09 reutiliza a amostra real protegida sem escrita operacional', () =>
   assert.match(route, /loadBntD07VisualReview\(\)/);
   assert.match(route, /listBntD09VisualReview/);
   assert.match(domain, /isHomologationFixture: true/);
+  assert.match(domain, /buildBntD09VisualReviewOfferId/);
   assert.doesNotMatch(domain, /\.insert\(|\.upsert\(|\.update\(|\.delete\(/);
 });

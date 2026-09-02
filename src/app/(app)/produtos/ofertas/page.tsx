@@ -1,18 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  Alert,
-  Button,
-  Empty,
-  Input,
-  Segmented,
-  Select,
-  Spin,
-  Tag,
-  Tooltip,
-  Typography,
-} from 'antd';
+import { Alert, Button, Empty, Input, Segmented, Select, Spin, Tag, Typography } from 'antd';
 import type { TableProps } from 'antd';
 import {
   ArrowLeftOutlined,
@@ -197,7 +186,7 @@ export default function ProductOffersPage() {
   };
 
   const openOffer = (row: SupplierOfferListRow) => {
-    if (!row.isHomologationFixture) router.push(`/produtos/ofertas/${row.offerId}`);
+    router.push(`/produtos/ofertas/${row.offerId}`);
   };
 
   const columns: TableProps<SupplierOfferListRow>['columns'] = [
@@ -296,13 +285,7 @@ export default function ProductOffersPage() {
       key: 'actions',
       width: 118,
       fixed: 'right',
-      render: (_value, row) => row.isHomologationFixture ? (
-        <Tooltip title="O detalhe da oferta será redesenhado na BNT-D10; a amostra é somente leitura.">
-          <Button icon={<EyeOutlined />} disabled>Ver oferta</Button>
-        </Tooltip>
-      ) : (
-        <Button icon={<EyeOutlined />} onClick={() => openOffer(row)}>Ver oferta</Button>
-      ),
+      render: (_value, row) => <Button icon={<EyeOutlined />} onClick={() => openOffer(row)}>Ver oferta</Button>,
     },
   ];
 
@@ -330,7 +313,7 @@ export default function ProductOffersPage() {
           type="warning"
           showIcon
           message="Amostra real protegida para homologação"
-          description="As ofertas refletem um recorte somente leitura da produção. Produto mestre pode ser consultado; detalhe e ações da oferta permanecem desabilitados até a BNT-D10."
+          description="As ofertas refletem um recorte somente leitura da produção. Produto e detalhe da oferta podem ser consultados; alterações e links externos permanecem bloqueados."
         />
       )}
 

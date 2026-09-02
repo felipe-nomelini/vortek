@@ -81,13 +81,43 @@ export function classifySupplierOffer(input: ClassificationInput): SupplierOffer
   return 'eligible';
 }
 
-function supplierFallbackName(value: unknown, supplierDsliteId: string) {
+export function supplierFallbackName(value: unknown, supplierDsliteId: string) {
   const raw = String(value || '').trim();
   if (!raw) return `Fornecedor DSLite ${supplierDsliteId}`;
   const withoutBranch = raw.replace(/[-_](?:AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$/i, '');
   return withoutBranch
     .toLocaleLowerCase('pt-BR')
     .replace(/(^|\s)(\p{L})/gu, (_match, prefix, letter) => `${prefix}${letter.toLocaleUpperCase('pt-BR')}`);
+}
+
+export function buildBntD09VisualReviewOfferId(
+  item: BntD07VisualReview['items'][number],
+  offer: Record<string, any>,
+) {
+  const offerIdParts = [
+    item.product.id,
+    offer.dslite_fornecedor_id,
+    offer.dslite_produto_id,
+    offer.sku_oferta,
+  ].map((value) => String(value || '').replace(/[^a-z0-9-]/gi, '-')).filter(Boolean);
+
+  return `bnt-d09-review-${offerIdParts.join('-')}`;
+}
+
+export function findBntD09VisualReviewOffer(
+  review: BntD07VisualReview,
+  offerId: string,
+) {
+  for (const item of review.items) {
+    const offers = (item.supplierOffers || []).filter((offer) => (
+      offer?.is_internal_stock !== true && offer?.is_kit_supplier !== true
+    ));
+    const offer = offers.find((candidate) => (
+      buildBntD09VisualReviewOfferId(item, candidate) === offerId
+    ));
+    if (offer) return { item, offer };
+  }
+  return null;
 }
 
 function preferredOfferMatches(product: Record<string, any>, preferredOffer: Record<string, any> | null, offer: Record<string, any>) {
@@ -144,15 +174,8 @@ export function listBntD09VisualReview(params: {
       const paymentMode = String(offer.payment_mode || 'postpaid');
       const cost = Number(offer.custo || 0);
       const stock = Number(offer.estoque || 0);
-      const offerIdParts = [
-        item.product.id,
-        supplierDsliteId,
-        offer.dslite_produto_id,
-        offer.sku_oferta,
-      ].map((value) => String(value || '').replace(/[^a-z0-9-]/gi, '-')).filter(Boolean);
-
       baseRows.push({
-        offerId: `bnt-d09-review-${offerIdParts.join('-')}`,
+        offerId: buildBntD09VisualReviewOfferId(item, offer),
         productId: String(item.product.id || ''),
         productSku: String(item.product.sku || ''),
         productName: String(item.product.nome || ''),
