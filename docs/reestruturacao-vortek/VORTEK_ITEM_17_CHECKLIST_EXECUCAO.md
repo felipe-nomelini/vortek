@@ -1942,7 +1942,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D08` — Detalhe do Produto;
 - [x] `BNT-D09` — Ofertas;
 - [x] `BNT-D10` — Detalhe da Oferta;
-- [ ] `BNT-D11` — Anúncios;
+- [x] `BNT-D11` — Anúncios;
 - [ ] `BNT-D12` — Catálogo No Catálogo/Elegíveis;
 - [ ] `BNT-D13` — Clientes;
 - [ ] `BNT-D14` — Detalhe do Cliente;
@@ -1964,7 +1964,7 @@ Uma página que expõe `Exportar PDF` somente pode ser encerrada depois de o doc
 - [ ] `BNT-D01-PDF` — Relatório de Vendas; implementado e publicado, com aprovação visual pendente;
 - [x] `BNT-D03-PDF` — Relatório de Compras; aprovado visualmente em homologação em `2026-09-01`;
 - [x] `BNT-D07-PDF` — Relatório de Produtos; aprovado visualmente em homologação em `2026-09-02`;
-- [ ] `BNT-D11-PDF` — Relatório de Anúncios, se o exportador continuar presente na página aprovada;
+- [ ] `BNT-D11-PDF` — Relatório de Anúncios; implementado e publicado, com aprovação visual pendente;
 - [ ] `BNT-D12-PDF` — Relatório de Catálogo, se o exportador continuar presente na página aprovada.
 
 DANFE, etiquetas de envio e documentos fornecidos por integrações externas não são redesignados por este fluxo.
@@ -2149,7 +2149,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D07 — Produtos`
 
-**Situação:** página, relatório PDF, detalhe do produto, Ofertas e detalhe da Oferta implementados, publicados e aprovados visualmente pelo usuário em homologação. `BNT-D11 — Anúncios` foi implementada e publicada em `2026-09-02` e aguarda aprovação visual.
+**Situação:** página, relatório PDF, detalhe do produto, Ofertas, detalhe da Oferta e Anúncios implementados, publicados e aprovados visualmente pelo usuário em homologação. `BNT-D11-PDF — Relatório de Anúncios` foi implementado e publicado em `2026-09-02` e aguarda aprovação visual.
 
 **Estado/causa confirmados:** `/produtos` misturava uma grade cadastral extensa, edição de preço dentro da célula e o fluxo completo de publicação do Mercado Livre no mesmo contexto visual. Estoque, fornecedor, custo, preço, lucro e anúncio estavam distribuídos em colunas isoladas, enquanto a lista reutilizava o saldo agregado legado e não expunha a capacidade canônica de fulfillment (`Q segura`).
 
@@ -2233,19 +2233,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D11 — Anúncios`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente pelo usuário em homologação em `2026-09-02`. O relatório `BNT-D11-PDF` está publicado e aguarda aprovação visual.
 
 **Estado/causa confirmados:** `/anuncios` fazia duas varreduras integrais e independentes para lista e resumo, calculava e ordenava parte do resultado em memória, tratava score ausente como qualidade baixa, misturava qualidade, status, catálogo e preço na linha e mantinha polling próprio sem apresentar o resultado por anúncio. A ação de status de uma linha também alterava o produto mestre mesmo quando a linha exibida era o irmão de catálogo, tornando a ação visualmente ambígua.
 
-**Mudança realizada:** a página passou a ser uma central operacional Bentevi com resumo compacto, filas rápidas, filtros combináveis, uma linha por item ML e colunas distintas de anúncio, produto, preço/resultado, desempenho, qualidade, estado e catálogo. O `Drawer` reúne preço e rentabilidade, Buy Box, qualidade, desempenho, vínculo e bloqueios. Um único preço é aplicado explicitamente aos anúncios padrão e catálogo vinculados, com detecção prévia de `dynamic_standard_price` e resultado por item; status individual ou em lote atua somente sobre o anúncio operacional e acompanha cada outbox. O job observado agora mostra progresso, último evento e falhas sem esconder erro. O relatório atual foi preservado e identificado como pendência separada de `BNT-D11-PDF`.
+**Mudança realizada:** a página passou a ser uma central operacional Bentevi com resumo compacto, filas rápidas, filtros combináveis, uma linha por item ML e colunas distintas de anúncio, produto, preço/resultado, desempenho, qualidade, estado e catálogo. O `Drawer` reúne preço e rentabilidade, Buy Box, qualidade, desempenho, vínculo e bloqueios. Um único preço é aplicado explicitamente aos anúncios padrão e catálogo vinculados, com detecção prévia de `dynamic_standard_price` e resultado por item; status individual ou em lote atua somente sobre o anúncio operacional e acompanha cada outbox. O job observado agora mostra progresso, último evento e falhas sem esconder erro.
 
 **Dados e banco DEV:** a migration `20260902170000_bnt_d11_ml_listings_search.sql` cria `search_ml_listings_paginated` como `STABLE`, `SECURITY INVOKER`, `search_path` vazio e execução exclusiva de `service_role`. Ela concentra paginação, filtros, métricas, última publicação, catálogo e rentabilidade com a alíquota dinâmica do pricing, sem nova tabela, coluna ou índice. O destino foi confirmado como `supabase-dev` em `192.168.1.162`; schema e histórico foram inspecionados, a migration completa foi ensaiada e revertida com `ROLLBACK` antes da aplicação. A amostra temporária existente foi enriquecida no `.162` com 55 anúncios reais, incluindo 55 leituras de qualidade, 36 anúncios com visitas e 7 com vendas. A produção `.160` foi acessada somente em transação `READ ONLY` e apenas para os mesmos IDs da amostra; nenhuma escrita ocorreu nela.
 
 **Commit e validação:** `c1d0f63` — `feat(anuncios): redesenhar central operacional Bentevi`, enviado somente para `origin/dev`. Os 60 cenários finais direcionados de Anúncios, Produtos, jobs, pricing e outbox foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 124 páginas/rotas e `git diff --check` passaram. O deploy oficial foi aceito pelo Easypanel e trocou o processo somente de `vortek-erp-dev`; health e login responderam `200`, `/anuncios` respondeu `307` sem sessão e `/api/anuncios` respondeu `401` sem sessão. Nenhuma mutação autenticada ou chamada externa de escrita foi enviada ao Mercado Livre durante a validação.
 
+**Relatório Bentevi em `2026-09-02`:** o exportador deixou de consultar `anuncios_ml` diretamente e de recalcular rentabilidade em um fluxo paralelo. Ele reutiliza a API canônica de Anúncios e preserva busca, visão rápida, qualidade, tipo de anúncio, rentabilidade, faixa de preço e ordenação da página. O PDF A4 paisagem recebeu identidade dark Bentevi, logotipo, filtros aplicados, indicadores calculados somente sobre o conjunto exportado e as colunas aprovadas de anúncio, produto, preço e resultado, desempenho, qualidade, estado e catálogo. Textos longos possuem quebra e continuação entre páginas, com cabeçalho e rodapé repetidos.
+
+**Validação do relatório:** `cb248eb` — `feat(anuncios): redesenhar relatorio Bentevi`, enviado somente para `origin/dev`. Os 18 cenários direcionados foram aprovados; `npm run validate`, `npm run build` com Next.js `16.3.3`, 123 páginas/rotas e `git diff --check` passaram. A action Easypanel `cmtk20ub3000707po80np3gja` concluiu com `Success`; a task `y0kamlgbegowby26uhpneny12` ativou `GIT_SHA=cb248eba7a603eb340716cecf0d8e4ac4fafc184` somente em `vortek-erp-dev`. Health e login responderam `200`, `/anuncios` respondeu `307` sem sessão e o exportador respondeu `401` sem sessão. Não houve migration, escrita de banco nem operação autenticada no Mercado Livre.
+
 **Rollback:** reverter `c1d0f63` em `dev`, redeployar somente `vortek-erp-dev` e aplicar uma migration corretiva exclusivamente no `.162` para remover `search_ml_listings_paginated`. Restaurar o valor anterior da chave temporária `bnt_d07_visual_review_products` apenas se for necessário retirar o enriquecimento antes da expiração da amostra. Não há ação de rollback em produção.
 
-**Pendência:** aprovação visual autenticada de `/anuncios` e execução posterior de `BNT-D11-PDF`; não marcar `BNT-D11` como concluído nem avançar para `BNT-D12` antes do aceite.
+**Pendência:** aprovação visual autenticada do PDF `BNT-D11-PDF`; não marcar o relatório como concluído nem avançar para `BNT-D12` antes do aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
