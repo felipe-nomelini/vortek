@@ -13,6 +13,7 @@ import {
 } from '@/lib/ml/quantity-pricing';
 import { calculateNetProfitAtPrice } from '@/services/pricing';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
 
 function round2(value: number) {
   return Math.round(value * 100) / 100;
@@ -181,6 +182,10 @@ export async function GET(request: Request) {
       : [],
     quantityPricingWarning: quantityResult.ok ? null : (quantityResult.error?.message || 'Não foi possível consultar preços de atacado no ML.'),
     calculator: { cost, shipping, mlFee, taxRate },
+    automaticPricing: {
+      active: hasMlAutomaticPrice(itemResult.data),
+      tag: ML_DYNAMIC_STANDARD_PRICE_TAG,
+    },
     catalog,
   });
 }

@@ -26,9 +26,10 @@ export async function POST(request: Request) {
 
   const body = await request.json().catch(() => ({}));
   const targetStatus = String(body?.targetStatus || '').trim() as ListingStatus;
-  const produtoIds: string[] = Array.isArray(body?.produtoIds)
+  const rawProdutoIds: string[] = Array.isArray(body?.produtoIds)
     ? body.produtoIds.map((value: unknown) => String(value || '').trim()).filter(Boolean)
     : [];
+  const produtoIds = [...new Set(rawProdutoIds)];
 
   if (!['ativo', 'pausado'].includes(targetStatus)) {
     return NextResponse.json({ error: 'targetStatus inválido. Use ativo ou pausado.' }, { status: 422 });
@@ -67,6 +68,23 @@ export async function POST(request: Request) {
   let failed = 0;
   const outboxIds: string[] = [];
   const errors: Array<{ produtoId: string; sku: string; mlItemId: string | null; error: string }> = [];
+  const items: Array<{
+    produtoId: string;
+    sku: string;
+    mlItemId: string | null;
+    outcome: 'queued' | 'already_target' | 'unchanged' | 'skipped_no_item' | 'skipped_ineligible' | 'failed';
+    outboxId: string | null;
+    error: string | null;
+  }> = records
+    .filter((product) => String(product?.ml_status || '').trim() === targetStatus)
+    .map((product) => ({
+      produtoId: String(product.id || ''),
+      sku: String(product.sku || ''),
+      mlItemId: String(product.ml_item_id || '').trim() || null,
+      outcome: 'already_target' as const,
+      outboxId: null,
+      error: null,
+    }));
 
   for (const product of actionable) {
     const produtoId = String(product.id || '').trim();
@@ -75,6 +93,7 @@ export async function POST(request: Request) {
 
     if (!mlItemId) {
       skippedNoItem += 1;
+      items.push({ produtoId, sku, mlItemId: null, outcome: 'skipped_no_item', outboxId: null, error: null });
       continue;
     }
 
@@ -100,12 +119,20 @@ export async function POST(request: Request) {
     if (!outbox.ok) {
       failed += 1;
       errors.push({ produtoId, sku, mlItemId: mlItemId || null, error: outbox.error });
+      items.push({ produtoId, sku, mlItemId, outcome: 'failed', outboxId: null, error: outbox.error });
       continue;
     }
 
-    if (outbox.action === 'unchanged') unchanged += 1;
-    else if (outbox.action === 'skipped_ineligible') skippedIneligible += 1;
-    else outboxIds.push(outbox.outboxId);
+    if (outbox.action === 'unchanged') {
+      unchanged += 1;
+      items.push({ produtoId, sku, mlItemId, outcome: 'unchanged', outboxId: outbox.outboxId, error: null });
+    } else if (outbox.action === 'skipped_ineligible') {
+      skippedIneligible += 1;
+      items.push({ produtoId, sku, mlItemId, outcome: 'skipped_ineligible', outboxId: null, error: outbox.reason });
+    } else {
+      outboxIds.push(outbox.outboxId);
+      items.push({ produtoId, sku, mlItemId, outcome: 'queued', outboxId: outbox.outboxId, error: null });
+    }
     if (outbox.action === 'updated_existing') {
       updatedExisting += 1;
     } else if (outbox.action === 'reopened_failed') {
@@ -120,6 +147,7 @@ export async function POST(request: Request) {
     targetStatus,
     queued_publish: outboxIds.length > 0,
     outboxIds,
+    items,
     records: {
       selected: produtoIds.length,
       found: records.length,

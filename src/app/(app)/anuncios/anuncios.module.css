@@ -1,0 +1,551 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.title {
+  margin: 0 0 4px !important;
+}
+
+.lastSync {
+  display: block;
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.visualReviewAlert {
+  border-color: rgba(255, 189, 14, 0.35);
+  background: rgba(255, 189, 14, 0.07);
+}
+
+.syncAlert {
+  border-color: rgba(91, 143, 249, 0.25);
+  background: rgba(91, 143, 249, 0.06);
+}
+
+.syncDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 720px;
+}
+
+.syncDescription :global(.ant-progress) {
+  margin: 2px 0 0;
+}
+
+.syncDescription span,
+.syncDescription small {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.summaryBand {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 16px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.summaryBand > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 18px 20px;
+  border-right: 1px solid var(--bentevi-border, #34313a);
+}
+
+.summaryBand > div:last-child {
+  border-right: 0;
+}
+
+.summaryBand span,
+.sectionHeading span,
+.drawerSection label,
+.wholesale > span {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.summaryBand strong {
+  color: var(--bentevi-text, #f7f7f8);
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.summaryBand small {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 11px;
+}
+
+.summaryPositive strong,
+.positive {
+  color: #21d482 !important;
+}
+
+.summaryWarning strong,
+.warning {
+  color: #ffbd0e !important;
+}
+
+.summaryHighlight {
+  background: linear-gradient(135deg, rgba(255, 189, 14, 0.14), rgba(255, 189, 14, 0.02));
+}
+
+.summaryHighlight strong {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
+.negative {
+  color: #ff5b6e !important;
+}
+
+.quickViews {
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 4px;
+  overflow-x: auto;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 12px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.filterBar {
+  display: grid;
+  grid-template-columns: minmax(270px, 1.5fr) minmax(175px, 0.8fr) minmax(190px, 0.9fr) minmax(185px, 0.9fr) 260px auto;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 14px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.searchInput,
+.priceFilter,
+.priceFilter :global(.ant-input-number) {
+  width: 100%;
+}
+
+.bulkBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 189, 14, 0.28);
+  border-radius: 12px;
+  background: rgba(255, 189, 14, 0.06);
+}
+
+.bulkBar > span {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 12px;
+}
+
+.tableCard {
+  min-width: 0;
+  padding: 8px 10px 12px;
+  overflow: hidden;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 18px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.tableCard > :global(.ant-alert) {
+  margin: 8px 6px 12px;
+}
+
+.desktopTable :global(.ant-table),
+.desktopTable :global(.ant-table-container) {
+  background: transparent;
+}
+
+.desktopTable :global(.ant-table-thead > tr > th) {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.loadingIcon {
+  color: var(--bentevi-primary, #ffbd0e);
+  font-size: 32px;
+}
+
+.listingCell {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.listingCell :global(.ant-image),
+.drawerHero :global(.ant-image) {
+  flex: 0 0 auto;
+}
+
+.listingImage,
+.drawerHero :global(.ant-image-img) {
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.listingCell > div,
+.productCell,
+.valueCell,
+.performanceCell,
+.qualityCell,
+.mutedCell,
+.statusCell,
+.catalogCell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.listingCell strong,
+.productCell strong,
+.productCell a,
+.valueCell strong,
+.performanceCell strong,
+.qualityCell strong,
+.catalogCell strong {
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.35;
+}
+
+.productCell a {
+  overflow-wrap: anywhere;
+}
+
+.productCell a:hover {
+  color: var(--bentevi-primary, #ffbd0e);
+}
+
+.listingCell span,
+.productCell span,
+.valueCell span,
+.performanceCell span,
+.mutedCell,
+.mutedCell small,
+.statusCell small,
+.catalogCell span,
+.qualityCell small {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.qualityCell > div:first-child {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.qualityCell :global(.ant-progress) {
+  margin: 0;
+  line-height: 1;
+}
+
+.statusCell {
+  align-items: flex-start;
+}
+
+.statusCell :global(.ant-tag) {
+  width: fit-content;
+  margin: 0;
+}
+
+.catalogCell {
+  position: relative;
+  padding-left: 12px;
+}
+
+.catalogCell::before {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 3px;
+  border-radius: 3px;
+  content: '';
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.catalogWinning::before { background: #21d482; }
+.catalogCompeting::before { background: #5b8ff9; }
+.catalogLosing::before { background: #ff5b6e; }
+.catalogStandard::before { background: rgba(255, 255, 255, 0.22); }
+
+.emptyState {
+  padding: 70px 20px;
+}
+
+.drawerTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.drawerTitle span {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drawerHero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 189, 14, 0.08), rgba(255, 255, 255, 0.015));
+}
+
+.drawerHero h4 {
+  margin: 3px 0 !important;
+}
+
+.drawerHero span,
+.drawerHero small {
+  color: rgba(255, 255, 255, 0.44);
+  font-size: 11px;
+}
+
+.analysisGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.analysisGrid article {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  min-height: 120px;
+  padding: 14px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.analysisGrid article > :first-child {
+  color: var(--bentevi-primary, #ffbd0e);
+  font-size: 18px;
+}
+
+.analysisGrid article span,
+.analysisGrid article small {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 11px;
+}
+
+.analysisGrid article strong {
+  margin-top: auto;
+  color: rgba(255, 255, 255, 0.9);
+  overflow-wrap: anywhere;
+}
+
+.drawerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--bentevi-border, #34313a);
+  border-radius: 16px;
+  background: var(--bentevi-surface, #141316);
+}
+
+.sectionHeading > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionHeading strong {
+  font-size: 16px;
+}
+
+.priceEditor {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(150px, 0.8fr) auto auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.priceEditor > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.priceEditor :global(.ant-input-number) {
+  width: 100%;
+}
+
+.priceEditor > div:nth-child(2) {
+  min-height: 52px;
+  justify-content: center;
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.scopeNotice {
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.5;
+}
+
+.resultList,
+.batchList,
+.qualityItems {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.resultList > div {
+  display: grid;
+  grid-template-columns: 70px minmax(130px, 1fr) minmax(160px, 1fr);
+  gap: 8px;
+  padding: 11px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.resultList > div:last-child,
+.batchList > div:last-child,
+.qualityItems > div:last-child {
+  border-bottom: 0;
+}
+
+.resultList small {
+  grid-column: 2 / -1;
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.typeMark {
+  color: var(--bentevi-primary, #ffbd0e);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.wholesale {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.wholesale small {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.qualityItems > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.qualityItems > div span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qualityItems > div small {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.batchList > div {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(150px, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.batchList small {
+  grid-column: 1 / -1;
+  color: #ff8b9a;
+}
+
+@media (max-width: 1380px) {
+  .filterBar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .header,
+  .bulkBar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .summaryBand {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summaryBand > div {
+    border-bottom: 1px solid var(--bentevi-border, #34313a);
+  }
+
+  .filterBar,
+  .analysisGrid,
+  .priceEditor {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .summaryBand,
+  .filterBar,
+  .analysisGrid,
+  .priceEditor,
+  .drawerHero {
+    grid-template-columns: 1fr;
+  }
+
+  .resultList > div,
+  .batchList > div {
+    grid-template-columns: 1fr;
+  }
+
+  .resultList small,
+  .batchList small {
+    grid-column: 1;
+  }
+}

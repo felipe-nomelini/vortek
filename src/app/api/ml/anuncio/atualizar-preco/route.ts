@@ -12,6 +12,7 @@ import {
   normalizeBuyBoxStatus,
   normalizePriceToWin,
 } from '@/lib/catalogo/no-catalogo';
+import { hasMlAutomaticPrice } from '@/lib/ml/item-price-policy';
 
 type PriceTarget = {
   mlItemId: string;
@@ -43,11 +44,6 @@ type PriceUpdateResult = {
 
 function isRetryableMlStatus(status: number | null): boolean {
   return [408, 409, 424, 429, 500, 502, 503, 504].includes(Number(status));
-}
-
-function hasDynamicStandardPrice(item: any): boolean {
-  return (Array.isArray(item?.tags) ? item.tags : [])
-    .some((tag: unknown) => String(tag || '').trim().toLowerCase() === 'dynamic_standard_price');
 }
 
 async function resolveTargets(params: {
@@ -119,7 +115,7 @@ async function resolveTargets(params: {
   }
 
   const automated = itemResults
-    .filter(({ result }) => hasDynamicStandardPrice(result.data))
+    .filter(({ result }) => hasMlAutomaticPrice(result.data))
     .map(({ candidate }) => candidate.ml_item_id);
   if (automated.length > 0) {
     const error = new Error(`Automatização de preço ativa no Mercado Livre: ${automated.join(', ')}`);

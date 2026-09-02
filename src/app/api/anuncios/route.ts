@@ -1,252 +1,127 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
-import {
-  resolveCatalogCompetitionStatus,
-  type CatalogCompetitionStatus,
-} from '@/lib/catalogo/no-catalogo';
-import { calculateNetProfitAtPrice } from '@/services/pricing';
+import { classifyMlPublishEligibility } from '@/lib/ml/publish-eligibility.js';
+import { loadBntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
+import { listBntD11VisualReview, type MlListingsFocus } from '@/lib/ml/listings-dashboard';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 
-type AnuncioSortKey =
-  | 'sku'
-  | 'titulo'
-  | 'preco_ml'
-  | 'lucro'
-  | 'vendidos'
-  | 'visitas'
-  | 'qualidade'
-  | 'status'
-  | 'catalogo';
+const PAGE_SIZE = 100;
+const FOCUS = new Set<MlListingsFocus>(['all', 'active', 'paused', 'quality_risk', 'price_review']);
+const QUALITY = new Set(['all', 'risk', 'good', 'perfect', 'unavailable']);
+const CATALOG = new Set(['all', 'standard', 'catalog', 'winning', 'competing', 'losing']);
+const PROFITABILITY = new Set(['all', 'positive', 'negative', 'unknown']);
+const SORT_FIELDS = new Set(['item', 'product', 'price', 'profit', 'sold', 'visits', 'quality', 'status', 'catalog']);
 
-const DEFAULT_SORT: { sortBy: AnuncioSortKey; sortOrder: 'asc' | 'desc' } = {
-  sortBy: 'titulo',
-  sortOrder: 'asc',
-};
-
-function computeListingProfit(item: any, taxRate: number): number | null {
-  const precoMl = Number(item?.preco_ml ?? 0);
-  const custo = Number(item?.produtos?.custo ?? NaN);
-  if (!Number.isFinite(precoMl) || precoMl <= 0 || !Number.isFinite(custo)) return null;
-
-  const mlFeeRate = Number(item?.produtos?.ml_fee ?? 0.15);
-  const shipping = Number(item?.produtos?.ml_shipping ?? 0);
-  return calculateNetProfitAtPrice({
-    price: precoMl,
-    cost: custo,
-    shipping,
-    mlFee: Number.isFinite(mlFeeRate) ? mlFeeRate : 0.15,
-    taxRate,
-  });
+function finiteNumber(value: string | null) {
+  if (value === null || value.trim() === '') return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
 }
 
-function compareNullableNumber(a: number | null, b: number | null) {
-  if (a === null && b === null) return 0;
-  if (a === null) return 1;
-  if (b === null) return -1;
-  return a - b;
-}
-
-const CATALOG_STATUS_ORDER: Record<CatalogCompetitionStatus, number> = {
-  sem_catalogo: 0,
-  perdendo: 1,
-  competindo: 2,
-  ganhando: 3,
-};
-
-async function enrichCatalogStatuses(serviceClient: ReturnType<typeof createServiceClient>, rows: any[]) {
-  const catalogItemIds = [...new Set(
-    rows
-      .filter((row) => Boolean(row?.catalogo))
-      .map((row) => String(row?.ml_item_id || '').trim())
-      .filter(Boolean),
-  )];
-  const snapshotByItemId = new Map<string, any>();
-
-  for (let index = 0; index < catalogItemIds.length; index += 200) {
-    const itemIds = catalogItemIds.slice(index, index + 200);
-    const { data, error } = await serviceClient
-      .from('catalogo_ml_snapshot')
-      .select('ml_item_id,buy_box_status,buy_box_winning,catalog_listing')
-      .in('ml_item_id', itemIds);
-    if (error) throw error;
-    for (const snapshot of data || []) {
-      snapshotByItemId.set(String(snapshot.ml_item_id), snapshot);
-    }
-  }
-
-  return rows.map((row) => {
-    const snapshot = snapshotByItemId.get(String(row?.ml_item_id || ''));
-    return {
-      ...row,
-      catalog_status: resolveCatalogCompetitionStatus({
-        catalogListing: Boolean(row?.catalogo),
-        buyBoxStatus: snapshot?.buy_box_status,
-        buyBoxWinning: snapshot?.buy_box_winning,
-      }),
-    };
-  });
-}
-
-function parseSort(searchParams: URLSearchParams): { sortBy: AnuncioSortKey; sortOrder: 'asc' | 'desc' } {
-  const rawSortBy = searchParams.get('sortBy') || DEFAULT_SORT.sortBy;
-  const rawSortOrder = searchParams.get('sortOrder') || DEFAULT_SORT.sortOrder;
-  const allowed: AnuncioSortKey[] = [
-    'sku',
-    'titulo',
-    'preco_ml',
-    'lucro',
-    'vendidos',
-    'visitas',
-    'qualidade',
-    'status',
-    'catalogo',
-  ];
-  const sortBy = allowed.includes(rawSortBy as AnuncioSortKey)
-    ? rawSortBy as AnuncioSortKey
-    : DEFAULT_SORT.sortBy;
-  const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
-  return { sortBy, sortOrder };
-}
-
-function sortListings(rows: any[], sortBy: AnuncioSortKey, sortOrder: 'asc' | 'desc') {
-  const direction = sortOrder === 'asc' ? 1 : -1;
-
-  rows.sort((left, right) => {
-    let comparison = 0;
-
-    switch (sortBy) {
-      case 'sku':
-        comparison = String(left?.sku || '').localeCompare(String(right?.sku || ''), 'pt-BR');
-        break;
-      case 'titulo':
-        comparison = String(left?.titulo || '').localeCompare(String(right?.titulo || ''), 'pt-BR');
-        break;
-      case 'preco_ml':
-        comparison = Number(left?.preco_ml || 0) - Number(right?.preco_ml || 0);
-        break;
-      case 'lucro':
-        comparison = compareNullableNumber(left?.lucro ?? null, right?.lucro ?? null);
-        break;
-      case 'vendidos':
-        comparison = Number(left?.vendidos || 0) - Number(right?.vendidos || 0);
-        break;
-      case 'visitas':
-        comparison = Number(left?.visitas || 0) - Number(right?.visitas || 0);
-        break;
-      case 'qualidade':
-        comparison = Number(left?.qualidade || 0) - Number(right?.qualidade || 0);
-        break;
-      case 'status':
-        comparison = String(left?.status || '').localeCompare(String(right?.status || ''), 'pt-BR');
-        break;
-      case 'catalogo':
-        comparison = CATALOG_STATUS_ORDER[left?.catalog_status as CatalogCompetitionStatus]
-          - CATALOG_STATUS_ORDER[right?.catalog_status as CatalogCompetitionStatus];
-        break;
-      default:
-        comparison = String(left?.titulo || '').localeCompare(String(right?.titulo || ''), 'pt-BR');
-        break;
-    }
-
-    if (comparison !== 0) return comparison * direction;
-    return String(left?.titulo || '').localeCompare(String(right?.titulo || ''), 'pt-BR');
-  });
+function enrichPublishEligibility(row: Record<string, any>) {
+  return {
+    ...row,
+    publishEligibility: classifyMlPublishEligibility({
+      observedStatus: row.observedStatus,
+      blockReason: row.blockReason,
+      blockedUntil: row.blockedUntil,
+    }),
+  };
 }
 
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
-  const serviceClient = createServiceClient();
-  const pricingTaxContext = await loadPricingTaxContext(serviceClient);
-  const taxRate = requirePricingTaxRate(pricingTaxContext);
 
   const { searchParams } = new URL(request.url);
-  const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
-  const pageSize = Math.min(100, Math.max(1, parseInt(searchParams.get('pageSize') || '100')));
-  const search = searchParams.get('search') || '';
-  const status = searchParams.get('status') || '';
-  const priceMin = searchParams.get('priceMin') ? parseFloat(searchParams.get('priceMin')!) : null;
-  const priceMax = searchParams.get('priceMax') ? parseFloat(searchParams.get('priceMax')!) : null;
-  const { sortBy, sortOrder } = parseSort(searchParams);
-  const from = (page - 1) * pageSize;
-  const to = from + pageSize;
+  const page = Math.max(1, Number.parseInt(searchParams.get('page') || '1', 10) || 1);
+  const search = String(searchParams.get('search') || '').trim();
+  const focusParam = searchParams.get('focus') || 'all';
+  const focus = FOCUS.has(focusParam as MlListingsFocus) ? focusParam as MlListingsFocus : 'all';
+  const qualityParam = searchParams.get('quality') || 'all';
+  const quality = QUALITY.has(qualityParam) ? qualityParam : 'all';
+  const catalogParam = searchParams.get('catalog') || 'all';
+  const catalog = CATALOG.has(catalogParam) ? catalogParam : 'all';
+  const profitabilityParam = searchParams.get('profitability') || 'all';
+  const profitability = PROFITABILITY.has(profitabilityParam) ? profitabilityParam : 'all';
+  const priceMin = finiteNumber(searchParams.get('priceMin'));
+  const priceMax = finiteNumber(searchParams.get('priceMax'));
+  const sortByParam = searchParams.get('sortBy') || 'product';
+  const sortBy = SORT_FIELDS.has(sortByParam) ? sortByParam : 'product';
+  const sortOrder = searchParams.get('sortOrder') === 'desc' ? 'desc' : 'asc';
 
-  function applyFilters(query: any) {
-    if (search) {
-      query = query.or(`titulo.ilike.%${search}%,sku.ilike.%${search}%`);
+  const serviceClient = createServiceClient();
+  try {
+    const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+    const taxRate = requirePricingTaxRate(pricingTaxContext);
+    const visualReview = await loadBntD07VisualReview();
+
+    if (visualReview) {
+      const result = listBntD11VisualReview({
+        review: visualReview,
+        taxRate,
+        page,
+        pageSize: PAGE_SIZE,
+        search,
+        focus,
+        quality,
+        catalog,
+        profitability,
+        priceMin,
+        priceMax,
+        sortBy,
+        sortOrder,
+      });
+      return NextResponse.json({
+        ...result,
+        data: result.data.map((row) => ({
+          ...row,
+          publishEligibility: {
+            eligible: false,
+            kind: 'terminally_blocked',
+            reason: 'homologation_fixture_read_only',
+            observedStatus: row.observedStatus,
+            retryAt: null,
+          },
+        })),
+        pricingTaxContext,
+      });
     }
-    if (status) {
-      query = query.eq('status', status);
-    }
-    if (priceMin !== null) {
-      query = query.gte('preco_ml', priceMin);
-    }
-    if (priceMax !== null) {
-      query = query.lte('preco_ml', priceMax);
-    }
-    return query;
+
+    const { data, error } = await (serviceClient as any).rpc('search_ml_listings_paginated', {
+      p_tax_rate: taxRate,
+      p_page: page,
+      p_page_size: PAGE_SIZE,
+      p_search: search || null,
+      p_focus: focus,
+      p_quality: quality,
+      p_catalog: catalog,
+      p_profitability: profitability,
+      p_price_min: priceMin,
+      p_price_max: priceMax,
+      p_sort_by: sortBy,
+      p_sort_order: sortOrder,
+    });
+    if (error) throw new Error(error.message);
+
+    const result = (data || {}) as Record<string, any>;
+    return NextResponse.json({
+      data: (Array.isArray(result.data) ? result.data : []).map(enrichPublishEligibility),
+      total: Number(result.total || 0),
+      page: Number(result.page || page),
+      pageSize: Number(result.pageSize || PAGE_SIZE),
+      metrics: result.metrics || {},
+      queueCounts: result.queueCounts || {},
+      lastSyncedAt: result.lastSyncedAt || null,
+      pricingTaxContext,
+      visualReview: null,
+    });
+  } catch (error: any) {
+    console.error('[api/anuncios] Falha ao consultar central de anúncios:', error?.message || error);
+    return NextResponse.json(
+      { erro: error?.message || 'Falha ao carregar anúncios do Mercado Livre' },
+      { status: 500 },
+    );
   }
-
-  const chunkSize = 1000;
-  const rows: any[] = [];
-  let offset = 0;
-
-  while (true) {
-    let dataQuery = serviceClient.from('anuncios_ml').select(`
-      ml_item_id,
-      produto_id,
-      permalink,
-      sku,
-      titulo,
-      preco_ml,
-      vendidos,
-      visitas,
-      qualidade,
-      qualidade_info,
-      status,
-      catalogo,
-      produtos(custo, ml_fee, ml_shipping)
-    `);
-    dataQuery = applyFilters(dataQuery);
-    const { data, error } = await dataQuery
-      .order('titulo', { ascending: true })
-      .range(offset, offset + chunkSize - 1);
-
-    if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-
-    const chunk = (data || []).map((item: any) => ({
-      ...item,
-      lucro: computeListingProfit(item, taxRate),
-    }));
-    rows.push(...chunk);
-
-    if (chunk.length < chunkSize) break;
-    offset += chunkSize;
-  }
-
-  let resultRows = rows;
-  if (sortBy === 'catalogo') {
-    try {
-      resultRows = await enrichCatalogStatuses(serviceClient, rows);
-    } catch (error: any) {
-      return NextResponse.json({ erro: `Falha ao buscar status dos catálogos: ${error.message}` }, { status: 500 });
-    }
-    sortListings(resultRows, sortBy, sortOrder);
-  } else {
-    sortListings(resultRows, sortBy, sortOrder);
-    try {
-      resultRows = await enrichCatalogStatuses(serviceClient, resultRows.slice(from, to));
-    } catch (error: any) {
-      return NextResponse.json({ erro: `Falha ao buscar status dos catálogos: ${error.message}` }, { status: 500 });
-    }
-  }
-
-  return NextResponse.json({
-    data: sortBy === 'catalogo' ? resultRows.slice(from, to) : resultRows,
-    total: rows.length,
-    page,
-    pageSize,
-    pricingTaxContext,
-  });
 }
