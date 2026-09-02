@@ -1937,7 +1937,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D03` — Compras;
 - [x] `BNT-D04` — Notas Fiscais;
 - [x] `BNT-D05` — Estoque;
-- [ ] `BNT-D06` — Perguntas;
+- [x] `BNT-D06` — Perguntas;
 - [ ] `BNT-D07` — Produtos;
 - [ ] `BNT-D08` — Detalhe do Produto;
 - [ ] `BNT-D09` — Ofertas;
@@ -2125,7 +2125,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D06 — Perguntas`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-01`; aguardando aprovação visual do usuário.
+**Situação:** concluído e aprovado visualmente pelo usuário em homologação em `2026-09-01`.
 
 **Estado/causa confirmados:** apesar da correção funcional de `UI-05`, `/perguntas` continuava sendo uma tabela de oito colunas com seleção em massa sem ação correspondente, resposta escondida em linha expansível/modal e contexto do anúncio disperso. O operador precisava alternar entre linha, menu e modal para compreender e responder uma dúvida pré-venda.
 
@@ -2139,11 +2139,13 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `d6fd829` em `dev` e redeployar somente `vortek-erp-dev`. Não há rollback de banco, dados ou integração externa.
 
-**Pendência:** aprovação visual em `https://dev.bentevi.shop/perguntas`. Não marcar `BNT-D06` como concluída nem iniciar `BNT-D07` antes desse aceite.
+**Pendência:** nenhuma para `BNT-D06`. A próxima ação liberada é `BNT-D07 — Produtos`.
 
 **Amostra visual temporária em `2026-09-01`:** como Perguntas não possui fonte no Supabase e consulta exclusivamente o Mercado Livre, a página foi publicada com dez registros totalmente sintéticos e sem mistura com dados reais. O modo `BNT_D06_VISUAL_REVIEW` substitui a consulta externa durante a aprovação, cobre perguntas não respondidas, respondidas, em revisão, encerradas e removidas, preserva busca/filtros e mantém o compositor visível, mas bloqueia o envio e não fornece links externos. Nenhum banco, migration, credencial ou integração foi acessado. Antes de concluir `BNT-D06`, remover esse modo e reconfirmar que a página voltou a usar exclusivamente a API do Mercado Livre.
 
 **Validação da amostra:** 8/8 cenários direcionados aprovados; `npm run validate`, `npm run build` com 126 páginas/rotas e `git diff --check` aprovados. O commit `d0dc91d` foi enviado somente para `origin/dev`; após o controlador Easypanel reiniciar durante os webhooks iniciais, o reenvio oficial criou a task `kyj4fab2m0uuwaaw0zdkz32ai`, que ativou `GIT_SHA=d0dc91d7ba6b9f44c69611149e33a41462f2f9d2` exclusivamente em `vortek-erp-dev`. Health e login responderam `200`, `/perguntas` respondeu `307` sem sessão, `/api/perguntas` respondeu `401` e o artefato publicado contém o aviso de amostra protegida.
+
+**Fechamento pós-aprovação em `2026-09-01`:** o commit `b899f18` removeu integralmente o módulo de amostra, o desvio que evitava `/api/perguntas` e todas as condições específicas de fixture. A página voltou a consultar exclusivamente a API real do Mercado Livre e o envio permanece disponível somente para perguntas reais elegíveis. O teste direcionado aprovou 7/7 cenários; `npm run validate`, `npm run build` com 126 páginas/rotas e `git diff --check` foram aprovados. Os dois primeiros webhooks se sobrepuseram durante uma reinicialização do controlador Easypanel e cancelaram o build na exportação da imagem; após confirmar por leitura que não havia build ativo, a action oficial `cmtjep0nk000007nz1sek758k` concluiu com sucesso e a task `iewuvv43ppzc` ativou `GIT_SHA=b899f18329d72b8dec90a21883c0fbad33d19e82` somente em `vortek-erp-dev`. O artefato publicado não contém `BNT_D06_VISUAL_REVIEW`, contém a indicação da fonte real, health e login responderam `200`, `/perguntas` respondeu `307` sem sessão e `/api/perguntas` respondeu `401`. Nenhuma pergunta ou resposta autenticada foi enviada ao Mercado Livre.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
