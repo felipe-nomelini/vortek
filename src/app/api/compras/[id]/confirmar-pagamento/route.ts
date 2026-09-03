@@ -8,6 +8,7 @@ import { buildPublicSupplierReceiptUrl } from '@/lib/public-supplier-receipt-lin
 import { createShortLink } from '@/lib/short-links';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
 import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
+import { requestDsliteResume } from '@/lib/dslite/resume-request';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
 import { z } from 'zod';
 
@@ -224,23 +225,7 @@ async function startDsliteResumeFlow(input: {
     `${resolveInternalApiBaseUrl(input.request)}/api/dslite/pedido`,
     `${new URL(input.request.url).origin}/api/dslite/pedido`,
   ]));
-  let lastError: string | null = null;
-
-  for (const url of urls) {
-    try {
-      const response = await fetch(url, { method: 'POST', headers, body });
-      const json = await response.json().catch(() => ({}));
-      if (response.ok) return { json, error: null as string | null };
-      lastError = json?.error || `HTTP ${response.status}`;
-    } catch (err: any) {
-      lastError = err?.message || 'fetch failed';
-    }
-  }
-
-  return {
-    json: null as any,
-    error: lastError || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento',
-  };
+  return requestDsliteResume({ urls, headers, body });
 }
 
 export async function POST(

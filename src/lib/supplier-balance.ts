@@ -2,7 +2,13 @@ export const HAYAMAX_FORNECEDOR_ID = '2';
 export const VANRAL_FORNECEDOR_ID = '97';
 export const BKR1_FORNECEDOR_ID = '108';
 export const EVOLUSOM_FORNECEDOR_ID = '133';
+export const EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE = '554432206495';
 export const HAYAMAX_MIN_TOPUP_AMOUNT = 1000;
+
+export type SupplierLabelWhatsappRecipient = {
+  key: 'primary' | 'evolusom_additional';
+  phoneNumber: string;
+};
 
 export type SupplierBalanceMovementType = 'topup' | 'purchase_debit' | 'adjustment';
 
@@ -53,6 +59,45 @@ export function usesThermalMlLabelSupplier(
   fornecedorNome?: string | null,
 ) {
   return isVanralSupplier(fornecedorId, fornecedorNome) || isBkr1Supplier(fornecedorId, fornecedorNome);
+}
+
+export function resolveSupplierLabelWhatsappRecipients(input: {
+  primaryPhone: string | null | undefined;
+  fornecedorId: string | number | null | undefined;
+  usePlaceholderLabel?: boolean;
+}): SupplierLabelWhatsappRecipient[] {
+  const primaryPhone = String(input.primaryPhone || '').replace(/\D/g, '');
+  const recipients: SupplierLabelWhatsappRecipient[] = primaryPhone
+    ? [{ key: 'primary', phoneNumber: primaryPhone }]
+    : [];
+
+  if (
+    !input.usePlaceholderLabel
+    && String(input.fornecedorId || '').trim() === EVOLUSOM_FORNECEDOR_ID
+  ) {
+    recipients.push({
+      key: 'evolusom_additional',
+      phoneNumber: EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE,
+    });
+  }
+
+  const seen = new Set<string>();
+  return recipients.filter((recipient) => {
+    const canonicalPhone = recipient.phoneNumber.startsWith('55')
+      ? recipient.phoneNumber
+      : `55${recipient.phoneNumber}`;
+    if (!recipient.phoneNumber || seen.has(canonicalPhone)) return false;
+    seen.add(canonicalPhone);
+    return true;
+  });
+}
+
+export function filterPendingSupplierLabelWhatsappRecipients(
+  recipients: SupplierLabelWhatsappRecipient[],
+  sentRecipientKeys: Iterable<string>,
+): SupplierLabelWhatsappRecipient[] {
+  const sent = new Set(sentRecipientKeys);
+  return recipients.filter((recipient) => !sent.has(recipient.key));
 }
 
 export function normalizeMoneyAmount(value: unknown): number {
