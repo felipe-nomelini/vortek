@@ -14,8 +14,12 @@ import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
-import { findMlProductIdentityConflicts } from '@/lib/ml-critical-attributes';
+import { assessMlProductIdentity } from '@/lib/ml-critical-attributes';
 import { shouldPauseMlListingForIdentityConflicts } from '@/lib/ml-listing-identity';
+import {
+  clearAutomaticMlIdentityBlock,
+  ensureAutomaticMlIdentityBlock,
+} from '@/lib/ml/identity-block';
 
 export const maxDuration = 300;
 
@@ -29,34 +33,6 @@ const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at
 const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
 const PERFORMANCE_REFRESH_INTERVAL_MS = 6 * 60 * 60 * 1000;
 
-async function ensureMlIdentityManualBlock(
-  client: ReturnType<typeof createServiceClient>,
-  itemId: string,
-  reason: string,
-) {
-  const { data: existing, error: lookupError } = await client
-    .from('ml_manual_blocklist')
-    .select('id')
-    .eq('ml_item_id', itemId)
-    .eq('ativo', true)
-    .limit(1)
-    .maybeSingle();
-  if (lookupError) return { ok: false as const, error: lookupError.message };
-  if (existing?.id) return { ok: true as const };
-
-  const { error } = await client.from('ml_manual_blocklist').insert({
-    ml_item_id: itemId,
-    // O bloqueio é por item incorreto. Bloquear o SKU impediria a publicação
-    // da oferta corrigida do mesmo produto.
-    sku: null,
-    ativo: true,
-    motivo: reason,
-    created_by: 'ml_identity_gate',
-  });
-  return error
-    ? { ok: false as const, error: error.message }
-    : { ok: true as const };
-}
 
 type MlPerformance = {
   entity_id?: string;
@@ -632,16 +608,56 @@ export async function POST(request: Request) {
           skuLocal = null;
           produto = null;
         } else {
-          const identityConflicts = findMlProductIdentityConflicts(
+          const identityAssessment = assessMlProductIdentity(
             item,
             produto,
             identityOffers || [],
           );
+          let identityConflicts = identityAssessment.blockingConflicts;
+          if (identityAssessment.canonicalBrand) {
+            const { error: brandUpdateError } = await serviceClient
+              .from('produtos')
+              .update({ marca: identityAssessment.canonicalBrand })
+              .eq('id', produtoId);
+            if (brandUpdateError) {
+              errors.push({
+                code: 'ml_identity_brand_reconciliation_failed',
+                message: brandUpdateError.message,
+                context: {
+                  mlItemId: String(item.id),
+                  produtoId,
+                  canonicalBrand: identityAssessment.canonicalBrand,
+                },
+              });
+              identityConflicts = identityAssessment.conflicts;
+            } else {
+              produto = { ...produto, marca: identityAssessment.canonicalBrand };
+              warnings.push({
+                code: 'ml_identity_brand_reconciled',
+                message: `Marca local corrigida para ${identityAssessment.canonicalBrand} após confirmação por SKU e GTIN.`,
+                context: { mlItemId: String(item.id), produtoId },
+              });
+            }
+          }
+
+          if (identityConflicts.length === 0) {
+            const unblockResult = await clearAutomaticMlIdentityBlock(
+              serviceClient,
+              String(item.id),
+            );
+            if (!unblockResult.ok) {
+              errors.push({
+                code: 'ml_identity_automatic_unblock_failed',
+                message: unblockResult.error,
+                context: { mlItemId: String(item.id), produtoId },
+              });
+            }
+          }
           if (identityConflicts.length > 0) {
             const reason = `Divergência material de identidade ML: ${identityConflicts
               .map((conflict) => `${conflict.field} local=${conflict.expected} remoto=${conflict.remote}`)
               .join('; ')}`;
-            const blockResult = await ensureMlIdentityManualBlock(
+            const blockResult = await ensureAutomaticMlIdentityBlock(
               serviceClient,
               String(item.id),
               reason,

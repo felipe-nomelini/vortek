@@ -17,3 +17,9 @@ test('rota serializa writes DSLite e não usa fallback sem fornecedor', () => {
   assert.equal(routeSource.includes('criarPedidoDropshipping(xml)'), false);
   assert.equal(routeSource.includes('canFallbackToSupplierlessCreate'), false);
 });
+
+test('identidade do anúncio não bloqueia pedido já vendido', () => {
+  assert.equal(routeSource.includes('ml_listing_identity_blocked'), false);
+  assert.equal(routeSource.includes('ml_listing_identity_check_failed'), false);
+  assert.equal(routeSource.includes('ml_manual_blocklist'), false);
+});

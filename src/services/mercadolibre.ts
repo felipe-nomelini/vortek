@@ -6,6 +6,7 @@ import {
 } from "./integration";
 import { createServiceClient } from "@/lib/supabase";
 import { normalizeMlSaleTerms } from "@/lib/ml-sale-terms";
+import { validateMlListingIdentityForActivation } from "@/lib/ml/identity-block";
 
 export interface MLCategoryPrediction {
   domain_id: string;
@@ -980,6 +981,34 @@ async function pausarItemML(
 async function reativarItemML(
   itemId: string,
 ): Promise<MlRequestResult<MLItemStatus> & { attempts: number }> {
+  const identity = await validateMlListingIdentityForActivation(
+    createServiceClient(),
+    { itemId },
+  );
+  if (!identity.ok) {
+    if (
+      identity.kind === "conflict" &&
+      String(identity.item?.status || "").toLowerCase() === "active"
+    ) {
+      const pauseResult = await pausarItemML(itemId);
+      if (!pauseResult.success) {
+        return {
+          success: false,
+          error: pauseResult.error || "Falha ao pausar anúncio divergente",
+          reason_code: pauseResult.reason_code,
+          transient: pauseResult.transient,
+          attempts: pauseResult.attempts,
+        };
+      }
+    }
+    return {
+      success: false,
+      error: identity.error,
+      reason_code: identity.transient ? "unknown_error" : "manual_block",
+      transient: identity.transient,
+      attempts: 1,
+    };
+  }
   return withMlRetry<MLItemStatus>(() =>
     mlItemRequest<MLItemStatus>(`/items/${itemId}`, {
       method: "PUT",

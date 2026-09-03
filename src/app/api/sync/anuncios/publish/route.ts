@@ -12,6 +12,7 @@ import {
   isMlListingDeletionPayload,
 } from '@/lib/ml/listing-deletion';
 import { isSafeInactiveSupplierPause } from '@/lib/supplier-deactivation';
+import { validateMlListingIdentityForActivation } from '@/lib/ml/identity-block';
 
 export const maxDuration = 300;
 
@@ -490,91 +491,182 @@ export async function POST(request: Request) {
           continue;
         }
 
-        let pricePublishedOk = false;
-        let pricePublishedValue: number | null = null;
-        if (applyMode.applyPrice) {
-          await updateProcessingMarker('price');
-          const price = Number(row.desired_price);
-          if (!Number.isFinite(price) || price <= 0) {
-            operations.push({ op: 'price', ok: false, error: 'Preço desejado inválido' });
+        const activationRequested = applyMode.applyStatus
+          && toMlStatus(row.desired_status) === 'active';
+        if (activationRequested) {
+          await updateProcessingMarker('identity_activation_guard');
+          const identity = await validateMlListingIdentityForActivation(
+            client,
+            { itemId: mlItemId, productId: rowProductId },
+          );
+          if (identity.ok) {
+            operations.push({ op: 'identity_activation_guard', ok: true });
+          } else if (identity.kind === 'validation_error') {
+            operations.push({
+              op: 'identity_activation_guard',
+              ok: false,
+              code: 'ml_identity_validation_failed',
+              error: identity.error,
+            });
+          } else if (identity.kind === 'conflict') {
+            let pausedItem = identity.item;
+            if (String(identity.item?.status || '').toLowerCase() === 'active') {
+              const pauseResult = await fetchMLResult<any>(`/items/${mlItemId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'paused' }),
+              });
+              if (!pauseResult.ok) {
+                operations.push({
+                  op: 'identity_activation_guard',
+                  ok: false,
+                  code: 'ml_listing_identity_pause_failed',
+                  error: pauseResult.error?.message || 'Falha ao pausar anúncio divergente',
+                });
+              } else {
+                pausedItem = { ...identity.item, ...pauseResult.data, status: 'paused' };
+              }
+            }
+
+            if (!operations.some((entry) => !entry.ok)) {
+              await client
+                .from('produtos')
+                .update({ ml_status: 'pausado' })
+                .eq('id', rowProductId);
+              await reconcileAnuncioMlFromItem(client, pausedItem, 'publish_reconcile');
+              await (client
+                .from('anuncios_ml_outbox' as any)
+                .update({
+                  status: 'cancelled',
+                  last_error: `[ml_listing_identity_conflict] ${identity.error}`,
+                  payload: withPublishProgress(outboxPayloadBase, {
+                    state: 'cancelled',
+                    last_operation: 'identity_activation_guard',
+                    conflicts: identity.conflicts || [],
+                    attempts,
+                  }) as any,
+                  processed_at: new Date().toISOString(),
+                  updated_at: new Date().toISOString(),
+                } as any)
+                .eq('id', outboxId) as any);
+              warnings.push({
+                code: 'ml_listing_identity_activation_blocked',
+                message: identity.error,
+                context: { outboxId, mlItemId, produtoId: rowProductId },
+              });
+              continue;
+            }
           } else {
+            await (client
+              .from('anuncios_ml_outbox' as any)
+              .update({
+                status: 'cancelled',
+                last_error: `[ml_listing_manual_block] ${identity.error}`,
+                payload: withPublishProgress(outboxPayloadBase, {
+                  state: 'cancelled',
+                  last_operation: 'identity_activation_guard',
+                  attempts,
+                }) as any,
+                processed_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+              } as any)
+              .eq('id', outboxId) as any);
+            warnings.push({
+              code: 'ml_listing_manual_activation_blocked',
+              message: identity.error,
+              context: { outboxId, mlItemId, produtoId: rowProductId },
+            });
+            continue;
+          }
+        }
+
+        if (!operations.some((entry) => !entry.ok)) {
+          let pricePublishedOk = false;
+          let pricePublishedValue: number | null = null;
+          if (applyMode.applyPrice) {
+            await updateProcessingMarker('price');
+            const price = Number(row.desired_price);
+            if (!Number.isFinite(price) || price <= 0) {
+              operations.push({ op: 'price', ok: false, error: 'Preço desejado inválido' });
+            } else {
+              const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ price }),
+              });
+              operations.push({
+                op: 'price',
+                ok: result.ok,
+                error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar preço no ML'),
+              });
+              pricePublishedOk = result.ok;
+              pricePublishedValue = price;
+            }
+          }
+
+          if (applyMode.applyQuantityPricing) {
+            await updateProcessingMarker('quantity_pricing');
+            const basePrice = applyMode.basePriceForQuantityPricing
+              ?? (Number.isFinite(Number(pricePublishedValue)) ? Number(pricePublishedValue) : null)
+              ?? (Number.isFinite(Number(row.desired_price)) ? Number(row.desired_price) : null);
+
+            if (applyMode.applyPrice && !pricePublishedOk) {
+              operations.push({
+                op: 'quantity_pricing',
+                ok: false,
+                error: 'Falha ao publicar preço base antes do atacado',
+              });
+            } else if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) {
+              operations.push({
+                op: 'quantity_pricing',
+                ok: false,
+                error: 'Preço base inválido para publicar atacado',
+              });
+            } else {
+              const quantityPricingResult = await setItemQuantityPricing(mlItemId, Number(basePrice));
+              operations.push({
+                op: 'quantity_pricing',
+                ok: quantityPricingResult.ok,
+                error: quantityPricingResult.ok
+                  ? undefined
+                  : (quantityPricingResult.error || 'Falha ao publicar preços de atacado no ML'),
+                code: quantityPricingResult.code,
+              });
+            }
+          }
+
+          if (applyMode.applyQuantity) {
+            await updateProcessingMarker('quantity');
+            const quantity = Math.max(0, Math.trunc(Number(row.desired_quantity)));
+            const result = mlStockContext
+              ? await publishAndVerifyMlStock(mlItemId, quantity, mlStockContext)
+              : {
+                  ok: false,
+                  code: 'ml_stock_context_unavailable',
+                  error: 'Falha ao identificar o modo de estoque da conta Mercado Livre',
+                };
+            operations.push({
+              op: 'quantity',
+              ok: result.ok,
+              error: result.ok ? undefined : (result.error || 'Falha ao publicar estoque no ML'),
+              code: result.code,
+            });
+          }
+
+          const statusMl = toMlStatus(row.desired_status);
+          if (applyMode.applyStatus && statusMl) {
+            await updateProcessingMarker('status');
             const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ price }),
+              body: JSON.stringify({ status: statusMl }),
             });
             operations.push({
-              op: 'price',
+              op: 'status',
               ok: result.ok,
-              error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar preço no ML'),
-            });
-            pricePublishedOk = result.ok;
-            pricePublishedValue = price;
-          }
-        }
-
-        if (applyMode.applyQuantityPricing) {
-          await updateProcessingMarker('quantity_pricing');
-          const basePrice = applyMode.basePriceForQuantityPricing
-            ?? (Number.isFinite(Number(pricePublishedValue)) ? Number(pricePublishedValue) : null)
-            ?? (Number.isFinite(Number(row.desired_price)) ? Number(row.desired_price) : null);
-
-          if (applyMode.applyPrice && !pricePublishedOk) {
-            operations.push({
-              op: 'quantity_pricing',
-              ok: false,
-              error: 'Falha ao publicar preço base antes do atacado',
-            });
-          } else if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) {
-            operations.push({
-              op: 'quantity_pricing',
-              ok: false,
-              error: 'Preço base inválido para publicar atacado',
-            });
-          } else {
-            const quantityPricingResult = await setItemQuantityPricing(mlItemId, Number(basePrice));
-            operations.push({
-              op: 'quantity_pricing',
-              ok: quantityPricingResult.ok,
-              error: quantityPricingResult.ok
-                ? undefined
-                : (quantityPricingResult.error || 'Falha ao publicar preços de atacado no ML'),
-              code: quantityPricingResult.code,
+              error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar status no ML'),
             });
           }
-        }
-
-        if (applyMode.applyQuantity) {
-          await updateProcessingMarker('quantity');
-          const quantity = Math.max(0, Math.trunc(Number(row.desired_quantity)));
-          const result = mlStockContext
-            ? await publishAndVerifyMlStock(mlItemId, quantity, mlStockContext)
-            : {
-                ok: false,
-                code: 'ml_stock_context_unavailable',
-                error: 'Falha ao identificar o modo de estoque da conta Mercado Livre',
-              };
-          operations.push({
-            op: 'quantity',
-            ok: result.ok,
-            error: result.ok ? undefined : (result.error || 'Falha ao publicar estoque no ML'),
-            code: result.code,
-          });
-        }
-
-        const statusMl = toMlStatus(row.desired_status);
-        if (applyMode.applyStatus && statusMl) {
-          await updateProcessingMarker('status');
-          const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: statusMl }),
-          });
-          operations.push({
-            op: 'status',
-            ok: result.ok,
-            error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar status no ML'),
-          });
         }
       }
 

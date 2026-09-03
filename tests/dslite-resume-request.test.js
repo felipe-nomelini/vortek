@@ -22,7 +22,7 @@ test("preserva erro HTTP da rota interna sem tentar a URL pública", async () =>
     fetcher: async (url) => {
       calls.push(url);
       return response(409, {
-        error: "Pedido bloqueado por divergência de identidade do anúncio.",
+        error: "Dados fiscais do pedido precisam ser corrigidos.",
       });
     },
   });
@@ -30,7 +30,7 @@ test("preserva erro HTTP da rota interna sem tentar a URL pública", async () =>
   assert.deepEqual(calls, ["http://internal/api/dslite/pedido"]);
   assert.deepEqual(result, {
     json: null,
-    error: "Pedido bloqueado por divergência de identidade do anúncio.",
+    error: "Dados fiscais do pedido precisam ser corrigidos.",
   });
 });
 

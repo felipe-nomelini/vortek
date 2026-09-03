@@ -13,6 +13,12 @@ export type MlListingIdentityConflict = {
   remote: string;
 };
 
+export type MlListingIdentityAssessment = {
+  conflicts: MlListingIdentityConflict[];
+  blockingConflicts: MlListingIdentityConflict[];
+  canonicalBrand: string | null;
+};
+
 export function mergeMlAttributePrefill(params: {
   prediction?: Record<string, string | undefined>;
   initial?: Record<string, string | undefined>;
@@ -42,6 +48,10 @@ function normalizeGtin(value: unknown): string {
   const digits = String(value ?? "").replace(/\D/g, "");
   if (![8, 12, 13, 14].includes(digits.length)) return digits;
   return digits.replace(/^0+(?=\d)/, "");
+}
+
+function normalizeSku(value: unknown): string {
+  return String(value ?? "").trim().toUpperCase();
 }
 
 export function normalizeMlDiameter(value: unknown): string | null {
@@ -134,6 +144,34 @@ export function findMlListingIdentityConflicts(
     (value) => String(value ?? "").match(/\d+/)?.[0] || normalizeText(value),
   );
   return conflicts;
+}
+
+/**
+ * A marca remota pode substituir a marca local somente quando SKU e GTIN
+ * comprovam exatamente o mesmo produto e não há nenhuma outra divergência.
+ */
+export function assessMlListingIdentity(
+  item: any,
+  expected: MlListingIdentityExpectation,
+): MlListingIdentityAssessment {
+  const conflicts = findMlListingIdentityConflicts(item, expected);
+  const remoteSku = item?.seller_custom_field || attributeValue(item, ["SELLER_SKU"]);
+  const remoteGtin = attributeValue(item, ["GTIN"]);
+  const remoteBrand = attributeValue(item, ["BRAND"]);
+  const expectedSku = normalizeSku(expected.sellerSku);
+  const expectedGtin = normalizeGtin(expected.gtin);
+  const sameSku = Boolean(expectedSku) && normalizeSku(remoteSku) === expectedSku;
+  const sameGtin = Boolean(expectedGtin) && normalizeGtin(remoteGtin) === expectedGtin;
+  const onlyBrandConflict = conflicts.length === 1 && conflicts[0]?.field === "BRAND";
+  const canonicalBrand = sameSku && sameGtin && onlyBrandConflict && remoteBrand
+    ? String(remoteBrand).trim()
+    : null;
+
+  return {
+    conflicts,
+    blockingConflicts: canonicalBrand ? [] : conflicts,
+    canonicalBrand,
+  };
 }
 
 export function shouldPauseMlListingForIdentityConflicts(
