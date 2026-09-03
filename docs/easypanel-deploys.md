@@ -15,6 +15,9 @@ EASYPANEL_DEPLOY_CONNECT_TIMEOUT=10
 EASYPANEL_DEPLOY_MAX_TIME=60
 ```
 
+O script envia `POST` com `Content-Type: application/json` e corpo `{}`, como
+exigido pelo endpoint de webhook exposto pelo Easypanel.
+
 ## Uso
 
 ```bash
