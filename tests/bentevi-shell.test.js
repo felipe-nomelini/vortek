@@ -90,3 +90,21 @@ test('shell usa APIs autenticadas e não recupera perfil ou saúde do localStora
   assert.match(shellSource, /fetch\('\/api\/auth\/logout', \{ method: 'POST' \}\)/);
   assert.doesNotMatch(shellSource, /vortek_user_profile|vortek_integrations|localStorage/);
 });
+
+test('mantém o título do submenu selecionado legível sobre o fundo escuro', () => {
+  const shellSource = fs.readFileSync(
+    path.join(__dirname, '../src/components/AppShell.tsx'),
+    'utf8',
+  );
+  const shellStyles = fs.readFileSync(
+    path.join(__dirname, '../src/components/AppShell.module.css'),
+    'utf8',
+  );
+
+  assert.match(shellSource, /className=\{styles\.navigation\}/);
+  assert.match(
+    shellStyles,
+    /\.navigation :global\(\.ant-menu-submenu-selected > \.ant-menu-submenu-title\)/,
+  );
+  assert.match(shellStyles, /var\(--bentevi-primary, #ffbd0e\)/);
+});

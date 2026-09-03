@@ -1,0 +1,3 @@
+.navigation :global(.ant-menu-submenu-selected > .ant-menu-submenu-title) {
+  color: var(--bentevi-primary, #ffbd0e) !important;
+}

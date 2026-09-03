@@ -53,6 +53,7 @@ import {
 } from '@/lib/app-navigation';
 import type { VortekRole } from '@/lib/permissions';
 import { benteviColors } from '@/theme/bentevi';
+import styles from './AppShell.module.css';
 
 const { Content, Header, Sider } = Layout;
 const { Text } = Typography;
@@ -385,6 +386,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100dvh - 64px)' }}>
           <Menu
+            className={styles.navigation}
             inlineCollapsed={collapsed}
             items={menuItems}
             mode="inline"
