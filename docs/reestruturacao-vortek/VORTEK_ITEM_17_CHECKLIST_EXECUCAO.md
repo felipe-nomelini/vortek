@@ -1944,7 +1944,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D10` — Detalhe da Oferta;
 - [x] `BNT-D11` — Anúncios;
 - [x] `BNT-D12` — Catálogo No Catálogo/Elegíveis;
-- [ ] `BNT-D13` — Clientes;
+- [x] `BNT-D13` — Clientes;
 - [ ] `BNT-D14` — Detalhe do Cliente;
 - [ ] `BNT-D15` — Fornecedores;
 - [ ] `BNT-D16` — Detalhe do Fornecedor;
@@ -2285,7 +2285,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D13 — Clientes`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-02`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-03`.
 
 **Estado/causa confirmados:** a listagem carregava todos os clientes e todos os pedidos para calcular a quantidade em memória, ligando as entidades pelo nickname extraído de `pedidos.contato_nome`. O schema já possuía o vínculo autoritativo `clientes.ml_id → pedidos.buyer_ml_id`, mas não havia índice no lado dos pedidos. A página ainda fazia duas requisições, expunha nove colunas sem hierarquia, oferecia seleção sem ação coletiva e mantinha um item “Editar” sem implementação.
 
@@ -2301,7 +2301,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `ce348b5` para desfazer somente o ajuste de colunas ou `afbbff7` para retirar todo o BNT-D13, sempre em `dev` e com redeploy somente do `vortek-erp-dev`; a migration é aditiva e pode permanecer porque o código anterior a ignora. Se for necessário retirar também os objetos de banco, usar uma migration corretiva exclusivamente no `.162` para remover a RPC e o índice.
 
-**Pendência:** aprovar visualmente `/clientes` com sessão. `BNT-D14` permanece bloqueado até esse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente `/clientes` e liberou `BNT-D14`.
+
+#### Resultado técnico de `BNT-D14 — Detalhe do Cliente`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-03`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** `/clientes/[id]` ainda usava a interface Vortek original, editava contato diretamente no formulário principal e consumia registros brutos. A API não exigia autorização, retornava `select('*')` e associava vendas por busca textual do nickname dentro de `pedidos.contato_nome`, embora o vínculo autoritativo `clientes.ml_id → pedidos.buyer_ml_id` já estivesse disponível. A sincronização de pedidos também regravava e-mail e telefone como strings vazias, o que apagaria os contatos mantidos localmente.
+
+**Mudança realizada:** o detalhe tornou-se uma página Bentevi com cabeçalho contextual, resumo de pedidos/última compra/tempo de cadastro, blocos separados de identidade, contato e endereço e histórico paginado de vendas. O histórico diferencia Pack e Venda quando necessário, apresenta valor, status e entrega, abre o drawer canônico em `/pedidos?venda=<id>` e reutiliza o acompanhamento existente. A amostra protegida permanece somente leitura e não dispara consulta externa. A edição foi concentrada em um modal exclusivo de e-mail e telefone; `admin`, `gerente` e `operador` possuem `customers.manage`, enquanto `visualizador` permanece em leitura.
+
+**Contrato e integridade:** `GET /api/clientes/[id]` passou a exigir `sales.read`, validar UUID, retornar DTO explícito sem cache e paginar 20 vendas ligadas exatamente por `buyer_ml_id`. `PATCH` exige `customers.manage`, aceita estritamente `email` e `phone` e não permite alterar dados originados do Mercado Livre. A sincronização preserva contatos existentes e inicializa os campos vazios somente ao criar o cliente. Os rótulos e cores dos status foram consolidados com a página de Pedidos para evitar duas apresentações da mesma regra. Não houve migration, escrita de banco ou chamada a integração externa.
+
+**Commit e homologação:** `84e4318` — `feat(clientes): redesenhar detalhe Bentevi`, enviado somente para `origin/dev`. Foram aprovados 36 cenários direcionados de detalhe de cliente, diretório, permissões, drawer de venda e tracking; `npm run validate`, `npm run build` com Next.js `16.3.3`, 121 páginas/rotas e `git diff --check` passaram. A action `cmtljv9ek000307rggr8vh3zy` concluiu com `Success`, e a task `1n8tgihqp8ctcgbwtk3k89jfk` ativou `GIT_SHA=84e43187751d4aa741c26bda76d25c272667c10a` somente no `vortek-erp-dev`. O artefato contém a nova permissão; health e login responderam `200`, `/clientes/[id]` respondeu `307` sem sessão e os métodos `GET` e `PATCH` da API responderam `401` sem sessão.
+
+**Rollback:** reverter `84e4318` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, alteração de banco, dado operacional ou integração externa a reverter.
+
+**Pendência:** aprovar visualmente `/clientes/[id]` com sessão. Não iniciar `BNT-D15` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
