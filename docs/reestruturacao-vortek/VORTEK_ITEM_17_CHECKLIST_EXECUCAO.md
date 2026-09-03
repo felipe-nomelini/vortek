@@ -1946,7 +1946,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D12` — Catálogo No Catálogo/Elegíveis;
 - [x] `BNT-D13` — Clientes;
 - [x] `BNT-D14` — Detalhe do Cliente;
-- [ ] `BNT-D15` — Fornecedores;
+- [x] `BNT-D15` — Fornecedores;
 - [ ] `BNT-D16` — Detalhe do Fornecedor;
 - [ ] `BNT-D17` — Créditos de Fornecedores;
 - [ ] `BNT-D18` — Reputação;
@@ -2335,7 +2335,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `9b4bd9f` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, dado operacional ou integração externa a reverter.
 
-**Pendência:** aprovar visualmente `/fornecedores` com sessão. Não iniciar `BNT-D16` antes desse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente `/fornecedores` e liberou `BNT-D16` em `2026-09-03`.
+
+#### Resultado técnico de `BNT-D16 — Detalhe do Fornecedor`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-03`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** `/fornecedores/[id]` ainda usava a interface Vortek original e recebia a linha bruta por `select('*')`, incluindo `payload_dslite`. O PATCH genérico permitia alterar `ativo`, cadastro, status e capacidades da DSLite sem `suppliers.manage`; a alteração direta de `ativo` também contornava o endpoint que calcula o impacto no catálogo e no Mercado Livre. O schema atual não possui observações, e o modo de pagamento pertence à oferta/compra, não ao cadastro do fornecedor.
+
+**Mudança realizada:** o detalhe tornou-se uma página Bentevi com cabeçalho operacional, alertas contextuais, resumo de compras e ofertas, seções separadas de Operação, Cadastro DSLite, Contato operacional, Pagamento local e Auditoria. Campos sincronizados ficaram somente leitura; contato, endereço e PIX são editados em modais próprios somente pela gestão. A ativação/inativação reutiliza o fluxo seguro existente, calcula impacto antes da confirmação e mantém a reativação da Hayamax bloqueada. Os resumos abrem Compras e Ofertas já filtradas pelo ID DSLite; a página de Ofertas passou a hidratar o filtro recebido pela URL. Não foi criado campo de observações nem uma segunda fonte para modalidade de pagamento.
+
+**Contrato e permissões:** `GET /api/fornecedores/[id]` exige `purchases.read`, valida UUID e retorna DTO explícito sem payload bruto, com saúde da sincronização e contagens relacionais. `PATCH` exige `suppliers.manage`, valida corpo estrito e aceita exclusivamente `email`, `phone`, `address` e `pixKey`; estado operacional continua exclusivo de `/status`. Operador e visualizador permanecem em leitura. Não houve migration, escrita direta em banco, sincronização DSLite ou chamada externa autenticada durante a implantação.
+
+**Commit e homologação:** `41cd0e6` — `feat(fornecedores): redesenhar detalhe Bentevi`, enviado somente para `origin/dev`. Passaram 43 cenários direcionados de detalhe, diretório, Ofertas, Compras, permissões e política DSLite; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas e `git diff --check`. Após uma action anterior ser cancelada pelo controlador sem substituir o serviço, a execução isolada `cmtm2jaol000007phe0t72i5q` concluiu com `Success`; a task `sycmp5ajcr2bfg8manfkwa9sf` ativou `GIT_SHA=41cd0e67b88129497cb55a3f731169fd7f9660f6` somente no `vortek-erp-dev`. Health e login responderam `200`; detalhe e Ofertas responderam `307` sem sessão; GET, PATCH e leitura de impacto responderam `401` sem sessão.
+
+**Rollback:** reverter `41cd0e6` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, dado operacional ou integração externa a reverter.
+
+**Pendência:** aprovar visualmente `/fornecedores/[id]` com sessão. Não iniciar `BNT-D17` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
