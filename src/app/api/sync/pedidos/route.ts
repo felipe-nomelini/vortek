@@ -617,15 +617,13 @@ async function upsertCliente(serviceClient: ReturnType<typeof createServiceClien
   tipoPessoa: string;
   endereco: string;
 }) {
-  const basePayload = {
+  const synchronizedPayload = {
     ml_id: payload.buyerId,
     ml_nickname: payload.nickname,
     nome: payload.nome,
     nickname: payload.nickname || null,
     documento: payload.documento,
     tipo_pessoa: payload.tipoPessoa,
-    email: '',
-    telefone: '',
     endereco: payload.endereco,
   };
 
@@ -645,7 +643,7 @@ async function upsertCliente(serviceClient: ReturnType<typeof createServiceClien
   if (existing?.id) {
     const { error: updateError } = await serviceClient
       .from('clientes')
-      .update(basePayload as any)
+      .update(synchronizedPayload as any)
       .eq('id', existing.id);
 
     if (updateError) {
@@ -656,7 +654,7 @@ async function upsertCliente(serviceClient: ReturnType<typeof createServiceClien
 
   const { error: insertError } = await serviceClient
     .from('clientes')
-    .insert(basePayload as any);
+    .insert({ ...synchronizedPayload, email: '', telefone: '' } as any);
 
   if (insertError) {
     console.error('[sync-pedidos] Erro ao inserir cliente:', insertError.message);

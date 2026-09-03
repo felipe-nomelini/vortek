@@ -3,6 +3,7 @@ import type { Database } from "@/types/database";
 export const VORTEK_PERMISSIONS = [
   "tv.read",
   "sales.read",
+  "customers.manage",
   "purchases.read",
   "inventory.read",
   "inventory.manage",
@@ -33,6 +34,7 @@ const READ_ONLY_PERMISSIONS: VortekPermission[] = [
 
 const OPERATIONAL_PERMISSIONS: VortekPermission[] = [
   ...READ_ONLY_PERMISSIONS,
+  "customers.manage",
   "sales.whatsapp_label.send",
   "sales.dslite.resume",
   "sales.dslite.create",

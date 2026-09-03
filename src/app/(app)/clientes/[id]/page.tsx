@@ -1,313 +1,486 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { Card, Row, Col, Input, Tag, Typography, Button, Table, Spin, Select, Space, message } from 'antd';
+import {
+  Alert,
+  Button,
+  Empty,
+  Form,
+  Input,
+  Modal,
+  Space,
+  Spin,
+  Table,
+  Tag,
+  Tooltip,
+  Typography,
+  message,
+} from 'antd';
 import type { TableProps } from 'antd';
-import { ArrowLeftOutlined, LoadingOutlined, SaveOutlined } from '@ant-design/icons';
+import {
+  ArrowLeftOutlined,
+  CarOutlined,
+  EditOutlined,
+  EyeOutlined,
+  LoadingOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  ReloadOutlined,
+} from '@ant-design/icons';
+import TrackingModal from '@/components/modals/TrackingModal';
 import { formatCurrency } from '@/lib/format';
-import type { Database } from '@/types/database';
+import { ORDER_STATUS_COLORS, ORDER_STATUS_LABELS } from '@/lib/orders/operational-view';
+import { hasPermission, type VortekRole } from '@/lib/permissions';
+import type {
+  ClienteContactUpdate,
+  ClienteDetailItem,
+  ClienteDetailOrder,
+  ClienteDetailResponse,
+} from '@/types/clientes';
+import styles from './cliente-detalhe.module.css';
 
-const { Title, Text } = Typography;
+const { Text, Title } = Typography;
+const VALID_ROLES: VortekRole[] = ['admin', 'gerente', 'operador', 'visualizador'];
 
-const statusColor: Record<string, string> = {
-  aberto: 'blue', atendido: 'processing', faturado: 'purple', entregue: 'green', cancelado: 'red',
-};
-
-const statusLabel: Record<string, string> = {
-  aberto: 'Aberto', atendido: 'Atendido', faturado: 'Faturado', entregue: 'Entregue', cancelado: 'Cancelado',
-};
-
-const ddiOptions = [
-  { value: '+55', label: '+55 Brasil' },
-  { value: '+1', label: '+1 EUA' },
-  { value: '+54', label: '+54 Argentina' },
-  { value: '+351', label: '+351 Portugal' },
-  { value: '+56', label: '+56 Chile' },
-  { value: '+57', label: '+57 Colômbia' },
-];
-
-const cardStyle = { background: '#141414', border: '1px solid #303030', borderRadius: 8 };
-const inputStyle = { background: '#1f1f1f', border: '1px solid #303030', color: '#e0e0e0', borderRadius: 6 };
-const labelStyle: React.CSSProperties = { color: '#a0a0a0', fontSize: 13 };
-
-function formatDoc(doc: string): string {
-  if (!doc) return '—';
-  if (doc.length === 11) return doc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-  if (doc.length === 14) return doc.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
-  return doc;
+function formatDocument(value: string): string {
+  const digits = value.replace(/\D/g, '');
+  if (digits.length === 11) return digits.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  if (digits.length === 14) return digits.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+  return value || 'Não informado';
 }
 
-function maskPhone(value: string): string {
-  const digits = value.replace(/\D/g, '').substring(0, 11);
-  if (digits.length <= 10) {
-    return digits.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3').replace(/-$/, '');
+function formatDate(value: string | null | undefined): string {
+  if (!value) return 'Não informado';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Não informado';
+  return new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short' }).format(date);
+}
+
+function formatDateTime(value: string | null | undefined): string {
+  if (!value) return 'Não informado';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Não informado';
+  return new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date);
+}
+
+function personTypeLabel(value: string): string {
+  if (value === 'J') return 'Pessoa jurídica';
+  if (value === 'F') return 'Pessoa física';
+  return 'Tipo não informado';
+}
+
+function readValue(value: string | null | undefined): string {
+  return String(value || '').trim() || 'Não informado';
+}
+
+function saleReference(order: ClienteDetailOrder) {
+  const hasDistinctPack = Boolean(order.packId && order.packId !== order.saleId);
+  return (
+    <div className={styles.saleReference}>
+      <strong>{hasDistinctPack ? `Pack #${order.packId}` : `Venda #${order.saleId}`}</strong>
+      {hasDistinctPack && <span>Venda #{order.saleId}</span>}
+    </div>
+  );
+}
+
+function deliveryReference(order: ClienteDetailOrder) {
+  if (order.tracking) {
+    return (
+      <div className={styles.deliveryReference}>
+        <strong>{order.tracking}</strong>
+        <span>Código de rastreio</span>
+      </div>
+    );
   }
-  return digits.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3').replace(/-$/, '');
+  if (order.shipmentId) {
+    return (
+      <div className={styles.deliveryReference}>
+        <strong>Envio criado</strong>
+        <span>Shipment #{order.shipmentId}</span>
+      </div>
+    );
+  }
+  return <span className={styles.muted}>Aguardando envio</span>;
 }
-
-function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-type ClienteRow = Database['public']['Tables']['clientes']['Row'];
 
 export default function ClientDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const id = params?.id as string;
-
-  const [cliente, setCliente] = useState<ClienteRow | null>(null);
-  const [originalCliente, setOriginalCliente] = useState<ClienteRow | null>(null);
-  const [pedidos, setPedidos] = useState<any[]>([]);
+  const id = String(params?.id || '');
+  const [form] = Form.useForm<ClienteContactUpdate>();
+  const [detail, setDetail] = useState<ClienteDetailResponse | null>(null);
+  const [role, setRole] = useState<VortekRole | null>(null);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [trackingOrder, setTrackingOrder] = useState<ClienteDetailOrder | null>(null);
   const [messageApi, contextHolder] = message.useMessage();
 
-  const [ddi, setDdi] = useState('+55');
+  const canEditContact = Boolean(role && hasPermission(role, 'customers.manage'));
+  const canTrack = Boolean(role && hasPermission(role, 'sales.track'));
+  const client = detail?.data.client || null;
+  const summary = detail?.data.summary || null;
 
-  const fetchData = useCallback(async () => {
+  const fetchDetail = useCallback(async () => {
+    if (!id) return;
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/clientes/${id}`);
-      if (!res.ok) {
-        const json = await res.json();
-        throw new Error(json.error || 'Erro ao buscar cliente');
-      }
-      const json = await res.json();
-      setCliente(json.cliente);
-      setOriginalCliente(json.cliente);
-      setPedidos(json.pedidos || []);
-
-      // Parse existing phone to extract DDI if present
-      const tel = json.cliente?.telefone || '';
-      if (tel.startsWith('+')) {
-        const match = tel.match(/^\+(\d+)\s/);
-        if (match) {
-          const extractedDdi = `+${match[1]}`;
-          if (ddiOptions.some(o => o.value === extractedDdi)) {
-            setDdi(extractedDdi);
-          }
-        }
-      }
-    } catch (err: any) {
-      setError(err.message || 'Erro ao carregar cliente');
+      const response = await fetch(`/api/clientes/${encodeURIComponent(id)}?page=${page}`, { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({})) as Partial<ClienteDetailResponse> & { error?: string };
+      if (!response.ok || !payload.data) throw new Error(payload.error || 'Não foi possível carregar o cliente');
+      setDetail(payload as ClienteDetailResponse);
+    } catch (requestError) {
+      setError(requestError instanceof Error ? requestError.message : 'Não foi possível carregar o cliente');
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [id, page]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    void fetchDetail();
+  }, [fetchDetail]);
 
-  const patch = (diff: Partial<ClienteRow>) => {
-    setCliente(prev => prev ? { ...prev, ...diff } : prev);
+  useEffect(() => {
+    fetch('/api/auth/me', { cache: 'no-store' })
+      .then((response) => response.ok ? response.json() : null)
+      .then((profile) => {
+        const cargo = profile?.cargo as VortekRole | undefined;
+        setRole(cargo && VALID_ROLES.includes(cargo) ? cargo : null);
+      })
+      .catch(() => setRole(null));
+  }, []);
+
+  const openContactEditor = () => {
+    if (!client || !canEditContact) return;
+    form.setFieldsValue({ email: client.email, phone: client.phone });
+    setEditorOpen(true);
   };
 
-  const hasChanges = cliente && originalCliente && (
-    cliente.email !== originalCliente.email ||
-    cliente.telefone !== originalCliente.telefone
-  );
+  const closeContactEditor = () => {
+    setEditorOpen(false);
+    form.resetFields();
+  };
 
-  const emailValid = !cliente?.email || isValidEmail(cliente.email);
-
-  const handleSave = async () => {
-    if (!cliente || !hasChanges) return;
-    if (!emailValid) {
-      messageApi.error('E-mail inválido');
-      return;
-    }
+  const saveContact = async (values: ClienteContactUpdate) => {
+    if (!client || !canEditContact) return;
     setSaving(true);
     try {
-      const res = await fetch(`/api/clientes/${id}`, {
+      const response = await fetch(`/api/clientes/${encodeURIComponent(client.id)}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: cliente.email,
-          telefone: cliente.telefone ? `${ddi} ${cliente.telefone}` : '',
-        }),
+        body: JSON.stringify({ email: values.email.trim(), phone: values.phone.trim() }),
       });
-
-      if (!res.ok) {
-        const json = await res.json();
-        throw new Error(json.error || 'Erro ao salvar');
-      }
-
-      const json = await res.json();
-      setOriginalCliente(json.data);
-      messageApi.success('Cliente salvo com sucesso');
-    } catch (err: any) {
-      messageApi.error(err.message || 'Erro ao salvar cliente');
+      const payload = await response.json().catch(() => ({})) as { data?: ClienteDetailItem; error?: string };
+      if (!response.ok || !payload.data) throw new Error(payload.error || 'Não foi possível atualizar o contato');
+      setDetail((current) => current ? {
+        ...current,
+        data: { ...current.data, client: payload.data as ClienteDetailItem },
+      } : current);
+      closeContactEditor();
+      messageApi.success('Contato atualizado no Bentevi');
+    } catch (saveError) {
+      messageApi.error(saveError instanceof Error ? saveError.message : 'Não foi possível atualizar o contato');
     } finally {
       setSaving(false);
     }
   };
 
-  const pedidosColumns: TableProps<any>['columns'] = [
+  const columns = useMemo<TableProps<ClienteDetailOrder>['columns']>(() => [
     {
-      title: 'Pedido', dataIndex: 'numero', key: 'numero', width: 110,
-      render: (v: number) => (
-        <a
-          href={`https://www.mercadolivre.com.br/vendas/${v}/detalhe`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
-        >
-          #{String(v).padStart(6, '0')}
-        </a>
+      title: 'Data',
+      dataIndex: 'date',
+      key: 'date',
+      width: 150,
+      render: (value: string | null) => formatDateTime(value),
+    },
+    {
+      title: 'Venda ML',
+      key: 'sale',
+      width: 230,
+      render: (_, order) => saleReference(order),
+    },
+    {
+      title: 'Valor',
+      dataIndex: 'total',
+      key: 'total',
+      width: 125,
+      render: (value: number) => <strong className={styles.orderValue}>{formatCurrency(value)}</strong>,
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: 150,
+      render: (status: ClienteDetailOrder['status']) => (
+        <Tag color={ORDER_STATUS_COLORS[status] || 'default'}>
+          {ORDER_STATUS_LABELS[status] || status}
+        </Tag>
       ),
     },
     {
-      title: 'Data', dataIndex: 'data', key: 'data', width: 160,
-      render: (d: string) => d ? new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—',
+      title: 'Entrega',
+      key: 'delivery',
+      width: 215,
+      render: (_, order) => deliveryReference(order),
     },
     {
-      title: 'Valor', dataIndex: 'total', key: 'total', width: 110,
-      render: (v: number) => formatCurrency(v),
+      title: 'Ações',
+      key: 'actions',
+      width: 220,
+      render: (_, order) => {
+        const trackingDisabled = !canTrack || order.isHomologationFixture;
+        const trackingReason = order.isHomologationFixture
+          ? 'A consulta externa está desabilitada para a amostra protegida.'
+          : 'Seu perfil não possui permissão para acompanhar entregas.';
+        return (
+          <Space size={6}>
+            <Link href={`/pedidos?venda=${encodeURIComponent(order.id)}`}>
+              <Button size="small" icon={<EyeOutlined />}>Ver venda</Button>
+            </Link>
+            {order.shipmentId && (
+              <Tooltip title={trackingDisabled ? trackingReason : 'Abrir acompanhamento da entrega'}>
+                <span>
+                  <Button
+                    size="small"
+                    icon={<CarOutlined />}
+                    disabled={trackingDisabled}
+                    onClick={() => setTrackingOrder(order)}
+                  >
+                    Acompanhar
+                  </Button>
+                </span>
+              </Tooltip>
+            )}
+          </Space>
+        );
+      },
     },
-    {
-      title: 'Status', dataIndex: 'situacao', key: 'situacao', width: 110,
-      render: (s: string) => <Tag color={statusColor[s] || 'default'}>{statusLabel[s] || s}</Tag>,
-    },
-    {
-      title: 'Rastreio', dataIndex: 'rastreio', key: 'rastreio', width: 140,
-      render: (v: string | null) => v ? <span style={{ fontFamily: 'monospace', fontSize: 12 }}>{v}</span> : <span style={{ color: '#666' }}>—</span>,
-    },
-  ];
+  ], [canTrack]);
 
-  if (loading) {
+  if (loading && !detail) {
     return (
-      <div style={{ textAlign: 'center', padding: 80 }}>
-        <Spin indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />} />
-        <p style={{ marginTop: 16, color: '#a0a0a0' }}>Carregando cliente...</p>
+      <div className={styles.centerState}>
+        <Spin indicator={<LoadingOutlined className={styles.loadingIcon} spin />} />
+        <Text>Carregando cliente...</Text>
       </div>
     );
   }
 
-  if (error || !cliente) {
+  if ((error && !detail) || !detail || !client || !summary) {
     return (
-      <div style={{ textAlign: 'center', padding: 80 }}>
-        <Title level={4} style={{ color: '#e0e0e0' }}>{error || 'Cliente não encontrado'}</Title>
-        <Button type="primary" onClick={() => router.push('/clientes')}>Voltar para Clientes</Button>
+      <div className={styles.centerState}>
+        <Title level={4}>{error || 'Cliente não encontrado'}</Title>
+        <Space>
+          <Button icon={<ArrowLeftOutlined />} onClick={() => router.push('/clientes')}>Voltar para Clientes</Button>
+          <Button type="primary" onClick={() => void fetchDetail()}>Tentar novamente</Button>
+        </Space>
       </div>
     );
   }
+
+  const orders = detail.data.orders;
+  const hasFixtureOrders = orders.some((order) => order.isHomologationFixture);
 
   return (
-    <div>
+    <div className={styles.page}>
       {contextHolder}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <Button
-          type="text"
-          icon={<ArrowLeftOutlined />}
-          onClick={() => router.push('/clientes')}
-          style={{ color: '#a0a0a0', padding: 0 }}
-        >
-          Voltar para Clientes
-        </Button>
-        <Button
-          type="primary"
-          icon={<SaveOutlined />}
-          onClick={handleSave}
-          loading={saving}
-          disabled={!hasChanges || !emailValid}
-        >
-          Salvar Alterações
-        </Button>
-      </div>
 
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 24 }}>{cliente.nome}</Title>
+      <header className={styles.stickyHeader}>
+        <div className={styles.headerIdentity}>
+          <Button type="text" icon={<ArrowLeftOutlined />} aria-label="Voltar para Clientes" onClick={() => router.push('/clientes')} />
+          <div>
+            <span>Clientes / Detalhe</span>
+            <Title level={3}>{client.name}</Title>
+          </div>
+        </div>
+        <Space>
+          <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchDetail()}>Atualizar</Button>
+          {canEditContact && <Button type="primary" icon={<EditOutlined />} onClick={openContactEditor}>Editar contato</Button>}
+        </Space>
+      </header>
 
-      <Row gutter={[24, 24]}>
-        <Col xs={24} lg={12}>
-          <Card styles={{ body: { padding: 16 } }} style={cardStyle}>
-            <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-              Dados do Cliente
-            </Title>
-            <Row gutter={[16, 12]}>
-              <Col span={24}>
-                <div style={labelStyle}>Nome</div>
-                <Text style={{ color: '#e0e0e0', fontSize: 14 }}>{cliente.nome}</Text>
-              </Col>
-              <Col span={12}>
-                <div style={labelStyle}>Nickname (ML)</div>
-                <Text style={{ color: '#c0c0c0', fontSize: 14 }}>{cliente.ml_nickname || '—'}</Text>
-              </Col>
-              <Col span={12}>
-                <div style={labelStyle}>Tipo</div>
-                <Tag color={cliente.tipo_pessoa === 'J' ? 'purple' : 'blue'}>
-                  {cliente.tipo_pessoa === 'J' ? 'PJ' : cliente.tipo_pessoa === 'F' ? 'PF' : '—'}
-                </Tag>
-              </Col>
-              <Col span={24}>
-                <div style={labelStyle}>Documento</div>
-                <Text style={{ fontFamily: 'monospace', fontSize: 14, color: '#e0e0e0' }}>{formatDoc(cliente.documento)}</Text>
-              </Col>
-              <Col span={24}>
-                <div style={labelStyle}>Endereço</div>
-                <Text style={{ color: '#e0e0e0', fontSize: 14 }}>{cliente.endereco || '—'}</Text>
-              </Col>
-              <Col span={24}>
-                <div style={labelStyle}>E-mail</div>
-                <Input
-                  value={cliente.email || ''}
-                  onChange={e => patch({ email: e.target.value })}
-                  style={{ ...inputStyle, borderColor: cliente.email && !emailValid ? '#ff4d4f' : undefined }}
-                  placeholder="email@exemplo.com"
-                />
-                {cliente.email && !emailValid && (
-                  <Text style={{ color: '#ff4d4f', fontSize: 12 }}>E-mail inválido</Text>
-                )}
-              </Col>
-              <Col span={24}>
-                <div style={labelStyle}>Telefone</div>
-                <Space.Compact style={{ width: '100%' }}>
-                  <Select
-                    value={ddi}
-                    onChange={setDdi}
-                    options={ddiOptions}
-                    style={{ width: 140 }}
-                  />
-                  <Input
-                    value={cliente.telefone || ''}
-                    onChange={e => patch({ telefone: maskPhone(e.target.value) })}
-                    style={inputStyle}
-                    placeholder="(11) 99999-9999"
-                    maxLength={15}
-                  />
-                </Space.Compact>
-              </Col>
-              <Col span={12}>
-                <div style={labelStyle}>Total de Pedidos</div>
-                <Text style={{ color: '#1677ff', fontWeight: 600, fontSize: 20 }}>{pedidos.length}</Text>
-              </Col>
-            </Row>
-          </Card>
-        </Col>
+      {error && (
+        <Alert
+          type="error"
+          showIcon
+          message="Não foi possível atualizar o cliente"
+          description={`${error} Os dados anteriores foram preservados.`}
+          action={<Button size="small" onClick={() => void fetchDetail()}>Tentar novamente</Button>}
+        />
+      )}
 
-        <Col xs={24} lg={12}>
-          <Card styles={{ body: { padding: 16 } }} style={cardStyle}>
-            <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-              Histórico de Pedidos
-            </Title>
-            {pedidos.length === 0 ? (
-              <Text type="secondary" style={{ color: '#666' }}>Nenhum pedido encontrado para este cliente.</Text>
-            ) : (
-              <Table
-                dataSource={pedidos}
-                columns={pedidosColumns}
-                rowKey="id"
-                pagination={{ pageSize: 10, showSizeChanger: false }}
-                size="small"
-                style={{ background: 'transparent' }}
-              />
-            )}
-          </Card>
-        </Col>
-      </Row>
+      <section className={styles.hero}>
+        <div className={styles.heroIdentity}>
+          <span className={styles.personType}>{personTypeLabel(client.personType)}</span>
+          <Title level={2}>{client.name}</Title>
+          <div className={styles.heroMeta}>
+            <span>{client.mlNickname ? `@${client.mlNickname}` : 'Nickname ML não informado'}</span>
+            <span>{client.mlId ? `ID ML ${client.mlId}` : 'ID ML não informado'}</span>
+          </div>
+        </div>
+        <div className={styles.summaryBand} aria-label="Resumo do cliente">
+          <div className={styles.summaryHighlight}>
+            <span>Pedidos</span>
+            <strong>{summary.orderCount.toLocaleString('pt-BR')}</strong>
+            <small>vendas vinculadas</small>
+          </div>
+          <div>
+            <span>Última compra</span>
+            <strong>{formatDate(summary.lastOrderAt)}</strong>
+            <small>{summary.lastOrderAt ? formatDateTime(summary.lastOrderAt).split(', ')[1] || 'horário registrado' : 'sem venda vinculada'}</small>
+          </div>
+          <div>
+            <span>Cliente desde</span>
+            <strong>{formatDate(client.createdAt)}</strong>
+            <small>cadastro no Bentevi</small>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.infoGrid} aria-label="Cadastro do cliente">
+        <article className={styles.infoCard}>
+          <div className={styles.cardHeader}>
+            <div>
+              <Title level={4}>Identidade</Title>
+              <Text>Dados oficiais do comprador</Text>
+            </div>
+            <span className={styles.sourceLabel}>Mercado Livre</span>
+          </div>
+          <dl className={styles.detailList}>
+            <div><dt>Nome</dt><dd>{readValue(client.name)}</dd></div>
+            <div><dt>Tipo</dt><dd>{personTypeLabel(client.personType)}</dd></div>
+            <div><dt>Documento</dt><dd className={styles.mono}>{formatDocument(client.document)}</dd></div>
+            <div><dt>ID Mercado Livre</dt><dd className={styles.mono}>{readValue(client.mlId)}</dd></div>
+          </dl>
+        </article>
+
+        <article className={styles.infoCard}>
+          <div className={styles.cardHeader}>
+            <div>
+              <Title level={4}>Contato</Title>
+              <Text>Informações mantidas pela equipe</Text>
+            </div>
+            <span className={styles.sourceLabel}>Bentevi</span>
+          </div>
+          <div className={styles.contactList}>
+            <div>
+              <MailOutlined />
+              <span><small>E-mail</small><strong>{readValue(client.email)}</strong></span>
+            </div>
+            <div>
+              <PhoneOutlined />
+              <span><small>Telefone</small><strong>{readValue(client.phone)}</strong></span>
+            </div>
+          </div>
+          {canEditContact && <Button type="link" icon={<EditOutlined />} onClick={openContactEditor}>Editar contato</Button>}
+        </article>
+
+        <article className={styles.infoCard}>
+          <div className={styles.cardHeader}>
+            <div>
+              <Title level={4}>Endereço</Title>
+              <Text>Destino sincronizado mais recente</Text>
+            </div>
+            <span className={styles.sourceLabel}>Mercado Livre</span>
+          </div>
+          <p className={client.address ? styles.address : styles.muted}>{readValue(client.address)}</p>
+          <small className={styles.updatedAt}>Cadastro atualizado em {formatDateTime(client.updatedAt)}</small>
+        </article>
+      </section>
+
+      <section className={styles.historyCard}>
+        <div className={styles.historyHeader}>
+          <div>
+            <Title level={4}>Histórico de vendas</Title>
+            <Text>Compras deste cliente vinculadas pelo ID oficial do Mercado Livre.</Text>
+          </div>
+          <strong>{detail.total.toLocaleString('pt-BR')} {detail.total === 1 ? 'venda' : 'vendas'}</strong>
+        </div>
+        {hasFixtureOrders && (
+          <Alert
+            className={styles.fixtureAlert}
+            type="info"
+            showIcon
+            message="Amostra protegida de homologação"
+            description="Os detalhes podem ser consultados, mas o acompanhamento externo está desabilitado nestas vendas."
+          />
+        )}
+        <Table<ClienteDetailOrder>
+          className={styles.historyTable}
+          rowKey="id"
+          dataSource={orders}
+          columns={columns}
+          loading={loading}
+          scroll={{ x: 1090 }}
+          size="middle"
+          locale={{ emptyText: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Este cliente ainda não possui vendas vinculadas" /> }}
+          pagination={{
+            current: detail.page,
+            pageSize: detail.pageSize,
+            total: detail.total,
+            showSizeChanger: false,
+            hideOnSinglePage: true,
+            showTotal: (value) => `${value.toLocaleString('pt-BR')} ${value === 1 ? 'venda' : 'vendas'}`,
+            onChange: setPage,
+          }}
+        />
+      </section>
+
+      <Modal
+        title="Editar contato"
+        open={editorOpen}
+        onCancel={closeContactEditor}
+        onOk={() => form.submit()}
+        okText="Salvar contato"
+        cancelText="Cancelar"
+        confirmLoading={saving}
+        destroyOnHidden
+      >
+        <Alert
+          className={styles.contactAlert}
+          type="info"
+          showIcon
+          message="Contato local do Bentevi"
+          description="Nome, documento e endereço continuam sendo atualizados pelo Mercado Livre."
+        />
+        <Form<ClienteContactUpdate> form={form} layout="vertical" onFinish={saveContact} requiredMark={false}>
+          <Form.Item
+            name="email"
+            label="E-mail"
+            rules={[{ type: 'email', message: 'Informe um e-mail válido' }, { max: 254, message: 'O e-mail é muito longo' }]}
+          >
+            <Input allowClear prefix={<MailOutlined />} placeholder="email@exemplo.com" />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            label="Telefone"
+            rules={[
+              { max: 32, message: 'O telefone é muito longo' },
+              { pattern: /^[+\d\s().-]*$/, message: 'Use apenas números e caracteres de telefone' },
+            ]}
+          >
+            <Input allowClear prefix={<PhoneOutlined />} placeholder="+55 (11) 99999-9999" />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <TrackingModal
+        open={Boolean(trackingOrder)}
+        onClose={() => setTrackingOrder(null)}
+        orderId={trackingOrder?.id || ''}
+        orderStatus={trackingOrder?.status || 'aberto'}
+      />
     </div>
   );
 }

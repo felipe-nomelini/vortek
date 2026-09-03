@@ -24,6 +24,46 @@ export type DsliteLabelOperationalStatus =
   | 'failed'
   | 'unknown';
 
+export const ORDER_STATUS_OPTIONS = [
+  { value: 'aberto', label: 'Aberto' },
+  { value: 'pendente', label: 'Pendente' },
+  { value: 'preparando', label: 'Preparando' },
+  { value: 'pronto_envio', label: 'Pronto p/ envio' },
+  { value: 'etiqueta_impressa', label: 'Etiqueta impressa' },
+  { value: 'coletado', label: 'Coletado' },
+  { value: 'em_transito', label: 'Em trânsito' },
+  { value: 'saiu_entrega', label: 'Saiu para entrega' },
+  { value: 'dest_ausente', label: 'Destinatário ausente' },
+  { value: 'atendido', label: 'Atendido' },
+  { value: 'faturado', label: 'Faturado' },
+  { value: 'entregue', label: 'Entregue' },
+  { value: 'recusado', label: 'Recusado' },
+  { value: 'devolvido', label: 'Devolvido' },
+  { value: 'cancelado', label: 'Cancelado' },
+] as const;
+
+export const ORDER_STATUS_LABELS = Object.fromEntries(
+  ORDER_STATUS_OPTIONS.map((option) => [option.value, option.label]),
+) as Record<(typeof ORDER_STATUS_OPTIONS)[number]['value'], string>;
+
+export const ORDER_STATUS_COLORS: Record<(typeof ORDER_STATUS_OPTIONS)[number]['value'], string> = {
+  aberto: 'blue',
+  pendente: 'orange',
+  preparando: 'processing',
+  pronto_envio: 'cyan',
+  etiqueta_impressa: 'blue',
+  coletado: 'geekblue',
+  em_transito: 'purple',
+  saiu_entrega: 'cyan',
+  dest_ausente: 'red',
+  atendido: 'processing',
+  faturado: 'purple',
+  entregue: 'green',
+  recusado: 'red',
+  devolvido: 'magenta',
+  cancelado: 'default',
+};
+
 export const PREPARATION_ORDER_STATUSES = [
   'aberto',
   'pendente',

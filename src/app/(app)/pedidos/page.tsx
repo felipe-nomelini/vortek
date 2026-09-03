@@ -27,6 +27,9 @@ import { isHomologationFixtureSource } from '@/lib/homologation-fixture';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 import {
   PREPARATION_ORDER_STATUSES,
+  ORDER_STATUS_COLORS,
+  ORDER_STATUS_LABELS,
+  ORDER_STATUS_OPTIONS,
   SALES_PROGRESS_STAGES,
   SHIPPING_ORDER_STATUSES,
   getOrderSalesProgress,
@@ -53,31 +56,9 @@ const TERMINAL_STATUSES: OrderStatus[] = ['cancelado', 'entregue', 'devolvido', 
 const OPERATIONAL_VIEW_KEYS: OrdersOperationalView[] = ['urgent', 'preparation', 'shipping', 'delivered', 'all'];
 const VALID_ROLES: VortekRole[] = ['admin', 'gerente', 'operador', 'visualizador'];
 
-const statusOptions = [
-  { value: 'aberto', label: 'Aberto' },
-  { value: 'pendente', label: 'Pendente' },
-  { value: 'preparando', label: 'Preparando' },
-  { value: 'pronto_envio', label: 'Pronto p/ envio' },
-  { value: 'etiqueta_impressa', label: 'Etiqueta impressa' },
-  { value: 'coletado', label: 'Coletado' },
-  { value: 'em_transito', label: 'Em trânsito' },
-  { value: 'saiu_entrega', label: 'Saiu para entrega' },
-  { value: 'dest_ausente', label: 'Destinatário ausente' },
-  { value: 'atendido', label: 'Atendido' },
-  { value: 'faturado', label: 'Faturado' },
-  { value: 'entregue', label: 'Entregue' },
-  { value: 'recusado', label: 'Recusado' },
-  { value: 'devolvido', label: 'Devolvido' },
-  { value: 'cancelado', label: 'Cancelado' },
-] as const;
-
-const statusLabel = Object.fromEntries(statusOptions.map((option) => [option.value, option.label])) as Record<OrderStatus, string>;
-const statusColor: Record<OrderStatus, string> = {
-  aberto: 'blue', pendente: 'orange', preparando: 'processing', pronto_envio: 'cyan',
-  etiqueta_impressa: 'blue', coletado: 'geekblue', em_transito: 'purple',
-  saiu_entrega: 'cyan', dest_ausente: 'red', atendido: 'processing', faturado: 'purple',
-  entregue: 'green', recusado: 'red', devolvido: 'magenta', cancelado: 'default',
-};
+const statusOptions = ORDER_STATUS_OPTIONS;
+const statusLabel = ORDER_STATUS_LABELS as Record<OrderStatus, string>;
+const statusColor = ORDER_STATUS_COLORS as Record<OrderStatus, string>;
 
 interface SummaryData {
   count: number;
