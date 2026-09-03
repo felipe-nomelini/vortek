@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { fetchAllRowsPaginated } from '@/lib/produto-filtering';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
@@ -34,12 +35,6 @@ function chunk<T>(items: T[], size: number): T[][] {
 function toPublicError(error: unknown, fallback: string) {
   const message = error instanceof Error ? error.message : String(error || fallback);
   return message.length > 240 ? `${message.slice(0, 237)}...` : message;
-}
-
-async function requireUser() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  return user;
 }
 
 async function loadFornecedor(client: any, id: string) {
@@ -204,12 +199,10 @@ function buildImpact(
   };
 }
 
-export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
+export async function GET(request: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
-  const user = await requireUser();
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+  const auth = await authorizeApiRequest(request, 'suppliers.manage');
+  if (!auth.ok) return auth.response;
 
   try {
     const client = createServiceClient();
@@ -240,10 +233,8 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
 
 export async function PATCH(req: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
-  const user = await requireUser();
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+  const auth = await authorizeApiRequest(req, 'suppliers.manage');
+  if (!auth.ok) return auth.response;
 
   try {
     const body = await req.json().catch(() => ({}));

@@ -62,6 +62,13 @@ test("todos os cargos internos podem consultar vendas", () => {
   }
 });
 
+test("somente gestão administra fornecedores", () => {
+  assert.equal(hasPermission("admin", "suppliers.manage"), true);
+  assert.equal(hasPermission("gerente", "suppliers.manage"), true);
+  assert.equal(hasPermission("operador", "suppliers.manage"), false);
+  assert.equal(hasPermission("visualizador", "suppliers.manage"), false);
+});
+
 test("cookie web e Bearer convergem na mesma checagem de permissão", () => {
   const source = fs.readFileSync(
     path.resolve(__dirname, "../src/lib/api-request-auth.ts"),

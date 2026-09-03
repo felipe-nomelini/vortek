@@ -1,456 +1,599 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Input, Button, Dropdown, Typography, Row, Col, Select, Tag, Spin, Modal, message } from 'antd';
+import {
+  Alert,
+  Badge,
+  Button,
+  Dropdown,
+  Empty,
+  Input,
+  Modal,
+  Select,
+  Spin,
+  Tag,
+  Tooltip,
+  Typography,
+  message,
+} from 'antd';
+import type { TableProps } from 'antd';
+import {
+  CheckCircleOutlined,
+  EllipsisOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  ReloadOutlined,
+  RightOutlined,
+  SearchOutlined,
+  StopOutlined,
+  SyncOutlined,
+} from '@ant-design/icons';
 import ResizableTable from '@/components/ResizableTable';
-import type { TablePaginationConfig, TableProps } from 'antd';
-import type { SorterResult } from 'antd/es/table/interface';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined, ReloadOutlined } from '@ant-design/icons';
-import type { Database } from '@/types/database';
+import { hasPermission, type VortekRole } from '@/lib/permissions';
+import {
+  appendRemoteSortParams,
+  getRemoteSortOrder,
+  resolveRemoteSortState,
+  type RemoteSortState,
+} from '@/lib/remote-sort';
+import type {
+  FornecedorListItem,
+  FornecedoresFilterOptions,
+  FornecedoresListResponse,
+  FornecedoresSummary,
+} from '@/types/fornecedores';
+import styles from './fornecedores.module.css';
 
-const { Title } = Typography;
+const { Text, Title } = Typography;
 
-type FornecedorRow = Database['public']['Tables']['fornecedores']['Row'];
-type SortOrder = 'asc' | 'desc';
+type OperationalStatus = 'active' | 'inactive' | 'all';
+type FreshnessFilter = '' | 'healthy' | 'attention';
+type SyncFeedback = {
+  type: 'info' | 'success' | 'warning' | 'error';
+  title: string;
+  description: string;
+} | null;
 
-function formatDate(date: string | null): string {
-  if (!date) return '—';
-  const d = new Date(date);
-  if (Number.isNaN(d.getTime())) return '—';
-  return d.toLocaleString('pt-BR');
+const VALID_ROLES: VortekRole[] = ['admin', 'gerente', 'operador', 'visualizador'];
+const EMPTY_SUMMARY: FornecedoresSummary = {
+  total: 0,
+  active: 0,
+  inactive: 0,
+  sync_attention: 0,
+  last_sync_at: null,
+};
+const EMPTY_OPTIONS: FornecedoresFilterOptions = {
+  status_dslite: [],
+  crossdocking: [],
+  dropshipping: [],
+};
+
+function supplierLabel(supplier: FornecedorListItem): string {
+  return supplier.apelido || supplier.nome || supplier.dslite_id || 'Fornecedor';
 }
 
-function statusColor(value: string): string {
-  if (!value) return 'default';
-  const normalized = value.toLowerCase();
-  if (normalized.includes('ativo') || normalized.includes('ok')) return 'green';
-  if (normalized.includes('inativo') || normalized.includes('bloque')) return 'red';
-  return 'blue';
+function formatDocument(value: string | null): string {
+  const digits = String(value || '').replace(/\D/g, '');
+  if (digits.length === 14) {
+    return digits.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+  }
+  return value?.trim() || 'CNPJ não informado';
 }
 
-function statusBadgeColor(value: string): string {
-  const normalized = (value || '').toLowerCase();
-  if (normalized.includes('ativo')) return 'green';
-  if (normalized.includes('inativo') || normalized.includes('bloque')) return 'red';
-  return 'default';
+function formatExactDate(value: string | null): string {
+  if (!value) return 'Sincronização ainda não registrada';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Data de sincronização inválida';
+  return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+}
+
+function relativeDate(value: string | null): string {
+  if (!value) return 'Nunca sincronizado';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Data desconhecida';
+  const minutes = Math.max(0, Math.floor((Date.now() - date.getTime()) / 60_000));
+  if (minutes < 1) return 'Agora';
+  if (minutes < 60) return `Há ${minutes} min`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `Há ${hours} h`;
+  const days = Math.floor(hours / 24);
+  return `Há ${days} dia${days === 1 ? '' : 's'}`;
+}
+
+function updatedAtLabel(value: Date | null): string {
+  if (!value) return 'Aguardando primeira atualização';
+  return `Dados atualizados às ${value.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+}
+
+function isEnabled(value: string | null): boolean {
+  const normalized = String(value || '').trim().toLowerCase();
+  return normalized.includes('ativo') || normalized === 'sim' || normalized === 'true';
+}
+
+function modalityLine(label: string, value: string | null) {
+  const enabled = isEnabled(value);
+  return (
+    <span className={enabled ? styles.modalityEnabled : styles.modalityDisabled}>
+      {enabled ? <CheckCircleOutlined /> : <StopOutlined />}
+      <strong>{label}</strong>
+      <small>{value || 'Não informado'}</small>
+    </span>
+  );
 }
 
 export default function FornecedoresPage() {
-  const [messageApi, contextHolder] = message.useMessage();
-  const [rows, setRows] = useState<FornecedorRow[]>([]);
+  const [messageApi, messageContextHolder] = message.useMessage();
+  const [modal, modalContextHolder] = Modal.useModal();
+  const [suppliers, setSuppliers] = useState<FornecedorListItem[]>([]);
+  const [summary, setSummary] = useState<FornecedoresSummary>(EMPTY_SUMMARY);
+  const [filterOptions, setFilterOptions] = useState<FornecedoresFilterOptions>(EMPTY_OPTIONS);
   const [loading, setLoading] = useState(true);
-  const [syncing, setSyncing] = useState(false);
-  const [statusChangingId, setStatusChangingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
-
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'apelido', sortOrder: 'asc' });
   const [search, setSearch] = useState('');
-  const [lastSearch, setLastSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState<string>('');
-  const [crossFilter, setCrossFilter] = useState<string>('');
-  const [dropFilter, setDropFilter] = useState<string>('');
+  const [committedSearch, setCommittedSearch] = useState('');
+  const [operationalStatus, setOperationalStatus] = useState<OperationalStatus>('active');
+  const [crossdocking, setCrossdocking] = useState('');
+  const [dropshipping, setDropshipping] = useState('');
+  const [freshness, setFreshness] = useState<FreshnessFilter>('');
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+  const [role, setRole] = useState<VortekRole | null>(null);
+  const [syncing, setSyncing] = useState(false);
+  const [syncFeedback, setSyncFeedback] = useState<SyncFeedback>(null);
+  const [statusChangingId, setStatusChangingId] = useState<string | null>(null);
+  const requestSequence = useRef(0);
+  const canManage = Boolean(role && hasPermission(role, 'suppliers.manage'));
 
-  const [sortBy, setSortBy] = useState<string>('dslite_id');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+  useEffect(() => {
+    fetch('/api/auth/me', { cache: 'no-store' })
+      .then((response) => response.ok ? response.json() : null)
+      .then((profile) => {
+        const cargo = profile?.cargo as VortekRole | undefined;
+        setRole(cargo && VALID_ROLES.includes(cargo) ? cargo : null);
+      })
+      .catch(() => setRole(null));
+  }, []);
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-
-  const [statusOptions, setStatusOptions] = useState<Array<{ value: string; label: string }>>([]);
-  const [crossOptions, setCrossOptions] = useState<Array<{ value: string; label: string }>>([]);
-  const [dropOptions, setDropOptions] = useState<Array<{ value: string; label: string }>>([]);
-
-  const fetchFornecedores = useCallback(async () => {
+  const fetchSuppliers = useCallback(async () => {
+    const requestId = ++requestSequence.current;
     setLoading(true);
+    setError(null);
+
     try {
       const params = new URLSearchParams({
         page: String(page),
         limit: String(pageSize),
-        sortBy,
-        sortOrder,
+        ativo: operationalStatus,
       });
+      appendRemoteSortParams(params, sort);
+      if (committedSearch) params.set('search', committedSearch);
+      if (crossdocking) params.set('crossdocking', crossdocking);
+      if (dropshipping) params.set('dropshipping', dropshipping);
+      if (freshness) params.set('freshness', freshness);
 
-      if (lastSearch) params.set('search', lastSearch);
-      if (statusFilter) params.set('status_dslite', statusFilter);
-      if (crossFilter) params.set('crossdocking', crossFilter);
-      if (dropFilter) params.set('dropshipping', dropFilter);
-
-      const res = await fetch(`/api/fornecedores?${params.toString()}`);
-      if (!res.ok) return;
-
-      const json = await res.json();
-      const data: FornecedorRow[] = json.data || [];
-      setRows(data);
-      setTotal(json.total || 0);
-
-      const statuses = new Set<string>();
-      const cross = new Set<string>();
-      const drop = new Set<string>();
-      for (const item of data) {
-        if (item.status_dslite) statuses.add(item.status_dslite);
-        if (item.crossdocking) cross.add(item.crossdocking);
-        if (item.dropshipping) drop.add(item.dropshipping);
+      const response = await fetch(`/api/fornecedores?${params.toString()}`, { cache: 'no-store' });
+      const payload = await response.json() as Partial<FornecedoresListResponse> & { error?: string };
+      if (!response.ok) throw new Error(payload.error || 'Não foi possível carregar os fornecedores');
+      if (!Array.isArray(payload.data) || !payload.summary || !payload.filters) {
+        throw new Error('A consulta de fornecedores retornou um formato inválido');
       }
-      setStatusOptions(Array.from(statuses).sort().map((v) => ({ value: v, label: v })));
-      setCrossOptions(Array.from(cross).sort().map((v) => ({ value: v, label: v })));
-      setDropOptions(Array.from(drop).sort().map((v) => ({ value: v, label: v })));
+
+      if (requestId !== requestSequence.current) return;
+      setSuppliers(payload.data);
+      setTotal(Number(payload.total || 0));
+      setSummary(payload.summary);
+      setFilterOptions(payload.filters);
+      setUpdatedAt(new Date());
+    } catch (cause) {
+      if (requestId !== requestSequence.current) return;
+      setError(cause instanceof Error ? cause.message : 'Não foi possível carregar os fornecedores');
     } finally {
-      setLoading(false);
+      if (requestId === requestSequence.current) setLoading(false);
     }
-  }, [page, pageSize, sortBy, sortOrder, lastSearch, statusFilter, crossFilter, dropFilter]);
+  }, [committedSearch, crossdocking, dropshipping, freshness, operationalStatus, page, pageSize, sort]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (search !== lastSearch) {
+    const timer = window.setTimeout(() => {
+      if (search !== committedSearch) {
         setPage(1);
-        setLastSearch(search);
+        setCommittedSearch(search.trim());
       }
-    }, 350);
-    return () => clearTimeout(timer);
-  }, [search, lastSearch]);
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [committedSearch, search]);
 
   useEffect(() => {
-    fetchFornecedores();
-  }, [fetchFornecedores]);
+    void fetchSuppliers();
+  }, [fetchSuppliers]);
 
-  const syncFornecedores = useCallback(async () => {
+  const clearFilters = () => {
+    setSearch('');
+    setCommittedSearch('');
+    setOperationalStatus('active');
+    setCrossdocking('');
+    setDropshipping('');
+    setFreshness('');
+    setPage(1);
+  };
+
+  const selectSummary = (key: 'active' | 'inactive' | 'attention') => {
+    setPage(1);
+    if (key === 'attention') {
+      setOperationalStatus('all');
+      setFreshness('attention');
+      return;
+    }
+    setOperationalStatus(key);
+    setFreshness('');
+  };
+
+  const syncSuppliers = useCallback(async () => {
     setSyncing(true);
+    setSyncFeedback({
+      type: 'info',
+      title: 'Sincronização DSLite em andamento',
+      description: 'Aguarde a confirmação antes de iniciar outra atualização.',
+    });
     try {
-      const res = await fetch('/api/fornecedores/sync', {
+      const response = await fetch('/api/fornecedores/sync', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || json?.success === false) {
-        throw new Error(json?.error || json?.errors?.[0]?.message || 'Falha ao atualizar fornecedores');
-      }
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || payload?.errors?.[0]?.message || 'Falha ao sincronizar fornecedores');
 
-      messageApi.success(
-        `Fornecedores atualizados: ${json.records?.inserted || json.inseridos || 0} novos, ${json.records?.updated || json.atualizados || 0} atualizados.`,
-      );
-      await fetchFornecedores();
-    } catch (err: any) {
-      messageApi.error(err?.message || 'Erro ao atualizar fornecedores');
+      const records = payload?.records || {};
+      const errorCount = Array.isArray(payload?.errors) ? payload.errors.length : 0;
+      const description = `${Number(records.inserted || 0)} incluídos, ${Number(records.updated || 0)} atualizados e ${Number(records.deactivated || 0)} inativados.`;
+      setSyncFeedback({
+        type: errorCount > 0 || payload?.success === false ? 'warning' : 'success',
+        title: errorCount > 0 || payload?.success === false ? 'Sincronização concluída com atenção' : 'Sincronização concluída',
+        description: errorCount > 0 ? `${description} ${errorCount} ocorrência(s) exigem revisão.` : description,
+      });
+      await fetchSuppliers();
+    } catch (cause) {
+      setSyncFeedback({
+        type: 'error',
+        title: 'Não foi possível sincronizar os fornecedores',
+        description: cause instanceof Error ? cause.message : 'Falha inesperada na sincronização DSLite.',
+      });
     } finally {
       setSyncing(false);
     }
-  }, [fetchFornecedores, messageApi]);
+  }, [fetchSuppliers]);
 
-  const toggleFornecedorStatus = useCallback(async (record: FornecedorRow, ativo: boolean) => {
-    const fornecedorLabel = record.apelido || record.nome || record.dslite_id || 'fornecedor';
-
-    const executeToggle = async () => {
-      setStatusChangingId(record.id);
-      try {
-        const res = await fetch(`/api/fornecedores/${record.id}/status`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ativo }),
-        });
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok && res.status !== 207) {
-          throw new Error(json?.error || 'Falha ao atualizar fornecedor');
-        }
-
-        if (ativo) {
-          messageApi.success(`Fornecedor ${fornecedorLabel} ativado. Produtos continuam inativos até ativação manual.`);
-        } else {
-          const records = json?.records || {};
-          const deleted =
-            Number(records.ml_delete_enqueued || 0)
-            + Number(records.ml_delete_updated_existing || 0)
-            + Number(records.ml_delete_reopened_failed || 0);
-          messageApi.success(
-            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos e ${records.supplier_offers_inactivated || 0} ofertas inativadas; ${deleted} exclusões ML enfileiradas.`,
-          );
-          if (Number(records.ml_delete_failed || 0) > 0) {
-            messageApi.warning(`${records.ml_delete_failed} anúncios não entraram na fila de exclusão. Verifique logs.`);
-          }
-        }
-
-        await fetchFornecedores();
-      } catch (err: any) {
-        messageApi.error(err?.message || 'Erro ao atualizar fornecedor');
-      } finally {
-        setStatusChangingId(null);
-      }
-    };
-
-    if (ativo) {
-      Modal.confirm({
-        title: `Ativar fornecedor ${fornecedorLabel}?`,
-        content: 'Os produtos vinculados continuarão inativos. A ativação deles será manual.',
-        okText: 'Ativar',
-        cancelText: 'Cancelar',
-        onOk: executeToggle,
-      });
-      return;
-    }
-
-    setStatusChangingId(record.id);
+  const executeStatusChange = useCallback(async (supplier: FornecedorListItem, ativo: boolean) => {
+    setStatusChangingId(supplier.id);
     try {
-      const impactRes = await fetch(`/api/fornecedores/${record.id}/status`);
-      const impactJson = await impactRes.json().catch(() => ({}));
-      if (!impactRes.ok) {
-        throw new Error(impactJson?.error || 'Falha ao calcular impacto do fornecedor');
-      }
-      const impact = impactJson?.impact || {};
-      Modal.confirm({
-        title: `Inativar fornecedor ${fornecedorLabel}?`,
-        content: (
-          <div>
-            <p>Isso vai inativar produtos vinculados a este fornecedor.</p>
-            <p><strong>Os anúncios sem outro fornecedor ativo serão excluídos definitivamente do Mercado Livre.</strong></p>
-            <p>
-              Produtos encontrados: <strong>{impact.products_found || 0}</strong><br />
-              Produtos ativos afetados: <strong>{impact.products_active || 0}</strong><br />
-              Ofertas ativas afetadas: <strong>{impact.supplier_offers_active || 0}</strong><br />
-              Anúncios ML que serão excluídos: <strong>{impact.ml_delete_candidates || 0}</strong>
-            </p>
-            <p>Se o fornecedor voltar, os produtos continuarão inativos até ativação manual.</p>
-          </div>
-        ),
-        okText: 'Inativar',
-        okButtonProps: { danger: true },
-        cancelText: 'Cancelar',
-        onOk: executeToggle,
+      const response = await fetch(`/api/fornecedores/${supplier.id}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ativo }),
       });
-    } catch (err: any) {
-      messageApi.error(err?.message || 'Erro ao calcular impacto do fornecedor');
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok && response.status !== 207) {
+        throw new Error(payload?.error || 'Não foi possível alterar o fornecedor');
+      }
+      messageApi.success(`${supplierLabel(supplier)} foi ${ativo ? 'ativado' : 'inativado'}.`);
+      await fetchSuppliers();
+    } catch (cause) {
+      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível alterar o fornecedor');
     } finally {
       setStatusChangingId(null);
     }
-  }, [fetchFornecedores, messageApi]);
+  }, [fetchSuppliers, messageApi]);
 
-  const columns: TableProps<FornecedorRow>['columns'] = [
+  const confirmStatusChange = useCallback(async (supplier: FornecedorListItem, ativo: boolean) => {
+    if (ativo) {
+      const confirmed = await modal.confirm({
+        title: `Ativar ${supplierLabel(supplier)}?`,
+        content: 'Os produtos vinculados continuarão inativos até uma ativação manual.',
+        okText: 'Ativar fornecedor',
+        cancelText: 'Cancelar',
+      });
+      if (confirmed) await executeStatusChange(supplier, true);
+      return;
+    }
+
+    setStatusChangingId(supplier.id);
+    try {
+      const response = await fetch(`/api/fornecedores/${supplier.id}/status`, { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload?.error || 'Não foi possível calcular o impacto');
+      const impact = payload?.impact || {};
+      const confirmed = await modal.confirm({
+        title: `Inativar ${supplierLabel(supplier)}?`,
+        content: (
+          <div className={styles.impactSummary}>
+            <p>A operação afeta o catálogo vinculado e não deve ser usada apenas para ocultar um cadastro.</p>
+            <dl>
+              <div><dt>Produtos ativos</dt><dd>{Number(impact.products_active || 0)}</dd></div>
+              <div><dt>Ofertas ativas</dt><dd>{Number(impact.supplier_offers_active || 0)}</dd></div>
+              <div><dt>Anúncios a excluir</dt><dd>{Number(impact.ml_delete_candidates || 0)}</dd></div>
+            </dl>
+            <strong>Anúncios sem outro fornecedor ativo serão excluídos do Mercado Livre.</strong>
+          </div>
+        ),
+        okText: 'Inativar fornecedor',
+        okButtonProps: { danger: true },
+        cancelText: 'Cancelar',
+      });
+      if (confirmed) await executeStatusChange(supplier, false);
+    } catch (cause) {
+      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível calcular o impacto');
+    } finally {
+      setStatusChangingId(null);
+    }
+  }, [executeStatusChange, messageApi, modal]);
+
+  const columns: TableProps<FornecedorListItem>['columns'] = [
     {
-      title: 'ID DSLite',
-      dataIndex: 'dslite_id',
-      key: 'dslite_id',
-      width: 120,
-      sorter: true,
-      render: (v: string | null) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
-    },
-    {
-      title: 'Apelido',
-      dataIndex: 'apelido',
+      title: 'Fornecedor',
       key: 'apelido',
-      width: 180,
+      width: 310,
       sorter: true,
-      render: (v: string, record: FornecedorRow) => (
-        <Link href={`/fornecedores/${record.id}`} style={{ color: '#1677ff' }}>
-          {v || record.nome || record.dslite_id || '—'}
-        </Link>
-      ),
-    },
-    {
-      title: 'Capacidades',
-      dataIndex: 'status_dslite',
-      key: 'status_dslite',
-      width: 290,
-      sorter: true,
-      render: (_: string, record: FornecedorRow) => (
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          <Tag color={statusColor(record.status_dslite)}>Status: {record.status_dslite || '—'}</Tag>
-          <Tag color={statusBadgeColor(record.crossdocking)}>Cross: {record.crossdocking || '—'}</Tag>
-          <Tag color={statusBadgeColor(record.dropshipping)}>Drop: {record.dropshipping || '—'}</Tag>
+      sortOrder: getRemoteSortOrder('apelido', sort),
+      render: (_, supplier) => (
+        <div className={styles.supplierCell}>
+          <Link href={`/fornecedores/${supplier.id}`}>{supplierLabel(supplier)}</Link>
+          <span>{supplier.nome || 'Razão social não informada'}</span>
+          <small>{formatDocument(supplier.cnpj)} · DSLite {supplier.dslite_id || 'sem ID'}</small>
         </div>
       ),
     },
     {
-      title: 'Status Vortek',
-      dataIndex: 'ativo',
-      key: 'ativo',
-      width: 130,
-      sorter: true,
-      render: (ativo: boolean | null) => (
-        <Tag color={ativo === false ? 'red' : 'green'}>{ativo === false ? 'Inativo' : 'Ativo'}</Tag>
+      title: 'Modalidades',
+      key: 'modalities',
+      width: 245,
+      render: (_, supplier) => (
+        <div className={styles.modalitiesCell}>
+          {modalityLine('Cross-docking', supplier.crossdocking)}
+          {modalityLine('Dropshipping', supplier.dropshipping)}
+        </div>
       ),
     },
     {
-      title: 'Nome',
-      dataIndex: 'nome',
-      key: 'nome',
-      width: 220,
+      title: 'Situação',
+      key: 'ativo',
+      width: 190,
       sorter: true,
-      render: (v: string, record: FornecedorRow) => (
-        <Link href={`/fornecedores/${record.id}`} style={{ color: '#1677ff' }}>
-          {v || record.apelido || record.dslite_id || '—'}
-        </Link>
+      sortOrder: getRemoteSortOrder('ativo', sort),
+      render: (_, supplier) => (
+        <div className={styles.statusCell}>
+          <Tag color={supplier.ativo === false ? 'default' : 'green'}>
+            {supplier.ativo === false ? 'Inativo' : 'Operacional'}
+          </Tag>
+          <span>DSLite: {supplier.status_dslite || 'não informado'}</span>
+          {supplier.activation_blocked && <small>Histórico · reativação bloqueada</small>}
+        </div>
       ),
     },
     {
       title: 'Contato',
-      key: 'contato',
-      width: 300,
-      render: (_: unknown, record: FornecedorRow) => (
-        <div>
-          <div style={{ fontFamily: 'monospace', color: '#d9d9d9' }}>
-            CNPJ: {record.cnpj || '—'}
-          </div>
-          <div style={{ color: '#a6a6a6', fontSize: 12 }}>
-            E-mail: {record.email || '—'}
-          </div>
-          <div style={{ color: '#a6a6a6', fontSize: 12 }}>
-            Telefone: {record.telefone || <Tag color="red" style={{ marginInlineStart: 4 }}>Sem WhatsApp</Tag>}
-          </div>
+      key: 'contact',
+      width: 245,
+      render: (_, supplier) => supplier.email || supplier.telefone ? (
+        <div className={styles.contactCell}>
+          {supplier.telefone && <span><PhoneOutlined />{supplier.telefone}</span>}
+          {supplier.email && <span><MailOutlined />{supplier.email}</span>}
         </div>
-      ),
+      ) : <span className={styles.missing}>Contato não informado</span>,
     },
     {
-      title: 'Última Sync',
-      dataIndex: 'dslite_ultima_sync',
+      title: 'Última sincronização',
       key: 'dslite_ultima_sync',
-      width: 180,
+      width: 190,
       sorter: true,
-      render: (v: string | null) => formatDate(v),
+      sortOrder: getRemoteSortOrder('dslite_ultima_sync', sort),
+      render: (_, supplier) => (
+        <Tooltip title={formatExactDate(supplier.dslite_ultima_sync)}>
+          <div className={styles.syncCell}>
+            <Badge status={supplier.sync_health === 'healthy' ? 'success' : supplier.sync_health === 'attention' ? 'warning' : 'default'} />
+            <span>{relativeDate(supplier.dslite_ultima_sync)}</span>
+            <small>{supplier.sync_health === 'healthy' ? 'Dentro da frequência' : 'Sincronização requer atenção'}</small>
+          </div>
+        </Tooltip>
+      ),
     },
     {
       title: 'Ações',
       key: 'actions',
-      width: 60,
+      width: canManage ? 180 : 145,
       fixed: 'right',
-      render: (_, record) => (
-        <Dropdown
-          menu={{
-            items: [
-              { key: 'details', label: 'Ver / editar detalhes' },
-              { key: 'view', label: 'Visualizar payload DSLite' },
-              { key: 'dslite', label: 'Ver no DSLite' },
-              {
-                type: 'divider',
-              },
-              {
-                key: record.ativo === false ? 'activate' : 'deactivate',
-                label: record.ativo === false ? 'Ativar fornecedor' : 'Inativar fornecedor',
-                danger: record.ativo !== false,
-              },
-            ],
-            onClick: ({ key }) => {
-              if (key === 'details') {
-                // Preserva a navegação completa já usada por este menu legado.
-                // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-                window.location.href = `/fornecedores/${record.id}`;
-              }
-              if (key === 'view') {
-                window.console.log('[fornecedor payload]', record.payload_dslite);
-              }
-              if (key === 'activate') {
-                toggleFornecedorStatus(record, true);
-              }
-              if (key === 'deactivate') {
-                toggleFornecedorStatus(record, false);
-              }
-            },
-          }}
-          trigger={['click']}
-        >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} loading={statusChangingId === record.id} />
-        </Dropdown>
+      render: (_, supplier) => (
+        <div className={styles.actionsCell}>
+          <Link href={`/fornecedores/${supplier.id}`}>
+            <Button size="small" icon={<RightOutlined />} iconPosition="end">Ver fornecedor</Button>
+          </Link>
+          {canManage && (
+            <Dropdown
+              trigger={['click']}
+              menu={{
+                items: [{
+                  key: supplier.ativo === false ? 'activate' : 'deactivate',
+                  label: supplier.ativo === false
+                    ? supplier.activation_blocked ? 'Reativação bloqueada' : 'Ativar fornecedor'
+                    : 'Inativar fornecedor',
+                  danger: supplier.ativo !== false,
+                  disabled: supplier.ativo === false && supplier.activation_blocked,
+                }],
+                onClick: ({ key }) => void confirmStatusChange(supplier, key === 'activate'),
+              }}
+            >
+              <Button
+                aria-label={`Outras ações de ${supplierLabel(supplier)}`}
+                size="small"
+                icon={<EllipsisOutlined />}
+                loading={statusChangingId === supplier.id}
+              />
+            </Dropdown>
+          )}
+        </div>
       ),
     },
   ];
 
-  const handleTableChange = (
-    pagination: TablePaginationConfig,
-    _filters: Record<string, (React.Key | boolean)[] | null>,
-    sorter: SorterResult<FornecedorRow> | SorterResult<FornecedorRow>[],
-  ) => {
-    if (pagination.current) setPage(pagination.current);
-    if (pagination.pageSize) setPageSize(pagination.pageSize);
-
-    if (Array.isArray(sorter)) return;
-    if (!sorter.order || !sorter.field) return;
-
-    setSortBy(String(sorter.field));
-    setSortOrder(sorter.order === 'descend' ? 'desc' : 'asc');
+  const handleTableChange: TableProps<FornecedorListItem>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'apelido', sortOrder: 'asc' });
+    const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
+    setSort(nextSort);
+    setPageSize(pagination.pageSize || 20);
+    setPage(sortChanged ? 1 : (pagination.current || 1));
   };
 
+  const hasSecondaryFilters = Boolean(
+    committedSearch || operationalStatus !== 'active' || crossdocking || dropshipping || freshness,
+  );
+
   return (
-    <div>
-      {contextHolder}
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Fornecedores</Title>
-
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
-            <Input
-              placeholder="Buscar (ID DSLite, apelido, razão social, CNPJ, e-mail ou telefone)"
-              prefix={<SearchOutlined />}
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{ width: 420 }}
-              allowClear
-              onClear={() => {
-                setSearch('');
-                setLastSearch('');
-                setPage(1);
-              }}
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Status"
-              value={statusFilter || undefined}
-              onChange={(v) => { setStatusFilter(v || ''); setPage(1); }}
-              options={[{ value: '', label: 'Todos os status' }, ...statusOptions]}
-              style={{ width: 180 }}
-              allowClear
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Crossdocking"
-              value={crossFilter || undefined}
-              onChange={(v) => { setCrossFilter(v || ''); setPage(1); }}
-              options={[{ value: '', label: 'Todos' }, ...crossOptions]}
-              style={{ width: 150 }}
-              allowClear
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Dropshipping"
-              value={dropFilter || undefined}
-              onChange={(v) => { setDropFilter(v || ''); setPage(1); }}
-              options={[{ value: '', label: 'Todos' }, ...dropOptions]}
-              style={{ width: 150 }}
-              allowClear
-            />
-          </Col>
-          <Col flex="auto" />
-          <Col>
-            <Button icon={<ReloadOutlined />} onClick={syncFornecedores} loading={syncing}>
-              Atualizar
+    <div className={styles.page}>
+      {messageContextHolder}
+      {modalContextHolder}
+      <header className={styles.header}>
+        <div>
+          <Title level={2}>Fornecedores</Title>
+          <Text>Capacidades, disponibilidade operacional e saúde da integração DSLite.</Text>
+          <small>{updatedAtLabel(updatedAt)} · Última sincronização: {relativeDate(summary.last_sync_at)}</small>
+        </div>
+        <div className={styles.headerActions}>
+          <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchSuppliers()}>
+            Atualizar dados
+          </Button>
+          {canManage && (
+            <Button type="primary" icon={<SyncOutlined />} loading={syncing} onClick={() => void syncSuppliers()}>
+              Sincronizar DSLite
             </Button>
-          </Col>
-        </Row>
-      </div>
+          )}
+        </div>
+      </header>
 
-      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
-        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-          <ResizableTable<FornecedorRow>
-            storageKey="fornecedores"
-            dataSource={rows}
-            columns={columns}
+      {syncFeedback && (
+        <Alert
+          showIcon
+          closable={syncFeedback.type !== 'info'}
+          type={syncFeedback.type}
+          message={syncFeedback.title}
+          description={syncFeedback.description}
+          onClose={() => setSyncFeedback(null)}
+        />
+      )}
+
+      <section className={styles.summary} aria-label="Resumo de fornecedores">
+        {[
+          { key: 'active' as const, label: 'Operacionais', value: summary.active, hint: 'fornecedores disponíveis' },
+          { key: 'inactive' as const, label: 'Inativos', value: summary.inactive, hint: 'cadastros históricos' },
+          { key: 'attention' as const, label: 'Sincronização com atenção', value: summary.sync_attention, hint: 'fora da frequência prevista' },
+        ].map((item) => {
+          const selected = item.key === 'attention'
+            ? freshness === 'attention'
+            : operationalStatus === item.key && freshness !== 'attention';
+          return (
+            <button
+              key={item.key}
+              type="button"
+              className={selected ? styles.summaryActive : undefined}
+              aria-pressed={selected}
+              onClick={() => selectSummary(item.key)}
+            >
+              <span>{item.label}</span>
+              <strong>{item.value.toLocaleString('pt-BR')}</strong>
+              <small>{item.hint}</small>
+            </button>
+          );
+        })}
+      </section>
+
+      <section className={styles.filterBar} aria-label="Filtros de fornecedores">
+        <Input
+          allowClear
+          prefix={<SearchOutlined />}
+          placeholder="Buscar por fornecedor, razão social, CNPJ ou ID DSLite"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          onClear={() => { setSearch(''); setCommittedSearch(''); setPage(1); }}
+        />
+        <Select
+          value={operationalStatus}
+          aria-label="Filtrar situação operacional"
+          options={[
+            { value: 'active', label: 'Somente operacionais' },
+            { value: 'inactive', label: 'Somente inativos' },
+            { value: 'all', label: 'Todos os cadastros' },
+          ]}
+          onChange={(value: OperationalStatus) => { setOperationalStatus(value); setPage(1); }}
+        />
+        <Select
+          value={crossdocking || undefined}
+          allowClear
+          placeholder="Cross-docking"
+          options={filterOptions.crossdocking.map((value) => ({ value, label: value }))}
+          onChange={(value) => { setCrossdocking(value || ''); setPage(1); }}
+        />
+        <Select
+          value={dropshipping || undefined}
+          allowClear
+          placeholder="Dropshipping"
+          options={filterOptions.dropshipping.map((value) => ({ value, label: value }))}
+          onChange={(value) => { setDropshipping(value || ''); setPage(1); }}
+        />
+        <Select
+          value={freshness || undefined}
+          allowClear
+          placeholder="Saúde da sincronização"
+          options={[
+            { value: 'healthy', label: 'Dentro da frequência' },
+            { value: 'attention', label: 'Requer atenção' },
+          ]}
+          onChange={(value: FreshnessFilter | undefined) => { setFreshness(value || ''); setPage(1); }}
+        />
+        {hasSecondaryFilters && <Button onClick={clearFilters}>Limpar filtros</Button>}
+      </section>
+
+      {error && (
+        <Alert
+          type="error"
+          showIcon
+          message="Não foi possível carregar os fornecedores"
+          description={error}
+          action={<Button size="small" onClick={() => void fetchSuppliers()}>Tentar novamente</Button>}
+        />
+      )}
+
+      <section className={styles.tableCard}>
+        <Spin spinning={loading}>
+          <ResizableTable<FornecedorListItem>
+            storageKey="fornecedores-bentevi-v1"
             rowKey="id"
-            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-            onChange={handleTableChange}
+            dataSource={suppliers}
+            columns={columns}
             pagination={{
               current: page,
               pageSize,
               total,
               showSizeChanger: true,
               pageSizeOptions: [20, 50, 100],
-              showTotal: (t) => `${t} fornecedores`,
+              showTotal: (value) => `${value.toLocaleString('pt-BR')} fornecedor${value === 1 ? '' : 'es'}`,
             }}
-            scroll={{ x: 1550 }}
-            style={{ background: 'transparent' }}
-            size="small"
+            locale={{
+              emptyText: (
+                <Empty
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  description={hasSecondaryFilters
+                    ? 'Nenhum fornecedor corresponde aos filtros'
+                    : 'Nenhum fornecedor cadastrado'}
+                />
+              ),
+            }}
+            onChange={handleTableChange}
+            scroll={{ x: 1360 }}
+            size="middle"
           />
-        </div>
-      </Spin>
+        </Spin>
+      </section>
     </div>
   );
 }

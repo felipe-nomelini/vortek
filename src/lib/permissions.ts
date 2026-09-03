@@ -5,6 +5,7 @@ export const VORTEK_PERMISSIONS = [
   "sales.read",
   "customers.manage",
   "purchases.read",
+  "suppliers.manage",
   "inventory.read",
   "inventory.manage",
   "fiscal.read",

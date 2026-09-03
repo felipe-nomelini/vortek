@@ -1,16 +1,13 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const maxDuration = 300;
 
 export async function POST(request: Request) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+  const auth = await authorizeApiRequest(request, 'suppliers.manage');
+  if (!auth.ok) return auth.response;
 
   const apiKey = String(process.env.API_SECRET_KEY || '').trim();
   if (!apiKey) {
