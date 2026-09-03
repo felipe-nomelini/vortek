@@ -1945,7 +1945,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D11` — Anúncios;
 - [x] `BNT-D12` — Catálogo No Catálogo/Elegíveis;
 - [x] `BNT-D13` — Clientes;
-- [ ] `BNT-D14` — Detalhe do Cliente;
+- [x] `BNT-D14` — Detalhe do Cliente;
 - [ ] `BNT-D15` — Fornecedores;
 - [ ] `BNT-D16` — Detalhe do Fornecedor;
 - [ ] `BNT-D17` — Créditos de Fornecedores;
@@ -2305,7 +2305,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D14 — Detalhe do Cliente`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-03`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-03`.
 
 **Estado/causa confirmados:** `/clientes/[id]` ainda usava a interface Vortek original, editava contato diretamente no formulário principal e consumia registros brutos. A API não exigia autorização, retornava `select('*')` e associava vendas por busca textual do nickname dentro de `pedidos.contato_nome`, embora o vínculo autoritativo `clientes.ml_id → pedidos.buyer_ml_id` já estivesse disponível. A sincronização de pedidos também regravava e-mail e telefone como strings vazias, o que apagaria os contatos mantidos localmente.
 
@@ -2317,7 +2317,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `84e4318` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, alteração de banco, dado operacional ou integração externa a reverter.
 
-**Pendência:** aprovar visualmente `/clientes/[id]` com sessão. Não iniciar `BNT-D15` antes desse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente `/clientes/[id]` e liberou `BNT-D15`.
+
+#### Resultado técnico de `BNT-D15 — Fornecedores`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-03`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** `/fornecedores` ainda usava a interface Vortek original, expunha `payload_dslite` no DTO, oferecia seleção sem ação em lote e continha comandos sem implementação para visualizar payload e abrir a DSLite. Os filtros eram derivados somente da página corrente, qualquer usuário autenticado podia sincronizar ou alterar o estado operacional e a data de sincronização não era confrontada com a frequência canônica da task.
+
+**Mudança realizada:** o diretório passou a mostrar fornecedores operacionais por padrão, com resumo global clicável de operacionais, inativos e sincronizações que exigem atenção; busca e filtros remotos; tabela organizada em Fornecedor, Modalidades, Situação, Contato, Última sincronização e Ações; e feedback persistente da sincronização manual. Inativos continuam acessíveis como histórico e a Hayamax aparece nesse recorte com reativação bloqueada pela política existente. A ação principal abre o detalhe existente; o menu secundário mantém somente ativação/inativação, com impacto carregado antes da confirmação assíncrona.
+
+**Contrato e permissões:** `GET /api/fornecedores` exige `purchases.read`, retorna DTO explícito sem payload, chave PIX ou endereço e preserva `limit`, nomes `snake_case`, filtros e comportamento padrão sem filtro de ativo para não quebrar Compras. A página solicita explicitamente `ativo=active`. A saúde da sincronização reutiliza `sync_dslite_fornecedores` e `evaluateScheduledTaskHealth`; somente `admin` e `gerente` possuem `suppliers.manage` para sincronizar ou alterar estado. O detalhe do fornecedor não foi redesenhado porque pertence ao `BNT-D16`.
+
+**Commit e homologação:** `9b4bd9f` — `feat(fornecedores): redesenhar diretorio Bentevi`, enviado somente para `origin/dev`. Passaram 43 cenários direcionados de fornecedores, permissões, Compras e política Hayamax; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas e `git diff --check`. A action `cmtlleoq9000107mha75a2hlm` concluiu com `Success`, e a task `wpxs7s6hnhn6zuu6e5gyopedz` ativou `GIT_SHA=9b4bd9fd182f7d6bcf5ea1e9d5e9212a4a3954ac` somente no `vortek-erp-dev`. Health e login responderam `200`; `/fornecedores` e `/fornecedores/cadastros` responderam `307` sem sessão; listagem, sincronização e leitura/alteração de estado responderam `401` sem sessão. Não houve migration, escrita de banco, sincronização DSLite ou alteração operacional de fornecedor durante a validação.
+
+**Rollback:** reverter `9b4bd9f` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, dado operacional ou integração externa a reverter.
+
+**Pendência:** aprovar visualmente `/fornecedores` com sessão. Não iniciar `BNT-D16` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
