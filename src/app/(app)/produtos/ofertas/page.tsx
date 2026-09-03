@@ -82,6 +82,8 @@ const preferenceOptions = [
   { value: 'alternativas', label: 'Somente alternativas' },
 ];
 
+const validViews = new Set<SupplierOffersView>(['operational', 'alternatives', 'problems', 'historical', 'all']);
+
 function formatDateTime(value: string | null) {
   if (!value) return 'Não sincronizada';
   const date = new Date(value);
@@ -113,7 +115,20 @@ export default function ProductOffersPage() {
   const [metrics, setMetrics] = useState<SupplierOfferMetrics>(EMPTY_METRICS);
   const [queueCounts, setQueueCounts] = useState<SupplierOfferQueueCounts>(EMPTY_QUEUES);
   const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
+  const [filtersHydrated, setFiltersHydrated] = useState(false);
   const requestRef = useRef(0);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedSuppliers = (params.get('fornecedores') || '')
+      .split(',')
+      .map((value) => value.trim())
+      .filter(Boolean);
+    const requestedView = params.get('view') as SupplierOffersView | null;
+    setSupplierIds(Array.from(new Set(requestedSuppliers)));
+    if (requestedView && validViews.has(requestedView)) setView(requestedView);
+    setFiltersHydrated(true);
+  }, []);
 
   const fetchOffers = useCallback(async () => {
     const requestId = requestRef.current + 1;
@@ -163,8 +178,8 @@ export default function ProductOffersPage() {
   }, [preference, stockStatus, supplierIds, view]);
 
   useEffect(() => {
-    fetchOffers();
-  }, [fetchOffers]);
+    if (filtersHydrated) void fetchOffers();
+  }, [fetchOffers, filtersHydrated]);
 
   const queueOptions = useMemo(() => ([
     { value: 'operational', label: <span className={styles.quickViewLabel}>Operacionais <strong className={styles.quickViewCount}>{queueCounts.operational}</strong></span> },

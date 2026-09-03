@@ -57,3 +57,52 @@ export interface FornecedoresListResponse {
     stale_threshold_minutes: number;
   };
 }
+
+export interface FornecedorDetailItem {
+  id: string;
+  dsliteId: string | null;
+  nickname: string;
+  legalName: string;
+  document: string;
+  email: string;
+  phone: string;
+  address: string;
+  pixKey: string;
+  dsliteStatus: string;
+  crossdocking: string;
+  dropshipping: string;
+  active: boolean;
+  activationBlocked: boolean;
+  syncHealth: SupplierSyncHealth;
+  lastSyncAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface FornecedorDetailSummary {
+  purchaseCount: number;
+  offerCount: number;
+  activeOfferCount: number;
+}
+
+export interface FornecedorDetailResponse {
+  data: {
+    supplier: FornecedorDetailItem;
+    summary: FornecedorDetailSummary;
+  };
+  syncPolicy: {
+    intervalMinutes: number;
+    staleThresholdMinutes: number;
+  };
+}
+
+export interface FornecedorLocalUpdate {
+  email?: string;
+  phone?: string;
+  address?: string;
+  pixKey?: string;
+}
+
+export interface FornecedorLocalUpdateResponse {
+  data: Required<FornecedorLocalUpdate> & { updatedAt: string };
+}
