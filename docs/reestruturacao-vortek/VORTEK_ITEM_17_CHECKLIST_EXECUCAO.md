@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-D17 — aprovação visual de Créditos de Fornecedores`
+**Próxima ação obrigatória:** `BNT-D18 — aprovação visual de Reputação`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D17` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D18` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -1949,7 +1949,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D15` — Fornecedores;
 - [x] `BNT-D16` — Detalhe do Fornecedor;
 - [x] `BNT-D17` — Créditos de Fornecedores;
-- [ ] `BNT-D18` — Reputação;
+- [x] `BNT-D18` — Reputação;
 - [ ] `BNT-D19` — Reclamações;
 - [ ] `BNT-D20` — Configurações;
 - [ ] `BNT-D21` — TV ao Vivo;
@@ -2359,7 +2359,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D17 — Créditos de Fornecedores`
 
-**Situação:** implementado e validado tecnicamente em `2026-09-03`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-03`.
 
 **Estado/causa confirmados:** `/fornecedores/creditos` ainda usava a interface Vortek original e misturava operação corrente, decisões pendentes e a conta-saldo aposentada da Hayamax na mesma leitura. O `supabase-dev` não possuía lançamentos para representar o estado real durante a homologação. A fotografia somente leitura da produção confirmou 989 movimentos distribuídos entre quatro fornecedores, sendo 12 pendentes e 977 confirmados; essa evidência foi usada apenas para compor uma amostra sanitizada e protegida no DEV.
 
@@ -2373,7 +2373,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `63af62c` em `dev`, redeployar somente `vortek-erp-dev` e remover exclusivamente as chaves `bnt_d17_visual_review_enabled` e `bnt_d17_visual_review_credits` de `sync_runtime_config` no `.162`. Não existe migration ou ação de produção a reverter.
 
-**Pendência:** aprovar visualmente `/fornecedores/creditos` com sessão. Não iniciar `BNT-D18` antes desse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente `/fornecedores/creditos` e liberou `BNT-D18` em `2026-09-03`.
+
+#### Resultado técnico de `BNT-D18 — Reputação`
+
+**Situação:** implementado e validado tecnicamente em `2026-09-03`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** `/reputacao` possuía 809 linhas concentradas em estilos inline, repetia o mesmo estado em cartões e “conquistas” decorativas e classificava métricas com limites numéricos sem apresentar a semântica oficial. A página ainda consultava automaticamente a API a cada minuto. Cada resposta executava dez buscas em `/orders/search`; sete resultados não tinham consumidor e os três restantes duplicavam as avaliações já presentes em `seller_reputation.transactions.ratings`. A conta ML de homologação está conectada, mas retorna zero transações e nenhum `level_id`, impedindo a aprovação do estado preenchido sem uma amostra explícita.
+
+**Mudança realizada:** a página passou a seguir leitura progressiva: nível e termômetro, três fatores determinantes com percentual, ocorrências, período e escala oficial MLB, prioridade operacional, base histórica e explicação recolhível do cálculo. Proteção, valor real excluído, Mercado Líder, falta de histórico, desconexão, erro e site sem limites conhecidos possuem estados próprios. Selos inventados, gráficos sem série real e polling foram removidos; a atualização agora é manual. O layout usa CSS Module Bentevi e componentes Ant Design existentes, sem dependência nova.
+
+**Contrato e integração:** `GET /api/ml/reputacao` passou a exigir `sales.read`, devolver `Cache-Control: no-store`, limites associados ao `site_id`, horário da consulta e dados completos de `excluded`. Foram removidos `orders_summary`, `feedback` e aliases duplicados sem consumidor. A leitura externa foi reduzida a `/users/me` e, somente quando necessário, `/users/{id}`. Os limites MLB registrados são os publicados pelo Mercado Livre para reclamações, cancelamentos e tempo de despacho; outro site não recebe limites brasileiros por inferência.
+
+**Amostra de homologação:** após confirmação explícita de `192.168.1.162`, hostname `supabase-dev`, PostgreSQL `17.6`, schema e histórico de migrations, a gravação das duas chaves foi ensaiada integralmente com `ROLLBACK`. A amostra `official-contract-synthetic` foi então ativada em `sync_runtime_config` somente no `.162`, com identificador sintético, sem permalink, credencial ou dado de produção. Ela representa nível amarelo, 238 vendas avaliadas e uma métrica em atenção, aparece identificada na interface e expira automaticamente em `2026-09-11`. Não houve migration ou escrita no `.160`.
+
+**Commit e validação:** `8339067` — `feat(reputacao): redesenhar painel Bentevi`. Passaram 20 cenários direcionados de reputação, shell e permissões, incluindo fronteiras exatas dos limites, normalização, proteção, estados vazios e ausência de polling ou `/orders/search`; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas e `git diff --check` também passaram.
+
+**Rollback:** reverter `8339067` em `dev`, redeployar somente `vortek-erp-dev` e remover exclusivamente `bnt_d18_visual_review_enabled` e `bnt_d18_visual_review_reputation` de `sync_runtime_config` no `.162`. Não existe migration nem ação de produção a reverter.
+
+**Pendência:** aprovar visualmente `/reputacao` com sessão. Não iniciar `BNT-D19` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
