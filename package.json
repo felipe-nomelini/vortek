@@ -87,6 +87,7 @@
     "test:bentevi-company-fiscal": "node --test tests/bentevi-company-fiscal.test.js tests/config-admin-core.test.js tests/configuracoes-ui-responsibilities.test.js",
     "test:bentevi-ml-config": "node --test tests/bnt-cfg-05-mercado-livre.test.js tests/config-admin-core.test.js tests/configuracoes-ui-responsibilities.test.js tests/integration-config-secrets.test.js",
     "test:bentevi-notifications": "node --test tests/bnt-cfg-06-notifications.test.js tests/config-admin-core.test.js tests/configuracoes-ui-responsibilities.test.js",
+    "test:bentevi-message-templates": "node --test tests/bnt-msg-01-templates.test.js tests/bnt-cfg-06-notifications.test.js tests/bentevi-invoices.test.js",
     "test:runtime-secrets": "node --test tests/sec-07-runtime-secrets.test.js",
     "test:db-schema-snapshot": "node --test tests/db-schema-snapshot.test.js",
     "test:sync-dispatch": "node --test tests/sync-dispatch.test.js",

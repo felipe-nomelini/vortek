@@ -10,7 +10,7 @@ self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
   const notification = self.registration.showNotification(data.title || 'Bentevi', {
     body: data.body || '',
-    tag: data.tag || 'vortek-notification',
+    tag: data.tag || 'bentevi-notification',
     data: { url: data.url || '/' },
     icon: '/branding/bentevi/icon-192.png',
     badge: '/branding/bentevi/icon-192.png',

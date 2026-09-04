@@ -23,6 +23,7 @@ import {
 import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { createShortLink } from '@/lib/short-links';
+import { buildSupplierLabelWhatsapp } from '@/lib/notifications/templates';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -164,12 +165,6 @@ function formatCurrencyBRL(value: unknown): string | null {
   const amount = Number(value || 0);
   if (!Number.isFinite(amount) || amount <= 0) return null;
   return amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-function limitText(value: unknown, maxLength: number): string | null {
-  const text = String(value || '').trim();
-  if (!text) return null;
-  return text.length > maxLength ? `${text.slice(0, maxLength - 1)}...` : text;
 }
 
 function isWahaPlusOnlyError(err: unknown): boolean {
@@ -517,37 +512,25 @@ export async function runWhatsappLabelJob(input: {
     });
     await setStep('build_links', 'success', 'Links públicos gerados');
 
-    const fornecedorNome = limitText((compra as any)?.fornecedor_nome, 80);
-    const clienteNome = limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80);
     const labelStatus = labelSource === 'storage'
-      ? 'arquivo ja salvo no sistema'
+      ? 'Arquivo salvo no Bentevi'
       : labelSource === 'placeholder'
-        ? 'generica para teste'
-        : 'baixada do Mercado Livre';
-    const pedidoCompraLabel = dsid ? `#${dsid}` : 'sem pedido DSLite vinculado';
-    const caption = [
-      '*Etiqueta Liberada!*',
-      `A etiqueta do pedido *${pedidoCompraLabel}* foi liberada e está no link abaixo:`,
-      labelShortUrl,
-      '------------------------',
-      '*DADOS DA NOTA*',
-      invoiceNumber ? `NF: ${invoiceNumber}` : null,
-      nfeKey ? `Chave: ${nfeKey}` : null,
-      danfeUrl ? `DANFE: ${danfeUrl}` : null,
-      xmlUrl ? `XML: ${xmlUrl}` : null,
-      '------------------------',
-      '*PEDIDO DE COMPRA*',
-      dsid ? `DSLite: #${dsid}` : 'DSLite: nao vinculado',
-      fornecedorNome ? `Fornecedor: ${fornecedorNome}` : null,
-      valorCompra ? `Valor compra: ${valorCompra}` : null,
-      '------------------------',
-      '*PEDIDO DE VENDA*',
-      `Venda ML: #${(pedido as any).numero}`,
-      `Envio ML: ${shipmentId}`,
-      clienteNome ? `Cliente: ${clienteNome}` : null,
-      (compra as any)?.quantidade ? `Quantidade: ${(compra as any).quantidade}` : null,
-      `Origem da etiqueta: ${labelStatus}`,
-    ].filter(Boolean).join('\n\n');
+        ? 'Amostra de homologação'
+        : 'Mercado Livre';
+    const caption = buildSupplierLabelWhatsapp({
+      dsliteId: dsid,
+      labelUrl: labelShortUrl,
+      invoiceNumber,
+      nfeKey,
+      danfeUrl,
+      xmlUrl,
+      mlOrderId: (pedido as any).numero,
+      shipmentId,
+      product: (compra as any)?.produto_descricao,
+      quantity: (compra as any)?.quantidade,
+      purchaseAmount: valorCompra,
+      labelSource: labelStatus,
+    });
 
     let wahaResponse: unknown = null;
     let whatsappSendMode: 'file' | 'text_link' = 'file';

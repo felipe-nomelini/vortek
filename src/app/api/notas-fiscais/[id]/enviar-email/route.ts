@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { sendEmail } from '@/services/email';
+import { buildFiscalEmailTemplate } from '@/lib/notifications/templates';
 import { createDanfeSignedUrl, resolveDanfeStoragePath, DANFE_BUCKET, DANFE_SIGNED_URL_TTL_SECONDS } from '@/lib/fiscal/danfe-storage';
 import {
   HOMOLOGATION_FIXTURE_READ_ONLY_ERROR,
@@ -96,23 +97,22 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   }
 
   const pdfBuffer = Buffer.from(await pdfData.arrayBuffer());
-  const subject = customSubject || `NF-e ${pedido.nota_fiscal_numero} - Pedido #${String(pedido.numero).padStart(6, '0')}`;
-  const text =
-    customMessage ||
-    [
-      `Olá ${pedido.contato_nome || ''},`,
-      '',
-      `Segue em anexo a DANFE da NF-e ${pedido.nota_fiscal_numero}.`,
-      `Você também pode acessar pelo link temporário: ${signedUrl}`,
-      '',
-      'Mensagem automática Bentevi.',
-    ].join('\n');
+  const email = buildFiscalEmailTemplate({
+    kind: 'invoice',
+    invoiceNumber: pedido.nota_fiscal_numero,
+    orderNumber: String(pedido.numero).padStart(6, '0'),
+    customerName: pedido.contato_nome,
+    customSubject,
+    customMessage,
+    actionUrl: signedUrl,
+  });
 
   try {
     await sendEmail({
       to,
-      subject,
-      text,
+      subject: email.subject,
+      text: email.text,
+      html: email.html,
       attachments: [
         {
           filename: `danfe_${pedido.nota_fiscal_numero}.pdf`,

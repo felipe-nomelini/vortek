@@ -20,6 +20,13 @@
   color: #8c8c8c;
 }
 
+.headingActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .channels {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -114,6 +121,199 @@
   gap: 6px 14px;
 }
 
+.gallery {
+  display: grid;
+  gap: 18px;
+}
+
+.galleryLayout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid #303030;
+  border-radius: 12px;
+  background: #101010;
+}
+
+.templateList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  overflow-y: auto;
+  border-right: 1px solid #303030;
+  background: #151515;
+}
+
+.templateOption {
+  display: grid;
+  justify-items: start;
+  gap: 5px;
+  width: 100%;
+  padding: 12px;
+  color: #f5f5f5;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.templateOption:hover {
+  background: #202020;
+}
+
+.templateOptionActive {
+  border-color: color-mix(in srgb, var(--bentevi-primary) 58%, #303030);
+  background: color-mix(in srgb, var(--bentevi-primary) 12%, #181818);
+}
+
+.templateOption strong {
+  font-size: 14px;
+}
+
+.templateOption span {
+  color: #8c8c8c;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.templateOption :global(.ant-tag) {
+  margin: 2px 0 0;
+  color: #d9d9d9;
+  background: #292929;
+}
+
+.templateStage {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+}
+
+.templateMeta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #303030;
+  background: #181818;
+}
+
+.templateMeta div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.templateMeta small {
+  color: #737373;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.templateMeta strong {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.whatsappCanvas,
+.pushCanvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 470px;
+  padding: 28px;
+}
+
+.whatsappCanvas {
+  position: relative;
+  align-items: flex-start;
+  justify-content: flex-end;
+  background:
+    linear-gradient(rgba(11, 20, 17, .9), rgba(11, 20, 17, .9)),
+    radial-gradient(circle at 20% 20%, #23473a 0 1px, transparent 2px);
+  background-size: auto, 24px 24px;
+}
+
+.whatsappBubble {
+  width: min(100%, 510px);
+  padding: 12px 15px 24px;
+  color: #f2f2f2;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  border-radius: 12px 12px 3px 12px;
+  background: #005c4b;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .28);
+}
+
+.blankLine {
+  min-height: 10px;
+}
+
+.messageTime {
+  display: block;
+  margin-top: 5px;
+  color: #a9c3bb;
+  font-size: 10px;
+  line-height: 1;
+  text-align: right;
+}
+
+.pushCanvas {
+  background: linear-gradient(145deg, #171717, #090909);
+}
+
+.pushNotification {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  width: min(100%, 440px);
+  padding: 14px;
+  border: 1px solid #404040;
+  border-radius: 15px;
+  background: rgba(42, 42, 42, .94);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .34);
+}
+
+.pushNotification img {
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+}
+
+.pushNotification div {
+  display: grid;
+  gap: 3px;
+}
+
+.pushNotification span {
+  color: #a3a3a3;
+  font-size: 11px;
+}
+
+.pushNotification strong {
+  font-size: 14px;
+}
+
+.pushNotification p {
+  margin: 0;
+  color: #d9d9d9;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.emailPreview {
+  width: 100%;
+  min-height: 640px;
+  border: 0;
+  background: #09090b;
+}
+
 @media (max-width: 1050px) {
   .channels {
     grid-template-columns: 1fr;
@@ -130,4 +330,29 @@
   .channel {
     padding: 14px;
   }
+
+  .headingActions {
+    justify-content: flex-start;
+  }
+
+  .galleryLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .templateList {
+    max-height: 220px;
+    border-right: 0;
+    border-bottom: 1px solid #303030;
+  }
+
+  .templateMeta {
+    grid-template-columns: 1fr;
+  }
+
+  .whatsappCanvas,
+  .pushCanvas {
+    min-height: 400px;
+    padding: 18px;
+  }
+
 }

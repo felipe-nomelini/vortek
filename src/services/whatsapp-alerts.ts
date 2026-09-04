@@ -28,6 +28,12 @@ import {
   selectWhatsappRecipientsForEnvironment,
 } from "@/lib/configuracoes/notifications";
 import {
+  buildInternalWhatsappMessage,
+  type MessageField,
+  type MessageLink,
+  type NotificationSeverity,
+} from "@/lib/notifications/templates";
+import {
   SYNC_TASKS,
   evaluateScheduledTaskHealth,
   getIntervalMinutesForTask,
@@ -44,13 +50,16 @@ type AlertType =
   | "claim_opened"
   | "ml_label_released";
 
-type Severity = "info" | "warning" | "critical";
-
 type AlertInput = {
   type: AlertType;
-  severity?: Severity;
+  severity?: NotificationSeverity;
   title: string;
-  message: string;
+  summary: string;
+  fields?: MessageField[];
+  action?: string | null;
+  link?: MessageLink | null;
+  reference?: string | null;
+  issueMessage?: string;
   dedupeKey: string;
   payload?: Record<string, any>;
   dedupeTtlHours?: number;
@@ -85,9 +94,9 @@ function nowIso() {
   return new Date().toISOString();
 }
 
-function appLinkLine(label: string, path: string): string | null {
+function appLink(label: string, path: string): MessageLink | null {
   const url = notificationAppLink(path);
-  return url ? `${label}: ${url}` : null;
+  return url ? { label, url } : null;
 }
 
 function alertLockDomain(input: AlertInput) {
@@ -100,12 +109,6 @@ function alertLockDomain(input: AlertInput) {
 
 function saoPauloDateLabel(date: Date) {
   return date.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
-}
-
-function severityLabel(severity: Severity) {
-  if (severity === "critical") return "CRÍTICO";
-  if (severity === "warning") return "ATENÇÃO";
-  return "INFO";
 }
 
 function normalizeStatus(value: string | null | undefined): string {
@@ -270,18 +273,6 @@ function buildJobErrorSignature(
   ].join(":");
 }
 
-function buildText(input: AlertInput) {
-  return [
-    `*Bentevi - ${severityLabel(input.severity || "info")}*`,
-    "",
-    `*${input.title}*`,
-    "",
-    input.message,
-    "",
-    `Data: ${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}`,
-  ].join("\n");
-}
-
 async function wasAlertSent(
   type: AlertType,
   dedupeKey: string,
@@ -372,18 +363,15 @@ export async function sendWhatsappAlert(
           type: input.type,
           severity: input.severity || "critical",
           title: input.title,
-          message: input.message,
+          message: input.issueMessage || [
+            input.summary,
+            ...(input.fields || []).map((field) => `${field.label}: ${String(field.value ?? "")}`),
+            input.action || "",
+          ].filter(Boolean).join("\n"),
           dedupeKey: input.dedupeKey,
           payload: input.payload,
         });
-        alertInput.message = [
-          input.message,
-          "",
-          `GitHub Issue: #${issueResult.number}`,
-          issueResult.url,
-          "",
-          "A issue foi criada para resolução manual posterior.",
-        ].join("\n");
+        alertInput.reference = `Issue #${issueResult.number} · ${issueResult.url}`;
       } catch (err: any) {
         await auditAlert(input, "all", "failed", {
           source: "github_issue_create",
@@ -400,7 +388,15 @@ export async function sendWhatsappAlert(
       return { sent: 0, skipped: true, errors: 0 };
     }
 
-    const text = buildText(alertInput);
+    const text = buildInternalWhatsappMessage({
+      title: alertInput.title,
+      summary: alertInput.summary,
+      severity: alertInput.severity,
+      fields: alertInput.fields,
+      action: alertInput.action,
+      link: alertInput.link,
+      reference: alertInput.reference,
+    });
     let sent = 0;
     let errors = 0;
     for (const phone of phones) {
@@ -447,18 +443,18 @@ export async function alertNewSale(order: {
   return sendWhatsappAlert({
     type: "new_sale",
     severity: "info",
-    title: "Novo pedido de venda",
+    title: "Nova venda",
     dedupeKey: `new_sale:${number}`,
     dedupeTtlHours: 24 * 30,
-    message: [
-      `Pedido ML: #${number}`,
-      order.ml_pack_id ? `Pack ID: ${order.ml_pack_id}` : null,
-      `Cliente: ${order.contato_nome || "Desconhecido"}`,
-      `Valor: ${formatCurrency(Number(order.total || 0))}`,
-      appLinkLine("Link", `/pedidos?search=${encodeURIComponent(String(number))}`),
-    ]
-      .filter(Boolean)
-      .join("\n"),
+    summary: "Uma nova venda paga entrou na operação.",
+    fields: [
+      { label: "Venda", value: `#${number}` },
+      { label: "Pack", value: order.ml_pack_id ? `#${order.ml_pack_id}` : null },
+      { label: "Cliente", value: order.contato_nome || "Não informado" },
+      { label: "Valor", value: formatCurrency(Number(order.total || 0)) },
+    ],
+    action: "Abra a venda e confira a próxima etapa.",
+    link: appLink("Ver venda", `/pedidos?search=${encodeURIComponent(String(number))}`),
     payload: order as any,
   });
 }
@@ -479,32 +475,24 @@ export async function alertNewQuestion(question: {
   return sendWhatsappAlert({
     type: "new_question",
     severity: "warning",
-    title: "Nova pergunta no Mercado Livre",
+    title: "Nova pergunta",
     dedupeKey: `new_question:${questionId}`,
     dedupeTtlHours: 24 * 30,
-    message: [
-      `Pergunta ML: #${questionId}`,
-      question.item_title
-        ? `Anúncio: ${question.item_title}`
-        : question.item_id
-          ? `Anúncio: ${question.item_id}`
+    summary: question.text
+      ? `Um cliente perguntou: ${question.text}`
+      : "Uma pergunta está aguardando resposta.",
+    fields: [
+      { label: "Pergunta", value: `#${questionId}` },
+      { label: "Anúncio", value: question.item_title || question.item_id || "Não informado" },
+      {
+        label: "Recebida em",
+        value: question.date_created
+          ? new Date(question.date_created).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
           : null,
-      question.buyer_id ? `Cliente ML: ${question.buyer_id}` : null,
-      question.date_created
-        ? `Recebida em: ${new Date(question.date_created).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}`
-        : null,
-      "",
-      question.text
-        ? `Pergunta: ${question.text}`
-        : "Pergunta sem texto retornado pelo ML.",
-      "",
-      question.item_permalink
-        ? `Link do anúncio: ${question.item_permalink}`
-        : null,
-      appLinkLine("Responder no sistema", "/perguntas"),
-    ]
-      .filter((line) => line !== null)
-      .join("\n"),
+      },
+    ],
+    action: "Responda a pergunta no Bentevi.",
+    link: appLink("Responder pergunta", "/perguntas"),
     payload: question as any,
   });
 }
@@ -523,16 +511,18 @@ export async function alertClaimOpened(order: {
   return sendWhatsappAlert({
     type: "claim_opened",
     severity: "critical",
-    title: "Reclamação aberta no Mercado Livre",
+    title: "Reclamação aberta",
     dedupeKey: `claim_opened:${order.ml_claim_id}`,
     dedupeTtlHours: 24 * 90,
-    message: [
-      `Pedido ML: #${orderNumber}`,
-      `Claim: ${order.ml_claim_id}`,
-      `Status: ${order.ml_claim_status || "não informado"}`,
-      `Cliente: ${order.contato_nome || "Desconhecido"}`,
-      appLinkLine("Link", `/pedidos?search=${encodeURIComponent(String(orderNumber))}`),
-    ].join("\n"),
+    summary: "Uma venda precisa de atenção.",
+    fields: [
+      { label: "Venda", value: `#${orderNumber}` },
+      { label: "Reclamação", value: `#${order.ml_claim_id}` },
+      { label: "Situação", value: order.ml_claim_status || "Não informada" },
+      { label: "Cliente", value: order.contato_nome || "Não informado" },
+    ],
+    action: "Abra o caso e confira o prazo de resposta.",
+    link: appLink("Ver reclamação", "/reclamacoes"),
     payload: order as any,
   });
 }
@@ -555,8 +545,7 @@ export async function alertMlLabelReleased(order: {
       title: "Etiqueta Mercado Livre liberada",
       dedupeKey: `ml_label_released_skipped:${order.ml_order_id || order.numero || order.id || "sem_numero"}`,
       dedupeTtlHours: 24,
-      message:
-        "Pedido sem envio ML ativo ou com status não acionável para etiqueta.",
+      summary: "O pedido não possui um envio ativo que permita usar a etiqueta.",
       payload: {
         id: order.id || null,
         numero: order.numero || null,
@@ -576,23 +565,25 @@ export async function alertMlLabelReleased(order: {
   return sendWhatsappAlert({
     type: "ml_label_released",
     severity: "warning",
-    title: "Etiqueta Mercado Livre liberada",
+    title: "Etiqueta liberada",
     dedupeKey: `ml_label_released:${orderNumber}`,
     dedupeTtlHours: 24 * 30,
-    message: [
-      `Pedido ML: #${orderNumber}`,
-      order.dslite_id ? `Pedido DSLite: #${order.dslite_id}` : null,
-      order.ml_shipment_id ? `Envio ML: ${order.ml_shipment_id}` : null,
-      `Cliente: ${order.contato_nome || "Desconhecido"}`,
-      `Valor: ${formatCurrency(Number(order.total || 0))}`,
-      order.ml_fiscal_release_at
-        ? `Janela prevista: ${formatMlReleaseWindow(order.ml_fiscal_release_at).when}`
-        : null,
-      `Ação: subir XML, baixar etiqueta real e enviar ao fornecedor.`,
-      appLinkLine("Link", `/pedidos?search=${encodeURIComponent(String(orderNumber))}`),
-    ]
-      .filter(Boolean)
-      .join("\n"),
+    summary: "A etiqueta da venda já pode ser enviada ao fornecedor.",
+    fields: [
+      { label: "Venda", value: `#${orderNumber}` },
+      { label: "Pedido DSLite", value: order.dslite_id ? `#${order.dslite_id}` : null },
+      { label: "Envio Mercado Livre", value: order.ml_shipment_id },
+      { label: "Cliente", value: order.contato_nome || "Não informado" },
+      { label: "Valor", value: formatCurrency(Number(order.total || 0)) },
+      {
+        label: "Previsão",
+        value: order.ml_fiscal_release_at
+          ? formatMlReleaseWindow(order.ml_fiscal_release_at).when
+          : null,
+      },
+    ],
+    action: "Envie a etiqueta correta ao fornecedor.",
+    link: appLink("Abrir venda", `/pedidos?search=${encodeURIComponent(String(orderNumber))}`),
     payload: {
       id: order.id || null,
       numero: order.numero || null,
@@ -689,12 +680,19 @@ export async function alertIntegrationStatus() {
     severity: problems.length ? "critical" : "info",
     title: problems.length
       ? "Integração com problema"
-      : "Integrações operando normalmente",
+      : "Integrações normalizadas",
     dedupeKey: `integration_status:${stateKey}`,
     dedupeTtlHours: problems.length ? 6 : 24,
-    message: problems.length
-      ? problems.join("\n")
-      : "Mercado Livre e WAHA estão conectados.",
+    summary: problems.length
+      ? "Uma integração essencial precisa de atenção."
+      : "Mercado Livre e WhatsApp estão funcionando normalmente.",
+    fields: [
+      { label: "Mercado Livre", value: ml.state === "ok" ? "Conectado" : "Precisa de atenção" },
+      { label: "WhatsApp", value: wahaStatus === "WORKING" ? "Conectado" : "Precisa de atenção" },
+    ],
+    action: problems.length ? "Abra o painel e verifique as conexões." : null,
+    link: problems.length ? appLink("Abrir integrações", "/configuracoes?tab=integracoes") : null,
+    issueMessage: problems.length ? problems.join("\n") : undefined,
     payload: { ml, wahaStatus, waha },
   });
   return { ...alertResult, githubIssuesResolved };
@@ -786,33 +784,33 @@ export async function alertCriticalJobs() {
     const result = await sendWhatsappAlert({
       type: "critical_error",
       severity: "critical",
-      title: "Job crítico falhou",
+      title: "Rotina automática com falha",
       dedupeKey: `job_error:${signature}`,
       dedupeTtlHours: 24 * 7,
-      message: [
+      summary: "Uma rotina importante não foi concluída.",
+      fields: [
+        { label: "Rotina", value: latest.job.tipo },
+        { label: "Ocorrências", value: `${occurrences.length} tentativa(s)` },
+        {
+          label: "Última falha",
+          value: latest.job.finished_at
+            ? formatSaoPauloDateTime(latest.job.finished_at) || "Não informada"
+            : "Não informada",
+        },
+      ],
+      action: "Abra o painel e verifique a rotina.",
+      link: appLink("Abrir painel", "/dashboard"),
+      reference: rootLog?.error_code || rootLog?.error_category || null,
+      issueMessage: [
         `Job: ${latest.job.tipo}`,
         `Status: ${latest.job.status}`,
-        `Ocorrências recentes: ${occurrences.length}`,
-        `Finalizado: ${latest.job.finished_at ? formatSaoPauloDateTime(latest.job.finished_at) || "não informado" : "não informado"}`,
-        rootLog?.event_type
-          ? `Evento: ${rootLog.event_type}`
-          : latest.lastLog?.event_type
-            ? `Evento: ${latest.lastLog.event_type}`
-            : null,
+        `Ocorrências: ${occurrences.length}`,
+        rootLog?.event_type ? `Evento: ${rootLog.event_type}` : null,
         rootLog?.error_code ? `Código: ${rootLog.error_code}` : null,
-        rootLog?.http_status !== null
-          ? `HTTP/Status: ${rootLog.http_status}`
-          : null,
+        rootLog?.http_status !== null ? `HTTP/Status: ${rootLog.http_status}` : null,
         rootLog?.provider ? `Provider: ${rootLog.provider}` : null,
-        rootLog?.message
-          ? `Erro/log: ${rootLog.message}`
-          : latest.lastLog?.message
-            ? `Erro/log: ${latest.lastLog.message}`
-            : null,
-        appLinkLine("Link", "/dashboard"),
-      ]
-        .filter(Boolean)
-        .join("\n"),
+        rootLog?.message || latest.lastLog?.message || null,
+      ].filter(Boolean).join("\n"),
       payload: {
         id: latest.job.id,
         tipo: latest.job.tipo,
@@ -864,14 +862,14 @@ export async function alertStaleScheduledTasks() {
       const result = await sendWhatsappAlert({
         type: "critical_error",
         severity: "critical",
-        title: "Task de sync sem agendamento",
+        title: "Rotina sem agendamento",
         dedupeKey: `sync_schedule_missing:${task.key}`,
         dedupeTtlHours: 24,
-        message: [
-          `Task: ${task.label} (${task.key})`,
-          "dispatchMode é 'scheduled' mas o campo schedule não está definido no registry.",
-          "O cron-dispatch nunca vai chamar essa task até isso ser corrigido em src/lib/sync/registry.ts.",
-        ].join("\n"),
+        summary: "Uma rotina automática não possui horário para executar.",
+        fields: [{ label: "Rotina", value: task.label }],
+        action: "Revise o agendamento da rotina.",
+        reference: task.key,
+        issueMessage: `A task ${task.key} está sem schedule no registry.`,
         payload: { task: task.key, dispatch_mode: task.dispatchMode },
       });
       alerted += result.sent > 0 ? 1 : 0;
@@ -912,17 +910,23 @@ export async function alertStaleScheduledTasks() {
       const result = await sendWhatsappAlert({
         type: "critical_error",
         severity: "critical",
-        title: "Task de sync parou de rodar",
+        title: "Rotina sem execução",
         dedupeKey: `sync_schedule_stale:${task.key}`,
         dedupeTtlHours: 6,
-        message: [
-          `Task: ${task.label} (${task.key})`,
-          `Esperado a cada: ${intervalMinutes} min`,
-          health.minutesSinceLastRun !== null
-            ? `Última execução: há ${Math.round(health.minutesSinceLastRun)} min`
-            : "Última execução: nenhum job encontrado para esta task",
-          appLinkLine("Link", "/dashboard"),
-        ].join("\n"),
+        summary: "Uma rotina não executa há mais tempo que o esperado.",
+        fields: [
+          { label: "Rotina", value: task.label },
+          { label: "Frequência", value: `A cada ${intervalMinutes} minutos` },
+          {
+            label: "Última execução",
+            value: health.minutesSinceLastRun !== null
+              ? `Há ${Math.round(health.minutesSinceLastRun)} minutos`
+              : "Nenhuma execução encontrada",
+          },
+        ],
+        action: "Abra o painel e confira o agendamento.",
+        link: appLink("Abrir painel", "/dashboard"),
+        reference: task.key,
         payload: {
           task: task.key,
           interval_minutes: intervalMinutes,
@@ -994,23 +998,22 @@ export async function sendSalesReport(
     severity: "info",
     title:
       kind === "weekly"
-        ? "Relatório semanal de vendas"
-        : "Relatório mensal de vendas",
+        ? "Resumo semanal"
+        : "Resumo mensal",
     dedupeKey: `${kind}_sales_report:${start.toISOString().slice(0, 10)}:${end.toISOString().slice(0, 10)}`,
     dedupeTtlHours: 24 * 45,
-    message: [
-      `Período: ${periodLabel}`,
-      `Pedidos: ${count}`,
-      `Faturamento: ${formatCurrency(total)}`,
-      `Lucro: ${formatCurrency(lucro)}`,
-      `Ticket médio: ${formatCurrency(count ? total / count : 0)}`,
-      `Reclamações no período: ${claims}`,
-      `Status: ${
-        Object.entries(statusCounts)
-          .map(([k, v]) => `${k}=${v}`)
-          .join(", ") || "sem pedidos"
-      }`,
-    ].join("\n"),
+    summary: kind === "weekly"
+      ? "Confira o resultado dos últimos sete dias."
+      : "Confira o resultado consolidado dos últimos 30 dias.",
+    fields: [
+      { label: "Período", value: periodLabel },
+      { label: "Vendas", value: count },
+      { label: "Faturamento", value: formatCurrency(total) },
+      { label: "Lucro", value: formatCurrency(lucro) },
+      { label: "Ticket médio", value: formatCurrency(count ? total / count : 0) },
+      { label: "Reclamações", value: claims },
+    ],
+    link: appLink("Ver dashboard", "/dashboard"),
     payload: {
       kind,
       start: start.toISOString(),

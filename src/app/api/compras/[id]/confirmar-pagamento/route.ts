@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
-import { formatCurrency } from '@/lib/format';
 import { formatMlReleaseWindow } from '@/lib/ml/release-window-display';
+import { buildSupplierPaymentWhatsapp } from '@/lib/notifications/templates';
 import { buildPublicSupplierReceiptUrl } from '@/lib/public-supplier-receipt-links';
 import { createShortLink } from '@/lib/short-links';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
@@ -146,31 +146,18 @@ async function sendSupplierPaymentWhatsapp(input: {
       fornecedorId: input.compra.fornecedor_id || null,
     },
   });
-  const caption = [
-    '*Comprovante PIX recebido*',
-    `O comprovante do pedido *#${input.compra.dsid || '—'}* está disponível no link abaixo:`,
-    receiptShortUrl || receiptUrl,
-    '------------------------',
-    '*STATUS DA ETIQUETA*',
+  const caption = buildSupplierPaymentWhatsapp({
+    dsliteId: input.compra.dsid,
+    mlOrderId: input.pedido?.ml_order_id,
+    saleId: input.pedido?.numero,
+    product: input.compra.produto_descricao,
+    quantity: input.compra.quantidade || 1,
+    amount: input.compra.supplier_payment_amount,
+    pixReference: input.reference,
     labelStatus,
-    'Aguarde o envio da etiqueta real antes de despachar o pedido.',
-    '------------------------',
-    '*PEDIDO DSLITE*',
-    `Número: #${input.compra.dsid || '—'}`,
-    `Fornecedor: ${input.compra.fornecedor_nome || '—'}`,
-    `Valor pago: ${formatCurrency(Number(input.compra.supplier_payment_amount || 0))}`,
-    input.reference ? `Referência PIX: ${input.reference}` : null,
-    '------------------------',
-    '*VENDA MERCADO LIVRE*',
-    input.pedido?.ml_order_id ? `Pedido ML: #${input.pedido.ml_order_id}` : null,
-    input.pedido?.numero ? `Venda: #${input.pedido.numero}` : null,
-    '------------------------',
-    '*Produto*',
-    input.compra.produto_descricao || 'Produto não informado',
-    `Quantidade: ${input.compra.quantidade || 1}`,
-    '------------------------',
-    input.notes ? `Observações: ${input.notes}` : null,
-  ].filter(Boolean).join('\n');
+    receiptUrl: receiptShortUrl || receiptUrl,
+    notes: input.notes,
+  });
 
   const chatId = normalizeWhatsappChatId(phone);
   try {

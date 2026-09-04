@@ -6,6 +6,7 @@ import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { cancelarNotaBrasilNfePorChave } from "@/services/fiscal-provider";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import { normalizeWhatsappChatId, sendWahaText } from "@/services/waha";
+import { buildSupplierCancellationWhatsapp } from "@/lib/notifications/templates";
 import {
   isNfeCancelledStatus,
   isNfeCancelRejectedDeadlineStatus,
@@ -41,36 +42,6 @@ function isDeadlineCancelRejection(result: {
 function maskPhoneSuffix(value: unknown): string | null {
   const digits = String(value || "").replace(/\D/g, "");
   return digits ? digits.slice(-4) : null;
-}
-
-function buildSupplierCancellationMessage(input: {
-  dsid: string;
-  clienteNome: string | null;
-  mlOrderId: string | null;
-  pedidoNumero: number | null;
-  notaFiscalNumero: string | null;
-  nfeChave: string | null;
-}) {
-  return [
-    "*Pedido cancelado no Mercado Livre*",
-    "",
-    "O cliente cancelou a venda.",
-    "",
-    `Pedido DSLite: #${input.dsid || "—"}`,
-    `Cliente: ${input.clienteNome || "—"}`,
-    input.mlOrderId ? `Pedido Mercado Livre: #${input.mlOrderId}` : null,
-    input.pedidoNumero ? `Pedido Vortek: #${input.pedidoNumero}` : null,
-    input.notaFiscalNumero
-      ? `NF-e: ${input.notaFiscalNumero}`
-      : input.nfeChave
-        ? `NF-e chave: ${input.nfeChave}`
-        : null,
-    "",
-    "A NF-e já foi cancelada no sistema fiscal.",
-    "Por favor, não envie/expedie este pedido.",
-  ]
-    .filter((line) => line !== null)
-    .join("\n");
 }
 
 async function hasAuditSuccess(input: {
@@ -392,17 +363,12 @@ async function processPedido(input: {
     };
   }
 
-  const text = buildSupplierCancellationMessage({
-    dsid,
-    clienteNome:
-      pedido.contato_nome || (compra as any).destinatario_nome || null,
+  const text = buildSupplierCancellationWhatsapp({
+    dsliteId: dsid,
     mlOrderId,
-    pedidoNumero: Number.isFinite(Number(pedido.numero))
-      ? Number(pedido.numero)
-      : null,
-    notaFiscalNumero:
-      pedido.nota_fiscal_numero || (compra as any).nf_numero || null,
-    nfeChave,
+    saleId: Number.isFinite(Number(pedido.numero)) ? Number(pedido.numero) : null,
+    invoiceNumber: pedido.nota_fiscal_numero || (compra as any).nf_numero || null,
+    nfeKey: nfeChave,
   });
 
   try {

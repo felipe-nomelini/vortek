@@ -1,13 +1,17 @@
 import nodemailer from 'nodemailer';
+import path from 'node:path';
 
 type SendMailInput = {
   to: string;
   subject: string;
   text: string;
+  html?: string;
   attachments?: Array<{
     filename: string;
-    content: Buffer;
+    content?: Buffer;
+    path?: string;
     contentType?: string;
+    cid?: string;
   }>;
 };
 
@@ -53,13 +57,23 @@ export async function sendEmail(input: SendMailInput) {
   }
   const from = `Bentevi <${fromAddress}>`;
   const transport = createTransport();
+  const attachments = [...(input.attachments || [])];
+  if (input.html?.includes('cid:bentevi-logo')) {
+    attachments.push({
+      filename: 'bentevi-wordmark.png',
+      path: path.join(process.cwd(), 'public', 'branding', 'bentevi', 'bentevi-wordmark.png'),
+      contentType: 'image/png',
+      cid: 'bentevi-logo',
+    });
+  }
   try {
     return await transport.sendMail({
       from,
       to: input.to,
       subject: input.subject,
       text: input.text,
-      attachments: input.attachments,
+      html: input.html,
+      attachments,
     });
   } catch (err: any) {
     const host = process.env.SMTP_HOST || '';

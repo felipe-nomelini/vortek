@@ -19,6 +19,7 @@ import {
   BellOutlined,
   DeleteOutlined,
   EditOutlined,
+  EyeOutlined,
   MailOutlined,
   MobileOutlined,
   PlusOutlined,
@@ -37,6 +38,7 @@ import {
   type PushNotificationEvent,
   type WhatsappNotificationEvent,
 } from "@/lib/configuracoes/notifications";
+import NotificationTemplateGallery from "./NotificationTemplateGallery";
 import styles from "./NotificacoesTab.module.css";
 
 type PushPolicy = {
@@ -89,6 +91,7 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
   const [whatsappRecipients, setWhatsappRecipients] = useState<WhatsappRecipient[]>([]);
   const [browserSubscribed, setBrowserSubscribed] = useState(false);
   const [recipientModalOpen, setRecipientModalOpen] = useState(false);
+  const [templateGalleryOpen, setTemplateGalleryOpen] = useState(false);
   const [editingRecipientId, setEditingRecipientId] = useState<string | undefined>();
   const [recipientForm] = Form.useForm<RecipientForm>();
 
@@ -251,7 +254,10 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
             <h3>Notificações e canais</h3>
             <p>Defina quais alertas são enviados e quem deve recebê-los.</p>
           </div>
-          <Button type="primary" icon={<SaveOutlined />} loading={saving} onClick={() => void save()}>Salvar alterações</Button>
+          <div className={styles.headingActions}>
+            <Button icon={<EyeOutlined />} onClick={() => setTemplateGalleryOpen(true)}>Visualizar modelos</Button>
+            <Button type="primary" icon={<SaveOutlined />} loading={saving} onClick={() => void save()}>Salvar alterações</Button>
+          </div>
         </div>
 
         <Alert type="info" showIcon message="Homologação protegida" description="Alertas automáticos de WhatsApp só podem alcançar o destinatário de teste configurado. Nenhum contato operacional recebe mensagens deste ambiente." />
@@ -311,6 +317,7 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
           <Form.Item name="enabled" valuePropName="checked"><Switch checkedChildren="Ativo" unCheckedChildren="Inativo" /> <span className={styles.muted}>Receber alertas automáticos</span></Form.Item>
         </Form>
       </Modal>
+      <NotificationTemplateGallery open={templateGalleryOpen} onClose={() => setTemplateGalleryOpen(false)} />
     </Spin>
   );
 }

@@ -19,6 +19,7 @@ import { getEmailChannelStatus, verifyEmailTransport } from "@/services/email";
 import { dispatchPushNotifications, enqueuePushNotification } from "@/services/push-notifications";
 import { recordConfigurationAudit } from "@/services/configuration-audit";
 import { getWahaDiagnostics, normalizeWhatsappChatId, sendWahaText } from "@/services/waha";
+import { buildInternalWhatsappMessage, buildPushTemplate } from "@/lib/notifications/templates";
 
 export const dynamic = "force-dynamic";
 
@@ -217,11 +218,14 @@ export async function POST(request: Request) {
 
   try {
     if (parsed.data.channel === "push") {
+      const message = buildPushTemplate({
+        title: "Teste de Push",
+        primary: "Este navegador está pronto para receber alertas",
+      });
       const queued = await enqueuePushNotification({
         userId: admin.user.id,
         eventType: "test",
-        title: "Notificações Bentevi funcionando",
-        body: "Este navegador está pronto para receber alertas operacionais.",
+        ...message,
         url: "/configuracoes?tab=notificacoes",
         dedupeKey: `push_test:${admin.user.id}:${Date.now()}`,
       });
@@ -234,7 +238,11 @@ export async function POST(request: Request) {
       if (!testPhone) return noStore({ erro: "Destinatário de teste do WhatsApp não configurado" }, 409);
       await sendWahaText({
         chatId: normalizeWhatsappChatId(testPhone),
-        text: "Bentevi DEV — teste manual do canal de notificações.",
+        text: buildInternalWhatsappMessage({
+          title: "Teste de WhatsApp",
+          summary: "O canal de notificações está funcionando.",
+          fields: [{ label: "Ambiente", value: "Homologação" }],
+        }),
       });
       return noStore({ ok: true });
     }

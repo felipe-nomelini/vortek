@@ -4,6 +4,7 @@ import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { createServiceClient } from '@/lib/supabase';
 import { getFiscalProvider } from '@/services/fiscal-provider';
 import { sendEmail } from '@/services/email';
+import { buildFiscalEmailTemplate } from '@/lib/notifications/templates';
 
 const bodySchema = z.object({
   to: z.string().trim().email().optional().or(z.literal('')),
@@ -52,14 +53,19 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   const pdfResponse = await fetch(danfeUrl, { cache: 'no-store' });
   if (!pdfResponse.ok) return NextResponse.json({ error: 'Falha ao baixar a DANFE' }, { status: 502 });
   const pdf = Buffer.from(await pdfResponse.arrayBuffer());
+  const email = buildFiscalEmailTemplate({
+    kind: 'return_invoice',
+    invoiceNumber: note.nfe_numero || '',
+    orderNumber: (order as any)?.numero,
+    customerName: (order as any)?.contato_nome,
+    customSubject: body.data.subject,
+    customMessage: body.data.message,
+  });
   await sendEmail({
     to,
-    subject: body.data.subject || `NF-e de devolução ${note.nfe_numero || ''} - Bentevi`,
-    text: body.data.message || [
-      `Olá ${(order as any)?.contato_nome || ''},`, '',
-      `Segue a DANFE da NF-e de devolução ${note.nfe_numero || ''}.`, '',
-      'Mensagem automática Bentevi.',
-    ].join('\n'),
+    subject: email.subject,
+    text: email.text,
+    html: email.html,
     attachments: [{
       filename: `danfe_retorno_${note.nfe_numero || note.id}.pdf`,
       content: pdf,

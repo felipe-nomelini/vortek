@@ -1,6 +1,7 @@
 import webpush from 'web-push';
 import { createServiceClient } from '@/lib/supabase';
 import { notificationAppLink } from '@/lib/configuracoes/notifications';
+import { buildPushTemplate } from '@/lib/notifications/templates';
 import type { Json } from '@/types/database';
 
 type PushEventType = 'new_sale' | 'new_question' | 'claim_opened' | 'test';
@@ -157,9 +158,17 @@ export function pushEvents() {
   return {
     newSale: (order: { id?: string | null; ml_order_id?: string | null; contato_nome?: string | null; total?: number | null }) => {
       const orderId = String(order.ml_order_id || order.id || 'unknown');
-      return notify({ eventType: 'new_sale', title: 'Nova venda', body: `Pedido #${orderId} · ${order.contato_nome || 'Cliente'} · R$ ${Number(order.total || 0).toFixed(2)}`, url: `/pedidos?search=${encodeURIComponent(orderId)}`, dedupeKey: `new_sale:${orderId}`, payload: order as Record<string, unknown> });
+      const message = buildPushTemplate({ title: 'Nova venda', primary: `Venda #${orderId}`, secondary: Number(order.total || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) });
+      return notify({ eventType: 'new_sale', ...message, url: `/pedidos?search=${encodeURIComponent(orderId)}`, dedupeKey: `new_sale:${orderId}`, payload: order as Record<string, unknown> });
     },
-    newQuestion: (question: { id: string | number; item_title?: string | null; text?: string | null }) => notify({ eventType: 'new_question', title: 'Nova pergunta ML', body: question.item_title || question.text || 'Pergunta aguardando resposta', url: '/perguntas', dedupeKey: `new_question:${question.id}`, payload: question }),
-    claimOpened: (claim: { id?: string | null; ml_order_id?: string | null; ml_claim_id?: string | null; contato_nome?: string | null }) => notify({ eventType: 'claim_opened', title: 'Nova reclamação ML', body: `Pedido #${claim.ml_order_id || claim.id || '—'} · Claim ${claim.ml_claim_id || '—'}`, url: `/pedidos?search=${encodeURIComponent(String(claim.ml_order_id || claim.id || ''))}`, dedupeKey: `claim_opened:${claim.ml_claim_id}`, payload: claim as Record<string, unknown> }),
+    newQuestion: (question: { id: string | number; item_title?: string | null; text?: string | null }) => {
+      const message = buildPushTemplate({ title: 'Nova pergunta', primary: question.item_title || 'Pergunta aguardando resposta', secondary: 'Responder no Bentevi' });
+      return notify({ eventType: 'new_question', ...message, url: '/perguntas', dedupeKey: `new_question:${question.id}`, payload: question });
+    },
+    claimOpened: (claim: { id?: string | null; ml_order_id?: string | null; ml_claim_id?: string | null; contato_nome?: string | null }) => {
+      const orderId = String(claim.ml_order_id || claim.id || '—');
+      const message = buildPushTemplate({ title: 'Reclamação aberta', primary: `Venda #${orderId}`, secondary: 'Confira o prazo de resposta' });
+      return notify({ eventType: 'claim_opened', ...message, url: '/reclamacoes', dedupeKey: `claim_opened:${claim.ml_claim_id}`, payload: claim as Record<string, unknown> });
+    },
   };
 }

@@ -13,6 +13,7 @@ const listRoute = read('src/app/api/notas-fiscais/route.ts');
 const summaryRoute = read('src/app/api/notas-fiscais/resumo/route.ts');
 const emailRoute = read('src/app/api/notas-fiscais/[id]/enviar-email/route.ts');
 const emailService = read('src/services/email.ts');
+const messageTemplates = read('src/lib/notifications/templates.ts');
 
 test('organiza o cockpit fiscal sem coluna de emissão ou identificadores duplicados', () => {
   for (const title of ['NF-e', 'Venda ML', 'Cliente', 'Valor', 'Estado fiscal', 'Ações']) {
@@ -135,8 +136,8 @@ test('aplica identidade visual Bentevi e filtros persistidos na URL', () => {
   for (const filter of ['search', 'status', 'dateFrom', 'dateTo', 'valorMin', 'valorMax']) {
     assert.match(page, new RegExp(`params\\.set\\('${filter}'`));
   }
-  assert.match(page, /Mensagem automática Bentevi/);
-  assert.match(emailRoute, /Mensagem automática Bentevi/);
+  assert.match(messageTemplates, /Bentevi · Mensagem automática/);
+  assert.match(emailRoute, /buildFiscalEmailTemplate/);
   assert.match(emailService, /const from = `Bentevi </);
   assert.doesNotMatch(page, /Mensagem automática Vortek/);
   assert.doesNotMatch(emailRoute, /Mensagem automática Vortek/);
