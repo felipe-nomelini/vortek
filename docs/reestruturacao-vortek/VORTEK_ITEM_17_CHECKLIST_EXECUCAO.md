@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`
+**Próxima ação obrigatória:** `BNT-CFG-02 — Empresa e cadastro fiscal`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-CFG-01` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-CFG-02` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -160,7 +160,8 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-00 — Dossiê completo de parametrização`.
 - [x] Não avançar para `BNT-CFG-01` antes de `BNT-CFG-00` estar integralmente documentado e validado.
 - [x] Aprovar `BNT-CFG-00 — Dossiê completo de parametrização`.
-- [ ] Executar somente `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
+- [x] Executar somente `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
+- [ ] Executar somente `BNT-CFG-02 — Empresa e cadastro fiscal`.
 
 ---
 
@@ -2430,6 +2431,22 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Validação e isolamento:** fontes locais, consumidores, schema, migrations e documentação oficial atual das integrações foram confrontados. Nenhum código funcional, banco, migration, integração, deploy ou ambiente foi alterado nesta ação. Nenhum secret foi reproduzido.
 
 **Pendência:** nenhuma em `BNT-CFG-00`. Próxima ação liberada: `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
+
+#### Resultado técnico de `BNT-CFG-01 — Núcleo administrativo, contratos tipados e auditoria sanitizada`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-04`.
+
+**Estado/causa confirmados:** as quatro seções existentes de `/configuracoes` utilizavam validações manuais diferentes em seis rotas de mutação e não registravam autor, instante ou alteração realizada. As credenciais já eram write-only nas respostas de Integrações, mas não existia uma trilha administrativa dedicada que garantisse a mesma proteção ao histórico.
+
+**Mudança realizada:** foi criado um contrato Zod estrito e tipado para Empresa, Preferências, Integrações e Usuários, compartilhando o catálogo de chaves, domínios, classificações e ações administrativas. As seis mutações existentes passaram a registrar somente diferenças efetivamente persistidas. Secrets são convertidos em `configurado/não configurado` antes do insert e nunca entram na tabela de auditoria. A nova aba lazy-loaded `Histórico` possui filtros por área e ação, paginação no servidor e exibe autor, configuração e snapshots sanitizados. Nenhuma configuração de negócio nova foi criada nesta ação.
+
+**Banco DEV:** a migration aditiva `20260904163000_bnt_cfg_01_admin_audit.sql` foi ensaiada integralmente com `ROLLBACK` e aplicada transacionalmente somente no `supabase-dev` confirmado em `192.168.1.162`, PostgreSQL `17.6`. O read-back confirmou RLS ativo, constraints tipadas, dois índices, migration registrada e `service_role` apenas com `SELECT/INSERT`, sem `UPDATE/DELETE`; a tabela permaneceu vazia, sem fixture ou secret. O banco de produção em `.160` não foi acessado.
+
+**Commit, testes e homologação:** `b00c49e` — `feat(configuracoes): criar nucleo administrativo auditavel`, enviado somente para `origin/dev`. Foram aprovados 8 cenários direcionados do núcleo/interface e 4 cenários de regressão de secrets em Integrações; `npm run validate`, `npm run build` com Next.js `16.3.3`, 121 páginas/rotas e `git diff --check` passaram. O deploy oficial do `vortek-erp-dev` foi aceito e a nova task assumiu o tráfego; health e login responderam `200`, `/configuracoes` respondeu `307` sem sessão e `/api/configuracoes/auditoria` respondeu `401` sem sessão, confirmando as proteções de acesso. Não foi executada mutação administrativa artificial somente para preencher o histórico.
+
+**Rollback:** reverter `b00c49e` em `dev` e redeployar somente `vortek-erp-dev`. A tabela e a migration são aditivas e devem permanecer para preservar histórico; sua remoção exigiria uma nova migration corretiva autorizada exclusivamente no `.162`.
+
+**Pendência:** nenhuma técnica em `BNT-CFG-01`. A conferência visual autenticada da aba pode ocorrer junto da próxima revisão de `/configuracoes`; a credencial local disponível não autenticou e nenhum usuário foi alterado fora do escopo. Próxima ação liberada: `BNT-CFG-02 — Empresa e cadastro fiscal`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
