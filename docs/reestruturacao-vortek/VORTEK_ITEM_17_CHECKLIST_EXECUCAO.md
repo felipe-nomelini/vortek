@@ -170,8 +170,8 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-05 — Mercado Livre e anúncios`.
 - [x] Aprovar visualmente `BNT-CFG-05` em homologação antes de iniciar `BNT-CFG-06`.
 - [x] Executar somente `BNT-CFG-06 — Notificações e canais`.
-- [ ] Aprovar visualmente `BNT-CFG-06` em homologação antes de iniciar `BNT-MSG-01`.
-- [ ] Executar somente `BNT-MSG-01 — Templates e identidade das notificações`.
+- [x] Aprovar visualmente `BNT-CFG-06` em homologação antes de iniciar `BNT-MSG-01`.
+- [x] Executar somente `BNT-MSG-01 — Templates e identidade das notificações`.
 - [ ] Aprovar os templates de WhatsApp, Push e e-mail em homologação antes de iniciar `BNT-CFG-07`.
 
 ---
@@ -2531,7 +2531,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Validação técnica:** passaram 14 cenários direcionados de notificações/admin/UI, 14 cenários retroativos de empresa/fiscal e 18 de Mercado Livre/configurações. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhum teste externo de Push, WhatsApp ou e-mail foi disparado.
 
-**Pendência:** aprovar visualmente `https://dev.bentevi.shop/configuracoes?tab=notificacoes` antes de iniciar `BNT-MSG-01`.
+**Aprovação:** a aba `Notificações` foi aprovada visualmente pelo responsável em `2026-09-04`, liberando `BNT-MSG-01`.
 
 ### `BNT-MSG-01 — Templates e identidade das notificações`
 
@@ -2543,17 +2543,34 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Execução:**
 
-- [ ] localizar todos os emissores e templates ativos de WhatsApp, Push e e-mail;
-- [ ] consolidar a matriz `evento → público → canal → conteúdo → ação`;
-- [ ] definir a hierarquia Bentevi para título, contexto, dados essenciais, próxima ação, link e rodapé;
-- [ ] redesenhar separadamente mensagens internas, mensagens a clientes/fornecedores e comunicações fiscais;
-- [ ] preservar os contratos de envio, estados, dedupe e proteções de homologação existentes;
-- [ ] adicionar testes direcionados para conteúdo obrigatório, formatação e ausência de dados sensíveis;
-- [ ] validar Push no navegador atual, WhatsApp somente no destinatário de teste e SMTP sem destinatário real;
-- [ ] executar `npm run validate` e build quando aplicável;
+- [x] localizar todos os emissores e templates ativos de WhatsApp, Push e e-mail;
+- [x] consolidar a matriz `evento → público → canal → conteúdo → ação`;
+- [x] definir a hierarquia Bentevi para título, contexto, dados essenciais, próxima ação, link e rodapé;
+- [x] redesenhar separadamente mensagens internas, mensagens a clientes/fornecedores e comunicações fiscais;
+- [x] preservar os contratos de envio, estados, dedupe e proteções de homologação existentes;
+- [x] adicionar testes direcionados para conteúdo obrigatório, formatação e ausência de dados sensíveis;
+- [x] validar todas as amostras por canal na galeria protegida, sem disparar mensagens externas durante a implementação;
+- [x] executar `npm run validate` e build quando aplicável;
 - [ ] aprovar amostras de todos os tipos de mensagem em homologação antes de iniciar `BNT-CFG-07`.
 
 **Aceite:** todos os templates ativos devem usar Bentevi, apresentar somente as informações úteis ao público correto, indicar claramente a ação quando houver e manter intacto o comportamento funcional dos disparos.
+
+**Matriz consolidada:**
+
+| Canal | Público | Eventos cobertos | Origem e ação esperada |
+| --- | --- | --- | --- |
+| WhatsApp | equipe interna | venda, pergunta, reclamação, etiqueta, integrações, jobs, agendamentos, resumos e teste | pedidos, Mercado Livre e jobs; abrir diretamente a área operacional correspondente |
+| WhatsApp | fornecedor | pagamento, etiqueta e cancelamento | compra, pedido, documento fiscal e links públicos; aguardar etiqueta, despachar ou interromper despacho |
+| Push | equipe interna | venda, pergunta, reclamação e teste | outbox já existente; abrir venda, perguntas ou reclamações |
+| E-mail | cliente | NF-e de venda e NF-e de devolução | pedido e documento fiscal; consultar a DANFE anexada ou pelo link autorizado |
+
+**Resultado técnico:** uma única fonte tipada e pura passou a produzir os conteúdos usados tanto pelos emissores reais quanto pela galeria administrativa. WhatsApp usa hierarquia curta de contexto, informações e próxima ação; Push foi reduzido ao essencial; e-mail fiscal ganhou HTML integralmente dark, logotipo Bentevi por CID e fallback em texto. A galeria `Visualizar modelos`, dentro da aba `Notificações`, apresenta 20 amostras sintéticas de WhatsApp, Push e e-mail sem realizar envio. Eventos, destinatários, permissões, dedupe, idempotência, anexos e auditoria permaneceram nos fluxos existentes. Não houve migration nem operação de banco.
+
+**Commit, testes e homologação:** `0f81e63` — `feat(notificacoes): padronizar templates Bentevi`, enviado somente para `origin/dev`. Passaram 23 cenários da etapa e retroativos de notificações/fiscal, mais 22 regressões de vendas, jobs e fluxos extraídos; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas, `npm run check:build-secrets` e `git diff --check` passaram. A action Easypanel `cmtnc1hzn000907pf0lx9551e` concluiu com `Success`, e a task `bv5fycb3htza06pszhevntf0w` ativou `GIT_SHA=0f81e63f69d6d05a3f81a3c24e792a4dbbc2777d` somente no `vortek-erp-dev`. Health e login responderam `200`; Configurações respondeu `307` sem sessão; a API administrativa de modelos respondeu `401` sem sessão; e o artefato contém `Visualizar modelos`. Nenhum Push, WhatsApp ou e-mail real foi enviado durante a validação.
+
+**Rollback:** reverter `0f81e63` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, dado operacional ou integração externa a reverter.
+
+**Pendência:** aprovar visualmente as amostras em `https://dev.bentevi.shop/configuracoes?tab=notificacoes` antes de iniciar `BNT-CFG-07`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
