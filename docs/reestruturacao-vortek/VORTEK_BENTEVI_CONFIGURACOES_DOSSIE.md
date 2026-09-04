@@ -376,4 +376,4 @@ Os contratos externos definem capacidades e limites; a página não poderá cria
 
 Implementado tecnicamente em `2026-09-04` no commit `439e685` e publicado em `dev.bentevi.shop`. A entrega consolidou identidade e contato, endereço fiscal estruturado, tributação do Simples e saúde somente leitura do emissor na aba `Empresa e fiscal`. O início de atividade passou a possuir fonte persistida obrigatória, Brasil NFe permaneceu como provedor invariável e os consumidores fiscais afetados deixaram de inferir UF a partir do endereço legado.
 
-A migration `20260904210000_bnt_cfg_02_company_fiscal.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. A aprovação visual autenticada permanece como gate antes de `BNT-CFG-03`.
+A migration `20260904210000_bnt_cfg_02_company_fiscal.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. A entrega foi aprovada visualmente pelo responsável em `2026-09-04`, liberando `BNT-CFG-03` como próxima ação.
