@@ -32,6 +32,7 @@ const statusLabel: Record<string, string> = {
   entregue: 'Entregue',
   recusado: 'Recusado',
   devolvido: 'Devolvido',
+  concretizada_ml: 'Concretizada pelo ML',
   cancelado: 'Cancelado',
 };
 
@@ -50,6 +51,7 @@ const statusColor: Record<string, string> = {
   entregue: '#52c41a',
   recusado: '#ff4d4f',
   devolvido: '#eb2f96',
+  concretizada_ml: '#d4b106',
   cancelado: '#888',
 };
 

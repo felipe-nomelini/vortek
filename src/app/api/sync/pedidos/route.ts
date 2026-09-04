@@ -36,6 +36,11 @@ import {
 } from '@/lib/ml/order-profit';
 import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
 import { createSupplierCancellationCreditCandidate } from '@/lib/supplier-credits';
+import { getMercadoPagoPaymentForMlSale } from '@/services/mercadopago';
+import {
+  assessMlSaleConcretization,
+  type MlSalePaymentRelease,
+} from '@/lib/ml/sale-concretization';
 
 export const maxDuration = 300;
 
@@ -500,6 +505,7 @@ async function buscarClaims(orderId: string | number): Promise<{
   isDevolvido: boolean;
   motivoDevolucao: string | null;
   devolucao: DevolucaoMl | null;
+  lookupComplete: boolean;
 }> {
   try {
     const search = await fetchML<any>(`/post-purchase/v1/claims/search?resource_id=${orderId}&resource=order`);
@@ -566,12 +572,30 @@ async function buscarClaims(orderId: string | number): Promise<{
         isDevolvido,
         motivoDevolucao,
         devolucao,
+        lookupComplete: true,
+      };
+    }
+    if (Array.isArray(search?.data)) {
+      return {
+        id: null,
+        status: null,
+        isDevolvido: false,
+        motivoDevolucao: null,
+        devolucao: null,
+        lookupComplete: true,
       };
     }
   } catch (err: any) {
     console.error(`[sync-pedidos] Erro ao buscar claims do pedido ${orderId}:`, err?.message);
   }
-  return { id: null, status: null, isDevolvido: false, motivoDevolucao: null, devolucao: null };
+  return {
+    id: null,
+    status: null,
+    isDevolvido: false,
+    motivoDevolucao: null,
+    devolucao: null,
+    lookupComplete: false,
+  };
 }
 
 type SyncOrderResult = {
@@ -907,7 +931,7 @@ async function processOrder(params: {
 
   const { data: existingPedido } = await serviceClient
     .from('pedidos')
-    .select('id, ml_pack_id, ml_bundle_type, ml_bundle_parent_item_id, ml_bundle_primary, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto, snapshot_source')
+    .select('id, situacao, ml_pack_id, ml_bundle_type, ml_bundle_parent_item_id, ml_bundle_primary, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto, snapshot_source')
     .eq('ml_order_id', String(o.id))
     .maybeSingle();
   existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
@@ -1101,6 +1125,7 @@ async function processOrder(params: {
     isDevolvido,
     motivoDevolucao: motivoClaim,
     devolucao: devolucaoMl,
+    lookupComplete: claimLookupComplete,
   } = await buscarClaims(o.id);
 
   // 4. Status: em no_shipping, fulfilled=true confirma conclusão mesmo com tag not_delivered residual.
@@ -1243,7 +1268,11 @@ async function processOrder(params: {
         const shipStatus = shipmentDetail.status;
         const shipSubstatus = shipmentDetail.substatus;
         if (shipStatus) {
-          situacao = mapearStatusShipment(shipStatus, shipSubstatus);
+          situacao = mapearStatusShipment(
+            shipStatus,
+            shipSubstatus,
+            (existingPedido as any)?.situacao || null,
+          );
           if (situacao !== situacaoAnteriorShipment) {
             console.log(JSON.stringify({
               event: 'sync_pedidos_shipment_status_transition',
@@ -1336,6 +1365,80 @@ async function processOrder(params: {
     }
   } catch {
     // ignora falha pontual
+  }
+
+  let saleConcretizationEvidence: {
+    shipment_id: string;
+    shipment_status: string;
+    shipment_substatus: string;
+    payments: Array<{
+      id: string;
+      status: string | null;
+      money_release_status: string | null;
+      money_release_date: string | null;
+      transaction_amount_refunded: number;
+    }>;
+  } | null = null;
+
+  if (
+    String(shipmentDetail?.status || '').toLowerCase() === 'shipped'
+    && String(shipmentDetail?.substatus || '').toLowerCase() === 'stale'
+    && situacao !== 'devolvido'
+    && situacao !== 'cancelado'
+    && !mlClaimId
+  ) {
+    const approvedOrderPayments = (Array.isArray(sourceOrder?.payments) ? sourceOrder.payments : [])
+      .filter((payment: any) => String(payment?.status || '').toLowerCase() === 'approved');
+    const paymentIds = approvedOrderPayments
+      .map((payment: any) => String(payment?.id || '').trim())
+      .filter(Boolean);
+    const paymentLookupComplete = approvedOrderPayments.length > 0
+      && paymentIds.length === approvedOrderPayments.length;
+
+    if (paymentLookupComplete) {
+      try {
+        const paymentDetails = await Promise.all(
+          paymentIds.map((paymentId: string) => getMercadoPagoPaymentForMlSale(paymentId)),
+        ) as MlSalePaymentRelease[];
+        const assessment = assessMlSaleConcretization({
+          orderStatus: sourceOrder?.status || o.status,
+          shipmentStatus: shipmentDetail.status,
+          shipmentSubstatus: shipmentDetail.substatus,
+          hasClaim: Boolean(mlClaimId),
+          isReturned: isDevolvido,
+          claimLookupComplete,
+          paymentLookupComplete: paymentDetails.length === paymentIds.length,
+          payments: paymentDetails,
+        });
+        if (assessment.concretized) {
+          situacao = 'concretizada_ml';
+          saleConcretizationEvidence = {
+            shipment_id: String(shipmentDetail.id || mlShipmentId || ''),
+            shipment_status: String(shipmentDetail.status),
+            shipment_substatus: String(shipmentDetail.substatus),
+            payments: paymentDetails.map((payment) => ({
+              id: String(payment.id || ''),
+              status: payment.status ? String(payment.status) : null,
+              money_release_status: payment.money_release_status
+                ? String(payment.money_release_status)
+                : null,
+              money_release_date: payment.money_release_date
+                ? String(payment.money_release_date)
+                : null,
+              transaction_amount_refunded: Number(payment.transaction_amount_refunded || 0),
+            })),
+          };
+        }
+      } catch (error: any) {
+        console.error(JSON.stringify({
+          event: 'ml_sale_concretization_lookup_failed',
+          timestamp_utc: new Date().toISOString(),
+          ml_order_id: String(o.id),
+          shipment_id: mlShipmentId,
+          error: error?.message || 'Falha ao consultar liberação financeira da venda',
+        }));
+      }
+    }
   }
 
   const freteTotal = Number(shipmentDetail?.shipping_option?.cost || sourceOrder?.shipping_cost || o.shipping_cost || 0);
@@ -1496,6 +1599,26 @@ async function processOrder(params: {
       frete: persistedFreight,
     } : {}),
   } as any, { onConflict: 'ml_order_id' }).select('id').maybeSingle();
+
+  if (
+    !error
+    && upsertedPedido?.id
+    && situacao === 'concretizada_ml'
+    && (existingPedido as any)?.situacao !== 'concretizada_ml'
+    && saleConcretizationEvidence
+  ) {
+    await registrarEventoNfAuditoria({
+      pedidoId: String(upsertedPedido.id),
+      mlOrderId: String(o.id),
+      mlPackId,
+      evento: 'ml_sale_concretized_without_delivery',
+      respostaMl: {
+        source: 'sync_pedidos',
+        ...saleConcretizationEvidence,
+      },
+      statusResultante: 'concretizada_ml',
+    });
+  }
 
   if (
     !error

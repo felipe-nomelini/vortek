@@ -11,11 +11,11 @@ import type { Database } from '@/types/database';
 const { Title, Text } = Typography;
 
 const statusColor: Record<string, string> = {
-  aberto: 'blue', atendido: 'processing', faturado: 'purple', entregue: 'green', cancelado: 'red',
+  aberto: 'blue', atendido: 'processing', faturado: 'purple', entregue: 'green', concretizada_ml: 'gold', cancelado: 'red',
 };
 
 const statusLabel: Record<string, string> = {
-  aberto: 'Aberto', atendido: 'Atendido', faturado: 'Faturado', entregue: 'Entregue', cancelado: 'Cancelado',
+  aberto: 'Aberto', atendido: 'Atendido', faturado: 'Faturado', entregue: 'Entregue', concretizada_ml: 'Concretizada pelo ML', cancelado: 'Cancelado',
 };
 
 const ddiOptions = [

@@ -60,6 +60,7 @@ const NON_ACTIONABLE_LABEL_STATUSES = new Set([
   "entregue",
   "devolvido",
   "recusado",
+  "concretizada_ml",
 ]);
 
 function getAlertPhones(): string[] {

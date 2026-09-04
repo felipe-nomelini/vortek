@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import { MercadoPagoConfig } from 'mercadopago';
 import { createServiceClient } from '@/lib/supabase';
+import { getValidMLToken } from '@/services/integration';
 
 const MP_BASE_URL = 'https://api.mercadopago.com';
 
@@ -163,8 +164,11 @@ export async function getMercadoPagoClient() {
   return new MercadoPagoConfig({ accessToken });
 }
 
-export async function mercadoPagoRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
-  const token = await getMercadoPagoAccessToken();
+async function mercadoPagoRequestWithToken<T>(
+  token: string,
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
   if (!token) {
     throw new Error('Mercado Pago não configurado. Informe access_token em integracoes ou MERCADOPAGO_ACCESS_TOKEN.');
   }
@@ -190,12 +194,29 @@ export async function mercadoPagoRequest<T>(path: string, init: RequestInit = {}
   return await res.text() as T;
 }
 
+export async function mercadoPagoRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
+  const token = await getMercadoPagoAccessToken();
+  return mercadoPagoRequestWithToken<T>(token, path, init);
+}
+
 export async function getMercadoPagoPayment(paymentId: string | number) {
   const cleanId = String(paymentId || '').trim();
   if (!cleanId) throw new Error('paymentId Mercado Pago ausente');
   return mercadoPagoRequest<Record<string, unknown>>(`/v1/payments/${encodeURIComponent(cleanId)}`, {
     method: 'GET',
   });
+}
+
+export async function getMercadoPagoPaymentForMlSale(paymentId: string | number) {
+  const cleanId = String(paymentId || '').trim();
+  if (!cleanId) throw new Error('paymentId da venda Mercado Livre ausente');
+  const token = await getValidMLToken();
+  if (!token) throw new Error('Token Mercado Livre indisponível para consultar liberação do pagamento');
+  return mercadoPagoRequestWithToken<Record<string, unknown>>(
+    token,
+    `/v1/payments/${encodeURIComponent(cleanId)}`,
+    { method: 'GET' },
+  );
 }
 
 export function buildUtcRange(windowDays = 7, beginDate?: string | null, endDate?: string | null) {

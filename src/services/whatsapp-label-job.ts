@@ -441,11 +441,14 @@ export async function runWhatsappLabelJob(input: {
 
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,situacao')
       .eq('id', input.pedidoId)
       .maybeSingle();
     if (pedidoError) throw new Error(pedidoError.message);
     if (!pedido) throw new Error('Pedido de venda não encontrado');
+    if ((pedido as any).situacao === 'concretizada_ml') {
+      throw new Error('Venda já concretizada pelo Mercado Livre. Etiqueta não será reenviada.');
+    }
 
     const pedidoId = String((pedido as any).id);
     const mlOrderId = String((pedido as any).ml_order_id || '').trim() || null;

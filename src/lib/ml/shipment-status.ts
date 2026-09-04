@@ -3,7 +3,15 @@ import type { Database } from '@/types/database';
 export function mapearStatusShipment(
   shipmentStatus: string,
   shipmentSubstatus?: string,
+  existingSituation?: string | null,
 ): Database['public']['Enums']['pedido_status'] {
+  if (
+    existingSituation === 'concretizada_ml'
+    && shipmentStatus === 'shipped'
+    && shipmentSubstatus === 'stale'
+  ) {
+    return 'concretizada_ml';
+  }
   switch (shipmentStatus) {
     case 'pending':
       return 'pendente';

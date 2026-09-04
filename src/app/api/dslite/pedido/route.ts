@@ -5509,7 +5509,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const fulfillmentRead = await (client as any)
       .from('pedidos')
-      .select('fulfillment_source')
+      .select('fulfillment_source,situacao')
       .eq('id', String(pedidoId))
       .maybeSingle();
     if (fulfillmentRead.error) {
@@ -5526,6 +5526,15 @@ export async function POST(req: Request) {
     }
     if (!fulfillmentRead.data) {
       return NextResponse.json({ error: 'Pedido não encontrado', code: 'order_not_found' }, { status: 404 });
+    }
+    if (fulfillmentRead.data.situacao === 'concretizada_ml') {
+      return NextResponse.json(
+        {
+          error: 'Venda já concretizada pelo Mercado Livre. Pedido DSLite não será criado.',
+          code: 'order_concretized_by_ml',
+        },
+        { status: 409 },
+      );
     }
 
     const currentFulfillmentSource = String(fulfillmentRead.data.fulfillment_source || '').trim();

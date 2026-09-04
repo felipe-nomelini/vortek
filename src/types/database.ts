@@ -2793,6 +2793,7 @@ export type Database = {
         | "recusado"
         | "devolvido"
         | "pronto_envio"
+        | "concretizada_ml"
       user_role: "admin" | "gerente" | "operador" | "visualizador"
     }
     CompositeTypes: {
@@ -2945,6 +2946,7 @@ export const Constants = {
         "recusado",
         "devolvido",
         "pronto_envio",
+        "concretizada_ml",
       ],
       user_role: ["admin", "gerente", "operador", "visualizador"],
     },

@@ -25,6 +25,7 @@ const querySchema = z.object({
     "aberto", "pendente", "preparando", "pronto_envio", "etiqueta_impressa",
     "faturado", "coletado", "em_transito", "saiu_entrega", "dest_ausente",
     "atendido", "entregue", "recusado", "devolvido", "cancelado",
+    "concretizada_ml",
   ]).optional(),
   dateFrom: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   dateTo: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),

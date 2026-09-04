@@ -25,6 +25,7 @@ export const salesStatusSchema = z.enum([
   "recusado",
   "devolvido",
   "cancelado",
+  "concretizada_ml",
 ]);
 
 const salesItemSchema = z.object({

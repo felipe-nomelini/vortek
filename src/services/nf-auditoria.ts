@@ -149,6 +149,7 @@ type AuditEvent =
   | 'ml_cancel_auto_supplier_whatsapp_sent'
   | 'ml_cancel_auto_supplier_whatsapp_failed'
   | 'ml_cancel_auto_supplier_whatsapp_skipped'
+  | 'ml_sale_concretized_without_delivery'
   | 'step_auto_close';
 
 export async function registrarEventoNfAuditoria(input: {

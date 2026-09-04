@@ -13,7 +13,8 @@ export type OrderStatus =
   | 'saiu_entrega'
   | 'dest_ausente'
   | 'recusado'
-  | 'devolvido';
+  | 'devolvido'
+  | 'concretizada_ml';
 
 export interface Order {
   id: number;

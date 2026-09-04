@@ -179,6 +179,7 @@ function statusColor(status: string) {
     faturado: "green",
     atendido: "green",
     entregue: "success",
+    concretizada_ml: "gold",
     cancelado: "red",
   };
   return map[status] || "default";

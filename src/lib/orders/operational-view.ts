@@ -49,6 +49,7 @@ export const POST_DISPATCH_ORDER_STATUSES = [
   'entregue',
   'recusado',
   'devolvido',
+  'concretizada_ml',
 ] as const;
 
 const OPERATION_DELAY_MS = 60 * 60 * 1000;

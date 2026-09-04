@@ -41,6 +41,23 @@ export async function POST(request: Request, { params }: { params: { id: string 
     }
 
     const client = createServiceClient();
+    const { data: pedido, error: pedidoError } = await client
+      .from('pedidos')
+      .select('situacao')
+      .eq('id', params.id)
+      .maybeSingle();
+    if (pedidoError) {
+      return NextResponse.json({ error: pedidoError.message }, { status: 500 });
+    }
+    if (!pedido) {
+      return NextResponse.json({ error: 'Pedido não encontrado' }, { status: 404 });
+    }
+    if ((pedido as any).situacao === 'concretizada_ml') {
+      return NextResponse.json(
+        { error: 'Venda já concretizada pelo Mercado Livre. Etiqueta não será reenviada.' },
+        { status: 409 },
+      );
+    }
     const dedupeKey = `pedido:${params.id}`;
     const reusable = await findReusableJob({
       client,

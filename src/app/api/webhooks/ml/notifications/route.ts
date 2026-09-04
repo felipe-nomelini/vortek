@@ -84,7 +84,17 @@ async function persistWebhookOrderStub(params: {
   if (!mlOrderId) return null;
 
   const payload = buildWebhookStubPayload(order, existing);
-  const shouldHydrate = !existing?.id || Boolean(existing?.snapshot_incompleto) || !existing?.sincronizado_em;
+  const shouldReconcileConcretization = existing?.situacao === 'em_transito'
+    && String(order?.status || '').toLowerCase() === 'paid'
+    && Array.isArray(order?.payments)
+    && order.payments.some((payment: any) => (
+      String(payment?.status || '').toLowerCase() === 'approved'
+      && Boolean(String(payment?.id || '').trim())
+    ));
+  const shouldHydrate = !existing?.id
+    || Boolean(existing?.snapshot_incompleto)
+    || !existing?.sincronizado_em
+    || shouldReconcileConcretization;
 
   if (existing?.id) {
     await serviceClient
@@ -691,13 +701,17 @@ export async function POST(request: Request) {
         // Buscar pedido associado ao shipment
         const orderId = shipment.order_id || shipment.resource_id;
         if (orderId) {
-          const situacao = mapearStatusShipment(shipment.status, shipment.substatus);
           // Não sobrescrever devolvido
           const { data: pedido } = await serviceClient
             .from('pedidos')
             .select('id,situacao,ml_fiscal_release_at,ml_pack_id')
             .eq('ml_order_id', String(orderId))
             .maybeSingle();
+          const situacao = mapearStatusShipment(
+            shipment.status,
+            shipment.substatus,
+            pedido?.situacao || null,
+          );
           const situacaoFinal = pedido?.situacao === 'devolvido' ? 'devolvido' : situacao;
           await serviceClient
             .from('pedidos')

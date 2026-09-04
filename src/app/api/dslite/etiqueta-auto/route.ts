@@ -187,7 +187,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id,situacao')
       .eq('id', pedidoId)
       .maybeSingle();
 
@@ -243,6 +243,16 @@ export async function POST(req: Request) {
 
     if (!pedido) {
       return stepError(steps, 'check_ml_invoice_xml', 'Pedido não encontrado', undefined, 404, 'not_found');
+    }
+    if ((pedido as any).situacao === 'concretizada_ml') {
+      return stepError(
+        steps,
+        'check_ml_invoice_xml',
+        'Venda já concretizada pelo Mercado Livre. Nenhuma etapa de frete ou etiqueta será executada.',
+        undefined,
+        409,
+        'business',
+      );
     }
 
     if (directShipping) {

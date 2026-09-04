@@ -61,6 +61,7 @@ const statusOptions = [
   { value: 'entregue', label: 'Entregue' },
   { value: 'recusado', label: 'Recusado' },
   { value: 'devolvido', label: 'Devolvido' },
+  { value: 'concretizada_ml', label: 'Concretizada pelo ML' },
   { value: 'cancelado', label: 'Cancelado' },
 ];
 
@@ -79,6 +80,7 @@ const statusColor: Record<OrderStatus, string> = {
   entregue: 'green',
   recusado: 'red',
   devolvido: 'magenta',
+  concretizada_ml: 'gold',
   cancelado: 'default',
 };
 
@@ -97,6 +99,7 @@ const statusLabel: Record<OrderStatus, string> = {
   entregue: 'Entregue',
   recusado: 'Recusado',
   devolvido: 'Devolvido',
+  concretizada_ml: 'Concretizada pelo ML',
   cancelado: 'Cancelado',
 };
 
@@ -109,6 +112,7 @@ const nfeExpectedStatuses = new Set<OrderStatus>([
   'atendido',
   'faturado',
   'entregue',
+  'concretizada_ml',
 ]);
 
 function initDsliteOrderSteps(): ProgressStep[] {
@@ -1519,7 +1523,7 @@ export default function PedidosPage() {
       && !isInternalShipping
       && order.fulfillment_source !== 'internal'
       && !postDispatch
-      && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor);
+      && !['cancelado', 'entregue', 'devolvido', 'recusado', 'concretizada_ml'].includes(order.situacao.valor);
     const canCompleteLabel = Boolean(
       !isInternalShipping
       && !hasSplitFulfillment
@@ -1542,7 +1546,7 @@ export default function PedidosPage() {
       && order.fulfillment_source !== 'supplier'
       && order.internal_stock_available
       && order.ml_shipment_id
-      && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor),
+      && !['cancelado', 'entregue', 'devolvido', 'recusado', 'concretizada_ml'].includes(order.situacao.valor),
     );
 
     return (
@@ -2053,14 +2057,14 @@ export default function PedidosPage() {
           && releaseAt
           && releaseAt.getTime() > Date.now(),
         );
-        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && record.fulfillment_source !== 'internal' && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && record.fulfillment_source !== 'internal' && !['cancelado', 'entregue', 'devolvido', 'recusado', 'concretizada_ml'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
             label: 'Enviar pelo fornecedor (DSLite)',
             icon: <CarOutlined />,
           });
         }
-        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && !hasDsliteId && record.fulfillment_source !== 'supplier' && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && !hasDsliteId && record.fulfillment_source !== 'supplier' && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado', 'concretizada_ml'].includes(record.situacao.valor)) {
           items.push({ key: 'direct_shipping', label: 'Enviar pelo estoque interno', icon: <UploadOutlined /> });
         }
         if (record.ml_label_storage_path && record.dslite_next_action === 'internal_shipping') {
