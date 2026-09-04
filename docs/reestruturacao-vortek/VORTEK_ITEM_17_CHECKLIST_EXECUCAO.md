@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-05 — Mercado Livre e anúncios` em homologação
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-01 — Atividade manual do produto`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | Planejada e bloqueante | Executar `BNT-PARITY-00` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | Fotografia concluída; aplicação bloqueante | Executar `BNT-PARITY-01` e resolver a fila antes de `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -174,7 +174,9 @@ Regras de uso:
 - [x] Aprovar visualmente `BNT-CFG-06` em homologação antes de iniciar `BNT-MSG-01`.
 - [x] Executar somente `BNT-MSG-01 — Templates e identidade das notificações`.
 - [x] Aprovar os templates de WhatsApp, Push e e-mail em homologação antes de iniciar `BNT-PARITY-00`.
-- [ ] Executar somente `BNT-PARITY-00 — Fotografia e catálogo de regras`.
+- [x] Executar somente `BNT-PARITY-00 — Fotografia e catálogo de regras`.
+- [ ] Executar somente `BNT-PARITY-01 — Atividade manual do produto`.
+- [ ] Não avançar para `BNT-PARITY-02` antes de `BNT-PARITY-01` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2587,18 +2589,24 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### `BNT-PARITY-00 — Fotografia e catálogo de regras`
 
-- [ ] confirmar branch `dev`, working tree, `origin/main`, `origin/dev`, ancestral comum e SHA efetivamente implantado no serviço produtivo;
-- [ ] inventariar individualmente todos os commits exclusivos de `main`, seus arquivos, migrations, testes e efeito funcional;
-- [ ] pesquisar também as regras produtivas atuais que antecedem o ancestral comum, sem limitar a análise ao diff Git;
-- [ ] percorrer código, contratos, schemas, constraints, funções, triggers, RLS, migrations, testes, jobs, webhooks, configurações e consumidores web/mobile;
-- [ ] consultar o banco de produção em `192.168.1.160` apenas com transação e operações `READ ONLY`, usando catálogos, agregados e parâmetros necessários, sem copiar PII, payloads ou secrets;
-- [ ] comparar o estado produtivo com o código, schema, migrations e parâmetros do `supabase-dev` em `192.168.1.162`, sem escrever em nenhum banco durante a fotografia;
-- [ ] reconfirmar na documentação oficial atual as regras que dependem de Mercado Livre, Mercado Pago, DSLite, Brasil NFe, Supabase/PostgreSQL, WAHA, SMTP ou outra integração;
-- [ ] cobrir ao menos: pricing, impostos, margens, descontos, fretes e thresholds; produtos, ofertas, fornecedores e kits; estoque, reserva e fulfillment; vendas, compras, pagamentos, cancelamentos e devoluções; fiscal; anúncios, catálogo, identidade ML, perguntas e reclamações; jobs, outbox, webhooks e notificações; autenticação, permissões, mobile e contratos de API;
-- [ ] criar `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` com uma linha por regra contendo domínio, identificador, fonte produtiva, entrada, cálculo/decisão, unidade, precedência, fallback, consumidores, estado na Bentevi, divergência, classificação, evidência, teste e ação necessária;
-- [ ] registrar valores numéricos de negócio com unidade e limites; secrets devem aparecer somente como `configurado/não configurado`;
-- [ ] gerar uma fila ordenada de ações `BNT-PARITY-N`, uma mudança coerente por tarefa, sem implementar nenhuma delas dentro de `BNT-PARITY-00`;
-- [ ] concluir o gate obrigatório da seção 3 e registrar a fotografia sem alterar código funcional, banco, integração ou produção.
+- [x] confirmar branch `dev`, working tree, `origin/main`, `origin/dev`, ancestral comum e SHA efetivamente implantado no serviço produtivo;
+- [x] inventariar individualmente todos os commits exclusivos de `main`, seus arquivos, migrations, testes e efeito funcional;
+- [x] pesquisar também as regras produtivas atuais que antecedem o ancestral comum, sem limitar a análise ao diff Git;
+- [x] percorrer código, contratos, schemas, constraints, funções, triggers, RLS, migrations, testes, jobs, webhooks, configurações e consumidores web/mobile;
+- [x] consultar o banco de produção em `192.168.1.160` apenas com transação e operações `READ ONLY`, usando catálogos, agregados e parâmetros necessários, sem copiar PII, payloads ou secrets;
+- [x] comparar o estado produtivo com o código, schema, migrations e parâmetros do `supabase-dev` em `192.168.1.162`, sem escrever em nenhum banco durante a fotografia;
+- [x] reconfirmar na documentação oficial atual as regras que dependem de Mercado Livre, Mercado Pago, DSLite, Brasil NFe, Supabase/PostgreSQL, WAHA, SMTP ou outra integração;
+- [x] cobrir ao menos: pricing, impostos, margens, descontos, fretes e thresholds; produtos, ofertas, fornecedores e kits; estoque, reserva e fulfillment; vendas, compras, pagamentos, cancelamentos e devoluções; fiscal; anúncios, catálogo, identidade ML, perguntas e reclamações; jobs, outbox, webhooks e notificações; autenticação, permissões, mobile e contratos de API;
+- [x] criar `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` com uma linha por regra contendo domínio, identificador, fonte produtiva, entrada, cálculo/decisão, unidade, precedência, fallback, consumidores, estado na Bentevi, divergência, classificação, evidência, teste e ação necessária;
+- [x] registrar valores numéricos de negócio com unidade e limites; secrets devem aparecer somente como `configurado/não configurado`;
+- [x] gerar uma fila ordenada de ações `BNT-PARITY-N`, uma mudança coerente por tarefa, sem implementar nenhuma delas dentro de `BNT-PARITY-00`;
+- [x] concluir o gate obrigatório da seção 3 e registrar a fotografia sem alterar código funcional, banco, integração ou produção.
+
+**Resultado técnico:** `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` registra os SHAs auditados, os 13 commits exclusivos de produção, a fotografia estrutural `READ ONLY` dos bancos `.160` e `.162`, 77 regras com classificação única, parâmetros numéricos, divergências de schema/migrations e uma fila de 13 ações técnicas mais uma decisão operacional. Foram classificados 14 itens como `INCORPORAR`, 46 como `EQUIVALENTE`, 14 como `SUBSTITUÍDA`, 2 como `NÃO COPIAR` e 1 como `DECISÃO NECESSÁRIA`. A colisão da migration `20260830143000` foi documentada como bloqueio de promoção e deverá ser resolvida sem reescrever histórico.
+
+**Gate executado:** branch `dev`; referências e SHA implantado confirmados; produção `.160` e `supabase-dev` `.162` acessados somente em leitura; nenhum PII ou secret registrado; nenhuma alteração funcional, migration, integração ou deploy. A verificação automática confirmou `13/13` commits no inventário, `77/77` regras classificadas e zero ID duplicado. Passaram os 11 testes de `npm run test:db-schema-snapshot`, `npm run validate` e `git diff --check`. Build e homologação visual são **N/A** porque a ação altera somente documentação.
+
+**Próxima ação:** `BNT-PARITY-01 — Atividade manual do produto`. `BNT-PARITY-GATE` e `BNT-CFG-07` permanecem bloqueados até a fila aplicável ser concluída.
 
 #### Classificação obrigatória
 
