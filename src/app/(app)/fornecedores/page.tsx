@@ -166,12 +166,12 @@ export default function FornecedoresPage() {
             messageApi.warning(`${records.ml_pause_failed} anúncios não entraram na fila de pausa. Verifique os erros retornados.`);
           }
         } else if (ativo) {
-          messageApi.success(`Fornecedor ${fornecedorLabel} ativado. Produtos continuam inativos até ativação manual.`);
+          messageApi.success(`Fornecedor ${fornecedorLabel} ativado. O status manual dos produtos foi preservado.`);
         } else {
           const records = json?.records || {};
           const paused = Number(records.ml_pause_enqueued || 0);
           messageApi.success(
-            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos sem fonte foram inativados; ${paused} pausas no ML foram enfileiradas.`,
+            `Fornecedor ${fornecedorLabel} inativado. Produtos preservados; ${paused} pausas no ML foram enfileiradas.`,
           );
           if (Number(records.ml_pause_failed || 0) > 0) {
             messageApi.warning(`${records.ml_pause_failed} anúncios não entraram na fila de pausa. Verifique os erros retornados.`);
@@ -189,7 +189,7 @@ export default function FornecedoresPage() {
     if (ativo) {
       Modal.confirm({
         title: `Ativar fornecedor ${fornecedorLabel}?`,
-        content: 'Os produtos vinculados continuarão inativos. A ativação deles será manual.',
+        content: 'O status manual dos produtos será preservado. As ofertas elegíveis voltarão na próxima sincronização.',
         okText: 'Ativar',
         cancelText: 'Cancelar',
         onOk: executeToggle,

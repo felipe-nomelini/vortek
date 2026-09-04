@@ -410,10 +410,8 @@ function buildDsliteProductLookupErrorMessage(input: {
 async function resolvePedidoSupplierOffer(params: {
   client: ReturnType<typeof createServiceClient>;
   sku: string;
-  fallbackSupplierId?: string | null;
-  fallbackDsliteProdutoId?: string | null;
 }) {
-  const { client, sku, fallbackSupplierId, fallbackDsliteProdutoId } = params;
+  const { client, sku } = params;
   const skuVariants = getSkuLookupVariants(sku);
   let { data: productRow } = await client
     .from("produtos")
@@ -485,8 +483,35 @@ async function resolvePedidoSupplierOffer(params: {
     .from("produto_fornecedor_ofertas")
     .select("*")
     .eq("produto_id", String(productRow.id));
+  const supplierIds = Array.from(
+    new Set(
+      (offers || [])
+        .map((offer: any) => String(offer.dslite_fornecedor_id || "").trim())
+        .filter(Boolean),
+    ),
+  );
+  const activeSuppliersResult = supplierIds.length
+    ? await client
+        .from("fornecedores")
+        .select("dslite_id")
+        .in("dslite_id", supplierIds)
+        .eq("ativo", true)
+    : { data: [] as Array<{ dslite_id: string | null }>, error: null };
+  if (activeSuppliersResult.error) {
+    throw new Error(
+      `Falha ao validar fornecedores ativos: ${activeSuppliersResult.error.message}`,
+    );
+  }
+  const activeSupplierIds = new Set(
+    (activeSuppliersResult.data || []).map((supplier) =>
+      String(supplier.dslite_id || "").trim(),
+    ),
+  );
   const allowedOffers = (offers || []).filter(
     (offer: any) =>
+      offer.ativo !== false &&
+      Number(offer.custo || 0) > 0 &&
+      activeSupplierIds.has(String(offer.dslite_fornecedor_id || "").trim()) &&
       !isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id),
   );
 
@@ -499,30 +524,6 @@ async function resolvePedidoSupplierOffer(params: {
     return {
       productId: String(productRow.id),
       offer: preferred,
-    };
-  }
-
-  if (productRow.dslite_fornecedor_id) {
-    return {
-      productId: String(productRow.id),
-      offer: {
-        produto_id: String(productRow.id),
-        dslite_fornecedor_id: String(
-          fallbackSupplierId || productRow.dslite_fornecedor_id,
-        ),
-        dslite_produto_id: String(
-          fallbackDsliteProdutoId || productRow.dslite_produto_id || "",
-        ),
-        fornecedor_nome: null,
-        custo: 0,
-        estoque: 0,
-        ativo: true,
-        prioridade: 100,
-        payment_mode: inferSupplierPaymentMode(
-          fallbackSupplierId || productRow.dslite_fornecedor_id,
-        ),
-        last_sync_at: null,
-      },
     };
   }
 

@@ -500,24 +500,21 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       productsReassigned += snapshots.filter((snapshot) => snapshot.changed).length;
     }
 
-    let productsInactivated = 0;
     for (const idsChunk of chunk(productsWithoutAvailableSource.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
       const { error } = await client
         .from('produtos')
-        .update({ ativo: false, estoque: 0, ml_status: 'pausado' } as any)
+        .update({ estoque: 0, ml_status: 'pausado' } as any)
         .in('id', idsChunk);
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
     }
-    productsInactivated = activeProductsWithoutAvailableSource.length;
-
     let productsKeptInternal = 0;
     for (const idsChunk of chunk(productsKeptOnlyByInternalStock.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
       const { error } = await client
         .from('produtos')
-        .update({ ativo: true, estoque: 0 } as any)
+        .update({ estoque: 0 } as any)
         .in('id', idsChunk);
 
       if (error) {
@@ -693,7 +690,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         products_with_internal_stock: productsWithInternalStock.length,
         products_reassigned: productsReassigned,
         products_kept_only_by_internal_stock: productsKeptInternal,
-        products_inactivated: productsInactivated,
+        products_inactivated: 0,
+        products_kept_active: activeProductsWithoutAvailableSource.length,
         products_without_available_source: productsWithoutAvailableSource.length,
         supplier_offers_found: offers.length,
         supplier_offers_inactivated: supplierOffersInactivated,

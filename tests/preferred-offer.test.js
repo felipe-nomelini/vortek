@@ -61,6 +61,14 @@ test('não trata custo zero como oferta válida', () => {
   assert.equal(choosePreferredOffer(offers)?.id, 'valida');
 });
 
+test('não seleciona oferta inativa quando não existe fonte ativa', () => {
+  const offers = [
+    { id: 'inativa', ativo: false, estoque: 10, custo: 50, prioridade: 1 },
+  ];
+
+  assert.equal(choosePreferredOffer(offers), null);
+});
+
 test('usa prioridade e estoque somente para desempate de custo', () => {
   const offers = [
     { id: 'mais-estoque', ativo: true, estoque: 10, custo: 70, prioridade: 100 },

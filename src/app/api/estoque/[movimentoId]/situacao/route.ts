@@ -49,7 +49,6 @@ export async function PATCH(req: Request, { params }: { params: { movimentoId: s
     const { error: productUpdateError } = await db
       .from('produtos')
       .update({
-        ativo: true,
         custo: custoUnitario,
         updated_at: new Date().toISOString(),
       })

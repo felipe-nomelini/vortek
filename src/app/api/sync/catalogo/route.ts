@@ -8,7 +8,7 @@ import {
   syncPreferredProductSnapshot,
 } from "@/lib/produto-fornecedor";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
-import { shouldProductBeInactiveByCost } from "@/lib/product-activity";
+import { shouldSupplierOfferBeInactiveByCost } from "@/lib/product-activity";
 import { filterAllowedDropshippingDsliteSupplierIds } from "@/lib/dslite/supplier-policy";
 
 export const maxDuration = 300;
@@ -548,10 +548,9 @@ export async function POST(req: Request) {
             const productKey = String(row.gtin || "").trim()
               ? `gtin:${String(row.gtin || "").trim()}`
               : `dslite:${identityKey}`;
-            const inactiveByCost = shouldProductBeInactiveByCost(row.custo);
             const insertPayload = {
               _product_key: productKey,
-              ativo: !inactiveByCost,
+              ativo: true,
               nome: row.nome,
               marca: row.marca || "",
               fornecedor: row.fornecedor,
@@ -602,7 +601,7 @@ export async function POST(req: Request) {
               : `dslite:${identityKey}`,
             custo: Number(row.custo || 0),
             estoque: Number(row.estoque || 0),
-            ativo: !shouldProductBeInactiveByCost(row.custo),
+            ativo: !shouldSupplierOfferBeInactiveByCost(row.custo),
             prioridade: 100,
             payment_mode: inferSupplierPaymentMode(row.dslite_fornecedor_id),
             last_sync_at: row.dslite_ultima_sync,

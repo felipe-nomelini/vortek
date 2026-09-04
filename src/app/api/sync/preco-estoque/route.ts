@@ -5,7 +5,10 @@ import { buildCanonicalDsliteSku } from '@/lib/sku';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
+import {
+  PRODUCT_COST_INACTIVE_THRESHOLD,
+  shouldSupplierOfferBeInactiveByCost,
+} from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 import { filterAllowedDropshippingDsliteSupplierIds } from '@/lib/dslite/supplier-policy';
@@ -392,7 +395,7 @@ export async function POST(req: Request) {
       const existingBySku = new Map((existingRowsResp.data || []).map((row: any) => [String(row.sku || '').toUpperCase(), row]));
       const offerUpserts: Array<Record<string, unknown>> = [];
       const touchedProductIds = new Set<string>();
-      const productsToInactivateByCost = new Map<string, { mlItemId: string; sku: string }>();
+      const productsWithHighCostOffer = new Map<string, { mlItemId: string; sku: string }>();
 
       for (let index = 0; index < batch.length; index += 1) {
         const row = batch[index];
@@ -415,13 +418,13 @@ export async function POST(req: Request) {
           continue;
         }
 
-        if (shouldProductBeInactiveByCost(row.custo)) {
-          productsToInactivateByCost.set(productId, {
+        const inactiveOfferByCost = shouldSupplierOfferBeInactiveByCost(row.custo);
+        if (inactiveOfferByCost) {
+          productsWithHighCostOffer.set(productId, {
             mlItemId: existingProductMlItemId,
             sku: existingProductSku,
           });
           recordsInactivatedByCost += 1;
-          continue;
         }
 
         touchedProductIds.add(productId);
@@ -435,7 +438,7 @@ export async function POST(req: Request) {
           sku_fornecedor: String(row.sku || '').trim(),
           custo: normalizeCost(row.custo),
           estoque: normalizeStock(row.estoque),
-          ativo: !shouldProductBeInactiveByCost(row.custo),
+          ativo: !inactiveOfferByCost,
           prioridade: 100,
           payment_mode: inferSupplierPaymentMode(targetFornecedor),
           last_sync_at: row.dslite_ultima_sync,
@@ -444,60 +447,6 @@ export async function POST(req: Request) {
       }
 
       const successfullyUpsertedProductIds = new Set<string>();
-
-      if (productsToInactivateByCost.size > 0) {
-        const ids = Array.from(productsToInactivateByCost.keys());
-        const { error: inactiveError } = await client
-          .from('produtos')
-          .update({ ativo: false } as any)
-          .in('id', ids);
-
-        if (inactiveError) {
-          recordsFailed += ids.length;
-          errors.push({
-            code: 'price_cost_threshold_inactivate_failed',
-            message: inactiveError.message,
-            context: { fornecedorId: targetFornecedor, page: currentPage, count: ids.length },
-          });
-        } else {
-          for (const [productId, product] of productsToInactivateByCost.entries()) {
-            if (!product.mlItemId) {
-              mlOutboxSkippedNoItem += 1;
-              continue;
-            }
-            const outbox = await enqueueMlPublishOutbox(client, {
-              produtoId: productId,
-              mlItemId: product.mlItemId,
-              desiredStatus: 'pausado',
-              desiredQuantity: 0,
-              desiredPrice: null,
-              source: 'produto_cost_threshold_inactive',
-              dedupePending: true,
-              payload: {
-                apply_price: false,
-                apply_quantity_pricing: false,
-                apply_quantity: true,
-                apply_status: true,
-                sku: product.sku,
-                origin: 'api/sync/preco-estoque',
-                threshold: 2000,
-              },
-            });
-            if (!outbox.ok) {
-              mlOutboxFailed += 1;
-              errors.push({
-                code: 'ml_outbox_cost_threshold_enqueue_failed',
-                message: outbox.error,
-                context: { fornecedorId: targetFornecedor, page: currentPage, sku: product.sku, mlItemId: product.mlItemId },
-              });
-            } else if (outbox.action === 'updated_existing') {
-              mlOutboxUpdatedExisting += 1;
-            } else {
-              mlOutboxEnqueued += 1;
-            }
-          }
-        }
-      }
 
       if (offerUpserts.length > 0) {
         const { error: offerUpsertError } = await client
@@ -572,6 +521,120 @@ export async function POST(req: Request) {
           recordsFailed += snapshotProductIds.length;
           stopByBudget = true;
           break;
+      }
+
+      const highCostProductIds = Array.from(productsWithHighCostOffer.keys())
+        .filter((productId) => successfullyUpsertedProductIds.has(productId));
+      if (highCostProductIds.length > 0) {
+        const productsWithEligibleOffer = new Set<string>();
+        for (let index = 0; index < highCostProductIds.length; index += 100) {
+          const { data: eligibleOffers, error: eligibleOffersError } = await client
+            .from('produto_fornecedor_ofertas')
+            .select('produto_id,dslite_fornecedor_id')
+            .in('produto_id', highCostProductIds.slice(index, index + 100))
+            .eq('ativo', true)
+            .gt('custo', 0)
+            .lte('custo', PRODUCT_COST_INACTIVE_THRESHOLD);
+
+          if (eligibleOffersError) {
+            fatalSyncError = true;
+            errors.push({
+              code: 'price_eligible_offer_select_failed',
+              message: eligibleOffersError.message,
+              context: { fornecedorId: targetFornecedor, page: currentPage },
+            });
+            break;
+          }
+
+          for (const offer of eligibleOffers || []) {
+            if (fornecedoresAtivosLocalIds.has(String((offer as any).dslite_fornecedor_id || '').trim())) {
+              productsWithEligibleOffer.add(String((offer as any).produto_id || '').trim());
+            }
+          }
+        }
+
+        if (fatalSyncError) {
+          stopByBudget = true;
+          break;
+        }
+
+        const productsWithoutEligibleOffer = highCostProductIds.filter(
+          (productId) => !productsWithEligibleOffer.has(productId),
+        );
+        for (let index = 0; index < productsWithoutEligibleOffer.length; index += 100) {
+          const { error: zeroStockError } = await client
+            .from('produtos')
+            .update({ estoque: 0 } as any)
+            .in('id', productsWithoutEligibleOffer.slice(index, index + 100));
+          if (zeroStockError) {
+            fatalSyncError = true;
+            errors.push({
+              code: 'price_unavailable_product_zero_stock_failed',
+              message: zeroStockError.message,
+              context: { fornecedorId: targetFornecedor, page: currentPage },
+            });
+            break;
+          }
+        }
+
+        if (fatalSyncError) {
+          stopByBudget = true;
+          break;
+        }
+
+        for (const productId of productsWithoutEligibleOffer) {
+          const internalStock = await obterSaldoEstoqueInternoProduto(productId);
+          if (internalStock > 0) continue;
+
+          const { error: pauseLocalError } = await client
+            .from('produtos')
+            .update({ ml_status: 'pausado' } as any)
+            .eq('id', productId);
+          if (pauseLocalError) {
+            errors.push({
+              code: 'price_unavailable_product_pause_failed',
+              message: pauseLocalError.message,
+              context: { fornecedorId: targetFornecedor, page: currentPage, productId },
+            });
+            continue;
+          }
+
+          const product = productsWithHighCostOffer.get(productId);
+          if (!product?.mlItemId) {
+            mlOutboxSkippedNoItem += 1;
+            continue;
+          }
+          const outbox = await enqueueMlPublishOutbox(client, {
+            produtoId: productId,
+            mlItemId: product.mlItemId,
+            desiredStatus: 'pausado',
+            desiredQuantity: 0,
+            desiredPrice: null,
+            source: 'supplier_offer_cost_threshold_unavailable',
+            dedupePending: true,
+            payload: {
+              apply_price: false,
+              apply_quantity_pricing: false,
+              apply_quantity: true,
+              apply_status: true,
+              sku: product.sku,
+              origin: 'api/sync/preco-estoque',
+              threshold: PRODUCT_COST_INACTIVE_THRESHOLD,
+            },
+          });
+          if (!outbox.ok) {
+            mlOutboxFailed += 1;
+            errors.push({
+              code: 'ml_outbox_cost_threshold_enqueue_failed',
+              message: outbox.error,
+              context: { fornecedorId: targetFornecedor, page: currentPage, sku: product.sku, mlItemId: product.mlItemId },
+            });
+          } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
+            mlOutboxUpdatedExisting += 1;
+          } else {
+            mlOutboxEnqueued += 1;
+          }
+        }
       }
 
       let kitCostSnapshots: CostSnapshot[] = [];
@@ -792,6 +855,7 @@ export async function POST(req: Request) {
         kits_ml_outbox_enqueued: kitMlOutboxEnqueued,
         row_failed: recordsFailed,
         skipped_inactive: recordsSkippedInactive,
+        offers_inactivated_by_cost: recordsInactivatedByCost,
         inactivated_by_cost: recordsInactivatedByCost,
       },
       errors,
@@ -814,6 +878,7 @@ export async function POST(req: Request) {
       ml_price_outbox_enqueued: mlPriceOutboxEnqueued,
       row_failed: recordsFailed,
       skipped_inactive: recordsSkippedInactive,
+      offers_inactivated_by_cost: recordsInactivatedByCost,
       inactivated_by_cost: recordsInactivatedByCost,
       next_cursor: nextCursor,
       message: 'Sync DSLite de preço/estoque concluído com enfileiramento ML por outbox',

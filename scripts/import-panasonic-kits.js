@@ -134,7 +134,6 @@ async function main() {
       const { error: activeError } = await client
         .from('produtos')
         .update({
-          ativo: canFulfillInOneDsliteItem,
           descricao: description(kit.row),
         })
         .eq('id', produtoId);
