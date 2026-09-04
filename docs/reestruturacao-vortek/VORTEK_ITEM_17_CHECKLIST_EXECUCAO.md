@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-CFG-00 — aprovação do dossiê completo de parametrização`
+**Próxima ação obrigatória:** `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-CFG-00` |
+| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-CFG-01` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -159,6 +159,7 @@ Regras de uso:
 - [x] Aprovar visualmente `BNT-D19 — Reclamações` em homologação.
 - [x] Executar somente `BNT-CFG-00 — Dossiê completo de parametrização`.
 - [x] Não avançar para `BNT-CFG-01` antes de `BNT-CFG-00` estar integralmente documentado e validado.
+- [x] Aprovar `BNT-CFG-00 — Dossiê completo de parametrização`.
 - [ ] Executar somente `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
 
 ---
@@ -2418,7 +2419,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-CFG-00 — Dossiê completo de parametrização`
 
-**Situação:** concluído e validado documentalmente em `2026-09-04`; aprovação do responsável pendente.
+**Situação:** concluído, validado documentalmente e aprovado pelo responsável em `2026-09-04`.
 
 **Estado confirmado:** `/configuracoes` administra hoje somente Empresa, três integrações visíveis, Usuários e um conjunto curto de Preferências. O restante está distribuído entre `empresa`, `configuracoes`, `integracoes`, `sync_runtime_config`, uma tabela de alertas sem consumidor ativo, variáveis de ambiente, preferências locais e constantes de negócio/operação. Mercado Pago existe no contrato de integração, mas não na interface; WAHA, SMTP, VAPID, GitHub operacional, OpenRouter e Firecrawl também não possuem painel próprio.
 
@@ -2428,7 +2429,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Validação e isolamento:** fontes locais, consumidores, schema, migrations e documentação oficial atual das integrações foram confrontados. Nenhum código funcional, banco, migration, integração, deploy ou ambiente foi alterado nesta ação. Nenhum secret foi reproduzido.
 
-**Pendência:** aprovação do dossiê pelo responsável. Somente depois executar `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
+**Pendência:** nenhuma em `BNT-CFG-00`. Próxima ação liberada: `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
