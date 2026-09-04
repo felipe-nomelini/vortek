@@ -59,6 +59,7 @@ interface Pergunta {
   tags: string[];
   categoriasIa: string[];
   isHomologationFixture?: true;
+  isSimulatedPending?: true;
 }
 
 interface VisualReviewMetadata {
@@ -67,7 +68,9 @@ interface VisualReviewMetadata {
   capturedAt: string;
   expiresAt: string;
   itemCount: number;
-  defaultStatus: 'respondida';
+  realItemCount: number;
+  simulatedItemCount: number;
+  defaultStatus: 'pendente' | 'respondida';
 }
 
 interface PerguntasResponse {
@@ -139,10 +142,13 @@ function questionState(question: Pergunta) {
   return { label: question.status || 'Desconhecido', color: 'default' as const, kind: 'unavailable' as const };
 }
 
-function isAnswerable(question: Pergunta) {
-  return question.isHomologationFixture !== true
-    && questionState(question).kind === 'pending'
+function showsAnswerComposer(question: Pergunta) {
+  return questionState(question).kind === 'pending'
     && question.mlStatus.toUpperCase() === 'UNANSWERED';
+}
+
+function isAnswerable(question: Pergunta) {
+  return question.isHomologationFixture !== true && showsAnswerComposer(question);
 }
 
 export default function PerguntasPage() {
@@ -309,7 +315,7 @@ export default function PerguntasPage() {
           showIcon
           type="info"
           message="Amostra real protegida de produção"
-          description={`Recorte somente para validação visual, capturado em ${formatDate(visualReview.capturedAt)}. Identificadores de perguntas e compradores foram substituídos e todas as ações externas estão desabilitadas.`}
+          description={`${visualReview.realItemCount} registros reais protegidos e ${visualReview.simulatedItemCount} cenários pendentes simulados para validação visual. Identificadores de perguntas e compradores foram substituídos e todas as ações externas estão desabilitadas.`}
         />
       ) : null}
 
@@ -478,7 +484,7 @@ export default function PerguntasPage() {
             />
           ) : (() => {
             const state = questionState(activeQuestion);
-            const answerable = isAnswerable(activeQuestion);
+            const showComposer = showsAnswerComposer(activeQuestion);
             return (
               <>
                 <div className={styles.itemContext}>
@@ -527,12 +533,16 @@ export default function PerguntasPage() {
                       <p>{activeQuestion.resposta || 'O Mercado Livre não disponibilizou o texto desta resposta.'}</p>
                       {activeQuestion.respostaStatus && <Text type="secondary">Estado no Mercado Livre: {activeQuestion.respostaStatus}</Text>}
                     </section>
-                  ) : answerable ? (
+                  ) : showComposer ? (
                     <section className={styles.composer}>
                       <div className={styles.composerHeading}>
                         <div>
                           <Text strong>Sua resposta</Text>
-                          <Text type="secondary">Será enviada diretamente ao Mercado Livre.</Text>
+                          <Text type="secondary">
+                            {activeQuestion.isSimulatedPending
+                              ? 'Simulação visual: nenhuma resposta será enviada ao Mercado Livre.'
+                              : 'Será enviada diretamente ao Mercado Livre.'}
+                          </Text>
                         </div>
                       </div>
                       <Input.TextArea
@@ -546,7 +556,11 @@ export default function PerguntasPage() {
                         disabled={answering}
                       />
                       <div className={styles.composerActions}>
-                        <Text type="secondary">Revise antes de enviar. A resposta ficará pública no anúncio.</Text>
+                        <Text type="secondary">
+                          {activeQuestion.isSimulatedPending
+                            ? 'Digite livremente para avaliar o fluxo. O botão apenas exibirá um aviso.'
+                            : 'Revise antes de enviar. A resposta ficará pública no anúncio.'}
+                        </Text>
                         <Button
                           type="primary"
                           icon={<SendOutlined />}

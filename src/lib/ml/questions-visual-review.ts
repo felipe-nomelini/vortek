@@ -26,6 +26,7 @@ export type QuestionVisualReviewItem = {
   tags: string[];
   categoriasIa: string[];
   isHomologationFixture: true;
+  isSimulatedPending?: true;
 };
 
 type QuestionVisualReviewPayload = {
@@ -43,7 +44,9 @@ export type QuestionVisualReview = {
     capturedAt: string;
     expiresAt: string;
     itemCount: number;
-    defaultStatus: 'respondida';
+    realItemCount: number;
+    simulatedItemCount: number;
+    defaultStatus: 'pendente' | 'respondida';
   };
   items: QuestionVisualReviewItem[];
 };
@@ -82,7 +85,14 @@ function isSafeItem(value: unknown): value is QuestionVisualReviewItem {
     && typeof item.hold === 'boolean'
     && typeof item.removidaDoAnuncio === 'boolean'
     && Array.isArray(item.tags)
-    && Array.isArray(item.categoriasIa);
+    && Array.isArray(item.categoriasIa)
+    && (item.isSimulatedPending === undefined || item.isSimulatedPending === true)
+    && (item.isSimulatedPending !== true || (
+      item.status === 'pendente'
+      && item.mlStatus === 'UNANSWERED'
+      && item.resposta === null
+      && item.dataResposta === null
+    ));
 }
 
 export async function loadQuestionVisualReview(): Promise<QuestionVisualReview | null> {
@@ -124,7 +134,9 @@ export async function loadQuestionVisualReview(): Promise<QuestionVisualReview |
       capturedAt: payload.capturedAt,
       expiresAt: payload.expiresAt,
       itemCount: payload.items.length,
-      defaultStatus: 'respondida',
+      realItemCount: payload.items.filter((item) => item.isSimulatedPending !== true).length,
+      simulatedItemCount: payload.items.filter((item) => item.isSimulatedPending === true).length,
+      defaultStatus: payload.items.some((item) => item.status === 'pendente') ? 'pendente' : 'respondida',
     },
     items: payload.items,
   };

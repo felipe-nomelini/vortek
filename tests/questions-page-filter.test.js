@@ -141,6 +141,10 @@ test('amostra real protegida mantém a API da página e bloqueia ações externa
   assert.match(pageSource, /fetch\(`\/api\/perguntas\?\$\{params\.toString\(\)\}`/);
   assert.match(pageSource, /fetch\(`\/api\/perguntas\/\$\{activeQuestion\.id\}\/responder`/);
   assert.match(pageSource, /Amostra real protegida de produção/);
+  assert.match(pageSource, /function showsAnswerComposer/);
+  assert.match(pageSource, /const showComposer = showsAnswerComposer\(activeQuestion\)/);
+  assert.match(pageSource, /Simulação visual: nenhuma resposta será enviada ao Mercado Livre/);
+  assert.match(pageSource, /O botão apenas exibirá um aviso/);
   assert.match(pageSource, /if \(!initializedRef\.current\) params\.set\('initial', '1'\)/);
   assert.match(pageSource, /question\.isHomologationFixture !== true/);
   assert.match(routeSource, /loadQuestionVisualReview\(\)/);
@@ -154,4 +158,8 @@ test('amostra real protegida mantém a API da página e bloqueia ações externa
   assert.match(reviewSource, /item\.id < 0/);
   assert.match(reviewSource, /item\.anuncioUrl === null/);
   assert.match(reviewSource, /item\.clienteId === null/);
+  assert.match(reviewSource, /item\.isSimulatedPending !== true/);
+  assert.match(reviewSource, /simulatedItemCount/);
+  assert.match(reviewSource, /item\.status === 'pendente'/);
+  assert.match(reviewSource, /item\.mlStatus === 'UNANSWERED'/);
 });
