@@ -110,8 +110,6 @@ export interface OrderSalesProgress {
   tone: SalesProgressTone;
 }
 
-const OPERATION_DELAY_MS = 60 * 60 * 1000;
-
 export interface OperationalOrderLike {
   data?: string | null;
   data_venda?: string | null;
@@ -147,11 +145,16 @@ export function isPostDispatchOrder(order: OperationalOrderLike): boolean {
   return POST_DISPATCH_ORDER_STATUSES.includes(normalizeOrderStatus(order) as any);
 }
 
-function isOperationDelayed(order: OperationalOrderLike, at: number): boolean {
+function isOperationDelayed(
+  order: OperationalOrderLike,
+  at: number,
+  delayedAfterMinutes: number,
+): boolean {
   const raw = String(order.data_venda || order.data || '').trim();
   if (!raw) return false;
   const createdAt = new Date(raw).getTime();
-  return Number.isFinite(createdAt) && at - createdAt >= OPERATION_DELAY_MS;
+  return Number.isFinite(createdAt)
+    && at - createdAt >= delayedAfterMinutes * 60 * 1000;
 }
 
 function isMlLabelReleased(order: OperationalOrderLike, at: number): boolean {
@@ -163,6 +166,7 @@ function isMlLabelReleased(order: OperationalOrderLike, at: number): boolean {
 
 export function getOperationalUrgencyReasons(
   order: OperationalOrderLike,
+  delayedAfterMinutes: number,
   at = Date.now(),
 ): string[] {
   const status = normalizeOrderStatus(order);
@@ -191,7 +195,7 @@ export function getOperationalUrgencyReasons(
   if (whatsappStatus === 'failed') reasons.push('Falha no envio por WhatsApp');
   if (dsliteLabelStatus === 'failed') reasons.push('Falha no envio da etiqueta para DSLite');
 
-  if (isOperationDelayed(order, at)) {
+  if (isOperationDelayed(order, at, delayedAfterMinutes)) {
     if (!dsliteId) {
       reasons.push(order.internal_stock_available
         ? 'Envio interno ainda não processado'
@@ -344,9 +348,10 @@ export function getOrderSalesProgress(
 export function matchesOrdersOperationalView(
   order: OperationalOrderLike,
   view: OrdersOperationalView,
+  delayedAfterMinutes: number,
 ): boolean {
   const status = normalizeOrderStatus(order);
-  if (view === 'urgent') return getOperationalUrgencyReasons(order).length > 0;
+  if (view === 'urgent') return getOperationalUrgencyReasons(order, delayedAfterMinutes).length > 0;
   if (view === 'preparation') return PREPARATION_ORDER_STATUSES.includes(status as any);
   if (view === 'shipping') return SHIPPING_ORDER_STATUSES.includes(status as any);
   if (view === 'delivered') return status === 'entregue';

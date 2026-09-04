@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-03 — Comercial e precificação` em homologação
+**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment` em homologação
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar visualmente `BNT-CFG-03` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar visualmente `BNT-CFG-04` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -164,7 +164,9 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-02 — Empresa e cadastro fiscal`.
 - [x] Aprovar visualmente `BNT-CFG-02` em homologação antes de iniciar `BNT-CFG-03`.
 - [x] Executar somente `BNT-CFG-03 — Comercial e precificação`.
-- [ ] Aprovar visualmente `BNT-CFG-03` em homologação antes de iniciar `BNT-CFG-04`.
+- [x] Aprovar visualmente `BNT-CFG-03` em homologação antes de iniciar `BNT-CFG-04`.
+- [x] Executar somente `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment`.
+- [ ] Aprovar visualmente `BNT-CFG-04` em homologação antes de iniciar `BNT-CFG-05`.
 
 ---
 
@@ -2481,7 +2483,21 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `c86976a` em `dev` e redeployar somente `vortek-erp-dev`. As estruturas aditivas podem permanecer sem uso; removê-las exige migration corretiva autorizada exclusivamente no `.162`.
 
-**Pendência:** aprovação visual da aba `Comercial` em `https://dev.bentevi.shop/configuracoes?tab=comercial`. `BNT-CFG-04` permanece bloqueado até esse aceite.
+**Pendência:** nenhuma. A aba `Comercial` foi aprovada pelo responsável em `2026-09-04`. Próxima ação liberada: `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment`.
+
+#### Resultado técnico de `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment`
+
+**Situação:** implementado e validado tecnicamente em DEV em `2026-09-04`; aceite visual em homologação pendente.
+
+**Estado/causa confirmados:** o prazo para atenção dos pedidos, o endereço do estoque interno, as URLs XML DSLite e os fornecedores aposentados possuíam quatro fontes locais diferentes: constante temporal, ID/CEP fixos, JSON sem tipo e lista nominal de IDs. Isso impedia administração segura e mantinha regras paralelas fora das entidades responsáveis.
+
+**Mudança realizada:** a nova aba `Operação` administra apenas o prazo de atenção, o endereço padrão de devolução validado na conta Mercado Livre conectada e o feed XML write-only por fornecedor. Prazo e endereço passaram a ter fonte tipada em `configuracoes`; feed e aposentadoria pertencem a `fornecedores`. A URL XML não é devolvida pela API nem legível por `anon`/`authenticated`. Aposentadoria e inatividade agora governam sincronização, seleção de oferta, capacidade, criação DSLite e evidências de publicação sem IDs fixos no runtime. As regras de Q segura, kits e criação explícita de pedido permanecem somente leitura.
+
+**Banco DEV:** a migration aditiva `20260904233000_bnt_cfg_04_operation.sql` teve destino confirmado como `supabase-dev` em `192.168.1.162`, PostgreSQL `17.6`, com 105 migrations prévias. Foi ensaiada integralmente com `ROLLBACK` e aplicada transacionalmente somente nesse destino. O read-back confirmou 106 migrations, prazo padrão de 60 minutos, endereço legado preservado, fornecedores DSLite `2` e `134` inativos e aposentados, chave JSON legada ausente e leitura do feed negada a `anon`/`authenticated` e permitida ao `service_role`. O banco de produção em `.160` não foi acessado.
+
+**Validação:** passaram 42 cenários direcionados, incluindo contratos administrativos, fulfillment, fornecedores e sigilo do feed; `npm run validate`, `npm run build` com Next.js `16.3.3`, 122 páginas/rotas, `git diff --check` e a verificação de secrets do build também passaram. A publicação em homologação é registrada ao concluir esta entrega.
+
+**Pendência:** aprovação visual da aba `Operação` em `https://dev.bentevi.shop/configuracoes?tab=operacao`. `BNT-CFG-05` permanece bloqueado até esse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

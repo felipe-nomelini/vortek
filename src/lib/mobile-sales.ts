@@ -29,7 +29,7 @@ function addressLines(value: unknown): string[] {
   ].filter((line): line is string => Boolean(line));
 }
 
-export function mapMobileSalesOrder(row: any) {
+export function mapMobileSalesOrder(row: any, delayedAfterMinutes: number) {
   const items = Array.isArray(row?.pedido_itens)
     ? row.pedido_itens.map((item: any) => ({
         title: nullableString(item?.titulo) || "Produto não informado",
@@ -80,12 +80,12 @@ export function mapMobileSalesOrder(row: any) {
     tracking: nullableString(row?.rastreio),
     internalShipping: Boolean(row?.envio_interno_at),
     hasClaim: Boolean(row?.ml_claim_id),
-    urgentReasons: getOperationalUrgencyReasons(row),
+    urgentReasons: getOperationalUrgencyReasons(row, delayedAfterMinutes),
   };
 }
 
-export function mapMobileSaleDetail(row: any) {
-  const sale = mapMobileSalesOrder(row);
+export function mapMobileSaleDetail(row: any, delayedAfterMinutes: number) {
+  const sale = mapMobileSalesOrder(row, delayedAfterMinutes);
   const operationalOrderIds = Array.isArray(row?.operational_order_ids)
     ? row.operational_order_ids.map(String).filter(Boolean)
     : nullableString(row?.ml_order_id)

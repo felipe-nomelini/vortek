@@ -1,5 +1,4 @@
 import type { BntD07VisualReview } from '@/lib/products/bnt-d07-visual-review';
-import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
 
 export type SupplierOfferStatus =
   | 'historical'
@@ -60,7 +59,7 @@ export type SupplierOfferOption = {
 
 type ClassificationInput = {
   supplierActive: boolean;
-  supplierDsliteId: string;
+  supplierRetired?: boolean;
   paymentMode: string;
   offerActive: boolean;
   productActive: boolean;
@@ -72,7 +71,7 @@ export function classifySupplierOffer(input: ClassificationInput): SupplierOffer
   if (
     !input.supplierActive
     || input.paymentMode === 'balance_account'
-    || isBlockedDropshippingDsliteSupplier(input.supplierDsliteId)
+    || input.supplierRetired === true
   ) return 'historical';
   if (!input.offerActive) return 'offer_inactive';
   if (!input.productActive) return 'product_inactive';
@@ -192,7 +191,7 @@ export function listBntD09VisualReview(params: {
         costDeltaPercent: null,
         status: classifySupplierOffer({
           supplierActive: Boolean(supplier),
-          supplierDsliteId,
+          supplierRetired: false,
           paymentMode,
           offerActive: offer.ativo !== false,
           productActive: item.product.ativo !== false,

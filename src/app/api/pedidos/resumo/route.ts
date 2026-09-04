@@ -8,6 +8,7 @@ import {
 import { enrichOrdersWithWhatsappStatus } from "@/services/order-operational-status";
 import { authorizeApiRequest } from "@/lib/api-request-auth";
 import { GET as getOrders } from "@/app/api/pedidos/route";
+import { loadOperationRuntimeConfiguration } from "@/services/operation-configuration";
 
 function logDbError(
   event: string,
@@ -64,12 +65,13 @@ function normalizeStatus(value: unknown): string {
 async function countUrgentOrders(
   rows: any[],
   serviceClient: ReturnType<typeof createServiceClient>,
+  delayedAfterMinutes: number,
 ): Promise<number> {
   const activeRows = (rows || []).filter((row) => (
     PREPARATION_ORDER_STATUSES.includes(normalizeStatus(row?.situacao) as any)
   ));
   const enrichedRows = await enrichOrdersWithWhatsappStatus(activeRows, serviceClient);
-  return enrichedRows.filter((row) => matchesOrdersOperationalView(row, "urgent")).length;
+  return enrichedRows.filter((row) => matchesOrdersOperationalView(row, "urgent", delayedAfterMinutes)).length;
 }
 
 function isCancelledStatus(value: unknown): boolean {
@@ -122,6 +124,7 @@ export async function GET(request: Request) {
   const auth = await authorizeApiRequest(request, "sales.read");
   if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
+  const operationConfiguration = await loadOperationRuntimeConfiguration(serviceClient);
 
   const { searchParams } = new URL(request.url);
   const search = searchParams.get("search") || "";
@@ -193,7 +196,7 @@ export async function GET(request: Request) {
       mlCompatibleCount: financial.mlCompatibleCount,
       mlCompatibleTotal: financial.mlCompatibleTotal,
       mlCompatibleMissingPaymentData: financial.mlCompatibleMissingPaymentData,
-      urgentCount: rows.filter((row) => matchesOrdersOperationalView(row, "urgent")).length,
+      urgentCount: rows.filter((row) => matchesOrdersOperationalView(row, "urgent", operationConfiguration.delayedAfterMinutes)).length,
     });
   }
 
@@ -268,7 +271,7 @@ export async function GET(request: Request) {
       financial.totalSum > 0
         ? (financial.lucroSum / financial.totalSum) * 100
         : 0;
-    const urgentCount = await countUrgentOrders(operationalRows, serviceClient);
+    const urgentCount = await countUrgentOrders(operationalRows, serviceClient, operationConfiguration.delayedAfterMinutes);
 
     return NextResponse.json({
       count,
@@ -454,7 +457,7 @@ export async function GET(request: Request) {
       { status: 500 },
     );
   }
-  const urgentCount = await countUrgentOrders(operationalRows, serviceClient);
+  const urgentCount = await countUrgentOrders(operationalRows, serviceClient, operationConfiguration.delayedAfterMinutes);
 
   return NextResponse.json({
     count: count || 0,

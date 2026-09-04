@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { GET as getOrders } from "@/app/api/pedidos/route";
 import { mapMobileSalesOrder } from "@/lib/mobile-sales";
+import { createServiceClient } from "@/lib/supabase";
+import { loadOperationRuntimeConfiguration } from "@/services/operation-configuration";
 import {
   hasMobileSalesAdvancedFilters,
   matchesMobileSalesAdvancedFilters,
@@ -42,6 +44,7 @@ function requestIdFrom(request: Request): string {
 }
 
 export async function GET(request: Request) {
+  const operationConfiguration = await loadOperationRuntimeConfiguration(createServiceClient());
   noStore();
   const requestId = requestIdFrom(request);
   const url = new URL(request.url);
@@ -151,7 +154,9 @@ export async function GET(request: Request) {
 
   return NextResponse.json(
     {
-      data: (Array.isArray(body?.data) ? body.data : []).map(mapMobileSalesOrder),
+      data: (Array.isArray(body?.data) ? body.data : []).map((row: any) => (
+        mapMobileSalesOrder(row, operationConfiguration.delayedAfterMinutes)
+      )),
       error: null,
       meta: {
         requestId,

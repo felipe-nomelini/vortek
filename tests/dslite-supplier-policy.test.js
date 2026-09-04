@@ -2,37 +2,39 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
-  filterAllowedDropshippingDsliteSupplierIds,
-  filterAllowedDropshippingSupplierOffers,
-  isBlockedDropshippingDsliteSupplier,
-  selectAllowedSupplierProductCandidate,
+  filterOperationalDropshippingDsliteSupplierIds,
+  filterOperationalDropshippingSupplierOffers,
+  isOperationalDropshippingSupplier,
+  isRetiredDropshippingSupplier,
+  selectOperationalSupplierProductCandidate,
 } = require('../src/lib/dslite/supplier-policy.ts');
 
-test('bloqueia Hayamax e EVOLUSOM-ES e mantém EVOLUSOM-PR', () => {
-  assert.equal(isBlockedDropshippingDsliteSupplier('2'), true);
-  assert.equal(isBlockedDropshippingDsliteSupplier(2), true);
-  assert.equal(isBlockedDropshippingDsliteSupplier('134'), true);
-  assert.equal(isBlockedDropshippingDsliteSupplier(134), true);
-  assert.equal(isBlockedDropshippingDsliteSupplier('133'), false);
+const operational = new Set(['133']);
+
+test('usa estado persistido, sem regra nominal por ID', () => {
+  assert.equal(isOperationalDropshippingSupplier({ ativo: true, dropshipping_retired_at: null }), true);
+  assert.equal(isOperationalDropshippingSupplier({ ativo: false, dropshipping_retired_at: null }), false);
+  assert.equal(isOperationalDropshippingSupplier({ ativo: true, dropshipping_retired_at: '2026-09-04T00:00:00Z' }), false);
+  assert.equal(isRetiredDropshippingSupplier({ dropshipping_retired_at: '2026-09-04T00:00:00Z' }), true);
   assert.deepEqual(
-    filterAllowedDropshippingDsliteSupplierIds(['2', '134', 133]),
+    filterOperationalDropshippingDsliteSupplierIds(['2', '134', 133], operational),
     ['133'],
   );
 });
 
 test('remove ofertas bloqueadas antes da seleção operacional', () => {
   assert.deepEqual(
-    filterAllowedDropshippingSupplierOffers([
+    filterOperationalDropshippingSupplierOffers([
       { id: 'hayamax', dslite_fornecedor_id: '2' },
       { id: 'evolusom-es', dslite_fornecedor_id: '134' },
       { id: 'evolusom-pr', dslite_fornecedor_id: '133' },
-    ]).map((offer) => offer.id),
+    ], operational).map((offer) => offer.id),
     ['evolusom-pr'],
   );
 });
 
 test('colisão do produto DSLite 381479 escolhe produto ativo da EVOLUSOM-PR', () => {
-  const selected = selectAllowedSupplierProductCandidate(
+  const selected = selectOperationalSupplierProductCandidate(
     [
       { id: 'vtk024788', ativo: false },
       { id: 'vtk017371', ativo: true },
@@ -50,14 +52,14 @@ test('colisão do produto DSLite 381479 escolhe produto ativo da EVOLUSOM-PR', (
         ativo: true,
         estoque: 50,
       },
-    ],
+    ], operational,
   );
 
   assert.equal(selected?.id, 'vtk017371');
 });
 
 test('não seleciona produto quando só existe oferta EVOLUSOM-ES', () => {
-  const selected = selectAllowedSupplierProductCandidate(
+  const selected = selectOperationalSupplierProductCandidate(
     [{ id: 'es-only', ativo: true }],
     [
       {
@@ -66,14 +68,14 @@ test('não seleciona produto quando só existe oferta EVOLUSOM-ES', () => {
         ativo: true,
         estoque: 10,
       },
-    ],
+    ], operational,
   );
 
   assert.equal(selected, null);
 });
 
 test('não seleciona produto quando só existe oferta Hayamax', () => {
-  const selected = selectAllowedSupplierProductCandidate(
+  const selected = selectOperationalSupplierProductCandidate(
     [{ id: 'hayamax-only', ativo: true }],
     [
       {
@@ -82,7 +84,7 @@ test('não seleciona produto quando só existe oferta Hayamax', () => {
         ativo: true,
         estoque: 10,
       },
-    ],
+    ], operational,
   );
 
   assert.equal(selected, null);

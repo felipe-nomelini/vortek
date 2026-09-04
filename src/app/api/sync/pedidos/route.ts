@@ -38,6 +38,7 @@ import {
 } from '@/lib/ml/order-profit';
 import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
 import { createSupplierCancellationCreditCandidate } from '@/lib/supplier-credits';
+import { loadOperationRuntimeConfiguration } from '@/services/operation-configuration';
 
 export const maxDuration = 300;
 
@@ -477,7 +478,10 @@ type DevolucaoMl = {
   entradaElegivelEstoque: boolean;
 };
 
-async function buscarClaims(orderId: string | number): Promise<{
+async function buscarClaims(
+  orderId: string | number,
+  returnAddress: { addressId: string | null; zipCode: string | null },
+): Promise<{
   id: string | null;
   status: string | null;
   isDevolvido: boolean;
@@ -517,7 +521,7 @@ async function buscarClaims(orderId: string | number): Promise<{
         // Centros logísticos do ML e endereços de fornecedor não representam item recebido pela Vortek.
         const envioRetornoInterno = enviosRetorno.find((envio: any) => (
           envio?.destination?.name === 'seller_address'
-          && isEnderecoEstoqueInternoMl(envio?.destination?.shipping_address)
+          && isEnderecoEstoqueInternoMl(envio?.destination?.shipping_address, returnAddress)
         ));
         const envioRetorno = envioRetornoInterno
           || enviosRetorno.find((envio: any) => envio?.destination?.name === 'seller_address')
@@ -875,9 +879,10 @@ function buildOrderSnapshot(params: {
 async function processOrder(params: {
   order: any;
   serviceClient: ReturnType<typeof createServiceClient>;
+  returnAddress: { addressId: string | null; zipCode: string | null };
 }): Promise<SyncOrderResult> {
   const startedAt = Date.now();
-  const { order: o, serviceClient } = params;
+  const { order: o, serviceClient, returnAddress } = params;
 
   let semShipment = 0;
   let authFailures = 0;
@@ -1082,7 +1087,7 @@ async function processOrder(params: {
     isDevolvido,
     motivoDevolucao: motivoClaim,
     devolucao: devolucaoMl,
-  } = await buscarClaims(o.id);
+  } = await buscarClaims(o.id, returnAddress);
 
   // 4. Status: em no_shipping, fulfilled=true confirma conclusão mesmo com tag not_delivered residual.
   const tags: string[] = sourceOrder?.tags || o.tags || [];
@@ -1690,7 +1695,7 @@ async function processOrder(params: {
           pedidoId,
           motivoDevolucao || 'Entrega não realizada',
           shipmentSubstatus,
-          isEnderecoEstoqueInternoMl(enderecoRetornoPadrao),
+          isEnderecoEstoqueInternoMl(enderecoRetornoPadrao, returnAddress),
         );
       }
     }
@@ -1912,6 +1917,7 @@ export async function POST(request: Request) {
   }
 
   const serviceClient = createServiceClient();
+  const operationConfiguration = await loadOperationRuntimeConfiguration(serviceClient);
   let abortedByAuth = false;
 
   let cursor = 0;
@@ -1935,6 +1941,7 @@ export async function POST(request: Request) {
       const processed = await processOrder({
         order,
         serviceClient,
+        returnAddress: operationConfiguration.returnAddress,
       });
       localResults.push(processed);
       if (processed.authFatal) {

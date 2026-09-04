@@ -22,6 +22,7 @@ import {
   isMlCriticalAttributeId,
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
+import { loadOperationalDropshippingSupplierIds } from "@/lib/dslite/supplier-policy";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 import { mergeMlAttributePrefill } from "@/lib/ml-listing-identity";
@@ -331,9 +332,10 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
-    const [pricingTaxContext, commercial] = await Promise.all([
+    const [pricingTaxContext, commercial, operationalSupplierIds] = await Promise.all([
       loadPricingTaxContext(supabase),
       loadCommercialPricingConfiguration(supabase),
+      loadOperationalDropshippingSupplierIds(supabase),
     ]);
     const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto, error } = await supabase
@@ -410,7 +412,7 @@ export async function POST(req: Request) {
         "PACKS_NUMBER",
       ].includes(attrId);
       const trustedCriticalValue = isMlCriticalAttributeId(attrId)
-        ? resolveTrustedMlCriticalValue(attrId, produtoForMl, supplierOffers || [])
+        ? resolveTrustedMlCriticalValue(attrId, produtoForMl, supplierOffers || [], operationalSupplierIds)
         : null;
       const pre = isMlCriticalAttributeId(attrId)
         ? trustedCriticalValue

@@ -382,4 +382,10 @@ A migration `20260904210000_bnt_cfg_02_company_fiscal.sql` foi ensaiada com `ROL
 
 Implementado tecnicamente em `2026-09-04` no commit `c86976a` e publicado em `dev.bentevi.shop`. A aba `Comercial` consolidou como fontes tipadas as três faixas de custo/margem/lucro mínimo, a taxa fallback do Mercado Livre, o frete `not_specified`, o limite de inativação por custo e a política mínima/fallback de preços por quantidade. O simulador compartilha o cálculo operacional e salvar a configuração não recalcula nem publica produtos ou anúncios existentes.
 
-A migration `20260904223000_bnt_cfg_03_commercial_pricing.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. O cálculo SQL e o TypeScript foram comparados nos quatro limites das faixas e produziram os mesmos valores. A implementação está tecnicamente validada; a aprovação visual da aba em homologação é a única pendência antes de `BNT-CFG-04`.
+A migration `20260904223000_bnt_cfg_03_commercial_pricing.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. O cálculo SQL e o TypeScript foram comparados nos quatro limites das faixas e produziram os mesmos valores. A aba foi aprovada visualmente pelo responsável em `2026-09-04`, liberando `BNT-CFG-04`.
+
+### `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment`
+
+Implementado tecnicamente em `2026-09-04`. A aba `Operação` concentra o prazo de atenção dos pedidos, o endereço do estoque interno validado na conta Mercado Livre e o estado write-only do feed XML por fornecedor. Q segura, capacidade de kits, criação explícita do pedido DSLite e aposentadoria permanente permanecem regras protegidas.
+
+A migration `20260904233000_bnt_cfg_04_operation.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. Ela removeu as fontes paralelas do runtime, preservou os valores legados, consolidou feed e aposentadoria em `fornecedores` e negou leitura da URL confidencial aos papéis cliente. A aprovação visual da aba em homologação é a única pendência antes de `BNT-CFG-05`.

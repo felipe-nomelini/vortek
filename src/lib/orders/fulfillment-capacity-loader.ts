@@ -1,5 +1,5 @@
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
-import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
+import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import {
   calculateInternalFulfillmentCapacity,
   calculateSafeFulfillmentQuantity,
@@ -105,7 +105,7 @@ export async function loadProductFulfillmentCapacities(
   for (const product of componentProducts) productById.set(String(product.id), product);
 
   const sourceProductIds = Array.from(new Set([...uniqueProductIds, ...componentIds]));
-  const [balances, offerRows] = await Promise.all([
+  const [balances, offerRows, operationalSupplierIds] = await Promise.all([
     loadInternalStockBalances(client, sourceProductIds),
     selectInChunks(
       client,
@@ -114,6 +114,7 @@ export async function loadProductFulfillmentCapacities(
       'produto_id',
       sourceProductIds,
     ),
+    loadOperationalDropshippingSupplierIds(client),
   ]);
   const offers: SupplierCapacityOffer[] = offerRows.map((offer) => ({
     id: String(offer.id || ''),
@@ -121,7 +122,7 @@ export async function loadProductFulfillmentCapacities(
     supplierId: String(offer.dslite_fornecedor_id || ''),
     supplierProductId: String(offer.dslite_produto_id || ''),
     ativo: offer.ativo,
-    allowed: !isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id),
+    allowed: operationalSupplierIds.has(String(offer.dslite_fornecedor_id || '').trim()),
     estoque: offer.estoque,
     custo: offer.custo,
   }));

@@ -16,6 +16,8 @@ import {
 } from '@/lib/orders/operational-view';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { benteviColors } from '@/theme/bentevi';
+import { createServiceClient } from '@/lib/supabase';
+import { loadOperationRuntimeConfiguration } from '@/services/operation-configuration';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -471,7 +473,7 @@ function formatLabelRelease(row: Record<string, any>): string {
   return releaseAt && releaseAt.getTime() > Date.now() ? `libera em ${formatMlReleaseWindow(raw).when}` : '—';
 }
 
-function mapExportRow(row: Record<string, any>): ExportRow {
+function mapExportRow(row: Record<string, any>, delayedAfterMinutes: number): ExportRow {
   const dateParts = formatDateParts(row.data_venda || row.data);
   const statusRaw = String(row.situacao || 'aberto');
   const rawProfit = row.lucro === null || row.lucro === undefined ? null : Number(row.lucro);
@@ -490,7 +492,7 @@ function mapExportRow(row: Record<string, any>): ExportRow {
     dsliteIds, splitFulfillment: Boolean(row.has_split_fulfillment), progress: getOrderSalesProgress(row),
     invoiceNumbers, shipmentId: String(row.ml_shipment_id || '').trim() || '—',
     tracking: String(row.rastreio || '').trim() || '—', labelRelease: formatLabelRelease(row),
-    claimId: String(row.ml_claim_id || '').trim() || '—', urgencyReasons: getOperationalUrgencyReasons(row),
+    claimId: String(row.ml_claim_id || '').trim() || '—', urgencyReasons: getOperationalUrgencyReasons(row, delayedAfterMinutes),
   };
 }
 
@@ -524,6 +526,7 @@ export async function GET(request: Request) {
   const auth = await authorizeApiRequest(request, 'sales.read');
   if (!auth.ok) return auth.response;
   try {
+    const operationConfiguration = await loadOperationRuntimeConfiguration(createServiceClient());
     const sourceUrl = new URL(request.url);
     const listUrl = new URL('/api/pedidos', request.url);
     for (const key of ['search', 'status', 'dateFrom', 'dateTo', 'priceMin', 'priceMax', 'fornecedores', 'operationalView', 'sortBy', 'sortOrder']) {
@@ -549,7 +552,7 @@ export async function GET(request: Request) {
       page += 1;
       if (!pageRows.length) break;
     } while (rows.length < total);
-    const exportRows = rows.map(mapExportRow);
+    const exportRows = rows.map((row) => mapExportRow(row, operationConfiguration.delayedAfterMinutes));
     const pdf = await buildPdf(exportRows, buildFilterDescription(sourceUrl, supplierOptions));
     const date = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
     return new Response(new Uint8Array(pdf), {

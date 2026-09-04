@@ -36,6 +36,7 @@ import {
   normalizeCriticalAttributeValue,
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
+import { loadOperationalDropshippingSupplierIds } from "@/lib/dslite/supplier-policy";
 import { persistSingleAnuncioBySku } from "@/lib/ml/persist-single-anuncio";
 import { mapCreatedListingDesiredStatus } from "@/lib/ml/status";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
@@ -841,9 +842,10 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
-    const [pricingTaxContext, commercialPricing] = await Promise.all([
+    const [pricingTaxContext, commercialPricing, operationalSupplierIds] = await Promise.all([
       loadPricingTaxContext(supabase),
       loadCommercialPricingConfiguration(supabase),
+      loadOperationalDropshippingSupplierIds(supabase),
     ]);
     const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto } = await supabase
@@ -1105,6 +1107,7 @@ export async function POST(req: Request) {
         attrId,
         produto,
         supplierOffers || [],
+        operationalSupplierIds,
       );
       const current = attributesMap.get(attr.id);
       if (!trustedValue) {
@@ -1314,6 +1317,7 @@ export async function POST(req: Request) {
         existingItem,
         { ...produto, gtin: gtinForMl || produto.gtin },
         supplierOffers || [],
+        operationalSupplierIds,
       );
       if (identityConflicts.length > 0) {
         return NextResponse.json(
@@ -1622,6 +1626,7 @@ export async function POST(req: Request) {
       latestItem,
       { ...produto, gtin: gtinForMl || produto.gtin },
       supplierOffers || [],
+      operationalSupplierIds,
     );
     if (identityConflicts.length > 0) {
       const pauseResult = await pauseCreatedListing(result.id);

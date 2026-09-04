@@ -58,7 +58,7 @@ test('BNT-D09 classifica uma oferta no backend em precedência única', () => {
   ].map((needle) => domain.indexOf(needle));
   assert.ok(positions.every((position) => position >= 0));
   assert.deepEqual([...positions].sort((left, right) => left - right), positions);
-  assert.match(domain, /isBlockedDropshippingDsliteSupplier/);
+  assert.match(domain, /supplierRetired/);
   assert.match(migration, /when not base\.supplier_active or base\.payment_mode = 'balance_account' then 'historical'/);
   assert.match(migration, /when not base\.offer_active then 'offer_inactive'/);
   assert.match(migration, /when not base\.product_active then 'product_inactive'/);

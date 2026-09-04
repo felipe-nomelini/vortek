@@ -18,6 +18,7 @@ import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 import { extractMlItemSku } from '@/lib/ml/item-sku';
 import { findMlProductIdentityConflicts } from '@/lib/ml-critical-attributes';
+import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import {
   ML_OBSERVED_BATCH_SIZE,
   normalizeMlObservedItemIds,
@@ -529,9 +530,10 @@ export async function POST(request: Request) {
     const itemIds = requestedItemIds;
 
     const serviceClient = createServiceClient();
-    const [pricingTaxContext, commercial] = await Promise.all([
+    const [pricingTaxContext, commercial, operationalSupplierIds] = await Promise.all([
       loadPricingTaxContext(serviceClient),
       loadCommercialPricingConfiguration(serviceClient),
+      loadOperationalDropshippingSupplierIds(serviceClient),
     ]);
     const taxRate = requirePricingTaxRate(pricingTaxContext);
     const sellerZipResult = await resolveSellerZip();
@@ -664,6 +666,7 @@ export async function POST(request: Request) {
             item,
             produto,
             identityOffers || [],
+            operationalSupplierIds,
           );
           if (identityConflicts.length > 0) {
             const reason = `Divergência material de identidade ML: ${identityConflicts

@@ -11,6 +11,7 @@ import {
   saoPauloDayLabel,
   saoPauloHour,
 } from "@/lib/timezone";
+import { loadOperationRuntimeConfiguration } from "@/services/operation-configuration";
 
 type DashboardPreset = "today" | "7d" | "30d";
 type MetricKey = "revenue" | "profit" | "orders";
@@ -336,10 +337,11 @@ export async function GET(request: Request) {
   const bounds = periodBounds(preset, now);
   const serviceClient = createServiceClient();
 
-  const [currentResult, previousResult, operationalResult] = await Promise.all([
+  const [currentResult, previousResult, operationalResult, operationConfiguration] = await Promise.all([
     loadRowsInRange(serviceClient, bounds.currentStart, bounds.currentEnd),
     loadRowsInRange(serviceClient, bounds.previousStart, bounds.previousEnd),
     loadOperationalRows(serviceClient),
+    loadOperationRuntimeConfiguration(serviceClient),
   ]);
 
   const queryError =
@@ -367,13 +369,13 @@ export async function GET(request: Request) {
   }
 
   const preparation = enrichedOperational.filter((row) =>
-    matchesOrdersOperationalView(row, "preparation"),
+    matchesOrdersOperationalView(row, "preparation", operationConfiguration.delayedAfterMinutes),
   ).length;
   const shipping = enrichedOperational.filter((row) =>
-    matchesOrdersOperationalView(row, "shipping"),
+    matchesOrdersOperationalView(row, "shipping", operationConfiguration.delayedAfterMinutes),
   ).length;
   const urgent = enrichedOperational.filter((row) =>
-    matchesOrdersOperationalView(row, "urgent"),
+    matchesOrdersOperationalView(row, "urgent", operationConfiguration.delayedAfterMinutes),
   ).length;
   const delivered = currentResult.data.filter(
     (row) => normalizeStatus(row.situacao) === "entregue",

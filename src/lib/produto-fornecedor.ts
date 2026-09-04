@@ -4,7 +4,10 @@ import {
   normalizeOfferPriority,
   resolvePreferredOfferForProduct,
 } from '@/lib/preferred-offer';
-import { filterAllowedDropshippingSupplierOffers } from '@/lib/dslite/supplier-policy';
+import {
+  filterOperationalDropshippingSupplierOffers,
+  loadOperationalDropshippingSupplierIds,
+} from '@/lib/dslite/supplier-policy';
 
 export {
   choosePreferredOffer,
@@ -95,7 +98,7 @@ export async function syncPreferredProductSnapshot(
   const ids = Array.from(new Set(productIds.map((id) => String(id || '').trim()).filter(Boolean)));
   if (ids.length === 0) return [];
 
-  const [{ data: products, error: productError }, { data: offers, error: offerError }] = await Promise.all([
+  const [{ data: products, error: productError }, { data: offers, error: offerError }, operationalSupplierIds] = await Promise.all([
     client
       .from('produtos')
       .select('id,sku,ml_item_id,ml_status,oferta_preferencial_id,fornecedor_preferencial_manual,custo,estoque,fornecedor,dslite_fornecedor_id,dslite_produto_id,dslite_ultima_sync')
@@ -104,6 +107,7 @@ export async function syncPreferredProductSnapshot(
       .from('produto_fornecedor_ofertas')
       .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id,fornecedor_nome,custo,estoque,ativo,prioridade,last_sync_at')
       .in('produto_id', ids),
+    loadOperationalDropshippingSupplierIds(client),
   ]);
 
   if (productError) {
@@ -114,8 +118,9 @@ export async function syncPreferredProductSnapshot(
   }
 
   const offersByProductId = new Map<string, ProdutoFornecedorOfertaRow[]>();
-  for (const offer of filterAllowedDropshippingSupplierOffers(
+  for (const offer of filterOperationalDropshippingSupplierOffers(
     (offers || []) as ProdutoFornecedorOfertaRow[],
+    operationalSupplierIds,
   )) {
     const key = String(offer.produto_id || '').trim();
     if (!key) continue;

@@ -26,6 +26,7 @@ export interface FornecedorListItem {
   crossdocking: string | null;
   dropshipping: string | null;
   ativo: boolean | null;
+  dropshipping_retired_at: string | null;
   dslite_ultima_sync: string | null;
   activation_blocked: boolean;
   sync_health: SupplierSyncHealth;

@@ -326,6 +326,9 @@ export type Database = {
           margem_lucro: number
           nfe_provider_default: string
           notificacoes_push: boolean
+          order_operational_delay_minutes: number
+          internal_stock_return_address_id: string | null
+          internal_stock_return_zip_code: string | null
           pricing_ml_fee_fallback_rate: number
           pricing_unspecified_shipping_cost: number
           product_inactive_cost_threshold: number
@@ -340,6 +343,9 @@ export type Database = {
           margem_lucro?: number
           nfe_provider_default?: string
           notificacoes_push?: boolean
+          order_operational_delay_minutes?: number
+          internal_stock_return_address_id?: string | null
+          internal_stock_return_zip_code?: string | null
           pricing_ml_fee_fallback_rate?: number
           pricing_unspecified_shipping_cost?: number
           product_inactive_cost_threshold?: number
@@ -354,6 +360,9 @@ export type Database = {
           margem_lucro?: number
           nfe_provider_default?: string
           notificacoes_push?: boolean
+          order_operational_delay_minutes?: number
+          internal_stock_return_address_id?: string | null
+          internal_stock_return_zip_code?: string | null
           pricing_ml_fee_fallback_rate?: number
           pricing_unspecified_shipping_cost?: number
           product_inactive_cost_threshold?: number
@@ -515,7 +524,9 @@ export type Database = {
           cnpj: string
           created_at: string
           dslite_id: string | null
+          dslite_catalog_xml_url: string | null
           dslite_ultima_sync: string | null
+          dropshipping_retired_at: string | null
           dropshipping: string
           email: string
           endereco: string
@@ -534,7 +545,9 @@ export type Database = {
           cnpj?: string
           created_at?: string
           dslite_id?: string | null
+          dslite_catalog_xml_url?: string | null
           dslite_ultima_sync?: string | null
+          dropshipping_retired_at?: string | null
           dropshipping?: string
           email?: string
           endereco?: string
@@ -553,7 +566,9 @@ export type Database = {
           cnpj?: string
           created_at?: string
           dslite_id?: string | null
+          dslite_catalog_xml_url?: string | null
           dslite_ultima_sync?: string | null
+          dropshipping_retired_at?: string | null
           dropshipping?: string
           email?: string
           endereco?: string

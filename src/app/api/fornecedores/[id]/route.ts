@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
-import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
 import { createServiceClient } from '@/lib/supabase';
 import {
   evaluateScheduledTaskHealth,
@@ -32,7 +31,7 @@ const localUpdateSchema = z.object({
   'Informe ao menos um campo para atualizar',
 );
 
-const supplierFields = 'id,dslite_id,apelido,nome,cnpj,email,telefone,endereco,supplier_pix_key,status_dslite,crossdocking,dropshipping,ativo,dslite_ultima_sync,created_at,updated_at';
+const supplierFields = 'id,dslite_id,apelido,nome,cnpj,email,telefone,endereco,supplier_pix_key,status_dslite,crossdocking,dropshipping,ativo,dropshipping_retired_at,dslite_ultima_sync,created_at,updated_at';
 
 type SupplierRow = Database['public']['Tables']['fornecedores']['Row'];
 
@@ -58,7 +57,7 @@ function mapSupplier(row: SupplierRow, intervalMinutes: number): FornecedorDetai
     crossdocking: row.crossdocking,
     dropshipping: row.dropshipping,
     active: row.ativo !== false,
-    activationBlocked: isBlockedDropshippingDsliteSupplier(row.dslite_id),
+    activationBlocked: Boolean(row.dropshipping_retired_at),
     syncHealth: syncHealth(row.dslite_ultima_sync, intervalMinutes),
     lastSyncAt: row.dslite_ultima_sync,
     createdAt: row.created_at,

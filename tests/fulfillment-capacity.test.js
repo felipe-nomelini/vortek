@@ -7,7 +7,6 @@ const {
   calculateSupplierFulfillmentCapacity,
 } = require('../src/lib/orders/fulfillment-capacity.ts');
 const { calcularSaldoEstoqueInterno } = require('../src/lib/estoque-interno-saldo.ts');
-const { isBlockedDropshippingDsliteSupplier } = require('../src/lib/dslite/supplier-policy.ts');
 
 const unit = [{ produtoId: 'produto', quantidade: 1 }];
 
@@ -60,10 +59,10 @@ test('oferta inválida não entra na capacidade do fornecedor', () => {
   assert.equal(calculateSupplierFulfillmentCapacity(unit, invalidOffers), 0);
 });
 
-test('oferta Hayamax não gera capacidade de fulfillment', () => {
+test('fornecedor aposentado não gera capacidade de fulfillment', () => {
   const hayamax = offer({
     supplierId: '2',
-    allowed: !isBlockedDropshippingDsliteSupplier('2'),
+    allowed: false,
     estoque: 20,
   });
 

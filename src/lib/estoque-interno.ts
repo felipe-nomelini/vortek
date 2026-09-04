@@ -81,8 +81,6 @@ export async function expandirComponentesKitEstoqueInterno(
   return expandirItensReservaEstoqueInterno(itens, composicoes);
 }
 
-const ESTOQUE_INTERNO_RETURN_ADDRESS_ID = '1634853936';
-const ESTOQUE_INTERNO_RETURN_ZIP_CODE = '21011550';
 const ML_RETURN_ADDRESS_CACHE_MS = 5 * 60 * 1000;
 
 const mlUserIdSchema = z.object({
@@ -96,11 +94,15 @@ const mlUserAddressSchema = z.object({
 }).passthrough();
 
 const mlUserAddressesSchema = z.array(mlUserAddressSchema);
-type MlUserAddress = z.infer<typeof mlUserAddressSchema>;
+export type MlUserAddress = z.infer<typeof mlUserAddressSchema>;
+export type InternalStockAddressIdentity = {
+  addressId: string | null;
+  zipCode: string | null;
+};
 
 let mlReturnAddressCache: {
   expiresAt: number;
-  address: MlUserAddress | null;
+  addresses: MlUserAddress[];
 } | null = null;
 
 function somenteDigitos(value: unknown): string {
@@ -111,11 +113,18 @@ function somenteDigitos(value: unknown): string {
  * Confirma o endereço físico da Vortek no Rio de Janeiro.
  * `seller_address` sozinho não basta: fornecedores também usam esse tipo no ML.
  */
-export function isEnderecoEstoqueInternoMl(address: any): boolean {
+export function isEnderecoEstoqueInternoMl(
+  address: any,
+  configured: InternalStockAddressIdentity,
+): boolean {
   const addressId = String(address?.address_id || address?.id || '').trim();
   const zipCode = somenteDigitos(address?.zip_code);
-  return addressId === ESTOQUE_INTERNO_RETURN_ADDRESS_ID
-    || zipCode === ESTOQUE_INTERNO_RETURN_ZIP_CODE;
+  const configuredAddressId = String(configured.addressId || '').trim();
+  const configuredZipCode = somenteDigitos(configured.zipCode);
+  return Boolean(
+    (configuredAddressId && addressId === configuredAddressId)
+    || (configuredZipCode && zipCode === configuredZipCode),
+  );
 }
 
 /**
@@ -123,9 +132,9 @@ export function isEnderecoEstoqueInternoMl(address: any): boolean {
  * Em envios sem claim, `shipment.origin` é a origem da ida e não pode ser
  * usado como destino da logística reversa.
  */
-export async function obterEnderecoRetornoPadraoMl(): Promise<MlUserAddress | null> {
+export async function listarEnderecosUsuarioMl(): Promise<MlUserAddress[]> {
   if (mlReturnAddressCache && mlReturnAddressCache.expiresAt > Date.now()) {
-    return mlReturnAddressCache.address;
+    return mlReturnAddressCache.addresses;
   }
 
   const meResult = await fetchMLResult<unknown>('/users/me?attributes=id');
@@ -136,7 +145,7 @@ export async function obterEnderecoRetornoPadraoMl(): Promise<MlUserAddress | nu
       status: meResult.status,
       code: meResult.error?.code || 'invalid_response',
     });
-    return null;
+    throw new Error('Não foi possível identificar a conta Mercado Livre conectada');
   }
 
   const addressesResult = await fetchMLResult<unknown>(
@@ -151,18 +160,21 @@ export async function obterEnderecoRetornoPadraoMl(): Promise<MlUserAddress | nu
       status: addressesResult.status,
       code: addressesResult.error?.code || 'invalid_response',
     });
-    return null;
+    throw new Error('Não foi possível consultar os endereços da conta Mercado Livre');
   }
 
-  const address = addressesParsed.data.find((candidate) => (
-    (candidate.types || []).includes('default_return_address')
-  )) || null;
-
   mlReturnAddressCache = {
-    address,
+    addresses: addressesParsed.data,
     expiresAt: Date.now() + ML_RETURN_ADDRESS_CACHE_MS,
   };
-  return address;
+  return addressesParsed.data;
+}
+
+export async function obterEnderecoRetornoPadraoMl(): Promise<MlUserAddress | null> {
+  const addresses = await listarEnderecosUsuarioMl().catch(() => []);
+  return addresses.find((candidate) => (
+    (candidate.types || []).includes('default_return_address')
+  )) || null;
 }
 
 export async function resolverItensEstoqueEnvioInterno(pedidoId: string): Promise<ItemEstoquePedido[]> {

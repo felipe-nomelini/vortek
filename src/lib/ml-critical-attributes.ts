@@ -9,7 +9,7 @@ import {
   normalizeMlDiameter,
   type MlListingIdentityConflict,
 } from "@/lib/ml-listing-identity";
-import { filterAllowedDropshippingSupplierOffers } from "@/lib/dslite/supplier-policy";
+import { filterOperationalDropshippingSupplierOffers } from "@/lib/dslite/supplier-policy";
 
 export {
   extractStrictVoltage,
@@ -67,10 +67,15 @@ export function normalizeCriticalAttributeValue(
   return String(value).trim() || null;
 }
 
-export function resolveMlCriticalFacts(produto: any, offers: any[] = []) {
-  const safeOffers = filterAllowedDropshippingSupplierOffers(
-    Array.isArray(offers) ? offers : [],
-  );
+export function resolveMlCriticalFacts(
+  produto: any,
+  offers: any[] = [],
+  operationalSupplierIds?: ReadonlySet<string>,
+) {
+  const rows = Array.isArray(offers) ? offers : [];
+  const safeOffers = operationalSupplierIds
+    ? filterOperationalDropshippingSupplierOffers(rows, operationalSupplierIds)
+    : rows;
   const preferredOffer = resolvePreferredOfferForProduct(
     safeOffers,
     produto?.oferta_preferencial_id || null,
@@ -116,9 +121,10 @@ export function resolveTrustedMlCriticalValue(
   attrId: unknown,
   produto: any,
   offers: any[] = [],
+  operationalSupplierIds?: ReadonlySet<string>,
 ): string | null {
   const id = String(attrId || "").trim().toUpperCase();
-  const facts = resolveMlCriticalFacts(produto, offers);
+  const facts = resolveMlCriticalFacts(produto, offers, operationalSupplierIds);
   if (id === "VOLTAGE" || id === "NOMINAL_VOLTAGE") {
     return normalizeCriticalAttributeValue(id, facts.voltage);
   }
@@ -135,8 +141,9 @@ export function findMlProductIdentityConflicts(
   item: any,
   produto: any,
   offers: any[] = [],
+  operationalSupplierIds?: ReadonlySet<string>,
 ): MlListingIdentityConflict[] {
-  const facts = resolveMlCriticalFacts(produto, offers);
+  const facts = resolveMlCriticalFacts(produto, offers, operationalSupplierIds);
   return findMlListingIdentityConflicts(item, {
     sellerSku: produto?.sku,
     gtin: produto?.gtin,

@@ -3,7 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { predictCategory } from '@/services/mercadolibre';
 import { researchProductAttribute, type ProductAttributeResearchResult } from '@/services/product-attribute-research';
 import { applyProductFactsToMlAttribute, extractMlProductFacts, type MlProductFacts } from '@/lib/ml-product-facts';
-import { filterAllowedDropshippingSupplierOffers } from '@/lib/dslite/supplier-policy';
+import { filterOperationalDropshippingSupplierOffers, loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 
 type AllowedValue = { id: string; name: string };
 type Suggestion = {
@@ -575,8 +575,10 @@ export async function POST(req: Request) {
       .select('dslite_fornecedor_id, sku_oferta, sku_fornecedor, nome, descricao, marca')
       .eq('produto_id', produtoId)
       .limit(5);
-    const supplierRows = filterAllowedDropshippingSupplierOffers(
+    const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(supabase);
+    const supplierRows = filterOperationalDropshippingSupplierOffers(
       supplierSkusResult.data || [],
+      operationalSupplierIds,
     );
     const supplierSkus = supplierRows
       .flatMap((row: any) => [row.sku_oferta, row.sku_fornecedor])

@@ -10,10 +10,11 @@ import PreferenciasTab from "@/components/configuracoes/PreferenciasTab";
 import UsuariosTab from "@/components/configuracoes/UsuariosTab";
 import AuditoriaTab from "@/components/configuracoes/AuditoriaTab";
 import ComercialTab from "@/components/configuracoes/ComercialTab";
+import OperacaoTab from "@/components/configuracoes/OperacaoTab";
 import { configuracoesCardStyle } from "@/components/configuracoes/styles";
 
 const { Title } = Typography;
-const validTabs = ["empresa", "comercial", "integracoes", "usuarios", "preferencias", "historico"];
+const validTabs = ["empresa", "comercial", "operacao", "integracoes", "usuarios", "preferencias", "historico"];
 
 function ConfiguracoesPageContent() {
   const searchParams = useSearchParams();
@@ -59,6 +60,12 @@ function ConfiguracoesPageContent() {
               label: "💰 Comercial",
               forceRender: true,
               children: <ComercialTab messageApi={messageApi} />,
+            },
+            {
+              key: "operacao",
+              label: "📦 Operação",
+              forceRender: true,
+              children: <OperacaoTab messageApi={messageApi} />,
             },
             {
               key: "integracoes",

@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
-import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
 import { createServiceClient } from '@/lib/supabase';
 import {
   evaluateScheduledTaskHealth,
@@ -20,7 +19,7 @@ export const revalidate = 0;
 
 const PAGE_SIZE_DEFAULT = 20;
 const PAGE_SIZE_MAX = 100;
-const LIST_FIELDS = 'id,dslite_id,apelido,nome,cnpj,email,telefone,status_dslite,crossdocking,dropshipping,ativo,dslite_ultima_sync';
+const LIST_FIELDS = 'id,dslite_id,apelido,nome,cnpj,email,telefone,status_dslite,crossdocking,dropshipping,ativo,dropshipping_retired_at,dslite_ultima_sync';
 const SUMMARY_FIELDS = 'ativo,dslite_ultima_sync,status_dslite,crossdocking,dropshipping';
 
 const allowedSortColumns = new Set<FornecedorSortKey>([
@@ -155,7 +154,7 @@ export async function GET(request: Request) {
     const response: FornecedoresListResponse = {
       data: ((dataResult.data || []) as SupplierListRow[]).map((supplier) => ({
         ...supplier,
-        activation_blocked: isBlockedDropshippingDsliteSupplier(supplier.dslite_id),
+        activation_blocked: Boolean(supplier.dropshipping_retired_at),
         sync_health: syncHealth(supplier.dslite_ultima_sync, effectiveIntervalMinutes),
       })),
       total: countResult.count || 0,

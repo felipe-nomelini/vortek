@@ -61,6 +61,10 @@ export const CONFIGURATION_DEFINITIONS = {
   "configuracoes.pricing_ml_fee_fallback_rate": { domain: "comercial_precificacao", label: "Taxa fallback do Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.pricing_unspecified_shipping_cost": { domain: "comercial_precificacao", label: "Frete quando não informado", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.product_inactive_cost_threshold": { domain: "comercial_precificacao", label: "Limite de custo para inativação", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.order_operational_delay_minutes": { domain: "produtos_estoque_fulfillment", label: "Prazo de atenção operacional", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.internal_stock_return_address": { domain: "produtos_estoque_fulfillment", label: "Endereço do estoque interno", classification: "EDITAVEL_CONTROLADO" },
+  "fornecedores.dslite_catalog_xml_url": { domain: "produtos_estoque_fulfillment", label: "Feed XML do fornecedor", classification: "SECRET_WRITE_ONLY" },
+  "fornecedores.dropshipping_retired_at": { domain: "produtos_estoque_fulfillment", label: "Aposentadoria do fornecedor", classification: "STATUS_SOMENTE_LEITURA" },
   "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo, margem e lucro mínimo", classification: "EDITAVEL_CONTROLADO" },
   "ml_quantity_pricing_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de preço por quantidade", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.notificacoes_push": { domain: "notificacoes", label: "Notificações push", classification: "EDITAVEL_IMEDIATO" },
@@ -211,6 +215,39 @@ export const commercialConfigurationSchema = z.object({
 });
 
 export type CommercialConfigurationInput = z.infer<typeof commercialConfigurationSchema>;
+
+const dsliteXmlFeedUrlSchema = z.string().trim().max(2048).superRefine((value, context) => {
+  try {
+    const url = new URL(value);
+    if (
+      url.protocol !== "https:"
+      || url.hostname !== "app.dslite.com.br"
+      || !url.pathname.startsWith("/getXMLCrossdocking/")
+    ) {
+      context.addIssue({ code: "custom", message: "Informe uma URL HTTPS válida do feed Crossdocking da DSLite" });
+    }
+  } catch {
+    context.addIssue({ code: "custom", message: "URL do feed XML inválida" });
+  }
+});
+
+export const operationConfigurationPatchSchema = z.discriminatedUnion("section", [
+  z.object({
+    section: z.literal("orders"),
+    delayedAfterMinutes: z.number().int().min(5).max(1440),
+  }).strict(),
+  z.object({
+    section: z.literal("internal_stock"),
+    returnAddressId: z.string().trim().min(1).max(80),
+  }).strict(),
+  z.object({
+    section: z.literal("supplier_feed"),
+    supplierId: z.string().uuid("Fornecedor inválido"),
+    xmlUrl: z.union([z.literal(""), dsliteXmlFeedUrlSchema, z.null()]),
+  }).strict(),
+]);
+
+export type OperationConfigurationPatch = z.infer<typeof operationConfigurationPatchSchema>;
 
 export const fiscalConfigurationSchema = z.object({
   simples_inicio_atividade: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data de início inválida"),

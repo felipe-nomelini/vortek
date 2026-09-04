@@ -27,6 +27,7 @@ import {
   normalizeMlOrderHydrationKey,
 } from '@/lib/sync/ml-order-hydration';
 import { validateMercadoLivreWebhookUser } from '@/lib/ml-account-guard';
+import { loadOperationRuntimeConfiguration } from '@/services/operation-configuration';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -393,6 +394,7 @@ export async function POST(request: Request) {
     }
 
     const serviceClient = createServiceClient();
+    const operationConfiguration = await loadOperationRuntimeConfiguration(serviceClient);
     const resourcePath = normalizeResourcePath(resource);
 
     if (topic === 'orders_v2') {
@@ -747,7 +749,7 @@ export async function POST(request: Request) {
                 String(pedido.id),
                 pedido.situacao === 'dest_ausente' ? 'Destinatário ausente' : 'Entrega não realizada',
                 shipmentSubstatus,
-                isEnderecoEstoqueInternoMl(enderecoRetornoPadrao),
+                isEnderecoEstoqueInternoMl(enderecoRetornoPadrao, operationConfiguration.returnAddress),
               );
             }
 

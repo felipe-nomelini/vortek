@@ -11,7 +11,6 @@ import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { shouldProductBeInactiveByCost } from "@/lib/product-activity";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
-import { filterAllowedDropshippingDsliteSupplierIds } from "@/lib/dslite/supplier-policy";
 
 export const maxDuration = 300;
 
@@ -309,6 +308,7 @@ export async function POST(req: Request) {
         .from("fornecedores")
         .select("dslite_id")
         .eq("ativo", true)
+        .is("dropshipping_retired_at", null)
         .not("dslite_id", "is", null);
 
     if (fornecedoresAtivosError) {
@@ -348,10 +348,8 @@ export async function POST(req: Request) {
               (f) => String(f.crossdocking || "").toLowerCase() === "ativo",
             )
             .map((f) => String(f.id));
-    const fornecedorIdsAtivos = filterAllowedDropshippingDsliteSupplierIds(
-      fornecedorIds.filter((id) =>
-        fornecedoresAtivosLocalIds.has(String(id)),
-      ),
+    const fornecedorIdsAtivos = fornecedorIds.filter((id) =>
+      fornecedoresAtivosLocalIds.has(String(id)),
     );
 
     if (fornecedorIdsAtivos.length === 0) {

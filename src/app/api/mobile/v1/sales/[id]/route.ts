@@ -8,6 +8,7 @@ import {
   loadMobileOperationalSale,
   mobileSaleIdSchema,
 } from "@/lib/mobile-sale-lookup";
+import { loadOperationRuntimeConfiguration } from "@/services/operation-configuration";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +41,7 @@ export async function GET(
     .map((value: unknown) => String(value || "").trim())
     .filter(Boolean);
   const serviceClient = createServiceClient();
+  const operationConfiguration = await loadOperationRuntimeConfiguration(serviceClient);
   const { data: auditRows, error: auditError } = pedidoIds.length
     ? await serviceClient
       .from("nf_auditoria_eventos")
@@ -68,7 +70,7 @@ export async function GET(
   return NextResponse.json(
     {
       data: {
-        sale: mapMobileSaleDetail(row),
+        sale: mapMobileSaleDetail(row, operationConfiguration.delayedAfterMinutes),
         history: (auditRows || []).map(mapMobileSaleHistoryEvent),
       },
       error: null,

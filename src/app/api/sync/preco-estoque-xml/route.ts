@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
-import { getSyncRuntimeJson } from '@/lib/sync/runtime-config';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import {
@@ -10,11 +9,9 @@ import {
   type CostSnapshot,
 } from '@/lib/ml/automatic-pricing';
 import { shouldReconcilePreferredOfferCandidate } from '@/lib/preferred-offer';
-import { filterAllowedDropshippingDsliteSupplierIds } from '@/lib/dslite/supplier-policy';
 
 export const maxDuration = 300;
 
-const CONFIG_KEY = 'dslite_catalog_xml_urls';
 const OFFER_PAGE_SIZE = 1000;
 const UPSERT_CHUNK_SIZE = 300;
 const PREFERRED_RECONCILIATION_CHUNK_SIZE = 100;
@@ -22,7 +19,6 @@ const XML_FETCH_MAX_ATTEMPTS = 2;
 const XML_FETCH_RETRY_DELAYS_MS = [1_000];
 const XML_FETCH_CONCURRENCY = 2;
 
-type XmlFeedConfig = Record<string, string>;
 type XmlCatalogItem = { produtoId: string; custo: number; estoque: number };
 
 function normalizeNumber(value: string): number {
@@ -167,23 +163,25 @@ export async function POST(request: Request) {
     const selectedSupplierIds = Array.isArray(body?.fornecedorIds)
       ? new Set(body.fornecedorIds.map((id: unknown) => String(id || '').trim()).filter(Boolean))
       : null;
-    const configuredFeeds = await getSyncRuntimeJson<XmlFeedConfig>(CONFIG_KEY, {});
     const client = createServiceClient();
     const { data: activeSuppliers, error: activeSuppliersError } = await client
       .from('fornecedores')
-      .select('dslite_id')
+      .select('dslite_id,dslite_catalog_xml_url')
       .eq('ativo', true)
+      .is('dropshipping_retired_at', null)
       .not('dslite_id', 'is', null);
     if (activeSuppliersError) throw new Error(activeSuppliersError.message);
 
-    const activeSupplierIds = filterAllowedDropshippingDsliteSupplierIds(
-      (activeSuppliers || [])
-        .map((supplier) => String(supplier.dslite_id || '').trim())
-        .filter(Boolean),
+    const configuredFeeds = new Map(
+      (activeSuppliers || []).map((supplier) => [
+        String(supplier.dslite_id || '').trim(),
+        String(supplier.dslite_catalog_xml_url || '').trim(),
+      ]),
     );
+    const activeSupplierIds = Array.from(configuredFeeds.keys()).filter(Boolean);
     const activeSupplierIdSet = new Set(activeSupplierIds);
     const supplierIds = activeSupplierIds
-      .filter((supplierId) => Boolean(supplierId && configuredFeeds[supplierId]))
+      .filter((supplierId) => Boolean(supplierId && configuredFeeds.get(supplierId)))
       .filter((supplierId) => !selectedSupplierIds || selectedSupplierIds.has(supplierId));
 
     let feedsDownloaded = 0;
@@ -201,7 +199,7 @@ export async function POST(request: Request) {
       const feedErrors = new Map<string, Error>();
       await Promise.all(supplierBatch.map(async (supplierId) => {
         try {
-          const feedUrl = validateFeedUrl(String(configuredFeeds[supplierId] || ''));
+          const feedUrl = validateFeedUrl(String(configuredFeeds.get(supplierId) || ''));
           if (!feedUrl) throw new Error('URL XML DSLite inválida ou não permitida');
           downloadedFeeds.set(supplierId, await downloadFeed(feedUrl));
         } catch (error: any) {

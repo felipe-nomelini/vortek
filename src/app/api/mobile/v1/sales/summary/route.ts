@@ -6,6 +6,8 @@ import { GET as getOrdersSummary } from "@/app/api/pedidos/resumo/route";
 import { GET as getOrders } from "@/app/api/pedidos/route";
 import { mapMobileSalesSummary } from "@/lib/mobile-sales";
 import { matchesOrdersOperationalView } from "@/lib/orders/operational-view";
+import { createServiceClient } from "@/lib/supabase";
+import { loadOperationRuntimeConfiguration } from "@/services/operation-configuration";
 import {
   buildMobileSalesFilteredSummary,
   hasMobileSalesAdvancedFilters,
@@ -35,6 +37,7 @@ const querySchema = z.object({
 });
 
 export async function GET(request: Request) {
+  const operationConfiguration = await loadOperationRuntimeConfiguration(createServiceClient());
   noStore();
   const requestId = request.headers.get("x-request-id")?.trim() || randomUUID();
   const url = new URL(request.url);
@@ -104,7 +107,7 @@ export async function GET(request: Request) {
     if (legacyResponse!.ok) {
       body = buildMobileSalesFilteredSummary(
         rows.filter((row) => matchesMobileSalesAdvancedFilters(row, advancedFilters)),
-        (row) => matchesOrdersOperationalView(row, "urgent"),
+        (row) => matchesOrdersOperationalView(row, "urgent", operationConfiguration.delayedAfterMinutes),
       );
     }
   } else {

@@ -52,7 +52,7 @@ test('BNT-D15 mantém sincronização e mudança de estado observáveis e contex
 
 test('API BNT-D15 exige leitura, usa DTO explícito e resumo global', () => {
   assert.match(route, /authorizeApiRequest\(request, 'purchases\.read'\)/);
-  assert.match(route, /LIST_FIELDS = 'id,dslite_id,apelido,nome,cnpj,email,telefone,status_dslite,crossdocking,dropshipping,ativo,dslite_ultima_sync'/);
+  assert.match(route, /LIST_FIELDS = 'id,dslite_id,apelido,nome,cnpj,email,telefone,status_dslite,crossdocking,dropshipping,ativo,dropshipping_retired_at,dslite_ultima_sync'/);
   assert.match(route, /SUMMARY_FIELDS = 'ativo,dslite_ultima_sync,status_dslite,crossdocking,dropshipping'/);
   assert.doesNotMatch(route, /\.select\(['"]\*['"]\)/);
   assert.doesNotMatch(route, /payload_dslite|supplier_pix_key|endereco/);
@@ -69,7 +69,7 @@ test('API BNT-D15 preserva filtros legados e adiciona estado e frescor canônico
   assert.match(route, /searchParams\.get\('freshness'\)/);
   assert.match(route, /getSyncTaskByKey\('sync_dslite_fornecedores'\)/);
   assert.match(route, /evaluateScheduledTaskHealth/);
-  assert.match(route, /isBlockedDropshippingDsliteSupplier/);
+  assert.match(route, /dropshipping_retired_at/);
 
   const nowMs = Date.parse('2026-09-03T15:00:00.000Z');
   assert.equal(evaluateScheduledTaskHealth({

@@ -5,7 +5,7 @@ import { fetchAllRowsPaginated } from '@/lib/produto-filtering';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
+import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 
 export const maxDuration = 300;
@@ -40,7 +40,7 @@ function toPublicError(error: unknown, fallback: string) {
 async function loadFornecedor(client: any, id: string) {
   const { data, error } = await client
     .from('fornecedores')
-    .select('id,dslite_id,apelido,ativo')
+    .select('id,dslite_id,apelido,ativo,dropshipping_retired_at')
     .eq('id', id)
     .maybeSingle();
 
@@ -114,6 +114,7 @@ async function loadProductIdsWithAlternativeStock(
   disabledFornecedorId: string,
 ): Promise<Set<string>> {
   const alternatives = new Set<string>();
+  const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(client);
 
   for (const idsChunk of chunk(productIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
     const { data, error } = await client
@@ -126,7 +127,7 @@ async function loadProductIdsWithAlternativeStock(
 
     if (error) throw new Error(error.message);
     for (const offer of data || []) {
-      if (isBlockedDropshippingDsliteSupplier((offer as any).dslite_fornecedor_id)) {
+      if (!operationalSupplierIds.has(String((offer as any).dslite_fornecedor_id || '').trim())) {
         continue;
       }
       const productId = String((offer as any).produto_id || '').trim();
@@ -250,7 +251,7 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
 
     if (
       body.ativo &&
-      isBlockedDropshippingDsliteSupplier(fornecedor.dslite_id)
+      fornecedor.dropshipping_retired_at
     ) {
       return NextResponse.json(
         {

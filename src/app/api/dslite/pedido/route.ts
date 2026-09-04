@@ -76,9 +76,9 @@ import { isDsliteCarrierAlreadyConfigured } from "@/lib/dslite/api-contract";
 import { resolveSafeReactivatedDsliteOrderReuse } from "@/lib/dslite/purchase-link";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import {
-  filterAllowedDropshippingSupplierOffers,
-  isBlockedDropshippingDsliteSupplier,
-  selectAllowedSupplierProductCandidate,
+  filterOperationalDropshippingSupplierOffers,
+  loadOperationalDropshippingSupplierIds,
+  selectOperationalSupplierProductCandidate,
 } from "@/lib/dslite/supplier-policy";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
@@ -270,9 +270,11 @@ async function resolveConfirmedSupplierOffer(params: {
   requiredQuantity: number;
 }): Promise<{ offer: any | null; attempts: SupplierStockAttempt[] }> {
   const { client, productId, selectedOffer, requiredQuantity } = params;
+  const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(client);
   const selectedId = String(selectedOffer?.id || "").trim();
-  const candidates = filterAllowedDropshippingSupplierOffers(
+  const candidates = filterOperationalDropshippingSupplierOffers(
     [selectedOffer].filter(Boolean) as any[],
+    operationalSupplierIds,
   );
 
   if (productId) {
@@ -282,8 +284,9 @@ async function resolveConfirmedSupplierOffer(params: {
       .eq("produto_id", productId)
       .eq("ativo", true);
 
-    const remaining = filterAllowedDropshippingSupplierOffers(
+    const remaining = filterOperationalDropshippingSupplierOffers(
       (offers || []) as any[],
+      operationalSupplierIds,
     ).filter((offer) => String(offer?.id || "").trim() !== selectedId);
     while (remaining.length > 0) {
       const next = choosePreferredOffer(remaining);
@@ -412,6 +415,7 @@ async function resolvePedidoSupplierOffer(params: {
   fallbackDsliteProdutoId?: string | null;
 }) {
   const { client, sku, fallbackSupplierId, fallbackDsliteProdutoId } = params;
+  const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(client);
   const skuVariants = getSkuLookupVariants(sku);
   let { data: productRow } = await client
     .from("produtos")
@@ -436,10 +440,10 @@ async function resolvePedidoSupplierOffer(params: {
         .limit(50),
     ]);
 
-    const matchingOffers = filterAllowedDropshippingSupplierOffers([
+    const matchingOffers = filterOperationalDropshippingSupplierOffers([
       ...((byOfferSku || []) as any[]),
       ...((bySupplierSku || []) as any[]),
-    ]);
+    ], operationalSupplierIds);
     const offerProductIds = Array.from(
       new Set(
         matchingOffers
@@ -454,9 +458,10 @@ async function resolvePedidoSupplierOffer(params: {
           "id,sku,ativo,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id",
         )
         .in("id", offerProductIds);
-      productRow = selectAllowedSupplierProductCandidate(
+      productRow = selectOperationalSupplierProductCandidate(
         (productsByOffer || []) as any[],
         matchingOffers,
+        operationalSupplierIds,
       );
     }
   }
@@ -480,7 +485,7 @@ async function resolvePedidoSupplierOffer(params: {
     .from("produto_fornecedor_ofertas")
     .select("*")
     .eq("produto_id", String(productRow.id));
-  const allowedOffers = filterAllowedDropshippingSupplierOffers(offers || []);
+  const allowedOffers = filterOperationalDropshippingSupplierOffers(offers || [], operationalSupplierIds);
 
   const preferred = resolvePreferredOfferForProduct(
     allowedOffers as any[],
@@ -499,7 +504,7 @@ async function resolvePedidoSupplierOffer(params: {
   ).trim();
   if (
     legacySupplierId &&
-    !isBlockedDropshippingDsliteSupplier(legacySupplierId)
+    operationalSupplierIds.has(legacySupplierId)
   ) {
     return {
       productId: String(productRow.id),
@@ -873,6 +878,7 @@ async function resolveDsliteProductCodeForNfe(
   const sku = String(sellerSku || "").trim();
   if (!sku) return null;
   const skuVariants = getSkuLookupVariants(sku);
+  const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(client);
   const lookupSkus = skuVariants.length > 0 ? skuVariants : [sku];
 
   let { data: productRow } = await client
@@ -919,7 +925,7 @@ async function resolveDsliteProductCodeForNfe(
     .select("*")
     .eq("produto_id", String(productRow.id));
   const preferred = resolvePreferredOfferForProduct(
-    filterAllowedDropshippingSupplierOffers((offers || []) as any[]),
+    filterOperationalDropshippingSupplierOffers((offers || []) as any[], operationalSupplierIds),
     (productRow as any)?.oferta_preferencial_id,
     (productRow as any)?.fornecedor_preferencial_manual === true,
   );
@@ -928,7 +934,7 @@ async function resolveDsliteProductCodeForNfe(
   ).trim();
   const code = String(
     preferred?.dslite_produto_id ||
-      (!isBlockedDropshippingDsliteSupplier(legacySupplierId)
+      (operationalSupplierIds.has(legacySupplierId)
         ? (productRow as any)?.dslite_produto_id
         : "") ||
       "",

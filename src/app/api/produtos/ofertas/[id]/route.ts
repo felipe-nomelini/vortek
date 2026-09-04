@@ -16,6 +16,7 @@ type SupplierRecord = {
   nome: string;
   dslite_id: string | null;
   ativo: boolean;
+  dropshipping_retired_at: string | null;
   status_dslite: string;
   dropshipping: string;
   crossdocking: string;
@@ -53,7 +54,7 @@ function classifyRow(
 ) {
   return classifySupplierOffer({
     supplierActive: supplier?.ativo === true,
-    supplierDsliteId: String(offer.dslite_fornecedor_id || '').trim(),
+    supplierRetired: Boolean(supplier?.dropshipping_retired_at),
     paymentMode: String(offer.payment_mode || 'postpaid'),
     offerActive: offer.ativo !== false,
     productActive: product.ativo !== false,
@@ -258,6 +259,7 @@ export async function GET(_request: Request, context: RouteContext<'/api/produto
       dropshipping: '',
       crossdocking: '',
       dslite_ultima_sync: null,
+      dropshipping_retired_at: null,
     } : null;
 
     return NextResponse.json({
@@ -311,7 +313,7 @@ export async function GET(_request: Request, context: RouteContext<'/api/produto
   const suppliersResult = supplierDsliteIds.length > 0
     ? await service
         .from('fornecedores')
-        .select('id,apelido,nome,dslite_id,ativo,status_dslite,dropshipping,crossdocking,dslite_ultima_sync')
+        .select('id,apelido,nome,dslite_id,ativo,status_dslite,dropshipping,crossdocking,dslite_ultima_sync,dropshipping_retired_at')
         .in('dslite_id', supplierDsliteIds)
     : { data: [], error: null };
   if (suppliersResult.error) return NextResponse.json({ error: suppliersResult.error.message }, { status: 500 });

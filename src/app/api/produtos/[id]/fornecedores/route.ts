@@ -3,7 +3,7 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
-import { isBlockedDropshippingDsliteSupplier } from '@/lib/dslite/supplier-policy';
+import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import {
   findBntD07VisualReviewItem,
   loadBntD07VisualReview,
@@ -250,6 +250,7 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
   }
 
   const service = createServiceClient();
+  const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(service);
   const { data: product, error: productError } = await service
     .from('produtos')
     .select('id')
@@ -283,7 +284,7 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
 
   const now = new Date().toISOString();
   const blockedSupplierOperation = offer &&
-    isBlockedDropshippingDsliteSupplier(offer.dslite_fornecedor_id) &&
+    !operationalSupplierIds.has(String(offer.dslite_fornecedor_id || '').trim()) &&
     (selectionMode === 'manual' || ('ativo' in body && Boolean(body.ativo)));
   if (blockedSupplierOperation) {
     return NextResponse.json({

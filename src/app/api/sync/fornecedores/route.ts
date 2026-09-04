@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { isBlockedDropshippingDsliteSupplier } from "@/lib/dslite/supplier-policy";
 import { createServiceClient } from "@/lib/supabase";
 import {
   listarFornecedores,
@@ -258,7 +257,7 @@ export async function POST(request: Request) {
     const dsliteIds = mapped.map((item) => item.dslite_id);
     const { data: existingRows, error: existingError } = await client
       .from("fornecedores")
-      .select("id, dslite_id, ativo, telefone, email, endereco")
+      .select("id, dslite_id, ativo, dropshipping_retired_at, telefone, email, endereco")
       .in("dslite_id", dsliteIds);
 
     if (existingError) {
@@ -280,7 +279,7 @@ export async function POST(request: Request) {
       const existingEndereco = asText((existing as any)?.endereco);
       return {
         ...row,
-        ativo: isBlockedDropshippingDsliteSupplier(row.dslite_id)
+        ativo: existing?.dropshipping_retired_at
           ? false
           : existing
             ? existing.ativo !== false

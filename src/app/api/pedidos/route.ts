@@ -21,8 +21,8 @@ import {
 } from '@/lib/estoque-interno-saldo';
 import { calculateInternalFulfillmentCapacity } from '@/lib/orders/fulfillment-capacity';
 import {
-  filterAllowedDropshippingSupplierOffers,
-  isBlockedDropshippingDsliteSupplier,
+  filterOperationalDropshippingSupplierOffers,
+  loadOperationalDropshippingSupplierIds,
 } from '@/lib/dslite/supplier-policy';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { isHomologationFixtureSource } from '@/lib/homologation-fixture';
@@ -36,6 +36,7 @@ import type {
   PedidoOperacionalApiDto,
   PedidosOperacionaisApiResponse,
 } from '@/types/order';
+import { loadOperationRuntimeConfiguration } from '@/services/operation-configuration';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -296,8 +297,9 @@ async function resolveFornecedorPreviewByPedido(
     );
   }
 
+  const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(serviceClient);
   const offersByProductId = new Map<string, any[]>();
-  for (const offer of filterAllowedDropshippingSupplierOffers(offers || [])) {
+  for (const offer of filterOperationalDropshippingSupplierOffers(offers || [], operationalSupplierIds)) {
     const productId = String((offer as any).produto_id || '');
     const list = offersByProductId.get(productId) || [];
     list.push(offer);
@@ -336,9 +338,7 @@ async function resolveFornecedorPreviewByPedido(
       const preferredSupplierId = String(preferredOffer?.dslite_fornecedor_id || '').trim();
       const legacySupplierId = String(product.dslite_fornecedor_id || '').trim();
       const fornecedorId = preferredSupplierId || (
-        isBlockedDropshippingDsliteSupplier(legacySupplierId)
-          ? ''
-          : legacySupplierId
+        operationalSupplierIds.has(legacySupplierId) ? legacySupplierId : ''
       );
       const fornecedorNome = String(preferredOffer?.fornecedor_nome || product.fornecedor || '').trim();
       return {
@@ -864,6 +864,7 @@ export async function GET(request: Request) {
   const auth = await authorizeApiRequest(request, 'sales.read');
   if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
+  const operationConfiguration = await loadOperationRuntimeConfiguration(serviceClient);
   const persistReconciliation = request.headers.get('x-vortek-read-only') !== '1';
 
   const { searchParams } = new URL(request.url);
@@ -982,7 +983,7 @@ export async function GET(request: Request) {
 
     const enrichedRows = await enrichPedidosForOperationalView(candidatesResult.data, serviceClient, persistReconciliation);
     const filteredRows = enrichedRows
-      .filter((row) => matchesOrdersOperationalView(row, operationalView))
+      .filter((row) => matchesOrdersOperationalView(row, operationalView, operationConfiguration.delayedAfterMinutes))
       .filter((row) => matchesOrderSupplierFilter({
         row,
         supplierDsliteIds: supplierFilterDsliteIds,
@@ -1026,7 +1027,7 @@ export async function GET(request: Request) {
     }
 
     const enrichedRows = await enrichPedidosForOperationalView(allRows, serviceClient, persistReconciliation);
-    const filteredRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, operationalView));
+    const filteredRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, operationalView, operationConfiguration.delayedAfterMinutes));
 
     return listResponse(filteredRows.slice(from, to + 1), filteredRows.length);
   }
@@ -1101,7 +1102,7 @@ export async function GET(request: Request) {
     }
 
     const enrichedRows = await enrichPedidosForOperationalView(urgentResult.data, serviceClient, persistReconciliation);
-    const urgentRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, 'urgent'));
+    const urgentRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, 'urgent', operationConfiguration.delayedAfterMinutes));
     return listResponse(urgentRows.slice(from, to + 1), urgentRows.length);
   }
 
