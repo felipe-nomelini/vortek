@@ -2,14 +2,15 @@ import { NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { getMercadoLivreRedirectUri } from '@/lib/ml-oauth-config';
+import { requireAdminUser } from '@/lib/auth/admin';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const admin = await requireAdminUser(supabase);
+  if (!admin.ok) return admin.response;
   const serviceClient = createServiceClient();
 
   const { data: integracao } = await serviceClient
@@ -22,7 +23,12 @@ export async function GET() {
     return NextResponse.json({ erro: 'Configure o Client ID do ML nas Configurações primeiro' }, { status: 400 });
   }
 
-  const redirectUri = getMercadoLivreRedirectUri();
+  let redirectUri: string;
+  try {
+    redirectUri = getMercadoLivreRedirectUri();
+  } catch (error) {
+    return NextResponse.json({ erro: error instanceof Error ? error.message : 'URL OAuth inválida' }, { status: 500 });
+  }
   const state = randomUUID();
 
   const url = new URL('https://auth.mercadolivre.com.br/authorization');

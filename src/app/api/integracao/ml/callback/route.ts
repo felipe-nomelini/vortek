@@ -1,13 +1,18 @@
 import { NextResponse } from 'next/server';
-import { createServiceClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 import { validateMercadoLivreTokenOwner } from '@/lib/ml-account-guard';
-import { getMercadoLivreRedirectUri } from '@/lib/ml-oauth-config';
+import { getMercadoLivreAppUrl, getMercadoLivreRedirectUri } from '@/lib/ml-oauth-config';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+import { requireAdminUser } from '@/lib/auth/admin';
+import { recordConfigurationAudit } from '@/services/configuration-audit';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET(request: Request) {
+  const supabase = await createClient();
+  const admin = await requireAdminUser(supabase);
+  if (!admin.ok) return admin.response;
   const { searchParams } = new URL(request.url);
   const code = searchParams.get('code');
   const error = searchParams.get('error');
@@ -104,7 +109,7 @@ export async function GET(request: Request) {
 
     const expiresAt = new Date(Date.now() + (tokenData.expires_in || 10800) * 1000).toISOString();
 
-    await serviceClient
+    const { error: persistError } = await serviceClient
       .from('integracoes')
       .update({
         access_token: tokenData.access_token,
@@ -117,8 +122,16 @@ export async function GET(request: Request) {
         updated_at: new Date().toISOString(),
       })
       .eq('tipo', 'mercadolivre');
+    if (persistError) {
+      return NextResponse.json({ erro: 'O token foi emitido, mas não pôde ser salvo com segurança.' }, { status: 500 });
+    }
 
-    const response = NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/configuracoes?tab=integracoes`);
+    await recordConfigurationAudit(serviceClient, { id: admin.user.id, name: admin.nome }, [
+      { key: 'integracoes.mercadolivre.oauth_tokens', targetId: 'mercadolivre', before: null, after: tokenData.access_token, force: true },
+      { key: 'integracoes.mercadolivre.conectado', targetId: 'mercadolivre', before: false, after: true, action: 'enabled', force: true },
+    ]);
+
+    const response = NextResponse.redirect(`${getMercadoLivreAppUrl()}/configuracoes?tab=mercado-livre`);
     response.cookies.delete('ml_oauth_state');
     return response;
   } catch (err) {

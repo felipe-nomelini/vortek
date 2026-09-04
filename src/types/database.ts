@@ -329,6 +329,9 @@ export type Database = {
           order_operational_delay_minutes: number
           internal_stock_return_address_id: string | null
           internal_stock_return_zip_code: string | null
+          ml_default_warranty_duration: number
+          ml_default_warranty_type_id: string
+          ml_default_warranty_unit: string
           pricing_ml_fee_fallback_rate: number
           pricing_unspecified_shipping_cost: number
           product_inactive_cost_threshold: number
@@ -346,6 +349,9 @@ export type Database = {
           order_operational_delay_minutes?: number
           internal_stock_return_address_id?: string | null
           internal_stock_return_zip_code?: string | null
+          ml_default_warranty_duration?: number
+          ml_default_warranty_type_id?: string
+          ml_default_warranty_unit?: string
           pricing_ml_fee_fallback_rate?: number
           pricing_unspecified_shipping_cost?: number
           product_inactive_cost_threshold?: number
@@ -363,6 +369,9 @@ export type Database = {
           order_operational_delay_minutes?: number
           internal_stock_return_address_id?: string | null
           internal_stock_return_zip_code?: string | null
+          ml_default_warranty_duration?: number
+          ml_default_warranty_type_id?: string
+          ml_default_warranty_unit?: string
           pricing_ml_fee_fallback_rate?: number
           pricing_unspecified_shipping_cost?: number
           product_inactive_cost_threshold?: number

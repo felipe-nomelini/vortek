@@ -5,6 +5,7 @@ export const maxDuration = 300;
 import {
   createListing,
   getCategoryAttributes,
+  getCategorySaleTerms,
   searchItemBySellerSku,
   setItemQuantityPricing,
   updateListingFiscalData,
@@ -23,11 +24,8 @@ import {
   mapOriginType,
   normalizeNcm,
 } from "@/lib/fiscal-strict";
-import {
-  DEFAULT_ML_WARRANTY_TIME,
-  normalizeMlSaleTerms,
-  normalizeMlWarrantyTime,
-} from "@/lib/ml-sale-terms";
+import { buildSupportedMlWarrantyTerms, normalizeMlSaleTerms } from "@/lib/ml-sale-terms";
+import { loadMercadoLivreConfiguration } from "@/services/mercado-livre-configuration";
 import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
 import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
 import {
@@ -427,14 +425,6 @@ function sanitizeAttributesByDependencies(
 
   apply("WITH_CLOSING", ["CLASP_TYPE"]);
   apply("WITH_GEMSTONE", ["GEMSTONE_TYPE", "GEMSTONE_COLOR"]);
-}
-
-function pickWarrantyValueId(values: Array<{ id: string; name: string }>) {
-  if (!Array.isArray(values) || values.length === 0) return undefined;
-  const hit12 = values.find((v) =>
-    normalizeText(v.name).toLowerCase().includes("12"),
-  );
-  return String((hit12 || values[0]).id);
 }
 
 function formatPackageWeightFromKg(weightKg: unknown) {
@@ -1186,7 +1176,14 @@ export async function POST(req: Request) {
       warnings.push("Material corrigido: produto banhado não é ouro maciço.");
     }
 
-    const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
+    const [categoryInfo, categorySaleTerms, mlConfiguration] = await Promise.all([
+      fetchML<any>(`/categories/${categoriaId}`),
+      getCategorySaleTerms(categoriaId),
+      loadMercadoLivreConfiguration(supabase),
+    ]);
+    if (!categorySaleTerms) {
+      return NextResponse.json({ success: false, error: "Não foi possível consultar os termos de venda oficiais da categoria." }, { status: 502 });
+    }
     const gtinAttr = categoryAttrsById.get("GTIN");
     const emptyGtinReasonAttr = categoryAttrsById.get("EMPTY_GTIN_REASON");
     const hasGtinValue = hasValue(attributesMap.get("GTIN") || { id: "GTIN" });
@@ -1459,60 +1456,18 @@ export async function POST(req: Request) {
       });
     steps.atributos.ok = true;
 
-    const categorySaleTerms = Array.isArray(categoryInfo?.sale_terms)
-      ? categoryInfo.sale_terms
-      : [];
-    const warrantySchema = categorySaleTerms.find(
-      (t: any) => String(t.id) === "WARRANTY_TIME",
-    );
-    const warrantyValues = Array.isArray(warrantySchema?.values)
-      ? warrantySchema.values.map((v: any) => ({
-          id: String(v.id),
-          name: String(v.name),
-        }))
-      : [];
-
-    const saleTermsInput = Array.isArray(editedSaleTerms)
-      ? (editedSaleTerms as SaleTermInput[])
-          .filter((term) => term?.id)
-          .map((term) => {
-            const id = String(term.id);
-            if (id === "WARRANTY_TIME" && warrantyValues.length > 0) {
-              const valueId = term.value_id ? String(term.value_id) : "";
-              const valid = warrantyValues.some(
-                (v: { id: string; name: string }) => String(v.id) === valueId,
-              );
-              if (valid)
-                return { id, value_id: valueId, value_name: undefined };
-              const fallbackId = pickWarrantyValueId(warrantyValues);
-              return { id, value_id: fallbackId, value_name: undefined };
-            }
-            return {
-              id,
-              value_id: term.value_id ? String(term.value_id) : undefined,
-              value_name: term.value_name
-                ? id === "WARRANTY_TIME"
-                  ? normalizeMlWarrantyTime(term.value_name)
-                  : String(term.value_name)
-                : undefined,
-            };
-          })
-      : [];
-
-    if (!saleTermsInput.find((t) => t.id === "WARRANTY_TIME")) {
-      if (warrantyValues.length > 0) {
-        saleTermsInput.push({
-          id: "WARRANTY_TIME",
-          value_id: pickWarrantyValueId(warrantyValues),
-          value_name: undefined,
-        });
-      } else {
-        saleTermsInput.push({
-          id: "WARRANTY_TIME",
-          value_id: undefined,
-          value_name: DEFAULT_ML_WARRANTY_TIME,
-        });
+    const schemaById = new Map(categorySaleTerms.map((term) => [String(term.id || '').toUpperCase(), term]));
+    const saleTermsInput = normalizeMlSaleTerms(Array.isArray(editedSaleTerms) ? editedSaleTerms as SaleTermInput[] : []);
+    for (const term of saleTermsInput.filter((item) => item.id === 'WARRANTY_TYPE' || item.id === 'WARRANTY_TIME')) {
+      const schema = schemaById.get(term.id);
+      const values = schema?.values || [];
+      const supported = Boolean(schema) && (!values.length || values.some((value) => String(value.id) === String(term.value_id || '')));
+      if (!supported) {
+        return NextResponse.json({ success: false, error: `A categoria não aceita o valor informado para ${term.id}.` }, { status: 422 });
       }
+    }
+    for (const configured of buildSupportedMlWarrantyTerms(categorySaleTerms, mlConfiguration)) {
+      if (!saleTermsInput.some((term) => term.id === configured.id)) saleTermsInput.push(configured);
     }
     const saleTerms = normalizeMlSaleTerms(saleTermsInput);
 

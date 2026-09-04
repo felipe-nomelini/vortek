@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment` em homologação
+**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-05 — Mercado Livre e anúncios` em homologação
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar visualmente `BNT-CFG-04` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar visualmente `BNT-CFG-05` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -166,7 +166,9 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-03 — Comercial e precificação`.
 - [x] Aprovar visualmente `BNT-CFG-03` em homologação antes de iniciar `BNT-CFG-04`.
 - [x] Executar somente `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment`.
-- [ ] Aprovar visualmente `BNT-CFG-04` em homologação antes de iniciar `BNT-CFG-05`.
+- [x] Aprovar visualmente `BNT-CFG-04` em homologação antes de iniciar `BNT-CFG-05`.
+- [x] Executar somente `BNT-CFG-05 — Mercado Livre e anúncios`.
+- [ ] Aprovar visualmente `BNT-CFG-05` em homologação antes de iniciar `BNT-CFG-06`.
 
 ---
 
@@ -2487,7 +2489,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment`
 
-**Situação:** implementado e validado tecnicamente em DEV em `2026-09-04`; aceite visual em homologação pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-04`.
 
 **Estado/causa confirmados:** o prazo para atenção dos pedidos, o endereço do estoque interno, as URLs XML DSLite e os fornecedores aposentados possuíam quatro fontes locais diferentes: constante temporal, ID/CEP fixos, JSON sem tipo e lista nominal de IDs. Isso impedia administração segura e mantinha regras paralelas fora das entidades responsáveis.
 
@@ -2497,7 +2499,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Validação:** passaram 42 cenários direcionados, incluindo contratos administrativos, fulfillment, fornecedores e sigilo do feed; `npm run validate`, `npm run build` com Next.js `16.3.3`, 122 páginas/rotas, `git diff --check` e a verificação de secrets do build também passaram. A publicação em homologação é registrada ao concluir esta entrega.
 
-**Pendência:** aprovação visual da aba `Operação` em `https://dev.bentevi.shop/configuracoes?tab=operacao`. `BNT-CFG-05` permanece bloqueado até esse aceite.
+**Pendência:** nenhuma. A aba `Operação` foi aprovada pelo responsável em `2026-09-04`, liberando `BNT-CFG-05`.
+
+#### Resultado técnico de `BNT-CFG-05 — Mercado Livre e anúncios`
+
+**Situação:** implementado e validado tecnicamente em DEV em `2026-09-04`; publicação e aceite visual em homologação serão registrados ao final desta entrega.
+
+**Estado/causa confirmados:** credenciais, conexão e diagnóstico do Mercado Livre ainda pertenciam à aba genérica `Integrações`, que também permitia editar o Client ID por `blur`. O callback OAuth aceitava qualquer sessão autenticada, voltava para a aba antiga e possuía fallback para o domínio Vortek aposentado. A garantia de fábrica por 12 meses era inventada pelo runtime mesmo quando os termos oficiais da categoria não declaravam suporte.
+
+**Mudança realizada:** a aba dedicada `Mercado Livre` passou a concentrar conta vendedora, estado OAuth, aplicativo, flags write-only de credenciais, URL de redirecionamento, escopos, garantia padrão e invariantes de publicação. Alterações de credenciais exigem conta desconectada e confirmação explícita; a desconexão revoga primeiro o grant remoto e preserva tokens locais em falhas transitórias. OAuth exige administrador, falha fechado sem `NEXT_PUBLIC_APP_URL` HTTPS e retorna para a aba dedicada. A rota genérica não lê nem aceita mais escrita do Mercado Livre. Preview, sugestão e criação de anúncio consultam o endpoint oficial de termos de venda da categoria e só aplicam a garantia configurada quando tipo e prazo são aceitos exatamente, sem fallback arbitrário e sem atualizar anúncios existentes.
+
+**Banco DEV:** a migration aditiva `20260905003000_bnt_cfg_05_mercado_livre.sql` teve destino confirmado como `supabase-dev` em `192.168.1.162`, hostname `supabase-dev`, PostgreSQL `17.6` e 106 migrations prévias. Foi ensaiada integralmente com `ROLLBACK` e aplicada transacionalmente somente nesse destino. O read-back confirmou 107 migrations, defaults `2230279 / 12 / meses`, as três constraints validadas e registro único da migration. O banco de produção `.160` não foi acessado.
+
+**Validação:** passaram 18 cenários administrativos direcionados e mais 36 cenários de conta, atributos críticos, SKU e preço por quantidade do Mercado Livre. `npm run validate`, `npm run build` com Next.js `16.3.3`, 122 páginas/rotas, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma conexão, desconexão, publicação ou outra mutação real foi executada no Mercado Livre.
+
+**Rollback:** reverter o commit desta entrega em `dev` e redeployar somente `vortek-erp-dev`. As três colunas aditivas podem permanecer sem uso; removê-las exige migration corretiva autorizada exclusivamente no `.162`.
+
+**Pendência:** publicar em homologação e obter aprovação visual da aba `Mercado Livre` em `https://dev.bentevi.shop/configuracoes?tab=mercado-livre` antes de iniciar `BNT-CFG-06`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

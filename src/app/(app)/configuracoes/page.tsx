@@ -11,10 +11,11 @@ import UsuariosTab from "@/components/configuracoes/UsuariosTab";
 import AuditoriaTab from "@/components/configuracoes/AuditoriaTab";
 import ComercialTab from "@/components/configuracoes/ComercialTab";
 import OperacaoTab from "@/components/configuracoes/OperacaoTab";
+import MercadoLivreTab from "@/components/configuracoes/MercadoLivreTab";
 import { configuracoesCardStyle } from "@/components/configuracoes/styles";
 
 const { Title } = Typography;
-const validTabs = ["empresa", "comercial", "operacao", "integracoes", "usuarios", "preferencias", "historico"];
+const validTabs = ["empresa", "comercial", "operacao", "mercado-livre", "integracoes", "usuarios", "preferencias", "historico"];
 
 function ConfiguracoesPageContent() {
   const searchParams = useSearchParams();
@@ -66,6 +67,12 @@ function ConfiguracoesPageContent() {
               label: "📦 Operação",
               forceRender: true,
               children: <OperacaoTab messageApi={messageApi} />,
+            },
+            {
+              key: "mercado-livre",
+              label: "🛒 Mercado Livre",
+              forceRender: true,
+              children: <MercadoLivreTab messageApi={messageApi} />,
             },
             {
               key: "integracoes",

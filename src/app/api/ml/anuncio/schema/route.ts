@@ -3,17 +3,15 @@ import { createServiceClient } from "@/lib/supabase";
 import { fetchML, fetchMLResult } from "@/services/integration";
 import {
   getCategoryAttributes,
+  getCategorySaleTerms,
   predictCategory,
 } from "@/services/mercadolibre";
 import { calculateSuggestedPrice } from "@/services/pricing";
 import { loadPricingTaxContext, requirePricingTaxRate } from "@/services/pricing-tax-context";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
-import {
-  DEFAULT_ML_WARRANTY_TIME,
-  DEFAULT_ML_WARRANTY_TYPE_ID,
-  DEFAULT_ML_WARRANTY_TYPE_NAME,
-} from "@/lib/ml-sale-terms";
+import { buildSupportedMlWarrantyTerms } from "@/lib/ml-sale-terms";
+import { loadMercadoLivreConfiguration } from "@/services/mercado-livre-configuration";
 import {
   applyProductFactsToMlAttribute,
   extractMlProductFacts,
@@ -298,15 +296,6 @@ function normalizeBase(v: unknown): string {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function pickWarrantyDefaultValueId(
-  values: Array<{ id: string; name: string }>,
-): string | undefined {
-  if (!Array.isArray(values) || values.length === 0) return undefined;
-  const by12 = values.find((v) => normalizeBase(v.name).includes("12"));
-  if (by12) return String(by12.id);
-  return String(values[0].id);
-}
-
 function extractMlFee(listingPrices: any): number | null {
   const fee = Number(
     listingPrices?.sale_fee_details?.percentage_fee ??
@@ -332,10 +321,11 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
-    const [pricingTaxContext, commercial, operationalSupplierIds] = await Promise.all([
+    const [pricingTaxContext, commercial, operationalSupplierIds, mlConfiguration] = await Promise.all([
       loadPricingTaxContext(supabase),
       loadCommercialPricingConfiguration(supabase),
       loadOperationalDropshippingSupplierIds(supabase),
+      loadMercadoLivreConfiguration(supabase),
     ]);
     const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto, error } = await supabase
@@ -376,8 +366,10 @@ export async function POST(req: Request) {
     );
 
     const me = await fetchML<any>("/users/me");
-    const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
-    const saleTermsRaw = (categoryInfo?.sale_terms || []) as any[];
+    const saleTermsRaw = await getCategorySaleTerms(categoriaId);
+    if (!saleTermsRaw) {
+      return NextResponse.json({ error: "Não foi possível consultar os termos de venda oficiais da categoria." }, { status: 502 });
+    }
 
     let suggestedPrice = 0;
     try {
@@ -488,73 +480,22 @@ export async function POST(req: Request) {
       if (conditionalRequiredIds.has(String(attr.id))) attr.required = true;
     }
 
+    const defaultsById = new Map(buildSupportedMlWarrantyTerms(saleTermsRaw, mlConfiguration).map((term) => [term.id, term]));
     const saleTerms = saleTermsRaw.map((term: any) => {
       const values = (term.values || [])
         .slice(0, 100)
         .map((v: any) => ({ id: v.id, name: v.name }));
-      if (term.id === "WARRANTY_TIME") {
-        const defaultId = pickWarrantyDefaultValueId(values);
-        if (defaultId) {
-          const selected = values.find(
-            (v: { id: string; name: string }) => String(v.id) === defaultId,
-          );
-          return {
-            id: term.id,
-            name: term.name,
-            value_type: term.value_type || "string",
-            required: Boolean(term.tags?.required),
-            values,
-            value_id: defaultId,
-            value_name: selected?.name || undefined,
-          };
-        }
-        return {
-          id: term.id,
-          name: term.name,
-          value_type: term.value_type || "string",
-          required: Boolean(term.tags?.required),
-          values,
-          value_name: DEFAULT_ML_WARRANTY_TIME,
-        };
-      }
+      const configured = defaultsById.get(String(term.id).toUpperCase());
       return {
         id: term.id,
         name: term.name,
         value_type: term.value_type || "string",
         required: Boolean(term.tags?.required),
         values,
+        ...(configured?.value_id ? { value_id: configured.value_id } : {}),
+        ...(configured?.value_name ? { value_name: configured.value_name } : {}),
       };
     });
-
-    const hasWarrantyType = saleTerms.some((t) => t.id === "WARRANTY_TYPE");
-    if (!hasWarrantyType) {
-      saleTerms.push({
-        id: "WARRANTY_TYPE",
-        name: "Tipo de garantia",
-        value_type: "list",
-        required: false,
-        values: [
-          {
-            id: DEFAULT_ML_WARRANTY_TYPE_ID,
-            name: DEFAULT_ML_WARRANTY_TYPE_NAME,
-          },
-        ],
-        value_id: DEFAULT_ML_WARRANTY_TYPE_ID,
-        value_name: DEFAULT_ML_WARRANTY_TYPE_NAME,
-      });
-    }
-
-    const hasWarrantyTime = saleTerms.some((t) => t.id === "WARRANTY_TIME");
-    if (!hasWarrantyTime) {
-      saleTerms.push({
-        id: "WARRANTY_TIME",
-        name: "Tempo de garantia",
-        value_type: "number_unit",
-        required: false,
-        values: [],
-        value_name: DEFAULT_ML_WARRANTY_TIME,
-      });
-    }
 
     return NextResponse.json({
       success: true,

@@ -63,6 +63,7 @@ export const CONFIGURATION_DEFINITIONS = {
   "configuracoes.product_inactive_cost_threshold": { domain: "comercial_precificacao", label: "Limite de custo para inativação", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.order_operational_delay_minutes": { domain: "produtos_estoque_fulfillment", label: "Prazo de atenção operacional", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.internal_stock_return_address": { domain: "produtos_estoque_fulfillment", label: "Endereço do estoque interno", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.ml_default_warranty": { domain: "mercado_livre_anuncios", label: "Garantia padrão dos anúncios", classification: "EDITAVEL_CONTROLADO" },
   "fornecedores.dslite_catalog_xml_url": { domain: "produtos_estoque_fulfillment", label: "Feed XML do fornecedor", classification: "SECRET_WRITE_ONLY" },
   "fornecedores.dropshipping_retired_at": { domain: "produtos_estoque_fulfillment", label: "Aposentadoria do fornecedor", classification: "STATUS_SOMENTE_LEITURA" },
   "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo, margem e lucro mínimo", classification: "EDITAVEL_CONTROLADO" },
@@ -78,6 +79,10 @@ export const CONFIGURATION_DEFINITIONS = {
   "integracoes.access_token": { domain: "integracoes", label: "Token de acesso", classification: "SECRET_WRITE_ONLY" },
   "integracoes.refresh_token": { domain: "integracoes", label: "Token de renovação", classification: "SECRET_WRITE_ONLY" },
   "integracoes.conectado": { domain: "integracoes", label: "Estado da conexão", classification: "EDITAVEL_CONTROLADO" },
+  "integracoes.mercadolivre.client_id": { domain: "mercado_livre_anuncios", label: "Client ID do Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
+  "integracoes.mercadolivre.client_secret": { domain: "mercado_livre_anuncios", label: "Client secret do Mercado Livre", classification: "SECRET_WRITE_ONLY" },
+  "integracoes.mercadolivre.oauth_tokens": { domain: "mercado_livre_anuncios", label: "Tokens OAuth do Mercado Livre", classification: "SECRET_WRITE_ONLY" },
+  "integracoes.mercadolivre.conectado": { domain: "mercado_livre_anuncios", label: "Estado da conexão Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
   "usuarios.nome": { domain: "usuarios_permissoes", label: "Nome do usuário", classification: "EDITAVEL_CONTROLADO" },
   "usuarios.email": { domain: "usuarios_permissoes", label: "E-mail do usuário", classification: "EDITAVEL_CONTROLADO" },
   "usuarios.cargo": { domain: "usuarios_permissoes", label: "Cargo do usuário", classification: "EDITAVEL_CONTROLADO" },
@@ -249,6 +254,25 @@ export const operationConfigurationPatchSchema = z.discriminatedUnion("section",
 
 export type OperationConfigurationPatch = z.infer<typeof operationConfigurationPatchSchema>;
 
+export const ML_WARRANTY_TYPE_IDS = ["2230279", "2230280"] as const;
+export const ML_WARRANTY_UNITS = ["dias", "meses", "anos"] as const;
+
+export const mercadoLivreConfigurationPatchSchema = z.discriminatedUnion("section", [
+  z.object({
+    section: z.literal("application"),
+    clientId: z.string().trim().regex(/^\d+$/, "Client ID deve conter somente números").max(200),
+    clientSecret: z.string().trim().min(1).max(8192).optional(),
+  }).strict(),
+  z.object({
+    section: z.literal("warranty"),
+    warrantyTypeId: z.enum(ML_WARRANTY_TYPE_IDS),
+    warrantyDuration: z.number().int().positive().max(1200),
+    warrantyUnit: z.enum(ML_WARRANTY_UNITS),
+  }).strict(),
+]);
+
+export type MercadoLivreConfigurationPatch = z.infer<typeof mercadoLivreConfigurationPatchSchema>;
+
 export const fiscalConfigurationSchema = z.object({
   simples_inicio_atividade: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data de início inválida"),
   simples_aliquota_confirmada_percentual: z.number().finite().min(4).lt(100).nullable(),
@@ -286,13 +310,6 @@ function requireAtLeastOneField<T extends z.ZodRawShape>(schema: z.ZodObject<T>)
 }
 
 export const integrationConfigurationSchema = z.discriminatedUnion("tipo", [
-  z.object({
-    tipo: z.literal("mercadolivre"),
-    values: requireAtLeastOneField(z.object({
-      client_id: z.string().trim().max(200).optional(),
-      client_secret: credentialSchema.optional(),
-    })),
-  }).strict(),
   z.object({
     tipo: z.literal("dslite"),
     values: requireAtLeastOneField(z.object({

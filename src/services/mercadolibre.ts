@@ -3,7 +3,7 @@ import {
   fetchMLResult,
   getValidMLToken,
 } from "./integration";
-import { normalizeMlSaleTerms } from "@/lib/ml-sale-terms";
+import { normalizeMlSaleTerms, type MlCategorySaleTerm } from "@/lib/ml-sale-terms";
 import {
   applyItemQuantityPricing,
   previewItemQuantityPricing as resolveItemQuantityPricingPreview,
@@ -175,6 +175,11 @@ export async function getCategoryAttributes(
     (attribute: any) =>
       !attribute.tags?.hidden || attribute.id === "EMPTY_GTIN_REASON",
   );
+}
+
+export async function getCategorySaleTerms(categoryId: string): Promise<MlCategorySaleTerm[] | null> {
+  const data = await fetchML<MlCategorySaleTerm[]>(`/categories/${encodeURIComponent(categoryId)}/sale_terms`);
+  return Array.isArray(data) ? data : null;
 }
 
 export async function createListing(

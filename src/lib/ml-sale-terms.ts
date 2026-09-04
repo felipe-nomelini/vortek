@@ -1,23 +1,30 @@
-export const DEFAULT_ML_WARRANTY_TIME = '12 meses';
-export const DEFAULT_ML_WARRANTY_TYPE_ID = '2230279';
-export const DEFAULT_ML_WARRANTY_TYPE_NAME = 'Garantia de fábrica';
+export const ML_WARRANTY_TYPE_NAMES = {
+  '2230279': 'Garantia de fábrica',
+  '2230280': 'Garantia do vendedor',
+} as const;
 
+export type MlWarrantyTypeId = keyof typeof ML_WARRANTY_TYPE_NAMES;
+export type MlWarrantyUnit = 'dias' | 'meses' | 'anos';
+export type MlWarrantyConfiguration = { typeId: MlWarrantyTypeId; duration: number; unit: MlWarrantyUnit };
 export type MlSaleTerm = { id: string; value_name?: string; value_id?: string };
+export type MlCategorySaleTerm = { id?: string; value_type?: string; values?: Array<{ id?: string; name?: string }> };
 
-const VALID_WARRANTY_UNITS = new Set(['dia', 'dias', 'mes', 'meses', 'ano', 'anos']);
-
-function normalizeWarrantyUnit(unit: string) {
+function normalizeWarrantyUnit(unit: string): MlWarrantyUnit | null {
   const normalized = unit
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
-  if (normalized === 'mes') return 'meses';
-  if (normalized === 'dia') return 'dias';
-  if (normalized === 'ano') return 'anos';
-  return normalized;
+  if (normalized === 'mes' || normalized === 'meses') return 'meses';
+  if (normalized === 'dia' || normalized === 'dias') return 'dias';
+  if (normalized === 'ano' || normalized === 'anos') return 'anos';
+  return null;
 }
 
-export function normalizeMlWarrantyTime(input: unknown): string {
+export function formatMlWarrantyTime(configuration: Pick<MlWarrantyConfiguration, 'duration' | 'unit'>) {
+  return `${configuration.duration} ${configuration.unit}`;
+}
+
+export function normalizeMlWarrantyTime(input: unknown): string | null {
   const text = String(input ?? '')
     .toLowerCase()
     .normalize('NFD')
@@ -25,14 +32,12 @@ export function normalizeMlWarrantyTime(input: unknown): string {
     .replace(/\s+/g, ' ')
     .trim();
 
-  const match = text.match(/\b(\d+)\s+(dias?|mes(?:es)?|anos?)\b/);
-  if (!match) return DEFAULT_ML_WARRANTY_TIME;
+  const match = text.match(/^\s*(\d+)\s+(dias?|mes(?:es)?|anos?)\s*$/);
+  if (!match) return null;
 
   const amount = Number(match[1]);
   const unit = normalizeWarrantyUnit(match[2]);
-  if (!Number.isFinite(amount) || amount <= 0 || !VALID_WARRANTY_UNITS.has(unit)) {
-    return DEFAULT_ML_WARRANTY_TIME;
-  }
+  if (!Number.isInteger(amount) || amount <= 0 || !unit) return null;
 
   return `${amount} ${unit}`;
 }
@@ -50,7 +55,7 @@ export function normalizeMlSaleTerms(terms: MlSaleTerm[]): MlSaleTerm[] {
     const rawValueName = term?.value_name !== undefined && term?.value_name !== null
       ? String(term.value_name).trim()
       : '';
-    const valueName = id === 'WARRANTY_TIME' ? normalizeMlWarrantyTime(rawValueName) : rawValueName;
+    const valueName = id === 'WARRANTY_TIME' ? normalizeMlWarrantyTime(rawValueName) || '' : rawValueName;
 
     if (!valueId && !valueName) continue;
 
@@ -61,20 +66,32 @@ export function normalizeMlSaleTerms(terms: MlSaleTerm[]): MlSaleTerm[] {
     });
   }
 
-  if (!byId.has('WARRANTY_TYPE')) {
-    byId.set('WARRANTY_TYPE', {
-      id: 'WARRANTY_TYPE',
-      value_id: DEFAULT_ML_WARRANTY_TYPE_ID,
-      value_name: DEFAULT_ML_WARRANTY_TYPE_NAME,
-    });
-  }
-
-  if (!byId.has('WARRANTY_TIME')) {
-    byId.set('WARRANTY_TIME', {
-      id: 'WARRANTY_TIME',
-      value_name: DEFAULT_ML_WARRANTY_TIME,
-    });
-  }
-
   return Array.from(byId.values());
+}
+
+function normalizedText(value: unknown) {
+  return String(value || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+export function buildSupportedMlWarrantyTerms(
+  categoryTerms: MlCategorySaleTerm[],
+  configuration: MlWarrantyConfiguration,
+): MlSaleTerm[] {
+  const typeSchema = categoryTerms.find((term) => String(term.id).toUpperCase() === 'WARRANTY_TYPE');
+  const timeSchema = categoryTerms.find((term) => String(term.id).toUpperCase() === 'WARRANTY_TIME');
+  const typeValue = typeSchema?.values?.find((value) => String(value.id) === configuration.typeId);
+  if (!typeSchema || !timeSchema || !typeValue) return [];
+  const formattedTime = formatMlWarrantyTime(configuration);
+  const enumeratedTime = timeSchema.values?.find((value) => normalizedText(value.name) === normalizedText(formattedTime));
+  if (timeSchema.values?.length && !enumeratedTime) return [];
+  return [
+    {
+      id: 'WARRANTY_TYPE',
+      value_id: configuration.typeId,
+      value_name: String(typeValue.name || ML_WARRANTY_TYPE_NAMES[configuration.typeId]),
+    },
+    enumeratedTime
+      ? { id: 'WARRANTY_TIME', value_id: String(enumeratedTime.id), value_name: String(enumeratedTime.name) }
+      : { id: 'WARRANTY_TIME', value_name: formattedTime },
+  ];
 }

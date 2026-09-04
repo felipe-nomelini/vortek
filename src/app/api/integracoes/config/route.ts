@@ -32,6 +32,7 @@ export async function GET() {
   const { data, error } = await serviceClient
     .from("integracoes")
     .select(SELECTED_FIELDS)
+    .neq("tipo", "mercadolivre")
     .order("tipo");
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });

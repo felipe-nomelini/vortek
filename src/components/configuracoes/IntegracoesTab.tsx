@@ -7,10 +7,9 @@ import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
 
 const { Text } = Typography;
 
-type SecretFieldName = "client_secret" | "access_token" | "refresh_token";
+type SecretFieldName = "access_token" | "refresh_token";
 
 const secretStatusField: Record<SecretFieldName, string> = {
-  client_secret: "client_secret_configurado",
   access_token: "access_token_configurado",
   refresh_token: "refresh_token_configurado",
 };
@@ -70,10 +69,6 @@ function SecretCredentialField({
   );
 }
 
-function saveIntegrations(ml: boolean, dslite: boolean) {
-  localStorage.setItem("vortek_integrations", JSON.stringify({ ml, dslite }));
-}
-
 export default function IntegracoesTab({
   messageApi,
 }: {
@@ -82,14 +77,6 @@ export default function IntegracoesTab({
   const [loading, setLoading] = useState(true);
   const [testingIntegration, setTestingIntegration] = useState<string | null>(null);
   const [savingSecret, setSavingSecret] = useState<string | null>(null);
-  const [ml, setMl] = useState({
-    clientId: "",
-    clientSecret: "",
-    clientSecretConfigured: false,
-    conectado: false,
-    lastError: "",
-    lastErrorCode: "",
-  });
   const [dslite, setDslite] = useState({
     url: "",
     token: "",
@@ -117,18 +104,6 @@ export default function IntegracoesTab({
         }
 
         for (const integration of data.integracoes || []) {
-          if (integration.tipo === "mercadolivre") {
-            setMl({
-              clientId: integration.client_id || "",
-              clientSecret: "",
-              clientSecretConfigured: Boolean(
-                integration.client_secret_configurado,
-              ),
-              conectado: Boolean(integration.conectado),
-              lastError: integration.last_refresh_error || "",
-              lastErrorCode: integration.last_refresh_error_code || "",
-            });
-          }
           if (integration.tipo === "dslite") {
             setDslite({
               url: integration.url || "",
@@ -234,29 +209,6 @@ export default function IntegracoesTab({
     [messageApi, saveIntegracao],
   );
 
-  useEffect(() => {
-    saveIntegrations(ml.conectado, dslite.conectado);
-  }, [ml.conectado, dslite.conectado]);
-
-  const conectarML = async () => {
-    if (!ml.clientId || !ml.clientSecretConfigured) {
-      messageApi.warning("Configure e salve o Client ID e o Client Secret");
-      return;
-    }
-    try {
-      await saveIntegracao("mercadolivre", { client_id: ml.clientId });
-      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-      window.location.href = "/api/integracao/ml/connect";
-    } catch (error) {
-      messageApi.error(
-        getErrorMessage(
-          error,
-          "Falha ao salvar credenciais do Mercado Livre",
-        ),
-      );
-    }
-  };
-
   const testarDslite = async () => {
     if (!dslite.url || !dslite.tokenConfigured) {
       messageApi.warning("Configure e salve a URL e o Token");
@@ -314,71 +266,6 @@ export default function IntegracoesTab({
   };
 
   const integrations = [
-    {
-      key: "ml",
-      nome: "Mercado Livre",
-      conectado: ml.conectado,
-      cor: "#1677ff",
-      fields: (
-        <>
-          <Input
-            placeholder="Client ID (App ID)"
-            value={ml.clientId}
-            onChange={(event) =>
-              setMl((current) => ({ ...current, clientId: event.target.value }))
-            }
-            onBlur={() =>
-              saveIntegracao("mercadolivre", { client_id: ml.clientId })
-            }
-            style={configuracoesInputStyle}
-          />
-          <SecretCredentialField
-            placeholder="Client Secret"
-            value={ml.clientSecret}
-            configured={ml.clientSecretConfigured}
-            saving={savingSecret === "mercadolivre:client_secret"}
-            onChange={(value) =>
-              setMl((current) => ({ ...current, clientSecret: value }))
-            }
-            onSave={() =>
-              saveCredential({
-                tipo: "mercadolivre",
-                field: "client_secret",
-                value: ml.clientSecret,
-                label: "Client Secret",
-                onSaved: (configured) =>
-                  setMl((current) => ({
-                    ...current,
-                    clientSecret: configured ? "" : current.clientSecret,
-                    clientSecretConfigured: configured,
-                  })),
-              })
-            }
-            onRemove={() =>
-              removeCredential({
-                tipo: "mercadolivre",
-                field: "client_secret",
-                label: "Client Secret",
-                onRemoved: () =>
-                  setMl((current) => ({
-                    ...current,
-                    clientSecret: "",
-                    clientSecretConfigured: false,
-                  })),
-              })
-            }
-          />
-          {ml.lastError ? (
-            <Text type="danger" style={{ fontSize: 12 }}>
-              {ml.lastErrorCode === "ml_account_not_allowed"
-                ? ml.lastError
-                : `Último erro ML: ${ml.lastErrorCode || ml.lastError}`}
-            </Text>
-          ) : null}
-        </>
-      ),
-      action: { label: "Conectar com ML", onClick: conectarML },
-    },
     {
       key: "dslite",
       nome: "DSLite",
@@ -538,7 +425,7 @@ export default function IntegracoesTab({
     <Spin spinning={loading}>
       <Row gutter={[16, 16]}>
         {integrations.map((integration) => (
-          <Col xs={24} lg={8} key={integration.key}>
+          <Col xs={24} lg={12} key={integration.key}>
             <Card
               styles={{ body: { padding: 16 } }}
               style={{

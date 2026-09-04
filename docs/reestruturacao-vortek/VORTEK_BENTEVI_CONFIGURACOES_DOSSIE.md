@@ -388,4 +388,10 @@ A migration `20260904223000_bnt_cfg_03_commercial_pricing.sql` foi ensaiada com 
 
 Implementado tecnicamente em `2026-09-04`. A aba `Operação` concentra o prazo de atenção dos pedidos, o endereço do estoque interno validado na conta Mercado Livre e o estado write-only do feed XML por fornecedor. Q segura, capacidade de kits, criação explícita do pedido DSLite e aposentadoria permanente permanecem regras protegidas.
 
-A migration `20260904233000_bnt_cfg_04_operation.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. Ela removeu as fontes paralelas do runtime, preservou os valores legados, consolidou feed e aposentadoria em `fornecedores` e negou leitura da URL confidencial aos papéis cliente. A aprovação visual da aba em homologação é a única pendência antes de `BNT-CFG-05`.
+A migration `20260904233000_bnt_cfg_04_operation.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. Ela removeu as fontes paralelas do runtime, preservou os valores legados, consolidou feed e aposentadoria em `fornecedores` e negou leitura da URL confidencial aos papéis cliente. A aba foi aprovada visualmente pelo responsável em `2026-09-04`, liberando `BNT-CFG-05`.
+
+### `BNT-CFG-05 — Mercado Livre e anúncios`
+
+Implementado tecnicamente em `2026-09-04`. A aba dedicada `Mercado Livre` concentra conta vendedora, aplicativo OAuth, credenciais write-only, diagnóstico, URL de callback e garantia padrão. Credenciais só podem ser alteradas desconectadas; desconectar revoga primeiro o grant remoto e não apaga tokens diante de falha transitória. O callback exige administrador, usa exclusivamente `NEXT_PUBLIC_APP_URL` HTTPS e não possui fallback para domínio aposentado.
+
+A garantia deixou de ser uma constante injetada pelo runtime. Preview, sugestão e criação consultam os termos de venda oficiais da categoria e somente aplicam o padrão quando tipo e prazo configurados são aceitos. A migration `20260905003000_bnt_cfg_05_mercado_livre.sql` foi ensaiada com `ROLLBACK` e aplicada apenas no `supabase-dev` em `192.168.1.162`; o read-back confirmou três constraints e os defaults `garantia de fábrica / 12 meses`. A aprovação visual em homologação é a única pendência antes de `BNT-CFG-06`.

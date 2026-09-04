@@ -4,6 +4,8 @@ import { predictCategory } from '@/services/mercadolibre';
 import { researchProductAttribute, type ProductAttributeResearchResult } from '@/services/product-attribute-research';
 import { applyProductFactsToMlAttribute, extractMlProductFacts, type MlProductFacts } from '@/lib/ml-product-facts';
 import { filterOperationalDropshippingSupplierOffers, loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
+import { formatMlWarrantyTime, type MlWarrantyConfiguration } from '@/lib/ml-sale-terms';
+import { loadMercadoLivreConfiguration } from '@/services/mercado-livre-configuration';
 
 type AllowedValue = { id: string; name: string };
 type Suggestion = {
@@ -388,17 +390,21 @@ function evaluateDependencyRule(fieldId: string, currentForm: any, allowed: Allo
   return null;
 }
 
-function evaluateWarrantyRule(fieldId: string, allowed: AllowedValue[]): Suggestion | null {
+function evaluateWarrantyRule(fieldId: string, allowed: AllowedValue[], configuration: MlWarrantyConfiguration): Suggestion | null {
   const target = String(fieldId || '').toUpperCase();
+  if (target === 'WARRANTY_TYPE') {
+    const selected = allowed.find((value) => String(value.id) === configuration.typeId);
+    return selected ? { value_id: selected.id, value_name: selected.name, reason: 'configured_warranty_type', confidence: 1 } : null;
+  }
   if (target !== 'WARRANTY_TIME') return null;
-  if (!allowed.length) return null;
-
-  const by12 = allowed.find((v) => normalizeTxt(v.name).includes('12'));
-  const selected = by12 || allowed[0];
+  const configured = formatMlWarrantyTime(configuration);
+  if (!allowed.length) return { value_id: null, value_name: configured, reason: 'configured_warranty_time', confidence: 1 };
+  const selected = allowed.find((value) => normalizeTxt(value.name) === normalizeTxt(configured));
+  if (!selected) return null;
   return {
     value_id: String(selected.id),
     value_name: String(selected.name),
-    reason: 'rule_based_warranty_enumerated',
+    reason: 'configured_warranty_time',
     confidence: 1,
   };
 }
@@ -575,7 +581,10 @@ export async function POST(req: Request) {
       .select('dslite_fornecedor_id, sku_oferta, sku_fornecedor, nome, descricao, marca')
       .eq('produto_id', produtoId)
       .limit(5);
-    const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(supabase);
+    const [operationalSupplierIds, mlConfiguration] = await Promise.all([
+      loadOperationalDropshippingSupplierIds(supabase),
+      loadMercadoLivreConfiguration(supabase),
+    ]);
     const supplierRows = filterOperationalDropshippingSupplierOffers(
       supplierSkusResult.data || [],
       operationalSupplierIds,
@@ -607,7 +616,7 @@ export async function POST(req: Request) {
         );
     }
 
-    const warrantyDecision = evaluateWarrantyRule(field.id, allowed);
+    const warrantyDecision = evaluateWarrantyRule(field.id, allowed, mlConfiguration);
     if (warrantyDecision) {
       return successResponse(warrantyDecision);
     }

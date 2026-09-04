@@ -85,9 +85,9 @@ test("cliente não lê secrets existentes e testes usam configuração server-si
     /(?:^|[^A-Za-z0-9_])integration\.(client_secret|access_token|refresh_token)(?!_configurado)/,
   );
   assert.doesNotMatch(page, /client_secret|access_token|refresh_token/);
-  assert.match(integrationsTab, /client_secret_configurado/);
   assert.match(integrationsTab, /access_token_configurado/);
   assert.match(integrationsTab, /refresh_token_configurado/);
+  assert.doesNotMatch(integrationsTab, /mercadolivre/);
   for (const source of [dsliteRoute, brasilNfeRoute]) {
     assert.match(source, /createServiceClient\(\)/);
     assert.doesNotMatch(source, /request\.json\(/);
