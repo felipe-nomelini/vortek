@@ -170,7 +170,9 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-05 — Mercado Livre e anúncios`.
 - [x] Aprovar visualmente `BNT-CFG-05` em homologação antes de iniciar `BNT-CFG-06`.
 - [x] Executar somente `BNT-CFG-06 — Notificações e canais`.
-- [ ] Aprovar visualmente `BNT-CFG-06` em homologação antes de iniciar `BNT-CFG-07`.
+- [ ] Aprovar visualmente `BNT-CFG-06` em homologação antes de iniciar `BNT-MSG-01`.
+- [ ] Executar somente `BNT-MSG-01 — Templates e identidade das notificações`.
+- [ ] Aprovar os templates de WhatsApp, Push e e-mail em homologação antes de iniciar `BNT-CFG-07`.
 
 ---
 
@@ -2529,7 +2531,29 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Validação técnica:** passaram 14 cenários direcionados de notificações/admin/UI, 14 cenários retroativos de empresa/fiscal e 18 de Mercado Livre/configurações. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhum teste externo de Push, WhatsApp ou e-mail foi disparado.
 
-**Pendência:** publicar e aprovar visualmente `https://dev.bentevi.shop/configuracoes?tab=notificacoes` antes de iniciar `BNT-CFG-07`.
+**Pendência:** aprovar visualmente `https://dev.bentevi.shop/configuracoes?tab=notificacoes` antes de iniciar `BNT-MSG-01`.
+
+### `BNT-MSG-01 — Templates e identidade das notificações`
+
+**Objetivo:** reestruturar o conteúdo e a apresentação de todas as mensagens ativas enviadas pelo Bentevi, com identidade verbal e visual consistente, leitura rápida e informações adequadas ao destinatário e ao canal.
+
+**Escopo:** inventariar os emissores atuais e redesenhar, uma frente por vez, alertas operacionais e administrativos, mensagens transacionais destinadas a clientes ou fornecedores e comunicações fiscais nos canais WhatsApp, Push e e-mail. O inventário deve registrar evento, público, canal, origem dos dados, ação esperada e template atual antes de qualquer alteração.
+
+**Limites:** esta etapa não altera eventos de disparo, destinatários, permissões, deduplicação, idempotência, regras de negócio ou contratos externos estabilizados em `BNT-CFG-06`. Não criar editor genérico de templates nem nova fonte de verdade sem necessidade comprovada. Mensagens nunca podem reproduzir secrets, payloads brutos ou dados internos desnecessários.
+
+**Execução:**
+
+- [ ] localizar todos os emissores e templates ativos de WhatsApp, Push e e-mail;
+- [ ] consolidar a matriz `evento → público → canal → conteúdo → ação`;
+- [ ] definir a hierarquia Bentevi para título, contexto, dados essenciais, próxima ação, link e rodapé;
+- [ ] redesenhar separadamente mensagens internas, mensagens a clientes/fornecedores e comunicações fiscais;
+- [ ] preservar os contratos de envio, estados, dedupe e proteções de homologação existentes;
+- [ ] adicionar testes direcionados para conteúdo obrigatório, formatação e ausência de dados sensíveis;
+- [ ] validar Push no navegador atual, WhatsApp somente no destinatário de teste e SMTP sem destinatário real;
+- [ ] executar `npm run validate` e build quando aplicável;
+- [ ] aprovar amostras de todos os tipos de mensagem em homologação antes de iniciar `BNT-CFG-07`.
+
+**Aceite:** todos os templates ativos devem usar Bentevi, apresentar somente as informações úteis ao público correto, indicar claramente a ação quando houver e manter intacto o comportamento funcional dos disparos.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
