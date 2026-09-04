@@ -1,809 +1,544 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Button,
-  Card,
-  Col,
-  Divider,
-  Progress,
-  Row,
-  Spin,
-  Statistic,
+  Collapse,
+  Skeleton,
   Tag,
   Typography,
-} from "antd";
+} from 'antd';
 import {
-  DislikeFilled,
-  LikeFilled,
-  RocketFilled,
-  StarFilled,
-  ThunderboltFilled,
+  CheckCircleFilled,
+  ClockCircleOutlined,
+  ExportOutlined,
+  ReloadOutlined,
+  SafetyCertificateFilled,
+  ShopOutlined,
   TrophyFilled,
-} from "@ant-design/icons";
+  WarningFilled,
+} from '@ant-design/icons';
+import {
+  classifyReputationMetric,
+  type ReputationBand,
+  type ReputationMetric,
+  type ReputationMetricKey,
+  type ReputationMetricThresholds,
+  type ReputationLevelId,
+  type SellerReputationResponse,
+} from '@/lib/ml/seller-reputation';
+import styles from './reputacao.module.css';
 
-const { Title, Text } = Typography;
+const { Text, Title } = Typography;
 
-type ReputationMetric = {
-  rate: number | null;
-  percent: number | null;
-  value: number | null;
-  period: string | null;
-  excluded?: number | null;
+const LEVELS: Array<{
+  key: ReputationLevelId;
+  label: string;
+  shortLabel: string;
+  color: string;
+}> = [
+  { key: '1_red', label: 'Reputação vermelha', shortLabel: 'Vermelho', color: '#ff4d4f' },
+  { key: '2_orange', label: 'Reputação laranja', shortLabel: 'Laranja', color: '#fa8c16' },
+  { key: '3_yellow', label: 'Reputação amarela', shortLabel: 'Amarelo', color: '#f5c400' },
+  { key: '4_light_green', label: 'Reputação verde-clara', shortLabel: 'Verde-claro', color: '#73d13d' },
+  { key: '5_green', label: 'Reputação verde', shortLabel: 'Verde', color: '#38b000' },
+];
+
+const POWER_SELLER_LABELS: Record<string, string> = {
+  silver: 'Mercado Líder',
+  gold: 'Mercado Líder Gold',
+  platinum: 'Mercado Líder Platinum',
 };
 
-type ReputacaoResponse = {
-  conectado?: boolean;
-  precisaReconectar?: boolean;
-  indisponivel?: boolean;
-  erro?: string;
-  user?: {
-    id: number | string;
-    nickname: string | null;
-    permalink: string | null;
-    registration_date: string | null;
-    site_id?: string | null;
-    tags?: string[];
-  };
-  seller_reputation?: {
-    level_id: string;
-    power_seller_status: string | null;
-    real_level: string | null;
-    protection_end_date: string | null;
-  };
-  transactions?: {
-    total: number;
-    completed: number;
-    canceled: number;
-    period: string | null;
-    ratings: {
-      positive: number | null;
-      neutral: number | null;
-      negative: number | null;
-    };
-  };
-  metrics?: {
-    claims: ReputationMetric;
-    delayed_handling_time: ReputationMetric;
-    cancellations: ReputationMetric;
-    sales_completed: number | null;
-    period: string | null;
-  };
-  orders_summary?: {
-    six_months: {
-      sold: number | null;
-      canceled: number | null;
-      feedback: {
-        positive: number | null;
-        neutral: number | null;
-        negative: number | null;
-      };
-    };
-    twelve_months: {
-      sold: number | null;
-      canceled: number | null;
-      feedback: {
-        positive: number | null;
-        neutral: number | null;
-        negative: number | null;
-      };
-    };
-  };
-  feedback?: {
-    source: string;
-    period: string;
-    positive: number | null;
-    neutral: number | null;
-    negative: number | null;
-    total: number | null;
-    positive_percent: number | null;
-  };
-
-  reclamacoes: number | null;
-  atrasos: number | null;
-  cancelamentos: number | null;
-  positivas: number | null;
-  nivel: string;
-  nivelCor: string;
-  nivelKey: string;
+const BAND_META: Record<ReputationBand, { label: string; color: string; weight: number }> = {
+  leaders: { label: 'Meta Mercado Líder', color: '#ffd54a', weight: 0 },
+  green: { label: 'Faixa verde', color: '#38b000', weight: 0 },
+  yellow: { label: 'Faixa amarela', color: '#f5c400', weight: 1 },
+  orange: { label: 'Faixa laranja', color: '#fa8c16', weight: 2 },
+  red: { label: 'Faixa vermelha', color: '#ff4d4f', weight: 3 },
+  unknown: { label: 'Sem classificação', color: '#8c8c8c', weight: 0 },
 };
 
-const levelConfig: Record<
-  string,
-  { color: string; bg: string; label: string; icon: React.ReactNode }
-> = {
-  "5_green": {
-    color: "#5aab2c",
-    bg: "#162312",
-    label: "Verde",
-    icon: <StarFilled />,
+const METRIC_CONFIG: Record<ReputationMetricKey, {
+  title: string;
+  description: string;
+  actionLabel: string;
+  actionHref: string;
+}> = {
+  claims: {
+    title: 'Reclamações',
+    description: 'Vendas com reclamação iniciada pelo comprador.',
+    actionLabel: 'Ver reclamações',
+    actionHref: '/reclamacoes',
   },
-  "4_light_green": {
-    color: "#73d13d",
-    bg: "#162812",
-    label: "Verde claro",
-    icon: <StarFilled />,
+  delayed_handling_time: {
+    title: 'Despachos atrasados',
+    description: 'Vendas despachadas depois do prazo considerado pelo Mercado Livre.',
+    actionLabel: 'Ver pedidos',
+    actionHref: '/pedidos',
   },
-  "4_light_blue": {
-    color: "#73d13d",
-    bg: "#162812",
-    label: "Verde claro",
-    icon: <StarFilled />,
-  },
-  "3_yellow": {
-    color: "#faad14",
-    bg: "#2a1f0a",
-    label: "Amarelo",
-    icon: <StarFilled />,
-  },
-  "2_orange": {
-    color: "#fa8c16",
-    bg: "#2a1706",
-    label: "Laranja",
-    icon: <StarFilled />,
-  },
-  "1_red": {
-    color: "#ff4d4f",
-    bg: "#2a0d0e",
-    label: "Vermelho",
-    icon: <StarFilled />,
-  },
-  default: {
-    color: "#888",
-    bg: "#1f1f1f",
-    label: "Sem reputação",
-    icon: <StarFilled />,
+  cancellations: {
+    title: 'Cancelamentos',
+    description: 'Cancelamentos feitos pelo vendedor sem reclamação associada.',
+    actionLabel: 'Ver pedidos',
+    actionHref: '/pedidos',
   },
 };
 
-const psConfig: Record<string, { label: string; color: string; bg: string }> = {
-  platinum: {
-    label: "Mercado Líder Platinum",
-    color: "#d9d9d9",
-    bg: "#1a1919",
-  },
-  gold: { label: "Mercado Líder Gold", color: "#faad14", bg: "#2a1f0a" },
-  silver: { label: "Mercado Líder", color: "#a0a0a0", bg: "#141414" },
-  bronze: { label: "Mercado Líder", color: "#cd7f32", bg: "#1f150e" },
-};
-
-const levelOrder = [
-  "1_red",
-  "2_orange",
-  "3_yellow",
-  "4_light_green",
-  "5_green",
-] as const;
-const softRed = "#ff4d4f";
-const softOrange = "#fa8c16";
-const softYellow = "#faad14";
-const softBlue = "#1677ff";
-const softGreen = "#5aab2c";
-
-function formatPercent(value: number | null | undefined, decimals = 1): string {
-  return typeof value === "number" && Number.isFinite(value)
-    ? `${value.toFixed(decimals)}%`
-    : "—";
+function formatPercent(value: number | null | undefined, decimals = 2) {
+  if (value === null || value === undefined || !Number.isFinite(value)) return '—';
+  return `${value.toLocaleString('pt-BR', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  })}%`;
 }
 
-function formatNumber(value: number | null | undefined): string | number {
-  return typeof value === "number" && Number.isFinite(value) ? value : "—";
+function formatNumber(value: number | null | undefined) {
+  if (value === null || value === undefined || !Number.isFinite(value)) return '—';
+  return value.toLocaleString('pt-BR');
 }
 
-function metricInfo(
-  rate: number | null | undefined,
-  thresholds: [number, number, number, number],
-): { color: string; label: string } {
-  if (rate === null || rate === undefined || !Number.isFinite(rate))
-    return { color: "#888", label: "Sem dados" };
-  if (rate <= thresholds[1]) return { color: softGreen, label: "Excelente" };
-  if (rate <= thresholds[2]) return { color: softYellow, label: "Bom" };
-  if (rate <= thresholds[3]) return { color: softOrange, label: "Atenção" };
-  return { color: softRed, label: "Crítico" };
+function formatRating(value: number | null | undefined) {
+  if (value === null || value === undefined || !Number.isFinite(value)) return '—';
+  return formatPercent(value * 100, 1);
 }
 
-const REPUTACAO_REFRESH_INTERVAL_MS = 60000;
+function formatDate(value: string | null | undefined) {
+  if (!value) return '—';
+  const parsed = new Date(value);
+  if (!Number.isFinite(parsed.getTime())) return value;
+  return parsed.toLocaleDateString('pt-BR');
+}
+
+function formatDateTime(value: string | null | undefined) {
+  if (!value) return '—';
+  const parsed = new Date(value);
+  if (!Number.isFinite(parsed.getTime())) return value;
+  return parsed.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+}
+
+function formatPeriod(value: string | null | undefined) {
+  if (!value) return 'Não informado';
+  const normalized = value.trim().toLowerCase();
+  if (normalized === 'historic') return 'Histórico';
+  if (normalized === '60 days') return '60 dias';
+  if (normalized === '365 days') return '365 dias';
+  return value;
+}
+
+function normalizeLevel(level: ReputationLevelId | null | undefined) {
+  return level === '4_light_blue' ? '4_light_green' : level;
+}
+
+function currentLevel(level: ReputationLevelId | null | undefined) {
+  const normalized = normalizeLevel(level);
+  return LEVELS.find((item) => item.key === normalized) || null;
+}
+
+function MetricScale({
+  activeBand,
+  thresholds,
+}: {
+  activeBand: ReputationBand;
+  thresholds: ReputationMetricThresholds;
+}) {
+  const segments: Array<{ key: Exclude<ReputationBand, 'unknown'>; label: string; limit: string }> = [
+    { key: 'leaders', label: 'Líder', limit: `≤ ${formatPercent(thresholds.leaders, 1)}` },
+    { key: 'green', label: 'Verde', limit: `≤ ${formatPercent(thresholds.green, 1)}` },
+    { key: 'yellow', label: 'Amarelo', limit: `≤ ${formatPercent(thresholds.yellow, 1)}` },
+    { key: 'orange', label: 'Laranja', limit: `≤ ${formatPercent(thresholds.orange, 1)}` },
+    { key: 'red', label: 'Vermelho', limit: `> ${formatPercent(thresholds.orange, 1)}` },
+  ];
+
+  return (
+    <div className={styles.metricScale} aria-label={`Classificação atual: ${BAND_META[activeBand].label}`}>
+      {segments.map((segment) => (
+        <div
+          className={`${styles.scaleSegment} ${activeBand === segment.key ? styles.scaleSegmentActive : ''}`}
+          key={segment.key}
+          style={{ '--segment-color': BAND_META[segment.key].color } as React.CSSProperties}
+        >
+          <span>{segment.label}</span>
+          <small>{segment.limit}</small>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MetricPanel({
+  metricKey,
+  metric,
+  thresholds,
+}: {
+  metricKey: ReputationMetricKey;
+  metric: ReputationMetric;
+  thresholds: ReputationMetricThresholds | null;
+}) {
+  const config = METRIC_CONFIG[metricKey];
+  const band = classifyReputationMetric(metric.percent, thresholds);
+  const bandMeta = BAND_META[band];
+
+  return (
+    <article className={styles.metricPanel}>
+      <div className={styles.metricHeading}>
+        <div>
+          <h3>{config.title}</h3>
+          <p>{config.description}</p>
+        </div>
+        <Tag
+          bordered={false}
+          className={styles.bandTag}
+          style={{ color: bandMeta.color, background: `${bandMeta.color}18` }}
+        >
+          {bandMeta.label}
+        </Tag>
+      </div>
+
+      <div className={styles.metricValueRow}>
+        <strong style={{ color: bandMeta.color }}>{formatPercent(metric.percent)}</strong>
+        <span>{formatNumber(metric.value)} ocorrências</span>
+        <span>Período: {formatPeriod(metric.period)}</span>
+      </div>
+
+      {thresholds ? (
+        <MetricScale activeBand={band} thresholds={thresholds} />
+      ) : (
+        <div className={styles.noThreshold}>
+          Limites não exibidos porque a conta não pertence ao site brasileiro MLB.
+        </div>
+      )}
+
+      {metric.excluded && (
+        <div className={styles.protectedMetric}>
+          <SafetyCertificateFilled />
+          <span>
+            Durante a proteção, o ML informa o resultado real como {formatPercent(metric.excluded.real_percent)}
+            {' '}({formatNumber(metric.excluded.real_value)} ocorrências).
+          </span>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function PageHeader({
+  data,
+  refreshing,
+  onRefresh,
+}: {
+  data: SellerReputationResponse | null;
+  refreshing: boolean;
+  onRefresh: () => void;
+}) {
+  return (
+    <header className={styles.pageHeader}>
+      <div>
+        <span className={styles.eyebrow}>Mercado Livre</span>
+        <Title level={2}>Reputação</Title>
+        <Text>Entenda como a operação está sendo avaliada e o que merece atenção.</Text>
+      </div>
+      <div className={styles.headerActions}>
+        {data?.user?.permalink && (
+          <Button href={data.user.permalink} target="_blank" icon={<ExportOutlined />}>
+            Ver perfil no ML
+          </Button>
+        )}
+        <Button type="primary" icon={<ReloadOutlined />} loading={refreshing} onClick={onRefresh}>
+          Atualizar
+        </Button>
+      </div>
+    </header>
+  );
+}
 
 export default function ReputacaoPage() {
-  const [data, setData] = useState<ReputacaoResponse | null>(null);
+  const [data, setData] = useState<SellerReputationResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const requestInFlightRef = useRef(false);
 
-  const clearPolling = useCallback(() => {
-    if (pollingRef.current) {
-      clearTimeout(pollingRef.current);
-      pollingRef.current = null;
-    }
-  }, []);
-
-  const load = useCallback(async (options?: { silent?: boolean }) => {
-    if (requestInFlightRef.current) return;
-
-    requestInFlightRef.current = true;
-    if (!options?.silent) {
-      setLoading(true);
-    }
+  const load = useCallback(async (initial = false) => {
+    if (initial) setLoading(true);
+    else setRefreshing(true);
     setError(null);
 
     try {
-      const res = await fetch("/api/ml/reputacao", { cache: "no-store" });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(
-          json?.erro || "Falha ao carregar reputação do Mercado Livre.",
-        );
+      const response = await fetch('/api/ml/reputacao', { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(payload?.erro || payload?.error || 'Falha ao carregar reputação do Mercado Livre.');
       }
-      setData(json as ReputacaoResponse);
-    } catch (err: any) {
-      setError(err?.message || "Falha ao carregar reputação do Mercado Livre.");
+      setData(payload as SellerReputationResponse);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Falha ao carregar reputação do Mercado Livre.');
     } finally {
-      requestInFlightRef.current = false;
-      if (!options?.silent) {
-        setLoading(false);
-      }
+      setLoading(false);
+      setRefreshing(false);
     }
   }, []);
 
-  const schedulePolling = useCallback(() => {
-    clearPolling();
-    if (typeof document !== "undefined" && document.hidden) {
-      return;
-    }
-
-    pollingRef.current = setTimeout(() => {
-      void load({ silent: true }).finally(() => {
-        schedulePolling();
-      });
-    }, REPUTACAO_REFRESH_INTERVAL_MS);
-  }, [clearPolling, load]);
-
   useEffect(() => {
-    void load().finally(() => {
-      schedulePolling();
+    void load(true);
+  }, [load]);
+
+  const metricEntries = useMemo(() => {
+    if (!data?.metrics) return [];
+    return (Object.keys(METRIC_CONFIG) as ReputationMetricKey[]).map((key) => {
+      const metric = data.metrics?.[key] as ReputationMetric;
+      const thresholds = data.thresholds?.metrics[key] || null;
+      const band = classifyReputationMetric(metric.percent, thresholds);
+      return { key, metric, thresholds, band, weight: BAND_META[band].weight };
     });
+  }, [data]);
 
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        clearPolling();
-        return;
-      }
+  const attentionItems = useMemo(
+    () => metricEntries.filter((item) => item.weight > 0).sort((left, right) => right.weight - left.weight),
+    [metricEntries],
+  );
 
-      void load({ silent: true }).finally(() => {
-        schedulePolling();
-      });
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      clearPolling();
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [clearPolling, load, schedulePolling]);
-
-  const levelId = data?.seller_reputation?.level_id || "";
-  const lvl = levelConfig[levelId] || levelConfig.default;
-  const powerSeller = data?.seller_reputation?.power_seller_status || "";
-  const ps = powerSeller ? psConfig[powerSeller] : null;
-  const psLabel = ps?.label || "";
-  const transactions = data?.transactions;
-  const feedback = data?.feedback;
-  const feedbackTotal = feedback?.total || 0;
-  const positivePct = feedback?.positive_percent ?? null;
-  const neutralPct =
-    feedbackTotal > 0 && typeof feedback?.neutral === "number"
-      ? (feedback.neutral / feedbackTotal) * 100
-      : null;
-  const negativePct =
-    feedbackTotal > 0 && typeof feedback?.negative === "number"
-      ? (feedback.negative / feedbackTotal) * 100
-      : null;
-  const cancelRate = transactions?.total
-    ? (transactions.canceled / transactions.total) * 100
+  const reputation = data?.seller_reputation;
+  const level = currentLevel(reputation?.level_id);
+  const realLevel = currentLevel(reputation?.real_level);
+  const powerSeller = reputation?.power_seller_status
+    ? POWER_SELLER_LABELS[reputation.power_seller_status] || reputation.power_seller_status
     : null;
-  const m = data?.metrics;
-  const badges = useMemo(() => {
-    const list = [];
-    if (psLabel && ps)
-      list.push({
-        icon: <TrophyFilled />,
-        color: ps.color,
-        label: psLabel,
-        desc: "Reconhecimento informado pelo Mercado Livre",
-      });
-    list.push({
-      icon: <RocketFilled />,
-      color: lvl.color,
-      label: `Nível ${lvl.label}`,
-      desc: levelId
-        ? "Termômetro atual do Mercado Livre"
-        : "Conta sem nível público retornado",
-    });
-    if (m?.period)
-      list.push({
-        icon: <ThunderboltFilled />,
-        color: softYellow,
-        label: `Período ${m.period}`,
-        desc: "Janela de métricas retornada pelo Mercado Livre",
-      });
-    return list;
-  }, [levelId, lvl.color, lvl.label, m?.period, ps, psLabel]);
-
-  const cardBg = {
-    background: "#141414",
-    border: "1px solid #303030",
-    borderRadius: 8,
-  };
-  const claimsTh: [number, number, number, number] = [0.01, 0.02, 0.045, 0.08];
-  const handlingTh: [number, number, number, number] = [0.06, 0.1, 0.18, 0.22];
-  const cancelTh: [number, number, number, number] = [
-    0.005, 0.015, 0.035, 0.04,
-  ];
+  const transactions = data?.transactions;
+  const ratings = transactions?.ratings;
+  const hasSalesForReputation = (data?.metrics?.sales_completed || 0) > 0;
 
   if (loading) {
     return (
-      <div>
-        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
-          Reputação - Mercado Livre
-        </Title>
-        <Card
-          styles={{ body: { padding: 40, textAlign: "center" } }}
-          style={cardBg}
-        >
-          <Spin />
-        </Card>
+      <div className={styles.page}>
+        <PageHeader data={null} refreshing={false} onRefresh={() => undefined} />
+        <div className={styles.loadingSurface}><Skeleton active paragraph={{ rows: 9 }} /></div>
       </div>
     );
   }
 
-  if (error) {
+  if (!data && error) {
     return (
-      <div>
-        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
-          Reputação - Mercado Livre
-        </Title>
-        <Alert type="error" showIcon message={error} />
+      <div className={styles.page}>
+        <PageHeader data={null} refreshing={refreshing} onRefresh={() => void load()} />
+        <Alert type="error" showIcon message="Reputação indisponível" description={error} />
       </div>
     );
   }
 
-  if (!data?.conectado || data?.precisaReconectar) {
+  if (!data?.conectado || data.precisaReconectar) {
     return (
-      <div>
-        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
-          Reputação - Mercado Livre
-        </Title>
-        <Card
-          styles={{ body: { padding: 32, textAlign: "center" } }}
-          style={cardBg}
-        >
-          <Text style={{ color: "#888", display: "block", marginBottom: 12 }}>
-            Mercado Livre desconectado.
-          </Text>
-          <Button type="primary" href="/api/integracao/ml/connect">
-            Reconectar ML
-          </Button>
-        </Card>
+      <div className={styles.page}>
+        <PageHeader data={data} refreshing={refreshing} onRefresh={() => void load()} />
+        <section className={styles.emptyState}>
+          <ShopOutlined />
+          <h2>Mercado Livre desconectado</h2>
+          <p>Conecte novamente a conta para consultar a reputação do vendedor.</p>
+          <Button type="primary" href="/api/integracao/ml/connect">Conectar Mercado Livre</Button>
+        </section>
       </div>
     );
   }
 
-  if (data?.indisponivel) {
+  if (data.indisponivel || !data.seller_reputation || !data.metrics) {
     return (
-      <div>
-        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
-          Reputação - Mercado Livre
-        </Title>
+      <div className={styles.page}>
+        <PageHeader data={data} refreshing={refreshing} onRefresh={() => void load()} />
+        <section className={styles.emptyState}>
+          <ClockCircleOutlined />
+          <h2>Reputação ainda não disponível</h2>
+          <p>O Mercado Livre não retornou histórico suficiente para classificar esta conta.</p>
+          <Button icon={<ReloadOutlined />} loading={refreshing} onClick={() => void load()}>Atualizar</Button>
+        </section>
+      </div>
+    );
+  }
+
+  const activeReputation = data.seller_reputation;
+
+  return (
+    <div className={styles.page}>
+      <PageHeader data={data} refreshing={refreshing} onRefresh={() => void load()} />
+
+      {data.visual_review && (
+        <Alert
+          type="info"
+          showIcon
+          message="Amostra visual protegida de homologação"
+          description={`Dados sintéticos baseados no contrato oficial do Mercado Livre. Expira em ${formatDateTime(data.visual_review.expires_at)}.`}
+          className={styles.reviewAlert}
+        />
+      )}
+
+      {error && (
+        <Alert type="warning" showIcon message="A atualização falhou" description={error} closable />
+      )}
+
+      <section className={styles.reputationHero}>
+        <div className={styles.heroIdentity}>
+          <div className={styles.heroIcon} style={{ color: level?.color || '#8c8c8c' }}>
+            <TrophyFilled />
+          </div>
+          <div>
+            <span className={styles.heroKicker}>Nível atual</span>
+            <h2>{level?.label || 'Sem reputação'}</h2>
+            <p>{data.user?.nickname || 'Conta Mercado Livre'} · {data.user?.site_id || 'Site não informado'}</p>
+            {powerSeller && <Tag color="gold" bordered={false}>{powerSeller}</Tag>}
+          </div>
+        </div>
+
+        <div className={styles.thermometerBlock}>
+          <div className={styles.thermometerHeader}>
+            <span>Termômetro Mercado Livre</span>
+            <small>Atualizado em {formatDateTime(data.updated_at)}</small>
+          </div>
+          <div className={styles.thermometer}>
+            {LEVELS.map((item) => (
+              <div
+                key={item.key}
+                className={`${styles.thermometerLevel} ${normalizeLevel(activeReputation.level_id) === item.key ? styles.thermometerLevelActive : ''}`}
+                style={{ '--level-color': item.color } as React.CSSProperties}
+              >
+                <span>{item.shortLabel}</span>
+              </div>
+            ))}
+          </div>
+          <div className={styles.heroFacts}>
+            <span><strong>{formatNumber(data.metrics.sales_completed)}</strong> vendas avaliadas</span>
+            <span><strong>{formatPeriod(data.metrics.period)}</strong> de apuração</span>
+          </div>
+        </div>
+      </section>
+
+      {activeReputation.protection_end_date && (
         <Alert
           type="warning"
           showIcon
-          message="Mercado Livre não retornou reputação para esta conta."
+          icon={<SafetyCertificateFilled />}
+          message="Conta em período de proteção"
+          description={`Nível exibido: ${level?.shortLabel || '—'}. Nível real: ${realLevel?.shortLabel || 'não informado'}. Proteção até ${formatDate(activeReputation.protection_end_date)}.`}
+          className={styles.protectionAlert}
         />
-      </div>
-    );
-  }
+      )}
 
-  return (
-    <div>
-      <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
-        Reputação - Mercado Livre
-      </Title>
+      <section className={styles.metricsSection}>
+        <div className={styles.sectionHeading}>
+          <div>
+            <span className={styles.eyebrow}>Fatores determinantes</span>
+            <h2>O que forma sua reputação</h2>
+          </div>
+          <p>Valor atual e limites oficiais do site {data.thresholds?.site_id || data.user?.site_id || 'não informado'}.</p>
+        </div>
 
-      <Card
-        styles={{ body: { padding: 24 } }}
-        style={{ ...cardBg, marginBottom: 20 }}
-      >
-        <Row align="middle" gutter={24}>
-          <Col>
-            <div
-              style={{
-                width: 72,
-                height: 72,
-                borderRadius: 36,
-                background: lvl.bg,
-                color: lvl.color,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 36,
-              }}
-            >
-              {lvl.icon}
+        <div className={styles.metricsGrid}>
+          {metricEntries.map((entry) => (
+            <MetricPanel
+              key={entry.key}
+              metricKey={entry.key}
+              metric={entry.metric}
+              thresholds={entry.thresholds}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.lowerGrid}>
+        <div className={styles.attentionPanel}>
+          <div className={styles.sectionHeadingCompact}>
+            <div>
+              <span className={styles.eyebrow}>Prioridade operacional</span>
+              <h2>O que exige atenção agora</h2>
             </div>
-          </Col>
-          <Col flex="auto">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                marginBottom: 4,
-                flexWrap: "wrap",
-              }}
-            >
-              <span style={{ fontSize: 24, fontWeight: 700, color: "#e0e0e0" }}>
-                {data.user?.nickname || "Loja Mercado Livre"}
-              </span>
-              {psLabel && ps && (
-                <Tag color={ps.color} style={{ margin: 0, fontWeight: 600 }}>
-                  {psLabel}
-                </Tag>
-              )}
-              <Tag
-                color={lvl.color === softGreen ? undefined : lvl.color}
-                style={{
-                  margin: 0,
-                  fontWeight: 600,
-                  ...(lvl.color === softGreen
-                    ? {
-                        color: softGreen,
-                        background: "#162312",
-                        borderColor: softGreen,
-                      }
-                    : {}),
-                }}
-              >
-                {lvl.label}
-              </Tag>
+          </div>
+
+          {!hasSalesForReputation ? (
+            <div className={styles.attentionEmpty}>
+              <ClockCircleOutlined />
+              <div>
+                <strong>Histórico insuficiente</strong>
+                <p>A conta ainda não possui vendas avaliadas para gerar uma orientação.</p>
+              </div>
             </div>
-            <Text style={{ color: "#808080", fontSize: 12 }}>
-              Dados reais do Mercado Livre · usuário {data.user?.id || "—"}
-            </Text>
-            <div
-              style={{ display: "flex", gap: 4, marginTop: 10, maxWidth: 400 }}
-            >
-              {levelOrder.map((key) => {
-                const lc = levelConfig[key];
-                const active = levelId === key;
+          ) : attentionItems.length === 0 ? (
+            <div className={styles.attentionEmpty}>
+              <CheckCircleFilled />
+              <div>
+                <strong>Nenhuma métrica em faixa de atenção</strong>
+                <p>As três métricas estão nas faixas Líder ou Verde.</p>
+              </div>
+            </div>
+          ) : (
+            <div className={styles.attentionList}>
+              {attentionItems.map((item) => {
+                const config = METRIC_CONFIG[item.key];
                 return (
-                  <div
-                    key={key}
-                    style={{
-                      flex: 1,
-                      height: 12,
-                      borderRadius: 4,
-                      background: active ? lc.color : "#252525",
-                      transition: "all .3s",
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </Col>
-        </Row>
-      </Card>
-
-      <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
-        <Col xs={24} md={8}>
-          <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-            <Statistic
-              title={
-                <span style={{ color: "#a0a0a0" }}>Vendas Concluídas</span>
-              }
-              value={formatNumber(transactions?.completed)}
-              prefix={<LikeFilled style={{ color: softGreen }} />}
-              valueStyle={{ color: "#e0e0e0" }}
-            />
-          </Card>
-        </Col>
-        <Col xs={24} md={8}>
-          <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-            <Statistic
-              title={<span style={{ color: "#a0a0a0" }}>Cancelamentos</span>}
-              value={formatNumber(transactions?.canceled)}
-              suffix={
-                <span style={{ fontSize: 14, color: "#a0a0a0" }}>
-                  ({formatPercent(cancelRate)})
-                </span>
-              }
-              prefix={<DislikeFilled style={{ color: softRed }} />}
-              valueStyle={{ color: "#e0e0e0" }}
-            />
-          </Card>
-        </Col>
-        <Col xs={24} md={8}>
-          <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-            <Statistic
-              title={<span style={{ color: "#a0a0a0" }}>Total Transações</span>}
-              value={formatNumber(transactions?.total)}
-              prefix={<StarFilled style={{ color: softBlue }} />}
-              valueStyle={{ color: "#e0e0e0" }}
-            />
-          </Card>
-        </Col>
-      </Row>
-
-      <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
-        <Col xs={24} lg={12}>
-          <Card
-            styles={{ body: { padding: 20 } }}
-            style={{ ...cardBg, height: "100%" }}
-          >
-            <Title
-              level={5}
-              style={{
-                color: "#a0a0a0",
-                marginBottom: 16,
-                fontSize: 13,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-              }}
-            >
-              Métricas de Qualidade{m?.period ? ` · ${m.period}` : ""}
-            </Title>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {[
-                {
-                  label: "Reclamações",
-                  metric: m?.claims,
-                  thresholds: claimsTh,
-                },
-                {
-                  label: "Atraso na Entrega",
-                  metric: m?.delayed_handling_time,
-                  thresholds: handlingTh,
-                },
-                {
-                  label: "Cancelamentos",
-                  metric: m?.cancellations,
-                  thresholds: cancelTh,
-                },
-              ].map((item) => {
-                const pct = item.metric?.percent;
-                const info = metricInfo(item.metric?.rate, item.thresholds);
-                return (
-                  <div key={item.label}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        marginBottom: 6,
-                        gap: 12,
-                      }}
-                    >
-                      <Text style={{ color: "#c0c0c0", fontSize: 13 }}>
-                        {item.label}
-                      </Text>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 8,
-                        }}
-                      >
-                        <Text style={{ color: "#a0a0a0", fontSize: 12 }}>
-                          {formatNumber(item.metric?.value)} ocorrências
-                        </Text>
-                        <Tag
-                          color={
-                            info.color === softGreen ? undefined : info.color
-                          }
-                          style={{
-                            margin: 0,
-                            fontWeight: 600,
-                            fontSize: 11,
-                            ...(info.color === softGreen
-                              ? {
-                                  color: softGreen,
-                                  background: "#162312",
-                                  borderColor: softGreen,
-                                }
-                              : {}),
-                          }}
-                        >
-                          {info.label}
-                        </Tag>
-                      </div>
-                    </div>
-                    <Progress
-                      percent={
-                        pct === null || pct === undefined
-                          ? 0
-                          : Number(pct.toFixed(2))
-                      }
-                      strokeColor={info.color}
-                      trailColor="#303030"
-                      format={() => formatPercent(pct)}
-                      size="small"
-                    />
-                  </div>
-                );
-              })}
-            </div>
-            <Divider style={{ borderColor: "#303030", margin: "16px 0" }} />
-            <Text style={{ color: "#666", fontSize: 12 }}>
-              Vendas no período: {formatNumber(m?.sales_completed)}
-            </Text>
-          </Card>
-        </Col>
-
-        <Col xs={24} lg={12}>
-          <Card
-            styles={{ body: { padding: 20 } }}
-            style={{ ...cardBg, height: "100%" }}
-          >
-            <Title
-              level={5}
-              style={{
-                color: "#a0a0a0",
-                marginBottom: 16,
-                fontSize: 13,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-              }}
-            >
-              Feedbacks de vendas · últimos 12 meses
-            </Title>
-            {feedbackTotal > 0 ? (
-              <>
-                <div
-                  style={{
-                    display: "flex",
-                    borderRadius: 6,
-                    overflow: "hidden",
-                    height: 32,
-                    marginBottom: 12,
-                    background: "#252525",
-                  }}
-                >
-                  {positivePct !== null && positivePct > 0 && (
-                    <div
-                      style={{
-                        flex: positivePct,
-                        background: softGreen,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#fff",
-                        fontWeight: 600,
-                        fontSize: 13,
-                      }}
-                    >
-                      {positivePct.toFixed(1)}%
-                    </div>
-                  )}
-                  {neutralPct !== null && neutralPct > 0 && (
-                    <div
-                      style={{
-                        flex: neutralPct,
-                        background: softBlue,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#fff",
-                        fontWeight: 600,
-                        fontSize: 13,
-                      }}
-                    >
-                      {neutralPct.toFixed(1)}%
-                    </div>
-                  )}
-                  {negativePct !== null && negativePct > 0 && (
-                    <div
-                      style={{
-                        flex: negativePct,
-                        background: softRed,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#fff",
-                        fontWeight: 600,
-                        fontSize: 13,
-                      }}
-                    >
-                      {negativePct.toFixed(1)}%
-                    </div>
-                  )}
-                </div>
-                <Row gutter={[16, 8]} style={{ marginBottom: 20 }}>
-                  <Col>
-                    <Text style={{ color: softGreen }}>
-                      Positivas: {formatNumber(feedback?.positive)} (
-                      {formatPercent(positivePct)})
-                    </Text>
-                  </Col>
-                  <Col>
-                    <Text style={{ color: softBlue }}>
-                      Neutras: {formatNumber(feedback?.neutral)} (
-                      {formatPercent(neutralPct)})
-                    </Text>
-                  </Col>
-                  <Col>
-                    <Text style={{ color: softRed }}>
-                      Negativas: {formatNumber(feedback?.negative)} (
-                      {formatPercent(negativePct)})
-                    </Text>
-                  </Col>
-                </Row>
-              </>
-            ) : (
-              <Text
-                style={{ color: "#808080", display: "block", marginBottom: 20 }}
-              >
-                Mercado Livre não retornou feedbacks de vendas no período.
-              </Text>
-            )}
-
-            <Title
-              level={5}
-              style={{
-                color: "#a0a0a0",
-                marginBottom: 12,
-                fontSize: 13,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-              }}
-            >
-              Selos & Conquistas
-            </Title>
-            <Row gutter={[12, 12]}>
-              {badges.map((badge, i) => (
-                <Col xs={24} sm={12} key={i}>
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: 12,
-                      alignItems: "center",
-                      padding: 12,
-                      borderRadius: 8,
-                      background: "#1a1a1a",
-                      border: "1px solid #303030",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: 24,
-                        color: badge.color,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {badge.icon}
-                    </div>
+                  <div className={styles.attentionItem} key={item.key}>
+                    <WarningFilled style={{ color: BAND_META[item.band].color }} />
                     <div>
-                      <Text
-                        style={{
-                          color: "#e0e0e0",
-                          fontWeight: 600,
-                          fontSize: 13,
-                        }}
-                      >
-                        {badge.label}
-                      </Text>
-                      <br />
-                      <Text style={{ color: "#808080", fontSize: 12 }}>
-                        {badge.desc}
-                      </Text>
+                      <strong>{config.title} em {BAND_META[item.band].label.toLowerCase()}</strong>
+                      <p>Índice atual de {formatPercent(item.metric.percent)} no período de {formatPeriod(item.metric.period).toLowerCase()}.</p>
                     </div>
+                    <Button href={config.actionHref}>{config.actionLabel}</Button>
                   </div>
-                </Col>
-              ))}
-            </Row>
-          </Card>
-        </Col>
-      </Row>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <div className={styles.basePanel}>
+          <div className={styles.sectionHeadingCompact}>
+            <div>
+              <span className={styles.eyebrow}>Base histórica</span>
+              <h2>Transações e avaliações</h2>
+            </div>
+            <small>{formatPeriod(transactions?.period)}</small>
+          </div>
+
+          <div className={styles.transactionNumbers}>
+            <div><span>Total</span><strong>{formatNumber(transactions?.total)}</strong></div>
+            <div><span>Concluídas</span><strong>{formatNumber(transactions?.completed)}</strong></div>
+            <div><span>Canceladas</span><strong>{formatNumber(transactions?.canceled)}</strong></div>
+          </div>
+
+          <div className={styles.ratings}>
+            <div className={styles.ratingBar} aria-label="Distribuição das avaliações">
+              <span className={styles.positiveRating} style={{ width: `${Math.max(0, (ratings?.positive || 0) * 100)}%` }} />
+              <span className={styles.neutralRating} style={{ width: `${Math.max(0, (ratings?.neutral || 0) * 100)}%` }} />
+              <span className={styles.negativeRating} style={{ width: `${Math.max(0, (ratings?.negative || 0) * 100)}%` }} />
+            </div>
+            <div className={styles.ratingLegend}>
+              <span><i className={styles.positiveDot} />Positivas {formatRating(ratings?.positive)}</span>
+              <span><i className={styles.neutralDot} />Neutras {formatRating(ratings?.neutral)}</span>
+              <span><i className={styles.negativeDot} />Negativas {formatRating(ratings?.negative)}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Collapse
+        className={styles.explanation}
+        items={[{
+          key: 'calculo',
+          label: 'Como o Mercado Livre calcula estas métricas?',
+          children: (
+            <div className={styles.explanationContent}>
+              <p><strong>Reclamações:</strong> vendas com reclamação divididas pelas vendas totais consideradas.</p>
+              <p><strong>Despachos atrasados:</strong> vendas enviadas fora do prazo divididas pelas vendas despachadas pelo Mercado Envios.</p>
+              <p><strong>Cancelamentos:</strong> cancelamentos feitos pelo vendedor, sem reclamação, divididos pelas vendas totais.</p>
+              <p>O próprio Mercado Livre define a janela de avaliação conforme o volume de vendas da conta.</p>
+              <Button
+                type="link"
+                href="https://developers.mercadolivre.com.br/reputacao-de-vendedores"
+                target="_blank"
+                icon={<ExportOutlined />}
+              >
+                Consultar critérios oficiais
+              </Button>
+            </div>
+          ),
+        }]}
+      />
     </div>
   );
 }

@@ -1,226 +1,131 @@
-import { NextResponse } from "next/server";
-import { fetchMLResult, getMLConnectionStatus } from "@/services/integration";
+import { NextResponse } from 'next/server';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
+import {
+  getReputationThresholds,
+  isReputationLevelId,
+  normalizeReputationMetric,
+  type SellerReputationResponse,
+} from '@/lib/ml/seller-reputation';
+import { loadReputationVisualReview } from '@/lib/ml/reputation-visual-review';
+import { fetchMLResult, getMLConnectionStatus } from '@/services/integration';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-const desconectado = {
-  reclamacoes: null,
-  atrasos: null,
-  cancelamentos: null,
-  positivas: null,
-  nivel: "Desconectado",
-  nivelCor: "#888",
-  nivelKey: "",
-  conectado: false,
-  precisaReconectar: true,
-};
+const NO_STORE_HEADERS = { 'Cache-Control': 'no-store' };
 
-const levelMap: Record<
-  string,
-  { color: string; label: string; shortKey: string }
-> = {
-  "5_green": { color: "#52c41a", label: "Verde", shortKey: "green" },
-  "4_light_green": {
-    color: "#73d13d",
-    label: "Verde claro",
-    shortKey: "light_green",
-  },
-  "4_light_blue": {
-    color: "#73d13d",
-    label: "Verde claro",
-    shortKey: "light_green",
-  },
-  "3_yellow": { color: "#faad14", label: "Amarelo", shortKey: "yellow" },
-  "2_orange": { color: "#fa8c16", label: "Laranja", shortKey: "orange" },
-  "1_red": { color: "#ff4d4f", label: "Vermelho", shortKey: "red" },
-};
+function json(payload: SellerReputationResponse, status = 200) {
+  return NextResponse.json(payload, { status, headers: NO_STORE_HEADERS });
+}
 
 function toNumber(value: unknown): number | null {
+  if (value === null || value === undefined || value === '') return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function percent(value: unknown): number | null {
-  const parsed = toNumber(value);
-  return parsed === null ? null : parsed * 100;
-}
-
-function metric(raw: any) {
+function disconnectedResponse(): SellerReputationResponse {
   return {
-    rate: toNumber(raw?.rate),
-    percent: percent(raw?.rate),
-    value: toNumber(raw?.value),
-    period: raw?.period || null,
-    excluded: toNumber(raw?.excluded?.real_value ?? raw?.excluded?.value),
+    conectado: false,
+    precisaReconectar: true,
+    updated_at: new Date().toISOString(),
   };
 }
 
-function powerSellerLabel(status: string | null) {
-  if (status === "silver") return "Mercado Líder";
-  if (status === "gold") return "Mercado Líder Gold";
-  if (status === "platinum") return "Mercado Líder Platinum";
-  return null;
-}
+export async function GET(request: Request) {
+  const auth = await authorizeApiRequest(request, 'sales.read');
+  if (!auth.ok) return auth.response;
 
-function monthsAgoIso(months: number) {
-  const date = new Date();
-  date.setMonth(date.getMonth() - months);
-  date.setMinutes(0, 0, 0);
-  return date.toISOString();
-}
-
-async function orderSearchTotal(
-  sellerId: number | string,
-  params: Record<string, string>,
-): Promise<number | null> {
-  const search = new URLSearchParams({
-    seller: String(sellerId),
-    limit: "1",
-    sort: "date_desc",
-    ...params,
-  });
-  const result = await fetchMLResult<any>(
-    `/orders/search?${search.toString()}`,
-  );
-  return result.ok ? toNumber(result.data?.paging?.total) : null;
-}
-
-export async function GET() {
   try {
+    const visualReview = await loadReputationVisualReview();
+    if (visualReview) return json(visualReview);
+
     const connection = await getMLConnectionStatus();
-    if (!connection.conectado) {
-      return NextResponse.json(desconectado);
+    if (!connection.conectado) return json(disconnectedResponse());
+
+    const meResult = await fetchMLResult<Record<string, any>>('/users/me');
+    if (!meResult.ok) {
+      return json({
+        conectado: true,
+        precisaReconectar: meResult.error?.category === 'auth_fatal',
+        erro: 'Não foi possível consultar a reputação no Mercado Livre.',
+        updated_at: new Date().toISOString(),
+      }, 502);
     }
 
-    const meResult = await fetchMLResult<any>("/users/me");
-    const me = meResult.ok ? meResult.data : null;
+    const me = meResult.data;
     if (!me?.id) {
-      return NextResponse.json({
-        ...desconectado,
+      return json({
         conectado: true,
         precisaReconectar: false,
         indisponivel: true,
+        updated_at: new Date().toISOString(),
       });
     }
 
-    const userResult = me?.seller_reputation
-      ? { ok: true, data: me }
-      : await fetchMLResult<any>(`/users/${me.id}`);
-    const user = userResult.ok ? userResult.data : null;
+    const userResult = me.seller_reputation
+      ? meResult
+      : await fetchMLResult<Record<string, any>>(`/users/${encodeURIComponent(String(me.id))}`);
+
+    if (!userResult.ok) {
+      return json({
+        conectado: true,
+        precisaReconectar: userResult.error?.category === 'auth_fatal',
+        erro: 'Não foi possível consultar os dados do vendedor no Mercado Livre.',
+        updated_at: new Date().toISOString(),
+      }, 502);
+    }
+
+    const user = userResult.data;
     if (!user?.seller_reputation) {
-      return NextResponse.json({
-        ...desconectado,
+      return json({
         conectado: true,
         precisaReconectar: false,
         indisponivel: true,
+        updated_at: new Date().toISOString(),
       });
     }
 
-    const sr = user.seller_reputation || {};
-    const metrics = sr.metrics || {};
-    const transactions = sr.transactions || {};
+    const reputation = user.seller_reputation as Record<string, any>;
+    const metrics = reputation.metrics || {};
+    const transactions = reputation.transactions || {};
     const ratings = transactions.ratings || {};
-    const levelId = sr.level_id || "";
-    const level = levelMap[levelId];
-    const powerStatus = sr.power_seller_status || null;
-    const claims = metric(metrics.claims);
-    const delayedHandling = metric(metrics.delayed_handling_time);
-    const cancellations = metric(metrics.cancellations);
-    const sixMonthsFrom = monthsAgoIso(6);
-    const twelveMonthsFrom = monthsAgoIso(12);
+    const claims = normalizeReputationMetric(metrics.claims);
+    const delayedHandling = normalizeReputationMetric(metrics.delayed_handling_time);
+    const cancellations = normalizeReputationMetric(metrics.cancellations);
+    const salesCompleted = toNumber(metrics.sales?.completed ?? metrics.sales_completed);
+    const salesPeriod = typeof metrics.sales?.period === 'string'
+      ? metrics.sales.period
+      : claims.period || delayedHandling.period || cancellations.period || null;
+    const siteId = typeof user.site_id === 'string' ? user.site_id : null;
 
-    const [
-      sold6m,
-      sold12m,
-      canceled6m,
-      canceled12m,
-      positive6m,
-      positive12m,
-      neutral6m,
-      neutral12m,
-      negative6m,
-      negative12m,
-    ] = await Promise.all([
-      orderSearchTotal(me.id, {
-        "order.date_created.from": sixMonthsFrom,
-        "order.status": "paid,confirmed",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": twelveMonthsFrom,
-        "order.status": "paid,confirmed",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": sixMonthsFrom,
-        "order.status": "cancelled",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": twelveMonthsFrom,
-        "order.status": "cancelled",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": sixMonthsFrom,
-        "feedback.sale.rating": "positive",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": twelveMonthsFrom,
-        "feedback.sale.rating": "positive",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": sixMonthsFrom,
-        "feedback.sale.rating": "neutral",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": twelveMonthsFrom,
-        "feedback.sale.rating": "neutral",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": sixMonthsFrom,
-        "feedback.sale.rating": "negative",
-      }),
-      orderSearchTotal(me.id, {
-        "order.date_created.from": twelveMonthsFrom,
-        "feedback.sale.rating": "negative",
-      }),
-    ]);
-
-    const feedbackTotal12m = [positive12m, neutral12m, negative12m].every(
-      (value) => value !== null,
-    )
-      ? Number(positive12m) + Number(neutral12m) + Number(negative12m)
-      : null;
-    const positiveFeedbackPercent =
-      feedbackTotal12m && positive12m !== null
-        ? (positive12m / feedbackTotal12m) * 100
-        : null;
-    const powerLabel = powerSellerLabel(powerStatus);
-    const nivelLabel = powerLabel || level?.label || "Sem reputação";
-    const salesCompleted = toNumber(
-      metrics.sales?.completed ?? metrics.sales_completed,
-    );
-    return NextResponse.json({
+    return json({
       conectado: true,
       precisaReconectar: false,
       indisponivel: false,
+      updated_at: new Date().toISOString(),
       user: {
         id: user.id,
-        nickname: user.nickname || null,
-        permalink: user.permalink || null,
-        registration_date: user.registration_date || null,
-        site_id: user.site_id || null,
-        tags: Array.isArray(user.tags) ? user.tags : [],
+        nickname: typeof user.nickname === 'string' ? user.nickname : null,
+        permalink: typeof user.permalink === 'string' ? user.permalink : null,
+        registration_date: typeof user.registration_date === 'string' ? user.registration_date : null,
+        site_id: siteId,
       },
       seller_reputation: {
-        level_id: levelId,
-        power_seller_status: powerStatus,
-        real_level: sr.real_level || null,
-        protection_end_date: sr.protection_end_date || null,
+        level_id: isReputationLevelId(reputation.level_id) ? reputation.level_id : null,
+        power_seller_status: typeof reputation.power_seller_status === 'string'
+          ? reputation.power_seller_status
+          : null,
+        real_level: isReputationLevelId(reputation.real_level) ? reputation.real_level : null,
+        protection_end_date: typeof reputation.protection_end_date === 'string'
+          ? reputation.protection_end_date
+          : null,
       },
       transactions: {
         total: toNumber(transactions.total) || 0,
         completed: toNumber(transactions.completed) || 0,
         canceled: toNumber(transactions.canceled) || 0,
-        period: transactions.period || null,
+        period: typeof transactions.period === 'string' ? transactions.period : null,
         ratings: {
           positive: toNumber(ratings.positive),
           neutral: toNumber(ratings.neutral),
@@ -232,57 +137,17 @@ export async function GET() {
         delayed_handling_time: delayedHandling,
         cancellations,
         sales_completed: salesCompleted,
-        period:
-          metrics.sales?.period ||
-          claims.period ||
-          delayedHandling.period ||
-          cancellations.period ||
-          null,
+        period: salesPeriod,
       },
-      orders_summary: {
-        six_months: {
-          sold: sold6m,
-          canceled: canceled6m,
-          feedback: {
-            positive: positive6m,
-            neutral: neutral6m,
-            negative: negative6m,
-          },
-        },
-        twelve_months: {
-          sold: sold12m,
-          canceled: canceled12m,
-          feedback: {
-            positive: positive12m,
-            neutral: neutral12m,
-            negative: negative12m,
-          },
-        },
-      },
-      feedback: {
-        source: "orders/search feedback.sale.rating",
-        period: "12 meses",
-        positive: positive12m,
-        neutral: neutral12m,
-        negative: negative12m,
-        total: feedbackTotal12m,
-        positive_percent: positiveFeedbackPercent,
-      },
-      reclamacoes: claims.percent,
-      atrasos: delayedHandling.percent,
-      cancelamentos: cancellations.percent,
-      positivas: positiveFeedbackPercent,
-      nivel: nivelLabel,
-      nivelCor: level?.color || "#888",
-      nivelKey: level?.shortKey || "",
+      thresholds: getReputationThresholds(siteId),
     });
-  } catch (error: any) {
-    return NextResponse.json(
-      {
-        ...desconectado,
-        erro: error?.message || "Falha ao carregar reputação",
-      },
-      { status: 500 },
-    );
+  } catch (error) {
+    console.error('[ml-reputacao] Falha ao carregar reputação:', error);
+    return json({
+      conectado: false,
+      precisaReconectar: false,
+      erro: 'Falha ao carregar reputação do Mercado Livre.',
+      updated_at: new Date().toISOString(),
+    }, 500);
   }
 }
