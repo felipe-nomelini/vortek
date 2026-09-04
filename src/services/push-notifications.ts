@@ -1,5 +1,7 @@
 import webpush from 'web-push';
 import { createServiceClient } from '@/lib/supabase';
+import { notificationAppLink } from '@/lib/configuracoes/notifications';
+import type { Json } from '@/types/database';
 
 type PushEventType = 'new_sale' | 'new_question' | 'claim_opened' | 'test';
 
@@ -24,71 +26,89 @@ function configureWebPush() {
   return true;
 }
 
-function appUrl(path: string) {
-  const base = process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop';
-  return new URL(path, base).toString();
-}
-
 async function recipients(input: PushInput): Promise<string[]> {
   if (input.userId) return [input.userId];
   const client = createServiceClient();
-  const { data } = await client
-    .from('profiles')
-    .select('id')
-    .in('cargo', ['admin', 'gerente']);
-  return Array.from(new Set((data || []).map((row: any) => String(row.id)).filter(Boolean)));
+  const [policyResult, targetsResult, profilesResult, usersResult] = await Promise.all([
+    client
+      .from('push_alert_settings')
+      .select('enabled')
+      .eq('alert_type', input.eventType)
+      .maybeSingle(),
+    client
+      .from('push_alert_recipients')
+      .select('recipient_role,user_id')
+      .eq('alert_type', input.eventType),
+    client.from('profiles').select('id,cargo'),
+    client.auth.admin.listUsers({ page: 1, perPage: 1000 }),
+  ]);
+  if (policyResult.error) throw new Error(`Falha ao consultar política push: ${policyResult.error.message}`);
+  if (targetsResult.error) throw new Error(`Falha ao consultar destinatários push: ${targetsResult.error.message}`);
+  if (profilesResult.error) throw new Error(`Falha ao consultar usuários push: ${profilesResult.error.message}`);
+  if (usersResult.error) throw new Error(`Falha ao consultar estado dos usuários push: ${usersResult.error.message}`);
+  if (!policyResult.data?.enabled) return [];
+
+  const roles = new Set((targetsResult.data || []).map((target) => target.recipient_role).filter(Boolean));
+  const explicitUsers = new Set((targetsResult.data || []).map((target) => target.user_id).filter(Boolean));
+  const activeUsers = new Set(usersResult.data.users.filter((user) => {
+    if (!user.banned_until) return true;
+    const bannedUntil = Date.parse(user.banned_until);
+    return Number.isNaN(bannedUntil) || bannedUntil <= Date.now();
+  }).map((user) => user.id));
+
+  return Array.from(new Set((profilesResult.data || [])
+    .filter((profile) => activeUsers.has(profile.id))
+    .filter((profile) => explicitUsers.has(profile.id) || roles.has(profile.cargo))
+    .map((profile) => profile.id)));
 }
 
 export async function enqueuePushNotification(input: PushInput) {
   const client = createServiceClient();
-  const { data: config } = await client
-    .from('configuracoes')
-    .select('notificacoes_push')
-    .maybeSingle();
-  if (config?.notificacoes_push !== true) return { queued: 0, skipped: true };
+  const url = notificationAppLink(input.url);
+  if (!url) return { queued: 0, skipped: true, reason: 'app_url_not_configured' as const };
 
   const userIds = await recipients(input);
-  if (!userIds.length) return { queued: 0, skipped: true };
+  if (!userIds.length) return { queued: 0, skipped: true, reason: 'no_active_recipients' as const };
 
   const rows = userIds.map((userId) => ({
     user_id: userId,
     event_type: input.eventType,
     title: input.title,
     body: input.body,
-    url: appUrl(input.url),
-    payload: input.payload || {},
+    url,
+    payload: (input.payload || {}) as Json,
     dedupe_key: input.dedupeKey,
     status: 'pending',
     available_at: new Date().toISOString(),
   }));
-  const { error } = await (client.from('push_notification_outbox' as any)
-    .upsert(rows as any, { onConflict: 'user_id,dedupe_key', ignoreDuplicates: true }) as any);
+  const { error } = await client.from('push_notification_outbox')
+    .upsert(rows, { onConflict: 'user_id,dedupe_key', ignoreDuplicates: true });
   if (error) throw new Error(`Falha ao enfileirar push: ${error.message}`);
-  return { queued: rows.length, skipped: false };
+  return { queued: rows.length, skipped: false, reason: null };
 }
 
 export async function dispatchPushNotifications(limit = 50) {
   if (!configureWebPush()) return { sent: 0, retry: 0, failed: 0, skipped: 'vapid_not_configured' };
   const client = createServiceClient();
   const now = new Date().toISOString();
-  const { data: pending } = await (client.from('push_notification_outbox' as any)
+  const { data: pending } = await client.from('push_notification_outbox')
     .select('*')
     .in('status', ['pending', 'retry'])
     .lte('available_at', now)
     .order('created_at', { ascending: true })
-    .limit(limit) as any);
+    .limit(limit);
 
   let sent = 0;
   let retry = 0;
   let failed = 0;
   for (const notification of pending || []) {
     const attempts = Number(notification.attempts || 0) + 1;
-    await (client.from('push_notification_outbox' as any).update({ status: 'processing', attempts, updated_at: now }).eq('id', notification.id) as any);
-    const { data: subscriptions } = await (client.from('push_subscriptions' as any)
+    await client.from('push_notification_outbox').update({ status: 'processing', attempts, updated_at: now }).eq('id', notification.id);
+    const { data: subscriptions } = await client.from('push_subscriptions')
       .select('id,endpoint,p256dh,auth')
-      .eq('user_id', notification.user_id) as any);
+      .eq('user_id', notification.user_id);
     if (!subscriptions?.length) {
-      await (client.from('push_notification_outbox' as any).update({ status: 'skipped', last_error: 'Usuário sem inscrição push ativa', updated_at: now }).eq('id', notification.id) as any);
+      await client.from('push_notification_outbox').update({ status: 'skipped', last_error: 'Usuário sem inscrição push ativa', updated_at: now }).eq('id', notification.id);
       continue;
     }
 
@@ -109,19 +129,19 @@ export async function dispatchPushNotifications(limit = 50) {
       } catch (error: any) {
         lastError = error?.body || error?.message || 'Falha ao enviar push';
         if ([404, 410].includes(Number(error?.statusCode))) {
-          await (client.from('push_subscriptions' as any).delete().eq('id', subscription.id) as any);
+          await client.from('push_subscriptions').delete().eq('id', subscription.id);
         }
       }
     }
     if (delivered) {
       sent += 1;
-      await (client.from('push_notification_outbox' as any).update({ status: 'sent', sent_at: new Date().toISOString(), last_error: null, updated_at: new Date().toISOString() }).eq('id', notification.id) as any);
+      await client.from('push_notification_outbox').update({ status: 'sent', sent_at: new Date().toISOString(), last_error: null, updated_at: new Date().toISOString() }).eq('id', notification.id);
     } else if (attempts >= MAX_ATTEMPTS) {
       failed += 1;
-      await (client.from('push_notification_outbox' as any).update({ status: 'failed', last_error: lastError.slice(0, 1000), updated_at: new Date().toISOString() }).eq('id', notification.id) as any);
+      await client.from('push_notification_outbox').update({ status: 'failed', last_error: lastError.slice(0, 1000), updated_at: new Date().toISOString() }).eq('id', notification.id);
     } else {
       retry += 1;
-      await (client.from('push_notification_outbox' as any).update({ status: 'retry', last_error: lastError.slice(0, 1000), available_at: new Date(Date.now() + attempts * 60000).toISOString(), updated_at: new Date().toISOString() }).eq('id', notification.id) as any);
+      await client.from('push_notification_outbox').update({ status: 'retry', last_error: lastError.slice(0, 1000), available_at: new Date(Date.now() + attempts * 60000).toISOString(), updated_at: new Date().toISOString() }).eq('id', notification.id);
     }
   }
   return { sent, retry, failed };

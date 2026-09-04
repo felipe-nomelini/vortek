@@ -168,7 +168,9 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-04 — Produtos, estoque, pedidos e fulfillment`.
 - [x] Aprovar visualmente `BNT-CFG-04` em homologação antes de iniciar `BNT-CFG-05`.
 - [x] Executar somente `BNT-CFG-05 — Mercado Livre e anúncios`.
-- [ ] Aprovar visualmente `BNT-CFG-05` em homologação antes de iniciar `BNT-CFG-06`.
+- [x] Aprovar visualmente `BNT-CFG-05` em homologação antes de iniciar `BNT-CFG-06`.
+- [x] Executar somente `BNT-CFG-06 — Notificações e canais`.
+- [ ] Aprovar visualmente `BNT-CFG-06` em homologação antes de iniciar `BNT-CFG-07`.
 
 ---
 
@@ -2515,7 +2517,19 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter o commit desta entrega em `dev` e redeployar somente `vortek-erp-dev`. As três colunas aditivas podem permanecer sem uso; removê-las exige migration corretiva autorizada exclusivamente no `.162`.
 
-**Pendência:** publicar em homologação e obter aprovação visual da aba `Mercado Livre` em `https://dev.bentevi.shop/configuracoes?tab=mercado-livre` antes de iniciar `BNT-CFG-06`.
+**Aprovação:** a aba `Mercado Livre` foi aprovada visualmente pelo responsável em `2026-09-04`, liberando `BNT-CFG-06`.
+
+### `BNT-CFG-06 — Notificações e canais`
+
+**Causa confirmada:** a configuração anterior misturava a inscrição Push deste navegador com um booleano global, fixava destinatários Push nos cargos `admin/gerente` e mantinha os alertas WhatsApp ligados a env ou números hardcoded, apesar de `whatsapp_alert_settings` já existir. A aba `Preferências` era apenas esse controle ambíguo.
+
+**Mudança:** a aba `Notificações` passou a mostrar saúde e teste protegido de Push, WAHA e SMTP, política Push por evento/cargo/usuário, inscrição local do navegador e destinatários WhatsApp por evento. O runtime consulta apenas as fontes tipadas, remove os fallbacks nominais e gera links somente com `NEXT_PUBLIC_APP_URL`; em homologação, alertas automáticos de WhatsApp só alcançam o destinatário de teste se ele também estiver habilitado na política. E-mail continua transacional no fluxo fiscal e o teste SMTP apenas verifica a conexão.
+
+**Banco DEV:** a migration `20260905023000_bnt_cfg_06_notifications.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. O read-back confirmou 3 políticas Push, 6 alvos iniciais, 2 destinatários WhatsApp consolidados, RLS ativo e acesso cliente revogado. O RPC de salvamento integral foi validado em nova transação com `ROLLBACK`.
+
+**Validação técnica:** passaram 14 cenários direcionados de notificações/admin/UI, 14 cenários retroativos de empresa/fiscal e 18 de Mercado Livre/configurações. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhum teste externo de Push, WhatsApp ou e-mail foi disparado.
+
+**Pendência:** publicar e aprovar visualmente `https://dev.bentevi.shop/configuracoes?tab=notificacoes` antes de iniciar `BNT-CFG-07`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

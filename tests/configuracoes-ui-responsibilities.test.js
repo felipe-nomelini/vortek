@@ -11,7 +11,7 @@ const page = read("src/app/(app)/configuracoes/page.tsx");
 const empresa = read("src/components/configuracoes/EmpresaTab.tsx");
 const integracoes = read("src/components/configuracoes/IntegracoesTab.tsx");
 const usuarios = read("src/components/configuracoes/UsuariosTab.tsx");
-const preferencias = read("src/components/configuracoes/PreferenciasTab.tsx");
+const notificacoes = read("src/components/configuracoes/NotificacoesTab.tsx");
 const auditoria = read("src/components/configuracoes/AuditoriaTab.tsx");
 const operacao = read("src/components/configuracoes/OperacaoTab.tsx");
 const mercadoLivre = read("src/components/configuracoes/MercadoLivreTab.tsx");
@@ -23,12 +23,12 @@ test("Configurações mantém uma rota e delega as tabs administrativas", () => 
     "MercadoLivreTab",
     "IntegracoesTab",
     "UsuariosTab",
-    "PreferenciasTab",
+    "NotificacoesTab",
     "AuditoriaTab",
   ]) {
     assert.match(page, new RegExp(`<${component} messageApi=\\{messageApi\\} \\/>`));
   }
-  for (const key of ["empresa", "operacao", "mercado-livre", "integracoes", "usuarios", "preferencias", "historico"]) {
+  for (const key of ["empresa", "operacao", "mercado-livre", "notificacoes", "integracoes", "usuarios", "historico"]) {
     assert.match(page, new RegExp(`key: "${key}"`));
   }
   assert.match(page, /useSearchParams\(\)/);
@@ -63,9 +63,9 @@ test("cada tab concentra somente seu fluxo operacional", () => {
   assert.match(usuarios, /<Table<Usuario>/);
   assert.doesNotMatch(usuarios, /\/api\/integracoes|\/api\/push/);
 
-  assert.match(preferencias, /fetch\("\/api\/configuracoes"/);
-  assert.match(preferencias, /\/api\/push\/subscription/);
-  assert.doesNotMatch(preferencias, /\/api\/integracoes|\/usuarios/);
+  assert.match(notificacoes, /fetch\("\/api\/configuracoes\/notificacoes"/);
+  assert.match(notificacoes, /\/api\/push\/subscription/);
+  assert.doesNotMatch(notificacoes, /\/api\/integracoes|\/configuracoes\/usuarios/);
 
   assert.match(operacao, /fetch\("\/api\/configuracoes\/operacao"/);
   assert.doesNotMatch(operacao, /\/api\/integracoes|\/api\/push|\/usuarios/);

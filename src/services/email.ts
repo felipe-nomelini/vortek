@@ -78,3 +78,20 @@ export async function sendEmail(input: SendMailInput) {
     throw err;
   }
 }
+
+export function getEmailChannelStatus() {
+  return {
+    configured: Boolean(
+      String(process.env.SMTP_HOST || '').trim()
+      && String(process.env.SMTP_USER || '').trim()
+      && String(process.env.SMTP_PASS || '').trim()
+      && String(process.env.EMAIL_FROM_NFE || process.env.SMTP_USER || '').trim()
+    ),
+  };
+}
+
+export async function verifyEmailTransport() {
+  const transport = createTransport();
+  await transport.verify();
+  return { ok: true as const };
+}

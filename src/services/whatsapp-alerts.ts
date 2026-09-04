@@ -24,6 +24,10 @@ import {
 import { isMlOrderPaid } from "@/lib/ml/order-sale-alert";
 import { decideCriticalJobAlert } from "@/lib/sync/critical-job-alert";
 import {
+  notificationAppLink,
+  selectWhatsappRecipientsForEnvironment,
+} from "@/lib/configuracoes/notifications";
+import {
   SYNC_TASKS,
   evaluateScheduledTaskHealth,
   getIntervalMinutesForTask,
@@ -52,7 +56,6 @@ type AlertInput = {
   dedupeTtlHours?: number;
 };
 
-const DEFAULT_ALERT_PHONES = ["21981172939", "21970066090"];
 const LABEL_RELEASE_SCAN_LOOKBACK_DAYS = 10;
 const NON_ACTIONABLE_LABEL_STATUSES = new Set([
   "cancelado",
@@ -62,21 +65,29 @@ const NON_ACTIONABLE_LABEL_STATUSES = new Set([
   "recusado",
 ]);
 
-function getAlertPhones(): string[] {
-  const raw = String(process.env.WHATSAPP_ALERT_PHONES || "").trim();
-  const phones = raw
-    ? raw
-        .split(",")
-        .map((phone) => phone.trim())
-        .filter(Boolean)
-    : DEFAULT_ALERT_PHONES;
-  return Array.from(
-    new Set(phones.map((phone) => phone.replace(/\D/g, "")).filter(Boolean)),
+async function getAlertPhones(type: AlertType): Promise<string[]> {
+  const client = createServiceClient();
+  const { data, error } = await client
+    .from("whatsapp_alert_settings")
+    .select("phone,event_types")
+    .eq("enabled", true);
+  if (error) throw new Error(`Falha ao consultar destinatários WhatsApp: ${error.message}`);
+  const configured = (data || [])
+    .filter((recipient) => recipient.event_types.includes(type))
+    .map((recipient) => recipient.phone);
+  return selectWhatsappRecipientsForEnvironment(
+    configured,
+    process.env.WAHA_TEST_RECIPIENT_PHONE,
   );
 }
 
 function nowIso() {
   return new Date().toISOString();
+}
+
+function appLinkLine(label: string, path: string): string | null {
+  const url = notificationAppLink(path);
+  return url ? `${label}: ${url}` : null;
 }
 
 function alertLockDomain(input: AlertInput) {
@@ -261,7 +272,7 @@ function buildJobErrorSignature(
 
 function buildText(input: AlertInput) {
   return [
-    `*Vortek - ${severityLabel(input.severity || "info")}*`,
+    `*Bentevi - ${severityLabel(input.severity || "info")}*`,
     "",
     `*${input.title}*`,
     "",
@@ -381,10 +392,18 @@ export async function sendWhatsappAlert(
       }
     }
 
+    const phones = await getAlertPhones(input.type);
+    if (!phones.length) {
+      await auditAlert(alertInput, "none", "skipped", {
+        reason: "no_enabled_recipient_for_environment",
+      }).catch(() => null);
+      return { sent: 0, skipped: true, errors: 0 };
+    }
+
     const text = buildText(alertInput);
     let sent = 0;
     let errors = 0;
-    for (const phone of getAlertPhones()) {
+    for (const phone of phones) {
       try {
         await sendWahaText({ chatId: normalizeWhatsappChatId(phone), text });
         sent += 1;
@@ -436,7 +455,7 @@ export async function alertNewSale(order: {
       order.ml_pack_id ? `Pack ID: ${order.ml_pack_id}` : null,
       `Cliente: ${order.contato_nome || "Desconhecido"}`,
       `Valor: ${formatCurrency(Number(order.total || 0))}`,
-      `Link: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/pedidos?search=${encodeURIComponent(String(number))}`,
+      appLinkLine("Link", `/pedidos?search=${encodeURIComponent(String(number))}`),
     ]
       .filter(Boolean)
       .join("\n"),
@@ -482,7 +501,7 @@ export async function alertNewQuestion(question: {
       question.item_permalink
         ? `Link do anúncio: ${question.item_permalink}`
         : null,
-      `Responder no sistema: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/perguntas`,
+      appLinkLine("Responder no sistema", "/perguntas"),
     ]
       .filter((line) => line !== null)
       .join("\n"),
@@ -512,7 +531,7 @@ export async function alertClaimOpened(order: {
       `Claim: ${order.ml_claim_id}`,
       `Status: ${order.ml_claim_status || "não informado"}`,
       `Cliente: ${order.contato_nome || "Desconhecido"}`,
-      `Link: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/pedidos?search=${encodeURIComponent(String(orderNumber))}`,
+      appLinkLine("Link", `/pedidos?search=${encodeURIComponent(String(orderNumber))}`),
     ].join("\n"),
     payload: order as any,
   });
@@ -570,7 +589,7 @@ export async function alertMlLabelReleased(order: {
         ? `Janela prevista: ${formatMlReleaseWindow(order.ml_fiscal_release_at).when}`
         : null,
       `Ação: subir XML, baixar etiqueta real e enviar ao fornecedor.`,
-      `Link: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/pedidos?search=${encodeURIComponent(String(orderNumber))}`,
+      appLinkLine("Link", `/pedidos?search=${encodeURIComponent(String(orderNumber))}`),
     ]
       .filter(Boolean)
       .join("\n"),
@@ -790,7 +809,7 @@ export async function alertCriticalJobs() {
           : latest.lastLog?.message
             ? `Erro/log: ${latest.lastLog.message}`
             : null,
-        `Link: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/dashboard`,
+        appLinkLine("Link", "/dashboard"),
       ]
         .filter(Boolean)
         .join("\n"),
@@ -902,7 +921,7 @@ export async function alertStaleScheduledTasks() {
           health.minutesSinceLastRun !== null
             ? `Última execução: há ${Math.round(health.minutesSinceLastRun)} min`
             : "Última execução: nenhum job encontrado para esta task",
-          `Link: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/dashboard`,
+          appLinkLine("Link", "/dashboard"),
         ].join("\n"),
         payload: {
           task: task.key,

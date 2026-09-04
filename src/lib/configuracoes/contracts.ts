@@ -68,7 +68,9 @@ export const CONFIGURATION_DEFINITIONS = {
   "fornecedores.dropshipping_retired_at": { domain: "produtos_estoque_fulfillment", label: "Aposentadoria do fornecedor", classification: "STATUS_SOMENTE_LEITURA" },
   "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo, margem e lucro mínimo", classification: "EDITAVEL_CONTROLADO" },
   "ml_quantity_pricing_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de preço por quantidade", classification: "EDITAVEL_CONTROLADO" },
-  "configuracoes.notificacoes_push": { domain: "notificacoes", label: "Notificações push", classification: "EDITAVEL_IMEDIATO" },
+  "configuracoes.notificacoes_push": { domain: "notificacoes", label: "Notificações push globais", classification: "OBSOLETO" },
+  "notificacoes.push.policy": { domain: "notificacoes", label: "Política de notificações push", classification: "EDITAVEL_CONTROLADO" },
+  "notificacoes.whatsapp.recipients": { domain: "notificacoes", label: "Destinatários de alertas WhatsApp", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.nfe_provider_default": { domain: "empresa_fiscal", label: "Provedor fiscal", classification: "INVARIANTE" },
   "configuracoes.simples_inicio_atividade": { domain: "empresa_fiscal", label: "Início da atividade", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.simples_aliquota_confirmada": { domain: "empresa_fiscal", label: "Alíquota confirmada do Simples", classification: "EDITAVEL_CONTROLADO" },
@@ -158,9 +160,72 @@ export const companyConfigurationSchema = z.object({
   endereco_fiscal: companyAddressSchema,
 }).strict();
 
-export const preferencesConfigurationSchema = z.object({
-  notificacoes_push: z.boolean(),
+const notificationRoleSchema = z.enum(["admin", "gerente", "operador", "visualizador"]);
+
+const PUSH_NOTIFICATION_EVENTS = ["new_sale", "new_question", "claim_opened"] as const;
+const WHATSAPP_NOTIFICATION_EVENTS = [
+  "new_sale", "new_question", "claim_opened", "ml_label_released",
+  "critical_error", "integration_status", "weekly_sales_report", "monthly_sales_report",
+] as const;
+
+function normalizeNotificationPhone(value: string): string | null {
+  const digits = value.replace(/\D/g, "");
+  const withCountry = digits.startsWith("55") ? digits : `55${digits}`;
+  return /^55\d{10,11}$/.test(withCountry) ? withCountry : null;
+}
+
+const pushNotificationPolicySchema = z.object({
+  eventType: z.enum(PUSH_NOTIFICATION_EVENTS),
+  enabled: z.boolean(),
+  recipientRoles: z.array(notificationRoleSchema).max(4),
+  userIds: z.array(z.string().uuid("Usuário de notificação inválido")).max(100),
+}).strict().superRefine((value, context) => {
+  if (new Set(value.recipientRoles).size !== value.recipientRoles.length) {
+    context.addIssue({ code: "custom", path: ["recipientRoles"], message: "Cargos de notificação duplicados" });
+  }
+  if (new Set(value.userIds).size !== value.userIds.length) {
+    context.addIssue({ code: "custom", path: ["userIds"], message: "Usuários de notificação duplicados" });
+  }
+  if (value.enabled && !value.recipientRoles.length && !value.userIds.length) {
+    context.addIssue({ code: "custom", message: "Selecione ao menos um destinatário para o evento push" });
+  }
+});
+
+const whatsappNumberSchema = z.string().trim().max(32)
+  .refine((value) => Boolean(normalizeNotificationPhone(value)), "Número de WhatsApp inválido")
+  .transform((value) => normalizeNotificationPhone(value) as string);
+
+const whatsappRecipientSchema = z.object({
+  id: z.string().uuid("Destinatário inválido").optional(),
+  recipientName: z.string().trim().min(1, "Informe o nome do destinatário").max(120),
+  phone: whatsappNumberSchema,
+  enabled: z.boolean(),
+  eventTypes: z.array(z.enum(WHATSAPP_NOTIFICATION_EVENTS)).min(1).max(8),
+}).strict().superRefine((value, context) => {
+  if (new Set(value.eventTypes).size !== value.eventTypes.length) {
+    context.addIssue({ code: "custom", path: ["eventTypes"], message: "Eventos WhatsApp duplicados" });
+  }
+});
+
+export const notificationConfigurationSchema = z.object({
+  pushPolicies: z.array(pushNotificationPolicySchema).length(PUSH_NOTIFICATION_EVENTS.length),
+  whatsappRecipients: z.array(whatsappRecipientSchema).max(100),
+}).strict().superRefine((value, context) => {
+  const pushTypes = value.pushPolicies.map((policy) => policy.eventType);
+  if (new Set(pushTypes).size !== PUSH_NOTIFICATION_EVENTS.length) {
+    context.addIssue({ code: "custom", path: ["pushPolicies"], message: "Informe cada evento push uma única vez" });
+  }
+  const phones = value.whatsappRecipients.map((recipient) => recipient.phone);
+  if (new Set(phones).size !== phones.length) {
+    context.addIssue({ code: "custom", path: ["whatsappRecipients"], message: "O mesmo telefone foi informado mais de uma vez" });
+  }
+});
+
+export const notificationChannelTestSchema = z.object({
+  channel: z.enum(["push", "whatsapp", "email"]),
 }).strict();
+
+export type NotificationConfigurationInput = z.infer<typeof notificationConfigurationSchema>;
 
 const costTierSchema = z.object({
   position: z.number().int().min(1).max(3),

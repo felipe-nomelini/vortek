@@ -6,7 +6,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useSearchParams } from "next/navigation";
 import EmpresaTab from "@/components/configuracoes/EmpresaTab";
 import IntegracoesTab from "@/components/configuracoes/IntegracoesTab";
-import PreferenciasTab from "@/components/configuracoes/PreferenciasTab";
+import NotificacoesTab from "@/components/configuracoes/NotificacoesTab";
 import UsuariosTab from "@/components/configuracoes/UsuariosTab";
 import AuditoriaTab from "@/components/configuracoes/AuditoriaTab";
 import ComercialTab from "@/components/configuracoes/ComercialTab";
@@ -15,7 +15,7 @@ import MercadoLivreTab from "@/components/configuracoes/MercadoLivreTab";
 import { configuracoesCardStyle } from "@/components/configuracoes/styles";
 
 const { Title } = Typography;
-const validTabs = ["empresa", "comercial", "operacao", "mercado-livre", "integracoes", "usuarios", "preferencias", "historico"];
+const validTabs = ["empresa", "comercial", "operacao", "mercado-livre", "notificacoes", "integracoes", "usuarios", "historico"];
 
 function ConfiguracoesPageContent() {
   const searchParams = useSearchParams();
@@ -75,6 +75,12 @@ function ConfiguracoesPageContent() {
               children: <MercadoLivreTab messageApi={messageApi} />,
             },
             {
+              key: "notificacoes",
+              label: "🔔 Notificações",
+              forceRender: true,
+              children: <NotificacoesTab messageApi={messageApi} />,
+            },
+            {
               key: "integracoes",
               label: "🔐 Integrações",
               forceRender: true,
@@ -85,12 +91,6 @@ function ConfiguracoesPageContent() {
               label: "👥 Usuários",
               forceRender: true,
               children: <UsuariosTab messageApi={messageApi} />,
-            },
-            {
-              key: "preferencias",
-              label: "⚙️ Preferências",
-              forceRender: true,
-              children: <PreferenciasTab messageApi={messageApi} />,
             },
             {
               key: "historico",

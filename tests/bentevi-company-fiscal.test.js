@@ -87,7 +87,7 @@ test("contrato tributário mantém alíquota e confirmação inseparáveis", () 
 
 test("BNT-CFG-02 elimina fontes fiscais ambíguas da interface e operação", () => {
   const companyUi = read("src/components/configuracoes/EmpresaTab.tsx");
-  const preferences = read("src/components/configuracoes/PreferenciasTab.tsx");
+  const notifications = read("src/components/configuracoes/NotificacoesTab.tsx");
   const integrations = read("src/components/configuracoes/IntegracoesTab.tsx");
   const pricingContext = read("src/services/pricing-tax-context.ts");
   const orderSync = read("src/app/api/sync/pedidos/route.ts");
@@ -102,7 +102,7 @@ test("BNT-CFG-02 elimina fontes fiscais ambíguas da interface e operação", ()
     assert.match(companyUi, new RegExp(label));
   }
   assert.doesNotMatch(companyUi, /Nickname ML/);
-  assert.doesNotMatch(preferences, /Tributação da precificação|23\/03\/2026/);
+  assert.doesNotMatch(notifications, /Tributação da precificação|23\/03\/2026/);
   assert.doesNotMatch(integrations, /Provedor fiscal padrão/);
   assert.doesNotMatch(pricingContext, /DEFAULT_ACTIVITY_START_DATE/);
   assert.doesNotMatch(orderSync, /endereco_fallback/);

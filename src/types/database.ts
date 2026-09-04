@@ -1621,6 +1621,156 @@ export type Database = {
           },
         ]
       }
+      push_alert_recipients: {
+        Row: {
+          alert_type: string
+          created_at: string
+          id: string
+          recipient_role: Database["public"]["Enums"]["user_role"] | null
+          user_id: string | null
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string
+          id?: string
+          recipient_role?: Database["public"]["Enums"]["user_role"] | null
+          user_id?: string | null
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string
+          id?: string
+          recipient_role?: Database["public"]["Enums"]["user_role"] | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "push_alert_recipients_alert_type_fkey"
+            columns: ["alert_type"]
+            isOneToOne: false
+            referencedRelation: "push_alert_settings"
+            referencedColumns: ["alert_type"]
+          },
+          {
+            foreignKeyName: "push_alert_recipients_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      push_alert_settings: {
+        Row: {
+          alert_type: string
+          created_at: string
+          enabled: boolean
+          updated_at: string
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string
+          enabled?: boolean
+          updated_at?: string
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string
+          enabled?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      push_notification_outbox: {
+        Row: {
+          attempts: number
+          available_at: string
+          body: string
+          created_at: string
+          dedupe_key: string
+          event_type: string
+          id: string
+          last_error: string | null
+          payload: Json
+          sent_at: string | null
+          status: string
+          title: string
+          updated_at: string
+          url: string
+          user_id: string
+        }
+        Insert: {
+          attempts?: number
+          available_at?: string
+          body: string
+          created_at?: string
+          dedupe_key: string
+          event_type: string
+          id?: string
+          last_error?: string | null
+          payload?: Json
+          sent_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          url: string
+          user_id: string
+        }
+        Update: {
+          attempts?: number
+          available_at?: string
+          body?: string
+          created_at?: string
+          dedupe_key?: string
+          event_type?: string
+          id?: string
+          last_error?: string | null
+          payload?: Json
+          sent_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          url?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      push_subscriptions: {
+        Row: {
+          auth: string
+          created_at: string
+          endpoint: string
+          id: string
+          last_seen_at: string
+          p256dh: string
+          updated_at: string
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          auth: string
+          created_at?: string
+          endpoint: string
+          id?: string
+          last_seen_at?: string
+          p256dh: string
+          updated_at?: string
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          auth?: string
+          created_at?: string
+          endpoint?: string
+          id?: string
+          last_seen_at?: string
+          p256dh?: string
+          updated_at?: string
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -1648,6 +1798,36 @@ export type Database = {
         }
         Relationships: []
       }
+      whatsapp_alert_settings: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          event_types: string[]
+          id: string
+          phone: string
+          recipient_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          event_types: string[]
+          id?: string
+          phone: string
+          recipient_name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          event_types?: string[]
+          id?: string
+          phone?: string
+          recipient_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -1661,6 +1841,10 @@ export type Database = {
           p_quantity_tiers: Json
           p_unspecified_shipping_cost: number
         }
+        Returns: undefined
+      }
+      save_notification_configuration: {
+        Args: { p_push: Json; p_whatsapp: Json }
         Returns: undefined
       }
       search_clientes_paginated: {

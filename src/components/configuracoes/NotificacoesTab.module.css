@@ -1,0 +1,133 @@
+.page {
+  display: grid;
+  gap: 20px;
+}
+
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.heading h3,
+.heading p {
+  margin: 0;
+}
+
+.heading p,
+.muted {
+  color: #8c8c8c;
+}
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.channel {
+  min-height: 190px;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #1d1d1d 0%, #141414 72%);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.channelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.channelTitle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.channelDescription {
+  color: #8c8c8c;
+  font-size: 13px;
+  min-height: 40px;
+}
+
+.channelMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: #bfbfbf;
+  font-size: 12px;
+}
+
+.channelActions {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.section {
+  border: 1px solid #303030;
+  border-radius: 10px;
+  background: #171717;
+  padding: 18px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sectionHeader h4,
+.sectionHeader p {
+  margin: 0;
+}
+
+.sectionHeader p {
+  color: #8c8c8c;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.eventName {
+  display: grid;
+  gap: 3px;
+}
+
+.eventName small {
+  color: #737373;
+}
+
+.eventsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+@media (max-width: 1050px) {
+  .channels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .heading,
+  .sectionHeader {
+    flex-direction: column;
+  }
+
+  .section,
+  .channel {
+    padding: 14px;
+  }
+}

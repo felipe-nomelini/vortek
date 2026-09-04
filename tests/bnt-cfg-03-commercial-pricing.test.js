@@ -62,7 +62,7 @@ test('migration protege tabelas e limita a mutação ao RPC administrativo', () 
 test('salvamento comercial não dispara recálculo, publicação ou alteração de produto', () => {
   const route = read('src/app/api/configuracoes/comercial/route.ts');
   const ui = read('src/components/configuracoes/ComercialTab.tsx');
-  const preferences = read('src/components/configuracoes/PreferenciasTab.tsx');
+  const notifications = read('src/components/configuracoes/NotificacoesTab.tsx');
   const page = read('src/app/(app)/configuracoes/page.tsx');
 
   assert.match(route, /save_commercial_pricing_configuration/);
@@ -70,6 +70,6 @@ test('salvamento comercial não dispara recálculo, publicação ou alteração 
   assert.doesNotMatch(route, /from\(["']produtos["']\)|fetchML|outbox|publish/i);
   assert.match(ui, /próximos cálculos/i);
   assert.match(ui, /Simulador/);
-  assert.doesNotMatch(preferences, /margem_lucro|Margem de lucro/);
+  assert.doesNotMatch(notifications, /margem_lucro|Margem de lucro/);
   assert.match(page, /key: "comercial"/);
 });

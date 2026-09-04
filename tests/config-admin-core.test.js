@@ -17,9 +17,9 @@ test("contratos administrativos rejeitam campos fora do domínio", () => {
     false,
   );
   assert.equal(
-    contracts.preferencesConfigurationSchema.safeParse({
-      margem_lucro: 30,
-      notificacoes_push: true,
+    contracts.notificationConfigurationSchema.safeParse({
+      pushPolicies: [],
+      whatsappRecipients: [],
       nfe_provider_default: "outro",
     }).success,
     false,
@@ -65,6 +65,8 @@ test("tabela de auditoria é append-only para o papel usado pela aplicação", (
     "supabase/migrations/20260904233000_bnt_cfg_04_operation.sql",
   )}\n${read(
     "supabase/migrations/20260905003000_bnt_cfg_05_mercado_livre.sql",
+  )}\n${read(
+    "supabase/migrations/20260905023000_bnt_cfg_06_notifications.sql",
   )}`;
   assert.match(auditMigration, /enable row level security/i);
   assert.match(auditMigration, /revoke all on table public\.configuracoes_auditoria from service_role/i);
@@ -77,7 +79,7 @@ test("tabela de auditoria é append-only para o papel usado pela aplicação", (
 
 test("todas as mutações administrativas existentes registram auditoria", () => {
   for (const route of [
-    "src/app/api/configuracoes/route.ts",
+    "src/app/api/configuracoes/notificacoes/route.ts",
     "src/app/api/configuracoes/empresa/route.ts",
     "src/app/api/configuracoes/fiscal/route.ts",
     "src/app/api/configuracoes/comercial/route.ts",
