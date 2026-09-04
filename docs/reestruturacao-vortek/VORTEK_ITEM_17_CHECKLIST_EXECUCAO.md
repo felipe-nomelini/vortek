@@ -2395,7 +2395,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D19 — Reclamações`
 
-**Situação:** implementado e validado tecnicamente em `2026-09-04`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-04`; aprovação visual autenticada pendente.
 
 **Estado/causa confirmados:** `/reclamacoes` derivava os casos de duas buscas limitadas a 50 pedidos, reduzia o resultado para 80 vendas e então consultava reclamação, motivo e mensagens uma a uma. Esse fluxo podia omitir reclamações fora da amostra de pedidos e não apresentava prazo, responsável atual, histórico de ações, histórico de estado ou impacto na reputação. A página também misturava conversa e metadados extensos diretamente na listagem.
 
@@ -2405,7 +2405,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Amostra de homologação:** após preflight explícito em `192.168.1.162`, confirmação do hostname `supabase-dev`, PostgreSQL `17.6`, schema e 102 migrations, a gravação foi ensaiada integralmente com `ROLLBACK`. Foram então ativadas em `sync_runtime_config` duas chaves temporárias com oito casos inteiramente sintéticos, IDs reservados para a amostra e estados de prazo, mediação, devolução, conversa e encerramento. A amostra não contém dados de produção, não habilita links externos e expira automaticamente em `2026-09-11`. Não houve migration nem acesso de escrita ao `.160`.
 
-**Validação:** passaram 9 cenários direcionados de reclamações e 22 cenários combinados de reclamações, shell e permissões; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas e `git diff --check` também passaram.
+**Commit e validação:** `5d6cdc0` — `feat(reclamacoes): redesenhar fila Bentevi`. Passaram 9 cenários direcionados de reclamações e 22 cenários combinados de reclamações, shell e permissões; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas e `git diff --check` também passaram. Em `dev.bentevi.shop`, o health respondeu `200`, `/reclamacoes` redirecionou a sessão ausente para `/login` e a API respondeu `401` sem autenticação, confirmando o novo gate publicado sem expor os dados.
 
 **Rollback:** reverter os arquivos de `BNT-D19`, redeployar somente `vortek-erp-dev` e remover exclusivamente `bnt_d19_visual_review_enabled` e `bnt_d19_visual_review_claims` de `sync_runtime_config` no `.162`. Não existe migration ou ação de produção a reverter.
 
