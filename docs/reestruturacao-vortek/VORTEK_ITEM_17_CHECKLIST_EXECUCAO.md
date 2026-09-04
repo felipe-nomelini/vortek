@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-CFG-03 — Comercial e precificação`
+**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-03 — Comercial e precificação` em homologação
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Planejar somente `BNT-CFG-03` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar visualmente `BNT-CFG-03` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -163,7 +163,8 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
 - [x] Executar somente `BNT-CFG-02 — Empresa e cadastro fiscal`.
 - [x] Aprovar visualmente `BNT-CFG-02` em homologação antes de iniciar `BNT-CFG-03`.
-- [ ] Executar somente `BNT-CFG-03 — Comercial e precificação`.
+- [x] Executar somente `BNT-CFG-03 — Comercial e precificação`.
+- [ ] Aprovar visualmente `BNT-CFG-03` em homologação antes de iniciar `BNT-CFG-04`.
 
 ---
 
@@ -2465,6 +2466,22 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Rollback:** reverter `439e685` em `dev` e redeployar somente `vortek-erp-dev`. Como a migration é aditiva e o cadastro novo ainda está vazio, as colunas podem permanecer sem uso; qualquer remoção de schema ou do registro canônico exigiria migration corretiva autorizada exclusivamente no `.162`.
 
 **Pendência:** nenhuma. A aba `Empresa e fiscal` foi aprovada pelo responsável em `2026-09-04`. Próxima ação liberada: `BNT-CFG-03 — Comercial e precificação`.
+
+#### Resultado técnico de `BNT-CFG-03 — Comercial e precificação`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-04`; aceite visual pendente.
+
+**Estado/causa confirmados:** margens e lucros mínimos estavam fixos no cálculo TypeScript e SQL, o limite de custo alto e o frete `not_specified` eram constantes, e a política de preço por quantidade permanecia fixa no código. A taxa do Mercado Livre ainda possuía fallbacks locais repetidos e `configuracoes.margem_lucro` não governava a precificação efetiva.
+
+**Mudança realizada:** a nova aba `Comercial` administra três faixas ordenadas de custo, margem e lucro mínimo; taxa fallback do Mercado Livre; frete não informado; limite estrito de inativação por custo; e de uma a cinco faixas progressivas de preço por quantidade. O simulador usa o mesmo cálculo da operação e mostra a alíquota fiscal aplicada. Uma única carga server-side fail-closed passou a alimentar produtos, relatórios, sincronizações e criação/edição de anúncios. Taxas observadas, inclusive `0%`, prevalecem; no atacado, a recomendação válida do ML é respeitada com o piso configurado, e a configuração é usada como fallback da resposta `204`. Salvar não recalcula produtos nem publica anúncios existentes.
+
+**Banco DEV:** a migration aditiva `20260904223000_bnt_cfg_03_commercial_pricing.sql` teve destino explícito confirmado como `supabase-dev` em `192.168.1.162`, foi ensaiada integralmente com `ROLLBACK` e aplicada transacionalmente apenas nesse destino. O read-back confirmou três colunas, três faixas de custo, três faixas de quantidade, migration registrada, RPC de salvamento disponível somente ao `service_role` e bloqueado para `authenticated`. O cálculo SQL coincidiu com o TypeScript nos limites `400`, `400,01`, `1.000` e `1.000,01`. O banco de produção em `.160` não foi acessado.
+
+**Commit, testes e homologação:** `c86976a` — `feat(configuracoes): centralizar politica comercial`, enviado somente para `origin/dev`. Passaram 38 cenários direcionados, `npm run validate`, `npm run build` com Next.js `16.3.3`, 122 páginas/rotas, `git diff --check` e a verificação de secrets de build. O deploy oficial do `vortek-erp-dev` foi aceito; a nova task assumiu o tráfego com `GIT_SHA=c86976a419457260f189a0608454837d3d70a967`. Health e login responderam `200`, `/configuracoes` respondeu `307` sem sessão e `/api/configuracoes/comercial` respondeu `401` sem sessão.
+
+**Rollback:** reverter `c86976a` em `dev` e redeployar somente `vortek-erp-dev`. As estruturas aditivas podem permanecer sem uso; removê-las exige migration corretiva autorizada exclusivamente no `.162`.
+
+**Pendência:** aprovação visual da aba `Comercial` em `https://dev.bentevi.shop/configuracoes?tab=comercial`. `BNT-CFG-04` permanece bloqueado até esse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

@@ -377,3 +377,9 @@ Os contratos externos definem capacidades e limites; a página não poderá cria
 Implementado tecnicamente em `2026-09-04` no commit `439e685` e publicado em `dev.bentevi.shop`. A entrega consolidou identidade e contato, endereço fiscal estruturado, tributação do Simples e saúde somente leitura do emissor na aba `Empresa e fiscal`. O início de atividade passou a possuir fonte persistida obrigatória, Brasil NFe permaneceu como provedor invariável e os consumidores fiscais afetados deixaram de inferir UF a partir do endereço legado.
 
 A migration `20260904210000_bnt_cfg_02_company_fiscal.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. A entrega foi aprovada visualmente pelo responsável em `2026-09-04`, liberando `BNT-CFG-03` como próxima ação.
+
+### `BNT-CFG-03 — Comercial e precificação`
+
+Implementado tecnicamente em `2026-09-04` no commit `c86976a` e publicado em `dev.bentevi.shop`. A aba `Comercial` consolidou como fontes tipadas as três faixas de custo/margem/lucro mínimo, a taxa fallback do Mercado Livre, o frete `not_specified`, o limite de inativação por custo e a política mínima/fallback de preços por quantidade. O simulador compartilha o cálculo operacional e salvar a configuração não recalcula nem publica produtos ou anúncios existentes.
+
+A migration `20260904223000_bnt_cfg_03_commercial_pricing.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. O cálculo SQL e o TypeScript foram comparados nos quatro limites das faixas e produziram os mesmos valores. A implementação está tecnicamente validada; a aprovação visual da aba em homologação é a única pendência antes de `BNT-CFG-04`.
