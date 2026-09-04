@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 01/09/2026
+**Última atualização:** 03/09/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-D01-PDF — aprovação visual do Relatório de Vendas`
+**Próxima ação obrigatória:** `BNT-D17 — aprovação visual de Créditos de Fornecedores`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D01-PDF` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D17` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -1947,8 +1947,8 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D13` — Clientes;
 - [x] `BNT-D14` — Detalhe do Cliente;
 - [x] `BNT-D15` — Fornecedores;
-- [ ] `BNT-D16` — Detalhe do Fornecedor;
-- [ ] `BNT-D17` — Créditos de Fornecedores;
+- [x] `BNT-D16` — Detalhe do Fornecedor;
+- [x] `BNT-D17` — Créditos de Fornecedores;
 - [ ] `BNT-D18` — Reputação;
 - [ ] `BNT-D19` — Reclamações;
 - [ ] `BNT-D20` — Configurações;
@@ -2325,7 +2325,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D15 — Fornecedores`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-03`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-03`.
 
 **Estado/causa confirmados:** `/fornecedores` ainda usava a interface Vortek original, expunha `payload_dslite` no DTO, oferecia seleção sem ação em lote e continha comandos sem implementação para visualizar payload e abrir a DSLite. Os filtros eram derivados somente da página corrente, qualquer usuário autenticado podia sincronizar ou alterar o estado operacional e a data de sincronização não era confrontada com a frequência canônica da task.
 
@@ -2343,7 +2343,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D16 — Detalhe do Fornecedor`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-03`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-03`.
 
 **Estado/causa confirmados:** `/fornecedores/[id]` ainda usava a interface Vortek original e recebia a linha bruta por `select('*')`, incluindo `payload_dslite`. O PATCH genérico permitia alterar `ativo`, cadastro, status e capacidades da DSLite sem `suppliers.manage`; a alteração direta de `ativo` também contornava o endpoint que calcula o impacto no catálogo e no Mercado Livre. O schema atual não possui observações, e o modo de pagamento pertence à oferta/compra, não ao cadastro do fornecedor.
 
@@ -2355,7 +2355,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `41cd0e6` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, dado operacional ou integração externa a reverter.
 
-**Pendência:** aprovar visualmente `/fornecedores/[id]` com sessão. Não iniciar `BNT-D17` antes desse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente `/fornecedores/[id]` e liberou `BNT-D17` em `2026-09-03`.
+
+#### Resultado técnico de `BNT-D17 — Créditos de Fornecedores`
+
+**Situação:** implementado e validado tecnicamente em `2026-09-03`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** `/fornecedores/creditos` ainda usava a interface Vortek original e misturava operação corrente, decisões pendentes e a conta-saldo aposentada da Hayamax na mesma leitura. O `supabase-dev` não possuía lançamentos para representar o estado real durante a homologação. A fotografia somente leitura da produção confirmou 989 movimentos distribuídos entre quatro fornecedores, sendo 12 pendentes e 977 confirmados; essa evidência foi usada apenas para compor uma amostra sanitizada e protegida no DEV.
+
+**Mudança realizada:** a página passou a ter cabeçalho operacional, indicadores de saldo disponível, valor pendente, créditos usados no mês e fornecedores com decisão pendente; uma fila priorizada pela pendência mais antiga; visões separadas de operação atual e histórico aposentado; tabela consolidada por fornecedor; e extrato detalhado em Drawer. Inclusão de movimento e análise de pendência foram concentradas em modais com impacto financeiro explícito. A Hayamax permanece somente leitura e fora da fila operacional.
+
+**Contrato e proteção:** `GET /api/fornecedores/creditos` passou a devolver `pending_movements`, `pending_count`, `updated_at` e a contagem de movimentos por fornecedor sem alterar a fonte do ledger. Os contratos existentes de criação, decisão e reconciliação foram preservados. Enquanto a amostra visual estiver ativa, `POST`, `PATCH` e reconciliação respondem `409` com `homologation_fixture_read_only`; a interface também bloqueia essas ações. Não houve migration nem alteração de schema.
+
+**Amostra de homologação:** após preflight explícito em `192.168.1.162:6543`, confirmação do host `supabase-dev`, inspeção do schema e ensaio integral com `ROLLBACK`, foram gravadas em `sync_runtime_config` duas chaves temporárias contendo 989 movimentos sanitizados, quatro fornecedores e 12 pendências. IDs e referências são sintéticos, `ml_order_id` é nulo e nenhum ID de movimento, pedido ou compra da produção foi copiado. A tabela real `supplier_balance_movements` continuou com zero registros. A amostra expira em `2026-09-11` e a produção em `.160` foi acessada somente por leitura.
+
+**Commit e validação:** `63af62c` — `feat(fornecedores): redesenhar créditos Bentevi`. Passaram 20 cenários direcionados de créditos, ledger, aposentadoria da Hayamax e shell; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas e `git diff --check` também passaram.
+
+**Rollback:** reverter `63af62c` em `dev`, redeployar somente `vortek-erp-dev` e remover exclusivamente as chaves `bnt_d17_visual_review_enabled` e `bnt_d17_visual_review_credits` de `sync_runtime_config` no `.162`. Não existe migration ou ação de produção a reverter.
+
+**Pendência:** aprovar visualmente `/fornecedores/creditos` com sessão. Não iniciar `BNT-D18` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
