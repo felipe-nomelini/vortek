@@ -155,23 +155,6 @@ const UF_CODES = new Set([
   'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
 ]);
 
-function extractUfFromAddress(value: string | null | undefined): string | null {
-  const raw = String(value || '').toUpperCase();
-  const m = raw.match(/-\s*([A-Z]{2})(?:\b|,)/);
-  if (m?.[1] && UF_CODES.has(m[1])) return m[1];
-  const end = raw.match(/,\s*([A-Z]{2})\s*$/);
-  if (end?.[1] && UF_CODES.has(end[1])) return end[1];
-  const tokens = raw
-    .replace(/[^\w\s-]/g, ' ')
-    .replace(/[_-]/g, ' ')
-    .split(/\s+/)
-    .filter(Boolean);
-  for (let i = tokens.length - 1; i >= 0; i -= 1) {
-    if (UF_CODES.has(tokens[i])) return tokens[i];
-  }
-  return null;
-}
-
 function normalizeUf(value: string | null | undefined): string {
   const raw = String(value || '').trim().toUpperCase();
   if (!raw) return '';
@@ -227,11 +210,9 @@ function normalizeIe(value: string | null | undefined): string {
   return String(value || '').trim();
 }
 
-function resolveEmitUfForFiscal(empresa: any): { emitUf: string | null; source: 'empresa.uf_fiscal' | 'endereco_fallback' | 'missing' } {
+function resolveEmitUfForFiscal(empresa: any): { emitUf: string | null; source: 'empresa.uf_fiscal' | 'missing' } {
   const ufFiscal = normalizeUf(empresa?.uf_fiscal);
   if (ufFiscal && UF_CODES.has(ufFiscal)) return { emitUf: ufFiscal, source: 'empresa.uf_fiscal' };
-  const fromAddress = extractUfFromAddress(empresa?.endereco || null);
-  if (fromAddress) return { emitUf: fromAddress, source: 'endereco_fallback' };
   return { emitUf: null, source: 'missing' };
 }
 
@@ -1342,25 +1323,12 @@ async function processOrder(params: {
   const destUf = String(billingSnapshot.endereco.state_id || '').trim().toUpperCase() || null;
   const { data: empresaData } = await serviceClient
     .from('empresa')
-    .select('endereco,uf_fiscal')
+    .select('uf_fiscal')
     .limit(1)
     .maybeSingle();
   const emitUfDecision = resolveEmitUfForFiscal(empresaData || null);
   const emitUf = emitUfDecision.emitUf;
-  if (emitUfDecision.source === 'endereco_fallback') {
-    await registrarEventoNfAuditoria({
-      pedidoId: existingPedidoId,
-      mlOrderId: String(o.id),
-      mlPackId,
-      evento: 'empresa_uf_fallback_endereco',
-      respostaMl: {
-        emit_uf_source: 'endereco_fallback',
-        emit_uf_value: emitUf,
-        dest_uf_value: destUf,
-      },
-      statusResultante: 'warning',
-    });
-  } else if (!emitUf) {
+  if (!emitUf) {
     await registrarEventoNfAuditoria({
       pedidoId: existingPedidoId,
       mlOrderId: String(o.id),

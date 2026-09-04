@@ -4,8 +4,6 @@ import {
   type PricingTaxContext,
 } from '@/services/pricing';
 
-const DEFAULT_ACTIVITY_START_DATE = '2026-03-23';
-
 type ServiceClientLike = ReturnType<typeof createServiceClient>;
 
 function monthStart(date: Date): Date {
@@ -36,7 +34,10 @@ async function loadPricingTaxData(
     .maybeSingle();
   if (configError) throw new Error(`Falha ao carregar configuração tributária: ${configError.message}`);
 
-  const activityStartDate = String((config as any)?.simples_inicio_atividade || DEFAULT_ACTIVITY_START_DATE);
+  const activityStartDate = String((config as any)?.simples_inicio_atividade || '').trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(activityStartDate)) {
+    throw new Error('Início da atividade não configurado em Empresa e fiscal');
+  }
   const referenceMonth = monthStart(referenceDate);
   const activityStart = monthStart(new Date(`${activityStartDate}T00:00:00.000Z`));
   const activityMonthIndex = monthsBetween(activityStart, referenceMonth);

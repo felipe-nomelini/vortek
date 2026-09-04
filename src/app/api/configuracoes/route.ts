@@ -6,7 +6,6 @@ import {
   preferencesConfigurationSchema,
 } from "@/lib/configuracoes/contracts";
 import { recordConfigurationAudit } from "@/services/configuration-audit";
-import { loadPricingTaxContext } from "@/services/pricing-tax-context";
 
 const CONFIG_ROW_ID = "00000000-0000-0000-0000-000000000001";
 
@@ -23,15 +22,9 @@ export async function GET() {
 
   if (error && error.code !== "PGRST116")
     return NextResponse.json({ erro: error.message }, { status: 500 });
-  try {
-    const pricingTaxContext = await loadPricingTaxContext(serviceClient);
-    return NextResponse.json({ ...(data || {}), pricing_tax_context: pricingTaxContext });
-  } catch (contextError: any) {
-    return NextResponse.json(
-      { erro: contextError?.message || "Falha ao calcular contexto tributário" },
-      { status: 500 },
-    );
-  }
+  return NextResponse.json(data || null, {
+    headers: { "Cache-Control": "no-store" },
+  });
 }
 
 export async function PUT(request: Request) {
@@ -51,25 +44,17 @@ export async function PUT(request: Request) {
 
   const { data: previous, error: previousError } = await serviceClient
     .from("configuracoes")
-    .select(
-      "id,margem_lucro,notificacoes_push,nfe_provider_default,simples_aliquota_confirmada,simples_aliquota_confirmada_em",
-    )
+    .select("id,margem_lucro,notificacoes_push")
     .eq("id", CONFIG_ROW_ID)
     .maybeSingle();
   if (previousError) {
     return NextResponse.json({ erro: previousError.message }, { status: 500 });
   }
 
-  const confirmedPercent = parsed.data.simples_aliquota_confirmada_percentual;
-  const confirmedDate = parsed.data.simples_aliquota_confirmada_em || null;
   const payload = {
     id: CONFIG_ROW_ID,
     margem_lucro: parsed.data.margem_lucro,
     notificacoes_push: parsed.data.notificacoes_push,
-    nfe_provider_default: parsed.data.nfe_provider_default,
-    simples_inicio_atividade: "2026-03-23",
-    simples_aliquota_confirmada: confirmedPercent === null ? null : confirmedPercent / 100,
-    simples_aliquota_confirmada_em: confirmedDate,
     updated_at: new Date().toISOString(),
   };
 
@@ -87,9 +72,6 @@ export async function PUT(request: Request) {
       [
         { key: "configuracoes.margem_lucro", targetId: data.id, before: previous?.margem_lucro, after: data.margem_lucro },
         { key: "configuracoes.notificacoes_push", targetId: data.id, before: previous?.notificacoes_push, after: data.notificacoes_push },
-        { key: "configuracoes.nfe_provider_default", targetId: data.id, before: previous?.nfe_provider_default, after: data.nfe_provider_default },
-        { key: "configuracoes.simples_aliquota_confirmada", targetId: data.id, before: previous?.simples_aliquota_confirmada, after: data.simples_aliquota_confirmada },
-        { key: "configuracoes.simples_aliquota_confirmada_em", targetId: data.id, before: previous?.simples_aliquota_confirmada_em, after: data.simples_aliquota_confirmada_em },
       ],
     );
   } catch {
@@ -98,6 +80,5 @@ export async function PUT(request: Request) {
       { status: 500 },
     );
   }
-  const pricingTaxContext = await loadPricingTaxContext(serviceClient);
-  return NextResponse.json({ ...data, pricing_tax_context: pricingTaxContext });
+  return NextResponse.json(data);
 }

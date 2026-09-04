@@ -1,5 +1,6 @@
 import { createServiceClient } from '@/lib/supabase';
 import { parseAuthorizedStockNfeXml, type StockNfe } from '@/lib/estoque-nfe';
+import { isValidCnpj, normalizeCnpj } from '@/lib/fiscal/cnpj.js';
 
 type ServiceDb = ReturnType<typeof createServiceClient>;
 
@@ -12,8 +13,8 @@ export function resolveStockNfeEnvironment(): 1 | 2 {
 async function loadCompanyCnpj(db: ServiceDb): Promise<string> {
   const { data, error } = await db.from('empresa').select('cnpj').limit(1).maybeSingle();
   if (error) throw new Error(error.message);
-  const cnpj = String(data?.cnpj || '').replace(/\D/g, '');
-  if (cnpj.length !== 14) throw new Error('CNPJ da empresa não está configurado.');
+  const cnpj = normalizeCnpj(data?.cnpj);
+  if (!isValidCnpj(cnpj)) throw new Error('CNPJ da empresa não está configurado.');
   return cnpj;
 }
 

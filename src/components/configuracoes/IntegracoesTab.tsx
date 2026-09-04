@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Button, Card, Col, Input, Modal, Row, Select, Space, Spin, Tag, Typography } from "antd";
+import { Button, Card, Col, Input, Modal, Row, Space, Spin, Tag, Typography } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
 import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
 
@@ -104,8 +104,6 @@ export default function IntegracoesTab({
     url: "",
     conectado: false,
   });
-  const [defaultNfeProvider, setDefaultNfeProvider] =
-    useState<"brasilnfe">("brasilnfe");
 
   useEffect(() => {
     const load = async () => {
@@ -286,26 +284,6 @@ export default function IntegracoesTab({
       setTestingIntegration(null);
     }
   };
-
-  const salvarDefaultProvider = useCallback(
-    async (provider: "brasilnfe") => {
-      const response = await fetch("/api/configuracoes/fiscal-provider", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ defaultProvider: provider }),
-      });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        messageApi.error(
-          data?.erro || "Falha ao salvar provedor fiscal padrão",
-        );
-        return;
-      }
-      setDefaultNfeProvider(provider);
-      messageApi.success("Provedor fiscal padrão atualizado");
-    },
-    [messageApi],
-  );
 
   const testarBrasilNfe = async () => {
     if (!brasilNfe.tokenConfigured) {
@@ -559,31 +537,6 @@ export default function IntegracoesTab({
   return (
     <Spin spinning={loading}>
       <Row gutter={[16, 16]}>
-        <Col span={24}>
-          <Card
-            styles={{ body: { padding: 12 } }}
-            style={configuracoesCardStyle}
-          >
-            <Space
-              align="center"
-              style={{ width: "100%", justifyContent: "space-between" }}
-            >
-              <Text style={{ color: "#e0e0e0", fontWeight: 600 }}>
-                Provedor fiscal padrão (NF-e)
-              </Text>
-              <Select
-                style={{ minWidth: 220 }}
-                value={defaultNfeProvider}
-                onChange={(provider: "brasilnfe") =>
-                  salvarDefaultProvider(provider)
-                }
-                options={[
-                  { value: "brasilnfe", label: "Brasil NFe (primário)" },
-                ]}
-              />
-            </Space>
-          </Card>
-        </Col>
         {integrations.map((integration) => (
           <Col xs={24} lg={8} key={integration.key}>
             <Card

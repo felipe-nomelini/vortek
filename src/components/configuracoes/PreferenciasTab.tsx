@@ -1,19 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Button, Card, Col, Input, InputNumber, Row, Space, Spin, Switch, Typography } from "antd";
+import { Button, Col, InputNumber, Row, Spin, Switch, Typography } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
-import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
+import { configuracoesInputStyle } from "./styles";
 
 const { Text } = Typography;
-
-interface PricingTaxContext {
-  appliedRate: number | null;
-  estimatedRate: number | null;
-  rbt12: number | null;
-  bracket: number | null;
-  warning: string | null;
-}
 
 function vapidKeyToUint8Array(value: string) {
   const padding = "=".repeat((4 - (value.length % 4)) % 4);
@@ -31,15 +23,6 @@ export default function PreferenciasTab({
   const [saving, setSaving] = useState(false);
   const [margem, setMargem] = useState(30);
   const [notif, setNotif] = useState({ push: false });
-  const [defaultNfeProvider, setDefaultNfeProvider] =
-    useState<"brasilnfe">("brasilnfe");
-  const [simplesAliquotaConfirmada, setSimplesAliquotaConfirmada] = useState<
-    number | null
-  >(null);
-  const [simplesAliquotaConfirmadaEm, setSimplesAliquotaConfirmadaEm] =
-    useState("");
-  const [pricingTaxContext, setPricingTaxContext] =
-    useState<PricingTaxContext | null>(null);
 
   useEffect(() => {
     const load = async () => {
@@ -51,21 +34,10 @@ export default function PreferenciasTab({
           messageApi.error(data?.erro || "Falha ao carregar preferências");
           return;
         }
-        const provider = String(data?.nfe_provider_default || "").toLowerCase();
         setMargem(
           typeof data?.margem_lucro === "number" ? data.margem_lucro : 30,
         );
         setNotif({ push: Boolean(data?.notificacoes_push ?? false) });
-        setSimplesAliquotaConfirmada(
-          typeof data?.simples_aliquota_confirmada === "number"
-            ? data.simples_aliquota_confirmada * 100
-            : null,
-        );
-        setSimplesAliquotaConfirmadaEm(
-          String(data?.simples_aliquota_confirmada_em || ""),
-        );
-        setPricingTaxContext(data?.pricing_tax_context || null);
-        if (provider === "brasilnfe") setDefaultNfeProvider(provider);
       } catch {
         messageApi.error("Falha ao carregar preferências");
       } finally {
@@ -134,9 +106,6 @@ export default function PreferenciasTab({
         body: JSON.stringify({
           margem_lucro: margem,
           notificacoes_push: notif.push,
-          nfe_provider_default: defaultNfeProvider,
-          simples_aliquota_confirmada_percentual: simplesAliquotaConfirmada,
-          simples_aliquota_confirmada_em: simplesAliquotaConfirmadaEm || null,
         }),
       });
       const data = await response.json().catch(() => ({}));
@@ -144,7 +113,6 @@ export default function PreferenciasTab({
         messageApi.error(data?.erro || "Falha ao salvar preferências");
         return;
       }
-      setPricingTaxContext(data?.pricing_tax_context || null);
       messageApi.success("Preferências salvas");
     } catch {
       messageApi.error("Falha ao salvar preferências");
@@ -152,12 +120,9 @@ export default function PreferenciasTab({
       setSaving(false);
     }
   }, [
-    defaultNfeProvider,
     margem,
     messageApi,
     notif.push,
-    simplesAliquotaConfirmada,
-    simplesAliquotaConfirmadaEm,
   ]);
 
   return (
@@ -185,117 +150,6 @@ export default function PreferenciasTab({
           >
             Usada no cálculo do preço sugerido
           </Text>
-        </Col>
-        <Col span={24}>
-          <Card
-            size="small"
-            title="Tributação da precificação"
-            style={configuracoesCardStyle}
-          >
-            <Row gutter={[16, 12]}>
-              <Col xs={24} md={8}>
-                <Text
-                  style={{
-                    color: "#a0a0a0",
-                    display: "block",
-                    marginBottom: 6,
-                  }}
-                >
-                  Início da atividade
-                </Text>
-                <Input value="23/03/2026" disabled />
-              </Col>
-              <Col xs={24} md={8}>
-                <Text
-                  style={{
-                    color: "#a0a0a0",
-                    display: "block",
-                    marginBottom: 6,
-                  }}
-                >
-                  Alíquota confirmada no PGDAS
-                </Text>
-                <InputNumber
-                  suffix="%"
-                  value={simplesAliquotaConfirmada}
-                  onChange={setSimplesAliquotaConfirmada}
-                  min={4}
-                  max={99.9999}
-                  precision={4}
-                  style={{ ...configuracoesInputStyle, width: "100%" }}
-                  placeholder="Opcional"
-                />
-              </Col>
-              <Col xs={24} md={8}>
-                <Text
-                  style={{
-                    color: "#a0a0a0",
-                    display: "block",
-                    marginBottom: 6,
-                  }}
-                >
-                  Data da confirmação
-                </Text>
-                <Input
-                  type="date"
-                  value={simplesAliquotaConfirmadaEm}
-                  onChange={(event) =>
-                    setSimplesAliquotaConfirmadaEm(event.target.value)
-                  }
-                  style={configuracoesInputStyle}
-                />
-              </Col>
-              <Col span={24}>
-                <Space size="large" wrap>
-                  <Text style={{ color: "#d9d9d9" }}>
-                    RBT12 estimada:{" "}
-                    {pricingTaxContext?.rbt12 == null
-                      ? "indisponível"
-                      : pricingTaxContext.rbt12.toLocaleString("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        })}
-                  </Text>
-                  <Text style={{ color: "#d9d9d9" }}>
-                    Faixa: {pricingTaxContext?.bracket ?? "manual"}
-                  </Text>
-                  <Text style={{ color: "#d9d9d9" }}>
-                    Estimada:{" "}
-                    {pricingTaxContext?.estimatedRate == null
-                      ? "indisponível"
-                      : `${(pricingTaxContext.estimatedRate * 100)
-                          .toFixed(4)
-                          .replace(".", ",")}%`}
-                  </Text>
-                  <Text strong style={{ color: "#faad14" }}>
-                    Aplicada:{" "}
-                    {pricingTaxContext?.appliedRate == null
-                      ? "indisponível"
-                      : `${(pricingTaxContext.appliedRate * 100)
-                          .toFixed(4)
-                          .replace(".", ",")}%`}
-                  </Text>
-                </Space>
-                {pricingTaxContext?.warning && (
-                  <Text
-                    style={{
-                      color: "#faad14",
-                      display: "block",
-                      marginTop: 8,
-                    }}
-                  >
-                    {pricingTaxContext.warning}
-                  </Text>
-                )}
-                <Text
-                  style={{ color: "#666", display: "block", marginTop: 8 }}
-                >
-                  Esta estimativa protege a formação de preços; o PGDAS continua
-                  sendo a fonte fiscal oficial.
-                </Text>
-              </Col>
-            </Row>
-          </Card>
         </Col>
         <Col xs={24} md={8}>
           <div style={{ color: "#a0a0a0", fontSize: 13, marginBottom: 6 }}>

@@ -49,7 +49,7 @@ function ConfiguracoesPageContent() {
           items={[
             {
               key: "empresa",
-              label: "🏢 Empresa",
+              label: "🏢 Empresa e fiscal",
               forceRender: true,
               children: <EmpresaTab messageApi={messageApi} />,
             },

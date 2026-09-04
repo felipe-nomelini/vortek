@@ -1,4 +1,5 @@
 import { createServiceClient } from "@/lib/supabase";
+import { isValidCnpj } from "@/lib/fiscal/cnpj.js";
 import { getExpectedCfopByUf } from "@/lib/fiscal/cfop";
 import {
   extractTaxpayerTypeFromBillingAddress,
@@ -92,28 +93,8 @@ function normalizeUf(value: string | null | undefined): string | null {
   return uf;
 }
 
-function extractUfFromAddress(value: string | null | undefined): string | null {
-  const raw = String(value || "").toUpperCase();
-  const dashMatch = raw.match(/-\s*([A-Z]{2})(?:\b|,)/);
-  if (dashMatch?.[1] && UF_CODES.has(dashMatch[1])) return dashMatch[1];
-  const endMatch = raw.match(/,\s*([A-Z]{2})\s*$/);
-  if (endMatch?.[1] && UF_CODES.has(endMatch[1])) return endMatch[1];
-  const tokens = raw
-    .replace(/[^\w\s-]/g, " ")
-    .replace(/[_-]/g, " ")
-    .split(/\s+/)
-    .filter(Boolean);
-  for (let i = tokens.length - 1; i >= 0; i -= 1) {
-    if (UF_CODES.has(tokens[i])) return tokens[i];
-  }
-  return null;
-}
-
 function resolveEmitUf(empresa: any): string | null {
-  return (
-    normalizeUf(empresa?.uf_fiscal) ||
-    extractUfFromAddress(empresa?.endereco || null)
-  );
+  return normalizeUf(empresa?.uf_fiscal);
 }
 
 function resolveBrasilNfeTipoAmbienteStrict():
@@ -241,7 +222,7 @@ function buildPayloadFromSnapshot(
       ok: false as const,
       error: "Snapshot fiscal incompleto. Sincronize o pedido.",
     };
-  if (!empresa?.cnpj)
+  if (!isValidCnpj(empresa?.cnpj))
     return {
       ok: false as const,
       error: "Empresa/CNPJ não configurada para emissão.",

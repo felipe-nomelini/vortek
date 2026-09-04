@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 import { BNT_D05_INVENTORY_FIXTURE_SOURCE } from '@/lib/homologation-fixture';
 import { resolveStockNfeEnvironment } from '@/lib/estoque-recebimento';
+import { isValidCnpj, normalizeCnpj } from '@/lib/fiscal/cnpj.js';
 import { createServiceClient } from '@/lib/supabase';
 import {
   manifestarNotaEntradaBrasilNfe,
@@ -13,8 +14,8 @@ export type IncomingManifestationType = 1 | 2 | 3 | 4;
 export async function loadConfiguredCompanyCnpj(db: ServiceDb): Promise<string> {
   const { data, error } = await db.from('empresa').select('cnpj').limit(1).maybeSingle();
   if (error) throw new Error(error.message);
-  const cnpj = String(data?.cnpj || '').replace(/\D/g, '');
-  if (cnpj.length !== 14) throw new Error('CNPJ da empresa não está configurado.');
+  const cnpj = normalizeCnpj(data?.cnpj);
+  if (!isValidCnpj(cnpj)) throw new Error('CNPJ da empresa não está configurado.');
   return cnpj;
 }
 
@@ -27,8 +28,8 @@ export async function upsertIncomingNfeSnapshots(input: {
   const valid = input.documents.filter((document) => (
     document.modeloDocumento === 55
     && document.chave.length === 44
-    && document.destinatarioCnpj === companyCnpj
-    && document.emitenteCnpj?.length === 14
+    && normalizeCnpj(document.destinatarioCnpj) === companyCnpj
+    && isValidCnpj(document.emitenteCnpj)
   ));
   const keys = valid.map((document) => document.chave);
   const { data: existing, error: existingError } = keys.length

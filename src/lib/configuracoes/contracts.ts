@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { Json } from "@/types/database";
+import { isValidCnpj, normalizeCnpj } from "../fiscal/cnpj.js";
 
 export const CONFIGURATION_CLASSIFICATIONS = [
   "EDITAVEL_IMEDIATO",
@@ -47,17 +48,19 @@ type ConfigurationDefinition = {
 };
 
 export const CONFIGURATION_DEFINITIONS = {
-  "empresa.nome": { domain: "empresa_fiscal", label: "Nome da empresa", classification: "EDITAVEL_CONTROLADO" },
-  "empresa.nickname": { domain: "empresa_fiscal", label: "Nickname Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
+  "empresa.nome": { domain: "empresa_fiscal", label: "Nome da empresa", classification: "EDITAVEL_IMEDIATO" },
+  "empresa.nickname": { domain: "empresa_fiscal", label: "Nickname Mercado Livre", classification: "STATUS_SOMENTE_LEITURA" },
   "empresa.cnpj": { domain: "empresa_fiscal", label: "CNPJ", classification: "EDITAVEL_CONTROLADO" },
-  "empresa.endereco": { domain: "empresa_fiscal", label: "Endereço", classification: "EDITAVEL_CONTROLADO" },
-  "empresa.email": { domain: "empresa_fiscal", label: "E-mail", classification: "EDITAVEL_CONTROLADO" },
-  "empresa.telefone": { domain: "empresa_fiscal", label: "Telefone", classification: "EDITAVEL_CONTROLADO" },
+  "empresa.endereco": { domain: "empresa_fiscal", label: "Endereço legado", classification: "OBSOLETO" },
+  "empresa.endereco_fiscal": { domain: "empresa_fiscal", label: "Endereço fiscal", classification: "EDITAVEL_CONTROLADO" },
+  "empresa.email": { domain: "empresa_fiscal", label: "E-mail", classification: "EDITAVEL_IMEDIATO" },
+  "empresa.telefone": { domain: "empresa_fiscal", label: "Telefone", classification: "EDITAVEL_IMEDIATO" },
   "empresa.uf_fiscal": { domain: "empresa_fiscal", label: "UF fiscal", classification: "EDITAVEL_CONTROLADO" },
   "empresa.cod_municipio_fiscal": { domain: "empresa_fiscal", label: "Município fiscal", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.margem_lucro": { domain: "comercial_precificacao", label: "Margem de lucro padrão", classification: "EDITAVEL_IMEDIATO" },
   "configuracoes.notificacoes_push": { domain: "notificacoes", label: "Notificações push", classification: "EDITAVEL_IMEDIATO" },
-  "configuracoes.nfe_provider_default": { domain: "empresa_fiscal", label: "Provedor fiscal padrão", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.nfe_provider_default": { domain: "empresa_fiscal", label: "Provedor fiscal", classification: "INVARIANTE" },
+  "configuracoes.simples_inicio_atividade": { domain: "empresa_fiscal", label: "Início da atividade", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.simples_aliquota_confirmada": { domain: "empresa_fiscal", label: "Alíquota confirmada do Simples", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.simples_aliquota_confirmada_em": { domain: "empresa_fiscal", label: "Data da alíquota confirmada", classification: "EDITAVEL_CONTROLADO" },
   "integracoes.client_id": { domain: "integracoes", label: "Client ID", classification: "EDITAVEL_CONTROLADO" },
@@ -104,25 +107,50 @@ const optionalCompanyEmailSchema = z.union([
   z.string().trim().email("E-mail inválido").max(320),
 ]);
 
+const BRAZILIAN_STATES = [
+  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS",
+  "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC",
+  "SP", "SE", "TO",
+] as const;
+
+const IBGE_STATE_PREFIX: Record<(typeof BRAZILIAN_STATES)[number], string> = {
+  AC: "12", AL: "27", AP: "16", AM: "13", BA: "29", CE: "23", DF: "53",
+  ES: "32", GO: "52", MA: "21", MT: "51", MS: "50", MG: "31", PA: "15",
+  PB: "25", PR: "41", PE: "26", PI: "22", RJ: "33", RN: "24", RS: "43",
+  RO: "11", RR: "14", SC: "42", SP: "35", SE: "28", TO: "17",
+};
+
+export const companyAddressSchema = z.object({
+  cep: z.string().trim().regex(/^\d{8}$/, "CEP inválido. Use 8 dígitos."),
+  logradouro: z.string().trim().min(1, "Informe o logradouro").max(200),
+  numero: z.string().trim().min(1, "Informe o número ou S/N").max(30),
+  complemento: z.string().trim().max(120),
+  bairro: z.string().trim().min(1, "Informe o bairro").max(120),
+  municipio: z.string().trim().min(1, "Informe o município").max(120),
+  uf: z.enum(BRAZILIAN_STATES, { message: "UF fiscal inválida" }),
+  codigo_ibge: z.string().trim().regex(/^\d{7}$/, "Código do município inválido. Use 7 dígitos."),
+}).strict().refine(
+  (address) => address.codigo_ibge.startsWith(IBGE_STATE_PREFIX[address.uf]),
+  { message: "O código do município não pertence à UF selecionada", path: ["codigo_ibge"] },
+);
+
 export const companyConfigurationSchema = z.object({
-  id: z.string().uuid("Empresa inválida").nullable().optional(),
-  nome: z.string().trim().max(200),
-  nickname: z.string().trim().max(200),
-  cnpj: z.string().trim().max(32),
-  endereco: z.string().trim().max(500),
+  nome: z.string().trim().min(1, "Informe o nome da empresa").max(200),
+  cnpj: z.string().trim().max(32)
+    .refine(isValidCnpj, "CNPJ inválido")
+    .transform(normalizeCnpj),
   email: optionalCompanyEmailSchema,
   telefone: z.string().trim().max(40),
-  uf_fiscal: z.string().trim().regex(/^[A-Za-z]{2}$/, "UF Fiscal inválida. Use 2 letras (ex.: RS)."),
-  cod_municipio_fiscal: z.union([
-    z.literal(""),
-    z.string().trim().regex(/^\d{7}$/, "Código Município (IBGE) inválido. Use 7 dígitos."),
-  ]),
+  endereco_fiscal: companyAddressSchema,
 }).strict();
 
 export const preferencesConfigurationSchema = z.object({
   margem_lucro: z.number().finite().min(0).max(1000),
   notificacoes_push: z.boolean(),
-  nfe_provider_default: z.literal("brasilnfe"),
+}).strict();
+
+export const fiscalConfigurationSchema = z.object({
+  simples_inicio_atividade: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data de início inválida"),
   simples_aliquota_confirmada_percentual: z.number().finite().min(4).lt(100).nullable(),
   simples_aliquota_confirmada_em: z.union([
     z.literal(""),
@@ -134,11 +162,14 @@ export const preferencesConfigurationSchema = z.object({
     (value.simples_aliquota_confirmada_percentual === null)
       === (!value.simples_aliquota_confirmada_em),
   { message: "Informe ou remova juntos a alíquota confirmada e a data do PGDAS" },
+).refine(
+  (value) => value.simples_inicio_atividade <= new Date().toISOString().slice(0, 10),
+  { message: "O início da atividade não pode estar no futuro" },
+).refine(
+  (value) => !value.simples_aliquota_confirmada_em
+    || value.simples_aliquota_confirmada_em >= value.simples_inicio_atividade,
+  { message: "A confirmação do PGDAS não pode ser anterior ao início da atividade" },
 );
-
-export const fiscalProviderConfigurationSchema = z.object({
-  defaultProvider: z.literal("brasilnfe"),
-}).strict();
 
 const credentialSchema = z.string().trim().min(1).max(8192).nullable();
 const integrationUrlSchema = z.union([

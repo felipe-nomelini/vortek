@@ -1053,15 +1053,5 @@ export function getFiscalProvider(provider: NfeProvider): FiscalProvider {
 }
 
 export async function getDefaultFiscalProvider(): Promise<NfeProvider> {
-  const client = createServiceClient();
-  const { data } = await client
-    .from("configuracoes")
-    .select("nfe_provider_default")
-    .limit(1)
-    .maybeSingle();
-  const configured = String((data as any)?.nfe_provider_default || "")
-    .trim()
-    .toLowerCase();
-  if (configured === "brasilnfe") return "brasilnfe";
   return "brasilnfe";
 }

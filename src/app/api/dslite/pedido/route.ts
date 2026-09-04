@@ -19,6 +19,7 @@ import {
   upsertInvoiceDataMLByShipment,
 } from "@/services/integration";
 import { createServiceClient } from "@/lib/supabase";
+import { isValidCnpj } from "@/lib/fiscal/cnpj.js";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import { ensureRecipientIeFromSefaz } from "@/services/fiscal-recipient-ie";
 import {
@@ -1090,24 +1091,6 @@ function normalizeUf(value: string | null | undefined): string | null {
   return uf;
 }
 
-function extractUfFromAddress(value: string | null | undefined): string | null {
-  const raw = String(value || "").toUpperCase();
-  const dashMatch = raw.match(/-\s*([A-Z]{2})(?:\b|,)/);
-  if (dashMatch?.[1] && UF_CODES.has(dashMatch[1])) return dashMatch[1];
-  const endMatch = raw.match(/,\s*([A-Z]{2})\s*$/);
-  if (endMatch?.[1] && UF_CODES.has(endMatch[1])) return endMatch[1];
-  const tokens = raw
-    .replace(/[^\w\s-]/g, " ")
-    .replace(/[_-]/g, " ")
-    .split(/\s+/)
-    .filter(Boolean);
-  for (let i = tokens.length - 1; i >= 0; i -= 1) {
-    const tk = tokens[i];
-    if (UF_CODES.has(tk)) return tk;
-  }
-  return null;
-}
-
 function expectedCfopByUf(
   emitUf: string | null,
   destUf: string | null,
@@ -1118,12 +1101,10 @@ function expectedCfopByUf(
 
 function resolveEmitUfFromEmpresa(empresa: any): {
   emitUf: string | null;
-  source: "empresa.uf_fiscal" | "endereco_fallback" | "missing";
+  source: "empresa.uf_fiscal" | "missing";
 } {
   const fromConfig = normalizeUf(empresa?.uf_fiscal);
   if (fromConfig) return { emitUf: fromConfig, source: "empresa.uf_fiscal" };
-  const fromAddress = extractUfFromAddress(empresa?.endereco || null);
-  if (fromAddress) return { emitUf: fromAddress, source: "endereco_fallback" };
   return { emitUf: null, source: "missing" };
 }
 
@@ -1422,7 +1403,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
       pedidoItensCount: itens.length,
     };
   }
-  if (!empresa?.cnpj)
+  if (!isValidCnpj(empresa?.cnpj))
     return {
       ok: false as const,
       error: "Empresa/CNPJ não configurada para emissão local",
@@ -2821,7 +2802,7 @@ async function runDsliteCreateJob(
       let emitUfValue: string | null = null;
       let destUfValue: string | null = null;
       let emitUfSource:
-        "empresa.uf_fiscal" | "endereco_fallback" | "missing" | null = null;
+        "empresa.uf_fiscal" | "missing" | null = null;
       let taxpayerTypeMlRawValue: string | null = null;
       let iePolicyResolvedValue: "contribuinte" | "nao_contribuinte" | null =
         null;
@@ -2962,20 +2943,6 @@ async function runDsliteCreateJob(
         iePolicyResolvedValue = built.iePolicyResolved || null;
         indicadorIeEnviadoValue = Number(built.indicadorIeEnviado ?? 0) || null;
         iePresentValue = Boolean(built.iePresent);
-        if (built.emitUfSource === "endereco_fallback") {
-          await registrarEventoNfAuditoria({
-            pedidoId,
-            mlOrderId: mlOrderId ? String(mlOrderId) : null,
-            evento: "empresa_uf_fallback_endereco",
-            respostaMl: {
-              campo: "empresa.uf_fiscal",
-              emit_uf_source: built.emitUfSource,
-              emit_uf_value: built.emitUf,
-              dest_uf_value: built.destUf,
-            },
-            statusResultante: "warning",
-          });
-        }
       }
       if (selectedProvider === "brasilnfe" && STRICT_NFE_VALIDATION) {
         const strict = validateNfePayloadStrict(

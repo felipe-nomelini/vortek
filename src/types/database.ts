@@ -396,40 +396,58 @@ export type Database = {
       }
       empresa: {
         Row: {
+          bairro_fiscal: string | null
+          cep_fiscal: string | null
           cod_municipio_fiscal: string | null
+          complemento_fiscal: string | null
           cnpj: string
           created_at: string
           email: string
           endereco: string
           id: string
+          logradouro_fiscal: string | null
+          municipio_fiscal: string | null
           nickname: string
           nome: string
+          numero_fiscal: string | null
           telefone: string
           uf_fiscal: string | null
           updated_at: string
         }
         Insert: {
+          bairro_fiscal?: string | null
+          cep_fiscal?: string | null
           cod_municipio_fiscal?: string | null
+          complemento_fiscal?: string | null
           cnpj?: string
           created_at?: string
           email?: string
           endereco?: string
           id?: string
+          logradouro_fiscal?: string | null
+          municipio_fiscal?: string | null
           nickname?: string
           nome?: string
+          numero_fiscal?: string | null
           telefone?: string
           uf_fiscal?: string | null
           updated_at?: string
         }
         Update: {
+          bairro_fiscal?: string | null
+          cep_fiscal?: string | null
           cod_municipio_fiscal?: string | null
+          complemento_fiscal?: string | null
           cnpj?: string
           created_at?: string
           email?: string
           endereco?: string
           id?: string
+          logradouro_fiscal?: string | null
+          municipio_fiscal?: string | null
           nickname?: string
           nome?: string
+          numero_fiscal?: string | null
           telefone?: string
           uf_fiscal?: string | null
           updated_at?: string

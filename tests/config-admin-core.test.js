@@ -21,8 +21,6 @@ test("contratos administrativos rejeitam campos fora do domínio", () => {
       margem_lucro: 30,
       notificacoes_push: true,
       nfe_provider_default: "outro",
-      simples_aliquota_confirmada_percentual: null,
-      simples_aliquota_confirmada_em: null,
     }).success,
     false,
   );
@@ -56,15 +54,18 @@ test("snapshots comuns não ganham encapsulamento duplicado ao serem lidos", () 
 });
 
 test("tabela de auditoria é append-only para o papel usado pela aplicação", () => {
-  const migration = read(
+  const auditMigration = read(
     "supabase/migrations/20260904163000_bnt_cfg_01_admin_audit.sql",
   );
-  assert.match(migration, /enable row level security/i);
-  assert.match(migration, /revoke all on table public\.configuracoes_auditoria from service_role/i);
-  assert.match(migration, /grant select, insert on table public\.configuracoes_auditoria to service_role/i);
-  assert.doesNotMatch(migration, /grant[^;]*(?:update|delete)[^;]*service_role/i);
+  const keyMigrations = `${auditMigration}\n${read(
+    "supabase/migrations/20260904210000_bnt_cfg_02_company_fiscal.sql",
+  )}`;
+  assert.match(auditMigration, /enable row level security/i);
+  assert.match(auditMigration, /revoke all on table public\.configuracoes_auditoria from service_role/i);
+  assert.match(auditMigration, /grant select, insert on table public\.configuracoes_auditoria to service_role/i);
+  assert.doesNotMatch(auditMigration, /grant[^;]*(?:update|delete)[^;]*service_role/i);
   for (const key of Object.keys(contracts.CONFIGURATION_DEFINITIONS)) {
-    assert.match(migration, new RegExp(`'${key.replaceAll(".", "\\.")}'`));
+    assert.match(keyMigrations, new RegExp(`'${key.replaceAll(".", "\\.")}'`));
   }
 });
 
@@ -72,7 +73,7 @@ test("todas as mutações administrativas existentes registram auditoria", () =>
   for (const route of [
     "src/app/api/configuracoes/route.ts",
     "src/app/api/configuracoes/empresa/route.ts",
-    "src/app/api/configuracoes/fiscal-provider/route.ts",
+    "src/app/api/configuracoes/fiscal/route.ts",
     "src/app/api/configuracoes/usuarios/route.ts",
     "src/app/api/configuracoes/usuarios/[id]/route.ts",
     "src/app/api/integracoes/config/route.ts",
