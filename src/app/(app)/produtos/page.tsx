@@ -16,6 +16,8 @@ import ProgressModal from '@/components/modals/ProgressModal';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 import { useMlPricePublishTracking } from '@/hooks/useMlPricePublishTracking';
 import styles from './produtos.module.css';
+import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
+import { resolveMlFee } from '@/lib/commercial-pricing';
 
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
 type ProdutoOfertaRow = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'];
@@ -263,18 +265,23 @@ function parseEditablePriceText(input: string): number | null {
   return Number.isFinite(parsed) ? Math.round(parsed * 100) / 100 : null;
 }
 
-function computeDerived(item: Product | ProductMasterListItem, taxRate: number | null): { displayPrice: number; profit: number | null } {
+function computeDerived(
+  item: Product | ProductMasterListItem,
+  taxRate: number | null,
+  commercialPricing: CommercialPricingConfiguration | null,
+): { displayPrice: number; profit: number | null } {
   const product = 'product' in item ? item.product : item;
   const cost = 'preferredOffer' in item
     ? Number(item.preferredOffer?.custo ?? item.product.cost)
     : item.cost;
   try {
-    if (taxRate === null) throw new Error('Alíquota tributária indisponível');
+    if (taxRate === null || !commercialPricing) throw new Error('Precificação indisponível');
     const result = calculateSuggestedPrice({
       cost,
       shipping: product.mlShipping,
       mlFee: product.mlFee,
       taxRate,
+      costTiers: commercialPricing.costTiers,
     });
     const displayPrice = Math.round((product.customPrice ?? result.suggestedPrice) * 100) / 100;
 
@@ -300,7 +307,7 @@ function computeDerived(item: Product | ProductMasterListItem, taxRate: number |
 const mlStatusColor: Record<MLStatus, string> = { ativo: 'green', pausado: 'orange', sem_anuncio: 'default' };
 const mlStatusLabel: Record<MLStatus, string> = { ativo: 'Ativo', pausado: 'Pausado', sem_anuncio: 'Sem Anúncio' };
 
-function mapDBtoProduct(item: ProdutoRow): Product {
+function mapDBtoProduct(item: ProdutoRow, mlFeeFallbackRate: number): Product {
   return {
     id: item.id,
     active: item.ativo !== false,
@@ -313,7 +320,7 @@ function mapDBtoProduct(item: ProdutoRow): Product {
     preferredSupplierManual: item.fornecedor_preferencial_manual === true,
     stock: item.estoque || 0,
     cost: item.custo || 0,
-    mlFee: item.ml_fee || 0.15,
+    mlFee: resolveMlFee(item.ml_fee, mlFeeFallbackRate),
     mlShipping: Number(item.ml_shipping ?? 0),
     customPrice: item.custom_price,
     mlStatus: item.ml_status || 'sem_anuncio',
@@ -342,6 +349,7 @@ export default function ProductsPage() {
   const router = useRouter();
   const [products, setProducts] = useState<ProductMasterListItem[]>([]);
   const [pricingTaxRate, setPricingTaxRate] = useState<number | null>(null);
+  const [commercialPricing, setCommercialPricing] = useState<CommercialPricingConfiguration | null>(null);
   const [loading, setLoading] = useState(true);
   const [listError, setListError] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
@@ -476,7 +484,7 @@ export default function ProductsPage() {
   }, []);
 
   const abrirCriarAnuncioML = async (product: Product) => {
-    const derived = computeDerived(product, pricingTaxRate);
+    const derived = computeDerived(product, pricingTaxRate, commercialPricing);
     const basePrice = product.customPrice ?? derived.displayPrice;
     setMlModal({
       open: true,
@@ -1089,7 +1097,7 @@ export default function ProductsPage() {
       }
       const data = json.data || [];
       const mapped: ProductMasterListItem[] = data.map((item: any) => ({
-        product: mapDBtoProduct(item.product),
+        product: mapDBtoProduct(item.product, Number(json?.commercialPricing?.mlFeeFallbackRate)),
         mlListings: Array.isArray(item.mlListings)
           ? item.mlListings.map((listing: any) => ({
               itemId: String(listing?.itemId || '').trim().toUpperCase(),
@@ -1127,6 +1135,7 @@ export default function ProductsPage() {
           ? json.pricingTaxContext.appliedRate
           : null,
       );
+      setCommercialPricing(json?.commercialPricing || null);
       setFornecedorOptions(
         Array.isArray(json.fornecedores)
           ? json.fornecedores.map((item: any) => ({
@@ -1200,7 +1209,7 @@ export default function ProductsPage() {
 
   const rows: ProductRow[] = useMemo(() => {
     return products.map(item => {
-      const { displayPrice, profit } = computeDerived(item, pricingTaxRate);
+      const { displayPrice, profit } = computeDerived(item, pricingTaxRate, commercialPricing);
       const effectiveCost = Number(item.preferredOffer?.custo ?? item.product.cost ?? 0);
       return {
         key: item.product.id,
@@ -1218,7 +1227,7 @@ export default function ProductsPage() {
           : Math.round((profit / displayPrice) * 10000) / 100,
       };
     });
-  }, [pricingTaxRate, products]);
+  }, [commercialPricing, pricingTaxRate, products]);
 
   const handleExportPdf = useCallback(async () => {
     setExportingPdf(true);
@@ -1765,12 +1774,13 @@ export default function ProductsPage() {
             : Math.round((previewProfit / value) * 10000) / 100;
           const suggestedPrice = pricingTaxRate === null
             ? record.displayPrice
-            : calculateSuggestedPrice({
+            : commercialPricing ? calculateSuggestedPrice({
                 cost: record.effectiveCost,
                 shipping: record.product.mlShipping,
                 mlFee: record.product.mlFee,
                 taxRate: pricingTaxRate,
-              }).suggestedPrice;
+                costTiers: commercialPricing.costTiers,
+              }).suggestedPrice : record.displayPrice;
           const listings = displayMlListings(record).filter(listing => ['ativo', 'pausado'].includes(listing.status));
           return (
             <div className={styles.priceModalContent}>
@@ -1990,7 +2000,7 @@ export default function ProductsPage() {
             {/* Resumo do Produto */}
             {mlModal.product && (() => {
               const p = mlModal.product;
-              const derived = computeDerived(p, pricingTaxRate);
+              const derived = computeDerived(p, pricingTaxRate, commercialPricing);
               const price = mlModal.editablePrice ?? p.customPrice ?? derived.displayPrice;
               const profit = derived.profit;
               return (

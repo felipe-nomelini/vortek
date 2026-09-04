@@ -59,6 +59,8 @@ test("tabela de auditoria é append-only para o papel usado pela aplicação", (
   );
   const keyMigrations = `${auditMigration}\n${read(
     "supabase/migrations/20260904210000_bnt_cfg_02_company_fiscal.sql",
+  )}\n${read(
+    "supabase/migrations/20260904223000_bnt_cfg_03_commercial_pricing.sql",
   )}`;
   assert.match(auditMigration, /enable row level security/i);
   assert.match(auditMigration, /revoke all on table public\.configuracoes_auditoria from service_role/i);
@@ -74,6 +76,7 @@ test("todas as mutações administrativas existentes registram auditoria", () =>
     "src/app/api/configuracoes/route.ts",
     "src/app/api/configuracoes/empresa/route.ts",
     "src/app/api/configuracoes/fiscal/route.ts",
+    "src/app/api/configuracoes/comercial/route.ts",
     "src/app/api/configuracoes/usuarios/route.ts",
     "src/app/api/configuracoes/usuarios/[id]/route.ts",
     "src/app/api/integracoes/config/route.ts",

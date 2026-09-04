@@ -5,7 +5,7 @@ import { buildCanonicalDsliteSku } from '@/lib/sku';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-import { PRODUCT_COST_INACTIVE_THRESHOLD, shouldProductBeInactiveByCost } from '@/lib/product-activity';
+import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 import { filterAllowedDropshippingDsliteSupplierIds } from '@/lib/dslite/supplier-policy';
@@ -13,6 +13,7 @@ import {
   enqueueAutomaticPricesForCostChanges,
   type CostSnapshot,
 } from '@/lib/ml/automatic-pricing';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 
 export const maxDuration = 300;
 
@@ -186,6 +187,8 @@ export async function POST(req: Request) {
     }
 
     const client = createServiceClient();
+    const commercial = await loadCommercialPricingConfiguration(client);
+    const inactiveCostThreshold = commercial.inactiveCostThreshold;
     const { data: fornecedoresAtivosLocal, error: fornecedoresAtivosError } = await client
       .from('fornecedores')
       .select('dslite_id')
@@ -417,7 +420,7 @@ export async function POST(req: Request) {
           continue;
         }
 
-        if (shouldProductBeInactiveByCost(row.custo)) {
+        if (shouldProductBeInactiveByCost(row.custo, inactiveCostThreshold)) {
           productsToInactivateByCost.set(productId, {
             mlItemId: existingProductMlItemId,
             sku: existingProductSku,
@@ -437,7 +440,7 @@ export async function POST(req: Request) {
           sku_fornecedor: String(row.sku || '').trim(),
           custo: normalizeCost(row.custo),
           estoque: normalizeStock(row.estoque),
-          ativo: !shouldProductBeInactiveByCost(row.custo),
+          ativo: !shouldProductBeInactiveByCost(row.custo, inactiveCostThreshold),
           prioridade: 100,
           payment_mode:
             existingOffer?.payment_mode ||
@@ -484,7 +487,7 @@ export async function POST(req: Request) {
                 apply_status: true,
                 sku: product.sku,
                 origin: 'api/sync/preco-estoque',
-                threshold: PRODUCT_COST_INACTIVE_THRESHOLD,
+                threshold: inactiveCostThreshold,
               },
             });
             if (!outbox.ok) {

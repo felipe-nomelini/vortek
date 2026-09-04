@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { PRODUCT_COST_INACTIVE_THRESHOLD } from '@/lib/product-activity';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 
 function parsePositiveInt(input: unknown, fallback: number): number {
   const n = Number(input);
@@ -28,12 +28,14 @@ export async function POST(req: Request) {
   const limit = Math.min(1000, parsePositiveInt(body?.limit, 1000));
   const dryRun = body?.dryRun === true;
   const client = createServiceClient();
+  const commercial = await loadCommercialPricingConfiguration(client);
+  const threshold = commercial.inactiveCostThreshold;
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
 
   const { data: candidates, error: selectError } = await client
     .from('produtos')
     .select('id,sku,custo,ativo,ml_item_id,estoque,ml_status')
-    .gt('custo', PRODUCT_COST_INACTIVE_THRESHOLD)
+    .gt('custo', threshold)
     .neq('ativo', false)
     .order('custo', { ascending: false })
     .limit(limit);
@@ -95,7 +97,7 @@ export async function POST(req: Request) {
           previous_status: row.ml_status,
           previous_stock: row.estoque,
           previous_cost: row.custo,
-          threshold: PRODUCT_COST_INACTIVE_THRESHOLD,
+          threshold,
           origin: 'api/produtos/inativar-custo-alto',
         },
       });
@@ -119,7 +121,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
     success: errors.length === 0,
     dryRun,
-    threshold: PRODUCT_COST_INACTIVE_THRESHOLD,
+    threshold,
     records: {
       candidates: rows.length,
       inactivated,

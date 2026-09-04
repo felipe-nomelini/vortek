@@ -1,8 +1,4 @@
-export const VORTEK_QUANTITY_PRICING_RANGES = [
-  { minPurchaseUnit: 3, fallbackDiscountPercentage: 3 },
-  { minPurchaseUnit: 5, fallbackDiscountPercentage: 4 },
-  { minPurchaseUnit: 10, fallbackDiscountPercentage: 5 },
-] as const;
+import type { QuantityPricingRange } from "@/lib/commercial-pricing";
 
 export type QuantityPricingRecommendationSource =
   | "mercado_livre"
@@ -115,6 +111,7 @@ export function buildQuantityPricingPreview(
   raw: unknown,
   status: number | null,
   basePrice: number,
+  configuredRanges: QuantityPricingRange[],
   currencyId = "BRL",
 ): QuantityPricingPreviewResult {
   const normalizedBasePrice = normalizePositiveNumber(basePrice);
@@ -133,7 +130,7 @@ export function buildQuantityPricingPreview(
   }
 
   if (status === 204) {
-    const tiers = VORTEK_QUANTITY_PRICING_RANGES.map((range) => ({
+    const tiers = configuredRanges.map((range) => ({
       minPurchaseUnit: range.minPurchaseUnit,
       discountPercentage: range.fallbackDiscountPercentage,
       estimatedUnitAmount: round2(
@@ -160,7 +157,7 @@ export function buildQuantityPricingPreview(
     : [];
   const tiers: QuantityPricingTier[] = [];
 
-  for (const range of VORTEK_QUANTITY_PRICING_RANGES) {
+  for (const range of configuredRanges) {
     const recommendation = recommendations.find(
       (entry: any) => Number(entry?.quantity) === range.minPurchaseUnit,
     );
@@ -185,12 +182,15 @@ export function buildQuantityPricingPreview(
       };
     }
 
-    const normalizedPercentage = round6(percentage);
+    const normalizedPercentage = round6(Math.max(
+      percentage,
+      range.fallbackDiscountPercentage,
+    ));
     const recommendedAmount = normalizePositiveNumber(recommendation?.amount);
     tiers.push({
       minPurchaseUnit: range.minPurchaseUnit,
       discountPercentage: normalizedPercentage,
-      estimatedUnitAmount: recommendedAmount === null
+      estimatedUnitAmount: recommendedAmount === null || normalizedPercentage !== round6(percentage)
         ? round2(normalizedBasePrice * (1 - normalizedPercentage / 100))
         : round2(recommendedAmount),
       currencyId,
@@ -248,6 +248,7 @@ export async function previewItemQuantityPricing(
   requester: QuantityPricingRequester,
   itemId: string,
   basePrice: number,
+  configuredRanges: QuantityPricingRange[],
   currencyId = "BRL",
 ): Promise<QuantityPricingPreviewResult> {
   const result = await requester<any>(
@@ -257,7 +258,7 @@ export async function previewItemQuantityPricing(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         item_id: itemId,
-        range_item_quantities: VORTEK_QUANTITY_PRICING_RANGES.map(
+        range_item_quantities: configuredRanges.map(
           (range) => range.minPurchaseUnit,
         ),
         price: {
@@ -283,6 +284,7 @@ export async function previewItemQuantityPricing(
     result.data,
     result.status,
     basePrice,
+    configuredRanges,
     currencyId,
   );
 }
@@ -466,6 +468,7 @@ export async function applyItemQuantityPricing(
   requester: QuantityPricingRequester,
   itemId: string,
   basePrice: number,
+  configuredRanges: QuantityPricingRange[],
 ): Promise<QuantityPricingApplyResult> {
   const emptyResult = (
     error: string,
@@ -549,6 +552,7 @@ export async function applyItemQuantityPricing(
     requester,
     itemId,
     standardPrice.amount,
+    configuredRanges,
     standardPrice.currencyId,
   );
   if (!preview.ok) {

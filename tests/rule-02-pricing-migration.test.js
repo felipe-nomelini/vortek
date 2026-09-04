@@ -7,6 +7,10 @@ const migration = fs.readFileSync(
   path.join(__dirname, '..', 'supabase', 'migrations', '20260830233000_rule_02_dynamic_pricing.sql'),
   'utf8',
 );
+const commercialMigration = fs.readFileSync(
+  path.join(__dirname, '..', 'supabase', 'migrations', '20260904223000_bnt_cfg_03_commercial_pricing.sql'),
+  'utf8',
+);
 
 test('migration exige alíquota explícita nas buscas de produtos', () => {
   assert.match(migration, /create or replace function public\.search_produtos_paginated\(\s*p_tax_rate numeric,/);
@@ -24,11 +28,10 @@ test('migration restringe leitura de faturamento e RPCs de busca ao service role
   assert.match(migration, /grant execute on function public\.search_produtos_resumo[\s\S]+to service_role/);
 });
 
-test('migration usa a mesma estratégia central de margem e lucro mínimo', () => {
-  assert.match(migration, /when coalesce\(p_cost, 0\) <= 400 then 0\.15/);
-  assert.match(migration, /when coalesce\(p_cost, 0\) <= 1000 then 0\.20/);
-  assert.match(migration, /else 0\.25/);
-  assert.match(migration, /when coalesce\(p_cost, 0\) <= 400 then 20/);
-  assert.match(migration, /when coalesce\(p_cost, 0\) <= 1000 then 60/);
-  assert.match(migration, /else 150/);
+test('migration mais recente usa a fonte comercial configurável no cálculo SQL', () => {
+  assert.match(commercialMigration, /from public\.pricing_cost_tiers/);
+  assert.match(commercialMigration, /order by position/);
+  assert.match(commercialMigration, /private\.commercial_ml_fee_fallback\(\)/);
+  assert.match(commercialMigration, /language plpgsql\s+stable/);
+  assert.doesNotMatch(commercialMigration, /when coalesce\(p_cost, 0\) <= 400 then/);
 });

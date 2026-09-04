@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
+import { resolveMlFee } from '@/lib/commercial-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { fetchMLResult } from '@/services/integration';
@@ -324,7 +326,10 @@ export async function POST(request: Request) {
     }
 
     const service = createServiceClient();
-    const pricingTaxContext = await loadPricingTaxContext(service);
+    const [pricingTaxContext, commercial] = await Promise.all([
+      loadPricingTaxContext(service),
+      loadCommercialPricingConfiguration(service),
+    ]);
     const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto, error } = await service
       .from('produtos')
@@ -342,8 +347,9 @@ export async function POST(request: Request) {
         : calculateSuggestedPrice({
             cost: Number(produto.custo || 0),
             shipping: Number(produto.ml_shipping || 0),
-            mlFee: Number(produto.ml_fee || 0.15),
+            mlFee: resolveMlFee(produto.ml_fee, commercial.mlFeeFallbackRate),
             taxRate,
+            costTiers: commercial.costTiers,
           }).suggestedPrice;
     }
     basePrice = Math.round(basePrice * 100) / 100;

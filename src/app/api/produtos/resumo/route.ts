@@ -12,13 +12,17 @@ import {
   loadBntD07VisualReview,
   summarizeBntD07VisualReview,
 } from '@/lib/products/bnt-d07-visual-review';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   const serviceClient = createServiceClient();
-  const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+  const [pricingTaxContext, commercialPricing] = await Promise.all([
+    loadPricingTaxContext(serviceClient),
+    loadCommercialPricingConfiguration(serviceClient),
+  ]);
   const taxRate = requirePricingTaxRate(pricingTaxContext);
 
   const { searchParams } = new URL(request.url);
@@ -67,8 +71,10 @@ export async function GET(request: Request) {
         priceMin,
         priceMax,
         taxRate,
+        commercialPricing,
       }),
       pricingTaxContext,
+      commercialPricing,
       visualReview: visualReview.metadata,
     });
   }
@@ -100,5 +106,6 @@ export async function GET(request: Request) {
     receitaPotencial: Number(result.receitaPotencial || 0),
     lucroMedio: Number(result.lucroMedio || 0),
     pricingTaxContext,
+    commercialPricing,
   });
 }

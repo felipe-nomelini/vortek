@@ -57,7 +57,12 @@ export const CONFIGURATION_DEFINITIONS = {
   "empresa.telefone": { domain: "empresa_fiscal", label: "Telefone", classification: "EDITAVEL_IMEDIATO" },
   "empresa.uf_fiscal": { domain: "empresa_fiscal", label: "UF fiscal", classification: "EDITAVEL_CONTROLADO" },
   "empresa.cod_municipio_fiscal": { domain: "empresa_fiscal", label: "Município fiscal", classification: "EDITAVEL_CONTROLADO" },
-  "configuracoes.margem_lucro": { domain: "comercial_precificacao", label: "Margem de lucro padrão", classification: "EDITAVEL_IMEDIATO" },
+  "configuracoes.margem_lucro": { domain: "comercial_precificacao", label: "Margem de lucro padrão legada", classification: "OBSOLETO" },
+  "configuracoes.pricing_ml_fee_fallback_rate": { domain: "comercial_precificacao", label: "Taxa fallback do Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.pricing_unspecified_shipping_cost": { domain: "comercial_precificacao", label: "Frete quando não informado", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.product_inactive_cost_threshold": { domain: "comercial_precificacao", label: "Limite de custo para inativação", classification: "EDITAVEL_CONTROLADO" },
+  "pricing_cost_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de custo, margem e lucro mínimo", classification: "EDITAVEL_CONTROLADO" },
+  "ml_quantity_pricing_tiers.policy": { domain: "comercial_precificacao", label: "Faixas de preço por quantidade", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.notificacoes_push": { domain: "notificacoes", label: "Notificações push", classification: "EDITAVEL_IMEDIATO" },
   "configuracoes.nfe_provider_default": { domain: "empresa_fiscal", label: "Provedor fiscal", classification: "INVARIANTE" },
   "configuracoes.simples_inicio_atividade": { domain: "empresa_fiscal", label: "Início da atividade", classification: "EDITAVEL_CONTROLADO" },
@@ -145,9 +150,67 @@ export const companyConfigurationSchema = z.object({
 }).strict();
 
 export const preferencesConfigurationSchema = z.object({
-  margem_lucro: z.number().finite().min(0).max(1000),
   notificacoes_push: z.boolean(),
 }).strict();
+
+const costTierSchema = z.object({
+  position: z.number().int().min(1).max(3),
+  maxCost: z.number().finite().positive().nullable(),
+  marginPercent: z.number().finite().gt(0).lt(100),
+  minProfit: z.number().finite().min(0).max(10_000_000),
+}).strict();
+
+const quantityPricingTierSchema = z.object({
+  position: z.number().int().min(1).max(5),
+  minPurchaseUnit: z.number().int().min(1).max(100),
+  discountPercent: z.number().finite().gt(0).lt(100),
+}).strict();
+
+export const commercialConfigurationSchema = z.object({
+  mlFeeFallbackPercent: z.number().finite().min(0).lt(100),
+  unspecifiedShippingCost: z.number().finite().min(0).max(10_000_000),
+  inactiveCostThreshold: z.number().finite().positive().max(10_000_000),
+  costTiers: z.array(costTierSchema).length(3),
+  quantityPricingTiers: z.array(quantityPricingTierSchema).min(1).max(5),
+}).strict().superRefine((value, context) => {
+  const orderedCostTiers = [...value.costTiers].sort((left, right) => left.position - right.position);
+  let previousMax = 0;
+  orderedCostTiers.forEach((tier, index) => {
+    if (tier.position !== index + 1) {
+      context.addIssue({ code: "custom", path: ["costTiers", index, "position"], message: "As faixas de custo devem ter posições sequenciais" });
+    }
+    if (index === orderedCostTiers.length - 1) {
+      if (tier.maxCost !== null) context.addIssue({ code: "custom", path: ["costTiers", index, "maxCost"], message: "A última faixa de custo deve ser ilimitada" });
+    } else if (tier.maxCost === null || tier.maxCost <= previousMax) {
+      context.addIssue({ code: "custom", path: ["costTiers", index, "maxCost"], message: "Os limites de custo devem ser crescentes" });
+    } else {
+      previousMax = tier.maxCost;
+    }
+    const totalRate = (tier.marginPercent + value.mlFeeFallbackPercent) / 100;
+    if (totalRate >= 1) {
+      context.addIssue({ code: "custom", path: ["costTiers", index, "marginPercent"], message: "Margem e taxa fallback do ML devem somar menos de 100%" });
+    }
+  });
+
+  const orderedQuantityTiers = [...value.quantityPricingTiers].sort((left, right) => left.position - right.position);
+  let previousQuantity = 0;
+  let previousDiscount = 0;
+  orderedQuantityTiers.forEach((tier, index) => {
+    if (tier.position !== index + 1) {
+      context.addIssue({ code: "custom", path: ["quantityPricingTiers", index, "position"], message: "As faixas por quantidade devem ter posições sequenciais" });
+    }
+    if (tier.minPurchaseUnit <= previousQuantity) {
+      context.addIssue({ code: "custom", path: ["quantityPricingTiers", index, "minPurchaseUnit"], message: "As quantidades devem ser únicas e crescentes" });
+    }
+    if (tier.discountPercent <= previousDiscount) {
+      context.addIssue({ code: "custom", path: ["quantityPricingTiers", index, "discountPercent"], message: "Os descontos devem ser crescentes" });
+    }
+    previousQuantity = tier.minPurchaseUnit;
+    previousDiscount = tier.discountPercent;
+  });
+});
+
+export type CommercialConfigurationInput = z.infer<typeof commercialConfigurationSchema>;
 
 export const fiscalConfigurationSchema = z.object({
   simples_inicio_atividade: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Data de início inválida"),

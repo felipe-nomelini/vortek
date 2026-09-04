@@ -326,6 +326,9 @@ export type Database = {
           margem_lucro: number
           nfe_provider_default: string
           notificacoes_push: boolean
+          pricing_ml_fee_fallback_rate: number
+          pricing_unspecified_shipping_cost: number
+          product_inactive_cost_threshold: number
           simples_aliquota_confirmada: number | null
           simples_aliquota_confirmada_em: string | null
           simples_inicio_atividade: string
@@ -337,6 +340,9 @@ export type Database = {
           margem_lucro?: number
           nfe_provider_default?: string
           notificacoes_push?: boolean
+          pricing_ml_fee_fallback_rate?: number
+          pricing_unspecified_shipping_cost?: number
+          product_inactive_cost_threshold?: number
           simples_aliquota_confirmada?: number | null
           simples_aliquota_confirmada_em?: string | null
           simples_inicio_atividade?: string
@@ -348,9 +354,57 @@ export type Database = {
           margem_lucro?: number
           nfe_provider_default?: string
           notificacoes_push?: boolean
+          pricing_ml_fee_fallback_rate?: number
+          pricing_unspecified_shipping_cost?: number
+          product_inactive_cost_threshold?: number
           simples_aliquota_confirmada?: number | null
           simples_aliquota_confirmada_em?: string | null
           simples_inicio_atividade?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ml_quantity_pricing_tiers: {
+        Row: {
+          discount_percentage: number
+          min_purchase_unit: number
+          position: number
+          updated_at: string
+        }
+        Insert: {
+          discount_percentage: number
+          min_purchase_unit: number
+          position: number
+          updated_at?: string
+        }
+        Update: {
+          discount_percentage?: number
+          min_purchase_unit?: number
+          position?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pricing_cost_tiers: {
+        Row: {
+          margin_rate: number
+          max_cost: number | null
+          min_profit: number
+          position: number
+          updated_at: string
+        }
+        Insert: {
+          margin_rate: number
+          max_cost?: number | null
+          min_profit: number
+          position: number
+          updated_at?: string
+        }
+        Update: {
+          margin_rate?: number
+          max_cost?: number | null
+          min_profit?: number
+          position?: number
           updated_at?: string
         }
         Relationships: []
@@ -1575,6 +1629,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      save_commercial_pricing_configuration: {
+        Args: {
+          p_cost_tiers: Json
+          p_inactive_cost_threshold: number
+          p_ml_fee_fallback_rate: number
+          p_quantity_tiers: Json
+          p_unspecified_shipping_cost: number
+        }
+        Returns: undefined
+      }
       search_clientes_paginated: {
         Args: {
           p_page?: number | null

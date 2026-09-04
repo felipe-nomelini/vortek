@@ -17,6 +17,8 @@ import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
 import type { ProductMlListing } from '@/lib/ml/product-listings';
 import styles from './produto-detalhe.module.css';
+import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
+import { resolveMlFee } from '@/lib/commercial-pricing';
 
 const { Paragraph, Text, Title } = Typography;
 const mlStatusColor: Record<MLStatus, string> = { ativo: 'green', pausado: 'orange', sem_anuncio: 'default' };
@@ -59,7 +61,10 @@ type VisualReviewMetadata = {
   itemCount: number;
 };
 
-function mapDBtoProduct(item: ProdutoRow & Record<string, any>): ProductDetail {
+function mapDBtoProduct(
+  item: ProdutoRow & Record<string, any>,
+  mlFeeFallbackRate: number,
+): ProductDetail {
   return {
     id: String(item.id), active: item.ativo !== false, sku: String(item.sku || ''),
     name: String(item.nome || ''), brand: String(item.marca || ''),
@@ -70,7 +75,7 @@ function mapDBtoProduct(item: ProdutoRow & Record<string, any>): ProductDetail {
     stock: Number(item.estoque_operacional ?? item.estoque ?? 0),
     supplierStock: Number(item.estoque_fornecedor ?? item.estoque ?? 0),
     internalStock: Number(item.estoque_interno ?? 0), cost: Number(item.custo || 0),
-    mlFee: Number(item.ml_fee || 0.15), mlShipping: Number(item.ml_shipping || 0),
+    mlFee: resolveMlFee(item.ml_fee, mlFeeFallbackRate), mlShipping: Number(item.ml_shipping || 0),
     customPrice: item.custom_price === null || item.custom_price === undefined ? null : Number(item.custom_price),
     mlStatus: item.ml_status_operacional || item.ml_status || 'sem_anuncio',
     mlItemId: item.ml_item_id_operacional || item.ml_item_id || null,
@@ -126,6 +131,7 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState<ProductDetail | null>(null);
   const [original, setOriginal] = useState<ProductDetail | null>(null);
   const [pricingTaxRate, setPricingTaxRate] = useState<number | null>(null);
+  const [commercialPricing, setCommercialPricing] = useState<CommercialPricingConfiguration | null>(null);
   const [capacity, setCapacity] = useState<FulfillmentCapacity>({ internal: 0, supplier: 0, safe: 0 });
   const [mlListings, setMlListings] = useState<ProductMlListing[]>([]);
   const [isKit, setIsKit] = useState(false);
@@ -152,9 +158,13 @@ export default function ProductDetailPage() {
       ]);
       const productJson = await productResponse.json().catch(() => ({}));
       if (!productResponse.ok) throw new Error(productJson.error || productJson.erro || 'Erro ao buscar produto');
-      const mapped = mapDBtoProduct(productJson.data);
+      const mapped = mapDBtoProduct(
+        productJson.data,
+        Number(productJson?.commercialPricing?.mlFeeFallbackRate),
+      );
       setProduct(mapped); setOriginal(mapped);
       setPricingTaxRate(typeof productJson?.pricingTaxContext?.appliedRate === 'number' ? productJson.pricingTaxContext.appliedRate : null);
+      setCommercialPricing(productJson?.commercialPricing || null);
       setCapacity({
         internal: Number(productJson?.fulfillmentCapacity?.internal || 0),
         supplier: Number(productJson?.fulfillmentCapacity?.supplier || 0),
@@ -264,9 +274,9 @@ export default function ProductDetailPage() {
 
   if (loading) return <div className={styles.centerState}><Spin indicator={<LoadingOutlined className={styles.loadingIcon} spin />} /><Text type="secondary">Carregando produto...</Text></div>;
   if (error || !product) return <div className={styles.centerState}><StopOutlined className={styles.errorIcon} /><Title level={4}>{error || 'Produto não encontrado'}</Title><Button type="primary" onClick={() => router.push('/produtos')}>Voltar para Produtos</Button></div>;
-  if (pricingTaxRate === null) return <Alert type="error" showIcon message="Alíquota tributária indisponível" description="Não é possível apresentar a precificação com segurança enquanto a configuração fiscal estiver indisponível." />;
+  if (pricingTaxRate === null || !commercialPricing) return <Alert type="error" showIcon message="Precificação indisponível" description="Não é possível apresentar a precificação com segurança enquanto a configuração fiscal ou comercial estiver indisponível." />;
 
-  const suggestedPrice = calculateSuggestedPrice({ cost: product.cost, shipping: product.mlShipping, mlFee: product.mlFee, taxRate: pricingTaxRate }).suggestedPrice;
+  const suggestedPrice = calculateSuggestedPrice({ cost: product.cost, shipping: product.mlShipping, mlFee: product.mlFee, taxRate: pricingTaxRate, costTiers: commercialPricing.costTiers }).suggestedPrice;
   const displayPrice = product.customPrice ?? suggestedPrice;
   const profit = calculateNetProfitAtPrice({ price: displayPrice, cost: product.cost, shipping: product.mlShipping, mlFee: product.mlFee, taxRate: pricingTaxRate });
   const margin = displayPrice > 0 ? (profit / displayPrice) * 100 : 0;

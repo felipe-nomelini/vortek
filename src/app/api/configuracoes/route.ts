@@ -44,7 +44,7 @@ export async function PUT(request: Request) {
 
   const { data: previous, error: previousError } = await serviceClient
     .from("configuracoes")
-    .select("id,margem_lucro,notificacoes_push")
+    .select("id,notificacoes_push")
     .eq("id", CONFIG_ROW_ID)
     .maybeSingle();
   if (previousError) {
@@ -53,7 +53,6 @@ export async function PUT(request: Request) {
 
   const payload = {
     id: CONFIG_ROW_ID,
-    margem_lucro: parsed.data.margem_lucro,
     notificacoes_push: parsed.data.notificacoes_push,
     updated_at: new Date().toISOString(),
   };
@@ -70,7 +69,6 @@ export async function PUT(request: Request) {
       serviceClient,
       { id: admin.user.id, name: admin.nome },
       [
-        { key: "configuracoes.margem_lucro", targetId: data.id, before: previous?.margem_lucro, after: data.margem_lucro },
         { key: "configuracoes.notificacoes_push", targetId: data.id, before: previous?.notificacoes_push, after: data.notificacoes_push },
       ],
     );

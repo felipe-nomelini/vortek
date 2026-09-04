@@ -10,6 +10,8 @@ import {
   type QuantityPricingApplyResult,
   type QuantityPricingPreviewResult,
 } from "@/lib/ml/quantity-pricing";
+import { createServiceClient } from "@/lib/supabase";
+import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 
 export type {
   QuantityPricingApplyResult,
@@ -677,10 +679,12 @@ export async function setItemQuantityPricing(
   basePrice: number,
 ): Promise<QuantityPricingApplyResult> {
   try {
+    const commercial = await loadCommercialPricingConfiguration(createServiceClient());
     const result = await applyItemQuantityPricing(
       fetchMLResult,
       itemId,
       basePrice,
+      commercial.quantityPricingRanges,
     );
     console.log(
       JSON.stringify({
@@ -718,10 +722,12 @@ export async function previewItemQuantityPricing(
   basePrice: number,
   currencyId = "BRL",
 ): Promise<QuantityPricingPreviewResult> {
+  const commercial = await loadCommercialPricingConfiguration(createServiceClient());
   return resolveItemQuantityPricingPreview(
     fetchMLResult,
     itemId,
     basePrice,
+    commercial.quantityPricingRanges,
     currencyId,
   );
 }

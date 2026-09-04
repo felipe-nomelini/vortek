@@ -14,6 +14,8 @@ import {
 import { calculateNetProfitAtPrice } from '@/services/pricing';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { hasMlAutomaticPrice, ML_DYNAMIC_STANDARD_PRICE_TAG } from '@/lib/ml/item-price-policy';
+import { resolveMlFee } from '@/lib/commercial-pricing';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 
 function round2(value: number) {
   return Math.round(value * 100) / 100;
@@ -53,7 +55,10 @@ export async function GET(request: Request) {
   if (!produtoId) return NextResponse.json({ error: 'produtoId é obrigatório' }, { status: 422 });
 
   const service = createServiceClient();
-  const pricingTaxContext = await loadPricingTaxContext(service);
+  const [pricingTaxContext, commercialPricing] = await Promise.all([
+    loadPricingTaxContext(service),
+    loadCommercialPricingConfiguration(service),
+  ]);
   const taxRate = requirePricingTaxRate(pricingTaxContext);
   const { data: produto, error } = await service
     .from('produtos')
@@ -98,7 +103,7 @@ export async function GET(request: Request) {
   });
   const cost = Number(produto.custo || 0);
   const shipping = Number(produto.ml_shipping || 0);
-  const mlFee = Number(produto.ml_fee || 0.15);
+  const mlFee = resolveMlFee(produto.ml_fee, commercialPricing.mlFeeFallbackRate);
   let catalog: any = null;
 
   if (catalogListing) {

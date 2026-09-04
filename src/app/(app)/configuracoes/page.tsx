@@ -9,10 +9,11 @@ import IntegracoesTab from "@/components/configuracoes/IntegracoesTab";
 import PreferenciasTab from "@/components/configuracoes/PreferenciasTab";
 import UsuariosTab from "@/components/configuracoes/UsuariosTab";
 import AuditoriaTab from "@/components/configuracoes/AuditoriaTab";
+import ComercialTab from "@/components/configuracoes/ComercialTab";
 import { configuracoesCardStyle } from "@/components/configuracoes/styles";
 
 const { Title } = Typography;
-const validTabs = ["empresa", "integracoes", "usuarios", "preferencias", "historico"];
+const validTabs = ["empresa", "comercial", "integracoes", "usuarios", "preferencias", "historico"];
 
 function ConfiguracoesPageContent() {
   const searchParams = useSearchParams();
@@ -52,6 +53,12 @@ function ConfiguracoesPageContent() {
               label: "🏢 Empresa e fiscal",
               forceRender: true,
               children: <EmpresaTab messageApi={messageApi} />,
+            },
+            {
+              key: "comercial",
+              label: "💰 Comercial",
+              forceRender: true,
+              children: <ComercialTab messageApi={messageApi} />,
             },
             {
               key: "integracoes",

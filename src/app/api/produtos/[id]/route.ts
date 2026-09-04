@@ -9,6 +9,7 @@ import {
   findBntD07VisualReviewItem,
   loadBntD07VisualReview,
 } from '@/lib/products/bnt-d07-visual-review';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 
 export async function GET(_req: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -18,7 +19,10 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
     if (!user) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
 
     const supabase = createServiceClient();
-    const pricingTaxContext = await loadPricingTaxContext(supabase);
+    const [pricingTaxContext, commercialPricing] = await Promise.all([
+      loadPricingTaxContext(supabase),
+      loadCommercialPricingConfiguration(supabase),
+    ]);
     const visualReview = await loadBntD07VisualReview();
     const fixture = visualReview
       ? findBntD07VisualReviewItem(visualReview, params.id)
@@ -28,6 +32,7 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
       return NextResponse.json({
         data: fixture.product,
         pricingTaxContext,
+        commercialPricing,
         fulfillmentCapacity: fixture.fulfillmentCapacity,
         mlListings: Array.isArray(fixture.mlListings) ? fixture.mlListings : [],
         isKit: fixture.isKit,
@@ -79,6 +84,7 @@ export async function GET(_req: Request, props: { params: Promise<{ id: string }
     return NextResponse.json({
       data: resolvedData,
       pricingTaxContext,
+      commercialPricing,
       fulfillmentCapacity: capacity,
       mlListings: listings,
       isKit: Boolean(kitResult.data?.produto_id),

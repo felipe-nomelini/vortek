@@ -13,6 +13,8 @@ import { NextResponse } from 'next/server';
 import { GET as getProducts } from '@/app/api/produtos/route';
 import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
 import { benteviColors } from '@/theme/bentevi';
+import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
+import { resolveMlFee } from '@/lib/commercial-pricing';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -68,6 +70,7 @@ type ProductListPayload = {
   pageSize?: number;
   fornecedores?: SupplierOption[];
   pricingTaxContext?: { appliedRate?: number };
+  commercialPricing?: CommercialPricingConfiguration;
 };
 
 type ColumnKey = 'product' | 'availability' | 'supplier' | 'commercial' | 'profitability' | 'marketplace';
@@ -472,16 +475,21 @@ function mapListing(value: Record<string, any>): ProductMlListing | null {
   return { itemId, type: value?.type === 'catalog' ? 'catalog' : 'standard', status: String(value?.status || ''), catalogStatus };
 }
 
-function mapExportRow(item: ProductListItem, taxRate: number, supplierNames: Map<string, string>): ExportRow {
+function mapExportRow(
+  item: ProductListItem,
+  taxRate: number,
+  commercialPricing: CommercialPricingConfiguration,
+  supplierNames: Map<string, string>,
+): ExportRow {
   const product = item.product || {};
   const preferredOffer = item.preferredOffer || null;
   const cost = Number(preferredOffer?.custo ?? product.custo ?? 0);
   const mlShipping = Number(product.ml_shipping || 0);
-  const mlFee = Number(product.ml_fee ?? 0.15);
+  const mlFee = resolveMlFee(product.ml_fee, commercialPricing.mlFeeFallbackRate);
   let displayPrice = Number(product.custom_price ?? cost);
   let profit: number | null = null;
   try {
-    const calculated = calculateSuggestedPrice({ cost, shipping: mlShipping, mlFee, taxRate });
+    const calculated = calculateSuggestedPrice({ cost, shipping: mlShipping, mlFee, taxRate, costTiers: commercialPricing.costTiers });
     displayPrice = Math.round(Number(product.custom_price ?? calculated.suggestedPrice) * 100) / 100;
     if (normalizeStatus(product.ml_status) !== 'sem_anuncio') {
       profit = Math.round(calculateNetProfitAtPrice({ price: displayPrice, cost, shipping: mlShipping, mlFee, taxRate }) * 100) / 100;
@@ -570,6 +578,7 @@ export async function GET(request: Request) {
     let total = 0;
     let supplierOptions: SupplierOption[] = [];
     let taxRate: number | null = null;
+    let commercialPricing: CommercialPricingConfiguration | null = null;
     do {
       listUrl.searchParams.set('page', String(page));
       const response = await getProducts(new Request(listUrl, { headers }));
@@ -580,16 +589,18 @@ export async function GET(request: Request) {
       const pageItems = Array.isArray(payload.data) ? payload.data : [];
       if (!supplierOptions.length && Array.isArray(payload.fornecedores)) supplierOptions = payload.fornecedores;
       if (taxRate === null && Number.isFinite(Number(payload.pricingTaxContext?.appliedRate))) taxRate = Number(payload.pricingTaxContext?.appliedRate);
+      if (!commercialPricing && payload.commercialPricing) commercialPricing = payload.commercialPricing;
       items.push(...pageItems);
       total = Number(payload.total || 0);
       page += 1;
       if (!pageItems.length) break;
     } while (items.length < total);
     if (taxRate === null) throw new Error('Alíquota tributária indisponível para gerar o relatório');
+    if (!commercialPricing) throw new Error('Configuração comercial indisponível para gerar o relatório');
     const supplierNames = new Map(
       supplierOptions.filter((option) => String(option.dsliteId || '').trim()).map((option) => [String(option.dsliteId), String(option.apelido || option.label)]),
     );
-    const rows = items.map((item) => mapExportRow(item, taxRate, supplierNames));
+    const rows = items.map((item) => mapExportRow(item, taxRate, commercialPricing, supplierNames));
     const pdf = await buildPdf(rows, buildFilterDescription(sourceUrl, supplierOptions));
     const date = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' });
     return new Response(new Uint8Array(pdf), {

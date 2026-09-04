@@ -4,6 +4,8 @@ import type { Database } from '@/types/database';
 import { POST as refreshNoCatalogSnapshot } from '@/app/api/catalogo/no-catalogo/refresh/route';
 import { calculateBreakEvenPrice, calculateNetProfitAtPrice, calculateSuggestedPrice, getPricingStrategy } from '@/services/pricing';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
+import { resolveMlFee } from '@/lib/commercial-pricing';
 
 type SnapshotRow = Pick<
   Database['public']['Tables']['catalogo_ml_snapshot']['Row'],
@@ -36,7 +38,6 @@ interface AnaliseRow {
   motivo: string;
 }
 
-const TAXA_ML_DEFAULT = 0.15;
 const MARGEM_LUCRO_MINIMA_ANALISE = 0.05;
 const DELTA_PRECO_MINIMO_ANALISE = 0.005;
 const PAGE_SIZE = 1000;
@@ -126,7 +127,10 @@ export async function POST(request: Request) {
   }
 
   const service = createServiceClient();
-  const pricingTaxContext = await loadPricingTaxContext(service);
+  const [pricingTaxContext, commercial] = await Promise.all([
+    loadPricingTaxContext(service),
+    loadCommercialPricingConfiguration(service),
+  ]);
   const taxRate = requirePricingTaxRate(pricingTaxContext);
   const snapshotRows: SnapshotRow[] = [];
   let snapshotMaxSyncedAt: string | null = null;
@@ -226,7 +230,7 @@ export async function POST(request: Request) {
     const frete = toFiniteNumber(produto.ml_shipping);
     const custo = toFiniteNumber(produto.custo);
 
-    const taxaMlAplicada = taxaMl !== null ? taxaMl : TAXA_ML_DEFAULT;
+    const taxaMlAplicada = resolveMlFee(taxaMl, commercial.mlFeeFallbackRate);
     const freteAplicado = frete !== null ? frete : 0;
     const custoAplicado = custo !== null ? custo : 0;
 
@@ -240,12 +244,13 @@ export async function POST(request: Request) {
         mlFee: taxaMlAplicada,
         taxRate,
       });
-      estrategia = getPricingStrategy(custoAplicado);
+      estrategia = getPricingStrategy(custoAplicado, commercial.costTiers);
       precoEstrategicoMinimo = calculateSuggestedPrice({
         cost: custoAplicado,
         shipping: freteAplicado,
         mlFee: taxaMlAplicada,
         taxRate,
+        costTiers: commercial.costTiers,
       }).suggestedPrice;
     } catch {
       pisoSemPrejuizo = null;

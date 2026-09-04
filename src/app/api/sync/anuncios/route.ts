@@ -10,6 +10,8 @@ import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-del
 import { getConfiguredMlShippingCost } from '@/lib/ml/shipping-cost';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
+import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
+import { resolveMlFee } from '@/lib/commercial-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
@@ -198,7 +200,11 @@ async function resolveSellerZip(): Promise<{ zip: string | null; warning?: strin
   return zip ? { zip } : { zip: null, warning: 'CEP do vendedor ausente no Mercado Livre; frete ML não calculado.' };
 }
 
-async function resolveCurrentMlPricing(item: any, sellerZip: string | null): Promise<{
+async function resolveCurrentMlPricing(
+  item: any,
+  sellerZip: string | null,
+  unspecifiedShippingCost: number,
+): Promise<{
   mlFee: number | null;
   mlShipping: number | null;
   warning?: string;
@@ -217,7 +223,7 @@ async function resolveCurrentMlPricing(item: any, sellerZip: string | null): Pro
     if (listingPricesResult.ok) mlFee = extractMlFee(listingPricesResult.data);
   }
 
-  const configuredShipping = getConfiguredMlShippingCost(item?.shipping?.mode);
+  const configuredShipping = getConfiguredMlShippingCost(item?.shipping?.mode, unspecifiedShippingCost);
   if (configuredShipping !== null) {
     mlShipping = configuredShipping;
   } else if (itemId && sellerZip) {
@@ -523,7 +529,10 @@ export async function POST(request: Request) {
     const itemIds = requestedItemIds;
 
     const serviceClient = createServiceClient();
-    const pricingTaxContext = await loadPricingTaxContext(serviceClient);
+    const [pricingTaxContext, commercial] = await Promise.all([
+      loadPricingTaxContext(serviceClient),
+      loadCommercialPricingConfiguration(serviceClient),
+    ]);
     const taxRate = requirePricingTaxRate(pricingTaxContext);
     const sellerZipResult = await resolveSellerZip();
     if (sellerZipResult.warning) warnings.push({ code: 'ml_seller_zip_unavailable', message: sellerZipResult.warning });
@@ -688,7 +697,11 @@ export async function POST(request: Request) {
         }
 
         if (produto?.ativo !== false && produto?.id) {
-          const pricing = await resolveCurrentMlPricing(item, sellerZipResult.zip);
+          const pricing = await resolveCurrentMlPricing(
+            item,
+            sellerZipResult.zip,
+            commercial.unspecifiedShippingCost,
+          );
           if (pricing.warning) {
             warnings.push({
               code: 'ml_pricing_shipping_unavailable',
@@ -725,7 +738,10 @@ export async function POST(request: Request) {
           if (pricing.mlShipping !== null) productPatch.ml_shipping_warning = null;
           else if (pricing.warning) productPatch.ml_shipping_warning = pricing.warning;
 
-          const configuredShipping = getConfiguredMlShippingCost(item?.shipping?.mode);
+          const configuredShipping = getConfiguredMlShippingCost(
+            item?.shipping?.mode,
+            commercial.unspecifiedShippingCost,
+          );
           const configuredShippingChanged = configuredShipping !== null
             && Math.abs(Number(produto.ml_shipping || 0) - configuredShipping) >= 0.01;
           const priceAutomationBlocked = Boolean(manualPriceBlocksError)
@@ -738,8 +754,9 @@ export async function POST(request: Request) {
               configuredShippingPrice = calculateSuggestedPrice({
                 cost: Number(produto.custo || 0),
                 shipping: configuredShipping,
-                mlFee: Number(pricing.mlFee ?? produto.ml_fee ?? 0.15),
+                mlFee: resolveMlFee(pricing.mlFee ?? produto.ml_fee, commercial.mlFeeFallbackRate),
                 taxRate,
+                costTiers: commercial.costTiers,
               }).suggestedPrice;
               productPatch.custom_price = configuredShippingPrice;
             } catch (error: any) {

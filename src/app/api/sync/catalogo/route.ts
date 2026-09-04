@@ -9,6 +9,8 @@ import {
 } from "@/lib/produto-fornecedor";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { shouldProductBeInactiveByCost } from "@/lib/product-activity";
+import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
+import { resolveMlFee } from "@/lib/commercial-pricing";
 import { filterAllowedDropshippingDsliteSupplierIds } from "@/lib/dslite/supplier-policy";
 
 export const maxDuration = 300;
@@ -277,6 +279,7 @@ export async function POST(req: Request) {
     }
 
     const client = createServiceClient();
+    const commercial = await loadCommercialPricingConfiguration(client);
     const fornecedores = await listarFornecedores();
     if (!fornecedores || fornecedores.length === 0) {
       errors.push({
@@ -428,7 +431,7 @@ export async function POST(req: Request) {
             categoria: item.categoria_nome || null,
             custo: Number(item.preco_crossdocking || item.preco_normal || 0),
             estoque: Number(item.estoque || 0),
-            ml_fee: 0.15,
+            ml_fee: commercial.mlFeeFallbackRate,
             peso_liq: Number(item.peso || 0),
             peso_bruto: Number(item.peso || 0),
             largura: Number(item.largura || 0),
@@ -548,7 +551,7 @@ export async function POST(req: Request) {
             const productKey = String(row.gtin || "").trim()
               ? `gtin:${String(row.gtin || "").trim()}`
               : `dslite:${identityKey}`;
-            const inactiveByCost = shouldProductBeInactiveByCost(row.custo);
+            const inactiveByCost = shouldProductBeInactiveByCost(row.custo, commercial.inactiveCostThreshold);
             const insertPayload = {
               _product_key: productKey,
               ativo: !inactiveByCost,
@@ -563,7 +566,7 @@ export async function POST(req: Request) {
               categoria: row.categoria || null,
               custo: Number(row.custo || 0),
               estoque: Number(row.estoque || 0),
-              ml_fee: Number(row.ml_fee || 0.15),
+              ml_fee: resolveMlFee(row.ml_fee, commercial.mlFeeFallbackRate),
               peso_liq: Number(row.peso_liq || 0),
               peso_bruto: Number(row.peso_bruto || 0),
               largura: Number(row.largura || 0),
@@ -602,7 +605,7 @@ export async function POST(req: Request) {
               : `dslite:${identityKey}`,
             custo: Number(row.custo || 0),
             estoque: Number(row.estoque || 0),
-            ativo: !shouldProductBeInactiveByCost(row.custo),
+            ativo: !shouldProductBeInactiveByCost(row.custo, commercial.inactiveCostThreshold),
             prioridade: 100,
             payment_mode:
               existingOffer?.payment_mode ||

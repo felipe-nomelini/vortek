@@ -1,11 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Button, Col, InputNumber, Row, Spin, Switch, Typography } from "antd";
+import { Button, Col, Row, Spin, Switch } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
-import { configuracoesInputStyle } from "./styles";
-
-const { Text } = Typography;
 
 function vapidKeyToUint8Array(value: string) {
   const padding = "=".repeat((4 - (value.length % 4)) % 4);
@@ -21,7 +18,6 @@ export default function PreferenciasTab({
 }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [margem, setMargem] = useState(30);
   const [notif, setNotif] = useState({ push: false });
 
   useEffect(() => {
@@ -34,9 +30,6 @@ export default function PreferenciasTab({
           messageApi.error(data?.erro || "Falha ao carregar preferências");
           return;
         }
-        setMargem(
-          typeof data?.margem_lucro === "number" ? data.margem_lucro : 30,
-        );
         setNotif({ push: Boolean(data?.notificacoes_push ?? false) });
       } catch {
         messageApi.error("Falha ao carregar preferências");
@@ -104,7 +97,6 @@ export default function PreferenciasTab({
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          margem_lucro: margem,
           notificacoes_push: notif.push,
         }),
       });
@@ -120,7 +112,6 @@ export default function PreferenciasTab({
       setSaving(false);
     }
   }, [
-    margem,
     messageApi,
     notif.push,
   ]);
@@ -128,29 +119,6 @@ export default function PreferenciasTab({
   return (
     <Spin spinning={loading}>
       <Row gutter={[16, 16]}>
-        <Col xs={24} md={8}>
-          <div style={{ color: "#a0a0a0", fontSize: 13, marginBottom: 6 }}>
-            Margem de Lucro Padrão
-          </div>
-          <InputNumber
-            suffix="%"
-            value={margem}
-            onChange={(value) => setMargem(value ?? 30)}
-            style={{ ...configuracoesInputStyle, width: "100%" }}
-            min={0}
-            max={100}
-          />
-          <Text
-            style={{
-              color: "#666",
-              fontSize: 12,
-              display: "block",
-              marginTop: 4,
-            }}
-          >
-            Usada no cálculo do preço sugerido
-          </Text>
-        </Col>
         <Col xs={24} md={8}>
           <div style={{ color: "#a0a0a0", fontSize: 13, marginBottom: 6 }}>
             Notificações Push

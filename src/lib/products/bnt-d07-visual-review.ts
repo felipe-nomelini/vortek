@@ -1,6 +1,8 @@
 import { getSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
 import type { SupplierFilterOption } from '@/lib/produto-filtering';
+import type { CommercialPricingConfiguration } from '@/lib/commercial-pricing';
+import { resolveMlFee } from '@/lib/commercial-pricing';
 
 const ENABLED_KEY = 'bnt_d07_visual_review_enabled';
 const PRODUCTS_KEY = 'bnt_d07_visual_review_products';
@@ -58,6 +60,7 @@ export type BntD07VisualReviewFilters = {
   priceMin: number | null;
   priceMax: number | null;
   taxRate: number;
+  commercialPricing: CommercialPricingConfiguration;
 };
 
 function isEnabled(raw: string | null) {
@@ -136,12 +139,22 @@ export function findBntD07VisualReviewItem(
   return review.items.find((item) => String(item.product.id || '') === productId) || null;
 }
 
-function pricingFor(item: VisualReviewItem, taxRate: number) {
+function pricingFor(
+  item: VisualReviewItem,
+  taxRate: number,
+  commercialPricing: CommercialPricingConfiguration,
+) {
   const product = item.product;
   const cost = Number(item.preferredOffer?.custo ?? product.custo ?? 0);
-  const mlFee = Number(product.ml_fee ?? 0.15);
+  const mlFee = resolveMlFee(product.ml_fee, commercialPricing.mlFeeFallbackRate);
   const shipping = Number(product.ml_shipping ?? 0);
-  const suggested = calculateSuggestedPrice({ cost, mlFee, shipping, taxRate }).suggestedPrice;
+  const suggested = calculateSuggestedPrice({
+    cost,
+    mlFee,
+    shipping,
+    taxRate,
+    costTiers: commercialPricing.costTiers,
+  }).suggestedPrice;
   const displayPrice = Number(product.custom_price ?? suggested);
   const profit = product.ml_status === 'sem_anuncio'
     ? null
@@ -185,7 +198,7 @@ function matchesFilters(item: VisualReviewItem, filters: BntD07VisualReviewFilte
   if (filters.stockStatus === 'com_estoque' && item.fulfillmentCapacity.safe <= 0) return false;
   if (filters.stockStatus === 'sem_estoque' && item.fulfillmentCapacity.safe !== 0) return false;
 
-  const pricing = pricingFor(item, filters.taxRate);
+  const pricing = pricingFor(item, filters.taxRate, filters.commercialPricing);
   const priceValue = filters.priceField === 'cost'
     ? pricing.cost
     : filters.priceField === 'suggestedPrice'
@@ -204,8 +217,13 @@ export function filterBntD07VisualReviewItems(
   return review.items.filter((item) => matchesFilters(item, filters));
 }
 
-function sortValue(item: VisualReviewItem, sortBy: string, taxRate: number): string | number | null {
-  const pricing = pricingFor(item, taxRate);
+function sortValue(
+  item: VisualReviewItem,
+  sortBy: string,
+  taxRate: number,
+  commercialPricing: CommercialPricingConfiguration,
+): string | number | null {
+  const pricing = pricingFor(item, taxRate, commercialPricing);
   if (sortBy === 'nome') return String(item.product.nome || '');
   if (sortBy === 'fornecedor') return String(item.product.fornecedor || '');
   if (sortBy === 'estoque') return item.fulfillmentCapacity.safe;
@@ -229,8 +247,8 @@ export function listBntD07VisualReview(params: {
   const filtered = filterBntD07VisualReviewItems(params.review, params.filters);
   const direction = params.sortOrder === 'desc' ? -1 : 1;
   const sorted = [...filtered].sort((left, right) => {
-    const leftValue = sortValue(left, params.sortBy, params.filters.taxRate);
-    const rightValue = sortValue(right, params.sortBy, params.filters.taxRate);
+    const leftValue = sortValue(left, params.sortBy, params.filters.taxRate, params.filters.commercialPricing);
+    const rightValue = sortValue(right, params.sortBy, params.filters.taxRate, params.filters.commercialPricing);
     if (leftValue === null) return rightValue === null ? 0 : 1;
     if (rightValue === null) return -1;
     if (typeof leftValue === 'number' && typeof rightValue === 'number') {
@@ -265,7 +283,7 @@ export function summarizeBntD07VisualReview(
   const profits: number[] = [];
 
   for (const item of items) {
-    const pricing = pricingFor(item, filters.taxRate);
+    const pricing = pricingFor(item, filters.taxRate, filters.commercialPricing);
     revenuePotential += pricing.displayPrice * item.fulfillmentCapacity.safe;
     if (pricing.profit !== null) profits.push(pricing.profit);
   }

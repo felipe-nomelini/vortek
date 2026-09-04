@@ -13,6 +13,12 @@ const {
   serializeQuantityPricingTiers,
 } = require('../src/lib/ml/quantity-pricing.ts');
 
+const QUANTITY_RANGES = [
+  { position: 1, minPurchaseUnit: 3, fallbackDiscountPercentage: 3 },
+  { position: 2, minPurchaseUnit: 5, fallbackDiscountPercentage: 4 },
+  { position: 3, minPurchaseUnit: 10, fallbackDiscountPercentage: 5 },
+];
+
 function recommendationData(percentages = [4.340541, 8.064865, 9.2]) {
   return {
     recommendations: [3, 5, 10].map((quantity, index) => ({
@@ -70,7 +76,7 @@ function percentageReadback(percentages = [4.340541, 8.064865, 9.2]) {
 }
 
 test('converte recomendações do ML em uma única regra percentual 3/5/10', () => {
-  const preview = buildQuantityPricingPreview(recommendationData(), 200, 100, 'BRL');
+  const preview = buildQuantityPricingPreview(recommendationData(), 200, 100, QUANTITY_RANGES, 'BRL');
 
   assert.equal(preview.ok, true);
   assert.equal(preview.source, 'mercado_livre');
@@ -85,7 +91,7 @@ test('converte recomendações do ML em uma única regra percentual 3/5/10', () 
 });
 
 test('usa a política atual 3/4/5 somente quando recomendações respondem 204', () => {
-  const preview = buildQuantityPricingPreview(null, 204, 100, 'BRL');
+  const preview = buildQuantityPricingPreview(null, 204, 100, QUANTITY_RANGES, 'BRL');
 
   assert.equal(preview.ok, true);
   assert.equal(preview.source, 'fallback_204');
@@ -97,6 +103,7 @@ test('rejeita recomendações não progressivas e não inventa percentuais', () 
     recommendationData([4, 4, 5]),
     200,
     100,
+    QUANTITY_RANGES,
     'BRL',
   );
 
@@ -108,14 +115,14 @@ test('rejeita recomendações não progressivas e não inventa percentuais', () 
 test('descarta faixa incoerente informada pelo provedor', () => {
   const data = recommendationData();
   data.recommendations[1].is_incoherent_quantity = true;
-  const preview = buildQuantityPricingPreview(data, 200, 100, 'BRL');
+  const preview = buildQuantityPricingPreview(data, 200, 100, QUANTITY_RANGES, 'BRL');
 
   assert.equal(preview.ok, true);
   assert.deepEqual(preview.tiers.map((tier) => tier.minPurchaseUnit), [3, 10]);
 });
 
 test('payload oficial preserva id existente e coincide com a prévia', () => {
-  const preview = buildQuantityPricingPreview(recommendationData(), 200, 100, 'BRL');
+  const preview = buildQuantityPricingPreview(recommendationData(), 200, 100, QUANTITY_RANGES, 'BRL');
   const payload = buildQuantityPricingPayload(preview.tiers, {
     price_per_quantity: [{
       id: 'existing-3',
@@ -147,7 +154,7 @@ test('publica com recomendação, x-version, migra legado e valida read-back', a
     return { ok: true, status: 200, data: percentageReadback(), error: null };
   };
 
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100);
+  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
 
   assert.equal(result.ok, true);
   assert.equal(result.recommendationSource, 'mercado_livre');
@@ -187,7 +194,7 @@ test('bloqueia preço líquido B2B sem chamar recomendação ou escrita', async 
     };
   };
 
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100);
+  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
   assert.equal(result.ok, false);
   assert.equal(result.code, 'quantity_pricing_net_price_incompatible');
   assert.equal(result.httpStatus, 422);
@@ -202,7 +209,7 @@ test('trata mudança concorrente de preço como conflito retomável', async () =
     error: null,
   });
 
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 101);
+  const result = await applyItemQuantityPricing(requester, 'MLB123', 101, QUANTITY_RANGES);
   assert.equal(result.ok, false);
   assert.equal(result.code, 'quantity_pricing_base_price_conflict');
   assert.equal(result.httpStatus, 409);
@@ -222,7 +229,7 @@ test('preserva conflito x-version retornado pelo provedor', async () => {
     };
   };
 
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100);
+  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
   assert.equal(result.ok, false);
   assert.equal(result.code, 'quantity_pricing_version_conflict');
   assert.equal(result.httpStatus, 409);
@@ -238,7 +245,7 @@ test('falha quando read-back percentual diverge do payload publicado', async () 
     return { ok: true, status: 200, data: percentageReadback([4.340541, 8.064865, 8.9]), error: null };
   };
 
-  const result = await applyItemQuantityPricing(requester, 'MLB123', 100);
+  const result = await applyItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
   assert.equal(result.ok, false);
   assert.equal(result.code, 'quantity_pricing_not_effective');
 });
@@ -267,13 +274,17 @@ test('propaga seller inelegível sem criar fallback', async () => {
     error: { code: 'forbidden', message: 'user is not allowed to request recommendations' },
   });
 
-  const preview = await previewItemQuantityPricing(requester, 'MLB123', 100);
+  const preview = await previewItemQuantityPricing(requester, 'MLB123', 100, QUANTITY_RANGES);
   assert.equal(preview.ok, false);
   assert.equal(preview.code, 'forbidden');
   assert.deepEqual(preview.tiers, []);
 });
 
-test('interface solicita a prévia ao backend sem recalcular descontos no browser', () => {
+test('backend calcula a prévia e o browser não replica descontos', () => {
+  const previewRoute = fs.readFileSync(
+    path.join(__dirname, '../src/app/api/ml/anuncio/atacado-preview/route.ts'),
+    'utf8',
+  );
   const anunciosPage = fs.readFileSync(
     path.join(__dirname, '../src/app/(app)/anuncios/page.tsx'),
     'utf8',
@@ -283,7 +294,7 @@ test('interface solicita a prévia ao backend sem recalcular descontos no browse
     'utf8',
   );
 
-  assert.match(anunciosPage, /\/api\/ml\/anuncio\/atacado-preview/);
+  assert.match(previewRoute, /previewItemQuantityPricing/);
   assert.doesNotMatch(anunciosPage, /buildWholesalePrices|basePrice\s*\*\s*0\.9[567]/);
   assert.doesNotMatch(produtosPage, /basePrice\s*\*\s*0\.9[567]/);
 });

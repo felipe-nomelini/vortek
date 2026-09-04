@@ -42,6 +42,8 @@ import { resolveGtinForMlListing } from "@/lib/produto-kits";
 import { loadProductFulfillmentCapacity } from "@/lib/orders/fulfillment-capacity-loader";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 import { getConfiguredMlShippingCost } from "@/lib/ml/shipping-cost";
+import { resolveMlFee, type CommercialPricingConfiguration } from "@/lib/commercial-pricing";
+import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -468,6 +470,7 @@ async function calculateSafeListingPrice(params: {
   pricingMode?: string;
   targetNetProfit?: number;
   taxRate: number;
+  commercialPricing: CommercialPricingConfiguration;
 }) {
   const cost = Number(params.produto.custo || 0);
   const storedShipping = Number(params.produto.ml_shipping || 0);
@@ -499,7 +502,10 @@ async function calculateSafeListingPrice(params: {
     usesEstimatedShipping && storedShipping <= 0
       ? heuristicShipping
       : storedShipping;
-  let mlFee = Number(params.produto.ml_fee || 0.15);
+  let mlFee = resolveMlFee(
+    params.produto.ml_fee,
+    params.commercialPricing.mlFeeFallbackRate,
+  );
   if (params.pricingMode === "target_net_profit") {
     const targetNetProfit = Number(params.targetNetProfit);
     if (!Number.isFinite(targetNetProfit) || targetNetProfit < 0) {
@@ -563,12 +569,24 @@ async function calculateSafeListingPrice(params: {
       taxRate: params.taxRate,
     };
   }
-  const provisional = calculateSuggestedPrice({ cost, shipping, mlFee, taxRate: params.taxRate });
+  const provisional = calculateSuggestedPrice({
+    cost,
+    shipping,
+    mlFee,
+    taxRate: params.taxRate,
+    costTiers: params.commercialPricing.costTiers,
+  });
   const listingPrices = await fetchML<any>(
     `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
   );
   mlFee = extractMlFee(listingPrices) ?? mlFee;
-  const pricing = calculateSuggestedPrice({ cost, shipping, mlFee, taxRate: params.taxRate });
+  const pricing = calculateSuggestedPrice({
+    cost,
+    shipping,
+    mlFee,
+    taxRate: params.taxRate,
+    costTiers: params.commercialPricing.costTiers,
+  });
   const suggestedPrice = Math.round(pricing.suggestedPrice * 100) / 100;
   const requestedPrice = Number(params.requestedPrice || 0);
   const hasRequestedPrice =
@@ -644,8 +662,12 @@ function requiresMercadoEnviosPause(item: any) {
 async function resolveMlShippingCost(
   itemId: string,
   shippingMode?: unknown,
+  unspecifiedShippingCost = 0,
 ): Promise<MlShippingResolution> {
-  const configuredShipping = getConfiguredMlShippingCost(shippingMode);
+  const configuredShipping = getConfiguredMlShippingCost(
+    shippingMode,
+    unspecifiedShippingCost,
+  );
   if (configuredShipping !== null) {
     return { mlShipping: configuredShipping };
   }
@@ -819,7 +841,10 @@ export async function POST(req: Request) {
     }
 
     const supabase = createServiceClient();
-    const pricingTaxContext = await loadPricingTaxContext(supabase);
+    const [pricingTaxContext, commercialPricing] = await Promise.all([
+      loadPricingTaxContext(supabase),
+      loadCommercialPricingConfiguration(supabase),
+    ]);
     const taxRate = requirePricingTaxRate(pricingTaxContext);
     const { data: produto } = await supabase
       .from("produtos")
@@ -924,6 +949,7 @@ export async function POST(req: Request) {
       pricingMode,
       targetNetProfit,
       taxRate,
+      commercialPricing,
       requestedPrice:
         typeof basePrice === "number" &&
         Number.isFinite(basePrice) &&
@@ -1334,6 +1360,7 @@ export async function POST(req: Request) {
       const existingShipping = await resolveMlShippingCost(
         existingItem.id,
         getItemShippingMode(existingItem),
+        commercialPricing.unspecifiedShippingCost,
       );
       if (existingShipping.warning) warnings.push(existingShipping.warning);
       let existingItemForPersist = existingItem;
@@ -1357,7 +1384,7 @@ export async function POST(req: Request) {
         produto,
         produtoId,
         item: existingItemForPersist,
-        mlFee: produto.ml_fee || 0.15,
+        mlFee: resolveMlFee(produto.ml_fee, commercialPricing.mlFeeFallbackRate),
         mlShipping: existingShipping.mlShipping || produto.ml_shipping || 0,
         mlStatus: mapMlItemStatus(existingItemForPersist),
         desiredMlStatus: mapCreatedListingDesiredStatus(existingItemForPersist),
@@ -1641,7 +1668,10 @@ export async function POST(req: Request) {
     latestItem = (await getListingSnapshot(result.id)) || latestItem;
     addListingStatusWarnings(latestItem, warnings);
 
-    let mlFee = safePrice.mlFee || produto.ml_fee || 0.15;
+    let mlFee = resolveMlFee(
+      safePrice.mlFee ?? produto.ml_fee,
+      commercialPricing.mlFeeFallbackRate,
+    );
     let mlShipping =
       ["profitable_shelf_2", "target_net_profit"].includes(String(pricingMode || ""))
         ? Number(safePrice.shipping || 0)
@@ -1676,6 +1706,7 @@ export async function POST(req: Request) {
     const shippingResolution = await resolveMlShippingCost(
       result.id,
       getItemShippingMode(latestItem),
+      commercialPricing.unspecifiedShippingCost,
     );
     if (pricingMode !== "profitable_shelf_2" && shippingResolution.mlShipping > 0) {
       mlShipping = shippingResolution.mlShipping;
@@ -1727,7 +1758,10 @@ export async function POST(req: Request) {
           const livePricing = await fetchML<any>(
             `/sites/MLB/listing_prices?price=${displayPrice}&category_id=${categoriaId}&listing_type_id=${listingType || "gold_pro"}`,
           );
-          const liveFee = extractMlFee(livePricing) ?? Number(mlFee || 0.15);
+          const liveFee = resolveMlFee(
+            extractMlFee(livePricing) ?? mlFee,
+            commercialPricing.mlFeeFallbackRate,
+          );
           const fixedFee = extractMlFixedFee(livePricing);
           finalSuggestedPrice = calculateTargetNetProfitPrice({
             cost: Number(produto.custo || 0),
@@ -1758,8 +1792,9 @@ export async function POST(req: Request) {
         const finalPricing = calculateSuggestedPrice({
           cost: Number(produto.custo || 0),
           shipping: Number(mlShipping || 0),
-          mlFee: Number(mlFee || 0.15),
+          mlFee: resolveMlFee(mlFee, commercialPricing.mlFeeFallbackRate),
           taxRate,
+          costTiers: commercialPricing.costTiers,
         });
         finalSuggestedPrice = roundMoney(finalPricing.suggestedPrice);
         pricingCorrection.final_price = finalSuggestedPrice;
