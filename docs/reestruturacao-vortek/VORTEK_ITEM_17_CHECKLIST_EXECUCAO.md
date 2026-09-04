@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-D19 — aprovação visual de Reclamações`
+**Próxima ação obrigatória:** `BNT-CFG-00 — aprovação do dossiê completo de parametrização`
 
 ---
 
@@ -25,7 +25,7 @@ Antes de executar qualquer ação, consultar nesta ordem:
 6. código, schema, migrations, testes e configuração atuais;
 7. documentação oficial atual de qualquer tecnologia ou integração envolvida.
 
-Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página.
+Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página. Para `BNT-CFG-01` a `BNT-D20`, consultar ainda `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md`.
 
 Regras de uso:
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D19` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-CFG-00` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -156,6 +156,10 @@ Regras de uso:
 - [x] Executar somente `BNT-D04 — Notas Fiscais`.
 - [x] Aprovar visualmente `BNT-D04` em homologação.
 - [x] Não avançar para `BNT-D05` antes de `BNT-D04` estar integralmente validada e aprovada em homologação.
+- [x] Aprovar visualmente `BNT-D19 — Reclamações` em homologação.
+- [x] Executar somente `BNT-CFG-00 — Dossiê completo de parametrização`.
+- [x] Não avançar para `BNT-CFG-01` antes de `BNT-CFG-00` estar integralmente documentado e validado.
+- [ ] Executar somente `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
 
 ---
 
@@ -1932,6 +1936,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 
 #### Desktop — uma página por tarefa
 
+- [x] `BNT-CFG-00` — Dossiê completo de parametrização;
 - [x] `BNT-D01` — Vendas `/pedidos` — piloto;
 - [x] `BNT-D02` — Dashboard;
 - [x] `BNT-D03` — Compras;
@@ -2395,7 +2400,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-D19 — Reclamações`
 
-**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-04`; aprovação visual autenticada pendente.
+**Situação:** implementado, validado tecnicamente, publicado e aprovado visualmente em homologação em `2026-09-04`.
 
 **Estado/causa confirmados:** `/reclamacoes` derivava os casos de duas buscas limitadas a 50 pedidos, reduzia o resultado para 80 vendas e então consultava reclamação, motivo e mensagens uma a uma. Esse fluxo podia omitir reclamações fora da amostra de pedidos e não apresentava prazo, responsável atual, histórico de ações, histórico de estado ou impacto na reputação. A página também misturava conversa e metadados extensos diretamente na listagem.
 
@@ -2409,7 +2414,21 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter os arquivos de `BNT-D19`, redeployar somente `vortek-erp-dev` e remover exclusivamente `bnt_d19_visual_review_enabled` e `bnt_d19_visual_review_claims` de `sync_runtime_config` no `.162`. Não existe migration ou ação de produção a reverter.
 
-**Pendência:** aprovar visualmente `/reclamacoes` com sessão. Não iniciar `BNT-D20` antes desse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente `/reclamacoes` e autorizou ampliar Configurações mediante mapeamento e implementação por domínio.
+
+#### Resultado técnico de `BNT-CFG-00 — Dossiê completo de parametrização`
+
+**Situação:** concluído e validado documentalmente em `2026-09-04`; aprovação do responsável pendente.
+
+**Estado confirmado:** `/configuracoes` administra hoje somente Empresa, três integrações visíveis, Usuários e um conjunto curto de Preferências. O restante está distribuído entre `empresa`, `configuracoes`, `integracoes`, `sync_runtime_config`, uma tabela de alertas sem consumidor ativo, variáveis de ambiente, preferências locais e constantes de negócio/operação. Mercado Pago existe no contrato de integração, mas não na interface; WAHA, SMTP, VAPID, GitHub operacional, OpenRouter e Firecrawl também não possuem painel próprio.
+
+**Decisão:** a personalização abrangerá negócio, operação e parâmetros técnicos avançados. O dossiê `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md` classifica cada grupo como editável imediato, editável controlado, secret write-only, status somente leitura, preferência local, invariante ou obsoleto. A arquitetura preserva as fontes tipadas existentes, rejeita uma tabela genérica key/value e impede que ambiente, segurança, idempotência, contrato externo ou regra legal virem campos livres.
+
+**Sequência:** `BNT-CFG-01` a `BNT-CFG-09` implementam núcleo, domínios e operação uma mudança por vez; `BNT-D20` conclui a composição visual e o aceite de `/configuracoes`.
+
+**Validação e isolamento:** fontes locais, consumidores, schema, migrations e documentação oficial atual das integrações foram confrontados. Nenhum código funcional, banco, migration, integração, deploy ou ambiente foi alterado nesta ação. Nenhum secret foi reproduzido.
+
+**Pendência:** aprovação do dossiê pelo responsável. Somente depois executar `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
