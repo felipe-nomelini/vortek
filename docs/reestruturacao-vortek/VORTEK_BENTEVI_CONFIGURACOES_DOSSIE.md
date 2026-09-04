@@ -367,3 +367,13 @@ Os contratos externos definem capacidades e limites; a página não poderá cria
 - nenhuma credencial, token, senha ou valor secreto foi reproduzido;
 - nenhuma configuração foi implementada nesta etapa;
 - nenhuma alteração de banco, integração, homologação ou produção faz parte de `BNT-CFG-00`.
+
+---
+
+## 11. Implementação por domínio
+
+### `BNT-CFG-02 — Empresa e cadastro fiscal`
+
+Implementado tecnicamente em `2026-09-04` no commit `439e685` e publicado em `dev.bentevi.shop`. A entrega consolidou identidade e contato, endereço fiscal estruturado, tributação do Simples e saúde somente leitura do emissor na aba `Empresa e fiscal`. O início de atividade passou a possuir fonte persistida obrigatória, Brasil NFe permaneceu como provedor invariável e os consumidores fiscais afetados deixaram de inferir UF a partir do endereço legado.
+
+A migration `20260904210000_bnt_cfg_02_company_fiscal.sql` foi ensaiada com `ROLLBACK` e aplicada somente no `supabase-dev` em `192.168.1.162`. A aprovação visual autenticada permanece como gate antes de `BNT-CFG-03`.

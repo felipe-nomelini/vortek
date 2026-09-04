@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-CFG-02 — Empresa e cadastro fiscal`
+**Próxima ação obrigatória:** aprovar visualmente `BNT-CFG-02 — Empresa e cadastro fiscal` em homologação
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Executar somente `BNT-CFG-02` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar visualmente `BNT-CFG-02` em homologação |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -161,7 +161,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-CFG-01` antes de `BNT-CFG-00` estar integralmente documentado e validado.
 - [x] Aprovar `BNT-CFG-00 — Dossiê completo de parametrização`.
 - [x] Executar somente `BNT-CFG-01 — núcleo administrativo, contratos tipados e auditoria sanitizada`.
-- [ ] Executar somente `BNT-CFG-02 — Empresa e cadastro fiscal`.
+- [x] Executar somente `BNT-CFG-02 — Empresa e cadastro fiscal`.
+- [ ] Aprovar visualmente `BNT-CFG-02` em homologação antes de iniciar `BNT-CFG-03`.
 
 ---
 
@@ -2446,7 +2447,23 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `b00c49e` em `dev` e redeployar somente `vortek-erp-dev`. A tabela e a migration são aditivas e devem permanecer para preservar histórico; sua remoção exigiria uma nova migration corretiva autorizada exclusivamente no `.162`.
 
-**Pendência:** nenhuma técnica em `BNT-CFG-01`. A conferência visual autenticada da aba pode ocorrer junto da próxima revisão de `/configuracoes`; a credencial local disponível não autenticou e nenhum usuário foi alterado fora do escopo. Próxima ação liberada: `BNT-CFG-02 — Empresa e cadastro fiscal`.
+**Pendência:** nenhuma. A aba e o histórico administrativo foram aprovados visualmente pelo responsável em `2026-09-04`. Próxima ação liberada: `BNT-CFG-02 — Empresa e cadastro fiscal`.
+
+#### Resultado técnico de `BNT-CFG-02 — Empresa e cadastro fiscal`
+
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-04`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** Empresa misturava identidade operacional e dados do Mercado Livre, mantinha endereço fiscal em texto livre e deixava UF/código IBGE sujeitos a preenchimento inconsistente. A tributação aparecia em Preferências com início de atividade hardcoded, enquanto Integrações expunha um seletor sem escolha real para Brasil NFe. Consumidores fiscais ainda reconstruíam UF pelo texto do endereço. No `supabase-dev`, `empresa` estava vazia, `configuracoes` não possuía registro e `municipios_ibge` também estava vazia.
+
+**Mudança realizada:** a aba passou a se chamar `Empresa e fiscal` e foi dividida em identidade/contato, endereço fiscal estruturado, Simples Nacional e saúde do emissor. CNPJ numérico ou alfanumérico é normalizado e validado pelo contrato vigente; CEP, UF e código IBGE possuem validações coerentes, sem exigir complemento. CNPJ/endereço e parâmetros tributários exigem confirmação antes de salvar. RBT12, faixa e alíquotas calculadas permanecem somente leitura. Brasil NFe, ambientes, validação estrita, CFOPs e fuso são exibidos como contratos protegidos, não como opções livres. O início de atividade deixou de ter fallback no código, o seletor de provedor único foi removido e UF fiscal deixou de ser inferida do endereço legado nos fluxos afetados.
+
+**Banco DEV:** a migration aditiva `20260904210000_bnt_cfg_02_company_fiscal.sql` teve destino resolvido e confirmado como `supabase-dev` em `192.168.1.162`, PostgreSQL `17.6`; foi ensaiada integralmente com `ROLLBACK` e depois aplicada em transação nesse mesmo destino. O read-back confirmou migration registrada, colunas estruturadas, constraints, índice singleton, RLS e bloqueio dos papéis cliente. Foi criado apenas o registro canônico ausente de `configuracoes`, preservando o início de atividade que já era usado pela regra existente; nenhum cadastro empresarial ou dado de produção foi copiado. O banco de produção em `.160` não foi acessado.
+
+**Commit, testes e homologação:** `439e685` — `feat(configuracoes): estruturar cadastro empresarial fiscal`, enviado somente para `origin/dev`. Passaram 14 cenários direcionados, `npm run validate`, `npm run build` com Next.js `16.3.3`, 121 páginas/rotas e `git diff --check`. O deploy oficial do `vortek-erp-dev` foi aceito e a instância ativa confirmou `GIT_SHA=439e68514cfcab15b8a32e661f5241faa70b0c14`; health e login responderam `200`, `/configuracoes` respondeu `307` sem sessão e as APIs de Empresa e Fiscal responderam `401` sem sessão.
+
+**Rollback:** reverter `439e685` em `dev` e redeployar somente `vortek-erp-dev`. Como a migration é aditiva e o cadastro novo ainda está vazio, as colunas podem permanecer sem uso; qualquer remoção de schema ou do registro canônico exigiria migration corretiva autorizada exclusivamente no `.162`.
+
+**Pendência:** aprovação visual autenticada da aba `Empresa e fiscal`. `BNT-CFG-03` permanece bloqueada até esse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
