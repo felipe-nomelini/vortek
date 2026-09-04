@@ -1,622 +1,484 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Alert,
   Button,
-  Col,
-  DatePicker,
+  Descriptions,
+  Drawer,
+  Empty,
   Input,
-  Row,
   Select,
+  Skeleton,
   Space,
-  Spin,
+  Tabs,
   Tag,
+  Timeline,
   Typography,
-} from "antd";
-import type { TableProps } from "antd";
-import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
-import ResizableTable from "@/components/ResizableTable";
+} from 'antd';
+import {
+  ClockCircleOutlined,
+  ExclamationCircleFilled,
+  ExportOutlined,
+  MessageOutlined,
+  ReloadOutlined,
+  SearchOutlined,
+  WarningFilled,
+} from '@ant-design/icons';
+import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
+import ResizableTable from '@/components/ResizableTable';
+import {
+  claimActionLabel,
+  claimRoleLabel,
+  type ClaimDetailResponse,
+  type ClaimListItem,
+  type ClaimPriority,
+  type ClaimsListResponse,
+} from '@/lib/ml/claims';
+import styles from './reclamacoes.module.css';
 
-const { Title, Text } = Typography;
-const { RangePicker } = DatePicker;
+const { Paragraph, Text, Title } = Typography;
 
-type MLClaimStatus = "opened" | "closed" | string;
-type MLClaimStage =
-  "claim" | "dispute" | "recontact" | "none" | "stale" | string;
-type MLClaimType =
-  | "return"
-  | "returns"
-  | "mediations"
-  | "cancel_sale"
-  | "cancel_purchase"
-  | "ml_case"
-  | "change"
-  | "service"
-  | string;
-
-type ClaimMessage = {
-  id: string | number | null;
-  sender: string | null;
-  text: string | null;
-  date_created: string | null;
+const PRIORITY_META: Record<ClaimPriority, { label: string; color: string; icon: React.ReactNode }> = {
+  overdue: { label: 'Prazo vencido', color: 'red', icon: <ExclamationCircleFilled /> },
+  due_today: { label: 'Vence hoje', color: 'orange', icon: <ClockCircleOutlined /> },
+  seller_action: { label: 'Sua ação', color: 'gold', icon: <WarningFilled /> },
+  waiting: { label: 'Aguardando', color: 'blue', icon: <ClockCircleOutlined /> },
+  closed: { label: 'Concluída', color: 'default', icon: <ClockCircleOutlined /> },
+  unknown: { label: 'A confirmar', color: 'default', icon: <ClockCircleOutlined /> },
 };
 
-type Reclamacao = {
-  id: number;
-  pedido: number;
-  cliente: string;
-  buyer_id: number | null;
-  tipo: MLClaimType | null;
-  tipo_label: string;
-  stage: MLClaimStage | null;
-  stage_label: string;
-  status: MLClaimStatus | null;
-  status_label: string;
-  reason_id: string | null;
-  reason_name?: string | null;
-  reason_detail?: string | null;
-  reason_flow?: string | null;
-  fulfilled: boolean | null;
-  quantity_type: string | null;
-  claimed_quantity: number | null;
-  resolution: any;
-  data: string | null;
-  atualizado_em: string | null;
-  pedido_status: string | null;
-  item_id: string | null;
-  item_title: string | null;
-  available_actions: Array<{
-    action?: string;
-    mandatory?: boolean;
-    due_date?: string | null;
-  }>;
-  related_entities: string[];
-  related_entities_label?: string[];
-  messages: ClaimMessage[];
-};
-
-type ApiResponse = {
-  conectado?: boolean;
-  precisaReconectar?: boolean;
-  erro?: string;
-  items?: Reclamacao[];
-  total?: number;
-};
-
-const tipoOptions = [
-  { value: "", label: "Todos os tipos" },
-  { value: "returns", label: "Devolução" },
-  { value: "cancel_sale", label: "Cancelamento do vendedor" },
-  { value: "cancel_purchase", label: "Cancelamento do comprador" },
-  { value: "mediations", label: "Mediação" },
-];
-
-const stageOptions = [
-  { value: "", label: "Todos os estágios" },
-  { value: "claim", label: "Negociação" },
-  { value: "dispute", label: "Disputa" },
-  { value: "recontact", label: "Recontato" },
-  { value: "none", label: "Não se aplica" },
-  { value: "stale", label: "Tratativa ML" },
-];
-
-const statusOptions = [
-  { value: "", label: "Todos os status" },
-  { value: "opened", label: "Aberto" },
-  { value: "closed", label: "Fechado" },
-];
-
-const tipoColor: Record<string, string> = {
-  return: "blue",
-  returns: "blue",
-  cancel_sale: "red",
-  cancel_purchase: "red",
-  mediations: "orange",
-  ml_case: "gold",
-  change: "cyan",
-  service: "geekblue",
-};
-const stageColor: Record<string, string> = {
-  claim: "green",
-  dispute: "volcano",
-  recontact: "purple",
-  none: "default",
-  stale: "gold",
-};
-
-function formatDate(value: string | null | undefined) {
-  if (!value) return "—";
+function formatDateTime(value: string | null | undefined) {
+  if (!value) return 'Não informado';
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "—";
-  return date.toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  if (!Number.isFinite(date.getTime())) return 'Não informado';
+  return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
 }
 
-function actionLabel(action: string | undefined) {
-  if (action === "send_message_to_complainant") return "Enviar mensagem";
-  if (action === "send_message_to_mediator") return "Enviar ao mediador";
-  if (action === "refund") return "Reembolsar";
-  if (action === "open_dispute") return "Abrir disputa";
-  if (action === "allow_return" || action === "allow_return_label")
-    return "Gerar devolução";
-  if (action === "allow_partial_refund") return "Reembolso parcial";
-  if (action === "send_tracking_number") return "Enviar rastreio";
-  if (action === "send_potential_shipping") return "Promessa de envio";
-  if (action === "add_shipping_evidence") return "Evidência de envio";
-  if (action === "return_review") return "Revisar devolução";
-  if (action === "send_attachments") return "Enviar anexos";
-  return action || "—";
+function formatDueDate(value: string | null | undefined) {
+  if (!value) return 'Sem prazo informado';
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) return 'Sem prazo informado';
+  return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
 }
 
-function getMlOrderUrl(orderId: number) {
-  return `https://www.mercadolivre.com.br/vendas/${orderId}/detalhe`;
+function resolutionText(value: Record<string, unknown> | null) {
+  if (!value) return 'Ainda sem resolução registrada.';
+  const reason = value.reason || value.reason_name;
+  const closedBy = value.closed_by || value.role;
+  return [reason, closedBy ? `Encerrada por ${claimRoleLabel(String(closedBy))}` : null]
+    .filter(Boolean)
+    .map(String)
+    .join(' · ') || 'Resolução registrada pelo Mercado Livre.';
 }
 
-function matchesTipoFilter(tipo: MLClaimType | null, filtro: string) {
-  if (!filtro) return true;
-  if (filtro === "returns") return tipo === "return" || tipo === "returns";
-  return tipo === filtro;
+function reputationText(detail: ClaimDetailResponse['affects_reputation']) {
+  if (!detail?.affects_reputation) return 'Informação não disponível';
+  if (detail.affects_reputation === 'affected') return 'Afeta a reputação';
+  if (detail.affects_reputation === 'not_affected') return 'Não afeta a reputação';
+  if (detail.affects_reputation === 'not_applies') return 'Não se aplica';
+  return detail.affects_reputation;
+}
+
+function Priority({ value }: { value: ClaimPriority }) {
+  const meta = PRIORITY_META[value] || PRIORITY_META.unknown;
+  return <Tag color={meta.color} icon={meta.icon} className={styles.priorityTag}>{meta.label}</Tag>;
+}
+
+function Status({ claim }: { claim: ClaimListItem }) {
+  const color = claim.status === 'opened' ? (claim.stage === 'dispute' ? 'magenta' : 'gold') : 'default';
+  return <Tag color={color}>{claim.status_label}</Tag>;
 }
 
 export default function ReclamacoesPage() {
-  function openOrderInMl(orderId: number) {
-    window.open(getMlOrderUrl(orderId), "_blank", "noopener,noreferrer");
-  }
-
-  const [data, setData] = useState<Reclamacao[]>([]);
+  const [data, setData] = useState<ClaimsListResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [precisaReconectar, setPrecisaReconectar] = useState(false);
-  const [search, setSearch] = useState("");
-  const [tipoFilter, setTipoFilter] = useState<string>("");
-  const [stageFilter, setStageFilter] = useState<string>("");
-  const [statusFilter, setStatusFilter] = useState<string>("");
-  const [dateRange, setDateRange] = useState<[string | null, string | null]>([
-    null,
-    null,
-  ]);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [search, setSearch] = useState('');
+  const [status, setStatus] = useState('opened');
+  const [type, setType] = useState('');
+  const [stage, setStage] = useState('');
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(30);
+  const [activeClaim, setActiveClaim] = useState<ClaimListItem | null>(null);
+  const [detail, setDetail] = useState<ClaimDetailResponse | null>(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState<string | null>(null);
+  const listRequest = useRef<AbortController | null>(null);
+  const detailRequest = useRef<AbortController | null>(null);
 
-  async function load() {
-    setLoading(true);
+  const load = useCallback(async (initial = false) => {
+    listRequest.current?.abort();
+    const controller = new AbortController();
+    listRequest.current = controller;
+    if (initial) setLoading(true);
+    else setRefreshing(true);
     setError(null);
-    setPrecisaReconectar(false);
+
+    const params = new URLSearchParams({ page: String(page), pageSize: String(pageSize), status });
+    if (search) params.set('search', search);
+    if (type) params.set('type', type);
+    if (stage) params.set('stage', stage);
+
     try {
-      const res = await fetch("/api/ml/reclamacoes", { cache: "no-store" });
-      const json = (await res.json().catch(() => ({}))) as ApiResponse;
-      if (!res.ok)
-        throw new Error(json.erro || "Falha ao carregar reclamações.");
-      if (json.precisaReconectar || json.conectado === false) {
-        setPrecisaReconectar(true);
-        setData([]);
-        setError(json.erro || "Mercado Livre desconectado.");
-        return;
-      }
-      setData(Array.isArray(json.items) ? json.items : []);
-    } catch (err: any) {
-      setError(err?.message || "Falha ao carregar reclamações.");
-      setData([]);
+      const response = await fetch(`/api/ml/reclamacoes?${params}`, { cache: 'no-store', signal: controller.signal });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.erro || 'Falha ao carregar reclamações.');
+      setData(payload as ClaimsListResponse);
+    } catch (loadError) {
+      if (controller.signal.aborted) return;
+      setError(loadError instanceof Error ? loadError.message : 'Falha ao carregar reclamações.');
     } finally {
-      setLoading(false);
+      if (!controller.signal.aborted) {
+        setLoading(false);
+        setRefreshing(false);
+      }
     }
-  }
+  }, [page, pageSize, search, stage, status, type]);
 
   useEffect(() => {
-    void load();
+    void load(true);
+    return () => listRequest.current?.abort();
+  }, [load]);
+
+  const openClaim = useCallback(async (claim: ClaimListItem) => {
+    detailRequest.current?.abort();
+    const controller = new AbortController();
+    detailRequest.current = controller;
+    setActiveClaim(claim);
+    setDetail(null);
+    setDetailError(null);
+    setDetailLoading(true);
+    try {
+      const response = await fetch(`/api/ml/reclamacoes/${encodeURIComponent(claim.id)}`, {
+        cache: 'no-store',
+        signal: controller.signal,
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.erro || 'Falha ao carregar o detalhe da reclamação.');
+      setDetail(payload as ClaimDetailResponse);
+    } catch (loadError) {
+      if (!controller.signal.aborted) {
+        setDetailError(loadError instanceof Error ? loadError.message : 'Falha ao carregar o detalhe da reclamação.');
+      }
+    } finally {
+      if (!controller.signal.aborted) setDetailLoading(false);
+    }
   }, []);
 
-  const filtered = useMemo(() => {
-    return data.filter((r) => {
-      if (search) {
-        const q = search.toLowerCase();
-        const haystack = [
-          r.id,
-          r.pedido,
-          r.cliente,
-          r.item_title,
-          r.item_id,
-          r.reason_id,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
-        if (!haystack.includes(q)) return false;
-      }
-      if (!matchesTipoFilter(r.tipo, tipoFilter)) return false;
-      if (stageFilter && r.stage !== stageFilter) return false;
-      if (statusFilter && r.status !== statusFilter) return false;
-      const date = r.data ? new Date(r.data) : null;
-      if (dateRange[0] && (!date || date < new Date(dateRange[0])))
-        return false;
-      if (dateRange[1]) {
-        const end = new Date(dateRange[1]);
-        end.setHours(23, 59, 59, 999);
-        if (!date || date > end) return false;
-      }
-      return true;
-    });
-  }, [data, dateRange, search, stageFilter, statusFilter, tipoFilter]);
+  useEffect(() => () => detailRequest.current?.abort(), []);
 
-  const columns: TableProps<Reclamacao>["columns"] = [
+  const columns = useMemo<ColumnsType<ClaimListItem>>(() => [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-      width: 110,
-      sorter: (a, b) => a.id - b.id,
-      render: (id: number, record) => (
-        <a
-          href={getMlOrderUrl(record.pedido)}
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Abre detalhe da venda no Mercado Livre, onde a reclamação fica acessível no histórico de problemas."
-          style={{
-            fontFamily: "monospace",
-            color: "#1677ff",
-            textDecoration: "none",
-            fontWeight: 600,
-          }}
-        >
-          {id}
-        </a>
-      ),
+      title: 'Prioridade', key: 'priority', width: 130,
+      render: (_, claim) => <Priority value={claim.priority} />,
     },
     {
-      title: "Pedido",
-      dataIndex: "pedido",
-      key: "pedido",
-      width: 150,
-      sorter: (a, b) => a.pedido - b.pedido,
-      render: (id: number) => (
-        <a
-          href={getMlOrderUrl(id)}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontFamily: "monospace",
-            color: "#1677ff",
-            textDecoration: "none",
-            fontWeight: 600,
-          }}
-        >
-          {id}
-        </a>
-      ),
+      title: 'Reclamação / venda', key: 'claim', width: 210,
+      render: (_, claim) => <div className={styles.primaryCell}>
+        <button type="button" className={styles.linkButton} onClick={() => void openClaim(claim)}>
+          Reclamação #{claim.id}
+        </button>
+        <strong>Venda #{claim.order_id}</strong>
+        <small>Aberta em {formatDateTime(claim.date_created)}</small>
+      </div>,
     },
     {
-      title: "Cliente",
-      dataIndex: "cliente",
-      key: "cliente",
-      width: 160,
-      sorter: (a, b) => a.cliente.localeCompare(b.cliente),
+      title: 'Contexto', key: 'context', width: 250,
+      render: (_, claim) => claim.context_available ? <div className={styles.contextCell}>
+        <strong>{claim.customer_name || 'Comprador não identificado'}</strong>
+        <span>{claim.item_title || 'Produto não informado'}</span>
+        {claim.item_count > 1 && <small>+ {claim.item_count - 1} {claim.item_count === 2 ? 'item' : 'itens'} na venda</small>}
+      </div> : <Text type="secondary">Contexto da venda indisponível</Text>,
     },
     {
-      title: "Produto",
-      dataIndex: "item_title",
-      key: "item_title",
-      ellipsis: true,
-      render: (title: string | null) => title || "—",
+      title: 'Motivo', key: 'reason', width: 220,
+      render: (_, claim) => <div className={styles.stackCell}>
+        <strong>{claim.type_label}</strong>
+        <span>{claim.problem || claim.detail_title || 'Motivo detalhado não informado'}</span>
+      </div>,
     },
     {
-      title: "Tipo",
-      dataIndex: "tipo",
-      key: "tipo",
-      width: 130,
-      sorter: (a, b) =>
-        String(a.tipo || "").localeCompare(String(b.tipo || "")),
-      render: (_: string, record) => (
-        <Tag color={tipoColor[record.tipo || ""] || "default"}>
-          {record.tipo_label}
-        </Tag>
-      ),
+      title: 'Andamento', key: 'status', width: 155,
+      render: (_, claim) => <div className={styles.stackCell}>
+        <Status claim={claim} />
+        <span>{claim.stage_label}</span>
+      </div>,
     },
     {
-      title: "Estágio",
-      dataIndex: "stage",
-      key: "stage",
-      width: 120,
-      sorter: (a, b) =>
-        String(a.stage || "").localeCompare(String(b.stage || "")),
-      render: (_: string, record) => (
-        <Tag color={stageColor[record.stage || ""] || "default"}>
-          {record.stage_label}
-        </Tag>
-      ),
+      title: 'Responsável / prazo', key: 'due', width: 185,
+      render: (_, claim) => <div className={styles.stackCell}>
+        <strong>{claim.responsible_label}</strong>
+        <span className={claim.priority === 'overdue' ? styles.dangerText : undefined}>{formatDueDate(claim.due_date)}</span>
+      </div>,
     },
     {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      width: 110,
-      sorter: (a, b) =>
-        String(a.status || "").localeCompare(String(b.status || "")),
-      render: (_: string, record) => (
-        <Tag color={record.status === "opened" ? "orange" : "default"}>
-          {record.status_label}
-        </Tag>
-      ),
+      title: 'Atualização', dataIndex: 'last_updated', key: 'last_updated', width: 145,
+      render: (value) => <span>{formatDateTime(value)}</span>,
     },
     {
-      title: "Atualizado",
-      dataIndex: "atualizado_em",
-      key: "atualizado_em",
-      width: 160,
-      sorter: (a, b) =>
-        new Date(a.atualizado_em || a.data || 0).getTime() -
-        new Date(b.atualizado_em || b.data || 0).getTime(),
-      render: (date: string | null) => formatDate(date),
+      title: 'Ações', key: 'actions', width: 125, fixed: 'right',
+      render: (_, claim) => <Button size="small" onClick={() => void openClaim(claim)}>Ver detalhes</Button>,
     },
-  ];
+  ], [openClaim]);
 
-  return (
-    <div>
-      <Title level={4} style={{ color: "#e0e0e0", marginBottom: 16 }}>
-        Reclamações - Mercado Livre
-      </Title>
+  const history = useMemo(() => {
+    if (!detail) return [];
+    const actions = detail.actions_history.map((entry, index) => ({
+      key: `action-${index}`,
+      date: entry.date_created,
+      title: entry.action_name ? claimActionLabel(entry.action_name) : 'Ação registrada',
+      detail: [claimRoleLabel(entry.player_role), entry.claim_stage, entry.claim_status].filter(Boolean).join(' · '),
+    }));
+    const statuses = detail.status_history.map((entry, index) => ({
+      key: `status-${index}`,
+      date: entry.date,
+      title: `Estado alterado para ${entry.status || 'não informado'}`,
+      detail: [entry.stage, entry.change_by ? `por ${claimRoleLabel(entry.change_by)}` : null].filter(Boolean).join(' · '),
+    }));
+    return [...actions, ...statuses].sort((left, right) => Date.parse(right.date || '') - Date.parse(left.date || ''));
+  }, [detail]);
 
-      <div
-        style={{
-          background: "#141414",
-          border: "1px solid #303030",
-          borderRadius: 8,
-          padding: 16,
-          marginBottom: 16,
-        }}
-      >
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
-            <Input
-              placeholder="Buscar (ID, pedido, cliente, produto)"
-              prefix={<SearchOutlined />}
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              style={{ width: 280 }}
-              allowClear
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Tipo"
-              value={tipoFilter || undefined}
-              onChange={(value) => setTipoFilter(value || "")}
-              options={tipoOptions}
-              style={{ width: 150 }}
-              allowClear
-              onClear={() => setTipoFilter("")}
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Estágio"
-              value={stageFilter || undefined}
-              onChange={(value) => setStageFilter(value || "")}
-              options={stageOptions}
-              style={{ width: 150 }}
-              allowClear
-              onClear={() => setStageFilter("")}
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Status"
-              value={statusFilter || undefined}
-              onChange={(value) => setStatusFilter(value || "")}
-              options={statusOptions}
-              style={{ width: 140 }}
-              allowClear
-              onClear={() => setStatusFilter("")}
-            />
-          </Col>
-          <Col>
-            <RangePicker
-              onChange={(_, dates) =>
-                setDateRange([dates[0] || null, dates[1] || null])
-              }
-              format="DD/MM/YYYY"
-              style={{ width: 230 }}
-            />
-          </Col>
-          <Col>
-            <Button icon={<ReloadOutlined />} onClick={() => void load()}>
-              Atualizar
-            </Button>
-          </Col>
-        </Row>
+  const closeDrawer = () => {
+    detailRequest.current?.abort();
+    setActiveClaim(null);
+    setDetail(null);
+    setDetailError(null);
+    setDetailLoading(false);
+  };
+
+  const handleTableChange = (pagination: TablePaginationConfig) => {
+    setPage(pagination.current || 1);
+    setPageSize(pagination.pageSize || 30);
+  };
+
+  const clearFilters = () => {
+    setSearchInput('');
+    setSearch('');
+    setStatus('opened');
+    setType('');
+    setStage('');
+    setPage(1);
+  };
+
+  const submitSearch = (value: string) => {
+    setSearchInput(value);
+    setSearch(value.trim());
+    setPage(1);
+  };
+
+  if (loading && !data) {
+    return <div className={styles.page}><Skeleton active paragraph={{ rows: 12 }} /></div>;
+  }
+
+  return <div className={styles.page}>
+    <header className={styles.header}>
+      <div>
+        <span className={styles.eyebrow}>Pós-venda Mercado Livre</span>
+        <Title level={2}>Reclamações</Title>
+        <Text type="secondary">Priorize prazos, entenda o caso e continue a tratativa no canal oficial.</Text>
+        <Text type="secondary" className={styles.updatedAt}>
+          {data?.updated_at ? `Atualizado em ${formatDateTime(data.updated_at)}` : 'Aguardando atualização'}
+        </Text>
       </div>
+      <Button type="primary" icon={<ReloadOutlined />} loading={refreshing} onClick={() => void load()}>
+        Atualizar
+      </Button>
+    </header>
 
-      {error && (
-        <Alert
-          type={precisaReconectar ? "warning" : "error"}
-          showIcon
-          message={error}
-          action={
-            precisaReconectar ? (
-              <Button type="primary" href="/api/integracao/ml/connect">
-                Reconectar ML
-              </Button>
-            ) : undefined
-          }
-          style={{ marginBottom: 16 }}
+    {data?.visual_review && <Alert
+      type="info"
+      showIcon
+      message="Amostra sintética protegida para homologação"
+      description={`Os casos representam contratos oficiais do Mercado Livre e não executam ações externas. Amostra válida até ${formatDateTime(data.visual_review.expires_at)}.`}
+    />}
+
+    {error && <Alert
+      type="error"
+      showIcon
+      message="Não foi possível atualizar as reclamações"
+      description={`${error}${data?.items.length ? ' Os dados anteriores foram preservados.' : ''}`}
+      action={<Button size="small" onClick={() => void load()}>Tentar novamente</Button>}
+    />}
+
+    {data?.partial && <Alert
+      type="warning"
+      showIcon
+      message="Algumas informações estão temporariamente indisponíveis"
+      description="A fila foi mantida. Abra o caso no Mercado Livre antes de tomar uma decisão com base em um campo ausente."
+    />}
+
+    {data && (!data.conectado || data.precisaReconectar) ? <section className={styles.emptyState}>
+      <MessageOutlined />
+      <h2>Mercado Livre desconectado</h2>
+      <p>{data.erro || 'Reconecte a conta para consultar as reclamações.'}</p>
+      <Button type="primary" href="/api/integracao/ml/connect">Conectar Mercado Livre</Button>
+    </section> : <>
+      <section className={styles.summaryBand} aria-label="Resumo de reclamações">
+        <div><span>Abertas</span><strong>{data?.summary.opened ?? '—'}</strong><small>Fila ativa no Mercado Livre</small></div>
+        <div><span>Com prazo nesta página</span><strong>{data?.summary.due_on_page ?? '—'}</strong><small>Casos com vencimento informado</small></div>
+        <div><span>Em mediação</span><strong>{data?.summary.dispute ?? '—'}</strong><small>Mercado Livre envolvido</small></div>
+        <div><span>Atualizadas hoje</span><strong>{data?.summary.updated_today ?? '—'}</strong><small>Movimentações no dia</small></div>
+      </section>
+
+      <section className={styles.filters} aria-label="Filtros da fila">
+        <Input.Search
+          className={styles.search}
+          aria-label="Buscar reclamação ou venda"
+          prefix={<SearchOutlined />}
+          placeholder="ID da reclamação ou da venda"
+          value={searchInput}
+          allowClear
+          enterButton="Buscar"
+          onChange={(event) => setSearchInput(event.target.value)}
+          onSearch={submitSearch}
         />
-      )}
+        <Select aria-label="Filtrar situação" value={status} onChange={(value) => { setStatus(value); setPage(1); }} options={[
+          { value: 'opened', label: 'Abertas' },
+          { value: 'closed', label: 'Encerradas' },
+          { value: 'all', label: 'Todas as situações' },
+        ]} />
+        <Select aria-label="Filtrar tipo" value={type || undefined} allowClear placeholder="Todos os tipos" onChange={(value) => { setType(value || ''); setPage(1); }} options={[
+          { value: 'mediations', label: 'Reclamação' },
+          { value: 'return', label: 'Devolução' },
+          { value: 'fulfillment', label: 'Envio Full' },
+          { value: 'ml_case', label: 'Caso Mercado Livre' },
+          { value: 'cancel_sale', label: 'Cancelamento pelo vendedor' },
+          { value: 'cancel_purchase', label: 'Cancelamento pelo comprador' },
+          { value: 'change', label: 'Troca' },
+          { value: 'service', label: 'Serviço' },
+        ]} />
+        <Select aria-label="Filtrar etapa" value={stage || undefined} allowClear placeholder="Todas as etapas" onChange={(value) => { setStage(value || ''); setPage(1); }} options={[
+          { value: 'claim', label: 'Negociação' },
+          { value: 'dispute', label: 'Mediação' },
+          { value: 'recontact', label: 'Recontato' },
+          { value: 'stale', label: 'Tratativa Mercado Livre' },
+          { value: 'none', label: 'Não se aplica' },
+        ]} />
+        {(search || status !== 'opened' || type || stage) && <Button type="link" onClick={clearFilters}>Limpar filtros</Button>}
+      </section>
 
-      <div
-        style={{
-          background: "#141414",
-          border: "1px solid #303030",
-          borderRadius: 8,
-          padding: 16,
-        }}
-      >
-        {loading ? (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <Spin />
-          </div>
-        ) : (
-          <ResizableTable<Reclamacao>
-            storageKey="reclamacoes"
-            dataSource={filtered}
-            columns={columns}
-            rowKey="id"
-            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-            expandable={{
-              expandedRowRender: (record) => (
-                <div style={{ padding: "4px 0" }}>
-                  <Row gutter={[16, 12]}>
-                    <Col xs={24} md={12}>
-                      <Text style={{ color: "#808080", fontSize: 12 }}>
-                        Produto
-                      </Text>
-                      <div style={{ color: "#e0e0e0" }}>
-                        {record.item_title || "—"}
-                      </div>
-                      <Text style={{ color: "#666", fontSize: 12 }}>
-                        {record.item_id || ""}
-                      </Text>
-                    </Col>
-                    <Col xs={24} md={12}>
-                      <Text style={{ color: "#808080", fontSize: 12 }}>
-                        Motivo / Entidades
-                      </Text>
-                      <div style={{ color: "#e0e0e0" }}>
-                        {record.reason_detail || record.reason_name || "—"}
-                      </div>
-                      <Text style={{ color: "#666", fontSize: 12 }}>
-                        {record.reason_id || ""}
-                        {record.reason_flow ? ` · ${record.reason_flow}` : ""}
-                      </Text>
-                      <div style={{ marginTop: 4 }}>
-                        {(
-                          record.related_entities_label ||
-                          record.related_entities
-                        ).map((entity, index) => (
-                          <Tag key={`${entity}-${index}`}>{entity}</Tag>
-                        ))}
-                      </div>
-                    </Col>
-                    <Col xs={24} md={12}>
-                      <Text style={{ color: "#808080", fontSize: 12 }}>
-                        Ações disponíveis para vendedor
-                      </Text>
-                      <div style={{ marginTop: 4 }}>
-                        {record.available_actions.length > 0 ? (
-                          <Space wrap>
-                            {record.available_actions.map((action) => (
-                              <Button
-                                key={action.action}
-                                size="small"
-                                type={action.mandatory ? "primary" : "default"}
-                                danger={Boolean(action.mandatory)}
-                                onClick={() => openOrderInMl(record.pedido)}
-                                title="Ação disponível no claim. Endpoint de execução não foi confirmado na documentação/API do Mercado Livre; abrir venda no ML é caminho seguro e real para executar manualmente."
-                              >
-                                {actionLabel(action.action)}
-                              </Button>
-                            ))}
-                          </Space>
-                        ) : (
-                          <Text style={{ color: "#666" }}>
-                            Nenhuma ação retornada
-                          </Text>
-                        )}
-                      </div>
-                      {record.available_actions.length > 0 && (
-                        <div
-                          style={{ color: "#666", fontSize: 12, marginTop: 8 }}
-                        >
-                          Execução direta via API não documentada de forma
-                          operacional pelo ML. Botões abrem detalhe da venda
-                          para ação manual real.
-                        </div>
-                      )}
-                    </Col>
-                    <Col xs={24} md={12}>
-                      <Text style={{ color: "#808080", fontSize: 12 }}>
-                        Quantidade reclamada / resolução
-                      </Text>
-                      <div style={{ color: "#e0e0e0" }}>
-                        {record.claimed_quantity ?? "—"} ·{" "}
-                        {record.resolution ? "Com resolução" : "Sem resolução"}
-                      </div>
-                    </Col>
-                  </Row>
+      <section className={styles.tableCard}>
+        {!loading && !error && data?.items.length === 0 ? <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Nenhuma reclamação encontrada com os filtros atuais."
+        ><Button onClick={clearFilters}>Limpar filtros</Button></Empty> : <ResizableTable<ClaimListItem>
+          storageKey="bnt-d19-reclamacoes"
+          dataSource={data?.items || []}
+          columns={columns}
+          rowKey="id"
+          loading={loading}
+          onChange={handleTableChange}
+          pagination={{
+            current: data?.paging.page || page,
+            pageSize: data?.paging.page_size || pageSize,
+            total: data?.paging.total || 0,
+            showSizeChanger: true,
+            pageSizeOptions: [15, 30, 50, 100],
+            showTotal: (count) => `${count} reclamaç${count === 1 ? 'ão' : 'ões'}`,
+          }}
+          scroll={{ x: 1420 }}
+          size="small"
+        />}
+      </section>
+    </>}
 
-                  <div style={{ marginTop: 16 }}>
-                    <Text style={{ color: "#808080", fontSize: 12 }}>
-                      Mensagens retornadas pela API
-                    </Text>
-                    {record.messages.length > 0 ? (
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 10,
-                          marginTop: 8,
-                        }}
-                      >
-                        {record.messages.map((message, index) => (
-                          <div
-                            key={message.id || index}
-                            style={{
-                              background: "#1a1a1a",
-                              padding: "10px 14px",
-                              borderRadius: 8,
-                              border: "1px solid #303030",
-                            }}
-                          >
-                            <Text
-                              style={{
-                                color: "#a0a0a0",
-                                fontWeight: 600,
-                                fontSize: 12,
-                              }}
-                            >
-                              {message.sender || "—"}
-                            </Text>
-                            <Text
-                              style={{
-                                color: "#666",
-                                fontSize: 11,
-                                marginLeft: 12,
-                              }}
-                            >
-                              {formatDate(message.date_created)}
-                            </Text>
-                            <br />
-                            <Text style={{ color: "#c0c0c0", fontSize: 13 }}>
-                              {message.text || "—"}
-                            </Text>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div style={{ color: "#666", marginTop: 4 }}>
-                        Nenhuma mensagem retornada pela API para esta
-                        reclamação.
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ),
-              rowExpandable: () => true,
-            }}
-            pagination={{
-              pageSize: 20,
-              showSizeChanger: true,
-              showTotal: (total) => `${total} reclamações`,
-            }}
-            scroll={{ x: 1200 }}
-            style={{ background: "transparent" }}
-            size="small"
-          />
-        )}
-      </div>
-    </div>
-  );
+    <Drawer
+      open={Boolean(activeClaim)}
+      width="min(96vw, 820px)"
+      onClose={closeDrawer}
+      destroyOnHidden
+      title={activeClaim ? <div className={styles.drawerTitle}>
+        <span>Reclamação #{activeClaim.id}</span>
+        <Status claim={activeClaim} />
+      </div> : 'Detalhe da reclamação'}
+      extra={activeClaim && <Button
+        icon={<ExportOutlined />}
+        href={activeClaim.is_homologation_fixture ? undefined : `https://www.mercadolivre.com.br/vendas/${activeClaim.order_id}/detalhe`}
+        target={activeClaim.is_homologation_fixture ? undefined : '_blank'}
+        disabled={activeClaim.is_homologation_fixture}
+      >Abrir no ML</Button>}
+    >
+      {detailLoading && <Skeleton active paragraph={{ rows: 10 }} />}
+      {detailError && <Alert type="error" showIcon message="Detalhe indisponível" description={detailError} action={<Button size="small" onClick={() => activeClaim && void openClaim(activeClaim)}>Tentar novamente</Button>} />}
+      {detail && <>
+        {detail.visual_review && <Alert className={styles.drawerAlert} type="info" showIcon message="Amostra somente para avaliação visual" />}
+        {detail.unavailable_sections.length > 0 && <Alert className={styles.drawerAlert} type="warning" showIcon message="Detalhe parcialmente disponível" description="Consulte o caso no Mercado Livre para confirmar as seções ausentes." />}
+        <Tabs items={[
+          {
+            key: 'overview',
+            label: 'Visão geral',
+            children: <div className={styles.drawerSection}>
+              {detail.claim.status === 'opened' && <Alert
+                type={detail.claim.action_responsible === 'seller' ? 'warning' : 'info'}
+                showIcon
+                message={detail.claim.action_responsible === 'seller' ? 'Este caso precisa da sua ação' : `Aguardando ${detail.claim.responsible_label.toLowerCase()}`}
+                description={detail.claim.due_date ? `Prazo informado: ${formatDueDate(detail.claim.due_date)}.` : 'O Mercado Livre não informou prazo para esta etapa.'}
+              />}
+              <Descriptions bordered size="small" column={2} items={[
+                { key: 'claim', label: 'Reclamação', children: `#${detail.claim.id}` },
+                { key: 'order', label: 'Venda', children: `#${detail.claim.order_id}` },
+                { key: 'customer', label: 'Comprador', children: detail.claim.customer_name || 'Não informado' },
+                { key: 'product', label: 'Produto', children: detail.claim.item_title || 'Não informado', span: 2 },
+                { key: 'type', label: 'Tipo', children: detail.claim.type_label },
+                { key: 'stage', label: 'Etapa', children: detail.claim.stage_label },
+                { key: 'responsible', label: 'Responsável', children: detail.claim.responsible_label },
+                { key: 'due', label: 'Prazo', children: formatDueDate(detail.claim.due_date) },
+                { key: 'created', label: 'Aberta em', children: formatDateTime(detail.claim.date_created) },
+                { key: 'updated', label: 'Atualizada em', children: formatDateTime(detail.claim.last_updated) },
+              ]} />
+              <article className={styles.detailBlock}>
+                <h3>Motivo informado</h3>
+                <strong>{detail.reason?.name || detail.claim.problem || detail.claim.detail_title || 'Não informado'}</strong>
+                <Paragraph>{detail.reason?.detail || detail.claim.detail_description || 'Sem descrição adicional.'}</Paragraph>
+              </article>
+              <article className={styles.detailBlock}>
+                <h3>Ações disponíveis no Mercado Livre</h3>
+                {detail.claim.available_actions.length > 0 ? <ul>
+                  {detail.claim.available_actions.map((action) => <li key={`${action.action}-${action.due_date || ''}`}>
+                    <strong>{claimActionLabel(action.action)}</strong>
+                    {action.due_date && <span> até {formatDueDate(action.due_date)}</span>}
+                    {action.mandatory && <small> Obrigatória</small>}
+                  </li>)}
+                </ul> : <Text type="secondary">Nenhuma ação pendente informada.</Text>}
+                <Text type="secondary">A execução permanece no Mercado Livre para preservar o fluxo oficial.</Text>
+              </article>
+              <article className={styles.detailBlock}>
+                <h3>Conclusão e reputação</h3>
+                <p>{resolutionText(detail.claim.resolution)}</p>
+                <p>{reputationText(detail.affects_reputation)}</p>
+              </article>
+            </div>,
+          },
+          {
+            key: 'conversation',
+            label: `Conversa (${detail.messages.length})`,
+            children: detail.claim.type === 'return' ? <Alert
+              type="info"
+              showIcon
+              message="Devoluções não possuem conversa neste recurso"
+              description="O acompanhamento continua pelo fluxo de devolução do Mercado Livre."
+            /> : detail.messages.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhuma mensagem disponível." /> : <div className={styles.messages}>
+              {detail.messages.map((message, index) => <article className={styles.message} key={message.hash || `${message.date_created}-${index}`}>
+                <div><strong>{claimRoleLabel(message.sender_role)}</strong><span>{formatDateTime(message.date_created)}</span></div>
+                <Paragraph>{message.message || 'Mensagem sem conteúdo textual.'}</Paragraph>
+                {message.attachments.length > 0 && <div className={styles.attachments}>
+                  {message.attachments.map((attachment) => <span key={attachment.filename}>{attachment.original_filename || attachment.filename}</span>)}
+                </div>}
+              </article>)}
+            </div>,
+          },
+          {
+            key: 'history',
+            label: 'Histórico',
+            children: history.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhum evento de histórico disponível." /> : <Timeline items={history.map((event) => ({
+              children: <div className={styles.timelineItem}><strong>{event.title}</strong><span>{event.detail}</span><small>{formatDateTime(event.date)}</small></div>,
+            }))} />,
+          },
+        ]} />
+      </>}
+    </Drawer>
+  </div>;
 }

@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 03/09/2026
+**Última atualização:** 04/09/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** `BNT-D18 — aprovação visual de Reputação`
+**Próxima ação obrigatória:** `BNT-D19 — aprovação visual de Reclamações`
 
 ---
 
@@ -63,7 +63,7 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D18` |
+| 11 | Interface e redesign Bentevi | Em andamento | Aprovar somente `BNT-D19` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -1950,7 +1950,7 @@ Executar somente depois das regras e correções das quais cada item depende.
 - [x] `BNT-D16` — Detalhe do Fornecedor;
 - [x] `BNT-D17` — Créditos de Fornecedores;
 - [x] `BNT-D18` — Reputação;
-- [ ] `BNT-D19` — Reclamações;
+- [x] `BNT-D19` — Reclamações;
 - [ ] `BNT-D20` — Configurações;
 - [ ] `BNT-D21` — TV ao Vivo;
 - [ ] `BNT-D22` — Login;
@@ -2391,7 +2391,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `8339067` em `dev`, redeployar somente `vortek-erp-dev` e remover exclusivamente `bnt_d18_visual_review_enabled` e `bnt_d18_visual_review_reputation` de `sync_runtime_config` no `.162`. Não existe migration nem ação de produção a reverter.
 
-**Pendência:** aprovar visualmente `/reputacao` com sessão. Não iniciar `BNT-D19` antes desse aceite.
+**Pendência:** nenhuma. O usuário aprovou visualmente `/reputacao` e liberou `BNT-D19` em `2026-09-04`.
+
+#### Resultado técnico de `BNT-D19 — Reclamações`
+
+**Situação:** implementado e validado tecnicamente em `2026-09-04`; aprovação visual autenticada pendente.
+
+**Estado/causa confirmados:** `/reclamacoes` derivava os casos de duas buscas limitadas a 50 pedidos, reduzia o resultado para 80 vendas e então consultava reclamação, motivo e mensagens uma a uma. Esse fluxo podia omitir reclamações fora da amostra de pedidos e não apresentava prazo, responsável atual, histórico de ações, histórico de estado ou impacto na reputação. A página também misturava conversa e metadados extensos diretamente na listagem.
+
+**Mudança realizada:** a página passou a ser uma fila priorizada por prazo e responsável, com resumo, busca por ID da reclamação ou da venda, filtros de situação, tipo e etapa e tabela de contexto operacional. O detalhe é carregado somente ao abrir o Drawer e foi separado em Visão geral, Conversa e Histórico. As ações disponíveis são informadas com seu prazo, mas continuam sendo executadas no Mercado Livre, preservando o gate `BNT-GAP-003`.
+
+**Contrato e integração:** a listagem passou a exigir `sales.read`, usar `Cache-Control: no-store` e consultar `/post-purchase/v1/claims/search` acotado pelo vendedor conectado como `respondent`, com paginação oficial e soma de `offset + limit` abaixo de 10.000. Somente os casos da página atual recebem `/detail`, com concorrência limitada a cinco, e o contexto local de venda e itens é lido em lote. A rota de detalhe reconfirma que o vendedor conectado pertence à reclamação antes de consultar mensagens, ações, estados, motivo e impacto na reputação. O fluxo anterior baseado em `/orders/search` foi removido.
+
+**Amostra de homologação:** após preflight explícito em `192.168.1.162`, confirmação do hostname `supabase-dev`, PostgreSQL `17.6`, schema e 102 migrations, a gravação foi ensaiada integralmente com `ROLLBACK`. Foram então ativadas em `sync_runtime_config` duas chaves temporárias com oito casos inteiramente sintéticos, IDs reservados para a amostra e estados de prazo, mediação, devolução, conversa e encerramento. A amostra não contém dados de produção, não habilita links externos e expira automaticamente em `2026-09-11`. Não houve migration nem acesso de escrita ao `.160`.
+
+**Validação:** passaram 9 cenários direcionados de reclamações e 22 cenários combinados de reclamações, shell e permissões; `npm run validate`, `npm run build` com Next.js `16.3.3`, 120 páginas/rotas e `git diff --check` também passaram.
+
+**Rollback:** reverter os arquivos de `BNT-D19`, redeployar somente `vortek-erp-dev` e remover exclusivamente `bnt_d19_visual_review_enabled` e `bnt_d19_visual_review_claims` de `sync_runtime_config` no `.162`. Não existe migration ou ação de produção a reverter.
+
+**Pendência:** aprovar visualmente `/reclamacoes` com sessão. Não iniciar `BNT-D20` antes desse aceite.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
