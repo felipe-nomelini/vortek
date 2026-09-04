@@ -10,6 +10,11 @@ import {
   type SupplierLedgerMovementType,
 } from '@/lib/supplier-ledger';
 import type { Database } from '@/types/database';
+import {
+  listPendingSupplierCreditMovements,
+  loadSupplierCreditsVisualReview,
+  SUPPLIER_CREDITS_VISUAL_REVIEW_BLOCK,
+} from '@/lib/supplier-credits-visual-review';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -70,6 +75,31 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const fornecedorId = String(searchParams.get('fornecedor_id') || '').trim() || null;
+    const visualReview = await loadSupplierCreditsVisualReview();
+
+    if (visualReview) {
+      if (fornecedorId) {
+        const fornecedor = visualReview.suppliers.find((item) => item.fornecedor_id === fornecedorId) || null;
+        return NextResponse.json({
+          fornecedor,
+          movements: visualReview.movements.filter((movement) => movement.fornecedor_id === fornecedorId),
+          visualReview: visualReview.metadata,
+        });
+      }
+
+      const pendingMovements = listPendingSupplierCreditMovements(visualReview.movements)
+        .filter((movement) => !visualReview.suppliers.find((item) => (
+          item.fornecedor_id === movement.fornecedor_id
+        ))?.read_only);
+      return NextResponse.json({
+        summary: visualReview.summary,
+        suppliers: visualReview.suppliers,
+        pending_movements: pendingMovements.slice(0, 50),
+        pending_count: pendingMovements.length,
+        updated_at: visualReview.capturedAt,
+        visualReview: visualReview.metadata,
+      });
+    }
 
     const service = createServiceClient();
     const [{ data: fornecedores, error: fornecedoresError }, movements] = await Promise.all([
@@ -98,6 +128,7 @@ export async function GET(request: Request) {
       used_month: number;
       last_movement_at: string | null;
       pending_count: number;
+      movement_count: number;
       read_only: boolean;
     }>();
 
@@ -114,6 +145,7 @@ export async function GET(request: Request) {
         used_month: 0,
         last_movement_at: null,
         pending_count: 0,
+        movement_count: 0,
         read_only: false,
       });
     }
@@ -134,8 +166,10 @@ export async function GET(request: Request) {
         used_month: 0,
         last_movement_at: null,
         pending_count: 0,
+        movement_count: 0,
         read_only: id === HAYAMAX_FORNECEDOR_ID,
       };
+      row.movement_count += 1;
       if (movement.status === 'confirmed') row.available += Number(movement.amount || 0);
       if (movement.status === 'pending' && Number(movement.amount || 0) > 0) {
         row.pending += Number(movement.amount || 0);
@@ -166,6 +200,8 @@ export async function GET(request: Request) {
         || b.available - a.available
         || a.fornecedor_nome.localeCompare(b.fornecedor_nome));
     const operationalSuppliers = suppliers.filter((row) => !row.read_only);
+    const pendingMovements = listPendingSupplierCreditMovements(movements)
+      .filter((movement) => movement.fornecedor_id !== HAYAMAX_FORNECEDOR_ID);
 
     return NextResponse.json({
       summary: {
@@ -175,6 +211,9 @@ export async function GET(request: Request) {
         suppliers_with_pending: operationalSuppliers.filter((row) => row.pending_count > 0).length,
       },
       suppliers,
+      pending_movements: pendingMovements.slice(0, 50),
+      pending_count: pendingMovements.length,
+      updated_at: new Date().toISOString(),
     });
   } catch (error: any) {
     return NextResponse.json({ error: error?.message || 'Falha ao carregar créditos.' }, { status: 500 });
@@ -184,6 +223,10 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const auth = await requireAdmin();
   if (!auth.ok) return auth.response;
+
+  if (await loadSupplierCreditsVisualReview()) {
+    return NextResponse.json(SUPPLIER_CREDITS_VISUAL_REVIEW_BLOCK, { status: 409 });
+  }
 
   const parsed = MANUAL_MOVEMENT_SCHEMA.safeParse(await request.json().catch(() => ({})));
   if (!parsed.success) {

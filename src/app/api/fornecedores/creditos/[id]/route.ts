@@ -3,6 +3,10 @@ import { z } from 'zod';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
 import { HAYAMAX_FORNECEDOR_ID } from '@/lib/supplier-balance';
+import {
+  loadSupplierCreditsVisualReview,
+  SUPPLIER_CREDITS_VISUAL_REVIEW_BLOCK,
+} from '@/lib/supplier-credits-visual-review';
 
 const UPDATE_SCHEMA = z.object({
   status: z.enum(['confirmed', 'rejected']),
@@ -14,6 +18,10 @@ export async function PATCH(request: Request, props: { params: Promise<{ id: str
   const supabase = await createClient();
   const auth = await requireAdminUser(supabase);
   if (!auth.ok) return auth.response;
+
+  if (await loadSupplierCreditsVisualReview()) {
+    return NextResponse.json(SUPPLIER_CREDITS_VISUAL_REVIEW_BLOCK, { status: 409 });
+  }
 
   const parsed = UPDATE_SCHEMA.safeParse(await request.json().catch(() => ({})));
   if (!parsed.success) {

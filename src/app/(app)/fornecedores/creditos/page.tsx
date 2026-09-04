@@ -4,18 +4,15 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Button,
-  Card,
-  Col,
   Drawer,
+  Empty,
   Form,
   Input,
   InputNumber,
   Modal,
-  Popconfirm,
-  Row,
+  Segmented,
   Select,
-  Space,
-  Statistic,
+  Spin,
   Table,
   Tag,
   Typography,
@@ -23,56 +20,28 @@ import {
 } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import {
-  CheckOutlined,
-  CloseOutlined,
-  DollarOutlined,
+  ArrowDownOutlined,
+  ArrowUpOutlined,
+  ClockCircleOutlined,
   HistoryOutlined,
   PlusOutlined,
   ReloadOutlined,
   SearchOutlined,
+  SafetyCertificateOutlined,
+  SyncOutlined,
 } from '@ant-design/icons';
 import type {
   ManualSupplierLedgerAction,
   SupplierLedgerMovementType,
 } from '@/lib/supplier-ledger';
+import type {
+  SupplierCreditMovement,
+  SupplierCreditPosition,
+  SupplierCreditsSummary,
+} from '@/lib/supplier-credits-visual-review';
+import styles from './creditos.module.css';
 
-const { Title, Text, Link } = Typography;
-
-type Summary = {
-  available: number;
-  pending: number;
-  used_month: number;
-  suppliers_with_pending: number;
-};
-
-type SupplierCredit = {
-  fornecedor_id: string;
-  fornecedor_nome: string;
-  ativo: boolean;
-  status_dslite: string | null;
-  available: number;
-  pending: number;
-  used_month: number;
-  last_movement_at: string | null;
-  pending_count: number;
-  read_only: boolean;
-};
-
-type Movement = {
-  id: string;
-  fornecedor_id: string;
-  fornecedor_nome: string | null;
-  movement_type: SupplierLedgerMovementType;
-  amount: number;
-  reference: string | null;
-  notes: string | null;
-  status: string;
-  source: string | null;
-  ml_order_id: string | null;
-  created_at: string;
-  confirmed_at: string | null;
-  confirmed_by: string | null;
-};
+const { Text, Title } = Typography;
 
 type ManualMovementForm = {
   fornecedor_id: string;
@@ -82,28 +51,79 @@ type ManualMovementForm = {
   notes: string;
 };
 
-const emptySummary: Summary = {
+type ViewMode = 'operational' | 'historical';
+type MovementStatusFilter = 'all' | 'pending' | 'confirmed' | 'rejected';
+type VisualReviewMetadata = {
+  enabled: true;
+  source: 'production-read-only';
+  capturedAt: string;
+  expiresAt: string;
+  supplierCount: number;
+  movementCount: number;
+};
+
+type CreditsResponse = {
+  summary?: SupplierCreditsSummary;
+  suppliers?: SupplierCreditPosition[];
+  pending_movements?: SupplierCreditMovement[];
+  pending_count?: number;
+  updated_at?: string;
+  visualReview?: VisualReviewMetadata;
+  error?: string;
+};
+
+const EMPTY_SUMMARY: SupplierCreditsSummary = {
   available: 0,
   pending: 0,
   used_month: 0,
   suppliers_with_pending: 0,
 };
 
-function formatCurrency(value: number): string {
-  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(value || 0));
-}
-
 const MOVEMENT_LABELS: Record<SupplierLedgerMovementType, string> = {
   cancellation_credit: 'Crédito por cancelamento',
-  manual_credit: 'Crédito manual',
+  manual_credit: 'Crédito registrado manualmente',
   credit_usage: 'Crédito utilizado',
-  adjustment: 'Ajuste',
+  adjustment: 'Ajuste de saldo',
   topup: 'Crédito da antiga conta-saldo',
   purchase_debit: 'Débito de compra da antiga conta-saldo',
 };
 
+const SOURCE_LABELS: Record<string, string> = {
+  ml_cancellation: 'Cancelamento de venda',
+  manual: 'Lançamento manual',
+  historical_reconciliation: 'Reconciliação histórica',
+  legacy: 'Histórico importado',
+};
+
+function formatCurrency(value: number): string {
+  return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+    .format(Number(value || 0));
+}
+
+function formatDateTime(value: string | null): string {
+  if (!value) return 'Sem movimentação';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Data inválida';
+  return date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+}
+
+function relativeDate(value: string): string {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'data desconhecida';
+  const minutes = Math.max(0, Math.floor((Date.now() - date.getTime()) / 60_000));
+  if (minutes < 60) return `${Math.max(1, minutes)} min`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours} h`;
+  const days = Math.floor(hours / 24);
+  return `${days} dia${days === 1 ? '' : 's'}`;
+}
+
 function movementLabel(type: SupplierLedgerMovementType): string {
   return MOVEMENT_LABELS[type];
+}
+
+function sourceLabel(source: string | null): string {
+  return source ? SOURCE_LABELS[source] || 'Registro do sistema' : 'Histórico anterior';
 }
 
 function statusTag(status: string) {
@@ -113,98 +133,176 @@ function statusTag(status: string) {
   return <Tag>Cancelado</Tag>;
 }
 
+function actionDescription(action: ManualSupplierLedgerAction | undefined): string {
+  if (action === 'manual_credit') return 'O valor será somado ao crédito disponível do fornecedor.';
+  if (action === 'credit_usage') return 'O valor será descontado do crédito disponível do fornecedor.';
+  if (action === 'adjustment_credit') return 'A correção aumentará o saldo confirmado.';
+  if (action === 'adjustment_debit') return 'A correção reduzirá o saldo confirmado.';
+  return 'Escolha como este lançamento deve afetar o crédito do fornecedor.';
+}
+
 export default function SupplierCreditsPage() {
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, messageContextHolder] = message.useMessage();
+  const [modalApi, modalContextHolder] = Modal.useModal();
+  const [form] = Form.useForm<ManualMovementForm>();
+  const movementAction = Form.useWatch('movement_type', form);
+  const movementSupplierId = Form.useWatch('fornecedor_id', form);
+
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [reconciling, setReconciling] = useState(false);
-  const [summary, setSummary] = useState<Summary>(emptySummary);
-  const [suppliers, setSuppliers] = useState<SupplierCredit[]>([]);
+  const [summary, setSummary] = useState<SupplierCreditsSummary>(EMPTY_SUMMARY);
+  const [suppliers, setSuppliers] = useState<SupplierCreditPosition[]>([]);
+  const [pendingMovements, setPendingMovements] = useState<SupplierCreditMovement[]>([]);
+  const [pendingCount, setPendingCount] = useState(0);
+  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
+  const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>('operational');
   const [search, setSearch] = useState('');
-  const [selectedSupplier, setSelectedSupplier] = useState<SupplierCredit | null>(null);
-  const [movements, setMovements] = useState<Movement[]>([]);
+  const [showAllPending, setShowAllPending] = useState(false);
+
+  const [selectedSupplier, setSelectedSupplier] = useState<SupplierCreditPosition | null>(null);
+  const [movements, setMovements] = useState<SupplierCreditMovement[]>([]);
   const [drawerLoading, setDrawerLoading] = useState(false);
+  const [movementStatus, setMovementStatus] = useState<MovementStatusFilter>('all');
+  const [movementType, setMovementType] = useState<SupplierLedgerMovementType | 'all'>('all');
+
   const [movementModalOpen, setMovementModalOpen] = useState(false);
   const [savingMovement, setSavingMovement] = useState(false);
+  const [decisionMovement, setDecisionMovement] = useState<SupplierCreditMovement | null>(null);
+  const [decisionNotes, setDecisionNotes] = useState('');
   const [decisionId, setDecisionId] = useState<string | null>(null);
-  const [form] = Form.useForm<ManualMovementForm>();
+
+  const selectedMovementSupplier = suppliers.find((supplier) => (
+    supplier.fornecedor_id === movementSupplierId
+  ));
 
   const fetchSummary = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
       const response = await fetch('/api/fornecedores/creditos', { cache: 'no-store' });
-      const json = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(json.error || 'Falha ao carregar créditos.');
-      setSummary(json.summary || emptySummary);
-      setSuppliers(json.suppliers || []);
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao carregar créditos.');
+      const json = await response.json().catch(() => ({})) as CreditsResponse;
+      if (!response.ok) throw new Error(json.error || 'Não foi possível carregar os créditos');
+      setSummary(json.summary || EMPTY_SUMMARY);
+      setSuppliers(Array.isArray(json.suppliers) ? json.suppliers : []);
+      setPendingMovements(Array.isArray(json.pending_movements) ? json.pending_movements : []);
+      setPendingCount(Number(json.pending_count || 0));
+      setUpdatedAt(json.updated_at || new Date().toISOString());
+      setVisualReview(json.visualReview || null);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : 'Não foi possível carregar os créditos');
     } finally {
       setLoading(false);
     }
-  }, [messageApi]);
-
-  const fetchMovements = useCallback(async (supplier: SupplierCredit) => {
-    setDrawerLoading(true);
-    try {
-      const response = await fetch(`/api/fornecedores/creditos?fornecedor_id=${encodeURIComponent(supplier.fornecedor_id)}`, { cache: 'no-store' });
-      const json = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(json.error || 'Falha ao carregar extrato.');
-      setMovements(json.movements || []);
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao carregar extrato.');
-    } finally {
-      setDrawerLoading(false);
-    }
-  }, [messageApi]);
+  }, []);
 
   useEffect(() => {
     void fetchSummary();
   }, [fetchSummary]);
 
-  const filteredSuppliers = useMemo(() => {
-    const normalized = search.trim().toLowerCase();
-    if (!normalized) return suppliers;
-    return suppliers.filter((supplier) =>
-      supplier.fornecedor_nome.toLowerCase().includes(normalized)
-      || supplier.fornecedor_id.toLowerCase().includes(normalized));
-  }, [search, suppliers]);
+  const fetchMovements = useCallback(async (supplier: SupplierCreditPosition) => {
+    setDrawerLoading(true);
+    try {
+      const response = await fetch(
+        `/api/fornecedores/creditos?fornecedor_id=${encodeURIComponent(supplier.fornecedor_id)}`,
+        { cache: 'no-store' },
+      );
+      const json = await response.json().catch(() => ({})) as {
+        movements?: SupplierCreditMovement[];
+        error?: string;
+      };
+      if (!response.ok) throw new Error(json.error || 'Não foi possível carregar o extrato');
+      setMovements(Array.isArray(json.movements) ? json.movements : []);
+    } catch (cause) {
+      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível carregar o extrato');
+    } finally {
+      setDrawerLoading(false);
+    }
+  }, [messageApi]);
 
-  const openStatement = async (supplier: SupplierCredit) => {
+  const operationalSuppliers = useMemo(() => suppliers.filter((supplier) => !supplier.read_only), [suppliers]);
+  const historicalSuppliers = useMemo(() => suppliers.filter((supplier) => supplier.read_only), [suppliers]);
+  const visibleSuppliers = useMemo(() => {
+    const source = viewMode === 'operational' ? operationalSuppliers : historicalSuppliers;
+    const normalized = search.trim().toLocaleLowerCase('pt-BR');
+    if (!normalized) return source;
+    return source.filter((supplier) => (
+      supplier.fornecedor_nome.toLocaleLowerCase('pt-BR').includes(normalized)
+      || supplier.fornecedor_id.toLocaleLowerCase('pt-BR').includes(normalized)
+    ));
+  }, [historicalSuppliers, operationalSuppliers, search, viewMode]);
+
+  const visiblePending = showAllPending ? pendingMovements : pendingMovements.slice(0, 5);
+
+  const filteredMovements = useMemo(() => movements.filter((movement) => (
+    (movementStatus === 'all' || movement.status === movementStatus)
+    && (movementType === 'all' || movement.movement_type === movementType)
+  )), [movementStatus, movementType, movements]);
+
+  const openStatement = async (supplier: SupplierCreditPosition) => {
     setSelectedSupplier(supplier);
     setMovements([]);
+    setMovementStatus('all');
+    setMovementType('all');
     await fetchMovements(supplier);
   };
 
   const reconcile = async () => {
+    if (visualReview) {
+      messageApi.warning('Simulação visual: nenhuma pendência foi criada.');
+      return;
+    }
     setReconciling(true);
     try {
       const response = await fetch('/api/fornecedores/creditos/reconciliar', { method: 'POST' });
-      const json = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(json.error || 'Falha ao reanalisar cancelamentos.');
+      const json = await response.json().catch(() => ({})) as { created?: number; error?: string };
+      if (!response.ok) throw new Error(json.error || 'Não foi possível buscar os cancelamentos');
       messageApi.success(`${json.created || 0} nova(s) pendência(s) encontrada(s).`);
       await fetchSummary();
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao reanalisar cancelamentos.');
+    } catch (cause) {
+      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível buscar os cancelamentos');
     } finally {
       setReconciling(false);
     }
   };
 
-  const decideMovement = async (movement: Movement, status: 'confirmed' | 'rejected') => {
-    setDecisionId(movement.id);
+  const confirmReconciliation = () => {
+    modalApi.confirm({
+      title: 'Buscar créditos de cancelamentos?',
+      content: 'O Vortek revisará vendas canceladas que já tiveram PIX pago ao fornecedor e criará somente as pendências ainda inexistentes.',
+      okText: 'Buscar agora',
+      cancelText: 'Cancelar',
+      icon: <SyncOutlined />,
+      onOk: reconcile,
+    });
+  };
+
+  const decideMovement = async (status: 'confirmed' | 'rejected') => {
+    if (!decisionMovement) return;
+    if (visualReview || decisionMovement.isHomologationFixture) {
+      messageApi.warning('Simulação visual: nenhuma decisão financeira foi gravada.');
+      setDecisionMovement(null);
+      setDecisionNotes('');
+      return;
+    }
+
+    setDecisionId(decisionMovement.id);
     try {
-      const response = await fetch(`/api/fornecedores/creditos/${movement.id}`, {
+      const response = await fetch(`/api/fornecedores/creditos/${decisionMovement.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
+        body: JSON.stringify({ status, notes: decisionNotes.trim() || null }),
       });
-      const json = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(json.error || 'Falha ao analisar crédito.');
+      const json = await response.json().catch(() => ({})) as { error?: string };
+      if (!response.ok) throw new Error(json.error || 'Não foi possível registrar a decisão');
       messageApi.success(status === 'confirmed' ? 'Crédito confirmado.' : 'Pendência rejeitada.');
+      setDecisionMovement(null);
+      setDecisionNotes('');
       await fetchSummary();
       if (selectedSupplier) await fetchMovements(selectedSupplier);
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao analisar crédito.');
+    } catch (cause) {
+      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível registrar a decisão');
     } finally {
       setDecisionId(null);
     }
@@ -212,6 +310,11 @@ export default function SupplierCreditsPage() {
 
   const saveMovement = async () => {
     const values = await form.validateFields();
+    if (visualReview) {
+      messageApi.warning('Simulação visual: nenhuma movimentação financeira foi gravada.');
+      return;
+    }
+
     setSavingMovement(true);
     try {
       const response = await fetch('/api/fornecedores/creditos', {
@@ -219,243 +322,246 @@ export default function SupplierCreditsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
-      const json = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(json.error || 'Falha ao registrar movimentação.');
+      const json = await response.json().catch(() => ({})) as { error?: string };
+      if (!response.ok) throw new Error(json.error || 'Não foi possível registrar a movimentação');
       messageApi.success('Movimentação registrada.');
       setMovementModalOpen(false);
       form.resetFields();
       await fetchSummary();
-      const currentSupplier = selectedSupplier;
-      if (currentSupplier && currentSupplier.fornecedor_id === values.fornecedor_id) {
-        await fetchMovements(currentSupplier);
+      if (selectedSupplier?.fornecedor_id === values.fornecedor_id) {
+        await fetchMovements(selectedSupplier);
       }
-    } catch (error: any) {
-      messageApi.error(error?.message || 'Falha ao registrar movimentação.');
+    } catch (cause) {
+      messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível registrar a movimentação');
     } finally {
       setSavingMovement(false);
     }
   };
 
-  const supplierColumns: ColumnsType<SupplierCredit> = [
+  const supplierColumns: ColumnsType<SupplierCreditPosition> = [
     {
-      title: 'Fornecedor',
-      dataIndex: 'fornecedor_nome',
-      sorter: (a, b) => a.fornecedor_nome.localeCompare(b.fornecedor_nome),
-      render: (value, record) => (
-        <Space direction="vertical" size={0}>
-          <Text strong>{value}</Text>
-          <Text type="secondary" style={{ fontSize: 12 }}>DSLite #{record.fornecedor_id}</Text>
-        </Space>
+      key: 'supplier', title: 'Fornecedor', width: 270,
+      sorter: (left, right) => left.fornecedor_nome.localeCompare(right.fornecedor_nome),
+      render: (_, record) => (
+        <div className={styles.supplierCell}>
+          <strong>{record.fornecedor_nome}</strong>
+          <span>DSLite #{record.fornecedor_id.replace('bnt-d17-', '')}</span>
+          {!record.ativo && !record.read_only && <small>Cadastro inativo</small>}
+        </div>
       ),
     },
     {
-      title: 'Crédito disponível',
-      dataIndex: 'available',
-      align: 'right',
-      sorter: (a, b) => a.available - b.available,
-      render: (value, record) => record.read_only
-        ? <Text type="secondary">{formatCurrency(value)} · histórico</Text>
-        : <Text style={{ color: value > 0 ? '#52c41a' : '#8c8c8c', fontWeight: 700 }}>{formatCurrency(value)}</Text>,
+      key: 'available', title: viewMode === 'historical' ? 'Saldo contábil final' : 'Disponível',
+      dataIndex: 'available', align: 'right', width: 165,
+      sorter: (left, right) => left.available - right.available,
+      render: (value, record) => (
+        <div className={record.read_only ? styles.historicalValue : styles.availableValue}>
+          <strong>{formatCurrency(value)}</strong>
+          <small>{record.read_only ? 'registro encerrado' : 'crédito confirmado'}</small>
+        </div>
+      ),
+    },
+    ...(viewMode === 'operational' ? [{
+      key: 'pending', title: 'A confirmar', dataIndex: 'pending' as const,
+      align: 'right' as const, width: 165,
+      sorter: (left: SupplierCreditPosition, right: SupplierCreditPosition) => left.pending - right.pending,
+      render: (value: number, record: SupplierCreditPosition) => (
+        <div className={styles.pendingValue}>
+          <strong>{value > 0 ? formatCurrency(value) : '—'}</strong>
+          <small>{record.pending_count > 0 ? `${record.pending_count} pendência${record.pending_count === 1 ? '' : 's'}` : 'sem pendências'}</small>
+        </div>
+      ),
+    }, {
+      key: 'used', title: 'Utilizado no mês', dataIndex: 'used_month' as const,
+      align: 'right' as const, width: 165,
+      render: (value: number) => (
+        <div className={styles.neutralValue}>
+          <strong>{formatCurrency(value)}</strong>
+          <small>crédito compensado</small>
+        </div>
+      ),
+    }] : [{
+      key: 'movements', title: 'Movimentos', dataIndex: 'movement_count' as const,
+      align: 'right' as const, width: 130,
+      render: (value: number) => <Text>{value.toLocaleString('pt-BR')}</Text>,
+    }]),
+    {
+      key: 'last', title: 'Último movimento', dataIndex: 'last_movement_at', width: 180,
+      render: (value) => (
+        <div className={styles.dateCell}>
+          <strong>{formatDateTime(value)}</strong>
+          {value && <small>há {relativeDate(value)}</small>}
+        </div>
+      ),
     },
     {
-      title: 'A confirmar',
-      dataIndex: 'pending',
-      align: 'right',
-      sorter: (a, b) => a.pending - b.pending,
-      render: (value, record) => value > 0
-        ? <Tag color="gold">{formatCurrency(value)} · {record.pending_count}</Tag>
-        : <Text type="secondary">—</Text>,
-    },
-    {
-      title: 'Usado no mês',
-      dataIndex: 'used_month',
-      align: 'right',
-      render: (value) => formatCurrency(value),
-    },
-    {
-      title: 'Último movimento',
-      dataIndex: 'last_movement_at',
-      render: (value) => value ? new Date(value).toLocaleString('pt-BR') : '—',
-    },
-    {
-      title: 'Status',
-      render: (_, record) => record.read_only
-        ? <Tag>Aposentado · somente leitura</Tag>
-        : <Tag color={record.ativo ? 'green' : 'default'}>{record.ativo ? 'Ativo' : 'Inativo'}</Tag>,
-    },
-    {
-      title: 'Ações',
-      width: 120,
-      render: (_, record) => <Button size="small" icon={<HistoryOutlined />} onClick={() => void openStatement(record)}>Ver extrato</Button>,
+      key: 'actions', title: 'Ações', width: 125, fixed: 'right',
+      render: (_, record) => (
+        <Button size="small" icon={<HistoryOutlined />} onClick={() => void openStatement(record)}>Extrato</Button>
+      ),
     },
   ];
 
-  const movementColumns: ColumnsType<Movement> = [
+  const movementColumns: ColumnsType<SupplierCreditMovement> = [
     {
-      title: 'Data',
-      dataIndex: 'created_at',
-      width: 150,
-      render: (value) => new Date(value).toLocaleString('pt-BR'),
+      key: 'date', title: 'Data', dataIndex: 'created_at', width: 145,
+      render: (value) => <span className={styles.movementDate}>{formatDateTime(value)}</span>,
     },
     {
-      title: 'Movimento',
+      key: 'movement', title: 'Movimento', width: 330,
       render: (_, record) => (
-        <Space direction="vertical" size={0}>
-          <Text>{movementLabel(record.movement_type)}</Text>
-          <Text type="secondary" style={{ fontSize: 12 }}>{record.reference || record.notes || '—'}</Text>
-          {record.ml_order_id && (
-            <Link href={`https://www.mercadolivre.com.br/vendas/${record.ml_order_id}/detalhe`} target="_blank">
-              Venda #{record.ml_order_id}
-            </Link>
-          )}
-        </Space>
+        <div className={styles.movementCell}>
+          <strong>{movementLabel(record.movement_type)}</strong>
+          <span>{record.reference || 'Sem referência informada'}</span>
+          <small>{sourceLabel(record.source)}{record.confirmed_by ? ` · ${record.confirmed_by}` : ''}</small>
+        </div>
       ),
     },
     {
-      title: 'Valor',
-      dataIndex: 'amount',
-      align: 'right',
-      width: 130,
-      render: (value) => <Text style={{ color: value >= 0 ? '#52c41a' : '#ff4d4f', fontWeight: 700 }}>{formatCurrency(value)}</Text>,
+      key: 'in', title: 'Entrada', align: 'right', width: 135,
+      render: (_, record) => record.amount > 0
+        ? <strong className={styles.creditValue}><ArrowUpOutlined /> {formatCurrency(record.amount)}</strong>
+        : <Text type="secondary">—</Text>,
     },
     {
-      title: 'Status',
-      dataIndex: 'status',
-      width: 115,
-      render: statusTag,
+      key: 'out', title: 'Saída', align: 'right', width: 135,
+      render: (_, record) => record.amount < 0
+        ? <strong className={styles.debitValue}><ArrowDownOutlined /> {formatCurrency(Math.abs(record.amount))}</strong>
+        : <Text type="secondary">—</Text>,
     },
+    { key: 'status', title: 'Situação', dataIndex: 'status', width: 120, render: statusTag },
     {
-      title: 'Ações',
-      width: 170,
-      render: (_, record) => !selectedSupplier?.read_only && record.status === 'pending' ? (
-        <Space>
-          <Popconfirm title="Fornecedor confirmou este crédito?" onConfirm={() => void decideMovement(record, 'confirmed')}>
-            <Button size="small" type="primary" icon={<CheckOutlined />} loading={decisionId === record.id}>Confirmar</Button>
-          </Popconfirm>
-          <Popconfirm title="Descartar esta pendência?" onConfirm={() => void decideMovement(record, 'rejected')}>
-            <Button size="small" danger icon={<CloseOutlined />} disabled={decisionId === record.id} />
-          </Popconfirm>
-        </Space>
-      ) : <Text type="secondary">—</Text>,
+      key: 'action', title: 'Ações', width: 105,
+      render: (_, record) => !selectedSupplier?.read_only && record.status === 'pending'
+        ? <Button size="small" onClick={() => setDecisionMovement(record)}>Analisar</Button>
+        : <Text type="secondary">—</Text>,
     },
   ];
 
   return (
-    <div>
-      {contextHolder}
-      <Row justify="space-between" align="middle" gutter={[16, 16]} style={{ marginBottom: 16 }}>
-        <Col>
-          <Title level={2} style={{ margin: 0 }}>Créditos de fornecedores</Title>
-          <Text type="secondary">Saldo confirmado, cancelamentos pendentes e compensações futuras.</Text>
-        </Col>
-        <Col>
-          <Space wrap>
-            <Button icon={<ReloadOutlined />} loading={reconciling} onClick={() => void reconcile()}>Reanalisar cancelamentos</Button>
-            <Button type="primary" icon={<PlusOutlined />} onClick={() => setMovementModalOpen(true)}>Nova movimentação</Button>
-          </Space>
-        </Col>
-      </Row>
+    <div className={styles.page}>
+      {messageContextHolder}
+      {modalContextHolder}
 
-      <Alert
-        type="info"
-        showIcon
-        message="Cancelamento pago gera pendência, não saldo imediato. Confirme com fornecedor antes de liberar crédito."
-        style={{ marginBottom: 16 }}
-      />
+      <header className={styles.header}>
+        <div>
+          <Title level={2}>Créditos de fornecedores</Title>
+          <Text>Controle de créditos confirmados, compensações e cancelamentos aguardando decisão.</Text>
+          <small>{updatedAt ? `Atualizado em ${formatDateTime(updatedAt)}` : 'Aguardando primeira atualização'}</small>
+        </div>
+        <div className={styles.headerActions}>
+          <Button icon={<ReloadOutlined />} loading={loading} onClick={() => void fetchSummary()}>Atualizar</Button>
+          <Button icon={<SyncOutlined />} loading={reconciling} onClick={confirmReconciliation}>Buscar cancelamentos</Button>
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => setMovementModalOpen(true)}>Novo movimento</Button>
+        </div>
+      </header>
 
-      <Row gutter={[16, 16]} style={{ marginBottom: 16 }}>
-        <Col xs={24} sm={12} xl={6}><Card><Statistic title="Crédito disponível" value={summary.available} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: '#52c41a' }} prefix={<DollarOutlined />} /></Card></Col>
-        <Col xs={24} sm={12} xl={6}><Card><Statistic title="A confirmar" value={summary.pending} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: '#faad14' }} /></Card></Col>
-        <Col xs={24} sm={12} xl={6}><Card><Statistic title="Utilizado no mês" value={summary.used_month} formatter={(value) => formatCurrency(Number(value))} /></Card></Col>
-        <Col xs={24} sm={12} xl={6}><Card><Statistic title="Fornecedores pendentes" value={summary.suppliers_with_pending} /></Card></Col>
-      </Row>
+      {visualReview && (
+        <Alert showIcon type="info" icon={<SafetyCertificateOutlined />}
+          message="Amostra financeira protegida de homologação"
+          description="Os valores reproduzem cenários reais de forma anonimizada. Formulários e decisões podem ser avaliados, mas nenhuma ação será gravada." />
+      )}
 
-      <Card>
-        <Input
-          allowClear
-          prefix={<SearchOutlined />}
-          placeholder="Buscar fornecedor ou código DSLite"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          style={{ maxWidth: 420, marginBottom: 16 }}
-        />
-        <Table<SupplierCredit>
-          rowKey="fornecedor_id"
-          loading={loading}
-          columns={supplierColumns}
-          dataSource={filteredSuppliers}
-          pagination={{ pageSize: 20, showSizeChanger: true }}
-          scroll={{ x: 1000 }}
-        />
-      </Card>
+      {error && (
+        <Alert showIcon type="error" message="Não foi possível carregar os créditos" description={error}
+          action={<Button size="small" onClick={() => void fetchSummary()}>Tentar novamente</Button>} />
+      )}
 
-      <Drawer
-        title={selectedSupplier ? `Extrato — ${selectedSupplier.fornecedor_nome}` : 'Extrato'}
-        open={Boolean(selectedSupplier)}
-        width={980}
-        onClose={() => setSelectedSupplier(null)}
-      >
-        {selectedSupplier?.read_only && (
-          <Alert
-            type="info"
-            showIcon
-            message="Conta-saldo aposentada. Este extrato é somente histórico e não aceita novas operações."
-            style={{ marginBottom: 16 }}
-          />
-        )}
-        {selectedSupplier && (
-          <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
-            <Col span={8}><Card size="small"><Statistic title={selectedSupplier.read_only ? 'Saldo histórico' : 'Disponível'} value={selectedSupplier.available} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: selectedSupplier.read_only ? '#8c8c8c' : '#52c41a' }} /></Card></Col>
-            <Col span={8}><Card size="small"><Statistic title={selectedSupplier.read_only ? 'Pendência histórica' : 'A confirmar'} value={selectedSupplier.pending} formatter={(value) => formatCurrency(Number(value))} valueStyle={{ color: '#faad14' }} /></Card></Col>
-            <Col span={8}><Card size="small"><Statistic title="Usado no mês" value={selectedSupplier.used_month} formatter={(value) => formatCurrency(Number(value))} /></Card></Col>
-          </Row>
-        )}
-        <Table<Movement>
-          rowKey="id"
-          loading={drawerLoading}
-          columns={movementColumns}
-          dataSource={movements}
-          pagination={{ pageSize: 15 }}
-          scroll={{ x: 850 }}
-        />
+      <section className={styles.summary} aria-label="Resumo financeiro">
+        <div className={styles.summaryHighlight}><span>Crédito disponível</span><strong>{formatCurrency(summary.available)}</strong><small>confirmado e pronto para compensar</small></div>
+        <div><span>A confirmar</span><strong>{formatCurrency(summary.pending)}</strong><small>{pendingCount} pendência{pendingCount === 1 ? '' : 's'} aguardando decisão</small></div>
+        <div><span>Utilizado no mês</span><strong>{formatCurrency(summary.used_month)}</strong><small>crédito já compensado</small></div>
+        <div><span>Fornecedores pendentes</span><strong>{summary.suppliers_with_pending}</strong><small>exigem contato ou conferência</small></div>
+      </section>
+
+      <section className={styles.pendingPanel}>
+        <div className={styles.sectionHeader}>
+          <div><span className={styles.eyebrow}>Fila prioritária</span><Title level={4}>Aguardando sua decisão</Title><Text>Mais antigas primeiro para reduzir créditos esquecidos.</Text></div>
+          {pendingMovements.length > 5 && <Button type="text" onClick={() => setShowAllPending((current) => !current)}>{showAllPending ? 'Mostrar menos' : `Ver todas (${pendingCount})`}</Button>}
+        </div>
+        {loading && suppliers.length === 0 ? <div className={styles.loadingState}><Spin /></div>
+          : visiblePending.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhum crédito aguardando decisão" />
+            : <div className={styles.pendingList}>{visiblePending.map((movement) => (
+              <div className={styles.pendingRow} key={movement.id}>
+                <span className={styles.pendingAge}><ClockCircleOutlined /> há {relativeDate(movement.created_at)}</span>
+                <div className={styles.pendingIdentity}><strong>{movement.fornecedor_nome || 'Fornecedor'}</strong><span>{movement.reference || 'Cancelamento sem referência informada'}</span></div>
+                <div className={styles.pendingAmount}><small>Crédito candidato</small><strong>{formatCurrency(movement.amount)}</strong></div>
+                <Button type="primary" onClick={() => setDecisionMovement(movement)}>Analisar</Button>
+              </div>
+            ))}</div>}
+      </section>
+
+      <section className={styles.positionsPanel}>
+        <div className={styles.positionsHeader}>
+          <Segmented<ViewMode> value={viewMode} onChange={(value) => { setViewMode(value); setSearch(''); }} options={[
+            { label: `Operação atual ${operationalSuppliers.length}`, value: 'operational' },
+            { label: `Histórico aposentado ${historicalSuppliers.length}`, value: 'historical' },
+          ]} />
+          <Input allowClear prefix={<SearchOutlined />} placeholder="Buscar fornecedor ou código DSLite" value={search} onChange={(event) => setSearch(event.target.value)} />
+        </div>
+        {viewMode === 'historical' && <Alert showIcon type="warning" message="Conta-saldo aposentada · Hayamax" description="Aposentado · somente leitura. Este histórico não participa dos totais operacionais e não permite novos movimentos, decisões ou reconciliações." />}
+        <Table<SupplierCreditPosition> rowKey="fornecedor_id" loading={loading} columns={supplierColumns} dataSource={visibleSuppliers}
+          pagination={{ pageSize: 15, hideOnSinglePage: true, showTotal: (total) => `${total} fornecedor${total === 1 ? '' : 'es'}` }}
+          scroll={{ x: viewMode === 'operational' ? 1070 : 820 }}
+          locale={{ emptyText: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhum fornecedor neste recorte" /> }} />
+      </section>
+
+      <Drawer title={selectedSupplier?.read_only ? 'Histórico da antiga conta-saldo' : 'Extrato de créditos'}
+        extra={selectedSupplier && <span className={styles.drawerSupplier}>{selectedSupplier.fornecedor_nome}</span>}
+        open={Boolean(selectedSupplier)} width="min(1040px, 96vw)" loading={drawerLoading} destroyOnHidden onClose={() => setSelectedSupplier(null)}>
+        {selectedSupplier?.read_only && <Alert type="warning" showIcon message="Somente leitura" description="Movimentos da antiga conta-saldo permanecem disponíveis apenas para auditoria histórica." className={styles.drawerAlert} />}
+        {selectedSupplier && <div className={styles.drawerSummary}>
+          <div><span>{selectedSupplier.read_only ? 'Saldo contábil final' : 'Disponível'}</span><strong>{formatCurrency(selectedSupplier.available)}</strong></div>
+          <div><span>A confirmar</span><strong>{formatCurrency(selectedSupplier.pending)}</strong></div>
+          <div><span>Utilizado no mês</span><strong>{formatCurrency(selectedSupplier.used_month)}</strong></div>
+          <div><span>Movimentos</span><strong>{selectedSupplier.movement_count.toLocaleString('pt-BR')}</strong></div>
+        </div>}
+        <div className={styles.drawerFilters}>
+          <Select<MovementStatusFilter> value={movementStatus} onChange={setMovementStatus} options={[
+            { value: 'all', label: 'Todas as situações' }, { value: 'pending', label: 'A confirmar' },
+            { value: 'confirmed', label: 'Confirmados' }, { value: 'rejected', label: 'Rejeitados' },
+          ]} />
+          <Select<SupplierLedgerMovementType | 'all'> value={movementType} onChange={setMovementType} options={[
+            { value: 'all', label: 'Todos os movimentos' },
+            ...Object.entries(MOVEMENT_LABELS).map(([value, label]) => ({ value, label })),
+          ]} />
+        </div>
+        <Table<SupplierCreditMovement> rowKey="id" columns={movementColumns} dataSource={filteredMovements}
+          pagination={{ pageSize: 15, showSizeChanger: true }} scroll={{ x: 940 }}
+          locale={{ emptyText: <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="Nenhum movimento neste filtro" /> }} />
       </Drawer>
 
-      <Modal
-        title="Nova movimentação"
-        open={movementModalOpen}
-        onCancel={() => setMovementModalOpen(false)}
-        onOk={() => void saveMovement()}
-        confirmLoading={savingMovement}
-        okText="Registrar"
-      >
-        <Form form={form} layout="vertical" initialValues={{ movement_type: 'manual_credit' }}>
-          <Form.Item name="fornecedor_id" label="Fornecedor" rules={[{ required: true }]}>
-            <Select
-              showSearch
-              optionFilterProp="label"
-              options={suppliers
-                .filter((supplier) => !supplier.read_only)
-                .map((supplier) => ({ value: supplier.fornecedor_id, label: supplier.fornecedor_nome }))}
-            />
+      <Modal title="Novo movimento de crédito" open={movementModalOpen} destroyOnHidden confirmLoading={savingMovement}
+        okText="Registrar movimento" cancelText="Cancelar" onCancel={() => setMovementModalOpen(false)} onOk={() => void saveMovement()}>
+        <Form form={form} layout="vertical" preserve={false} initialValues={{ movement_type: 'manual_credit' }}>
+          <Form.Item name="fornecedor_id" label="Fornecedor" rules={[{ required: true, message: 'Escolha um fornecedor' }]}>
+            <Select showSearch optionFilterProp="label" placeholder="Selecione o fornecedor" options={operationalSuppliers.map((supplier) => ({ value: supplier.fornecedor_id, label: supplier.fornecedor_nome }))} />
           </Form.Item>
-          <Form.Item name="movement_type" label="Tipo" rules={[{ required: true }]}>
+          {selectedMovementSupplier && <div className={styles.balancePreview}><span>Crédito disponível agora</span><strong>{formatCurrency(selectedMovementSupplier.available)}</strong></div>}
+          <Form.Item name="movement_type" label="Efeito do movimento" rules={[{ required: true }]}>
             <Select options={[
-              { value: 'manual_credit', label: 'Adicionar crédito confirmado' },
-              { value: 'credit_usage', label: 'Registrar utilização de crédito' },
-              { value: 'adjustment_credit', label: 'Ajuste positivo' },
-              { value: 'adjustment_debit', label: 'Ajuste negativo' },
+              { value: 'manual_credit', label: 'Adicionar crédito confirmado' }, { value: 'credit_usage', label: 'Registrar utilização de crédito' },
+              { value: 'adjustment_credit', label: 'Corrigir saldo para mais' }, { value: 'adjustment_debit', label: 'Corrigir saldo para menos' },
             ]} />
           </Form.Item>
-          <Form.Item name="amount" label="Valor" rules={[{ required: true }]}>
-            <InputNumber<number> min={0.01} precision={2} style={{ width: '100%' }} prefix="R$" />
-          </Form.Item>
-          <Form.Item name="reference" label="Referência">
-            <Input placeholder="Ex.: confirmação do fornecedor, pedido ou protocolo" />
-          </Form.Item>
-          <Form.Item name="notes" label="Observação" rules={[{ required: true, min: 3 }]}>
-            <Input.TextArea rows={3} placeholder="Explique a origem ou utilização do crédito" />
-          </Form.Item>
+          <Alert showIcon type="info" message={actionDescription(movementAction)} className={styles.formAlert} />
+          <Form.Item name="amount" label="Valor" rules={[{ required: true, message: 'Informe o valor' }]}><InputNumber<number> min={0.01} precision={2} style={{ width: '100%' }} prefix="R$" /></Form.Item>
+          <Form.Item name="reference" label="Referência"><Input maxLength={200} placeholder="Pedido, protocolo ou confirmação do fornecedor" /></Form.Item>
+          <Form.Item name="notes" label="Motivo do movimento" rules={[{ required: true, min: 3, message: 'Explique o motivo do movimento' }]}><Input.TextArea maxLength={1000} showCount rows={3} placeholder="Registre por que este crédito está sendo lançado ou utilizado" /></Form.Item>
         </Form>
+      </Modal>
+
+      <Modal title="Analisar crédito candidato" open={Boolean(decisionMovement)} destroyOnHidden
+        onCancel={() => { setDecisionMovement(null); setDecisionNotes(''); }} footer={[
+          <Button key="cancel" onClick={() => setDecisionMovement(null)}>Cancelar</Button>,
+          <Button key="reject" danger loading={decisionId === decisionMovement?.id} onClick={() => void decideMovement('rejected')}>Rejeitar crédito</Button>,
+          <Button key="confirm" type="primary" loading={decisionId === decisionMovement?.id} onClick={() => void decideMovement('confirmed')}>Confirmar crédito</Button>,
+        ]}>
+        {decisionMovement && <div className={styles.decisionBody}>
+          <div className={styles.decisionAmount}><span>{decisionMovement.fornecedor_nome || 'Fornecedor'}</span><strong>{formatCurrency(decisionMovement.amount)}</strong><small>{decisionMovement.reference || 'Sem referência informada'}</small></div>
+          <Alert showIcon type="warning" message="Confirme somente depois de o fornecedor reconhecer o crédito. A confirmação libera o valor para compensações futuras; a rejeição mantém o saldo inalterado." />
+          <label className={styles.decisionNotes}><span>Observação da decisão (opcional)</span><Input.TextArea maxLength={1000} showCount rows={3} value={decisionNotes} onChange={(event) => setDecisionNotes(event.target.value)} placeholder="Protocolo, contato realizado ou motivo da rejeição" /></label>
+        </div>}
       </Modal>
     </div>
   );
