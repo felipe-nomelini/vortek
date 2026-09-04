@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Alert,
   Button,
@@ -58,6 +58,16 @@ interface Pergunta {
   removidaDoAnuncio: boolean;
   tags: string[];
   categoriasIa: string[];
+  isHomologationFixture?: true;
+}
+
+interface VisualReviewMetadata {
+  enabled: true;
+  source: 'production-read-only';
+  capturedAt: string;
+  expiresAt: string;
+  itemCount: number;
+  defaultStatus: 'respondida';
 }
 
 interface PerguntasResponse {
@@ -67,6 +77,8 @@ interface PerguntasResponse {
   offset: number;
   account?: { id: string; nickname: string };
   updatedAt?: string;
+  effectiveStatus?: QuestionStatus | '';
+  visualReview?: VisualReviewMetadata;
   error?: string;
   precisaReconectar?: boolean;
 }
@@ -128,7 +140,9 @@ function questionState(question: Pergunta) {
 }
 
 function isAnswerable(question: Pergunta) {
-  return questionState(question).kind === 'pending' && question.mlStatus.toUpperCase() === 'UNANSWERED';
+  return question.isHomologationFixture !== true
+    && questionState(question).kind === 'pending'
+    && question.mlStatus.toUpperCase() === 'UNANSWERED';
 }
 
 export default function PerguntasPage() {
@@ -143,10 +157,12 @@ export default function PerguntasPage() {
   const [error, setError] = useState<string | null>(null);
   const [account, setAccount] = useState<{ id: string; nickname: string } | null>(null);
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
+  const [visualReview, setVisualReview] = useState<VisualReviewMetadata | null>(null);
   const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(null);
   const [answering, setAnswering] = useState(false);
   const [answerText, setAnswerText] = useState('');
   const [messageApi, contextHolder] = message.useMessage();
+  const initializedRef = useRef(false);
 
   const loadQuestions = useCallback(async (page: number) => {
     setLoading(true);
@@ -157,6 +173,7 @@ export default function PerguntasPage() {
         offset: String((page - 1) * PAGE_SIZE),
       });
       if (statusFilter) params.set('status', statusFilter);
+      if (!initializedRef.current) params.set('initial', '1');
       const response = await fetch(`/api/perguntas?${params.toString()}`, { cache: 'no-store' });
       const data = await response.json().catch(() => ({})) as PerguntasResponse;
       if (!response.ok) throw new Error(data.error || 'Falha ao carregar perguntas');
@@ -164,7 +181,12 @@ export default function PerguntasPage() {
       setTotal(data.total || data.items?.length || 0);
       setAccount(data.account || null);
       setUpdatedAt(data.updatedAt || new Date().toISOString());
+      setVisualReview(data.visualReview?.enabled === true ? data.visualReview : null);
       setCurrentPage(page);
+      initializedRef.current = true;
+      if (data.visualReview?.enabled && data.effectiveStatus && data.effectiveStatus !== statusFilter) {
+        setStatusFilter(data.effectiveStatus);
+      }
     } catch (loadError: any) {
       setError(loadError?.message || 'Erro ao carregar perguntas');
     } finally {
@@ -209,10 +231,10 @@ export default function PerguntasPage() {
   const periodFilterCount = Number(Boolean(perguntaRange[0] || perguntaRange[1])) + Number(Boolean(respostaRange[0] || respostaRange[1]));
 
   const totalLabel = statusFilter === 'pendente'
-    ? 'Não respondidas no Mercado Livre'
+    ? visualReview ? 'Não respondidas na amostra' : 'Não respondidas no Mercado Livre'
     : statusFilter === 'respondida'
-      ? 'Respondidas no Mercado Livre'
-      : 'Total no Mercado Livre';
+      ? visualReview ? 'Respondidas na amostra' : 'Respondidas no Mercado Livre'
+      : visualReview ? 'Total na amostra' : 'Total no Mercado Livre';
 
   const changePage = (page: number) => {
     setSelectedQuestionId(null);
@@ -229,7 +251,12 @@ export default function PerguntasPage() {
   };
 
   const submitAnswer = async () => {
-    if (!activeQuestion || !isAnswerable(activeQuestion)) return;
+    if (!activeQuestion) return;
+    if (activeQuestion.isHomologationFixture) {
+      messageApi.warning('A amostra protegida não envia respostas ao Mercado Livre.');
+      return;
+    }
+    if (!isAnswerable(activeQuestion)) return;
     const text = answerText.trim();
     if (!text) {
       messageApi.warning('Digite a resposta antes de enviar.');
@@ -276,6 +303,15 @@ export default function PerguntasPage() {
           Atualizar
         </Button>
       </header>
+
+      {visualReview ? (
+        <Alert
+          showIcon
+          type="info"
+          message="Amostra real protegida de produção"
+          description={`Recorte somente para validação visual, capturado em ${formatDate(visualReview.capturedAt)}. Identificadores de perguntas e compradores foram substituídos e todas as ações externas estão desabilitadas.`}
+        />
+      ) : null}
 
       {error ? (
         <Alert
@@ -369,7 +405,8 @@ export default function PerguntasPage() {
           <Button icon={<FilterOutlined />}>Períodos{periodFilterCount ? ` (${periodFilterCount})` : ''}</Button>
         </Popover>
         <Text type="secondary" className={styles.scopeHint}>
-          Status consulta todas as perguntas no Mercado Livre. Busca e períodos filtram somente os até {PAGE_SIZE} registros desta página.
+          Status consulta {visualReview ? 'a amostra protegida' : 'todas as perguntas no Mercado Livre'}.
+          {' '}Busca e períodos filtram somente os até {PAGE_SIZE} registros desta página.
         </Text>
       </section>
 

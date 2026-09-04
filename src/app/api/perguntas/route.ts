@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { validateMercadoLivreWebhookUser } from '@/lib/ml-account-guard';
+import { listQuestionVisualReview, loadQuestionVisualReview } from '@/lib/ml/questions-visual-review';
 import { fetchMLResult, getMLConnectionStatus } from '@/services/integration';
 
 export const dynamic = 'force-dynamic';
@@ -64,6 +65,33 @@ async function fetchItemMap(itemIds: string[]) {
 
 export async function GET(req: NextRequest) {
   try {
+    const search = req.nextUrl.searchParams;
+    const limit = toPositiveInt(search.get('limit'), 50, 100);
+    const offset = toPositiveInt(search.get('offset'), 0, 10000);
+    const requestedStatus = search.get('status') || '';
+    const visualReview = await loadQuestionVisualReview();
+
+    if (visualReview) {
+      const result = listQuestionVisualReview({
+        review: visualReview,
+        requestedStatus,
+        initialRequest: search.get('initial') === '1',
+        limit,
+        offset,
+      });
+      return NextResponse.json({
+        ...result,
+        limit,
+        offset,
+        account: {
+          id: 'DEV',
+          nickname: 'Amostra protegida',
+        },
+        updatedAt: visualReview.metadata.capturedAt,
+        visualReview: visualReview.metadata,
+      });
+    }
+
     const connection = await getMLConnectionStatus();
     if (!connection.conectado) {
       return NextResponse.json({
@@ -86,10 +114,7 @@ export async function GET(req: NextRequest) {
       }, { status: 403 });
     }
 
-    const search = req.nextUrl.searchParams;
-    const limit = toPositiveInt(search.get('limit'), 50, 100);
-    const offset = toPositiveInt(search.get('offset'), 0, 10000);
-    const status = mapStatus(search.get('status'));
+    const status = mapStatus(requestedStatus);
 
     const params = new URLSearchParams({
       seller_id: String(meResult.data.id),

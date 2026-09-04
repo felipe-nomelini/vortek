@@ -14,6 +14,11 @@ export async function POST(req: NextRequest, props: { params: Promise<{ id: stri
   const params = await props.params;
   try {
     const questionId = Number(params.id);
+    if (Number.isInteger(questionId) && questionId < 0) {
+      return NextResponse.json({
+        error: 'A amostra protegida de homologação não permite enviar respostas.',
+      }, { status: 403 });
+    }
     if (!Number.isFinite(questionId) || questionId <= 0) {
       return NextResponse.json({ error: 'ID da pergunta inválido' }, { status: 400 });
     }
