@@ -2503,7 +2503,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 #### Resultado técnico de `BNT-CFG-05 — Mercado Livre e anúncios`
 
-**Situação:** implementado e validado tecnicamente em DEV em `2026-09-04`; publicação e aceite visual em homologação serão registrados ao final desta entrega.
+**Situação:** implementado, validado tecnicamente e publicado em homologação em `2026-09-04`; aceite visual pendente.
 
 **Estado/causa confirmados:** credenciais, conexão e diagnóstico do Mercado Livre ainda pertenciam à aba genérica `Integrações`, que também permitia editar o Client ID por `blur`. O callback OAuth aceitava qualquer sessão autenticada, voltava para a aba antiga e possuía fallback para o domínio Vortek aposentado. A garantia de fábrica por 12 meses era inventada pelo runtime mesmo quando os termos oficiais da categoria não declaravam suporte.
 
@@ -2511,7 +2511,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Banco DEV:** a migration aditiva `20260905003000_bnt_cfg_05_mercado_livre.sql` teve destino confirmado como `supabase-dev` em `192.168.1.162`, hostname `supabase-dev`, PostgreSQL `17.6` e 106 migrations prévias. Foi ensaiada integralmente com `ROLLBACK` e aplicada transacionalmente somente nesse destino. O read-back confirmou 107 migrations, defaults `2230279 / 12 / meses`, as três constraints validadas e registro único da migration. O banco de produção `.160` não foi acessado.
 
-**Validação:** passaram 18 cenários administrativos direcionados e mais 36 cenários de conta, atributos críticos, SKU e preço por quantidade do Mercado Livre. `npm run validate`, `npm run build` com Next.js `16.3.3`, 122 páginas/rotas, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma conexão, desconexão, publicação ou outra mutação real foi executada no Mercado Livre.
+**Commit, testes e homologação:** `e267da9` — `feat(configuracoes): centralizar Mercado Livre`, enviado somente para `origin/dev`. Passaram 18 cenários administrativos direcionados e mais 36 cenários de conta, atributos críticos, SKU e preço por quantidade do Mercado Livre. `npm run validate`, `npm run build` com Next.js `16.3.3`, 122 páginas/rotas, `npm run check:build-secrets` e `git diff --check` passaram. O webhook oficial do `vortek-erp-dev` aceitou o deploy com HTTP `200`; health e login responderam `200`, a nova `/api/configuracoes/mercado-livre` respondeu `401` sem sessão e `/configuracoes?tab=mercado-livre` redirecionou para login, comprovando a nova rota e suas fronteiras no artefato publicado. Nenhuma conexão, desconexão, publicação ou outra mutação real foi executada no Mercado Livre.
 
 **Rollback:** reverter o commit desta entrega em `dev` e redeployar somente `vortek-erp-dev`. As três colunas aditivas podem permanecer sem uso; removê-las exige migration corretiva autorizada exclusivamente no `.162`.
 
