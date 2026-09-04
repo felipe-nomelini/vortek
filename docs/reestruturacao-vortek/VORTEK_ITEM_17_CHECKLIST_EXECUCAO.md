@@ -63,7 +63,8 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | Aprovar visualmente `BNT-CFG-05` |
+| 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | Planejada e bloqueante | Executar `BNT-PARITY-00` e resolver a fila antes de `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -172,7 +173,11 @@ Regras de uso:
 - [x] Executar somente `BNT-CFG-06 — Notificações e canais`.
 - [x] Aprovar visualmente `BNT-CFG-06` em homologação antes de iniciar `BNT-MSG-01`.
 - [x] Executar somente `BNT-MSG-01 — Templates e identidade das notificações`.
-- [ ] Aprovar os templates de WhatsApp, Push e e-mail em homologação antes de iniciar `BNT-CFG-07`.
+- [x] Aprovar os templates de WhatsApp, Push e e-mail em homologação antes de iniciar `BNT-PARITY-00`.
+- [ ] Executar somente `BNT-PARITY-00 — Fotografia e catálogo de regras`.
+- [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
+- [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
+- [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
 
 ---
 
@@ -2551,7 +2556,7 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 - [x] adicionar testes direcionados para conteúdo obrigatório, formatação e ausência de dados sensíveis;
 - [x] validar todas as amostras por canal na galeria protegida, sem disparar mensagens externas durante a implementação;
 - [x] executar `npm run validate` e build quando aplicável;
-- [ ] aprovar amostras de todos os tipos de mensagem em homologação antes de iniciar `BNT-CFG-07`.
+- [x] aprovar amostras de todos os tipos de mensagem em homologação antes de iniciar `BNT-PARITY-00`.
 
 **Aceite:** todos os templates ativos devem usar Bentevi, apresentar somente as informações úteis ao público correto, indicar claramente a ação quando houver e manter intacto o comportamento funcional dos disparos.
 
@@ -2570,7 +2575,73 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Rollback:** reverter `0f81e63` em `dev` e redeployar somente `vortek-erp-dev`. Não existe migration, dado operacional ou integração externa a reverter.
 
-**Pendência:** aprovar visualmente as amostras em `https://dev.bentevi.shop/configuracoes?tab=notificacoes` antes de iniciar `BNT-CFG-07`.
+**Aprovação:** os modelos de WhatsApp, Push e e-mail foram aprovados visualmente pelo responsável em `2026-09-04`, liberando `BNT-PARITY-00`.
+
+### `Etapa 11.1 — Reconciliação contínua Produção → Bentevi`
+
+**Objetivo:** impedir que regras, fórmulas, percentuais, estados, funções e correções incorporadas ao sistema produtivo durante a construção da Bentevi sejam perdidas ou reintroduzidas de forma incorreta no lançamento da nova versão.
+
+**Motivo atual confirmado:** no início desta etapa, `origin/main` está em `95941f1924efa42e890fba592fe400f9e25ae706`, `origin/dev` está em `e83ceb2ffee210de55fab4e56e242849d50d2715` e o ancestral comum é `08b6237428c406b55a876578b63dbc553e8c9584`. `main` possui 13 commits exclusivos que afetam 83 arquivos e incluem quatro migrations. Há mudanças em venda concretizada, identidade Mercado Livre, retomada DSLite, inativação de fornecedores e produtos, estoque interno, etiquetas, jobs, runtime e alertas. A fotografia deve reconfirmar os três SHAs antes de produzir conclusões.
+
+**Princípio:** paridade não significa copiar produção cegamente nem fazer merge geral de `main` em `dev`. A regra produtiva deve ser entendida, confrontada com as decisões posteriores do Item 17 e então reaplicada na arquitetura atual da Bentevi. Bugs, compatibilidades encerradas e fluxos obsoletos não devem ser importados.
+
+#### `BNT-PARITY-00 — Fotografia e catálogo de regras`
+
+- [ ] confirmar branch `dev`, working tree, `origin/main`, `origin/dev`, ancestral comum e SHA efetivamente implantado no serviço produtivo;
+- [ ] inventariar individualmente todos os commits exclusivos de `main`, seus arquivos, migrations, testes e efeito funcional;
+- [ ] pesquisar também as regras produtivas atuais que antecedem o ancestral comum, sem limitar a análise ao diff Git;
+- [ ] percorrer código, contratos, schemas, constraints, funções, triggers, RLS, migrations, testes, jobs, webhooks, configurações e consumidores web/mobile;
+- [ ] consultar o banco de produção em `192.168.1.160` apenas com transação e operações `READ ONLY`, usando catálogos, agregados e parâmetros necessários, sem copiar PII, payloads ou secrets;
+- [ ] comparar o estado produtivo com o código, schema, migrations e parâmetros do `supabase-dev` em `192.168.1.162`, sem escrever em nenhum banco durante a fotografia;
+- [ ] reconfirmar na documentação oficial atual as regras que dependem de Mercado Livre, Mercado Pago, DSLite, Brasil NFe, Supabase/PostgreSQL, WAHA, SMTP ou outra integração;
+- [ ] cobrir ao menos: pricing, impostos, margens, descontos, fretes e thresholds; produtos, ofertas, fornecedores e kits; estoque, reserva e fulfillment; vendas, compras, pagamentos, cancelamentos e devoluções; fiscal; anúncios, catálogo, identidade ML, perguntas e reclamações; jobs, outbox, webhooks e notificações; autenticação, permissões, mobile e contratos de API;
+- [ ] criar `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` com uma linha por regra contendo domínio, identificador, fonte produtiva, entrada, cálculo/decisão, unidade, precedência, fallback, consumidores, estado na Bentevi, divergência, classificação, evidência, teste e ação necessária;
+- [ ] registrar valores numéricos de negócio com unidade e limites; secrets devem aparecer somente como `configurado/não configurado`;
+- [ ] gerar uma fila ordenada de ações `BNT-PARITY-N`, uma mudança coerente por tarefa, sem implementar nenhuma delas dentro de `BNT-PARITY-00`;
+- [ ] concluir o gate obrigatório da seção 3 e registrar a fotografia sem alterar código funcional, banco, integração ou produção.
+
+#### Classificação obrigatória
+
+Cada regra ou mudança deve receber exatamente uma classificação:
+
+- `INCORPORAR` — comportamento produtivo atual ausente e ainda correto;
+- `EQUIVALENTE` — a Bentevi já preserva o mesmo resultado por outra implementação;
+- `SUBSTITUÍDA` — decisão mais recente e aprovada do Item 17 substitui conscientemente a regra antiga;
+- `NÃO COPIAR` — bug, workaround, compatibilidade encerrada ou fluxo obsoleto;
+- `DECISÃO NECESSÁRIA` — existe conflito real de negócio sem fonte superior conclusiva.
+
+A precedência é: instrução explícita mais recente do responsável → regra/correção produtiva comprovada → decisão já validada do Item 17 → implementação histórica. Qualquer conflito ainda ambíguo deve bloquear somente sua ação e ser apresentado ao responsável; não pode ser resolvido por suposição.
+
+#### `BNT-PARITY-N — Aplicação uma regra por vez`
+
+- [ ] abrir uma ação separada para cada divergência `INCORPORAR` ou decisão aprovada;
+- [ ] identificar causa, dono atual e todos os consumidores antes de alterar;
+- [ ] portar o comportamento, não copiar automaticamente a implementação ou o commit;
+- [ ] preservar a arquitetura, a identidade visual e as fontes tipadas já consolidadas na Bentevi;
+- [ ] criar teste de regressão com limites, precedências, transições e falhas relevantes;
+- [ ] quando houver migration, criar nova migration, confirmar destino `.162`, ensaiar com `ROLLBACK` e aplicar somente no `supabase-dev`;
+- [ ] validar e publicar somente em homologação, registrar rollback e não combinar várias regras numa única tarefa.
+
+#### `BNT-PARITY-GATE — Liberação da sequência`
+
+- [ ] todos os commits exclusivos de `main` estão classificados e ligados às regras afetadas;
+- [ ] todas as regras e parâmetros produtivos identificados possuem dono, consumidor, estado na Bentevi e evidência;
+- [ ] nenhuma divergência P0/P1 permanece sem correção ou aceite explícito;
+- [ ] todas as ações `BNT-PARITY-N` aplicáveis passaram em teste direcionado, `npm run validate`, build e homologação quando necessários;
+- [ ] migrations e variáveis exigidas pela futura promoção estão inventariadas sem expor valores sensíveis;
+- [ ] o SHA de `origin/main` no fechamento coincide com o último SHA auditado; se mudou, incorporar o novo delta antes de liberar;
+- [ ] registrar formalmente a liberação de `BNT-CFG-07`.
+
+#### Controle contínuo e `BNT-PARITY-FINAL`
+
+- [ ] antes de cada nova ação do Item 17, comparar por leitura o SHA atual de `origin/main` com o último SHA auditado;
+- [ ] se houver mudança produtiva no domínio da ação atual, reconciliar esse delta antes de continuar; mudanças de outros domínios entram na fila sem merge automático;
+- [ ] imediatamente antes da promoção, executar `BNT-PARITY-FINAL`, repetir a comparação desde o último SHA auditado e bloquear o release enquanto existir commit ou regra sem classificação;
+- [ ] executar novamente os testes dos domínios afetados e registrar o SHA final de produção, o SHA final de `dev` e a matriz atualizada.
+
+**Aceite da etapa:** zero commit exclusivo de produção sem classificação, zero regra ou parâmetro produtivo identificado sem destino explícito e zero divergência crítica aberta sem aceite. `BNT-CFG-07` permanece bloqueada até `BNT-PARITY-GATE`; o release permanece bloqueado até `BNT-PARITY-FINAL`.
+
+**Limites:** o worktree `vortek-prod`, a branch `main`, o serviço produtivo e `192.168.1.160` são estritamente de leitura nesta etapa. Nenhum merge, cherry-pick em massa, deploy, migration, teste destrutivo ou correção de produção é autorizado por este checklist.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 
@@ -2701,6 +2772,9 @@ Esta seção prepara a promoção. Ela não autoriza merge nem deploy.
 - [ ] build aprovado quando aplicável;
 - [ ] migrations aplicadas e testadas somente em staging;
 - [ ] `dev.bentevi.shop` funcional;
+- [ ] `BNT-PARITY-GATE` concluído e todas as divergências críticas resolvidas ou explicitamente aceitas;
+- [ ] `BNT-PARITY-FINAL` executado contra o SHA atual de `origin/main`, sem commit ou regra pendente de classificação;
+- [ ] matriz `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md` atualizada com os SHAs finais;
 - [ ] commits e diff destinados à `main` revisados;
 - [ ] nenhuma secret adicionada ao Git;
 - [ ] migrations da promoção identificadas;
@@ -2746,6 +2820,7 @@ O Item 17 só está encerrado quando todos os critérios aplicáveis abaixo tive
 - [x] Mercado Pago conclui todo o lifecycle;
 - [ ] jobs não escondem falhas críticas;
 - [ ] principais regras duplicadas estão consolidadas;
+- [ ] todas as regras produtivas e todos os deltas de `main` estão classificados e reconciliados pela Etapa 11.1;
 - [ ] interface foi simplificada somente onde havia mistura real;
 - [ ] clusters históricos confirmados foram removidos;
 - [ ] testes críticos permanentes estão identificados;

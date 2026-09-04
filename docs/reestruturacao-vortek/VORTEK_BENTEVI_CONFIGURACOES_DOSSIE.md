@@ -294,12 +294,16 @@ Cada ação abaixo é independente e bloqueia a seguinte até validação:
 4. `BNT-CFG-04` — Produtos, estoque, pedidos e fulfillment;
 5. `BNT-CFG-05` — Mercado Livre e anúncios;
 6. `BNT-CFG-06` — Notificações e canais;
-7. `BNT-CFG-07` — Integrações, incluindo estados ausentes da interface;
-8. `BNT-CFG-08` — Dashboard, TV e metas;
-9. `BNT-CFG-09` — Sistema e jobs avançados;
-10. `BNT-D20` — composição visual final de `/configuracoes`, responsividade desktop e aprovação.
+7. `BNT-MSG-01` — Templates e identidade das notificações;
+8. `BNT-PARITY-00`, ações `BNT-PARITY-N` e `BNT-PARITY-GATE` — reconciliação bloqueante com produção;
+9. `BNT-CFG-07` — Integrações, incluindo estados ausentes da interface;
+10. `BNT-CFG-08` — Dashboard, TV e metas;
+11. `BNT-CFG-09` — Sistema e jobs avançados;
+12. `BNT-D20` — composição visual final de `/configuracoes`, responsividade desktop e aprovação.
 
 `BNT-D20` somente será marcado como concluído quando todos os controles implementados tiverem consumidor real, autorização administrativa, validação, auditoria aplicável e teste direcionado.
+
+Após `BNT-PARITY-GATE`, cada ação também deve conferir se `origin/main` avançou além do último SHA auditado. Antes da promoção, `BNT-PARITY-FINAL` repete obrigatoriamente o delta e bloqueia o release diante de regra ou commit sem classificação.
 
 ---
 
@@ -406,4 +410,10 @@ A migration `20260905023000_bnt_cfg_06_notifications.sql` consolidou os destinat
 
 Implementado tecnicamente e publicado em homologação em `2026-09-04`. Os conteúdos ativos de WhatsApp, Push e e-mail fiscal passaram a ser produzidos por uma fonte tipada comum, também usada pela galeria administrativa de 20 amostras sintéticas. WhatsApp separa contexto, dados essenciais e próxima ação; Push preserva somente informação acionável; e-mail fiscal usa visual dark, logotipo Bentevi embutido e fallback texto.
 
-Não foram alterados eventos, destinatários, permissões, dedupe, idempotência, anexos, auditoria ou contratos de transporte. Não houve migration nem operação de banco. O commit `0f81e63` foi publicado somente em `vortek-erp-dev`; a aprovação visual das amostras é a única pendência antes de `BNT-CFG-07`.
+Não foram alterados eventos, destinatários, permissões, dedupe, idempotência, anexos, auditoria ou contratos de transporte. Não houve migration nem operação de banco. O commit `0f81e63` foi publicado somente em `vortek-erp-dev`; as amostras foram aprovadas visualmente pelo responsável em `2026-09-04`.
+
+### `Etapa 11.1 — Reconciliação contínua Produção → Bentevi`
+
+A sequência de Configurações fica pausada antes de `BNT-CFG-07`. `BNT-PARITY-00` produzirá a fotografia e a matriz canônica das regras de produção; cada divergência será tratada em uma ação individual; e `BNT-PARITY-GATE` liberará a retomada somente depois de classificar todos os commits e regras produtivas. `BNT-PARITY-FINAL` repetirá o delta imediatamente antes do release.
+
+A fotografia inicial deve reconfirmar `origin/main@95941f1`, `origin/dev@e83ceb2` e o ancestral comum `08b6237`. Nesse ponto existem 13 commits exclusivos em `main`, 83 arquivos afetados e quatro migrations a classificar. Produção e seu banco em `.160` permanecem estritamente somente leitura; qualquer correção futura será implementada uma regra por vez em `dev` e, quando necessário, somente no `supabase-dev` `.162`.
