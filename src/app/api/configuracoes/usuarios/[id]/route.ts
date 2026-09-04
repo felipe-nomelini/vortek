@@ -1,16 +1,12 @@
 import { NextResponse } from 'next/server';
-import type { Database } from '@/types/database';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
-
-type UserRole = Database['public']['Enums']['user_role'];
-
-const VALID_ROLES = new Set<UserRole>(['admin', 'gerente', 'operador', 'visualizador']);
-
-function normalizeRole(value: unknown): UserRole | null {
-  const role = String(value || '').trim().toLowerCase() as UserRole;
-  return VALID_ROLES.has(role) ? role : null;
-}
+import {
+  configurationValidationMessage,
+  updateUserConfigurationSchema,
+  userIdSchema,
+} from '@/lib/configuracoes/contracts';
+import { recordConfigurationAudit } from '@/services/configuration-audit';
 
 function isActiveFromBannedUntil(value: string | undefined): boolean {
   if (!value) return true;
@@ -28,16 +24,32 @@ export async function PATCH(
   if (!admin.ok) return admin.response;
 
   const { id } = await context.params;
-  const userId = String(id || '').trim();
-  if (!userId) {
-    return NextResponse.json({ erro: 'Usuário inválido' }, { status: 400 });
+  const parsedUserId = userIdSchema.safeParse(id);
+  if (!parsedUserId.success) {
+    return NextResponse.json({ erro: 'Usuário inválido' }, { status: 422 });
   }
+  const userId = parsedUserId.data;
 
   const body = await request.json().catch(() => ({}));
+  const parsed = updateUserConfigurationSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { erro: configurationValidationMessage(parsed.error, 'Dados do usuário inválidos') },
+      { status: 422 },
+    );
+  }
   const serviceClient = createServiceClient();
+  const { data: previousAuth, error: previousAuthError } =
+    await serviceClient.auth.admin.getUserById(userId);
+  if (previousAuthError || !previousAuth.user) {
+    return NextResponse.json(
+      { erro: previousAuthError?.message || 'Usuário não encontrado' },
+      { status: 404 },
+    );
+  }
 
-  if (typeof body?.ativo === 'boolean') {
-    if (userId === admin.user.id && body.ativo === false) {
+  if ('ativo' in parsed.data) {
+    if (userId === admin.user.id && parsed.data.ativo === false) {
       return NextResponse.json(
         { erro: 'Você não pode desativar seu próprio usuário' },
         { status: 422 },
@@ -45,12 +57,33 @@ export async function PATCH(
     }
 
     const { data, error } = await serviceClient.auth.admin.updateUserById(userId, {
-      ban_duration: body.ativo ? 'none' : '876000h',
+      ban_duration: parsed.data.ativo ? 'none' : '876000h',
     });
 
     if (error || !data.user) {
       return NextResponse.json(
         { erro: error?.message || 'Falha ao atualizar status do usuário' },
+        { status: 500 },
+      );
+    }
+
+    const previousActive = isActiveFromBannedUntil(previousAuth.user.banned_until);
+    const currentActive = isActiveFromBannedUntil(data.user.banned_until);
+    try {
+      await recordConfigurationAudit(
+        serviceClient,
+        { id: admin.user.id, name: admin.nome },
+        [{
+          key: 'usuarios.ativo',
+          targetId: userId,
+          before: previousActive,
+          after: currentActive,
+          action: currentActive ? 'enabled' : 'disabled',
+        }],
+      );
+    } catch {
+      return NextResponse.json(
+        { erro: 'Status alterado, mas o histórico administrativo não pôde ser registrado', persisted: true },
         { status: 500 },
       );
     }
@@ -64,24 +97,16 @@ export async function PATCH(
     });
   }
 
-  const nome = String(body?.nome || '').trim();
-  const email = String(body?.email || '').trim().toLowerCase();
-  const senha = String(body?.senha || '');
-  const avatarUrl = String(body?.avatar_url || '').trim() || null;
-  const cargo = normalizeRole(body?.cargo);
-
-  if (!nome || !email || !cargo) {
-    return NextResponse.json(
-      { erro: 'Nome, e-mail e cargo são obrigatórios' },
-      { status: 400 },
-    );
-  }
-
-  if (senha && senha.length < 6) {
-    return NextResponse.json(
-      { erro: 'Senha deve ter pelo menos 6 caracteres' },
-      { status: 422 },
-    );
+  const { nome, email, cargo } = parsed.data;
+  const senha = parsed.data.senha || '';
+  const avatarUrl = parsed.data.avatar_url || null;
+  const { data: previousProfile, error: previousProfileError } = await serviceClient
+    .from('profiles')
+    .select('nome,cargo,avatar_url')
+    .eq('id', userId)
+    .maybeSingle();
+  if (previousProfileError) {
+    return NextResponse.json({ erro: previousProfileError.message }, { status: 500 });
   }
 
   const authPayload: { email: string; password?: string; user_metadata: { nome: string } } = {
@@ -114,6 +139,27 @@ export async function PATCH(
 
   if (profileError) {
     return NextResponse.json({ erro: profileError.message }, { status: 500 });
+  }
+
+  try {
+    await recordConfigurationAudit(
+      serviceClient,
+      { id: admin.user.id, name: admin.nome },
+      [
+        { key: 'usuarios.nome', targetId: userId, before: previousProfile?.nome || previousAuth.user.user_metadata?.nome, after: nome },
+        { key: 'usuarios.email', targetId: userId, before: previousAuth.user.email, after: email },
+        { key: 'usuarios.cargo', targetId: userId, before: previousProfile?.cargo, after: cargo },
+        { key: 'usuarios.avatar_url', targetId: userId, before: previousProfile?.avatar_url, after: avatarUrl },
+        ...(senha
+          ? [{ key: 'usuarios.senha' as const, targetId: userId, before: true, after: senha, action: 'secret_set' as const, force: true }]
+          : []),
+      ],
+    );
+  } catch {
+    return NextResponse.json(
+      { erro: 'Usuário salvo, mas o histórico administrativo não pôde ser registrado', persisted: true },
+      { status: 500 },
+    );
   }
 
   return NextResponse.json({

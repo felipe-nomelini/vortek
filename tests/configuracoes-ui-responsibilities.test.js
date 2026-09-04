@@ -12,22 +12,25 @@ const empresa = read("src/components/configuracoes/EmpresaTab.tsx");
 const integracoes = read("src/components/configuracoes/IntegracoesTab.tsx");
 const usuarios = read("src/components/configuracoes/UsuariosTab.tsx");
 const preferencias = read("src/components/configuracoes/PreferenciasTab.tsx");
+const auditoria = read("src/components/configuracoes/AuditoriaTab.tsx");
 
-test("Configurações mantém uma rota e delega as quatro tabs", () => {
+test("Configurações mantém uma rota e delega as tabs administrativas", () => {
   for (const component of [
     "EmpresaTab",
     "IntegracoesTab",
     "UsuariosTab",
     "PreferenciasTab",
+    "AuditoriaTab",
   ]) {
     assert.match(page, new RegExp(`<${component} messageApi=\\{messageApi\\} \\/>`));
   }
-  for (const key of ["empresa", "integracoes", "usuarios", "preferencias"]) {
+  for (const key of ["empresa", "integracoes", "usuarios", "preferencias", "historico"]) {
     assert.match(page, new RegExp(`key: "${key}"`));
   }
   assert.match(page, /useSearchParams\(\)/);
   assert.match(page, /<Suspense/);
   assert.equal(page.match(/forceRender: true/g)?.length, 4);
+  assert.match(auditoria, /fetch\(`\/api\/configuracoes\/auditoria\?/);
 });
 
 test("página permanece apenas como shell e não concentra operações das tabs", () => {

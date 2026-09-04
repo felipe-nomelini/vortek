@@ -2,15 +2,13 @@ import { NextResponse } from 'next/server';
 import type { Database } from '@/types/database';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
+import {
+  configurationValidationMessage,
+  createUserConfigurationSchema,
+} from '@/lib/configuracoes/contracts';
+import { recordConfigurationAudit } from '@/services/configuration-audit';
 
 type UserRole = Database['public']['Enums']['user_role'];
-
-const VALID_ROLES = new Set<UserRole>(['admin', 'gerente', 'operador', 'visualizador']);
-
-function normalizeRole(value: unknown): UserRole | null {
-  const role = String(value || '').trim().toLowerCase() as UserRole;
-  return VALID_ROLES.has(role) ? role : null;
-}
 
 function isActiveFromBannedUntil(value: string | undefined): boolean {
   if (!value) return true;
@@ -73,29 +71,15 @@ export async function POST(request: Request) {
   if (!admin.ok) return admin.response;
 
   const body = await request.json().catch(() => ({}));
-  const nome = String(body?.nome || '').trim();
-  const email = String(body?.email || '').trim().toLowerCase();
-  const senha = String(body?.senha || '');
-  const cargo = normalizeRole(body?.cargo);
-  const avatarUrl = String(body?.avatar_url || '').trim() || null;
-
-  if (!nome || !email || !senha) {
+  const parsed = createUserConfigurationSchema.safeParse(body);
+  if (!parsed.success) {
     return NextResponse.json(
-      { erro: 'Nome, e-mail e senha são obrigatórios' },
-      { status: 400 },
-    );
-  }
-
-  if (!cargo) {
-    return NextResponse.json({ erro: 'Cargo inválido' }, { status: 422 });
-  }
-
-  if (senha.length < 6) {
-    return NextResponse.json(
-      { erro: 'Senha deve ter pelo menos 6 caracteres' },
+      { erro: configurationValidationMessage(parsed.error, 'Dados do usuário inválidos') },
       { status: 422 },
     );
   }
+  const { nome, email, senha, cargo } = parsed.data;
+  const avatarUrl = parsed.data.avatar_url || null;
 
   const serviceClient = createServiceClient();
   const { data: created, error: createError } = await serviceClient.auth.admin.createUser({
@@ -122,6 +106,26 @@ export async function POST(request: Request) {
   if (profileError) {
     await serviceClient.auth.admin.deleteUser(created.user.id);
     return NextResponse.json({ erro: profileError.message }, { status: 500 });
+  }
+
+  try {
+    await recordConfigurationAudit(
+      serviceClient,
+      { id: admin.user.id, name: admin.nome },
+      [
+        { key: 'usuarios.nome', targetId: created.user.id, before: null, after: nome, action: 'created' },
+        { key: 'usuarios.email', targetId: created.user.id, before: null, after: email, action: 'created' },
+        { key: 'usuarios.cargo', targetId: created.user.id, before: null, after: cargo, action: 'created' },
+        { key: 'usuarios.avatar_url', targetId: created.user.id, before: null, after: avatarUrl, action: 'created' },
+        { key: 'usuarios.senha', targetId: created.user.id, before: null, after: senha, action: 'secret_set', force: true },
+        { key: 'usuarios.ativo', targetId: created.user.id, before: null, after: true, action: 'enabled' },
+      ],
+    );
+  } catch {
+    return NextResponse.json(
+      { erro: 'Usuário criado, mas o histórico administrativo não pôde ser registrado', persisted: true },
+      { status: 500 },
+    );
   }
 
   return NextResponse.json({

@@ -1,6 +1,14 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { requireAdminUser } from '@/lib/auth/admin';
+import {
+  companyConfigurationSchema,
+  configurationValidationMessage,
+} from '@/lib/configuracoes/contracts';
+import { recordConfigurationAudit } from '@/services/configuration-audit';
+
+const COMPANY_FIELDS =
+  'id,nome,nickname,cnpj,endereco,email,telefone,uf_fiscal,cod_municipio_fiscal' as const;
 
 export async function GET() {
   const supabase = await createClient();
@@ -10,7 +18,7 @@ export async function GET() {
   const serviceClient = createServiceClient();
   const { data, error } = await serviceClient
     .from('empresa')
-    .select('id,nome,nickname,cnpj,endereco,email,telefone,uf_fiscal,cod_municipio_fiscal')
+    .select(COMPANY_FIELDS)
     .order('updated_at', { ascending: false })
     .limit(1)
     .maybeSingle();
@@ -26,56 +34,69 @@ export async function PUT(request: Request) {
 
   const serviceClient = createServiceClient();
   const body = await request.json().catch(() => ({}));
-
-  const id = typeof body?.id === 'string' && body.id.trim() ? body.id.trim() : null;
-  const nome = String(body?.nome || '').trim();
-  const nickname = String(body?.nickname || '').trim();
-  const cnpj = String(body?.cnpj || '').trim();
-  const endereco = String(body?.endereco || '').trim();
-  const email = String(body?.email || '').trim();
-  const telefone = String(body?.telefone || '').trim();
-  const ufFiscal = String(body?.uf_fiscal || '').trim().toUpperCase();
-  const codMunicipioFiscalRaw = String(body?.cod_municipio_fiscal || '').replace(/\D/g, '');
-  const codMunicipioFiscal = codMunicipioFiscalRaw || null;
-
-  if (!/^[A-Z]{2}$/.test(ufFiscal)) {
-    return NextResponse.json({ erro: 'UF Fiscal inválida. Use 2 letras (ex.: RS).' }, { status: 422 });
+  const parsed = companyConfigurationSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { erro: configurationValidationMessage(parsed.error, 'Dados da empresa inválidos') },
+      { status: 422 },
+    );
   }
 
-  if (codMunicipioFiscal && !/^\d{7}$/.test(codMunicipioFiscal)) {
-    return NextResponse.json({ erro: 'Código Município (IBGE) inválido. Use 7 dígitos.' }, { status: 422 });
-  }
+  const { id = null, ...values } = parsed.data;
+  const { data: previous, error: previousError } = id
+    ? await serviceClient.from('empresa').select(COMPANY_FIELDS).eq('id', id).maybeSingle()
+    : { data: null, error: null };
+  if (previousError) return NextResponse.json({ erro: previousError.message }, { status: 500 });
 
   const payload = {
-    nome,
-    nickname,
-    cnpj,
-    endereco,
-    email,
-    telefone,
-    uf_fiscal: ufFiscal,
-    cod_municipio_fiscal: codMunicipioFiscal,
+    ...values,
+    uf_fiscal: values.uf_fiscal.toUpperCase(),
+    cod_municipio_fiscal: values.cod_municipio_fiscal || null,
     updated_at: new Date().toISOString(),
   };
 
+  let saved;
   if (id) {
     const { data, error } = await serviceClient
       .from('empresa')
       .update(payload)
       .eq('id', id)
-      .select('id,nome,nickname,cnpj,endereco,email,telefone,uf_fiscal,cod_municipio_fiscal')
+      .select(COMPANY_FIELDS)
       .single();
 
     if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-    return NextResponse.json(data);
+    saved = data;
+  } else {
+    const { data, error } = await serviceClient
+      .from('empresa')
+      .insert(payload)
+      .select(COMPANY_FIELDS)
+      .single();
+
+    if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+    saved = data;
   }
 
-  const { data, error } = await serviceClient
-    .from('empresa')
-    .insert(payload)
-    .select('id,nome,nickname,cnpj,endereco,email,telefone,uf_fiscal,cod_municipio_fiscal')
-    .single();
-
-  if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-  return NextResponse.json(data);
+  try {
+    await recordConfigurationAudit(
+      serviceClient,
+      { id: admin.user.id, name: admin.nome },
+      [
+        { key: 'empresa.nome', targetId: saved.id, before: previous?.nome, after: saved.nome },
+        { key: 'empresa.nickname', targetId: saved.id, before: previous?.nickname, after: saved.nickname },
+        { key: 'empresa.cnpj', targetId: saved.id, before: previous?.cnpj, after: saved.cnpj },
+        { key: 'empresa.endereco', targetId: saved.id, before: previous?.endereco, after: saved.endereco },
+        { key: 'empresa.email', targetId: saved.id, before: previous?.email, after: saved.email },
+        { key: 'empresa.telefone', targetId: saved.id, before: previous?.telefone, after: saved.telefone },
+        { key: 'empresa.uf_fiscal', targetId: saved.id, before: previous?.uf_fiscal, after: saved.uf_fiscal },
+        { key: 'empresa.cod_municipio_fiscal', targetId: saved.id, before: previous?.cod_municipio_fiscal, after: saved.cod_municipio_fiscal },
+      ],
+    );
+  } catch {
+    return NextResponse.json(
+      { erro: 'Empresa salva, mas o histórico administrativo não pôde ser registrado', persisted: true },
+      { status: 500 },
+    );
+  }
+  return NextResponse.json(saved);
 }

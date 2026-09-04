@@ -355,6 +355,45 @@ export type Database = {
         }
         Relationships: []
       }
+      configuracoes_auditoria: {
+        Row: {
+          acao: string
+          alvo_id: string | null
+          autor_id: string
+          autor_nome: string
+          chave: string
+          created_at: string
+          dominio: string
+          id: string
+          valor_anterior: Json | null
+          valor_novo: Json | null
+        }
+        Insert: {
+          acao: string
+          alvo_id?: string | null
+          autor_id: string
+          autor_nome: string
+          chave: string
+          created_at?: string
+          dominio: string
+          id?: string
+          valor_anterior?: Json | null
+          valor_novo?: Json | null
+        }
+        Update: {
+          acao?: string
+          alvo_id?: string | null
+          autor_id?: string
+          autor_nome?: string
+          chave?: string
+          created_at?: string
+          dominio?: string
+          id?: string
+          valor_anterior?: Json | null
+          valor_novo?: Json | null
+        }
+        Relationships: []
+      }
       empresa: {
         Row: {
           cod_municipio_fiscal: string | null

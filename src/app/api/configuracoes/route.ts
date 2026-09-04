@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
 import { requireAdminUser } from "@/lib/auth/admin";
+import {
+  configurationValidationMessage,
+  preferencesConfigurationSchema,
+} from "@/lib/configuracoes/contracts";
+import { recordConfigurationAudit } from "@/services/configuration-audit";
 import { loadPricingTaxContext } from "@/services/pricing-tax-context";
 
 const CONFIG_ROW_ID = "00000000-0000-0000-0000-000000000001";
@@ -36,68 +41,63 @@ export async function PUT(request: Request) {
 
   const serviceClient = createServiceClient();
   const body = await request.json().catch(() => ({}));
+  const parsed = preferencesConfigurationSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { erro: configurationValidationMessage(parsed.error, "Preferências inválidas") },
+      { status: 422 },
+    );
+  }
 
-  const confirmedPercent = body?.simples_aliquota_confirmada_percentual === null
-    || body?.simples_aliquota_confirmada_percentual === ""
-    || body?.simples_aliquota_confirmada_percentual === undefined
-    ? null
-    : Number(body.simples_aliquota_confirmada_percentual);
-  const confirmedDate = String(body?.simples_aliquota_confirmada_em || "").trim() || null;
+  const { data: previous, error: previousError } = await serviceClient
+    .from("configuracoes")
+    .select(
+      "id,margem_lucro,notificacoes_push,nfe_provider_default,simples_aliquota_confirmada,simples_aliquota_confirmada_em",
+    )
+    .eq("id", CONFIG_ROW_ID)
+    .maybeSingle();
+  if (previousError) {
+    return NextResponse.json({ erro: previousError.message }, { status: 500 });
+  }
+
+  const confirmedPercent = parsed.data.simples_aliquota_confirmada_percentual;
+  const confirmedDate = parsed.data.simples_aliquota_confirmada_em || null;
   const payload = {
     id: CONFIG_ROW_ID,
-    margem_lucro: Number(body?.margem_lucro ?? 30),
-    notificacoes_push: Boolean(body?.notificacoes_push),
-    nfe_provider_default:
-      String(body?.nfe_provider_default || "brasilnfe")
-        .trim()
-        .toLowerCase() || "brasilnfe",
+    margem_lucro: parsed.data.margem_lucro,
+    notificacoes_push: parsed.data.notificacoes_push,
+    nfe_provider_default: parsed.data.nfe_provider_default,
     simples_inicio_atividade: "2026-03-23",
     simples_aliquota_confirmada: confirmedPercent === null ? null : confirmedPercent / 100,
     simples_aliquota_confirmada_em: confirmedDate,
     updated_at: new Date().toISOString(),
   };
 
-  if (
-    !Number.isFinite(payload.margem_lucro) ||
-    payload.margem_lucro < 0 ||
-    payload.margem_lucro > 1000
-  ) {
-    return NextResponse.json(
-      { erro: "Margem de lucro inválida" },
-      { status: 422 },
-    );
-  }
-
-  if (
-    confirmedPercent !== null
-    && (!Number.isFinite(confirmedPercent) || confirmedPercent < 4 || confirmedPercent >= 100)
-  ) {
-    return NextResponse.json(
-      { erro: "Alíquota confirmada deve estar entre 4% e menos de 100%" },
-      { status: 422 },
-    );
-  }
-  if ((confirmedPercent === null) !== (confirmedDate === null)) {
-    return NextResponse.json(
-      { erro: "Informe ou remova juntos a alíquota confirmada e a data do PGDAS" },
-      { status: 422 },
-    );
-  }
-
-  if (payload.nfe_provider_default !== "brasilnfe") {
-    return NextResponse.json(
-      { erro: "nfe_provider_default inválido. Use brasilnfe." },
-      { status: 422 },
-    );
-  }
-
   const { data, error } = await serviceClient
     .from("configuracoes")
-    .upsert(payload as any)
+    .upsert(payload)
     .select()
     .single();
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+  try {
+    await recordConfigurationAudit(
+      serviceClient,
+      { id: admin.user.id, name: admin.nome },
+      [
+        { key: "configuracoes.margem_lucro", targetId: data.id, before: previous?.margem_lucro, after: data.margem_lucro },
+        { key: "configuracoes.notificacoes_push", targetId: data.id, before: previous?.notificacoes_push, after: data.notificacoes_push },
+        { key: "configuracoes.nfe_provider_default", targetId: data.id, before: previous?.nfe_provider_default, after: data.nfe_provider_default },
+        { key: "configuracoes.simples_aliquota_confirmada", targetId: data.id, before: previous?.simples_aliquota_confirmada, after: data.simples_aliquota_confirmada },
+        { key: "configuracoes.simples_aliquota_confirmada_em", targetId: data.id, before: previous?.simples_aliquota_confirmada_em, after: data.simples_aliquota_confirmada_em },
+      ],
+    );
+  } catch {
+    return NextResponse.json(
+      { erro: "Preferências salvas, mas o histórico administrativo não pôde ser registrado", persisted: true },
+      { status: 500 },
+    );
+  }
   const pricingTaxContext = await loadPricingTaxContext(serviceClient);
   return NextResponse.json({ ...data, pricing_tax_context: pricingTaxContext });
 }

@@ -8,10 +8,11 @@ import EmpresaTab from "@/components/configuracoes/EmpresaTab";
 import IntegracoesTab from "@/components/configuracoes/IntegracoesTab";
 import PreferenciasTab from "@/components/configuracoes/PreferenciasTab";
 import UsuariosTab from "@/components/configuracoes/UsuariosTab";
+import AuditoriaTab from "@/components/configuracoes/AuditoriaTab";
 import { configuracoesCardStyle } from "@/components/configuracoes/styles";
 
 const { Title } = Typography;
-const validTabs = ["empresa", "integracoes", "usuarios", "preferencias"];
+const validTabs = ["empresa", "integracoes", "usuarios", "preferencias", "historico"];
 
 function ConfiguracoesPageContent() {
   const searchParams = useSearchParams();
@@ -69,6 +70,11 @@ function ConfiguracoesPageContent() {
               label: "⚙️ Preferências",
               forceRender: true,
               children: <PreferenciasTab messageApi={messageApi} />,
+            },
+            {
+              key: "historico",
+              label: "🕘 Histórico",
+              children: <AuditoriaTab messageApi={messageApi} />,
             },
           ]}
         />

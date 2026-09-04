@@ -7,6 +7,7 @@ export type AdminGuardResult =
       ok: true;
       user: User;
       cargo: Database['public']['Enums']['user_role'];
+      nome: string;
     }
   | {
       ok: false;
@@ -30,7 +31,7 @@ export async function requireAdminUser(
 
   const { data: profile, error: profileError } = await supabase
     .from('profiles')
-    .select('cargo')
+    .select('cargo,nome')
     .eq('id', user.id)
     .single();
 
@@ -52,5 +53,6 @@ export async function requireAdminUser(
     ok: true,
     user,
     cargo: profile.cargo,
+    nome: profile.nome || user.email?.split('@')[0] || 'Administrador',
   };
 }
