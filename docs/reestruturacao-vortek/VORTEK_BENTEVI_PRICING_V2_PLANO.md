@@ -4,10 +4,10 @@
 **Ambiente:** desenvolvimento/homologação
 **Produção:** somente leitura até gate formal
 **Data de incorporação:** 04/09/2026
-**Situação:** planejada e bloqueada
+**Situação:** em andamento; BNT-PRICING-V2-00 concluído documentalmente
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
-**Atualização em 05/09/2026:** gate de sequência DEV concluído com aceite explícito do encaminhamento das lacunas a esta épica. `BNT-CFG-07` está liberada para planejamento, ainda não aprovada; portanto Pricing V2 permanece bloqueado. Nenhuma funcionalidade de pricing ou autonomia foi liberada pelo gate documental.
+**Atualização em 05/09/2026:** gate de sequência DEV concluído com aceite das lacunas encaminhadas; `BNT-CFG-07` e seu refinamento tipográfico aprovados. O [dossiê BNT-PRICING-V2-00](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) foi produzido e validado, incluindo o delta adicional `b6e1b17..cffc64d`. Próximo passo: planejar `BNT-PRICING-V2-01`, sem execução automática. Nenhuma funcionalidade de pricing, escrita autônoma ou promoção foi liberada pela entrega documental.
 
 ---
 
@@ -23,7 +23,7 @@ A rotina noturna observa, calcula, diagnostica, consolida e alerta. Decisões co
 
 ## 2. Encaixe obrigatório no Item 17
 
-Esta épica não começa imediatamente. A ordem bloqueante é:
+A ordem bloqueante permanece; os passos 1 a 4 foram concluídos no nível aplicável (00 é exclusivamente documental):
 
 1. concluir `BNT-PARITY-01` a `BNT-PARITY-13`;
 2. resolver a decisão registrada e concluir `BNT-PARITY-GATE`;
@@ -314,6 +314,8 @@ Coleções reais exigem tabelas tipadas. `sync_runtime_config` não pode virar a
 
 Cada ação terá critério de aceite, teste e evidência próprios. Não agrupar correções independentes. Migrations são novas, ensaiadas e aplicadas somente no `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura.
 
+**Contrato de transição definido em V2-00:** V2-01 entrega política/solver puro sem ligar escritores; V2-02 consolida economia/fontes/consumidores; V2-03 retira o legado do papel de motor, sem habilitar escrita substituta antes de trilha, proteções, grupo e decisão estarem validados. O [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md) contém os contratos C01–C08, decisões DEC-01–DEC-06, inventário de migrations e matriz de testes por ação. As decisões posteriores não bloqueiam planejar V2-01, mas bloqueiam as respectivas ativações.
+
 ## 15. Gate de autonomia
 
 Antes de qualquer escrita autônoma:
@@ -399,6 +401,8 @@ As APIs oficiais sustentam o uso de `price_to_win` como informação competitiva
 | V2-13/14/16 | Safety stop suspende novas otimizações e gera decisão acionável; pausa/alteração comercial externa continua sob a matriz de autonomia. Confirmar/rejeitar/adiar com trilha e idempotência, sem autorização herdada do experimento D0. Reusar templates Bentevi e dedupe pelo problema, não pela tentativa. |
 | V2-00/06/10/15 | Não portar SKUs, alíquota, limiares particulares, estado JSON ou dados reais do experimento como defaults. Reusar políticas tipadas e contrato atual de bulk; não executar o script histórico, nem em --dry-run, pois seu fluxo pode renovar e persistir tokens. |
 
-**Gate de sequência concluído em 05/09/2026:** o responsável aceitou explicitamente o encaminhamento das lacunas à V2, sem declarar equivalência funcional ou liberar produção. O registro está no checklist, seção `BNT-PARITY-GATE`. Os critérios da tabela continuam pendentes; não iniciar esta épica antes de executar e aprovar `BNT-CFG-07`. O aceite não altera prioridades, política canônica, matriz de autonomia ou bloqueios de release.
+**Gate de sequência concluído em 05/09/2026:** o responsável aceitou explicitamente o encaminhamento das lacunas à V2, sem declarar equivalência funcional ou liberar produção. O registro está no checklist, seção `BNT-PARITY-GATE`. `BNT-CFG-07` foi posteriormente aprovada e V2-00 concluído. Os critérios funcionais da tabela continuam pendentes; o aceite não altera prioridades, política canônica, matriz de autonomia ou bloqueios de release.
+
+**Complemento V2-00:** os 11 commits adicionais até `cffc64d` e os achados PRC-N01–PRC-N12 estão classificados na seção 4 do [dossiê](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md). Isso atualiza o destino documental dos deltas, não comprova implantação, schema vivo ou homologação comercial da `main`. As três migrations novas daquele intervalo entram na reconciliação futura, sem replay nesta entrega.
 
 **Promoção:** `BNT-PARITY-FINAL` deve reconfirmar o SHA implantado e a existência de experimentos ativos/aguardando decisão, com continuidade ou encerramento autorizados e sem perder baseline, checkpoints ou travas. O relatório D0 não comprova o estado na data do release. Nenhum experimento produtivo será importado ou ativado em DEV para esta classificação.

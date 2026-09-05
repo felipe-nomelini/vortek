@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** conferir a padronização tipográfica das oito abas de Configurações, publicada em DEV no commit `32ea561`. Os cards de `BNT-CFG-07` foram aprovados pelo responsável. Depois de encerrar este ajuste, planejar `BNT-PRICING-V2-00`, sem execução automática. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
+**Próxima ação obrigatória:** planejar `BNT-PRICING-V2-01 — Faixas por preço final`, sem execução automática. `BNT-CFG-07` e o refinamento tipográfico foram aprovados; `BNT-PRICING-V2-00` foi concluído documentalmente com matriz AS_IS → TO_BE, contratos, deltas e testes de base. Produção e novas ações autônomas não estão liberadas; Evolusom segue sem ativação operacional de runtime.
 
 ---
 
@@ -25,7 +25,7 @@ Antes de executar qualquer ação, consultar nesta ordem:
 6. código, schema, migrations, testes e configuração atuais;
 7. documentação oficial atual de qualquer tecnologia ou integração envolvida.
 
-Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página. Para `BNT-CFG-01` a `BNT-D20`, consultar ainda `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md`. Para qualquer ação `BNT-PRICING-V2-N`, consultar `VORTEK_BENTEVI_PRICING_V2_PLANO.md` e respeitar seu encaixe bloqueante.
+Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página. Para `BNT-CFG-01` a `BNT-D20`, consultar ainda `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md`. Para qualquer ação `BNT-PRICING-V2-N`, consultar `VORTEK_BENTEVI_PRICING_V2_PLANO.md` e `VORTEK_BENTEVI_PRICING_V2_DOSSIE.md`, respeitando seu encaixe bloqueante.
 
 Regras de uso:
 
@@ -63,9 +63,9 @@ Regras de uso:
 | 8 | Jobs e DSLite | Concluída | Manter os contratos de sync e fallback validados |
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
-| 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; `BNT-CFG-07` liberada para planejamento |
+| 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` e `BNT-CFG-07` aprovadas; continuar pelo bloco Pricing V2 |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Gate de sequência DEV concluído com aceite das lacunas encaminhadas à V2 | Manter controle de deltas; ativação Evolusom, delta de migrations, continuidade dos experimentos e PARITY-FINAL permanecem pendências de release |
-| 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
+| 11.2 | Política canônica de Pricing Bentevi V2 | Dossiê V2-00 concluído; implementação funcional pendente | Planejar `BNT-PRICING-V2-01` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -210,8 +210,9 @@ Regras de uso:
 - [ ] Preparar e ensaiar `DELTA_PROMOCAO` de migrations novas antes do release; preservar históricos distintos e dependências da colisão de estoque.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [x] Executar `BNT-PARITY-GATE`, conferir os commits e registrar o aceite das lacunas classificadas antes de liberar a sequência DEV.
-- [ ] Aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` (implementação e validação local concluídas após o gate).
-- [ ] Executar `BNT-PRICING-V2-00 — Dossiê AS_IS → TO_BE e contratos` somente após aprovação de `BNT-CFG-07`.
+- [x] Aprovar visualmente `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`, incluindo refinamento dos cards e padronização tipográfica.
+- [x] Executar `BNT-PRICING-V2-00 — Dossiê AS_IS → TO_BE e contratos` após aprovação de `BNT-CFG-07`.
+- [ ] Planejar `BNT-PRICING-V2-01 — Faixas por preço final`, sem executar automaticamente a ação seguinte.
 - [ ] Executar `BNT-PRICING-V2-01` a `BNT-PRICING-V2-15`, incluindo `BNT-PRICING-V2-08A`, uma ação por vez e na ordem definida no plano canônico.
 - [ ] Executar `BNT-CFG-08` somente depois de os alertas e indicadores de pricing necessários estarem estabilizados.
 - [ ] Executar `BNT-CFG-09` incluindo agenda, limites e saúde do job noturno já validado.
@@ -3075,15 +3076,15 @@ Os nomes da tabela têm sufixo `.test.js`. Resultado: **168 passaram, zero falha
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
-**Situação:** planejada e bloqueada. Esta etapa não altera o motor atual enquanto `BNT-PARITY-GATE` e `BNT-CFG-07` não estiverem concluídos.
+**Situação:** em andamento. `BNT-PARITY-GATE` e `BNT-CFG-07` concluídos no nível aplicável; V2-00 entregue documentalmente. O motor atual não foi alterado por esta entrega; próxima ação é planejar V2-01.
 
-**Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`.
+**Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Contratos, fotografia e matriz técnica: [VORTEK_BENTEVI_PRICING_V2_DOSSIE.md](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md).
 
 **Objetivo:** substituir de forma controlada as faixas comerciais por custo por uma política baseada em preço final, economia unitária única, governança, pricing groups, performance, experimentos, alertas e autonomia graduada.
 
 #### Sequência bloqueante
 
-- [ ] `BNT-PRICING-V2-00` — produzir matriz `AS_IS → TO_BE`, contratos, migrations previstas, donos, consumidores e testes, sem implementação funcional;
+- [x] `BNT-PRICING-V2-00` — produzir matriz `AS_IS → TO_BE`, contratos, migrations previstas, donos, consumidores e testes, sem implementação funcional;
 - [ ] `BNT-PRICING-V2-01` — faixas por preço final;
 - [ ] `BNT-PRICING-V2-02` — economia unitária única;
 - [ ] `BNT-PRICING-V2-03` — retirar a política antiga de custo/lucro mínimo do papel de motor;
@@ -3298,7 +3299,7 @@ Quando estes critérios estiverem concluídos, fazer uma revisão final das audi
 
 ## Evidência BNT-CFG-07 — Integrações (05/09/2026)
 
-**Estado:** implementada e publicada em homologação; aguardando aprovação visual.
+**Estado:** implementada, publicada em homologação e aprovada, incluindo refinamento de cards e padronização tipográfica. Aceite registrado antes de iniciar V2-00; evidências históricas abaixo preservadas.
 
 **Aceite e ajuste de tipografia (05/09/2026):** responsável aprovou os cards e solicitou padronização dos títulos. As oito abas agora usam `ConfiguracoesTabHeading`, com título 20 px/600/28 px, descrição 14 px/22 px, intervalo de 6 px e cores canônicas. Cabeçalhos adicionados a Usuários (contagem preservada) e Histórico. Subtítulos internos, ações, cards e espaço de 24 px abaixo da navegação preservados. 76 testes de integrações, validate e build passaram. Comparação em Chromium do componente real com títulos/descrições extraídos das oito abas e CSS compilado, em 1440/390 px: tamanhos iguais, gap correto, quebra do título longo e zero overflow. Screenshots temporários `/tmp/bnt-cfg07-headings-{1440,390}.png`; galeria de cabeçalhos, não teste autenticado completo das abas. Publicação tipográfica confirmada em DEV no commit `32ea561418d148c88a70745ee3197eb8eb6559de`; ação Easypanel `cmtorkj9d000a07tc7wzkc8wn` concluída às 19:19:28 UTC, serviço com atualização `completed` e SHA do container confirmado. JS público `3z2p0wknh4w-6.js` retornou 200 com o cabeçalho compartilhado, título 20 px e linha 28 px. Login/health 200; Configurações sem sessão 307; API administrativa sem sessão 401. Sem teste autenticado remoto de edição, alterações de credenciais, banco ou produção. Não avançar automaticamente ao próximo item.
 
@@ -3314,7 +3315,7 @@ Quando estes critérios estiverem concluídos, fazer uma revisão final das audi
 - [x] GET sem chamadas externas; falha de leitura distinta de desconexão; nenhuma migration ou credencial alterada;
 - [x] 72 testes direcionados, lint, typecheck e build;
 - [x] publicação e smoke test do artefato em `dev.bentevi.shop`;
-- [ ] aprovação visual do responsável.
+- [x] aprovação visual do responsável, incluindo refinamento tipográfico posterior.
 
 Paridade: `main` permaneceu em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de`, sem novo delta antes desta entrega. O teste histórico Hayamax passou a distinguir a função aposentada da consulta legítima `getMercadoPagoPaymentForMlSale`, já existente no HEAD anterior.
 
@@ -3322,4 +3323,18 @@ Paridade: `main` permaneceu em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de`, sem n
 
 **Limite da evidência:** renderização local do componente real com dados sintéticos, conferida em Chromium a 1440 e 390 px, dez linhas e sem transbordamento horizontal. Não equivale a aceite visual do responsável nem a testes autenticados de escrita ou de provedores no ambiente remoto. Nenhuma credencial foi criada/alterada, nenhum diagnóstico externo autenticado foi disparado e nenhum banco foi modificado nesta sessão. Mais 13 testes do contrato do webhook passaram localmente. O Supabase `.162` foi identificado por SSH como `supabase-dev`, sem acesso administrativo ao banco; a inspeção `.160` foi restrita ao serviço web DEV e à leitura do histórico de deploy do Easypanel, nunca ao banco produtivo.
 
-Próxima ação após aprovação: planejar `BNT-PRICING-V2-00`. Não iniciar automaticamente. Produção, novas autonomias e ativação operacional Evolusom não são liberadas por esta entrega.
+Encaminhamento após aprovação: `BNT-PRICING-V2-00`, concluído na evidência abaixo. Produção, novas autonomias e ativação operacional Evolusom não são liberadas por esta entrega.
+
+## Evidência BNT-PRICING-V2-00 — Dossiê AS_IS → TO_BE e contratos (05/09/2026)
+
+**Estado:** concluído documentalmente em `dev`; próxima ação liberada para planejamento: `BNT-PRICING-V2-01 — Faixas por preço final`.
+
+**Entrega:** [dossiê Pricing V2](VORTEK_BENTEVI_PRICING_V2_DOSSIE.md), com fotografia por SHA, matriz de regras, escritores/consumidores, contratos C01–C08, migrações previstas, transição/rollback, decisões DEC-01–DEC-06 e testes de aceite por ação. Plano canônico e este checklist atualizados sem alteração funcional.
+
+**Evidência local:** DEV `18fce7165477af84f69dfbe2c837369446d00f9f`; `main` capturada em `cffc64d1fa8c26ef7b384bf35f9c007decf4c89e`. Os 11 commits/112 caminhos adicionais desde `b6e1b17` receberam destino documental e achados PRC-N01–PRC-N12, sem substituir PRC-D01–PRC-D16. Não foi certificado o SHA implantado, schema vivo ou homologação comercial da produção.
+
+**Validação:** 76 testes de baseline passaram (pricing, comercial, seleção automática, oferta, atividade, PxQ, tracking e outbox); `npm run validate` passou. A lista exata de testes está na seção 9 do dossiê. Testes comprovam o estado atual, não antecipam a implementação V2. Build/smoke visual N/A para Markdown.
+
+**Limites:** somente três documentos; sem migrations, código funcional, credenciais, alteração de preço/configuração, deploy, acesso a banco ou execução de scripts históricos. Nenhuma escrita em `main`/produção. As três novas migrations de `main` devem integrar a reconciliação futura, não foram aplicadas nem registradas por esta ação.
+
+**Pendências encaminhadas:** decisões comerciais, fiscais, fonte/validade, liquidação, experimentos e agenda nas ações donas do dossiê. Não impedem planejar V2-01; impedem ativar os comportamentos correspondentes sem seus aceites. Gate de autonomia e PARITY-FINAL continuam obrigatórios.
