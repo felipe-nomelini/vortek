@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-09 — Estágio real do refresh de catálogo`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-07` concluídas; aplicação bloqueante | Executar `BNT-PARITY-08` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-08` concluídas; aplicação bloqueante | Executar `BNT-PARITY-09` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -190,6 +190,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-07` antes de `BNT-PARITY-06` estar integralmente validada.
 - [x] Executar somente `BNT-PARITY-07 — Venda concretizada pelo ML`.
 - [x] Não avançar para `BNT-PARITY-08` antes de `BNT-PARITY-07` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade`.
+- [x] Não avançar para `BNT-PARITY-09` antes de `BNT-PARITY-08` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2780,6 +2782,29 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Rollback:** reverter o código torna o valor novo do enum inerte; a migration não remove valores de enum nem reescreve histórico. A publicação de homologação não dispara sincronização ampla automaticamente por esta ação.
 
 **Próxima ação:** `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade`.
+
+#### `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade`
+
+- [x] centralizar criação e encerramento do bloqueio pertencente a `ml_identity_gate`;
+- [x] desativar somente a linha automática ativa do `ml_item_id` cuja identidade foi novamente validada;
+- [x] preservar bloqueios manuais e bloqueios por SKU;
+- [x] manter a criação automática idempotente e sem bloquear o SKU da oferta corrigida;
+- [x] reconciliar marca remota somente quando ela for a única divergência e SKU + GTIN comprovarem o mesmo produto;
+- [x] preservar o filtro de fornecedores operacionais e excluir evidências de fornecedores aposentados;
+- [x] aplicar a limpeza nos fluxos existentes de sincronização, criação e vínculo do anúncio;
+- [x] falhar fechado quando a reconciliação ou a limpeza não puder ser persistida;
+- [x] não executar backfill, limpeza em massa, migration, escrita real em banco ou chamada mutável ao Mercado Livre;
+- [x] validar lifecycle, identidade, fornecedores e não regressão de pedidos já vendidos.
+
+**Causa corrigida:** a sincronização conseguia criar um bloqueio automático `ml_identity_gate` quando detectava divergência material, mas não possuía a transição inversa quando uma leitura posterior comprovava a identidade correta. Como todos os consumidores respeitam qualquer linha ativa da blocklist, o bloqueio automático obsoleto continuava impedindo a operação válida.
+
+**Resultado técnico:** o lifecycle agora possui dono único. Uma identidade válida encerra somente o bloqueio automático do item; linhas manuais permanecem intactas. Divergência exclusiva de marca pode ser reconciliada apenas com SKU e GTIN coincidentes, e as evidências continuam limitadas aos fornecedores operacionais. Falhas de persistência não liberam o fluxo silenciosamente.
+
+**Validação:** passaram 41 testes direcionados de lifecycle, atributos críticos, política de fornecedores, oferta preferencial e segurança do pedido, além de 89 regressões do pipeline ML. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration, operação real de banco, limpeza em massa ou escrita no Mercado Livre foi executada.
+
+**Rollback:** reverter o código remove a transição automática. Não existe migration ou backfill a desfazer; bloqueios manuais não são alterados pela implementação.
+
+**Próxima ação:** `BNT-PARITY-09 — Estágio real do refresh de catálogo`.
 
 #### Classificação obrigatória
 

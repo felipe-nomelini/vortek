@@ -6,6 +6,7 @@ const {
   normalizeVoltageValue,
 } = require("../src/lib/ml-voltage.ts");
 const {
+  assessMlListingIdentity,
   extractStrictProductDiameter,
   findMlListingIdentityConflicts,
   mergeMlAttributePrefill,
@@ -97,6 +98,68 @@ test("aceita anúncio com identidade crítica equivalente", () => {
     },
   );
   assert.deepEqual(conflicts, []);
+});
+
+test("reconcilia somente marca quando SKU e GTIN comprovam o mesmo produto", () => {
+  const assessment = assessMlListingIdentity(
+    {
+      seller_custom_field: "VTK009696",
+      attributes: [
+        { id: "GTIN", value_name: "7898705602659" },
+        { id: "BRAND", value_name: "New York" },
+      ],
+    },
+    {
+      sellerSku: "VTK009696",
+      gtin: "7898705602659",
+      brand: "NY-F1RST",
+    },
+  );
+
+  assert.equal(assessment.canonicalBrand, "New York");
+  assert.deepEqual(assessment.blockingConflicts, []);
+});
+
+test("não reconcilia marca quando o GTIN diverge", () => {
+  const assessment = assessMlListingIdentity(
+    {
+      seller_custom_field: "VTK009696",
+      attributes: [
+        { id: "GTIN", value_name: "7898705600000" },
+        { id: "BRAND", value_name: "New York" },
+      ],
+    },
+    {
+      sellerSku: "VTK009696",
+      gtin: "7898705602659",
+      brand: "NY-F1RST",
+    },
+  );
+
+  assert.equal(assessment.canonicalBrand, null);
+  assert.deepEqual(
+    assessment.blockingConflicts.map((conflict) => conflict.field),
+    ["GTIN", "BRAND"],
+  );
+});
+
+test("não reconcilia marca sem SKU e GTIN remotos comprovados", () => {
+  const assessment = assessMlListingIdentity(
+    {
+      attributes: [{ id: "BRAND", value_name: "New York" }],
+    },
+    {
+      sellerSku: "VTK009696",
+      gtin: "7898705602659",
+      brand: "NY-F1RST",
+    },
+  );
+
+  assert.equal(assessment.canonicalBrand, null);
+  assert.deepEqual(
+    assessment.blockingConflicts.map((conflict) => conflict.field),
+    ["BRAND"],
+  );
 });
 
 test("predição ML de 50 cm não sobrescreve evidência local de 30 cm", () => {

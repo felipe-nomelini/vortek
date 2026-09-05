@@ -4,10 +4,9 @@ import {
   normalizeVoltageValue,
 } from "@/lib/ml-voltage";
 import {
+  assessMlListingIdentity,
   extractStrictProductDiameter,
-  findMlListingIdentityConflicts,
   normalizeMlDiameter,
-  type MlListingIdentityConflict,
 } from "@/lib/ml-listing-identity";
 import { filterOperationalDropshippingSupplierOffers } from "@/lib/dslite/supplier-policy";
 
@@ -137,14 +136,14 @@ export function resolveTrustedMlCriticalValue(
   return null;
 }
 
-export function findMlProductIdentityConflicts(
+export function assessMlProductIdentity(
   item: any,
   produto: any,
   offers: any[] = [],
   operationalSupplierIds?: ReadonlySet<string>,
-): MlListingIdentityConflict[] {
+): ReturnType<typeof assessMlListingIdentity> {
   const facts = resolveMlCriticalFacts(produto, offers, operationalSupplierIds);
-  return findMlListingIdentityConflicts(item, {
+  return assessMlListingIdentity(item, {
     sellerSku: produto?.sku,
     gtin: produto?.gtin,
     brand: produto?.marca,

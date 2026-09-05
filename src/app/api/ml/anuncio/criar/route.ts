@@ -29,7 +29,7 @@ import { loadMercadoLivreConfiguration } from "@/services/mercado-livre-configur
 import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
 import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
 import {
-  findMlProductIdentityConflicts,
+  assessMlProductIdentity,
   isMlCriticalAttributeId,
   normalizeCriticalAttributeValue,
   resolveTrustedMlCriticalValue,
@@ -43,11 +43,29 @@ import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 import { getConfiguredMlShippingCost } from "@/lib/ml/shipping-cost";
 import { resolveMlFee, type CommercialPricingConfiguration } from "@/lib/commercial-pricing";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
+import { clearAutomaticMlIdentityBlock } from "@/lib/ml/identity-block";
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
 type SaleTermInput = { id: string; value_name?: string; value_id?: string };
 type MappedAttr = { id: string; value_name?: string; value_id?: string };
+
+async function reconcileResolvedMlIdentity(params: {
+  client: ReturnType<typeof createServiceClient>;
+  produtoId: string;
+  itemId: string;
+  canonicalBrand: string | null;
+}): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (params.canonicalBrand) {
+    const { error } = await params.client
+      .from("produtos")
+      .update({ marca: params.canonicalBrand })
+      .eq("id", params.produtoId);
+    if (error) return { ok: false, error: error.message };
+  }
+
+  return clearAutomaticMlIdentityBlock(params.client, params.itemId);
+}
 
 const NOT_APPLICABLE_ID = "-1";
 const NO_IDS = new Set(["242084"]);
@@ -1310,12 +1328,13 @@ export async function POST(req: Request) {
           { status: 502 },
         );
       }
-      const identityConflicts = findMlProductIdentityConflicts(
+      const identityAssessment = assessMlProductIdentity(
         existingItem,
         { ...produto, gtin: gtinForMl || produto.gtin },
         supplierOffers || [],
         operationalSupplierIds,
       );
+      const identityConflicts = identityAssessment.blockingConflicts;
       if (identityConflicts.length > 0) {
         return NextResponse.json(
           {
@@ -1334,6 +1353,29 @@ export async function POST(req: Request) {
             },
           },
           { status: 409 },
+        );
+      }
+      const identityReconciliation = await reconcileResolvedMlIdentity({
+        client: supabase,
+        produtoId: String(produto.id),
+        itemId: String(existingItem.id),
+        canonicalBrand: identityAssessment.canonicalBrand,
+      });
+      if (!identityReconciliation.ok) {
+        return NextResponse.json(
+          {
+            success: false,
+            steps,
+            warnings,
+            error: `Falha ao consolidar a identidade validada do anúncio: ${identityReconciliation.error}`,
+          },
+          { status: 500 },
+        );
+      }
+      if (identityAssessment.canonicalBrand) {
+        produto.marca = identityAssessment.canonicalBrand;
+        warnings.push(
+          `Marca local corrigida para ${identityAssessment.canonicalBrand} após confirmação por SKU e GTIN.`,
         );
       }
       if (
@@ -1577,12 +1619,13 @@ export async function POST(req: Request) {
     steps.anuncio.ok = true;
 
     let latestItem = (await getListingSnapshot(result.id)) || result;
-    const identityConflicts = findMlProductIdentityConflicts(
+    const identityAssessment = assessMlProductIdentity(
       latestItem,
       { ...produto, gtin: gtinForMl || produto.gtin },
       supplierOffers || [],
       operationalSupplierIds,
     );
+    const identityConflicts = identityAssessment.blockingConflicts;
     if (identityConflicts.length > 0) {
       const pauseResult = await pauseCreatedListing(result.id);
       steps.anuncio = {
@@ -1601,6 +1644,37 @@ export async function POST(req: Request) {
           safety_pause: pauseResult,
         },
         { status: 409 },
+      );
+    }
+
+    const identityReconciliation = await reconcileResolvedMlIdentity({
+      client: supabase,
+      produtoId: String(produto.id),
+      itemId: String(result.id),
+      canonicalBrand: identityAssessment.canonicalBrand,
+    });
+    if (!identityReconciliation.ok) {
+      const pauseResult = await pauseCreatedListing(result.id);
+      steps.anuncio = {
+        ok: false,
+        error: `Item criado, mas pausado porque a identidade validada não pôde ser consolidada: ${identityReconciliation.error}`,
+      };
+      return NextResponse.json(
+        {
+          success: false,
+          steps,
+          warnings,
+          error: steps.anuncio.error,
+          item_id: result.id,
+          safety_pause: pauseResult,
+        },
+        { status: 500 },
+      );
+    }
+    if (identityAssessment.canonicalBrand) {
+      produto.marca = identityAssessment.canonicalBrand;
+      warnings.push(
+        `Marca local corrigida para ${identityAssessment.canonicalBrand} após confirmação por SKU e GTIN.`,
       );
     }
 
