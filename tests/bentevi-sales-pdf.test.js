@@ -38,7 +38,7 @@ test('BNT-D01-PDF organiza o relatório pelos dados aprovados da venda', () => {
 
 test('BNT-D01-PDF reutiliza andamento e urgência canônicos', () => {
   assert.match(route, /getOrderSalesProgress\(row\)/);
-  assert.match(route, /getOperationalUrgencyReasons\(row\)/);
+  assert.match(route, /getOperationalUrgencyReasons\(row, delayedAfterMinutes\)/);
   assert.match(route, /SALES_PROGRESS_STAGES\.length/);
   assert.match(route, /Etapa \$\{prepared\.progress\.currentStep\}/);
   assert.match(route, /Próxima: \$\{row\.progress\.nextLabel\}/);
