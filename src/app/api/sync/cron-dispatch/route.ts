@@ -441,6 +441,15 @@ export async function POST(request: Request) {
       .limit(1)
       .maybeSingle();
 
+
+    if (task.key === 'sync_ml_radar' && !running?.id) {
+      const config = await serviceClient.from('configuracoes').select('pricing_policy' as any).maybeSingle();
+      const radarHour = (config.data as any)?.pricing_policy?.radar?.hour ?? 2;
+      if (config.error || hour !== radarHour) continue;
+      const last = await serviceClient.from('jobs').select('created_at').eq('tipo',task.jobTipo).eq('status','completo').order('created_at',{ascending:false}).limit(1).maybeSingle();
+      const day = (value:string) => new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Sao_Paulo'}).format(new Date(value));
+      if (last.error || (last.data && day(last.data.created_at)===day(nowIso()))) continue;
+    }
     let resumableJobId: string | null = null;
     if (running?.id) {
       if (running.status === 'on_hold') {

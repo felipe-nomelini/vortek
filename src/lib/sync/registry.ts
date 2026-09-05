@@ -8,6 +8,7 @@ export type SyncTaskKey =
   | 'sync_ml_cancelamentos_pos_nfe'
   | 'sync_ml_listings_observed'
   | 'sync_ml_listings_publish'
+  | 'sync_ml_radar'
   | 'sync_ml_pricing_experiment_monitor'
   | 'sync_reconcile_fiscal'
   | 'sync_reconcile_brasilnfe'
@@ -53,6 +54,7 @@ export interface SyncTaskDefinition {
 }
 
 export const SYNC_TASKS: SyncTaskDefinition[] = [
+
   {
     key: 'sync_dslite_fornecedores',
     jobTipo: 'sync_dslite_fornecedores',
@@ -194,6 +196,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     requestTimeoutMs: 300_000,
     retryOnFailure: false,
   },
+  {key:'sync_ml_radar',jobTipo:'sync_ml_radar',label:'Radar de Oportunidades',path:'/api/sync/radar',domain:'radar:ml',lockTtlSeconds:300,kind:'ml',dispatchMode:'scheduled',schedule:{businessMinutes:5,offHoursMinutes:5},runMode:'inline',requestTimeoutMs:300000,retryOnFailure:true},
   {
     key: 'sync_reconcile_fiscal',
     jobTipo: 'sync_reconcile_fiscal',

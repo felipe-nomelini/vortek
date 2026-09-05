@@ -61,6 +61,7 @@ const menuItems: MenuProps['items'] = [
     ],
   },
   { key: '/notas-fiscais', icon: <FileTextOutlined />, label: menuLink('/notas-fiscais', 'Notas Fiscais') },
+  { key: '/radar', icon: <AppstoreOutlined />, label: menuLink('/radar', 'Radar de Oportunidades') },
   { key: '/anuncios', icon: <ShopOutlined />, label: menuLink('/anuncios', 'Anúncios') },
   {
     key: 'catalogo-group',

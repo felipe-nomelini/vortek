@@ -149,7 +149,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
         path,
         request_timeout_ms: requestTimeoutMs,
       }));
-      await updateJob(jobId, { log: logs });
+      if (tipo !== 'sync_ml_radar') await updateJob(jobId, { log: logs });
 
       res = await fetch(url.toString(), {
         method: 'POST',
@@ -172,9 +172,14 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       http_status: res.status,
       duration_ms: Date.now() - startedAtMs,
     }));
-    await updateJob(jobId, { log: logs });
+    if (tipo !== 'sync_ml_radar') await updateJob(jobId, { log: logs });
 
     let raw = await res.json().catch(() => ({}));
+    if (tipo === 'sync_ml_radar' && res.ok && raw.success === true) {
+      // O Radar grava lote e checkpoint atomicamente; o runner não sobrescreve seu log/status.
+      return {success:true,status:raw.continue_required?'on_hold':'completo',processados:raw.processados,total:raw.total};
+    }
+
     let primaryError = Array.isArray(raw?.errors) && raw.errors.length > 0 ? raw.errors[0] : null;
     let errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
     let isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
@@ -187,7 +192,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
         retry,
         retry_delay_ms: DOMAIN_LOCK_RETRY_DELAY_MS,
       }));
-      await updateJob(jobId, { log: logs });
+      if (tipo !== 'sync_ml_radar') await updateJob(jobId, { log: logs });
       await new Promise((resolve) => setTimeout(resolve, DOMAIN_LOCK_RETRY_DELAY_MS));
 
       const retryController = new AbortController();
