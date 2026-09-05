@@ -37,7 +37,6 @@ import {
 } from "@/lib/fiscal/cfop";
 import {
   choosePreferredOffer,
-  inferSupplierPaymentMode,
   resolveSupplierPaymentMode,
   resolvePreferredOfferForProduct,
   resolveCompraStatus,
@@ -411,10 +410,8 @@ function buildDsliteProductLookupErrorMessage(input: {
 async function resolvePedidoSupplierOffer(params: {
   client: ReturnType<typeof createServiceClient>;
   sku: string;
-  fallbackSupplierId?: string | null;
-  fallbackDsliteProdutoId?: string | null;
 }) {
-  const { client, sku, fallbackSupplierId, fallbackDsliteProdutoId } = params;
+  const { client, sku } = params;
   const operationalSupplierIds = await loadOperationalDropshippingSupplierIds(client);
   const skuVariants = getSkuLookupVariants(sku);
   let { data: productRow } = await client
@@ -496,34 +493,6 @@ async function resolvePedidoSupplierOffer(params: {
     return {
       productId: String(productRow.id),
       offer: preferred,
-    };
-  }
-
-  const legacySupplierId = String(
-    fallbackSupplierId || productRow.dslite_fornecedor_id || "",
-  ).trim();
-  if (
-    legacySupplierId &&
-    operationalSupplierIds.has(legacySupplierId)
-  ) {
-    return {
-      productId: String(productRow.id),
-      offer: {
-        produto_id: String(productRow.id),
-        dslite_fornecedor_id: legacySupplierId,
-        dslite_produto_id: String(
-          fallbackDsliteProdutoId || productRow.dslite_produto_id || "",
-        ),
-        fornecedor_nome: null,
-        custo: 0,
-        estoque: 0,
-        ativo: true,
-        prioridade: 100,
-        payment_mode: inferSupplierPaymentMode(
-          fallbackSupplierId || productRow.dslite_fornecedor_id,
-        ),
-        last_sync_at: null,
-      },
     };
   }
 
@@ -929,16 +898,7 @@ async function resolveDsliteProductCodeForNfe(
     (productRow as any)?.oferta_preferencial_id,
     (productRow as any)?.fornecedor_preferencial_manual === true,
   );
-  const legacySupplierId = String(
-    (productRow as any)?.dslite_fornecedor_id || "",
-  ).trim();
-  const code = String(
-    preferred?.dslite_produto_id ||
-      (operationalSupplierIds.has(legacySupplierId)
-        ? (productRow as any)?.dslite_produto_id
-        : "") ||
-      "",
-  ).trim();
+  const code = String(preferred?.dslite_produto_id || "").trim();
   return code || null;
 }
 

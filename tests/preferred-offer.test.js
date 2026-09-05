@@ -7,7 +7,7 @@ const {
   shouldReconcilePreferredOfferCandidate,
 } = require('../src/lib/preferred-offer.ts');
 const {
-  filterAllowedDropshippingSupplierOffers,
+  filterOperationalDropshippingSupplierOffers,
 } = require('../src/lib/dslite/supplier-policy.ts');
 
 test('troca Hayamax bloqueada por alternativa operacional', () => {
@@ -18,7 +18,7 @@ test('troca Hayamax bloqueada por alternativa operacional', () => {
 
   assert.equal(
     resolvePreferredOfferForProduct(
-      filterAllowedDropshippingSupplierOffers(offers),
+      filterOperationalDropshippingSupplierOffers(offers, new Set(['133'])),
       'hayamax',
       true,
     )?.id,
@@ -27,9 +27,9 @@ test('troca Hayamax bloqueada por alternativa operacional', () => {
 });
 
 test('produto somente Hayamax fica sem oferta preferencial operacional', () => {
-  const offers = filterAllowedDropshippingSupplierOffers([
+  const offers = filterOperationalDropshippingSupplierOffers([
     { id: 'hayamax', dslite_fornecedor_id: '2', ativo: true, estoque: 15, custo: 52 },
-  ]);
+  ], new Set());
 
   assert.equal(resolvePreferredOfferForProduct(offers, 'hayamax', true), null);
 });
@@ -77,6 +77,24 @@ test('não trata custo zero como oferta válida', () => {
   ];
 
   assert.equal(choosePreferredOffer(offers)?.id, 'valida');
+});
+
+test('não seleciona oferta inativa quando não existe fonte ativa', () => {
+  const offers = [
+    { id: 'inativa', ativo: false, estoque: 10, custo: 50, prioridade: 1 },
+  ];
+
+  assert.equal(choosePreferredOffer(offers), null);
+  assert.equal(resolvePreferredOfferForProduct(offers, 'inativa', true), null);
+});
+
+test('oferta inativa mais barata nunca vence uma oferta ativa', () => {
+  const offers = [
+    { id: 'inativa-barata', ativo: false, estoque: 10, custo: 50, prioridade: 1 },
+    { id: 'ativa-cara', ativo: true, estoque: 0, custo: 70, prioridade: 100 },
+  ];
+
+  assert.equal(choosePreferredOffer(offers)?.id, 'ativa-cara');
 });
 
 test('usa prioridade e estoque somente para desempate de custo', () => {

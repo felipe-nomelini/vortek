@@ -10,7 +10,7 @@
 
 **Ancestral comum:** `08b6237428c406b55a876578b63dbc553e8c9584`
 
-**Resultado:** fotografia concluída; `BNT-PARITY-01` incorporada em 04/09/2026 e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
+**Resultado:** fotografia concluída; `BNT-PARITY-01` e `BNT-PARITY-02` incorporadas em 04/09/2026 e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
 
 ---
 
@@ -20,12 +20,12 @@ A Bentevi preserva a maior parte das regras estruturais do Vortek e já substitu
 
 Foram encontrados **13 commits exclusivos em produção**, envolvendo 83 arquivos e quatro migrations. A análise funcional identificou:
 
-- **14 regras produtivas identificadas para incorporação**, das quais `PRC-11` e `PRD-02` foram concluídas em `BNT-PARITY-01`; as demais continuam organizadas em ações controladas;
+- **14 regras produtivas identificadas para incorporação**, das quais `PRC-11` e `PRD-02` foram concluídas em `BNT-PARITY-01` e `SUP-02` em `BNT-PARITY-02`; as demais continuam organizadas em ações controladas;
 - **1 decisão operacional pendente**, sobre destinatário adicional de etiqueta da Evolusom;
 - comportamentos intermediários ou históricos que não devem ser copiados;
 - uma colisão real de versão de migration que bloqueia promoção automática do histórico;
 - ausência, na Bentevi, do estado produtivo `concretizada_ml` e da deduplicação de alerta de nova venda por inserção;
-- atividade manual de `produtos.ativo` já reconciliada em `BNT-PARITY-01`; oferta preferencial inativa e inativação de fornecedor continuam isoladas nas próximas ações.
+- atividade manual de `produtos.ativo` e preferência exclusiva por oferta ativa já reconciliadas; inativação de fornecedor continua isolada nas próximas ações.
 
 Nenhuma regra foi aplicada nesta ação. Não houve alteração funcional, migration, escrita em banco, chamada mutável a integração, deploy ou acesso a PII.
 
@@ -89,7 +89,7 @@ Não existe relação presente somente em produção. As 13 relações exclusiva
 | `dc60a2b` | fallback seguro de retomada e envio idempotente por destinatário | `ORD-09`, `NTF-04`, `NTF-05` | incorporar; contato adicional exige decisão |
 | `4bdca2c` | move identidade para criação/ativação de anúncio e limpa bloqueio automático resolvido | `ML-03`, `ML-04` | gate equivalente; incorporar limpeza |
 | `9302353` | POST de deploy com JSON explícito | `OPS-01` | incorporar |
-| `2ac64cc` | torna atividade do produto decisão manual e rejeita oferta inativa | `PRD-02`, `SUP-02` | `PRD-02` incorporada em `BNT-PARITY-01`; `SUP-02` permanece em `BNT-PARITY-02` |
+| `2ac64cc` | torna atividade do produto decisão manual e rejeita oferta inativa | `PRD-02`, `SUP-02` | incorporado por `BNT-PARITY-01` e `BNT-PARITY-02` sem copiar comportamentos substituídos |
 | `b95ba98` | cria lifecycle `concretizada_ml` sob evidências financeiras/operacionais | `ORD-10` | incorporar |
 | `95941f1` | alerta WhatsApp somente para venda paga recém-inserida | `NTF-03` | incorporar |
 
@@ -122,7 +122,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `PRD-01` | `produto_fornecedor_ofertas` + `produto-fornecedor.ts` | ofertas → snapshot de custo, estoque e fornecedor em `produtos` | oferta é fonte; produto é projeção | catálogo, anúncios, pedidos | igual | `EQUIVALENTE` | manter fonte única |
 | `PRD-02` | commit `2ac64cc` | ação do usuário → `produtos.ativo` | decisão manual exclusiva | produto, publicação, sync | catálogo, preço/estoque, custo alto e atualização de kit preservam atividade manual | `EQUIVALENTE` | `BNT-PARITY-01`; regressão estrutural de sync |
 | `SUP-01` | `preferred-offer.ts` | ofertas válidas → menor custo; prioridade, estoque e ID desempatem | preferência manual válida vence | catálogo, pricing, fulfillment | centralizado | `EQUIVALENTE` | testes de oferta preferencial |
-| `SUP-02` | commit `2ac64cc` | nenhuma oferta ativa → nenhuma preferencial automática | oferta inativa nunca é fallback | produto/anúncio | DEV ainda volta a oferta inativa com custo | `INCORPORAR` | ação `BNT-PARITY-02` |
+| `SUP-02` | commit `2ac64cc` | nenhuma oferta ativa → nenhuma preferencial automática | oferta inativa nunca é fallback | produto/anúncio/compra/fiscal | seleção central e fluxos DSLite rejeitam oferta inativa e não usam snapshot legado como fonte operacional | `EQUIVALENTE` | `BNT-PARITY-02`; regressões de preferência e criação DSLite |
 | `SUP-03` | `supplier-policy.ts` | fornecedor ativo e sem aposentadoria → operacional | aposentadoria vence flag ativa | sync, DSLite, capacidade | igual | `EQUIVALENTE` | testes HAYA |
 | `SUP-04` | decisões HAYA | Hayamax → somente histórico; sem dropshipping ou conta-saldo operacional | decisão Item 17 vence produção histórica | compras/financeiro | aposentada | `SUBSTITUÍDA` | não reativar integrações exclusivas |
 | `SUP-05` | commit `420cd64` | fornecedor inativado + estoque interno disponível → produto continua ativo | capacidade interna válida preserva operação | fornecedor/produto/anúncio | classificação DEV ignora estoque interno nesse ponto | `INCORPORAR` | ação `BNT-PARITY-03` |
@@ -254,7 +254,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | Ordem | Ação | Regra | Prioridade | Aceite mínimo |
 | ---: | --- | --- | --- | --- |
 | 1 | `BNT-PARITY-01 — Atividade manual do produto` **(concluída)** | `PRC-11`, `PRD-02` | P0 | sync/preço não alteram `produtos.ativo`; threshold atua só em oferta/elegibilidade |
-| 2 | `BNT-PARITY-02 — Oferta preferencial somente ativa` | `SUP-02` | P0 | oferta inativa nunca vira preferencial automática |
+| 2 | `BNT-PARITY-02 — Oferta preferencial somente ativa` **(concluída)** | `SUP-02` | P0 | oferta inativa nunca vira preferencial automática |
 | 3 | `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor` | `SUP-05` | P1 | produto com estoque interno permanece operacional |
 | 4 | `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor` | `SUP-06`, `ML-07` | P1 | quantidade 0/paused; nunca excluir/closed |
 | 5 | `BNT-PARITY-05 — Reprocessamento idempotente da inativação` | `SUP-07` | P1 | reprocess explícito sem duplicar job/efeito |

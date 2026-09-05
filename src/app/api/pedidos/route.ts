@@ -336,14 +336,10 @@ async function resolveFornecedorPreviewByPedido(
         product.fornecedor_preferencial_manual === true,
       );
       const preferredSupplierId = String(preferredOffer?.dslite_fornecedor_id || '').trim();
-      const legacySupplierId = String(product.dslite_fornecedor_id || '').trim();
-      const fornecedorId = preferredSupplierId || (
-        operationalSupplierIds.has(legacySupplierId) ? legacySupplierId : ''
-      );
-      const fornecedorNome = String(preferredOffer?.fornecedor_nome || product.fornecedor || '').trim();
+      const fornecedorNome = String(preferredOffer?.fornecedor_nome || '').trim();
       return {
         produtoId: String(product.id),
-        fornecedorId: fornecedorId || null,
+        fornecedorId: preferredSupplierId || null,
         fornecedorNome: fornecedorNome || null,
         paymentMode: preferredOffer?.payment_mode || null,
         custo: Number(preferredOffer?.custo || 0),

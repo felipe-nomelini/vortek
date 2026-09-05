@@ -31,9 +31,10 @@ export function choosePreferredOffer<T extends PreferredOfferCandidate>(offers: 
   if (validCostOffers.length === 0) return null;
 
   const activeOffers = validCostOffers.filter((offer) => offer.ativo !== false);
-  const source = activeOffers.length > 0 ? activeOffers : validCostOffers;
-  const withStock = source.filter((offer) => Number(offer.estoque || 0) > 0);
-  const eligible = withStock.length > 0 ? withStock : source;
+  if (activeOffers.length === 0) return null;
+
+  const withStock = activeOffers.filter((offer) => Number(offer.estoque || 0) > 0);
+  const eligible = withStock.length > 0 ? withStock : activeOffers;
 
   const sorted = [...eligible].sort((left, right) => {
     const costDiff = Number(left.custo || 0) - Number(right.custo || 0);
