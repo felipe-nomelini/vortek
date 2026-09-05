@@ -19,9 +19,9 @@ import {
 } from '@/lib/estoque-interno';
 import { isPostDispatchOrder } from '@/lib/orders/operational-view';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
-import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
 import {
   resolveWebhookOrderSituation,
+  shouldAlertNewSaleFromWebhook,
   shouldHydrateWebhookOrder,
 } from '@/lib/ml/webhook-order-stub';
 import { createSupplierCancellationCreditCandidate } from '@/lib/supplier-credits';
@@ -468,7 +468,10 @@ export async function POST(request: Request) {
             console.error('[supplier-credits] Falha ao registrar cancelamento recebido por webhook:', creditError);
           }
         }
-        if (isMlOrderPaid(order)) {
+        if (shouldAlertNewSaleFromWebhook({
+          orderStatus: order.status,
+          persistenceAction: stubResult?.action,
+        })) {
           void alertNewSale({
             id: pedidoId,
             numero: order.id,
@@ -478,14 +481,12 @@ export async function POST(request: Request) {
             total: Number(order.total_amount || 0),
             status: order.status || null,
           });
-          if (stubResult?.action === 'inserted') {
-            void pushEvents().newSale({
-              id: pedidoId,
-              ml_order_id: String(order.id || ''),
-              contato_nome: order.buyer?.nickname || 'Desconhecido',
-              total: Number(order.total_amount || 0),
-            }).catch(() => null);
-          }
+          void pushEvents().newSale({
+            id: pedidoId,
+            ml_order_id: String(order.id || ''),
+            contato_nome: order.buyer?.nickname || 'Desconhecido',
+            total: Number(order.total_amount || 0),
+          }).catch(() => null);
         }
       } else if (mlOrderId) {
         const stubResult = await persistWebhookOrderPendingStub({

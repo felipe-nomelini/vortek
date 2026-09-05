@@ -2853,6 +2853,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Próxima ação:** `BNT-PARITY-10 — Deduplicação do alerta de nova venda`.
 
+#### `BNT-PARITY-10 — Deduplicação do alerta de nova venda`
+
+**Situação:** implementação e validação local concluídas; publicação em homologação pendente.
+
+- [x] portar a regra produtiva `95941f1` de `NTF-03`: alerta somente para `inserted + paid`;
+- [x] compartilhar o gate de origem entre WhatsApp e Push;
+- [x] preservar dedupe dos canais e o fluxo separado de sincronização/hidratação;
+- [x] testar inserção paga, atualização/reentrega, ação ausente, status não pago e ligação dos dois canais;
+- [x] executar regressões direcionadas, validate, build e verificação de secrets;
+- [ ] confirmar publicação e SHA ativo somente no `vortek-erp-dev`.
+
+**Causa corrigida:** o webhook DEV iniciava WhatsApp para qualquer pedido `paid`, inclusive atualizações; somente o Push verificava inserção. `shouldAlertNewSaleFromWebhook` exige a inserção confirmada pela persistência e pagamento, antes de chamar qualquer canal. O transporte preserva suas proteções existentes; atualização de stub pendente continua delegada à hidratação.
+
+**Validação local:** passaram os seis arquivos de teste de webhook, alerta, hidratação, lock de sincronização, templates e configuração de notificações. A regressão executa o bloco real de decisão do webhook com canais simulados e verifica que reentregas não aumentam os disparos. `npm run validate`, `npm run build` (Next.js `16.3.3`, 120 páginas estáticas), `npm run check:build-secrets` e `git diff --check` passaram. Nenhum alerta real, migration ou escrita de banco foi executado.
+
+**Rollback:** reverter o commit desta ação em `dev` e publicar novamente apenas o `vortek-erp-dev`; não há migration ou dado a reverter.
+
+**Próxima ação após homologação:** `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`.
+
 #### Classificação obrigatória
 
 Cada regra ou mudança deve receber exatamente uma classificação:
