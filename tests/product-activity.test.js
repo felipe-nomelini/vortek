@@ -53,6 +53,7 @@ test('sync de catálogo cria produto ativo e aplica o threshold somente à ofert
 
 test('rota de custo alto processa ofertas e preserva produtos.ativo', () => {
   const source = read('src/app/api/produtos/inativar-custo-alto/route.ts');
+  const proxySource = read('src/proxy.ts');
 
   assert.match(source, /\.from\('produto_fornecedor_ofertas'\)[\s\S]{0,120}\.update\(\{ ativo: false \}/);
   assert.match(source, /products_without_eligible_offer/);
@@ -60,6 +61,11 @@ test('rota de custo alto processa ofertas e preserva produtos.ativo', () => {
   assert.doesNotMatch(
     source,
     /\.from\('produtos'\)[\s\S]{0,120}\.update\(\{\s*ativo:/,
+  );
+  assert.match(proxySource, /pathname === "\/api\/produtos\/inativar-custo-alto"/);
+  assert.match(
+    proxySource,
+    /isInternalProductMaintenanceRoute[\s\S]{0,160}apiKey === process\.env\.API_SECRET_KEY/,
   );
 });
 

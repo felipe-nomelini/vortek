@@ -47,6 +47,8 @@ export async function proxy(request: NextRequest) {
   const apiKey = request.headers.get("x-api-key");
   const isSyncRoute = pathname.startsWith("/api/sync/");
   const isInternalJobRoute = pathname === "/api/dslite/pedido";
+  const isInternalProductMaintenanceRoute =
+    pathname === "/api/produtos/inativar-custo-alto";
   const isInternalCatalogRoute = [
     "/api/catalogo/no-catalogo/refresh",
     "/api/catalogo/no-catalogo/refresh/job/worker",
@@ -77,6 +79,7 @@ export async function proxy(request: NextRequest) {
   if (
     ((isSyncRoute ||
       isInternalJobRoute ||
+      isInternalProductMaintenanceRoute ||
       isInternalCatalogRoute ||
       isMlListingFlowRoute) &&
       apiKey === process.env.API_SECRET_KEY) ||
