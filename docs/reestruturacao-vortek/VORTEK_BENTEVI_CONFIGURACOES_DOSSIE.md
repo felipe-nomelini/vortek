@@ -440,6 +440,10 @@ Referências: [DSLite oficial](https://documenter.getpostman.com/view/5316990/RW
 
 ### Continuidade da política de pricing
 
+**Refinamento visual de BNT-CFG-07 (05/09/2026):** o shell compartilhado passou a reservar 24 px abaixo das oito abas, removendo a borda adicional. A lista pautada foi substituída por dez cards em grade responsiva 3/2/1, com logos oficiais locais (fontes em `public/branding/integrations/README.md`), ícones sem marca para SMTP/Push, uma tag de estado e ação na base. Avisos runtime repetidos deram lugar à indicação curta de gestão no servidor e orientação única; restrições específicas e detalhes permanecem acessíveis. Contratos, credenciais, permissões, navegação client-side e drawers foram preservados. Sem migrations ou alterações em provedores.
+
+Validação do refinamento: 74 testes de integrações, 13 do contrato de deploy, validate e build. Chromium renderizou os componentes reais com dados sintéticos e CSS compilado a 1440/900/390 px: dez cards, grade 3/2/1, gap de 24 px, zero imagem quebrada e zero overflow. Navegação por Tab alcançou a ação do primeiro card. Esta evidência não substitui teste autenticado remoto nem aprovação visual do responsável.
+
 Depois de `BNT-PARITY-GATE` e da aprovação de `BNT-CFG-07`, a sequência passa a seguir `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. `BNT-PRICING-V2-00` documentará o desenho executável; as ações `01` a `15`, incluindo `08A`, implementarão uma mudança por vez; `BNT-CFG-08` e `BNT-CFG-09` consumirão os contratos estabilizados; e `BNT-PRICING-V2-16` bloqueará qualquer autonomia até comprovação de segurança.
 
 As faixas atualmente expostas por `BNT-CFG-03` permanecem como fotografia do motor vigente até sua substituição controlada. Elas não devem coexistir como um segundo motor após a transição. Mudanças automáticas de preço permanecem `REQUIRES_CONFIRMATION` por padrão.

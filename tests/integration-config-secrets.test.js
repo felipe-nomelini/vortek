@@ -89,7 +89,7 @@ test("cliente não lê secrets existentes e testes usam configuração server-si
   assert.doesNotMatch(page, /client_secret|access_token|refresh_token/);
   assert.match(integrationsTab, /access_token_configurado/);
   assert.match(integrationsTab, /refresh_token_configurado/);
-  assert.doesNotMatch(integrationsTab, /mercadolivre/);
+  assert.doesNotMatch(integrationsTab, /\/api\/integracao\/ml\/connect|Conectar com ML/);
   for (const source of [dsliteRoute, brasilNfeRoute]) {
     assert.match(source, /testSavedIntegration/);
     assert.doesNotMatch(source, /request\.json\(/);

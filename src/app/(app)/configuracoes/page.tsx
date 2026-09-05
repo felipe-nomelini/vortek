@@ -43,10 +43,9 @@ function ConfiguracoesPageContent() {
           activeKey={tab}
           onChange={setTab}
           tabBarStyle={{
-            margin: 0,
+            margin: "0 0 24px",
             paddingLeft: 16,
             background: "#1a1a1a",
-            borderBottom: "1px solid #303030",
           }}
           style={{ padding: 20 }}
           items={[

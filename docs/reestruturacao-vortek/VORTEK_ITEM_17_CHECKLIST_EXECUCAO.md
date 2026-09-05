@@ -3300,6 +3300,8 @@ Quando estes critérios estiverem concluídos, fazer uma revisão final das audi
 
 **Estado:** implementada e publicada em homologação; aguardando aprovação visual.
 
+**Refinamento solicitado pelo responsável:** espaçamento compartilhado de 24 px abaixo das oito abas; retirada da borda adicional da navegação e das linhas da lista; dez cards responsivos com logos oficiais locais, categoria, descrição, estado e ação. Orientação única substitui avisos runtime repetidos, sem remover restrições específicas nem mudar os contratos. 74 testes de integrações, 13 testes do deploy, validate e build passaram. Renderização local com CSS compilado a 1440/900/390 px confirmou 3/2/1 colunas, dez cards, gap de 24 px e ausência de overflow/imagens quebradas. Publicação do refinamento será registrada após confirmação do artefato DEV. Aprovação visual continua pendente.
+
 - [x] painel com dez integrações agrupadas; drawer DSLite, Brasil NFe e Mercado Pago;
 - [x] Mercado Livre, feeds e canais preservam suas áreas responsáveis;
 - [x] runtime somente leitura por decisão explícita; edição pelo ERP permanece evolução futura;

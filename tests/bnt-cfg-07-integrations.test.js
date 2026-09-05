@@ -149,3 +149,39 @@ test('interface mantém salvamento explícito e responsáveis existentes', () =>
   assert.doesNotMatch(source, /onBlur|values:.*conectado|\/api\/integracao\/ml\/connect/);
   for (const text of ['Salvar alterações', 'Cancelar', '<Drawer', 'Remover valor cadastrado', 'tab=operacao']) assert.ok(source.includes(text));
 });
+
+test('shell reserva 24px abaixo das oito abas sem borda adicional', () => {
+  const source = fs.readFileSync('src/app/(app)/configuracoes/page.tsx', 'utf8');
+  assert.match(source, /margin: "0 0 24px"/);
+  assert.doesNotMatch(source, /borderBottom:/);
+  assert.equal(source.match(/key: "/g).length, 8);
+});
+
+test('cards renderizam dez serviços, assets locais e ações sem editar integrações runtime', () => {
+  const React = require('react');
+  const { renderToStaticMarkup } = require('react-dom/server');
+  const overview = { integracoes: [], resumo: config.integrationSummaries([dslite], { MERCADOPAGO_ACCESS_TOKEN: sentinel }) };
+  const states = ['missing', 'incomplete', 'configured', 'validated', 'reconnect', 'error'];
+  overview.resumo.forEach((item, index) => { item.state = states[index % states.length]; });
+  let hook = 0;
+  const component = load('src/components/configuracoes/IntegracoesTab.tsx', {
+    react: { ...React, useState: initial => React.useState(hook++ === 0 ? overview : hook === 2 ? false : initial) },
+    'react/jsx-runtime': require('react/jsx-runtime'),
+    'next/link': require('next/link'), 'next/image': require('next/image'),
+    antd: require('antd'), '@ant-design/icons': require('@ant-design/icons'),
+    '@/lib/integration-configuration': config,
+    './IntegracoesTab.module.css': { default: {}, __esModule: true },
+  }).default;
+  const html = renderToStaticMarkup(React.createElement(component, { messageApi: {} }));
+  assert.equal((html.match(/data-integration=/g) || []).length, 10);
+  for (const state of states) assert.ok(html.includes(config.INTEGRATION_STATE_LABELS[state]));
+  assert.equal((html.match(/Gerenciada no servidor/g) || []).length, 6);
+  assert.equal((html.match(/>Configurar</g) || []).length, 2);
+  assert.equal((html.match(/>Ver detalhes</g) || []).length, 4);
+  assert.match(html, /href="\/configuracoes\?tab=mercado-livre"/);
+  assert.equal((html.match(/href="\/configuracoes\?tab=notificacoes"/g) || []).length, 3);
+  assert.doesNotMatch(html, /Administrada pelo servidor\.|SENTINEL_PRIVATE|type="password"/);
+  const assets = [...html.matchAll(/src="(\/branding\/integrations\/[^\"]+)"/g)];
+  assert.equal(assets.length, 8);
+  for (const [, asset] of assets) assert.ok(fs.existsSync(`public${asset}`));
+});

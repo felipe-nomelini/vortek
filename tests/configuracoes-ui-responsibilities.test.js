@@ -56,7 +56,7 @@ test("cada tab concentra somente seu fluxo operacional", () => {
 
   assert.match(integracoes, /fetch\("\/api\/integracoes\/config"/);
   assert.match(integracoes, /function SecretCredentialField/);
-  assert.doesNotMatch(integracoes, /mercadolivre|Conectar com ML/);
+  assert.doesNotMatch(integracoes, /Conectar com ML|\/api\/integracao\/ml\/connect/);
   assert.doesNotMatch(integracoes, /\/api\/configuracoes\/usuarios|\/api\/push/);
 
   assert.match(usuarios, /fetch\("\/api\/configuracoes\/usuarios"/);

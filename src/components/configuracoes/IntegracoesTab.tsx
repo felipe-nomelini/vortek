@@ -2,8 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { Alert, Button, Descriptions, Drawer, Empty, Input, Modal, Space, Spin, Tag, Typography } from "antd";
-import { ReloadOutlined, SettingOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import Image from "next/image";
+import { Alert, Button, Card, Descriptions, Drawer, Empty, Input, Modal, Space, Spin, Tag, Typography } from "antd";
+import { ReloadOutlined, SettingOutlined, ArrowRightOutlined, MailOutlined, BellOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { IntegrationConfigDto } from "@/lib/integration-config-dto";
 import { INTEGRATION_STATE_LABELS, type IntegrationSummary, type IntegrationTestResult } from "@/lib/integration-configuration";
@@ -13,6 +14,11 @@ type Overview = { integracoes: IntegrationConfigDto[]; resumo: IntegrationSummar
 type SecretField = "access_token" | "refresh_token";
 const originLabels = { erp: "Cadastro do ERP", runtime: "Servidor", default: "Padrão do provedor", missing: "Não configurado" };
 const stateColors = { missing: "default", incomplete: "gold", configured: "default", validated: "green", reconnect: "orange", error: "red" };
+const artwork: Record<string, string> = {
+  mercadolivre: "mercadolivre.png", dslite: "dslite.png", brasilnfe: "brasilnfe.webp",
+  mercadopago: "mercadopago.svg", waha: "waha.svg", github: "github.svg",
+  openrouter: "openrouter.png", firecrawl: "firecrawl.png",
+};
 
 async function readResponse(response: Response) {
   const data = await response.json().catch(() => ({}));
@@ -125,26 +131,39 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
 
   return <section className={styles.root} aria-label="Integrações">
     <div className={styles.header}>
-      <div><Typography.Title level={4}>Integrações</Typography.Title><Typography.Text type="secondary">Conexões, configuração e próximos passos — sem confundir cadastro com disponibilidade.</Typography.Text></div>
+      <div><Typography.Title level={4}>Integrações</Typography.Title><Typography.Text type="secondary">Gerencie os serviços conectados à Bentevi.</Typography.Text></div>
       <Button icon={<ReloadOutlined />} loading={loading} disabled={busy || dirty} onClick={() => { setResults({}); void load(); }}>Atualizar estados</Button>
     </div>
     {error && <Alert type="error" showIcon message="Estados indisponíveis" description={error} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}
     <Spin spinning={loading}>
       {!error && !data && !loading && <Empty description="Nenhuma integração disponível" />}
-      {!error && data && Array.from(new Set(data.resumo.map((item) => item.group))).map((group) => <section key={group} className={styles.group}>
-        <h3>{group}</h3>
-        {data.resumo.filter((item) => item.group === group).map((item) => {
+      {!error && data && <>
+        <p className={styles.guidance}><InfoCircleOutlined aria-hidden /> Configuração cadastrada não significa conexão validada. Atualizar estados não testa os serviços.</p>
+        <div className={styles.grid}>
+        {data.resumo.map((item) => {
           const state = results[item.tipo] ? results[item.tipo].ok ? "validated" : "error" : item.state;
-          return <div key={item.tipo} className={styles.row}>
-            <div><strong>{item.name}</strong><p>{item.purpose}</p></div>
-            <div className={styles.state}><Tag color={stateColors[state]}>{INTEGRATION_STATE_LABELS[state]}</Tag>
-              {item.restriction && <small>{item.restriction}</small>}
+          const runtimeOnly = item.group === "Comunicação" || item.group === "Serviços técnicos";
+          return <Card key={item.tipo} className={styles.integrationCard} variant="borderless" data-integration={item.tipo}>
+            <div className={styles.cardIdentity}>
+              <div className={`${styles.logo} ${item.tipo === "brasilnfe" ? styles.wideLogo : ""}`}>
+                {artwork[item.tipo] ? <Image src={`/branding/integrations/${artwork[item.tipo]}`} alt="" width={96} height={48} unoptimized />
+                  : item.tipo === "smtp" ? <MailOutlined aria-hidden /> : item.tipo === "push" ? <BellOutlined aria-hidden /> : <span>{item.name.slice(0, 2)}</span>}
+              </div>
+              <span className={styles.category}>{item.group}</span>
             </div>
-            {item.href ? <Link href={item.href}><Button icon={<ArrowRightOutlined />}>{item.action}</Button></Link>
-              : <Button icon={<SettingOutlined />} onClick={() => open(item)}>{item.action}</Button>}
-          </div>;
+            <h3>{item.name}</h3>
+            <p className={styles.purpose}>{item.purpose}</p>
+            <div className={styles.state}><Tag color={stateColors[state]}>{INTEGRATION_STATE_LABELS[state]}</Tag></div>
+            {runtimeOnly ? <p className={styles.management}>Gerenciada no servidor</p>
+              : item.restriction && <p className={styles.restriction}>{item.restriction}</p>}
+            <div className={styles.cardAction}>
+              {item.href ? <Link href={item.href}><Button icon={<ArrowRightOutlined />}>{item.action}</Button></Link>
+                : <Button icon={item.editable ? <SettingOutlined /> : <InfoCircleOutlined />} onClick={() => open(item)}>{item.editable ? "Configurar" : "Ver detalhes"}</Button>}
+            </div>
+          </Card>;
         })}
-      </section>)}
+        </div>
+      </>}
     </Spin>
     <Drawer title={selected?.name} open={Boolean(selected)} onClose={close} width={620} destroyOnHidden
       extra={selected?.editable ? <Space><Button disabled={busy} onClick={clearDraft}>Cancelar</Button><Button type="primary" disabled={!dirty || busy || Boolean(error)} loading={saving} onClick={saveDraft}>Salvar alterações</Button></Space> : undefined}>
