@@ -16,6 +16,8 @@
 
 **Atualização em 05/09/2026:** a fila `BNT-PARITY-01` a `BNT-PARITY-13` foi concluída no escopo aprovado de cada ação. A fotografia original abaixo permanece datada. `BNT-PARITY-13` concluiu o mapa e o comparador, não a promoção de schema. A decisão Evolusom foi confirmada e implementada em `BNT-PARITY-DEC-01`, com validação local e sem ativação remota. Os deltas de pricing foram classificados; sua incorporação e os gates continuam pendentes.
 
+**Estado atual após o gate de 05/09/2026:** `BNT-PARITY-GATE` concluído exclusivamente para a sequência DEV, com aceite explícito do responsável para encaminhar as lacunas de pricing à V2. `BNT-CFG-07` liberada para planejamento. A seção 8 registra a decisão vigente; as referências anteriores a gate pendente são históricas. Produção, ativação Evolusom, delta de migrations, continuidade dos experimentos e gate de autonomia não foram liberados.
+
 ---
 
 ## 1. Conclusão executiva
@@ -149,7 +151,7 @@ Fontes produtivas abreviadas: **helper** = `scripts/lib/ml-pricing-experiment.js
 - A retomada produtiva grava a coorte antes dos envios, exclui IDs já presentes e depende de artefatos anteriores. Não há evidência suficiente para declarar seguro todo crash entre efeito remoto e checkpoint; essa lacuna permanece no aceite V2-10.
 - Os registros antigos `PRC-03/04/05/08` descrevem a fotografia do motor de custo, não o objetivo final da V2. Em DEV `enqueueAutomaticPricesForCostChanges` também escreve `custom_price`; a presença desse campo não comprova origem manual nem override. A substituição comercial continua planejada, sem alteração das faixas atuais nesta ação.
 
-**Dependências e gate:** não criar uma implementação provisória do experimento para depois descartá-la. Manter os destinos V2 e a ordem `PARITY-GATE → CFG-07 → V2-00`. Isso **não** concede aceite automático ao adiamento das lacunas P0/P1: o próximo `BNT-PARITY-GATE` deve decidir explicitamente sobre o encaminhamento controlado, com bloqueio de promoção/autonomia até os aceites V2 e PARITY-FINAL. Sem esse aceite ou com nova divergência crítica fora da épica, o gate permanece bloqueado. Nenhuma política comercial nova foi escolhida nesta classificação.
+**Dependências e gate:** não criar uma implementação provisória do experimento para depois descartá-la. Manter os destinos V2 e a ordem `PARITY-GATE → CFG-07 → V2-00`. A classificação não concedeu aceite automático ao adiamento das lacunas P0/P1. O aceite foi obtido posteriormente, no planejamento do gate de 05/09/2026, e está registrado na seção 8, mantendo os bloqueios de promoção/autonomia até os aceites V2 e PARITY-FINAL. Nova divergência crítica não está coberta por esse aceite. Nenhuma política comercial nova foi escolhida nesta classificação.
 
 **Continuidade operacional de release:** antes da promoção, reconfirmar por leitura autorizada se há experimentos ainda ativos ou aguardando decisão. Definir e aprovar continuidade/mapeamento ou encerramento, preservando baseline, checkpoints, travas e responsabilidade. Não supor que D30 encerra automaticamente a proteção, não zerar estado produtivo e não habilitar o monitor legado na Bentevi. A configuração Evolusom e o delta de migrations continuam pendências independentes.
 
@@ -338,12 +340,16 @@ As ações acima não autorizam agrupar várias correções num único commit. Q
 
 ## 8. Gate e bloqueios
 
-- `BNT-PARITY-00` pode ser encerrada porque todos os 13 commits exclusivos foram classificados e o catálogo possui destino explícito por regra.
-- O delta `95941f1..b6e1b17` está classificado na seção 4.1; não há commit sem destino nesse intervalo.
-- `BNT-PARITY-GATE` **não está liberado**: existem lacunas P0/P1 encaminhadas à V2, ainda não implementadas e sem aceite explícito de adiamento no gate. Classificação não substitui esse aceite.
-- `BNT-CFG-07` permanece bloqueada até o fechamento do gate.
-- O release permanece bloqueado até `BNT-PARITY-FINAL`, que deve comparar novamente `origin/main` e o SHA efetivamente implantado.
-- Se `origin/main` mudar antes da próxima ação, o novo delta deve ser classificado antes de continuar.
+**Resultado em 05/09/2026: `BNT-PARITY-GATE` concluído — sequência DEV liberada.** O responsável aprovou explicitamente “Liberar sequência DEV”, mantendo as lacunas de pricing nas etapas V2 previstas, sem liberar produção nem novas ações autônomas. O registro completo e a suíte reproduzível estão na seção `BNT-PARITY-GATE` do [checklist](VORTEK_ITEM_17_CHECKLIST_EXECUCAO.md).
+
+- Os 18 commits de `08b6237..b6e1b17` estão classificados, incluindo os cinco deltas da seção 4.1. A revisão conferiu destinos, evidências das paridades 01–13/DEC-01 e inventário de migrations/configuração exigido pela fila.
+- As nove regras de pricing `INCORPORAR` e implementações das três substituições continuam pendentes. O aceite permite manter sua execução nas etapas V2, **não** marcá-las equivalentes ou concluídas. Prioridades e critérios permanecem os mesmos.
+- `BNT-CFG-07` está liberada **para planejamento**, não foi executada nem aprovada visualmente. Pricing V2 continua aguardando sua aprovação antes de V2-00.
+- Validação deste gate: 168 testes locais em 22 arquivos, lint e typecheck passaram; comparador de migrations offline e contrato Easypanel apenas em loopback. Referência DEV `7ed8112`, remoto reconfirmado em `b6e1b17`; sem nova certificação de deploy ou schema vivo.
+- Release continua bloqueado por `DELTA_PROMOCAO`, ativação operacional Evolusom, tratamento da continuidade dos experimentos produtivos, aceites funcionais V2, gate de autonomia e `BNT-PARITY-FINAL`, além dos demais gates do Item 17.
+- A futura promoção deve conferir novamente `origin/main`, SHA implantado, schema e configurações. Se a produção mudar, classificar o novo delta antes da ação afetada; divergência crítica não contemplada reabre o gate. O aceite presente não cobre fatos futuros.
+
+Não houve acesso a banco/servidor, alteração de código, migration, configuração runtime, preço, mensagem real, push ou deploy. As evidências antigas de build e homologação não foram reexecutadas nem generalizadas para commits locais ainda não publicados.
 
 ---
 

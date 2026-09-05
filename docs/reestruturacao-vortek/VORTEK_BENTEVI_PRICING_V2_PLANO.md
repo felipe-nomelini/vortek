@@ -7,6 +7,8 @@
 **Situação:** planejada e bloqueada
 **Condição de início:** `BNT-PARITY-GATE` concluído e `BNT-CFG-07` aprovado
 
+**Atualização em 05/09/2026:** gate de sequência DEV concluído com aceite explícito do encaminhamento das lacunas a esta épica. `BNT-CFG-07` está liberada para planejamento, ainda não aprovada; portanto Pricing V2 permanece bloqueado. Nenhuma funcionalidade de pricing ou autonomia foi liberada pelo gate documental.
+
 ---
 
 ## 1. Missão e princípio
@@ -397,6 +399,6 @@ As APIs oficiais sustentam o uso de `price_to_win` como informação competitiva
 | V2-13/14/16 | Safety stop suspende novas otimizações e gera decisão acionável; pausa/alteração comercial externa continua sob a matriz de autonomia. Confirmar/rejeitar/adiar com trilha e idempotência, sem autorização herdada do experimento D0. Reusar templates Bentevi e dedupe pelo problema, não pela tentativa. |
 | V2-00/06/10/15 | Não portar SKUs, alíquota, limiares particulares, estado JSON ou dados reais do experimento como defaults. Reusar políticas tipadas e contrato atual de bulk; não executar o script histórico, nem em --dry-run, pois seu fluxo pode renovar e persistir tokens. |
 
-**Gate permanece bloqueante:** não iniciar esta épica por estar classificada. `BNT-PARITY-GATE` deve registrar o aceite explícito do encaminhamento das lacunas à V2, sem declarar equivalência funcional ou liberar produção. Sem esse aceite, a dependência permanece aberta; `BNT-CFG-07` não está liberada por este documento.
+**Gate de sequência concluído em 05/09/2026:** o responsável aceitou explicitamente o encaminhamento das lacunas à V2, sem declarar equivalência funcional ou liberar produção. O registro está no checklist, seção `BNT-PARITY-GATE`. Os critérios da tabela continuam pendentes; não iniciar esta épica antes de executar e aprovar `BNT-CFG-07`. O aceite não altera prioridades, política canônica, matriz de autonomia ou bloqueios de release.
 
 **Promoção:** `BNT-PARITY-FINAL` deve reconfirmar o SHA implantado e a existência de experimentos ativos/aguardando decisão, com continuidade ou encerramento autorizados e sem perder baseline, checkpoints ou travas. O relatório D0 não comprova o estado na data do release. Nenhum experimento produtivo será importado ou ativado em DEV para esta classificação.

@@ -416,9 +416,11 @@ Não foram alterados eventos, destinatários, permissões, dedupe, idempotência
 
 ### `Etapa 11.1 — Reconciliação contínua Produção → Bentevi`
 
-A sequência de Configurações fica pausada antes de `BNT-CFG-07`. `BNT-PARITY-00` produziu a fotografia e a matriz canônica das regras de produção no commit `453226b`, catalogando 77 regras e gerando 13 ações técnicas mais uma decisão operacional. Cada divergência será tratada em uma ação individual; `BNT-PARITY-GATE` liberará a retomada somente depois de resolver a fila aplicável; e `BNT-PARITY-FINAL` repetirá o delta imediatamente antes do release.
+A sequência de Configurações foi pausada antes de `BNT-CFG-07`. `BNT-PARITY-00` produziu a fotografia e a matriz canônica das regras de produção no commit `453226b`, catalogando 77 regras e gerando 13 ações técnicas mais uma decisão operacional. A fila foi concluída no escopo aprovado de cada ação, e os cinco deltas produtivos de pricing foram classificados separadamente em 16 regras com destino explícito.
 
-A próxima ação é `BNT-PARITY-01 — Atividade manual do produto`. Produção e seu banco em `.160` permanecem estritamente somente leitura; qualquer correção futura será implementada uma regra por vez em `dev` e, quando necessário, somente no `supabase-dev` `.162`.
+**Atualização em 05/09/2026:** `BNT-PARITY-GATE` concluído somente para a sequência DEV, após 168 testes locais, validate e aceite explícito do responsável do encaminhamento das lacunas de pricing às etapas V2. Próxima ação: **planejar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface`**. A tela não foi implementada nem aprovada por esse gate.
+
+Produção permanece bloqueada: delta de migrations, ativação Evolusom, continuidade dos experimentos, aceites V2, gate de autonomia e `BNT-PARITY-FINAL` continuam obrigatórios. O gate não efetuou deploy nem reconfirmou o estado vivo dos bancos/servidores. Produção e seu banco em `.160` permanecem estritamente somente leitura; qualquer correção futura será implementada uma regra por vez em `dev` e, quando necessário, somente no `supabase-dev` `.162`.
 
 ### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
 
