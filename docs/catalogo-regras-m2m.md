@@ -18,3 +18,7 @@
 Scripts históricos de criação/limpeza, SEO reativador e D0 não são caminhos operacionais de pricing. Seus comandos de entrada foram aposentados quando escreviam usando políticas antigas. Evidências e migrations históricas permanecem preservadas.
 
 M2M-IDENTITY-v2.1: comparadores de equivalência compartilhados por Radar, criação e leitura posterior; fonte por atributo, composição comercial separada de unidade vendida e avisos separados de conflitos. Mudanças da versão/descrição/marca/GTIN da oferta invalidam o fingerprint de classificação.
+
+M2M-RAD-LAUNCH-01: `scripts/run-radar-launch-cohort.cjs` executa somente a coorte expressamente autorizada, com limite agregado de dez criações, lock do publicador, recotação viva, registro prévio e reconciliação sem segundo POST. Descrição de catálogo é somente leitura; atributos multivalorados são comparados por IDs. Safety stops preservam pausa, diagnóstico e resolução auditável.
+
+M2M-RAD-MONITOR-01: `services/radar-launch-monitor.ts` usa o monitor agendado existente para D+7/D+15/D+30; `getProtectedPricingExperimentSkus` inclui a coorte validada nos 30 dias de proteção contra reprecificação por performance. Evidências D0 em `reports/RADAR_LAUNCH_2026_09_COHORT_01/`.

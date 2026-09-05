@@ -167,6 +167,7 @@ function catalogDescriptionMatches(catalog, response) {
 }
 async function publish() {
  const rt=await runtime(),{db,ml,pricing}=rt;
+ const closed=await checked(db.from('pricing_events').select('job_id').eq('dedupe_key',`${COHORT}:closed`).maybeSingle());if(closed){console.log(JSON.stringify({status:'COHORT_ALREADY_FINISHED',jobId:closed.job_id}));return;}
  // Reclassificação de warnings documentados não refaz as cotações; haverá recotação antes do POST.
  const rows=Object.keys(read(path.join(DIR,'selection.json')).candidates).filter(sku=>fs.existsSync(path.join(DIR,sku+'-preflight.json'))).map(sku=>({sku,...read(path.join(DIR,sku+'-preflight.json'))})).filter(r=>payloadValidated(r.validated,r.payload));
  assertCohortSize(rows);
