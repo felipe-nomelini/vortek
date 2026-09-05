@@ -25,7 +25,7 @@ Antes de executar qualquer ação, consultar nesta ordem:
 6. código, schema, migrations, testes e configuração atuais;
 7. documentação oficial atual de qualquer tecnologia ou integração envolvida.
 
-Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página. Para `BNT-CFG-01` a `BNT-D20`, consultar ainda `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md`.
+Para tarefas do redesign Bentevi, consultar também `VORTEK_BENTEVI_PLANO_REDESIGN_COMPLETO.md` antes de analisar ou alterar uma página. Para `BNT-CFG-01` a `BNT-D20`, consultar ainda `VORTEK_BENTEVI_CONFIGURACOES_DOSSIE.md`. Para qualquer ação `BNT-PRICING-V2-N`, consultar `VORTEK_BENTEVI_PRICING_V2_PLANO.md` e respeitar seu encaixe bloqueante.
 
 Regras de uso:
 
@@ -65,6 +65,7 @@ Regras de uso:
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
 | 11.1 | Reconciliação contínua Produção → Bentevi | Fotografia concluída; aplicação bloqueante | Executar `BNT-PARITY-01` e resolver a fila antes de `BNT-CFG-07` |
+| 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
 ### Próxima ação
@@ -180,6 +181,12 @@ Regras de uso:
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
+- [ ] Executar `BNT-PRICING-V2-00 — Dossiê AS_IS → TO_BE e contratos` somente após aprovação de `BNT-CFG-07`.
+- [ ] Executar `BNT-PRICING-V2-01` a `BNT-PRICING-V2-15`, incluindo `BNT-PRICING-V2-08A`, uma ação por vez e na ordem definida no plano canônico.
+- [ ] Executar `BNT-CFG-08` somente depois de os alertas e indicadores de pricing necessários estarem estabilizados.
+- [ ] Executar `BNT-CFG-09` incluindo agenda, limites e saúde do job noturno já validado.
+- [ ] Executar `BNT-PRICING-V2-16 — Gate de autonomia` antes de permitir qualquer escrita autônoma de preço.
+- [ ] Concluir `BNT-D20` somente depois do gate de autonomia e da composição final das Configurações.
 
 ---
 
@@ -2650,6 +2657,42 @@ A precedência é: instrução explícita mais recente do responsável → regra
 **Aceite da etapa:** zero commit exclusivo de produção sem classificação, zero regra ou parâmetro produtivo identificado sem destino explícito e zero divergência crítica aberta sem aceite. `BNT-CFG-07` permanece bloqueada até `BNT-PARITY-GATE`; o release permanece bloqueado até `BNT-PARITY-FINAL`.
 
 **Limites:** o worktree `vortek-prod`, a branch `main`, o serviço produtivo e `192.168.1.160` são estritamente de leitura nesta etapa. Nenhum merge, cherry-pick em massa, deploy, migration, teste destrutivo ou correção de produção é autorizado por este checklist.
+
+### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
+
+**Situação:** planejada e bloqueada. Esta etapa não altera o motor atual enquanto `BNT-PARITY-GATE` e `BNT-CFG-07` não estiverem concluídos.
+
+**Fonte canônica:** `VORTEK_BENTEVI_PRICING_V2_PLANO.md`.
+
+**Objetivo:** substituir de forma controlada as faixas comerciais por custo por uma política baseada em preço final, economia unitária única, governança, pricing groups, performance, experimentos, alertas e autonomia graduada.
+
+#### Sequência bloqueante
+
+- [ ] `BNT-PRICING-V2-00` — produzir matriz `AS_IS → TO_BE`, contratos, migrations previstas, donos, consumidores e testes, sem implementação funcional;
+- [ ] `BNT-PRICING-V2-01` — faixas por preço final;
+- [ ] `BNT-PRICING-V2-02` — economia unitária única;
+- [ ] `BNT-PRICING-V2-03` — retirar a política antiga de custo/lucro mínimo do papel de motor;
+- [ ] `BNT-PRICING-V2-04` — origem e audit trail do pricing;
+- [ ] `BNT-PRICING-V2-05` — override manual explícito;
+- [ ] `BNT-PRICING-V2-06` — liquidação interna;
+- [ ] `BNT-PRICING-V2-07` — pricing groups e catálogo;
+- [ ] `BNT-PRICING-V2-08` — Buy Box econômica;
+- [ ] `BNT-PRICING-V2-08A` — diagnósticos econômicos de margem;
+- [ ] `BNT-PRICING-V2-09` — performance 30/90/150 separada da economia;
+- [ ] `BNT-PRICING-V2-10` — experimentos;
+- [ ] `BNT-PRICING-V2-11` — zero tráfego;
+- [ ] `BNT-PRICING-V2-12` — job noturno idempotente e observável;
+- [ ] `BNT-PRICING-V2-13` — alertas, confirmações, lifecycle e dedupe;
+- [ ] `BNT-PRICING-V2-14` — centro acionável no Dashboard;
+- [ ] `BNT-PRICING-V2-15` — configurações administrativas;
+- [ ] `BNT-CFG-08` — integrar Dashboard, TV e metas aos contratos estabilizados;
+- [ ] `BNT-CFG-09` — integrar agenda e saúde operacional do job noturno;
+- [ ] `BNT-PRICING-V2-16` — gate de autonomia;
+- [ ] `BNT-D20` — composição visual final de Configurações.
+
+**Regras de transição:** não manter motores paralelos publicando preços; alteração automática permanece `REQUIRES_CONFIRMATION` por padrão; nenhuma migration sai do `supabase-dev` em `192.168.1.162`; produção em `192.168.1.160` permanece somente leitura; cada ação exige teste, evidência e rollback próprios.
+
+**Aceite da etapa:** política antiga deixa de governar pricing; economia unitária e origem são únicas; catálogo sincronizado é unidade econômica; Buy Box não induz prejuízo não autorizado; performance não é confundida com economia; alertas e confirmações são deduplicados e auditáveis; job noturno é idempotente e observável; nenhuma autonomia existe sem nível declarado e gate aprovado.
 
 **Amostra de homologação:** 100 vendas recentes foram copiadas por leitura da produção para o `supabase-dev` em `192.168.1.162`, marcadas com `snapshot_source = bnt_d01_production_clone`. XMLs, arquivos, URLs assinadas, tokens e payloads brutos não foram copiados. A interface, as rotas operacionais e os jobs fiscais relacionados bloqueiam essa amostra com `homologation_fixture_read_only`. Remover a amostra ao concluir `BNT-D24`, antes da promoção Bentevi.
 

@@ -297,9 +297,11 @@ Cada ação abaixo é independente e bloqueia a seguinte até validação:
 7. `BNT-MSG-01` — Templates e identidade das notificações;
 8. `BNT-PARITY-00`, ações `BNT-PARITY-N` e `BNT-PARITY-GATE` — reconciliação bloqueante com produção;
 9. `BNT-CFG-07` — Integrações, incluindo estados ausentes da interface;
-10. `BNT-CFG-08` — Dashboard, TV e metas;
-11. `BNT-CFG-09` — Sistema e jobs avançados;
-12. `BNT-D20` — composição visual final de `/configuracoes`, responsividade desktop e aprovação.
+10. `BNT-PRICING-V2-00` a `BNT-PRICING-V2-15`, incluindo `08A` — política canônica, economia, governança, job e alertas, conforme `VORTEK_BENTEVI_PRICING_V2_PLANO.md`;
+11. `BNT-CFG-08` — Dashboard, TV e metas, consumindo os contratos estabilizados do pricing;
+12. `BNT-CFG-09` — Sistema e jobs avançados, incluindo agenda e saúde do job noturno;
+13. `BNT-PRICING-V2-16` — gate de autonomia;
+14. `BNT-D20` — composição visual final de `/configuracoes`, responsividade desktop e aprovação.
 
 `BNT-D20` somente será marcado como concluído quando todos os controles implementados tiverem consumidor real, autorização administrativa, validação, auditoria aplicável e teste direcionado.
 
@@ -414,6 +416,12 @@ Não foram alterados eventos, destinatários, permissões, dedupe, idempotência
 
 ### `Etapa 11.1 — Reconciliação contínua Produção → Bentevi`
 
-A sequência de Configurações fica pausada antes de `BNT-CFG-07`. `BNT-PARITY-00` produzirá a fotografia e a matriz canônica das regras de produção; cada divergência será tratada em uma ação individual; e `BNT-PARITY-GATE` liberará a retomada somente depois de classificar todos os commits e regras produtivas. `BNT-PARITY-FINAL` repetirá o delta imediatamente antes do release.
+A sequência de Configurações fica pausada antes de `BNT-CFG-07`. `BNT-PARITY-00` produziu a fotografia e a matriz canônica das regras de produção no commit `453226b`, catalogando 77 regras e gerando 13 ações técnicas mais uma decisão operacional. Cada divergência será tratada em uma ação individual; `BNT-PARITY-GATE` liberará a retomada somente depois de resolver a fila aplicável; e `BNT-PARITY-FINAL` repetirá o delta imediatamente antes do release.
 
-A fotografia inicial deve reconfirmar `origin/main@95941f1`, `origin/dev@e83ceb2` e o ancestral comum `08b6237`. Nesse ponto existem 13 commits exclusivos em `main`, 83 arquivos afetados e quatro migrations a classificar. Produção e seu banco em `.160` permanecem estritamente somente leitura; qualquer correção futura será implementada uma regra por vez em `dev` e, quando necessário, somente no `supabase-dev` `.162`.
+A próxima ação é `BNT-PARITY-01 — Atividade manual do produto`. Produção e seu banco em `.160` permanecem estritamente somente leitura; qualquer correção futura será implementada uma regra por vez em `dev` e, quando necessário, somente no `supabase-dev` `.162`.
+
+### `Etapa 11.2 — Política canônica de Pricing Bentevi V2`
+
+Depois de `BNT-PARITY-GATE` e da aprovação de `BNT-CFG-07`, a sequência passa a seguir `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. `BNT-PRICING-V2-00` documentará o desenho executável; as ações `01` a `15`, incluindo `08A`, implementarão uma mudança por vez; `BNT-CFG-08` e `BNT-CFG-09` consumirão os contratos estabilizados; e `BNT-PRICING-V2-16` bloqueará qualquer autonomia até comprovação de segurança.
+
+As faixas atualmente expostas por `BNT-CFG-03` permanecem como fotografia do motor vigente até sua substituição controlada. Elas não devem coexistir como um segundo motor após a transição. Mudanças automáticas de preço permanecem `REQUIRES_CONFIRMATION` por padrão.
