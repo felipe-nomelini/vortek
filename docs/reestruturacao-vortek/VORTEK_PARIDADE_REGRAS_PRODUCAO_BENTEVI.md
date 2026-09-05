@@ -14,6 +14,8 @@
 
 **Resultado:** fotografia concluída; `BNT-PARITY-01` a `BNT-PARITY-08` incorporadas e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
 
+**Atualização em 05/09/2026:** a fila `BNT-PARITY-01` a `BNT-PARITY-13` foi concluída no escopo aprovado de cada ação. A fotografia original abaixo permanece datada. `BNT-PARITY-13` concluiu o mapa e o comparador, não a promoção de schema; decisão Evolusom, deltas de pricing e gates permanecem pendentes.
+
 ---
 
 ## 1. Conclusão executiva
@@ -73,7 +75,9 @@ Não existe relação presente somente em produção. As 13 relações exclusiva
   - produção: `internal_purchase_stock_origin`;
   - Bentevi: `atomic_internal_stock_reservation`.
 - Produção também registra nomes históricos diferentes em `00008`, `20260709120000` e `20260709121500`.
-- A correção deve usar uma nova migration. É proibido renomear, reescrever ou reaplicar silenciosamente qualquer migration já registrada.
+- A correção funcional de schema, quando necessária, deve usar migrations novas. É proibido renomear, reescrever ou reaplicar silenciosamente qualquer migration já registrada. Conforme o escopo aprovado de `BNT-PARITY-13`, não foi criada migration artificial para igualar históricos: o delta real permanece bloqueador de release.
+
+**Reconciliação atualizada:** [BNT-PARITY-13 — Reconciliação do histórico](VORTEK_BNT_PARITY_13_RECONCILIACAO_MIGRATIONS.md), com 109 registros DEV e 87 produtivos reconfirmados em leitura. A análise identificou ainda diferenças de conteúdo em `00001`/`00008`, registros com notas no lugar de SQL e duas versões de julho ausentes no registro produtivo apesar de efeitos estruturais presentes. As 91 linhas de revisão estão classificadas na evidência sanitizada. Nenhum registro, schema ou arquivo histórico foi modificado. `DELTA_PROMOCAO` exige migrations novas ordenadas pelas dependências e ensaio antes de release.
 
 ---
 
@@ -215,7 +219,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `SEC-06` | commit `ce96e0d` | servidor usa URL interna; cookie mantém host público canônico | URL pública define identidade do cookie | Supabase SSR/proxy | implementação equivalente em `supabase-url.ts`/proxy | `EQUIVALENTE` | testes de URL/cookie |
 | `SEC-07` | fixtures BNT-D01 | `snapshot_source` de homologação → operações externas e mutações bloqueadas | marcador de fixture vence ação solicitada | pedidos/fiscal/jobs/UI | exclusiva DEV | `SUBSTITUÍDA` | manter até remoção BNT-D24 |
 | `SEC-08` | API mobile | JWT + cargo + permissão por operação → permitir/negar | backend é fonte; app não duplica regra | mobile | centralizado | `EQUIVALENTE` | typecheck mobile quando afetado |
-| `DB-01` | históricos de migration | versão registrada identifica conteúdo imutável | registro real de cada ambiente vence nome presumido | promoção/schema | colisão `20260830143000` impede replay ingênuo | `INCORPORAR` | ação `BNT-PARITY-13`, somente reconciliação e migration nova quando necessária |
+| `DB-01` | históricos de migration | versão registrada identifica conteúdo imutável | registro real de cada ambiente vence nome presumido | promoção/schema | colisão `20260830143000` mapeada; replay continua bloqueado | `INCORPORAR` | `BNT-PARITY-13` concluída no mapa/comparador; `DELTA_PROMOCAO` novo e ensaiado obrigatório antes de release |
 | `DB-02` | `types/database.ts` | schema aplicado → tipos gerados | schema/migration vence arquivo gerado | TypeScript | tipos DEV são mais novos, mas não incluem regras produtivas ainda ausentes | `NÃO COPIAR` | regenerar apenas após migrations de paridade |
 
 ---
@@ -267,7 +271,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | 10 | `BNT-PARITY-10 — Deduplicação do alerta de nova venda` **(concluída)** | `NTF-03` | P1 | WhatsApp e Push apenas em `inserted + paid` |
 | 11 | `BNT-PARITY-11 — Idempotência de etiqueta por destinatário` **(concluída)** | `NTF-04` | P1 | retry não reenvia destinatário já confirmado |
 | 12 | `BNT-PARITY-12 — Contrato do webhook Easypanel` **(concluída)** | `OPS-01` | P1 | POST JSON `{}` validado por teste sem deploy |
-| 13 | `BNT-PARITY-13 — Reconciliação do histórico de migrations` | `DB-01` | P0 release | mapa formal e migrations novas; nenhum histórico reescrito |
+| 13 | `BNT-PARITY-13 — Reconciliação do histórico de migrations` **(reconciliação concluída)** | `DB-01` | P0 release | mapa/comparador validados; nenhum histórico reescrito; delta de promoção permanece pendente |
 | — | `BNT-PARITY-DEC-01 — Destinatário adicional Evolusom` | `NTF-05` | decisão | responsável confirma se o contato adicional continua vigente |
 
 As ações acima não autorizam agrupar várias correções num único commit. Quando uma ação exigir banco, o preflight deve confirmar o destino exato `192.168.1.162`, ensaiar com `ROLLBACK` e nunca escrever em `.160`.

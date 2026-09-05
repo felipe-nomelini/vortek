@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-13 — Reconciliação do histórico de migrations`
+**Próxima ação obrigatória:** resolver `BNT-PARITY-DEC-01 — Destinatário adicional Evolusom`; depois tratar os deltas pendentes antes de `BNT-PARITY-GATE`. `BNT-CFG-07` permanece bloqueada.
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-12` concluídas; aplicação bloqueante | Executar `BNT-PARITY-13` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-13` concluídas no escopo aprovado; gate pendente | Resolver decisão Evolusom e deltas pendentes; delta de migrations bloqueia release |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -202,6 +202,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-12` antes de validar `BNT-PARITY-11` em homologação.
 - [x] Executar somente `BNT-PARITY-12 — Contrato do webhook Easypanel`, com teste HTTP local e sem deploy real.
 - [x] Não avançar para `BNT-PARITY-13` antes de validar o contrato e as proteções do script.
+- [x] Executar `BNT-PARITY-13`: mapa de históricos, comparador e evidência somente leitura, sem migration artificial.
+- [ ] Preparar e ensaiar `DELTA_PROMOCAO` de migrations novas antes do release; preservar históricos distintos e dependências da colisão de estoque.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2926,6 +2928,27 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Rollback:** reverter o commit desta ação em `dev`; não há alteração remota ou migration a desfazer.
 
 **Próxima ação:** `BNT-PARITY-13 — Reconciliação do histórico de migrations`.
+
+#### `BNT-PARITY-13 — Reconciliação do histórico de migrations`
+
+**Situação:** concluída em `2026-09-05` no escopo aprovado de reconciliação documental e comparador; **delta de promoção ainda não preparado nem homologado**.
+
+- [x] capturar registros e metadados em `.160` e `.162` exclusivamente em transações somente leitura;
+- [x] confirmar 109 arquivos/registros DEV, 89 arquivos main e 87 registros produtivos;
+- [x] mapear colisão `20260830143000`, diferenças `00001`/`00008`, nomes nulos, versões ausentes e conteúdo histórico incompleto;
+- [x] adicionar hashes de arquivos, contagem/fingerprint dos registros, bloqueio de versões duplicadas e distinção entre conteúdo diferente/indisponível;
+- [x] classificar as 91 linhas que exigem revisão, preservando limites de evidência e sem declarar equivalência de SQL por nome/versão;
+- [x] executar 21 testes direcionados, `npm run validate` e `git diff --check`;
+- [x] confirmar registros e metadados de schema inspecionados inalterados antes/depois nos dois bancos;
+- [x] preservar migrations históricas e `AGENTS.md`; nenhum merge, push, deploy, geração de tipos ou escrita nos bancos.
+
+**Documento canônico:** [Reconciliação BNT-PARITY-13](VORTEK_BNT_PARITY_13_RECONCILIACAO_MIGRATIONS.md). Evidência completa em `reports/bnt-parity-13/reconciliation-2026-09-05.json`.
+
+**Pendência bloqueadora de release — `DELTA_PROMOCAO`:** preparar migrations novas e ensaiadas contra a fotografia produtiva vigente, estabelecendo reserva/despacho/estorno antes dos consumidores do estoque próprio e preservando dados históricos de compra. Não executar replay do diretório nem `migration repair` para ocultar diferenças. Uma migration ao final não resolve dependências que já faltam antes dela.
+
+**Build/deploy:** N/A: sem alteração da aplicação. **Rollback:** reverter somente o commit desta ação em `dev`; nada a desfazer nos bancos.
+
+**Próxima ação:** resolver `BNT-PARITY-DEC-01`. Permanecem pendentes os deltas de pricing, `BNT-PARITY-GATE` e `BNT-PARITY-FINAL`; não iniciar `BNT-CFG-07` automaticamente.
 
 #### Classificação obrigatória
 

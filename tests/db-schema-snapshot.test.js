@@ -9,6 +9,8 @@ const {
   buildSummary,
   captureSnapshot,
   migrationComparison,
+  migrationContentComparison,
+  repositoryMigrations,
   structuralFingerprint,
 } = require('../scripts/capture-db-03-snapshot');
 
@@ -102,6 +104,146 @@ test('fingerprint ignora horário da coleta e permanece determinístico', () => 
     captured_at: '2026-08-30T11:00:00.000Z',
   };
   assert.equal(structuralFingerprint(first), structuralFingerprint(second));
+});
+
+test('paridade de versões e nomes não afirma equivalência de conteúdo', () => {
+  const comparison = migrationComparison([{ version: '1', name: 'same', file_sha256: 'a' }], [
+    { version: '1', name: 'same', statements_md5: 'b', statement_count: 1 },
+  ]);
+  assert.equal(comparison.exact_match, true);
+  assert.equal(comparison.comparison_scope, 'version_and_name_only');
+  assert.equal(comparison.content_equivalence, 'not_established');
+});
+
+test('versões duplicadas bloqueiam comparação antes de serem sobrescritas no Map', () => {
+  const duplicate = [{ version: '1', name: 'a' }, { version: '1', name: 'b' }];
+  for (const [left, right] of [[duplicate, []], [[], duplicate]]) {
+    assert.throws(() => migrationComparison(left, right), /duplicada/);
+    assert.throws(() => migrationContentComparison(left, right, 'file_sha256'), /duplicada/);
+  }
+});
+
+test('conteúdo detecta colisão de versão mesmo com nome igual', () => {
+  const a = [{ version: '20260830143000', name: 'same', file_sha256: 'a' }];
+  const b = [{ version: '20260830143000', name: 'same', file_sha256: 'b' }];
+  const [result] = migrationContentComparison(a, b, 'file_sha256');
+  assert.equal(result.status, 'different');
+  assert.equal(result.requires_review, true);
+  b[0].name = 'another';
+  assert.equal(migrationContentComparison(a, b, 'file_sha256')[0].status, 'different');
+});
+
+test('conteúdo desconhecido não é igualdade, inclusive registros vazios ou sem nome', () => {
+  const a = [{ version: '1', name: 'a', statement_count: 1, statements_md5: 'hash' }];
+  for (const b of [
+    { version: '1', name: null },
+    { version: '1', name: 'a', statement_count: 0, statements_md5: 'hash' },
+    { version: '1', name: 'a', statement_count: 1, statements_md5: null },
+  ]) {
+    const [result] = migrationContentComparison(a, [b], 'statements_md5');
+    assert.equal(result.status, 'unavailable');
+    assert.equal(result.requires_review, true);
+  }
+  const [renamed] = migrationContentComparison(a, [{ ...a[0], name: null }], 'statements_md5');
+  assert.equal(renamed.status, 'matching');
+  assert.equal(renamed.requires_review, true);
+});
+
+test('hashes de representações diferentes não podem ser comparados', () => {
+  const left = [{ version: '1', name: 'a', file_sha256: 'same' }];
+  const right = [{ version: '1', name: 'a', statements_md5: 'same', statement_count: 1 }];
+  for (const field of ['file_sha256', 'statements_md5']) {
+    assert.equal(migrationContentComparison(left, right, field)[0].status, 'unavailable');
+  }
+  assert.throws(() => migrationContentComparison(left, right, 'hash'), /inválida/);
+});
+
+test('comparação de conteúdo ordena versões e identifica exclusivas sem mutar entradas', () => {
+  const a = [{ version: '3', name: 'third', file_sha256: 'c' }, { version: '1', name: 'first', file_sha256: 'a' }];
+  const b = [{ version: '2', name: 'second', file_sha256: 'b' }, { ...a[1] }];
+  const result = migrationContentComparison(a, b, 'file_sha256');
+  assert.deepEqual(result.map((row) => row.status), ['matching', 'right_only', 'left_only']);
+  assert.equal(result[0].requires_review, false);
+  assert.equal(a[0].version, '3');
+  assert.deepEqual(result, migrationContentComparison([...a].reverse(), [...b].reverse(), 'file_sha256'));
+});
+
+test('inventário calcula SHA-256 dos bytes sem publicar SQL', () => {
+  const crypto = require('node:crypto');
+  const inventory = repositoryMigrations(path.resolve(__dirname, '..'));
+  assert.ok(inventory.length > 0);
+  for (const entry of inventory) {
+    const bytes = fs.readFileSync(path.resolve(__dirname, '../supabase/migrations', entry.file));
+    assert.equal(entry.file_sha256, crypto.createHash('sha256').update(bytes).digest('hex'));
+    assert.deepEqual(Object.keys(entry).sort(), ['file', 'file_sha256', 'name', 'version']);
+  }
+  assertSafeOutput(inventory);
+});
+
+test('registro exporta somente contagem e fingerprint, nunca comandos ou rollback', () => {
+  assert.match(SNAPSHOT_QUERIES.migration_registry.sql, /cardinality\(statements\)/);
+  assert.match(SNAPSHOT_QUERIES.migration_registry.sql, /then md5\(statements::text\) end/);
+  for (const key of ['statements', 'rollback', 'raw_sql']) {
+    assert.throws(() => assertSafeOutput({ nested: [{ [key]: 'sensitive SQL' }] }), /Campo sensível/);
+  }
+});
+
+test('evidência PARITY-13 reproduz comparações e classifica toda revisão sem liberar release', () => {
+  const evidence = JSON.parse(fs.readFileSync(path.resolve(
+    __dirname, '../reports/bnt-parity-13/reconciliation-2026-09-05.json',
+  ), 'utf8'));
+  assertSafeOutput(evidence);
+  assert.equal(evidence.reconciliation_status, 'mapped_not_release_ready');
+  assert.ok(evidence.release_blockers.length > 0);
+  assert.equal(evidence.development.host, '192.168.1.162');
+  assert.equal(evidence.production.host, '192.168.1.160');
+  const pairs = {
+    dev_files_main_files: migrationContentComparison(evidence.development.files, evidence.production.files, 'file_sha256'),
+    dev_registry_production_registry: migrationContentComparison(evidence.development.registry, evidence.production.registry, 'statements_md5'),
+  };
+  assert.deepEqual(evidence.comparisons.dev_files_registry,
+    migrationComparison(evidence.development.files, evidence.development.registry));
+  assert.deepEqual(evidence.comparisons.main_files_registry,
+    migrationComparison(evidence.production.files, evidence.production.registry));
+  const reviews = new Set();
+  for (const [comparison, rows] of Object.entries(pairs)) {
+    assert.deepEqual(evidence.comparisons[comparison], rows);
+    for (const row of rows.filter((item) => item.requires_review)) {
+      const matches = evidence.reviews.filter((item) => item.comparison === comparison && item.version === row.version);
+      assert.equal(matches.length, 1, `revisão ausente/duplicada: ${comparison}:${row.version}`);
+      const treatment = evidence.treatments[matches[0].treatment];
+      assert.ok(treatment?.classification && treatment?.scope && treatment?.evidence && treatment?.action);
+      reviews.add(`${comparison}:${row.version}`);
+    }
+  }
+  assert.equal(evidence.reviews.length, reviews.size);
+  for (const environment of ['development', 'production']) {
+    assert.equal(evidence[environment].read_only, 'on');
+    assert.equal(evidence.verification[environment].read_only, 'on');
+    assert.equal(evidence.verification[environment].registry_unchanged, true);
+    assert.equal(evidence.verification[environment].catalog_unchanged, true);
+    assert.equal(evidence.verification[environment].catalog_md5_after, evidence[environment].catalog_md5);
+  }
+  // New migrations are allowed; applied historical files may not be rewritten.
+  const current = new Map(repositoryMigrations(path.resolve(__dirname, '..')).map((item) => [item.version, item]));
+  for (const previous of evidence.development.files) {
+    assert.deepEqual(current.get(previous.version), previous, `migration histórica alterada: ${previous.version}`);
+  }
+});
+
+test('falha de coleta encerra transação somente leitura com rollback', async () => {
+  const queries = [];
+  const client = { query: async (sql) => {
+    queries.push(sql);
+    if (sql === SNAPSHOT_QUERIES.migration_registry.sql) throw new Error('simulated');
+    return { rows: [] };
+  } };
+  await assert.rejects(() => captureSnapshot({
+    client, label: 'test', rootDirectory: process.cwd(), schemas: ['public'], exposedSchemas: ['public'],
+  }), /simulated/);
+  assert.equal(queries[0], 'begin read only');
+  assert.equal(queries.at(-1), 'rollback');
+  assert.ok(!queries.includes('commit'));
 });
 
 test('resumo evidencia RLS, constraints e índices inválidos', () => {

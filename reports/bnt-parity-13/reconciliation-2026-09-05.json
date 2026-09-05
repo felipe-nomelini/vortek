@@ -1,0 +1,4932 @@
+{
+  "format_version": 1,
+  "action": "BNT-PARITY-13",
+  "dev_git_sha": "db0c24a495ecf82026d40002dcdb655af0f8c647",
+  "main_git_sha": "b6e1b17eba58f0ec80a3d16357ac7ab2409f56de",
+  "production": {
+    "host": "192.168.1.160",
+    "effects": {
+      "columns": [
+        "clientes.created_at",
+        "clientes.documento",
+        "clientes.email",
+        "clientes.endereco",
+        "clientes.id",
+        "clientes.ml_id",
+        "clientes.ml_nickname",
+        "clientes.nickname",
+        "clientes.nome",
+        "clientes.telefone",
+        "clientes.tipo_pessoa",
+        "clientes.total_vendas",
+        "clientes.updated_at",
+        "estoque_interno_movimentacoes.custo_unitario",
+        "estoque_interno_movimentacoes.estornada_em",
+        "estoque_interno_movimentacoes.estorno_motivo",
+        "estoque_interno_movimentacoes.origem_entrada",
+        "pedidos.ml_bundle_parent_item_id",
+        "pedidos.ml_bundle_primary",
+        "pedidos.ml_bundle_type",
+        "pedidos.ml_claim_id",
+        "pedidos.ml_claim_status",
+        "pedidos.ml_shipment_id"
+      ],
+      "routines": [
+        {
+          "body_md5": "d0e8f0431fa3fb14530dc27df5a58544",
+          "signature": "select_order_fulfillment(p_pedido_id uuid, p_source text)"
+        }
+      ],
+      "order_enum": [
+        "aberto",
+        "atendido",
+        "cancelado",
+        "faturado",
+        "entregue",
+        "pendente",
+        "preparando",
+        "etiqueta_impressa",
+        "coletado",
+        "em_transito",
+        "saiu_entrega",
+        "dest_ausente",
+        "recusado",
+        "devolvido",
+        "pronto_envio",
+        "concretizada_ml"
+      ],
+      "stock_indexes": [
+        "estoque_interno_movimentacoes_pedido_id_produto_id_tipo_key",
+        "estoque_interno_movimentacoes_pkey",
+        "idx_estoque_interno_produto",
+        "idx_estoque_interno_revisao",
+        "idx_estoque_interno_saidas_ativas"
+      ],
+      "integration_enum": [
+        "mercadolivre",
+        "bling",
+        "dslite",
+        "brasilnfe",
+        "mercadopago"
+      ],
+      "label_source_columns": [
+        "pedidos.dslite_label_source",
+        "pedidos_operacionais.dslite_label_source"
+      ],
+      "integration_unique_index": true
+    },
+    "version": "15.8",
+    "registry": [
+      {
+        "name": "schema",
+        "version": "00001",
+        "statements_md5": "e0dce29a2121fdb2c4698039ee459d4d",
+        "statement_count": 36
+      },
+      {
+        "name": "nfe_dslite",
+        "version": "00002",
+        "statements_md5": "eec49553a11e4b51c4bd5f07815d3c8c",
+        "statement_count": 11
+      },
+      {
+        "name": "remove_bling",
+        "version": "00003",
+        "statements_md5": "e113d56f5c62b9b361353318568bc284",
+        "statement_count": 8
+      },
+      {
+        "name": "fornecedor",
+        "version": "00004",
+        "statements_md5": "85b1b54c61caa5b554758f0f60506a27",
+        "statement_count": 1
+      },
+      {
+        "name": "ncm",
+        "version": "00005",
+        "statements_md5": "0f8956b0d1d797264d076797a204ef9c",
+        "statement_count": 1
+      },
+      {
+        "name": "skus",
+        "version": "00006",
+        "statements_md5": "dd661ad4a9a76d6824acc58550e02b77",
+        "statement_count": 4
+      },
+      {
+        "name": "fiscal",
+        "version": "00007",
+        "statements_md5": "ba52fbf7bdca87961e4745c4c1eb6079",
+        "statement_count": 4
+      },
+      {
+        "name": "add_ml_buyer_id",
+        "version": "00008",
+        "statements_md5": "e28c8a745cb346f75a939633d889c94b",
+        "statement_count": 2
+      },
+      {
+        "name": "tracking_status",
+        "version": "00009",
+        "statements_md5": "17f99a2d25c4634bb897895a9921a39f",
+        "statement_count": 11
+      },
+      {
+        "name": "devolvido",
+        "version": "00010",
+        "statements_md5": "8c446d90fe276bf679b818d0a0271928",
+        "statement_count": 1
+      },
+      {
+        "name": "ciclo_venda",
+        "version": "00011",
+        "statements_md5": "bc09525e696362bc3dca15e799696451",
+        "statement_count": 1
+      },
+      {
+        "name": "compras_dslite",
+        "version": "00012",
+        "statements_md5": "e06431d18cc0bf519d52fe6d63ebda74",
+        "statement_count": 6
+      },
+      {
+        "name": "ml_refresh_hardening",
+        "version": "00013",
+        "statements_md5": "13f0317cb0f241e71ec9bbb8b2733746",
+        "statement_count": 7
+      },
+      {
+        "name": "ml_shipping_warning",
+        "version": "00014",
+        "statements_md5": "3fedfd5e67fa67ba14da0ee0ff718bf7",
+        "statement_count": 1
+      },
+      {
+        "name": "fornecedores_dslite",
+        "version": "00015",
+        "statements_md5": "eea37022288d8f10ca9508756b2bd1e5",
+        "statement_count": 2
+      },
+      {
+        "name": "pedido_status_pronto_envio",
+        "version": "00016",
+        "statements_md5": "b28ca36cb26b841b651fd4fd90d748e5",
+        "statement_count": 1
+      },
+      {
+        "name": "produtos_sku_case_insensitive",
+        "version": "00017",
+        "statements_md5": "e9b927227b24e55d720ee0d504555459",
+        "statement_count": 8
+      },
+      {
+        "name": "cron_dispatch_schedule",
+        "version": "00018",
+        "statements_md5": "0009164a6f8757dfead679c4d47329e1",
+        "statement_count": 10
+      },
+      {
+        "name": "ml_sync_cooldown",
+        "version": "00019",
+        "statements_md5": "8027af12ec31a78c7c23802d8ccb5367",
+        "statement_count": 2
+      },
+      {
+        "name": "produtos_dslite_identity_unique",
+        "version": "00020",
+        "statements_md5": "c37be63f0ce1d617f54b10f8936b4e97",
+        "statement_count": 1
+      },
+      {
+        "name": "ml_manual_blocklist",
+        "version": "00021",
+        "statements_md5": "0c97e8c58ac400266ac432579e2ae91b",
+        "statement_count": 8
+      },
+      {
+        "name": "ml_pack_and_nf_audit",
+        "version": "00022",
+        "statements_md5": "33fdded79d1fa2292c52c03ded9829a1",
+        "statement_count": 7
+      },
+      {
+        "name": "fiscal_provider_router",
+        "version": "20260525144254",
+        "statements_md5": "fd11d13e40ac4235c8a639f5f642417e",
+        "statement_count": 7
+      },
+      {
+        "name": "pedidos_snapshot_fiscal_v2",
+        "version": "20260525150821",
+        "statements_md5": "9590ffd4f4598964e0ff20248b5b9fba",
+        "statement_count": 12
+      },
+      {
+        "name": "municipios_ibge",
+        "version": "20260525190000",
+        "statements_md5": "89b040b0198fe8ae869213e78400d55c",
+        "statement_count": 6
+      },
+      {
+        "name": "empresa_fiscal_fields",
+        "version": "20260525211000",
+        "statements_md5": "c1150b6a1b89f0cb6edcd99825869b98",
+        "statement_count": 4
+      },
+      {
+        "name": "disable_ml_fiscal_emission",
+        "version": "20260526110000",
+        "statements_md5": "5d49651421d21f648875c0b5945fddaf",
+        "statement_count": 2
+      },
+      {
+        "name": "catalogo_ml_snapshot",
+        "version": "20260526213000",
+        "statements_md5": "b4890e50612c000d3706eebeddae2d3d",
+        "statement_count": 11
+      },
+      {
+        "name": "pedidos_ml_fiscal_release_window",
+        "version": "20260528110000",
+        "statements_md5": "4f3c078af266fb638068f307726f1532",
+        "statement_count": 2
+      },
+      {
+        "name": "sync_domain_locks_and_ml_publish_outbox",
+        "version": "20260528123000",
+        "statements_md5": "4f7ec54a400e6ed7938090ecf7f6013a",
+        "statement_count": 14
+      },
+      {
+        "name": "update_cron_dispatch_frequency",
+        "version": "20260528123500",
+        "statements_md5": "58c68e431889b585dc49e9fc7d4742a0",
+        "statement_count": 2
+      },
+      {
+        "name": "catalogo_snapshot_catalog_listing_flag",
+        "version": "20260529194000",
+        "statements_md5": "f7b6eff418f85cbcf96f2cb8c17b7e19",
+        "statement_count": 2
+      },
+      {
+        "name": "pedidos_search_rpc",
+        "version": "20260601113000",
+        "statements_md5": "38addab77c229b679f5144508a6c8d5c",
+        "statement_count": 6
+      },
+      {
+        "name": "pedidos_search_sort_rpc",
+        "version": "20260602112000",
+        "statements_md5": "e74a77adb9905dcb5b4135e816baa198",
+        "statement_count": 4
+      },
+      {
+        "name": "pedidos_data_venda",
+        "version": "20260605182000",
+        "statements_md5": "abae8dbe190543b2aa6e9fbf01302e59",
+        "statement_count": 9
+      },
+      {
+        "name": "multi_supplier_product_offers",
+        "version": "20260608123000",
+        "statements_md5": "daa620d287a4dd27dffa7340d38c372c",
+        "statement_count": 10
+      },
+      {
+        "name": "product_offer_listing_details",
+        "version": "20260608193000",
+        "statements_md5": "a08a8d6243dc30bafd9e5be44cbaf274",
+        "statement_count": 7
+      },
+      {
+        "name": "product_master_gtin_central",
+        "version": "20260608212158",
+        "statements_md5": "e5758550d7251ef1851cdd2729b92cb5",
+        "statement_count": 13
+      },
+      {
+        "name": "product_master_vtk_sku",
+        "version": "20260609193758",
+        "statements_md5": "8916591a661b8edaeea73335dfc63969",
+        "statement_count": 10
+      },
+      {
+        "name": "supplier_payment_modes_balance",
+        "version": "20260609195820",
+        "statements_md5": "bc6d09973fac99183ae412499dc245de",
+        "statement_count": 13
+      },
+      {
+        "name": "mercadopago_account_money",
+        "version": "20260609202911",
+        "statements_md5": "576dc6e1b355e5d0479097c32a496707",
+        "statement_count": 6
+      },
+      {
+        "name": "mercadopago_integration_seed",
+        "version": "20260609203217",
+        "statements_md5": "31420089cf6b6880f112da44e1e5c591",
+        "statement_count": 1
+      },
+      {
+        "name": "harden_public_table_access",
+        "version": "20260610001532",
+        "statements_md5": "d119ad6b6fec9e256e859c3b48288765",
+        "statement_count": 22
+      },
+      {
+        "name": "produtos_ativo_operacional",
+        "version": "20260610174031",
+        "statements_md5": "5055b14bc2b83c630949b8a87e351e5c",
+        "statement_count": 2
+      },
+      {
+        "name": "produtos_search_rpc",
+        "version": "20260611150456",
+        "statements_md5": "498b49fb5df3c7698be6cd7815b9988f",
+        "statement_count": 13
+      },
+      {
+        "name": "produtos_search_rpc_optimize_page",
+        "version": "20260611151210",
+        "statements_md5": "4accc33d5724bf33714ab98358713595",
+        "statement_count": 1
+      },
+      {
+        "name": "shipping_labels_storage",
+        "version": "20260618185121",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "short_links",
+        "version": "20260618212911",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "whatsapp_alerts",
+        "version": "20260619153640",
+        "statements_md5": "5e6cb5dbdff2a0a765f4f90dc874b72d",
+        "statement_count": 4
+      },
+      {
+        "name": "supplier_payment_receipts",
+        "version": "20260619192918",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "fornecedores_supplier_pix_key",
+        "version": "20260620001000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "ops_whatsapp_audit",
+        "version": "20260622093000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "clientes_ml_id_unique",
+        "version": "20260707010000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": null,
+        "version": "20260709120000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": null,
+        "version": "20260709121500",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "web_push_notifications",
+        "version": "20260711161100",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "kit_inventory",
+        "version": "20260714193934",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "sync_vtk_sku_sequence",
+        "version": "20260714194430",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "pedidos_envio_interno",
+        "version": "20260716110000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "estoque_interno",
+        "version": "20260720010000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "estoque_devolucao_fluxo",
+        "version": "20260720155308",
+        "statements_md5": "363c0795e97d311afe6c668d9454c048",
+        "statement_count": 5
+      },
+      {
+        "name": "realtime_ml_publish_dispatch",
+        "version": "20260722222928",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "internal_shipping_thermal_labels",
+        "version": "20260723174252",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "expand_pedidos_search_product_supplier",
+        "version": "20260727201827",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "consolidate_cart_orders",
+        "version": "20260731002740",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "add_manual_preferred_supplier",
+        "version": "20260801223553",
+        "statements_md5": "d4c9f482baae017a3e9e95ba2295b90b",
+        "statement_count": 2
+      },
+      {
+        "name": "durable_ml_order_hydration_queue",
+        "version": "20260801232600",
+        "statements_md5": "686fc85c3c3efcb1f08edcf1653fb213",
+        "statement_count": 3
+      },
+      {
+        "name": "remove_invalid_internal_stock_air_fryer",
+        "version": "20260802000117",
+        "statements_md5": "67ac5124836d4682b650aa984b46ae23",
+        "statement_count": 1
+      },
+      {
+        "name": "resume_on_hold_ml_publish",
+        "version": "20260803231103",
+        "statements_md5": "0d75b090eb3b283d5d92f48b897ed50a",
+        "statement_count": 1
+      },
+      {
+        "name": "durable_catalog_price_refresh",
+        "version": "20260804001421",
+        "statements_md5": "fa474e6e5eb774c5149810c45cfc85d0",
+        "statement_count": 1
+      },
+      {
+        "name": "restore_internal_stock_air_fryer_return",
+        "version": "20260804164839",
+        "statements_md5": "d640a4a0d7a948ab61e758e97a4a40a2",
+        "statement_count": 1
+      },
+      {
+        "name": "fix_internal_stock_product_projection",
+        "version": "20260804192052",
+        "statements_md5": "6b01cb281fc15a13e10e76760afa40bb",
+        "statement_count": 1
+      },
+      {
+        "name": "supplier_credits_control",
+        "version": "20260804202357",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "catalog_manual_review_queue",
+        "version": "20260805014500",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "remove_catalog_manual_review_queue",
+        "version": "20260805141602",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "retire_hyx84825_temporary_ml_block",
+        "version": "20260805200000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "retire_hyx84825_manual_ml_block",
+        "version": "20260805200500",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "add_internal_supplier_product_filters",
+        "version": "20260812153000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "add_order_fulfillment_selection",
+        "version": "20260812160000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "remove_evolusom_es_catalog",
+        "version": "20260813182247",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "ml_p0_audit",
+        "version": "20260815221030",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "ml_p0_sanitize",
+        "version": "20260815225216",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "ml_p0_phase3",
+        "version": "20260816005942",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "optimize_jobs_operational_queries",
+        "version": "20260827230000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "internal_purchase_stock_origin",
+        "version": "20260830143000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "reactivate_products_with_eligible_active_supplier",
+        "version": "20260903183000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "add_concretizada_ml_order_status",
+        "version": "20260904041000",
+        "statements_md5": "d9e329f64086276cd621d84ce6ecb25c",
+        "statement_count": 1
+      }
+    ],
+    "read_only": "on",
+    "captured_at": "2026-09-05T15:00:49.687679+00:00",
+    "catalog_md5": "70a0318b3f1cd1b7fc5eece5f71e9abc",
+    "files": [
+      {
+        "version": "00001",
+        "name": "schema",
+        "file": "00001_schema.sql",
+        "file_sha256": "9e44f155625177ac9e56a10db73989d6cc709043f67c9584bc2e7427482df620"
+      },
+      {
+        "version": "00002",
+        "name": "nfe_dslite",
+        "file": "00002_nfe_dslite.sql",
+        "file_sha256": "ec66cc13bc3e9e4c7c80fcd7eeed071c08cc86a21b33faa86b60a08698ee6c59"
+      },
+      {
+        "version": "00003",
+        "name": "remove_bling",
+        "file": "00003_remove_bling.sql",
+        "file_sha256": "8cfaad82a05d258c27033050d4fb503c29a2f22ae207911bdece3b1f0d74c482"
+      },
+      {
+        "version": "00004",
+        "name": "fornecedor",
+        "file": "00004_fornecedor.sql",
+        "file_sha256": "73b68ccb99f57f420abdf1038b4ac164c6a0e3531db8b775a8c60fa40f12a1e7"
+      },
+      {
+        "version": "00005",
+        "name": "ncm",
+        "file": "00005_ncm.sql",
+        "file_sha256": "00daf3265368d5297ab1abc022cce96e81b6024d839cbc71058edecda76e821f"
+      },
+      {
+        "version": "00006",
+        "name": "skus",
+        "file": "00006_skus.sql",
+        "file_sha256": "a27eef423856730fc13eff40272b7a1cfecd01431c6f976a8fedee16036563e5"
+      },
+      {
+        "version": "00007",
+        "name": "fiscal",
+        "file": "00007_fiscal.sql",
+        "file_sha256": "9a91c376d066bac9d4ceb98e308df0153532662838d743900937f9556ba66091"
+      },
+      {
+        "version": "00008",
+        "name": "tracking_status",
+        "file": "00008_tracking_status.sql",
+        "file_sha256": "0ae4211cc13a8cb0b516d02b3b7f2e55cee6065e3008ad517b7455da1b51c693"
+      },
+      {
+        "version": "00009",
+        "name": "tracking_status",
+        "file": "00009_tracking_status.sql",
+        "file_sha256": "99c729f3b18e7e74e85f09df86e0f8cb90faeb119d7d70f02b172e9155700d4e"
+      },
+      {
+        "version": "00010",
+        "name": "devolvido",
+        "file": "00010_devolvido.sql",
+        "file_sha256": "e538c84a551b2b8249d39ad5a8e73dd0f62c6fd0f93a41485c4a49b7f2b0a25e"
+      },
+      {
+        "version": "00011",
+        "name": "ciclo_venda",
+        "file": "00011_ciclo_venda.sql",
+        "file_sha256": "9c4e846f3a39a513ed39a91efa42be6ebcb057faf66e43a70afb0eedb2f60161"
+      },
+      {
+        "version": "00012",
+        "name": "compras_dslite",
+        "file": "00012_compras_dslite.sql",
+        "file_sha256": "32c74d0f691fcde3866f32d9e7ad81135e0076d6304f2e8eb9f0aee2e669f2b3"
+      },
+      {
+        "version": "00013",
+        "name": "ml_refresh_hardening",
+        "file": "00013_ml_refresh_hardening.sql",
+        "file_sha256": "7c10bd0f66d87e88c3c65721ab8e107baf2d8127b2b56ef239cfa0756708150b"
+      },
+      {
+        "version": "00014",
+        "name": "ml_shipping_warning",
+        "file": "00014_ml_shipping_warning.sql",
+        "file_sha256": "ab1a4cb8005b881d9e23661afdfa449e1e0c2dfc8388e11ba696b06028670f4c"
+      },
+      {
+        "version": "00015",
+        "name": "fornecedores_dslite",
+        "file": "00015_fornecedores_dslite.sql",
+        "file_sha256": "8124e54627cac5263860bf9b52e6db36fd0396f8e2aa711a25d590df1a7d45d4"
+      },
+      {
+        "version": "00016",
+        "name": "pedido_status_pronto_envio",
+        "file": "00016_pedido_status_pronto_envio.sql",
+        "file_sha256": "2a25e3dc0c7ab4e7a638f558e9ffed4cadbc0f3c8c32cc40ebcb20f8ffa2bb7f"
+      },
+      {
+        "version": "00017",
+        "name": "produtos_sku_case_insensitive",
+        "file": "00017_produtos_sku_case_insensitive.sql",
+        "file_sha256": "8102370f245db25982588bd2178c707b902698bf7bd072d95e6cc1784bade083"
+      },
+      {
+        "version": "00018",
+        "name": "cron_dispatch_schedule",
+        "file": "00018_cron_dispatch_schedule.sql",
+        "file_sha256": "9b33a266d9c44eac65d91915c181839acd28c1faa609222832e1e5cc09a97e88"
+      },
+      {
+        "version": "00019",
+        "name": "ml_sync_cooldown",
+        "file": "00019_ml_sync_cooldown.sql",
+        "file_sha256": "d7ec3edf70b65fc3bb4ce2629ae6ad9937280a97a23b85e346b09730e93f210e"
+      },
+      {
+        "version": "00020",
+        "name": "produtos_dslite_identity_unique",
+        "file": "00020_produtos_dslite_identity_unique.sql",
+        "file_sha256": "a60021cebca2fcd97e63e248bd07250dd1f06e52cc2a5d3591113815b8985eba"
+      },
+      {
+        "version": "00021",
+        "name": "ml_manual_blocklist",
+        "file": "00021_ml_manual_blocklist.sql",
+        "file_sha256": "40019f86b142ea405e6daecbf7a6f5d3877386182b0a890df2cbe479983caf17"
+      },
+      {
+        "version": "00022",
+        "name": "ml_pack_and_nf_audit",
+        "file": "00022_ml_pack_and_nf_audit.sql",
+        "file_sha256": "429bf09cc5e4fdc7210823b17990b3254b413b9ae058f4b48cbd67a7333103e5"
+      },
+      {
+        "version": "20260525144254",
+        "name": "fiscal_provider_router",
+        "file": "20260525144254_fiscal_provider_router.sql",
+        "file_sha256": "03f5476f8c074b0e8669bd228aef0f063cea0169b12f9f7f572cfd67c8f18987"
+      },
+      {
+        "version": "20260525150821",
+        "name": "pedidos_snapshot_fiscal_v2",
+        "file": "20260525150821_pedidos_snapshot_fiscal_v2.sql",
+        "file_sha256": "f6b740863ea14f49a09c42ba191b46f31a170e0e36b53f66cdd746073d8b4c22"
+      },
+      {
+        "version": "20260525190000",
+        "name": "municipios_ibge",
+        "file": "20260525190000_municipios_ibge.sql",
+        "file_sha256": "4d7db5894ea6aabb1196bcc13b36cda707234b4679ec1705427f30306b632678"
+      },
+      {
+        "version": "20260525211000",
+        "name": "empresa_fiscal_fields",
+        "file": "20260525211000_empresa_fiscal_fields.sql",
+        "file_sha256": "15cfd98d4b04d4001c52ddb4562a20ea4c9b987f67ee3cb3eef3e0bf42e16add"
+      },
+      {
+        "version": "20260526110000",
+        "name": "disable_ml_fiscal_emission",
+        "file": "20260526110000_disable_ml_fiscal_emission.sql",
+        "file_sha256": "62342a9688c39a6f418950e69aa817a4949a8981abf826638395709ccce027ce"
+      },
+      {
+        "version": "20260526213000",
+        "name": "catalogo_ml_snapshot",
+        "file": "20260526213000_catalogo_ml_snapshot.sql",
+        "file_sha256": "2a17a11951fd0205423342a8113df9d6a2a368edb3028d330a75bf941589dcb7"
+      },
+      {
+        "version": "20260528110000",
+        "name": "pedidos_ml_fiscal_release_window",
+        "file": "20260528110000_pedidos_ml_fiscal_release_window.sql",
+        "file_sha256": "c544ba50cd57608fce549d93c74227e05c55bd65a6c050b75a2f16acbc4070c3"
+      },
+      {
+        "version": "20260528123000",
+        "name": "sync_domain_locks_and_ml_publish_outbox",
+        "file": "20260528123000_sync_domain_locks_and_ml_publish_outbox.sql",
+        "file_sha256": "51ee148e5682ee8e693ca526ba4e608ca6539792dbbc2f99b48b06588686ba39"
+      },
+      {
+        "version": "20260528123500",
+        "name": "update_cron_dispatch_frequency",
+        "file": "20260528123500_update_cron_dispatch_frequency.sql",
+        "file_sha256": "09f8983ed51eb69024a03b98cbcc96e4f31834fa0c6139b8fd6249660906e922"
+      },
+      {
+        "version": "20260529194000",
+        "name": "catalogo_snapshot_catalog_listing_flag",
+        "file": "20260529194000_catalogo_snapshot_catalog_listing_flag.sql",
+        "file_sha256": "7e31f5b48d0613266a9f7f348c5e44f48ecf8613d940a7a67cf027c601d3cb89"
+      },
+      {
+        "version": "20260601113000",
+        "name": "pedidos_search_rpc",
+        "file": "20260601113000_pedidos_search_rpc.sql",
+        "file_sha256": "f59905a885528479c4ccd48a0743662c64a99b87d75658feff5e2edcfc67afed"
+      },
+      {
+        "version": "20260602112000",
+        "name": "pedidos_search_sort_rpc",
+        "file": "20260602112000_pedidos_search_sort_rpc.sql",
+        "file_sha256": "c0739c62ce6aaf44fffabbeb3294c7891b1f8cf47d3639f8edd25bfdf02e1355"
+      },
+      {
+        "version": "20260605182000",
+        "name": "pedidos_data_venda",
+        "file": "20260605182000_pedidos_data_venda.sql",
+        "file_sha256": "48bf8663a0c31ce4540e993d43fb35d72c90c6915fdab51e79c3233520983590"
+      },
+      {
+        "version": "20260608123000",
+        "name": "multi_supplier_product_offers",
+        "file": "20260608123000_multi_supplier_product_offers.sql",
+        "file_sha256": "118516f701b2a2af3d441955cf055b0602ae9ac5992b7e9d3471bc8ee5fd5b07"
+      },
+      {
+        "version": "20260608193000",
+        "name": "product_offer_listing_details",
+        "file": "20260608193000_product_offer_listing_details.sql",
+        "file_sha256": "1088213c9f9694566e51954f1801c604ecc9dad010bda016a8cf75969b70c3b7"
+      },
+      {
+        "version": "20260608212158",
+        "name": "product_master_gtin_central",
+        "file": "20260608212158_product_master_gtin_central.sql",
+        "file_sha256": "3ab6303876d790e626847d9dcd3489cfabbba962bac3704e88e6aea45146d7fe"
+      },
+      {
+        "version": "20260609193758",
+        "name": "product_master_vtk_sku",
+        "file": "20260609193758_product_master_vtk_sku.sql",
+        "file_sha256": "b4ab78c7e07155cd76a809485f908aaf577bd3cbc460b983a5c939ee10c2c38d"
+      },
+      {
+        "version": "20260609195820",
+        "name": "supplier_payment_modes_balance",
+        "file": "20260609195820_supplier_payment_modes_balance.sql",
+        "file_sha256": "7393d175c253dde08e65c776417f8de27eb118702d8e4494fed5a9cc350942a7"
+      },
+      {
+        "version": "20260609202911",
+        "name": "mercadopago_account_money",
+        "file": "20260609202911_mercadopago_account_money.sql",
+        "file_sha256": "8b788c8838cf91c25325691bdd1d5705b1db0cd4662484c9c870cac6d4396d79"
+      },
+      {
+        "version": "20260609203217",
+        "name": "mercadopago_integration_seed",
+        "file": "20260609203217_mercadopago_integration_seed.sql",
+        "file_sha256": "23394ca783203e0ddf664fcacccf516ce132bb4add7c9a29956232d102dca3d3"
+      },
+      {
+        "version": "20260610001532",
+        "name": "harden_public_table_access",
+        "file": "20260610001532_harden_public_table_access.sql",
+        "file_sha256": "3cb816b2390bf6fcae6f9ba76907911ac402178e7568174de949dbfbf1412197"
+      },
+      {
+        "version": "20260610174031",
+        "name": "produtos_ativo_operacional",
+        "file": "20260610174031_produtos_ativo_operacional.sql",
+        "file_sha256": "a808e2b5a5eb264213c5aeed2daa7f244035a1d986d8a9e0bbf1768bd980cfe5"
+      },
+      {
+        "version": "20260611150456",
+        "name": "produtos_search_rpc",
+        "file": "20260611150456_produtos_search_rpc.sql",
+        "file_sha256": "900d124686c1e60e617603ff62146f6de5d8917fa98b74f90d4f5bf72debc634"
+      },
+      {
+        "version": "20260611151210",
+        "name": "produtos_search_rpc_optimize_page",
+        "file": "20260611151210_produtos_search_rpc_optimize_page.sql",
+        "file_sha256": "52240330612ae1f794e728d3ace17e4266842d102b657902745b94dd33ca3e44"
+      },
+      {
+        "version": "20260618185121",
+        "name": "shipping_labels_storage",
+        "file": "20260618185121_shipping_labels_storage.sql",
+        "file_sha256": "c35e5637446b2b449dacadccfb3cfe92d4b0b4d1ba7816947089d4cfcdeb4c9e"
+      },
+      {
+        "version": "20260618212911",
+        "name": "short_links",
+        "file": "20260618212911_short_links.sql",
+        "file_sha256": "b5a40db395479240b35c4e87e7cace11e5db47f0b1484d63a0d9ef863f945d2b"
+      },
+      {
+        "version": "20260619153640",
+        "name": "whatsapp_alerts",
+        "file": "20260619153640_whatsapp_alerts.sql",
+        "file_sha256": "dd66a3afbe025b05e8f736fb3fda45dfb7f7ffa9c0f4c46b23e31ad18ad42aec"
+      },
+      {
+        "version": "20260619192918",
+        "name": "supplier_payment_receipts",
+        "file": "20260619192918_supplier_payment_receipts.sql",
+        "file_sha256": "934b61c1bcebc1c681ae8a1bc9a8b30b5ec0e55103612d60fc4f6315a3ffa311"
+      },
+      {
+        "version": "20260620001000",
+        "name": "fornecedores_supplier_pix_key",
+        "file": "20260620001000_fornecedores_supplier_pix_key.sql",
+        "file_sha256": "a1da1b0392c6e46c8bc7d11ed2ecf52f8491fe3ab723571a3738f933e22acbad"
+      },
+      {
+        "version": "20260622093000",
+        "name": "ops_whatsapp_audit",
+        "file": "20260622093000_ops_whatsapp_audit.sql",
+        "file_sha256": "398ebf8d04bd5f8ceec6875140ed46d260264ddcf10b6d9f73af36c87e1b5f90"
+      },
+      {
+        "version": "20260707010000",
+        "name": "clientes_ml_id_unique",
+        "file": "20260707010000_clientes_ml_id_unique.sql",
+        "file_sha256": "b00b2b7e6498f44f8c9a7a5de49ebf010148e6517380c04438e4b212b3a9a380"
+      },
+      {
+        "version": "20260709120000",
+        "name": "pedidos_dslite_label_source",
+        "file": "20260709120000_pedidos_dslite_label_source.sql",
+        "file_sha256": "bb0418694aa27c425397bb3d66f49afed906df900ac67f188eaeab402af549e9"
+      },
+      {
+        "version": "20260709121500",
+        "name": "backfill_pedidos_dslite_label_source",
+        "file": "20260709121500_backfill_pedidos_dslite_label_source.sql",
+        "file_sha256": "c17c791e44173359f754b2c2e2e775d9f2f582b09a747c7260959bf9b787347b"
+      },
+      {
+        "version": "20260711161100",
+        "name": "web_push_notifications",
+        "file": "20260711161100_web_push_notifications.sql",
+        "file_sha256": "d50ceb2627e5150fbbfd3b6c98cf5f196a33256f7e561581adf2bc77f4a57c5f"
+      },
+      {
+        "version": "20260714193934",
+        "name": "kit_inventory",
+        "file": "20260714193934_kit_inventory.sql",
+        "file_sha256": "b6c0f9df3a10dd5d660bf3050e4863a8fca04cc7e1b0b1829b7683b9832aafdd"
+      },
+      {
+        "version": "20260714194430",
+        "name": "sync_vtk_sku_sequence",
+        "file": "20260714194430_sync_vtk_sku_sequence.sql",
+        "file_sha256": "2cbdf18475c59762d89012aa25f0e4f749d858fb33ab13f28f9f1dbddddad7d9"
+      },
+      {
+        "version": "20260716110000",
+        "name": "pedidos_envio_interno",
+        "file": "20260716110000_pedidos_envio_interno.sql",
+        "file_sha256": "cbaa9dc96c64b9470f9a54e078cfd919050d8a6e209d0501cc4a9f903f2cbf27"
+      },
+      {
+        "version": "20260720010000",
+        "name": "estoque_interno",
+        "file": "20260720010000_estoque_interno.sql",
+        "file_sha256": "a779645a591e97107adb89bc6dd4bd32718b9cbecbdfc1d6ed91eabba3bac087"
+      },
+      {
+        "version": "20260720155308",
+        "name": "estoque_devolucao_fluxo",
+        "file": "20260720155308_estoque_devolucao_fluxo.sql",
+        "file_sha256": "7f1842423f377e8833b95110b94a60cc6c33c1d1653e650b7d070a7f4e43e3be"
+      },
+      {
+        "version": "20260722222928",
+        "name": "realtime_ml_publish_dispatch",
+        "file": "20260722222928_realtime_ml_publish_dispatch.sql",
+        "file_sha256": "10567cd5739e30631187d373ba116e484700ca5ef67f326cf1a72ef0b28c5a20"
+      },
+      {
+        "version": "20260723174252",
+        "name": "internal_shipping_thermal_labels",
+        "file": "20260723174252_internal_shipping_thermal_labels.sql",
+        "file_sha256": "8e7eeeec90c5a4f6e0d93a7f4593035543a78642a52b884c42eb2ef103799abe"
+      },
+      {
+        "version": "20260727201827",
+        "name": "expand_pedidos_search_product_supplier",
+        "file": "20260727201827_expand_pedidos_search_product_supplier.sql",
+        "file_sha256": "35ee1df47ba6ead434972dbbac889b31f3eca6b050232bf277f228e6da89f641"
+      },
+      {
+        "version": "20260729182648",
+        "name": "consolidate_virtual_kit_orders",
+        "file": "20260729182648_consolidate_virtual_kit_orders.sql",
+        "file_sha256": "6b03ab7b53d9db1c4ab45b66840432f8be11a5c14b0bd1a2a47884616b76fc84"
+      },
+      {
+        "version": "20260729213737",
+        "name": "estornar_saida_estoque_pedido_cancelado",
+        "file": "20260729213737_estornar_saida_estoque_pedido_cancelado.sql",
+        "file_sha256": "763efddfd5386847cb57a03f2d71be706f63a6148cfdd011a9f7e2d7c29d3595"
+      },
+      {
+        "version": "20260731002740",
+        "name": "consolidate_cart_orders",
+        "file": "20260731002740_consolidate_cart_orders.sql",
+        "file_sha256": "97907a9f2340ffec155b00da8aaaa9dff6bfbcc5887d7f7e728c84aac26aa544"
+      },
+      {
+        "version": "20260801223553",
+        "name": "add_manual_preferred_supplier",
+        "file": "20260801223553_add_manual_preferred_supplier.sql",
+        "file_sha256": "11b0b4ddd5c304b5b49f2555e96de0aa6c62b888f3126ddb611c96d4281242de"
+      },
+      {
+        "version": "20260801232600",
+        "name": "durable_ml_order_hydration_queue",
+        "file": "20260801232600_durable_ml_order_hydration_queue.sql",
+        "file_sha256": "64c1327a69fb67a68a5b646417dd6debf36bb14776176b416cd49889851d9e50"
+      },
+      {
+        "version": "20260802000117",
+        "name": "remove_invalid_internal_stock_air_fryer",
+        "file": "20260802000117_remove_invalid_internal_stock_air_fryer.sql",
+        "file_sha256": "e65181d972abfe119a332bd2655edfc95e54bb6bb47e72ebfb05e83c9c77772d"
+      },
+      {
+        "version": "20260803231103",
+        "name": "resume_on_hold_ml_publish",
+        "file": "20260803231103_resume_on_hold_ml_publish.sql",
+        "file_sha256": "925c6b728a6e44664c460be38323461461f2844ec0897927996e321c50bc1a28"
+      },
+      {
+        "version": "20260804001421",
+        "name": "durable_catalog_price_refresh",
+        "file": "20260804001421_durable_catalog_price_refresh.sql",
+        "file_sha256": "83ea99fd7820b966fb050fb062c64e6dd2e9b42487d5a455669b4d52990b8c19"
+      },
+      {
+        "version": "20260804164839",
+        "name": "restore_internal_stock_air_fryer_return",
+        "file": "20260804164839_restore_internal_stock_air_fryer_return.sql",
+        "file_sha256": "941aafea72565945209315d48b49bbade283dfcf0595bd5c7841d82d2e54e5a1"
+      },
+      {
+        "version": "20260804192052",
+        "name": "fix_internal_stock_product_projection",
+        "file": "20260804192052_fix_internal_stock_product_projection.sql",
+        "file_sha256": "f90fa7171f4fde49c0b46791d992f533116e9393c711e968b4e3c3e81f220b33"
+      },
+      {
+        "version": "20260804202357",
+        "name": "supplier_credits_control",
+        "file": "20260804202357_supplier_credits_control.sql",
+        "file_sha256": "5c5f51177369ab4fd2573ae720d52132920c11cb4fbc1dcbb7113e0fc1095271"
+      },
+      {
+        "version": "20260805014500",
+        "name": "catalog_manual_review_queue",
+        "file": "20260805014500_catalog_manual_review_queue.sql",
+        "file_sha256": "688bc0203abf48d598f454d3904e2c98c839579d4547fc04f997617f6e781bb7"
+      },
+      {
+        "version": "20260805141602",
+        "name": "remove_catalog_manual_review_queue",
+        "file": "20260805141602_remove_catalog_manual_review_queue.sql",
+        "file_sha256": "82a3fc5b9a32530587b93b9b233dde8c4c32997de65c78361cc8bd33444fa21a"
+      },
+      {
+        "version": "20260805200000",
+        "name": "retire_hyx84825_temporary_ml_block",
+        "file": "20260805200000_retire_hyx84825_temporary_ml_block.sql",
+        "file_sha256": "0332c7770a8a1a57b32ffb5f1b492afb0ff399650570e47f1799a36a9f85ff42"
+      },
+      {
+        "version": "20260805200500",
+        "name": "retire_hyx84825_manual_ml_block",
+        "file": "20260805200500_retire_hyx84825_manual_ml_block.sql",
+        "file_sha256": "b0b4bfbaba9639cd5f75bc2d539aa0bf899314b3d61a5de155ae39027cf33f66"
+      },
+      {
+        "version": "20260812153000",
+        "name": "add_internal_supplier_product_filters",
+        "file": "20260812153000_add_internal_supplier_product_filters.sql",
+        "file_sha256": "73d17a6dbbcfdaced83f1f54e02267ebd73cc2640bf78e6eab530243e3e5ef08"
+      },
+      {
+        "version": "20260812160000",
+        "name": "add_order_fulfillment_selection",
+        "file": "20260812160000_add_order_fulfillment_selection.sql",
+        "file_sha256": "17c937e4033cfe9992d9306d61e7e09015c7c1af51fc56717a1c116f0d42084f"
+      },
+      {
+        "version": "20260813182247",
+        "name": "remove_evolusom_es_catalog",
+        "file": "20260813182247_remove_evolusom_es_catalog.sql",
+        "file_sha256": "b41fd84c3afd699c0af8ff38e3ce4663a4fbce8eaf204960e470b7ed04d2efc6"
+      },
+      {
+        "version": "20260815221030",
+        "name": "ml_p0_audit",
+        "file": "20260815221030_ml_p0_audit.sql",
+        "file_sha256": "cba712df5d40dd2140685de305a8b930fa935799b717a84fff9e7784e73b48bf"
+      },
+      {
+        "version": "20260815225216",
+        "name": "ml_p0_sanitize",
+        "file": "20260815225216_ml_p0_sanitize.sql",
+        "file_sha256": "ed103e9cc4647f786f2ddffb4ea205ffcf94fb303e770a36f7f40740fa0c6759"
+      },
+      {
+        "version": "20260816005942",
+        "name": "ml_p0_phase3",
+        "file": "20260816005942_ml_p0_phase3.sql",
+        "file_sha256": "a059e8a8cd36087399d035c7fb116c809546d21d19a0ebad868fa99e717f43f6"
+      },
+      {
+        "version": "20260827230000",
+        "name": "optimize_jobs_operational_queries",
+        "file": "20260827230000_optimize_jobs_operational_queries.sql",
+        "file_sha256": "7a5c5285ab98819848c6740195f1a8fd50d8af6b9e829ca96b11464788684c4a"
+      },
+      {
+        "version": "20260830143000",
+        "name": "internal_purchase_stock_origin",
+        "file": "20260830143000_internal_purchase_stock_origin.sql",
+        "file_sha256": "892b4ff35534155b7b577b54811c4e19a2b47568e6833def0db1d231088c19eb"
+      },
+      {
+        "version": "20260903183000",
+        "name": "reactivate_products_with_eligible_active_supplier",
+        "file": "20260903183000_reactivate_products_with_eligible_active_supplier.sql",
+        "file_sha256": "74b977e322faaa56fc6a47354b6a537407c26a9ecefab49f58b2d922ef406832"
+      },
+      {
+        "version": "20260904041000",
+        "name": "add_concretizada_ml_order_status",
+        "file": "20260904041000_add_concretizada_ml_order_status.sql",
+        "file_sha256": "1c44f5e4a908e889be151769cd2cfe591b420abd29118c31b7950ed13308ad9c"
+      }
+    ]
+  },
+  "development": {
+    "host": "192.168.1.162",
+    "effects": {
+      "columns": [
+        "clientes.created_at",
+        "clientes.documento",
+        "clientes.email",
+        "clientes.endereco",
+        "clientes.id",
+        "clientes.ml_id",
+        "clientes.ml_nickname",
+        "clientes.nickname",
+        "clientes.nome",
+        "clientes.telefone",
+        "clientes.tipo_pessoa",
+        "clientes.total_vendas",
+        "clientes.updated_at",
+        "estoque_interno_movimentacoes.despachado_em",
+        "estoque_interno_movimentacoes.estado_envio_interno",
+        "estoque_interno_movimentacoes.estornada_em",
+        "estoque_interno_movimentacoes.estorno_motivo",
+        "estoque_interno_movimentacoes.idempotency_key",
+        "estoque_interno_movimentacoes.recebimento_id",
+        "estoque_interno_movimentacoes.recebimento_item_id",
+        "pedidos.ml_bundle_parent_item_id",
+        "pedidos.ml_bundle_primary",
+        "pedidos.ml_bundle_type",
+        "pedidos.ml_claim_id",
+        "pedidos.ml_claim_status",
+        "pedidos.ml_shipment_id"
+      ],
+      "routines": [
+        {
+          "body_md5": "e2cee0f19caf3c4946d279ef827651cd",
+          "signature": "dispatch_internal_stock_reservation(p_pedido_id uuid)"
+        },
+        {
+          "body_md5": "4f6d9887d02ccefed01eb96b8898dfe8",
+          "signature": "reverse_internal_stock_commitment(p_pedido_id uuid, p_motivo text)"
+        },
+        {
+          "body_md5": "73371cd259a71e92c99b1685477b824e",
+          "signature": "select_order_fulfillment(p_pedido_id uuid, p_source text, p_items jsonb)"
+        }
+      ],
+      "order_enum": [
+        "aberto",
+        "atendido",
+        "cancelado",
+        "faturado",
+        "entregue",
+        "pendente",
+        "preparando",
+        "etiqueta_impressa",
+        "coletado",
+        "em_transito",
+        "saiu_entrega",
+        "dest_ausente",
+        "recusado",
+        "devolvido",
+        "pronto_envio",
+        "concretizada_ml"
+      ],
+      "stock_indexes": [
+        "estoque_interno_movimentacoes_idempotency_key_idx",
+        "estoque_interno_movimentacoes_pedido_id_produto_id_tipo_key",
+        "estoque_interno_movimentacoes_pkey",
+        "estoque_interno_movimentacoes_produto_created_idx",
+        "estoque_interno_movimentacoes_recebimento_idx",
+        "idx_estoque_interno_produto",
+        "idx_estoque_interno_reservas_ativas",
+        "idx_estoque_interno_revisao",
+        "idx_estoque_interno_saidas_ativas"
+      ],
+      "integration_enum": [
+        "mercadolivre",
+        "bling",
+        "dslite",
+        "brasilnfe",
+        "mercadopago"
+      ],
+      "label_source_columns": [
+        "pedidos.dslite_label_source",
+        "pedidos_operacionais.dslite_label_source"
+      ],
+      "integration_unique_index": true
+    },
+    "version": "17.6",
+    "registry": [
+      {
+        "name": "schema",
+        "version": "00001",
+        "statements_md5": "59b063f19c79eee2d9cd124dfc8693a9",
+        "statement_count": 37
+      },
+      {
+        "name": "nfe_dslite",
+        "version": "00002",
+        "statements_md5": "eec49553a11e4b51c4bd5f07815d3c8c",
+        "statement_count": 11
+      },
+      {
+        "name": "remove_bling",
+        "version": "00003",
+        "statements_md5": "e113d56f5c62b9b361353318568bc284",
+        "statement_count": 8
+      },
+      {
+        "name": "fornecedor",
+        "version": "00004",
+        "statements_md5": "85b1b54c61caa5b554758f0f60506a27",
+        "statement_count": 1
+      },
+      {
+        "name": "ncm",
+        "version": "00005",
+        "statements_md5": "0f8956b0d1d797264d076797a204ef9c",
+        "statement_count": 1
+      },
+      {
+        "name": "skus",
+        "version": "00006",
+        "statements_md5": "dd661ad4a9a76d6824acc58550e02b77",
+        "statement_count": 4
+      },
+      {
+        "name": "fiscal",
+        "version": "00007",
+        "statements_md5": "ba52fbf7bdca87961e4745c4c1eb6079",
+        "statement_count": 4
+      },
+      {
+        "name": "tracking_status",
+        "version": "00008",
+        "statements_md5": "764e056a364cd6f88180844289fb66af",
+        "statement_count": 11
+      },
+      {
+        "name": "tracking_status",
+        "version": "00009",
+        "statements_md5": "17f99a2d25c4634bb897895a9921a39f",
+        "statement_count": 11
+      },
+      {
+        "name": "devolvido",
+        "version": "00010",
+        "statements_md5": "8c446d90fe276bf679b818d0a0271928",
+        "statement_count": 1
+      },
+      {
+        "name": "ciclo_venda",
+        "version": "00011",
+        "statements_md5": "bc09525e696362bc3dca15e799696451",
+        "statement_count": 1
+      },
+      {
+        "name": "compras_dslite",
+        "version": "00012",
+        "statements_md5": "e06431d18cc0bf519d52fe6d63ebda74",
+        "statement_count": 6
+      },
+      {
+        "name": "ml_refresh_hardening",
+        "version": "00013",
+        "statements_md5": "13f0317cb0f241e71ec9bbb8b2733746",
+        "statement_count": 7
+      },
+      {
+        "name": "ml_shipping_warning",
+        "version": "00014",
+        "statements_md5": "3fedfd5e67fa67ba14da0ee0ff718bf7",
+        "statement_count": 1
+      },
+      {
+        "name": "fornecedores_dslite",
+        "version": "00015",
+        "statements_md5": "eea37022288d8f10ca9508756b2bd1e5",
+        "statement_count": 2
+      },
+      {
+        "name": "pedido_status_pronto_envio",
+        "version": "00016",
+        "statements_md5": "b28ca36cb26b841b651fd4fd90d748e5",
+        "statement_count": 1
+      },
+      {
+        "name": "produtos_sku_case_insensitive",
+        "version": "00017",
+        "statements_md5": "e9b927227b24e55d720ee0d504555459",
+        "statement_count": 8
+      },
+      {
+        "name": "cron_dispatch_schedule",
+        "version": "00018",
+        "statements_md5": "0009164a6f8757dfead679c4d47329e1",
+        "statement_count": 10
+      },
+      {
+        "name": "ml_sync_cooldown",
+        "version": "00019",
+        "statements_md5": "8027af12ec31a78c7c23802d8ccb5367",
+        "statement_count": 2
+      },
+      {
+        "name": "produtos_dslite_identity_unique",
+        "version": "00020",
+        "statements_md5": "c37be63f0ce1d617f54b10f8936b4e97",
+        "statement_count": 1
+      },
+      {
+        "name": "ml_manual_blocklist",
+        "version": "00021",
+        "statements_md5": "0c97e8c58ac400266ac432579e2ae91b",
+        "statement_count": 8
+      },
+      {
+        "name": "ml_pack_and_nf_audit",
+        "version": "00022",
+        "statements_md5": "33fdded79d1fa2292c52c03ded9829a1",
+        "statement_count": 7
+      },
+      {
+        "name": "fiscal_provider_router",
+        "version": "20260525144254",
+        "statements_md5": "fd11d13e40ac4235c8a639f5f642417e",
+        "statement_count": 7
+      },
+      {
+        "name": "pedidos_snapshot_fiscal_v2",
+        "version": "20260525150821",
+        "statements_md5": "9590ffd4f4598964e0ff20248b5b9fba",
+        "statement_count": 12
+      },
+      {
+        "name": "municipios_ibge",
+        "version": "20260525190000",
+        "statements_md5": "89b040b0198fe8ae869213e78400d55c",
+        "statement_count": 6
+      },
+      {
+        "name": "empresa_fiscal_fields",
+        "version": "20260525211000",
+        "statements_md5": "c1150b6a1b89f0cb6edcd99825869b98",
+        "statement_count": 4
+      },
+      {
+        "name": "disable_ml_fiscal_emission",
+        "version": "20260526110000",
+        "statements_md5": "5d49651421d21f648875c0b5945fddaf",
+        "statement_count": 2
+      },
+      {
+        "name": "catalogo_ml_snapshot",
+        "version": "20260526213000",
+        "statements_md5": "b4890e50612c000d3706eebeddae2d3d",
+        "statement_count": 11
+      },
+      {
+        "name": "pedidos_ml_fiscal_release_window",
+        "version": "20260528110000",
+        "statements_md5": "4f3c078af266fb638068f307726f1532",
+        "statement_count": 2
+      },
+      {
+        "name": "sync_domain_locks_and_ml_publish_outbox",
+        "version": "20260528123000",
+        "statements_md5": "4f7ec54a400e6ed7938090ecf7f6013a",
+        "statement_count": 14
+      },
+      {
+        "name": "update_cron_dispatch_frequency",
+        "version": "20260528123500",
+        "statements_md5": "58c68e431889b585dc49e9fc7d4742a0",
+        "statement_count": 2
+      },
+      {
+        "name": "catalogo_snapshot_catalog_listing_flag",
+        "version": "20260529194000",
+        "statements_md5": "f7b6eff418f85cbcf96f2cb8c17b7e19",
+        "statement_count": 2
+      },
+      {
+        "name": "pedidos_search_rpc",
+        "version": "20260601113000",
+        "statements_md5": "38addab77c229b679f5144508a6c8d5c",
+        "statement_count": 6
+      },
+      {
+        "name": "pedidos_search_sort_rpc",
+        "version": "20260602112000",
+        "statements_md5": "e74a77adb9905dcb5b4135e816baa198",
+        "statement_count": 4
+      },
+      {
+        "name": "pedidos_data_venda",
+        "version": "20260605182000",
+        "statements_md5": "abae8dbe190543b2aa6e9fbf01302e59",
+        "statement_count": 9
+      },
+      {
+        "name": "multi_supplier_product_offers",
+        "version": "20260608123000",
+        "statements_md5": "daa620d287a4dd27dffa7340d38c372c",
+        "statement_count": 10
+      },
+      {
+        "name": "product_offer_listing_details",
+        "version": "20260608193000",
+        "statements_md5": "a08a8d6243dc30bafd9e5be44cbaf274",
+        "statement_count": 7
+      },
+      {
+        "name": "product_master_gtin_central",
+        "version": "20260608212158",
+        "statements_md5": "e5758550d7251ef1851cdd2729b92cb5",
+        "statement_count": 13
+      },
+      {
+        "name": "product_master_vtk_sku",
+        "version": "20260609193758",
+        "statements_md5": "8916591a661b8edaeea73335dfc63969",
+        "statement_count": 10
+      },
+      {
+        "name": "supplier_payment_modes_balance",
+        "version": "20260609195820",
+        "statements_md5": "bc6d09973fac99183ae412499dc245de",
+        "statement_count": 13
+      },
+      {
+        "name": "mercadopago_account_money",
+        "version": "20260609202911",
+        "statements_md5": "576dc6e1b355e5d0479097c32a496707",
+        "statement_count": 6
+      },
+      {
+        "name": "mercadopago_integration_seed",
+        "version": "20260609203217",
+        "statements_md5": "31420089cf6b6880f112da44e1e5c591",
+        "statement_count": 1
+      },
+      {
+        "name": "harden_public_table_access",
+        "version": "20260610001532",
+        "statements_md5": "d119ad6b6fec9e256e859c3b48288765",
+        "statement_count": 22
+      },
+      {
+        "name": "produtos_ativo_operacional",
+        "version": "20260610174031",
+        "statements_md5": "5055b14bc2b83c630949b8a87e351e5c",
+        "statement_count": 2
+      },
+      {
+        "name": "produtos_search_rpc",
+        "version": "20260611150456",
+        "statements_md5": "498b49fb5df3c7698be6cd7815b9988f",
+        "statement_count": 13
+      },
+      {
+        "name": "produtos_search_rpc_optimize_page",
+        "version": "20260611151210",
+        "statements_md5": "4accc33d5724bf33714ab98358713595",
+        "statement_count": 1
+      },
+      {
+        "name": "shipping_labels_storage",
+        "version": "20260618185121",
+        "statements_md5": "a021c379183191bf3c4b5bf57b24ca10",
+        "statement_count": 4
+      },
+      {
+        "name": "short_links",
+        "version": "20260618212911",
+        "statements_md5": "2c6c1b10c0e1fedea578c123ac5c431a",
+        "statement_count": 4
+      },
+      {
+        "name": "whatsapp_alerts",
+        "version": "20260619153640",
+        "statements_md5": "5e6cb5dbdff2a0a765f4f90dc874b72d",
+        "statement_count": 4
+      },
+      {
+        "name": "supplier_payment_receipts",
+        "version": "20260619192918",
+        "statements_md5": "238d533f02b9aebb73933e870ea43ccf",
+        "statement_count": 2
+      },
+      {
+        "name": "fornecedores_supplier_pix_key",
+        "version": "20260620001000",
+        "statements_md5": "8059bdb4397bbfa3fcb322f52133ddb4",
+        "statement_count": 2
+      },
+      {
+        "name": "ops_whatsapp_audit",
+        "version": "20260622093000",
+        "statements_md5": "08fc1cecc38a9040051928d3c4612a9a",
+        "statement_count": 3
+      },
+      {
+        "name": "clientes_ml_id_unique",
+        "version": "20260707010000",
+        "statements_md5": "2ea9a453969cc7c3759568479a26cd41",
+        "statement_count": 2
+      },
+      {
+        "name": "pedidos_dslite_label_source",
+        "version": "20260709120000",
+        "statements_md5": "6341747b086380d3b1b318d4d1d04fd2",
+        "statement_count": 2
+      },
+      {
+        "name": "backfill_pedidos_dslite_label_source",
+        "version": "20260709121500",
+        "statements_md5": "c76080a5205a6ebeeca2da15280b47a2",
+        "statement_count": 2
+      },
+      {
+        "name": "web_push_notifications",
+        "version": "20260711161100",
+        "statements_md5": "d2b896deda3e83ea1b337a480ca739fc",
+        "statement_count": 9
+      },
+      {
+        "name": "kit_inventory",
+        "version": "20260714193934",
+        "statements_md5": "8f769867e84a29e45826d9f85af125c2",
+        "statement_count": 17
+      },
+      {
+        "name": "sync_vtk_sku_sequence",
+        "version": "20260714194430",
+        "statements_md5": "26a54b07624d040bb55f89c3baa199b1",
+        "statement_count": 1
+      },
+      {
+        "name": "pedidos_envio_interno",
+        "version": "20260716110000",
+        "statements_md5": "4728982b587b7897e8706e21d45656f1",
+        "statement_count": 3
+      },
+      {
+        "name": "estoque_interno",
+        "version": "20260720010000",
+        "statements_md5": "83042e840d499145cb78cd2ca99b1bb3",
+        "statement_count": 4
+      },
+      {
+        "name": "estoque_devolucao_fluxo",
+        "version": "20260720155308",
+        "statements_md5": "363c0795e97d311afe6c668d9454c048",
+        "statement_count": 5
+      },
+      {
+        "name": "realtime_ml_publish_dispatch",
+        "version": "20260722222928",
+        "statements_md5": "e1c28e63d0ad0bc2b4adf3ec9f150043",
+        "statement_count": 8
+      },
+      {
+        "name": "internal_shipping_thermal_labels",
+        "version": "20260723174252",
+        "statements_md5": "b93515160071e799d2d99f2d2fa41778",
+        "statement_count": 3
+      },
+      {
+        "name": "expand_pedidos_search_product_supplier",
+        "version": "20260727201827",
+        "statements_md5": "30afe6099dadef48ca1924407eafc253",
+        "statement_count": 3
+      },
+      {
+        "name": "consolidate_virtual_kit_orders",
+        "version": "20260729182648",
+        "statements_md5": "3fe0e32844a0bc960dc2146bb37c3d4e",
+        "statement_count": 8
+      },
+      {
+        "name": "estornar_saida_estoque_pedido_cancelado",
+        "version": "20260729213737",
+        "statements_md5": "5ac415537435ae931d569d7bdbaa2f64",
+        "statement_count": 4
+      },
+      {
+        "name": "consolidate_cart_orders",
+        "version": "20260731002740",
+        "statements_md5": "bb45d25347d8af78602e2e43b01d99bf",
+        "statement_count": 5
+      },
+      {
+        "name": "add_manual_preferred_supplier",
+        "version": "20260801223553",
+        "statements_md5": "f32c1fb2b297dd82b2a9ba77a28a1f82",
+        "statement_count": 2
+      },
+      {
+        "name": "durable_ml_order_hydration_queue",
+        "version": "20260801232600",
+        "statements_md5": "c77b40b6e4f3e18354a27296accc3915",
+        "statement_count": 4
+      },
+      {
+        "name": "remove_invalid_internal_stock_air_fryer",
+        "version": "20260802000117",
+        "statements_md5": "9282f37bd5d8785bda7818c1007b07ba",
+        "statement_count": 1
+      },
+      {
+        "name": "resume_on_hold_ml_publish",
+        "version": "20260803231103",
+        "statements_md5": "8142f72e3be90ba2c89581f2d07b22c8",
+        "statement_count": 1
+      },
+      {
+        "name": "durable_catalog_price_refresh",
+        "version": "20260804001421",
+        "statements_md5": "0a043a9a9b88e3f034324ce6feb83145",
+        "statement_count": 13
+      },
+      {
+        "name": "restore_internal_stock_air_fryer_return",
+        "version": "20260804164839",
+        "statements_md5": "0c76318ceb92feb7ac1de661f7283f84",
+        "statement_count": 2
+      },
+      {
+        "name": "fix_internal_stock_product_projection",
+        "version": "20260804192052",
+        "statements_md5": "7e3dc03cbbcd4ad62a7b7583191e0373",
+        "statement_count": 5
+      },
+      {
+        "name": "supplier_credits_control",
+        "version": "20260804202357",
+        "statements_md5": "8e48cf6cf06eeb1cae4e0793ce2b58de",
+        "statement_count": 16
+      },
+      {
+        "name": "catalog_manual_review_queue",
+        "version": "20260805014500",
+        "statements_md5": "c1a31839fa643d071496f9f2966e5643",
+        "statement_count": 3
+      },
+      {
+        "name": "remove_catalog_manual_review_queue",
+        "version": "20260805141602",
+        "statements_md5": "a48e8bae7bc6d0b12269f734e88bc643",
+        "statement_count": 2
+      },
+      {
+        "name": "retire_hyx84825_temporary_ml_block",
+        "version": "20260805200000",
+        "statements_md5": "1571998143ae2ec5cf2d80629fea0b01",
+        "statement_count": 1
+      },
+      {
+        "name": "retire_hyx84825_manual_ml_block",
+        "version": "20260805200500",
+        "statements_md5": "27f0975483b5bd5f67f43f8decee094a",
+        "statement_count": 1
+      },
+      {
+        "name": "add_internal_supplier_product_filters",
+        "version": "20260812153000",
+        "statements_md5": "1109ae3f9df0e3783be2de37592c2c9c",
+        "statement_count": 9
+      },
+      {
+        "name": "add_order_fulfillment_selection",
+        "version": "20260812160000",
+        "statements_md5": "c9ebeced1b1edaa0340d039c09e34597",
+        "statement_count": 10
+      },
+      {
+        "name": "remove_evolusom_es_catalog",
+        "version": "20260813182247",
+        "statements_md5": "8a07fa93bffde1a8a5bca3b79f72ac26",
+        "statement_count": 19
+      },
+      {
+        "name": "ml_p0_audit",
+        "version": "20260815221030",
+        "statements_md5": "5ff2187f670f89cc2b80e24a96ebc1cf",
+        "statement_count": 21
+      },
+      {
+        "name": "ml_p0_sanitize",
+        "version": "20260815225216",
+        "statements_md5": "56308acfc75d3b23f5e15279415797d1",
+        "statement_count": 13
+      },
+      {
+        "name": "ml_p0_phase3",
+        "version": "20260816005942",
+        "statements_md5": "d92a2c940e89a43162c97ef0ed187ec8",
+        "statement_count": 15
+      },
+      {
+        "name": "optimize_jobs_operational_queries",
+        "version": "20260827230000",
+        "statements_md5": "3050e6666c4e0186be1dded512946856",
+        "statement_count": 3
+      },
+      {
+        "name": "protect_profiles_cargo",
+        "version": "20260828163450",
+        "statements_md5": "ec3de8c8293df521e7d8318dd1ee2898",
+        "statement_count": 2
+      },
+      {
+        "name": "durable_ml_listings_observed_scan",
+        "version": "20260830090000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "atomic_internal_stock_reservation",
+        "version": "20260830143000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "repair_catalog_refresh_dispatch",
+        "version": "20260830193000",
+        "statements_md5": "a1f516cc2141596010e91f24ff9c1efe",
+        "statement_count": 1
+      },
+      {
+        "name": "secure_runtime_api_secret",
+        "version": "20260830210000",
+        "statements_md5": "3a398a3412c9648cf4b1feedc74059b2",
+        "statement_count": 1
+      },
+      {
+        "name": "harden_public_schema_after_db03",
+        "version": "20260830220000",
+        "statements_md5": "3f397d1b6c8064264ca34ea152f921f2",
+        "statement_count": 1
+      },
+      {
+        "name": "rule_02_dynamic_pricing",
+        "version": "20260830233000",
+        "statements_md5": "b66b2af0f6ddcf109ae58722ea50031e",
+        "statement_count": 1
+      },
+      {
+        "name": "rule_05_canonical_nfe_status",
+        "version": "20260830235900",
+        "statements_md5": "7da8315618b5e0374e3df447bdd30c9f",
+        "statement_count": 1
+      },
+      {
+        "name": "job_progress_unit",
+        "version": "20260831110000",
+        "statements_md5": "72a6e384d88710a16817596ae58e43f3",
+        "statement_count": 1
+      },
+      {
+        "name": "job_status_constraints",
+        "version": "20260831113000",
+        "statements_md5": "f86352c671b1f95efff5d06db0be3659",
+        "statement_count": 1
+      },
+      {
+        "name": "bnt_d04_fiscal_returns",
+        "version": "20260901160000",
+        "statements_md5": "e4594e8e577d40fa7101b11d19729103",
+        "statement_count": 1
+      },
+      {
+        "name": "bnt_d05_owned_inventory",
+        "version": "20260901190000",
+        "statements_md5": "c1b1d4cb717492243bfdd18407873246",
+        "statement_count": 1
+      },
+      {
+        "name": "bnt_d05_incoming_invoices",
+        "version": "20260901213000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_d09_supplier_offers_search",
+        "version": "20260902110000",
+        "statements_md5": "06aa4f011277b943c61aa201fad70412",
+        "statement_count": 1
+      },
+      {
+        "name": "bnt_d11_ml_listings_search",
+        "version": "20260902170000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_d13_client_search",
+        "version": "20260902200000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_cfg_01_admin_audit",
+        "version": "20260904163000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_cfg_02_company_fiscal",
+        "version": "20260904210000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_cfg_03_commercial_pricing",
+        "version": "20260904223000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_cfg_04_operation",
+        "version": "20260904233000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_cfg_05_mercado_livre",
+        "version": "20260905003000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_cfg_06_notifications",
+        "version": "20260905023000",
+        "statements_md5": null,
+        "statement_count": 0
+      },
+      {
+        "name": "bnt_parity_07_concretizada_ml",
+        "version": "20260905120000",
+        "statements_md5": "83f352faa368b841841f1bb469935026",
+        "statement_count": 1
+      }
+    ],
+    "read_only": "on",
+    "captured_at": "2026-09-05T15:00:49.803006+00:00",
+    "catalog_md5": "f565cba895ad571b830d248e55bdce43",
+    "files": [
+      {
+        "version": "00001",
+        "name": "schema",
+        "file": "00001_schema.sql",
+        "file_sha256": "cf11ea31c9cc9d2a492605fba72f7c4847eafbfa010487ff4dc27304e0e1eadf"
+      },
+      {
+        "version": "00002",
+        "name": "nfe_dslite",
+        "file": "00002_nfe_dslite.sql",
+        "file_sha256": "ec66cc13bc3e9e4c7c80fcd7eeed071c08cc86a21b33faa86b60a08698ee6c59"
+      },
+      {
+        "version": "00003",
+        "name": "remove_bling",
+        "file": "00003_remove_bling.sql",
+        "file_sha256": "8cfaad82a05d258c27033050d4fb503c29a2f22ae207911bdece3b1f0d74c482"
+      },
+      {
+        "version": "00004",
+        "name": "fornecedor",
+        "file": "00004_fornecedor.sql",
+        "file_sha256": "73b68ccb99f57f420abdf1038b4ac164c6a0e3531db8b775a8c60fa40f12a1e7"
+      },
+      {
+        "version": "00005",
+        "name": "ncm",
+        "file": "00005_ncm.sql",
+        "file_sha256": "00daf3265368d5297ab1abc022cce96e81b6024d839cbc71058edecda76e821f"
+      },
+      {
+        "version": "00006",
+        "name": "skus",
+        "file": "00006_skus.sql",
+        "file_sha256": "a27eef423856730fc13eff40272b7a1cfecd01431c6f976a8fedee16036563e5"
+      },
+      {
+        "version": "00007",
+        "name": "fiscal",
+        "file": "00007_fiscal.sql",
+        "file_sha256": "9a91c376d066bac9d4ceb98e308df0153532662838d743900937f9556ba66091"
+      },
+      {
+        "version": "00008",
+        "name": "tracking_status",
+        "file": "00008_tracking_status.sql",
+        "file_sha256": "0ae4211cc13a8cb0b516d02b3b7f2e55cee6065e3008ad517b7455da1b51c693"
+      },
+      {
+        "version": "00009",
+        "name": "tracking_status",
+        "file": "00009_tracking_status.sql",
+        "file_sha256": "99c729f3b18e7e74e85f09df86e0f8cb90faeb119d7d70f02b172e9155700d4e"
+      },
+      {
+        "version": "00010",
+        "name": "devolvido",
+        "file": "00010_devolvido.sql",
+        "file_sha256": "e538c84a551b2b8249d39ad5a8e73dd0f62c6fd0f93a41485c4a49b7f2b0a25e"
+      },
+      {
+        "version": "00011",
+        "name": "ciclo_venda",
+        "file": "00011_ciclo_venda.sql",
+        "file_sha256": "9c4e846f3a39a513ed39a91efa42be6ebcb057faf66e43a70afb0eedb2f60161"
+      },
+      {
+        "version": "00012",
+        "name": "compras_dslite",
+        "file": "00012_compras_dslite.sql",
+        "file_sha256": "32c74d0f691fcde3866f32d9e7ad81135e0076d6304f2e8eb9f0aee2e669f2b3"
+      },
+      {
+        "version": "00013",
+        "name": "ml_refresh_hardening",
+        "file": "00013_ml_refresh_hardening.sql",
+        "file_sha256": "7c10bd0f66d87e88c3c65721ab8e107baf2d8127b2b56ef239cfa0756708150b"
+      },
+      {
+        "version": "00014",
+        "name": "ml_shipping_warning",
+        "file": "00014_ml_shipping_warning.sql",
+        "file_sha256": "ab1a4cb8005b881d9e23661afdfa449e1e0c2dfc8388e11ba696b06028670f4c"
+      },
+      {
+        "version": "00015",
+        "name": "fornecedores_dslite",
+        "file": "00015_fornecedores_dslite.sql",
+        "file_sha256": "8124e54627cac5263860bf9b52e6db36fd0396f8e2aa711a25d590df1a7d45d4"
+      },
+      {
+        "version": "00016",
+        "name": "pedido_status_pronto_envio",
+        "file": "00016_pedido_status_pronto_envio.sql",
+        "file_sha256": "2a25e3dc0c7ab4e7a638f558e9ffed4cadbc0f3c8c32cc40ebcb20f8ffa2bb7f"
+      },
+      {
+        "version": "00017",
+        "name": "produtos_sku_case_insensitive",
+        "file": "00017_produtos_sku_case_insensitive.sql",
+        "file_sha256": "8102370f245db25982588bd2178c707b902698bf7bd072d95e6cc1784bade083"
+      },
+      {
+        "version": "00018",
+        "name": "cron_dispatch_schedule",
+        "file": "00018_cron_dispatch_schedule.sql",
+        "file_sha256": "9b33a266d9c44eac65d91915c181839acd28c1faa609222832e1e5cc09a97e88"
+      },
+      {
+        "version": "00019",
+        "name": "ml_sync_cooldown",
+        "file": "00019_ml_sync_cooldown.sql",
+        "file_sha256": "d7ec3edf70b65fc3bb4ce2629ae6ad9937280a97a23b85e346b09730e93f210e"
+      },
+      {
+        "version": "00020",
+        "name": "produtos_dslite_identity_unique",
+        "file": "00020_produtos_dslite_identity_unique.sql",
+        "file_sha256": "a60021cebca2fcd97e63e248bd07250dd1f06e52cc2a5d3591113815b8985eba"
+      },
+      {
+        "version": "00021",
+        "name": "ml_manual_blocklist",
+        "file": "00021_ml_manual_blocklist.sql",
+        "file_sha256": "40019f86b142ea405e6daecbf7a6f5d3877386182b0a890df2cbe479983caf17"
+      },
+      {
+        "version": "00022",
+        "name": "ml_pack_and_nf_audit",
+        "file": "00022_ml_pack_and_nf_audit.sql",
+        "file_sha256": "429bf09cc5e4fdc7210823b17990b3254b413b9ae058f4b48cbd67a7333103e5"
+      },
+      {
+        "version": "20260525144254",
+        "name": "fiscal_provider_router",
+        "file": "20260525144254_fiscal_provider_router.sql",
+        "file_sha256": "03f5476f8c074b0e8669bd228aef0f063cea0169b12f9f7f572cfd67c8f18987"
+      },
+      {
+        "version": "20260525150821",
+        "name": "pedidos_snapshot_fiscal_v2",
+        "file": "20260525150821_pedidos_snapshot_fiscal_v2.sql",
+        "file_sha256": "f6b740863ea14f49a09c42ba191b46f31a170e0e36b53f66cdd746073d8b4c22"
+      },
+      {
+        "version": "20260525190000",
+        "name": "municipios_ibge",
+        "file": "20260525190000_municipios_ibge.sql",
+        "file_sha256": "4d7db5894ea6aabb1196bcc13b36cda707234b4679ec1705427f30306b632678"
+      },
+      {
+        "version": "20260525211000",
+        "name": "empresa_fiscal_fields",
+        "file": "20260525211000_empresa_fiscal_fields.sql",
+        "file_sha256": "15cfd98d4b04d4001c52ddb4562a20ea4c9b987f67ee3cb3eef3e0bf42e16add"
+      },
+      {
+        "version": "20260526110000",
+        "name": "disable_ml_fiscal_emission",
+        "file": "20260526110000_disable_ml_fiscal_emission.sql",
+        "file_sha256": "62342a9688c39a6f418950e69aa817a4949a8981abf826638395709ccce027ce"
+      },
+      {
+        "version": "20260526213000",
+        "name": "catalogo_ml_snapshot",
+        "file": "20260526213000_catalogo_ml_snapshot.sql",
+        "file_sha256": "2a17a11951fd0205423342a8113df9d6a2a368edb3028d330a75bf941589dcb7"
+      },
+      {
+        "version": "20260528110000",
+        "name": "pedidos_ml_fiscal_release_window",
+        "file": "20260528110000_pedidos_ml_fiscal_release_window.sql",
+        "file_sha256": "c544ba50cd57608fce549d93c74227e05c55bd65a6c050b75a2f16acbc4070c3"
+      },
+      {
+        "version": "20260528123000",
+        "name": "sync_domain_locks_and_ml_publish_outbox",
+        "file": "20260528123000_sync_domain_locks_and_ml_publish_outbox.sql",
+        "file_sha256": "51ee148e5682ee8e693ca526ba4e608ca6539792dbbc2f99b48b06588686ba39"
+      },
+      {
+        "version": "20260528123500",
+        "name": "update_cron_dispatch_frequency",
+        "file": "20260528123500_update_cron_dispatch_frequency.sql",
+        "file_sha256": "09f8983ed51eb69024a03b98cbcc96e4f31834fa0c6139b8fd6249660906e922"
+      },
+      {
+        "version": "20260529194000",
+        "name": "catalogo_snapshot_catalog_listing_flag",
+        "file": "20260529194000_catalogo_snapshot_catalog_listing_flag.sql",
+        "file_sha256": "7e31f5b48d0613266a9f7f348c5e44f48ecf8613d940a7a67cf027c601d3cb89"
+      },
+      {
+        "version": "20260601113000",
+        "name": "pedidos_search_rpc",
+        "file": "20260601113000_pedidos_search_rpc.sql",
+        "file_sha256": "f59905a885528479c4ccd48a0743662c64a99b87d75658feff5e2edcfc67afed"
+      },
+      {
+        "version": "20260602112000",
+        "name": "pedidos_search_sort_rpc",
+        "file": "20260602112000_pedidos_search_sort_rpc.sql",
+        "file_sha256": "c0739c62ce6aaf44fffabbeb3294c7891b1f8cf47d3639f8edd25bfdf02e1355"
+      },
+      {
+        "version": "20260605182000",
+        "name": "pedidos_data_venda",
+        "file": "20260605182000_pedidos_data_venda.sql",
+        "file_sha256": "48bf8663a0c31ce4540e993d43fb35d72c90c6915fdab51e79c3233520983590"
+      },
+      {
+        "version": "20260608123000",
+        "name": "multi_supplier_product_offers",
+        "file": "20260608123000_multi_supplier_product_offers.sql",
+        "file_sha256": "118516f701b2a2af3d441955cf055b0602ae9ac5992b7e9d3471bc8ee5fd5b07"
+      },
+      {
+        "version": "20260608193000",
+        "name": "product_offer_listing_details",
+        "file": "20260608193000_product_offer_listing_details.sql",
+        "file_sha256": "1088213c9f9694566e51954f1801c604ecc9dad010bda016a8cf75969b70c3b7"
+      },
+      {
+        "version": "20260608212158",
+        "name": "product_master_gtin_central",
+        "file": "20260608212158_product_master_gtin_central.sql",
+        "file_sha256": "3ab6303876d790e626847d9dcd3489cfabbba962bac3704e88e6aea45146d7fe"
+      },
+      {
+        "version": "20260609193758",
+        "name": "product_master_vtk_sku",
+        "file": "20260609193758_product_master_vtk_sku.sql",
+        "file_sha256": "b4ab78c7e07155cd76a809485f908aaf577bd3cbc460b983a5c939ee10c2c38d"
+      },
+      {
+        "version": "20260609195820",
+        "name": "supplier_payment_modes_balance",
+        "file": "20260609195820_supplier_payment_modes_balance.sql",
+        "file_sha256": "7393d175c253dde08e65c776417f8de27eb118702d8e4494fed5a9cc350942a7"
+      },
+      {
+        "version": "20260609202911",
+        "name": "mercadopago_account_money",
+        "file": "20260609202911_mercadopago_account_money.sql",
+        "file_sha256": "8b788c8838cf91c25325691bdd1d5705b1db0cd4662484c9c870cac6d4396d79"
+      },
+      {
+        "version": "20260609203217",
+        "name": "mercadopago_integration_seed",
+        "file": "20260609203217_mercadopago_integration_seed.sql",
+        "file_sha256": "23394ca783203e0ddf664fcacccf516ce132bb4add7c9a29956232d102dca3d3"
+      },
+      {
+        "version": "20260610001532",
+        "name": "harden_public_table_access",
+        "file": "20260610001532_harden_public_table_access.sql",
+        "file_sha256": "3cb816b2390bf6fcae6f9ba76907911ac402178e7568174de949dbfbf1412197"
+      },
+      {
+        "version": "20260610174031",
+        "name": "produtos_ativo_operacional",
+        "file": "20260610174031_produtos_ativo_operacional.sql",
+        "file_sha256": "a808e2b5a5eb264213c5aeed2daa7f244035a1d986d8a9e0bbf1768bd980cfe5"
+      },
+      {
+        "version": "20260611150456",
+        "name": "produtos_search_rpc",
+        "file": "20260611150456_produtos_search_rpc.sql",
+        "file_sha256": "900d124686c1e60e617603ff62146f6de5d8917fa98b74f90d4f5bf72debc634"
+      },
+      {
+        "version": "20260611151210",
+        "name": "produtos_search_rpc_optimize_page",
+        "file": "20260611151210_produtos_search_rpc_optimize_page.sql",
+        "file_sha256": "52240330612ae1f794e728d3ace17e4266842d102b657902745b94dd33ca3e44"
+      },
+      {
+        "version": "20260618185121",
+        "name": "shipping_labels_storage",
+        "file": "20260618185121_shipping_labels_storage.sql",
+        "file_sha256": "c35e5637446b2b449dacadccfb3cfe92d4b0b4d1ba7816947089d4cfcdeb4c9e"
+      },
+      {
+        "version": "20260618212911",
+        "name": "short_links",
+        "file": "20260618212911_short_links.sql",
+        "file_sha256": "b5a40db395479240b35c4e87e7cace11e5db47f0b1484d63a0d9ef863f945d2b"
+      },
+      {
+        "version": "20260619153640",
+        "name": "whatsapp_alerts",
+        "file": "20260619153640_whatsapp_alerts.sql",
+        "file_sha256": "dd66a3afbe025b05e8f736fb3fda45dfb7f7ffa9c0f4c46b23e31ad18ad42aec"
+      },
+      {
+        "version": "20260619192918",
+        "name": "supplier_payment_receipts",
+        "file": "20260619192918_supplier_payment_receipts.sql",
+        "file_sha256": "934b61c1bcebc1c681ae8a1bc9a8b30b5ec0e55103612d60fc4f6315a3ffa311"
+      },
+      {
+        "version": "20260620001000",
+        "name": "fornecedores_supplier_pix_key",
+        "file": "20260620001000_fornecedores_supplier_pix_key.sql",
+        "file_sha256": "a1da1b0392c6e46c8bc7d11ed2ecf52f8491fe3ab723571a3738f933e22acbad"
+      },
+      {
+        "version": "20260622093000",
+        "name": "ops_whatsapp_audit",
+        "file": "20260622093000_ops_whatsapp_audit.sql",
+        "file_sha256": "398ebf8d04bd5f8ceec6875140ed46d260264ddcf10b6d9f73af36c87e1b5f90"
+      },
+      {
+        "version": "20260707010000",
+        "name": "clientes_ml_id_unique",
+        "file": "20260707010000_clientes_ml_id_unique.sql",
+        "file_sha256": "b00b2b7e6498f44f8c9a7a5de49ebf010148e6517380c04438e4b212b3a9a380"
+      },
+      {
+        "version": "20260709120000",
+        "name": "pedidos_dslite_label_source",
+        "file": "20260709120000_pedidos_dslite_label_source.sql",
+        "file_sha256": "bb0418694aa27c425397bb3d66f49afed906df900ac67f188eaeab402af549e9"
+      },
+      {
+        "version": "20260709121500",
+        "name": "backfill_pedidos_dslite_label_source",
+        "file": "20260709121500_backfill_pedidos_dslite_label_source.sql",
+        "file_sha256": "c17c791e44173359f754b2c2e2e775d9f2f582b09a747c7260959bf9b787347b"
+      },
+      {
+        "version": "20260711161100",
+        "name": "web_push_notifications",
+        "file": "20260711161100_web_push_notifications.sql",
+        "file_sha256": "d50ceb2627e5150fbbfd3b6c98cf5f196a33256f7e561581adf2bc77f4a57c5f"
+      },
+      {
+        "version": "20260714193934",
+        "name": "kit_inventory",
+        "file": "20260714193934_kit_inventory.sql",
+        "file_sha256": "b6c0f9df3a10dd5d660bf3050e4863a8fca04cc7e1b0b1829b7683b9832aafdd"
+      },
+      {
+        "version": "20260714194430",
+        "name": "sync_vtk_sku_sequence",
+        "file": "20260714194430_sync_vtk_sku_sequence.sql",
+        "file_sha256": "2cbdf18475c59762d89012aa25f0e4f749d858fb33ab13f28f9f1dbddddad7d9"
+      },
+      {
+        "version": "20260716110000",
+        "name": "pedidos_envio_interno",
+        "file": "20260716110000_pedidos_envio_interno.sql",
+        "file_sha256": "cbaa9dc96c64b9470f9a54e078cfd919050d8a6e209d0501cc4a9f903f2cbf27"
+      },
+      {
+        "version": "20260720010000",
+        "name": "estoque_interno",
+        "file": "20260720010000_estoque_interno.sql",
+        "file_sha256": "a779645a591e97107adb89bc6dd4bd32718b9cbecbdfc1d6ed91eabba3bac087"
+      },
+      {
+        "version": "20260720155308",
+        "name": "estoque_devolucao_fluxo",
+        "file": "20260720155308_estoque_devolucao_fluxo.sql",
+        "file_sha256": "7f1842423f377e8833b95110b94a60cc6c33c1d1653e650b7d070a7f4e43e3be"
+      },
+      {
+        "version": "20260722222928",
+        "name": "realtime_ml_publish_dispatch",
+        "file": "20260722222928_realtime_ml_publish_dispatch.sql",
+        "file_sha256": "10567cd5739e30631187d373ba116e484700ca5ef67f326cf1a72ef0b28c5a20"
+      },
+      {
+        "version": "20260723174252",
+        "name": "internal_shipping_thermal_labels",
+        "file": "20260723174252_internal_shipping_thermal_labels.sql",
+        "file_sha256": "8e7eeeec90c5a4f6e0d93a7f4593035543a78642a52b884c42eb2ef103799abe"
+      },
+      {
+        "version": "20260727201827",
+        "name": "expand_pedidos_search_product_supplier",
+        "file": "20260727201827_expand_pedidos_search_product_supplier.sql",
+        "file_sha256": "35ee1df47ba6ead434972dbbac889b31f3eca6b050232bf277f228e6da89f641"
+      },
+      {
+        "version": "20260729182648",
+        "name": "consolidate_virtual_kit_orders",
+        "file": "20260729182648_consolidate_virtual_kit_orders.sql",
+        "file_sha256": "6b03ab7b53d9db1c4ab45b66840432f8be11a5c14b0bd1a2a47884616b76fc84"
+      },
+      {
+        "version": "20260729213737",
+        "name": "estornar_saida_estoque_pedido_cancelado",
+        "file": "20260729213737_estornar_saida_estoque_pedido_cancelado.sql",
+        "file_sha256": "763efddfd5386847cb57a03f2d71be706f63a6148cfdd011a9f7e2d7c29d3595"
+      },
+      {
+        "version": "20260731002740",
+        "name": "consolidate_cart_orders",
+        "file": "20260731002740_consolidate_cart_orders.sql",
+        "file_sha256": "97907a9f2340ffec155b00da8aaaa9dff6bfbcc5887d7f7e728c84aac26aa544"
+      },
+      {
+        "version": "20260801223553",
+        "name": "add_manual_preferred_supplier",
+        "file": "20260801223553_add_manual_preferred_supplier.sql",
+        "file_sha256": "11b0b4ddd5c304b5b49f2555e96de0aa6c62b888f3126ddb611c96d4281242de"
+      },
+      {
+        "version": "20260801232600",
+        "name": "durable_ml_order_hydration_queue",
+        "file": "20260801232600_durable_ml_order_hydration_queue.sql",
+        "file_sha256": "64c1327a69fb67a68a5b646417dd6debf36bb14776176b416cd49889851d9e50"
+      },
+      {
+        "version": "20260802000117",
+        "name": "remove_invalid_internal_stock_air_fryer",
+        "file": "20260802000117_remove_invalid_internal_stock_air_fryer.sql",
+        "file_sha256": "e65181d972abfe119a332bd2655edfc95e54bb6bb47e72ebfb05e83c9c77772d"
+      },
+      {
+        "version": "20260803231103",
+        "name": "resume_on_hold_ml_publish",
+        "file": "20260803231103_resume_on_hold_ml_publish.sql",
+        "file_sha256": "925c6b728a6e44664c460be38323461461f2844ec0897927996e321c50bc1a28"
+      },
+      {
+        "version": "20260804001421",
+        "name": "durable_catalog_price_refresh",
+        "file": "20260804001421_durable_catalog_price_refresh.sql",
+        "file_sha256": "83ea99fd7820b966fb050fb062c64e6dd2e9b42487d5a455669b4d52990b8c19"
+      },
+      {
+        "version": "20260804164839",
+        "name": "restore_internal_stock_air_fryer_return",
+        "file": "20260804164839_restore_internal_stock_air_fryer_return.sql",
+        "file_sha256": "941aafea72565945209315d48b49bbade283dfcf0595bd5c7841d82d2e54e5a1"
+      },
+      {
+        "version": "20260804192052",
+        "name": "fix_internal_stock_product_projection",
+        "file": "20260804192052_fix_internal_stock_product_projection.sql",
+        "file_sha256": "f90fa7171f4fde49c0b46791d992f533116e9393c711e968b4e3c3e81f220b33"
+      },
+      {
+        "version": "20260804202357",
+        "name": "supplier_credits_control",
+        "file": "20260804202357_supplier_credits_control.sql",
+        "file_sha256": "5c5f51177369ab4fd2573ae720d52132920c11cb4fbc1dcbb7113e0fc1095271"
+      },
+      {
+        "version": "20260805014500",
+        "name": "catalog_manual_review_queue",
+        "file": "20260805014500_catalog_manual_review_queue.sql",
+        "file_sha256": "688bc0203abf48d598f454d3904e2c98c839579d4547fc04f997617f6e781bb7"
+      },
+      {
+        "version": "20260805141602",
+        "name": "remove_catalog_manual_review_queue",
+        "file": "20260805141602_remove_catalog_manual_review_queue.sql",
+        "file_sha256": "82a3fc5b9a32530587b93b9b233dde8c4c32997de65c78361cc8bd33444fa21a"
+      },
+      {
+        "version": "20260805200000",
+        "name": "retire_hyx84825_temporary_ml_block",
+        "file": "20260805200000_retire_hyx84825_temporary_ml_block.sql",
+        "file_sha256": "0332c7770a8a1a57b32ffb5f1b492afb0ff399650570e47f1799a36a9f85ff42"
+      },
+      {
+        "version": "20260805200500",
+        "name": "retire_hyx84825_manual_ml_block",
+        "file": "20260805200500_retire_hyx84825_manual_ml_block.sql",
+        "file_sha256": "b0b4bfbaba9639cd5f75bc2d539aa0bf899314b3d61a5de155ae39027cf33f66"
+      },
+      {
+        "version": "20260812153000",
+        "name": "add_internal_supplier_product_filters",
+        "file": "20260812153000_add_internal_supplier_product_filters.sql",
+        "file_sha256": "73d17a6dbbcfdaced83f1f54e02267ebd73cc2640bf78e6eab530243e3e5ef08"
+      },
+      {
+        "version": "20260812160000",
+        "name": "add_order_fulfillment_selection",
+        "file": "20260812160000_add_order_fulfillment_selection.sql",
+        "file_sha256": "17c937e4033cfe9992d9306d61e7e09015c7c1af51fc56717a1c116f0d42084f"
+      },
+      {
+        "version": "20260813182247",
+        "name": "remove_evolusom_es_catalog",
+        "file": "20260813182247_remove_evolusom_es_catalog.sql",
+        "file_sha256": "b41fd84c3afd699c0af8ff38e3ce4663a4fbce8eaf204960e470b7ed04d2efc6"
+      },
+      {
+        "version": "20260815221030",
+        "name": "ml_p0_audit",
+        "file": "20260815221030_ml_p0_audit.sql",
+        "file_sha256": "cba712df5d40dd2140685de305a8b930fa935799b717a84fff9e7784e73b48bf"
+      },
+      {
+        "version": "20260815225216",
+        "name": "ml_p0_sanitize",
+        "file": "20260815225216_ml_p0_sanitize.sql",
+        "file_sha256": "ed103e9cc4647f786f2ddffb4ea205ffcf94fb303e770a36f7f40740fa0c6759"
+      },
+      {
+        "version": "20260816005942",
+        "name": "ml_p0_phase3",
+        "file": "20260816005942_ml_p0_phase3.sql",
+        "file_sha256": "a059e8a8cd36087399d035c7fb116c809546d21d19a0ebad868fa99e717f43f6"
+      },
+      {
+        "version": "20260827230000",
+        "name": "optimize_jobs_operational_queries",
+        "file": "20260827230000_optimize_jobs_operational_queries.sql",
+        "file_sha256": "7a5c5285ab98819848c6740195f1a8fd50d8af6b9e829ca96b11464788684c4a"
+      },
+      {
+        "version": "20260828163450",
+        "name": "protect_profiles_cargo",
+        "file": "20260828163450_protect_profiles_cargo.sql",
+        "file_sha256": "e1c7f35ea44d552a75a84b4ccc4516d4b3d2d64cd7f6446a28fd2d854a3488c7"
+      },
+      {
+        "version": "20260830090000",
+        "name": "durable_ml_listings_observed_scan",
+        "file": "20260830090000_durable_ml_listings_observed_scan.sql",
+        "file_sha256": "c5ca4cb3e691a5441196f83eb1836ffcb962b35083278ce1cd0f137cf7131e24"
+      },
+      {
+        "version": "20260830143000",
+        "name": "atomic_internal_stock_reservation",
+        "file": "20260830143000_atomic_internal_stock_reservation.sql",
+        "file_sha256": "2953762ec49271921cb84d614fd16453121662ae45b970f39b4fc94b7f6dcbba"
+      },
+      {
+        "version": "20260830193000",
+        "name": "repair_catalog_refresh_dispatch",
+        "file": "20260830193000_repair_catalog_refresh_dispatch.sql",
+        "file_sha256": "4f1480580211087da37d536fd9c1327e6a5fcb102e4fe6cd5605db416e289dd6"
+      },
+      {
+        "version": "20260830210000",
+        "name": "secure_runtime_api_secret",
+        "file": "20260830210000_secure_runtime_api_secret.sql",
+        "file_sha256": "3f4e09786bb97cb0d438dd5b737a796983ce591df1d9923ec066902a1866e1a6"
+      },
+      {
+        "version": "20260830220000",
+        "name": "harden_public_schema_after_db03",
+        "file": "20260830220000_harden_public_schema_after_db03.sql",
+        "file_sha256": "a79784e55acdc839d5c38739e0a68d48ecf21c2cebe70c6ae43bb4979c0f04f2"
+      },
+      {
+        "version": "20260830233000",
+        "name": "rule_02_dynamic_pricing",
+        "file": "20260830233000_rule_02_dynamic_pricing.sql",
+        "file_sha256": "4de74363fb4d29e078acc8c81430d7d27a8d4096e19ee0d34f0a50392e12fe52"
+      },
+      {
+        "version": "20260830235900",
+        "name": "rule_05_canonical_nfe_status",
+        "file": "20260830235900_rule_05_canonical_nfe_status.sql",
+        "file_sha256": "17e39d8b425cb65e420593f841e4ecdd27fbad30463c2b05f3f8f26fc25437a8"
+      },
+      {
+        "version": "20260831110000",
+        "name": "job_progress_unit",
+        "file": "20260831110000_job_progress_unit.sql",
+        "file_sha256": "2adff5fdb2829736a9bbd74ced004f65c7f8d9d53cd4a729fe9c3b68b5e01824"
+      },
+      {
+        "version": "20260831113000",
+        "name": "job_status_constraints",
+        "file": "20260831113000_job_status_constraints.sql",
+        "file_sha256": "f52d264d8a3f076feac68df2959fa0789affd2cc4c259c6d93f64ebb7ea75fd1"
+      },
+      {
+        "version": "20260901160000",
+        "name": "bnt_d04_fiscal_returns",
+        "file": "20260901160000_bnt_d04_fiscal_returns.sql",
+        "file_sha256": "7313214ff603bb86d351e06273d80408e77aab565f334d5283724022b8883a70"
+      },
+      {
+        "version": "20260901190000",
+        "name": "bnt_d05_owned_inventory",
+        "file": "20260901190000_bnt_d05_owned_inventory.sql",
+        "file_sha256": "7b13ed257779ebcb463b19bdfc546e0544ac4e4457f1fef8b1812bd367d4ce4a"
+      },
+      {
+        "version": "20260901213000",
+        "name": "bnt_d05_incoming_invoices",
+        "file": "20260901213000_bnt_d05_incoming_invoices.sql",
+        "file_sha256": "ee43306501de62ccf0d94dc4f9af094db1edcc5f649fa1d09ca6058b169398a3"
+      },
+      {
+        "version": "20260902110000",
+        "name": "bnt_d09_supplier_offers_search",
+        "file": "20260902110000_bnt_d09_supplier_offers_search.sql",
+        "file_sha256": "e090270491c912fc408061d46e5786df5fe8b1baddbcbd6823da0421b9857978"
+      },
+      {
+        "version": "20260902170000",
+        "name": "bnt_d11_ml_listings_search",
+        "file": "20260902170000_bnt_d11_ml_listings_search.sql",
+        "file_sha256": "bb68aa160d8d8783177f3b31fbe92fb0c027370296234e0a8e0ece058f24a12d"
+      },
+      {
+        "version": "20260902200000",
+        "name": "bnt_d13_client_search",
+        "file": "20260902200000_bnt_d13_client_search.sql",
+        "file_sha256": "9916d24d047e9621aab117f7dd0e11dcc1e29c2fd44cc34085c61537b9ebea3c"
+      },
+      {
+        "version": "20260904163000",
+        "name": "bnt_cfg_01_admin_audit",
+        "file": "20260904163000_bnt_cfg_01_admin_audit.sql",
+        "file_sha256": "54ec3a3ab985e418b7c97e7ae0082420afb4d9f68f48c59e759544f2153b17af"
+      },
+      {
+        "version": "20260904210000",
+        "name": "bnt_cfg_02_company_fiscal",
+        "file": "20260904210000_bnt_cfg_02_company_fiscal.sql",
+        "file_sha256": "1c0c23cc100349b38118dc39f29126fd71b636fe1cd9bb42acf48d3ee0880650"
+      },
+      {
+        "version": "20260904223000",
+        "name": "bnt_cfg_03_commercial_pricing",
+        "file": "20260904223000_bnt_cfg_03_commercial_pricing.sql",
+        "file_sha256": "5b96af4db620de5c60419a55184acbef6fef4706607fc06752a513ce6006900d"
+      },
+      {
+        "version": "20260904233000",
+        "name": "bnt_cfg_04_operation",
+        "file": "20260904233000_bnt_cfg_04_operation.sql",
+        "file_sha256": "81f8867037dcc1f8cc929a0d9c7eac31f68921af9e34e4e21055c0c3dcc6a029"
+      },
+      {
+        "version": "20260905003000",
+        "name": "bnt_cfg_05_mercado_livre",
+        "file": "20260905003000_bnt_cfg_05_mercado_livre.sql",
+        "file_sha256": "80073f6b214480b882da4d92ce7d68c61c7052e2c6c3afc74a1f76f89bc1cfe5"
+      },
+      {
+        "version": "20260905023000",
+        "name": "bnt_cfg_06_notifications",
+        "file": "20260905023000_bnt_cfg_06_notifications.sql",
+        "file_sha256": "f50be8a9a3285a621e1c58dada719c41deafaede0d79a9e2439f7c706b0c891f"
+      },
+      {
+        "version": "20260905120000",
+        "name": "bnt_parity_07_concretizada_ml",
+        "file": "20260905120000_bnt_parity_07_concretizada_ml.sql",
+        "file_sha256": "1c44f5e4a908e889be151769cd2cfe591b420abd29118c31b7950ed13308ad9c"
+      }
+    ]
+  },
+  "comparisons": {
+    "dev_files_registry": {
+      "comparison_scope": "version_and_name_only",
+      "content_equivalence": "not_established",
+      "repository_count": 109,
+      "database_count": 109,
+      "repository_only": [],
+      "database_only": [],
+      "name_mismatches": [],
+      "exact_match": true
+    },
+    "main_files_registry": {
+      "comparison_scope": "version_and_name_only",
+      "content_equivalence": "not_established",
+      "repository_count": 89,
+      "database_count": 87,
+      "repository_only": [
+        {
+          "version": "20260729182648",
+          "name": "consolidate_virtual_kit_orders",
+          "file": "20260729182648_consolidate_virtual_kit_orders.sql",
+          "file_sha256": "6b03ab7b53d9db1c4ab45b66840432f8be11a5c14b0bd1a2a47884616b76fc84"
+        },
+        {
+          "version": "20260729213737",
+          "name": "estornar_saida_estoque_pedido_cancelado",
+          "file": "20260729213737_estornar_saida_estoque_pedido_cancelado.sql",
+          "file_sha256": "763efddfd5386847cb57a03f2d71be706f63a6148cfdd011a9f7e2d7c29d3595"
+        }
+      ],
+      "database_only": [],
+      "name_mismatches": [
+        {
+          "version": "00008",
+          "repository_name": "tracking_status",
+          "database_name": "add_ml_buyer_id"
+        },
+        {
+          "version": "20260709120000",
+          "repository_name": "pedidos_dslite_label_source",
+          "database_name": null
+        },
+        {
+          "version": "20260709121500",
+          "repository_name": "backfill_pedidos_dslite_label_source",
+          "database_name": null
+        }
+      ],
+      "exact_match": false
+    },
+    "dev_files_main_files": [
+      {
+        "version": "00001",
+        "left_name": "schema",
+        "right_name": "schema",
+        "representation": "file_sha256",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "00002",
+        "left_name": "nfe_dslite",
+        "right_name": "nfe_dslite",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00003",
+        "left_name": "remove_bling",
+        "right_name": "remove_bling",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00004",
+        "left_name": "fornecedor",
+        "right_name": "fornecedor",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00005",
+        "left_name": "ncm",
+        "right_name": "ncm",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00006",
+        "left_name": "skus",
+        "right_name": "skus",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00007",
+        "left_name": "fiscal",
+        "right_name": "fiscal",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00008",
+        "left_name": "tracking_status",
+        "right_name": "tracking_status",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00009",
+        "left_name": "tracking_status",
+        "right_name": "tracking_status",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00010",
+        "left_name": "devolvido",
+        "right_name": "devolvido",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00011",
+        "left_name": "ciclo_venda",
+        "right_name": "ciclo_venda",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00012",
+        "left_name": "compras_dslite",
+        "right_name": "compras_dslite",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00013",
+        "left_name": "ml_refresh_hardening",
+        "right_name": "ml_refresh_hardening",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00014",
+        "left_name": "ml_shipping_warning",
+        "right_name": "ml_shipping_warning",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00015",
+        "left_name": "fornecedores_dslite",
+        "right_name": "fornecedores_dslite",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00016",
+        "left_name": "pedido_status_pronto_envio",
+        "right_name": "pedido_status_pronto_envio",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00017",
+        "left_name": "produtos_sku_case_insensitive",
+        "right_name": "produtos_sku_case_insensitive",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00018",
+        "left_name": "cron_dispatch_schedule",
+        "right_name": "cron_dispatch_schedule",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00019",
+        "left_name": "ml_sync_cooldown",
+        "right_name": "ml_sync_cooldown",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00020",
+        "left_name": "produtos_dslite_identity_unique",
+        "right_name": "produtos_dslite_identity_unique",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00021",
+        "left_name": "ml_manual_blocklist",
+        "right_name": "ml_manual_blocklist",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00022",
+        "left_name": "ml_pack_and_nf_audit",
+        "right_name": "ml_pack_and_nf_audit",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525144254",
+        "left_name": "fiscal_provider_router",
+        "right_name": "fiscal_provider_router",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525150821",
+        "left_name": "pedidos_snapshot_fiscal_v2",
+        "right_name": "pedidos_snapshot_fiscal_v2",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525190000",
+        "left_name": "municipios_ibge",
+        "right_name": "municipios_ibge",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525211000",
+        "left_name": "empresa_fiscal_fields",
+        "right_name": "empresa_fiscal_fields",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260526110000",
+        "left_name": "disable_ml_fiscal_emission",
+        "right_name": "disable_ml_fiscal_emission",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260526213000",
+        "left_name": "catalogo_ml_snapshot",
+        "right_name": "catalogo_ml_snapshot",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260528110000",
+        "left_name": "pedidos_ml_fiscal_release_window",
+        "right_name": "pedidos_ml_fiscal_release_window",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260528123000",
+        "left_name": "sync_domain_locks_and_ml_publish_outbox",
+        "right_name": "sync_domain_locks_and_ml_publish_outbox",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260528123500",
+        "left_name": "update_cron_dispatch_frequency",
+        "right_name": "update_cron_dispatch_frequency",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260529194000",
+        "left_name": "catalogo_snapshot_catalog_listing_flag",
+        "right_name": "catalogo_snapshot_catalog_listing_flag",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260601113000",
+        "left_name": "pedidos_search_rpc",
+        "right_name": "pedidos_search_rpc",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260602112000",
+        "left_name": "pedidos_search_sort_rpc",
+        "right_name": "pedidos_search_sort_rpc",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260605182000",
+        "left_name": "pedidos_data_venda",
+        "right_name": "pedidos_data_venda",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260608123000",
+        "left_name": "multi_supplier_product_offers",
+        "right_name": "multi_supplier_product_offers",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260608193000",
+        "left_name": "product_offer_listing_details",
+        "right_name": "product_offer_listing_details",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260608212158",
+        "left_name": "product_master_gtin_central",
+        "right_name": "product_master_gtin_central",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609193758",
+        "left_name": "product_master_vtk_sku",
+        "right_name": "product_master_vtk_sku",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609195820",
+        "left_name": "supplier_payment_modes_balance",
+        "right_name": "supplier_payment_modes_balance",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609202911",
+        "left_name": "mercadopago_account_money",
+        "right_name": "mercadopago_account_money",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609203217",
+        "left_name": "mercadopago_integration_seed",
+        "right_name": "mercadopago_integration_seed",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260610001532",
+        "left_name": "harden_public_table_access",
+        "right_name": "harden_public_table_access",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260610174031",
+        "left_name": "produtos_ativo_operacional",
+        "right_name": "produtos_ativo_operacional",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260611150456",
+        "left_name": "produtos_search_rpc",
+        "right_name": "produtos_search_rpc",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260611151210",
+        "left_name": "produtos_search_rpc_optimize_page",
+        "right_name": "produtos_search_rpc_optimize_page",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260618185121",
+        "left_name": "shipping_labels_storage",
+        "right_name": "shipping_labels_storage",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260618212911",
+        "left_name": "short_links",
+        "right_name": "short_links",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260619153640",
+        "left_name": "whatsapp_alerts",
+        "right_name": "whatsapp_alerts",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260619192918",
+        "left_name": "supplier_payment_receipts",
+        "right_name": "supplier_payment_receipts",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260620001000",
+        "left_name": "fornecedores_supplier_pix_key",
+        "right_name": "fornecedores_supplier_pix_key",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260622093000",
+        "left_name": "ops_whatsapp_audit",
+        "right_name": "ops_whatsapp_audit",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260707010000",
+        "left_name": "clientes_ml_id_unique",
+        "right_name": "clientes_ml_id_unique",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260709120000",
+        "left_name": "pedidos_dslite_label_source",
+        "right_name": "pedidos_dslite_label_source",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260709121500",
+        "left_name": "backfill_pedidos_dslite_label_source",
+        "right_name": "backfill_pedidos_dslite_label_source",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260711161100",
+        "left_name": "web_push_notifications",
+        "right_name": "web_push_notifications",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260714193934",
+        "left_name": "kit_inventory",
+        "right_name": "kit_inventory",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260714194430",
+        "left_name": "sync_vtk_sku_sequence",
+        "right_name": "sync_vtk_sku_sequence",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260716110000",
+        "left_name": "pedidos_envio_interno",
+        "right_name": "pedidos_envio_interno",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260720010000",
+        "left_name": "estoque_interno",
+        "right_name": "estoque_interno",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260720155308",
+        "left_name": "estoque_devolucao_fluxo",
+        "right_name": "estoque_devolucao_fluxo",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260722222928",
+        "left_name": "realtime_ml_publish_dispatch",
+        "right_name": "realtime_ml_publish_dispatch",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260723174252",
+        "left_name": "internal_shipping_thermal_labels",
+        "right_name": "internal_shipping_thermal_labels",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260727201827",
+        "left_name": "expand_pedidos_search_product_supplier",
+        "right_name": "expand_pedidos_search_product_supplier",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260729182648",
+        "left_name": "consolidate_virtual_kit_orders",
+        "right_name": "consolidate_virtual_kit_orders",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260729213737",
+        "left_name": "estornar_saida_estoque_pedido_cancelado",
+        "right_name": "estornar_saida_estoque_pedido_cancelado",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260731002740",
+        "left_name": "consolidate_cart_orders",
+        "right_name": "consolidate_cart_orders",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260801223553",
+        "left_name": "add_manual_preferred_supplier",
+        "right_name": "add_manual_preferred_supplier",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260801232600",
+        "left_name": "durable_ml_order_hydration_queue",
+        "right_name": "durable_ml_order_hydration_queue",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260802000117",
+        "left_name": "remove_invalid_internal_stock_air_fryer",
+        "right_name": "remove_invalid_internal_stock_air_fryer",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260803231103",
+        "left_name": "resume_on_hold_ml_publish",
+        "right_name": "resume_on_hold_ml_publish",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260804001421",
+        "left_name": "durable_catalog_price_refresh",
+        "right_name": "durable_catalog_price_refresh",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260804164839",
+        "left_name": "restore_internal_stock_air_fryer_return",
+        "right_name": "restore_internal_stock_air_fryer_return",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260804192052",
+        "left_name": "fix_internal_stock_product_projection",
+        "right_name": "fix_internal_stock_product_projection",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260804202357",
+        "left_name": "supplier_credits_control",
+        "right_name": "supplier_credits_control",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260805014500",
+        "left_name": "catalog_manual_review_queue",
+        "right_name": "catalog_manual_review_queue",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260805141602",
+        "left_name": "remove_catalog_manual_review_queue",
+        "right_name": "remove_catalog_manual_review_queue",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260805200000",
+        "left_name": "retire_hyx84825_temporary_ml_block",
+        "right_name": "retire_hyx84825_temporary_ml_block",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260805200500",
+        "left_name": "retire_hyx84825_manual_ml_block",
+        "right_name": "retire_hyx84825_manual_ml_block",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260812153000",
+        "left_name": "add_internal_supplier_product_filters",
+        "right_name": "add_internal_supplier_product_filters",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260812160000",
+        "left_name": "add_order_fulfillment_selection",
+        "right_name": "add_order_fulfillment_selection",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260813182247",
+        "left_name": "remove_evolusom_es_catalog",
+        "right_name": "remove_evolusom_es_catalog",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260815221030",
+        "left_name": "ml_p0_audit",
+        "right_name": "ml_p0_audit",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260815225216",
+        "left_name": "ml_p0_sanitize",
+        "right_name": "ml_p0_sanitize",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260816005942",
+        "left_name": "ml_p0_phase3",
+        "right_name": "ml_p0_phase3",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260827230000",
+        "left_name": "optimize_jobs_operational_queries",
+        "right_name": "optimize_jobs_operational_queries",
+        "representation": "file_sha256",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260828163450",
+        "left_name": "protect_profiles_cargo",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830090000",
+        "left_name": "durable_ml_listings_observed_scan",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830143000",
+        "left_name": "atomic_internal_stock_reservation",
+        "right_name": "internal_purchase_stock_origin",
+        "representation": "file_sha256",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260830193000",
+        "left_name": "repair_catalog_refresh_dispatch",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830210000",
+        "left_name": "secure_runtime_api_secret",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830220000",
+        "left_name": "harden_public_schema_after_db03",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830233000",
+        "left_name": "rule_02_dynamic_pricing",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830235900",
+        "left_name": "rule_05_canonical_nfe_status",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260831110000",
+        "left_name": "job_progress_unit",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260831113000",
+        "left_name": "job_status_constraints",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260901160000",
+        "left_name": "bnt_d04_fiscal_returns",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260901190000",
+        "left_name": "bnt_d05_owned_inventory",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260901213000",
+        "left_name": "bnt_d05_incoming_invoices",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260902110000",
+        "left_name": "bnt_d09_supplier_offers_search",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260902170000",
+        "left_name": "bnt_d11_ml_listings_search",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260902200000",
+        "left_name": "bnt_d13_client_search",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260903183000",
+        "left_name": null,
+        "right_name": "reactivate_products_with_eligible_active_supplier",
+        "representation": "file_sha256",
+        "status": "right_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904041000",
+        "left_name": null,
+        "right_name": "add_concretizada_ml_order_status",
+        "representation": "file_sha256",
+        "status": "right_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904163000",
+        "left_name": "bnt_cfg_01_admin_audit",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904210000",
+        "left_name": "bnt_cfg_02_company_fiscal",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904223000",
+        "left_name": "bnt_cfg_03_commercial_pricing",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904233000",
+        "left_name": "bnt_cfg_04_operation",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260905003000",
+        "left_name": "bnt_cfg_05_mercado_livre",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260905023000",
+        "left_name": "bnt_cfg_06_notifications",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260905120000",
+        "left_name": "bnt_parity_07_concretizada_ml",
+        "right_name": null,
+        "representation": "file_sha256",
+        "status": "left_only",
+        "requires_review": true
+      }
+    ],
+    "dev_registry_production_registry": [
+      {
+        "version": "00001",
+        "left_name": "schema",
+        "right_name": "schema",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "00002",
+        "left_name": "nfe_dslite",
+        "right_name": "nfe_dslite",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00003",
+        "left_name": "remove_bling",
+        "right_name": "remove_bling",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00004",
+        "left_name": "fornecedor",
+        "right_name": "fornecedor",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00005",
+        "left_name": "ncm",
+        "right_name": "ncm",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00006",
+        "left_name": "skus",
+        "right_name": "skus",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00007",
+        "left_name": "fiscal",
+        "right_name": "fiscal",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00008",
+        "left_name": "tracking_status",
+        "right_name": "add_ml_buyer_id",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "00009",
+        "left_name": "tracking_status",
+        "right_name": "tracking_status",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00010",
+        "left_name": "devolvido",
+        "right_name": "devolvido",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00011",
+        "left_name": "ciclo_venda",
+        "right_name": "ciclo_venda",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00012",
+        "left_name": "compras_dslite",
+        "right_name": "compras_dslite",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00013",
+        "left_name": "ml_refresh_hardening",
+        "right_name": "ml_refresh_hardening",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00014",
+        "left_name": "ml_shipping_warning",
+        "right_name": "ml_shipping_warning",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00015",
+        "left_name": "fornecedores_dslite",
+        "right_name": "fornecedores_dslite",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00016",
+        "left_name": "pedido_status_pronto_envio",
+        "right_name": "pedido_status_pronto_envio",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00017",
+        "left_name": "produtos_sku_case_insensitive",
+        "right_name": "produtos_sku_case_insensitive",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00018",
+        "left_name": "cron_dispatch_schedule",
+        "right_name": "cron_dispatch_schedule",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00019",
+        "left_name": "ml_sync_cooldown",
+        "right_name": "ml_sync_cooldown",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00020",
+        "left_name": "produtos_dslite_identity_unique",
+        "right_name": "produtos_dslite_identity_unique",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00021",
+        "left_name": "ml_manual_blocklist",
+        "right_name": "ml_manual_blocklist",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "00022",
+        "left_name": "ml_pack_and_nf_audit",
+        "right_name": "ml_pack_and_nf_audit",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525144254",
+        "left_name": "fiscal_provider_router",
+        "right_name": "fiscal_provider_router",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525150821",
+        "left_name": "pedidos_snapshot_fiscal_v2",
+        "right_name": "pedidos_snapshot_fiscal_v2",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525190000",
+        "left_name": "municipios_ibge",
+        "right_name": "municipios_ibge",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260525211000",
+        "left_name": "empresa_fiscal_fields",
+        "right_name": "empresa_fiscal_fields",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260526110000",
+        "left_name": "disable_ml_fiscal_emission",
+        "right_name": "disable_ml_fiscal_emission",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260526213000",
+        "left_name": "catalogo_ml_snapshot",
+        "right_name": "catalogo_ml_snapshot",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260528110000",
+        "left_name": "pedidos_ml_fiscal_release_window",
+        "right_name": "pedidos_ml_fiscal_release_window",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260528123000",
+        "left_name": "sync_domain_locks_and_ml_publish_outbox",
+        "right_name": "sync_domain_locks_and_ml_publish_outbox",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260528123500",
+        "left_name": "update_cron_dispatch_frequency",
+        "right_name": "update_cron_dispatch_frequency",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260529194000",
+        "left_name": "catalogo_snapshot_catalog_listing_flag",
+        "right_name": "catalogo_snapshot_catalog_listing_flag",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260601113000",
+        "left_name": "pedidos_search_rpc",
+        "right_name": "pedidos_search_rpc",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260602112000",
+        "left_name": "pedidos_search_sort_rpc",
+        "right_name": "pedidos_search_sort_rpc",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260605182000",
+        "left_name": "pedidos_data_venda",
+        "right_name": "pedidos_data_venda",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260608123000",
+        "left_name": "multi_supplier_product_offers",
+        "right_name": "multi_supplier_product_offers",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260608193000",
+        "left_name": "product_offer_listing_details",
+        "right_name": "product_offer_listing_details",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260608212158",
+        "left_name": "product_master_gtin_central",
+        "right_name": "product_master_gtin_central",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609193758",
+        "left_name": "product_master_vtk_sku",
+        "right_name": "product_master_vtk_sku",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609195820",
+        "left_name": "supplier_payment_modes_balance",
+        "right_name": "supplier_payment_modes_balance",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609202911",
+        "left_name": "mercadopago_account_money",
+        "right_name": "mercadopago_account_money",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260609203217",
+        "left_name": "mercadopago_integration_seed",
+        "right_name": "mercadopago_integration_seed",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260610001532",
+        "left_name": "harden_public_table_access",
+        "right_name": "harden_public_table_access",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260610174031",
+        "left_name": "produtos_ativo_operacional",
+        "right_name": "produtos_ativo_operacional",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260611150456",
+        "left_name": "produtos_search_rpc",
+        "right_name": "produtos_search_rpc",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260611151210",
+        "left_name": "produtos_search_rpc_optimize_page",
+        "right_name": "produtos_search_rpc_optimize_page",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260618185121",
+        "left_name": "shipping_labels_storage",
+        "right_name": "shipping_labels_storage",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260618212911",
+        "left_name": "short_links",
+        "right_name": "short_links",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260619153640",
+        "left_name": "whatsapp_alerts",
+        "right_name": "whatsapp_alerts",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260619192918",
+        "left_name": "supplier_payment_receipts",
+        "right_name": "supplier_payment_receipts",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260620001000",
+        "left_name": "fornecedores_supplier_pix_key",
+        "right_name": "fornecedores_supplier_pix_key",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260622093000",
+        "left_name": "ops_whatsapp_audit",
+        "right_name": "ops_whatsapp_audit",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260707010000",
+        "left_name": "clientes_ml_id_unique",
+        "right_name": "clientes_ml_id_unique",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260709120000",
+        "left_name": "pedidos_dslite_label_source",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260709121500",
+        "left_name": "backfill_pedidos_dslite_label_source",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260711161100",
+        "left_name": "web_push_notifications",
+        "right_name": "web_push_notifications",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260714193934",
+        "left_name": "kit_inventory",
+        "right_name": "kit_inventory",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260714194430",
+        "left_name": "sync_vtk_sku_sequence",
+        "right_name": "sync_vtk_sku_sequence",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260716110000",
+        "left_name": "pedidos_envio_interno",
+        "right_name": "pedidos_envio_interno",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260720010000",
+        "left_name": "estoque_interno",
+        "right_name": "estoque_interno",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260720155308",
+        "left_name": "estoque_devolucao_fluxo",
+        "right_name": "estoque_devolucao_fluxo",
+        "representation": "statements_md5",
+        "status": "matching",
+        "requires_review": false
+      },
+      {
+        "version": "20260722222928",
+        "left_name": "realtime_ml_publish_dispatch",
+        "right_name": "realtime_ml_publish_dispatch",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260723174252",
+        "left_name": "internal_shipping_thermal_labels",
+        "right_name": "internal_shipping_thermal_labels",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260727201827",
+        "left_name": "expand_pedidos_search_product_supplier",
+        "right_name": "expand_pedidos_search_product_supplier",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260729182648",
+        "left_name": "consolidate_virtual_kit_orders",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260729213737",
+        "left_name": "estornar_saida_estoque_pedido_cancelado",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260731002740",
+        "left_name": "consolidate_cart_orders",
+        "right_name": "consolidate_cart_orders",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260801223553",
+        "left_name": "add_manual_preferred_supplier",
+        "right_name": "add_manual_preferred_supplier",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260801232600",
+        "left_name": "durable_ml_order_hydration_queue",
+        "right_name": "durable_ml_order_hydration_queue",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260802000117",
+        "left_name": "remove_invalid_internal_stock_air_fryer",
+        "right_name": "remove_invalid_internal_stock_air_fryer",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260803231103",
+        "left_name": "resume_on_hold_ml_publish",
+        "right_name": "resume_on_hold_ml_publish",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260804001421",
+        "left_name": "durable_catalog_price_refresh",
+        "right_name": "durable_catalog_price_refresh",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260804164839",
+        "left_name": "restore_internal_stock_air_fryer_return",
+        "right_name": "restore_internal_stock_air_fryer_return",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260804192052",
+        "left_name": "fix_internal_stock_product_projection",
+        "right_name": "fix_internal_stock_product_projection",
+        "representation": "statements_md5",
+        "status": "different",
+        "requires_review": true
+      },
+      {
+        "version": "20260804202357",
+        "left_name": "supplier_credits_control",
+        "right_name": "supplier_credits_control",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260805014500",
+        "left_name": "catalog_manual_review_queue",
+        "right_name": "catalog_manual_review_queue",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260805141602",
+        "left_name": "remove_catalog_manual_review_queue",
+        "right_name": "remove_catalog_manual_review_queue",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260805200000",
+        "left_name": "retire_hyx84825_temporary_ml_block",
+        "right_name": "retire_hyx84825_temporary_ml_block",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260805200500",
+        "left_name": "retire_hyx84825_manual_ml_block",
+        "right_name": "retire_hyx84825_manual_ml_block",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260812153000",
+        "left_name": "add_internal_supplier_product_filters",
+        "right_name": "add_internal_supplier_product_filters",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260812160000",
+        "left_name": "add_order_fulfillment_selection",
+        "right_name": "add_order_fulfillment_selection",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260813182247",
+        "left_name": "remove_evolusom_es_catalog",
+        "right_name": "remove_evolusom_es_catalog",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260815221030",
+        "left_name": "ml_p0_audit",
+        "right_name": "ml_p0_audit",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260815225216",
+        "left_name": "ml_p0_sanitize",
+        "right_name": "ml_p0_sanitize",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260816005942",
+        "left_name": "ml_p0_phase3",
+        "right_name": "ml_p0_phase3",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260827230000",
+        "left_name": "optimize_jobs_operational_queries",
+        "right_name": "optimize_jobs_operational_queries",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260828163450",
+        "left_name": "protect_profiles_cargo",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830090000",
+        "left_name": "durable_ml_listings_observed_scan",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830143000",
+        "left_name": "atomic_internal_stock_reservation",
+        "right_name": "internal_purchase_stock_origin",
+        "representation": "statements_md5",
+        "status": "unavailable",
+        "requires_review": true
+      },
+      {
+        "version": "20260830193000",
+        "left_name": "repair_catalog_refresh_dispatch",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830210000",
+        "left_name": "secure_runtime_api_secret",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830220000",
+        "left_name": "harden_public_schema_after_db03",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830233000",
+        "left_name": "rule_02_dynamic_pricing",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260830235900",
+        "left_name": "rule_05_canonical_nfe_status",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260831110000",
+        "left_name": "job_progress_unit",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260831113000",
+        "left_name": "job_status_constraints",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260901160000",
+        "left_name": "bnt_d04_fiscal_returns",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260901190000",
+        "left_name": "bnt_d05_owned_inventory",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260901213000",
+        "left_name": "bnt_d05_incoming_invoices",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260902110000",
+        "left_name": "bnt_d09_supplier_offers_search",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260902170000",
+        "left_name": "bnt_d11_ml_listings_search",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260902200000",
+        "left_name": "bnt_d13_client_search",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260903183000",
+        "left_name": null,
+        "right_name": "reactivate_products_with_eligible_active_supplier",
+        "representation": "statements_md5",
+        "status": "right_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904041000",
+        "left_name": null,
+        "right_name": "add_concretizada_ml_order_status",
+        "representation": "statements_md5",
+        "status": "right_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904163000",
+        "left_name": "bnt_cfg_01_admin_audit",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904210000",
+        "left_name": "bnt_cfg_02_company_fiscal",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904223000",
+        "left_name": "bnt_cfg_03_commercial_pricing",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260904233000",
+        "left_name": "bnt_cfg_04_operation",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260905003000",
+        "left_name": "bnt_cfg_05_mercado_livre",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260905023000",
+        "left_name": "bnt_cfg_06_notifications",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      },
+      {
+        "version": "20260905120000",
+        "left_name": "bnt_parity_07_concretizada_ml",
+        "right_name": null,
+        "representation": "statements_md5",
+        "status": "left_only",
+        "requires_review": true
+      }
+    ]
+  },
+  "verification": {
+    "production": {
+      "captured_at": "2026-09-05T15:03:56.961534+00:00",
+      "read_only": "on",
+      "catalog_md5_after": "70a0318b3f1cd1b7fc5eece5f71e9abc",
+      "catalog_unchanged": true,
+      "registry_unchanged": true
+    },
+    "development": {
+      "captured_at": "2026-09-05T15:03:57.046713+00:00",
+      "read_only": "on",
+      "catalog_md5_after": "f565cba895ad571b830d248e55bdce43",
+      "catalog_unchanged": true,
+      "registry_unchanged": true
+    }
+  },
+  "treatments": {
+    "BASELINE": {
+      "classification": "EQUIVALENTE",
+      "scope": "Efeitos atuais de integracao_tipo e índice único, não identidade do SQL histórico.",
+      "evidence": "effects.integration_enum e effects.integration_unique_index; 00013_ml_refresh_hardening e 20260525144254_fiscal_provider_router.",
+      "action": "Preservar 00001 de cada linha histórica; não reaplicar bootstrap."
+    },
+    "BUYER_HISTORY": {
+      "classification": "NÃO COPIAR",
+      "scope": "00008 produtiva registra ml_buyer_id; DEV registra tracking.",
+      "evidence": "Coluna ml_buyer_id ausente nos dois schemas consultados; sem referência em src/migrations DEV. Tracking existe nos dois e 00009 contém a evolução idempotente.",
+      "action": "Preservar registros distintos; não recriar coluna sem consumidor nem reaplicar 00008."
+    },
+    "LABEL_HISTORY": {
+      "classification": "NÃO COPIAR",
+      "scope": "Nome e SQL ausentes no registro produtivo.",
+      "evidence": "effects.label_source_columns confirma estrutura; não comprova execução/resultado do backfill histórico.",
+      "action": "Manter registro sem nome; não repetir backfill. Resultado histórico não atestado."
+    },
+    "JULY_EFFECTS": {
+      "classification": "EQUIVALENTE",
+      "scope": "Colunas de kit, estorno e índice de saídas ativas verificados; não execução integral das migrations.",
+      "evidence": "effects.columns e effects.stock_indexes. Arquivos em main, versões ausentes no registro produtivo.",
+      "action": "Não registrar como aplicadas nem executar SQL antigo. Confrontar funções/view finais no delta de promoção."
+    },
+    "STOCK_COLLISION": {
+      "classification": "SUBSTITUÍDA",
+      "scope": "Origem/custo legado de compra substituídos pelo estoque próprio estruturado DEV.",
+      "evidence": "effects.columns e effects.routines; recebimentos BNT-D05 dependem de estado_envio_interno.",
+      "action": "Preservar as duas identidades. Preparar delta novo antes das dependências na promoção; release bloqueado até ensaio."
+    },
+    "PRODUCT_REACTIVATION": {
+      "classification": "NÃO COPIAR",
+      "scope": "Backfill produtivo de reativação não deve reativar produtos no DEV.",
+      "evidence": "BNT-PARITY-01 preserva produtos.ativo exclusivamente manual.",
+      "action": "Não repetir DML nem importar registro produtivo para DEV."
+    },
+    "ORDER_ENUM": {
+      "classification": "EQUIVALENTE",
+      "scope": "Estado concretizada_ml presente nos dois ambientes.",
+      "evidence": "effects.order_enum; DEV usa 20260905120000_bnt_parity_07_concretizada_ml.",
+      "action": "Preservar as duas migrations distintas; não repetir ALTER TYPE antigo."
+    },
+    "DEV_EVOLUTION": {
+      "classification": "INCORPORAR",
+      "scope": "Evolução já existente no DEV; destino é o futuro delta de promoção.",
+      "evidence": "Inventário DEV e catálogo de ações do Item 17; não certifica replay das migrations.",
+      "action": "Manter DEV; mapear objetos finais e dependências no delta, sem executar esta lista como fila automática."
+    },
+    "RECORDED_FORMAT": {
+      "classification": "NÃO COPIAR",
+      "scope": "Registros diferem em formatação, separação de comandos e comentário de jobs.",
+      "evidence": "Leitura dos registros de 20260801223553 e 20260801232600; hashes distintos não significam schema incorreto.",
+      "action": "Preservar representações originais; validar objetos finais no delta, sem normalizar registros."
+    },
+    "RECORDED_NOTE": {
+      "classification": "NÃO COPIAR",
+      "scope": "Produção armazena descrição textual em vez do SQL executado.",
+      "evidence": "Leitura de statements das cinco versões identificadas; conteúdo registrado não é prova executável.",
+      "action": "Preservar nota histórica. Não reaplicar reparos de dados/cron; usar código versionado e schema atual no delta."
+    },
+    "HISTORY_UNAVAILABLE": {
+      "classification": "NÃO COPIAR",
+      "scope": "Um ou ambos registros não contêm comandos; SQL histórico não comprovado.",
+      "evidence": "statement_count e statements_md5 nos inventários; arquivos homônimos não suprem prova do aplicado.",
+      "action": "Preservar lacuna histórica; exigir confronto dos objetos finais no delta, sem fabricar registro."
+    }
+  },
+  "reviews": [
+    {
+      "comparison": "dev_files_main_files",
+      "version": "00001",
+      "treatment": "BASELINE"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260828163450",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260830090000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260830143000",
+      "treatment": "STOCK_COLLISION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260830193000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260830210000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260830220000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260830233000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260830235900",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260831110000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260831113000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260901160000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260901190000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260901213000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260902110000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260902170000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260902200000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260903183000",
+      "treatment": "PRODUCT_REACTIVATION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260904041000",
+      "treatment": "ORDER_ENUM"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260904163000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260904210000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260904223000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260904233000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260905003000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260905023000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_files_main_files",
+      "version": "20260905120000",
+      "treatment": "ORDER_ENUM"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "00001",
+      "treatment": "BASELINE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "00008",
+      "treatment": "BUYER_HISTORY"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260618185121",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260618212911",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260619192918",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260620001000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260622093000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260707010000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260709120000",
+      "treatment": "LABEL_HISTORY"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260709121500",
+      "treatment": "LABEL_HISTORY"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260711161100",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260714193934",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260714194430",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260716110000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260720010000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260722222928",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260723174252",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260727201827",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260729182648",
+      "treatment": "JULY_EFFECTS"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260729213737",
+      "treatment": "JULY_EFFECTS"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260731002740",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260801223553",
+      "treatment": "RECORDED_FORMAT"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260801232600",
+      "treatment": "RECORDED_FORMAT"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260802000117",
+      "treatment": "RECORDED_NOTE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260803231103",
+      "treatment": "RECORDED_NOTE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260804001421",
+      "treatment": "RECORDED_NOTE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260804164839",
+      "treatment": "RECORDED_NOTE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260804192052",
+      "treatment": "RECORDED_NOTE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260804202357",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260805014500",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260805141602",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260805200000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260805200500",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260812153000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260812160000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260813182247",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260815221030",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260815225216",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260816005942",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260827230000",
+      "treatment": "HISTORY_UNAVAILABLE"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260828163450",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260830090000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260830143000",
+      "treatment": "STOCK_COLLISION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260830193000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260830210000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260830220000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260830233000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260830235900",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260831110000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260831113000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260901160000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260901190000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260901213000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260902110000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260902170000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260902200000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260903183000",
+      "treatment": "PRODUCT_REACTIVATION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260904041000",
+      "treatment": "ORDER_ENUM"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260904163000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260904210000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260904223000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260904233000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260905003000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260905023000",
+      "treatment": "DEV_EVOLUTION"
+    },
+    {
+      "comparison": "dev_registry_production_registry",
+      "version": "20260905120000",
+      "treatment": "ORDER_ENUM"
+    }
+  ],
+  "release_blockers": [
+    "DELTA_PROMOCAO: preparar e ensaiar migrations novas contra fotografia produtiva vigente, sem replay do diretório.",
+    "COLISAO_ESTOQUE: criar pré-requisitos de reserva/dispatch/estorno antes das evoluções dependentes de estoque próprio; não registrar versão colidente como equivalente.",
+    "BNT-PARITY-GATE e BNT-PARITY-FINAL permanecem pendentes, incluindo decisão Evolusom e deltas de pricing não classificados."
+  ],
+  "reconciliation_status": "mapped_not_release_ready",
+  "limits": [
+    "Comparações de fingerprints atestam representações, não semântica nem execução histórica.",
+    "Não houve coleta de dados de negócio; backfills históricos não foram atestados.",
+    "Nenhuma escrita nos bancos, alteração histórica, merge, push ou deploy.",
+    "catalog_md5 cobre categorias do coletor DB-03; não é hash do conteúdo de todas as tabelas.",
+    "main_git_sha identifica referência Git, não uma nova confirmação do SHA implantado em produção."
+  ]
+}

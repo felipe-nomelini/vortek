@@ -8,7 +8,7 @@ const { Client } = require('pg');
 
 const DEFAULT_SCHEMAS = ['graphql_public', 'private', 'public'];
 const DEFAULT_EXPOSED_SCHEMAS = ['graphql_public', 'public'];
-const FORBIDDEN_OUTPUT_KEYS = /(?:password|secret|token|connection(?:_string)?|function_(?:body|definition)|source_code)/i;
+const FORBIDDEN_OUTPUT_KEYS = /(?:password|secret|token|connection(?:_string)?|function_(?:body|definition)|source_code|^statements$|^rollback$|^raw_sql$)/i;
 
 const SNAPSHOT_QUERIES = {
   server: {
@@ -24,7 +24,9 @@ const SNAPSHOT_QUERIES = {
   migration_registry: {
     scoped: false,
     sql: `
-      select version::text as version, name
+      select version::text as version, name,
+        coalesce(cardinality(statements), 0) as statement_count,
+        case when cardinality(statements) > 0 then md5(statements::text) end as statements_md5
       from supabase_migrations.schema_migrations
       order by version, name
     `,
@@ -414,11 +416,56 @@ function repositoryMigrations(rootDirectory) {
         version: fileName.slice(0, separator),
         name: fileName.slice(separator + 1, -4),
         file: fileName,
+        file_sha256: crypto.createHash('sha256')
+          .update(fs.readFileSync(path.join(migrationsDirectory, fileName))).digest('hex'),
       };
     });
 }
 
+function assertUniqueMigrationVersions(migrations, label) {
+  const seen = new Set();
+  for (const migration of migrations) {
+    if (seen.has(migration.version)) {
+      throw new Error(`Versão de migration duplicada em ${label}: ${migration.version}`);
+    }
+    seen.add(migration.version);
+  }
+}
+
+// Compare only like representations: file bytes with file bytes, or recorded
+// PostgreSQL text[] with recorded text[]. Neither proves semantic equivalence.
+function migrationContentComparison(left, right, fingerprintField) {
+  if (!['file_sha256', 'statements_md5'].includes(fingerprintField)) {
+    throw new Error('Representação de fingerprint de migration inválida.');
+  }
+  assertUniqueMigrationVersions(left, 'left');
+  assertUniqueMigrationVersions(right, 'right');
+  const leftByVersion = new Map(left.map((item) => [item.version, item]));
+  const rightByVersion = new Map(right.map((item) => [item.version, item]));
+  return [...new Set([...leftByVersion.keys(), ...rightByVersion.keys()])].sort().map((version) => {
+    const a = leftByVersion.get(version);
+    const b = rightByVersion.get(version);
+    const available = (item) => Boolean(item?.[fingerprintField])
+      && (fingerprintField !== 'statements_md5' || item.statement_count > 0);
+    let status;
+    if (!a) status = 'right_only';
+    else if (!b) status = 'left_only';
+    else if (!available(a) || !available(b)) status = 'unavailable';
+    else status = a[fingerprintField] === b[fingerprintField] ? 'matching' : 'different';
+    return {
+      version,
+      left_name: a?.name ?? null,
+      right_name: b?.name ?? null,
+      representation: fingerprintField,
+      status,
+      requires_review: status !== 'matching' || a?.name !== b?.name,
+    };
+  });
+}
+
 function migrationComparison(repository, registry) {
+  assertUniqueMigrationVersions(repository, 'repository');
+  assertUniqueMigrationVersions(registry, 'registry');
   const repositoryByVersion = new Map(repository.map((migration) => [migration.version, migration]));
   const registryByVersion = new Map(registry.map((migration) => [migration.version, migration]));
   const repositoryOnly = repository.filter((migration) => !registryByVersion.has(migration.version));
@@ -430,6 +477,8 @@ function migrationComparison(repository, registry) {
       : [];
   });
   return {
+    comparison_scope: 'version_and_name_only',
+    content_equivalence: 'not_established',
     repository_count: repository.length,
     database_count: registry.length,
     repository_only: repositoryOnly,
@@ -505,7 +554,7 @@ async function captureSnapshot({ client, label, rootDirectory, schemas, exposedS
   const comparison = migrationComparison(repository, results.migration_registry);
   const server = results.server[0];
   const snapshot = {
-    format_version: 2,
+    format_version: 3,
     environment: label,
     captured_at: new Date().toISOString(),
     git_sha: gitSha(rootDirectory),
@@ -593,6 +642,8 @@ module.exports = {
   buildSummary,
   captureSnapshot,
   migrationComparison,
+  migrationContentComparison,
+  repositoryMigrations,
   stableValue,
   structuralFingerprint,
 };
