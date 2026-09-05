@@ -80,7 +80,8 @@
     "test:ml-p0-phase6e2": "node --test tests/ml-p0-phase6e2.test.js",
     "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js",
     "test:ml-order-status": "node --test tests/ml-order-shipping-mode.test.js",
-    "test:mobile-auth": "node --test tests/mobile-auth-token.test.js tests/mobile-permissions.test.js"
+    "test:mobile-auth": "node --test tests/mobile-auth-token.test.js tests/mobile-permissions.test.js",
+    "test:m2m-pricing-radar": "node --test tests/m2m-pricing-conflicts.test.js tests/m2m-pricing-integration.test.cjs tests/preferred-offer.test.js tests/ml-order-profit.test.js tests/ml-pricing-experiment.test.js tests/automatic-pricing-force.test.js tests/target-net-profit-pricing.test.js tests/ml-listing-activation-guard.test.js tests/ml-catalog-pack-quantity.test.js tests/catalog-competition-status.test.js"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
