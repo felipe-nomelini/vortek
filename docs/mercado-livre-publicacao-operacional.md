@@ -145,18 +145,18 @@ Não tratar criação como concluída enquanto imagem e ficha não forem verific
 7. Diagnóstico de imagem sem erro.
 8. Status/substatus ML compatíveis com processamento ou publicação ativa.
 
-## Safe Publication Mode
+## Publicação com política canônica M2M
 
-O ciclo industrial e a otimização comercial são independentes.
+A regra anterior de proteção universal de 50% foi aposentada. Seguir [o contrato canônico](pricing-radar-canonico.md).
 
-1. Validar identidade, duplicidade, categoria/catálogo obrigatório, atributos e imagens.
-2. Criar o item e obter o frete real por `item_id`.
-3. Aplicar imediatamente preço de proteção com margem operacional mínima de 50%, usando o maior frete comprovado disponível.
-4. Confirmar read-back remoto e persistir o vínculo local transacionalmente.
-5. Registrar `QUALITY_OPTIMIZATION_PENDING`; qualidade, performance, completeness, health e recomendações não bloqueiam criação ou persistência industrial.
-6. Registrar `COMMERCIAL_OPTIMIZATION_PENDING`; Buy Box, `price_to_win` e competitividade não bloqueiam este ciclo.
+1. Validar identidade, duplicidade, apresentação/quantidade, categoria, atributos e imagens reais.
+2. Resolver oferta elegível e simular o alvo pela faixa de preço final, usando cotação ML viva e tributo central identificado como estimado ou confirmado.
+3. Registrar aprovação individual e revisão explícita das pendências; não fabricar dados ausentes.
+4. Revalidar as entradas aprovadas e criar no preço aprovado. Confirmar leitura remota e persistir vínculo e trilha econômica.
+5. Recotar após criação; discrepâncias geram revisão. Fonte indisponível não autoriza pausa econômica automática.
+6. Preços de atacado exigem avaliação e aprovação próprias por quantidade. Não aplicar descontos implícitos.
 
-Preço protetivo não é preço comercial definitivo. Dimensões normalizadas pelo Mercado Envios não substituem silenciosamente o cadastro mestre do fornecedor.
+Qualidade, exposição e demanda são dimensões comerciais independentes. Dimensões normalizadas pelo ML não substituem silenciosamente o cadastro do fornecedor. Publicação automática em massa continua sem autorização.
 
 ## Fontes oficiais
 
