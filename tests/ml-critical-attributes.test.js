@@ -101,7 +101,7 @@ test("aceita anúncio com identidade crítica equivalente", () => {
   assert.deepEqual(conflicts, []);
 });
 
-test("reconcilia somente marca quando SKU e GTIN comprovam o mesmo produto", () => {
+test("SKU e GTIN não autorizam substituir marca sem equivalência documentada", () => {
   const assessment = assessMlListingIdentity(
     {
       seller_custom_field: "VTK009696",
@@ -117,8 +117,8 @@ test("reconcilia somente marca quando SKU e GTIN comprovam o mesmo produto", () 
     },
   );
 
-  assert.equal(assessment.canonicalBrand, "New York");
-  assert.deepEqual(assessment.blockingConflicts, []);
+  assert.equal(assessment.canonicalBrand, null);
+  assert.deepEqual(assessment.blockingConflicts.map(c => c.field), ["BRAND"]);
 });
 
 test("não reconcilia marca quando o GTIN diverge", () => {

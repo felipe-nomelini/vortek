@@ -161,7 +161,7 @@ export async function validateMlListingIdentityForActivation(
   }
 
   if (assessment.blockingConflicts.length > 0) {
-    const reason = `Divergência material de identidade ML: ${assessment.blockingConflicts
+    const reason = `${assessment.blockingConflicts.every(conflict => conflict.uncertain) ? 'Equivalência de marca pendente' : 'Divergência material de identidade ML'}: ${assessment.blockingConflicts
       .map((conflict) => `${conflict.field} local=${conflict.expected} remoto=${conflict.remote}`)
       .join('; ')}`;
     const blockResult = await ensureAutomaticMlIdentityBlock(

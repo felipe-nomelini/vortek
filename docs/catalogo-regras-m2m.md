@@ -16,3 +16,5 @@
 | M2M-GATE | tests/m2m-*; tests/sql/m2m-pricing-radar.sql | Fronteiras, regressão D0, fontes, locks e trilha |
 
 Scripts históricos de criação/limpeza, SEO reativador e D0 não são caminhos operacionais de pricing. Seus comandos de entrada foram aposentados quando escreviam usando políticas antigas. Evidências e migrations históricas permanecem preservadas.
+
+M2M-IDENTITY-v2: comparadores de equivalência compartilhados por Radar, criação e leitura posterior; fonte por atributo, composição comercial separada de unidade vendida e avisos separados de conflitos. Mudanças da versão/descrição/marca/GTIN da oferta invalidam o fingerprint de classificação.

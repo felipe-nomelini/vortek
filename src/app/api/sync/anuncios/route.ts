@@ -606,7 +606,7 @@ export async function POST(request: Request) {
             }
           }
           if (identityConflicts.length > 0) {
-            const reason = `Divergência material de identidade ML: ${identityConflicts
+            const reason = `${identityConflicts.every(conflict => conflict.uncertain) ? 'Equivalência de marca pendente' : 'Divergência material de identidade ML'}: ${identityConflicts
               .map((conflict) => `${conflict.field} local=${conflict.expected} remoto=${conflict.remote}`)
               .join('; ')}`;
             const blockResult = await ensureAutomaticMlIdentityBlock(

@@ -1461,7 +1461,7 @@ export async function POST(req: Request) {
       },
     };
 
-    const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer,identityFacts(Array.from(attributesMap.values()))),remote:identityFacts(Array.from(attributesMap.values())),source:'formulario_publicacao_validado'});
+    const finalIdentity = assessIdentity({local:supplierIdentityFacts(safePrice.evaluation.offer,identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' })),remote:identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'publication_payload' }),source:'formulario_publicacao_validado'});
     if (finalIdentity.identity==='IDENTIDADE_DIVERGENTE') return NextResponse.json({error:'CONFLITO_IDENTIDADE_PUBLICACAO',identity:finalIdentity},{status:422});
     if (finalIdentity.identity==='IDENTIDADE_INCONCLUSIVA' && acknowledgeIdentityReview!==true) return NextResponse.json({error:'PENDENCIA_VALIDACAO_IDENTIDADE',identity:finalIdentity},{status:422});
     await recordPricingEvent(supabase,{event_type:'CREATE_REQUESTED',produto_id:produto.id,pricing_source:'publication',actor:auth.user.id,reason:'Criação no alvo aprovada após revisão de identidade',new_price:initialPrice,rule_id:safePrice.memory.policyVersion,payload:{approvalId:pricingApprovalId,identity:finalIdentity},dedupe_key:`create:${pricingApprovalId}`});
@@ -1515,8 +1515,13 @@ export async function POST(req: Request) {
       { ...produto, gtin: gtinForMl || produto.gtin },
       supplierOffers || [],
     );
+    const payloadReadbackIdentity = assessIdentity({
+      local: identityFacts(Array.from(attributesMap.values()), { title: effectiveFamilyName, description: listingDescription, source: 'approved_payload' }),
+      remote: identityFacts(latestItem.attributes ?? [], { title: latestItem.title ?? latestItem.family_name, source: `/items/${result.id}` }),
+      source: 'approved_payload_vs_ml_readback',
+    });
     const identityConflicts = identityAssessment.blockingConflicts;
-    if (identityConflicts.length > 0) {
+    if (identityConflicts.length > 0 || payloadReadbackIdentity.identity === 'IDENTIDADE_DIVERGENTE') {
       const pauseResult = await pauseCreatedListing(result.id);
       steps.anuncio = {
         ok: false,
@@ -1531,6 +1536,7 @@ export async function POST(req: Request) {
           error: steps.anuncio.error,
           item_id: result.id,
           identity_conflicts: identityConflicts,
+          payload_readback_identity: payloadReadbackIdentity,
           safety_pause: pauseResult,
         },
         { status: 409 },

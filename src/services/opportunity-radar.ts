@@ -1,3 +1,4 @@
+import { IDENTITY_RULE_VERSION } from '../lib/ml/identity-normalization';
 import { fetchMLResult } from './integration';
 import { fetchAllMlItemIds } from './ml-listing-scan';
 import { resolveMlPricingGroup } from './ml-pricing-group';
@@ -72,7 +73,7 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
                     own.data.push(...others.data);
                 }
             }
-            const inputHash = pricingFingerprint({ policy: runtime.policy.version, tax: runtime.tax.rate, taxStatus: runtime.tax.status, product: { id: product.id, active: product.ativo, preferred: product.oferta_preferencial_id, manual: product.fornecedor_preferencial_manual, gtin: product.gtin, brand: product.marca, name: product.nome, description: product.descricao, dimensions: [product.altura, product.largura, product.profundidade, product.peso_bruto] }, offer: resolved.offer && { id: resolved.offer.id, cost: resolved.offer.custo, stock: resolved.offer.estoque, active: resolved.offer.ativo }, listings: own.data.map((l: any) => [l.ml_item_id, l.status, l.preco_ml]), catalogId, coverageComplete, competitive: prior?.evidence?.competitivePrice, identityReview: prior?.evidence?.identityReview });
+            const inputHash = pricingFingerprint({ identityRule: IDENTITY_RULE_VERSION, policy: runtime.policy.version, tax: runtime.tax.rate, taxStatus: runtime.tax.status, product: { id: product.id, active: product.ativo, preferred: product.oferta_preferencial_id, manual: product.fornecedor_preferencial_manual, gtin: product.gtin, brand: product.marca, name: product.nome, description: product.descricao, dimensions: [product.altura, product.largura, product.profundidade, product.peso_bruto] }, offer: resolved.offer && { id: resolved.offer.id, name: resolved.offer.nome, description: resolved.offer.descricao, brand: resolved.offer.marca, gtin: resolved.offer.gtin, cost: resolved.offer.custo, stock: resolved.offer.estoque, active: resolved.offer.ativo }, listings: own.data.map((l: any) => [l.ml_item_id, l.status, l.preco_ml]), catalogId, coverageComplete, competitive: prior?.evidence?.competitivePrice, identityReview: prior?.evidence?.identityReview });
             if (prior?.input_fingerprint === inputHash && Date.now() - Date.parse(prior.processed_at) < runtime.policy.evidenceMaxAgeHours * 3600000)
                 return null;
             const listings: ListingEvidence[] = [];
@@ -91,7 +92,8 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
                 liveItem ??= remote.data;
             }
             const catalog = catalogId ? await fetchMLResult<any>(`/products/${encodeURIComponent(catalogId)}`) : null;
-            const remoteFacts = identityFacts(catalog?.ok ? catalog.data?.attributes ?? [] : liveItem?.attributes ?? []);
+            const remoteProduct = catalog?.ok ? catalog.data : liveItem;
+            const remoteFacts = identityFacts(remoteProduct?.attributes ?? [], { title: remoteProduct?.name ?? remoteProduct?.title, source: catalog?.ok ? `/products/${catalogId}` : liveItem ? `/items/${liveItem.id}` : 'ml' });
             const identity = { local: supplierIdentityFacts(resolved.offer ?? product, remoteFacts), remote: remoteFacts, source: catalog?.ok ? `/products/${catalogId}` : liveItem ? `/items/${liveItem.id}` : null };
             const competitivePrice = Number(prior?.evidence?.competitivePrice) > 0 ? Number(prior.evidence.competitivePrice) : null;
             // Preço competitivo salvo é evidência observada, nunca uma promessa de Buy Box atual.
@@ -124,7 +126,7 @@ export async function processRadarBatch(client: Client, jobId: string, ownerToke
                 throw new Error(sold.error.message);
             const demand: DemandState = (sold.data?.length ?? 0) > 0 ? 'HISTORICO_PROPRIO' : prior?.evidence?.demand ?? 'SEM_EVIDENCIA_DE_DEMANDA';
             const stock = Number(resolved.offer?.estoque ?? 0);
-            const complete = !!product.ncm && Array.isArray(product.imagens) && product.imagens.length > 0 && assessment.identity === 'IDENTIDADE_COHERENTE';
+            const complete = !!product.ncm && Array.isArray(product.imagens) && product.imagens.length > 0 && assessment.identity === 'IDENTIDADE_COHERENTE' && !(assessment.warnings ?? []).includes('APRESENTACAO_NAO_EXPLICITA');
             const classification = radarClassification(assessment, demand, stock, complete);
                 if (prior && ['REJEITADO','VALIDADO','PUBLICADO_EXPERIMENTO'].includes(prior.stage) && prior.input_fingerprint===inputHash) classification.stage=prior.stage;
                 else if (prior && ['VALIDADO','PUBLICADO_EXPERIMENTO'].includes(prior.stage)) classification.stage='REVISAR';

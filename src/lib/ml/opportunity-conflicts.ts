@@ -1,4 +1,6 @@
 import type { EconomicMemory } from '../../services/pricing.ts';
+import { compareIdentityBrands, normalizeIdentityText, normalizeModelCode, IDENTITY_RULE_VERSION } from './identity-normalization.ts';
+import type { FactOrigin } from './opportunity-identity.ts';
 export type ConflictState = 'SEM_CONFLITO' | 'CONFLITO_CONFIRMADO' | 'PENDENCIA_VALIDACAO' | 'INCONCLUSIVO';
 export type IdentityState = 'IDENTIDADE_COHERENTE' | 'IDENTIDADE_DIVERGENTE' | 'IDENTIDADE_INCONCLUSIVA';
 export type ListingState = 'JA_ANUNCIADO_ATIVO' | 'REATIVACAO_CANDIDATA' | 'NOVO_ANUNCIO_CANDIDATO' | 'VINCULO_INCONCLUSIVO';
@@ -13,6 +15,9 @@ export interface IdentityFacts {
     partNumber?: string | null;
     packaging?: string | null;
     quantity?: number | null;
+    saleUnits?: number | null;
+    brandEvidence?: string;
+    provenance?: Record<string, FactOrigin>;
     variation?: string | null;
     critical?: Record<string, string | null>;
 }
@@ -36,33 +41,39 @@ export interface ConflictAssessment {
     listing: ListingState;
     economy: EconomicState;
     reasons: string[];
+    warnings?: string[];
+    identityRuleVersion?: string;
     comparisons: Array<{
         field: string;
         local: string;
         remote: string;
         matches: boolean;
+        basis?: string;
+        evidence?: string | null;
     }>;
     listings: ListingEvidence[];
     publicationAutonomy: 'REQUIRES_CONFIRMATION';
 }
-const normalize = (v: unknown): string => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase().replace(/\s+/g, ' ');
+const normalize = normalizeIdentityText;
 const gtin = (v: unknown): string => String(v ?? '').replace(/\D/g, '').replace(/^0+(?=\d)/, '');
-export function assessIdentity(evidence: IdentityEvidence): Pick<ConflictAssessment, 'identity' | 'comparisons' | 'reasons'> {
+export function assessIdentity(evidence: IdentityEvidence): Pick<ConflictAssessment, 'identity' | 'comparisons' | 'reasons' | 'warnings' | 'identityRuleVersion'> {
     const comparisons: ConflictAssessment['comparisons'] = [];
     const reasons: string[] = [];
-    const fields = ['gtin', 'brand', 'model', 'partNumber', 'packaging', 'quantity', 'variation'] as const;
+    const warnings: string[] = [];
+    const fields = ['gtin', 'brand', 'model', 'partNumber', 'packaging', 'quantity', 'saleUnits', 'variation'] as const;
     for (const field of fields) {
         const left = evidence.local[field];
         const right = evidence.remote[field];
         if (left === undefined || left === null || left === '' || right === undefined || right === null || right === '')
             continue;
-        const normalizer = field === 'gtin' ? gtin : normalize;
-        const matches = normalizer(left) === normalizer(right);
-        comparisons.push({ field, local: String(left), remote: String(right), matches });
+        const normalizer = field === 'gtin' ? gtin : ['model', 'partNumber'].includes(field) ? normalizeModelCode : normalize;
+        const brandMatch = field === 'brand' ? compareIdentityBrands(left, right, evidence.local.brandEvidence) : null;
+        const matches = brandMatch ? brandMatch.matches : normalizer(left) === normalizer(right);
+        comparisons.push({ field, local: String(left), remote: String(right), matches, basis: brandMatch?.basis ?? 'normalized', evidence: brandMatch?.source ?? null });
         if (!matches) {
             if (field === 'gtin' && evidence.variationMatchEvidence)
                 continue;
-            reasons.push(['quantity', 'packaging'].includes(field) ? 'CONFLITO_EMBALAGEM_QUANTIDADE' : `DIVERGENCIA_${field.toUpperCase()}`);
+            reasons.push(brandMatch?.basis === 'unresolved_supplier_brand' ? 'EQUIVALENCIA_MARCA_NAO_COMPROVADA' : ['quantity', 'packaging', 'saleUnits'].includes(field) ? 'CONFLITO_EMBALAGEM_QUANTIDADE' : `DIVERGENCIA_${field.toUpperCase()}`);
         }
     }
     for (const [field, left] of Object.entries(evidence.local.critical ?? {})) {
@@ -74,13 +85,15 @@ export function assessIdentity(evidence: IdentityEvidence): Pick<ConflictAssessm
         if (!matches)
             reasons.push(`DIVERGENCIA_ATRIBUTO_${field}`);
     }
-    // GTIN isolado não comprova apresentação, quantidade e identidade material.
+    // Ausência de atributo não é contradição. Kits ainda exigem composição comprovada.
     const matching = new Set(comparisons.filter(c => c.matches).map(c => c.field));
     const identified = matching.has('brand') && (matching.has('model') || matching.has('partNumber') || matching.has('gtin'));
-    const presentation = matching.has('quantity') && matching.has('packaging');
-    if (!reasons.length && (!identified || !presentation || !evidence.source))
-        reasons.push('EVIDENCIA_IDENTIDADE_INCOMPLETA');
-    return { identity: reasons.some(r => r !== 'EVIDENCIA_IDENTIDADE_INCOMPLETA') ? 'IDENTIDADE_DIVERGENTE' : reasons.length ? 'IDENTIDADE_INCONCLUSIVA' : 'IDENTIDADE_COHERENTE', comparisons, reasons: [...new Set(reasons)] };
+    const kit = [evidence.local.packaging, evidence.remote.packaging].some(p => normalize(p) === 'kit');
+    const materialConflicts = reasons.some(r => r !== 'EQUIVALENCIA_MARCA_NAO_COMPROVADA');
+    if (!identified || !evidence.source) reasons.push('EVIDENCIA_IDENTIDADE_INCOMPLETA');
+    if (kit && (!evidence.local.quantity || !evidence.remote.quantity)) reasons.push('COMPOSICAO_KIT_NAO_COMPROVADA');
+    if (!kit && (!evidence.local.quantity || !evidence.remote.quantity)) warnings.push('APRESENTACAO_NAO_EXPLICITA');
+    return { identity: materialConflicts ? 'IDENTIDADE_DIVERGENTE' : reasons.length ? 'IDENTIDADE_INCONCLUSIVA' : 'IDENTIDADE_COHERENTE', comparisons, reasons: [...new Set(reasons)], warnings, identityRuleVersion: IDENTITY_RULE_VERSION };
 }
 export function classifyCompetitiveEconomy(memory: EconomicMemory | null, buyBox = false): EconomicState {
     if (!memory || memory.result === null || memory.margin === null || !memory.band)
@@ -115,8 +128,7 @@ export function assessOpportunityConflicts(input: {
         reasons.push(listing);
     if (economy === 'INCONCLUSIVO' || economy === 'ABAIXO_DO_PISO_MAS_POSITIVO' || economy.includes('PREJUIZO') || economy === 'CONFLITO_ECONOMICO_DE_BUY_BOX')
         reasons.push(economy);
-    if (input.economy?.status === 'estimated')
-        reasons.push(...input.economy.reasons);
+    const warnings = [...(identity.warnings ?? []), ...(input.economy?.status === 'estimated' ? input.economy.reasons : [])];
     let state: ConflictState = 'SEM_CONFLITO';
     if (identity.identity === 'IDENTIDADE_DIVERGENTE' || active || economy.includes('PREJUIZO') || economy === 'CONFLITO_ECONOMICO_DE_BUY_BOX')
         state = 'CONFLITO_CONFIRMADO';
@@ -124,7 +136,7 @@ export function assessOpportunityConflicts(input: {
         state = 'INCONCLUSIVO';
     else if (reasons.length)
         state = 'PENDENCIA_VALIDACAO';
-    return { ...identity, listing, economy, reasons: [...new Set(reasons)], state, listings: input.listings, publicationAutonomy: 'REQUIRES_CONFIRMATION' };
+    return { ...identity, listing, economy, reasons: [...new Set(reasons)], warnings: [...new Set(warnings)], state, listings: input.listings, publicationAutonomy: 'REQUIRES_CONFIRMATION' };
 }
 export function radarClassification(assessment: ConflictAssessment, demand: DemandState, stock: number, publicationComplete: boolean): {
     queue: RadarQueue;

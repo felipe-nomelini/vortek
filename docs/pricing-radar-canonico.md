@@ -24,11 +24,11 @@ Estratégias abaixo do piso usam `/api/pricing/strategy`, com anúncio existente
 
 ## Conflitos e Radar
 
-`opportunity-conflicts.ts` classifica identidade, embalagem/quantidade, vínculo e economia separadamente da demanda. Mesmo GTIN não supera marca/modelo divergentes. Variação legítima exige evidência. Quantidade e apresentação incompatíveis bloqueiam automação. `SEM_CONFLITO`, `CONFLITO_CONFIRMADO`, `PENDENCIA_VALIDACAO` e `INCONCLUSIVO` são independentes do score.
+`opportunity-conflicts.ts` classifica identidade, embalagem/quantidade, vínculo e economia separadamente da demanda. A regra M2M-IDENTITY-v2 reconhece equivalências documentadas de marca e normaliza separadores de modelos; os valores originais e a origem permanecem na avaliação. Mesmo GTIN não supera divergência material efetiva de marca/modelo. Variação legítima exige evidência. Quantidade e apresentação comprovadamente incompatíveis bloqueiam automação. Composição é extraída também da descrição e do título do catálogo. A ausência de atributos remotos não invalida automaticamente uma identidade comprovada por marca/modelo; apresentação não explícita fica como aviso de completude, e kit de composição desconhecida continua pendente. `SEM_CONFLITO`, `CONFLITO_CONFIRMADO`, `PENDENCIA_VALIDACAO` e `INCONCLUSIVO` são independentes do score.
 
 Anúncio ativo sai da fila de novos; pausado segue para reativação. Relações de catálogo só compartilham `pricing_group_id` quando `/public/buybox/sync/{itemId}` comprova `SYNC`. Falha ou anúncio próprio sem vínculo deixam busca inconclusiva. Demanda ausente/404 nunca prova ausência de vendas.
 
-A prioridade mostra seis dimensões: identidade, economia, demanda, competitividade, estoque e preparação. O dashboard `/radar` explica cada fila, contribuição, piso, alvo, evidências e validade. Registro com fonte incompleta não é homologado para publicação.
+A prioridade mostra seis dimensões: identidade, economia, demanda, competitividade, estoque e preparação. O dashboard `/radar` explica cada fila, contribuição, piso, alvo, evidências e validade. Registro com fonte material incompleta não é homologado para publicação. Avisos econômicos estimados ficam separados dos motivos de conflito; a aprovação continua exigindo reconhecimento explícito das estimativas. O filtro não as converte em custos confirmados.
 
 O job `sync_ml_radar` usa o agendador existente, após rotinas de oferta, com início configurável em Brasília, lotes, concorrência limitada, lock e checkpoint transacional. Retoma trabalho interrompido; entrada material igual e evidência válida evitam novo cálculo. Ofertas sem evidência atual permanecem estimadas. Não inicia pesquisa externa pesada de novos produtos: aproveita os catálogos/vínculos e evidências existentes.
 

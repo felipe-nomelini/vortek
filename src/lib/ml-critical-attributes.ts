@@ -137,6 +137,7 @@ export function assessMlProductIdentity(
     sellerSku: produto?.sku,
     gtin: produto?.gtin,
     brand: produto?.marca,
+    brandEvidence: [facts.preferredOffer?.nome, facts.preferredOffer?.descricao].filter(Boolean).join(" "),
     diameter: facts.diameter,
     voltage: facts.voltage,
     packagesNumber: facts.packagesNumber,
