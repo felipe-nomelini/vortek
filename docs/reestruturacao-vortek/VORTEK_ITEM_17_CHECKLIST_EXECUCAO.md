@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-09 — Estágio real do refresh de catálogo`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-10 — Deduplicação do alerta de nova venda`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-08` concluídas; aplicação bloqueante | Executar `BNT-PARITY-09` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-09` concluídas; aplicação bloqueante | Executar `BNT-PARITY-10` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -192,6 +192,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-08` antes de `BNT-PARITY-07` estar integralmente validada.
 - [x] Executar somente `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade`.
 - [x] Não avançar para `BNT-PARITY-09` antes de `BNT-PARITY-08` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-09 — Estágio real do refresh de catálogo`.
+- [x] Não avançar para `BNT-PARITY-10` antes de `BNT-PARITY-09` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2805,6 +2807,26 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Rollback:** reverter o código remove a transição automática. Não existe migration ou backfill a desfazer; bloqueios manuais não são alterados pela implementação.
 
 **Próxima ação:** `BNT-PARITY-09 — Estágio real do refresh de catálogo`.
+
+#### `BNT-PARITY-09 — Estágio real do refresh de catálogo`
+
+- [x] identificar no log persistido o último estágio conhecido do refresh;
+- [x] ignorar o marcador terminal `completed` ao classificar uma falha;
+- [x] usar `scan_catalog` somente quando o log não contiver estágio válido;
+- [x] remover a classificação fixa `fetch_price_to_win` do tratamento genérico;
+- [x] preservar status, limite de falhas, retomada, lotes, dedupe e contratos públicos existentes;
+- [x] não alterar endpoints do Mercado Livre, interface, schema ou migrations;
+- [x] validar a decisão pura, a integração do handler e o contrato canônico dos jobs.
+
+**Causa corrigida:** `markJobFailure` descartava o estágio já registrado no histórico do job e atribuía toda falha genérica a `fetch_price_to_win`. Isso tornava a observabilidade incorreta quando a falha ocorria durante outro estágio conhecido.
+
+**Resultado técnico:** o tratamento de falhas agora percorre o log persistido do fim para o início, preserva o último estágio válido diferente de `completed` e usa `scan_catalog` apenas quando não existe evidência anterior. O lifecycle durável e as chamadas do refresh permanecem inalterados.
+
+**Validação:** passaram os 9 testes direcionados de lote, estágio, dispatcher e retomada, além dos 4 testes do contrato canônico de jobs. `npm run validate`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration, operação real de banco ou chamada ao Mercado Livre foi executada.
+
+**Rollback:** reverter o helper e seu uso restaura apenas a classificação fixa anterior; não existe dado estrutural, migration ou efeito externo a desfazer.
+
+**Próxima ação:** `BNT-PARITY-10 — Deduplicação do alerta de nova venda`.
 
 #### Classificação obrigatória
 

@@ -182,7 +182,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `ML-03` | commits `649aa4f`/`4bdca2c` | identidade remota divergente de produto/ofertas → bloquear item na criação/ativação | evidência material vence SKU coincidente | anúncio/sync | gate por item já existe; bloqueio em venda foi supersedido | `EQUIVALENTE` | manter no lifecycle de anúncio |
 | `ML-04` | commit `4bdca2c` | identidade novamente correta → desativar somente bloqueio automático `ml_identity_gate` | bloqueio manual do usuário permanece | sync/anúncio | lifecycle automático reconciliado | `EQUIVALENTE` | `BNT-PARITY-08` concluída; testes de lifecycle e identidade |
 | `ML-05` | refresh de catálogo | scan/detalhes/price-to-win → job em lotes de 100 e retomável | `on_hold` é estado ativo retomável | catálogo/job | rota interna e retomada já equivalentes | `EQUIVALENTE` | testes `JOB-01` |
-| `ML-06` | commit `8ee94fe` | falha → registrar estágio corrente real | estágio conhecido vence constante | observabilidade catálogo | DEV grava `fetch_price_to_win` em falhas genéricas | `INCORPORAR` | ação `BNT-PARITY-09` |
+| `ML-06` | commit `8ee94fe` | falha → registrar estágio corrente real | estágio conhecido vence constante | observabilidade catálogo | último estágio conhecido preservado; fallback somente sem evidência | `EQUIVALENTE` | `BNT-PARITY-09` concluída; testes de refresh e jobs |
 | `ML-07` | API Items | `paused` é reversível; `closed` encerra anúncio | pausar para indisponibilidade recuperável | inativação/publicação | regra geral existe, mas SUP-06 ainda exclui | `EQUIVALENTE` | contrato oficial; correção em `BNT-PARITY-04` |
 | `ML-08` | Questions API | pergunta sem resposta → ação Responder; respondida → leitura | recurso ML consultado vence cache | perguntas/UI/alerta | igual | `EQUIVALENTE` | UI-05/BNT-D16 |
 | `ML-09` | Claims/post-purchase | claim aberto → persistir estado, alertar e reidratar pedido | recurso consultado vence evento resumido | reclamações/pedidos | igual | `EQUIVALENTE` | webhook + BNT-D17 |
@@ -263,7 +263,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | 6 | `BNT-PARITY-06 — Fallback seguro da retomada DSLite` **(concluída)** | `ORD-09` | P1 | próxima URL apenas em exceção de rede |
 | 7 | `BNT-PARITY-07 — Venda concretizada pelo ML` **(concluída)** | `ORD-10` | P1 | migration nova, helper puro, auditoria e transições testadas |
 | 8 | `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade` **(concluída)** | `ML-04` | P1 | remove só bloqueio automático resolvido; preserva manual |
-| 9 | `BNT-PARITY-09 — Estágio real do refresh de catálogo` | `ML-06` | P2 | falha registra estágio corrente |
+| 9 | `BNT-PARITY-09 — Estágio real do refresh de catálogo` **(concluída)** | `ML-06` | P2 | falha registra estágio corrente |
 | 10 | `BNT-PARITY-10 — Deduplicação do alerta de nova venda` | `NTF-03` | P1 | WhatsApp apenas em `inserted + paid` |
 | 11 | `BNT-PARITY-11 — Idempotência de etiqueta por destinatário` | `NTF-04` | P1 | retry não reenvia destinatário já confirmado |
 | 12 | `BNT-PARITY-12 — Contrato do webhook Easypanel` | `OPS-01` | P1 | POST JSON `{}` validado por teste sem deploy |

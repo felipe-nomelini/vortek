@@ -7,6 +7,7 @@ const {
   CATALOG_REFRESH_BATCH_SIZE,
   CATALOG_REFRESH_MAX_FAILURES,
   calculateCatalogRefreshProgress,
+  getCatalogRefreshFailureStage,
   normalizeCatalogRefreshItemIds,
 } = require('../src/lib/catalogo/refresh-batch.ts');
 
@@ -27,6 +28,45 @@ test('progresso do lote permanece entre etapas de consulta e finalização', () 
   assert.equal(calculateCatalogRefreshProgress(2500, 5000), 60);
   assert.equal(calculateCatalogRefreshProgress(5000, 5000), 88);
   assert.equal(calculateCatalogRefreshProgress(6000, 5000), 88);
+});
+
+test('falha fica associada ao último estágio conhecido do refresh', () => {
+  assert.equal(getCatalogRefreshFailureStage([
+    { stage: 'scan_catalog', event_type: 'catalog_refresh_progress' },
+  ]), 'scan_catalog');
+  assert.equal(getCatalogRefreshFailureStage([
+    { stage: 'scan_catalog', event_type: 'catalog_refresh_progress' },
+    { stage: 'fetch_details', event_type: 'catalog_refresh_progress' },
+  ]), 'fetch_details');
+  assert.equal(getCatalogRefreshFailureStage([
+    { stage: 'fetch_details', event_type: 'catalog_refresh_progress' },
+    { stage: 'fetch_price_to_win', event_type: 'catalog_refresh_batch_completed' },
+  ]), 'fetch_price_to_win');
+});
+
+test('falha ignora completed e usa fallback quando não há estágio conhecido', () => {
+  assert.equal(getCatalogRefreshFailureStage([
+    { stage: 'fetch_price_to_win', event_type: 'catalog_refresh_batch_completed' },
+    { stage: 'completed', event_type: 'catalog_refresh_progress' },
+  ]), 'fetch_price_to_win');
+  assert.equal(getCatalogRefreshFailureStage([{ stage: '  ' }, null]), 'scan_catalog');
+  assert.equal(getCatalogRefreshFailureStage([]), 'scan_catalog');
+  assert.equal(getCatalogRefreshFailureStage('invalid'), 'scan_catalog');
+});
+
+test('tratamento da falha usa o estágio calculado em vez de constante', () => {
+  const jobSource = fs.readFileSync(
+    path.join(__dirname, '../src/services/catalog-refresh-job.ts'),
+    'utf8',
+  );
+  const failureHandler = jobSource.slice(
+    jobSource.indexOf('async function markJobFailure'),
+    jobSource.indexOf('async function finalizeRefresh'),
+  );
+
+  assert.match(failureHandler, /const failureStage = getCatalogRefreshFailureStage\(logs\)/);
+  assert.match(failureHandler, /stage: failureStage/);
+  assert.doesNotMatch(failureHandler, /stage: ['"]fetch_price_to_win['"]/);
 });
 
 test('proxy permite somente a rota interna exata do worker do catálogo', () => {

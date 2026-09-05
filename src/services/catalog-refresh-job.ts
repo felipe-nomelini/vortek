@@ -4,6 +4,7 @@ import {
   CATALOG_REFRESH_BATCH_SIZE,
   CATALOG_REFRESH_MAX_FAILURES,
   calculateCatalogRefreshProgress,
+  getCatalogRefreshFailureStage,
   normalizeCatalogRefreshItemIds,
 } from '@/lib/catalogo/refresh-batch';
 
@@ -79,9 +80,10 @@ async function markJobFailure(jobId: string, error: unknown) {
   const failureCount = previousFailures + 1;
   const terminal = failureCount >= CATALOG_REFRESH_MAX_FAILURES;
   const message = error instanceof Error ? error.message : String(error || 'erro desconhecido');
+  const failureStage = getCatalogRefreshFailureStage(logs);
 
   logs.push(progressEvent({
-    stage: 'fetch_price_to_win',
+    stage: failureStage,
     message: terminal
       ? `Refresh interrompido após ${failureCount} falhas consecutivas: ${message}`
       : `Lote adiado após falha transitória (${failureCount}/${CATALOG_REFRESH_MAX_FAILURES}): ${message}`,
