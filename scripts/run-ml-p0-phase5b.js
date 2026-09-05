@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+if (require.main === module) throw new Error('M2M: pricing legado aposentado. Usar simulação e aprovação canônicas.');
 /* Phase 5B: audit-only catalog-required prepublication validation for VTK000392. */
 const fs = require('fs');
 const path = require('path');

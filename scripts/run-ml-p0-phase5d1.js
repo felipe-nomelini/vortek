@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+if (require.main === module) throw new Error('M2M: pricing legado aposentado. Usar simulação e aprovação canônicas.');
 /* Phase 5D.1: GET-only remote validation and one local PostgreSQL transaction. */
 const fs = require('fs');
 const path = require('path');

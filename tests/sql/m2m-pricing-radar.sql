@@ -24,7 +24,7 @@ begin
   perform public.review_radar_candidate(r_id,'INCONCLUSIVO','REJEITADO','validation','Etapa antiga');
   raise exception 'STALE_REVIEW_ACCEPTED';
  exception when raise_exception then if sqlerrm<>'RADAR_ALTERADO_CONCORRENTEMENTE' then raise; end if; end;
- if not exists(select 1 from public.pricing_events where event_type='RADAR_REVIEW' and payload->>'candidateId'=r_id::text) then raise exception 'REVIEW_NOT_AUDITED'; end if;
+ if not exists(select 1 from public.pricing_events e where e.event_type='RADAR_REVIEW' and e.payload->>'candidateId'=r_id::text) then raise exception 'REVIEW_NOT_AUDITED'; end if;
  if has_table_privilege('service_role','public.pricing_events','UPDATE') or has_table_privilege('service_role','public.pricing_evaluations','DELETE') then raise exception 'AUDIT_MUTABLE'; end if;
  if has_table_privilege('authenticated','public.pricing_events','SELECT') then raise exception 'AUDIT_EXPOSED'; end if;
 end $$;
