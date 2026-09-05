@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** resolver `BNT-PARITY-DEC-01 — Destinatário adicional Evolusom`; depois tratar os deltas pendentes antes de `BNT-PARITY-GATE`. `BNT-CFG-07` permanece bloqueada.
+**Próxima ação obrigatória:** classificar os deltas produtivos de pricing pendentes antes de `BNT-PARITY-GATE`. `BNT-PARITY-DEC-01` foi implementada e validada localmente, sem ativação remota; `BNT-CFG-07` permanece bloqueada.
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-13` concluídas no escopo aprovado; gate pendente | Resolver decisão Evolusom e deltas pendentes; delta de migrations bloqueia release |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-13` e decisão Evolusom concluídas no escopo aprovado; gate pendente | Classificar deltas de pricing; ativação do contato adicional e delta de migrations permanecem no checklist de release |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -203,6 +203,8 @@ Regras de uso:
 - [x] Executar somente `BNT-PARITY-12 — Contrato do webhook Easypanel`, com teste HTTP local e sem deploy real.
 - [x] Não avançar para `BNT-PARITY-13` antes de validar o contrato e as proteções do script.
 - [x] Executar `BNT-PARITY-13`: mapa de históricos, comparador e evidência somente leitura, sem migration artificial.
+- [x] Executar `BNT-PARITY-DEC-01`: manter os dois destinatários da Evolusom, com dedupe e retomada testados, sem mensagens reais/deploy.
+- [ ] Antes da ativação operacional da regra Evolusom, configurar `EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE` no servidor e publicar o código no ambiente autorizado; não usar contato real em homologação.
 - [ ] Preparar e ensaiar `DELTA_PROMOCAO` de migrations novas antes do release; preservar históricos distintos e dependências da colisão de estoque.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
@@ -2949,6 +2951,35 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Build/deploy:** N/A: sem alteração da aplicação. **Rollback:** reverter somente o commit desta ação em `dev`; nada a desfazer nos bancos.
 
 **Próxima ação:** resolver `BNT-PARITY-DEC-01`. Permanecem pendentes os deltas de pricing, `BNT-PARITY-GATE` e `BNT-PARITY-FINAL`; não iniciar `BNT-CFG-07` automaticamente.
+
+#### `BNT-PARITY-DEC-01 — Destinatário adicional Evolusom`
+
+**Situação:** decisão confirmada e implementação validada localmente em `2026-09-05`, conforme escopo aprovado **sem deploy nem mensagens reais**.
+
+**Decisão:** preservar o principal e o mesmo contato adicional da produção para etiquetas oficiais da Evolusom. A confirmação do responsável encerra a dúvida de vigência do contato, não autoriza envio de teste ao fornecedor.
+
+- [x] selecionar o adicional somente pela compra DSLite vinculada com `fornecedor_id = 133`;
+- [x] manter apenas o principal para etiqueta genérica de teste, outros fornecedores ou compra sem vínculo encontrado;
+- [x] normalizar ambos os destinos com o mecanismo existente, deduplicando por chat ID e preservando `primary`;
+- [x] reutilizar `sendWhatsappLabelRecipients` e os checkpoints da BNT-PARITY-11, com chave `evolusom_additional`;
+- [x] impedir envio se a consulta da compra falhar, sem tratar erro como ausência de vínculo;
+- [x] encerrar configuração adicional ausente/inválida com erro explícito e sem retry automático; não comunicar sucesso parcial como sucesso global;
+- [x] preservar sucessos parciais, IDs de mensagem, exclusão concorrente e jobs já concluídos;
+- [x] executar 40 testes TAP de etiquetas, jobs, templates e notificações, além da regressão de alerta de nova venda;
+- [x] passar `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check`;
+- [x] verificar ausência do contato operacional no código alterado e nos 123 arquivos de `.next/static`.
+
+**Implementação:** seleção no worker existente `src/services/whatsapp-label-job.ts`; sem nova fila, tabela, migration, API ou template. A rota síncrona de Compras não foi alterada. Erros de configuração recebem `invalid_evolusom_recipient_configuration`; após correção, usar o fluxo manual existente, sem reabrir jobs concluídos automaticamente.
+
+**Configuração:** `.env.example` documenta somente a chave vazia `EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE`. O contato confirmado foi recuperado por leitura do objeto Git produtivo e preservado em `/home/felipe/.config/vortek-dev/evolusom-label.env`, modo `0600`, fora do Git. O arquivo não é carregado automaticamente pelo Next.js e não foi instalado no runtime remoto. Em homologação, usar valor sintético/de teste ou manter integração desabilitada. Não copiar o valor para variáveis `NEXT_PUBLIC_*`, build args, documentos ou fixtures.
+
+**Validação:** o worker completo foi exercitado com persistência e transporte simulados para dois destinos, dedupe nacional/internacional, falha parcial no adicional, falha posterior na auditoria/pedido, concorrência, configuração inválida e erro de consulta. Os testes não carregaram a configuração privada nem chamaram WAHA real. Build Next.js `16.3.3`: 120 páginas estáticas. A análise de tipos inicialmente apontou acesso a status HTTP no novo erro de configuração; o acesso foi restringido ao erro de download e a validação completa passou novamente.
+
+**Ativação pendente:** instalar a configuração privada no ambiente operacional autorizado e publicar o código em tarefa de deploy própria. Não houve escrita em banco, alteração de infraestrutura, push ou deploy nesta ação.
+
+**Rollback:** reverter o commit desta ação em `dev`; preserva os checkpoints existentes. Quando houver ativação, reverter o código junto com a configuração correspondente. Simplesmente retirar a variável com o código novo ativo bloqueia as etiquetas oficiais da Evolusom.
+
+**Próxima ação:** classificar os deltas de pricing já apontados no catálogo antes de fechar `BNT-PARITY-GATE`. `DELTA_PROMOCAO` e `BNT-PARITY-FINAL` continuam bloqueadores de release.
 
 #### Classificação obrigatória
 

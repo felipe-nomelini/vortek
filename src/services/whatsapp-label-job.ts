@@ -24,6 +24,7 @@ import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { createShortLink } from '@/lib/short-links';
 import { buildSupplierLabelWhatsapp } from '@/lib/notifications/templates';
+import { EVOLUSOM_FORNECEDOR_ID } from '@/lib/supplier-balance';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -173,6 +174,38 @@ function isWahaPlusOnlyError(err: unknown): boolean {
 }
 
 type WhatsappLabelRecipient = { key: string; chatId: string };
+
+class WhatsappLabelRecipientConfigError extends Error {
+  reason = 'invalid_evolusom_recipient_configuration';
+}
+
+export function resolveWhatsappLabelRecipients(input: {
+  primaryChatId: string;
+  fornecedorId: string | number | null | undefined;
+  usePlaceholderLabel?: boolean;
+  additionalPhone?: string;
+}): WhatsappLabelRecipient[] {
+  const recipients = [{ key: 'primary', chatId: input.primaryChatId }];
+  if (input.usePlaceholderLabel || String(input.fornecedorId || '').trim() !== EVOLUSOM_FORNECEDOR_ID) {
+    return recipients;
+  }
+
+  let additionalChatId: string;
+  try {
+    const phone = String(input.additionalPhone || '').trim();
+    if (!phone || /[^\d+().\s-]/.test(phone)) throw new Error('invalid');
+    additionalChatId = normalizeWhatsappChatId(phone);
+  } catch {
+    throw new WhatsappLabelRecipientConfigError(
+      'Configure EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE com um número válido antes de enviar a etiqueta oficial da Evolusom.',
+    );
+  }
+  if (additionalChatId !== input.primaryChatId) {
+    recipients.push({ key: 'evolusom_additional', chatId: additionalChatId });
+  }
+  return recipients;
+}
+
 type WhatsappLabelRecipientResult = {
   recipientKey: string;
   chatIdSuffix: string;
@@ -536,9 +569,16 @@ export async function runWhatsappLabelJob(input: {
 
     const dsid = String((pedido as any).dslite_id || '').trim();
     await setStep('load_purchase', 'loading', dsid ? `Buscando compra DSLite #${dsid}` : 'Pedido sem DSLite vinculado');
-    const { data: compra } = dsid
+    const { data: compra, error: compraError } = dsid
       ? await client.from('compras').select('*').eq('dsid', dsid).maybeSingle()
-      : { data: null };
+      : { data: null, error: null };
+    if (compraError) throw new Error('Falha ao consultar compra DSLite para determinar os destinatários da etiqueta.');
+    const whatsappRecipients = resolveWhatsappLabelRecipients({
+      primaryChatId: chatId,
+      fornecedorId: compra?.fornecedor_id,
+      usePlaceholderLabel: input.usePlaceholderLabel,
+      additionalPhone: process.env.EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE,
+    });
     await setStep(
       'load_purchase',
       dsid ? (compra ? 'success' : 'warning') : 'warning',
@@ -661,9 +701,9 @@ export async function runWhatsappLabelJob(input: {
       labelSource: labelStatus,
     });
 
-    await setStep('send_whatsapp', 'loading', 'Enviando PDF pelo WAHA');
+    await setStep('send_whatsapp', 'loading', `Enviando PDF para ${whatsappRecipients.length} destinatário(s) pelo WAHA`);
     const recipientResults = await sendWhatsappLabelRecipients({
-      recipients: [{ key: 'primary', chatId }],
+      recipients: whatsappRecipients,
       logEntries, persistCheckpoint: syncJob, caption, filename, pdf: labelPdf, labelShortUrl,
     });
     const primaryResult = recipientResults[0];
@@ -744,7 +784,7 @@ export async function runWhatsappLabelJob(input: {
     }
     failPendingSteps(steps);
 
-    if (terminalDownloadError) {
+    if (terminalDownloadError || err instanceof WhatsappLabelRecipientConfigError) {
       if (deliveredNonPrintable && pedidoIdForError) {
         await client
           .from('pedidos')
@@ -774,7 +814,7 @@ export async function runWhatsappLabelJob(input: {
           queue_status: result.queueStatus,
           retryable: false,
           reason: result.reason,
-          status_http: err.statusCode,
+          status_http: err instanceof WhatsappLabelDownloadError ? err.statusCode : null,
         },
         statusResultante: deliveredNonPrintable ? 'not_applicable' : 'failed',
       }).catch(() => undefined);

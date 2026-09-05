@@ -14,7 +14,7 @@
 
 **Resultado:** fotografia concluída; `BNT-PARITY-01` a `BNT-PARITY-08` incorporadas e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
 
-**Atualização em 05/09/2026:** a fila `BNT-PARITY-01` a `BNT-PARITY-13` foi concluída no escopo aprovado de cada ação. A fotografia original abaixo permanece datada. `BNT-PARITY-13` concluiu o mapa e o comparador, não a promoção de schema; decisão Evolusom, deltas de pricing e gates permanecem pendentes.
+**Atualização em 05/09/2026:** a fila `BNT-PARITY-01` a `BNT-PARITY-13` foi concluída no escopo aprovado de cada ação. A fotografia original abaixo permanece datada. `BNT-PARITY-13` concluiu o mapa e o comparador, não a promoção de schema. A decisão Evolusom foi confirmada e implementada em `BNT-PARITY-DEC-01`, com validação local e sem ativação remota; deltas de pricing e gates permanecem pendentes.
 
 ---
 
@@ -25,7 +25,7 @@ A Bentevi preserva a maior parte das regras estruturais do Vortek e já substitu
 Foram encontrados **13 commits exclusivos em produção**, envolvendo 83 arquivos e quatro migrations. A análise funcional identificou:
 
 - **14 regras produtivas identificadas para incorporação**, das quais `PRC-11`, `PRD-02`, `SUP-02`, `SUP-05`, `SUP-06`, `SUP-07`, `ORD-09`, `ORD-10` e `ML-04` foram concluídas em `BNT-PARITY-01` a `BNT-PARITY-08`; as demais continuam organizadas em ações controladas;
-- **1 decisão operacional pendente**, sobre destinatário adicional de etiqueta da Evolusom;
+- **1 decisão operacional identificada na fotografia**, sobre destinatário adicional de etiqueta da Evolusom, posteriormente confirmada e implementada em `BNT-PARITY-DEC-01`;
 - comportamentos intermediários ou históricos que não devem ser copiados;
 - uma colisão real de versão de migration que bloqueia promoção automática do histórico;
 - ausência, na Bentevi, da deduplicação de alerta de nova venda por inserção;
@@ -203,7 +203,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `NTF-02` | BNT-MSG-01 | evento → template tipado Bentevi; dados essenciais e ação | template central vence mensagem local | WhatsApp/Push/e-mail | exclusiva DEV | `SUBSTITUÍDA` | manter identidade Bentevi |
 | `NTF-03` | commit `95941f1` | alerta de nova venda somente se persistência=`inserted` e order=`paid` | update/notificação duplicada não alerta | WhatsApp e Push | gate de origem compartilhado; dedupe de transporte preservado | `EQUIVALENTE` | `BNT-PARITY-10` concluída; regressões de decisão/canais e homologação do commit `4e2471b` |
 | `NTF-04` | commit `dc60a2b` | etiqueta por destinatário → message ID e confirmação persistidos por chave | destinatário já confirmado não reenvia no retry | WhatsApp etiqueta | ID e confirmação por destinatário em `jobs.log`; falha no checkpoint interrompe o processamento | `EQUIVALENTE` | `BNT-PARITY-11` concluída; 43 testes aprovados e commit `76fbc7f` homologado |
-| `NTF-05` | commit `dc60a2b` | Evolusom oficial → destinatário principal + contato adicional, sem duplicar número | contato operacional vigente deve ser confirmado | WhatsApp etiqueta | regra e valor não existem em DEV | `DECISÃO NECESSÁRIA` | confirmar contato sem registrá-lo neste documento; então ação própria |
+| `NTF-05` | commit `dc60a2b` | Evolusom oficial → destinatário principal + contato adicional, sem duplicar número | contato confirmado pelo responsável; teste genérico usa só principal | WhatsApp etiqueta | seleção implementada no worker DEV com configuração privada e checkpoints existentes | `EQUIVALENTE` | `BNT-PARITY-DEC-01` validada localmente; configuração de runtime e deploy pendentes para ativação |
 | `NTF-06` | etiqueta WhatsApp | download aguarda até 60 s, consulta a cada 5 s; fila retenta em 1/5/15/30 min | erro não-retryable encerra | WhatsApp/jobs | igual | `EQUIVALENTE` | `whatsapp-label-job.ts` |
 | `OPS-01` | commit `9302353` | webhook Easypanel POST → `Content-Type: application/json` e corpo `{}` | método configurado; erro HTTP falha comando | deploy homologação | POST JSON explícito; GET e proteções existentes preservados | `EQUIVALENTE` | `BNT-PARITY-12` concluída; 13 testes de contrato HTTP local, sem deploy |
 
@@ -272,9 +272,11 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | 11 | `BNT-PARITY-11 — Idempotência de etiqueta por destinatário` **(concluída)** | `NTF-04` | P1 | retry não reenvia destinatário já confirmado |
 | 12 | `BNT-PARITY-12 — Contrato do webhook Easypanel` **(concluída)** | `OPS-01` | P1 | POST JSON `{}` validado por teste sem deploy |
 | 13 | `BNT-PARITY-13 — Reconciliação do histórico de migrations` **(reconciliação concluída)** | `DB-01` | P0 release | mapa/comparador validados; nenhum histórico reescrito; delta de promoção permanece pendente |
-| — | `BNT-PARITY-DEC-01 — Destinatário adicional Evolusom` | `NTF-05` | decisão | responsável confirma se o contato adicional continua vigente |
+| — | `BNT-PARITY-DEC-01 — Destinatário adicional Evolusom` **(confirmada e implementada localmente)** | `NTF-05` | decisão | ambos mantidos, dedupe/retomada testados; sem envio real ou deploy |
 
 As ações acima não autorizam agrupar várias correções num único commit. Quando uma ação exigir banco, o preflight deve confirmar o destino exato `192.168.1.162`, ensaiar com `ROLLBACK` e nunca escrever em `.160`.
+
+**Evidência DEC-01:** o responsável confirmou manter os dois destinos em 05/09/2026. Foram validados o seletor no worker existente, chave `evolusom_additional`, normalização/dedupe, retomada parcial e tratamento terminal da configuração inválida. Passaram 40 testes TAP, regressão de nova venda, validate, build e check de build-secrets. Nenhum número operacional integra código novo, testes ou este catálogo. Antes da ativação, configurar `EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE` privadamente no servidor e publicar em tarefa própria; em DEV usar somente destinatário de teste. Não houve migration, escrita em banco, mensagem real, push ou deploy.
 
 ---
 

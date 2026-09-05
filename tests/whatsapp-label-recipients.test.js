@@ -9,9 +9,28 @@ const compiled = ts.transpileModule(source, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
 }).outputText;
 
-function loadJob(dependencies) {
+function loadLocalModule(file) {
+  const code = ts.transpileModule(fs.readFileSync(path.join(__dirname, file), 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  }).outputText;
   const module = { exports: {} };
-  new Function('require', 'module', 'exports', compiled)((name) => dependencies[name] || {}, module, module.exports);
+  new Function('require', 'module', 'exports', code)(() => ({}), module, module.exports);
+  return module.exports;
+}
+const { normalizeWhatsappChatId } = loadLocalModule('../src/services/waha.ts');
+const supplierBalance = loadLocalModule('../src/lib/supplier-balance.ts');
+
+function loadJob(dependencies = {}, env = {}) {
+  const module = { exports: {} };
+  const resolved = {
+    ...dependencies,
+    '@/lib/supplier-balance': supplierBalance,
+    '@/services/waha': { normalizeWhatsappChatId, ...dependencies['@/services/waha'] },
+  };
+  // Never load private environment values or real WAHA transport in these tests.
+  new Function('require', 'module', 'exports', 'process', compiled)(
+    (name) => resolved[name] || {}, module, module.exports, { env },
+  );
   return module.exports;
 }
 
@@ -129,12 +148,14 @@ test('erro comum ou ausência do link não inicia fallback indevido nem confirma
   }
 });
 
-function setupWorker(failureStage) {
+function setupWorker(failureStage, options = {}) {
   const stored = { id: 'job-test', status: 'pendente', log: [] };
   const sends = [];
   let claims = 0;
   let failed = false;
-  const pedido = { id: 'pedido-test', numero: 123, ml_shipment_id: 'shipment-test', ml_label_storage_path: 'teste.pdf' };
+  let allocated = 0;
+  let labelLoads = 0;
+  const pedido = { id: 'pedido-test', numero: 123, ml_shipment_id: 'shipment-test', ml_label_storage_path: 'teste.pdf', ...options.pedido };
   const client = { from(table) {
     let update;
     let statuses;
@@ -157,6 +178,7 @@ function setupWorker(failureStage) {
         }
         return { data: pedido, error: null };
       }
+      if (table === 'compras') return { data: options.compra || null, error: options.compraError || null };
       throw new Error(`Tabela inesperada: ${table}`);
     };
     const query = {
@@ -172,11 +194,15 @@ function setupWorker(failureStage) {
   const job = loadJob({
     '@/lib/supabase': { createServiceClient: () => client },
     '@/services/waha': {
-      normalizeWhatsappChatId: () => recipients[0].chatId,
-      getWahaNewMessageId: async () => 'worker-message',
-      sendWahaFile: async (input) => { sends.push(input); return { id: input.messageId }; },
+      getWahaNewMessageId: async () => `worker-message-${++allocated}`,
+      sendWahaFile: async (input) => {
+        sends.push(input);
+        await options.sendFile?.(input);
+        return { id: input.messageId };
+      },
     },
-    '@/lib/shipping-label-storage': { downloadShippingLabelFromStorage: async () => Buffer.from('PDF simulado') },
+    '@/lib/shipping-label-storage': { downloadShippingLabelFromStorage: async () => { labelLoads++; return Buffer.from('PDF simulado'); } },
+    '@/lib/dslite/placeholder-label': { loadDslitePlaceholderLabel: async () => { labelLoads++; return Buffer.from('PDF teste'); } },
     '@/lib/public-shipping-label-links': { buildPublicShippingLabelUrl: () => 'https://dev.bentevi.shop/etiqueta' },
     '@/lib/short-links': { createShortLink: async ({ targetUrl }) => targetUrl },
     '@/lib/notifications/templates': { buildSupplierLabelWhatsapp: () => 'Etiqueta simulada Bentevi' },
@@ -186,9 +212,9 @@ function setupWorker(failureStage) {
       assert.equal(respostaMl.recipient_results[0].wahaResponse, undefined);
       if (failureStage === 'audit' && !failed) { failed = true; throw new Error('Falha de auditoria simulada'); }
     } },
-  });
-  const input = { jobId: stored.id, pedidoId: pedido.id, phoneNumber: '11999990001', appBaseUrl: 'https://dev.bentevi.shop' };
-  return { job, stored, sends, input, get claims() { return claims; } };
+  }, { EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE: options.additionalPhone });
+  const input = { jobId: stored.id, pedidoId: pedido.id, phoneNumber: '11999990001', appBaseUrl: 'https://dev.bentevi.shop', usePlaceholderLabel: options.placeholder };
+  return { job, stored, sends, input, get claims() { return claims; }, get labelLoads() { return labelLoads; } };
 }
 
 test('worker retoma falha posterior na auditoria ou no pedido sem reenviar', async () => {
@@ -215,4 +241,114 @@ test('duas retomadas concorrentes mantêm aquisição exclusiva e um único envi
   assert.equal(harness.claims, 1);
   assert.equal(harness.sends.length, 1);
   assert.equal(harness.stored.status, 'completo');
+});
+
+test('Evolusom oficial adiciona contato e deduplica formato nacional/internacional', () => {
+  const { resolveWhatsappLabelRecipients } = loadJob();
+  const input = { primaryChatId: recipients[0].chatId, fornecedorId: 133, additionalPhone: '(11) 99999-0002' };
+  assert.deepEqual(resolveWhatsappLabelRecipients(input), [
+    recipients[0], { key: 'evolusom_additional', chatId: recipients[1].chatId },
+  ]);
+  for (const phone of ['11999990001', '+55 (11) 99999-0001']) {
+    assert.deepEqual(resolveWhatsappLabelRecipients({ ...input, additionalPhone: phone }), [recipients[0]]);
+  }
+  for (const fornecedorId of [null, undefined, '108', 'Evolusom', '1330']) {
+    assert.deepEqual(resolveWhatsappLabelRecipients({ ...input, fornecedorId, additionalPhone: undefined }), [recipients[0]]);
+  }
+  assert.deepEqual(resolveWhatsappLabelRecipients({ ...input, usePlaceholderLabel: true, additionalPhone: undefined }), [recipients[0]]);
+});
+
+test('configuração adicional inválida impede envio e retry automático no worker', async () => {
+  for (const phone of [undefined, '', 'invalid', '123', 'abc11999990002']) {
+    const harness = setupWorker(undefined, {
+      pedido: { dslite_id: 'purchase-test' }, compra: { fornecedor_id: '133' }, additionalPhone: phone,
+    });
+    await harness.job.runWhatsappLabelJob(harness.input);
+    assert.equal(harness.stored.status, 'erro');
+    assert.equal(harness.sends.length, 0);
+    assert.equal(harness.labelLoads, 0);
+    assert.equal(harness.stored.log.some((row) => row.event === 'queue_hold'), false);
+    const result = harness.stored.log.filter((row) => row.event === 'progress_snapshot').at(-1).result;
+    assert.equal(result.reason, 'invalid_evolusom_recipient_configuration');
+    assert.match(result.error, /EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE/);
+    if (phone === 'abc11999990002') assert.ok(!JSON.stringify(harness.stored.log).includes(phone));
+  }
+});
+
+test('worker de Evolusom confirma os dois e não reabre job concluído', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: { dslite_id: 'purchase-test' }, compra: { fornecedor_id: '133' }, additionalPhone: '11999990002',
+  });
+  await harness.job.runWhatsappLabelJob(harness.input);
+  assert.equal(harness.stored.status, 'completo');
+  assert.deepEqual(harness.sends.map((row) => row.chatId), recipients.map((row) => row.chatId));
+  const result = harness.stored.log.filter((row) => row.event === 'progress_snapshot').at(-1).result;
+  assert.equal(result.recipientCount, 2);
+  assert.deepEqual(result.recipientResults.map((row) => row.recipientKey), ['primary', 'evolusom_additional']);
+  assert.ok(!JSON.stringify(harness.stored.log).includes('11999990002'));
+  await harness.job.runWhatsappLabelJob(harness.input);
+  assert.equal(harness.sends.length, 2);
+  assert.equal(harness.claims, 1);
+});
+
+test('worker retoma somente o adicional que falhou, preservando seu ID', async () => {
+  let fail = true;
+  const harness = setupWorker(undefined, {
+    pedido: { dslite_id: 'purchase-test' }, compra: { fornecedor_id: '133' }, additionalPhone: '11999990002',
+    sendFile: ({ chatId }) => { if (fail && chatId === recipients[1].chatId) throw new Error('simulated'); },
+  });
+  await harness.job.runWhatsappLabelJob(harness.input);
+  assert.equal(harness.stored.status, 'on_hold');
+  assert.equal(harness.stored.log.filter((row) => row.event === 'whatsapp_label_recipient_sent').length, 1);
+  fail = false;
+  await harness.job.runWhatsappLabelJob(harness.input);
+  assert.equal(harness.stored.status, 'completo');
+  assert.deepEqual(harness.sends.map((row) => [row.chatId, row.messageId]), [
+    [recipients[0].chatId, 'worker-message-1'],
+    [recipients[1].chatId, 'worker-message-2'],
+    [recipients[1].chatId, 'worker-message-2'],
+  ]);
+});
+
+test('erro ao consultar compra não se torna envio apenas ao principal', async () => {
+  const harness = setupWorker(undefined, {
+    pedido: { dslite_id: 'purchase-test' }, compraError: { message: 'private database error' },
+  });
+  await harness.job.runWhatsappLabelJob(harness.input);
+  assert.equal(harness.sends.length, 0);
+  assert.equal(harness.labelLoads, 0);
+  assert.notEqual(harness.stored.status, 'completo');
+  assert.ok(!JSON.stringify(harness.stored.log).includes('private database error'));
+});
+
+test('worker mantém um destino para teste, outro fornecedor, compra ausente ou número duplicado', async () => {
+  for (const options of [
+    { pedido: { dslite_id: 'purchase-test' }, compra: { fornecedor_id: '133' }, placeholder: true },
+    { pedido: { dslite_id: 'purchase-test' }, compra: { fornecedor_id: '108' } },
+    { pedido: { dslite_id: 'purchase-test' }, compra: null },
+    {},
+    { pedido: { dslite_id: 'purchase-test' }, compra: { fornecedor_id: '133' }, additionalPhone: '+55 (11) 99999-0001' },
+  ]) {
+    const harness = setupWorker(undefined, options);
+    await harness.job.runWhatsappLabelJob(harness.input);
+    assert.equal(harness.stored.status, 'completo');
+    assert.equal(harness.sends.length, 1);
+    assert.equal(harness.sends[0].chatId, recipients[0].chatId);
+  }
+});
+
+test('Evolusom não reenvia após falha posterior e mantém exclusão concorrente', async () => {
+  const options = { pedido: { dslite_id: 'purchase-test' }, compra: { fornecedor_id: '133' }, additionalPhone: '11999990002' };
+  for (const stage of ['audit', 'pedido']) {
+    const harness = setupWorker(stage, options);
+    await harness.job.runWhatsappLabelJob(harness.input);
+    assert.equal(harness.stored.status, 'on_hold');
+    await harness.job.runWhatsappLabelJob(harness.input);
+    assert.equal(harness.stored.status, 'completo');
+    assert.equal(harness.sends.length, 2);
+  }
+  const harness = setupWorker(undefined, options);
+  await Promise.all([harness.job.runWhatsappLabelJob(harness.input), harness.job.runWhatsappLabelJob(harness.input)]);
+  assert.equal(harness.claims, 1);
+  assert.equal(harness.sends.length, 2);
 });
