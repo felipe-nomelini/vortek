@@ -238,9 +238,11 @@ export default function SupplierDetailPage() {
             <dl>
               <div><dt>Produtos ativos</dt><dd>{Number(impact.products_active || 0)}</dd></div>
               <div><dt>Ofertas ativas</dt><dd>{Number(impact.supplier_offers_active || 0)}</dd></div>
+              <div><dt>Mantidos pelo estoque interno</dt><dd>{Number(impact.products_kept_only_by_internal_stock || 0)}</dd></div>
+              <div><dt>Sem fonte disponível</dt><dd>{Number(impact.products_without_available_source || 0)}</dd></div>
               <div><dt>Anúncios a excluir</dt><dd>{Number(impact.ml_delete_candidates || 0)}</dd></div>
             </dl>
-            <strong>Anúncios sem outro fornecedor ativo serão excluídos do Mercado Livre.</strong>
+            <strong>Anúncios sem fornecedor alternativo nem estoque interno serão excluídos do Mercado Livre.</strong>
           </div>
         ),
         okText: 'Inativar fornecedor',

@@ -7,6 +7,8 @@ import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
+import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
+import { classifySupplierDeactivationProducts } from '@/lib/supplier-deactivation';
 
 export const maxDuration = 300;
 
@@ -179,12 +181,17 @@ function buildImpact(
   products: ImpactProduct[],
   offers: ImpactOffer[],
   alternativeProductIds = new Set<string>(),
+  internalStockProductIds = new Set<string>(),
   listingTargets = new Map<string, string[]>(),
 ) {
   const activeProducts = products.filter((product) => product.ativo !== false);
   const activeOffers = offers.filter((offer) => offer.ativo !== false);
   const productsWithAlternativeStock = activeProducts.filter((product) => alternativeProductIds.has(product.id));
-  const productsWithoutAlternative = products.filter((product) => !alternativeProductIds.has(product.id));
+  const transition = classifySupplierDeactivationProducts(
+    products,
+    alternativeProductIds,
+    internalStockProductIds,
+  );
   return {
     products_found: products.length,
     products_active: activeProducts.length,
@@ -193,7 +200,10 @@ function buildImpact(
     supplier_offers_active: activeOffers.length,
     supplier_offers_already_inactive: offers.length - activeOffers.length,
     products_with_alternative_stock: productsWithAlternativeStock.length,
-    ml_delete_candidates: productsWithoutAlternative.reduce(
+    products_with_internal_stock: transition.withInternalStock.length,
+    products_kept_only_by_internal_stock: transition.keptOnlyByInternalStock.length,
+    products_without_available_source: transition.withoutAvailableSource.length,
+    ml_delete_candidates: transition.withoutAvailableSource.reduce(
       (total, product) => total + (listingTargets.get(product.id)?.length || 0),
       0,
     ),
@@ -217,15 +227,26 @@ export async function GET(request: Request, props: { params: Promise<{ id: strin
       loadImpactedProducts(client, dsliteFornecedorId),
       loadImpactedOffers(client, dsliteFornecedorId),
     ]);
-    const alternativeProductIds = await loadProductIdsWithAlternativeStock(
-      client,
-      products.map((product) => product.id),
-      dsliteFornecedorId,
+    const productIds = products.map((product) => product.id);
+    const [alternativeProductIds, capacitiesByProduct] = await Promise.all([
+      loadProductIdsWithAlternativeStock(client, productIds, dsliteFornecedorId),
+      loadProductFulfillmentCapacities(client, productIds),
+    ]);
+    const internalStockProductIds = new Set(
+      Array.from(capacitiesByProduct.entries())
+        .filter(([, capacity]) => capacity.internal > 0)
+        .map(([productId]) => productId),
     );
     const listingTargets = await loadMlListingTargets(client, products);
     return NextResponse.json({
       fornecedor,
-      impact: buildImpact(products, offers, alternativeProductIds, listingTargets),
+      impact: buildImpact(
+        products,
+        offers,
+        alternativeProductIds,
+        internalStockProductIds,
+        listingTargets,
+      ),
     });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao calcular impacto do fornecedor') }, { status: 500 });
@@ -312,14 +333,24 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
       supplierOffersInactivated += idsChunk.length;
     }
 
-    const alternativeProductIds = await loadProductIdsWithAlternativeStock(
-      client,
-      activeProducts.map((product) => product.id),
-      dsliteFornecedorId,
+    const productIds = products.map((product) => product.id);
+    const [alternativeProductIds, capacitiesBeforeSnapshot] = await Promise.all([
+      loadProductIdsWithAlternativeStock(client, productIds, dsliteFornecedorId),
+      loadProductFulfillmentCapacities(client, productIds),
+    ]);
+    const internalStockProductIds = new Set(
+      Array.from(capacitiesBeforeSnapshot.entries())
+        .filter(([, capacity]) => capacity.internal > 0)
+        .map(([productId]) => productId),
+    );
+    const transition = classifySupplierDeactivationProducts(
+      products,
+      alternativeProductIds,
+      internalStockProductIds,
     );
     const productsWithAlternativeStock = activeProducts.filter((product) => alternativeProductIds.has(product.id));
-    const productsToInactivate = activeProducts.filter((product) => !alternativeProductIds.has(product.id));
-    const productsToDelete = products.filter((product) => !alternativeProductIds.has(product.id));
+    const productsKeptOnlyByInternalStock = transition.keptOnlyByInternalStock;
+    const productsToDelete = transition.withoutAvailableSource;
     const listingTargets = await loadMlListingTargets(client, productsToDelete);
 
     let productsReassigned = 0;
@@ -330,17 +361,17 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
       productsReassigned += snapshots.filter((snapshot) => snapshot.changed).length;
     }
 
-    let productsInactivated = 0;
-    for (const idsChunk of chunk(productsToInactivate.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+    let productsKeptInternal = 0;
+    for (const idsChunk of chunk(productsKeptOnlyByInternalStock.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
       const { error } = await client
         .from('produtos')
-        .update({ ativo: false, estoque: 0 } as any)
+        .update({ estoque: 0 } as any)
         .in('id', idsChunk);
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
-      productsInactivated += idsChunk.length;
+      productsKeptInternal += idsChunk.length;
     }
 
     let productsMlMarkedWithoutListing = 0;
@@ -362,14 +393,38 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
     let mlDeleteUnchanged = 0;
     let mlDeleteSkippedNoItem = 0;
     let mlDeleteFailed = 0;
+    let mlDeleteCancelledInternalStock = 0;
     let mlStockEnqueued = 0;
     let mlStockUnchanged = 0;
     let mlStockSkippedIneligible = 0;
+    let mlStockBlockedManually = 0;
     let mlStockFailed = 0;
     let mlPriceProductsUpdated = 0;
     let mlPriceOutboxEnqueued = 0;
     let mlPriceFailed = 0;
     const errors: Array<{ product_id: string; sku: string; ml_item_id: string; error: string }> = [];
+
+    for (const idsChunk of chunk(
+      transition.withInternalStock.map((product) => product.id),
+      SUPABASE_IN_FILTER_CHUNK_SIZE,
+    )) {
+      const { data: cancelled, error } = await (client as any)
+        .from('anuncios_ml_outbox')
+        .update({
+          status: 'cancelled',
+          last_error: 'Cancelado: produto preservado pela capacidade do estoque interno.',
+          updated_at: new Date().toISOString(),
+        })
+        .in('produto_id', idsChunk)
+        .eq('source', 'fornecedor_inativo_delete')
+        .in('status', ['pending', 'retry', 'processing', 'failed'])
+        .select('id');
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      mlDeleteCancelledInternalStock += cancelled?.length || 0;
+    }
 
     try {
       const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, preferredSnapshots);
@@ -489,6 +544,23 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
       }
     }
 
+    for (const product of transition.withInternalStock) {
+      try {
+        const result = await enfileirarSyncMlEstoqueInterno(product.id);
+        mlStockEnqueued += result.enfileirados;
+        mlStockUnchanged += result.semAlteracao;
+        mlStockBlockedManually += result.bloqueadosManualmente;
+      } catch (error) {
+        mlStockFailed += 1;
+        errors.push({
+          product_id: product.id,
+          sku: String(product.sku || ''),
+          ml_item_id: String(product.ml_item_id || ''),
+          error: toPublicError(error, 'Falha ao sincronizar a capacidade do estoque interno'),
+        });
+      }
+    }
+
     return NextResponse.json({
       success: mlDeleteFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
       fornecedor_id: params.id,
@@ -496,8 +568,11 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
       records: {
         products_found: products.length,
         products_with_alternative_stock: productsWithAlternativeStock.length,
+        products_with_internal_stock: transition.withInternalStock.length,
+        products_kept_only_by_internal_stock: productsKeptInternal,
+        products_without_available_source: transition.withoutAvailableSource.length,
         products_reassigned: productsReassigned,
-        products_inactivated: productsInactivated,
+        products_inactivated: 0,
         products_ml_marked_without_listing: productsMlMarkedWithoutListing,
         supplier_offers_found: offers.length,
         supplier_offers_inactivated: supplierOffersInactivated,
@@ -507,9 +582,11 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
         ml_delete_unchanged: mlDeleteUnchanged,
         ml_delete_skipped_no_item: mlDeleteSkippedNoItem,
         ml_delete_failed: mlDeleteFailed,
+        ml_delete_cancelled_internal_stock: mlDeleteCancelledInternalStock,
         ml_stock_enqueued: mlStockEnqueued,
         ml_stock_unchanged: mlStockUnchanged,
         ml_stock_skipped_ineligible: mlStockSkippedIneligible,
+        ml_stock_blocked_manually: mlStockBlockedManually,
         ml_stock_failed: mlStockFailed,
         ml_price_products_updated: mlPriceProductsUpdated,
         ml_price_outbox_enqueued: mlPriceOutboxEnqueued,

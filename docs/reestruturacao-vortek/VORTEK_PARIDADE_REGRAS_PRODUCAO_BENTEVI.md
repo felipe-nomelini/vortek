@@ -125,7 +125,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `SUP-02` | commit `2ac64cc` | nenhuma oferta ativa → nenhuma preferencial automática | oferta inativa nunca é fallback | produto/anúncio/compra/fiscal | seleção central e fluxos DSLite rejeitam oferta inativa e não usam snapshot legado como fonte operacional | `EQUIVALENTE` | `BNT-PARITY-02`; regressões de preferência e criação DSLite |
 | `SUP-03` | `supplier-policy.ts` | fornecedor ativo e sem aposentadoria → operacional | aposentadoria vence flag ativa | sync, DSLite, capacidade | igual | `EQUIVALENTE` | testes HAYA |
 | `SUP-04` | decisões HAYA | Hayamax → somente histórico; sem dropshipping ou conta-saldo operacional | decisão Item 17 vence produção histórica | compras/financeiro | aposentada | `SUBSTITUÍDA` | não reativar integrações exclusivas |
-| `SUP-05` | commit `420cd64` | fornecedor inativado + estoque interno disponível → produto continua ativo | capacidade interna válida preserva operação | fornecedor/produto/anúncio | classificação DEV ignora estoque interno nesse ponto | `INCORPORAR` | ação `BNT-PARITY-03` |
+| `SUP-05` | commit `420cd64` | fornecedor inativado + estoque interno disponível → produto continua ativo | capacidade interna válida preserva operação | fornecedor/produto/anúncio | capacidade canônica preserva atividade manual, exclui estoque interno do fluxo destrutivo e reconcilia a Q segura | `EQUIVALENTE` | `BNT-PARITY-03`; testes de inativação, capacidade e outbox |
 | `SUP-06` | commit `420cd64` | produto sem alternativa → anúncio pausado com quantidade 0 | pausar é reversível; não fechar/excluir | inativação de fornecedor | DEV ainda enfileira exclusão | `INCORPORAR` | ação `BNT-PARITY-04` |
 | `SUP-07` | commit `f3e9199` | `reprocess=true` → reexecuta inativação sem duplicar job concluído/ativo | chave da operação preserva idempotência | API fornecedor/jobs | ausente | `INCORPORAR` | ação `BNT-PARITY-05` |
 | `KIT-01` | `produto-kits.ts` | componentes e quantidades → custo/saldo do kit | kit não possui estoque físico independente | catálogo/estoque/fulfillment | igual | `EQUIVALENTE` | testes de kits |
@@ -255,7 +255,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | ---: | --- | --- | --- | --- |
 | 1 | `BNT-PARITY-01 — Atividade manual do produto` **(concluída)** | `PRC-11`, `PRD-02` | P0 | sync/preço não alteram `produtos.ativo`; threshold atua só em oferta/elegibilidade |
 | 2 | `BNT-PARITY-02 — Oferta preferencial somente ativa` **(concluída)** | `SUP-02` | P0 | oferta inativa nunca vira preferencial automática |
-| 3 | `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor` | `SUP-05` | P1 | produto com estoque interno permanece operacional |
+| 3 | `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor` **(concluída)** | `SUP-05` | P1 | produto com estoque interno permanece operacional |
 | 4 | `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor` | `SUP-06`, `ML-07` | P1 | quantidade 0/paused; nunca excluir/closed |
 | 5 | `BNT-PARITY-05 — Reprocessamento idempotente da inativação` | `SUP-07` | P1 | reprocess explícito sem duplicar job/efeito |
 | 6 | `BNT-PARITY-06 — Fallback seguro da retomada DSLite` | `ORD-09` | P1 | próxima URL apenas em exceção de rede |

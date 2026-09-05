@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01/02` concluídas; aplicação bloqueante | Executar `BNT-PARITY-03` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01/02/03` concluídas; aplicação bloqueante | Executar `BNT-PARITY-04` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -180,6 +180,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-02` antes de `BNT-PARITY-01` estar integralmente validada.
 - [x] Executar somente `BNT-PARITY-02 — Oferta preferencial somente ativa`.
 - [x] Não avançar para `BNT-PARITY-03` antes de `BNT-PARITY-02` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor`.
+- [x] Não avançar para `BNT-PARITY-04` antes de `BNT-PARITY-03` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2655,6 +2657,28 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Validação:** 45 testes direcionados de preferência, política de fornecedores, criação DSLite, atividade e capacidade passaram; `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration foi criada ou executada e nenhum banco foi alterado.
 
 **Próxima ação:** `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor`. A pausa reversível de anúncio permanece isolada em `BNT-PARITY-04`.
+
+#### `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor`
+
+- [x] calcular a capacidade interna pela fonte canônica de fulfillment, incluindo reservas e kits;
+- [x] separar fornecedor alternativo, estoque interno e ausência de fonte sem somar capacidades;
+- [x] preservar `produtos.ativo` como decisão exclusivamente manual;
+- [x] manter operacional o produto atendível exclusivamente pelo estoque interno;
+- [x] zerar apenas a projeção de estoque do fornecedor removido;
+- [x] retirar produtos com capacidade interna dos candidatos à exclusão no Mercado Livre;
+- [x] cancelar exclusões pendentes antigas somente para produtos preservados pelo estoque interno;
+- [x] reconciliar todos os anúncios desses produtos pela `Q segura` e pelo outbox idempotente existente;
+- [x] expor no impacto os produtos mantidos pelo estoque interno e os realmente sem fonte;
+- [x] preservar para `BNT-PARITY-04` a troca da exclusão por pausa para produtos sem fonte;
+- [x] confirmar que nenhuma migration ou reparo de dados é necessário no `supabase-dev`.
+
+**Causa corrigida:** a inativação do fornecedor considerava somente ofertas alternativas. Produtos ainda atendíveis pelo estoque interno eram inativados e incluídos no fluxo de exclusão do anúncio, apesar de a capacidade canônica já conhecer saldo liberado, reservas, kits e `Q segura`.
+
+**Resultado técnico:** a transição agora classifica as fontes disponíveis usando `loadProductFulfillmentCapacities`, preserva integralmente a atividade manual do produto e mantém produtos com estoque interno fora da exclusão. A projeção do fornecedor é zerada, exclusões pendentes antigas desses produtos são canceladas e o estoque de todos os anúncios vinculados é reconciliado por `enfileirarSyncMlEstoqueInterno`. Os modais mostram separadamente produtos mantidos internamente e produtos sem fonte. O comportamento de exclusão dos produtos realmente sem fonte não foi alterado nesta ação.
+
+**Validação:** 50 testes direcionados de inativação, capacidade, saldo interno, reservas, atividade, fornecedores e outbox passaram; `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration foi criada ou executada, nenhum banco foi alterado e nenhuma inativação real de fornecedor foi disparada.
+
+**Próxima ação:** `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor`.
 
 #### Classificação obrigatória
 
