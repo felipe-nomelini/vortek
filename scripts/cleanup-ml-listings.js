@@ -1,3 +1,4 @@
+if (require.main === module) throw new Error('M2M: execução legada aposentada. Usar Radar e simulação/aprovação canônica; histórico preservado.');
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');

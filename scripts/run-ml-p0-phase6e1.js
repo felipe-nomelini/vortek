@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+if (require.main === module) throw new Error('M2M: execução legada aposentada. Usar Radar e simulação/aprovação canônica; histórico preservado.');
 'use strict';
 
 const fs = require('fs');

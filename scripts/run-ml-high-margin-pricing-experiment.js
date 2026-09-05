@@ -1,3 +1,4 @@
+if (require.main === module) throw new Error('M2M: execução legada aposentada. Usar Radar e simulação/aprovação canônica; histórico preservado.');
 /* eslint-disable no-console */
 const crypto = require('crypto');
 const fs = require('fs');

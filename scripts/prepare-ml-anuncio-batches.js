@@ -44,22 +44,8 @@ function round2(value) {
   return Math.round(Number(value || 0) * 100) / 100;
 }
 
-function getPricingStrategy(cost) {
-  if (cost <= 400) return { margin: 0.15, minProfit: 20 };
-  if (cost <= 1000) return { margin: 0.2, minProfit: 60 };
-  return { margin: 0.25, minProfit: 150 };
-}
-
 function calculateSuggestedPricePreview(product) {
-  const cost = Number(product.custo || 0);
-  const shipping = Number(product.ml_shipping || 0);
-  const mlFee = Number(product.ml_fee || 0.15);
-  const strategy = getPricingStrategy(cost);
-  const denominator = 1 - (0.04 + mlFee);
-  if (!Number.isFinite(cost) || cost <= 0 || denominator <= 0) return null;
-  const priceByMargin = (cost + shipping + (cost * strategy.margin)) / denominator;
-  const priceByMinProfit = (cost + shipping + strategy.minProfit) / denominator;
-  return round2(Math.max(priceByMargin, priceByMinProfit));
+  return Number.isFinite(product.display_price) && product.display_price > 0 ? product.display_price : null;
 }
 
 function getBlockReason(product) {

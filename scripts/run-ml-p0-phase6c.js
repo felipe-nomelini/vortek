@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+if (require.main === module) throw new Error('M2M: execução legada aposentada. Usar Radar e simulação/aprovação canônica; histórico preservado.');
 /* Phase 6C/6D/6E: sequential, refined safe-publication candidates. */
 const fs = require('fs');
 const path = require('path');
