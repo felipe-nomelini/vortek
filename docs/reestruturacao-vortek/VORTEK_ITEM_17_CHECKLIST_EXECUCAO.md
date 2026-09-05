@@ -2876,6 +2876,29 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Próxima ação:** `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`.
 
+#### `BNT-PARITY-11 — Idempotência de etiqueta por destinatário`
+
+**Situação:** implementação e validação local concluídas; homologação pendente.
+
+- [x] persistir ID de mensagem antes do envio e confirmação individual imediatamente após o retorno bem-sucedido do WAHA;
+- [x] retomar somente destinatários sem confirmação e reutilizar IDs alocados;
+- [x] interromper processamento quando a persistência do checkpoint falhar;
+- [x] preservar a aquisição exclusiva do job, os intervalos de retry e o fallback restrito de PDF para link;
+- [x] aceitar ID legado somente para `primary`, sem inferir sucesso pela simples alocação;
+- [x] manter o destinatário original; contato adicional Evolusom permanece em `BNT-PARITY-DEC-01`;
+- [x] validar falhas parciais, falhas posteriores, compatibilidade e concorrência com dependências simuladas;
+- [ ] confirmar deploy e SHA ativo exclusivamente no `vortek-erp-dev`.
+
+**Causa corrigida:** o worker mantinha um ID único por job, mas nenhuma confirmação de envio no histórico do job. Falhas posteriores no registro de auditoria ou na atualização do pedido levavam a nova chamada de envio na retomada. O módulo existente agora registra `whatsapp_label_recipient_message_id_allocated` e `whatsapp_label_recipient_sent` em `jobs.log`, por chave de destinatário. As confirmações persistidas impedem o reenvio; sucessos parciais são preservados. Os resultados individuais acrescentados ao resumo expõem apenas chave, sufixo mascarado, ID, modo e indicação de envio já confirmado.
+
+**Validação local:** passaram 43 testes de etiquetas, contrato de jobs, templates, notificações e regressões de `BNT-PARITY-10`, incluindo oito cenários novos. O worker completo foi exercitado com persistência/WAHA simulados para falha posterior na auditoria e no pedido e aquisição concorrente. Passaram `npm run validate`, `npm run build` (Next.js `16.3.3`, 120 páginas estáticas), `npm run check:build-secrets` e `git diff --check`. Nenhuma mensagem real, migration ou escrita operacional de banco foi executada.
+
+**Contrato e limite:** confirmação significa retorno bem-sucedido da chamada de envio, não leitura pelo destinatário. Uma interrupção entre envio e gravação pode deixar resultado incerto; a retomada preserva o mesmo ID, sem prometer entrega exatamente uma vez. O suporte a IDs pré-alocados é documentado pelo WAHA para NOWEB/GOWS na [release 2026.4.3](https://github.com/devlikeapro/waha/releases/tag/2026.4.3). A proteção é por job; novos envios manuais mantêm o contrato de idempotência existente. A rota síncrona de etiquetas de Compras não foi alterada.
+
+**Rollback:** reverter o commit desta ação em `dev` e publicar apenas no `vortek-erp-dev`, preservando o histórico dos jobs. Evitar retomar jobs parcialmente enviados com a implementação antiga, que ignora as confirmações individuais. Não há migration a reverter.
+
+**Próxima ação após homologação:** `BNT-PARITY-12 — Contrato do webhook Easypanel`.
+
 #### Classificação obrigatória
 
 Cada regra ou mudança deve receber exatamente uma classificação:

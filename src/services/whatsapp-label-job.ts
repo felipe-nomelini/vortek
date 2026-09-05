@@ -172,6 +172,106 @@ function isWahaPlusOnlyError(err: unknown): boolean {
   return message.includes('plus version') || message.includes('available only in plus');
 }
 
+type WhatsappLabelRecipient = { key: string; chatId: string };
+type WhatsappLabelRecipientResult = {
+  recipientKey: string;
+  chatIdSuffix: string;
+  messageId: string;
+  sendMode: 'file' | 'text_link';
+  alreadySent: boolean;
+  wahaResponse: unknown;
+};
+
+function getRecipientMessageId(log: any[], recipientKey: string): string | null {
+  const allocated = [...log].reverse().find((entry) => (
+    entry?.event === 'whatsapp_label_recipient_message_id_allocated'
+    && entry.recipient_key === recipientKey
+  ));
+  const allocatedId = String(allocated?.message_id || '').trim();
+  if (allocatedId) return allocatedId;
+  if (recipientKey !== 'primary') return null;
+  const legacy = [...log].reverse().find((entry) => entry?.event === 'whatsapp_message_id_allocated');
+  return String(legacy?.message_id || '').trim() || null;
+}
+
+export async function sendWhatsappLabelRecipients(input: {
+  recipients: WhatsappLabelRecipient[];
+  logEntries: any[];
+  persistCheckpoint: () => Promise<void>;
+  caption: string;
+  filename: string;
+  pdf: Buffer;
+  labelShortUrl: string | null;
+}): Promise<WhatsappLabelRecipientResult[]> {
+  const results: WhatsappLabelRecipientResult[] = [];
+  const failures: string[] = [];
+  for (const recipient of input.recipients) {
+    const chatIdSuffix = recipient.chatId.split('@')[0].slice(-4);
+    const sent = [...input.logEntries].reverse().find((entry) => (
+      entry?.event === 'whatsapp_label_recipient_sent'
+      && entry.recipient_key === recipient.key
+      && String(entry.message_id || '').trim()
+    ));
+    if (sent) {
+      results.push({
+        recipientKey: recipient.key, chatIdSuffix,
+        messageId: String(sent.message_id),
+        sendMode: sent.send_mode === 'text_link' ? 'text_link' : 'file',
+        alreadySent: true,
+        wahaResponse: null,
+      });
+      continue;
+    }
+
+    let messageId = getRecipientMessageId(input.logEntries, recipient.key);
+    if (!messageId) {
+      messageId = await getWahaNewMessageId();
+      input.logEntries.push({
+        event: 'whatsapp_label_recipient_message_id_allocated', at: now(),
+        recipient_key: recipient.key, message_id: messageId,
+      });
+      // Nenhum envio pode preceder a persistência do ID que será reutilizado.
+      await input.persistCheckpoint();
+    }
+
+    let sendMode: 'file' | 'text_link' = 'file';
+    let wahaResponse: unknown = null;
+    try {
+      try {
+        wahaResponse = await sendWahaFile({
+          chatId: recipient.chatId, caption: input.caption, filename: input.filename,
+          mimetype: 'application/pdf', data: input.pdf, messageId,
+        });
+      } catch (err) {
+        if (!isWahaPlusOnlyError(err)) throw err;
+        if (!input.labelShortUrl) throw new Error('Link da etiqueta indisponível para envio por texto.');
+        sendMode = 'text_link';
+        wahaResponse = await sendWahaText({ chatId: recipient.chatId, text: input.caption, messageId });
+      }
+    } catch {
+      failures.push(recipient.key);
+      input.logEntries.push({
+        event: 'whatsapp_label_recipient_failed', at: now(),
+        recipient_key: recipient.key, chat_id_suffix: chatIdSuffix,
+        message_id: messageId, send_mode: sendMode,
+      });
+      await input.persistCheckpoint();
+      continue;
+    }
+
+    input.logEntries.push({
+      event: 'whatsapp_label_recipient_sent', at: now(),
+      recipient_key: recipient.key, chat_id_suffix: chatIdSuffix,
+      message_id: messageId, send_mode: sendMode,
+    });
+    // Falha no checkpoint encerra o processamento, sem avançar ao próximo destino.
+    await input.persistCheckpoint();
+    results.push({ recipientKey: recipient.key, chatIdSuffix, messageId, sendMode, alreadySent: false, wahaResponse });
+  }
+  if (failures.length) throw new Error(`Falha ao enviar etiqueta para destinatário(s): ${failures.join(', ')}`);
+  return results;
+}
+
 async function resolveShipmentId(client: ReturnType<typeof createServiceClient>, pedido: any): Promise<string | null> {
   const existing = String(pedido?.ml_shipment_id || '').trim();
   if (existing) return existing;
@@ -561,33 +661,16 @@ export async function runWhatsappLabelJob(input: {
       labelSource: labelStatus,
     });
 
-    let wahaResponse: unknown = null;
-    let whatsappSendMode: 'file' | 'text_link' = 'file';
-    let messageId = String(
-      [...logEntries].reverse().find((entry: any) => entry?.event === 'whatsapp_message_id_allocated')?.message_id || '',
-    ).trim();
-    if (!messageId) {
-      messageId = await getWahaNewMessageId();
-      logEntries.push({ event: 'whatsapp_message_id_allocated', at: now(), message_id: messageId });
-      await syncJob();
-    }
     await setStep('send_whatsapp', 'loading', 'Enviando PDF pelo WAHA');
-    try {
-      wahaResponse = await sendWahaFile({
-        chatId,
-        caption,
-        filename,
-        mimetype: 'application/pdf',
-        data: labelPdf,
-        messageId,
-      });
-    } catch (err) {
-      if (!isWahaPlusOnlyError(err)) throw err;
-      if (!labelShortUrl) throw new Error('WAHA Core não envia arquivos e não foi possível gerar link da etiqueta.');
-      whatsappSendMode = 'text_link';
-      await setStep('send_whatsapp', 'loading', 'WAHA Core não envia arquivo; enviando mensagem com link');
-      wahaResponse = await sendWahaText({ chatId, text: caption, messageId });
-    }
+    const recipientResults = await sendWhatsappLabelRecipients({
+      recipients: [{ key: 'primary', chatId }],
+      logEntries, persistCheckpoint: syncJob, caption, filename, pdf: labelPdf, labelShortUrl,
+    });
+    const primaryResult = recipientResults[0];
+    const whatsappSendMode = primaryResult.sendMode;
+    const recipientSummary = recipientResults.map(({ recipientKey, chatIdSuffix, messageId, sendMode, alreadySent }) => ({
+      recipientKey, chatIdSuffix, messageId, sendMode, alreadySent,
+    }));
     await registrarEventoNfAuditoria({
       pedidoId,
       mlOrderId,
@@ -601,12 +684,13 @@ export async function runWhatsappLabelJob(input: {
         label_source: labelSource,
         test_placeholder_label: Boolean(input.usePlaceholderLabel),
         whatsapp_send_mode: whatsappSendMode,
-        whatsapp_message_id: messageId,
+        whatsapp_message_id: primaryResult.messageId,
         label_download_url_generated: Boolean(labelDownloadUrl),
         label_bytes: labelPdf.length,
         label_attempts: labelAttempts,
         chat_id_suffix: chatId.slice(-8),
-        waha_response: wahaResponse || null,
+        recipient_results: recipientSummary,
+        waha_response: primaryResult.wahaResponse || null,
       },
       statusResultante: 'success',
     });
@@ -631,6 +715,8 @@ export async function runWhatsappLabelJob(input: {
       skippedInvoiceUpload,
       labelSource,
       whatsappSendMode,
+      recipientCount: recipientResults.length,
+      recipientResults: recipientSummary,
       labelBytes: labelPdf.length,
       message: 'Etiqueta enviada por WhatsApp.',
     };
