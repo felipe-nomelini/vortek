@@ -139,7 +139,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     const dsid = String((compra as any).dsid || '').trim();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,ml_bundle_primary,snapshot_source')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,ml_bundle_primary,snapshot_source,situacao')
       .eq('dslite_id', dsid)
       .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
       .maybeSingle();
@@ -147,6 +147,12 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     if (!pedido) return NextResponse.json({ error: 'Pedido de venda vinculado à compra não encontrado' }, { status: 404 });
     if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
       return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
+    if ((pedido as any).situacao === 'concretizada_ml') {
+      return NextResponse.json(
+        { error: 'Venda já concretizada pelo Mercado Livre. Etiqueta não será reenviada.' },
+        { status: 409 },
+      );
     }
 
     const pedidoId = String((pedido as any).id);

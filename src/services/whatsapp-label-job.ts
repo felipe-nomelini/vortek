@@ -389,7 +389,7 @@ export async function runWhatsappLabelJob(input: {
 
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes,situacao')
       .eq('id', input.pedidoId)
       .maybeSingle();
     if (pedidoError) throw new Error(pedidoError.message);
@@ -399,6 +399,35 @@ export async function runWhatsappLabelJob(input: {
     const mlOrderId = String((pedido as any).ml_order_id || '').trim() || null;
     pedidoIdForError = pedidoId;
     mlOrderIdForError = mlOrderId;
+
+    if ((pedido as any).situacao === 'concretizada_ml') {
+      for (const step of steps) {
+        if (step.status === 'pending' || step.status === 'loading') {
+          step.status = 'warning';
+          step.detail = 'Não aplicável: venda concretizada pelo Mercado Livre';
+          step.updatedAt = now();
+        }
+      }
+      result = {
+        queued: false,
+        queueStatus: 'not_applicable',
+        reason: 'order_concretized_by_ml',
+      };
+      state = 'warning';
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId,
+        evento: 'whatsapp_label_send_not_applicable',
+        respostaMl: {
+          job_id: input.jobId,
+          queue_status: 'not_applicable',
+          reason: 'order_concretized_by_ml',
+        },
+        statusResultante: 'not_applicable',
+      });
+      await syncJob();
+      return;
+    }
 
     await setStep('resolve_shipment', 'loading', 'Verificando ml_shipment_id no pedido');
     const shipmentId = await resolveShipmentId(client, pedido);

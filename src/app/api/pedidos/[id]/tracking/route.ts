@@ -31,7 +31,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   // Buscar pedido no banco
   const { data: pedido, error } = await serviceClient
     .from('pedidos')
-    .select('ml_order_id, ml_shipment_id, ml_claim_id, ml_claim_status, rastreio, snapshot_source')
+    .select('ml_order_id, ml_shipment_id, ml_claim_id, ml_claim_status, rastreio, snapshot_source, situacao')
     .eq('id', id)
     .maybeSingle();
 
@@ -194,6 +194,10 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       { erro: 'Não foi possível consultar o acompanhamento no Mercado Livre.' },
       { status: 502, headers: { 'Cache-Control': 'no-store' } },
     );
+  }
+
+  if ((pedido as any).situacao === 'concretizada_ml') {
+    result.currentStatus = 'concretizada_ml';
   }
 
   console.log(`[tracking][${id}] returning: forward=${result.history.length}, return=${result.returnHistory.length}, returnShipments=${result.returnShipments.length}`);

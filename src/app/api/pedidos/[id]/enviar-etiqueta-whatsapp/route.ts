@@ -48,14 +48,23 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('snapshot_source')
+      .select('snapshot_source,situacao')
       .eq('id', params.id)
       .maybeSingle();
     if (pedidoError) {
       return NextResponse.json({ error: 'Falha ao validar o pedido' }, { status: 500 });
     }
+    if (!pedido) {
+      return NextResponse.json({ error: 'Pedido não encontrado' }, { status: 404 });
+    }
     if (isHomologationFixtureSource((pedido as any)?.snapshot_source)) {
       return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
+    if ((pedido as any).situacao === 'concretizada_ml') {
+      return NextResponse.json(
+        { error: 'Venda já concretizada pelo Mercado Livre. Etiqueta não será reenviada.' },
+        { status: 409 },
+      );
     }
     const dedupeKey = `pedido:${params.id}`;
     const reusable = await findReusableJob({

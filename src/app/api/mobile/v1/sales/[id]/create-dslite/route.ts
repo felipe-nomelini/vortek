@@ -39,7 +39,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
     || row?.has_split_fulfillment
     || hasDslite
     || row?.fulfillment_source === "internal"
-    || ["cancelado", "entregue", "devolvido", "recusado"].includes(String(row?.situacao || ""))
+    || ["cancelado", "entregue", "devolvido", "recusado", "concretizada_ml"].includes(String(row?.situacao || ""))
   ) {
     return error(requestId, 409, "ACTION_NOT_ALLOWED", "Esta venda não permite criar pedido DSLite");
   }

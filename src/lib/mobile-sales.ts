@@ -98,7 +98,7 @@ export function mapMobileSaleDetail(row: any, delayedAfterMinutes: number) {
   const supplierPhoneAvailable = Boolean(
     String(row?.fornecedor_telefone || "").replace(/\D/g, ""),
   );
-  const invalidOperationalStatus = ["cancelado", "entregue", "devolvido", "recusado"]
+  const invalidOperationalStatus = ["cancelado", "entregue", "devolvido", "recusado", "concretizada_ml"]
     .includes(sale.status);
   const hasDslite = sale.dsliteIds.length > 0;
   const internalStockAvailable = Boolean(row?.internal_stock_available);

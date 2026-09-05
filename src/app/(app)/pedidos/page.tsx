@@ -52,7 +52,7 @@ import type {
 const { RangePicker } = DatePicker;
 const { Text, Title } = Typography;
 const PAGE_SIZE = 100;
-const TERMINAL_STATUSES: OrderStatus[] = ['cancelado', 'entregue', 'devolvido', 'recusado'];
+const TERMINAL_STATUSES: OrderStatus[] = ['cancelado', 'entregue', 'devolvido', 'recusado', 'concretizada_ml'];
 const OPERATIONAL_VIEW_KEYS: OrdersOperationalView[] = ['urgent', 'preparation', 'shipping', 'delivered', 'all'];
 const VALID_ROLES: VortekRole[] = ['admin', 'gerente', 'operador', 'visualizador'];
 
@@ -215,7 +215,7 @@ function getOrderActions(order: Order, role: VortekRole | null, now: number): Or
       permission: nextAction === 'resume_dslite_flow' ? 'sales.dslite.resume' : 'purchases.payment.confirm',
     });
   }
-  if (!labelBlocked && (order.ml_shipment_id || order.ml_order_id || order.ml_label_storage_path)) {
+  if (!postDispatch && !labelBlocked && (order.ml_shipment_id || order.ml_order_id || order.ml_label_storage_path)) {
     actions.push({ key: 'send_whatsapp_label', label: 'Enviar etiqueta por WhatsApp', permission: 'sales.whatsapp_label.send' });
   }
   if (hasDsliteId && isDsliteRejected(order.dslite_status)) {

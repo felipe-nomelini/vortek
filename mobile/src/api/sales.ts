@@ -24,6 +24,7 @@ export const salesStatusSchema = z.enum([
   "entregue",
   "recusado",
   "devolvido",
+  "concretizada_ml",
   "cancelado",
 ]);
 

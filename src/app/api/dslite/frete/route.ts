@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   const client = createServiceClient();
   const { data: pedido, error: pedidoError } = await client
     .from('pedidos')
-    .select('id,numero,ml_order_id,dslite_id,frete,lucro,snapshot_source')
+    .select('id,numero,ml_order_id,dslite_id,frete,lucro,snapshot_source,situacao')
     .eq('id', pedidoId)
     .maybeSingle();
 
@@ -41,6 +41,12 @@ export async function POST(req: Request) {
   }
   if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
     return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+  }
+  if ((pedido as any).situacao === 'concretizada_ml') {
+    return NextResponse.json(
+      { error: 'Venda já concretizada pelo Mercado Livre. Frete DSLite não será alterado.' },
+      { status: 409 },
+    );
   }
   if (String((pedido as any).dslite_id || '').trim() !== dsid) {
     return NextResponse.json({ error: 'DSID não pertence ao pedido informado.' }, { status: 409 });

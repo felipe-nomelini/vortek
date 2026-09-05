@@ -138,6 +138,7 @@ const statusLabels: Record<string, string> = {
   entregue: 'Entregue',
   recusado: 'Recusado',
   devolvido: 'Devolvido',
+  concretizada_ml: 'Concretizada pelo ML',
   cancelado: 'Cancelado',
 };
 
@@ -156,6 +157,7 @@ const statusColors: Record<string, string> = {
   entregue: 'green',
   recusado: 'red',
   devolvido: 'magenta',
+  concretizada_ml: 'gold',
   cancelado: 'default',
 };
 

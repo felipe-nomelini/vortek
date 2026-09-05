@@ -47,6 +47,7 @@ const STATUS_LABELS: Record<string, string> = {
   entregue: "Entregue",
   recusado: "Recusado",
   devolvido: "Devolvido",
+  concretizada_ml: "Concretizada pelo ML",
   cancelado: "Cancelado",
 };
 

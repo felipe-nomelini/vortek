@@ -66,6 +66,7 @@ export async function POST(request: Request) {
         "coletado",
         "em_transito",
         "entregue",
+        "concretizada_ml",
         "cancelado",
       ]);
       query = query.or(

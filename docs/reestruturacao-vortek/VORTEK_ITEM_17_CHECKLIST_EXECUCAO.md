@@ -1,13 +1,13 @@
 # Vortek — Item 17 — Checklist de Execução
 
 **Função:** painel operacional de acompanhamento
-**Última atualização:** 04/09/2026
+**Última atualização:** 05/09/2026
 **Ambiente de execução:** desenvolvimento/homologação
 **Branch obrigatória:** `dev`
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-06 — Fallback seguro da retomada DSLite`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01/02/03/04/05` concluídas; aplicação bloqueante | Executar `BNT-PARITY-06` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-07` concluídas; aplicação bloqueante | Executar `BNT-PARITY-08` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -186,6 +186,10 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-05` antes de `BNT-PARITY-04` estar integralmente validada.
 - [x] Executar somente `BNT-PARITY-05 — Reprocessamento idempotente da inativação`.
 - [x] Não avançar para `BNT-PARITY-06` antes de `BNT-PARITY-05` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-06 — Fallback seguro da retomada DSLite`.
+- [x] Não avançar para `BNT-PARITY-07` antes de `BNT-PARITY-06` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-07 — Venda concretizada pelo ML`.
+- [x] Não avançar para `BNT-PARITY-08` antes de `BNT-PARITY-07` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2747,6 +2751,35 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Reconciliação contínua:** `origin/main` avançou de `95941f1` para `b6e1b17` com cinco commits restritos ao experimento de pricing. Nenhum deles altera o fluxo `ORD-09`; o delta ficou registrado para classificação própria antes do gate final, sem ser incorporado nesta ação.
 
 **Próxima ação:** `BNT-PARITY-07 — Venda concretizada pelo ML`.
+
+#### `BNT-PARITY-07 — Venda concretizada pelo ML`
+
+- [x] criar o estado interno `concretizada_ml` por migration nova, sem copiar nem reescrever o histórico produtivo;
+- [x] confirmar o destino `192.168.1.162`, inspecionar schema e histórico no mesmo destino, ensaiar a migration com `ROLLBACK` e aplicá-la somente no `supabase-dev`;
+- [x] centralizar a decisão em helper puro e conservador;
+- [x] exigir pedido pago e shipment `shipped/stale`;
+- [x] exigir consulta completa de claims, ausência de claim/devolução e pagamentos identificados, aprovados, liberados e sem reembolso;
+- [x] consultar o pagamento da venda com o OAuth do Mercado Livre, sem usar a credencial do aplicativo Mercado Pago independente;
+- [x] não concretizar quando qualquer consulta necessária falhar ou estiver incompleta;
+- [x] registrar auditoria somente na primeira transição;
+- [x] preservar o estado em reprocessamentos `shipped/stale` e permitir transições canônicas posteriores de entrega, recusa, devolução ou cancelamento;
+- [x] reidratar por webhook pedidos pagos ainda `em_transito` quando houver pagamento identificável, sem criar um fluxo paralelo;
+- [x] apresentar o estado no web, mobile, TV, tracking e PDF como pós-despacho sem confundi-lo com entrega confirmada;
+- [x] bloquear novas operações DSLite e novos envios de etiqueta/WhatsApp, encerrando jobs antigos como não aplicáveis sem retry;
+- [x] manter a venda elegível à reconciliação fiscal;
+- [x] validar helper, transições, filtros, progresso, OAuth, migration, guards e job com regressões direcionadas.
+
+**Causa corrigida:** o sincronizador convertia todo shipment `shipped/stale` em `em_transito`. Assim, uma venda já encerrada financeiramente pelo Mercado Livre, mas sem confirmação de entrega, permanecia indefinidamente no fluxo operacional e podia receber novas tentativas de compra ou etiqueta.
+
+**Resultado técnico:** a Bentevi agora representa esse encerramento como `concretizada_ml` somente diante do conjunto completo de evidências. O estado é auditável, reaproveita o sincronizador e o webhook existentes, não é exibido como entrega confirmada e encerra os efeitos externos incompatíveis. Erros ou ausência de evidência mantêm o estado anterior.
+
+**Banco DEV:** a migration `20260905120000_bnt_parity_07_concretizada_ml` foi ensaiada com rollback e aplicada somente ao PostgreSQL `17.6` do `supabase-dev` em `192.168.1.162`; enum e histórico foram verificados após a aplicação. Não houve escrita em `192.168.1.160`. A fotografia posterior encontrou 35 vendas DEV ainda em `em_transito` e zero evento novo de concretização; nenhuma sincronização ampla foi forçada durante a implantação da regra.
+
+**Validação:** passaram 80 testes direcionados de concretização, webhook, hidratação, shipment, pedidos, tracking, mobile e DSLite. `npm run validate`, `npm --prefix mobile run typecheck`, `npm run build` com Next.js `16.3.3`, `npm run check:build-secrets` e `git diff --check` passaram. A suíte mais ampla encontrou uma asserção textual preexistente e fora do escopo em `bentevi-sales-pdf.test.js`; o arquivo e o comportamento correspondente já divergiam antes desta ação e não foram alterados.
+
+**Rollback:** reverter o código torna o valor novo do enum inerte; a migration não remove valores de enum nem reescreve histórico. A publicação de homologação não dispara sincronização ampla automaticamente por esta ação.
+
+**Próxima ação:** `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade`.
 
 #### Classificação obrigatória
 

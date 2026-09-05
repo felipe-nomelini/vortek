@@ -12,7 +12,7 @@
 
 **Último delta remoto verificado:** `origin/main` em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de` em 05/09/2026. Os cinco commits posteriores à fotografia alteram somente o experimento de pricing e permanecem enfileirados para classificação própria antes do gate final; nenhum modifica o contrato `ORD-09`.
 
-**Resultado:** fotografia concluída; `BNT-PARITY-01` a `BNT-PARITY-06` incorporadas e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
+**Resultado:** fotografia concluída; `BNT-PARITY-01` a `BNT-PARITY-07` incorporadas e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
 
 ---
 
@@ -22,12 +22,12 @@ A Bentevi preserva a maior parte das regras estruturais do Vortek e já substitu
 
 Foram encontrados **13 commits exclusivos em produção**, envolvendo 83 arquivos e quatro migrations. A análise funcional identificou:
 
-- **14 regras produtivas identificadas para incorporação**, das quais `PRC-11`, `PRD-02`, `SUP-02`, `SUP-05`, `SUP-06`, `SUP-07` e `ORD-09` foram concluídas em `BNT-PARITY-01` a `BNT-PARITY-06`; as demais continuam organizadas em ações controladas;
+- **14 regras produtivas identificadas para incorporação**, das quais `PRC-11`, `PRD-02`, `SUP-02`, `SUP-05`, `SUP-06`, `SUP-07`, `ORD-09` e `ORD-10` foram concluídas em `BNT-PARITY-01` a `BNT-PARITY-07`; as demais continuam organizadas em ações controladas;
 - **1 decisão operacional pendente**, sobre destinatário adicional de etiqueta da Evolusom;
 - comportamentos intermediários ou históricos que não devem ser copiados;
 - uma colisão real de versão de migration que bloqueia promoção automática do histórico;
-- ausência, na Bentevi, do estado produtivo `concretizada_ml` e da deduplicação de alerta de nova venda por inserção;
-- atividade manual de `produtos.ativo`, preferência por oferta ativa, inativação de fornecedor e fallback da retomada DSLite já reconciliados; as demais divergências continuam isoladas nas próximas ações.
+- ausência, na Bentevi, da deduplicação de alerta de nova venda por inserção;
+- atividade manual de `produtos.ativo`, preferência por oferta ativa, inativação de fornecedor, fallback da retomada DSLite e venda concretizada pelo ML já reconciliados; as demais divergências continuam isoladas nas próximas ações.
 
 Nenhuma regra foi aplicada nesta ação. Não houve alteração funcional, migration, escrita em banco, chamada mutável a integração, deploy ou acesso a PII.
 
@@ -68,7 +68,7 @@ Não existe relação presente somente em produção. As 13 relações exclusiva
 
 ### Divergências do registro de migrations
 
-- Produção possui, sem equivalente de versão no repositório DEV, `20260903183000_reactivate_products_with_eligible_active_supplier` e `20260904041000_add_concretizada_ml_order_status`.
+- Produção possui, sem versão homônima no repositório DEV, `20260903183000_reactivate_products_with_eligible_active_supplier` e `20260904041000_add_concretizada_ml_order_status`. A Bentevi incorporou somente o contrato necessário de `concretizada_ml` na migration nova `20260905120000_bnt_parity_07_concretizada_ml`, sem copiar o histórico produtivo.
 - A versão **`20260830143000` colide**:
   - produção: `internal_purchase_stock_origin`;
   - Bentevi: `atomic_internal_stock_reservation`.
@@ -92,7 +92,7 @@ Não existe relação presente somente em produção. As 13 relações exclusiva
 | `4bdca2c` | move identidade para criação/ativação de anúncio e limpa bloqueio automático resolvido | `ML-03`, `ML-04` | gate equivalente; incorporar limpeza |
 | `9302353` | POST de deploy com JSON explícito | `OPS-01` | incorporar |
 | `2ac64cc` | torna atividade do produto decisão manual e rejeita oferta inativa | `PRD-02`, `SUP-02` | incorporado por `BNT-PARITY-01` e `BNT-PARITY-02` sem copiar comportamentos substituídos |
-| `b95ba98` | cria lifecycle `concretizada_ml` sob evidências financeiras/operacionais | `ORD-10` | incorporar |
+| `b95ba98` | cria lifecycle `concretizada_ml` sob evidências financeiras/operacionais | `ORD-10` | incorporado em `BNT-PARITY-07` com migration própria e guards Bentevi |
 | `95941f1` | alerta WhatsApp somente para venda paga recém-inserida | `NTF-03` | incorporar |
 
 ---
@@ -159,7 +159,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `ORD-07` | confirmação de compra | `prepaid_pix` + comprovante → paid; então retomada opcional | sem comprovante bloqueia, salvo retomada já paga | compras/DSLite | igual | `EQUIVALENTE` | rota confirmar pagamento |
 | `ORD-08` | créditos de fornecedor | venda cancelada após PIX pago → candidato idempotente de crédito | movement key impede duplicata | compras/financeiro | preservado para fornecedores operacionais | `EQUIVALENTE` | testes supplier credits |
 | `ORD-09` | commit `dc60a2b` | URLs interna/pública → tentar próxima somente se houve exceção de rede | uma resposta HTTP, inclusive erro ou corpo inválido, encerra fallback | retomada DSLite | helper puro encerra na primeira resposta e preserva o erro; URL pública somente após rejeição do `fetch` | `EQUIVALENTE` | `BNT-PARITY-06`; testes `dslite-resume-request` |
-| `ORD-10` | commit `b95ba98` | pago + shipment `shipped/stale` + sem claim/return + pagamentos aprovados/liberados → `concretizada_ml` | consulta incompleta bloqueia; não inferir em erro | pedidos/financeiro/UI | enum, helper e auditoria ausentes | `INCORPORAR` | ação `BNT-PARITY-07`; validar inferência com casos reais |
+| `ORD-10` | commit `b95ba98` | pago + shipment `shipped/stale` + sem claim/return + pagamentos aprovados/liberados/sem reembolso → `concretizada_ml` | consulta incompleta bloqueia; não inferir em erro; entrega/recusa/devolução/cancelamento posteriores vencem | pedidos/financeiro/UI | helper puro, auditoria, webhook, UI e guards operacionais incorporados sem classificar como entrega | `EQUIVALENTE` | `BNT-PARITY-07`; 80 regressões direcionadas e migration DEV `20260905120000` |
 
 ### 5.5 Fiscal
 
@@ -261,7 +261,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | 4 | `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor` **(concluída)** | `SUP-06`, `ML-07` | P1 | quantidade 0/paused; nunca excluir/closed |
 | 5 | `BNT-PARITY-05 — Reprocessamento idempotente da inativação` **(concluída)** | `SUP-07` | P1 | reprocess explícito sem duplicar job/efeito |
 | 6 | `BNT-PARITY-06 — Fallback seguro da retomada DSLite` **(concluída)** | `ORD-09` | P1 | próxima URL apenas em exceção de rede |
-| 7 | `BNT-PARITY-07 — Venda concretizada pelo ML` | `ORD-10` | P1 | migration nova, helper puro, auditoria e transições testadas |
+| 7 | `BNT-PARITY-07 — Venda concretizada pelo ML` **(concluída)** | `ORD-10` | P1 | migration nova, helper puro, auditoria e transições testadas |
 | 8 | `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade` | `ML-04` | P1 | remove só bloqueio automático resolvido; preserva manual |
 | 9 | `BNT-PARITY-09 — Estágio real do refresh de catálogo` | `ML-06` | P2 | falha registra estágio corrente |
 | 10 | `BNT-PARITY-10 — Deduplicação do alerta de nova venda` | `NTF-03` | P1 | WhatsApp apenas em `inserted + paid` |

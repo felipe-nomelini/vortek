@@ -88,6 +88,7 @@ const statusLabels: Record<string, string> = {
   etiqueta_impressa: 'Etiqueta impressa', coletado: 'Coletado', em_transito: 'Em trânsito',
   saiu_entrega: 'Saiu p/ entrega', dest_ausente: 'Dest. ausente', atendido: 'Atendido',
   faturado: 'Faturado', entregue: 'Entregue', recusado: 'Recusado', devolvido: 'Devolvido',
+  concretizada_ml: 'Concretizada pelo ML',
   cancelado: 'Cancelado',
 };
 

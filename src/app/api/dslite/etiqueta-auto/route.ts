@@ -177,7 +177,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id,snapshot_source')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id,snapshot_source,situacao')
       .eq('id', pedidoId)
       .maybeSingle();
 
@@ -236,6 +236,16 @@ export async function POST(req: Request) {
     }
     if (isHomologationFixtureSource((pedido as any).snapshot_source)) {
       return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
+    if ((pedido as any).situacao === 'concretizada_ml') {
+      return stepError(
+        steps,
+        'check_ml_invoice_xml',
+        'Venda já concretizada pelo Mercado Livre. Nenhuma etapa de frete ou etiqueta será executada.',
+        undefined,
+        409,
+        'business',
+      );
     }
 
     if (directShipping) {

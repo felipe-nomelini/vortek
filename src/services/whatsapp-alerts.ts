@@ -72,6 +72,7 @@ const NON_ACTIONABLE_LABEL_STATUSES = new Set([
   "entregue",
   "devolvido",
   "recusado",
+  "concretizada_ml",
 ]);
 
 async function getAlertPhones(type: AlertType): Promise<string[]> {

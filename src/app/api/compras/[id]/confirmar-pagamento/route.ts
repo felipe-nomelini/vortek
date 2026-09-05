@@ -257,7 +257,7 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
     return NextResponse.json({ error: 'Esta compra não exige confirmação manual de pagamento' }, { status: 422 });
   }
 
-  const pedidoSelect = 'id,ml_order_id,numero,dslite_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary,snapshot_source';
+  const pedidoSelect = 'id,ml_order_id,numero,dslite_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary,snapshot_source,situacao';
   let pedidoQuery = service.from('pedidos').select(pedidoSelect);
   const pedidoId = parsed.pedidoId && PEDIDO_ID_SCHEMA.safeParse(parsed.pedidoId).success
     ? parsed.pedidoId
@@ -289,6 +289,12 @@ export async function POST(request: Request, props: { params: Promise<{ id: stri
   }
   if (isHomologationFixtureSource(pedido.snapshot_source)) {
     return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+  }
+  if (pedido.situacao === 'concretizada_ml') {
+    return NextResponse.json({
+      error: 'Venda já concretizada pelo Mercado Livre. O pagamento do fornecedor não será alterado.',
+      code: 'order_concretized_by_ml',
+    }, { status: 409 });
   }
   if (String(pedido.dslite_id || '').trim() !== String(compra.dsid || '').trim()) {
     return NextResponse.json({

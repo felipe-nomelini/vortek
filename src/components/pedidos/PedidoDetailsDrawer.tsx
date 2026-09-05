@@ -9,7 +9,11 @@ import {
 import { FilePdfOutlined } from '@ant-design/icons';
 import OrderTrackingDetails from '@/components/pedidos/OrderTrackingDetails';
 import { formatCurrency } from '@/lib/format';
-import { SALES_PROGRESS_STAGES, getOrderSalesProgress } from '@/lib/orders/operational-view';
+import {
+  ORDER_STATUS_LABELS,
+  SALES_PROGRESS_STAGES,
+  getOrderSalesProgress,
+} from '@/lib/orders/operational-view';
 import { getSkuLookupVariants } from '@/lib/sku';
 import type {
   Order, PedidoOperacionalItemApiDto, PedidoVendaDetalheApiResponse,
@@ -50,6 +54,9 @@ function formatDateTime(value: string | null | undefined): string {
 function formatStatus(value: string | null | undefined): string {
   const normalized = String(value || '').trim();
   if (!normalized) return '—';
+  if (normalized in ORDER_STATUS_LABELS) {
+    return ORDER_STATUS_LABELS[normalized as keyof typeof ORDER_STATUS_LABELS];
+  }
   return normalized.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 

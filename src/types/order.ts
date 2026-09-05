@@ -21,7 +21,8 @@ export type OrderStatus =
   | 'saiu_entrega'
   | 'dest_ausente'
   | 'recusado'
-  | 'devolvido';
+  | 'devolvido'
+  | 'concretizada_ml';
 
 export type DsliteNextAction =
   | 'create_dslite_order'

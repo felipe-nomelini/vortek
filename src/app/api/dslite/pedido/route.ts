@@ -5321,7 +5321,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const fulfillmentRead = await (client as any)
       .from('pedidos')
-      .select('fulfillment_source,snapshot_source')
+      .select('fulfillment_source,snapshot_source,situacao')
       .eq('id', String(pedidoId))
       .maybeSingle();
     if (fulfillmentRead.error) {
@@ -5341,6 +5341,15 @@ export async function POST(req: Request) {
     }
     if (isHomologationFixtureSource(fulfillmentRead.data.snapshot_source)) {
       return NextResponse.json(HOMOLOGATION_FIXTURE_READ_ONLY_ERROR, { status: 409 });
+    }
+    if (fulfillmentRead.data.situacao === 'concretizada_ml') {
+      return NextResponse.json(
+        {
+          error: 'Venda já concretizada pelo Mercado Livre. Pedido DSLite não será criado.',
+          code: 'order_concretized_by_ml',
+        },
+        { status: 409 },
+      );
     }
     if (nfeProvider === "mercadolivre") {
       await registrarEventoNfAuditoria({

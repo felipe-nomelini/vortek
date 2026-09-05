@@ -39,6 +39,7 @@ export const ORDER_STATUS_OPTIONS = [
   { value: 'entregue', label: 'Entregue' },
   { value: 'recusado', label: 'Recusado' },
   { value: 'devolvido', label: 'Devolvido' },
+  { value: 'concretizada_ml', label: 'Concretizada pelo ML' },
   { value: 'cancelado', label: 'Cancelado' },
 ] as const;
 
@@ -61,6 +62,7 @@ export const ORDER_STATUS_COLORS: Record<(typeof ORDER_STATUS_OPTIONS)[number]['
   entregue: 'green',
   recusado: 'red',
   devolvido: 'magenta',
+  concretizada_ml: 'gold',
   cancelado: 'default',
 };
 
@@ -89,6 +91,7 @@ export const POST_DISPATCH_ORDER_STATUSES = [
   'entregue',
   'recusado',
   'devolvido',
+  'concretizada_ml',
 ] as const;
 
 export const SALES_PROGRESS_STAGES = [
@@ -279,6 +282,7 @@ function resolvePreparationNextLabel(order: OperationalOrderLike): string {
 
 function inferCompletedSalesSteps(order: OperationalOrderLike, status: string): number {
   if (status === 'entregue') return SALES_PROGRESS_STAGES.length;
+  if (status === 'concretizada_ml') return 5;
   if (SHIPPING_ORDER_STATUSES.includes(status as any)) return 5;
   if (status === 'recusado' || status === 'devolvido') return 5;
 
@@ -310,6 +314,7 @@ export function getOrderSalesProgress(
 
   let nextLabel: string;
   if (status === 'entregue') nextLabel = 'Concluída';
+  else if (status === 'concretizada_ml') nextLabel = 'Concretizada pelo ML, sem entrega confirmada';
   else if (status === 'cancelado') nextLabel = 'Fluxo encerrado: venda cancelada';
   else if (status === 'recusado') nextLabel = 'Entrega recusada';
   else if (status === 'devolvido') nextLabel = 'Venda devolvida';

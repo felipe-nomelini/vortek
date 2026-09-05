@@ -177,9 +177,15 @@ function statusColor(status: string) {
     faturado: "green",
     atendido: "green",
     entregue: "success",
+    concretizada_ml: "gold",
     cancelado: "red",
   };
   return map[status] || "default";
+}
+
+function statusLabel(status: string) {
+  if (status === "concretizada_ml") return "Concretizada pelo ML";
+  return status.replaceAll("_", " ");
 }
 
 function formatDateTime(value: string) {
@@ -638,7 +644,7 @@ export default function TvDashboardPage() {
       dataIndex: "status",
       key: "status",
       width: 130,
-      render: (value) => <Tag color={statusColor(value)}>{value}</Tag>,
+      render: (value) => <Tag color={statusColor(value)}>{statusLabel(value)}</Tag>,
     },
   ];
 
