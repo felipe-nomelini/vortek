@@ -127,7 +127,7 @@ Cada linha representa uma decisão de negócio ou contrato operacional. A coluna
 | `SUP-04` | decisões HAYA | Hayamax → somente histórico; sem dropshipping ou conta-saldo operacional | decisão Item 17 vence produção histórica | compras/financeiro | aposentada | `SUBSTITUÍDA` | não reativar integrações exclusivas |
 | `SUP-05` | commit `420cd64` | fornecedor inativado + estoque interno disponível → produto continua ativo | capacidade interna válida preserva operação | fornecedor/produto/anúncio | capacidade canônica preserva atividade manual, exclui estoque interno do fluxo destrutivo e reconcilia a Q segura | `EQUIVALENTE` | `BNT-PARITY-03`; testes de inativação, capacidade e outbox |
 | `SUP-06` | commit `420cd64` | produto sem alternativa → anúncio pausado com quantidade 0 | pausar é reversível; não fechar/excluir | inativação de fornecedor | anúncios ativos sem fonte recebem pausa idempotente com estoque zero; vínculos e atividade manual são preservados | `EQUIVALENTE` | `BNT-PARITY-04`; regressões de inativação e worker |
-| `SUP-07` | commit `f3e9199` | `reprocess=true` → reexecuta inativação sem duplicar job concluído/ativo | chave da operação preserva idempotência | API fornecedor/jobs | ausente | `INCORPORAR` | ação `BNT-PARITY-05` |
+| `SUP-07` | commit `f3e9199` | `reprocess=true` → reexecuta inativação sem duplicar job concluído/ativo | chave da operação preserva idempotência | API fornecedor/jobs | contrato explícito, lock por fornecedor, reparo integral das ofertas e dedupe pela outbox canônica | `EQUIVALENTE` | `BNT-PARITY-05`; regressões de rota, UI e outbox |
 | `KIT-01` | `produto-kits.ts` | componentes e quantidades → custo/saldo do kit | kit não possui estoque físico independente | catálogo/estoque/fulfillment | igual | `EQUIVALENTE` | testes de kits |
 | `KIT-02` | capacidade de fulfillment | capacidade do kit = mínimo inteiro por componente | componente limitante vence | estoque/anúncio | igual | `EQUIVALENTE` | `fulfillment-capacity.ts` |
 
@@ -257,7 +257,7 @@ A fila respeita risco, dependência e uma mudança coerente por tarefa:
 | 2 | `BNT-PARITY-02 — Oferta preferencial somente ativa` **(concluída)** | `SUP-02` | P0 | oferta inativa nunca vira preferencial automática |
 | 3 | `BNT-PARITY-03 — Capacidade interna na inativação do fornecedor` **(concluída)** | `SUP-05` | P1 | produto com estoque interno permanece operacional |
 | 4 | `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor` **(concluída)** | `SUP-06`, `ML-07` | P1 | quantidade 0/paused; nunca excluir/closed |
-| 5 | `BNT-PARITY-05 — Reprocessamento idempotente da inativação` | `SUP-07` | P1 | reprocess explícito sem duplicar job/efeito |
+| 5 | `BNT-PARITY-05 — Reprocessamento idempotente da inativação` **(concluída)** | `SUP-07` | P1 | reprocess explícito sem duplicar job/efeito |
 | 6 | `BNT-PARITY-06 — Fallback seguro da retomada DSLite` | `ORD-09` | P1 | próxima URL apenas em exceção de rede |
 | 7 | `BNT-PARITY-07 — Venda concretizada pelo ML` | `ORD-10` | P1 | migration nova, helper puro, auditoria e transições testadas |
 | 8 | `BNT-PARITY-08 — Limpeza do bloqueio automático de identidade` | `ML-04` | P1 | remove só bloqueio automático resolvido; preserva manual |

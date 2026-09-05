@@ -266,19 +266,31 @@ export default function FornecedoresPage() {
     }
   }, [fetchSuppliers]);
 
-  const executeStatusChange = useCallback(async (supplier: FornecedorListItem, ativo: boolean) => {
+  const executeStatusChange = useCallback(async (
+    supplier: FornecedorListItem,
+    ativo: boolean,
+    reprocess = false,
+  ) => {
     setStatusChangingId(supplier.id);
     try {
       const response = await fetch(`/api/fornecedores/${supplier.id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ativo }),
+        body: JSON.stringify({ ativo, reprocess }),
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok && response.status !== 207) {
         throw new Error(payload?.error || 'Não foi possível alterar o fornecedor');
       }
-      messageApi.success(`${supplierLabel(supplier)} foi ${ativo ? 'ativado' : 'inativado'}.`);
+      const records = payload?.records || {};
+      const resultSummary = `${Number(records.supplier_offers_inactivated || 0)} oferta(s) corrigida(s) e ${Number(records.ml_pause_enqueued || 0)} pausa(s) enfileirada(s).`;
+      if (response.status === 207 || payload?.success === false) {
+        messageApi.warning(`${reprocess ? 'Reprocessamento' : 'Alteração'} concluído com atenção. ${resultSummary}`);
+      } else {
+        messageApi.success(reprocess
+          ? `Inativação de ${supplierLabel(supplier)} reprocessada. ${resultSummary}`
+          : `${supplierLabel(supplier)} foi ${ativo ? 'ativado' : 'inativado'}.`);
+      }
       await fetchSuppliers();
     } catch (cause) {
       messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível alterar o fornecedor');
@@ -287,7 +299,11 @@ export default function FornecedoresPage() {
     }
   }, [fetchSuppliers, messageApi]);
 
-  const confirmStatusChange = useCallback(async (supplier: FornecedorListItem, ativo: boolean) => {
+  const confirmStatusChange = useCallback(async (
+    supplier: FornecedorListItem,
+    ativo: boolean,
+    reprocess = false,
+  ) => {
     if (ativo) {
       const confirmed = await modal.confirm({
         title: `Ativar ${supplierLabel(supplier)}?`,
@@ -295,7 +311,7 @@ export default function FornecedoresPage() {
         okText: 'Ativar fornecedor',
         cancelText: 'Cancelar',
       });
-      if (confirmed) await executeStatusChange(supplier, true);
+      if (confirmed) await executeStatusChange(supplier, true, false);
       return;
     }
 
@@ -306,13 +322,18 @@ export default function FornecedoresPage() {
       if (!response.ok) throw new Error(payload?.error || 'Não foi possível calcular o impacto');
       const impact = payload?.impact || {};
       const confirmed = await modal.confirm({
-        title: `Inativar ${supplierLabel(supplier)}?`,
+        title: reprocess
+          ? `Reprocessar inativação de ${supplierLabel(supplier)}?`
+          : `Inativar ${supplierLabel(supplier)}?`,
         content: (
           <div className={styles.impactSummary}>
-            <p>A operação afeta o catálogo vinculado e não deve ser usada apenas para ocultar um cadastro.</p>
+            <p>{reprocess
+              ? 'O fornecedor permanecerá inativo enquanto ofertas, estoques e ações pendentes forem reconciliados.'
+              : 'A operação afeta o catálogo vinculado e não deve ser usada apenas para ocultar um cadastro.'}</p>
             <dl>
               <div><dt>Produtos ativos</dt><dd>{Number(impact.products_active || 0)}</dd></div>
               <div><dt>Ofertas ativas</dt><dd>{Number(impact.supplier_offers_active || 0)}</dd></div>
+              <div><dt>Ofertas a corrigir</dt><dd>{Number(impact.supplier_offers_to_correct || 0)}</dd></div>
               <div><dt>Mantidos pelo estoque interno</dt><dd>{Number(impact.products_kept_only_by_internal_stock || 0)}</dd></div>
               <div><dt>Sem fonte disponível</dt><dd>{Number(impact.products_without_available_source || 0)}</dd></div>
               <div><dt>Anúncios a pausar</dt><dd>{Number(impact.ml_pause_candidates || 0)}</dd></div>
@@ -320,11 +341,11 @@ export default function FornecedoresPage() {
             <strong>Anúncios ativos sem fornecedor alternativo nem estoque interno serão pausados com estoque zero, preservando o vínculo para retomada.</strong>
           </div>
         ),
-        okText: 'Inativar fornecedor',
+        okText: reprocess ? 'Reprocessar inativação' : 'Inativar fornecedor',
         okButtonProps: { danger: true },
         cancelText: 'Cancelar',
       });
-      if (confirmed) await executeStatusChange(supplier, false);
+      if (confirmed) await executeStatusChange(supplier, false, reprocess);
     } catch (cause) {
       messageApi.error(cause instanceof Error ? cause.message : 'Não foi possível calcular o impacto');
     } finally {
@@ -415,15 +436,26 @@ export default function FornecedoresPage() {
             <Dropdown
               trigger={['click']}
               menu={{
-                items: [{
-                  key: supplier.ativo === false ? 'activate' : 'deactivate',
-                  label: supplier.ativo === false
-                    ? supplier.activation_blocked ? 'Reativação bloqueada' : 'Ativar fornecedor'
-                    : 'Inativar fornecedor',
-                  danger: supplier.ativo !== false,
-                  disabled: supplier.ativo === false && supplier.activation_blocked,
+                items: supplier.ativo === false ? [
+                  {
+                    key: 'activate',
+                    label: supplier.activation_blocked ? 'Reativação bloqueada' : 'Ativar fornecedor',
+                    disabled: supplier.activation_blocked,
+                  },
+                  {
+                    key: 'reprocess',
+                    label: 'Reprocessar inativação',
+                  },
+                ] : [{
+                  key: 'deactivate',
+                  label: 'Inativar fornecedor',
+                  danger: true,
                 }],
-                onClick: ({ key }) => void confirmStatusChange(supplier, key === 'activate'),
+                onClick: ({ key }) => void confirmStatusChange(
+                  supplier,
+                  key === 'activate',
+                  key === 'reprocess',
+                ),
               }}
             >
               <Button

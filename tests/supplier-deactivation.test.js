@@ -91,11 +91,40 @@ test('rota usa capacidade canônica, preserva atividade manual e sincroniza esto
   assert.match(publishWorker, /&& !safeInactiveSupplierPause/);
 });
 
+test('BNT-PARITY-05 exige reprocessamento explícito e serializa a transição por fornecedor', () => {
+  assert.match(statusRoute, /body\?\.reprocess !== undefined/);
+  assert.match(statusRoute, /Fornecedor já está inativo\. Use a ação explícita de reprocessamento\./);
+  assert.match(statusRoute, /acquireDomainLock/);
+  assert.match(statusRoute, /domain: lockDomain/);
+  assert.match(statusRoute, /ownerTask: 'fornecedor_status_transition'/);
+  assert.match(statusRoute, /const lockDomain = `fornecedor:status:\$\{params\.id\}`/);
+  assert.match(statusRoute, /releaseDomainLock/);
+  assert.match(statusRoute, /finally/);
+});
+
+test('BNT-PARITY-05 corrige e verifica todas as ofertas, inclusive estoque residual inativo', () => {
+  assert.match(statusRoute, /select\('id,ativo,estoque'\)/);
+  assert.match(statusRoute, /offer\.ativo !== false \|\| Number\(offer\.estoque \|\| 0\) !== 0/);
+  assert.match(statusRoute, /update\(\{ ativo: false, estoque: 0 \} as any\)[\s\S]{0,120}\.eq\('dslite_fornecedor_id', dsliteFornecedorId\)/);
+  assert.match(statusRoute, /supplierOffersVerifiedInactive/);
+  assert.match(statusRoute, /supplierOffersVerifiedZeroStock/);
+  assert.match(statusRoute, /reprocessed: reprocess/);
+  assert.doesNotMatch(statusRoute, /activeOfferIds/);
+});
+
 test('confirmações explicam que estoque interno preserva a operação', () => {
   for (const page of [supplierList, supplierDetail]) {
     assert.match(page, /Mantidos pelo estoque interno/);
     assert.match(page, /Sem fonte disponível/);
     assert.match(page, /Anúncios a pausar/);
     assert.match(page, /pausados com estoque zero, preservando o vínculo para retomada/);
+  }
+});
+
+test('fornecedor inativo oferece reprocessamento explícito na lista e no detalhe', () => {
+  for (const page of [supplierList, supplierDetail]) {
+    assert.match(page, /Reprocessar inativação/);
+    assert.match(page, /supplier_offers_to_correct/);
+    assert.match(page, /JSON\.stringify\(\{ ativo[^}]*reprocess \}\)/);
   }
 });

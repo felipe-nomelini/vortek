@@ -5,6 +5,7 @@ import { fetchAllRowsPaginated } from '@/lib/produto-filtering';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { loadOperationalDropshippingSupplierIds } from '@/lib/dslite/supplier-policy';
 import { loadProductFulfillmentCapacities } from '@/lib/orders/fulfillment-capacity-loader';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
@@ -31,6 +32,7 @@ type MlListingTarget = {
 type ImpactOffer = {
   id: string;
   ativo: boolean | null;
+  estoque: number | null;
 };
 
 const SUPABASE_IN_FILTER_CHUNK_SIZE = 100;
@@ -62,12 +64,13 @@ async function loadFornecedor(client: any, id: string) {
 async function loadImpactedProducts(client: any, dsliteFornecedorId: string): Promise<ImpactProduct[]> {
   if (!dsliteFornecedorId) return [];
 
-  const offers = await fetchAllRowsPaginated<{ produto_id: string | null }>((from, to) => (
+  const offers = await fetchAllRowsPaginated<{ id: string; produto_id: string | null }>((from, to) => (
     client
       .from('produto_fornecedor_ofertas')
-      .select('produto_id')
+      .select('id,produto_id')
       .eq('dslite_fornecedor_id', dsliteFornecedorId)
       .not('produto_id', 'is', null)
+      .order('id', { ascending: true })
       .range(from, to)
   ));
 
@@ -82,6 +85,7 @@ async function loadImpactedProducts(client: any, dsliteFornecedorId: string): Pr
       .from('produtos')
       .select('id,sku,ml_item_id,ativo,ml_status')
       .eq('dslite_fornecedor_id', dsliteFornecedorId)
+      .order('id', { ascending: true })
       .range(from, to)
   ));
 
@@ -113,8 +117,9 @@ async function loadImpactedOffers(client: any, dsliteFornecedorId: string): Prom
   return fetchAllRowsPaginated<ImpactOffer>((from, to) => (
     client
       .from('produto_fornecedor_ofertas')
-      .select('id,ativo')
+      .select('id,ativo,estoque')
       .eq('dslite_fornecedor_id', dsliteFornecedorId)
+      .order('id', { ascending: true })
       .range(from, to)
   ));
 }
@@ -210,6 +215,9 @@ function buildImpact(
 ) {
   const activeProducts = products.filter((product) => product.ativo !== false);
   const activeOffers = offers.filter((offer) => offer.ativo !== false);
+  const supplierOffersToCorrect = offers.filter(
+    (offer) => offer.ativo !== false || Number(offer.estoque || 0) !== 0,
+  );
   const productsWithAlternativeStock = activeProducts.filter((product) => alternativeProductIds.has(product.id));
   const transition = classifySupplierDeactivationProducts(
     products,
@@ -223,6 +231,7 @@ function buildImpact(
     supplier_offers_found: offers.length,
     supplier_offers_active: activeOffers.length,
     supplier_offers_already_inactive: offers.length - activeOffers.length,
+    supplier_offers_to_correct: supplierOffersToCorrect.length,
     products_with_alternative_stock: productsWithAlternativeStock.length,
     products_with_internal_stock: transition.withInternalStock.length,
     products_kept_only_by_internal_stock: transition.keptOnlyByInternalStock.length,
@@ -284,22 +293,55 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
   const auth = await authorizeApiRequest(req, 'suppliers.manage');
   if (!auth.ok) return auth.response;
 
+  const lockDomain = `fornecedor:status:${params.id}`;
+  let lockOwnerToken = '';
+
   try {
     const body = await req.json().catch(() => ({}));
     if (typeof body?.ativo !== 'boolean') {
       return NextResponse.json({ error: 'Campo ativo deve ser booleano' }, { status: 422 });
     }
+    if (body?.reprocess !== undefined && typeof body.reprocess !== 'boolean') {
+      return NextResponse.json({ error: 'Campo reprocess deve ser booleano' }, { status: 422 });
+    }
+
+    const reprocess = body.reprocess === true;
+    if (reprocess && body.ativo) {
+      return NextResponse.json(
+        { error: 'Reprocessamento é permitido somente para fornecedor inativo.' },
+        { status: 422 },
+      );
+    }
 
     const client = createServiceClient();
-    const fornecedor = await loadFornecedor(client, params.id);
+    let fornecedor = await loadFornecedor(client, params.id);
     if (!fornecedor) {
       return NextResponse.json({ error: 'Fornecedor não encontrado' }, { status: 404 });
     }
 
-    if (
-      body.ativo &&
-      fornecedor.dropshipping_retired_at
-    ) {
+    const lock = await acquireDomainLock({
+      domain: lockDomain,
+      ownerTask: 'fornecedor_status_transition',
+      ttlSeconds: 6 * 60,
+      metadata: {
+        fornecedor_id: params.id,
+        reprocess,
+      },
+    });
+    if (!lock.acquired) {
+      return NextResponse.json(
+        { error: 'Já existe uma alteração deste fornecedor em andamento.' },
+        { status: 409 },
+      );
+    }
+    lockOwnerToken = lock.ownerToken;
+
+    fornecedor = await loadFornecedor(client, params.id);
+    if (!fornecedor) {
+      return NextResponse.json({ error: 'Fornecedor não encontrado' }, { status: 404 });
+    }
+
+    if (body.ativo && fornecedor.dropshipping_retired_at) {
       return NextResponse.json(
         {
           error:
@@ -309,13 +351,29 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
       );
     }
 
-    const { error: updateFornecedorError } = await client
-      .from('fornecedores')
-      .update({ ativo: body.ativo } as any)
-      .eq('id', params.id);
+    if (reprocess && fornecedor.ativo !== false) {
+      return NextResponse.json(
+        { error: 'Somente um fornecedor já inativo pode ter a inativação reprocessada.' },
+        { status: 422 },
+      );
+    }
 
-    if (updateFornecedorError) {
-      return NextResponse.json({ error: updateFornecedorError.message }, { status: 500 });
+    if (!body.ativo && fornecedor.ativo === false && !reprocess) {
+      return NextResponse.json(
+        { error: 'Fornecedor já está inativo. Use a ação explícita de reprocessamento.' },
+        { status: 409 },
+      );
+    }
+
+    if (!reprocess) {
+      const { error: updateFornecedorError } = await client
+        .from('fornecedores')
+        .update({ ativo: body.ativo } as any)
+        .eq('id', params.id);
+
+      if (updateFornecedorError) {
+        return NextResponse.json({ error: updateFornecedorError.message }, { status: 500 });
+      }
     }
 
     if (body.ativo) {
@@ -323,6 +381,7 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
         success: true,
         fornecedor_id: params.id,
         ativo: true,
+        reprocessed: false,
         records: {
           products_found: 0,
           products_inactivated: 0,
@@ -332,6 +391,8 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
           ml_pause_failed: 0,
           supplier_offers_found: 0,
           supplier_offers_inactivated: 0,
+          supplier_offers_verified_inactive: true,
+          supplier_offers_verified_zero_stock: true,
         },
       });
     }
@@ -342,21 +403,28 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
       loadImpactedOffers(client, dsliteFornecedorId),
     ]);
     const activeProducts = products.filter((product) => product.ativo !== false);
-    const activeOfferIds = offers
-      .filter((offer) => offer.ativo !== false)
-      .map((offer) => offer.id);
+    const supplierOffersInactivated = offers.filter(
+      (offer) => offer.ativo !== false || Number(offer.estoque || 0) !== 0,
+    ).length;
 
-    let supplierOffersInactivated = 0;
-    for (const idsChunk of chunk(activeOfferIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+    if (dsliteFornecedorId) {
       const { error } = await client
         .from('produto_fornecedor_ofertas')
         .update({ ativo: false, estoque: 0 } as any)
-        .in('id', idsChunk);
+        .eq('dslite_fornecedor_id', dsliteFornecedorId);
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
-      supplierOffersInactivated += idsChunk.length;
+    }
+
+    const verifiedOffers = await loadImpactedOffers(client, dsliteFornecedorId);
+    const supplierOffersVerifiedInactive = verifiedOffers.every((offer) => offer.ativo === false);
+    const supplierOffersVerifiedZeroStock = verifiedOffers.every(
+      (offer) => Number(offer.estoque || 0) === 0,
+    );
+    if (!supplierOffersVerifiedInactive || !supplierOffersVerifiedZeroStock) {
+      throw new Error('A inativação não foi confirmada em todas as ofertas do fornecedor.');
     }
 
     const productIds = products.map((product) => product.id);
@@ -605,6 +673,7 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
       success: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
       fornecedor_id: params.id,
       ativo: false,
+      reprocessed: reprocess,
       records: {
         products_found: products.length,
         products_with_alternative_stock: productsWithAlternativeStock.length,
@@ -616,6 +685,8 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
         products_awaiting_ml_pause: productsAwaitingMlPause,
         supplier_offers_found: offers.length,
         supplier_offers_inactivated: supplierOffersInactivated,
+        supplier_offers_verified_inactive: supplierOffersVerifiedInactive,
+        supplier_offers_verified_zero_stock: supplierOffersVerifiedZeroStock,
         ml_pause_enqueued: mlPauseEnqueued,
         ml_pause_updated_existing: mlPauseUpdatedExisting,
         ml_pause_reopened_failed: mlPauseReopenedFailed,
@@ -638,5 +709,14 @@ export async function PATCH(req: Request, props: { params: Promise<{ id: string 
     }, { status: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0 ? 200 : 207 });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao atualizar fornecedor') }, { status: 500 });
+  } finally {
+    if (lockOwnerToken) {
+      await releaseDomainLock({ domain: lockDomain, ownerToken: lockOwnerToken }).catch((error) => {
+        console.error('[fornecedor-status] Falha ao liberar lock de domínio', {
+          fornecedor_id: params.id,
+          error: toPublicError(error, 'Falha ao liberar lock'),
+        });
+      });
+    }
   }
 }

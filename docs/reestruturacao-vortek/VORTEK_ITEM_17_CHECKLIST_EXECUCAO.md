@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-05 — Reprocessamento idempotente da inativação`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-06 — Fallback seguro da retomada DSLite`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01/02/03/04` concluídas; aplicação bloqueante | Executar `BNT-PARITY-05` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01/02/03/04/05` concluídas; aplicação bloqueante | Executar `BNT-PARITY-06` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -184,6 +184,8 @@ Regras de uso:
 - [x] Não avançar para `BNT-PARITY-04` antes de `BNT-PARITY-03` estar integralmente validada.
 - [x] Executar somente `BNT-PARITY-04 — Pausar anúncio ao inativar fornecedor`.
 - [x] Não avançar para `BNT-PARITY-05` antes de `BNT-PARITY-04` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-05 — Reprocessamento idempotente da inativação`.
+- [x] Não avançar para `BNT-PARITY-06` antes de `BNT-PARITY-05` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2703,6 +2705,28 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Risco residual:** exclusões permanentes já concluídas antes desta correção não são recriadas automaticamente; a ação impede novas exclusões nesse fluxo e não executa reparo histórico.
 
 **Próxima ação:** `BNT-PARITY-05 — Reprocessamento idempotente da inativação`.
+
+#### `BNT-PARITY-05 — Reprocessamento idempotente da inativação`
+
+- [x] exigir `reprocess:true` junto de `ativo:false` para repetir a inativação de um fornecedor já inativo;
+- [x] rejeitar a repetição implícita, a combinação com ativação e o reprocessamento de fornecedor ativo;
+- [x] serializar ativação, inativação e reprocessamento pelo lock canônico `fornecedor:status:{id}`;
+- [x] reler o estado do fornecedor após adquirir o lock e sempre liberar o lock ao encerrar;
+- [x] percorrer produtos e ofertas em ordem determinística;
+- [x] corrigir todas as ofertas do fornecedor para `ativo:false` e estoque zero, inclusive ofertas já inativas com estoque residual;
+- [x] verificar por leitura posterior que todas as ofertas ficaram inativas e zeradas;
+- [x] reutilizar a deduplicação central da outbox para não duplicar uma pausa pendente ou concluída;
+- [x] expor a quantidade de ofertas a corrigir na prévia e as verificações no resultado;
+- [x] disponibilizar a ação explícita na lista e no detalhe, inclusive para fornecedor histórico com reativação bloqueada;
+- [x] confirmar que nenhuma migration, escrita real em banco, inativação real ou chamada de escrita ao Mercado Livre foi necessária na validação.
+
+**Causa corrigida:** a rota aceitava uma segunda inativação sem distinguir repetição acidental de reparo intencional, não serializava transições concorrentes e atualizava somente ofertas ainda ativas. Assim, uma oferta já inativa com estoque residual podia permanecer inconsistente, e duas requisições simultâneas podiam disputar os mesmos efeitos.
+
+**Resultado técnico:** o reprocessamento agora é um contrato explícito e restrito a fornecedor já inativo. A transição é protegida pelo lock de domínio existente, reconfirma o estado sob o lock, corrige e verifica integralmente as ofertas e reaplica somente os efeitos necessários. A pausa continua usando a outbox central com deduplicação, sem criar chave ou fluxo paralelo. A interface mostra a ação separadamente da reativação e apresenta o impacto antes da confirmação.
+
+**Validação:** 63 testes direcionados de inativação, capacidade, saldo interno, atividade, fornecedores e outbox passaram; `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration foi criada ou executada, nenhum banco foi alterado, nenhuma inativação real foi disparada e nenhuma chamada de escrita foi enviada ao Mercado Livre.
+
+**Próxima ação:** `BNT-PARITY-06 — Fallback seguro da retomada DSLite`.
 
 #### Classificação obrigatória
 

@@ -191,6 +191,28 @@ test('pendência igual não reinicia tentativas nem timestamps', async () => {
   assert.equal(client.rows[0].available_at, '2026-08-30T03:00:00.000Z');
 });
 
+test('reprocessamento da mesma pausa de fornecedor não duplica a outbox', async () => {
+  const client = createFakeClient();
+  const input = stockInput({
+    desiredQuantity: 0,
+    desiredStatus: 'pausado',
+    source: 'fornecedor_inativo_pause',
+    payload: {
+      ...stockInput().payload,
+      apply_quantity: true,
+      apply_status: true,
+      fornecedor_id: 'supplier',
+    },
+  });
+
+  const first = await enqueueMlPublishOutbox(client, input);
+  const second = await enqueueMlPublishOutbox(client, input);
+
+  assert.equal(first.action, 'inserted');
+  assert.equal(second.action, 'unchanged');
+  assert.equal(client.rows.length, 1);
+});
+
 test('pendência diferente é atualizada na mesma linha', async () => {
   const client = createFakeClient([completedStock({ id: 'pending-stock', status: 'pending' })]);
   const result = await enqueueMlPublishOutbox(client, stockInput({ desiredQuantity: 7 }));

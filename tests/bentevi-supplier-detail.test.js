@@ -46,6 +46,8 @@ test('BNT-D16 reutiliza mudança segura de status e bloqueia reativação histó
   assert.match(page, /ml_pause_candidates/);
   assert.match(page, /supplier\.activationBlocked/);
   assert.match(page, /A reativação está bloqueada pela política operacional/);
+  assert.match(page, /Reprocessar inativação/);
+  assert.match(page, /supplier_offers_to_correct/);
   assert.equal(statusRoute.match(/authorizeApiRequest\([^,]+, 'suppliers\.manage'\)/g)?.length, 2);
 });
 
