@@ -16,6 +16,7 @@ export const maxDuration = 300;
 
 const CHECKPOINT_BATCH_SIZE = 25;
 const MAX_SAFETY_PAUSE_ATTEMPTS = 3;
+const DATABASE_BATCH_SIZE = 100;
 
 function nowIso() { return new Date().toISOString(); }
 function isoDay(value = new Date()) { return new Date(value).toISOString().slice(0, 10); }
@@ -138,10 +139,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ sucesso: true, processados: 0, total: 0, skipped: 'sem_grupos_ativos' });
   }
   const productIds = activeGroups.map((group) => group.product_id);
-  const { data: products, error: productsError } = await client.from('produtos')
-    .select('id,custo,custom_price,ml_fee,ml_shipping').in('id', productIds);
-  if (productsError) return NextResponse.json({ error: productsError.message }, { status: 500 });
-  const productById = new Map((products || []).map((product) => [String(product.id), product]));
+  const products: any[] = [];
+  for (let index = 0; index < productIds.length; index += DATABASE_BATCH_SIZE) {
+    const { data, error } = await client.from('produtos')
+      .select('id,custo,custom_price,ml_fee,ml_shipping')
+      .in('id', productIds.slice(index, index + DATABASE_BATCH_SIZE));
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    products.push(...(data || []));
+  }
+  const productById = new Map(products.map((product) => [String(product.id), product]));
   let safetyPaused = 0;
   const safetyFailures: any[] = [];
 
