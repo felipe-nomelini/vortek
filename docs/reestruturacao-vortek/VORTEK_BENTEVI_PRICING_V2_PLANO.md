@@ -379,3 +379,24 @@ Contratos oficiais que devem ser reconfirmados na ação aplicável:
 - Mercado Livre — publicação em catálogo: `https://developers.mercadolivre.com.br/devcenter/publicacao-no-catalogo`.
 
 As APIs oficiais sustentam o uso de `price_to_win` como informação competitiva, a consulta de visitas em janelas de até 150 dias e a necessidade de identidade exata para catálogo. A decisão econômica e o nível de autonomia pertencem à Bentevi.
+
+## 19. Regressões obrigatórias vindas dos deltas produtivos de pricing
+
+**Adição documental em 05/09/2026:** o intervalo `95941f1..b6e1b17` foi classificado na seção 4.1 de [Paridade de regras](VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md). Ela é a fonte dos commits, evidências e classificações `PRC-D01` a `PRC-D16`; não duplicar a coorte ou o executor produtivo neste plano. Estes requisitos estão **pendentes de implementação**, não são resultados de testes da V2.
+
+| Ação responsável | Critérios adicionais de aceite/regressão |
+| --- | --- |
+| V2-01/03 | Fronteiras comerciais exatas; cruzamento e não convergência; cinco iterações do experimento são evidência histórica, não um limite novo obrigatório. Não restaurar o piso nominal universal. |
+| V2-02/08A | Preço, tarifa e frete da mesma avaliação; frete antigo que simula prejuízo não pode causar decisão cega. Ausente/inválido não vira zero. Revalidar origem/oferta e contexto fiscal, não usar imposto fixo da coorte. |
+| V2-04/10 | Registrar origem e preservar baseline antes da primeira escrita; crash após efeito remoto e antes do checkpoint; retomada não perde sucessos nem reenvia alteração confirmada. `custom_price` sozinho não identifica autoria nem override. |
+| V2-07/10 | Origem e espelhos sem alvos duplicados ou preços concorrentes; falha em um membro; divergência após escrita; falha local após sucesso remoto; compensação não confirmada com bloqueio e evidência. Não confundir compensação com atomicidade distribuída. |
+| V2-09/10 | Janelas/baseline coerentes, dados ausentes como SEM_AMOSTRA, venda cancelada não comprova conversão; validar semântica de contagem de visitas/pedidos por grupo antes de agregar. |
+| V2-10 | Travar todos os escritores de preço antes de alterar `custom_price` ou enfileirar; leitura de proteção inválida bloqueia automação; respeitar promoção, B2B, automação ML, produto manualmente inativo e oferta válida. Outbox misto preserva operações independentes de estoque/status. Monitor e aplicação não se sobrepõem. |
+| V2-11/13 | D7/D15/D30, execução atrasada e checkpoints pendentes; reexecução sem novo alerta idêntico; estado após D30 não remove proteção sem decisão explícita. |
+| V2-12 | Batching, retomada e cobertura completa: grupos com falhas persistentes não monopolizam os lotes; custo alterado é priorizado sem abandonar os demais. Reusar scheduler/locks e agenda noturna aprovada, não copiar a cadência de cinco minutos. |
+| V2-13/14/16 | Safety stop suspende novas otimizações e gera decisão acionável; pausa/alteração comercial externa continua sob a matriz de autonomia. Confirmar/rejeitar/adiar com trilha e idempotência, sem autorização herdada do experimento D0. Reusar templates Bentevi e dedupe pelo problema, não pela tentativa. |
+| V2-00/06/10/15 | Não portar SKUs, alíquota, limiares particulares, estado JSON ou dados reais do experimento como defaults. Reusar políticas tipadas e contrato atual de bulk; não executar o script histórico, nem em --dry-run, pois seu fluxo pode renovar e persistir tokens. |
+
+**Gate permanece bloqueante:** não iniciar esta épica por estar classificada. `BNT-PARITY-GATE` deve registrar o aceite explícito do encaminhamento das lacunas à V2, sem declarar equivalência funcional ou liberar produção. Sem esse aceite, a dependência permanece aberta; `BNT-CFG-07` não está liberada por este documento.
+
+**Promoção:** `BNT-PARITY-FINAL` deve reconfirmar o SHA implantado e a existência de experimentos ativos/aguardando decisão, com continuidade ou encerramento autorizados e sem perder baseline, checkpoints ou travas. O relatório D0 não comprova o estado na data do release. Nenhum experimento produtivo será importado ou ativado em DEV para esta classificação.

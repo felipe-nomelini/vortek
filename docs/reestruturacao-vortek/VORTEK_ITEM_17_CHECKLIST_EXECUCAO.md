@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** classificar os deltas produtivos de pricing pendentes antes de `BNT-PARITY-GATE`. `BNT-PARITY-DEC-01` foi implementada e validada localmente, sem ativação remota; `BNT-CFG-07` permanece bloqueada.
+**Próxima ação obrigatória:** planejar `BNT-PARITY-GATE`, incluindo o aceite explícito do encaminhamento das lacunas de pricing à V2. Os cinco commits até `b6e1b17` foram classificados, não incorporados funcionalmente. `BNT-CFG-07` permanece bloqueada; Evolusom segue sem ativação remota.
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` a `BNT-PARITY-13` e decisão Evolusom concluídas no escopo aprovado; gate pendente | Classificar deltas de pricing; ativação do contato adicional e delta de migrations permanecem no checklist de release |
+| 11.1 | Reconciliação contínua Produção → Bentevi | Paridades 01–13 e decisão Evolusom concluídas no escopo aprovado; deltas de pricing classificados; gate pendente | Avaliar aceite das lacunas V2 no gate; ativação Evolusom, delta de migrations e continuidade dos experimentos permanecem no checklist de release |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -205,6 +205,8 @@ Regras de uso:
 - [x] Executar `BNT-PARITY-13`: mapa de históricos, comparador e evidência somente leitura, sem migration artificial.
 - [x] Executar `BNT-PARITY-DEC-01`: manter os dois destinatários da Evolusom, com dedupe e retomada testados, sem mensagens reais/deploy.
 - [ ] Antes da ativação operacional da regra Evolusom, configurar `EVOLUSOM_OFFICIAL_LABEL_ADDITIONAL_PHONE` no servidor e publicar o código no ambiente autorizado; não usar contato real em homologação.
+- [x] Classificar os cinco commits de pricing `95941f1..b6e1b17`, vinculando as 16 regras aos donos, evidências e etapas V2, sem implementação funcional.
+- [ ] No `BNT-PARITY-GATE`, registrar o aceite explícito do encaminhamento das lacunas P0/P1 à V2; classificação ou planejamento não significam equivalência funcional.
 - [ ] Preparar e ensaiar `DELTA_PROMOCAO` de migrations novas antes do release; preservar históricos distintos e dependências da colisão de estoque.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
@@ -2981,6 +2983,27 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 
 **Próxima ação:** classificar os deltas de pricing já apontados no catálogo antes de fechar `BNT-PARITY-GATE`. `DELTA_PROMOCAO` e `BNT-PARITY-FINAL` continuam bloqueadores de release.
 
+#### Classificação dos deltas de pricing — preparação do `BNT-PARITY-GATE`
+
+**Situação:** ação documental concluída em `2026-09-05`. Referência DEV `0b04a09`; remoto `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de`. Não houve implementação ou ativação do experimento.
+
+- [x] conferir os cinco commits e 18 caminhos de `95941f1..b6e1b17` contra a política canônica e o código DEV;
+- [x] registrar no catálogo 16 regras: 9 `INCORPORAR`, 1 `EQUIVALENTE`, 3 `SUBSTITUÍDA`, 3 `NÃO COPIAR`, com destino e evidência;
+- [x] distinguir parâmetros/coorte D0 de requisitos permanentes e documentar que compensação não é transação atômica;
+- [x] acrescentar os critérios de regressão nas ações V2 responsáveis, sem alterar a política ou a ordem de execução;
+- [x] verificar hashes e tamanhos dos oito arquivos do manifest D0, sem extração do ZIP ou importação da coorte;
+- [x] passar 41 testes locais de pricing, configuração comercial, seleção automática, oferta preferencial e atividade manual;
+- [x] passar `npm run validate`;
+- [x] conferir cobertura dos cinco commits, 16 IDs/classificações, três documentos alterados e `git diff --check`; reconfirmar remoto em `b6e1b17` ao fechamento;
+- [ ] obter aceite explícito das lacunas encaminhadas à V2 no gate separado; não liberar `BNT-CFG-07` automaticamente;
+- [ ] reconfirmar experimentos ativos/aguardando decisão e aprovar continuidade ou encerramento antes da promoção.
+
+**Evidência:** seção 4.1 de `VORTEK_PARIDADE_REGRAS_PRODUCAO_BENTEVI.md`; critérios futuros na seção 19 de `VORTEK_BENTEVI_PRICING_V2_PLANO.md`. Os relatórios D0 são históricos; o SHA implantado e o estado vivo da produção não foram reconfirmados. Os testes produtivos do experimento foram lidos, não executados. Aviso preexistente do Node sobre formato de módulo em `pricing-core.js`, sem falha dos testes. Documentação ML direta retornou 403; acesso parcial ao conteúdo oficial indexado, sem alegar reconfirmação integral dos endpoints.
+
+**Limites:** somente catálogo, plano V2 e este checklist; sem mudanças em código, APIs, tipos, migrations, configuração de runtime, banco, preços ou infraestrutura. Sem push/deploy. Build e homologação visual não aplicáveis. Rollback: reverter somente o commit documental desta ação, preservando as pendências anteriores.
+
+**Próxima ação:** planejar e avaliar `BNT-PARITY-GATE`. Se não houver aceite explícito das lacunas encaminhadas, ele permanece bloqueado; `BNT-PARITY-FINAL`, delta de migrations e gate de autonomia continuam obrigatórios para release.
+
 #### Classificação obrigatória
 
 Cada regra ou mudança deve receber exatamente uma classificação:
@@ -3018,6 +3041,7 @@ A precedência é: instrução explícita mais recente do responsável → regra
 - [ ] antes de cada nova ação do Item 17, comparar por leitura o SHA atual de `origin/main` com o último SHA auditado;
 - [ ] se houver mudança produtiva no domínio da ação atual, reconciliar esse delta antes de continuar; mudanças de outros domínios entram na fila sem merge automático;
 - [ ] imediatamente antes da promoção, executar `BNT-PARITY-FINAL`, repetir a comparação desde o último SHA auditado e bloquear o release enquanto existir commit ou regra sem classificação;
+- [ ] na promoção, reconfirmar experimentos produtivos ativos/aguardando decisão e aprovar continuidade ou encerramento sem perder baseline, checkpoints ou proteção de preço;
 - [ ] executar novamente os testes dos domínios afetados e registrar o SHA final de produção, o SHA final de `dev` e a matriz atualizada.
 
 **Aceite da etapa:** zero commit exclusivo de produção sem classificação, zero regra ou parâmetro produtivo identificado sem destino explícito e zero divergência crítica aberta sem aceite. `BNT-CFG-07` permanece bloqueada até `BNT-PARITY-GATE`; o release permanece bloqueado até `BNT-PARITY-FINAL`.

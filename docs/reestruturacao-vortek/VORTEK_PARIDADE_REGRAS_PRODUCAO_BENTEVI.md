@@ -10,11 +10,11 @@
 
 **Ancestral comum:** `08b6237428c406b55a876578b63dbc553e8c9584`
 
-**Último delta remoto verificado:** `origin/main` em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de` em 05/09/2026. Os cinco commits posteriores à fotografia alteram somente o experimento de pricing e permanecem enfileirados para classificação própria antes do gate final; nenhum modifica o contrato `ORD-09`.
+**Último delta remoto classificado:** `origin/main` em `b6e1b17eba58f0ec80a3d16357ac7ab2409f56de` em 05/09/2026. Os cinco commits posteriores à fotografia estão classificados na seção 4.1, por regra e destino; nenhum modifica o contrato `ORD-09`. Classificação documental não significa incorporação funcional ou liberação do gate. O SHA implantado não foi reconfirmado nesta ação.
 
 **Resultado:** fotografia concluída; `BNT-PARITY-01` a `BNT-PARITY-08` incorporadas e demais divergências permanecem bloqueadas para ações `BNT-PARITY-N` separadas.
 
-**Atualização em 05/09/2026:** a fila `BNT-PARITY-01` a `BNT-PARITY-13` foi concluída no escopo aprovado de cada ação. A fotografia original abaixo permanece datada. `BNT-PARITY-13` concluiu o mapa e o comparador, não a promoção de schema. A decisão Evolusom foi confirmada e implementada em `BNT-PARITY-DEC-01`, com validação local e sem ativação remota; deltas de pricing e gates permanecem pendentes.
+**Atualização em 05/09/2026:** a fila `BNT-PARITY-01` a `BNT-PARITY-13` foi concluída no escopo aprovado de cada ação. A fotografia original abaixo permanece datada. `BNT-PARITY-13` concluiu o mapa e o comparador, não a promoção de schema. A decisão Evolusom foi confirmada e implementada em `BNT-PARITY-DEC-01`, com validação local e sem ativação remota. Os deltas de pricing foram classificados; sua incorporação e os gates continuam pendentes.
 
 ---
 
@@ -100,6 +100,62 @@ Não existe relação presente somente em produção. As 13 relações exclusiva
 | `95941f1` | alerta WhatsApp somente para venda paga recém-inserida | `NTF-03` | incorporar |
 
 ---
+
+### 4.1 Classificação dos deltas de pricing — 05/09/2026
+
+**Escopo concluído:** leitura de `95941f1..b6e1b17` contra DEV `0b04a09`, sem executar o experimento. O inventário contém cinco commits e 18 caminhos distintos: oito arquivos de código/teste e dez artefatos históricos. Nenhuma migration integra o intervalo. A referência remota foi conferida por `git ls-remote`, sem trocar de branch. Não houve acesso aos bancos, APIs operacionais ou servidores; esta evidência descreve o código versionado e o relatório D0, não o estado vivo da produção.
+
+| Commit | Mudança observada no diff | Regras abaixo / destino |
+| --- | --- | --- |
+| `83a5586` | executor D0, helpers/testes, proteção do recálculo, monitor e registro no scheduler | `PRC-D01` a `PRC-D03`, `PRC-D06` a `PRC-D16`; portar requisitos nas ações V2, sem importar a coorte nem o executor |
+| `d1dee8c` | escrita de todos os membros do grupo, verificação/compensação, retomada e estado `executing` que suspende o monitor | `PRC-D03`, `PRC-D04`, `PRC-D06`; preservar objetivos, não prometer atomicidade nem copiar o mecanismo de retomada |
+| `8e987f7` | leituras de produtos divididas em lotes de 100 | `PRC-D05`; incorporar batching no job canônico, sem fixar 100 como regra comercial |
+| `a9f91d8` | preço/tarifa/frete remotos antes da decisão de prejuízo; lotes rotativos de 25 e priorização por custo alterado | `PRC-D02`, `PRC-D05`, `PRC-D13`; incorporar evidência atual e observabilidade, não a pausa automática genérica |
+| `b6e1b17` | ZIP, resumo, seis CSVs, plano de monitoramento e manifest do D0 | `PRC-D16`; evidência histórica referenciada, não transportada como configuração ou autorização |
+
+#### Matriz de regras e destino
+
+Cada linha possui **uma** classificação. `INCORPORAR` significa requisito ainda aberto, mesmo quando a etapa V2 já existe. `SUBSTITUÍDA` identifica a decisão canônica aprovada, não afirma que a implementação futura está pronta. Prioridade indica o risco da capacidade final, sem autorizar reordenar ou executar a fila nesta ação.
+
+Fontes produtivas abreviadas: **helper** = `scripts/lib/ml-pricing-experiment.js`; **executor** = `scripts/run-ml-high-margin-pricing-experiment.js`; **estado** = `src/lib/ml/pricing-experiment.ts`; **monitor** = `src/app/api/sync/pricing-experiment/monitor/route.ts`. Todas referem-se ao SHA `b6e1b17`.
+
+| Regra | Fonte / comportamento e consumidor | Estado DEV e classificação | Destino, prioridade e aceite necessário |
+| --- | --- | --- | --- |
+| `PRC-D01` | helper/executor: faixa por preço final, alvo/limite, recálculo ao cruzar fronteira, até cinco iterações; consumidor D0 | motor DEV ainda seleciona por custo; **INCORPORAR** | V2-01/03, P0: fronteiras 200/200,01/1.000/1.000,01 e não convergência explícita; limites de busca não viram teto de margem |
+| `PRC-D02` | executor/monitor: resultado com custo, tarifa, frete e tributo; `a9f91d8` substitui leitura econômica obsoleta por cotação remota por anúncio | funções centrais e coleta existem, mas não há economia única por grupo com origem/frescor em todos os consumidores; **INCORPORAR** | V2-02/08A, P0: valor ausente não vira zero, evidência incompleta não prova prejuízo, tarifa/frete correspondem ao preço avaliado; preservar tributação central |
+| `PRC-D03` | estado + `automatic-pricing.ts` + sync de anúncios: bloquear recálculo antes de gravar `custom_price`, também enquanto aguarda decisão; falha de leitura bloqueia automação | DEV recalcula e escreve `custom_price`, sem a proteção de experimento; **INCORPORAR** | V2-10, P0: proteger todos os escritores/outbox sem bloquear estoque/status independentes; configuração ilegível não libera preço; concorrência testada |
+| `PRC-D04` | executor `putGroupPrice`/`executeGroup`: deduplica origem/espelhos, verifica preço e tenta restaurar baseline em falha remota/local | não existe unidade econômica canônica nem recuperação do experimento; **INCORPORAR** | V2-07/10, P0: confirmar todos os membros, rastrear falha parcial e restauração não confirmada; sem preços concorrentes ou dupla contagem |
+| `PRC-D05` | monitor + `src/lib/sync/registry.ts`: lotes, prioridade de custo alterado e última checagem, métricas de sucesso/falha parcial, registro scheduled | scheduler/locks existem, mas não o monitor de pricing; **INCORPORAR** | V2-12, P0 operacional: reusar jobs, provar retomada e cobertura de todos os grupos, inclusive sob falhas repetidas; não importar agenda de cinco minutos |
+| `PRC-D06` | estado/executor/monitor: baseline, IDs de grupo, execução/retomada, checkpoints, proteção após D30 até decisão | lifecycle tipado de experimento ausente; **INCORPORAR** | V2-04/10, P0: autoria/origem, baseline durável, retomada após escrita antes do checkpoint, nenhum monitor concorrente com aplicação e nenhum sucesso anterior perdido |
+| `PRC-D07` | executor `visitWindows`/`orderMetrics` e monitor `runCheckpoint`: visitas/vendas, janelas 30/90/150 e pedidos deduplicados | métricas de anúncios existem, mas não contrato de performance por grupo; **INCORPORAR** | V2-09/10, P1: ausência de dados = SEM_AMOSTRA; vendas canceladas não comprovam conversão; janela e baseline coerentes; não somar exposição duplicada sem validar semântica |
+| `PRC-D08` | helper/monitor: D7 observação, D15 alerta e D30 diagnóstico, sem exigir redução de preço em cada checkpoint | não há lifecycle canônico desses diagnósticos; **INCORPORAR** | V2-11/13, P1: idade/janela explícitas, reexecução sem alerta duplicado, atrasos e checkpoints pendentes observáveis |
+| `PRC-D09` | executor/helper: veto a produto inativo, promoção, preço por quantidade, automação ML, vínculo/economia inconclusivos, outbox de preço em processamento e recorrência | proteções pontuais existem, não o preflight completo de experimento; **INCORPORAR** | V2-10/16, P0: travas independentes e rechecadas antes de escrever; exceção comercial não elimina trava crítica; preservar contratos B2B e atividade manual |
+| `PRC-D10` | helper `resolvePreferredOffer`: preferência manual ativa com custo válido, senão menor custo válido; estoque e desempates | núcleo equivalente em `preferred-offer.ts`, com filtragem operacional própria dos fornecedores; **EQUIVALENTE** | SUP-01/02 e paridades 01/02: manter donos existentes e testes; não copiar o segundo seletor do script |
+| `PRC-D11` | executor/helper: imposto 8,2799%, universo 430, listas fixas de SKUs, até cinco visitas/150 dias, recorrência a partir de duas vendas, frescor 30 min | parâmetros datados da coorte, não configuração geral homologada; **NÃO COPIAR** | V2-02/06/09/10/15: preservar contexto RBT12/PGDAS e política tipada; não universalizar limiares nem reproduzir listas como regras permanentes |
+| `PRC-D12` | estado: coleção inteira em JSON, chave única datada em `sync_runtime_config`, estados próprios do experimento | contrato V2 exige coleções tipadas, lifecycle e auditoria próprios, ainda não implementados; **SUBSTITUÍDA** | V2-04/10/15: implementar fonte canônica, sem segundo motor, snapshot administrativo genérico ou tratar `custom_price` como prova de ação manual |
+| `PRC-D13` | monitor `pauseLossGroup`: prejuízo implica PUT paused, até três tentativas, depois falha de execução | autorização específica do D0 não é autorização geral da V2; **SUBSTITUÍDA** | V2-10/13/16, P0: safety stop do experimento impede novas otimizações e alerta; ação comercial externa segue REQUIRES_CONFIRMATION salvo regra específica homologada |
+| `PRC-D14` | monitor: WhatsApp por perda/tentativa e D15, sem centro de confirmações com lifecycle completo | templates Bentevi existem; contrato aprovado prevê alertas/decisões tipados e dedupe estável; **SUBSTITUÍDA** | V2-13/14: reusar templates BNT-MSG-01, não transportar texto avulso ou dedupe por tentativa como identidade do problema |
+| `PRC-D15` | executor: endpoint legado de multiget, carregamento de ambiente e renovação/persistência de token inclusive antes do bloco APPLY; temporizações fixas e recuperação por CSV | contradiz procedimento atual de bulk e isolamento operacional desta tarefa; **NÃO COPIAR** | V2-00/07/10: reusar contratos atuais; script não é ferramenta de leitura segura nem mesmo com --dry-run; não executar/importar seu entrypoint |
+| `PRC-D16` | relatório D0/manifest: execução autorizada datada e memória financeira | artefatos comprovam o que foi registrado, não estado vivo, conclusão dos 30 dias ou permissão futura; **NÃO COPIAR** | V2-00/10 e PARITY-FINAL: referenciar por SHA, sem copiar coorte ativa; reconfirmar continuidade/encerramento no release autorizado |
+
+**Saldo:** 16 regras classificadas — 9 `INCORPORAR`, 1 `EQUIVALENTE`, 3 `SUBSTITUÍDA` e 3 `NÃO COPIAR`. Nenhuma foi implementada por esta ação. As nove incorporações permanecem abertas nas ações V2 indicadas; as substituições também exigem a implementação prevista, não são paridade funcional concluída.
+
+#### Evidências, limitações e riscos que não devem reaparecer
+
+- `d1dee8c` usa chamadas sequenciais ao ML e atualizações locais separadas, seguidas de compensação quando necessário. O título do commit contém “atomic”, mas o código não oferece transação atômica entre ML e banco. Falha durante compensação continua possível e deve ser testada na V2.
+- Segundo o resumo D0, 23 grupos foram pausados por frete local ainda relativo ao preço anterior e depois reativados após cotação remota. O manifest registra 320 grupos e 467 anúncios confirmados naquele momento. Não verificamos esses números em runtime; conferimos em memória os hashes SHA-256 e tamanhos dos oito arquivos listados no manifest, todos coincidentes. O ZIP não foi extraído nem validado internamente.
+- O teste produtivo `tests/ml-pricing-experiment.test.js` cobre seis cenários de helpers (faixas, convergência, elegibilidade, travas, checkpoints e alvos deduplicados). Sua existência não comprova concorrência, retomada do executor, ausência de starvation no monitor, rollback remoto ou confirmação humana. Esse teste não foi executado/importado nesta ação.
+- O monitor usa `produtos.custo` e imposto da coorte; não revalida a oferta preferencial no mesmo fluxo. Isso não satisfaz sozinho a economia unitária com origem e validade exigida pela V2. Os critérios das seções 3, 5 e 9 do plano canônico permanecem superiores.
+- A retomada produtiva grava a coorte antes dos envios, exclui IDs já presentes e depende de artefatos anteriores. Não há evidência suficiente para declarar seguro todo crash entre efeito remoto e checkpoint; essa lacuna permanece no aceite V2-10.
+- Os registros antigos `PRC-03/04/05/08` descrevem a fotografia do motor de custo, não o objetivo final da V2. Em DEV `enqueueAutomaticPricesForCostChanges` também escreve `custom_price`; a presença desse campo não comprova origem manual nem override. A substituição comercial continua planejada, sem alteração das faixas atuais nesta ação.
+
+**Dependências e gate:** não criar uma implementação provisória do experimento para depois descartá-la. Manter os destinos V2 e a ordem `PARITY-GATE → CFG-07 → V2-00`. Isso **não** concede aceite automático ao adiamento das lacunas P0/P1: o próximo `BNT-PARITY-GATE` deve decidir explicitamente sobre o encaminhamento controlado, com bloqueio de promoção/autonomia até os aceites V2 e PARITY-FINAL. Sem esse aceite ou com nova divergência crítica fora da épica, o gate permanece bloqueado. Nenhuma política comercial nova foi escolhida nesta classificação.
+
+**Continuidade operacional de release:** antes da promoção, reconfirmar por leitura autorizada se há experimentos ainda ativos ou aguardando decisão. Definir e aprovar continuidade/mapeamento ou encerramento, preservando baseline, checkpoints, travas e responsabilidade. Não supor que D30 encerra automaticamente a proteção, não zerar estado produtivo e não habilitar o monitor legado na Bentevi. A configuração Evolusom e o delta de migrations continuam pendências independentes.
+
+**Validação local desta classificação:** 41 testes passaram em `rule-02-pricing`, `target-net-profit-pricing`, `bnt-cfg-03-commercial-pricing`, `automatic-pricing-force`, `preferred-offer` e `product-activity`; `npm run validate` e `git diff --check` passaram. O Node emitiu aviso preexistente de formato de módulo em `pricing-core.js`, sem falha. A conferência local confirmou os cinco commits presentes na matriz, 18 caminhos de origem, 16 IDs únicos e uma classificação por regra; somente os três documentos previstos foram alterados. O remoto foi reconfirmado em `b6e1b17` ao fechamento. Build/homologação visual não se aplicam.
+
+**Consulta externa:** a documentação oficial do Git sobre [intervalos de commits](https://git-scm.com/docs/git-log) e [referências remotas](https://git-scm.com/docs/git-ls-remote) foi consultada. As páginas ML abertas diretamente retornaram HTTP 403; o conteúdo oficial indexado de [Preços de produtos](https://developers.mercadolivre.com.br/pt_br/api-de-precos) permitiu conferir a distinção standard/promotion e a necessidade de verificar automação antes de escrever preço. Não se declara reconfirmação integral de visitas, catálogo, tarifas ou frete nesta ação documental; os endpoints exatos devem ser reabertos na implementação V2 pertinente. Nenhuma autorização foi inferida desse acesso parcial.
 
 ## 5. Catálogo canônico de regras
 
@@ -283,7 +339,8 @@ As ações acima não autorizam agrupar várias correções num único commit. Q
 ## 8. Gate e bloqueios
 
 - `BNT-PARITY-00` pode ser encerrada porque todos os 13 commits exclusivos foram classificados e o catálogo possui destino explícito por regra.
-- `BNT-PARITY-GATE` **não está liberado**: existem divergências P0/P1 ainda não implementadas.
+- O delta `95941f1..b6e1b17` está classificado na seção 4.1; não há commit sem destino nesse intervalo.
+- `BNT-PARITY-GATE` **não está liberado**: existem lacunas P0/P1 encaminhadas à V2, ainda não implementadas e sem aceite explícito de adiamento no gate. Classificação não substitui esse aceite.
 - `BNT-CFG-07` permanece bloqueada até o fechamento do gate.
 - O release permanece bloqueado até `BNT-PARITY-FINAL`, que deve comparar novamente `origin/main` e o SHA efetivamente implantado.
 - Se `origin/main` mudar antes da próxima ação, o novo delta deve ser classificado antes de continuar.
