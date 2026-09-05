@@ -23,7 +23,9 @@ import { CheckCircleOutlined, CopyOutlined, DisconnectOutlined, LinkOutlined, Sa
 import type { MessageInstance } from "antd/es/message/interface";
 import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
 
-const { Text, Title, Paragraph } = Typography;
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
+
+const { Text, Paragraph } = Typography;
 
 type MlConfiguration = {
   application: {
@@ -172,10 +174,8 @@ export default function MercadoLivreTab({ messageApi }: { messageApi: MessageIns
   return (
     <Spin spinning={loading || saving}>
       <Space direction="vertical" size={16} style={{ width: "100%" }}>
-        <div>
-          <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>Mercado Livre e anúncios</Title>
-          <Text type="secondary">Conta, aplicativo OAuth e regras seguras usadas na publicação.</Text>
-        </div>
+        <ConfiguracoesTabHeading title="Mercado Livre e anúncios"
+          description="Conta, aplicativo OAuth e regras seguras usadas na publicação." />
 
         {data?.app.mixedMercadoPagoScopes ? (
           <Alert type="warning" showIcon message="Aplicativo com escopos mistos" description="Este aplicativo possui permissões relacionadas a pagamentos. Mercado Livre e Mercado Pago devem usar aplicativos separados." />

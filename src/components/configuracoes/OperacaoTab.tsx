@@ -22,7 +22,9 @@ import { CheckCircleOutlined, SafetyCertificateOutlined } from "@ant-design/icon
 import type { MessageInstance } from "antd/es/message/interface";
 import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
 
-const { Text, Title } = Typography;
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
+
+const { Text } = Typography;
 
 type OperationDto = {
   orders: { delayedAfterMinutes: number };
@@ -140,10 +142,8 @@ export default function OperacaoTab({ messageApi }: { messageApi: MessageInstanc
     <Spin spinning={loading || saving}>
       {modalContextHolder}
       <Space direction="vertical" size={16} style={{ width: "100%" }}>
-        <div>
-          <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>Produtos, estoque, pedidos e fulfillment</Title>
-          <Text type="secondary">Parâmetros operacionais controlados e fontes únicas do fluxo de atendimento.</Text>
-        </div>
+        <ConfiguracoesTabHeading title="Produtos, estoque, pedidos e fulfillment"
+          description="Parâmetros operacionais controlados e fontes únicas do fluxo de atendimento." />
 
         <Row gutter={[16, 16]}>
           <Col xs={24} lg={10}>

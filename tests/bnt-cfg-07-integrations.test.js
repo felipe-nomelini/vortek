@@ -3,6 +3,10 @@ const test = require('node:test');
 const fs = require('node:fs');
 const load = require('./helpers/load-integration-module');
 const config = require('../src/lib/integration-configuration.ts');
+const heading = load('src/components/configuracoes/ConfiguracoesTabHeading.tsx', {
+  'react/jsx-runtime': require('react/jsx-runtime'), antd: require('antd'),
+  '@/theme/bentevi': require('../src/theme/bentevi.ts'),
+});
 const contracts = require('../src/lib/configuracoes/contracts.ts');
 const dto = load('src/lib/integration-config-dto.ts', { './integration-configuration': config });
 const sentinel = 'SENTINEL_PRIVATE_CREDENTIAL';
@@ -171,6 +175,7 @@ test('cards renderizam dez serviços, assets locais e ações sem editar integra
     antd: require('antd'), '@ant-design/icons': require('@ant-design/icons'),
     '@/lib/integration-configuration': config,
     './IntegracoesTab.module.css': { default: {}, __esModule: true },
+    './ConfiguracoesTabHeading': heading,
   }).default;
   const html = renderToStaticMarkup(React.createElement(component, { messageApi: {} }));
   assert.equal((html.match(/data-integration=/g) || []).length, 10);

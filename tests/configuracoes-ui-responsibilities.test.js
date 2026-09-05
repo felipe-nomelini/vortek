@@ -16,6 +16,38 @@ const auditoria = read("src/components/configuracoes/AuditoriaTab.tsx");
 const operacao = read("src/components/configuracoes/OperacaoTab.tsx");
 const mercadoLivre = read("src/components/configuracoes/MercadoLivreTab.tsx");
 
+test("oito abas usam um único cabeçalho sem sobrescrever sua tipografia", () => {
+  const ts = require("typescript");
+  for (const name of ["Empresa", "Comercial", "Operacao", "MercadoLivre", "Notificacoes", "Integracoes", "Usuarios", "Auditoria"]) {
+    const source = read(`src/components/configuracoes/${name}Tab.tsx`);
+    const ast = ts.createSourceFile(`${name}.tsx`, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+    const headings = [];
+    const visit = node => {
+      if (ts.isJsxSelfClosingElement(node) && node.tagName.getText(ast) === "ConfiguracoesTabHeading") headings.push(node);
+      ts.forEachChild(node, visit);
+    };
+    visit(ast);
+    assert.equal(headings.length, 1, name);
+    assert.deepEqual(headings[0].attributes.properties.map(prop => prop.name?.getText(ast)).sort(), ["description", "title"], name);
+  }
+});
+
+test("cabeçalho padroniza título 20/28 e descrição 14/22 com cores Bentevi", () => {
+  const React = require("react");
+  const { renderToStaticMarkup } = require("react-dom/server");
+  const load = require("./helpers/load-integration-module");
+  const { benteviColors } = require("../src/theme/bentevi.ts");
+  const Heading = load("src/components/configuracoes/ConfiguracoesTabHeading.tsx", {
+    "react/jsx-runtime": require("react/jsx-runtime"), antd: require("antd"),
+    "@/theme/bentevi": { benteviColors },
+  }).default;
+  const html = renderToStaticMarkup(React.createElement(Heading, { title: "Título de teste", description: "Descrição de teste" }));
+  assert.match(html, /<h4[^>]*style="[^"]*margin:0 0 6px;font-size:20px;font-weight:600;line-height:28px/);
+  assert.match(html, /display:block;font-size:14px;line-height:22px/);
+  assert.ok(html.includes(benteviColors.text));
+  assert.ok(html.includes(benteviColors.textSecondary));
+});
+
 test("Configurações mantém uma rota e delega as tabs administrativas", () => {
   for (const component of [
     "EmpresaTab",

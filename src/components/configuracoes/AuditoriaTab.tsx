@@ -5,6 +5,7 @@ import { Button, Empty, Select, Space, Table, Typography } from "antd";
 import type { TableProps } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
 import { ReloadOutlined } from "@ant-design/icons";
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 import {
   CONFIGURATION_AUDIT_ACTIONS,
   CONFIGURATION_AUDIT_ACTION_LABELS,
@@ -128,6 +129,7 @@ export default function AuditoriaTab({
 
   return (
     <Space direction="vertical" size={16} style={{ width: "100%" }}>
+      <ConfiguracoesTabHeading title="Histórico" description="Alterações administrativas das configurações" />
       <Space wrap>
         <Select
           allowClear

@@ -22,6 +22,8 @@ import { calculateSuggestedPrice } from "@/services/pricing";
 import type { PricingCostTier } from "@/lib/commercial-pricing";
 import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
 
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
+
 const { Text, Title } = Typography;
 
 type CostTierForm = {
@@ -176,14 +178,8 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
       {modalContextHolder}
       <Form form={form} layout="vertical" onFinish={save} requiredMark={false}>
         <Space direction="vertical" size={16} style={{ width: "100%" }}>
-          <div>
-            <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>
-              Comercial e precificação
-            </Title>
-            <Text style={{ color: "#858585" }}>
-              Fonte única das margens, proteções de custo e política mínima de atacado.
-            </Text>
-          </div>
+          <ConfiguracoesTabHeading title="Comercial e precificação"
+            description="Fonte única das margens, proteções de custo e política mínima de atacado." />
 
           <Alert
             type="info"

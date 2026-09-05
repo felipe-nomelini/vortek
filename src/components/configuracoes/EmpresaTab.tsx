@@ -21,8 +21,9 @@ import {
 import type { MessageInstance } from "antd/es/message/interface";
 import { formatCnpj, isValidCnpj, normalizeCnpj } from "@/lib/fiscal/cnpj.js";
 import { configuracoesCardStyle, configuracoesInputStyle } from "./styles";
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const stateOptions = [
   "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS",
@@ -268,14 +269,8 @@ export default function EmpresaTab({
     <Spin spinning={loading}>
       {modalContextHolder}
       <Space direction="vertical" size={16} style={{ width: "100%" }}>
-        <div>
-          <Title level={5} style={{ color: "#f5f5f5", margin: 0 }}>
-            Empresa e cadastro fiscal
-          </Title>
-          <Text style={{ color: "#858585" }}>
-            Identidade da Bentevi usada pela operação, precificação e emissão fiscal.
-          </Text>
-        </div>
+        <ConfiguracoesTabHeading title="Empresa e cadastro fiscal"
+          description="Identidade da Bentevi usada pela operação, precificação e emissão fiscal." />
 
         {!company?.endereco_estruturado && company?.endereco_legado ? (
           <Alert

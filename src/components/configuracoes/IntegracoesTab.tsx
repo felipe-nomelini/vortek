@@ -3,12 +3,13 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Alert, Button, Card, Descriptions, Drawer, Empty, Input, Modal, Space, Spin, Tag, Typography } from "antd";
+import { Alert, Button, Card, Descriptions, Drawer, Empty, Input, Modal, Space, Spin, Tag } from "antd";
 import { ReloadOutlined, SettingOutlined, ArrowRightOutlined, MailOutlined, BellOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { IntegrationConfigDto } from "@/lib/integration-config-dto";
 import { INTEGRATION_STATE_LABELS, type IntegrationSummary, type IntegrationTestResult } from "@/lib/integration-configuration";
 import styles from "./IntegracoesTab.module.css";
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 
 type Overview = { integracoes: IntegrationConfigDto[]; resumo: IntegrationSummary[] };
 type SecretField = "access_token" | "refresh_token";
@@ -131,7 +132,7 @@ export default function IntegracoesTab({ messageApi }: { messageApi: MessageInst
 
   return <section className={styles.root} aria-label="Integrações">
     <div className={styles.header}>
-      <div><Typography.Title level={4}>Integrações</Typography.Title><Typography.Text type="secondary">Gerencie os serviços conectados à Bentevi.</Typography.Text></div>
+      <ConfiguracoesTabHeading title="Integrações" description="Gerencie os serviços conectados à Bentevi." />
       <Button icon={<ReloadOutlined />} loading={loading} disabled={busy || dirty} onClick={() => { setResults({}); void load(); }}>Atualizar estados</Button>
     </div>
     {error && <Alert type="error" showIcon message="Estados indisponíveis" description={error} action={<Button onClick={() => void load()}>Tentar novamente</Button>} />}

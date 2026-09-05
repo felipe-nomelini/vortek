@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 import {
   Alert,
   Button,
@@ -250,10 +251,8 @@ export default function NotificacoesTab({ messageApi }: { messageApi: MessageIns
     <Spin spinning={loading}>
       <div className={styles.page}>
         <div className={styles.heading}>
-          <div>
-            <h3>Notificações e canais</h3>
-            <p>Defina quais alertas são enviados e quem deve recebê-los.</p>
-          </div>
+          <ConfiguracoesTabHeading title="Notificações e canais"
+            description="Defina quais alertas são enviados e quem deve recebê-los." />
           <div className={styles.headingActions}>
             <Button icon={<EyeOutlined />} onClick={() => setTemplateGalleryOpen(true)}>Visualizar modelos</Button>
             <Button type="primary" icon={<SaveOutlined />} loading={saving} onClick={() => void save()}>Salvar alterações</Button>

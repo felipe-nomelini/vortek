@@ -5,6 +5,7 @@ import { Avatar, Button, Input, Modal, Select, Space, Table, Tag, Typography } f
 import type { TableProps } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
 import { PlusOutlined, UserOutlined } from "@ant-design/icons";
+import ConfiguracoesTabHeading from "./ConfiguracoesTabHeading";
 
 const { Text } = Typography;
 
@@ -246,9 +247,7 @@ export default function UsuariosTab({
           marginBottom: 16,
         }}
       >
-        <Text style={{ color: "#a0a0a0", fontSize: 13 }}>
-          {usuarios.length} usuário(s) cadastrado(s)
-        </Text>
+        <ConfiguracoesTabHeading title="Usuários" description={`${usuarios.length} usuário(s) cadastrado(s)`} />
         <Button
           type="primary"
           size="small"

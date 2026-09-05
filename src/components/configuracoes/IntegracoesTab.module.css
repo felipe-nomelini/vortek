@@ -1,6 +1,5 @@
 .root { color: var(--bentevi-text, #f4f3f5); container-type: inline-size; }
 .header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
-.header h4 { margin-top: 0; margin-bottom: 6px; }
 .guidance { display: flex; align-items: baseline; gap: 8px; margin: 0 0 24px; color: var(--bentevi-text-secondary, #aaa4ad); font-size: 12px; }
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .integrationCard { min-width: 0; border-radius: 16px; background: var(--bentevi-surface-elevated, #1D1B20); box-shadow: none; }
