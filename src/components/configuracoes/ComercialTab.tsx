@@ -246,7 +246,7 @@ export default function ComercialTab({ messageApi }: { messageApi: MessageInstan
                 </Form.Item>
               </Col>
               <Col xs={24} md={8}>
-                <Form.Item name="inactiveCostThreshold" label="Inativar acima de" rules={[{ required: true }]} extra="A comparação permanece estrita: custo igual ao limite continua ativo.">
+                <Form.Item name="inactiveCostThreshold" label="Limite de elegibilidade da oferta" rules={[{ required: true }]} extra="Ofertas acima do limite ficam inelegíveis; o status do produto continua sendo uma decisão manual.">
                   <InputNumber min={0.01} precision={2} prefix="R$" style={inputStyle} />
                 </Form.Item>
               </Col>

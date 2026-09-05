@@ -7,7 +7,7 @@
 **Aplicação de homologação:** `https://dev.bentevi.shop`
 **Serviço de homologação:** `vortek-erp-dev` em `192.168.1.160`
 **Banco de homologação:** `supabase-dev` em `192.168.1.162`
-**Próxima ação obrigatória:** executar somente `BNT-PARITY-01 — Atividade manual do produto`
+**Próxima ação obrigatória:** executar somente `BNT-PARITY-02 — Oferta preferencial somente ativa`
 
 ---
 
@@ -64,7 +64,7 @@ Regras de uso:
 | 9 | Plataforma e banco | Concluída em DEV | Conferir produção somente em release autorizada |
 | 10 | Consolidação de regras P2 | Concluída | Manter contratos centralizados de regras, dispatch e jobs |
 | 11 | Interface e redesign Bentevi | Em andamento | `BNT-MSG-01` aprovada; pausar antes de `BNT-CFG-07` |
-| 11.1 | Reconciliação contínua Produção → Bentevi | Fotografia concluída; aplicação bloqueante | Executar `BNT-PARITY-01` e resolver a fila antes de `BNT-CFG-07` |
+| 11.1 | Reconciliação contínua Produção → Bentevi | `BNT-PARITY-01` concluída; aplicação bloqueante | Executar `BNT-PARITY-02` e resolver a fila antes de `BNT-CFG-07` |
 | 11.2 | Política canônica de Pricing Bentevi V2 | Planejada e bloqueada | Iniciar `BNT-PRICING-V2-00` somente após `BNT-PARITY-GATE` e `BNT-CFG-07` |
 | 12 | Limpeza histórica | Bloqueada | Somente após estabilidade funcional e fotografia autorizada de produção |
 
@@ -176,8 +176,8 @@ Regras de uso:
 - [x] Executar somente `BNT-MSG-01 — Templates e identidade das notificações`.
 - [x] Aprovar os templates de WhatsApp, Push e e-mail em homologação antes de iniciar `BNT-PARITY-00`.
 - [x] Executar somente `BNT-PARITY-00 — Fotografia e catálogo de regras`.
-- [ ] Executar somente `BNT-PARITY-01 — Atividade manual do produto`.
-- [ ] Não avançar para `BNT-PARITY-02` antes de `BNT-PARITY-01` estar integralmente validada.
+- [x] Executar somente `BNT-PARITY-01 — Atividade manual do produto`.
+- [x] Não avançar para `BNT-PARITY-02` antes de `BNT-PARITY-01` estar integralmente validada.
 - [ ] Executar cada divergência gerada por `BNT-PARITY-00` como uma ação individual `BNT-PARITY-N`, com teste e validação próprios.
 - [ ] Executar `BNT-PARITY-GATE` e não iniciar `BNT-CFG-07` enquanto houver regra crítica ou commit produtivo sem classificação.
 - [ ] Executar `BNT-CFG-07 — Integrações, incluindo estados ausentes da interface` somente após a liberação do gate de paridade.
@@ -2614,6 +2614,25 @@ DANFE, etiquetas de envio e documentos fornecidos por integrações externas nã
 **Gate executado:** branch `dev`; referências e SHA implantado confirmados; produção `.160` e `supabase-dev` `.162` acessados somente em leitura; nenhum PII ou secret registrado; nenhuma alteração funcional, migration, integração ou deploy. A verificação automática confirmou `13/13` commits no inventário, `77/77` regras classificadas e zero ID duplicado. Passaram os 11 testes de `npm run test:db-schema-snapshot`, `npm run validate` e `git diff --check`. Build e homologação visual são **N/A** porque a ação altera somente documentação.
 
 **Próxima ação:** `BNT-PARITY-01 — Atividade manual do produto`. `BNT-PARITY-GATE` e `BNT-CFG-07` permanecem bloqueados até a fila aplicável ser concluída.
+
+#### `BNT-PARITY-01 — Atividade manual do produto`
+
+- [x] preservar `produtos.ativo` como decisão manual nos syncs de catálogo e preço/estoque;
+- [x] aplicar o limite configurado exclusivamente em `produto_fornecedor_ofertas.ativo`;
+- [x] atualizar ofertas de custo alto sem desativar o produto mestre;
+- [x] zerar somente a projeção de estoque do fornecedor quando não houver outra oferta elegível;
+- [x] recalcular a publicação pela capacidade segura, preservando estoque interno e usando pausa reversível quando a capacidade for zero;
+- [x] impedir que a atualização de kits Panasonic sobrescreva a atividade de produto existente;
+- [x] manter o endpoint e os campos configurados existentes, com métricas novas de ofertas inativadas e aliases legados;
+- [x] confirmar que nenhuma migration ou reparo de dados é necessário no `supabase-dev`.
+
+**Causa corrigida:** catálogo, preço/estoque e a rota de custo alto tratavam o limite de custo como proprietário de `produtos.ativo`. Isso misturava atividade manual, elegibilidade da oferta e disponibilidade operacional.
+
+**Resultado técnico:** a regra central agora classifica exclusivamente a oferta do fornecedor. Produto novo nasce ativo; produtos existentes preservam a decisão manual; oferta acima do limite configurado fica inativa; produtos sem outra oferta elegível têm somente o snapshot de estoque do fornecedor zerado; quantidade/status do anúncio usam a capacidade segura e o outbox idempotente. O texto administrativo passou a identificar o campo como limite de elegibilidade da oferta. O commit produtivo `2ac64cc` não foi copiado integralmente porque também contém a futura `BNT-PARITY-02` e comportamentos já substituídos na Bentevi.
+
+**Validação:** 33 testes direcionados de atividade, capacidade, pricing e outbox passaram; `npm run validate`, `npm run build`, `npm run check:build-secrets` e `git diff --check` passaram. Nenhuma migration foi criada ou executada e nenhum banco foi alterado para validar esta ação.
+
+**Próxima ação:** `BNT-PARITY-02 — Oferta preferencial somente ativa`. A inativação de fornecedor permanece isolada em `BNT-PARITY-03/04`.
 
 #### Classificação obrigatória
 

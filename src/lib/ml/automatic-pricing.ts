@@ -1,7 +1,7 @@
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { resolveAutomaticPricingProductIds } from '@/lib/ml/automatic-pricing-selection';
-import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
+import { shouldSupplierOfferBeInactiveByCost } from '@/lib/product-activity';
 import { loadPricingTaxContext, requirePricingTaxRate } from '@/services/pricing-tax-context';
 import { loadCommercialPricingConfiguration } from '@/services/commercial-pricing-configuration';
 import { resolveMlFee } from '@/lib/commercial-pricing';
@@ -91,7 +91,7 @@ export async function enqueueAutomaticPricesForCostChanges(
     const cost = Number(product.custo || 0);
     const warning = String(product.ml_shipping_warning || '').trim();
     const publishable = product.ativo !== false && ['ativo', 'pausado'].includes(String(product.ml_status || ''));
-    if (!publishable || targets.length === 0 || cost <= 0 || shouldProductBeInactiveByCost(cost, commercial.inactiveCostThreshold) || warning) {
+    if (!publishable || targets.length === 0 || cost <= 0 || shouldSupplierOfferBeInactiveByCost(cost, commercial.inactiveCostThreshold) || warning) {
       result.skipped += 1;
       continue;
     }

@@ -60,7 +60,7 @@ export const CONFIGURATION_DEFINITIONS = {
   "configuracoes.margem_lucro": { domain: "comercial_precificacao", label: "Margem de lucro padrão legada", classification: "OBSOLETO" },
   "configuracoes.pricing_ml_fee_fallback_rate": { domain: "comercial_precificacao", label: "Taxa fallback do Mercado Livre", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.pricing_unspecified_shipping_cost": { domain: "comercial_precificacao", label: "Frete quando não informado", classification: "EDITAVEL_CONTROLADO" },
-  "configuracoes.product_inactive_cost_threshold": { domain: "comercial_precificacao", label: "Limite de custo para inativação", classification: "EDITAVEL_CONTROLADO" },
+  "configuracoes.product_inactive_cost_threshold": { domain: "comercial_precificacao", label: "Limite de elegibilidade da oferta", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.order_operational_delay_minutes": { domain: "produtos_estoque_fulfillment", label: "Prazo de atenção operacional", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.internal_stock_return_address": { domain: "produtos_estoque_fulfillment", label: "Endereço do estoque interno", classification: "EDITAVEL_CONTROLADO" },
   "configuracoes.ml_default_warranty": { domain: "mercado_livre_anuncios", label: "Garantia padrão dos anúncios", classification: "EDITAVEL_CONTROLADO" },

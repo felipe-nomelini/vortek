@@ -8,7 +8,7 @@ import {
   syncPreferredProductSnapshot,
 } from "@/lib/produto-fornecedor";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
-import { shouldProductBeInactiveByCost } from "@/lib/product-activity";
+import { shouldSupplierOfferBeInactiveByCost } from "@/lib/product-activity";
 import { loadCommercialPricingConfiguration } from "@/services/commercial-pricing-configuration";
 import { resolveMlFee } from "@/lib/commercial-pricing";
 
@@ -549,10 +549,9 @@ export async function POST(req: Request) {
             const productKey = String(row.gtin || "").trim()
               ? `gtin:${String(row.gtin || "").trim()}`
               : `dslite:${identityKey}`;
-            const inactiveByCost = shouldProductBeInactiveByCost(row.custo, commercial.inactiveCostThreshold);
             const insertPayload = {
               _product_key: productKey,
-              ativo: !inactiveByCost,
+              ativo: true,
               nome: row.nome,
               marca: row.marca || "",
               fornecedor: row.fornecedor,
@@ -603,7 +602,10 @@ export async function POST(req: Request) {
               : `dslite:${identityKey}`,
             custo: Number(row.custo || 0),
             estoque: Number(row.estoque || 0),
-            ativo: !shouldProductBeInactiveByCost(row.custo, commercial.inactiveCostThreshold),
+            ativo: !shouldSupplierOfferBeInactiveByCost(
+              row.custo,
+              commercial.inactiveCostThreshold,
+            ),
             prioridade: 100,
             payment_mode:
               existingOffer?.payment_mode ||
